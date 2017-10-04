@@ -17,7 +17,8 @@
         "RequestID": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -30,12 +31,14 @@
         "TheActor": {
           "type": "IfcActorSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "IsActingUpon": {
           "type": "IfcRelAssignsToActor",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -46,17 +49,20 @@
         "Role": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UserDefinedRole": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Description": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -69,7 +75,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -82,27 +89,32 @@
         "Purpose": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Description": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UserDefinedPurpose": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "OfPerson": {
           "type": "IfcPerson",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "OfOrganization": {
           "type": "IfcOrganization",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -115,7 +127,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -128,7 +141,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -141,7 +155,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -154,7 +169,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -174,7 +190,8 @@
         "ContainedInStructure": {
           "type": "IfcRelContainedInSpatialStructure",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -195,12 +212,14 @@
         "OuterBoundary": {
           "type": "IfcCurve",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "InnerBoundaries": {
           "type": "IfcCurve",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -213,12 +232,14 @@
         "FillStyleTarget": {
           "type": "IfcPoint",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "GlobalOrLocal": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -238,12 +259,14 @@
         "Item": {
           "type": "IfcGeometricRepresentationItem",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TextureCoordinates": {
           "type": "IfcTextureCoordinate",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -277,22 +300,26 @@
         "ApplicationDeveloper": {
           "type": "IfcOrganization",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Version": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ApplicationFullName": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ApplicationIdentifier": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -305,47 +332,56 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Description": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "AppliedValue": {
           "type": "IfcAppliedValueSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UnitBasis": {
           "type": "IfcMeasureWithUnit",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ApplicableDate": {
           "type": "IfcDateTimeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FixedUntilDate": {
           "type": "IfcDateTimeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ValuesReferenced": {
           "type": "IfcReferencesValueDocument",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "ValueOfComponents": {
           "type": "IfcAppliedValueRelationship",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "IsComponentIn": {
           "type": "IfcAppliedValueRelationship",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -356,27 +392,32 @@
         "ComponentOfTotal": {
           "type": "IfcAppliedValue",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "Components": {
           "type": "IfcAppliedValue",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "ArithmeticOperator": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Description": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -387,52 +428,62 @@
         "Description": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ApprovalDateTime": {
           "type": "IfcDateTimeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ApprovalStatus": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ApprovalLevel": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ApprovalQualifier": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Identifier": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Actors": {
           "type": "IfcApprovalActorRelationship",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "IsRelatedWith": {
           "type": "IfcApprovalRelationship",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "Relates": {
           "type": "IfcApprovalRelationship",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -443,17 +494,20 @@
         "Actor": {
           "type": "IfcActorSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Approval": {
           "type": "IfcApproval",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "Role": {
           "type": "IfcActorRole",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -464,12 +518,14 @@
         "ApprovedProperties": {
           "type": "IfcProperty",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "Approval": {
           "type": "IfcApproval",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -480,22 +536,26 @@
         "RelatedApproval": {
           "type": "IfcApproval",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatingApproval": {
           "type": "IfcApproval",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "Description": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -508,7 +568,8 @@
         "OuterCurve": {
           "type": "IfcCurve",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -521,7 +582,8 @@
         "Curve": {
           "type": "IfcBoundedCurve",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -534,7 +596,8 @@
         "InnerCurves": {
           "type": "IfcCurve",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -547,47 +610,56 @@
         "AssetID": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "OriginalValue": {
           "type": "IfcCostValue",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CurrentValue": {
           "type": "IfcCostValue",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TotalReplacementCost": {
           "type": "IfcCostValue",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Owner": {
           "type": "IfcActorSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "User": {
           "type": "IfcActorSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ResponsiblePerson": {
           "type": "IfcPerson",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "IncorporationDate": {
           "type": "IfcCalendarDate",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DepreciatedValue": {
           "type": "IfcCostValue",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -600,42 +672,50 @@
         "TopFlangeWidth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TopFlangeWidthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TopFlangeThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TopFlangeThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TopFlangeFilletRadius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TopFlangeFilletRadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CentreOfGravityInY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CentreOfGravityInYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -648,7 +728,8 @@
         "Axis": {
           "type": "IfcDirection",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -662,7 +743,8 @@
         "RefDirection": {
           "type": "IfcDirection",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -676,12 +758,14 @@
         "Axis": {
           "type": "IfcDirection",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RefDirection": {
           "type": "IfcDirection",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -694,27 +778,32 @@
         "Degree": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ControlPointsList": {
           "type": "IfcCartesianPoint",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "CurveForm": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ClosedCurve": {
           "type": "boolean",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SelfIntersect": {
           "type": "boolean",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -734,7 +823,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -754,12 +844,14 @@
         "RasterFormat": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RasterCode": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -772,32 +864,38 @@
         "XLength": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "XLengthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "YLength": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "YLengthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ZLength": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ZLengthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -810,7 +908,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -832,22 +931,26 @@
         "Operator": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FirstOperand": {
           "type": "IfcBooleanOperand",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SecondOperand": {
           "type": "IfcBooleanOperand",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Dim": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -858,7 +961,8 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -871,62 +975,74 @@
         "LinearStiffnessByLengthX": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearStiffnessByLengthXAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearStiffnessByLengthY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearStiffnessByLengthYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearStiffnessByLengthZ": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearStiffnessByLengthZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RotationalStiffnessByLengthX": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RotationalStiffnessByLengthXAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RotationalStiffnessByLengthY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RotationalStiffnessByLengthYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RotationalStiffnessByLengthZ": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RotationalStiffnessByLengthZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -939,32 +1055,38 @@
         "LinearStiffnessByAreaX": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearStiffnessByAreaXAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearStiffnessByAreaY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearStiffnessByAreaYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearStiffnessByAreaZ": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearStiffnessByAreaZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -977,62 +1099,74 @@
         "LinearStiffnessX": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearStiffnessXAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearStiffnessY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearStiffnessYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearStiffnessZ": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearStiffnessZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RotationalStiffnessX": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RotationalStiffnessXAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RotationalStiffnessY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RotationalStiffnessYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RotationalStiffnessZ": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RotationalStiffnessZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1045,12 +1179,14 @@
         "WarpingStiffness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WarpingStiffnessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1078,42 +1214,50 @@
         "Corner": {
           "type": "IfcCartesianPoint",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "XDim": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "XDimAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "YDim": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "YDimAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ZDim": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ZDimAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Dim": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1126,7 +1270,8 @@
         "Enclosure": {
           "type": "IfcBoundingBox",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1139,27 +1284,32 @@
         "ElevationOfRefHeight": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ElevationOfRefHeightAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ElevationOfTerrain": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ElevationOfTerrainAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BuildingAddress": {
           "type": "IfcPostalAddress",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1193,7 +1343,8 @@
         "CompositionType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1206,7 +1357,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1226,12 +1378,14 @@
         "Elevation": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ElevationAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1244,62 +1398,74 @@
         "Depth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DepthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Width": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WidthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WallThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WallThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Girth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "GirthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "InternalFilletRadius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "InternalFilletRadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CentreOfGravityInX": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CentreOfGravityInXAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1312,7 +1478,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1325,7 +1492,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1338,7 +1506,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1352,17 +1521,20 @@
         "DayComponent": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MonthComponent": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "YearComponent": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1376,17 +1548,20 @@
         "Coordinates": {
           "type": "double",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "CoordinatesAsString": {
           "type": "string",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "Dim": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1399,32 +1574,38 @@
         "Axis1": {
           "type": "IfcDirection",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Axis2": {
           "type": "IfcDirection",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LocalOrigin": {
           "type": "IfcCartesianPoint",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Scale": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ScaleAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Dim": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1444,12 +1625,14 @@
         "Scale2": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Scale2AsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1462,7 +1645,8 @@
         "Axis3": {
           "type": "IfcDirection",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1475,22 +1659,26 @@
         "Scale2": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Scale2AsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Scale3": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Scale3AsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1503,12 +1691,14 @@
         "Thickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1521,22 +1711,26 @@
         "Width": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WidthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Height": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HeightAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1549,7 +1743,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1562,12 +1757,14 @@
         "Radius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1580,12 +1777,14 @@
         "WallThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WallThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1598,12 +1797,14 @@
         "Radius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1614,27 +1815,32 @@
         "Source": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Edition": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "EditionDate": {
           "type": "IfcCalendarDate",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Contains": {
           "type": "IfcClassificationItem",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -1645,27 +1851,32 @@
         "Notation": {
           "type": "IfcClassificationNotationFacet",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ItemOf": {
           "type": "IfcClassification",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "Title": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "IsClassifiedItemIn": {
           "type": "IfcClassificationItemRelationship",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "IsClassifyingItemIn": {
           "type": "IfcClassificationItemRelationship",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -1676,12 +1887,14 @@
         "RelatingItem": {
           "type": "IfcClassificationItem",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatedItems": {
           "type": "IfcClassificationItem",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -1694,7 +1907,8 @@
         "NotationFacets": {
           "type": "IfcClassificationNotationFacet",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -1705,7 +1919,8 @@
         "NotationValue": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1719,7 +1934,8 @@
         "ReferencedSource": {
           "type": "IfcClassification",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1740,7 +1956,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1754,32 +1971,38 @@
         "Red": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RedAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Green": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "GreenAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Blue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BlueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1792,7 +2015,8 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1812,7 +2036,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1825,12 +2050,14 @@
         "UsageName": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HasProperties": {
           "type": "IfcProperty",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -1843,12 +2070,14 @@
         "Segments": {
           "type": "IfcCompositeCurveSegment",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "SelfIntersect": {
           "type": "boolean",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1861,27 +2090,32 @@
         "Transition": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SameSense": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ParentCurve": {
           "type": "IfcCurve",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UsingCurves": {
           "type": "IfcCompositeCurve",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "Dim": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1894,12 +2128,14 @@
         "Profiles": {
           "type": "IfcProfileDef",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "Label": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1912,7 +2148,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1925,7 +2162,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1945,12 +2183,14 @@
         "Criterion": {
           "type": "IfcConditionCriterionSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CriterionDateTime": {
           "type": "IfcDateTimeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1963,7 +2203,8 @@
         "Position": {
           "type": "IfcAxis2Placement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1976,7 +2217,8 @@
         "CfsFaces": {
           "type": "IfcFace",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -1989,12 +2231,14 @@
         "CurveOnRelatingElement": {
           "type": "IfcCurveOrEdgeCurve",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CurveOnRelatedElement": {
           "type": "IfcCurveOrEdgeCurve",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2012,32 +2256,38 @@
         "EccentricityInX": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "EccentricityInXAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "EccentricityInY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "EccentricityInYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "EccentricityInZ": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "EccentricityInZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2050,12 +2300,14 @@
         "PointOnRelatingElement": {
           "type": "IfcPointOrVertexPoint",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PointOnRelatedElement": {
           "type": "IfcPointOrVertexPoint",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2068,17 +2320,20 @@
         "LocationAtRelatingElement": {
           "type": "IfcAxis2Placement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LocationAtRelatedElement": {
           "type": "IfcAxis2Placement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ProfileOfPort": {
           "type": "IfcProfileDef",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2091,12 +2346,14 @@
         "SurfaceOnRelatingElement": {
           "type": "IfcSurfaceOrFaceSurface",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SurfaceOnRelatedElement": {
           "type": "IfcSurfaceOrFaceSurface",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2107,67 +2364,80 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Description": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ConstraintGrade": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ConstraintSource": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CreatingActor": {
           "type": "IfcActorSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CreationTime": {
           "type": "IfcDateTimeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UserDefinedGrade": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ClassifiedAs": {
           "type": "IfcConstraintClassificationRelationship",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "RelatesConstraints": {
           "type": "IfcConstraintRelationship",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "IsRelatedWith": {
           "type": "IfcConstraintRelationship",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "PropertiesForConstraint": {
           "type": "IfcPropertyConstraintRelationship",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "Aggregates": {
           "type": "IfcConstraintAggregationRelationship",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "IsAggregatedIn": {
           "type": "IfcConstraintAggregationRelationship",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -2178,27 +2448,32 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Description": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RelatingConstraint": {
           "type": "IfcConstraint",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatedConstraints": {
           "type": "IfcConstraint",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "LogicalAggregator": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2209,12 +2484,14 @@
         "ClassifiedConstraint": {
           "type": "IfcConstraint",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatedClassifications": {
           "type": "IfcClassificationNotationSelect",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -2225,22 +2502,26 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Description": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RelatingConstraint": {
           "type": "IfcConstraint",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatedConstraints": {
           "type": "IfcConstraint",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -2260,17 +2541,20 @@
         "Suppliers": {
           "type": "IfcActorSelect",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "UsageRatio": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UsageRatioAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2290,22 +2574,26 @@
         "ResourceIdentifier": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ResourceGroup": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ResourceConsumption": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BaseQuantity": {
           "type": "IfcMeasureWithUnit",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2318,7 +2606,8 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2331,7 +2620,8 @@
         "Controls": {
           "type": "IfcRelAssignsToControl",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -2344,7 +2634,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2357,12 +2648,14 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ConversionFactor": {
           "type": "IfcMeasureWithUnit",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2375,7 +2668,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2388,7 +2682,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2399,17 +2694,20 @@
         "HourOffset": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MinuteOffset": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Sense": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2429,42 +2727,50 @@
         "SubmittedBy": {
           "type": "IfcActorSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PreparedBy": {
           "type": "IfcActorSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SubmittedOn": {
           "type": "IfcDateTimeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Status": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TargetUsers": {
           "type": "IfcActorSelect",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "UpdateDate": {
           "type": "IfcDateTimeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ID": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2478,12 +2784,14 @@
         "CostType": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Condition": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2496,17 +2804,20 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CoversSpaces": {
           "type": "IfcRelCoversSpaces",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "Covers": {
           "type": "IfcRelCoversBldgElements",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -2519,7 +2830,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2532,122 +2844,146 @@
         "OverallHeight": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "OverallHeightAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BaseWidth2": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BaseWidth2AsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Radius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HeadWidth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HeadWidthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HeadDepth2": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HeadDepth2AsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HeadDepth3": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HeadDepth3AsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WebThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WebThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BaseWidth4": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BaseWidth4AsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BaseDepth1": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BaseDepth1AsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BaseDepth2": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BaseDepth2AsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BaseDepth3": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BaseDepth3AsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CentreOfGravityInY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CentreOfGravityInYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2660,92 +2996,110 @@
         "OverallHeight": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "OverallHeightAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HeadWidth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HeadWidthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Radius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HeadDepth2": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HeadDepth2AsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HeadDepth3": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HeadDepth3AsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WebThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WebThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BaseDepth1": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BaseDepth1AsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BaseDepth2": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BaseDepth2AsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CentreOfGravityInY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CentreOfGravityInYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2767,12 +3121,14 @@
         "Position": {
           "type": "IfcAxis2Placement3D",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Dim": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2785,7 +3141,8 @@
         "TreeRootExpression": {
           "type": "IfcCsgSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2796,32 +3153,38 @@
         "RelatingMonetaryUnit": {
           "type": "IfcMonetaryUnit",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RelatedMonetaryUnit": {
           "type": "IfcMonetaryUnit",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ExchangeRate": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ExchangeRateAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RateDateTime": {
           "type": "IfcDateAndTime",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RateSource": {
           "type": "IfcLibraryInformation",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2841,7 +3204,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2855,7 +3219,8 @@
         "Dim": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2868,22 +3233,26 @@
         "BasisSurface": {
           "type": "IfcPlane",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "OuterBoundary": {
           "type": "IfcCurve",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "InnerBoundaries": {
           "type": "IfcCurve",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "Dim": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2897,17 +3266,20 @@
         "CurveFont": {
           "type": "IfcCurveFontOrScaledCurveFontSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CurveWidth": {
           "type": "IfcSizeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CurveColour": {
           "type": "IfcColour",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2920,12 +3292,14 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PatternList": {
           "type": "IfcCurveStyleFontPattern",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -2938,22 +3312,26 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CurveFont": {
           "type": "IfcCurveStyleFontSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CurveFontScaling": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CurveFontScalingAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2964,22 +3342,26 @@
         "VisibleSegmentLength": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "VisibleSegmentLengthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "InvisibleSegmentLength": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "InvisibleSegmentLengthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -2992,7 +3374,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3006,12 +3389,14 @@
         "DateComponent": {
           "type": "IfcCalendarDate",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TimeComponent": {
           "type": "IfcLocalTime",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3024,12 +3409,14 @@
         "Definition": {
           "type": "IfcDefinedSymbolSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Target": {
           "type": "IfcCartesianTransformationOperator2D",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3042,17 +3429,20 @@
         "ParentProfile": {
           "type": "IfcProfileDef",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Operator": {
           "type": "IfcCartesianTransformationOperator2D",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Label": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3065,17 +3455,20 @@
         "Elements": {
           "type": "IfcDerivedUnitElement",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "UnitType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UserDefinedType": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3086,12 +3479,14 @@
         "Unit": {
           "type": "IfcNamedUnit",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Exponent": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3118,7 +3513,8 @@
         "AnnotatedBySymbols": {
           "type": "IfcTerminatorSymbol",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -3138,7 +3534,8 @@
         "Role": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3156,37 +3553,44 @@
         "LengthExponent": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MassExponent": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TimeExponent": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ElectricCurrentExponent": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ThermodynamicTemperatureExponent": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "AmountOfSubstanceExponent": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LuminousIntensityExponent": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3201,17 +3605,20 @@
         "DirectionRatios": {
           "type": "double",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "DirectionRatiosAsString": {
           "type": "string",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "Dim": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3245,7 +3652,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3258,12 +3666,14 @@
         "ControlElementId": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "AssignedToFlowElement": {
           "type": "IfcRelFlowControlElements",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -3297,7 +3707,8 @@
         "HasControlElements": {
           "type": "IfcRelFlowControlElements",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -3317,7 +3728,8 @@
         "FlowDirection": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3328,17 +3740,20 @@
         "FileExtension": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MimeContentType": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MimeSubtype": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3351,97 +3766,116 @@
         "DocumentId": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Description": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DocumentReferences": {
           "type": "IfcDocumentReference",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "Purpose": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "IntendedUse": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Scope": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Revision": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DocumentOwner": {
           "type": "IfcActorSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Editors": {
           "type": "IfcActorSelect",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "CreationTime": {
           "type": "IfcDateAndTime",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LastRevisionTime": {
           "type": "IfcDateAndTime",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ElectronicFormat": {
           "type": "IfcDocumentElectronicFormat",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ValidFrom": {
           "type": "IfcCalendarDate",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ValidUntil": {
           "type": "IfcCalendarDate",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Confidentiality": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Status": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "IsPointedTo": {
           "type": "IfcDocumentInformationRelationship",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "IsPointer": {
           "type": "IfcDocumentInformationRelationship",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -3452,17 +3886,20 @@
         "RelatingDocument": {
           "type": "IfcDocumentInformation",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatedDocuments": {
           "type": "IfcDocumentInformation",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "RelationshipType": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3476,7 +3913,8 @@
         "ReferenceToDocument": {
           "type": "IfcDocumentInformation",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -3489,22 +3927,26 @@
         "OverallHeight": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "OverallHeightAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "OverallWidth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "OverallWidthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3517,107 +3959,128 @@
         "LiningDepth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LiningDepthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LiningThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LiningThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ThresholdDepth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ThresholdDepthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ThresholdThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ThresholdThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TransomThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TransomThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TransomOffset": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TransomOffsetAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LiningOffset": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LiningOffsetAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ThresholdOffset": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ThresholdOffsetAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CasingThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CasingThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CasingDepth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CasingDepthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ShapeAspectStyle": {
           "type": "IfcShapeAspect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3630,37 +4093,44 @@
         "PanelDepth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PanelDepthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PanelOperation": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PanelWidth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PanelWidthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PanelPosition": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ShapeAspectStyle": {
           "type": "IfcShapeAspect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3673,22 +4143,26 @@
         "OperationType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ConstructionType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ParameterTakesPrecedence": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Sizeable": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3701,17 +4175,20 @@
         "Contents": {
           "type": "IfcDraughtingCalloutElement",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "IsRelatedFromCallout": {
           "type": "IfcDraughtingCalloutRelationship",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "IsRelatedToCallout": {
           "type": "IfcDraughtingCalloutRelationship",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -3722,22 +4199,26 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Description": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RelatingDraughtingCallout": {
           "type": "IfcDraughtingCallout",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatedDraughtingCallout": {
           "type": "IfcDraughtingCallout",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -3771,7 +4252,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3784,7 +4266,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3797,7 +4280,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3810,12 +4294,14 @@
         "EdgeStart": {
           "type": "IfcVertex",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "EdgeEnd": {
           "type": "IfcVertex",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3829,12 +4315,14 @@
         "EdgeGeometry": {
           "type": "IfcCurve",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SameSense": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3847,12 +4335,14 @@
         "FeatureLength": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FeatureLengthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3865,7 +4355,8 @@
         "EdgeList": {
           "type": "IfcOrientedEdge",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -3878,7 +4369,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3891,12 +4383,14 @@
         "DistributionPointFunction": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UserDefinedFunction": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3909,7 +4403,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3922,7 +4417,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3935,7 +4431,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3948,7 +4445,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3961,7 +4459,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -3974,72 +4473,86 @@
         "ElectricCurrentType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "InputVoltage": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "InputVoltageAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "InputFrequency": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "InputFrequencyAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FullLoadCurrent": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FullLoadCurrentAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MinimumCircuitCurrent": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MinimumCircuitCurrentAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MaximumPowerInput": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MaximumPowerInputAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RatedPowerInput": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RatedPowerInputAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "InputPhase": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4067,67 +4580,80 @@
         "Tag": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HasStructuralMember": {
           "type": "IfcRelConnectsStructuralElement",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "FillsVoids": {
           "type": "IfcRelFillsElement",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "ConnectedTo": {
           "type": "IfcRelConnectsElements",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "HasCoverings": {
           "type": "IfcRelCoversBldgElements",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "HasProjections": {
           "type": "IfcRelProjectsElement",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "ReferencedInStructures": {
           "type": "IfcRelReferencedInSpatialStructure",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "HasPorts": {
           "type": "IfcRelConnectsPortToElement",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "HasOpenings": {
           "type": "IfcRelVoidsElement",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "IsConnectionRealization": {
           "type": "IfcRelConnectsWithRealizingElements",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "ProvidesBoundaries": {
           "type": "IfcRelSpaceBoundary",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "ConnectedFrom": {
           "type": "IfcRelConnectsElements",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "ContainedInStructure": {
           "type": "IfcRelContainedInSpatialStructure",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -4140,12 +4666,14 @@
         "AssemblyPlace": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4172,12 +4700,14 @@
         "MethodOfMeasurement": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Quantities": {
           "type": "IfcPhysicalQuantity",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -4190,7 +4720,8 @@
         "ElementType": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4203,12 +4734,14 @@
         "Position": {
           "type": "IfcAxis2Placement3D",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Dim": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4221,22 +4754,26 @@
         "SemiAxis1": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SemiAxis1AsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SemiAxis2": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SemiAxis2AsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4249,22 +4786,26 @@
         "SemiAxis1": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SemiAxis1AsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SemiAxis2": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SemiAxis2AsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4291,12 +4832,14 @@
         "EnergySequence": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UserDefinedEnergySequence": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4309,17 +4852,20 @@
         "ImpactType": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Category": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UserDefinedCategory": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4346,7 +4892,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4359,7 +4906,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4372,17 +4920,20 @@
         "ExtendedProperties": {
           "type": "IfcProperty",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "Description": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4396,17 +4947,20 @@
         "Location": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ItemReference": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4451,17 +5005,20 @@
         "ExtrudedDirection": {
           "type": "IfcDirection",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Depth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DepthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4474,7 +5031,8 @@
         "Bounds": {
           "type": "IfcFaceBound",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -4488,12 +5046,14 @@
         "FbsmFaces": {
           "type": "IfcConnectedFaceSet",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "Dim": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4506,12 +5066,14 @@
         "Bound": {
           "type": "IfcLoop",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Orientation": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4532,12 +5094,14 @@
         "FaceSurface": {
           "type": "IfcSurface",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SameSense": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4557,7 +5121,8 @@
         "Voids": {
           "type": "IfcClosedShell",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -4570,62 +5135,74 @@
         "TensionFailureX": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TensionFailureXAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TensionFailureY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TensionFailureYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TensionFailureZ": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TensionFailureZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CompressionFailureX": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CompressionFailureXAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CompressionFailureY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CompressionFailureYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CompressionFailureZ": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CompressionFailureZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4638,7 +5215,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4672,7 +5250,8 @@
         "ProjectsElements": {
           "type": "IfcRelProjectsElement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -4685,7 +5264,8 @@
         "VoidsElements": {
           "type": "IfcRelVoidsElement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -4699,7 +5279,8 @@
         "FillStyles": {
           "type": "IfcFillStyleSelect",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -4713,32 +5294,38 @@
         "HatchLineAppearance": {
           "type": "IfcCurveStyle",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "StartOfNextHatchLine": {
           "type": "IfcHatchLineDistanceSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PointOfReferenceHatchLine": {
           "type": "IfcCartesianPoint",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PatternStart": {
           "type": "IfcCartesianPoint",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HatchLineAngle": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HatchLineAngleAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4752,7 +5339,8 @@
         "Symbol": {
           "type": "IfcAnnotationSymbolOccurrence",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4766,22 +5354,26 @@
         "TilingPattern": {
           "type": "IfcOneDirectionRepeatFactor",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Tiles": {
           "type": "IfcFillAreaStyleTileShapeSelect",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "TilingScale": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TilingScaleAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4794,7 +5386,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4807,7 +5400,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4848,7 +5442,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4861,7 +5456,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4944,102 +5540,122 @@
         "PropertySource": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlowConditionTimeSeries": {
           "type": "IfcTimeSeries",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "VelocityTimeSeries": {
           "type": "IfcTimeSeries",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlowrateTimeSeries": {
           "type": "IfcTimeSeries",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Fluid": {
           "type": "IfcMaterial",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PressureTimeSeries": {
           "type": "IfcTimeSeries",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UserDefinedPropertySource": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TemperatureSingleValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TemperatureSingleValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WetBulbTemperatureSingleValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WetBulbTemperatureSingleValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WetBulbTemperatureTimeSeries": {
           "type": "IfcTimeSeries",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TemperatureTimeSeries": {
           "type": "IfcTimeSeries",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlowrateSingleValue": {
           "type": "IfcDerivedMeasureValue",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlowConditionSingleValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlowConditionSingleValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "VelocitySingleValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "VelocitySingleValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PressureSingleValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PressureSingleValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -5052,7 +5668,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -5065,42 +5682,50 @@
         "CombustionTemperature": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CombustionTemperatureAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CarbonContent": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CarbonContentAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LowerHeatingValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LowerHeatingValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HigherHeatingValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HigherHeatingValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -5134,7 +5759,8 @@
         "AssemblyPlace": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -5147,7 +5773,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -5160,32 +5787,38 @@
         "MolecularWeight": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MolecularWeightAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Porosity": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PorosityAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MassDensity": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MassDensityAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -5198,52 +5831,62 @@
         "PhysicalWeight": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PhysicalWeightAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Perimeter": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PerimeterAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MinimumPlateThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MinimumPlateThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MaximumPlateThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MaximumPlateThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CrossSectionArea": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CrossSectionAreaAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -5263,32 +5906,38 @@
         "CoordinateSpaceDimension": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Precision": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PrecisionAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WorldCoordinateSystem": {
           "type": "IfcAxis2Placement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TrueNorth": {
           "type": "IfcDirection",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HasSubContexts": {
           "type": "IfcGeometricRepresentationSubContext",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -5308,27 +5957,32 @@
         "ParentContext": {
           "type": "IfcGeometricRepresentationContext",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "TargetScale": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TargetScaleAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TargetView": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UserDefinedTargetView": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -5341,12 +5995,14 @@
         "Elements": {
           "type": "IfcGeometricSetSelect",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "Dim": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -5359,22 +6015,26 @@
         "UAxes": {
           "type": "IfcGridAxis",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "VAxes": {
           "type": "IfcGridAxis",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "WAxes": {
           "type": "IfcGridAxis",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "ContainedInStructure": {
           "type": "IfcRelContainedInSpatialStructure",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -5385,37 +6045,44 @@
         "AxisTag": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "AxisCurve": {
           "type": "IfcCurve",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SameSense": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PartOfW": {
           "type": "IfcGrid",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "PartOfV": {
           "type": "IfcGrid",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "PartOfU": {
           "type": "IfcGrid",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "HasIntersections": {
           "type": "IfcVirtualGridIntersection",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -5428,12 +6095,14 @@
         "PlacementLocation": {
           "type": "IfcVirtualGridIntersection",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PlacementRefDirection": {
           "type": "IfcVirtualGridIntersection",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -5446,7 +6115,8 @@
         "IsGroupedBy": {
           "type": "IfcRelAssignsToGroup",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -5460,17 +6130,20 @@
         "BaseSurface": {
           "type": "IfcSurface",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "AgreementFlag": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Dim": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -5483,7 +6156,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -5496,7 +6170,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -5509,52 +6184,62 @@
         "UpperVaporResistanceFactor": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UpperVaporResistanceFactorAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LowerVaporResistanceFactor": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LowerVaporResistanceFactorAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "IsothermalMoistureCapacity": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "IsothermalMoistureCapacityAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "VaporPermeability": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "VaporPermeabilityAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MoistureDiffusivity": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MoistureDiffusivityAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -5567,52 +6252,62 @@
         "OverallWidth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "OverallWidthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "OverallDepth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "OverallDepthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WebThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WebThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlangeThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlangeThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FilletRadius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FilletRadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -5625,7 +6320,8 @@
         "UrlReference": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -5638,32 +6334,38 @@
         "InventoryType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Jurisdiction": {
           "type": "IfcActorSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ResponsiblePersons": {
           "type": "IfcPerson",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "LastUpdateDate": {
           "type": "IfcCalendarDate",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CurrentValue": {
           "type": "IfcCostValue",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "OriginalValue": {
           "type": "IfcCostValue",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -5676,7 +6378,8 @@
         "Values": {
           "type": "IfcIrregularTimeSeriesValue",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -5687,12 +6390,14 @@
         "TimeStamp": {
           "type": "IfcDateTimeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ListValues": {
           "type": "IfcValue",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -5705,7 +6410,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -5718,82 +6424,98 @@
         "Depth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DepthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Width": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WidthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Thickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FilletRadius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FilletRadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "EdgeRadius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "EdgeRadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LegSlope": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LegSlopeAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CentreOfGravityInX": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CentreOfGravityInXAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CentreOfGravityInY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CentreOfGravityInYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -5806,7 +6528,8 @@
         "SkillSet": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -5819,7 +6542,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -5832,27 +6556,32 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Version": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Publisher": {
           "type": "IfcOrganization",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "VersionDate": {
           "type": "IfcCalendarDate",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LibraryReference": {
           "type": "IfcLibraryReference",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -5866,7 +6595,8 @@
         "ReferenceIntoLibrary": {
           "type": "IfcLibraryInformation",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -5877,32 +6607,38 @@
         "MainPlaneAngle": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MainPlaneAngleAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SecondaryPlaneAngle": {
           "type": "double",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "SecondaryPlaneAngleAsString": {
           "type": "string",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "LuminousIntensity": {
           "type": "double",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "LuminousIntensityAsString": {
           "type": "string",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -5915,7 +6651,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -5928,12 +6665,14 @@
         "LightDistributionCurve": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DistributionData": {
           "type": "IfcLightDistributionData",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -5946,32 +6685,38 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LightColour": {
           "type": "IfcColourRgb",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "AmbientIntensity": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "AmbientIntensityAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Intensity": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "IntensityAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -5991,7 +6736,8 @@
         "Orientation": {
           "type": "IfcDirection",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6004,42 +6750,50 @@
         "Position": {
           "type": "IfcAxis2Placement3D",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ColourAppearance": {
           "type": "IfcColourRgb",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ColourTemperature": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ColourTemperatureAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LuminousFlux": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LuminousFluxAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LightEmissionSource": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LightDistributionDataSource": {
           "type": "IfcLightDistributionDataSourceSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6052,47 +6806,56 @@
         "Position": {
           "type": "IfcCartesianPoint",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Radius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ConstantAttenuation": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ConstantAttenuationAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DistanceAttenuation": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DistanceAttenuationAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "QuadricAttenuation": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "QuadricAttenuationAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6105,37 +6868,44 @@
         "Orientation": {
           "type": "IfcDirection",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ConcentrationExponent": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ConcentrationExponentAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SpreadAngle": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SpreadAngleAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BeamWidthAngle": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BeamWidthAngleAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6148,12 +6918,14 @@
         "Pnt": {
           "type": "IfcCartesianPoint",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Dir": {
           "type": "IfcVector",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6173,12 +6945,14 @@
         "PlacementRelTo": {
           "type": "IfcObjectPlacement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelativePlacement": {
           "type": "IfcAxis2Placement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6192,32 +6966,38 @@
         "HourComponent": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MinuteComponent": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SecondComponent": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SecondComponentAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Zone": {
           "type": "IfcCoordinatedUniversalTimeOffset",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DaylightSavingOffset": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6237,7 +7017,8 @@
         "Outer": {
           "type": "IfcClosedShell",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6250,12 +7031,14 @@
         "MappingSource": {
           "type": "IfcRepresentationMap",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "MappingTarget": {
           "type": "IfcCartesianTransformationOperator",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6269,17 +7052,20 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HasRepresentation": {
           "type": "IfcMaterialDefinitionRepresentation",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "ClassifiedAs": {
           "type": "IfcMaterialClassificationRelationship",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -6290,12 +7076,14 @@
         "MaterialClassifications": {
           "type": "IfcClassificationNotationSelect",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "ClassifiedMaterial": {
           "type": "IfcMaterial",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -6308,7 +7096,8 @@
         "RepresentedMaterial": {
           "type": "IfcMaterial",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -6322,27 +7111,32 @@
         "Material": {
           "type": "IfcMaterial",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LayerThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LayerThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "IsVentilated": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ToMaterialLayerSet": {
           "type": "IfcMaterialLayerSet",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -6355,22 +7149,26 @@
         "MaterialLayers": {
           "type": "IfcMaterialLayer",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "LayerSetName": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TotalThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TotalThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6383,27 +7181,32 @@
         "ForLayerSet": {
           "type": "IfcMaterialLayerSet",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LayerSetDirection": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DirectionSense": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "OffsetFromReferenceLine": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "OffsetFromReferenceLineAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6417,7 +7220,8 @@
         "Materials": {
           "type": "IfcMaterial",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -6428,7 +7232,8 @@
         "Material": {
           "type": "IfcMaterial",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6443,12 +7248,14 @@
         "ValueComponent": {
           "type": "IfcValue",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UnitComponent": {
           "type": "IfcUnit",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6461,47 +7268,56 @@
         "CompressiveStrength": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CompressiveStrengthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MaxAggregateSize": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MaxAggregateSizeAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "AdmixturesDescription": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Workability": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ProtectivePoreRatio": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ProtectivePoreRatioAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WaterImpermeability": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6514,22 +7330,26 @@
         "NominalDiameter": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "NominalDiameterAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "NominalLength": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "NominalLengthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6549,52 +7369,62 @@
         "DynamicViscosity": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DynamicViscosityAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "YoungModulus": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "YoungModulusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ShearModulus": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ShearModulusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PoissonRatio": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PoissonRatioAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ThermalExpansionCoefficient": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ThermalExpansionCoefficientAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6607,67 +7437,80 @@
         "YieldStress": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "YieldStressAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UltimateStress": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UltimateStressAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UltimateStrain": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UltimateStrainAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HardeningModule": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HardeningModuleAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ProportionalStress": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ProportionalStressAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PlasticStrain": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PlasticStrainAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Relaxations": {
           "type": "IfcRelaxation",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -6687,7 +7530,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6700,17 +7544,20 @@
         "Benchmark": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ValueSource": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DataValue": {
           "type": "IfcMetricValueSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6723,7 +7570,8 @@
         "Currency": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6736,7 +7584,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6749,17 +7598,20 @@
         "MoveFrom": {
           "type": "IfcSpatialStructureElement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MoveTo": {
           "type": "IfcSpatialStructureElement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PunchList": {
           "type": "string",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -6772,12 +7624,14 @@
         "Dimensions": {
           "type": "IfcDimensionalExponents",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UnitType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6790,12 +7644,14 @@
         "ObjectType": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "IsDefinedBy": {
           "type": "IfcRelDefines",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -6808,22 +7664,26 @@
         "HasAssignments": {
           "type": "IfcRelAssigns",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "IsDecomposedBy": {
           "type": "IfcRelDecomposes",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "Decomposes": {
           "type": "IfcRelDecomposes",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "HasAssociations": {
           "type": "IfcRelAssociates",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -6834,12 +7694,14 @@
         "PlacesObject": {
           "type": "IfcProduct",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "ReferencedByPlacements": {
           "type": "IfcLocalPlacement",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -6852,22 +7714,26 @@
         "BenchmarkValues": {
           "type": "IfcMetric",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ResultValues": {
           "type": "IfcMetric",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ObjectiveQualifier": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UserDefinedQualifier": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6880,7 +7746,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6893,22 +7760,26 @@
         "BasisCurve": {
           "type": "IfcCurve",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Distance": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DistanceAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SelfIntersect": {
           "type": "boolean",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6921,27 +7792,32 @@
         "BasisCurve": {
           "type": "IfcCurve",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Distance": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DistanceAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SelfIntersect": {
           "type": "boolean",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RefDirection": {
           "type": "IfcDirection",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6955,7 +7831,8 @@
         "RepeatFactor": {
           "type": "IfcVector",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -6976,7 +7853,8 @@
         "HasFillings": {
           "type": "IfcRelFillsElement",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -6989,92 +7867,110 @@
         "VisibleTransmittance": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "VisibleTransmittanceAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SolarTransmittance": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SolarTransmittanceAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ThermalIrTransmittance": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ThermalIrTransmittanceAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ThermalIrEmissivityBack": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ThermalIrEmissivityBackAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ThermalIrEmissivityFront": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ThermalIrEmissivityFrontAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "VisibleReflectanceBack": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "VisibleReflectanceBackAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "VisibleReflectanceFront": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "VisibleReflectanceFrontAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SolarReflectanceFront": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SolarReflectanceFrontAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SolarReflectanceBack": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SolarReflectanceBackAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7087,7 +7983,8 @@
         "ActionID": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7101,42 +7998,50 @@
         "Id": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Description": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Roles": {
           "type": "IfcActorRole",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "Addresses": {
           "type": "IfcAddress",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "IsRelatedBy": {
           "type": "IfcOrganizationRelationship",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "Relates": {
           "type": "IfcOrganizationRelationship",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "Engages": {
           "type": "IfcPersonAndOrganization",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -7147,22 +8052,26 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Description": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RelatingOrganization": {
           "type": "IfcOrganization",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatedOrganizations": {
           "type": "IfcOrganization",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -7175,12 +8084,14 @@
         "EdgeElement": {
           "type": "IfcEdge",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Orientation": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7193,7 +8104,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7204,42 +8116,50 @@
         "OwningUser": {
           "type": "IfcPersonAndOrganization",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "OwningApplication": {
           "type": "IfcApplication",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "State": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ChangeAction": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LastModifiedDate": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LastModifyingUser": {
           "type": "IfcPersonAndOrganization",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LastModifyingApplication": {
           "type": "IfcApplication",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CreationDate": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7252,7 +8172,8 @@
         "Position": {
           "type": "IfcAxis2Placement2D",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7265,7 +8186,8 @@
         "EdgeList": {
           "type": "IfcOrientedEdge",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -7278,7 +8200,8 @@
         "LifeCyclePhase": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7291,37 +8214,44 @@
         "OperationType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PanelPosition": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FrameDepth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FrameDepthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FrameThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FrameThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ShapeAspectStyle": {
           "type": "IfcShapeAspect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7334,7 +8264,8 @@
         "PermitID": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7348,47 +8279,56 @@
         "Id": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FamilyName": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "GivenName": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MiddleNames": {
           "type": "string",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "PrefixTitles": {
           "type": "string",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "SuffixTitles": {
           "type": "string",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "Roles": {
           "type": "IfcActorRole",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "Addresses": {
           "type": "IfcAddress",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "EngagedIn": {
           "type": "IfcPersonAndOrganization",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -7402,17 +8342,20 @@
         "ThePerson": {
           "type": "IfcPerson",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "TheOrganization": {
           "type": "IfcOrganization",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "Roles": {
           "type": "IfcActorRole",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -7425,22 +8368,26 @@
         "HasQuantities": {
           "type": "IfcPhysicalQuantity",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "Discrimination": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Quality": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Usage": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7451,17 +8398,20 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Description": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PartOfComplex": {
           "type": "IfcPhysicalComplexQuantity",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -7474,7 +8424,8 @@
         "Unit": {
           "type": "IfcNamedUnit",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7487,12 +8438,14 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ConstructionType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7505,7 +8458,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7518,7 +8472,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7531,22 +8486,26 @@
         "Width": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Height": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ColourComponents": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Pixel": {
           "type": "bytearray",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -7559,12 +8518,14 @@
         "Location": {
           "type": "IfcCartesianPoint",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Dim": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7577,7 +8538,8 @@
         "Placement": {
           "type": "IfcAxis2Placement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7590,22 +8552,26 @@
         "SizeInX": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SizeInXAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SizeInY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SizeInYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7632,7 +8598,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7654,22 +8621,26 @@
         "BasisCurve": {
           "type": "IfcCurve",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PointParameter": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PointParameterAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Dim": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7682,32 +8653,38 @@
         "BasisSurface": {
           "type": "IfcSurface",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PointParameterU": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PointParameterUAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PointParameterV": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PointParameterVAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Dim": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7720,7 +8697,8 @@
         "Polygon": {
           "type": "IfcCartesianPoint",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -7733,12 +8711,14 @@
         "Position": {
           "type": "IfcAxis2Placement3D",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PolygonalBoundary": {
           "type": "IfcBoundedCurve",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7751,7 +8731,8 @@
         "Points": {
           "type": "IfcCartesianPoint",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -7764,17 +8745,20 @@
         "ContainedIn": {
           "type": "IfcRelConnectsPortToElement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "ConnectedFrom": {
           "type": "IfcRelConnectsPorts",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "ConnectedTo": {
           "type": "IfcRelConnectsPorts",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -7787,37 +8771,44 @@
         "InternalLocation": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "AddressLines": {
           "type": "string",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "PostalBox": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Town": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Region": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PostalCode": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Country": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7851,7 +8842,8 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7892,22 +8884,26 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Description": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "AssignedItems": {
           "type": "IfcLayeredItem",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "Identifier": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7920,22 +8916,26 @@
         "LayerOn": {
           "type": "boolean",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LayerFrozen": {
           "type": "boolean",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LayerBlocked": {
           "type": "boolean",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LayerStyles": {
           "type": "IfcPresentationStyleSelect",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -7946,7 +8946,8 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7957,7 +8958,8 @@
         "Styles": {
           "type": "IfcPresentationStyleSelect",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -7970,17 +8972,20 @@
         "ProcedureID": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ProcedureType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UserDefinedProcedureType": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -7993,17 +8998,20 @@
         "OperatesOn": {
           "type": "IfcRelAssignsToProcess",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "IsSuccessorFrom": {
           "type": "IfcRelSequence",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "IsPredecessorTo": {
           "type": "IfcRelSequence",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -8016,22 +9024,26 @@
         "ObjectPlacement": {
           "type": "IfcObjectPlacement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "Representation": {
           "type": "IfcProductRepresentation",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "ReferencedBy": {
           "type": "IfcRelAssignsToProduct",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "geometry": {
           "type": "GeometryInfo",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8044,12 +9056,14 @@
         "ShapeOfProduct": {
           "type": "IfcProduct",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "HasShapeAspects": {
           "type": "IfcShapeAspect",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -8060,17 +9074,20 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Description": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Representations": {
           "type": "IfcRepresentation",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -8083,42 +9100,50 @@
         "SpecificHeatCapacity": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SpecificHeatCapacityAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "N20Content": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "N20ContentAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "COContent": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "COContentAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CO2Content": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CO2ContentAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8129,12 +9154,14 @@
         "ProfileType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ProfileName": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8145,12 +9172,14 @@
         "ProfileName": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ProfileDefinition": {
           "type": "IfcProfileDef",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8163,22 +9192,26 @@
         "LongName": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Phase": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RepresentationContexts": {
           "type": "IfcRepresentationContext",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "UnitsInContext": {
           "type": "IfcUnitAssignment",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8191,17 +9224,20 @@
         "ID": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Status": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8214,12 +9250,14 @@
         "Records": {
           "type": "IfcRelAssignsToProjectOrder",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8244,27 +9282,32 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Description": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PropertyForDependance": {
           "type": "IfcPropertyDependencyRelationship",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "PropertyDependsOn": {
           "type": "IfcPropertyDependencyRelationship",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "PartOfComplex": {
           "type": "IfcComplexProperty",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -8277,17 +9320,20 @@
         "UpperBoundValue": {
           "type": "IfcValue",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LowerBoundValue": {
           "type": "IfcValue",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Unit": {
           "type": "IfcUnit",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8298,22 +9344,26 @@
         "RelatingConstraint": {
           "type": "IfcConstraint",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatedProperties": {
           "type": "IfcProperty",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Description": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8326,7 +9376,8 @@
         "HasAssociations": {
           "type": "IfcRelAssociates",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -8337,27 +9388,32 @@
         "DependingProperty": {
           "type": "IfcProperty",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "DependantProperty": {
           "type": "IfcProperty",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Description": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Expression": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8370,12 +9426,14 @@
         "EnumerationValues": {
           "type": "IfcValue",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "EnumerationReference": {
           "type": "IfcPropertyEnumeration",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8386,17 +9444,20 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "EnumerationValues": {
           "type": "IfcValue",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "Unit": {
           "type": "IfcUnit",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8409,12 +9470,14 @@
         "ListValues": {
           "type": "IfcValue",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "Unit": {
           "type": "IfcUnit",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8427,12 +9490,14 @@
         "UsageName": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PropertyReference": {
           "type": "IfcObjectReferenceSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8445,7 +9510,8 @@
         "HasProperties": {
           "type": "IfcProperty",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -8458,12 +9524,14 @@
         "PropertyDefinitionOf": {
           "type": "IfcRelDefinesByProperties",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "DefinesType": {
           "type": "IfcTypeObject",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -8476,12 +9544,14 @@
         "NominalValue": {
           "type": "IfcValue",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Unit": {
           "type": "IfcUnit",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8494,27 +9564,32 @@
         "DefiningValues": {
           "type": "IfcValue",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "DefinedValues": {
           "type": "IfcValue",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "Expression": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DefiningUnit": {
           "type": "IfcUnit",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DefinedUnit": {
           "type": "IfcUnit",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8527,7 +9602,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8540,12 +9616,14 @@
         "ProxyType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Tag": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8558,7 +9636,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8571,12 +9650,14 @@
         "AreaValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "AreaValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8589,12 +9670,14 @@
         "CountValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CountValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8607,12 +9690,14 @@
         "LengthValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LengthValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8625,12 +9710,14 @@
         "TimeValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TimeValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8643,12 +9730,14 @@
         "VolumeValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "VolumeValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8661,12 +9750,14 @@
         "WeightValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WeightValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8686,7 +9777,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8699,7 +9791,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8712,7 +9805,8 @@
         "ShapeType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8732,7 +9826,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8745,12 +9840,14 @@
         "WeightsData": {
           "type": "double",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "WeightsDataAsString": {
           "type": "string",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -8763,32 +9860,38 @@
         "WallThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WallThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "InnerFilletRadius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "InnerFilletRadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "OuterFilletRadius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "OuterFilletRadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8801,22 +9904,26 @@
         "XDim": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "XDimAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "YDim": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "YDimAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8829,32 +9936,38 @@
         "XLength": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "XLengthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "YLength": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "YLengthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Height": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HeightAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8867,62 +9980,74 @@
         "BasisSurface": {
           "type": "IfcSurface",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "U1": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "U1AsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "V1": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "V1AsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "U2": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "U2AsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "V2": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "V2AsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Usense": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Vsense": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Dim": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8933,22 +10058,26 @@
         "ReferencedDocument": {
           "type": "IfcDocumentSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ReferencingValues": {
           "type": "IfcAppliedValue",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Description": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -8961,17 +10090,20 @@
         "TimeStep": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TimeStepAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Values": {
           "type": "IfcTimeSeriesValue",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -8982,52 +10114,62 @@
         "TotalCrossSectionArea": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TotalCrossSectionAreaAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SteelGrade": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BarSurface": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "EffectiveDepth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "EffectiveDepthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "NominalBarDiameter": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "NominalBarDiameterAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BarCount": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BarCountAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -9040,12 +10182,14 @@
         "DefinitionType": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ReinforcementSectionDefinitions": {
           "type": "IfcSectionReinforcementProperties",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -9058,42 +10202,50 @@
         "NominalDiameter": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "NominalDiameterAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CrossSectionArea": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CrossSectionAreaAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BarLength": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BarLengthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BarRole": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BarSurface": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -9106,7 +10258,8 @@
         "SteelGrade": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -9119,82 +10272,98 @@
         "MeshLength": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MeshLengthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MeshWidth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MeshWidthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LongitudinalBarNominalDiameter": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LongitudinalBarNominalDiameterAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TransverseBarNominalDiameter": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TransverseBarNominalDiameterAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LongitudinalBarCrossSectionArea": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LongitudinalBarCrossSectionAreaAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TransverseBarCrossSectionArea": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TransverseBarCrossSectionAreaAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LongitudinalBarSpacing": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LongitudinalBarSpacingAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TransverseBarSpacing": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TransverseBarSpacingAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -9214,12 +10383,14 @@
         "RelatedObjects": {
           "type": "IfcObjectDefinition",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "RelatedObjectsType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -9232,7 +10403,8 @@
         "TimeForTask": {
           "type": "IfcScheduleTimeControl",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -9245,12 +10417,14 @@
         "RelatingActor": {
           "type": "IfcActor",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "ActingRole": {
           "type": "IfcActorRole",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -9263,7 +10437,8 @@
         "RelatingControl": {
           "type": "IfcControl",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -9276,7 +10451,8 @@
         "RelatingGroup": {
           "type": "IfcGroup",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -9289,12 +10465,14 @@
         "RelatingProcess": {
           "type": "IfcProcess",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "QuantityInProcess": {
           "type": "IfcMeasureWithUnit",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -9307,7 +10485,8 @@
         "RelatingProduct": {
           "type": "IfcProduct",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -9327,7 +10506,8 @@
         "RelatingResource": {
           "type": "IfcResource",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -9340,7 +10520,8 @@
         "RelatedObjects": {
           "type": "IfcRoot",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -9353,7 +10534,8 @@
         "RelatingAppliedValue": {
           "type": "IfcAppliedValue",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -9366,7 +10548,8 @@
         "RelatingApproval": {
           "type": "IfcApproval",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -9379,7 +10562,8 @@
         "RelatingClassification": {
           "type": "IfcClassificationNotationSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -9392,12 +10576,14 @@
         "Intent": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RelatingConstraint": {
           "type": "IfcConstraint",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -9410,7 +10596,8 @@
         "RelatingDocument": {
           "type": "IfcDocumentSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -9423,7 +10610,8 @@
         "RelatingLibrary": {
           "type": "IfcLibrarySelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -9436,7 +10624,8 @@
         "RelatingMaterial": {
           "type": "IfcMaterialSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -9449,17 +10638,20 @@
         "RelatingProfileProperties": {
           "type": "IfcProfileProperties",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ProfileSectionLocation": {
           "type": "IfcShapeAspect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ProfileOrientation": {
           "type": "IfcOrientationSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -9479,17 +10671,20 @@
         "ConnectionGeometry": {
           "type": "IfcConnectionGeometry",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RelatingElement": {
           "type": "IfcElement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatedElement": {
           "type": "IfcElement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -9502,22 +10697,26 @@
         "RelatingPriorities": {
           "type": "long",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "RelatedPriorities": {
           "type": "long",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "RelatedConnectionType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RelatingConnectionType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -9530,12 +10729,14 @@
         "RelatingPort": {
           "type": "IfcPort",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatedElement": {
           "type": "IfcElement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -9548,17 +10749,20 @@
         "RelatingPort": {
           "type": "IfcPort",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatedPort": {
           "type": "IfcPort",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RealizingElement": {
           "type": "IfcElement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -9571,12 +10775,14 @@
         "RelatingElement": {
           "type": "IfcStructuralActivityAssignmentSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatedStructuralActivity": {
           "type": "IfcStructuralActivity",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -9589,12 +10795,14 @@
         "RelatingElement": {
           "type": "IfcElement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatedStructuralMember": {
           "type": "IfcStructuralMember",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -9607,37 +10815,44 @@
         "RelatingStructuralMember": {
           "type": "IfcStructuralMember",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatedStructuralConnection": {
           "type": "IfcStructuralConnection",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "AppliedCondition": {
           "type": "IfcBoundaryCondition",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "AdditionalConditions": {
           "type": "IfcStructuralConnectionCondition",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SupportedLength": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SupportedLengthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ConditionCoordinateSystem": {
           "type": "IfcAxis2Placement3D",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -9650,7 +10865,8 @@
         "ConnectionConstraint": {
           "type": "IfcConnectionGeometry",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -9663,12 +10879,14 @@
         "RealizingElements": {
           "type": "IfcElement",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "ConnectionType": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -9681,12 +10899,14 @@
         "RelatedElements": {
           "type": "IfcProduct",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "RelatingStructure": {
           "type": "IfcSpatialStructureElement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -9699,12 +10919,14 @@
         "RelatingBuildingElement": {
           "type": "IfcElement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatedCoverings": {
           "type": "IfcCovering",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -9717,12 +10939,14 @@
         "RelatedSpace": {
           "type": "IfcSpace",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatedCoverings": {
           "type": "IfcCovering",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -9735,12 +10959,14 @@
         "RelatingObject": {
           "type": "IfcObjectDefinition",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatedObjects": {
           "type": "IfcObjectDefinition",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -9753,7 +10979,8 @@
         "RelatedObjects": {
           "type": "IfcObject",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -9766,7 +10993,8 @@
         "RelatingPropertyDefinition": {
           "type": "IfcPropertySetDefinition",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -9779,7 +11007,8 @@
         "RelatingType": {
           "type": "IfcTypeObject",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -9792,12 +11021,14 @@
         "RelatingOpeningElement": {
           "type": "IfcOpeningElement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatedBuildingElement": {
           "type": "IfcElement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -9810,12 +11041,14 @@
         "RelatedControlElements": {
           "type": "IfcDistributionControlElement",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "RelatingFlowElement": {
           "type": "IfcDistributionFlowElement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -9828,37 +11061,44 @@
         "DailyInteraction": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DailyInteractionAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ImportanceRating": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ImportanceRatingAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LocationOfInteraction": {
           "type": "IfcSpatialStructureElement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RelatedSpaceProgram": {
           "type": "IfcSpaceProgram",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatingSpaceProgram": {
           "type": "IfcSpaceProgram",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -9885,7 +11125,8 @@
         "OverridingProperties": {
           "type": "IfcProperty",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -9898,12 +11139,14 @@
         "RelatingElement": {
           "type": "IfcElement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatedFeatureElement": {
           "type": "IfcFeatureElementAddition",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -9916,12 +11159,14 @@
         "RelatedElements": {
           "type": "IfcProduct",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "RelatingStructure": {
           "type": "IfcSpatialStructureElement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -9941,27 +11186,32 @@
         "RelatingProcess": {
           "type": "IfcProcess",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatedProcess": {
           "type": "IfcProcess",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "TimeLag": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TimeLagAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SequenceType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -9974,12 +11224,14 @@
         "RelatingSystem": {
           "type": "IfcSystem",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatedBuildings": {
           "type": "IfcSpatialStructureElement",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -9992,27 +11244,32 @@
         "RelatingSpace": {
           "type": "IfcSpace",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatedBuildingElement": {
           "type": "IfcElement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "ConnectionGeometry": {
           "type": "IfcConnectionGeometry",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PhysicalOrVirtualBoundary": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "InternalOrExternalBoundary": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10025,12 +11282,14 @@
         "RelatingBuildingElement": {
           "type": "IfcElement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RelatedOpeningElement": {
           "type": "IfcFeatureElementSubtraction",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -10048,22 +11307,26 @@
         "RelaxationValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RelaxationValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "InitialStress": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "InitialStressAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10076,37 +11339,44 @@
         "ContextOfItems": {
           "type": "IfcRepresentationContext",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "RepresentationIdentifier": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RepresentationType": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Items": {
           "type": "IfcRepresentationItem",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "RepresentationMap": {
           "type": "IfcRepresentationMap",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "LayerAssignments": {
           "type": "IfcPresentationLayerAssignment",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "OfProductRepresentation": {
           "type": "IfcProductRepresentation",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -10117,17 +11387,20 @@
         "ContextIdentifier": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ContextType": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RepresentationsInContext": {
           "type": "IfcRepresentation",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -10140,12 +11413,14 @@
         "LayerAssignments": {
           "type": "IfcPresentationLayerAssignment",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "StyledByItem": {
           "type": "IfcStyledItem",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -10156,17 +11431,20 @@
         "MappingOrigin": {
           "type": "IfcAxis2Placement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MappedRepresentation": {
           "type": "IfcRepresentation",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "MapUsage": {
           "type": "IfcMappedItem",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -10179,7 +11457,8 @@
         "ResourceOf": {
           "type": "IfcRelAssignsToResource",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -10192,17 +11471,20 @@
         "Axis": {
           "type": "IfcAxis1Placement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Angle": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "AngleAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10215,47 +11497,56 @@
         "Thickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RibHeight": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RibHeightAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RibWidth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RibWidthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RibSpacing": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RibSpacingAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Direction": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10268,22 +11559,26 @@
         "Height": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HeightAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BottomRadius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BottomRadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10296,22 +11591,26 @@
         "Height": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HeightAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Radius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10324,7 +11623,8 @@
         "ShapeType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10335,22 +11635,26 @@
         "GlobalId": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "OwnerHistory": {
           "type": "IfcOwnerHistory",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Description": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10363,12 +11667,14 @@
         "Radius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10381,12 +11687,14 @@
         "RoundingRadius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RoundingRadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10399,12 +11707,14 @@
         "Prefix": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Name": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10417,7 +11727,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10430,137 +11741,164 @@
         "ActualStart": {
           "type": "IfcDateTimeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "EarlyStart": {
           "type": "IfcDateTimeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LateStart": {
           "type": "IfcDateTimeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ScheduleStart": {
           "type": "IfcDateTimeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ActualFinish": {
           "type": "IfcDateTimeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "EarlyFinish": {
           "type": "IfcDateTimeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LateFinish": {
           "type": "IfcDateTimeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ScheduleFinish": {
           "type": "IfcDateTimeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ScheduleDuration": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ScheduleDurationAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ActualDuration": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ActualDurationAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RemainingTime": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RemainingTimeAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FreeFloat": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FreeFloatAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TotalFloat": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TotalFloatAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "IsCritical": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "StatusTime": {
           "type": "IfcDateTimeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "StartFloat": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "StartFloatAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FinishFloat": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FinishFloatAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Completion": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CompletionAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ScheduleTimeControlAssigned": {
           "type": "IfcRelAssignsTasks",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -10571,17 +11909,20 @@
         "SectionType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "StartProfile": {
           "type": "IfcProfileDef",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "EndProfile": {
           "type": "IfcProfileDef",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10592,47 +11933,56 @@
         "LongitudinalStartPosition": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LongitudinalStartPositionAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LongitudinalEndPosition": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LongitudinalEndPositionAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TransversePosition": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TransversePositionAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ReinforcementRole": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SectionDefinition": {
           "type": "IfcSectionProperties",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CrossSectionReinforcementDefinitions": {
           "type": "IfcReinforcementBarProperties",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -10645,22 +11995,26 @@
         "SpineCurve": {
           "type": "IfcCompositeCurve",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CrossSections": {
           "type": "IfcProfileDef",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "CrossSectionPositions": {
           "type": "IfcAxis2Placement3D",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "Dim": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10673,7 +12027,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10686,17 +12041,20 @@
         "ServiceLifeType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ServiceLifeDuration": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ServiceLifeDurationAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10709,22 +12067,26 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UpperValue": {
           "type": "IfcMeasureValue",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MostUsedValue": {
           "type": "IfcMeasureValue",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LowerValue": {
           "type": "IfcMeasureValue",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10735,27 +12097,32 @@
         "ShapeRepresentations": {
           "type": "IfcShapeModel",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Description": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ProductDefinitional": {
           "type": "boolean",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PartOfProductDefinitionShape": {
           "type": "IfcProductDefinitionShape",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -10768,7 +12135,8 @@
         "OfShapeAspect": {
           "type": "IfcShapeAspect",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -10788,12 +12156,14 @@
         "SbsmBoundary": {
           "type": "IfcShell",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "Dim": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10813,32 +12183,38 @@
         "RefLatitude": {
           "type": "long",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "RefLongitude": {
           "type": "long",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "RefElevation": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RefElevationAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LandTitleNumber": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SiteAddress": {
           "type": "IfcPostalAddress",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10851,7 +12227,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10864,7 +12241,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10877,32 +12255,38 @@
         "SlippageX": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SlippageXAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SlippageY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SlippageYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SlippageZ": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SlippageZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10916,7 +12300,8 @@
         "Dim": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10929,17 +12314,20 @@
         "IsAttenuating": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SoundScale": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SoundValues": {
           "type": "IfcSoundValue",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -10952,22 +12340,26 @@
         "SoundLevelTimeSeries": {
           "type": "IfcTimeSeries",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Frequency": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FrequencyAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SoundLevelSingleValue": {
           "type": "IfcDerivedMeasureValue",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10980,27 +12372,32 @@
         "InteriorOrExteriorSpace": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ElevationWithFlooring": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ElevationWithFlooringAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HasCoverings": {
           "type": "IfcRelCoversSpaces",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "BoundedBy": {
           "type": "IfcRelSpaceBoundary",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -11013,7 +12410,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -11026,52 +12424,62 @@
         "SpaceProgramIdentifier": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MaxRequiredArea": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MaxRequiredAreaAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MinRequiredArea": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MinRequiredAreaAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RequestedLocation": {
           "type": "IfcSpatialStructureElement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "StandardRequiredArea": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "StandardRequiredAreaAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HasInteractionReqsFrom": {
           "type": "IfcRelInteractionRequirements",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "HasInteractionReqsTo": {
           "type": "IfcRelInteractionRequirements",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -11084,67 +12492,80 @@
         "ApplicableValueRatio": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ApplicableValueRatioAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ThermalLoadSource": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PropertySource": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SourceDescription": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MaximumValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MaximumValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MinimumValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MinimumValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ThermalLoadTimeSeriesValues": {
           "type": "IfcTimeSeries",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UserDefinedThermalLoadSource": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UserDefinedPropertySource": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ThermalLoadType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -11157,7 +12578,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -11170,27 +12592,32 @@
         "LongName": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CompositionType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ReferencesElements": {
           "type": "IfcRelReferencedInSpatialStructure",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "ServicedBySystems": {
           "type": "IfcRelServicesBuildings",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "ContainsElements": {
           "type": "IfcRelContainedInSpatialStructure",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -11210,12 +12637,14 @@
         "Radius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -11228,7 +12657,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -11241,7 +12671,8 @@
         "ShapeType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -11254,32 +12685,38 @@
         "NumberOfRiser": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "NumberOfTreads": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RiserHeight": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RiserHeightAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TreadLength": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TreadLengthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -11292,7 +12729,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -11305,12 +12743,14 @@
         "DestabilizingLoad": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CausedBy": {
           "type": "IfcStructuralReaction",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -11323,17 +12763,20 @@
         "AppliedLoad": {
           "type": "IfcStructuralLoad",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "GlobalOrLocal": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "AssignedToStructuralItem": {
           "type": "IfcRelConnectsStructuralActivity",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -11346,22 +12789,26 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "OrientationOf2DPlane": {
           "type": "IfcAxis2Placement3D",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LoadedBy": {
           "type": "IfcStructuralLoadGroup",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "HasResults": {
           "type": "IfcStructuralResultGroup",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -11374,12 +12821,14 @@
         "AppliedCondition": {
           "type": "IfcBoundaryCondition",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ConnectsStructuralMembers": {
           "type": "IfcRelConnectsStructuralMember",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -11390,7 +12839,8 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -11410,7 +12860,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -11431,7 +12882,8 @@
         "AssignedStructuralActivity": {
           "type": "IfcRelConnectsStructuralActivity",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -11444,7 +12896,8 @@
         "ProjectedOrTrue": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -11457,12 +12910,14 @@
         "VaryingAppliedLoadLocation": {
           "type": "IfcShapeAspect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SubsequentAppliedLoads": {
           "type": "IfcStructuralLoad",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -11473,7 +12928,8 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -11486,42 +12942,50 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ActionType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ActionSource": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Coefficient": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CoefficientAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Purpose": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SourceOfResultGroup": {
           "type": "IfcStructuralResultGroup",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "LoadGroupFor": {
           "type": "IfcStructuralAnalysisModel",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -11534,62 +12998,74 @@
         "LinearForceX": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearForceXAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearForceY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearForceYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearForceZ": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearForceZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearMomentX": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearMomentXAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearMomentY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearMomentYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearMomentZ": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LinearMomentZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -11602,32 +13078,38 @@
         "PlanarForceX": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PlanarForceXAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PlanarForceY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PlanarForceYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PlanarForceZ": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PlanarForceZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -11640,62 +13122,74 @@
         "DisplacementX": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DisplacementXAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DisplacementY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DisplacementYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DisplacementZ": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DisplacementZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RotationalDisplacementRX": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RotationalDisplacementRXAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RotationalDisplacementRY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RotationalDisplacementRYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RotationalDisplacementRZ": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RotationalDisplacementRZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -11708,12 +13202,14 @@
         "Distortion": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DistortionAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -11726,62 +13222,74 @@
         "ForceX": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ForceXAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ForceY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ForceYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ForceZ": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ForceZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MomentX": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MomentXAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MomentY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MomentYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MomentZ": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MomentZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -11794,12 +13302,14 @@
         "WarpingMoment": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WarpingMomentAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -11819,32 +13329,38 @@
         "DeltaT_Constant": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DeltaT_ConstantAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DeltaT_Y": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DeltaT_YAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DeltaT_Z": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DeltaT_ZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -11857,12 +13373,14 @@
         "ReferencesElement": {
           "type": "IfcRelConnectsStructuralElement",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "ConnectedBy": {
           "type": "IfcRelConnectsStructuralMember",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -11875,7 +13393,8 @@
         "ProjectedOrTrue": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -11888,12 +13407,14 @@
         "VaryingAppliedLoadLocation": {
           "type": "IfcShapeAspect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SubsequentAppliedLoads": {
           "type": "IfcStructuralLoad",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -11927,162 +13448,194 @@
         "TorsionalConstantX": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TorsionalConstantXAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MomentOfInertiaYZ": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MomentOfInertiaYZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MomentOfInertiaY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MomentOfInertiaYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MomentOfInertiaZ": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MomentOfInertiaZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WarpingConstant": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WarpingConstantAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ShearCentreZ": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ShearCentreZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ShearCentreY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ShearCentreYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ShearDeformationAreaZ": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ShearDeformationAreaZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ShearDeformationAreaY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ShearDeformationAreaYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MaximumSectionModulusY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MaximumSectionModulusYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MinimumSectionModulusY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MinimumSectionModulusYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MaximumSectionModulusZ": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MaximumSectionModulusZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MinimumSectionModulusZ": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MinimumSectionModulusZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TorsionalSectionModulus": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TorsionalSectionModulusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CentreOfGravityInX": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CentreOfGravityInXAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CentreOfGravityInY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CentreOfGravityInYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -12095,7 +13648,8 @@
         "Causes": {
           "type": "IfcStructuralAction",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -12108,22 +13662,26 @@
         "TheoryType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ResultForLoadGroup": {
           "type": "IfcStructuralLoadGroup",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "IsLinear": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ResultGroupFor": {
           "type": "IfcStructuralAnalysisModel",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -12136,42 +13694,50 @@
         "ShearAreaZ": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ShearAreaZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ShearAreaY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ShearAreaYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PlasticShapeFactorY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PlasticShapeFactorYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PlasticShapeFactorZ": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PlasticShapeFactorZAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -12191,17 +13757,20 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Thickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -12214,27 +13783,32 @@
         "SubsequentThickness": {
           "type": "double",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "SubsequentThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "VaryingThicknessLocation": {
           "type": "IfcShapeAspect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "VaryingThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "VaryingThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -12261,17 +13835,20 @@
         "Item": {
           "type": "IfcRepresentationItem",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "Styles": {
           "type": "IfcPresentationStyleAssignment",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -12291,12 +13868,14 @@
         "SubContractor": {
           "type": "IfcActorSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "JobDescription": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -12309,7 +13888,8 @@
         "ParentEdge": {
           "type": "IfcEdge",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -12331,32 +13911,38 @@
         "Directrix": {
           "type": "IfcCurve",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "StartParam": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "StartParamAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "EndParam": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "EndParamAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ReferenceSurface": {
           "type": "IfcSurface",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -12369,17 +13955,20 @@
         "ExtrudedDirection": {
           "type": "IfcDirection",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Depth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DepthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -12392,7 +13981,8 @@
         "AxisPosition": {
           "type": "IfcAxis1Placement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -12406,12 +13996,14 @@
         "Side": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Styles": {
           "type": "IfcSurfaceStyleElementSelect",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -12424,22 +14016,26 @@
         "DiffuseTransmissionColour": {
           "type": "IfcColourRgb",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DiffuseReflectionColour": {
           "type": "IfcColourRgb",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TransmissionColour": {
           "type": "IfcColourRgb",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ReflectanceColour": {
           "type": "IfcColourRgb",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -12452,22 +14048,26 @@
         "RefractionIndex": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RefractionIndexAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DispersionFactor": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DispersionFactorAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -12480,47 +14080,56 @@
         "Transparency": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TransparencyAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DiffuseColour": {
           "type": "IfcColourOrFactor",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TransmissionColour": {
           "type": "IfcColourOrFactor",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DiffuseTransmissionColour": {
           "type": "IfcColourOrFactor",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ReflectionColour": {
           "type": "IfcColourOrFactor",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SpecularColour": {
           "type": "IfcColourOrFactor",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SpecularHighlight": {
           "type": "IfcSpecularHighlightSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ReflectanceMethod": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -12533,7 +14142,8 @@
         "SurfaceColour": {
           "type": "IfcColourRgb",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -12546,7 +14156,8 @@
         "Textures": {
           "type": "IfcSurfaceTexture",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -12557,22 +14168,26 @@
         "RepeatS": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RepeatT": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TextureType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TextureTransform": {
           "type": "IfcCartesianTransformationOperator2D",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -12585,12 +14200,14 @@
         "SweptArea": {
           "type": "IfcProfileDef",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Position": {
           "type": "IfcAxis2Placement3D",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -12603,47 +14220,56 @@
         "Directrix": {
           "type": "IfcCurve",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Radius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "RadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "InnerRadius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "InnerRadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "StartParam": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "StartParamAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "EndParam": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "EndParamAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -12656,17 +14282,20 @@
         "SweptCurve": {
           "type": "IfcProfileDef",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Position": {
           "type": "IfcAxis2Placement3D",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Dim": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -12679,7 +14308,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -12693,7 +14323,8 @@
         "StyleOfSymbol": {
           "type": "IfcSymbolStyleSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -12706,7 +14337,8 @@
         "ServicesBuildings": {
           "type": "IfcRelServicesBuildings",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -12726,102 +14358,122 @@
         "Depth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DepthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlangeWidth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlangeWidthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WebThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WebThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlangeThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlangeThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FilletRadius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FilletRadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlangeEdgeRadius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlangeEdgeRadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WebEdgeRadius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WebEdgeRadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WebSlope": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WebSlopeAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlangeSlope": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlangeSlopeAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CentreOfGravityInY": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CentreOfGravityInYAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -12834,12 +14486,14 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Rows": {
           "type": "IfcTableRow",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -12850,17 +14504,20 @@
         "RowCells": {
           "type": "IfcValue",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "IsHeading": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "OfTable": {
           "type": "IfcTable",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -12873,7 +14530,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -12886,27 +14544,32 @@
         "TaskId": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Status": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WorkMethod": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "IsMilestone": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Priority": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -12919,27 +14582,32 @@
         "TelephoneNumbers": {
           "type": "string",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "FacsimileNumbers": {
           "type": "string",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "PagerNumber": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ElectronicMailAddresses": {
           "type": "string",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "WWWHomePageURL": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -12952,77 +14620,92 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "NominalDiameter": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "NominalDiameterAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CrossSectionArea": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CrossSectionAreaAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TensionForce": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TensionForceAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PreStress": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PreStressAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FrictionCoefficient": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FrictionCoefficientAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "AnchorageSlip": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "AnchorageSlipAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MinCurvatureRadius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MinCurvatureRadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13042,7 +14725,8 @@
         "AnnotatedCurve": {
           "type": "IfcAnnotationCurveOccurrence",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         }
       }
     },
@@ -13055,17 +14739,20 @@
         "Literal": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Placement": {
           "type": "IfcAxis2Placement",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Path": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13078,12 +14765,14 @@
         "Extent": {
           "type": "IfcPlanarExtent",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BoxAlignment": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13097,17 +14786,20 @@
         "TextCharacterAppearance": {
           "type": "IfcCharacterStyleSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TextStyle": {
           "type": "IfcTextStyleSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TextFontStyle": {
           "type": "IfcTextFontSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13120,27 +14812,32 @@
         "FontFamily": {
           "type": "string",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "FontStyle": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FontVariant": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FontWeight": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FontSize": {
           "type": "IfcSizeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13153,12 +14850,14 @@
         "Colour": {
           "type": "IfcColour",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BackgroundColour": {
           "type": "IfcColour",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13171,37 +14870,44 @@
         "TextIndent": {
           "type": "IfcSizeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TextAlign": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TextDecoration": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LetterSpacing": {
           "type": "IfcSizeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WordSpacing": {
           "type": "IfcSizeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TextTransform": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LineHeight": {
           "type": "IfcSizeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13214,47 +14920,56 @@
         "BoxHeight": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BoxHeightAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BoxWidth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BoxWidthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BoxSlantAngle": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BoxSlantAngleAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BoxRotateAngle": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BoxRotateAngleAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CharacterSpacing": {
           "type": "IfcSizeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13265,7 +14980,8 @@
         "AnnotatedSurface": {
           "type": "IfcAnnotationSurface",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -13278,12 +14994,14 @@
         "Mode": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Parameter": {
           "type": "IfcSimpleValue",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -13296,7 +15014,8 @@
         "TextureMaps": {
           "type": "IfcVertexBasedTextureMap",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -13307,12 +15026,14 @@
         "Coordinates": {
           "type": "double",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "CoordinatesAsString": {
           "type": "string",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -13325,42 +15046,50 @@
         "SpecificHeatCapacity": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SpecificHeatCapacityAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BoilingPoint": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BoilingPointAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FreezingPoint": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FreezingPointAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ThermalConductivity": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ThermalConductivityAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13374,47 +15103,56 @@
         "Name": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Description": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "StartTime": {
           "type": "IfcDateTimeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "EndTime": {
           "type": "IfcDateTimeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TimeSeriesDataType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DataOrigin": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UserDefinedDataOrigin": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Unit": {
           "type": "IfcUnit",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DocumentedBy": {
           "type": "IfcTimeSeriesReferenceRelationship",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -13425,12 +15163,14 @@
         "ReferencedTimeSeries": {
           "type": "IfcTimeSeries",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": true
         },
         "TimeSeriesReferences": {
           "type": "IfcDocumentSelect",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -13443,17 +15183,20 @@
         "ApplicableDates": {
           "type": "IfcDateTimeSelect",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "TimeSeriesScheduleType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TimeSeries": {
           "type": "IfcTimeSeries",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13464,7 +15207,8 @@
         "ListValues": {
           "type": "IfcValue",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -13491,7 +15235,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13504,27 +15249,32 @@
         "OperationType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CapacityByWeight": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CapacityByWeightAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CapacityByNumber": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CapacityByNumberAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13537,7 +15287,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13550,42 +15301,50 @@
         "BottomXDim": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "BottomXDimAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TopXDim": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TopXDimAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "YDim": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "YDimAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TopXOffset": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TopXOffsetAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13598,27 +15357,32 @@
         "BasisCurve": {
           "type": "IfcCurve",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Trim1": {
           "type": "IfcTrimmingSelect",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "Trim2": {
           "type": "IfcTrimmingSelect",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "SenseAgreement": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MasterRepresentation": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13631,7 +15395,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13644,7 +15409,8 @@
         "SecondRepeatFactor": {
           "type": "IfcVector",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13657,17 +15423,20 @@
         "ApplicableOccurrence": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HasPropertySets": {
           "type": "IfcPropertySetDefinition",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "ObjectTypeOf": {
           "type": "IfcRelDefinesByType",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -13680,12 +15449,14 @@
         "RepresentationMaps": {
           "type": "IfcRepresentationMap",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "Tag": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13698,82 +15469,98 @@
         "Depth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DepthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlangeWidth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlangeWidthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WebThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WebThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlangeThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlangeThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FilletRadius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FilletRadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "EdgeRadius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "EdgeRadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlangeSlope": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlangeSlopeAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CentreOfGravityInX": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CentreOfGravityInXAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13784,7 +15571,8 @@
         "Units": {
           "type": "IfcUnit",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -13797,7 +15585,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13810,7 +15599,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13824,22 +15614,26 @@
         "Orientation": {
           "type": "IfcDirection",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Magnitude": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MagnitudeAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Dim": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13857,12 +15651,14 @@
         "TextureVertices": {
           "type": "IfcTextureVertex",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "TexturePoints": {
           "type": "IfcCartesianPoint",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -13875,7 +15671,8 @@
         "LoopVertex": {
           "type": "IfcVertex",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13889,7 +15686,8 @@
         "VertexGeometry": {
           "type": "IfcPoint",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13902,7 +15700,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13920,17 +15719,20 @@
         "IntersectingAxes": {
           "type": "IfcGridAxis",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": true
         },
         "OffsetDistances": {
           "type": "double",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "OffsetDistancesAsString": {
           "type": "string",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -13957,7 +15759,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13970,7 +15773,8 @@
         "PredefinedType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -13983,67 +15787,80 @@
         "IsPotable": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Hardness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "HardnessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "AlkalinityConcentration": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "AlkalinityConcentrationAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "AcidityConcentration": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "AcidityConcentrationAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ImpuritiesContent": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ImpuritiesContentAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PHLevel": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PHLevelAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DissolvedSolidsContent": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DissolvedSolidsContentAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14056,22 +15873,26 @@
         "OverallHeight": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "OverallHeightAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "OverallWidth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "OverallWidthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14084,87 +15905,104 @@
         "LiningDepth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LiningDepthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LiningThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "LiningThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TransomThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TransomThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MullionThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "MullionThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FirstTransomOffset": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FirstTransomOffsetAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SecondTransomOffset": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SecondTransomOffsetAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FirstMullionOffset": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FirstMullionOffsetAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SecondMullionOffset": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "SecondMullionOffsetAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ShapeAspectStyle": {
           "type": "IfcShapeAspect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14177,37 +16015,44 @@
         "OperationType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "PanelPosition": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FrameDepth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FrameDepthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FrameThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FrameThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ShapeAspectStyle": {
           "type": "IfcShapeAspect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14220,22 +16065,26 @@
         "ConstructionType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "OperationType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "ParameterTakesPrecedence": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Sizeable": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14248,62 +16097,74 @@
         "Identifier": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "CreationDate": {
           "type": "IfcDateTimeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Creators": {
           "type": "IfcPerson",
           "reference": true,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "Purpose": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "Duration": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DurationAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TotalFloat": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "TotalFloatAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "StartTime": {
           "type": "IfcDateTimeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FinishTime": {
           "type": "IfcDateTimeSelect",
           "reference": true,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WorkControlType": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "UserDefinedControlType": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14330,62 +16191,74 @@
         "Depth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "DepthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlangeWidth": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlangeWidthAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WebThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "WebThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlangeThickness": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FlangeThicknessAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FilletRadius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "FilletRadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "EdgeRadius": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "EdgeRadiusAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14405,12 +16278,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14423,12 +16298,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14441,12 +16318,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14459,12 +16338,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14477,12 +16358,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14496,7 +16379,8 @@
         "wrappedValue": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14509,12 +16393,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14527,12 +16413,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14545,12 +16433,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14561,7 +16451,8 @@
         "wrappedValue": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14572,7 +16463,8 @@
         "wrappedValue": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14586,7 +16478,8 @@
         "wrappedValue": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14597,7 +16490,8 @@
         "wrappedValue": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14610,12 +16504,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14628,12 +16524,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14646,12 +16544,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14664,12 +16564,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14682,12 +16584,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14700,12 +16604,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14718,12 +16624,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14736,12 +16644,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14754,12 +16664,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14770,7 +16682,8 @@
         "wrappedValue": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14781,7 +16694,8 @@
         "wrappedValue": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14792,7 +16706,8 @@
         "wrappedValue": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14805,12 +16720,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14823,12 +16740,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14839,7 +16758,8 @@
         "wrappedValue": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14852,12 +16772,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14870,12 +16792,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14886,7 +16810,8 @@
         "wrappedValue": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14899,7 +16824,8 @@
         "wrappedValue": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14912,12 +16838,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14930,12 +16858,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14948,7 +16878,8 @@
         "wrappedValue": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14961,7 +16892,8 @@
         "wrappedValue": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14974,12 +16906,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -14992,12 +16926,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15010,12 +16946,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15029,7 +16967,8 @@
         "wrappedValue": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15043,12 +16982,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15061,12 +17002,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15079,12 +17022,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15097,12 +17042,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15115,12 +17062,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15133,7 +17082,8 @@
         "wrappedValue": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15146,12 +17096,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15164,12 +17116,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15182,12 +17136,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15200,12 +17156,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15218,12 +17176,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15236,12 +17196,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15254,12 +17216,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15272,12 +17236,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15290,12 +17256,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15306,7 +17274,8 @@
         "wrappedValue": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15319,12 +17288,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15337,12 +17308,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15355,12 +17328,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15373,12 +17348,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15391,12 +17368,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15409,12 +17388,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15427,12 +17408,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15446,12 +17429,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15462,7 +17447,8 @@
         "wrappedValue": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15475,12 +17461,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15493,12 +17481,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15512,12 +17502,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15530,12 +17522,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15549,12 +17543,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15567,12 +17563,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15583,7 +17581,8 @@
         "wrappedValue": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15596,12 +17595,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15614,12 +17615,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15634,12 +17637,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15652,12 +17657,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15670,12 +17677,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15688,12 +17697,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15706,12 +17717,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15722,12 +17735,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15740,12 +17755,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15758,12 +17775,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15776,12 +17795,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15794,12 +17815,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15812,12 +17835,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15830,12 +17855,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15848,12 +17875,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15866,12 +17895,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15884,12 +17915,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15902,12 +17935,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15921,7 +17956,8 @@
         "wrappedValue": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15932,7 +17968,8 @@
         "wrappedValue": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15943,7 +17980,8 @@
         "wrappedValue": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15954,7 +17992,8 @@
         "wrappedValue": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15965,7 +18004,8 @@
         "wrappedValue": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15978,12 +18018,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -15996,12 +18038,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -16014,12 +18058,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -16032,12 +18078,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -16050,12 +18098,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -16068,12 +18118,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -16086,12 +18138,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -16104,7 +18158,8 @@
         "wrappedValue": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -16117,12 +18172,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -16135,12 +18192,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -16153,12 +18212,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -16171,12 +18232,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -16189,12 +18252,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -16207,12 +18272,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -16223,7 +18290,8 @@
         "wrappedValue": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -16243,7 +18311,8 @@
         "wrappedValue": {
           "type": "long",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -16457,12 +18526,14 @@
         "wrappedValue": {
           "type": "double",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         },
         "wrappedValueAsString": {
           "type": "string",
           "reference": false,
-          "many": true
+          "many": true,
+          "inverse": false
         }
       }
     },
@@ -16475,7 +18546,8 @@
         "wrappedValue": {
           "type": "enum",
           "reference": false,
-          "many": false
+          "many": false,
+          "inverse": false
         }
       }
     },

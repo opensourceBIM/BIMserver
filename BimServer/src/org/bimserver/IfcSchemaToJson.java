@@ -123,6 +123,8 @@ public class IfcSchemaToJson {
 						jsonWriter.value(eStructuralFeature instanceof EReference);
 						jsonWriter.name("many");
 						jsonWriter.value(eStructuralFeature.isMany());
+						jsonWriter.name("inverse");
+						jsonWriter.value(eStructuralFeature.getEAnnotation("inverse") != null);
 						jsonWriter.endObject();
 					}
 					jsonWriter.endObject();
