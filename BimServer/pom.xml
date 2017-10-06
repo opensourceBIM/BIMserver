@@ -166,7 +166,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>bcf</artifactId>
-			<version>0.0.13-SNAPSHOT</version>
+			<version>0.0.13</version>
 		</dependency>
 	</dependencies>
 	<licenses>
