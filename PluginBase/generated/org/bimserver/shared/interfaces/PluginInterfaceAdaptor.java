@@ -1,5 +1,6 @@
 package org.bimserver.shared.interfaces;
 
+import org.bimserver.shared.exceptions.ServerException;
 /******************************************************************************
  * Copyright (C) 2009-2017  BIMserver.org
  * 
@@ -17,7 +18,6 @@ package org.bimserver.shared.interfaces;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.exceptions.ServerException;
 
 public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.PluginInterface {
 

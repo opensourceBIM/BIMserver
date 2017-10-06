@@ -19,7 +19,6 @@ package org.bimserver.longaction;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import java.util.Set;
 
 import javax.activation.DataHandler;

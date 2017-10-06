@@ -19,7 +19,6 @@ package org.bimserver.models.store.impl;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.RunServiceAuthorization;
 import org.bimserver.models.store.StorePackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

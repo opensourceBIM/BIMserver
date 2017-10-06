@@ -21,7 +21,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import com.google.common.base.Charsets;
 import com.google.common.primitives.Longs;
 
 public class LittleEndianSerializerDataOutputStream extends SerializerDataOutputStream {

@@ -16,9 +16,9 @@ package org.bimserver.shared.meta;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
+import java.util.HashMap;
+import java.util.Map;
 
-import java.util.*;
-import org.bimserver.shared.meta.SClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

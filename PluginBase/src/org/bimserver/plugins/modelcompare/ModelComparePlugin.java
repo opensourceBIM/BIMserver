@@ -19,8 +19,6 @@ package org.bimserver.plugins.modelcompare;
 
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.interfaces.objects.SPluginType;
-
-
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginConfiguration;
 

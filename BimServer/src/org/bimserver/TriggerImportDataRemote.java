@@ -18,7 +18,6 @@ package org.bimserver;
  *****************************************************************************/
 
 import java.nio.file.Path;
-
 import java.nio.file.Paths;
 
 import org.bimserver.client.BimServerClient;

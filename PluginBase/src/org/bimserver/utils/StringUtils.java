@@ -132,8 +132,6 @@ public class StringUtils {
 	}
 
 	public static int nextField(String in, int start) {
-		int parentheses = 0;
-		int quotes = 0;
 		char c;
 		int length = in.length();
 		int escapeMode = 0;

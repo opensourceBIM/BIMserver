@@ -18,7 +18,6 @@ package org.bimserver.database.migrations;
  *****************************************************************************/
 
 import java.nio.ByteBuffer;
-import java.util.List;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
@@ -27,7 +26,6 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.KeyValueStore;
 import org.bimserver.database.Record;
 import org.bimserver.database.RecordIterator;
-import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.PackageMetaData;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;

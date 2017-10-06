@@ -18,7 +18,6 @@ package org.bimserver.shared;
  *****************************************************************************/
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EcorePackage;

@@ -11,13 +11,9 @@ import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
-import org.bimserver.shared.exceptions.ServerException;
-import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.test.TestWithEmbeddedServer;
+import org.junit.Assert;
 import org.junit.Test;
-
-import junit.framework.Assert;
 
 public class TestJapaneseChars extends TestWithEmbeddedServer {
 	private BimServerClientInterface bimServerClient;

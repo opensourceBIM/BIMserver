@@ -18,7 +18,6 @@ package org.bimserver.plugins.modelmerger;
  *****************************************************************************/
 
 import org.bimserver.interfaces.objects.SPluginType;
-
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginConfiguration;
 

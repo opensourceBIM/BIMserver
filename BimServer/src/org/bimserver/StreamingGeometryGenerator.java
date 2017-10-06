@@ -520,10 +520,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), q.getVolume());
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), q.getNrPrimitives());
 
-											Set<Color4f> usedColors = new HashSet<>();
-											
-											int savedColorBytes = 0;
-											
 											bytesSavedByMapping.addAndGet(q.getSize());
 											totalBytes.addAndGet(q.getSize());
 											
@@ -972,6 +968,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	}
 
 	// Pretty sure this is working correctly
+	@SuppressWarnings("unchecked")
 	public double[] placement3DToMatrix(HashMapVirtualObject ifcAxis2Placement3D) {
 		HashMapVirtualObject location = ifcAxis2Placement3D.getDirectFeature(Ifc2x3tc1Package.eINSTANCE.getIfcPlacement_Location());
 		if (ifcAxis2Placement3D.getDirectFeature(Ifc2x3tc1Package.eINSTANCE.getIfcAxis2Placement3D_Axis()) != null && ifcAxis2Placement3D.getDirectFeature(Ifc2x3tc1Package.eINSTANCE.getIfcAxis2Placement3D_RefDirection()) != null) {
@@ -1000,7 +997,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		return Matrix.identity();
 	}
 	
-	@SuppressWarnings("unchecked")
 	private double[] placementToMatrix(HashMapVirtualObject placement) {
 		HashMapVirtualObject placementRelTo = placement.getDirectFeature(Ifc2x3tc1Package.eINSTANCE.getIfcLocalPlacement_PlacementRelTo());
 		double[] matrix = Matrix.identity();

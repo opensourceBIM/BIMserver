@@ -18,7 +18,6 @@ package org.bimserver.plugins.deserializers;
  *****************************************************************************/
 
 import java.io.InputStream;
-import java.net.URL;
 
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;

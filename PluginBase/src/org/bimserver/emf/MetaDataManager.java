@@ -18,7 +18,6 @@ package org.bimserver.emf;
  *****************************************************************************/
 
 import java.nio.file.Path;
-
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;

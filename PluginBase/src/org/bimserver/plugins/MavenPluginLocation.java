@@ -18,7 +18,6 @@ package org.bimserver.plugins;
  *****************************************************************************/
 
 import java.io.ByteArrayInputStream;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -28,7 +27,6 @@ import java.nio.file.Path;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;

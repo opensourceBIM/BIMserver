@@ -21,7 +21,6 @@ import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.geometry.Vector3f;
-import org.bimserver.models.geometry.Vector4f;
 import org.eclipse.emf.ecore.EClass;
 
 /**

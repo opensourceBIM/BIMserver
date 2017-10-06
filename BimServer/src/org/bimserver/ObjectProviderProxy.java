@@ -20,7 +20,6 @@ package org.bimserver;
 import java.io.IOException;
 
 import org.bimserver.database.queries.om.QueryException;
-
 import org.bimserver.plugins.serializers.ObjectProvider;
 import org.bimserver.shared.HashMapVirtualObject;
 

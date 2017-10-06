@@ -20,7 +20,6 @@ package org.bimserver.plugins.serializers;
 import java.io.OutputStream;
 
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.plugins.PluginManagerInterface;
 
 /**
  * @author Ruben de Laat

@@ -18,8 +18,6 @@ import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.test.TestWithEmbeddedServer;
 import org.junit.Test;
 
-import junit.framework.Assert;
-
 public class TestSetWrappedIntegerGeometry extends TestWithEmbeddedServer {
 
 	@Test

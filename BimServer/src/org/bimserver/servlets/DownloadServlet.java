@@ -18,7 +18,6 @@ package org.bimserver.servlets;
  *****************************************************************************/
 
 import java.io.ByteArrayInputStream;
-
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.OutputStream;

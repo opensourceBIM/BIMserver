@@ -18,7 +18,6 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import org.bimserver.BimServer;
-
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;

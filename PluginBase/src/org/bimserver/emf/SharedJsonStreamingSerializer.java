@@ -36,7 +36,6 @@ import org.bimserver.shared.MinimalVirtualObject;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.jdt.internal.compiler.util.HashtableOfPackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -198,7 +197,7 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 											} else if (eStructuralFeature.getEAnnotation("twodimensionalarray") != null) {
 												EClass type = (EClass) eStructuralFeature.getEType();
 												EStructuralFeature listFeature = type.getEStructuralFeature("List");
-												List listX = (List)(((HashMapVirtualObject)o).eGet(listFeature));
+												List<?> listX = (List<?>)(((HashMapVirtualObject)o).eGet(listFeature));
 												print("[");
 												boolean fq = true;
 												for (Object k : listX) {

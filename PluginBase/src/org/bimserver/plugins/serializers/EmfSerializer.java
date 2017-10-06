@@ -29,7 +29,6 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.plugins.PluginManagerInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

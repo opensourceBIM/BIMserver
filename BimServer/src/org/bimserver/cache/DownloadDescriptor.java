@@ -19,7 +19,6 @@ package org.bimserver.cache;
 
 import java.io.IOException;
 import java.io.StringWriter;
-
 import java.util.Set;
 
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;

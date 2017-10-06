@@ -18,7 +18,6 @@ package org.bimserver.plugins;
  *****************************************************************************/
 
 import org.bimserver.interfaces.objects.SPluginType;
-
 import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.shared.exceptions.PluginException;
 
