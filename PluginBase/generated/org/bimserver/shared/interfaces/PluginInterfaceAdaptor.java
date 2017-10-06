@@ -102,6 +102,10 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
+	public java.util.List<org.bimserver.interfaces.objects.SInternalServicePluginConfiguration> getAllInternalServicesOfService(java.lang.String name, java.lang.Boolean onlyEnabled) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> getAllModelCheckerPluginDescriptors() throws UserException, ServerException {
 		return null;
 	}
@@ -250,6 +254,10 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
+	public org.bimserver.interfaces.objects.SPluginDescriptor getPluginDescriptorByName(java.lang.String name) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.util.List<org.bimserver.interfaces.objects.SPluginInformation> getPluginInformation(java.lang.String repository, java.lang.String groupId, java.lang.String artifactId, java.lang.String version) throws UserException, ServerException {
 		return null;
 	}
@@ -296,6 +304,10 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	}
 	
 	public java.util.List<org.bimserver.interfaces.objects.SWebModulePluginConfiguration> listAllWebModules() throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> listPluginsInBundle(java.lang.Long pluginBundleVersionOid) throws UserException, ServerException {
 		return null;
 	}
 	

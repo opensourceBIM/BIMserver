@@ -50,7 +50,7 @@ public class LocalDevBimServerStarter {
 	
 	public static void main(String[] args) {
 		new LocalDevBimServerStarter().start(-1, "localhost", 8080, 8085, new OptionsParser(args).getPluginDirectories());
-//		new LocalDevBimServerStarter().start(2, "localhost", 8081, 8086, new OptionsParser(args).getPluginDirectories());
+		new LocalDevBimServerStarter().start(2, "localhost", 8081, 8086, new OptionsParser(args).getPluginDirectories());
 	}
 
 	public void start(int id, String address, int port, int pbport, Path[] pluginDirectories) {

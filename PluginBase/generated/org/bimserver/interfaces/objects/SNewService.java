@@ -44,6 +44,7 @@ public class SNewService implements SDataBase
 	private SAction action;
 	private java.lang.String accessToken;
 	private long projectId = -1;
+	private java.lang.String stateJson;
 
 	public long getOid() {
 		return this.oid;
@@ -116,6 +117,9 @@ public class SNewService implements SDataBase
 		if (sField.getName().equals("projectId")) {
 			return getProjectId();
 		}
+		if (sField.getName().equals("stateJson")) {
+			return getStateJson();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -184,6 +188,10 @@ public class SNewService implements SDataBase
 		}
 		if (sField.getName().equals("projectId")) {
 			setProjectId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("stateJson")) {
+			setStateJson((String)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -316,6 +324,14 @@ public class SNewService implements SDataBase
 
 	public void setProjectId(long projectId) {
 		this.projectId = projectId;
+	}
+	
+	public java.lang.String getStateJson() {
+		return stateJson;
+	}
+
+	public void setStateJson(java.lang.String stateJson) {
+		this.stateJson = stateJson;
 	}
 	
 	@Override

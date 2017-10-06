@@ -34,7 +34,6 @@ import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.store.PluginDescriptor;
 import org.bimserver.models.store.Project;
 import org.bimserver.plugins.Plugin;
-import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.serializers.StreamingSerializerPlugin;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -60,33 +59,46 @@ public class NewServicesImpl extends GenericServiceImpl implements NewServicesIn
 	@Override
 	public List<SNewServiceDescriptor> listAllServiceDescriptors() throws ServerException, UserException {
 		try {
-			String data = NetUtils.getContent(new URL(getBimServer().getServerSettingsCache().getServerSettings().getServiceRepositoryUrl() + "/servicesnew.json"), 5000);
+			String data = NetUtils.getContent(new URL(getBimServer().getServerSettingsCache().getServerSettings().getServiceRepositoryUrl() + "/serviceproviders.json"), 5000);
 			ObjectMapper objectMapper = new ObjectMapper();
 			ObjectNode servicesJson = objectMapper.readValue(data, ObjectNode.class);
-			ArrayNode arryaNode = (ArrayNode) servicesJson.get("services");
+			ArrayNode activeServices = (ArrayNode) servicesJson.get("active");
 			List<SNewServiceDescriptor> list = new ArrayList<>();
-			for (JsonNode jsonNode : arryaNode) {
-				SNewServiceDescriptor serviceDescriptor = new SNewServiceDescriptor();
-				
-				if (jsonNode.has("oauth")) {
-					ObjectNode oauth = (ObjectNode)jsonNode.get("oauth");
-					serviceDescriptor.setRegisterUrl(oauth.get("registerUrl").asText());
-					serviceDescriptor.setTokenUrl(oauth.get("tokenUrl").asText());
-					serviceDescriptor.setAuthorizationUrl(oauth.get("authorizationUrl").asText());
+			for (JsonNode activeService : activeServices) {
+				String providerListUrl = activeService.get("listUrl").asText();
+				try {
+					// TODO parallel and cache
+					String providerData = NetUtils.getContent(new URL(providerListUrl), 5000);
+					ObjectNode provider = objectMapper.readValue(providerData, ObjectNode.class);
+
+					ArrayNode arryaNode = (ArrayNode) provider.get("services");
+					for (JsonNode jsonNode : arryaNode) {
+						SNewServiceDescriptor serviceDescriptor = new SNewServiceDescriptor();
+						
+						if (jsonNode.has("oauth")) {
+							ObjectNode oauth = (ObjectNode)jsonNode.get("oauth");
+							serviceDescriptor.setRegisterUrl(oauth.get("registerUrl").asText());
+							serviceDescriptor.setTokenUrl(oauth.get("tokenUrl").asText());
+							serviceDescriptor.setAuthorizationUrl(oauth.get("authorizationUrl").asText());
+						}
+						serviceDescriptor.setOid(jsonNode.get("id").asLong());
+						serviceDescriptor.setDescription(jsonNode.get("description").asText());
+						serviceDescriptor.setName(jsonNode.get("name").asText());
+						serviceDescriptor.setProvider(jsonNode.get("provider").asText());
+						serviceDescriptor.setResourceUrl(jsonNode.get("resourceUrl").asText());
+						ArrayNode inputs = (ArrayNode) jsonNode.get("inputs");
+						ArrayNode outputs = (ArrayNode) jsonNode.get("outputs");
+						for (JsonNode inputNode : inputs) {
+							serviceDescriptor.getInputs().add(inputNode.asText());
+						}
+						for (JsonNode outputNode : outputs) {
+							serviceDescriptor.getOutputs().add(outputNode.asText());
+						}
+						list.add(serviceDescriptor);
+					}
+				} catch (Exception e) {
+					LOGGER.error("", e);
 				}
-				serviceDescriptor.setDescription(jsonNode.get("description").asText());
-				serviceDescriptor.setName(jsonNode.get("name").asText());
-				serviceDescriptor.setProvider(jsonNode.get("provider").asText());
-				serviceDescriptor.setResourceUrl(jsonNode.get("resourceUrl").asText());
-				ArrayNode inputs = (ArrayNode) jsonNode.get("inputs");
-				ArrayNode outputs = (ArrayNode) jsonNode.get("outputs");
-				for (JsonNode inputNode : inputs) {
-					serviceDescriptor.getInputs().add(inputNode.asText());
-				}
-				for (JsonNode outputNode : outputs) {
-					serviceDescriptor.getOutputs().add(outputNode.asText());
-				}
-				list.add(serviceDescriptor);
 			}
 			return list;
 		} catch (Exception e) {

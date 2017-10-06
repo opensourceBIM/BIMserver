@@ -2361,8 +2361,12 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				String filename = "unknown";
 				if (headers.length > 0) {
 					String contentDisposition = headers[0].getValue();
-					int indexOf = contentDisposition.indexOf("filename=") + 10;
-					filename = contentDisposition.substring(indexOf, contentDisposition.indexOf("\"", indexOf + 1));
+					if (contentDisposition.contains("filename=")) {
+						int indexOf = contentDisposition.indexOf("filename=") + 10;
+						filename = contentDisposition.substring(indexOf, contentDisposition.indexOf("\"", indexOf + 1));
+					} else {
+						filename = contentDisposition;
+					}
 				}
 				Header dataTitleHeader = response.getFirstHeader("Data-Title");
 				String dataTitle = newService.getName() + " Results";

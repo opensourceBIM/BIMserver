@@ -144,6 +144,11 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetAllInternalServicesOfServiceCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SInternalServicePluginConfiguration> result);
+		void error(Throwable e);
+	}
+	
 	public interface GetAllModelCheckerPluginDescriptorsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> result);
 		void error(Throwable e);
@@ -329,6 +334,11 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetPluginDescriptorByNameCallback {
+		void success(org.bimserver.interfaces.objects.SPluginDescriptor result);
+		void error(Throwable e);
+	}
+	
 	public interface GetPluginInformationCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SPluginInformation> result);
 		void error(Throwable e);
@@ -391,6 +401,11 @@ public class AsyncPluginInterface {
 	
 	public interface ListAllWebModulesCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SWebModulePluginConfiguration> result);
+		void error(Throwable e);
+	}
+	
+	public interface ListPluginsInBundleCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> result);
 		void error(Throwable e);
 	}
 	
@@ -766,6 +781,18 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getAllInternalServices(onlyEnabled));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getAllInternalServicesOfService(final java.lang.String name, final java.lang.Boolean onlyEnabled, final GetAllInternalServicesOfServiceCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getAllInternalServicesOfService(name, onlyEnabled));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -1217,6 +1244,18 @@ public class AsyncPluginInterface {
 		});
 	}
 	
+	public void getPluginDescriptorByName(final java.lang.String name, final GetPluginDescriptorByNameCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getPluginDescriptorByName(name));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getPluginInformation(final java.lang.String repository, final java.lang.String groupId, final java.lang.String artifactId, final java.lang.String version, final GetPluginInformationCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1369,6 +1408,18 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.listAllWebModules());
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void listPluginsInBundle(final java.lang.Long pluginBundleVersionOid, final ListPluginsInBundleCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.listPluginsInBundle(pluginBundleVersionOid));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

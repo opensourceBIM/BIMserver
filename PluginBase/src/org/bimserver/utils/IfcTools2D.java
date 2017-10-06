@@ -86,7 +86,6 @@ public class IfcTools2D {
 		if (geometry != null) {
 			GeometryData geometryData = geometry.getData();
 			if (geometryData != null) {
-				LOGGER.info("Falling back to 3D generated geometry");
 				int[] indices = GeometryUtils.toIntegerArray(geometryData.getIndices());
 				float[] vertices = GeometryUtils.toFloatArray(geometryData.getVertices());
 				float[] matrix = GeometryUtils.toFloatArray(GeometryUtils.toDoubleArray(geometry.getTransformation()));

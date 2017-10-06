@@ -93,7 +93,7 @@ public class Database implements BimDatabase {
 	 * database-schema change. Do not change this variable when nothing has
 	 * changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 34;
+	public static final int APPLICATION_SCHEMA_VERSION = 35;
 
 	public Database(BimServer bimServer, Set<? extends EPackage> emfPackages, KeyValueStore keyValueStore, MetaDataManager metaDataManager) throws DatabaseInitException {
 		this.cidToEclass = new EClass[Short.MAX_VALUE]; 

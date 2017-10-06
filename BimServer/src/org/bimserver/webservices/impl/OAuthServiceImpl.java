@@ -18,11 +18,19 @@ package org.bimserver.webservices.impl;
  *****************************************************************************/
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
 import org.apache.oltu.oauth2.common.message.types.ResponseType;
 import org.apache.oltu.oauth2.ext.dynamicreg.client.OAuthRegistrationClient;
@@ -277,6 +285,7 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 				code.setCode(asHexToken);
 				code.setOauthServer(session.get(oAuthServerOid, OldQuery.getDefault()));
 				code.setAuthorization(singleProjectAuthorization);
+				code.setUser(user);
 				
 				user.getOAuthIssuedAuthorizationCodes().add(code);
 				
@@ -307,6 +316,7 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 				code.setCode(asHexToken);
 				code.setOauthServer(session.get(oAuthServerOid, OldQuery.getDefault()));
 				code.setAuthorization(runServiceAuth);
+				code.setUser(user);
 				
 				user.getOAuthIssuedAuthorizationCodes().add(code);
 				
@@ -355,18 +365,34 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 			objectNode.put("client_id", oAuthServer.getClientId());
 			objectNode.put("client_secret", oAuthServer.getClientSecret());
 			
-			ObjectNode post = NetUtils.post(newService.getTokenUrl(), objectNode);
-			
-			if (post.has("access_token")) {
-				String accessToken = post.get("access_token").asText();
-				newService.setAccessToken(accessToken);
-				newService.setStatus(ServiceStatus.AUTHENTICATED);
-				session.store(newService);
-				session.commit();
+			CloseableHttpClient httpclient = HttpClients.createDefault();
+			try {
+				HttpPost post = new HttpPost(newService.getTokenUrl());
+				post.setHeader("Content-Type", "application/x-www-form-urlencoded");
+				List <NameValuePair> nvps = new ArrayList <NameValuePair>();
+				nvps.add(new BasicNameValuePair("grant_type", "authorization_code"));
+				nvps.add(new BasicNameValuePair("code", code));
+				nvps.add(new BasicNameValuePair("client_id", oAuthServer.getClientId()));
+				nvps.add(new BasicNameValuePair("client_secret", oAuthServer.getClientSecret()));
+				nvps.add(new BasicNameValuePair("redirect_uri", "crap"));
+				post.setEntity(new UrlEncodedFormEntity(nvps));
+				CloseableHttpResponse httpResponse = httpclient.execute(post);
+				ObjectNode response = OBJECT_MAPPER.readValue(httpResponse.getEntity().getContent(), ObjectNode.class);
 				
-				return accessToken;
-			} else {
-				throw new UserException("No access_token received from oauth server");
+				if (response.has("access_token")) {
+					String accessToken = response.get("access_token").asText();
+					newService.setAccessToken(accessToken);
+					newService.setStatus(ServiceStatus.AUTHENTICATED);
+					newService.setResourceUrl(response.get("resource_url").asText());
+					session.store(newService);
+					session.commit();
+					
+					return accessToken;
+				} else {
+					throw new UserException("No access_token received from oauth server");
+				}
+			} finally {
+			    httpclient.close();
 			}
 		} catch (Exception e) {
 			return handleException(e);

@@ -46,6 +46,7 @@ import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SWebModulePluginConfiguration;
+import org.bimserver.models.store.PluginDescriptor;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
@@ -126,6 +127,10 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "getPluginDescriptor")
 	SPluginDescriptor getPluginDescriptor(
 		@WebParam(name = "oid", partName = "getPluginDescriptor.oid") Long oid) throws ServerException, UserException;
+	
+	@WebMethod(action = "getPluginDescriptorByName")
+	SPluginDescriptor getPluginDescriptorByName(
+		@WebParam(name = "name", partName = "getPluginDescriptorByName.name") String name) throws ServerException, UserException;
 	
 	/**
 	 * @return List of all SerializerPluginDescriptors
@@ -592,6 +597,11 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action="getAllInternalServices")
 	List<SInternalServicePluginConfiguration> getAllInternalServices(
 		@WebParam(name = "onlyEnabled", partName = "getAllInternalServices.onlyEnabled") Boolean onlyEnabled) throws UserException, ServerException;
+
+	@WebMethod(action="getAllInternalServicesOfService")
+	List<SInternalServicePluginConfiguration> getAllInternalServicesOfService(
+		@WebParam(name = "name", partName = "getAllInternalServicesOfService.name") String name,
+		@WebParam(name = "onlyEnabled", partName = "getAllInternalServicesOfService.onlyEnabled") Boolean onlyEnabled) throws UserException, ServerException;
 	
 	/**
 	 * @return A list of available IDMPlugins
@@ -665,4 +675,7 @@ public interface PluginInterface extends PublicInterface {
 	 */
 	@WebMethod(action = "clearMavenCache")
 	void clearMavenCache() throws UserException, ServerException;
+	
+	@WebMethod(action = "listPluginsInBundle")
+	List<SPluginDescriptor> listPluginsInBundle(@WebParam(name = "pluginBundleVersionOid", partName = "listPluginsInBundle.pluginBundleVersionOid") Long pluginBundleVersionOid) throws ServerException, UserException;
 }

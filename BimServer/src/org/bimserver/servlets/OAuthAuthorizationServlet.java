@@ -116,7 +116,6 @@ public class OAuthAuthorizationServlet extends SubServlet {
 					build.setParam("poid", "" + singleProjectAuthorization.getProject().getOid());
 				} else if (oauthCode.getAuthorization() instanceof RunServiceAuthorization) {
 					RunServiceAuthorization auth = (RunServiceAuthorization) oauthCode.getAuthorization();
-					System.out.println("soid: " + auth.getService().getOid());
 					build.setParam("soid", "" + auth.getService().getOid());
 				}
 				final OAuthResponse response = build.buildQueryMessage();

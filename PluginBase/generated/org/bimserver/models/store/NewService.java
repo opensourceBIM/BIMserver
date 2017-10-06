@@ -42,6 +42,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.NewService#getAction <em>Action</em>}</li>
  *   <li>{@link org.bimserver.models.store.NewService#getAccessToken <em>Access Token</em>}</li>
  *   <li>{@link org.bimserver.models.store.NewService#getProject <em>Project</em>}</li>
+ *   <li>{@link org.bimserver.models.store.NewService#getStateJson <em>State Json</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getNewService()
@@ -442,5 +443,31 @@ public interface NewService extends IdEObject {
 	 * @generated
 	 */
 	void setProject(Project value);
+
+	/**
+	 * Returns the value of the '<em><b>State Json</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>State Json</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>State Json</em>' attribute.
+	 * @see #setStateJson(String)
+	 * @see org.bimserver.models.store.StorePackage#getNewService_StateJson()
+	 * @model
+	 * @generated
+	 */
+	String getStateJson();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.NewService#getStateJson <em>State Json</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>State Json</em>' attribute.
+	 * @see #getStateJson()
+	 * @generated
+	 */
+	void setStateJson(String value);
 
 } // NewService

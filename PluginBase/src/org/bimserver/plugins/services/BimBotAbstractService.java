@@ -1,5 +1,8 @@
 package org.bimserver.plugins.services;
 
+import java.util.Collections;
+import java.util.Set;
+
 import org.bimserver.bimbots.BimBotsInput;
 import org.bimserver.bimbots.BimBotsOutput;
 import org.bimserver.bimbots.BimBotsServiceInterface;
@@ -57,6 +60,16 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 	@Override
 	public void addRequiredRights(ServiceDescriptor serviceDescriptor) {
 		serviceDescriptor.setWriteExtendedData(getOutputSchema().name());
+	}
+
+	@Override
+	public Set<SchemaName> getAvailableOutputs() {
+		return Collections.singleton(getOutputSchema());
+	}
+	
+	@Override
+	public Set<SchemaName> getAvailableInputs() {
+		return Collections.singleton(SchemaName.IFC_STEP_2X3TC1);
 	}
 
 	public abstract SchemaName getOutputSchema();

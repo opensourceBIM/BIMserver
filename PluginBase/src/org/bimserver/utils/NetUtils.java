@@ -79,6 +79,7 @@ public class NetUtils {
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
 			OBJECT_MAPPER.writeValue(out, objectNode);
 			HttpPost post = new HttpPost(url);
+			post.setHeader("Content-Type", "application/x-www-form-urlencoded");
 			post.setEntity(new ByteArrayEntity(out.toByteArray(), ContentType.APPLICATION_JSON));
 			CloseableHttpResponse httpResponse = httpclient.execute(post);
 			ObjectNode response = OBJECT_MAPPER.readValue(httpResponse.getEntity().getContent(), ObjectNode.class);

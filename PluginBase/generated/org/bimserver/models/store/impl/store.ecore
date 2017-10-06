@@ -1030,6 +1030,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="accessToken" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#//Project"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stateJson" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RunServiceAuthorization" eSuperTypes="#//Authorization">
     <eStructuralFeatures xsi:type="ecore:EReference" name="service" eType="#//InternalServicePluginConfiguration"/>

@@ -39,6 +39,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.store.Authorization;
 import org.bimserver.models.store.OAuthAuthorizationCode;
+import org.bimserver.models.store.RunServiceAuthorization;
 import org.bimserver.models.store.SingleProjectAuthorization;
 import org.bimserver.models.store.StorePackage;
 import org.slf4j.Logger;
@@ -71,21 +72,36 @@ public class OAuthAccessTokenServlet extends SubServlet {
 			
 			OAuthAuthorizationCode code = null;
 			try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
-				code = session.querySingle(StorePackage.eINSTANCE.getOAuthAuthorizationCode_Code(), oauthRequest.getCode());
+				String codeAsString = oauthRequest.getCode();
+				code = session.querySingle(StorePackage.eINSTANCE.getOAuthAuthorizationCode_Code(), codeAsString);
 	
 				validateClient(oauthRequest);
 	
+				String resourceUrl = "";
 				Authorization auth = code.getAuthorization();
-				SingleProjectAuthorization singleProjectAuthorization = (SingleProjectAuthorization)auth;
-				org.bimserver.webservices.authorization.SingleProjectAuthorization singleProjectAuthorization2 = new org.bimserver.webservices.authorization.SingleProjectAuthorization(getBimServer(), code.getUser().getOid(), singleProjectAuthorization.getProject().getOid());
+				org.bimserver.webservices.authorization.Authorization authorization = null;
+				if (auth instanceof SingleProjectAuthorization) {
+					SingleProjectAuthorization singleProjectAuthorization = (SingleProjectAuthorization)auth;
+					authorization = new org.bimserver.webservices.authorization.SingleProjectAuthorization(getBimServer(), code.getUser().getOid(), singleProjectAuthorization.getProject().getOid());
+				} else if (auth instanceof RunServiceAuthorization) {
+					RunServiceAuthorization runServiceAuthorization = (RunServiceAuthorization)auth;
+					authorization = new org.bimserver.webservices.authorization.RunServiceAuthorization(getBimServer(), code.getUser().getOid(), runServiceAuthorization.getService().getOid());
+					resourceUrl = getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/services/" + runServiceAuthorization.getService().getOid();
+				} else {
+					throw new Exception("Unknown auth");
+				}
 				
-				String accessToken = singleProjectAuthorization2.asHexToken(getBimServer().getEncryptionKey());
+				String accessToken = authorization.asHexToken(getBimServer().getEncryptionKey());
 				String refreshToken = oauthIssuerImpl.refreshToken();
 	
 				OAuthTokenResponseBuilder builder = OAuthASResponse.tokenResponse(HttpServletResponse.SC_OK).setAccessToken(accessToken).setExpiresIn("3600").setRefreshToken(refreshToken);
-				builder.setParam("poid", "" + ((SingleProjectAuthorization)code.getAuthorization()).getProject().getOid());
+				builder.setParam("resource_url", resourceUrl);
+				if (auth instanceof SingleProjectAuthorization) {
+					builder.setParam("poid", "" + ((SingleProjectAuthorization)code.getAuthorization()).getProject().getOid());
+				} else if (auth instanceof RunServiceAuthorization) {
+					builder.setParam("soid", "" + ((RunServiceAuthorization)code.getAuthorization()).getService().getOid());
+				}
 				OAuthResponse r = builder.buildJSONMessage();
-				System.out.println(r.getBody());
 				response.setStatus(r.getResponseStatus());
 				response.setContentType("application/json");
 				PrintWriter pw = response.getWriter();
@@ -108,7 +124,7 @@ public class OAuthAccessTokenServlet extends SubServlet {
 			} catch (OAuthSystemException e) {
 				LOGGER.error("", ex);
 			}
-		} catch (OAuthSystemException e) {
+		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
 	}

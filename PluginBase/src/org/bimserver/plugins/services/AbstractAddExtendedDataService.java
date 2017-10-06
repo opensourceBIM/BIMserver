@@ -26,6 +26,8 @@ import org.slf4j.LoggerFactory;
 
 public abstract class AbstractAddExtendedDataService extends AbstractService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractAddExtendedDataService.class);
+	
+	// This variable is not of type SchemaName because we want plugin developers to be able to come up with new schema names that are not yet in the SchemaName enum
 	private String name;
 
 	public AbstractAddExtendedDataService(String name) {

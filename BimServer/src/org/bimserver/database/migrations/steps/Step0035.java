@@ -1,4 +1,4 @@
-package org.bimserver.plugins;
+package org.bimserver.database.migrations.steps;
 
 /******************************************************************************
  * Copyright (C) 2009-2017  BIMserver.org
@@ -17,33 +17,20 @@ package org.bimserver.plugins;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-/*
- * 
- * SchemaName is not an extensive list of all schema names. Where appropriate, just use a String.
- * 
- */
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.migrations.Migration;
+import org.bimserver.database.migrations.Schema;
+import org.eclipse.emf.ecore.EcorePackage;
 
-public enum SchemaName {
-	IFC_STEP_2X3TC1,
-	IFC_STEP_4,
-	IFC_XML_2x3TC1,
-	IFC_XML_4,
-	IFC_JSON_2X3TC1,
-	IFC_JSON_4,
-	IFC_JSON_GEOM_2x3TC1,
-	IFC_JSON_GEOM_4,
-	BCF_ZIP_1_0,
-	BCF_ZIP_2_0,
-	GLTF_1_0,
-	GLTF_BIN_1_0,
-	COLLADA_1_5,
-	KMZ_2_2_0,
-	BINARY_GEOMETRY_6,
-	CITYGML_2_0_0,
-	VIS_3D_JSON_1_0,
-	VALIDATION_JSON_1_0,
-	LOD_CSV_1_0,
-	INFO_3D_EXCEL_1_0, 
-	UNSTRUCTURED_UTF8_TEXT_1_0, 
-	VALIDATION_XLSX_1_0;
+public class Step0035 extends Migration {
+
+	@Override
+	public void migrate(Schema schema, DatabaseSession databaseSession) {
+		schema.createEAttribute(schema.getEClass("store", "NewService"), "stateJson", EcorePackage.eINSTANCE.getEString());
+	}
+
+	@Override
+	public String getDescription() {
+		return "Added stateJson to service";
+	}
 }

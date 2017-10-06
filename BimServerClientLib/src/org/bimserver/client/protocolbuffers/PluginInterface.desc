@@ -1,5 +1,5 @@
 
-‹Õ
+¼Ü
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoNewServicesInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"b
 AddDeserializerRequestH
 deserializer (22.org.bimserver.pb.SDeserializerPluginConfiguration">
@@ -136,6 +136,12 @@ $GetAllDeserializersForProjectRequest
 GetAllInternalServicesRequest
 onlyEnabled ("|
 GetAllInternalServicesResponse
+errorMessage (	D
+value (25.org.bimserver.pb.SInternalServicePluginConfiguration"K
+&GetAllInternalServicesOfServiceRequest
+name (	
+onlyEnabled ("…
+'GetAllInternalServicesOfServiceResponse
 errorMessage (	D
 value (25.org.bimserver.pb.SInternalServicePluginConfiguration",
 *GetAllModelCheckerPluginDescriptorsRequest"w
@@ -349,6 +355,11 @@ artifactId (	"_
 oid ("g
 GetPluginDescriptorResponse
 errorMessage (	2
+value (2#.org.bimserver.pb.SPluginDescriptor"0
+ GetPluginDescriptorByNameRequest
+name (	"m
+!GetPluginDescriptorByNameResponse
+errorMessage (	2
 value (2#.org.bimserver.pb.SPluginDescriptor"g
 GetPluginInformationRequest
 
@@ -505,7 +516,12 @@ artifactId (	
 ListAllWebModulesRequest"q
 ListAllWebModulesResponse
 errorMessage (	>
-value (2/.org.bimserver.pb.SWebModulePluginConfiguration",
+value (2/.org.bimserver.pb.SWebModulePluginConfiguration"<
+ListPluginsInBundleRequest
+pluginBundleVersionOid ("g
+ListPluginsInBundleResponse
+errorMessage (	2
+value (2#.org.bimserver.pb.SPluginDescriptor",
 SetDefaultModelCompareRequest
 oid ("+
 SetDefaultModelMergerRequest
@@ -577,7 +593,7 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*Œ
 SPrimitiveEnum_DOUBLE
 SPrimitiveEnum_BOOLEAN
 SPrimitiveEnum_STRING
-SPrimitiveEnum_BYTE_ARRAY2æR
+SPrimitiveEnum_BYTE_ARRAY2úU
 PluginInterfacef
 addDeserializer(.org.bimserver.pb.AddDeserializerRequest).org.bimserver.pb.AddDeserializerResponseo
 addInternalService+.org.bimserver.pb.AddInternalServiceRequest,.org.bimserver.pb.AddInternalServiceResponsef
@@ -601,7 +617,8 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*Œ
 #getAllDeserializerPluginDescriptors<.org.bimserver.pb.GetAllDeserializerPluginDescriptorsRequest=.org.bimserver.pb.GetAllDeserializerPluginDescriptorsResponser
 getAllDeserializers,.org.bimserver.pb.GetAllDeserializersRequest-.org.bimserver.pb.GetAllDeserializersResponse
 getAllDeserializersForProject6.org.bimserver.pb.GetAllDeserializersForProjectRequest7.org.bimserver.pb.GetAllDeserializersForProjectResponse{
-getAllInternalServices/.org.bimserver.pb.GetAllInternalServicesRequest0.org.bimserver.pb.GetAllInternalServicesResponse¢
+getAllInternalServices/.org.bimserver.pb.GetAllInternalServicesRequest0.org.bimserver.pb.GetAllInternalServicesResponse–
+getAllInternalServicesOfService8.org.bimserver.pb.GetAllInternalServicesOfServiceRequest9.org.bimserver.pb.GetAllInternalServicesOfServiceResponse¢
 #getAllModelCheckerPluginDescriptors<.org.bimserver.pb.GetAllModelCheckerPluginDescriptorsRequest=.org.bimserver.pb.GetAllModelCheckerPluginDescriptorsResponse¢
 #getAllModelComparePluginDescriptors<.org.bimserver.pb.GetAllModelComparePluginDescriptorsRequest=.org.bimserver.pb.GetAllModelComparePluginDescriptorsResponser
 getAllModelCompares,.org.bimserver.pb.GetAllModelComparesRequest-.org.bimserver.pb.GetAllModelComparesResponseŸ
@@ -638,7 +655,8 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*Œ
 getObjectIDMById).org.bimserver.pb.GetObjectIDMByIdRequest*.org.bimserver.pb.GetObjectIDMByIdResponseo
 getObjectIDMByName+.org.bimserver.pb.GetObjectIDMByNameRequest,.org.bimserver.pb.GetObjectIDMByNameResponsef
 getPluginBundle(.org.bimserver.pb.GetPluginBundleRequest).org.bimserver.pb.GetPluginBundleResponser
-getPluginDescriptor,.org.bimserver.pb.GetPluginDescriptorRequest-.org.bimserver.pb.GetPluginDescriptorResponseu
+getPluginDescriptor,.org.bimserver.pb.GetPluginDescriptorRequest-.org.bimserver.pb.GetPluginDescriptorResponse„
+getPluginDescriptorByName2.org.bimserver.pb.GetPluginDescriptorByNameRequest3.org.bimserver.pb.GetPluginDescriptorByNameResponseu
 getPluginInformation-.org.bimserver.pb.GetPluginInformationRequest..org.bimserver.pb.GetPluginInformationResponse„
 getPluginObjectDefinition2.org.bimserver.pb.GetPluginObjectDefinitionRequest3.org.bimserver.pb.GetPluginObjectDefinitionResponsel
 getPluginSettings*.org.bimserver.pb.GetPluginSettingsRequest+.org.bimserver.pb.GetPluginSettingsResponser
@@ -651,7 +669,8 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*Œ
 installPluginBundle,.org.bimserver.pb.InstallPluginBundleRequest.org.bimserver.pb.VoidResponses
 installPluginBundleFromFile4.org.bimserver.pb.InstallPluginBundleFromFileRequest.org.bimserver.pb.VoidResponseq
 installPluginBundleFromUrl3.org.bimserver.pb.InstallPluginBundleFromUrlRequest.org.bimserver.pb.VoidResponsel
-listAllWebModules*.org.bimserver.pb.ListAllWebModulesRequest+.org.bimserver.pb.ListAllWebModulesResponsei
+listAllWebModules*.org.bimserver.pb.ListAllWebModulesRequest+.org.bimserver.pb.ListAllWebModulesResponser
+listPluginsInBundle,.org.bimserver.pb.ListPluginsInBundleRequest-.org.bimserver.pb.ListPluginsInBundleResponsei
 setDefaultModelCompare/.org.bimserver.pb.SetDefaultModelCompareRequest.org.bimserver.pb.VoidResponseg
 setDefaultModelMerger..org.bimserver.pb.SetDefaultModelMergerRequest.org.bimserver.pb.VoidResponsec
 setDefaultObjectIDM,.org.bimserver.pb.SetDefaultObjectIDMRequest.org.bimserver.pb.VoidResponseg

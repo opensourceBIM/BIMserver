@@ -31,332 +31,6 @@ import org.slf4j.LoggerFactory;
 
 public class SConverter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SConverter.class);
-
-	public Set<SGeometryInfo> convertToSSetGeometryInfo(Collection<GeometryInfo> input) {
-		Set<SGeometryInfo> result = new HashSet<SGeometryInfo>();
-		for (GeometryInfo o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<GeometryInfo> convertFromSSetGeometryInfo(Collection<SGeometryInfo> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<GeometryInfo> result = new HashSet<GeometryInfo>();
-		for (SGeometryInfo o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SGeometryInfo> convertToSListGeometryInfo(Collection<GeometryInfo> input) {
-		List<SGeometryInfo> result = new ArrayList<SGeometryInfo>();
-		for (GeometryInfo o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<GeometryInfo> convertFromSListGeometryInfo(Collection<SGeometryInfo> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<GeometryInfo> result = new ArrayList<GeometryInfo>();
-		for (SGeometryInfo o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SGeometryInfo convertToSObject(GeometryInfo input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SGeometryInfo result = new SGeometryInfo();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setStartVertex(input.getStartVertex());
-		result.setStartIndex(input.getStartIndex());
-		result.setPrimitiveCount(input.getPrimitiveCount());
-		result.setTransformation(input.getTransformation());
-		result.setArea(input.getArea());
-		result.setVolume(input.getVolume());
-		Vector3f minBoundsVal = input.getMinBounds();
-		result.setMinBounds(convertToSObject(minBoundsVal));
-		Vector3f maxBoundsVal = input.getMaxBounds();
-		result.setMaxBounds(convertToSObject(maxBoundsVal));
-		GeometryData dataVal = input.getData();
-		result.setDataId(dataVal == null ? -1 : dataVal.getOid());
-		Vector3f minBoundsUntranslatedVal = input.getMinBoundsUntranslated();
-		result.setMinBoundsUntranslated(convertToSObject(minBoundsUntranslatedVal));
-		Vector3f maxBoundsUntranslatedVal = input.getMaxBoundsUntranslated();
-		result.setMaxBoundsUntranslated(convertToSObject(maxBoundsUntranslatedVal));
-		return result;
-	}
-
-	public GeometryInfo convertFromSObject(SGeometryInfo input, DatabaseSession session) throws BimserverDatabaseException {
-		if (session == null) {
-			throw new BimserverDatabaseException("session == null, use the other method");
-		}
-		LOGGER.info("Potential unlinked object created");
-		GeometryInfo result = convertFromSObject(input, GeometryFactory.eINSTANCE.createGeometryInfo(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public GeometryInfo convertFromSObject(SGeometryInfo input) throws BimserverDatabaseException {
-		GeometryInfo result = convertFromSObject(input, GeometryFactory.eINSTANCE.createGeometryInfo(), null);
-		return result;
-	}
-
-	public GeometryInfo convertFromSObject(SGeometryInfo input, GeometryInfo result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setStartVertex(input.getStartVertex());
-		result.setStartIndex(input.getStartIndex());
-		result.setPrimitiveCount(input.getPrimitiveCount());
-		result.setTransformation(input.getTransformation());
-		result.setArea(input.getArea());
-		result.setVolume(input.getVolume());
-		result.setMinBounds(convertFromSObject(input.getMinBounds(), session));
-		result.setMaxBounds(convertFromSObject(input.getMaxBounds(), session));
-		result.setData((GeometryData)session.get(GeometryPackage.eINSTANCE.getGeometryData(), input.getDataId(), OldQuery.getDefault()));
-		result.setMinBoundsUntranslated(convertFromSObject(input.getMinBoundsUntranslated(), session));
-		result.setMaxBoundsUntranslated(convertFromSObject(input.getMaxBoundsUntranslated(), session));
-		return result;
-	}
-
-	public Set<SVector3f> convertToSSetVector3f(Collection<Vector3f> input) {
-		Set<SVector3f> result = new HashSet<SVector3f>();
-		for (Vector3f o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<Vector3f> convertFromSSetVector3f(Collection<SVector3f> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<Vector3f> result = new HashSet<Vector3f>();
-		for (SVector3f o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SVector3f> convertToSListVector3f(Collection<Vector3f> input) {
-		List<SVector3f> result = new ArrayList<SVector3f>();
-		for (Vector3f o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<Vector3f> convertFromSListVector3f(Collection<SVector3f> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<Vector3f> result = new ArrayList<Vector3f>();
-		for (SVector3f o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SVector3f convertToSObject(Vector3f input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SVector3f result = new SVector3f();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setX(input.getX());
-		result.setY(input.getY());
-		result.setZ(input.getZ());
-		return result;
-	}
-
-	public Vector3f convertFromSObject(SVector3f input, DatabaseSession session) throws BimserverDatabaseException {
-		if (session == null) {
-			throw new BimserverDatabaseException("session == null, use the other method");
-		}
-		LOGGER.info("Potential unlinked object created");
-		Vector3f result = convertFromSObject(input, GeometryFactory.eINSTANCE.createVector3f(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public Vector3f convertFromSObject(SVector3f input) throws BimserverDatabaseException {
-		Vector3f result = convertFromSObject(input, GeometryFactory.eINSTANCE.createVector3f(), null);
-		return result;
-	}
-
-	public Vector3f convertFromSObject(SVector3f input, Vector3f result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setX(input.getX());
-		result.setY(input.getY());
-		result.setZ(input.getZ());
-		return result;
-	}
-
-	public Set<SGeometryData> convertToSSetGeometryData(Collection<GeometryData> input) {
-		Set<SGeometryData> result = new HashSet<SGeometryData>();
-		for (GeometryData o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<GeometryData> convertFromSSetGeometryData(Collection<SGeometryData> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<GeometryData> result = new HashSet<GeometryData>();
-		for (SGeometryData o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SGeometryData> convertToSListGeometryData(Collection<GeometryData> input) {
-		List<SGeometryData> result = new ArrayList<SGeometryData>();
-		for (GeometryData o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<GeometryData> convertFromSListGeometryData(Collection<SGeometryData> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<GeometryData> result = new ArrayList<GeometryData>();
-		for (SGeometryData o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SGeometryData convertToSObject(GeometryData input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SGeometryData result = new SGeometryData();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setIndices(input.getIndices());
-		result.setVertices(input.getVertices());
-		result.setNormals(input.getNormals());
-		result.setMaterials(input.getMaterials());
-		result.setMaterialIndices(input.getMaterialIndices());
-		Vector4f colorVal = input.getColor();
-		result.setColor(convertToSObject(colorVal));
-		return result;
-	}
-
-	public GeometryData convertFromSObject(SGeometryData input, DatabaseSession session) throws BimserverDatabaseException {
-		if (session == null) {
-			throw new BimserverDatabaseException("session == null, use the other method");
-		}
-		LOGGER.info("Potential unlinked object created");
-		GeometryData result = convertFromSObject(input, GeometryFactory.eINSTANCE.createGeometryData(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public GeometryData convertFromSObject(SGeometryData input) throws BimserverDatabaseException {
-		GeometryData result = convertFromSObject(input, GeometryFactory.eINSTANCE.createGeometryData(), null);
-		return result;
-	}
-
-	public GeometryData convertFromSObject(SGeometryData input, GeometryData result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setIndices(input.getIndices());
-		result.setVertices(input.getVertices());
-		result.setNormals(input.getNormals());
-		result.setMaterials(input.getMaterials());
-		result.setMaterialIndices(input.getMaterialIndices());
-		result.setColor(convertFromSObject(input.getColor(), session));
-		return result;
-	}
-
-	public Set<SVector4f> convertToSSetVector4f(Collection<Vector4f> input) {
-		Set<SVector4f> result = new HashSet<SVector4f>();
-		for (Vector4f o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<Vector4f> convertFromSSetVector4f(Collection<SVector4f> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<Vector4f> result = new HashSet<Vector4f>();
-		for (SVector4f o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SVector4f> convertToSListVector4f(Collection<Vector4f> input) {
-		List<SVector4f> result = new ArrayList<SVector4f>();
-		for (Vector4f o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<Vector4f> convertFromSListVector4f(Collection<SVector4f> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<Vector4f> result = new ArrayList<Vector4f>();
-		for (SVector4f o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SVector4f convertToSObject(Vector4f input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SVector4f result = new SVector4f();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setX(input.getX());
-		result.setY(input.getY());
-		result.setZ(input.getZ());
-		result.setW(input.getW());
-		return result;
-	}
-
-	public Vector4f convertFromSObject(SVector4f input, DatabaseSession session) throws BimserverDatabaseException {
-		if (session == null) {
-			throw new BimserverDatabaseException("session == null, use the other method");
-		}
-		LOGGER.info("Potential unlinked object created");
-		Vector4f result = convertFromSObject(input, GeometryFactory.eINSTANCE.createVector4f(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public Vector4f convertFromSObject(SVector4f input) throws BimserverDatabaseException {
-		Vector4f result = convertFromSObject(input, GeometryFactory.eINSTANCE.createVector4f(), null);
-		return result;
-	}
-
-	public Vector4f convertFromSObject(SVector4f input, Vector4f result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setX(input.getX());
-		result.setY(input.getY());
-		result.setZ(input.getZ());
-		result.setW(input.getW());
-		return result;
-	}
 		public SAccessMethod convertToSObject(AccessMethod input) {
 			return SAccessMethod.values()[input.ordinal()];
 		}
@@ -402,32 +76,20 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof RevisionRelated) {
-			return convertToSObject((RevisionRelated)input);
+		if (input instanceof ServerStarted) {
+			return convertToSObject((ServerStarted)input);
+		}
+		else if (input instanceof RevisionBranched) {
+			return convertToSObject((RevisionBranched)input);
 		}
 		else if (input instanceof GeoTagUpdated) {
 			return convertToSObject((GeoTagUpdated)input);
 		}
-		else if (input instanceof SettingsSaved) {
-			return convertToSObject((SettingsSaved)input);
-		}
 		else if (input instanceof ExtendedDataAddedToRevision) {
 			return convertToSObject((ExtendedDataAddedToRevision)input);
 		}
-		else if (input instanceof RemoteServiceCalled) {
-			return convertToSObject((RemoteServiceCalled)input);
-		}
-		else if (input instanceof ServerStarted) {
-			return convertToSObject((ServerStarted)input);
-		}
-		else if (input instanceof UserRelated) {
-			return convertToSObject((UserRelated)input);
-		}
-		else if (input instanceof CheckoutRelated) {
-			return convertToSObject((CheckoutRelated)input);
-		}
-		else if (input instanceof ExtendedDataAddedToProject) {
-			return convertToSObject((ExtendedDataAddedToProject)input);
+		else if (input instanceof RevisionRelated) {
+			return convertToSObject((RevisionRelated)input);
 		}
 		else if (input instanceof ProjectRelated) {
 			return convertToSObject((ProjectRelated)input);
@@ -438,11 +100,23 @@ public class SConverter {
 		else if (input instanceof Download) {
 			return convertToSObject((Download)input);
 		}
-		else if (input instanceof RevisionBranched) {
-			return convertToSObject((RevisionBranched)input);
+		else if (input instanceof ExtendedDataAddedToProject) {
+			return convertToSObject((ExtendedDataAddedToProject)input);
+		}
+		else if (input instanceof CheckoutRelated) {
+			return convertToSObject((CheckoutRelated)input);
+		}
+		else if (input instanceof RemoteServiceCalled) {
+			return convertToSObject((RemoteServiceCalled)input);
+		}
+		else if (input instanceof SettingsSaved) {
+			return convertToSObject((SettingsSaved)input);
 		}
 		else if (input instanceof DatabaseCreated) {
 			return convertToSObject((DatabaseCreated)input);
+		}
+		else if (input instanceof UserRelated) {
+			return convertToSObject((UserRelated)input);
 		}
 		SLogAction result = new SLogAction();
 		result.setOid(input.getOid());
@@ -476,32 +150,20 @@ public class SConverter {
 		if (input == null) {
 			return null;
 		}
-		if (input instanceof SRevisionRelated) {
-			return convertFromSObject((SRevisionRelated)input, session);
+		if (input instanceof SServerStarted) {
+			return convertFromSObject((SServerStarted)input, session);
+		}
+		else if (input instanceof SRevisionBranched) {
+			return convertFromSObject((SRevisionBranched)input, session);
 		}
 		else if (input instanceof SGeoTagUpdated) {
 			return convertFromSObject((SGeoTagUpdated)input, session);
 		}
-		else if (input instanceof SSettingsSaved) {
-			return convertFromSObject((SSettingsSaved)input, session);
-		}
 		else if (input instanceof SExtendedDataAddedToRevision) {
 			return convertFromSObject((SExtendedDataAddedToRevision)input, session);
 		}
-		else if (input instanceof SRemoteServiceCalled) {
-			return convertFromSObject((SRemoteServiceCalled)input, session);
-		}
-		else if (input instanceof SServerStarted) {
-			return convertFromSObject((SServerStarted)input, session);
-		}
-		else if (input instanceof SUserRelated) {
-			return convertFromSObject((SUserRelated)input, session);
-		}
-		else if (input instanceof SCheckoutRelated) {
-			return convertFromSObject((SCheckoutRelated)input, session);
-		}
-		else if (input instanceof SExtendedDataAddedToProject) {
-			return convertFromSObject((SExtendedDataAddedToProject)input, session);
+		else if (input instanceof SRevisionRelated) {
+			return convertFromSObject((SRevisionRelated)input, session);
 		}
 		else if (input instanceof SProjectRelated) {
 			return convertFromSObject((SProjectRelated)input, session);
@@ -512,11 +174,23 @@ public class SConverter {
 		else if (input instanceof SDownload) {
 			return convertFromSObject((SDownload)input, session);
 		}
-		else if (input instanceof SRevisionBranched) {
-			return convertFromSObject((SRevisionBranched)input, session);
+		else if (input instanceof SExtendedDataAddedToProject) {
+			return convertFromSObject((SExtendedDataAddedToProject)input, session);
+		}
+		else if (input instanceof SCheckoutRelated) {
+			return convertFromSObject((SCheckoutRelated)input, session);
+		}
+		else if (input instanceof SRemoteServiceCalled) {
+			return convertFromSObject((SRemoteServiceCalled)input, session);
+		}
+		else if (input instanceof SSettingsSaved) {
+			return convertFromSObject((SSettingsSaved)input, session);
 		}
 		else if (input instanceof SDatabaseCreated) {
 			return convertFromSObject((SDatabaseCreated)input, session);
+		}
+		else if (input instanceof SUserRelated) {
+			return convertFromSObject((SUserRelated)input, session);
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
@@ -638,17 +312,17 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof ProjectDeleted) {
-			return convertToSObject((ProjectDeleted)input);
-		}
-		else if (input instanceof ProjectUndeleted) {
-			return convertToSObject((ProjectUndeleted)input);
+		if (input instanceof ProjectUpdated) {
+			return convertToSObject((ProjectUpdated)input);
 		}
 		else if (input instanceof NewProjectAdded) {
 			return convertToSObject((NewProjectAdded)input);
 		}
-		else if (input instanceof ProjectUpdated) {
-			return convertToSObject((ProjectUpdated)input);
+		else if (input instanceof ProjectUndeleted) {
+			return convertToSObject((ProjectUndeleted)input);
+		}
+		else if (input instanceof ProjectDeleted) {
+			return convertToSObject((ProjectDeleted)input);
 		}
 		SProjectRelated result = new SProjectRelated();
 		result.setOid(input.getOid());
@@ -684,17 +358,17 @@ public class SConverter {
 		if (input == null) {
 			return null;
 		}
-		if (input instanceof SProjectDeleted) {
-			return convertFromSObject((SProjectDeleted)input, session);
-		}
-		else if (input instanceof SProjectUndeleted) {
-			return convertFromSObject((SProjectUndeleted)input, session);
+		if (input instanceof SProjectUpdated) {
+			return convertFromSObject((SProjectUpdated)input, session);
 		}
 		else if (input instanceof SNewProjectAdded) {
 			return convertFromSObject((SNewProjectAdded)input, session);
 		}
-		else if (input instanceof SProjectUpdated) {
-			return convertFromSObject((SProjectUpdated)input, session);
+		else if (input instanceof SProjectUndeleted) {
+			return convertFromSObject((SProjectUndeleted)input, session);
+		}
+		else if (input instanceof SProjectDeleted) {
+			return convertFromSObject((SProjectDeleted)input, session);
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
@@ -914,29 +588,29 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof UserRemovedFromProject) {
+		if (input instanceof UserAddedToProject) {
+			return convertToSObject((UserAddedToProject)input);
+		}
+		else if (input instanceof UserRemovedFromProject) {
 			return convertToSObject((UserRemovedFromProject)input);
+		}
+		else if (input instanceof UserUndeleted) {
+			return convertToSObject((UserUndeleted)input);
+		}
+		else if (input instanceof NewUserAdded) {
+			return convertToSObject((NewUserAdded)input);
+		}
+		else if (input instanceof PasswordChanged) {
+			return convertToSObject((PasswordChanged)input);
+		}
+		else if (input instanceof UserChanged) {
+			return convertToSObject((UserChanged)input);
 		}
 		else if (input instanceof PasswordReset) {
 			return convertToSObject((PasswordReset)input);
 		}
 		else if (input instanceof UserDeleted) {
 			return convertToSObject((UserDeleted)input);
-		}
-		else if (input instanceof NewUserAdded) {
-			return convertToSObject((NewUserAdded)input);
-		}
-		else if (input instanceof UserChanged) {
-			return convertToSObject((UserChanged)input);
-		}
-		else if (input instanceof PasswordChanged) {
-			return convertToSObject((PasswordChanged)input);
-		}
-		else if (input instanceof UserUndeleted) {
-			return convertToSObject((UserUndeleted)input);
-		}
-		else if (input instanceof UserAddedToProject) {
-			return convertToSObject((UserAddedToProject)input);
 		}
 		SUserRelated result = new SUserRelated();
 		result.setOid(input.getOid());
@@ -972,29 +646,29 @@ public class SConverter {
 		if (input == null) {
 			return null;
 		}
-		if (input instanceof SUserRemovedFromProject) {
+		if (input instanceof SUserAddedToProject) {
+			return convertFromSObject((SUserAddedToProject)input, session);
+		}
+		else if (input instanceof SUserRemovedFromProject) {
 			return convertFromSObject((SUserRemovedFromProject)input, session);
+		}
+		else if (input instanceof SUserUndeleted) {
+			return convertFromSObject((SUserUndeleted)input, session);
+		}
+		else if (input instanceof SNewUserAdded) {
+			return convertFromSObject((SNewUserAdded)input, session);
+		}
+		else if (input instanceof SPasswordChanged) {
+			return convertFromSObject((SPasswordChanged)input, session);
+		}
+		else if (input instanceof SUserChanged) {
+			return convertFromSObject((SUserChanged)input, session);
 		}
 		else if (input instanceof SPasswordReset) {
 			return convertFromSObject((SPasswordReset)input, session);
 		}
 		else if (input instanceof SUserDeleted) {
 			return convertFromSObject((SUserDeleted)input, session);
-		}
-		else if (input instanceof SNewUserAdded) {
-			return convertFromSObject((SNewUserAdded)input, session);
-		}
-		else if (input instanceof SUserChanged) {
-			return convertFromSObject((SUserChanged)input, session);
-		}
-		else if (input instanceof SPasswordChanged) {
-			return convertFromSObject((SPasswordChanged)input, session);
-		}
-		else if (input instanceof SUserUndeleted) {
-			return convertFromSObject((SUserUndeleted)input, session);
-		}
-		else if (input instanceof SUserAddedToProject) {
-			return convertFromSObject((SUserAddedToProject)input, session);
 		}
 		result.setDate(input.getDate());
 		result.setAccessMethod(AccessMethod.values()[input.getAccessMethod().ordinal()]);
@@ -2972,6 +2646,332 @@ public class SConverter {
 		result.setService((Service)session.get(StorePackage.eINSTANCE.getService(), input.getServiceId(), OldQuery.getDefault()));
 		return result;
 	}
+
+	public Set<SGeometryInfo> convertToSSetGeometryInfo(Collection<GeometryInfo> input) {
+		Set<SGeometryInfo> result = new HashSet<SGeometryInfo>();
+		for (GeometryInfo o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<GeometryInfo> convertFromSSetGeometryInfo(Collection<SGeometryInfo> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<GeometryInfo> result = new HashSet<GeometryInfo>();
+		for (SGeometryInfo o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SGeometryInfo> convertToSListGeometryInfo(Collection<GeometryInfo> input) {
+		List<SGeometryInfo> result = new ArrayList<SGeometryInfo>();
+		for (GeometryInfo o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<GeometryInfo> convertFromSListGeometryInfo(Collection<SGeometryInfo> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<GeometryInfo> result = new ArrayList<GeometryInfo>();
+		for (SGeometryInfo o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SGeometryInfo convertToSObject(GeometryInfo input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SGeometryInfo result = new SGeometryInfo();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setStartVertex(input.getStartVertex());
+		result.setStartIndex(input.getStartIndex());
+		result.setPrimitiveCount(input.getPrimitiveCount());
+		result.setTransformation(input.getTransformation());
+		result.setArea(input.getArea());
+		result.setVolume(input.getVolume());
+		Vector3f minBoundsVal = input.getMinBounds();
+		result.setMinBounds(convertToSObject(minBoundsVal));
+		Vector3f maxBoundsVal = input.getMaxBounds();
+		result.setMaxBounds(convertToSObject(maxBoundsVal));
+		GeometryData dataVal = input.getData();
+		result.setDataId(dataVal == null ? -1 : dataVal.getOid());
+		Vector3f minBoundsUntranslatedVal = input.getMinBoundsUntranslated();
+		result.setMinBoundsUntranslated(convertToSObject(minBoundsUntranslatedVal));
+		Vector3f maxBoundsUntranslatedVal = input.getMaxBoundsUntranslated();
+		result.setMaxBoundsUntranslated(convertToSObject(maxBoundsUntranslatedVal));
+		return result;
+	}
+
+	public GeometryInfo convertFromSObject(SGeometryInfo input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		GeometryInfo result = convertFromSObject(input, GeometryFactory.eINSTANCE.createGeometryInfo(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public GeometryInfo convertFromSObject(SGeometryInfo input) throws BimserverDatabaseException {
+		GeometryInfo result = convertFromSObject(input, GeometryFactory.eINSTANCE.createGeometryInfo(), null);
+		return result;
+	}
+
+	public GeometryInfo convertFromSObject(SGeometryInfo input, GeometryInfo result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setStartVertex(input.getStartVertex());
+		result.setStartIndex(input.getStartIndex());
+		result.setPrimitiveCount(input.getPrimitiveCount());
+		result.setTransformation(input.getTransformation());
+		result.setArea(input.getArea());
+		result.setVolume(input.getVolume());
+		result.setMinBounds(convertFromSObject(input.getMinBounds(), session));
+		result.setMaxBounds(convertFromSObject(input.getMaxBounds(), session));
+		result.setData((GeometryData)session.get(GeometryPackage.eINSTANCE.getGeometryData(), input.getDataId(), OldQuery.getDefault()));
+		result.setMinBoundsUntranslated(convertFromSObject(input.getMinBoundsUntranslated(), session));
+		result.setMaxBoundsUntranslated(convertFromSObject(input.getMaxBoundsUntranslated(), session));
+		return result;
+	}
+
+	public Set<SVector3f> convertToSSetVector3f(Collection<Vector3f> input) {
+		Set<SVector3f> result = new HashSet<SVector3f>();
+		for (Vector3f o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<Vector3f> convertFromSSetVector3f(Collection<SVector3f> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<Vector3f> result = new HashSet<Vector3f>();
+		for (SVector3f o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SVector3f> convertToSListVector3f(Collection<Vector3f> input) {
+		List<SVector3f> result = new ArrayList<SVector3f>();
+		for (Vector3f o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<Vector3f> convertFromSListVector3f(Collection<SVector3f> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<Vector3f> result = new ArrayList<Vector3f>();
+		for (SVector3f o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SVector3f convertToSObject(Vector3f input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SVector3f result = new SVector3f();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setX(input.getX());
+		result.setY(input.getY());
+		result.setZ(input.getZ());
+		return result;
+	}
+
+	public Vector3f convertFromSObject(SVector3f input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		Vector3f result = convertFromSObject(input, GeometryFactory.eINSTANCE.createVector3f(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public Vector3f convertFromSObject(SVector3f input) throws BimserverDatabaseException {
+		Vector3f result = convertFromSObject(input, GeometryFactory.eINSTANCE.createVector3f(), null);
+		return result;
+	}
+
+	public Vector3f convertFromSObject(SVector3f input, Vector3f result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setX(input.getX());
+		result.setY(input.getY());
+		result.setZ(input.getZ());
+		return result;
+	}
+
+	public Set<SGeometryData> convertToSSetGeometryData(Collection<GeometryData> input) {
+		Set<SGeometryData> result = new HashSet<SGeometryData>();
+		for (GeometryData o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<GeometryData> convertFromSSetGeometryData(Collection<SGeometryData> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<GeometryData> result = new HashSet<GeometryData>();
+		for (SGeometryData o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SGeometryData> convertToSListGeometryData(Collection<GeometryData> input) {
+		List<SGeometryData> result = new ArrayList<SGeometryData>();
+		for (GeometryData o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<GeometryData> convertFromSListGeometryData(Collection<SGeometryData> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<GeometryData> result = new ArrayList<GeometryData>();
+		for (SGeometryData o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SGeometryData convertToSObject(GeometryData input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SGeometryData result = new SGeometryData();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setIndices(input.getIndices());
+		result.setVertices(input.getVertices());
+		result.setNormals(input.getNormals());
+		result.setMaterials(input.getMaterials());
+		result.setMaterialIndices(input.getMaterialIndices());
+		Vector4f colorVal = input.getColor();
+		result.setColor(convertToSObject(colorVal));
+		return result;
+	}
+
+	public GeometryData convertFromSObject(SGeometryData input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		GeometryData result = convertFromSObject(input, GeometryFactory.eINSTANCE.createGeometryData(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public GeometryData convertFromSObject(SGeometryData input) throws BimserverDatabaseException {
+		GeometryData result = convertFromSObject(input, GeometryFactory.eINSTANCE.createGeometryData(), null);
+		return result;
+	}
+
+	public GeometryData convertFromSObject(SGeometryData input, GeometryData result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setIndices(input.getIndices());
+		result.setVertices(input.getVertices());
+		result.setNormals(input.getNormals());
+		result.setMaterials(input.getMaterials());
+		result.setMaterialIndices(input.getMaterialIndices());
+		result.setColor(convertFromSObject(input.getColor(), session));
+		return result;
+	}
+
+	public Set<SVector4f> convertToSSetVector4f(Collection<Vector4f> input) {
+		Set<SVector4f> result = new HashSet<SVector4f>();
+		for (Vector4f o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<Vector4f> convertFromSSetVector4f(Collection<SVector4f> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<Vector4f> result = new HashSet<Vector4f>();
+		for (SVector4f o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SVector4f> convertToSListVector4f(Collection<Vector4f> input) {
+		List<SVector4f> result = new ArrayList<SVector4f>();
+		for (Vector4f o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<Vector4f> convertFromSListVector4f(Collection<SVector4f> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<Vector4f> result = new ArrayList<Vector4f>();
+		for (SVector4f o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SVector4f convertToSObject(Vector4f input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SVector4f result = new SVector4f();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setX(input.getX());
+		result.setY(input.getY());
+		result.setZ(input.getZ());
+		result.setW(input.getW());
+		return result;
+	}
+
+	public Vector4f convertFromSObject(SVector4f input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		Vector4f result = convertFromSObject(input, GeometryFactory.eINSTANCE.createVector4f(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public Vector4f convertFromSObject(SVector4f input) throws BimserverDatabaseException {
+		Vector4f result = convertFromSObject(input, GeometryFactory.eINSTANCE.createVector4f(), null);
+		return result;
+	}
+
+	public Vector4f convertFromSObject(SVector4f input, Vector4f result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setX(input.getX());
+		result.setY(input.getY());
+		result.setZ(input.getZ());
+		result.setW(input.getW());
+		return result;
+	}
 		public SUserType convertToSObject(UserType input) {
 			return SUserType.values()[input.ordinal()];
 		}
@@ -4118,32 +4118,32 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof ObjectIDMPluginConfiguration) {
-			return convertToSObject((ObjectIDMPluginConfiguration)input);
-		}
-		else if (input instanceof InternalServicePluginConfiguration) {
-			return convertToSObject((InternalServicePluginConfiguration)input);
+		if (input instanceof ModelMergerPluginConfiguration) {
+			return convertToSObject((ModelMergerPluginConfiguration)input);
 		}
 		else if (input instanceof ModelComparePluginConfiguration) {
 			return convertToSObject((ModelComparePluginConfiguration)input);
 		}
-		else if (input instanceof QueryEnginePluginConfiguration) {
-			return convertToSObject((QueryEnginePluginConfiguration)input);
-		}
-		else if (input instanceof SerializerPluginConfiguration) {
-			return convertToSObject((SerializerPluginConfiguration)input);
-		}
 		else if (input instanceof DeserializerPluginConfiguration) {
 			return convertToSObject((DeserializerPluginConfiguration)input);
-		}
-		else if (input instanceof WebModulePluginConfiguration) {
-			return convertToSObject((WebModulePluginConfiguration)input);
 		}
 		else if (input instanceof RenderEnginePluginConfiguration) {
 			return convertToSObject((RenderEnginePluginConfiguration)input);
 		}
-		else if (input instanceof ModelMergerPluginConfiguration) {
-			return convertToSObject((ModelMergerPluginConfiguration)input);
+		else if (input instanceof WebModulePluginConfiguration) {
+			return convertToSObject((WebModulePluginConfiguration)input);
+		}
+		else if (input instanceof QueryEnginePluginConfiguration) {
+			return convertToSObject((QueryEnginePluginConfiguration)input);
+		}
+		else if (input instanceof InternalServicePluginConfiguration) {
+			return convertToSObject((InternalServicePluginConfiguration)input);
+		}
+		else if (input instanceof ObjectIDMPluginConfiguration) {
+			return convertToSObject((ObjectIDMPluginConfiguration)input);
+		}
+		else if (input instanceof SerializerPluginConfiguration) {
+			return convertToSObject((SerializerPluginConfiguration)input);
 		}
 		SPluginConfiguration result = new SPluginConfiguration();
 		result.setOid(input.getOid());
@@ -4180,32 +4180,32 @@ public class SConverter {
 		if (input == null) {
 			return null;
 		}
-		if (input instanceof SObjectIDMPluginConfiguration) {
-			return convertFromSObject((SObjectIDMPluginConfiguration)input, session);
-		}
-		else if (input instanceof SInternalServicePluginConfiguration) {
-			return convertFromSObject((SInternalServicePluginConfiguration)input, session);
+		if (input instanceof SModelMergerPluginConfiguration) {
+			return convertFromSObject((SModelMergerPluginConfiguration)input, session);
 		}
 		else if (input instanceof SModelComparePluginConfiguration) {
 			return convertFromSObject((SModelComparePluginConfiguration)input, session);
 		}
-		else if (input instanceof SQueryEnginePluginConfiguration) {
-			return convertFromSObject((SQueryEnginePluginConfiguration)input, session);
-		}
-		else if (input instanceof SSerializerPluginConfiguration) {
-			return convertFromSObject((SSerializerPluginConfiguration)input, session);
-		}
 		else if (input instanceof SDeserializerPluginConfiguration) {
 			return convertFromSObject((SDeserializerPluginConfiguration)input, session);
-		}
-		else if (input instanceof SWebModulePluginConfiguration) {
-			return convertFromSObject((SWebModulePluginConfiguration)input, session);
 		}
 		else if (input instanceof SRenderEnginePluginConfiguration) {
 			return convertFromSObject((SRenderEnginePluginConfiguration)input, session);
 		}
-		else if (input instanceof SModelMergerPluginConfiguration) {
-			return convertFromSObject((SModelMergerPluginConfiguration)input, session);
+		else if (input instanceof SWebModulePluginConfiguration) {
+			return convertFromSObject((SWebModulePluginConfiguration)input, session);
+		}
+		else if (input instanceof SQueryEnginePluginConfiguration) {
+			return convertFromSObject((SQueryEnginePluginConfiguration)input, session);
+		}
+		else if (input instanceof SInternalServicePluginConfiguration) {
+			return convertFromSObject((SInternalServicePluginConfiguration)input, session);
+		}
+		else if (input instanceof SObjectIDMPluginConfiguration) {
+			return convertFromSObject((SObjectIDMPluginConfiguration)input, session);
+		}
+		else if (input instanceof SSerializerPluginConfiguration) {
+			return convertFromSObject((SSerializerPluginConfiguration)input, session);
 		}
 		result.setName(input.getName());
 		result.setEnabled(input.getEnabled());
@@ -4774,14 +4774,14 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof ListDataValue) {
-			return convertToSObject((ListDataValue)input);
-		}
-		else if (input instanceof ReferenceDataValue) {
+		if (input instanceof ReferenceDataValue) {
 			return convertToSObject((ReferenceDataValue)input);
 		}
 		else if (input instanceof SimpleDataValue) {
 			return convertToSObject((SimpleDataValue)input);
+		}
+		else if (input instanceof ListDataValue) {
+			return convertToSObject((ListDataValue)input);
 		}
 		SDataValue result = new SDataValue();
 		result.setOid(input.getOid());
@@ -4812,14 +4812,14 @@ public class SConverter {
 		if (input == null) {
 			return null;
 		}
-		if (input instanceof SListDataValue) {
-			return convertFromSObject((SListDataValue)input, session);
-		}
-		else if (input instanceof SReferenceDataValue) {
+		if (input instanceof SReferenceDataValue) {
 			return convertFromSObject((SReferenceDataValue)input, session);
 		}
 		else if (input instanceof SSimpleDataValue) {
 			return convertFromSObject((SSimpleDataValue)input, session);
+		}
+		else if (input instanceof SListDataValue) {
+			return convertFromSObject((SListDataValue)input, session);
 		}
 		result.setFieldName(input.getFieldName());
 		return result;
@@ -6060,11 +6060,11 @@ public class SConverter {
 		if (input instanceof ObjectRemoved) {
 			return convertToSObject((ObjectRemoved)input);
 		}
-		else if (input instanceof ObjectAdded) {
-			return convertToSObject((ObjectAdded)input);
-		}
 		else if (input instanceof ObjectModified) {
 			return convertToSObject((ObjectModified)input);
+		}
+		else if (input instanceof ObjectAdded) {
+			return convertToSObject((ObjectAdded)input);
 		}
 		SCompareItem result = new SCompareItem();
 		result.setOid(input.getOid());
@@ -6099,11 +6099,11 @@ public class SConverter {
 		if (input instanceof SObjectRemoved) {
 			return convertFromSObject((SObjectRemoved)input, session);
 		}
-		else if (input instanceof SObjectAdded) {
-			return convertFromSObject((SObjectAdded)input, session);
-		}
 		else if (input instanceof SObjectModified) {
 			return convertFromSObject((SObjectModified)input, session);
+		}
+		else if (input instanceof SObjectAdded) {
+			return convertFromSObject((SObjectAdded)input, session);
 		}
 		result.setDataObject(convertFromSObject(input.getDataObject(), session));
 		return result;
@@ -8577,11 +8577,11 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof PrimitiveType) {
-			return convertToSObject((PrimitiveType)input);
-		}
-		else if (input instanceof ObjectType) {
+		if (input instanceof ObjectType) {
 			return convertToSObject((ObjectType)input);
+		}
+		else if (input instanceof PrimitiveType) {
+			return convertToSObject((PrimitiveType)input);
 		}
 		else if (input instanceof ArrayType) {
 			return convertToSObject((ArrayType)input);
@@ -8614,11 +8614,11 @@ public class SConverter {
 		if (input == null) {
 			return null;
 		}
-		if (input instanceof SPrimitiveType) {
-			return convertFromSObject((SPrimitiveType)input, session);
-		}
-		else if (input instanceof SObjectType) {
+		if (input instanceof SObjectType) {
 			return convertFromSObject((SObjectType)input, session);
+		}
+		else if (input instanceof SPrimitiveType) {
+			return convertFromSObject((SPrimitiveType)input, session);
 		}
 		else if (input instanceof SArrayType) {
 			return convertFromSObject((SArrayType)input, session);
@@ -8742,20 +8742,20 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof ByteArrayType) {
-			return convertToSObject((ByteArrayType)input);
-		}
-		else if (input instanceof DoubleType) {
-			return convertToSObject((DoubleType)input);
+		if (input instanceof BooleanType) {
+			return convertToSObject((BooleanType)input);
 		}
 		else if (input instanceof LongType) {
 			return convertToSObject((LongType)input);
 		}
+		else if (input instanceof DoubleType) {
+			return convertToSObject((DoubleType)input);
+		}
+		else if (input instanceof ByteArrayType) {
+			return convertToSObject((ByteArrayType)input);
+		}
 		else if (input instanceof StringType) {
 			return convertToSObject((StringType)input);
-		}
-		else if (input instanceof BooleanType) {
-			return convertToSObject((BooleanType)input);
 		}
 		SPrimitiveType result = new SPrimitiveType();
 		result.setOid(input.getOid());
@@ -8785,20 +8785,20 @@ public class SConverter {
 		if (input == null) {
 			return null;
 		}
-		if (input instanceof SByteArrayType) {
-			return convertFromSObject((SByteArrayType)input, session);
-		}
-		else if (input instanceof SDoubleType) {
-			return convertFromSObject((SDoubleType)input, session);
+		if (input instanceof SBooleanType) {
+			return convertFromSObject((SBooleanType)input, session);
 		}
 		else if (input instanceof SLongType) {
 			return convertFromSObject((SLongType)input, session);
 		}
+		else if (input instanceof SDoubleType) {
+			return convertFromSObject((SDoubleType)input, session);
+		}
+		else if (input instanceof SByteArrayType) {
+			return convertFromSObject((SByteArrayType)input, session);
+		}
 		else if (input instanceof SStringType) {
 			return convertFromSObject((SStringType)input, session);
-		}
-		else if (input instanceof SBooleanType) {
-			return convertFromSObject((SBooleanType)input, session);
 		}
 		return result;
 	}
@@ -10030,11 +10030,11 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof ModelCheckerResultHeader) {
-			return convertToSObject((ModelCheckerResultHeader)input);
-		}
-		else if (input instanceof ModelCheckerResultLine) {
+		if (input instanceof ModelCheckerResultLine) {
 			return convertToSObject((ModelCheckerResultLine)input);
+		}
+		else if (input instanceof ModelCheckerResultHeader) {
+			return convertToSObject((ModelCheckerResultHeader)input);
 		}
 		SModelCheckerResultItem result = new SModelCheckerResultItem();
 		result.setOid(input.getOid());
@@ -10064,11 +10064,11 @@ public class SConverter {
 		if (input == null) {
 			return null;
 		}
-		if (input instanceof SModelCheckerResultHeader) {
-			return convertFromSObject((SModelCheckerResultHeader)input, session);
-		}
-		else if (input instanceof SModelCheckerResultLine) {
+		if (input instanceof SModelCheckerResultLine) {
 			return convertFromSObject((SModelCheckerResultLine)input, session);
+		}
+		else if (input instanceof SModelCheckerResultHeader) {
+			return convertFromSObject((SModelCheckerResultHeader)input, session);
 		}
 		return result;
 	}
@@ -11204,11 +11204,11 @@ public class SConverter {
 			return null;
 		}
 		
-		if (input instanceof SingleProjectAuthorization) {
-			return convertToSObject((SingleProjectAuthorization)input);
-		}
-		else if (input instanceof RunServiceAuthorization) {
+		if (input instanceof RunServiceAuthorization) {
 			return convertToSObject((RunServiceAuthorization)input);
+		}
+		else if (input instanceof SingleProjectAuthorization) {
+			return convertToSObject((SingleProjectAuthorization)input);
 		}
 		SAuthorization result = new SAuthorization();
 		result.setOid(input.getOid());
@@ -11238,11 +11238,11 @@ public class SConverter {
 		if (input == null) {
 			return null;
 		}
-		if (input instanceof SSingleProjectAuthorization) {
-			return convertFromSObject((SSingleProjectAuthorization)input, session);
-		}
-		else if (input instanceof SRunServiceAuthorization) {
+		if (input instanceof SRunServiceAuthorization) {
 			return convertFromSObject((SRunServiceAuthorization)input, session);
+		}
+		else if (input instanceof SSingleProjectAuthorization) {
+			return convertFromSObject((SSingleProjectAuthorization)input, session);
 		}
 		return result;
 	}
@@ -11761,6 +11761,7 @@ public class SConverter {
 		result.setStatus(SServiceStatus.values()[input.getStatus().ordinal()]);
 		result.setOutput(input.getOutput());
 		result.setAccessToken(input.getAccessToken());
+		result.setStateJson(input.getStateJson());
 		SerializerPluginConfiguration serializerVal = input.getSerializer();
 		result.setSerializerId(serializerVal == null ? -1 : serializerVal.getOid());
 		Action actionVal = input.getAction();
@@ -11804,6 +11805,7 @@ public class SConverter {
 		result.setStatus(ServiceStatus.values()[input.getStatus().ordinal()]);
 		result.setOutput(input.getOutput());
 		result.setAccessToken(input.getAccessToken());
+		result.setStateJson(input.getStateJson());
 		result.setSerializer((SerializerPluginConfiguration)session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), input.getSerializerId(), OldQuery.getDefault()));
 		result.setAction(convertFromSObject(input.getAction(), session));
 		result.setProject((Project)session.get(StorePackage.eINSTANCE.getProject(), input.getProjectId(), OldQuery.getDefault()));

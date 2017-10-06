@@ -17,6 +17,7 @@ import org.bimserver.bimbots.BimBotsException;
 import org.bimserver.bimbots.BimBotsOutput;
 import org.bimserver.bimbots.BimBotsServiceInterface;
 import org.bimserver.bimbots.BimServerBimBotsInput;
+import org.bimserver.database.BimDatabase;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.database.OldQuery.Deep;
@@ -34,6 +35,7 @@ import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.PluginDescriptor;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.plugins.PluginConfiguration;
@@ -50,6 +52,11 @@ import org.bimserver.utils.InputStreamDataSource;
 import org.bimserver.webservices.authorization.AuthenticationException;
 import org.bimserver.webservices.authorization.Authorization;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 public class ServiceRunnerServlet extends SubServlet {
 
 	public ServiceRunnerServlet(BimServer bimServer, ServletContext servletContext) {
@@ -58,15 +65,27 @@ public class ServiceRunnerServlet extends SubServlet {
 
 	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getRequestURI());
+		if (request.getRequestURI().endsWith("/servicelist")) {
+			processServiceList(request, response);
+			return;
+		}
 		String token = null;
+		if (request.getHeader("Authorization") != null) {
+			String a = request.getHeader("Authorization");
+			if (a.startsWith("Bearer")) {
+				token = a.substring(7);
+			}
+		}
 		if (token == null) {
 			token = request.getHeader("token");
 		}
 		
-		String serviceName = request.getRequestURI();
-		if (serviceName.startsWith("/services/")) {
-			serviceName = serviceName.substring(10);
+		String serviceName = request.getHeader("ServiceName");
+		if (serviceName == null) {
+			serviceName = request.getRequestURI();
+			if (serviceName.startsWith("/services/")) {
+				serviceName = serviceName.substring(10);
+			}
 		}
 		long serviceOid = Long.parseLong(serviceName);
 		
@@ -189,6 +208,61 @@ public class ServiceRunnerServlet extends SubServlet {
 		} catch (BimserverDatabaseException e) {
 			e.printStackTrace();
 		} catch (UserException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void processServiceList(HttpServletRequest request, HttpServletResponse response) {
+		BimDatabase database = getBimServer().getDatabase();
+		ObjectMapper mapper = new ObjectMapper();
+		ObjectNode result = mapper.createObjectNode();
+		ArrayNode array = mapper.createArrayNode();
+		result.set("services", array);
+		try (DatabaseSession session = database.createSession()) {
+			for (PluginDescriptor pluginDescriptor : session.getAllOfType(StorePackage.eINSTANCE.getPluginDescriptor(), PluginDescriptor.class, OldQuery.getDefault())) {
+				if (pluginDescriptor.getPluginInterfaceClassName().equals(ServicePlugin.class.getName())) {
+					ServicePlugin servicePlugin = getBimServer().getPluginManager().getServicePlugin(pluginDescriptor.getPluginClassName(), true);
+					if (servicePlugin instanceof BimBotsServiceInterface) {
+						BimBotsServiceInterface bimBotsServiceInterface = (BimBotsServiceInterface)servicePlugin;
+						
+						ObjectNode descriptorJson = mapper.createObjectNode();
+						descriptorJson.put("id", pluginDescriptor.getOid());
+						descriptorJson.put("name", pluginDescriptor.getName());
+						descriptorJson.put("description", pluginDescriptor.getDescription());
+						descriptorJson.put("provider", getBimServer().getServerSettingsCache().getServerSettings().getName());
+						descriptorJson.put("providerIcon", getBimServer().getServerSettingsCache().getServerSettings().getIcon());
+						
+						ArrayNode inputs = mapper.createArrayNode();
+						ArrayNode outputs = mapper.createArrayNode();
+						
+						for (SchemaName schemaName : bimBotsServiceInterface.getAvailableInputs()) {
+							inputs.add(schemaName.name());
+						}
+						for (SchemaName schemaName : bimBotsServiceInterface.getAvailableOutputs()) {
+							outputs.add(schemaName.name());
+						}
+						
+						descriptorJson.set("inputs", inputs);
+						descriptorJson.set("outputs", outputs);
+						
+						ObjectNode oauth = mapper.createObjectNode();
+						oauth.put("authorizationUrl", getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/oauth/authorize");
+						oauth.put("registerUrl", getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/oauth/register");
+						oauth.put("tokenUrl", getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/oauth/access");
+						
+						descriptorJson.set("oauth", oauth);
+						descriptorJson.put("resourceUrl", getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/services");
+						array.add(descriptorJson);
+					}
+				}
+			}
+			response.setContentType("application/json");
+			response.getOutputStream().write(mapper.writeValueAsBytes(result));
+		} catch (BimserverDatabaseException e) {
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

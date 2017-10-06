@@ -48,6 +48,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.NewServiceImpl#getAction <em>Action</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.NewServiceImpl#getAccessToken <em>Access Token</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.NewServiceImpl#getProject <em>Project</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.NewServiceImpl#getStateJson <em>State Json</em>}</li>
  * </ul>
  *
  * @generated
@@ -350,6 +351,24 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 */
 	public void setProject(Project newProject) {
 		eSet(StorePackage.Literals.NEW_SERVICE__PROJECT, newProject);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getStateJson() {
+		return (String) eGet(StorePackage.Literals.NEW_SERVICE__STATE_JSON, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStateJson(String newStateJson) {
+		eSet(StorePackage.Literals.NEW_SERVICE__STATE_JSON, newStateJson);
 	}
 
 } //NewServiceImpl

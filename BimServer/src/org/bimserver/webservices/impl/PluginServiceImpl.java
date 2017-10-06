@@ -20,7 +20,6 @@ package org.bimserver.webservices.impl;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URL;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -54,6 +53,7 @@ import org.bimserver.database.actions.DeletePluginConfigurationDatabaseAction;
 import org.bimserver.database.actions.DeleteQueryEngineDatabaseAction;
 import org.bimserver.database.actions.DeleteRenderEngineDatabaseAction;
 import org.bimserver.database.actions.DeleteSerializerDatabaseAction;
+import org.bimserver.database.actions.GetAllInternalServicesOfService;
 import org.bimserver.database.actions.GetAllPluginDescriptorsDatabaseAction;
 import org.bimserver.database.actions.GetAvailablePluginBundles;
 import org.bimserver.database.actions.GetByIdDatabaseAction;
@@ -74,6 +74,7 @@ import org.bimserver.database.actions.GetWebModuleByIdDatabaseAction;
 import org.bimserver.database.actions.GetWebModuleByNameDatabaseAction;
 import org.bimserver.database.actions.InstallPluginBundle;
 import org.bimserver.database.actions.InstallPluginBundleFromBytes;
+import org.bimserver.database.actions.ListPluginsInBundle;
 import org.bimserver.database.actions.ListWebModulesDatabaseAction;
 import org.bimserver.database.actions.SetPluginSettingsDatabaseAction;
 import org.bimserver.database.actions.SetUserSettingDatabaseAction;
@@ -1395,6 +1396,24 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	}
 	
 	@Override
+	public SPluginDescriptor getPluginDescriptorByName(String name) throws ServerException, UserException {
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			List<PluginDescriptor> pluginDescriptors = session.getAllOfType(StorePackage.eINSTANCE.getPluginDescriptor(), PluginDescriptor.class, OldQuery.getDefault());
+			for (PluginDescriptor pluginDescriptor : pluginDescriptors) {
+				if (pluginDescriptor.getName().equals(name)) {
+					return getBimServer().getSConverter().convertToSObject(pluginDescriptor);
+				}
+			}
+			return null;
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
 	public List<SDeserializerPluginConfiguration> getAllDeserializersForProject(Boolean onlyEnabled, Long poid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -1499,6 +1518,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	
 	@Override
 	public List<SPluginBundle> getInstalledPluginBundles() throws UserException, ServerException {
+		// TODO make sure the database oid's are also coming in with this
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
@@ -1568,6 +1588,31 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			getBimServer().getMavenPluginRepository().clearCache();
 		} catch (IOException e) {
 			throw new ServerException(e);
+		}
+	}
+
+	@Override
+	public List<SPluginDescriptor> listPluginsInBundle(Long pluginBundleVersionOid) throws ServerException, UserException {
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			return getBimServer().getSConverter().convertToSListPluginDescriptor(session.executeAndCommitAction(new ListPluginsInBundle(session, getInternalAccessMethod(), getBimServer(), pluginBundleVersionOid)));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public List<SInternalServicePluginConfiguration> getAllInternalServicesOfService(String name, Boolean onlyEnabled)
+			throws UserException, ServerException {
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			return getBimServer().getSConverter().convertToSListInternalServicePluginConfiguration(session.executeAndCommitAction(new GetAllInternalServicesOfService(session, getInternalAccessMethod(), getBimServer(), getCurrentUser(), name)));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
 		}
 	}
 }

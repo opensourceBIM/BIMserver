@@ -1,5 +1,5 @@
 
-çá
+°Ü
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -99,7 +99,7 @@ revisionId (
 __SCheckinRevision (2".org.bimserver.pb.SCheckinRevisionB
 __SStoreExtendedData (2$.org.bimserver.pb.SStoreExtendedData
 oid (
-rid ("ˇ
+rid ("í
 SNewService
 accessToken (	)
 action (2.org.bimserver.pb.SAction
@@ -116,9 +116,10 @@ revisionId (
 registerUrl (	
 resourceUrl (	
 rid (
-serializerId (0
-status (2 .org.bimserver.pb.SServiceStatus
-tokenUrl (	"ä
+serializerId (
+	stateJson (	0
+status (2 .org.bimserver.pb.SServiceStatus
+tokenUrl (	"ä
 AddNewServiceToProjectRequest
 poid (/
 sService (2.org.bimserver.pb.SNewService*
@@ -739,37 +740,29 @@ revisionNr (
 value (2.org.bimserver.pb.SGeoTag"3
 GetGeometryInfoRequest
 roid (
-oid ("Q
-	SVector4f
-oid (
-rid (	
-w (	
-x (	
-y (	
-z ("F
+oid ("F
 	SVector3f
 oid (
 rid (	
 x (	
 y (	
-z ("¥
+z ("à
 SGeometryInfo
-area (*
-color (2.org.bimserver.pb.SVector4f
-dataId (.
-	maxBounds (2.org.bimserver.pb.SVector3f:
-maxBoundsUntranslated (2.org.bimserver.pb.SVector3f.
-	minBounds (2.org.bimserver.pb.SVector3f:
-minBoundsUntranslated (2.org.bimserver.pb.SVector3f
-oid (
-primitiveCount	 (
-rid
- (
+area (
+dataId (.
+	maxBounds (2.org.bimserver.pb.SVector3f:
+maxBoundsUntranslated (2.org.bimserver.pb.SVector3f.
+	minBounds (2.org.bimserver.pb.SVector3f:
+minBoundsUntranslated (2.org.bimserver.pb.SVector3f
+oid (
+primitiveCount (
+rid	 (
 
-startIndex (
-startVertex (
-transformation (
-volume ("_
+startIndex
+ (
+startVertex (
+transformation (
+volume ("_
 GetGeometryInfoResponse
 errorMessage (	.
 value (2.org.bimserver.pb.SGeometryInfo"$
