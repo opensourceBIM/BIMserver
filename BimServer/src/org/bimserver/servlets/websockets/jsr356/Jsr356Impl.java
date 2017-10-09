@@ -62,6 +62,7 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 	
 	// The reason for using JSR-356 in the first place is because we don't want to have different implementations for jetty and tomcat
 	private static Map<ServerContainer, ServletContext> servletContexts = new HashMap<>();
+	private static ServletContext defaultServletContext;
 	
 	@OnOpen
 	public void onOpen(Session websocketSession, EndpointConfig config) {
@@ -69,6 +70,9 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 		try {
 			this.websocketSession = websocketSession;
 			ServletContext servletContext = servletContexts.get(websocketSession.getContainer());
+			if (servletContext == null) {
+				servletContext = defaultServletContext;
+			}
 			BimServer bimServer = (BimServer) servletContext.getAttribute("bimserver");
 			streamer = new Streamer(this, bimServer);
 			streamer.onOpen();
@@ -79,6 +83,10 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 
 	public static void setServletContext(ServerContainer serverContainer, ServletContext servletContext) {
 		Jsr356Impl.servletContexts.put(serverContainer, servletContext);
+	}
+	
+	public static void setDefaultServletContext(ServletContext servletContext) {
+		defaultServletContext = servletContext;
 	}
 	
 	@Override

@@ -35,6 +35,7 @@ import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.resources.WarResourceFetcher;
+import org.bimserver.servlets.websockets.jsr356.Jsr356Impl;
 import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.utils.PathUtils;
@@ -105,6 +106,8 @@ public class WarServerInitializer implements ServletContextListener {
 		}
 		config.setStartEmbeddedWebServer(false);
 		bimServer = new BimServer(config);
+		
+		Jsr356Impl.setDefaultServletContext(servletContextEvent.getServletContext());
 
 		Logger LOGGER = LoggerFactory.getLogger(WarServerInitializer.class);
 		LOGGER.info("Servlet Context Name: " + servletContext.getServletContextName());
