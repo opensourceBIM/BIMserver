@@ -10,34 +10,32 @@
 		</encoder>
 	</appender>
 	<logger name="org.eclipse.jetty" level="warn" additivity="false">
-		<appender-ref ref="STDERR" />
+		<appender-ref ref="FILE" />
 	</logger>
 	<logger name="org.apache.cxf" level="error" additivity="false">
-		<appender-ref ref="STDERR" />
+		<appender-ref ref="FILE" />
 	</logger>
 	<logger name="nl.tue.buildingsmart" level="warn" additivity="false">
-		<appender-ref ref="STDERR" />
+		<appender-ref ref="FILE" />
 	</logger>
 	<logger name="org.apache.http" level="warn" additivity="false">
-		<appender-ref ref="STDERR" />
+		<appender-ref ref="FILE" />
 	</logger>
 	<logger name="org.quartz" level="warn" additivity="false">
-		<appender-ref ref="STDERR" />
+		<appender-ref ref="FILE" />
 	</logger>
 	<logger name="com.jcabi.github" level="warn" additivity="false">
-		<appender-ref ref="STDERR" />
+		<appender-ref ref="FILE" />
 	</logger>
 	<logger name="org.eclipse.aether" level="warn" additivity="false">
-		<appender-ref ref="STDERR" />
+		<appender-ref ref="FILE" />
 	</logger>
 	<logger name="org.ifcopenshell" level="info" additivity="false">
-		<appender-ref ref="STDOUT" />
-		<appender-ref ref="STDERR" />
+		<appender-ref ref="FILE" />
 	</logger>
 
 	<logger name="org.bimserver" level="info" additivity="false">
-		<appender-ref ref="STDOUT" />
-		<appender-ref ref="STDERR" />
+		<appender-ref ref="FILE" />
 	</logger>
 
 	<root level="info">
