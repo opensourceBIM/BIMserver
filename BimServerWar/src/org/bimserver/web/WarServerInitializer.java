@@ -75,21 +75,24 @@ public class WarServerInitializer implements ServletContextListener {
 		if (homeDir == null) {
 			homeDir = baseDir;
 		}
-		if (homeDir != null) {
-			// Basically doing this twice (also in BimServer.init), but this makes sure the logback.xml file is copied to the homedir
-			try {
-				bimServer.initHomeDir();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		setupLogging(homeDir);
+
 		ResourceFetcher resourceFetcher = new WarResourceFetcher(servletContext, homeDir);
+
 		BimServerConfig config = new BimServerConfig();
 		config.setAutoMigrate(autoMigrate);
 		config.setEnvironment(Environment.WAR);
 		config.setHomeDir(homeDir);
 		config.setResourceFetcher(resourceFetcher);
+
+		if (homeDir != null) {
+			// Basically doing this twice (also in BimServer.init), but this makes sure the logback.xml file is copied to the homedir
+			try {
+				BimServer.initHomeDir(config);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		setupLogging(homeDir);
 		try {
 			config.setClassPath(makeClassPath(resourceFetcher.getFile("lib")));
 		} catch (IOException e1) {

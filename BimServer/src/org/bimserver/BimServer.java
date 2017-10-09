@@ -202,7 +202,7 @@ public class BimServer {
 		this.config = config;
 		try {
 			if (config.getHomeDir() != null) {
-				initHomeDir();
+				initHomeDir(config);
 			}
 
 			UncaughtExceptionHandler uncaughtExceptionHandler = new UncaughtExceptionHandler() {
@@ -1216,7 +1216,7 @@ public class BimServer {
 		this.defaultWebModule = defaultWebModule;
 	}
 	
-	public void initHomeDir() throws IOException {
+	public static void initHomeDir(BimServerConfig config) throws IOException {
 		String[] filesToCheck = new String[] { "logs", "tmp", "logback.xml", "emailtemplates" };
 		if (!Files.exists(config.getHomeDir())) {
 			Files.createDirectories(config.getHomeDir());
