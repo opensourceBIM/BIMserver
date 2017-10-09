@@ -47,7 +47,7 @@
 							<includes>
 								<include>logback.xml</include>
 							</includes>
-							<targetPath>/</targetPath>
+							<targetPath>WEB-INF</targetPath>
 						</resource>
 						<resource>
 							<directory>../BimServer/www</directory>
