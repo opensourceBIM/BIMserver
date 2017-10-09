@@ -1216,7 +1216,7 @@ public class BimServer {
 		this.defaultWebModule = defaultWebModule;
 	}
 	
-	private void initHomeDir() throws IOException {
+	public void initHomeDir() throws IOException {
 		String[] filesToCheck = new String[] { "logs", "tmp", "logback.xml", "emailtemplates" };
 		if (!Files.exists(config.getHomeDir())) {
 			Files.createDirectories(config.getHomeDir());
