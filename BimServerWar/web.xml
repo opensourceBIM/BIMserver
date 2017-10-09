@@ -64,6 +64,14 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>/servicelist</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
 		<url-pattern>/upload</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
