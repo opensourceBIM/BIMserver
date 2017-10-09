@@ -40,10 +40,15 @@ import org.bimserver.utils.PathUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.joran.JoranConfigurator;
+import ch.qos.logback.core.joran.spi.JoranException;
+import ch.qos.logback.core.util.StatusPrinter;
+
 public class WarServerInitializer implements ServletContextListener {
 
 	private BimServer bimServer;
-	
+
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		ServletContext servletContext = servletContextEvent.getServletContext();
 		Path homeDir = null;
@@ -61,7 +66,7 @@ public class WarServerInitializer implements ServletContextListener {
 		if (autoMigrate == false && servletContext.getInitParameter("autoMigrate") != null) {
 			autoMigrate = Boolean.valueOf(servletContext.getInitParameter("autoMigrate"));
 		}
-		
+
 		String realPath = servletContext.getRealPath("/");
 		if (!realPath.endsWith("/")) {
 			realPath = realPath + "/";
@@ -70,6 +75,7 @@ public class WarServerInitializer implements ServletContextListener {
 		if (homeDir == null) {
 			homeDir = baseDir;
 		}
+		setupLogging(homeDir);
 		ResourceFetcher resourceFetcher = new WarResourceFetcher(servletContext, homeDir);
 		BimServerConfig config = new BimServerConfig();
 		config.setAutoMigrate(autoMigrate);
@@ -83,10 +89,10 @@ public class WarServerInitializer implements ServletContextListener {
 		}
 		config.setStartEmbeddedWebServer(false);
 		bimServer = new BimServer(config);
-		
+
 		Logger LOGGER = LoggerFactory.getLogger(WarServerInitializer.class);
 		LOGGER.info("Servlet Context Name: " + servletContext.getServletContextName());
-		
+
 		try {
 			bimServer.start();
 		} catch (ServerException e) {
@@ -102,7 +108,20 @@ public class WarServerInitializer implements ServletContextListener {
 		}
 		servletContext.setAttribute("bimserver", bimServer);
 	}
-	
+
+	private void setupLogging(Path homeDir) {
+		LoggerContext context = (LoggerContext) LoggerFactory.getILoggerFactory();
+		try {
+			JoranConfigurator configurator = new JoranConfigurator();
+			configurator.setContext(context);
+			context.reset();
+			configurator.doConfigure(homeDir.resolve("logback.xml").toFile());
+		} catch (JoranException je) {
+			// StatusPrinter will handle this
+		}
+		StatusPrinter.printInCaseOfErrorsOrWarnings(context);
+	}
+
 	private String makeClassPath(Path file) {
 		// Added for Tomcat8
 		if (file == null) {

@@ -97,7 +97,7 @@ public class NewServicesImpl extends GenericServiceImpl implements NewServicesIn
 						list.add(serviceDescriptor);
 					}
 				} catch (Exception e) {
-					LOGGER.error("", e);
+					LOGGER.info(e.toString());
 				}
 			}
 			return list;

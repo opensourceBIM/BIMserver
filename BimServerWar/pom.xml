@@ -43,6 +43,13 @@
 							<targetPath>/</targetPath>
 						</resource>
 						<resource>
+							<directory>./deploy</directory>
+							<includes>
+								<include>logback.xml</include>
+							</includes>
+							<targetPath>/</targetPath>
+						</resource>
+						<resource>
 							<directory>../BimServer/www</directory>
 							<excludes>
 								<exclude>**/web.xml</exclude>
@@ -75,8 +82,14 @@
 			<artifactId>bimserver</artifactId>
 			<version>1.5.87-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.3</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
-		<licenses>
+	<licenses>
 		<license>
 			<distribution>repo</distribution>
 			<name>GNU Affero General Public License 3</name>

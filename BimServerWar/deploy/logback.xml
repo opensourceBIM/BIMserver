@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<configuration debug="false">
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<file>logs/bimserver.log</file>
+		<append>true</append>
+		<immediateFlush>true</immediateFlush>
+		<encoder>
+			<pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<logger name="org.eclipse.jetty" level="warn" additivity="false">
+		<appender-ref ref="STDERR" />
+	</logger>
+	<logger name="org.apache.cxf" level="error" additivity="false">
+		<appender-ref ref="STDERR" />
+	</logger>
+	<logger name="nl.tue.buildingsmart" level="warn" additivity="false">
+		<appender-ref ref="STDERR" />
+	</logger>
+	<logger name="org.apache.http" level="warn" additivity="false">
+		<appender-ref ref="STDERR" />
+	</logger>
+	<logger name="org.quartz" level="warn" additivity="false">
+		<appender-ref ref="STDERR" />
+	</logger>
+	<logger name="com.jcabi.github" level="warn" additivity="false">
+		<appender-ref ref="STDERR" />
+	</logger>
+	<logger name="org.eclipse.aether" level="warn" additivity="false">
+		<appender-ref ref="STDERR" />
+	</logger>
+	<logger name="org.ifcopenshell" level="info" additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="STDERR" />
+	</logger>
+
+	<logger name="org.bimserver" level="info" additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="STDERR" />
+	</logger>
+
+	<root level="info">
+		<appender-ref ref="FILE" />
+	</root>
+</configuration>
