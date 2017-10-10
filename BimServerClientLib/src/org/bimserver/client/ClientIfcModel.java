@@ -386,8 +386,8 @@ public class ClientIfcModel extends IfcModel {
 						throw new GeometryException("Protocol != BGS (" + protocol + ")");
 					}
 					byte formatVersion = dataInputStream.readByte();
-					if (formatVersion != 10) {
-						throw new GeometryException("Unsupported version " + formatVersion + " / 10");
+					if (formatVersion != 11) {
+						throw new GeometryException("Unsupported version " + formatVersion + " / 11");
 					}
 					int skip = 4 - (7 % 4);
 					if(skip != 0 && skip != 4) {
@@ -454,6 +454,14 @@ public class ClientIfcModel extends IfcModel {
 					dataInputStream.readFully(indices);
 					geometryData.setIndices(indices);
 	
+					int colorType = dataInputStream.readInt();
+					if (colorType == 1) {
+						dataInputStream.readFloat();
+						dataInputStream.readFloat();
+						dataInputStream.readFloat();
+						dataInputStream.readFloat();
+					}
+					
 					int nrVertices = dataInputStream.readInt();
 					byte[] vertices = new byte[nrVertices * 4];
 					dataInputStream.readFully(vertices);
