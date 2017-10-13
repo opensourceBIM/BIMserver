@@ -43,9 +43,9 @@ import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.FileAppender;
+import ch.qos.logback.core.util.StatusPrinter;
 
 public class LocalDevBimServerStarter {
-	private static final Logger LOGGER = LoggerFactory.getLogger(LocalDevBimServerStarter.class);
 	private BimServer bimServer;
 	
 	public static void main(String[] args) {
@@ -63,7 +63,7 @@ public class LocalDevBimServerStarter {
 		config.setPort(port);
 		config.setStartCommandLine(true);
 		config.setDevelopmentBaseDir(Paths.get("../BimServer"));
-		
+
 		try {
 			fixLogging(config);
 		} catch (IOException e1) {
@@ -73,6 +73,7 @@ public class LocalDevBimServerStarter {
 		bimServer = new BimServer(config);
 		bimServer.getVersionChecker().getLocalVersion().setDate(new Date());
 		bimServer.setEmbeddedWebServer(new EmbeddedWebServer(bimServer, config.getDevelopmentBaseDir(), config.isLocalDev()));
+		Logger LOGGER = LoggerFactory.getLogger(LocalDevBimServerStarter.class);
 		try {
 			bimServer.start();
 			if (bimServer.getServerInfo().getServerState() != ServerState.MIGRATION_REQUIRED) {
