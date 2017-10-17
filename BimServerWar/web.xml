@@ -88,6 +88,10 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>RootServlet</servlet-name>
+		<url-pattern>/oauth/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RootServlet</servlet-name>
 		<url-pattern>*.version</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
