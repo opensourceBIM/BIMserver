@@ -475,88 +475,89 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 											HashMapVirtualObject ifcProduct = productDef.getObject();
 											
 											Q q = productToData.get(productDef.getMasterOid());
-
-											VirtualObject geometryInfo = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getGeometryInfo());
-											
-											WrappedVirtualObject minBounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
-											WrappedVirtualObject maxBounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
-
-											double[] mibu = q.getMibu();
-											double[] mabu = q.getMibu();
-											
-											double[] mibt = new double[4];
-											double[] mabt = new double[4];
-											
-											// TODO
-											Matrix.multiplyMV(mibt, 0, productDef.getProductMatrix(), 0, mibu, 0);
-											Matrix.multiplyMV(mabt, 0, productDef.getProductMatrix(), 0, mabu, 0);
-
-											minBounds.set("x", mibt[0]);
-											minBounds.set("y", mibt[1]);
-											minBounds.set("z", mibt[2]);
-											
-											maxBounds.set("x", mabt[0]);
-											maxBounds.set("y", mabt[1]);
-											maxBounds.set("z", mabt[2]);
-											
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MinBounds(), minBounds);
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MaxBounds(), maxBounds);
-
-											WrappedVirtualObject minBoundsUntranslated = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
-											WrappedVirtualObject maxBoundsUntranslated = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
-
-											minBoundsUntranslated.set("x", mibu[0]);
-											minBoundsUntranslated.set("y", mibu[1]);
-											minBoundsUntranslated.set("z", mibu[2]);
-											
-											maxBoundsUntranslated.set("x", mabu[0]);
-											maxBoundsUntranslated.set("y", mabu[1]);
-											maxBoundsUntranslated.set("z", mabu[2]);
-											
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MinBoundsUntranslated(), minBoundsUntranslated);
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MaxBoundsUntranslated(), maxBoundsUntranslated);
-											
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), q.getArea());
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), q.getVolume());
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), q.getNrPrimitives());
-
-											bytesSavedByMapping.addAndGet(q.getSize());
-											totalBytes.addAndGet(q.getSize());
-											
-											double[] inverted = Matrix.identity();
-											if (!Matrix.invertM(inverted, 0, masterProductDef.getMappingMatrix(), 0)) {
-												System.out.println("No inverse");
-											}
-											
-											double[] finalMatrix = Matrix.identity();
-											double[] totalTranformationMatrix = Matrix.identity();
-											Matrix.multiplyMM(finalMatrix, 0, productDef.getMappingMatrix(), 0, inverted, 0);
-											Matrix.multiplyMM(totalTranformationMatrix, 0, productDef.getProductMatrix(), 0, finalMatrix, 0);
-											
-											if (matrices.containsKey(ifcProduct.getOid())) {
-												if (!Arrays.equals(matrices.get(ifcProduct.getOid()), totalTranformationMatrix)) {
-													System.out.println("Not the same " + ifcProduct.get("GlobalId"));
-													Matrix.dump(matrices.get(ifcProduct.getOid()));
-													System.out.println();
-													Matrix.dump(totalTranformationMatrix);
+											if (q != null) {
+												VirtualObject geometryInfo = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getGeometryInfo());
+												
+												WrappedVirtualObject minBounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
+												WrappedVirtualObject maxBounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
+												
+												double[] mibu = q.getMibu();
+												double[] mabu = q.getMibu();
+												
+												double[] mibt = new double[4];
+												double[] mabt = new double[4];
+												
+												// TODO
+												Matrix.multiplyMV(mibt, 0, productDef.getProductMatrix(), 0, mibu, 0);
+												Matrix.multiplyMV(mabt, 0, productDef.getProductMatrix(), 0, mabu, 0);
+												
+												minBounds.set("x", mibt[0]);
+												minBounds.set("y", mibt[1]);
+												minBounds.set("z", mibt[2]);
+												
+												maxBounds.set("x", mabt[0]);
+												maxBounds.set("y", mabt[1]);
+												maxBounds.set("z", mabt[2]);
+												
+												geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MinBounds(), minBounds);
+												geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MaxBounds(), maxBounds);
+												
+												WrappedVirtualObject minBoundsUntranslated = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
+												WrappedVirtualObject maxBoundsUntranslated = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
+												
+												minBoundsUntranslated.set("x", mibu[0]);
+												minBoundsUntranslated.set("y", mibu[1]);
+												minBoundsUntranslated.set("z", mibu[2]);
+												
+												maxBoundsUntranslated.set("x", mabu[0]);
+												maxBoundsUntranslated.set("y", mabu[1]);
+												maxBoundsUntranslated.set("z", mabu[2]);
+												
+												geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MinBoundsUntranslated(), minBoundsUntranslated);
+												geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MaxBoundsUntranslated(), maxBoundsUntranslated);
+												
+												geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), q.getArea());
+												geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), q.getVolume());
+												geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), q.getNrPrimitives());
+												
+												bytesSavedByMapping.addAndGet(q.getSize());
+												totalBytes.addAndGet(q.getSize());
+												
+												double[] inverted = Matrix.identity();
+												if (!Matrix.invertM(inverted, 0, masterProductDef.getMappingMatrix(), 0)) {
+													System.out.println("No inverse");
 												}
-											}
-											
-											geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), q.getOid(), 0);
-	
+												
+												double[] finalMatrix = Matrix.identity();
+												double[] totalTranformationMatrix = Matrix.identity();
+												Matrix.multiplyMM(finalMatrix, 0, productDef.getMappingMatrix(), 0, inverted, 0);
+												Matrix.multiplyMM(totalTranformationMatrix, 0, productDef.getProductMatrix(), 0, finalMatrix, 0);
+												
+												if (matrices.containsKey(ifcProduct.getOid())) {
+													if (!Arrays.equals(matrices.get(ifcProduct.getOid()), totalTranformationMatrix)) {
+														System.out.println("Not the same " + ifcProduct.get("GlobalId"));
+														Matrix.dump(matrices.get(ifcProduct.getOid()));
+														System.out.println();
+														Matrix.dump(totalTranformationMatrix);
+													}
+												}
+												
+												geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), q.getOid(), 0);
+												
 //											for (int i = 0; i < indices.length; i++) {
 //												processExtends(geometryInfo, productTranformationMatrix, vertices, indices[i] * 3, generateGeometryResult);
 //												processExtendsUntranslated(geometryInfo, vertices, indices[i] * 3, generateGeometryResult);
 //											}
-											
+												
 //											calculateObb(geometryInfo, productTranformationMatrix, indices, vertices, generateGeometryResult);
-											setTransformationMatrix(geometryInfo, totalTranformationMatrix);
-											
-											geometryInfo.save();
+												setTransformationMatrix(geometryInfo, totalTranformationMatrix);
+												
+												geometryInfo.save();
 //											totalBytes.addAndGet(size);
-	
-											ifcProduct.setReference(geometryFeature, geometryInfo.getOid(), 0);
-											ifcProduct.saveOverwrite();
+												
+												ifcProduct.setReference(geometryFeature, geometryInfo.getOid(), 0);
+												ifcProduct.saveOverwrite();
+											}
 										}
 									}
 								}
