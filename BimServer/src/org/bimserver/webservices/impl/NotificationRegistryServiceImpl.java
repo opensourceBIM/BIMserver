@@ -110,7 +110,7 @@ public class NotificationRegistryServiceImpl extends GenericServiceImpl implemen
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			ProgressTopic topic = getBimServer().getNotificationsManager().getProgressTopic(topicId);
-			ProgressNotification progressNotification = new ProgressNotification(getBimServer(), topic, getBimServer().getSConverter().convertFromSObject(state, session));
+			ProgressNotification progressNotification = new ProgressNotification(getBimServer(), topic, getBimServer().getSConverter().convertFromSObject(state));
 			getBimServer().getNotificationsManager().addToQueue(progressNotification);
 		} catch (BimserverDatabaseException e) {
 			handleException(e);

@@ -732,7 +732,7 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			CountDatabaseAction action = new CountDatabaseAction(session, getInternalAccessMethod(), roid, className, getAuthorization());
+			CountDatabaseAction action = new CountDatabaseAction(getBimServer(), session, getInternalAccessMethod(), roid, className, getAuthorization());
 			return session.executeAndCommitAction(action);
 		} catch (Exception e) {
 			return handleException(e);

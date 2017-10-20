@@ -212,6 +212,7 @@ import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
+import org.bimserver.models.store.File;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.ModelCheckerInstance;
@@ -224,6 +225,7 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
 import org.bimserver.models.store.SerializerPluginConfiguration;
+import org.bimserver.models.store.Service;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.models.store.StoreExtendedData;
 import org.bimserver.models.store.StorePackage;
@@ -595,7 +597,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			ExtendedData convert = getBimServer().getSConverter().convertFromSObject(extendedData, session);
+			ExtendedData convert = getBimServer().getSConverter().convertFromSObject(extendedData, session.create(ExtendedData.class), session);
 			session.executeAndCommitAction(new AddExtendedDataToRevisionDatabaseAction(getBimServer(), session, getInternalAccessMethod(), roid, getAuthorization(), convert));
 		} catch (Exception e) {
 			handleException(e);
@@ -2083,7 +2085,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			AddLocalServiceToProjectDatabaseAction action = new AddLocalServiceToProjectDatabaseAction(session, getInternalAccessMethod(), poid, getBimServer().getSConverter().convertFromSObject(sService, session), internalServiceOid, getAuthorization());
+			AddLocalServiceToProjectDatabaseAction action = new AddLocalServiceToProjectDatabaseAction(session, getInternalAccessMethod(), poid, getBimServer().getSConverter().convertFromSObject(sService, session.create(Service.class), session), internalServiceOid, getAuthorization());
 			session.executeAndCommitAction(action);
 		} catch (Exception e) {
 			handleException(e);
@@ -2233,7 +2235,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public Long uploadFile(SFile file) throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			org.bimserver.models.store.File convertFromSObject = getBimServer().getSConverter().convertFromSObject(file, session);
+			File convertFromSObject = getBimServer().getSConverter().convertFromSObject(file, session.create(File.class), session);
 			UploadFileDatabaseAction action = new UploadFileDatabaseAction(session, getInternalAccessMethod(), convertFromSObject);
 			return session.executeAndCommitAction(action);
 		} catch (Exception e) {
