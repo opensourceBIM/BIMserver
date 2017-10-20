@@ -78,15 +78,15 @@ public class LocalDevBimServerStarter {
 			bimServer.start();
 			if (bimServer.getServerInfo().getServerState() != ServerState.MIGRATION_REQUIRED) {
 				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
-//				try {
-//					AdminInterface adminInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(AdminInterface.class);
-//					adminInterface.setup("http://localhost:" + port, "My BIMserver", "My Description", "http://localhost:" + port + "/img/bimserver.png", "Administrator", "admin@bimserver.org", "admin");
-//					SettingsInterface settingsInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(SettingsInterface.class);
-//					settingsInterface.setCacheOutputFiles(false);
-//					settingsInterface.setPluginStrictVersionChecking(false);
-//				} catch (Exception e) {
-//					// Ignore
-//				}
+				try {
+					AdminInterface adminInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(AdminInterface.class);
+					adminInterface.setup("http://localhost:" + port, "My BIMserver", "My Description", "http://localhost:" + port + "/img/bimserver.png", "Administrator", "admin@bimserver.org", "admin");
+					SettingsInterface settingsInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(SettingsInterface.class);
+					settingsInterface.setCacheOutputFiles(false);
+					settingsInterface.setPluginStrictVersionChecking(false);
+				} catch (Exception e) {
+					// Ignore
+				}
 				bimServer.activateServices();
 			} else {
 				bimServer.getServerInfoManager().registerStateChangeListener(new StateChangeListener() {

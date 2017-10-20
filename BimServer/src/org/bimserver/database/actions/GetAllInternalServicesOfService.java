@@ -1,6 +1,8 @@
 package org.bimserver.database.actions;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.bimserver.BimServer;
@@ -31,7 +33,8 @@ public class GetAllInternalServicesOfService extends BimDatabaseAction<Set<Inter
 			throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException {
 		Set<InternalServicePluginConfiguration> configs = new HashSet<>();
 		// TODO use indices
-		for (InternalServicePluginConfiguration internalServicePluginConfiguration : getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), InternalServicePluginConfiguration.class, OldQuery.getDefault())) {
+		List<InternalServicePluginConfiguration> allOfType = new ArrayList<>(getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), InternalServicePluginConfiguration.class, OldQuery.getDefault()));
+		for (InternalServicePluginConfiguration internalServicePluginConfiguration : allOfType) {
 			if (internalServicePluginConfiguration.getPluginDescriptor().getName().equals(serviceName) && internalServicePluginConfiguration.getUserSettings().getOid() == getUserByUoid(sUser.getOid()).getUserSettings().getOid()) {
 				configs.add(internalServicePluginConfiguration);
 			}
