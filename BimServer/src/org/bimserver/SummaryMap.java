@@ -129,4 +129,12 @@ public class SummaryMap {
 		}
 		return 0;
 	}
+
+	public int count() {
+		int total = 0;
+		for (EClass eClass : summaryMap.keySet()) {
+			total += summaryMap.get(eClass);
+		}
+		return total;
+	}
 }
