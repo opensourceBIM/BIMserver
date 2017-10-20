@@ -49,10 +49,10 @@ public class LocalDevBimServerStarter {
 	private BimServer bimServer;
 	
 	public static void main(String[] args) {
-		new LocalDevBimServerStarter().start(-1, "localhost", 8080, 8085, new OptionsParser(args).getPluginDirectories());
+		new LocalDevBimServerStarter().start(-1, "localhost", "LocalDev BIMserver (8080)", 8080, 8085, new OptionsParser(args).getPluginDirectories());
 	}
 
-	public void start(int id, String address, int port, int pbport, Path[] pluginDirectories) {
+	public void start(int id, String address, String name, int port, int pbport, Path[] pluginDirectories) {
 		BimServerConfig config = new BimServerConfig();
 		config.setHomeDir(Paths.get("home" + (id == -1 ? "" : id)));
 		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(Paths.get("../")));
@@ -80,7 +80,7 @@ public class LocalDevBimServerStarter {
 				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
 				try {
 					AdminInterface adminInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(AdminInterface.class);
-					adminInterface.setup("http://localhost:" + port, "My BIMserver", "My Description", "http://localhost:" + port + "/img/bimserver.png", "Administrator", "admin@bimserver.org", "admin");
+					adminInterface.setup("http://localhost:" + port, name, "My Description", "http://localhost:" + port + "/img/bimserver.png", "Administrator", "admin@bimserver.org", "admin");
 					SettingsInterface settingsInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(SettingsInterface.class);
 					settingsInterface.setCacheOutputFiles(false);
 					settingsInterface.setPluginStrictVersionChecking(false);

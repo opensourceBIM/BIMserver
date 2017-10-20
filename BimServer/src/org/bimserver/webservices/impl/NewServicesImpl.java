@@ -1,5 +1,9 @@
 package org.bimserver.webservices.impl;
 
+import java.io.IOException;
+import java.net.ConnectException;
+import java.net.MalformedURLException;
+
 /******************************************************************************
  * Copyright (C) 2009-2017  BIMserver.org
  * 
@@ -23,6 +27,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
@@ -58,48 +65,60 @@ public class NewServicesImpl extends GenericServiceImpl implements NewServicesIn
 
 	@Override
 	public List<SNewServiceDescriptor> listAllServiceDescriptors() throws ServerException, UserException {
+		// TODO cache results
 		try {
 			String data = NetUtils.getContent(new URL(getBimServer().getServerSettingsCache().getServerSettings().getServiceRepositoryUrl() + "/serviceproviders.json"), 5000);
 			ObjectMapper objectMapper = new ObjectMapper();
 			ObjectNode servicesJson = objectMapper.readValue(data, ObjectNode.class);
 			ArrayNode activeServices = (ArrayNode) servicesJson.get("active");
-			List<SNewServiceDescriptor> list = new ArrayList<>();
+			List<SNewServiceDescriptor> list = Collections.synchronizedList(new ArrayList<>());
+			ThreadPoolExecutor executor = new ThreadPoolExecutor(activeServices.size(), activeServices.size(), 1, TimeUnit.MINUTES, new ArrayBlockingQueue<>(activeServices.size()));
 			for (JsonNode activeService : activeServices) {
 				String providerListUrl = activeService.get("listUrl").asText();
-				try {
-					// TODO parallel and cache
-					String providerData = NetUtils.getContent(new URL(providerListUrl), 5000);
-					ObjectNode provider = objectMapper.readValue(providerData, ObjectNode.class);
+				executor.submit(new Runnable(){
 
-					ArrayNode arryaNode = (ArrayNode) provider.get("services");
-					for (JsonNode jsonNode : arryaNode) {
-						SNewServiceDescriptor serviceDescriptor = new SNewServiceDescriptor();
-						
-						if (jsonNode.has("oauth")) {
-							ObjectNode oauth = (ObjectNode)jsonNode.get("oauth");
-							serviceDescriptor.setRegisterUrl(oauth.get("registerUrl").asText());
-							serviceDescriptor.setTokenUrl(oauth.get("tokenUrl").asText());
-							serviceDescriptor.setAuthorizationUrl(oauth.get("authorizationUrl").asText());
+					@Override
+					public void run() {
+						try {
+							String providerData = NetUtils.getContent(new URL(providerListUrl), 5000);
+							ObjectNode provider = objectMapper.readValue(providerData, ObjectNode.class);
+							
+							ArrayNode arryaNode = (ArrayNode) provider.get("services");
+							for (JsonNode jsonNode : arryaNode) {
+								SNewServiceDescriptor serviceDescriptor = new SNewServiceDescriptor();
+								
+								if (jsonNode.has("oauth")) {
+									ObjectNode oauth = (ObjectNode)jsonNode.get("oauth");
+									serviceDescriptor.setRegisterUrl(oauth.get("registerUrl").asText());
+									serviceDescriptor.setTokenUrl(oauth.get("tokenUrl").asText());
+									serviceDescriptor.setAuthorizationUrl(oauth.get("authorizationUrl").asText());
+								}
+								serviceDescriptor.setOid(jsonNode.get("id").asLong());
+								serviceDescriptor.setDescription(jsonNode.get("description").asText());
+								serviceDescriptor.setName(jsonNode.get("name").asText());
+								serviceDescriptor.setProvider(jsonNode.get("provider").asText());
+								serviceDescriptor.setResourceUrl(jsonNode.get("resourceUrl").asText());
+								ArrayNode inputs = (ArrayNode) jsonNode.get("inputs");
+								ArrayNode outputs = (ArrayNode) jsonNode.get("outputs");
+								for (JsonNode inputNode : inputs) {
+									serviceDescriptor.getInputs().add(inputNode.asText());
+								}
+								for (JsonNode outputNode : outputs) {
+									serviceDescriptor.getOutputs().add(outputNode.asText());
+								}
+								list.add(serviceDescriptor);
+							}
+						} catch (MalformedURLException e) {
+							LOGGER.error("", e);
+						} catch (ConnectException e) {
+							// Host probably not up, no errors to be logged
+						} catch (IOException e) {
+							e.printStackTrace();
 						}
-						serviceDescriptor.setOid(jsonNode.get("id").asLong());
-						serviceDescriptor.setDescription(jsonNode.get("description").asText());
-						serviceDescriptor.setName(jsonNode.get("name").asText());
-						serviceDescriptor.setProvider(jsonNode.get("provider").asText());
-						serviceDescriptor.setResourceUrl(jsonNode.get("resourceUrl").asText());
-						ArrayNode inputs = (ArrayNode) jsonNode.get("inputs");
-						ArrayNode outputs = (ArrayNode) jsonNode.get("outputs");
-						for (JsonNode inputNode : inputs) {
-							serviceDescriptor.getInputs().add(inputNode.asText());
-						}
-						for (JsonNode outputNode : outputs) {
-							serviceDescriptor.getOutputs().add(outputNode.asText());
-						}
-						list.add(serviceDescriptor);
-					}
-				} catch (Exception e) {
-					LOGGER.info(e.toString());
-				}
+					}});
 			}
+			executor.shutdown();
+			executor.awaitTermination(10, TimeUnit.SECONDS);
 			return list;
 		} catch (Exception e) {
 			LOGGER.error("", e);

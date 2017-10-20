@@ -20,6 +20,7 @@ package org.bimserver.utils;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.ConnectException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -41,14 +42,18 @@ public class NetUtils {
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
 	public static String getContent(URL url, int timeOut) throws IOException {
-		URLConnection openConnection = url.openConnection();
-		openConnection.setConnectTimeout(timeOut);
-		openConnection.setReadTimeout(timeOut);
-		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-		InputStream in = openConnection.getInputStream();
-		IOUtils.copy(in, byteArrayOutputStream);
-		in.close();
-		return new String(byteArrayOutputStream.toByteArray(), Charsets.UTF_8);
+		try {
+			URLConnection openConnection = url.openConnection();
+			openConnection.setConnectTimeout(timeOut);
+			openConnection.setReadTimeout(timeOut);
+			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+			InputStream in = openConnection.getInputStream();
+			IOUtils.copy(in, byteArrayOutputStream);
+			in.close();
+			return new String(byteArrayOutputStream.toByteArray(), Charsets.UTF_8);
+		} catch (ConnectException e) {
+			throw new ConnectException(e.getMessage() + " (" + url.toString() + ")");
+		}
 	}
 
 	public static byte[] getContentAsBytes(URL url, int timeOut) throws IOException {
