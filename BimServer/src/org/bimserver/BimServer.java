@@ -437,7 +437,8 @@ public class BimServer {
 									webModules.put(contextPath, (WebModulePlugin) pluginManager.getPlugin(identifier, true));
 								} else if (newPluginContext.getPlugin() instanceof ServicePlugin) {
 									IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), OldQuery.getDefault());
-									for (InternalServicePluginConfiguration internalServicePluginConfiguration : allOfType.getAll(InternalServicePluginConfiguration.class)) {
+									List<InternalServicePluginConfiguration> all = new ArrayList<>(allOfType.getAll(InternalServicePluginConfiguration.class));
+									for (InternalServicePluginConfiguration internalServicePluginConfiguration : all) {
 										if (internalServicePluginConfiguration.getPluginDescriptor().getIdentifier().equals(newPluginContext.getIdentifier())) {
 											activateService(internalServicePluginConfiguration.getUserSettings().getOid(), internalServicePluginConfiguration);
 										}
