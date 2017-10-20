@@ -57,6 +57,10 @@ public class JsonValidationReport implements IssueContainerSerializer {
 				jsonIssue.set("object", objectToJson(issue.getObject()));
 			}
 			itemsJson.add(jsonIssue);
+			
+			if (issue instanceof IssueContainer) {
+				jsonIssue.set("items", toJson((IssueContainer)issue).get("items"));
+			}
 		}
 		return result;
 	}
