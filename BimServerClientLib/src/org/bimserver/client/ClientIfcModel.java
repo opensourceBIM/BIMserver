@@ -95,6 +95,7 @@ public class ClientIfcModel extends IfcModel {
 	private final Set<String> loadedClasses = new HashSet<String>();
 	private long ifcSerializerOid = -1;
 	private long binaryGeometrySerializerOid = -1;
+	private int cachedObjectCount = -1;
 	private boolean recordChanges;
 	private boolean includeGeometry;
 
@@ -579,12 +580,14 @@ public class ClientIfcModel extends IfcModel {
 
 	@Override
 	public long size() {
-		try {
-			loadDeep();
-		} catch (Exception e) {
-			LOGGER.error("", e);
+		if (cachedObjectCount == -1) {
+			try {
+				cachedObjectCount = bimServerClient.getLowLevelInterface().count(roid, "[ALL]");
+			} catch (Exception e) {
+				LOGGER.error("", e);
+			}
 		}
-		return super.size();
+		return cachedObjectCount;
 	}
 
 	@Override
@@ -655,6 +658,12 @@ public class ClientIfcModel extends IfcModel {
 				QueryPart queryPart = query.createQueryPart();
 				queryPart.addType(eClass, true);
 				
+				if (includeGeometry && getPackageMetaData().getEClass("IfcProduct").isSuperTypeOf(eClass)) {
+					Include include = queryPart.createInclude();
+					include.addType(eClass, true);
+					include.addField("geometry");
+				}
+				
 				JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
 				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
 				
@@ -666,6 +675,7 @@ public class ClientIfcModel extends IfcModel {
 				}
 				loadedClasses.add(eClass.getName());
 				modelState = ModelState.NONE;
+				loadGeometry();
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}
