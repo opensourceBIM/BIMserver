@@ -22,7 +22,11 @@ import java.awt.geom.Area;
 import java.awt.geom.Path2D;
 import java.awt.geom.PathIterator;
 import java.awt.geom.Point2D;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
+import org.bimserver.emf.IdEObject;
 import org.bimserver.geometry.Matrix;
 import org.bimserver.geometry.Vector;
 import org.bimserver.models.geometry.GeometryData;
@@ -56,7 +60,9 @@ import org.slf4j.LoggerFactory;
 public class IfcTools2D {
 	private static final Logger LOGGER = LoggerFactory.getLogger(IfcTools2D.class);
 	
-	public static Area get2D(IfcProduct ifcProduct, double multiplierMillimeters) {
+	private final Map<String, AtomicInteger> unimplementedGeometryTypes = new HashMap<>();
+	
+	public Area get2D(IfcProduct ifcProduct, double multiplierMillimeters) {
 		IfcObjectPlacement objectPlacement = ifcProduct.getObjectPlacement();
 		double[] productMatrix = placementToMatrix(objectPlacement);
 //		Matrix.dump(productMatrix);
@@ -147,7 +153,7 @@ public class IfcTools2D {
 		return max - min < 0.1f;
 	}
 
-	private static Area getArea(double multiplierMillimeters, double[] productMatrix, IfcRepresentationItem ifcRepresentationItem) {
+	private Area getArea(double multiplierMillimeters, double[] productMatrix, IfcRepresentationItem ifcRepresentationItem) {
 		if (ifcRepresentationItem instanceof IfcExtrudedAreaSolid) {
 			IfcExtrudedAreaSolid ifcExtrudedAreaSolid = (IfcExtrudedAreaSolid) ifcRepresentationItem;
 			IfcAxis2Placement3D position = ifcExtrudedAreaSolid.getPosition();
@@ -175,7 +181,7 @@ public class IfcTools2D {
 				if (outerCurve instanceof IfcPolyline) {
 					outerPath = curveToPath(matrix, outerCurve, multiplierMillimeters);
 				} else {
-					LOGGER.info("Unimplemented: " + outerCurve);
+					storeUnimplemented(outerCurve);
 				}
 
 				if (outerPath != null) {
@@ -239,11 +245,9 @@ public class IfcTools2D {
 								}
 							}
 						} else if (curve instanceof IfcTrimmedCurve) {
-							IfcTrimmedCurve ifcTrimmedCurve = (IfcTrimmedCurve)curve;
-							
-							LOGGER.info("Unimplemented: " + curve);
+							storeUnimplemented(curve);
 						} else {
-							LOGGER.info("Unimplemented: " + curve);
+							storeUnimplemented(curve);
 						}
 					}
 					try {
@@ -274,10 +278,8 @@ public class IfcTools2D {
 				path2d.closePath();
 				return new Area(path2d);
 			} else {
-				LOGGER.info("Unimplemented: " + ifcProfileDef);
+				storeUnimplemented(ifcProfileDef);
 			}
-		} else if (ifcRepresentationItem instanceof IfcFacetedBrep) {
-			LOGGER.info("Unimplemented: " + ifcRepresentationItem);
 		} else if (ifcRepresentationItem instanceof IfcPolyline) {
 			IfcPolyline ifcPolyline = (IfcPolyline)ifcRepresentationItem;
 			double[] res = new double[4];
@@ -298,9 +300,17 @@ public class IfcTools2D {
 			path2d.closePath();
 			return new Area(path2d);
 		} else {
-			LOGGER.info("Unimplemented: " + ifcRepresentationItem);
+			storeUnimplemented(ifcRepresentationItem);
 		}
 		return null;
+	}
+
+	private void storeUnimplemented(IdEObject ifcRepresentationItem) {
+		if (unimplementedGeometryTypes.containsKey(ifcRepresentationItem.eClass().getName())) {
+			unimplementedGeometryTypes.get(ifcRepresentationItem.eClass().getName()).incrementAndGet();
+		} else {
+			unimplementedGeometryTypes.put(ifcRepresentationItem.eClass().getName(), new AtomicInteger(1));
+		}
 	}
 
 	public static double[] placement3DToMatrix(IfcAxis2Placement3D ifcAxis2Placement3D) {
@@ -483,5 +493,14 @@ public class IfcTools2D {
 			sum = sum + last[0] * first[1] - last[1] * first[0];
 		}
 		return sum / 2f;
+	}
+
+	public void dumpStatistics() {
+		if (unimplementedGeometryTypes.size() > 0) {
+			LOGGER.info("Unimplemented geometry:");
+			for (String type : unimplementedGeometryTypes.keySet()) {
+				LOGGER.info("\t" + type + " " + unimplementedGeometryTypes.get(type).get());
+			}
+		}
 	}
 }
