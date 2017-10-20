@@ -589,14 +589,13 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	public synchronized void incrementCommittedWrites(long committedWrites) {
 		this.committedWrites += committedWrites;
 		if (this.committedWrites / 100000 != lastPrintedCommittedWrites) {
-			LOGGER.info("writes: " + this.committedWrites);
 			lastPrintedCommittedWrites = this.committedWrites / 100000;
 			long start = System.nanoTime();
 			
 			// This is a test, when writing large amount of data (IFC data), this should keep memory usage limited because it'll write the data to disk
 			sync();
 			long end = System.nanoTime();
-			LOGGER.info((((end - start) / 1000000) + " ms sync"));
+			LOGGER.info("writes: " + this.committedWrites + ", " + (((end - start) / 1000000) + " ms sync"));
 		}
 	}
 
