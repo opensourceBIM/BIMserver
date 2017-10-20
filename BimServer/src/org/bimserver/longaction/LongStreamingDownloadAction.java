@@ -156,7 +156,7 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 
 	@Override
 	public String getDescription() {
-		return "description";
+		return "Streaming download";
 	}
 
 	@Override
