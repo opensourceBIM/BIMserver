@@ -1,5 +1,7 @@
 package org.bimserver.database.actions;
 
+import org.bimserver.BimServer;
+
 /******************************************************************************
  * Copyright (C) 2009-2017  BIMserver.org
  * 
@@ -21,6 +23,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.SummaryMap;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
@@ -32,9 +35,11 @@ public class CountDatabaseAction extends BimDatabaseAction<Integer> {
 
 	private Long roid;
 	private String className;
+	private BimServer bimServer;
 
-	public CountDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Long roid, String className, Authorization authorization) {
+	public CountDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Long roid, String className, Authorization authorization) {
 		super(databaseSession, accessMethod);
+		this.bimServer = bimServer;
 		this.roid = roid;
 		this.className = className;
 		
@@ -46,11 +51,16 @@ public class CountDatabaseAction extends BimDatabaseAction<Integer> {
 		if (revision == null) {
 			throw new UserException("Revision with roid " + roid + " not found");
 		}
+		PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
 		Project project = revision.getProject();
 		if (revision.getConcreteRevisions().size() == 1 && revision.getConcreteRevisions().get(0).getSummary() != null) {
 			RevisionSummary summary = revision.getConcreteRevisions().get(0).getSummary();
-			SummaryMap summaryMap = new SummaryMap(null, summary);
-			return summaryMap.count(getDatabaseSession().getEClass(project.getSchema(), className));
+			SummaryMap summaryMap = new SummaryMap(packageMetaData, summary);
+			if (className.equals("[ALL]")) {
+				return summaryMap.count();
+			} else {
+				return summaryMap.count(getDatabaseSession().getEClass(project.getSchema(), className));
+			}
 		}
 		return null;
 	}
