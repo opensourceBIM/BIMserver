@@ -126,6 +126,9 @@ public class ServiceRunnerServlet extends SubServlet {
 						ServiceInterface serviceInterface = getBimServer().getServiceFactory().get(authorization, AccessMethod.INTERNAL).get(ServiceInterface.class);
 						SProject project = serviceInterface.addProject("tmp-" + new Random().nextInt(), "ifc2x3tc1");
 						SDeserializerPluginConfiguration deserializer = serviceInterface.getSuggestedDeserializerForExtension("ifc", project.getOid());
+						if (deserializer == null) {
+							throw new BimBotsException("No deserializer found");
+						}
 						serviceInterface.checkin(project.getOid(), "Auto checkin", deserializer.getOid(), -1L, "s", new DataHandler(new InputStreamDataSource(request.getInputStream())), false, true);
 						project = serviceInterface.getProjectByPoid(project.getOid());
 						
