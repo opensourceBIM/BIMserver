@@ -108,7 +108,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	private AtomicLong bytesSavedByTransformation = new AtomicLong();
 	private AtomicLong bytesSavedByMapping = new AtomicLong();
 	private AtomicLong totalBytes = new AtomicLong();
-	private AtomicLong saveableColorBytes = new AtomicLong();
 
 	private AtomicInteger jobsDone = new AtomicInteger();
 	private AtomicInteger jobsTotal = new AtomicInteger();
@@ -315,8 +314,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 											Set<Color4f> usedColors = new HashSet<>();
 											
-											int savedColorBytes = 0;
-											
 											if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
 												boolean hasMaterial = false;
 												float[] vertex_colors = new float[vertices.length / 3 * 4];
@@ -337,7 +334,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 													}
 												}
 												if (usedColors.size() == 1) {
-													savedColorBytes = (4 * vertex_colors.length) - 16;
 													WrappedVirtualObject color = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector4f());
 													Color4f firstColor = usedColors.iterator().next();
 													color.set("x", firstColor.getR());
@@ -421,7 +417,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 														productToData.put(ifcProduct.getOid(), new Q(geometryData.getOid(), renderEngineInstance.getArea(), renderEngineInstance.getVolume(), indices.length / 3, size, mibu, mabu));
 													}
 													hashes.put(hash, geometryData.getOid());
-													StreamingGeometryGenerator.this.saveableColorBytes.addAndGet(savedColorBytes);
 													geometryData.save();
 	//												sizes.put(size, ifcProduct);
 												}
@@ -877,7 +872,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 							}
 							queryPart.addOid(masterOid);
 							
-							LOGGER.info("Running " + map.size() + " objects in one batch because of reused geometry " + (eClass.getName()));
+							LOGGER.debug("Running " + map.size() + " objects in one batch because of reused geometry " + (eClass.getName()));
 
 							processX(databaseSession, queryContext, generateGeometryResult, ifcSerializerPlugin, settings, renderEngineFilter, renderEnginePool, executor, eClass, query, queryPart, true, map);
 						}
@@ -955,11 +950,11 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			allJobsPushed = true;
 			
 			executor.shutdown();
-			executor.awaitTermination(24, TimeUnit.HOURS);				
+			executor.awaitTermination(24, TimeUnit.HOURS);
 
 			long end = System.nanoTime();
-			LOGGER.info("Rendertime: " + Formatters.formatNanoSeconds(end - start) + "ms, " + "Reused (by hash): " + Formatters.bytesToString(bytesSavedByHash.get()) + ", Reused (by transformation): " + Formatters.bytesToString(bytesSavedByTransformation.get()) + ", Reused (by mapping): " + Formatters.bytesToString(bytesSavedByMapping.get()) + ", Total: " + Formatters.bytesToString(totalBytes.get()) + ", Final: " + Formatters.bytesToString(totalBytes.get() - (bytesSavedByHash.get() + bytesSavedByTransformation.get() + bytesSavedByMapping.get())));
-			LOGGER.info("Saved color data: " + Formatters.bytesToString(saveableColorBytes.get()));
+			long total = totalBytes.get() - (bytesSavedByHash.get() + bytesSavedByTransformation.get() + bytesSavedByMapping.get());
+			LOGGER.info("Rendertime: " + Formatters.nanosToString(end - start) + ", " + "Reused (by hash): " + Formatters.bytesToString(bytesSavedByHash.get()) + ", Reused (by transformation): " + Formatters.bytesToString(bytesSavedByTransformation.get()) + ", Reused (by mapping): " + Formatters.bytesToString(bytesSavedByMapping.get()) + ", Total: " + Formatters.bytesToString(totalBytes.get()) + ", Final: " + Formatters.bytesToString(total));
 		} catch (Exception e) {
 			running = false;
 			LOGGER.error("", e);
