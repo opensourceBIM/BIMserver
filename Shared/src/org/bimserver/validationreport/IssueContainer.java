@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class IssueContainer {
+public class IssueContainer extends Issue {
 	private final List<Issue> issues = new ArrayList<>();
 
 	public IssueBuilder builder() {
