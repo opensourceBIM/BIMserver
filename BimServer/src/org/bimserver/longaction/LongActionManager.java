@@ -70,7 +70,7 @@ public class LongActionManager {
 			if (longAction.getActionState() == ActionState.FINISHED) {
 				GregorianCalendar stop = longAction.getStop();
 				if (now.getTimeInMillis() - stop.getTimeInMillis() > FIVE_MINUTES_IN_MS) {
-					LOGGER.info("Cleaning up topic: " + longAction.getDescription() + " - " + longAction.getClass().getSimpleName());
+					LOGGER.info("[AUTO] Cleaning up topic " + longAction.getProgressTopic().getKey().getId() + " (" + longAction.getDescription() + ")");
 					iterator.remove();
 				}
 			}
@@ -92,7 +92,7 @@ public class LongActionManager {
 	public synchronized void remove(long topicId) throws UserException {
 		LongAction<?> longAction = actions.get(topicId);
 		if (longAction != null) {
-			LOGGER.debug("Cleaning up long running action: " + longAction.getDescription() + " (" + longAction.getProgressTopic().getKey().getId() + ")");
+			LOGGER.debug("[MAN] Cleaning up topic " + longAction.getProgressTopic().getKey().getId() + " (" + longAction.getDescription() + ")");
 			longAction.stop();
 			actions.remove(topicId);
 		} else {
@@ -101,7 +101,7 @@ public class LongActionManager {
 	}
 
 	public synchronized void remove(LongAction<?> action) {
-		LOGGER.info("Cleaning up topics: " + action.getDescription());
+		LOGGER.debug("Cleaning up topics: " + action.getDescription());
 		action.stop();
 		actions.inverse().remove(action);
 	}
