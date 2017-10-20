@@ -118,7 +118,7 @@ public class SharedJsonDeserializer {
 		} catch (IfcModelInterfaceException e) {
 			LOGGER.error("", e);
 		} finally {
-			LOGGER.info("# Objects: " + nrObjects);
+			LOGGER.debug("# Objects: " + nrObjects);
 			try {
 				jsonReader.close();
 			} catch (IOException e) {
@@ -195,6 +195,7 @@ public class SharedJsonDeserializer {
 								embedded = true;
 								featureName = featureName.substring(2);
 							}
+						
 							EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(featureName);
 							if (eStructuralFeature == null) {
 								throw new DeserializeException("Unknown field (" + featureName + ") on class " + eClass.getName());
