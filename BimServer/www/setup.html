@@ -31,6 +31,10 @@
 						<input type="text" class="serverNameInput form-control" id="inputServerName" placeholder="My BIMserver"/>
 					</div>
 					<div class="form-group">
+						<label for=inputIdentifier>Server identifier</label>
+						<input type="text" class="identifierInput form-control" id="inputIdentifier"/>
+					</div>
+					<div class="form-group">
 						<label for="inputServerDescription">Server description</label>
 						<input type="text" class="serverDescriptionInput form-control" id="inputServerDescription"/>
 					</div>
@@ -38,7 +42,7 @@
 						<label for="inputServerIcon">Server icon</label>
 						<input type="text" class="severIconInput form-control" id="inputServerIcon" value="/img/bimserver.png"/>
 						<div>
-							<img src="/img/bimserver.png"/>
+							<img class="serverIcon" src="/img/bimserver.png"/>
 						</div>
 					</div>
 				</form>
@@ -734,6 +738,21 @@ function Setup(cd, address) {
 			o.stage2();
 		}
 	};
+	
+	function makeid() {
+		  var text = "";
+		  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+		  for (var i = 0; i < 15; i++)
+		    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+		  return text;
+		}
+	
+	var id = makeid();
+	cd.find(".identifierInput").val(id);
+	var data = new Identicon(id, 140).toString();
+	cd.find(".serverIcon").attr("src", "data:image/png;base64," + data);
 	
 	cd.find(".welcome input").enterpress(o.showAdmin);
 	cd.find(".admin input").enterpress(o.showEmail);
