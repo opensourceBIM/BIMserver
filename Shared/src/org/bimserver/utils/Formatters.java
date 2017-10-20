@@ -55,8 +55,12 @@ public class Formatters {
 		return millis / 60000 + " minutes";
 	}
 	
+	public static final String nanosToString(long nanos) {
+		return millisecondsToString(nanos / 1000000);
+	}
+	
 	public static final String millisecondsToString(long millis) {
-		if (millis < 1000) {
+		if (millis < 10000) {
 			return millis + "ms";
 		}
 		if (millis < 60 * 1000) {
