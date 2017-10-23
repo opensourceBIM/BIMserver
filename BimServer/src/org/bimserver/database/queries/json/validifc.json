@@ -703,7 +703,8 @@
             "IfcBooleanResult",
             "IfcPolygonalBoundedHalfSpace",
             "IfcExtrudedAreaSolid",
-            "IfcHalfSpaceSolid"
+            "IfcHalfSpaceSolid",
+            "IfcFacetedBrep"
          ]
       },
       "RelativePlacement": {
