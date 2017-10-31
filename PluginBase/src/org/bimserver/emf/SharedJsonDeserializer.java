@@ -195,6 +195,11 @@ public class SharedJsonDeserializer {
 								embedded = true;
 								featureName = featureName.substring(2);
 							}
+							
+							if (oid == 5439789 && featureName.equals("IsDefinedBy")) {
+								System.out.println();
+							}
+
 						
 							EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(featureName);
 							if (eStructuralFeature == null) {
@@ -255,13 +260,38 @@ public class SharedJsonDeserializer {
 												} else if (nextName.equals("_i")) {
 													// Not all are embedded...
 													long refOid = jsonReader.nextLong();
-													processRef(model, waitingList, object, eStructuralFeature, index, list, refOid);
+													if (jsonReader.nextName().equals("_t")) {
+														String refType = jsonReader.nextString();
+														IdEObject refObject = (IdEObject) model.create(model.getPackageMetaData().getEClassIncludingDependencies(refType), refOid);
+														EClass referenceEClass = refObject.eClass();
+														if (((EClass) eStructuralFeature.getEType()).isSuperTypeOf(referenceEClass)) {
+															while (list.size() <= index) {
+																list.addUnique(refObject);
+															}
+														} else {
+															throw new DeserializeException(-1, referenceEClass.getName() + " cannot be stored in " + eStructuralFeature.getName());
+														}
+													} else {
+														processRef(model, waitingList, object, eStructuralFeature, index, list, refOid);
+													}
 												}
 												jsonReader.endObject();
 											}
 										} else {
-											long refOid = jsonReader.nextLong();
-											processRef(model, waitingList, object, eStructuralFeature, index, list, refOid);
+											jsonReader.beginObject();
+											if (jsonReader.nextName().equals("_i")) {
+												long refOid = jsonReader.nextLong();
+												if (jsonReader.nextName().equals("_t")) {
+													String refType = jsonReader.nextString();
+													EClass referenceEClass = model.getPackageMetaData().getEClassIncludingDependencies(refType);
+													IdEObject refObject = (IdEObject) model.create(referenceEClass, refOid);
+													model.add(refObject.getOid(), refObject);
+
+													((IdEObjectImpl)refObject).setLoadingState(State.TO_BE_LOADED);
+													processRef(model, waitingList, object, eStructuralFeature, index, list, refOid);
+												}
+											}
+											jsonReader.endObject();
 										}
 										index++;
 									}
@@ -317,25 +347,36 @@ public class SharedJsonDeserializer {
 										}
 										jsonReader.endObject();
 									} else {
-										long refOid = jsonReader.nextLong();
-										boolean isInverse = false;
-										EntityDefinition entityBN = model.getPackageMetaData().getSchemaDefinition().getEntityBN(object.eClass().getName());
-										if (entityBN != null) {
-											// Some entities like GeometryInfo/Data are not in IFC schema, but valid
-											Attribute attributeBN = entityBN.getAttributeBNWithSuper(eStructuralFeature.getName());
-											if (attributeBN != null) {
-												if (attributeBN instanceof InverseAttribute) {
-													isInverse = true;
+										jsonReader.beginObject();
+										if (jsonReader.nextName().equals("_i")) {
+											long refOid = jsonReader.nextLong();
+											if (jsonReader.nextName().equals("_t")) {
+												String refType = jsonReader.nextString();
+												boolean isInverse = false;
+												EntityDefinition entityBN = model.getPackageMetaData().getSchemaDefinition().getEntityBN(object.eClass().getName());
+												if (entityBN != null) {
+													// Some entities like GeometryInfo/Data are not in IFC schema, but valid
+													Attribute attributeBN = entityBN.getAttributeBNWithSuper(eStructuralFeature.getName());
+													if (attributeBN != null) {
+														if (attributeBN instanceof InverseAttribute) {
+															isInverse = true;
+														}
+													}
 												}
+//												if (!isInverse) {
+													if (model.contains(refOid)) {
+														object.eSet(eStructuralFeature, model.get(refOid));
+													} else {
+														IdEObject refObject = (IdEObject) model.create(model.getPackageMetaData().getEClassIncludingDependencies(refType), refOid);
+														((IdEObjectImpl)refObject).setLoadingState(State.TO_BE_LOADED);
+														object.eSet(eStructuralFeature, refObject);
+														model.add(refObject.getOid(), refObject);
+														waitingList.add(refOid, new SingleWaitingObject(-1, object, (EReference) eStructuralFeature));
+													}
+//												}
 											}
 										}
-										if (!isInverse) {
-											if (model.contains(refOid)) {
-												object.eSet(eStructuralFeature, model.get(refOid));
-											} else {
-												waitingList.add(refOid, new SingleWaitingObject(-1, object, (EReference) eStructuralFeature));
-											}
-										}												
+										jsonReader.endObject();
 									}
 								}
 							}

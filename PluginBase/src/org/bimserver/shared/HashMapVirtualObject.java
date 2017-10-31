@@ -71,6 +71,10 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 	public void eUnset(EStructuralFeature feature) {
 		map.remove(feature);
 	}
+	
+	public QueryContext getReusable() {
+		return reusable;
+	}
 
 	public void setAttribute(EStructuralFeature feature, Object val) {
 		map.put(feature, val);

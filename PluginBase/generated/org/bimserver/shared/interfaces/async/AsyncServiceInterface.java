@@ -17,7 +17,6 @@ package org.bimserver.shared.interfaces.async;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 import java.util.concurrent.ExecutorService;
-
 import org.bimserver.shared.interfaces.ServiceInterface;
 
 public class AsyncServiceInterface {
@@ -572,6 +571,11 @@ public class AsyncServiceInterface {
 	
 	public interface InitiateCheckinCallback {
 		void success(java.lang.Long result);
+		void error(Throwable e);
+	}
+	
+	public interface RegenerateGeometryCallback {
+		void success();
 		void error(Throwable e);
 	}
 	
@@ -1997,6 +2001,19 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.initiateCheckin(poid, deserializerOid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void regenerateGeometry(final java.lang.Long roid, final RegenerateGeometryCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.regenerateGeometry(roid);
+					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);
 				}

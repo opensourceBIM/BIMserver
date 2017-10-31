@@ -1,6 +1,5 @@
 package org.bimserver.shared.interfaces;
 
-import org.bimserver.shared.exceptions.ServerException;
 /******************************************************************************
  * Copyright (C) 2009-2017  BIMserver.org
  * 
@@ -18,6 +17,7 @@ import org.bimserver.shared.exceptions.ServerException;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.shared.exceptions.ServerException;
 
 public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.ServiceInterface {
 
@@ -446,6 +446,9 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 	
 	public java.lang.Long initiateCheckin(java.lang.Long poid, java.lang.Long deserializerOid) throws UserException, ServerException {
 		return null;
+	}
+	
+	public void regenerateGeometry(java.lang.Long roid) throws UserException, ServerException {
 	}
 	
 	public void removeModelCheckerFromProject(java.lang.Long poid, java.lang.Long modelCheckerOid) throws UserException, ServerException {

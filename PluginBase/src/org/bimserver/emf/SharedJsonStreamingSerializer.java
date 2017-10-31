@@ -25,6 +25,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.codec.binary.Base64;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.models.store.IfcHeader;
 import org.bimserver.plugins.serializers.ObjectProvider;
 import org.bimserver.plugins.serializers.ProgressReporter;
@@ -118,7 +119,7 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 		return false;
 	}
 
-	private void writeObject(HashMapVirtualObject object) throws IOException {
+	private void writeObject(HashMapVirtualObject object) throws IOException, BimserverDatabaseException {
 //		if (((IdEObjectImpl) object).getLoadingState() != State.LOADED) {
 //			print("{");
 //			print("\"_i\":" + object.getOid() + ",");
@@ -187,10 +188,17 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 													// objects
 													print("{");
 													print("\"_i\":");
-													print("" + ref);
+													print("" + ref + ",");
+													print("\"_t\":");
+													print("\"" + object.getReusable().getDatabaseInterface().getEClassForOid(ref).getName() + "\"");
 													print("}");
 												} else {
-													print("" + ref);
+													print("{");
+													print("\"_i\":");
+													print("" + ref + ",");
+													print("\"_t\":");
+													print("\"" + object.getReusable().getDatabaseInterface().getEClassForOid(ref).getName() + "\"");
+													print("}");
 												}
 											} else if (o instanceof HashMapWrappedVirtualObject) {
 												write((HashMapWrappedVirtualObject) o);
@@ -223,7 +231,7 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 								print(",");
 								if (value instanceof Long) {
 									long ref = (Long) value;
-									print("\"_r" + eStructuralFeature.getName() + "\":"	+ ref);
+									print("\"_r" + eStructuralFeature.getName() + "\":{\"_i\":" + ref + ",\"_t\":\"" + object.getReusable().getDatabaseInterface().getEClassForOid(ref).getName() + "\"}");
 								} else if (value instanceof HashMapWrappedVirtualObject) {
 									print("\"_e" + eStructuralFeature.getName() + "\":");
 									HashMapWrappedVirtualObject hashMapWrappedVirtualObject = (HashMapWrappedVirtualObject)value;

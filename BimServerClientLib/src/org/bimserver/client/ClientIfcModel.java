@@ -301,6 +301,7 @@ public class ClientIfcModel extends IfcModel {
 			waitForDonePreparing(topicId);
 			try {
 				processDownload(topicId);
+				bimServerClient.getServiceInterface().cleanupLongAction(topicId);
 				modelState = ModelState.FULLY_LOADED;
 				loadGeometry();
 			} catch (IfcModelInterfaceException | IOException e) {
@@ -491,13 +492,13 @@ public class ClientIfcModel extends IfcModel {
 		}
 	}
 
-	private void processDownload(Long download) throws UserException, ServerException, PublicInterfaceNotFoundException, IfcModelInterfaceException, IOException {
-		InputStream downloadData = bimServerClient.getDownloadData(download);
+	private void processDownload(Long topicId) throws UserException, ServerException, PublicInterfaceNotFoundException, IfcModelInterfaceException, IOException {
+		InputStream downloadData = bimServerClient.getDownloadData(topicId);
 		if (downloadData == null) {
 			throw new IfcModelInterfaceException("No InputStream to read from");
 		}
 		try {
-			new SharedJsonDeserializer(true).read(downloadData, this, false);
+			new SharedJsonDeserializer(false).read(downloadData, this, false);
 		} catch (DeserializeException e) {
 			throw new IfcModelInterfaceException(e);
 		} finally {
@@ -529,6 +530,8 @@ public class ClientIfcModel extends IfcModel {
 				waitForDonePreparing(topicId);
 				
 				processDownload(topicId);
+				bimServerClient.getServiceInterface().cleanupLongAction(topicId);
+
 				loadedClasses.add(eClass.getName());
 				rebuildIndexPerClass(eClass);
 				modelState = ModelState.NONE;
@@ -626,6 +629,7 @@ public class ClientIfcModel extends IfcModel {
 				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
 				waitForDonePreparing(topicId);
 				processDownload(topicId);
+				bimServerClient.getServiceInterface().cleanupLongAction(topicId);
 				idEObjectImpl.setLoadingState(State.LOADED);
 				modelState = ModelState.NONE;
 			}
@@ -669,6 +673,8 @@ public class ClientIfcModel extends IfcModel {
 				
 				waitForDonePreparing(topicId);
 				processDownload(topicId);
+				bimServerClient.getServiceInterface().cleanupLongAction(topicId);
+
 				for (EClass subClass : bimServerClient.getMetaDataManager().getPackageMetaData(eClass.getEPackage().getName()).getAllSubClasses(eClass)) {
 					loadedClasses.add(subClass.getName());
 					rebuildIndexPerClass(eClass);
@@ -729,6 +735,8 @@ public class ClientIfcModel extends IfcModel {
 				
 				waitForDonePreparing(topicId);
 				processDownload(topicId);
+				bimServerClient.getServiceInterface().cleanupLongAction(topicId);
+
 				modelState = ModelState.NONE;
 				return super.getByGuid(guid);
 			} catch (Exception e) {
@@ -933,7 +941,6 @@ public class ClientIfcModel extends IfcModel {
 		try {
 			modelState = ModelState.LOADING;
 			JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
-			System.out.println(converter.toJson(query).toString());
 			Long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
 			waitForDonePreparing(topicId);
 			
@@ -941,6 +948,7 @@ public class ClientIfcModel extends IfcModel {
 				addChangeListener(ifcModelChangeListener);
 			}
 			processDownload(topicId);
+			bimServerClient.getServiceInterface().cleanupLongAction(topicId);
 			if (ifcModelChangeListener != null) {
 				removeChangeListener(ifcModelChangeListener);
 			}

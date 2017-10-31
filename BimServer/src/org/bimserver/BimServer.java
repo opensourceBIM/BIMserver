@@ -763,18 +763,6 @@ public class BimServer {
 		return encryptionkey;
 	}
 
-	/*
-	 * Serializers, deserializers, renderengines etc... all have counterparts as
-	 * objects in the database for configuration purposes, this methods syncs
-	 * both versions
-	 */
-	private void createDatabaseObjects(DatabaseSession session) throws BimserverLockConflictException, BimserverDatabaseException, PluginException, BimserverConcurrentModificationDatabaseException {
-		IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getUser(), OldQuery.getDefault());
-		for (User user : allOfType.getAll(User.class)) {
-			updateUserSettings(session, user);
-		}
-	}
-
 	public NewDiskCacheManager getNewDiskCacheManager() {
 		return newDiskCacheManager;
 	}
@@ -897,8 +885,8 @@ public class BimServer {
 			}
 			
 			if (defaultReference != null) {
-				if (userSettings.eGet(defaultReference) == null && !list.isEmpty()) {
-					userSettings.eSet(defaultReference, list.get(0));
+				if (userSettings.eGet(defaultReference) == null || pluginConfiguration.getName().equals("IfcOpenShell")) {
+					userSettings.eSet(defaultReference, pluginConfiguration);
 				}
 			}
 			

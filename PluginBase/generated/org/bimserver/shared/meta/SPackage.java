@@ -16,9 +16,9 @@ package org.bimserver.shared.meta;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-import java.util.HashMap;
-import java.util.Map;
 
+import java.util.*;
+import org.bimserver.shared.meta.SClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -67,10 +67,6 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SExtendedDataAddedToRevision");
 		Class.forName("org.bimserver.interfaces.objects.SExtendedDataAddedToProject");
 		Class.forName("org.bimserver.interfaces.objects.SRemoteServiceCalled");
-		Class.forName("org.bimserver.interfaces.objects.SGeometryInfo");
-		Class.forName("org.bimserver.interfaces.objects.SVector3f");
-		Class.forName("org.bimserver.interfaces.objects.SGeometryData");
-		Class.forName("org.bimserver.interfaces.objects.SVector4f");
 		Class.forName("org.bimserver.interfaces.objects.SUserType");
 		Class.forName("org.bimserver.interfaces.objects.SSIPrefix");
 		Class.forName("org.bimserver.interfaces.objects.SObjectState");
@@ -190,6 +186,10 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SServiceStatus");
 		Class.forName("org.bimserver.interfaces.objects.SNewService");
 		Class.forName("org.bimserver.interfaces.objects.SRunServiceAuthorization");
+		Class.forName("org.bimserver.interfaces.objects.SGeometryInfo");
+		Class.forName("org.bimserver.interfaces.objects.SVector3f");
+		Class.forName("org.bimserver.interfaces.objects.SGeometryData");
+		Class.forName("org.bimserver.interfaces.objects.SVector4f");
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);
 		}

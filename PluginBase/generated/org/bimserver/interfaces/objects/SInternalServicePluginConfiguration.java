@@ -1,6 +1,5 @@
 package org.bimserver.interfaces.objects;
 
-import javax.xml.bind.annotation.XmlRootElement;
 /******************************************************************************
  * Copyright (C) 2009-2017  BIMserver.org
  * 
@@ -18,10 +17,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 import javax.xml.bind.annotation.XmlTransient;
-
-import org.bimserver.shared.meta.SClass;
-import org.bimserver.shared.meta.SDataBase;
-import org.bimserver.shared.meta.SField;
+import org.bimserver.shared.meta.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement

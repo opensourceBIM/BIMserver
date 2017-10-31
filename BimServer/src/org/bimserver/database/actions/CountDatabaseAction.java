@@ -42,7 +42,6 @@ public class CountDatabaseAction extends BimDatabaseAction<Integer> {
 		this.bimServer = bimServer;
 		this.roid = roid;
 		this.className = className;
-		
 	}
 
 	@Override

@@ -23,7 +23,7 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 	public void newRevision(RunningService runningService, BimServerClientInterface bimServerClientInterface, long poid, long roid, String userToken, long soid, SObjectType settings) throws Exception {
 		BimBotsInput input = new BimBotsInput(SchemaName.IFC_STEP_2X3TC1, null);
 		SProject project = bimServerClientInterface.getServiceInterface().getProjectByPoid(poid);
-		input.setIfcModel(bimServerClientInterface.getModel(project, roid, true, false, true));
+		input.setIfcModel(bimServerClientInterface.getModel(project, roid, false, false, true));
 		BimBotsOutput output = runBimBot(input, settings);
 		
 		try {

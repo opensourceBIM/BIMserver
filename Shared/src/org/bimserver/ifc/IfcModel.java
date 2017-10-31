@@ -895,6 +895,9 @@ public abstract class IfcModel implements IfcModelInterface {
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends IdEObject> T create(EClass eClass, long oid) throws IfcModelInterfaceException {
+		if (eClass == null) {
+			throw new IllegalArgumentException("eClass cannot be null");
+		}
 		IdEObjectImpl object = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		object.setModel(this);
 		object.setOid(oid);

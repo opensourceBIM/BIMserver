@@ -57,9 +57,11 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.bimserver.BimServerImporter;
 import org.bimserver.BimserverDatabaseException;
+import org.bimserver.StreamingGeometryGenerator;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.actions.AbstractDownloadDatabaseAction;
 import org.bimserver.database.actions.AddExtendedDataSchemaDatabaseAction;
 import org.bimserver.database.actions.AddExtendedDataToProjectDatabaseAction;
 import org.bimserver.database.actions.AddExtendedDataToRevisionDatabaseAction;
@@ -209,6 +211,7 @@ import org.bimserver.models.store.Action;
 import org.bimserver.models.store.CheckinRevision;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CompareResult;
+import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
@@ -251,6 +254,7 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.serializers.StreamingSerializerPlugin;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
+import org.bimserver.shared.QueryContext;
 import org.bimserver.shared.compare.CompareWriter;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -2773,6 +2777,24 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			return getBimServer().getSConverter().convertToSObject(revision.getLastConcreteRevision().getMinBounds());
 		} catch (Exception e) {
 			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public void regenerateGeometry(Long roid) throws ServerException, UserException {
+		StreamingGeometryGenerator streamingGeometryGenerator = new StreamingGeometryGenerator(getBimServer(), null);
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			Revision revision = session.get(roid, OldQuery.getDefault());
+			ConcreteRevision concreteRevision = revision.getConcreteRevisions().get(0);
+			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
+			int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(concreteRevision.getProject(), concreteRevision);
+
+			streamingGeometryGenerator.generateGeometry(getCurrentUser().getOid(), session, new QueryContext(session, packageMetaData, revision.getProject().getId(), revision.getId(), roid, highestStopId));
+		} catch (Exception e) {
+			handleException(e);
 		} finally {
 			session.close();
 		}

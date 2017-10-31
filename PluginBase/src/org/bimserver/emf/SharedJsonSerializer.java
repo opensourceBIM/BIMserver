@@ -189,6 +189,8 @@ public class SharedJsonSerializer implements StreamingReader {
 												print("{");
 												print("\"_i\":");
 												print("" + ref.getOid());
+												print(",\"_t\":");
+												print("\"" + ref.eClass().getName() + "\"");
 												print("}");
 											} else {
 												print("" + ref.getOid());
@@ -210,7 +212,7 @@ public class SharedJsonSerializer implements StreamingReader {
 									print("\"_e" + eStructuralFeature.getName() + "\":");
 									writeEmbedded(ref);
 								} else {
-									print("\"_r" + eStructuralFeature.getName() + "\":"	+ ref.getOid());
+									print("\"_r" + eStructuralFeature.getName() + "\":{\"_i\":" + ref.getOid() + ",\"_t\":\"" + ref.eClass().getName() + "\"}");
 								}
 							}
 						}

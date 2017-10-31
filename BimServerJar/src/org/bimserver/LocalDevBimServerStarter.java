@@ -43,7 +43,6 @@ import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.FileAppender;
-import ch.qos.logback.core.util.StatusPrinter;
 
 public class LocalDevBimServerStarter {
 	private BimServer bimServer;
