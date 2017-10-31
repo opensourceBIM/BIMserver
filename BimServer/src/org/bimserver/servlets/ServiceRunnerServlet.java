@@ -155,17 +155,17 @@ public class ServiceRunnerServlet extends SubServlet {
 						extendedData.setTitle(output.getTitle());
 						SExtendedDataSchema extendedDataSchema = null;
 						try {
-							extendedDataSchema = serviceInterface.getExtendedDataSchemaByName(output.getSchemaName().name());
+							extendedDataSchema = serviceInterface.getExtendedDataSchemaByName(output.getSchemaName());
 						} catch (UserException e) {
 							extendedDataSchema = new SExtendedDataSchema();
 							extendedDataSchema.setContentType(output.getContentType());
-							extendedDataSchema.setName(output.getSchemaName().name());
+							extendedDataSchema.setName(output.getSchemaName());
 							serviceInterface.addExtendedDataSchema(extendedDataSchema);
 						}
 						extendedData.setSchemaId(extendedDataSchema.getOid());
 						serviceInterface.addExtendedDataToRevision(project.getLastRevisionId(), extendedData);
 						
-						response.setHeader("Output-Type", output.getSchemaName().name());
+						response.setHeader("Output-Type", output.getSchemaName());
 						response.setHeader("Data-Title", output.getTitle());
 						response.setHeader("Content-Type", output.getContentType());
 						response.setHeader("Content-Disposition", output.getContentDisposition());
@@ -188,7 +188,7 @@ public class ServiceRunnerServlet extends SubServlet {
 						
 						BimServerBimBotsInput input = new BimServerBimBotsInput(getBimServer(), authorization.getUoid(), schema, data, model);
 						BimBotsOutput output = bimBotsServiceInterface.runBimBot(input, getBimServer().getSConverter().convertToSObject(foundService.getSettings()));
-						response.setHeader("Output-Type", output.getSchemaName().name());
+						response.setHeader("Output-Type", output.getSchemaName());
 						response.setHeader("Data-Title", output.getTitle());
 						response.setHeader("Content-Type", output.getContentType());
 						response.setHeader("Content-Disposition", output.getContentDisposition());
@@ -238,11 +238,11 @@ public class ServiceRunnerServlet extends SubServlet {
 						ArrayNode inputs = mapper.createArrayNode();
 						ArrayNode outputs = mapper.createArrayNode();
 						
-						for (SchemaName schemaName : bimBotsServiceInterface.getAvailableInputs()) {
-							inputs.add(schemaName.name());
+						for (String schemaName : bimBotsServiceInterface.getAvailableInputs()) {
+							inputs.add(schemaName);
 						}
-						for (SchemaName schemaName : bimBotsServiceInterface.getAvailableOutputs()) {
-							outputs.add(schemaName.name());
+						for (String schemaName : bimBotsServiceInterface.getAvailableOutputs()) {
+							outputs.add(schemaName);
 						}
 						
 						descriptorJson.set("inputs", inputs);

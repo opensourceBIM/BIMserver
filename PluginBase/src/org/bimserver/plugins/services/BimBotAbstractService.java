@@ -35,11 +35,11 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 			file.setFilename(output.getContentDisposition());
 			SExtendedDataSchema extendedDataSchemaByName = null;
 			try {
-				extendedDataSchemaByName = bimServerClientInterface.getServiceInterface().getExtendedDataSchemaByName(output.getSchemaName().name());
+				extendedDataSchemaByName = bimServerClientInterface.getServiceInterface().getExtendedDataSchemaByName(output.getSchemaName());
 			} catch (Exception e) {
 				extendedDataSchemaByName = new SExtendedDataSchema();
 				extendedDataSchemaByName.setContentType(output.getContentType());
-				extendedDataSchemaByName.setName(output.getSchemaName().name());
+				extendedDataSchemaByName.setName(output.getSchemaName());
 				bimServerClientInterface.getServiceInterface().addExtendedDataSchema(extendedDataSchemaByName);
 			}
 			
@@ -59,18 +59,18 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 
 	@Override
 	public void addRequiredRights(ServiceDescriptor serviceDescriptor) {
-		serviceDescriptor.setWriteExtendedData(getOutputSchema().name());
+		serviceDescriptor.setWriteExtendedData(getOutputSchema());
 	}
 
 	@Override
-	public Set<SchemaName> getAvailableOutputs() {
+	public Set<String> getAvailableOutputs() {
 		return Collections.singleton(getOutputSchema());
 	}
 	
 	@Override
-	public Set<SchemaName> getAvailableInputs() {
-		return Collections.singleton(SchemaName.IFC_STEP_2X3TC1);
+	public Set<String> getAvailableInputs() {
+		return Collections.singleton(SchemaName.IFC_STEP_2X3TC1.name());
 	}
 
-	public abstract SchemaName getOutputSchema();
+	public abstract String getOutputSchema();
 }

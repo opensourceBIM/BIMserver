@@ -4,20 +4,25 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.plugins.SchemaName;
 
 public class BimBotsInput {
-	private SchemaName schemaName;
+	private String schemaName;
 	private byte[] data;
 	private IfcModelInterface model;
 
 	public BimBotsInput(SchemaName schemaName, byte[] data) {
+		this.schemaName = schemaName.name();
+		this.data = data;
+	}
+	
+	public BimBotsInput(String schemaName, byte[] data) {
 		this.schemaName = schemaName;
 		this.data = data;
 	}
 	
-	public SchemaName getSchemaName() {
+	public String getSchemaName() {
 		return schemaName;
 	}
 
-	public void setSchemaName(SchemaName schemaName) {
+	public void setSchemaName(String schemaName) {
 		this.schemaName = schemaName;
 	}
 

@@ -3,22 +3,27 @@ package org.bimserver.bimbots;
 import org.bimserver.plugins.SchemaName;
 
 public class BimBotsOutput {
-	private SchemaName schemaName;
+	private String schemaName;
 	private byte[] data;
 	private String contentDisposition;
 	private String contentType;
 	private String title;
 
 	public BimBotsOutput(SchemaName schemaName, byte[] data) {
+		this.schemaName = schemaName.name();
+		this.data = data;
+	}
+	
+	public BimBotsOutput(String schemaName, byte[] data) {
 		this.schemaName = schemaName;
 		this.data = data;
 	}
 	
-	public SchemaName getSchemaName() {
+	public String getSchemaName() {
 		return schemaName;
 	}
 
-	public void setSchemaName(SchemaName schemaName) {
+	public void setSchemaName(String schemaName) {
 		this.schemaName = schemaName;
 	}
 
