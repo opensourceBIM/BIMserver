@@ -230,7 +230,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 					setProgress("Generating geometry...", percentage);
 				}
 			};
-			StreamingGeometryGenerator geometryGenerator = new StreamingGeometryGenerator(bimServer, progressListener);
+			StreamingGeometryGenerator geometryGenerator = new StreamingGeometryGenerator(bimServer, progressListener, -1L);
 			setProgress("Generating geometry...", 0);
 
 			GenerateGeometryResult generateGeometry = geometryGenerator.generateGeometry(getActingUid(), getDatabaseSession(), queryContext);

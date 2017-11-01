@@ -284,11 +284,15 @@ public class SharedJsonDeserializer {
 												if (jsonReader.nextName().equals("_t")) {
 													String refType = jsonReader.nextString();
 													EClass referenceEClass = model.getPackageMetaData().getEClassIncludingDependencies(refType);
-													IdEObject refObject = (IdEObject) model.create(referenceEClass, refOid);
-													model.add(refObject.getOid(), refObject);
-
-													((IdEObjectImpl)refObject).setLoadingState(State.TO_BE_LOADED);
-													processRef(model, waitingList, object, eStructuralFeature, index, list, refOid);
+													
+													if (model.getNoFetch(refOid) != null) {
+														processRef(model, waitingList, object, eStructuralFeature, index, list, refOid);
+													} else {
+														IdEObject refObject = (IdEObject) model.create(referenceEClass, refOid);
+														((IdEObjectImpl)refObject).setLoadingState(State.TO_BE_LOADED);
+														processRef(model, waitingList, object, eStructuralFeature, index, list, refOid);
+														model.add(refObject.getOid(), refObject);
+													}
 												}
 											}
 											jsonReader.endObject();
@@ -364,8 +368,8 @@ public class SharedJsonDeserializer {
 													}
 												}
 //												if (!isInverse) {
-													if (model.contains(refOid)) {
-														object.eSet(eStructuralFeature, model.get(refOid));
+													if (model.getNoFetch(refOid) != null) {
+														object.eSet(eStructuralFeature, model.getNoFetch(refOid));
 													} else {
 														IdEObject refObject = (IdEObject) model.create(model.getPackageMetaData().getEClassIncludingDependencies(refType), refOid);
 														((IdEObjectImpl)refObject).setLoadingState(State.TO_BE_LOADED);

@@ -49,6 +49,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.actions.ProgressListener;
 import org.bimserver.database.queries.QueryObjectProvider;
 import org.bimserver.database.queries.om.Include;
@@ -127,9 +128,14 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 	private EStructuralFeature mappingSourceFeature;
 
-	public StreamingGeometryGenerator(final BimServer bimServer, ProgressListener progressListener) {
+	private String renderEngineName;
+
+	private Long eoid = -1L;
+
+	public StreamingGeometryGenerator(final BimServer bimServer, ProgressListener progressListener, Long eoid) {
 		this.bimServer = bimServer;
 		this.progressListener = progressListener;
+		this.eoid = eoid;
 	}
 	
 	public class Runner implements Runnable {
@@ -669,10 +675,17 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 			User user = (User) databaseSession.get(uoid, org.bimserver.database.OldQuery.getDefault());
 			UserSettings userSettings = user.getUserSettings();
-			RenderEnginePluginConfiguration defaultRenderEngine = userSettings.getDefaultRenderEngine();
-			if (defaultRenderEngine == null) {
+			
+			RenderEnginePluginConfiguration renderEngine = null;
+			if (eoid != -1) {
+				renderEngine = databaseSession.get(eoid, OldQuery.getDefault());
+			} else {
+				renderEngine = userSettings.getDefaultRenderEngine();
+			}
+			if (renderEngine == null) {
 				throw new UserException("No default render engine has been selected for this user");
 			}
+			renderEngineName = renderEngine.getName();
 
 			int maxSimultanousThreads = Math.min(bimServer.getServerSettingsCache().getServerSettings().getRenderEngineProcesses(), Runtime.getRuntime().availableProcessors());
 			if (maxSimultanousThreads < 1) {
@@ -688,7 +701,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			
 			final RenderEngineFilter renderEngineFilter = new RenderEngineFilter();
 
-			RenderEnginePool renderEnginePool = bimServer.getRenderEnginePools().getRenderEnginePool(packageMetaData.getSchema(), defaultRenderEngine.getPluginDescriptor().getPluginClassName(), new PluginConfiguration(defaultRenderEngine.getSettings()));
+			RenderEnginePool renderEnginePool = bimServer.getRenderEnginePools().getRenderEnginePool(packageMetaData.getSchema(), renderEngine.getPluginDescriptor().getPluginClassName(), new PluginConfiguration(renderEngine.getSettings()));
 			
 			ThreadPoolExecutor executor = new ThreadPoolExecutor(maxSimultanousThreads, maxSimultanousThreads, 24, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(10000000));
 
@@ -702,7 +715,13 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			// TODO these are cached, so f'ing em up by doing this...
 			objectPlacement.makeDirectRecursive(new HashSet<>());
 
-			for (EClass eClass : queryContext.getOidCounters().keySet()) {
+			Set<EClass> classes = null;
+			if (queryContext.getOidCounters() != null) {
+				classes = queryContext.getOidCounters().keySet();
+			} else {
+				classes = packageMetaData.getEClasses();
+			}
+			for (EClass eClass : classes) {
 				if (packageMetaData.getEClass("IfcProduct").isSuperTypeOf(eClass)) {
 					Query query2 = new Query(eClass.getName() + "Main query", packageMetaData);
 					QueryPart queryPart2 = query2.createQueryPart();
@@ -1192,5 +1211,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			asDoubleBuffer.put(d);
 		}
 		geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Transformation(), byteBuffer.array());
+	}
+	
+	public String getRenderEngineName() {
+		return renderEngineName;
 	}
 }

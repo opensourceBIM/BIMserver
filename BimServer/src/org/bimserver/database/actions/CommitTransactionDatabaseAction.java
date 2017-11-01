@@ -191,26 +191,26 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		if (bimServer.getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin() && geometryChanged) {
 			setProgress("Generating Geometry...", -1);
 			try {
-				StreamingGeometryGenerator streamingGeometryGenerator = new StreamingGeometryGenerator(bimServer, null);
+				StreamingGeometryGenerator streamingGeometryGenerator = new StreamingGeometryGenerator(bimServer, null, -1L);
 				int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(concreteRevision.getProject(), concreteRevision);
 
 				QueryContext queryContext = new QueryContext(getDatabaseSession(), packageMetaData, project.getId(), concreteRevision.getId(), concreteRevision.getRevisions().get(0).getOid(), highestStopId);
 
 				Map<EClass, Long> startOids = getDatabaseSession().getStartOids();
 				Map<EClass, Long> oidCounters = new HashMap<>();
-				int s = 0;
-				for (EClass eClass : packageMetaData.getEClasses()) {
-					if (!DatabaseSession.perRecordVersioning(eClass)) {
-						s++;
-					}
-				}
-				ByteBuffer buffer = ByteBuffer.allocate(8 * s);
-				buffer.order(ByteOrder.LITTLE_ENDIAN);
+//				int s = 0;
+//				for (EClass eClass : packageMetaData.getEClasses()) {
+//					if (!DatabaseSession.perRecordVersioning(eClass)) {
+//						s++;
+//					}
+//				}
+//				ByteBuffer buffer = ByteBuffer.allocate(8 * s);
+//				buffer.order(ByteOrder.LITTLE_ENDIAN);
 				for (EClass eClass : packageMetaData.getEClasses()) {
 					long oid = startOids.get(eClass);
 					if (!DatabaseSession.perRecordVersioning(eClass)) {
 						oidCounters.put(eClass, oid);
-						buffer.putLong(oid);
+//						buffer.putLong(oid);
 					}
 				}
 

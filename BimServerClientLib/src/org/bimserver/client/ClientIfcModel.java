@@ -1,26 +1,6 @@
 package org.bimserver.client;
 
-/******************************************************************************
- * Copyright (C) 2009-2017  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
- *****************************************************************************/
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.EOFException;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
@@ -31,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.io.IOUtils;
 import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
@@ -324,16 +303,16 @@ public class ClientIfcModel extends IfcModel {
 
 			Map<Long, Long> geometryInfoOidToOid = new HashMap<>();
 			
-			for (IdEObject idEObject : getObjects().values()) {
-				if (idEObject instanceof IfcProduct) {
-					IfcProduct ifcProduct = (IfcProduct)idEObject;
-					GeometryInfo geometry = ifcProduct.getGeometry();
-					if (geometry != null) {
+			for (IfcProduct ifcProduct : super.getAllWithSubTypes(IfcProduct.class)) {
+				GeometryInfo geometry = ifcProduct.getGeometry();
+				if (geometry != null) {
+					if (geometry.getData() == null || geometry.getData().getIndices() == null) {
 						queryPart.addOid(geometry.getOid());
 						geometryInfoOidToOid.put(geometry.getOid(), ifcProduct.getOid());
 					}
 				}
 			}
+			
 			if (queryPart.getOids() == null) {
 				return;
 			}
@@ -349,12 +328,13 @@ public class ClientIfcModel extends IfcModel {
 			waitForDonePreparing(topicId);
 			InputStream inputStream = bimServerClient.getDownloadData(topicId);
 			try {
-				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-				IOUtils.copy(inputStream, byteArrayOutputStream);
-				processGeometryInputStream(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()), geometryInfoOidToOid);
+//				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//				IOUtils.copy(inputStream, byteArrayOutputStream);
+				processGeometryInputStream(inputStream, geometryInfoOidToOid);
 			} catch (Throwable e) {
 				e.printStackTrace();
 			} finally {
+				bimServerClient.getServiceInterface().cleanupLongAction(topicId);
 			}
 		}
 	}

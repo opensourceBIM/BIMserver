@@ -448,7 +448,8 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
-	public void regenerateGeometry(java.lang.Long roid) throws UserException, ServerException {
+	public java.lang.Long regenerateGeometry(java.lang.Long roid, java.lang.Long eoid) throws UserException, ServerException {
+		return null;
 	}
 	
 	public void removeModelCheckerFromProject(java.lang.Long poid, java.lang.Long modelCheckerOid) throws UserException, ServerException {

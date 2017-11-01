@@ -1499,5 +1499,7 @@ public interface ServiceInterface extends PublicInterface {
 	SVector3f getModelMaxBounds(@WebParam(name = "roid", partName = "getModelMaxBounds.roid") Long roid) throws ServerException, UserException;
 	
 	@WebMethod(action = "regenerateGeometry")
-	void regenerateGeometry(@WebParam(name = "roid", partName = "regenerateGeometry.roid") Long roid) throws ServerException, UserException;	
+	Long regenerateGeometry(
+		@WebParam(name = "roid", partName = "regenerateGeometry.roid") Long roid,
+		@WebParam(name = "eoid", partName = "regenerateGeometry.eoid") Long eoid) throws ServerException, UserException;	
 }

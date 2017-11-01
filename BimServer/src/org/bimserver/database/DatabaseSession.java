@@ -126,7 +126,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		}
 		// TODO, maybe only store this per class that is actually being used in this DatabaseSession?
 		for (EClass eClass : database.getClasses()) {
-			startOids.put(eClass, getCounter(eClass));
+			startOids.put(eClass, database.getCounter(eClass));
 		}
 	}
 	

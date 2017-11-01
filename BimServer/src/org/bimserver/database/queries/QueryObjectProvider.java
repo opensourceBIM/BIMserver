@@ -177,7 +177,7 @@ public class QueryObjectProvider implements ObjectProvider {
 			}
 		}
 		long end = System.nanoTime();
-		LOGGER.debug("Query " + query.getName() + ", " + reads + " reads, " + stackFramesProcessed + " stack frames processed, " + oidsRead.size() + " objects read, " + ((end - start) / 1000000) + "ms");
+		LOGGER.info("Query " + query.getName() + ", " + reads + " reads, " + stackFramesProcessed + " stack frames processed, " + oidsRead.size() + " objects read, " + ((end - start) / 1000000) + "ms");
 	}
 
 	public void incReads() {

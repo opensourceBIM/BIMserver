@@ -57,11 +57,9 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.bimserver.BimServerImporter;
 import org.bimserver.BimserverDatabaseException;
-import org.bimserver.StreamingGeometryGenerator;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
-import org.bimserver.database.actions.AbstractDownloadDatabaseAction;
 import org.bimserver.database.actions.AddExtendedDataSchemaDatabaseAction;
 import org.bimserver.database.actions.AddExtendedDataToProjectDatabaseAction;
 import org.bimserver.database.actions.AddExtendedDataToRevisionDatabaseAction;
@@ -133,6 +131,7 @@ import org.bimserver.database.actions.GetTopLevelProjectByNameDatabaseAction;
 import org.bimserver.database.actions.GetUserByUoidDatabaseAction;
 import org.bimserver.database.actions.GetUserByUserNameDatabaseAction;
 import org.bimserver.database.actions.GetVolumeDatabaseAction;
+import org.bimserver.database.actions.RegenerateGeometryDatabaseAction;
 import org.bimserver.database.actions.RemoveModelCheckerFromProjectDatabaseAction;
 import org.bimserver.database.actions.RemoveNewServiceFromProjectDatabaseAction;
 import org.bimserver.database.actions.RemoveServiceFromProjectDatabaseAction;
@@ -202,6 +201,7 @@ import org.bimserver.longaction.LongCheckinAction;
 import org.bimserver.longaction.LongCheckoutAction;
 import org.bimserver.longaction.LongDownloadAction;
 import org.bimserver.longaction.LongDownloadOrCheckoutAction;
+import org.bimserver.longaction.LongGenericAction;
 import org.bimserver.longaction.LongStreamingCheckinAction;
 import org.bimserver.longaction.LongStreamingDownloadAction;
 import org.bimserver.mail.EmailMessage;
@@ -211,7 +211,6 @@ import org.bimserver.models.store.Action;
 import org.bimserver.models.store.CheckinRevision;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CompareResult;
-import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
@@ -254,7 +253,6 @@ import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.serializers.StreamingSerializerPlugin;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
-import org.bimserver.shared.QueryContext;
 import org.bimserver.shared.compare.CompareWriter;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -2783,18 +2781,20 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 	
 	@Override
-	public void regenerateGeometry(Long roid) throws ServerException, UserException {
-		StreamingGeometryGenerator streamingGeometryGenerator = new StreamingGeometryGenerator(getBimServer(), null);
+	public Long regenerateGeometry(Long roid, Long eoid) throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			Revision revision = session.get(roid, OldQuery.getDefault());
-			ConcreteRevision concreteRevision = revision.getConcreteRevisions().get(0);
-			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
-			int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(concreteRevision.getProject(), concreteRevision);
+			SUser user = getCurrentUser();
+			ProgressOnProjectTopic progressTopic = getBimServer().getNotificationsManager().createProgressOnProjectTopic(getAuthorization().getUoid(), revision.getProject().getOid(), SProgressTopicType.UPLOAD, "Regenerate geometry");
 
-			streamingGeometryGenerator.generateGeometry(getCurrentUser().getOid(), session, new QueryContext(session, packageMetaData, revision.getProject().getId(), revision.getId(), roid, highestStopId));
+			RegenerateGeometryDatabaseAction action = new RegenerateGeometryDatabaseAction(getBimServer(), session, getInternalAccessMethod(), revision.getProject().getOid(), roid, getCurrentUser().getOid(), eoid);
+			LongGenericAction longAction = new LongGenericAction(progressTopic.getKey().getId(), getBimServer(), user.getUsername(), user.getName(), getAuthorization(), action);
+			getBimServer().getLongActionManager().start(longAction);
+			
+			return progressTopic.getKey().getId();
 		} catch (Exception e) {
-			handleException(e);
+			return handleException(e);
 		} finally {
 			session.close();
 		}

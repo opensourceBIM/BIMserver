@@ -1,5 +1,5 @@
 
-¯‡
+Žˆ
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -1325,9 +1325,13 @@ objectIDMs
 deserializerOid (">
 InitiateCheckinResponse
 errorMessage (	
-value (")
+value ("7
 RegenerateGeometryRequest
-roid ("M
+roid (
+eoid ("A
+RegenerateGeometryResponse
+errorMessage (	
+value ("M
 $RemoveModelCheckerFromProjectRequest
 poid (
 modelCheckerOid ("F
@@ -1462,7 +1466,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2æu
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2ôu
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
@@ -1576,8 +1580,8 @@ $getSuggestedDeserializerForExtension=.org.bimserver.pb.GetSuggestedDeserialize
 	getVolume".org.bimserver.pb.GetVolumeRequest#.org.bimserver.pb.GetVolumeResponseQ
 
 importData#.org.bimserver.pb.ImportDataRequest.org.bimserver.pb.VoidResponsef
-initiateCheckin(.org.bimserver.pb.InitiateCheckinRequest).org.bimserver.pb.InitiateCheckinResponsea
-regenerateGeometry+.org.bimserver.pb.RegenerateGeometryRequest.org.bimserver.pb.VoidResponsew
+initiateCheckin(.org.bimserver.pb.InitiateCheckinRequest).org.bimserver.pb.InitiateCheckinResponseo
+regenerateGeometry+.org.bimserver.pb.RegenerateGeometryRequest,.org.bimserver.pb.RegenerateGeometryResponsew
 removeModelCheckerFromProject6.org.bimserver.pb.RemoveModelCheckerFromProjectRequest.org.bimserver.pb.VoidResponses
 removeNewServiceFromProject4.org.bimserver.pb.RemoveNewServiceFromProjectRequest.org.bimserver.pb.VoidResponsem
 removeServiceFromProject1.org.bimserver.pb.RemoveServiceFromProjectRequest.org.bimserver.pb.VoidResponse}

@@ -1,5 +1,7 @@
 package org.bimserver.database.actions;
 
+import java.io.IOException;
+
 /******************************************************************************
  * Copyright (C) 2009-2017  BIMserver.org
  * 
@@ -106,5 +108,11 @@ public abstract class BimDatabaseAction<T> {
 
 	public void setDatabaseSession(DatabaseSession session) {
 		this.databaseSession = session;
+	}
+
+	public void rollback() {
+	}
+
+	public void close() throws IOException {
 	}
 }
