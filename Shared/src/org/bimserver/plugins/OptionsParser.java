@@ -29,11 +29,13 @@ import org.apache.commons.cli.ParseException;
 
 public class OptionsParser {
 	private Path[] pluginDirectories;
+	private Path home;
 
 	public OptionsParser(String... args) {
 		Options options = new Options();
 
-		options.addOption("plugins", true, "Directory from which to load plugins");
+		options.addOption("plugins", true, "Directory from which to load a plugin bundle, can be used multiple times for different plugin bundles");
+		options.addOption("home", true, "The home directory to use, default is [cwd]/home");
 		
 		CommandLineParser parser = new DefaultParser();
 		pluginDirectories = null;
@@ -49,6 +51,9 @@ public class OptionsParser {
 					}
 				}
 			}
+			if (cmd.hasOption("home")) {
+				home = Paths.get(cmd.getOptionValue("home"));
+			}
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -56,5 +61,9 @@ public class OptionsParser {
 	
 	public Path[] getPluginDirectories() {
 		return pluginDirectories;
+	}
+	
+	public Path getHome() {
+		return home;
 	}
 }

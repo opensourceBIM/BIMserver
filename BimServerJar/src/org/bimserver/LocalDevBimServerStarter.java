@@ -48,12 +48,17 @@ public class LocalDevBimServerStarter {
 	private BimServer bimServer;
 	
 	public static void main(String[] args) {
-		new LocalDevBimServerStarter().start(-1, "localhost", "LocalDev BIMserver (8080)", 8080, 8085, new OptionsParser(args).getPluginDirectories());
+		OptionsParser optionsParser = new OptionsParser(args);
+		new LocalDevBimServerStarter().start(-1, "localhost", "LocalDev BIMserver (8080)", 8080, 8085, optionsParser.getPluginDirectories(), optionsParser.getHome());
 	}
 
-	public void start(int id, String address, String name, int port, int pbport, Path[] pluginDirectories) {
+	public void start(int id, String address, String name, int port, int pbport, Path[] pluginDirectories, Path home) {
 		BimServerConfig config = new BimServerConfig();
-		config.setHomeDir(Paths.get("home" + (id == -1 ? "" : id)));
+		if (home != null) {
+			config.setHomeDir(home);
+		} else {
+			config.setHomeDir(Paths.get("home" + (id == -1 ? "" : id)));
+		}
 		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(Paths.get("../")));
 		config.setStartEmbeddedWebServer(true);
 		config.setClassPath(System.getProperty("java.class.path"));
