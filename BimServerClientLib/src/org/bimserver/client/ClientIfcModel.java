@@ -481,6 +481,8 @@ public class ClientIfcModel extends IfcModel {
 			new SharedJsonDeserializer(false).read(downloadData, this, false);
 		} catch (DeserializeException e) {
 			throw new IfcModelInterfaceException(e);
+		} catch (Exception e) {
+			throw new IfcModelInterfaceException(e);
 		} finally {
 			if (downloadData != null) {
 				downloadData.close();

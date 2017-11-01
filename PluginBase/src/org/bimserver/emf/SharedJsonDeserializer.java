@@ -185,7 +185,7 @@ public class SharedJsonDeserializer {
 				if (jsonReader.nextName().equals("_s")) {
 					int state = jsonReader.nextInt();
 					if (state == 1) {
-						object.setLoadingState(State.LOADED);
+						object.setLoadingState(State.LOADING);
 						while (jsonReader.hasNext()) {
 							String featureName = jsonReader.nextName();
 							boolean embedded = false;
@@ -196,11 +196,6 @@ public class SharedJsonDeserializer {
 								featureName = featureName.substring(2);
 							}
 							
-							if (oid == 5439789 && featureName.equals("IsDefinedBy")) {
-								System.out.println();
-							}
-
-						
 							EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(featureName);
 							if (eStructuralFeature == null) {
 								throw new DeserializeException("Unknown field (" + featureName + ") on class " + eClass.getName());
@@ -255,7 +250,7 @@ public class SharedJsonDeserializer {
 														wrappedObject.eSet(wv, readPrimitive(jsonReader, wv));
 														list.add(wrappedObject);
 													} else {
-														// error
+														throw new DeserializeException("Expected _v");
 													}
 												} else if (nextName.equals("_i")) {
 													// Not all are embedded...
@@ -263,6 +258,7 @@ public class SharedJsonDeserializer {
 													if (jsonReader.nextName().equals("_t")) {
 														String refType = jsonReader.nextString();
 														IdEObject refObject = (IdEObject) model.create(model.getPackageMetaData().getEClassIncludingDependencies(refType), refOid);
+														model.add(refObject.getOid(), refObject);
 														EClass referenceEClass = refObject.eClass();
 														if (((EClass) eStructuralFeature.getEType()).isSuperTypeOf(referenceEClass)) {
 															while (list.size() <= index) {
@@ -289,9 +285,10 @@ public class SharedJsonDeserializer {
 														processRef(model, waitingList, object, eStructuralFeature, index, list, refOid);
 													} else {
 														IdEObject refObject = (IdEObject) model.create(referenceEClass, refOid);
-														((IdEObjectImpl)refObject).setLoadingState(State.TO_BE_LOADED);
-														processRef(model, waitingList, object, eStructuralFeature, index, list, refOid);
+														((IdEObjectImpl)refObject).setLoadingState(State.OPPOSITE_SETTING);
 														model.add(refObject.getOid(), refObject);
+														addToList(eStructuralFeature, index, list, refObject);
+														((IdEObjectImpl)refObject).setLoadingState(State.TO_BE_LOADED);
 													}
 												}
 											}
@@ -372,10 +369,10 @@ public class SharedJsonDeserializer {
 														object.eSet(eStructuralFeature, model.getNoFetch(refOid));
 													} else {
 														IdEObject refObject = (IdEObject) model.create(model.getPackageMetaData().getEClassIncludingDependencies(refType), refOid);
-														((IdEObjectImpl)refObject).setLoadingState(State.TO_BE_LOADED);
-														object.eSet(eStructuralFeature, refObject);
+														((IdEObjectImpl)refObject).setLoadingState(State.OPPOSITE_SETTING);
 														model.add(refObject.getOid(), refObject);
-														waitingList.add(refOid, new SingleWaitingObject(-1, object, (EReference) eStructuralFeature));
+														object.eSet(eStructuralFeature, refObject);
+														((IdEObjectImpl)refObject).setLoadingState(State.TO_BE_LOADED);
 													}
 //												}
 											}
@@ -385,6 +382,7 @@ public class SharedJsonDeserializer {
 								}
 							}
 						}
+						object.setLoadingState(State.LOADED);
 					} else {
 						// state not_loaded
 						object.setLoadingState(State.TO_BE_LOADED);
@@ -418,18 +416,22 @@ public class SharedJsonDeserializer {
 			if (model.contains(refOid)) {
 				EObject referencedObject = model.get(refOid);
 				if (referencedObject != null) {
-					EClass referenceEClass = referencedObject.eClass();
-					if (((EClass) eStructuralFeature.getEType()).isSuperTypeOf(referenceEClass)) {
-						while (list.size() <= index) {
-							list.addUnique(referencedObject);
-						}
-					} else {
-						throw new DeserializeException(-1, referenceEClass.getName() + " cannot be stored in " + eStructuralFeature.getName());
-					}
+					addToList(eStructuralFeature, index, list, referencedObject);
 				}
 			} else {
 				waitingList.add(refOid, new ListWaitingObject(-1, object, (EReference) eStructuralFeature, index));
 			}
+		}
+	}
+
+	private void addToList(EStructuralFeature eStructuralFeature, int index, AbstractEList list, EObject referencedObject) throws DeserializeException {
+		EClass referenceEClass = referencedObject.eClass();
+		if (((EClass) eStructuralFeature.getEType()).isSuperTypeOf(referenceEClass)) {
+			while (list.size() <= index) {
+				list.addUnique(referencedObject);
+			}
+		} else {
+			throw new DeserializeException(-1, referenceEClass.getName() + " cannot be stored in " + eStructuralFeature.getName());
 		}
 	}
 

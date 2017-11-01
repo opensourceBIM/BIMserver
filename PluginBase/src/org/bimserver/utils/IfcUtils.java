@@ -349,9 +349,6 @@ public class IfcUtils {
 	}
 
 	public static Double getIfcQuantityVolume(IfcProduct ifcProduct, String name) {
-		if (ifcProduct.getGlobalId().equals("1e1TMS88vBfRbg_I2ithoR")) {
-			System.out.println();
-		}
 		for (IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
 			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
 				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;

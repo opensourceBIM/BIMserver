@@ -27,7 +27,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -98,14 +97,15 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	public static final int DEFAULT_CONFLICT_RETRIES = 10;
 	private static final boolean DEVELOPER_DEBUG = false;
 	private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseSession.class);
+	
 	private final Database database;
 	private BimTransaction bimTransaction;
-	private final Set<PostCommitAction> postCommitActions = new LinkedHashSet<PostCommitAction>();
-	private final ObjectsToCommit objectsToCommit = new ObjectsToCommit();
-	private final ObjectsToDelete objectsToDelete = new ObjectsToDelete();
+	private Set<PostCommitAction> postCommitActions;
+	private ObjectsToCommit objectsToCommit;
+	private ObjectsToDelete objectsToDelete;
 	private StackTraceElement[] stackTrace;
 	private final ObjectCache objectCache = new ObjectCache();
-	private final Map<EClass, Long> startOids = new HashMap<EClass, Long>();
+	private Map<EClass, Long> startOids;
 	private final Map<Long, HashMapVirtualObject> voCache = new HashMap<>();
 	private long reads;
 
@@ -125,9 +125,9 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 			LOGGER.info("NEW SESSION");
 		}
 		// TODO, maybe only store this per class that is actually being used in this DatabaseSession?
-		for (EClass eClass : database.getClasses()) {
-			startOids.put(eClass, database.getCounter(eClass));
-		}
+//		for (EClass eClass : database.getClasses()) {
+//			startOids.put(eClass, database.getCounter(eClass));
+//		}
 	}
 	
 	public void setOverwriteEnabled(boolean overwriteEnabled) {
@@ -139,12 +139,18 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	}
 
 	public void addPostCommitAction(PostCommitAction postCommitAction) {
+		if (postCommitActions == null) {
+			postCommitActions = new HashSet<>();
+		}
 		postCommitActions.add(postCommitAction);
 	}
 
 	public void addToObjectsToCommit(IdEObject idEObject) throws BimserverDatabaseException {
 		if (idEObject.getOid() == -1) {
 			throw new BimserverDatabaseException("Cannot store object with oid -1");
+		}
+		if (objectsToCommit == null) {
+			objectsToCommit = new ObjectsToCommit();
 		}
 		objectsToCommit.put(idEObject);
 	}
@@ -169,41 +175,45 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		checkOpen();
 		try {
 			if (progressHandler != null) {
-				progressHandler.progress(0, objectsToCommit.size());
+				progressHandler.progress(0, objectsToCommit == null ? 0 : objectsToCommit.size());
 			}
 			int current = 0;
 			long writes = 0;
 			ByteBuffer keyBuffer = ByteBuffer.wrap(new byte[16]);
-			for (RecordIdentifierPlusType recordIdentifier : objectsToDelete) {
-				fillKeyBuffer(keyBuffer, recordIdentifier);
-				database.getKeyValueStore().storeNoOverwrite(recordIdentifier.getPackageName() + "_" + recordIdentifier.getClassName(), keyBuffer.array(), new byte[] { -1 }, this);
-				writes++;
+			if (objectsToDelete != null) {
+				for (RecordIdentifierPlusType recordIdentifier : objectsToDelete) {
+					fillKeyBuffer(keyBuffer, recordIdentifier);
+					database.getKeyValueStore().storeNoOverwrite(recordIdentifier.getPackageName() + "_" + recordIdentifier.getClassName(), keyBuffer.array(), new byte[] { -1 }, this);
+					writes++;
+				}
 			}
 			// This buffer is reused for the values, it's position must be reset at the end of the loop, and the convertObjectToByteArray function is responsible for setting the buffer's position to the end of the (used part of the) buffer
 			ByteBuffer reusableBuffer = ByteBuffer.allocate(32768);
-			for (IdEObject object : objectsToCommit) {
-				if (object.getOid() == -1) {
-					throw new BimserverDatabaseException("Cannot store object with oid -1");
+			if (objectsToCommit != null) {
+				for (IdEObject object : objectsToCommit) {
+					if (object.getOid() == -1) {
+						throw new BimserverDatabaseException("Cannot store object with oid -1");
+					}
+					fillKeyBuffer(keyBuffer, object);
+					if (DEVELOPER_DEBUG) {
+						LOGGER.info("Write: " + object.eClass().getName() + " " + "pid=" + object.getPid() + " oid=" + object.getOid() + " rid=" + object.getRid());
+					}
+					ByteBuffer valueBuffer = convertObjectToByteArray(object, reusableBuffer, getMetaDataManager().getPackageMetaData(object.eClass().getEPackage().getName()));
+					int valueBufferPosition = valueBuffer.position();
+					processPossibleIndices(keyBuffer, object.getPid(), object.getRid(), object.getOid(), object.eClass(), valueBuffer);
+					if (object.eClass().getEAnnotation("nolazyload") == null && !overwriteEnabled) {
+						database.getKeyValueStore().storeNoOverwrite(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), keyBuffer.array(), valueBuffer.array(), 0, valueBufferPosition, this);
+					} else {
+						database.getKeyValueStore().store(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), keyBuffer.array(),
+								valueBuffer.array(), 0, valueBuffer.position(), this);
+					}
+					if (progressHandler != null) {
+						progressHandler.progress(++current, objectsToCommit.size());
+					}
+					writes++;
+					reusableBuffer = valueBuffer; // bimServerClient may have increased the size of the buffer by creating a new one, we keep using it for other objects
+					reusableBuffer.position(0);
 				}
-				fillKeyBuffer(keyBuffer, object);
-				if (DEVELOPER_DEBUG) {
-					LOGGER.info("Write: " + object.eClass().getName() + " " + "pid=" + object.getPid() + " oid=" + object.getOid() + " rid=" + object.getRid());
-				}
-				ByteBuffer valueBuffer = convertObjectToByteArray(object, reusableBuffer, getMetaDataManager().getPackageMetaData(object.eClass().getEPackage().getName()));
-				int valueBufferPosition = valueBuffer.position();
-				processPossibleIndices(keyBuffer, object.getPid(), object.getRid(), object.getOid(), object.eClass(), valueBuffer);
-				if (object.eClass().getEAnnotation("nolazyload") == null && !overwriteEnabled) {
-					database.getKeyValueStore().storeNoOverwrite(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), keyBuffer.array(), valueBuffer.array(), 0, valueBufferPosition, this);
-				} else {
-					database.getKeyValueStore().store(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), keyBuffer.array(),
-							valueBuffer.array(), 0, valueBuffer.position(), this);
-				}
-				if (progressHandler != null) {
-					progressHandler.progress(++current, objectsToCommit.size());
-				}
-				writes++;
-				reusableBuffer = valueBuffer; // bimServerClient may have increased the size of the buffer by creating a new one, we keep using it for other objects
-				reusableBuffer.position(0);
 			}
 			if (bimTransaction != null) {
 				bimTransaction.commit();
@@ -211,8 +221,10 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 			}
 			database.incrementCommittedWrites(writes);
 			close();
-			for (PostCommitAction postCommitAction : postCommitActions) {
-				postCommitAction.execute();
+			if (postCommitActions != null) {
+				for (PostCommitAction postCommitAction : postCommitActions) {
+					postCommitAction.execute();
+				}
 			}
 		} catch (BimserverDatabaseException e) {
 			throw e;
@@ -670,10 +682,15 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 
 	public void delete(IdEObject object, Integer newRid) throws BimserverDatabaseException {
 		checkOpen();
+		if (objectsToDelete == null) {
+			objectsToDelete = new ObjectsToDelete();
+		}
 		// if (perRecordVersioning(object)) {
 		objectsToDelete.put(object.eClass(), object.getPid(), newRid, object.getOid());
-		if (objectsToCommit.containsObject(object)) {
-			objectsToCommit.remove(object);
+		if (objectsToCommit != null) {
+			if (objectsToCommit.containsObject(object)) {
+				objectsToCommit.remove(object);
+			}
 		}
 		// } else {
 
@@ -708,7 +725,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		for (int i = 0; i < retries; i++) {
 			try {
 				T result = action.execute();
-				if (objectsToCommit.size() > 0 || objectsToDelete.size() > 0) {
+				if ((objectsToCommit != null && objectsToCommit.size() > 0) || (objectsToDelete != null && objectsToDelete.size() > 0)) {
 					commit(progressHandler);
 				}
 				return result;
@@ -724,11 +741,8 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 					rollbackListener.rollback();
 				}
 				objectCache.clear();
-				objectsToCommit.clear();
-				startOids.clear();
-				for (EClass eClass : database.getClasses()) {
-					startOids.put(eClass, getCounter(eClass));
-				}
+				objectsToCommit = null;
+				startOids = null;
 				if (bimTransaction != null) {
 					bimTransaction = database.getKeyValueStore().startTransaction();
 				} else {
@@ -738,7 +752,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 				LOGGER.info("BimserverLockConflictException");
 				bimTransaction.rollback();
 				objectCache.clear();
-				objectsToCommit.clear();
+				objectsToCommit = null;
 				bimTransaction = database.getKeyValueStore().startTransaction();
 				if (DEVELOPER_DEBUG) {
 					LockConflictException lockException = e.getLockException();
@@ -762,7 +776,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 				LOGGER.info("UncheckedBimserverLockConflictException");
 				bimTransaction.rollback();
 				objectCache.clear();
-				objectsToCommit.clear();
+				objectsToCommit = null;
 				bimTransaction = database.getKeyValueStore().startTransaction();
 			} catch (BimserverDatabaseException e) {
 				throw e;
@@ -855,7 +869,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		if (oid == -1) {
 			throw new BimserverDatabaseException("Cannot get object for oid " + oid);
 		}
-		if (objectsToCommit.containsOid(oid)) {
+		if (objectsToCommit != null && objectsToCommit.containsOid(oid)) {
 			return (T) objectsToCommit.getByOid(oid);
 		}
 		EClass eClass = getEClassForOid(oid);
@@ -1523,9 +1537,12 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 
 	public long newOid(EClass eClass) {
 		long newOid = database.newOid(eClass);
-//		if (!startOids.containsKey(eClass)) {
-//			startOids.put(eClass, newOid-1);
-//		}
+		if (startOids == null) {
+			startOids = new HashMap<>();
+		}
+		if (!startOids.containsKey(eClass)) {
+			startOids.put(eClass, newOid - 65536);
+		}
 		return newOid;
 	}
 	
@@ -1853,7 +1870,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 
 	public long store(IdEObject object, int pid, int rid) throws BimserverDatabaseException {
 		checkOpen();
-		if (!objectsToCommit.containsObject(object) && !objectsToDelete.contains(object)) {
+		if ((objectsToCommit == null || !objectsToCommit.containsObject(object)) && (objectsToDelete == null || !objectsToDelete.contains(object))) {
 			objectCache.put(object.getOid(), object);
 			boolean wrappedValue = object.eClass().getEAnnotation("wrapped") != null;
 			if (!wrappedValue) {
@@ -1875,6 +1892,9 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	}
 	
 	public void removeFromCommit(IdEObject idEObject) {
+		if (objectsToCommit == null) {
+			objectsToCommit = new ObjectsToCommit();
+		}
 		objectsToCommit.remove(idEObject);
 	}
 
@@ -2231,7 +2251,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	}
 
 	public void clearPostCommitActions() {
-		postCommitActions.clear();
+		postCommitActions = null;
 	}
 
 	public void cache(HashMapVirtualObject object) {

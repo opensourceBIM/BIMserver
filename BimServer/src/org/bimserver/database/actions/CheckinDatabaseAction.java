@@ -217,6 +217,9 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			}
 			Set<EClass> eClasses = ifcModel.getUsedClasses();
 			Map<EClass, Long> startOids = getDatabaseSession().getStartOids();
+			if (startOids == null) {
+				throw new BimserverDatabaseException("No objects changed");
+			}
 			int s = 0;
 			for (EClass eClass : eClasses) {
 				if (!DatabaseSession.perRecordVersioning(eClass)) {

@@ -1,6 +1,7 @@
 package org.bimserver.longaction;
 
 import org.bimserver.BimServer;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.ProgressHandler;
 import org.bimserver.database.RollbackListener;
@@ -58,7 +59,11 @@ public class LongGenericAction extends LongAction<LongActionKey> {
 			}, new RollbackListener() {
 				@Override
 				public void rollback() {
-					action.rollback();
+					try {
+						action.rollback();
+					} catch (BimserverDatabaseException e) {
+						LOGGER.error("", e);
+					}
 				}
 			});
 		} catch (Exception e) {

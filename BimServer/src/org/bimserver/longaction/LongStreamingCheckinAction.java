@@ -20,6 +20,7 @@ package org.bimserver.longaction;
 import java.io.IOException;
 
 import org.bimserver.BimServer;
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.ProgressHandler;
 import org.bimserver.database.RollbackListener;
@@ -78,7 +79,11 @@ public class LongStreamingCheckinAction extends LongAction<LongCheckinActionKey>
 			}, new RollbackListener() {
 				@Override
 				public void rollback() {
-					checkinDatabaseAction.rollback();
+					try {
+						checkinDatabaseAction.rollback();
+					} catch (BimserverDatabaseException e) {
+						LOGGER.error("", e);
+					}
 				}
 			});
 		} catch (Exception e) {

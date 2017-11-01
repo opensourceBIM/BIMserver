@@ -198,6 +198,9 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			
 			Set<EClass> eClasses = deserializer.getSummaryMap().keySet();
 			Map<EClass, Long> startOids = getDatabaseSession().getStartOids();
+			if (startOids == null) {
+				throw new BimserverDatabaseException("No objects changed");
+			}
 			Map<EClass, Long> oidCounters = new HashMap<>();
 			int s = 0;
 			for (EClass eClass : eClasses) {
@@ -470,12 +473,15 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 		inputStream.close();
 	}
 
-	public void rollback() {
+	public void rollback() throws BimserverDatabaseException {
 		LOGGER.info("Rolling back");
 		int pid = newRevision.getProject().getId();
 		int rid = newRevision.getRid();
 		
 		Map<EClass, Long> startOids = getDatabaseSession().getStartOids();
+		if (startOids == null) {
+			throw new BimserverDatabaseException("No objects changed");
+		}
 		int deleted = 0;
 		for (EClass eClass : startOids.keySet()) {
 			Long startOid = startOids.get(eClass);

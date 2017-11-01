@@ -110,7 +110,7 @@ public abstract class BimDatabaseAction<T> {
 		this.databaseSession = session;
 	}
 
-	public void rollback() {
+	public void rollback() throws BimserverDatabaseException {
 	}
 
 	public void close() throws IOException {
