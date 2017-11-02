@@ -467,7 +467,6 @@ public class ClientIfcModel extends IfcModel {
 		} catch (EOFException e) {
 			//
 		} catch (ObjectAlreadyExistsException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

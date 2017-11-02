@@ -131,6 +131,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	private String renderEngineName;
 
 	private Long eoid = -1L;
+	private boolean useMapping = false;
 
 	public StreamingGeometryGenerator(final BimServer bimServer, ProgressListener progressListener, Long eoid) {
 		this.bimServer = bimServer;
@@ -887,9 +888,15 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 							long masterOid = map.values().iterator().next().getOid();
 							for (ProductDef pd : map.values()) {
 								done.add(pd.getOid());
-								pd.setMasterOid(masterOid);
+								if (!useMapping) {
+									queryPart.addOid(pd.getOid());
+								} else {
+									pd.setMasterOid(masterOid);
+								}
 							}
-							queryPart.addOid(masterOid);
+							if (useMapping) {
+								queryPart.addOid(masterOid);
+							}
 							
 							LOGGER.debug("Running " + map.size() + " objects in one batch because of reused geometry " + (eClass.getName()));
 

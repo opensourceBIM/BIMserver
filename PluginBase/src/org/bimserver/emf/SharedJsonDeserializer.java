@@ -258,15 +258,10 @@ public class SharedJsonDeserializer {
 													if (jsonReader.nextName().equals("_t")) {
 														String refType = jsonReader.nextString();
 														IdEObject refObject = (IdEObject) model.create(model.getPackageMetaData().getEClassIncludingDependencies(refType), refOid);
+														((IdEObjectImpl)refObject).setLoadingState(State.OPPOSITE_SETTING);
 														model.add(refObject.getOid(), refObject);
-														EClass referenceEClass = refObject.eClass();
-														if (((EClass) eStructuralFeature.getEType()).isSuperTypeOf(referenceEClass)) {
-															while (list.size() <= index) {
-																list.addUnique(refObject);
-															}
-														} else {
-															throw new DeserializeException(-1, referenceEClass.getName() + " cannot be stored in " + eStructuralFeature.getName());
-														}
+														addToList(eStructuralFeature, index, list, refObject);
+														((IdEObjectImpl)refObject).setLoadingState(State.TO_BE_LOADED);
 													} else {
 														processRef(model, waitingList, object, eStructuralFeature, index, list, refOid);
 													}
