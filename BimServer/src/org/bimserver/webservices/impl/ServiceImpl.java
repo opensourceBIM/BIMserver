@@ -1099,7 +1099,11 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	@Override
 	public Long checkin(final Long poid, final String comment, Long deserializerOid, Long fileSize, String fileName, DataHandler dataHandler, Boolean merge, Boolean sync) throws ServerException, UserException {
 		Long topicId = initiateCheckin(poid, deserializerOid);
-		checkinInitiated(topicId, poid, comment, deserializerOid, fileSize, fileName, dataHandler, merge, sync);
+		try {
+			checkinInitiated(topicId, poid, comment, deserializerOid, fileSize, fileName, dataHandler, merge, sync);
+		} finally {
+			cleanupLongAction(topicId);
+		}
 		return topicId;
 	}
 	
