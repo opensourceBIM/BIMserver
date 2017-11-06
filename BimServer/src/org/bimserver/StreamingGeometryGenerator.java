@@ -131,7 +131,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	private String renderEngineName;
 
 	private Long eoid = -1L;
-	private boolean useMapping = false;
+	private boolean useMapping = true;
 
 	public StreamingGeometryGenerator(final BimServer bimServer, ProgressListener progressListener, Long eoid) {
 		this.bimServer = bimServer;
