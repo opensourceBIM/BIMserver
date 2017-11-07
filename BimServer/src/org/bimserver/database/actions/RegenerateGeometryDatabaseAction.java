@@ -4,11 +4,12 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.GenerateGeometryResult;
 import org.bimserver.GeometryGeneratingException;
-import org.bimserver.StreamingGeometryGenerator;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.geometry.GeometryGenerationReport;
+import org.bimserver.geometry.StreamingGeometryGenerator;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Revision;
@@ -43,7 +44,13 @@ public class RegenerateGeometryDatabaseAction extends ProjectBasedDatabaseAction
 			}
 		};
 
-		StreamingGeometryGenerator streamingGeometryGenerator = new StreamingGeometryGenerator(bimServer, progressListener, eoid);
+		GeometryGenerationReport report = new GeometryGenerationReport();
+		
+		report.setOriginalIfcFileName("rerun");
+		report.setOriginalIfcFileSize(-1);
+		report.setOriginalDeserializer("rerun");
+		
+		StreamingGeometryGenerator streamingGeometryGenerator = new StreamingGeometryGenerator(bimServer, progressListener, eoid, report);
 		Revision revision = getDatabaseSession().get(roid, OldQuery.getDefault());
 		ConcreteRevision concreteRevision = revision.getConcreteRevisions().get(0);
 		PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());

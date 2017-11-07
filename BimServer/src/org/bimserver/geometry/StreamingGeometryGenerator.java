@@ -1,27 +1,7 @@
-package org.bimserver;
+package org.bimserver.geometry;
 
-/******************************************************************************
- * Copyright (C) 2009-2017  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
- *****************************************************************************/
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.DoubleBuffer;
@@ -47,7 +27,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
+import org.bimserver.BimServer;
+import org.bimserver.BimserverDatabaseException;
+import org.bimserver.GenerateGeometryResult;
+import org.bimserver.GenericGeometryGenerator;
+import org.bimserver.GeometryGeneratingException;
+import org.bimserver.ProductDef;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.database.actions.ProgressListener;
@@ -59,34 +44,23 @@ import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;
-import org.bimserver.geometry.Matrix;
-import org.bimserver.geometry.Vector;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.renderengine.EntityNotFoundException;
 import org.bimserver.plugins.renderengine.IndexFormat;
 import org.bimserver.plugins.renderengine.Precision;
 import org.bimserver.plugins.renderengine.RenderEngine;
-import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.plugins.renderengine.RenderEngineFilter;
-import org.bimserver.plugins.renderengine.RenderEngineGeometry;
-import org.bimserver.plugins.renderengine.RenderEngineInstance;
-import org.bimserver.plugins.renderengine.RenderEngineModel;
 import org.bimserver.plugins.renderengine.RenderEngineSettings;
-import org.bimserver.plugins.serializers.ObjectProvider;
-import org.bimserver.plugins.serializers.OidConvertingSerializer;
-import org.bimserver.plugins.serializers.StreamingSerializer;
 import org.bimserver.plugins.serializers.StreamingSerializerPlugin;
 import org.bimserver.renderengine.RenderEnginePool;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.HashMapWrappedVirtualObject;
 import org.bimserver.shared.QueryContext;
 import org.bimserver.shared.VirtualObject;
-import org.bimserver.shared.WrappedVirtualObject;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.Formatters;
 import org.eclipse.emf.ecore.EClass;
@@ -95,22 +69,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class StreamingGeometryGenerator extends GenericGeometryGenerator {
-	private static final Logger LOGGER = LoggerFactory.getLogger(StreamingGeometryGenerator.class);
+	static final Logger LOGGER = LoggerFactory.getLogger(StreamingGeometryGenerator.class);
 	
-	private final BimServer bimServer;
-	private final Map<Integer, Long> hashes = new ConcurrentHashMap<>();
+	final BimServer bimServer;
+	final Map<Integer, Long> hashes = new ConcurrentHashMap<>();
 
 	private EClass productClass;
-	private EStructuralFeature geometryFeature;
-	private EStructuralFeature representationFeature;
-	private PackageMetaData packageMetaData;
+	EStructuralFeature geometryFeature;
+	EStructuralFeature representationFeature;
+	PackageMetaData packageMetaData;
 
-	private AtomicLong bytesSavedByHash = new AtomicLong();
+	AtomicLong bytesSavedByHash = new AtomicLong();
 	private AtomicLong bytesSavedByTransformation = new AtomicLong();
-	private AtomicLong bytesSavedByMapping = new AtomicLong();
-	private AtomicLong totalBytes = new AtomicLong();
+	AtomicLong bytesSavedByMapping = new AtomicLong();
+	AtomicLong totalBytes = new AtomicLong();
 
-	private AtomicInteger jobsDone = new AtomicInteger();
+	AtomicInteger jobsDone = new AtomicInteger();
 	private AtomicInteger jobsTotal = new AtomicInteger();
 
 	private ProgressListener progressListener;
@@ -118,9 +92,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	private volatile boolean allJobsPushed;
 
 	private int maxObjectsPerFile = 10;
-	private volatile boolean running = true;
+	volatile boolean running = true;
 
-	private String debugIdentifier;
+	String debugIdentifier;
 
 	private EStructuralFeature representationsFeature;
 
@@ -132,512 +106,18 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 	private Long eoid = -1L;
 	private boolean useMapping = true;
+	private GeometryGenerationReport report;
 
-	public StreamingGeometryGenerator(final BimServer bimServer, ProgressListener progressListener, Long eoid) {
+	private boolean reuseGeometry;
+
+	public StreamingGeometryGenerator(final BimServer bimServer, ProgressListener progressListener, Long eoid, GeometryGenerationReport report) {
 		this.bimServer = bimServer;
 		this.progressListener = progressListener;
 		this.eoid = eoid;
+		this.report = report;
 	}
 	
-	public class Runner implements Runnable {
-
-		private EClass eClass;
-		private RenderEngineSettings renderEngineSettings;
-		private RenderEngineFilter renderEngineFilter;
-		private StreamingSerializerPlugin ifcSerializerPlugin;
-		private GenerateGeometryResult generateGeometryResult;
-		private ObjectProvider objectProvider;
-		private QueryContext queryContext;
-		private DatabaseSession databaseSession;
-		private RenderEnginePool renderEnginePool;
-		private boolean geometryReused;
-		private Map<Long, ProductDef> map;
-
-		public Runner(EClass eClass, RenderEnginePool renderEnginePool, DatabaseSession databaseSession, RenderEngineSettings renderEngineSettings, ObjectProvider objectProvider, StreamingSerializerPlugin ifcSerializerPlugin, RenderEngineFilter renderEngineFilter, GenerateGeometryResult generateGeometryResult, QueryContext queryContext, Query originalQuery, boolean geometryReused, Map<Long, ProductDef> map) {
-			this.eClass = eClass;
-			this.renderEnginePool = renderEnginePool;
-			this.databaseSession = databaseSession;
-			this.renderEngineSettings = renderEngineSettings;
-			this.objectProvider = objectProvider;
-			this.ifcSerializerPlugin = ifcSerializerPlugin;
-			this.renderEngineFilter = renderEngineFilter;
-			this.generateGeometryResult = generateGeometryResult;
-			this.queryContext = queryContext;
-			this.geometryReused = geometryReused;
-			this.map = map;
-		}
-
-		@Override
-		public void run() {
-			try {
-				HashMapVirtualObject next = objectProvider.next();
-				Query query = new Query("Double buffer query " + eClass.getName(), packageMetaData);
-				QueryPart queryPart = query.createQueryPart();
-				while (next != null) {
-					queryPart.addOid(next.getOid());
-	//						for (EReference eReference : next.eClass().getEAllReferences()) {
-	//							Object ref = next.eGet(eReference);
-	//							if (ref != null) {
-	//								if (eReference.isMany()) {
-	//									List<?> list = (List<?>)ref;
-	//									int index = 0;
-	//									for (Object o : list) {
-	//										if (o != null) {
-	//											if (o instanceof Long) {
-	//												if (next.useFeatureForSerialization(eReference, index)) {
-	//													queryPart.addOid((Long)o);
-	//												}
-	//											}
-	//										} else {
-	//											System.out.println();
-	//										}
-	//										index++;
-	//									}
-	//								} else {
-	//									if (ref instanceof Long) {
-	//										if (next.useFeatureForSerialization(eReference)) {
-	//											queryPart.addOid((Long)ref);
-	//										}
-	//									}
-	//								}
-	//							}
-	//						}
-					next = objectProvider.next();
-				}
-				
-				objectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
-	
-				StreamingSerializer ifcSerializer = ifcSerializerPlugin.createSerializer(new PluginConfiguration());
-				RenderEngine renderEngine = null;
-				byte[] bytes = null;
-				try {
-					final Set<HashMapVirtualObject> objects = new HashSet<>();
-					ObjectProviderProxy proxy = new ObjectProviderProxy(objectProvider, new ObjectListener() {
-						@Override
-						public void newObject(HashMapVirtualObject next) {
-							if (eClass.isSuperTypeOf(next.eClass())) {
-								if (next.eGet(representationFeature) != null) {
-									objects.add(next);
-								}
-							}
-						}
-					});
-					ifcSerializer.init(proxy, null, null, bimServer.getPluginManager(), packageMetaData);
-	
-					ByteArrayOutputStream baos = new ByteArrayOutputStream();
-					IOUtils.copy(ifcSerializer.getInputStream(), baos);
-					bytes = baos.toByteArray();
-					InputStream in = new ByteArrayInputStream(bytes);
-					Map<Integer, String> notFoundObjects = new HashMap<>();
-					
-					Set<Range> reusableGeometryData = new HashSet<>();
-					
-					Map<Long, Q> productToData = new HashMap<>();
-					try {
-						if (!objects.isEmpty()) {
-							renderEngine = renderEnginePool.borrowObject();
-							try (RenderEngineModel renderEngineModel = renderEngine.openModel(in, bytes.length)) {
-								renderEngineModel.setSettings(renderEngineSettings);
-								renderEngineModel.setFilter(renderEngineFilter);
-		
-								try {
-									renderEngineModel.generateGeneralGeometry();
-								} catch (RenderEngineException e) {
-									if (e.getCause() instanceof java.io.EOFException) {
-										if (objects.isEmpty() || eClass.getName().equals("IfcAnnotation")) {
-											// SKIP
-										} else {
-											LOGGER.error("Error in " + eClass.getName(), e);
-										}
-									}
-								}
-								
-								OidConvertingSerializer oidConvertingSerializer = (OidConvertingSerializer)ifcSerializer;
-								Map<Long, Integer> oidToEid = oidConvertingSerializer.getOidToEid();
-								Map<Long, double[]> matrices = new HashMap<>();
-								
-								for (HashMapVirtualObject ifcProduct : objects) {
-									if (!running) {
-										return;
-									}
-									Integer expressId = oidToEid.get(ifcProduct.getOid());
-									try {
-										RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(expressId);
-										RenderEngineGeometry geometry = renderEngineInstance.generateGeometry();
-										boolean translate = true;
-	//									if (geometry == null || geometry.getIndices().length == 0) {
-	//										LOGGER.info("Running again...");
-	//										renderEngineModel.setFilter(renderEngineFilterTransformed);
-	//										geometry = renderEngineInstance.generateGeometry();
-	//										if (geometry != null) {
-	//											translate = false;
-	//										}
-	//										renderEngineModel.setFilter(renderEngineFilter);
-	//									}
-										
-										if (geometry != null && geometry.getNrIndices() > 0) {
-											VirtualObject geometryInfo = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getGeometryInfo());
-											
-											WrappedVirtualObject minBounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
-											WrappedVirtualObject maxBounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
-											
-											minBounds.set("x", Double.POSITIVE_INFINITY);
-											minBounds.set("y", Double.POSITIVE_INFINITY);
-											minBounds.set("z", Double.POSITIVE_INFINITY);
-											
-											maxBounds.set("x", -Double.POSITIVE_INFINITY);
-											maxBounds.set("y", -Double.POSITIVE_INFINITY);
-											maxBounds.set("z", -Double.POSITIVE_INFINITY);
-											
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MinBounds(), minBounds);
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MaxBounds(), maxBounds);
-
-											WrappedVirtualObject minBoundsUntranslated = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
-											WrappedVirtualObject maxBoundsUntranslated = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
-
-											minBoundsUntranslated.set("x", Double.POSITIVE_INFINITY);
-											minBoundsUntranslated.set("y", Double.POSITIVE_INFINITY);
-											minBoundsUntranslated.set("z", Double.POSITIVE_INFINITY);
-											
-											maxBoundsUntranslated.set("x", -Double.POSITIVE_INFINITY);
-											maxBoundsUntranslated.set("y", -Double.POSITIVE_INFINITY);
-											maxBoundsUntranslated.set("z", -Double.POSITIVE_INFINITY);
-											
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MinBoundsUntranslated(), minBoundsUntranslated);
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MaxBoundsUntranslated(), maxBoundsUntranslated);
-											
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), renderEngineInstance.getArea());
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), renderEngineInstance.getVolume());
-											
-											VirtualObject geometryData = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getGeometryData());
-	
-											int[] indices = geometry.getIndices();
-											geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Indices(), intArrayToByteArray(indices));
-											float[] vertices = geometry.getVertices();
-											geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Vertices(), floatArrayToByteArray(vertices));
-											geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Normals(), floatArrayToByteArray(geometry.getNormals()));
-											
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), indices.length / 3);
-
-											Set<Color4f> usedColors = new HashSet<>();
-											
-											if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
-												boolean hasMaterial = false;
-												float[] vertex_colors = new float[vertices.length / 3 * 4];
-												for (int i = 0; i < geometry.getMaterialIndices().length; ++i) {
-													int c = geometry.getMaterialIndices()[i];
-													for (int j = 0; j < 3; ++j) {
-														int k = indices[i * 3 + j];
-														if (c > -1) {
-															hasMaterial = true;
-															Color4f color = new Color4f();
-															for (int l = 0; l < 4; ++l) {
-																float val = geometry.getMaterials()[4 * c + l];
-																vertex_colors[4 * k + l] = val;
-																color.set(l, val);
-															}
-															usedColors.add(color);
-														}
-													}
-												}
-												if (usedColors.size() == 1) {
-													WrappedVirtualObject color = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector4f());
-													Color4f firstColor = usedColors.iterator().next();
-													color.set("x", firstColor.getR());
-													color.set("y", firstColor.getG());
-													color.set("z", firstColor.getB());
-													color.set("w", firstColor.getA());
-													geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Color(), color);
-													hasMaterial = false;
-												}
-												if (hasMaterial) {
-													geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Materials(), floatArrayToByteArray(vertex_colors));
-												}
-											}
-	
-											double[] productTranformationMatrix = new double[16];
-											if (translate && renderEngineInstance.getTransformationMatrix() != null) {
-												productTranformationMatrix = renderEngineInstance.getTransformationMatrix();
-											} else {
-												Matrix.setIdentityM(productTranformationMatrix, 0);
-											}
-
-											geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), geometryData.getOid(), 0);
-	
-											long size = getSize(geometryData);
-											
-											for (int i = 0; i < indices.length; i++) {
-												processExtends(geometryInfo, productTranformationMatrix, vertices, indices[i] * 3, generateGeometryResult);
-												processExtendsUntranslated(geometryInfo, vertices, indices[i] * 3, generateGeometryResult);
-											}
-											
-											double[] mibu = new double[]{(double) minBoundsUntranslated.eGet(GeometryPackage.eINSTANCE.getVector3f_X()), (double) minBoundsUntranslated.eGet(GeometryPackage.eINSTANCE.getVector3f_Y()), (double) minBoundsUntranslated.eGet(GeometryPackage.eINSTANCE.getVector3f_Z()), 1d};
-											double[] mabu = new double[]{(double) maxBoundsUntranslated.eGet(GeometryPackage.eINSTANCE.getVector3f_X()), (double) maxBoundsUntranslated.eGet(GeometryPackage.eINSTANCE.getVector3f_Y()), (double) maxBoundsUntranslated.eGet(GeometryPackage.eINSTANCE.getVector3f_Z()), 1d};
-											
-											if (bimServer.getServerSettingsCache().getServerSettings().isReuseGeometry()) {
-												int hash = hash(geometryData);
-												float[] firstVertex = new float[]{vertices[indices[0]], vertices[indices[0] + 1], vertices[indices[0] + 2]};
-												float[] lastVertex = new float[]{vertices[indices[indices.length-1] * 3], vertices[indices[indices.length-1] * 3 + 1], vertices[indices[indices.length-1] * 3 + 2]};
-												Range range = new Range(firstVertex, lastVertex);
-												if (hashes.containsKey(hash)) {
-													geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), hashes.get(hash), 0);
-													bytesSavedByHash.addAndGet(size);
-												} else if (geometryReused) {
-													boolean found = false;
-//													for (Range r : reusableGeometryData) {
-//														if (r.isSimilar(range)) {
-//															geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), r.getGeometryDataOid(), 0);
-//															float[] offset = r.getOffset(range);
-//															ProductDef productDef = map.get(ifcProduct.getOid());
-//															double[] mappedItemMatrix = null;
-//															if (productDef != null && productDef.getMatrix() != null) {
-//																mappedItemMatrix = productDef.getMatrix();
-//															} else {
-//																Matrix.translateM(mappedItemMatrix, 0, offset[0], offset[1], offset[2]);
-//															}
-//															double[] result = new double[16];
-//															Matrix.multiplyMM(result, 0, mappedItemMatrix, 0, productTranformationMatrix, 0);
-//															setTransformationMatrix(geometryInfo, result); // Overwritten?
-//															bytesSavedByTransformation.addAndGet(size);
-//															found = true;
-//															break;
-//														}
-//													}
-													if (!found) {
-														range.setGeometryDataOid(geometryData.getOid());
-														reusableGeometryData.add(range);
-														
-														geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), renderEngineInstance.getArea());
-														geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), renderEngineInstance.getVolume());
-														geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), indices.length / 3);
-														
-														productToData.put(ifcProduct.getOid(), new Q(geometryData.getOid(), renderEngineInstance.getArea(), renderEngineInstance.getVolume(), indices.length / 3, size, mibu, mabu));
-														geometryData.save();
-													}
-												} else {
-	//												if (sizes.containsKey(size) && sizes.get(size).eClass() == ifcProduct.eClass()) {
-	//													LOGGER.info("More reuse might be possible " + size + " " + ifcProduct.eClass().getName() + ":" + ifcProduct.getOid() + " / " + sizes.get(size).eClass().getName() + ":" + sizes.get(size).getOid());
-	//												}
-													if (geometryReused) {
-														range.setGeometryDataOid(geometryData.getOid());
-														reusableGeometryData.add(range);
-														productToData.put(ifcProduct.getOid(), new Q(geometryData.getOid(), renderEngineInstance.getArea(), renderEngineInstance.getVolume(), indices.length / 3, size, mibu, mabu));
-													}
-													hashes.put(hash, geometryData.getOid());
-													geometryData.save();
-	//												sizes.put(size, ifcProduct);
-												}
-											} else {
-												geometryData.save();
-											}
-
-											calculateObb(geometryInfo, productTranformationMatrix, indices, vertices, generateGeometryResult);
-											setTransformationMatrix(geometryInfo, productTranformationMatrix);
-											matrices.put(ifcProduct.getOid(), productTranformationMatrix);
-											
-											geometryInfo.save();
-											totalBytes.addAndGet(size);
-	
-											ifcProduct.setReference(geometryFeature, geometryInfo.getOid(), 0);
-											ifcProduct.saveOverwrite();
-											
-											// Doing a sync here because probably writing large amounts of data, and db only syncs every 100.000 writes by default
-//											databaseSession.getKeyValueStore().sync();
-										} else {
-											// TODO
-										}
-									} catch (EntityNotFoundException e) {
-	//									e.printStackTrace();
-										// As soon as we find a representation that is not Curve2D, then we should show a "INFO" message in the log to indicate there could be something wrong
-										boolean ignoreNotFound = eClass.getName().equals("IfcAnnotation");
-										
-	//									for (Object rep : representations) {
-	//										if (rep instanceof IfcShapeRepresentation) {
-	//											IfcShapeRepresentation ifcShapeRepresentation = (IfcShapeRepresentation)rep;
-	//											if (!"Curve2D".equals(ifcShapeRepresentation.getRepresentationType())) {
-	//												ignoreNotFound = false;
-	//											}
-	//										}
-	//									}
-										if (!ignoreNotFound) {
-//											LOGGER.warn("Entity not found " + ifcProduct.eClass().getName() + " " + (expressId) + "/" + ifcProduct.getOid());
-											notFoundObjects.put(expressId, ifcProduct.eClass().getName());
-										}
-									} catch (BimserverDatabaseException | RenderEngineException e) {
-										LOGGER.error("", e);
-									}
-								}
-								
-								if (geometryReused && map != null) {
-									long firstKey = map.keySet().iterator().next();
-									ProductDef masterProductDef = map.get(firstKey);
-									for (long key : map.keySet()) {
-										if (key != firstKey) {
-											ProductDef productDef = map.get(key);
-											HashMapVirtualObject ifcProduct = productDef.getObject();
-											
-											Q q = productToData.get(productDef.getMasterOid());
-											if (q != null) {
-												VirtualObject geometryInfo = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getGeometryInfo());
-												
-												WrappedVirtualObject minBounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
-												WrappedVirtualObject maxBounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
-												
-												double[] mibu = q.getMibu();
-												double[] mabu = q.getMibu();
-												
-												double[] mibt = new double[4];
-												double[] mabt = new double[4];
-												
-												// TODO
-												Matrix.multiplyMV(mibt, 0, productDef.getProductMatrix(), 0, mibu, 0);
-												Matrix.multiplyMV(mabt, 0, productDef.getProductMatrix(), 0, mabu, 0);
-												
-												minBounds.set("x", mibt[0]);
-												minBounds.set("y", mibt[1]);
-												minBounds.set("z", mibt[2]);
-												
-												maxBounds.set("x", mabt[0]);
-												maxBounds.set("y", mabt[1]);
-												maxBounds.set("z", mabt[2]);
-												
-												geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MinBounds(), minBounds);
-												geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MaxBounds(), maxBounds);
-												
-												WrappedVirtualObject minBoundsUntranslated = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
-												WrappedVirtualObject maxBoundsUntranslated = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
-												
-												minBoundsUntranslated.set("x", mibu[0]);
-												minBoundsUntranslated.set("y", mibu[1]);
-												minBoundsUntranslated.set("z", mibu[2]);
-												
-												maxBoundsUntranslated.set("x", mabu[0]);
-												maxBoundsUntranslated.set("y", mabu[1]);
-												maxBoundsUntranslated.set("z", mabu[2]);
-												
-												geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MinBoundsUntranslated(), minBoundsUntranslated);
-												geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MaxBoundsUntranslated(), maxBoundsUntranslated);
-												
-												geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), q.getArea());
-												geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), q.getVolume());
-												geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), q.getNrPrimitives());
-												
-												bytesSavedByMapping.addAndGet(q.getSize());
-												totalBytes.addAndGet(q.getSize());
-												
-												double[] inverted = Matrix.identity();
-												if (!Matrix.invertM(inverted, 0, masterProductDef.getMappingMatrix(), 0)) {
-													System.out.println("No inverse");
-												}
-												
-												double[] finalMatrix = Matrix.identity();
-												double[] totalTranformationMatrix = Matrix.identity();
-												Matrix.multiplyMM(finalMatrix, 0, productDef.getMappingMatrix(), 0, inverted, 0);
-												Matrix.multiplyMM(totalTranformationMatrix, 0, productDef.getProductMatrix(), 0, finalMatrix, 0);
-												
-												if (matrices.containsKey(ifcProduct.getOid())) {
-													if (!Arrays.equals(matrices.get(ifcProduct.getOid()), totalTranformationMatrix)) {
-														System.out.println("Not the same " + ifcProduct.get("GlobalId"));
-														Matrix.dump(matrices.get(ifcProduct.getOid()));
-														System.out.println();
-														Matrix.dump(totalTranformationMatrix);
-													}
-												}
-												
-												geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), q.getOid(), 0);
-												
-//											for (int i = 0; i < indices.length; i++) {
-//												processExtends(geometryInfo, productTranformationMatrix, vertices, indices[i] * 3, generateGeometryResult);
-//												processExtendsUntranslated(geometryInfo, vertices, indices[i] * 3, generateGeometryResult);
-//											}
-												
-//											calculateObb(geometryInfo, productTranformationMatrix, indices, vertices, generateGeometryResult);
-												setTransformationMatrix(geometryInfo, totalTranformationMatrix);
-												
-												geometryInfo.save();
-//											totalBytes.addAndGet(size);
-												
-												ifcProduct.setReference(geometryFeature, geometryInfo.getOid(), 0);
-												ifcProduct.saveOverwrite();
-											}
-										}
-									}
-								}
-							}
-						}
-					} finally {
-						try {
-							if (!notFoundObjects.isEmpty()) {
-								writeDebugFile(bytes, false, notFoundObjects);
-							}
-							in.close();
-						} catch (Throwable e) {
-							
-						}
-						if (renderEngine != null) {
-							renderEnginePool.returnObject(renderEngine);
-						}
-						jobsDone.incrementAndGet();
-						updateProgress();
-					}
-				} catch (Exception e) {
-					LOGGER.error("", e);
-					writeDebugFile(bytes, true, null);
-//					LOGGER.error("Original query: " + originalQuery, e);
-				}
-			} catch (Exception e) {
-				LOGGER.error("", e);
-//				LOGGER.error("Original query: " + originalQuery, e);
-			}
-		}
-
-		private void writeDebugFile(byte[] bytes, boolean error, Map<Integer, String> notFoundObjects) throws FileNotFoundException, IOException {
-			boolean debug = true;
-			if (debug) {
-				Path debugPath = bimServer.getHomeDir().resolve("debug");
-				if (!Files.exists(debugPath)) {
-					Files.createDirectories(debugPath);
-				}
-
-				Path folder = debugPath.resolve(debugIdentifier);
-				if (!Files.exists(folder)) {
-					Files.createDirectories(folder);
-				}
-				
-				String basefilenamename = "all";
-				if (eClass != null) {
-					basefilenamename = eClass.getName();
-				}
-				if (error) {
-					basefilenamename += "-error";
-				}
-
-				Path file = folder.resolve(basefilenamename + ".ifc");
-				int i=0;
-				while (Files.exists((file))) {
-					file = folder.resolve(basefilenamename + "-" + i + ".ifc");
-					i++;
-				}
-
-				if (notFoundObjects != null) {
-					StringBuilder sb = new StringBuilder();
-					for (Integer expressId : notFoundObjects.keySet()) {
-						sb.append(notFoundObjects.get(expressId) + ": " + expressId + "\r\n");
-					}
-					FileUtils.writeStringToFile(Paths.get(file.toAbsolutePath().toString() + ".txt").toFile(), sb.toString());
-				}
-
-				LOGGER.info("Writing debug file to " + file.toAbsolutePath().toString());
-				FileUtils.writeByteArrayToFile(file.toFile(), bytes);
-			}
-		}
-
-		private void calculateObb(VirtualObject geometryInfo, double[] tranformationMatrix, int[] indices, float[] vertices, GenerateGeometryResult generateGeometryResult2) {
-			
-		}
-	}
-
-	private void updateProgress() {
+	void updateProgress() {
 		if (allJobsPushed) {
 			if (progressListener != null) {
 				progressListener.updateProgress("Generating geometry...", (int) (100.0 * jobsDone.get() / jobsTotal.get()));
@@ -666,7 +146,17 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			pluginName = "org.bimserver.ifc.step.serializer.Ifc4StepStreamingSerializerPlugin";
 		} else if (queryContext.getPackageMetaData().getSchema() == Schema.IFC2X3TC1) {
 			pluginName = "org.bimserver.ifc.step.serializer.Ifc2x3tc1StepStreamingSerializerPlugin";
+		} else {
+			throw new GeometryGeneratingException("Unknown schema " + queryContext.getPackageMetaData().getSchema());
 		}
+		
+		reuseGeometry = bimServer.getServerSettingsCache().getServerSettings().isReuseGeometry();
+		
+		report.setStart(new GregorianCalendar());
+		report.setIfcSchema(queryContext.getPackageMetaData().getSchema());
+		report.setMaxPerFile(maxObjectsPerFile);
+		report.setUseMappingOptimization(useMapping);
+		report.setReuseGeometry(reuseGeometry);
 
 		try {
 			final StreamingSerializerPlugin ifcSerializerPlugin = (StreamingSerializerPlugin) bimServer.getPluginManager().getPlugin(pluginName, true);
@@ -676,6 +166,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 			User user = (User) databaseSession.get(uoid, org.bimserver.database.OldQuery.getDefault());
 			UserSettings userSettings = user.getUserSettings();
+			
+			report.setUserName(user.getName());
+			report.setUserUserName(user.getUsername());
 			
 			RenderEnginePluginConfiguration renderEngine = null;
 			if (eoid != -1) {
@@ -688,7 +181,10 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			}
 			renderEngineName = renderEngine.getName();
 
-			int maxSimultanousThreads = Math.min(bimServer.getServerSettingsCache().getServerSettings().getRenderEngineProcesses(), Runtime.getRuntime().availableProcessors());
+			int availableProcessors = Runtime.getRuntime().availableProcessors();
+			report.setAvailableProcessors(availableProcessors);
+			
+			int maxSimultanousThreads = Math.min(bimServer.getServerSettingsCache().getServerSettings().getRenderEngineProcesses(), availableProcessors);
 			if (maxSimultanousThreads < 1) {
 				maxSimultanousThreads = 1;
 			}
@@ -703,6 +199,13 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			final RenderEngineFilter renderEngineFilter = new RenderEngineFilter();
 
 			RenderEnginePool renderEnginePool = bimServer.getRenderEnginePools().getRenderEnginePool(packageMetaData.getSchema(), renderEngine.getPluginDescriptor().getPluginClassName(), new PluginConfiguration(renderEngine.getSettings()));
+			
+			report.setRenderEngineName(renderEngine.getName());
+			report.setRenderEnginePluginVersion(renderEngine.getPluginDescriptor().getPluginBundleVersion().getVersion());
+			
+			try (RenderEngine engine = renderEnginePool.borrowObject()) {
+				report.setRenderEngineVersion(engine.getVersion());
+			}
 			
 			ThreadPoolExecutor executor = new ThreadPoolExecutor(maxSimultanousThreads, maxSimultanousThreads, 24, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(10000000));
 
@@ -765,6 +268,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 										if (representationItem.get("RepresentationIdentifier").equals("Body")) {
 											List<HashMapVirtualObject> items = representationItem.getDirectListFeature(itemsFeature);
 											for (HashMapVirtualObject item : items) {
+												report.addRepresentationItem(item.eClass().getName());
 												HashMapVirtualObject mappingTarget = item.getDirectFeature(Ifc2x3tc1Package.eINSTANCE.getIfcMappedItem_MappingTarget());
 												double[] mappingMatrix = Matrix.identity();
 												double[] productMatrix = Matrix.identity();
@@ -826,15 +330,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 														a3[0], a3[1], a3[2], 0,
 														t.get(0).doubleValue(), t.get(1).doubleValue(), t.get(2).doubleValue(), 1
 													};
-													
-//													double[] inverted = new double[16];
-//													Matrix.invertM(inverted, 0, mappingMatrix, 0);
-//													mappingMatrix = inverted;
-													
-//													System.out.println(next.get("GlobalId"));
-//													Matrix.dumpIfNotId(inverted);
-													
-//													mappingMatrix = Matrix.identity();
 												}
 												
 												HashMapVirtualObject placement = next.getDirectFeature(Ifc2x3tc1Package.eINSTANCE.getIfcProduct_ObjectPlacement());
@@ -851,16 +346,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 													}
 													ProductDef pd = new ProductDef(next.getOid());
 													pd.setObject(next);
-													
-//													double[] finalMatrix = Matrix.identity();
-//													if (next.get("GlobalId").equals("1jYD9F3rxYJRnz0YM$R3YY")) {
-//														Matrix.dump(productMatrix);
-//														Matrix.dump(mappingMatrix);
-//														System.out.println();
-//													}
-//													Matrix.multiplyMM(finalMatrix, 0, productMatrix, 0, mappingMatrix, 0);
-													
-//													Matrix.dumpIfNotId(finalMatrix);
 													
 													pd.setProductMatrix(productMatrix);
 													pd.setMappingMatrix(mappingMatrix);
@@ -900,7 +385,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 							
 							LOGGER.debug("Running " + map.size() + " objects in one batch because of reused geometry " + (eClass.getName()));
 
-							processX(databaseSession, queryContext, generateGeometryResult, ifcSerializerPlugin, settings, renderEngineFilter, renderEnginePool, executor, eClass, query, queryPart, true, map);
+							processX(databaseSession, queryContext, generateGeometryResult, ifcSerializerPlugin, settings, renderEngineFilter, renderEnginePool, executor, eClass, query, queryPart, true, map, map.size());
 						}
 					}
 					
@@ -935,9 +420,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 									Query query = new Query("Main " + eClass.getName(), packageMetaData);
 									QueryPart queryPart = query.createQueryPart();
 									queryPart.addType(eClass, false);
-									int x = 0;
+									int x = 1;
 									queryPart.addOid(next.getOid());
-									while (next != null && x < maxObjectsPerFile - 1) {
+									while (next != null && x < maxObjectsPerFile) {
 										next = queryObjectProvider2.next();
 										if (next != null) {
 											if (next.eClass() == eClass && !done.contains(next.getOid())) {
@@ -960,7 +445,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 											}
 										}
 									}
-									processX(databaseSession, queryContext, generateGeometryResult, ifcSerializerPlugin, settings, renderEngineFilter, renderEnginePool, executor, eClass, query, queryPart, false, null);
+									processX(databaseSession, queryContext, generateGeometryResult, ifcSerializerPlugin, settings, renderEngineFilter, renderEnginePool, executor, eClass, query, queryPart, false, null, x);
 								}
 							}
 						}
@@ -984,11 +469,33 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		} catch (Exception e) {
 			running = false;
 			LOGGER.error("", e);
+			report.setEnd(new GregorianCalendar());
 			throw new GeometryGeneratingException(e);
+		}
+		report.setEnd(new GregorianCalendar());
+		try {
+			writeDebugFile();
+		} catch (IOException e) {
+			LOGGER.debug("", e);
 		}
 		return generateGeometryResult;
 	}
 
+	private void writeDebugFile() throws IOException {
+		Path debugPath = bimServer.getHomeDir().resolve("debug");
+		if (!Files.exists(debugPath)) {
+			Files.createDirectories(debugPath);
+		}
+
+		Path folder = debugPath.resolve(debugIdentifier);
+		if (!Files.exists(folder)) {
+			Files.createDirectories(folder);
+		}
+
+		Path file = folder.resolve("generationreport.html");
+		FileUtils.writeStringToFile(file.toFile(), report.toHtml());
+	}
+	
 	// Pretty sure this is working correctly
 	@SuppressWarnings("unchecked")
 	public double[] placement3DToMatrix(HashMapVirtualObject ifcAxis2Placement3D) {
@@ -1038,7 +545,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	}
 
 	private void processX(final DatabaseSession databaseSession, QueryContext queryContext, GenerateGeometryResult generateGeometryResult, final StreamingSerializerPlugin ifcSerializerPlugin, final RenderEngineSettings settings,
-			final RenderEngineFilter renderEngineFilter, RenderEnginePool renderEnginePool, ThreadPoolExecutor executor, EClass eClass, Query query, QueryPart queryPart, boolean geometryReused, Map<Long, ProductDef> map) throws QueryException, IOException {
+			final RenderEngineFilter renderEngineFilter, RenderEnginePool renderEnginePool, ThreadPoolExecutor executor, EClass eClass, Query query, QueryPart queryPart, boolean geometryReused, Map<Long, ProductDef> map, int nrObjects) throws QueryException, IOException {
 		JsonQueryObjectModelConverter jsonQueryObjectModelConverter = new JsonQueryObjectModelConverter(packageMetaData);
 		
 		String queryNameSpace = "validifc";
@@ -1079,7 +586,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		}
 		QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
 		
-		Runner runner = new Runner(eClass, renderEnginePool, databaseSession, settings, queryObjectProvider, ifcSerializerPlugin, renderEngineFilter, generateGeometryResult, queryContext, query, geometryReused, map);
+		ReportJob job = report.newJob(eClass.getName(), nrObjects);
+		GeometryRunner runner = new GeometryRunner(this, eClass, renderEnginePool, databaseSession, settings, queryObjectProvider, ifcSerializerPlugin, renderEngineFilter, generateGeometryResult, queryContext, query, geometryReused, map, job, reuseGeometry);
 		executor.submit(runner);
 		jobsTotal.incrementAndGet();
 	}
@@ -1124,7 +632,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 //		return result;
 //	}
 
-	private long getSize(VirtualObject geometryData) {
+	long getSize(VirtualObject geometryData) {
 		long size = 0;
 		if (geometryData.has("indices")) {
 			size += ((byte[])geometryData.get("indices")).length;
@@ -1144,7 +652,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		return size;
 	}
 
-	private int hash(VirtualObject geometryData) {
+	int hash(VirtualObject geometryData) {
 		int hashCode = 0;
 		if (geometryData.has("indices")) {
 			hashCode += Arrays.hashCode((byte[])geometryData.get("indices"));
@@ -1164,7 +672,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		return hashCode;
 	}
 
-	private void processExtendsUntranslated(VirtualObject geometryInfo, float[] vertices, int index, GenerateGeometryResult generateGeometryResult2) throws BimserverDatabaseException {
+	void processExtendsUntranslated(VirtualObject geometryInfo, float[] vertices, int index, GenerateGeometryResult generateGeometryResult2) throws BimserverDatabaseException {
 		double x = vertices[index];
 		double y = vertices[index + 1];
 		double z = vertices[index + 2];
@@ -1180,7 +688,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		maxBounds.set("z", Math.max(z, (double)maxBounds.eGet("z")));
 	}
 
-	private void processExtends(VirtualObject geometryInfo, double[] transformationMatrix, float[] vertices, int index, GenerateGeometryResult generateGeometryResult) throws BimserverDatabaseException {
+	void processExtends(VirtualObject geometryInfo, double[] transformationMatrix, float[] vertices, int index, GenerateGeometryResult generateGeometryResult) throws BimserverDatabaseException {
 		double x = vertices[index];
 		double y = vertices[index + 1];
 		double z = vertices[index + 2];
@@ -1210,7 +718,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		generateGeometryResult.setMaxZ(Math.max(z, generateGeometryResult.getMaxZ()));
 	}
 
-	private void setTransformationMatrix(VirtualObject geometryInfo, double[] transformationMatrix) throws BimserverDatabaseException {
+	void setTransformationMatrix(VirtualObject geometryInfo, double[] transformationMatrix) throws BimserverDatabaseException {
 		ByteBuffer byteBuffer = ByteBuffer.allocate(16 * 8);
 		byteBuffer.order(ByteOrder.nativeOrder());
 		DoubleBuffer asDoubleBuffer = byteBuffer.asDoubleBuffer();

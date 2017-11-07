@@ -64,4 +64,30 @@ public class GeometryUtils {
 		}
 		return result;
 	}
+	
+	public static byte[] floatArrayToByteArray(float[] vertices) {
+		if (vertices == null) {
+			return null;
+		}
+		ByteBuffer buffer = ByteBuffer.wrap(new byte[vertices.length * 4]);
+		buffer.order(ByteOrder.LITTLE_ENDIAN);
+		FloatBuffer asFloatBuffer = buffer.asFloatBuffer();
+		for (float f : vertices) {
+			asFloatBuffer.put(f);
+		}
+		return buffer.array();
+	}
+
+	public static byte[] intArrayToByteArray(int[] indices) {
+		if (indices == null) {
+			return null;
+		}
+		ByteBuffer buffer = ByteBuffer.wrap(new byte[indices.length * 4]);
+		buffer.order(ByteOrder.LITTLE_ENDIAN);
+		IntBuffer asIntBuffer = buffer.asIntBuffer();
+		for (int i : indices) {
+			asIntBuffer.put(i);
+		}
+		return buffer.array();
+	}
 }

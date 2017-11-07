@@ -74,6 +74,7 @@ import org.bimserver.renderengine.RenderEnginePool;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
 import org.bimserver.utils.Formatters;
+import org.bimserver.utils.GeometryUtils;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
@@ -223,10 +224,10 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 										geometryData = GeometryFactory.eINSTANCE.createGeometryData();
 									}
 
-									geometryData.setIndices(intArrayToByteArray(geometry.getIndices()));
-									geometryData.setVertices(floatArrayToByteArray(geometry.getVertices()));
+									geometryData.setIndices(GeometryUtils.intArrayToByteArray(geometry.getIndices()));
+									geometryData.setVertices(GeometryUtils.floatArrayToByteArray(geometry.getVertices()));
 //									geometryData.setMaterialIndices(intArrayToByteArray(geometry.getMaterialIndices()));
-									geometryData.setNormals(floatArrayToByteArray(geometry.getNormals()));
+									geometryData.setNormals(GeometryUtils.floatArrayToByteArray(geometry.getNormals()));
 									
 									geometryInfo.setPrimitiveCount(geometry.getIndices().length / 3);
 
@@ -246,7 +247,7 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 											}
 										}
 										if (hasMaterial) {
-											geometryData.setMaterials(floatArrayToByteArray(vertex_colors));
+											geometryData.setMaterials(GeometryUtils.floatArrayToByteArray(vertex_colors));
 										}
 									}
 
@@ -403,9 +404,9 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 				0, 0, 0
 			};
 			
-			geometryData.setIndices(intArrayToByteArray(indices));
-			geometryData.setVertices(floatArrayToByteArray(vertices));
-			geometryData.setNormals(floatArrayToByteArray(normals));
+			geometryData.setIndices(GeometryUtils.intArrayToByteArray(indices));
+			geometryData.setVertices(GeometryUtils.floatArrayToByteArray(vertices));
+			geometryData.setNormals(GeometryUtils.floatArrayToByteArray(normals));
 			
 			geometryInfo.setPrimitiveCount(12);
 			geometryInfo.setData(geometryData);

@@ -29,7 +29,6 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.GenerateGeometryResult;
 import org.bimserver.GeometryGeneratingException;
-import org.bimserver.StreamingGeometryGenerator;
 import org.bimserver.SummaryMap;
 import org.bimserver.changes.Change;
 import org.bimserver.changes.CreateObjectChange;
@@ -42,6 +41,8 @@ import org.bimserver.database.OldQuery.Deep;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.geometry.GeometryGenerationReport;
+import org.bimserver.geometry.StreamingGeometryGenerator;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.log.AccessMethod;
@@ -191,7 +192,13 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		if (bimServer.getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin() && geometryChanged) {
 			setProgress("Generating Geometry...", -1);
 			try {
-				StreamingGeometryGenerator streamingGeometryGenerator = new StreamingGeometryGenerator(bimServer, null, -1L);
+				GeometryGenerationReport report = new GeometryGenerationReport();
+
+				report.setOriginalDeserializer("No deserializer, low level call");
+				report.setOriginalIfcFileName("No file, low level call");
+				report.setOriginalIfcFileSize(-1);
+				
+				StreamingGeometryGenerator streamingGeometryGenerator = new StreamingGeometryGenerator(bimServer, null, -1L, report);
 				int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(concreteRevision.getProject(), concreteRevision);
 
 				QueryContext queryContext = new QueryContext(getDatabaseSession(), packageMetaData, project.getId(), concreteRevision.getId(), concreteRevision.getRevisions().get(0).getOid(), highestStopId);

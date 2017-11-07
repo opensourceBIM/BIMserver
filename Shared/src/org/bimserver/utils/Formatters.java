@@ -60,11 +60,11 @@ public class Formatters {
 	}
 	
 	public static final String millisecondsToString(long millis) {
-		if (millis < 10000) {
+		if (millis < 1000) {
 			return millis + "ms";
 		}
 		if (millis < 60 * 1000) {
-			return (millis / 1000) + "s";
+			return (millis / 1000f) + "s";
 		}
 		if (millis < 60 * 60 * 1000) {
 			long m = millis / 60000;

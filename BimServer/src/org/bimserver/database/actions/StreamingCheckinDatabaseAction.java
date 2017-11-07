@@ -28,11 +28,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicLong;
 
+import org.apache.http.entity.ByteArrayEntity;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.GenerateGeometryResult;
-import org.bimserver.StreamingGeometryGenerator;
 import org.bimserver.SummaryMap;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
@@ -48,13 +49,19 @@ import org.bimserver.database.queries.om.Query;
 import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.geometry.GeometryGenerationReport;
+import org.bimserver.geometry.StreamingGeometryGenerator;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.ExtendedData;
+import org.bimserver.models.store.File;
 import org.bimserver.models.store.IfcHeader;
 import org.bimserver.models.store.NewService;
+import org.bimserver.models.store.PluginBundleVersion;
+import org.bimserver.models.store.PluginDescriptor;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.Service;
@@ -62,6 +69,7 @@ import org.bimserver.models.store.User;
 import org.bimserver.notifications.NewRevisionNotification;
 import org.bimserver.plugins.deserializers.ByteProgressReporter;
 import org.bimserver.plugins.deserializers.StreamingDeserializer;
+import org.bimserver.plugins.deserializers.StreamingDeserializerPlugin;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.QueryContext;
 import org.bimserver.shared.exceptions.UserException;
@@ -75,6 +83,7 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.google.common.base.Charsets;
 
 public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction {
 
@@ -92,8 +101,9 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 	private long newServiceId;
 	private Revision newRevision;
 	private PackageMetaData packageMetaData;
+	private PluginBundleVersion pluginBundleVersion;
 
-	public StreamingCheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, String comment, String fileName, InputStream inputStream, StreamingDeserializer deserializer, long fileSize, long newServiceId) {
+	public StreamingCheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, String comment, String fileName, InputStream inputStream, StreamingDeserializer deserializer, long fileSize, long newServiceId, PluginBundleVersion pluginBundleVersion) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.poid = poid;
@@ -104,6 +114,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 		this.deserializer = deserializer;
 		this.fileSize = fileSize;
 		this.newServiceId = newServiceId;
+		this.pluginBundleVersion = pluginBundleVersion;
 	}
 
 	public HashMapVirtualObject getByOid(PackageMetaData packageMetaData, DatabaseSession databaseSession, long roid, long oid) throws JsonParseException, JsonMappingException, IOException, QueryException, BimserverDatabaseException {
@@ -183,15 +194,18 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			long newRoid = newRevision.getOid();
 			QueryContext queryContext = new QueryContext(getDatabaseSession(), packageMetaData, result.getConcreteRevision().getProject().getId(), result.getConcreteRevision().getId(), newRoid, -1); // TODO check
 			
-			if (fileSize != -1) {
-				deserializer.setProgressReporter(new ByteProgressReporter() {
-					@Override
-					public void progress(long byteNumber) {
+			AtomicLong bytesRead = new AtomicLong();
+			
+			deserializer.setProgressReporter(new ByteProgressReporter() {
+				@Override
+				public void progress(long byteNumber) {
+					bytesRead.set(byteNumber);
+					if (fileSize != -1) {
 						int perc = (int)(100.0 * byteNumber / fileSize);
 						setProgress("Deserializing...", perc);
 					}
-				});
-			}
+				}
+			});
 			
 			// This will read the full stream of objects and write to the database directly
 			long size = deserializer.read(inputStream, fileName, fileSize, queryContext);
@@ -233,7 +247,14 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 					setProgress("Generating geometry...", percentage);
 				}
 			};
-			StreamingGeometryGenerator geometryGenerator = new StreamingGeometryGenerator(bimServer, progressListener, -1L);
+			
+			GeometryGenerationReport report = new GeometryGenerationReport();
+			report.setOriginalIfcFileName(fileName);
+			report.setOriginalIfcFileSize(bytesRead.get());
+			report.setNumberOfObjects(size);
+			report.setOriginalDeserializer(pluginBundleVersion.getGroupId() + "." + pluginBundleVersion.getArtifactId() + ":" + pluginBundleVersion.getVersion());
+			
+			StreamingGeometryGenerator geometryGenerator = new StreamingGeometryGenerator(bimServer, progressListener, -1L, report);
 			setProgress("Generating geometry...", 0);
 
 			GenerateGeometryResult generateGeometry = geometryGenerator.generateGeometry(getActingUid(), getDatabaseSession(), queryContext);
@@ -333,6 +354,30 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 				concreteRevision.setClear(true);
 			}
 
+			ExtendedData extendedData = getDatabaseSession().create(ExtendedData.class);
+			File file = getDatabaseSession().create(File.class);
+			byte[] bytes = report.toHtml().getBytes(Charsets.UTF_8);
+			file.setData(bytes);
+			file.setFilename("geometrygenerationreport.html");
+			file.setMime("text/html");
+			file.setSize(bytes.length);
+			User actingUser = getUserByUoid(authorization.getUoid());
+			extendedData.setUser(actingUser);
+			extendedData.setTitle("Geometry generation report");
+			extendedData.setAdded(new Date());
+			extendedData.setSize(file.getData().length);
+			extendedData.setFile(file);
+			revision.getExtendedData().add(extendedData);
+			extendedData.setProject(revision.getProject());
+			extendedData.setRevision(revision);
+			
+			getDatabaseSession().store(file);
+			getDatabaseSession().store(extendedData);
+			
+			if (extendedData.getSchema() != null) {
+				getDatabaseSession().store(extendedData.getSchema());
+			}
+			
 			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 				@Override
 				public void execute() throws UserException {
