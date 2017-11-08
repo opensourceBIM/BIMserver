@@ -1157,8 +1157,12 @@ public class BimServer {
 		} else {
 			SInternalServicePluginConfiguration sInternalService = (SInternalServicePluginConfiguration) getSConverter().convertToSObject(internalServicePluginConfiguration);
 			
-			servicePlugin.unregister(sInternalService);
-			servicePlugin.register(uoid, sInternalService, new org.bimserver.plugins.PluginConfiguration(internalServicePluginConfiguration.getSettings()));
+			try {
+				servicePlugin.unregister(sInternalService);
+				servicePlugin.register(uoid, sInternalService, new org.bimserver.plugins.PluginConfiguration(internalServicePluginConfiguration.getSettings()));
+			} catch (Throwable e) {
+				LOGGER.error("", e);
+			}
 		}
 	}
 
