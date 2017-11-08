@@ -22,13 +22,16 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.interfaces.objects.SGeometryInfo;
 import org.bimserver.models.geometry.GeometryInfo;
-import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class GetGeometryInfoDatabaseAction extends BimDatabaseAction<SGeometryInfo> {
 
@@ -46,9 +49,15 @@ public class GetGeometryInfoDatabaseAction extends BimDatabaseAction<SGeometryIn
 	@Override
 	public SGeometryInfo execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
 		Revision revision = getDatabaseSession().get(roid, OldQuery.getDefault());
+		Project project = revision.getProject();
+		PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(project.getSchema());
 		
-		IfcProduct ifcProduct = getDatabaseSession().get(oid, new OldQuery(bimServer.getMetaDataManager().getPackageMetaData(revision.getProject().getSchema()), revision.getProject().getId(), revision.getId(), revision.getOid()));
-		GeometryInfo geometry = ifcProduct.getGeometry();
+		IdEObject ifcProduct = getDatabaseSession().get(oid, new OldQuery(packageMetaData, project.getId(), revision.getId(), revision.getOid()));
+		if (ifcProduct == null) {
+			throw new UserException("Object with oid " + oid + " not found");
+		}
+		EStructuralFeature geometryFeature = packageMetaData.getEClass("IfcProduct").getEStructuralFeature("geometry");
+		GeometryInfo geometry = (GeometryInfo) ifcProduct.eGet(geometryFeature);
 		SGeometryInfo convertToSObject = bimServer.getSConverter().convertToSObject(geometry);
 		return convertToSObject;
 	}
