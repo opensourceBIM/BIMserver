@@ -1,4 +1,4 @@
-package org.bimserver.database.migrations;
+package org.bimserver.database.migrations.change;
 
 /******************************************************************************
  * Copyright (C) 2009-2017  BIMserver.org
@@ -20,8 +20,11 @@ package org.bimserver.database.migrations;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.migrations.NotImplementedException;
+import org.bimserver.database.migrations.Schema;
 
 public interface Change {
 
 	void change(Database database, DatabaseSession databaseSession) throws NotImplementedException, BimserverDatabaseException;
+	void doSchemaChanges(Schema schema);
 }

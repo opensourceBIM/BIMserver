@@ -1,4 +1,4 @@
-package org.bimserver.database.migrations;
+package org.bimserver.database.migrations.change;
 
 /******************************************************************************
  * Copyright (C) 2009-2017  BIMserver.org
@@ -27,6 +27,8 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.KeyValueStore;
 import org.bimserver.database.Record;
 import org.bimserver.database.RecordIterator;
+import org.bimserver.database.migrations.NotImplementedException;
+import org.bimserver.database.migrations.Schema;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.slf4j.Logger;
@@ -113,5 +115,9 @@ public class NewReferenceChange implements Change {
 				LOGGER.error("", e);
 			}
 		}
+	}
+	
+	public void doSchemaChanges(Schema schema) {
+		
 	}
 }

@@ -1,5 +1,8 @@
 package org.bimserver.emf;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 /******************************************************************************
  * Copyright (C) 2009-2017  BIMserver.org
  * 
@@ -23,6 +26,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
@@ -33,22 +39,40 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MetaDataManager {
+	private static final Logger LOGGER = LoggerFactory.getLogger(MetaDataManager.class);
+	
 	private final Map<String, PackageMetaData> ePackages = new TreeMap<String, PackageMetaData>();
-	private Path tempDir;
+	private final Path tempDir;
 
 	public MetaDataManager(Path tempDir) {
 		this.tempDir = tempDir;
 	}
 	
 	public void init() {
-		addEPackage(Ifc2x3tc1Package.eINSTANCE, Schema.IFC2X3TC1);
-		addEPackage(Ifc4Package.eINSTANCE, Schema.IFC4);
-		addEPackage(GeometryPackage.eINSTANCE, Schema.GEOMETRY);
-		addEPackage(StorePackage.eINSTANCE, Schema.STORE);
-		addEPackage(LogPackage.eINSTANCE, Schema.LOG);
+		ThreadPoolExecutor executor = new ThreadPoolExecutor(Runtime.getRuntime().availableProcessors(), Runtime.getRuntime().availableProcessors(), 1, TimeUnit.HOURS, new ArrayBlockingQueue<>(5));
+
+		PrintStream oldErr = System.err;
+		System.setErr(new PrintStream(new ByteArrayOutputStream()));
 		
+		executor.submit(new PackageLoader(this, Ifc2x3tc1Package.eINSTANCE, Schema.IFC2X3TC1));
+		executor.submit(new PackageLoader(this, Ifc4Package.eINSTANCE, Schema.IFC4));
+		executor.submit(new PackageLoader(this, GeometryPackage.eINSTANCE, Schema.GEOMETRY));
+		executor.submit(new PackageLoader(this, StorePackage.eINSTANCE, Schema.STORE));
+		executor.submit(new PackageLoader(this, LogPackage.eINSTANCE, Schema.LOG));
+		
+		executor.shutdown();
+		try {
+			executor.awaitTermination(1, TimeUnit.HOURS);
+		} catch (InterruptedException e) {
+			LOGGER.error("", e);
+		}
+
+		System.setErr(oldErr);
+
 		initDependencies();
 	}
 
@@ -79,7 +103,10 @@ public class MetaDataManager {
 	}
 
 	public void addEPackage(EPackage ePackage, Schema schema) {
-		ePackages.put(ePackage.getName().toLowerCase(), new PackageMetaData(ePackage, schema, tempDir));
+		PackageMetaData packageMetaData = new PackageMetaData(ePackage, schema, tempDir);
+		synchronized (this) {
+			ePackages.put(ePackage.getName().toLowerCase(), packageMetaData);
+		}
 	}
 
 	public Collection<PackageMetaData> getAll() {

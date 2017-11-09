@@ -1,4 +1,4 @@
-package org.bimserver.database.migrations;
+package org.bimserver.database.migrations.change;
 
 /******************************************************************************
  * Copyright (C) 2009-2017  BIMserver.org
@@ -23,6 +23,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.migrations.Schema;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc4.Ifc4Package;
@@ -62,6 +63,12 @@ public class NewClassBulkChange implements Change {
 					LOGGER.error("", e);
 				}
 			}
+		}
+	}
+	
+	public void doSchemaChanges(Schema schema) {
+		for (EClass eClass : eClasses) {
+			schema.addEClass(eClass);
 		}
 	}
 }

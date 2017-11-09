@@ -1,4 +1,4 @@
-package org.bimserver.database.migrations;
+package org.bimserver.database.migrations.change;
 
 /******************************************************************************
  * Copyright (C) 2009-2017  BIMserver.org
@@ -26,6 +26,8 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.KeyValueStore;
 import org.bimserver.database.Record;
 import org.bimserver.database.RecordIterator;
+import org.bimserver.database.migrations.NotImplementedException;
+import org.bimserver.database.migrations.Schema;
 import org.bimserver.emf.PackageMetaData;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -97,5 +99,9 @@ public class NewAttributeChange implements Change {
 				LOGGER.error("", e);
 			}
 		}
+	}
+	
+	public void doSchemaChanges(Schema schema) {
+		
 	}
 }

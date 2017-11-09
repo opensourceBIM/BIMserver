@@ -1,4 +1,4 @@
-package org.bimserver.database.migrations;
+package org.bimserver.database.migrations.change;
 
 /******************************************************************************
  * Copyright (C) 2009-2017  BIMserver.org
@@ -19,6 +19,7 @@ package org.bimserver.database.migrations;
 
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.migrations.Schema;
 import org.eclipse.emf.ecore.EPackage;
 
 public class NewPackageChange implements Change {
@@ -28,5 +29,9 @@ public class NewPackageChange implements Change {
 
 	@Override
 	public void change(Database database, DatabaseSession databaseSession) {
+	}
+	
+	public void doSchemaChanges(Schema schema) {
+		
 	}
 }

@@ -30,6 +30,14 @@ import java.util.TreeMap;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.migrations.change.AddIndexChange;
+import org.bimserver.database.migrations.change.Change;
+import org.bimserver.database.migrations.change.NewAttributeChange;
+import org.bimserver.database.migrations.change.NewClassBulkChange;
+import org.bimserver.database.migrations.change.NewClassChange;
+import org.bimserver.database.migrations.change.NewEnumChange;
+import org.bimserver.database.migrations.change.NewPackageChange;
+import org.bimserver.database.migrations.change.NewReferenceChange;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
@@ -53,7 +61,7 @@ import org.slf4j.LoggerFactory;
 public class Schema {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Schema.class);
 	private final Map<String, EPackage> packages = new TreeMap<String, EPackage>();
-	private final Map<EClass, Set<EClass>> directSubClasses = new HashMap<EClass, Set<EClass>>();
+//	private final Map<EClass, Set<EClass>> directSubClasses = new HashMap<EClass, Set<EClass>>();
 	private final Map<EClass, Set<EClass>> indirectSubClasses = new HashMap<EClass, Set<EClass>>();
 	
 	private final Set<Change> changes = new LinkedHashSet<Change>();
@@ -63,31 +71,31 @@ public class Schema {
 		MANY
 	}
 
-	private void initSubClasses() {
-		for (EPackage ePackage : packages.values()) {
-			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
-				if (eClassifier instanceof EClass) {
-					EClass eClass = (EClass) eClassifier;
-					initDirectSubClasses(eClass);
-					initIndirectSubClasses(eClass);
-				}
-			}
-		}
-	}
+//	private void initSubClasses() {
+//		for (EPackage ePackage : packages.values()) {
+//			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+//				if (eClassifier instanceof EClass) {
+//					EClass eClass = (EClass) eClassifier;
+////					initDirectSubClasses(eClass);
+//					initIndirectSubClasses(eClass);
+//				}
+//			}
+//		}
+//	}
 
-	private void initDirectSubClasses(EClass eClass) {
-		HashSet<EClass> set = new HashSet<EClass>();
-		directSubClasses.put(eClass, set);
-		set.add(eClass);
-		for (EClassifier eClassifier : eClass.getEPackage().getEClassifiers()) {
-			if (eClassifier instanceof EClass) {
-				EClass e = (EClass) eClassifier;
-				if (e.getESuperTypes().contains(eClass)) {
-					set.add(e);
-				}
-			}
-		}
-	}
+//	private void initDirectSubClasses(EClass eClass) {
+//		HashSet<EClass> set = new HashSet<EClass>();
+//		directSubClasses.put(eClass, set);
+//		set.add(eClass);
+//		for (EClassifier eClassifier : eClass.getEPackage().getEClassifiers()) {
+//			if (eClassifier instanceof EClass) {
+//				EClass e = (EClass) eClassifier;
+//				if (e.getESuperTypes().contains(eClass)) {
+//					set.add(e);
+//				}
+//			}
+//		}
+//	}
 
 	public Set<EPackage> getEPackages() {
 		return new HashSet<EPackage>(packages.values());
@@ -225,10 +233,11 @@ public class Schema {
 
 	public void upgradeDatabase(Database database, int version, DatabaseSession databaseSession) {
 		LOGGER.info("Upgrading database to version " + version);
-		initSubClasses();
+//		initSubClasses();
 		for (Change change : changes) {
 			try {
 				change.change(database, databaseSession);
+				change.doSchemaChanges(this);
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}
@@ -290,7 +299,7 @@ public class Schema {
 		changes.add(new NewClassBulkChange(ePackage, newClasses));
 	}
 
-	public void addEClass(EClass eClass) {
+	public void addEClassChange(EClass eClass) {
 		changes.add(new NewClassChange(eClass));
 	}
 
@@ -333,5 +342,9 @@ public class Schema {
 
 	public EReference createEReference(EClass eClass, String name, EClass referencedClass) {
 		return createEReference(eClass, name, referencedClass, Multiplicity.SINGLE);
+	}
+
+	public void addEClass(EClass eClass) {
+		initIndirectSubClasses(eClass);
 	}
 }

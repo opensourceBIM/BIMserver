@@ -189,7 +189,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		return true;
 	}
 	
-	public boolean openTable(String tableName, boolean transactional) throws BimserverDatabaseException {
+	public boolean openTable(DatabaseSession databaseSession, String tableName, boolean transactional) throws BimserverDatabaseException {
 		if (tables.containsKey(tableName)) {
 			throw new BimserverDatabaseException("Table " + tableName + " already opened");
 		}
@@ -210,7 +210,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 		return true;
 	}
 
-	public void openIndexTable(String tableName, boolean transactional) throws BimserverDatabaseException {
+	public void openIndexTable(DatabaseSession databaseSession, String tableName, boolean transactional) throws BimserverDatabaseException {
 		if (tables.containsKey(tableName)) {
 			throw new BimserverDatabaseException("Table " + tableName + " already opened");
 		}
