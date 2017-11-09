@@ -50,7 +50,7 @@ public class QueryObjectProvider implements ObjectProvider {
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
 	// So far 10000000 has proven to not be enough for some legit IFC files
-	private static final int MAX_STACK_FRAMES_PROCESSED = 100000000;
+	private static final int MAX_STACK_FRAMES_PROCESSED = 1000000000;
 	
 	// So far 100000 has proven to not be enough for some legit IFC files
 	private static final int MAX_STACK_SIZE = 1000000;
@@ -138,7 +138,7 @@ public class QueryObjectProvider implements ObjectProvider {
 				stackFramesProcessed++;
 				if (stackFramesProcessed > MAX_STACK_FRAMES_PROCESSED) {
 					dumpEndQuery();
-					throw new BimserverDatabaseException("Too many stack frames processed ( > " + MAX_STACK_FRAMES_PROCESSED + "), probably a bug, please report");
+					throw new BimserverDatabaseException("Too many stack frames processed ( > " + MAX_STACK_FRAMES_PROCESSED + "), probably a bug, or possibly a very large model, please report");
 				}
 				boolean done = stackFrame.process();
 				stackFrame.setDone(done);
