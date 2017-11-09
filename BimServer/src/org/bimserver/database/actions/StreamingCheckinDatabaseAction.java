@@ -30,7 +30,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.apache.http.entity.ByteArrayEntity;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.GenerateGeometryResult;
@@ -61,7 +60,6 @@ import org.bimserver.models.store.File;
 import org.bimserver.models.store.IfcHeader;
 import org.bimserver.models.store.NewService;
 import org.bimserver.models.store.PluginBundleVersion;
-import org.bimserver.models.store.PluginDescriptor;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.Service;
@@ -69,7 +67,6 @@ import org.bimserver.models.store.User;
 import org.bimserver.notifications.NewRevisionNotification;
 import org.bimserver.plugins.deserializers.ByteProgressReporter;
 import org.bimserver.plugins.deserializers.StreamingDeserializer;
-import org.bimserver.plugins.deserializers.StreamingDeserializerPlugin;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.QueryContext;
 import org.bimserver.shared.exceptions.UserException;
@@ -225,8 +222,8 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			ByteBuffer buffer = ByteBuffer.allocate(8 * s);
 			buffer.order(ByteOrder.LITTLE_ENDIAN);
 			for (EClass eClass : eClasses) {
-				long oid = startOids.get(eClass);
 				if (!DatabaseSession.perRecordVersioning(eClass)) {
+					long oid = startOids.get(eClass);
 					oidCounters.put(eClass, oid);
 					buffer.putLong(oid);
 				}
@@ -269,7 +266,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			setProgress("Doing other stuff...", -1);
 			
 			eClasses = deserializer.getSummaryMap().keySet();
-			s = 2;
+			s = (startOids.containsKey(GeometryPackage.eINSTANCE.getGeometryInfo()) && startOids.containsKey(GeometryPackage.eINSTANCE.getGeometryData())) ? 2 : 0;
 			for (EClass eClass : eClasses) {
 				if (!DatabaseSession.perRecordVersioning(eClass)) {
 					s++;
@@ -283,8 +280,11 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 					buffer.putLong(oid);
 				}
 			}
-			buffer.putLong(startOids.get(GeometryPackage.eINSTANCE.getGeometryInfo()));
-			buffer.putLong(startOids.get(GeometryPackage.eINSTANCE.getGeometryData()));
+			
+			if (startOids.containsKey(GeometryPackage.eINSTANCE.getGeometryInfo()) && startOids.containsKey(GeometryPackage.eINSTANCE.getGeometryData())) {
+				buffer.putLong(startOids.get(GeometryPackage.eINSTANCE.getGeometryInfo()));
+				buffer.putLong(startOids.get(GeometryPackage.eINSTANCE.getGeometryData()));
+			}
 			
 			concreteRevision = result.getConcreteRevision();
 			concreteRevision.setOidCounters(buffer.array());
