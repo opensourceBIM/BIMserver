@@ -46,7 +46,7 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 	 * @param guid
 	 * @return An object of a subclass of IfcRoot, or null if the object does not exist in this model
 	 */
-	IfcRoot getByGuid(String guid);
+	IdEObject getByGuid(String guid);
 
 	/**
 	 * Retrieve an object by its name

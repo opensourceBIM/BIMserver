@@ -314,12 +314,12 @@ public class RevisionMerger {
 		for (IdEObject idEObject : newModel.getValues()) {
 			if (idEObject instanceof IfcRoot) {
 				String guid = ((IfcRoot) idEObject).getGlobalId();
-				IfcRoot oldObject = resultModel.getByGuid(guid);
+				IfcRoot oldObject = (IfcRoot) resultModel.getByGuid(guid);
 				for (EReference eReference : idEObject.eClass().getEAllReferences()) {
 					Object referencedObject = idEObject.eGet(eReference);
 					if (referencedObject instanceof IfcRoot) {
 						String referencedGuid = ((IfcRoot) referencedObject).getGlobalId();
-						IfcRoot newObject = resultModel.getByGuid(referencedGuid);
+						IfcRoot newObject = (IfcRoot) resultModel.getByGuid(referencedGuid);
 						oldObject.eSet(eReference, newObject);
 //						LOGGER.info("Fixing reference from " + guid + " to " + referencedGuid);
 					} else if (referencedObject instanceof List) {
@@ -346,7 +346,7 @@ public class RevisionMerger {
 				String guid = ifcRoot.getGlobalId();
 				if (resultModel.containsGuid(guid)) {
 //					LOGGER.info("Updating attributes for object " + idEObject.eClass().getName() + " " + guid);
-					IfcRoot oldObject = resultModel.getByGuid(guid);
+					IfcRoot oldObject = (IfcRoot) resultModel.getByGuid(guid);
 					for (EAttribute eAttribute : idEObject.eClass().getEAllAttributes()) {
 						Object newValue = idEObject.eGet(eAttribute);
 						oldObject.eSet(eAttribute, newValue);
