@@ -24,11 +24,13 @@
          "fields": [
             "WorldCoordinateSystem",
             "TrueNorth"
-         ]
+         ],
+         "includes": ["IfcAxis2Placement3D"]
       },
       "IfcGeometricRepresentationSubContext": {
          "type": "IfcGeometricRepresentationSubContext",
-         "field": "ParentContext"
+         "field": "ParentContext",
+         "include": "IfcGeometricRepresentationContext"
       },
       "IfcAnnotationContainedInStructure": {
          "type": "IfcAnnotation",
@@ -475,7 +477,8 @@
             "IfcTextLiteralWithExtent",
             "IfcGeometricCurveSet",
             "IfcTrimmedCurve",
-            "IfcFaceBasedSurfaceModel"
+            "IfcFaceBasedSurfaceModel",
+            "IfcRevolvedAreaSolid"
          ]
       },
       "IfcShapeRepresentation": {
@@ -497,7 +500,8 @@
             "IfcTextLiteralWithExtent",
             "IfcGeometricCurveSet",
             "IfcTrimmedCurve",
-            "IfcFaceBasedSurfaceModel"
+            "IfcFaceBasedSurfaceModel",
+            "IfcRevolvedAreaSolid"
          ]
       },
       "IfcFaceBasedSurfaceModel": {
@@ -605,6 +609,22 @@
             "IfcOffsetCurve3D"
          ]
       },
+      "IfcAxis1Placement": {
+        "type": "IfcAxis1Placement",
+      	"fields": ["Axis", "Location"],
+      	"includes": ["IfcDirection", "IfcCartesianPoint"]
+      },
+   	  "IfcRevolvedAreaSolid": {
+	    "type": "IfcRevolvedAreaSolid",
+	    "fields": ["SweptArea", "Position", "Axis"],
+	    "includes": [
+	    	"IfcArbitraryClosedProfileDef",
+            "IfcArbitraryProfileDefWithVoids",
+            "IfcParameterizedProfileDef",
+	    	"IfcAxis2Placement3D",
+	    	"IfcAxis1Placement"
+	    ]
+	  },
       "IfcHalfSpaceSolid": {
          "type": "IfcHalfSpaceSolid",
          "fields": [
@@ -682,25 +702,32 @@
       },
       "RelativePlacement": {
          "type": "IfcLocalPlacement",
-         "field": "PlacementRelTo",
+         "fields": ["PlacementRelTo", "RelativePlacement"],
          "includes": [
             "RelativePlacement",
             {
+              "type": "IfcAxis2Placement3D",
+                  "fields": [
+                     "Location",
+                     "Axis",
+                     "RefDirection"
+                  ]
+            },
+            {
                "type": "IfcLocalPlacement",
-               "field": "RelativePlacement",
-               "includes": [
-                  "RelativePlacement", {
-	                  "type": "IfcAxis2Placement3D",
-	                  "fields": [
-	                     "Location",
-	                     "Axis",
-	                     "RefDirection"
-	                  ]
+               "fields": ["RelativePlacement", "PlacementRelTo"],
+               "includes": ["RelativePlacement", {
+                  "type": "IfcAxis2Placement3D",
+                  "fields": [
+                     "Location",
+                     "Axis",
+                     "RefDirection"
+                  ]
                }]
             }
          ]
       },
-      "ObjectPlacement": {
+       "ObjectPlacement": {
          "type": "IfcProduct",
          "field": "ObjectPlacement",
          "includes": [
