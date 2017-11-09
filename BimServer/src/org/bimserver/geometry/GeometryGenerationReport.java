@@ -18,6 +18,7 @@ import org.bimserver.utils.Formatters;
 
 public class GeometryGenerationReport {
 
+	private static final String REPORT_VERSION = "1.0";
 	private String renderEngineName;
 	private String renderEngineVersion;
 	private String renderEnginePluginVersion;
@@ -88,7 +89,7 @@ public class GeometryGenerationReport {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
 		
 		StringBuilder builder = new StringBuilder();
-		builder.append("<h1>BIMserver geometry generation report</h1>");
+		builder.append("<h1>BIMserver geometry generation report (v" + REPORT_VERSION + ")</h1>");
 		
 		builder.append("<h3>Render engine</h3>");
 		builder.append("<table><tbody>");
