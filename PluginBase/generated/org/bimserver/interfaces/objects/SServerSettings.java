@@ -63,6 +63,7 @@ public class SServerSettings implements SDataBase
 	private java.lang.String icon;
 	private boolean storeLastLogin;
 	private boolean storeServiceRuns;
+	private boolean optimizeMappedItems;
 
 	public long getOid() {
 		return this.oid;
@@ -185,6 +186,9 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("storeServiceRuns")) {
 			return isStoreServiceRuns();
+		}
+		if (sField.getName().equals("optimizeMappedItems")) {
+			return isOptimizeMappedItems();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -323,6 +327,10 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("storeServiceRuns")) {
 			setStoreServiceRuns((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("optimizeMappedItems")) {
+			setOptimizeMappedItems((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -591,6 +599,14 @@ public class SServerSettings implements SDataBase
 
 	public void setStoreServiceRuns(boolean storeServiceRuns) {
 		this.storeServiceRuns = storeServiceRuns;
+	}
+	
+	public boolean isOptimizeMappedItems() {
+		return optimizeMappedItems;
+	}
+
+	public void setOptimizeMappedItems(boolean optimizeMappedItems) {
+		this.optimizeMappedItems = optimizeMappedItems;
 	}
 	
 	@Override

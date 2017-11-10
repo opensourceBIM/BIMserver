@@ -43,6 +43,9 @@ public class RevisionStackFrame extends StackFrame {
 
 	@Override
 	public boolean process() {
+		if (!concreteRevisionIterator.hasNext()) {
+			return true;
+		}
 		queryObjectProvider.push(new ConcreteRevisionStackFrame(queryObjectProvider, this.concreteRevisionIterator.next()));
 		if (concreteRevisionIterator.hasNext()) {
 			return false;

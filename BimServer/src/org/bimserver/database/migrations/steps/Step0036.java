@@ -1,4 +1,4 @@
-package org.bimserver.database.queries;
+package org.bimserver.database.migrations.steps;
 
 /******************************************************************************
  * Copyright (C) 2009-2017  BIMserver.org
@@ -17,32 +17,20 @@ package org.bimserver.database.queries;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import java.io.IOException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.migrations.Migration;
+import org.bimserver.database.migrations.Schema;
+import org.eclipse.emf.ecore.EcorePackage;
 
-import org.bimserver.BimserverDatabaseException;
-import org.bimserver.database.queries.om.QueryException;
+public class Step0036 extends Migration {
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-
-public abstract class StackFrame {
-	private boolean done = false;
-	
-	public boolean isDone() {
-		return done;
+	@Override
+	public void migrate(Schema schema, DatabaseSession databaseSession) {
+		schema.createEAttribute(schema.getEClass("store", "ServerSettings"), "optimizeMappedItems", EcorePackage.eINSTANCE.getEBoolean());
 	}
-	
-	public void setDone(boolean done) {
-		this.done = done;
+
+	@Override
+	public String getDescription() {
+		return "Added optimizeMappedItems setting";
 	}
-	
-	/**
-	 * @return True when it's done
-	 * @throws BimserverDatabaseException
-	 * @throws QueryException
-	 * @throws JsonParseException
-	 * @throws JsonMappingException
-	 * @throws IOException
-	 */
-	abstract boolean process() throws BimserverDatabaseException, QueryException, JsonParseException, JsonMappingException, IOException;
 }

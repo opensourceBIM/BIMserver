@@ -64,6 +64,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getIcon <em>Icon</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isStoreLastLogin <em>Store Last Login</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isStoreServiceRuns <em>Store Service Runs</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isOptimizeMappedItems <em>Optimize Mapped Items</em>}</li>
  * </ul>
  *
  * @generated
@@ -113,8 +114,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public void setSendConfirmationEmailAfterRegistration(boolean newSendConfirmationEmailAfterRegistration) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION,
-				newSendConfirmationEmailAfterRegistration);
+		eSet(StorePackage.Literals.SERVER_SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION, newSendConfirmationEmailAfterRegistration);
 	}
 
 	/**
@@ -150,8 +150,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public void setAllowUsersToCreateTopLevelProjects(boolean newAllowUsersToCreateTopLevelProjects) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS,
-				newAllowUsersToCreateTopLevelProjects);
+		eSet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS, newAllowUsersToCreateTopLevelProjects);
 	}
 
 	/**
@@ -658,6 +657,24 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 */
 	public void setStoreServiceRuns(boolean newStoreServiceRuns) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__STORE_SERVICE_RUNS, newStoreServiceRuns);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isOptimizeMappedItems() {
+		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__OPTIMIZE_MAPPED_ITEMS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOptimizeMappedItems(boolean newOptimizeMappedItems) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__OPTIMIZE_MAPPED_ITEMS, newOptimizeMappedItems);
 	}
 
 } //ServerSettingsImpl

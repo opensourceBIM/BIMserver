@@ -60,6 +60,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ServerSettings#getIcon <em>Icon</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#isStoreLastLogin <em>Store Last Login</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#isStoreServiceRuns <em>Store Service Runs</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#isOptimizeMappedItems <em>Optimize Mapped Items</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getServerSettings()
@@ -888,5 +889,31 @@ public interface ServerSettings extends IdEObject {
 	 * @generated
 	 */
 	void setStoreServiceRuns(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Optimize Mapped Items</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Optimize Mapped Items</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Optimize Mapped Items</em>' attribute.
+	 * @see #setOptimizeMappedItems(boolean)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_OptimizeMappedItems()
+	 * @model
+	 * @generated
+	 */
+	boolean isOptimizeMappedItems();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#isOptimizeMappedItems <em>Optimize Mapped Items</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Optimize Mapped Items</em>' attribute.
+	 * @see #isOptimizeMappedItems()
+	 * @generated
+	 */
+	void setOptimizeMappedItems(boolean value);
 
 } // ServerSettings

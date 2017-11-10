@@ -92,7 +92,7 @@ public class Database implements BimDatabase {
 	 * database-schema change. Do not change this variable when nothing has
 	 * changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 35;
+	public static final int APPLICATION_SCHEMA_VERSION = 36;
 
 	public Database(BimServer bimServer, Set<? extends EPackage> emfPackages, KeyValueStore keyValueStore, MetaDataManager metaDataManager) throws DatabaseInitException {
 		this.cidToEclass = new EClass[Short.MAX_VALUE]; 
@@ -236,6 +236,7 @@ public class Database implements BimDatabase {
 		settings.getWhitelistedDomains().add("localhost");
 		settings.getWhitelistedDomains().add("localhost:8080");
 		settings.setPluginStrictVersionChecking(true);
+		settings.setOptimizeMappedItems(false);
 		return settings;
 	}
 	

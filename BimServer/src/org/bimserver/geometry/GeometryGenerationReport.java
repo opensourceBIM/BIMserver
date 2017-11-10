@@ -117,7 +117,7 @@ public class GeometryGenerationReport {
 		builder.append("<table><tbody>");
 		builder.append("<tr><td>Max objects per file</td><td>" + maxObjectsPerFile + "</td></tr>");
 		builder.append("<tr><td>Reuse geometry</td><td>" + reuseGeometry + "</td></tr>");
-		builder.append("<tr><td>Using mapping optimization</td><td>" + useMappingOptimization + "</td></tr>");
+		builder.append("<tr><td>Optimize mapped items</td><td>" + useMappingOptimization + "</td></tr>");
 		builder.append("</tbody></table>");
 		
 		builder.append("<h3>Deserializer</h3>");

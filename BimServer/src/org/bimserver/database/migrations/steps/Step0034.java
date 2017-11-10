@@ -34,7 +34,6 @@ public class Step0034 extends Migration {
 		schema.createEAttribute(vector4f, "z", EcorePackage.eINSTANCE.getEFloat());
 		schema.createEAttribute(vector4f, "w", EcorePackage.eINSTANCE.getEFloat());
 		
-		EClass geometryInfo = schema.getEClass("geometry", "GeometryInfo");
 		EClass geometryData = schema.getEClass("geometry", "GeometryData");
 
 		EReference reference = schema.createEReference(geometryData, "color", vector4f);

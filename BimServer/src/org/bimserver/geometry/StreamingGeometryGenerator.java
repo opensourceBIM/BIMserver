@@ -103,10 +103,10 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	private String renderEngineName;
 
 	private Long eoid = -1L;
-	private boolean useMapping = true;
 	private GeometryGenerationReport report;
 
 	private boolean reuseGeometry;
+	private boolean optimizeMappedItems;
 
 	public StreamingGeometryGenerator(final BimServer bimServer, ProgressListener progressListener, Long eoid, GeometryGenerationReport report) {
 		this.bimServer = bimServer;
@@ -149,11 +149,12 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		}
 		
 		reuseGeometry = bimServer.getServerSettingsCache().getServerSettings().isReuseGeometry();
+		optimizeMappedItems = bimServer.getServerSettingsCache().getServerSettings().isOptimizeMappedItems();
 		
 		report.setStart(new GregorianCalendar());
 		report.setIfcSchema(queryContext.getPackageMetaData().getSchema());
 		report.setMaxPerFile(maxObjectsPerFile);
-		report.setUseMappingOptimization(useMapping);
+		report.setUseMappingOptimization(optimizeMappedItems);
 		report.setReuseGeometry(reuseGeometry);
 
 		try {
@@ -371,13 +372,13 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 							long masterOid = map.values().iterator().next().getOid();
 							for (ProductDef pd : map.values()) {
 								done.add(pd.getOid());
-								if (!useMapping) {
+								if (!optimizeMappedItems) {
 									queryPart.addOid(pd.getOid());
 								} else {
 									pd.setMasterOid(masterOid);
 								}
 							}
-							if (useMapping) {
+							if (optimizeMappedItems) {
 								queryPart.addOid(masterOid);
 							}
 							

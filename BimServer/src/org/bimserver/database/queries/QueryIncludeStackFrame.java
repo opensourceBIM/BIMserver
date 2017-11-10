@@ -75,6 +75,9 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean process() throws BimserverDatabaseException, QueryException {
+		if (!featureIterator.hasNext()) {
+			return true;
+		}
 		feature = featureIterator.next();
 		Object value = currentObject.eGet(feature);
 		if (value != null) {
