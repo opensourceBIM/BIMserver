@@ -112,10 +112,19 @@ public class BulkUploadServlet extends SubServlet {
 										SProject project = getOrCreatePath(service, mainProject, mainProject, path);
 										SDeserializerPluginConfiguration deserializer = service.getSuggestedDeserializerForExtension(extension, project.getOid());
 										
-										service.checkin(project.getOid(), comment, deserializer.getOid(), -1L, filename, ifcFile, false, true);
+										long topicId = -1;
+										try {
+											topicId = service.checkin(project.getOid(), comment, deserializer.getOid(), -1L, filename, ifcFile, false, true);
+										} finally {
+											if (topicId != -1) {
+												service.cleanupLongAction(topicId);
+											}
+										}
 									}
 								} else {
-									LOGGER.info("Unknown fileextenstion " + fullfilename);
+									if (!nextEntry.isDirectory()) {
+										LOGGER.info("Unknown fileextenstion " + fullfilename);
+									}
 								}
 								nextEntry = zipInputStream.getNextEntry();
 							}
