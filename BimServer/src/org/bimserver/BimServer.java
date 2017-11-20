@@ -53,7 +53,6 @@ import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.database.berkeley.BerkeleyKeyValueStore;
-import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.query.conditions.AttributeCondition;

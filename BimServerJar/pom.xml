@@ -19,6 +19,13 @@
 				</includes>
 			</resource>
 			<resource>
+				<directory>./deploy</directory>
+				<includes>
+					<include>logback.xml</include>
+				</includes>
+				<targetPath>./</targetPath>
+			</resource>
+			<resource>
 				<directory>..</directory>
 				<includes>
 					<include>pom.xml</include>
