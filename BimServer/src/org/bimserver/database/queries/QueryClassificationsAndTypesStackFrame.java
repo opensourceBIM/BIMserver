@@ -36,10 +36,7 @@ import org.bimserver.plugins.deserializers.DatabaseInterface;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.QueryContext;
 import org.bimserver.utils.BinUtils;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.*;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -60,14 +57,15 @@ public class QueryClassificationsAndTypesStackFrame extends DatabaseReadingStack
 		this.classifications = classifications;
 
 		DatabaseSession databaseSession = getQueryObjectProvider().getDatabaseSession();
-		
-		EClass classificationReferenceClass = databaseSession.getEClass("ifc2x3tc1", "IfcClassificationReference");
-		EClass relAssociatesClassificationReferenceClass = databaseSession.getEClass("ifc2x3tc1", "IfcRelAssociatesClassification");
+	  String schemaName = eClass.getEPackage().getName();
+		EClass classificationReferenceClass = databaseSession.getEClass(schemaName, "IfcClassificationReference");
+		EClass relAssociatesClassificationReferenceClass = databaseSession.getEClass(schemaName, "IfcRelAssociatesClassification");
+    EStructuralFeature classificationKeyFeature = classificationReferenceClass.getEStructuralFeature(1); // renamed from "ItemReference" in IFC2x3 to "Identification" in IFC4
 		for (String classification : classifications) {
-			List<ObjectIdentifier> objectIdentifiers = getOids(classificationReferenceClass, classificationReferenceClass.getEStructuralFeature("ItemReference"), classification, databaseSession, reusable.getPid(), reusable.getRid());
+			List<ObjectIdentifier> objectIdentifiers = getOids(classificationReferenceClass, classificationKeyFeature, classification, databaseSession, reusable.getPid(), reusable.getRid());
 			for (ObjectIdentifier objectIdentifier : objectIdentifiers) {
 				// Now we need to get all the IfcRelAssociatesClassification objects referencing this one
-				List<ObjectIdentifier> relAssociates = getOids(relAssociatesClassificationReferenceClass, (EReference) relAssociatesClassificationReferenceClass.getEStructuralFeature("RelatingClassification"), objectIdentifier.getOid(), databaseSession, reusable.getPid(), reusable.getRid());
+				List<ObjectIdentifier> relAssociates = getOids(relAssociatesClassificationReferenceClass, relAssociatesClassificationReferenceClass.getEStructuralFeature("RelatingClassification"), objectIdentifier.getOid(), databaseSession, reusable.getPid(), reusable.getRid());
 				for (ObjectIdentifier objectIdentifier2 : relAssociates) {
 					HashMapVirtualObject relAssociatesClassification = getByOid(objectIdentifier2.getOid());
 					List<Long> relatedObjects = (List<Long>) relAssociatesClassification.eGet(relAssociatesClassificationReferenceClass.getEStructuralFeature("RelatedObjects"));

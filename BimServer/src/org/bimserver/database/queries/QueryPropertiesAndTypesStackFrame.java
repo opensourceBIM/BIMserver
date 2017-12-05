@@ -30,7 +30,7 @@ import org.bimserver.database.Record;
 import org.bimserver.database.SearchingRecordIterator;
 import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;
-import org.bimserver.models.ifc2x3tc1.Tristate;
+import org.eclipse.emf.common.util.Enumerator;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.HashMapWrappedVirtualObject;
 import org.bimserver.shared.QueryContext;
@@ -121,8 +121,8 @@ public class QueryPropertiesAndTypesStackFrame extends DatabaseReadingStackFrame
 										if (queryPropertyName.equals(name)) {
 											Object wrappedValue = value.eGet(value.eClass().getEStructuralFeature("wrappedValue"));
 											if (value.eClass().getName().equals("IfcBoolean")) {
-												Tristate tristate = (Tristate)wrappedValue;
-												if (tristate.name().toLowerCase().equals(queryPropertyValue.toString())) {
+												Enumerator tristate = (Enumerator)wrappedValue;
+												if (tristate.getName().toLowerCase().equals(queryPropertyValue.toString())) {
 													propertyKeysMatched.add(queryPropertyName);
 												}
 											} else if (wrappedValue.equals(queryPropertyValue)) {
@@ -146,3 +146,4 @@ public class QueryPropertiesAndTypesStackFrame extends DatabaseReadingStackFrame
 		return false;
 	}
 }
+
