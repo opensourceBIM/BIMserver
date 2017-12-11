@@ -700,6 +700,7 @@
             "SecondOperand"
          ],
          "includes": [
+         	"IfcRepresentationItem",
             "IfcBooleanResult",
             "IfcPolygonalBoundedHalfSpace",
             "IfcExtrudedAreaSolid",
