@@ -45,7 +45,7 @@ import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
-import org.bimserver.models.ifc2x3tc1.IfcProduct;
+import org.bimserver.emf.IdEObject;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.Flow;
 import org.bimserver.plugins.services.Geometry;
@@ -409,7 +409,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	}
 
 	@Override
-	public Geometry getGeometry(long roid, IfcProduct ifcProduct) {
+	public Geometry getGeometry(long roid, IdEObject ifcProduct) {
 		try {
 			SSerializerPluginConfiguration serializerByPluginClassName = getPluginInterface().getSerializerByPluginClassName("org.bimserver.serializers.binarygeometry.BinaryGeometrySerializerPlugin");
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

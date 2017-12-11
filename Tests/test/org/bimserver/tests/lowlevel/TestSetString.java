@@ -39,7 +39,7 @@ public class TestSetString extends TestWithEmbeddedServer {
 			IfcModelInterface model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), false, false);
 			long tid = lowLevelInterface.startTransaction(newProject.getOid());
 			
-			IfcRoot wall = model.getByGuid("3Ep4r0uuX5ywPYOUG2H2A4");
+			IfcRoot wall = (IfcRoot) model.getByGuid("3Ep4r0uuX5ywPYOUG2H2A4");
 			
 			bimServerClient.getLowLevelInterface().setStringAttribute(tid, wall.getOid(), "Name", "Test 12345");
 			

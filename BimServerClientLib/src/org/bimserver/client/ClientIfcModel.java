@@ -34,9 +34,6 @@ import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.geometry.GeometryPackage;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc2x3tc1.IfcProduct;
-import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.plugins.ObjectAlreadyExistsException;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.serializers.SerializerInputstream;
@@ -302,9 +299,11 @@ public class ClientIfcModel extends IfcModel {
 			QueryPart queryPart = query.createQueryPart();
 
 			Map<Long, Long> geometryInfoOidToOid = new HashMap<>();
-			
-			for (IfcProduct ifcProduct : super.getAllWithSubTypes(IfcProduct.class)) {
-				GeometryInfo geometry = ifcProduct.getGeometry();
+
+      EClass ifcProductClass = getPackageMetaData().getEClass("IfcProduct");
+      EStructuralFeature geometryFeature = ifcProductClass.getEStructuralFeature("geometry");
+			for (IdEObject ifcProduct : super.getAllWithSubTypes(ifcProductClass)) {
+				GeometryInfo geometry = (GeometryInfo) ifcProduct.eGet(geometryFeature);
 				if (geometry != null) {
 					if (geometry.getData() == null || geometry.getData().getIndices() == null) {
 						queryPart.addOid(geometry.getOid());
@@ -312,7 +311,7 @@ public class ClientIfcModel extends IfcModel {
 					}
 				}
 			}
-			
+
 			if (queryPart.getOids() == null) {
 				return;
 			}
@@ -392,8 +391,10 @@ public class ClientIfcModel extends IfcModel {
 					if (ifcProductOid == null) {
 						throw new GeometryException("Missing geometry info id: " + geometryInfoOid);
 					}
-					IfcProduct ifcProduct = (IfcProduct) get(ifcProductOid);
-					ifcProduct.setGeometry(geometryInfo);
+					IdEObject ifcProduct = get(ifcProductOid);
+
+          EStructuralFeature geometryFeature = getPackageMetaData().getEClass("IfcProduct").getEStructuralFeature("geometry");
+          ifcProduct.eSet(geometryFeature, geometryInfo);
 					
 					org.bimserver.models.geometry.Vector3f minBounds = GeometryFactory.eINSTANCE.createVector3f();
 					minBounds.setX(dataInputStream.readDouble());
@@ -443,7 +444,7 @@ public class ClientIfcModel extends IfcModel {
 						dataInputStream.readFloat();
 						dataInputStream.readFloat();
 					}
-					
+
 					int nrVertices = dataInputStream.readInt();
 					byte[] vertices = new byte[nrVertices * 4];
 					dataInputStream.readFully(vertices);
@@ -509,7 +510,7 @@ public class ClientIfcModel extends IfcModel {
 				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
 				
 				waitForDonePreparing(topicId);
-				
+
 				processDownload(topicId);
 				bimServerClient.getServiceInterface().cleanupLongAction(topicId);
 
@@ -541,7 +542,6 @@ public class ClientIfcModel extends IfcModel {
 			e.printStackTrace();
 		}
 		return result;
-
 	}
 
 	@Override
@@ -648,7 +648,7 @@ public class ClientIfcModel extends IfcModel {
 					include.addType(eClass, true);
 					include.addField("geometry");
 				}
-				
+
 				JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
 				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
 				
@@ -700,8 +700,8 @@ public class ClientIfcModel extends IfcModel {
 	}
 
 	@Override
-	public IfcRoot getByGuid(String guid) {
-		IfcRoot idEObject = super.getByGuid(guid);
+	public IdEObject getByGuid(String guid) {
+		IdEObject idEObject = super.getByGuid(guid);
 		if (idEObject == null) {
 			try {
 				modelState = ModelState.LOADING;
@@ -728,7 +728,7 @@ public class ClientIfcModel extends IfcModel {
 	}
 
 	public <T extends IdEObject> T create(Class<T> clazz) throws IfcModelInterfaceException, ObjectAlreadyExistsException {
-		EClassifier eClassifier = Ifc2x3tc1Package.eINSTANCE.getEClassifier(clazz.getSimpleName());
+		EClassifier eClassifier = getPackageMetaData().getEPackage().getEClassifier(clazz.getSimpleName());
 		if (eClassifier == null) {
 			eClassifier = GeometryPackage.eINSTANCE.getEClassifier(clazz.getSimpleName());
 		}

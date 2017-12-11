@@ -195,7 +195,7 @@ public class SharedJsonDeserializer {
 								embedded = true;
 								featureName = featureName.substring(2);
 							}
-							
+
 							EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(featureName);
 							if (eStructuralFeature == null) {
 								throw new DeserializeException("Unknown field (" + featureName + ") on class " + eClass.getName());
@@ -239,7 +239,7 @@ public class SharedJsonDeserializer {
 											if (peek == JsonToken.NUMBER) {
 												long refOid = jsonReader.nextLong();
 												processRef(model, waitingList, object, eStructuralFeature, index, list, refOid);
-											} else {
+											} else { // TODO: another case for two-dimensional arrays
 												jsonReader.beginObject();
 												String nextName = jsonReader.nextName();
 												if (nextName.equals("_t")) {
@@ -275,7 +275,7 @@ public class SharedJsonDeserializer {
 												if (jsonReader.nextName().equals("_t")) {
 													String refType = jsonReader.nextString();
 													EClass referenceEClass = model.getPackageMetaData().getEClassIncludingDependencies(refType);
-													
+
 													if (model.getNoFetch(refOid) != null) {
 														processRef(model, waitingList, object, eStructuralFeature, index, list, refOid);
 													} else {

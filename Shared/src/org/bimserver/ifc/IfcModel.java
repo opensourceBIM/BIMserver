@@ -17,20 +17,9 @@ package org.bimserver.ifc;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.function.Predicate;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
@@ -644,7 +633,7 @@ public abstract class IfcModel implements IfcModelInterface {
 		objects.put(object.getOid(), object);
 	}
 	
-	public IfcRoot getByGuid(String guid) {
+	public IdEObject getByGuid(String guid) {
 		if (guidIndexed == null) {
 			indexGuids();
 		}
@@ -983,77 +972,43 @@ public abstract class IfcModel implements IfcModelInterface {
 	@Override
 	public void fixInverseMismatches() {
 		int nrFixes = 0;
-		for (IfcRelContainedInSpatialStructure ifcRelContainedInSpatialStructure : new ArrayList<>(getAll(IfcRelContainedInSpatialStructure.class))) {
-			for (IfcProduct ifcProduct : new ArrayList<>(ifcRelContainedInSpatialStructure.getRelatedElements())) {
-				if (ifcProduct instanceof IfcElement) {
-					IfcElement ifcElement = (IfcElement)ifcProduct;
-					ifcElement.getContainedInStructure().add(ifcRelContainedInSpatialStructure);
-					nrFixes++;
-				} else if (ifcProduct instanceof IfcAnnotation) {
-					IfcAnnotation ifcAnnotation = (IfcAnnotation)ifcProduct;
-					ifcAnnotation.getContainedInStructure().add(ifcRelContainedInSpatialStructure);
-					nrFixes++;
-				} else if (ifcProduct instanceof IfcGrid) {
-					IfcGrid ifcGrid = (IfcGrid)ifcProduct;
-					ifcGrid.getContainedInStructure().add(ifcRelContainedInSpatialStructure);
-					nrFixes++;
+		Fix[] fixes = new Fix[]{
+			new Fix("IfcRelContainedInSpatialStruture", "relatedElements", "containedInStructure", new String[]{"IfcElement", "IfcAnnotation", "IfcGrid"}),
+			new Fix("IfcPresentationLayerAssignment", "assignedItems", "layerAssignments", new String[]{"IfcRepresentation", "IfcRepresentationItem"}),
+			new Fix("IfcRelAssociates", "relatedObjects", "hasAssociations", new String[]{"IfcObjectDefinition", "IfcPropertyDefinition"}),
+			new Fix("IfcTerminatorSymbol", "annotatedCurve", "annotatedBySymbol", new String[]{"IfcDimensionCurve"}),
+			new Fix("IfcRelReferencedInSpatialStructure", "relatedElements", "referencedInStructure", new String[]{"IfcElement"}),
+			new Fix("IfcProduct", "representation", "shapeOfProduct", new String[]{"IfcProductDefinitionShape"}),
+			new Fix("IfcRelConnectsStructuralActivity", "relatingElement", "assignedStructuralActivity", new String[]{"IfcStructuralItem"})
+		};
+		for(Fix fix : fixes) {
+			EClass relationClass = getPackageMetaData().getEClass(fix.relation);
+			for (IdEObject relation : getAllWithSubTypes(relationClass)) {
+				EStructuralFeature attribute = relationClass.getEStructuralFeature(fix.attribute);
+				if(attribute.isMany()) for (IdEObject related : (EList<? extends IdEObject>) relation.eGet(attribute)) {
+					if (isInstanceOfAnyOf(related, fix.subclasses)) {
+						((EList<IdEObject>) related.eGet(related.eClass().getEStructuralFeature(fix.inverse))).add(relation);
+						nrFixes++;
+					}
+				} else {
+					if (isInstanceOfAnyOf((IdEObject) relation.eGet(attribute), fix.subclasses)){
+						((EList<IdEObject>) relation.eGet(relation.eClass().getEStructuralFeature(fix.inverse))).add(relation);
+						nrFixes++;
+					}
 				}
-			}
-		}
-		for (IfcPresentationLayerAssignment ifcPresentationLayerAssignment : new ArrayList<>(getAllWithSubTypes(IfcPresentationLayerAssignment.class))) {
-			for (IfcLayeredItem ifcLayeredItem : new ArrayList<>(ifcPresentationLayerAssignment.getAssignedItems())) {
-				if (ifcLayeredItem instanceof IfcRepresentation) {
-					IfcRepresentation ifcRepresentation = (IfcRepresentation)ifcLayeredItem;
-					ifcRepresentation.getLayerAssignments().add(ifcPresentationLayerAssignment);
-					nrFixes++;
-				} else if (ifcLayeredItem instanceof IfcRepresentationItem) {
-					IfcRepresentationItem ifcRepresentationItem = (IfcRepresentationItem)ifcLayeredItem;
-					ifcRepresentationItem.getLayerAssignments().add(ifcPresentationLayerAssignment);
-					nrFixes++;
-				}
-			}
-		}
-		for (IfcRelAssociates ifcRelAssociates : new ArrayList<>(getAllWithSubTypes(IfcRelAssociates.class))) {
-			for (IfcRoot ifcRoot : new ArrayList<>(ifcRelAssociates.getRelatedObjects())) {
-				if (ifcRoot instanceof IfcObjectDefinition) {
-					((IfcObjectDefinition)ifcRoot).getHasAssociations().add(ifcRelAssociates);
-					nrFixes++;
-				} else if (ifcRoot instanceof IfcPropertyDefinition) {
-					((IfcPropertyDefinition)ifcRoot).getHasAssociations().add(ifcRelAssociates);
-					nrFixes++;
-				}
-			}
-		}
-		for (IfcTerminatorSymbol ifcTerminatorSymbol : new ArrayList<>(getAllWithSubTypes(IfcTerminatorSymbol.class))) {
-			IfcAnnotationCurveOccurrence ifcAnnotationCurveOccurrence = ifcTerminatorSymbol.getAnnotatedCurve();
-			if (ifcAnnotationCurveOccurrence instanceof IfcDimensionCurve) {
-				((IfcDimensionCurve)ifcAnnotationCurveOccurrence).getAnnotatedBySymbols().add(ifcTerminatorSymbol);
-				nrFixes++;
-			}
-		}
-		for (IfcRelReferencedInSpatialStructure ifcRelReferencedInSpatialStructure : new ArrayList<>(getAllWithSubTypes(IfcRelReferencedInSpatialStructure.class))) {
-			for (IfcProduct ifcProduct : new ArrayList<>(ifcRelReferencedInSpatialStructure.getRelatedElements())) {
-				if (ifcProduct instanceof IfcElement) {
-					((IfcElement)ifcProduct).getReferencedInStructures().add(ifcRelReferencedInSpatialStructure);
-					nrFixes++;
-				}
-			}
-		}
-		for (IfcProduct ifcProduct : new ArrayList<>(getAllWithSubTypes(IfcProduct.class))) {
-			IfcProductRepresentation ifcProductRepresentation = ifcProduct.getRepresentation();
-			if (ifcProductRepresentation instanceof IfcProductDefinitionShape) {
-				((IfcProductDefinitionShape)ifcProductRepresentation).getShapeOfProduct().add(ifcProduct);
-				nrFixes++;
-			}
-		}
-		for (IfcRelConnectsStructuralActivity ifcRelConnectsStructuralActivity : new ArrayList<>(getAllWithSubTypes(IfcRelConnectsStructuralActivity.class))) {
-			IfcStructuralActivityAssignmentSelect ifcStructuralActivityAssignmentSelect = ifcRelConnectsStructuralActivity.getRelatingElement();
-			if (ifcStructuralActivityAssignmentSelect instanceof IfcStructuralItem) {
-				((IfcStructuralItem)ifcStructuralActivityAssignmentSelect).getAssignedStructuralActivity().add(ifcRelConnectsStructuralActivity);
-				nrFixes++;
 			}
 		}
 		LOGGER.info("Nr inverse fixes: " + nrFixes);
+	}
+
+	private boolean isInstanceOfAnyOf(IdEObject idEObject, String[] classes) {
+		return Arrays.stream(classes).anyMatch(new Predicate<String>() {
+      @Override
+      public boolean test(String s) {
+        EClass subClass = getPackageMetaData().getEClass(s);
+        return subClass.isInstance(idEObject);
+      }
+    });
 	}
 
 	@Override
@@ -1092,7 +1047,19 @@ public abstract class IfcModel implements IfcModelInterface {
 	@Override
 	public void query(ObjectNode query) {
 	}
-	
+	class Fix {
+		String relation;
+		String attribute;
+		String inverse;
+		String[] subclasses;
+		Fix(String relation, String attribute, String inverse, String[] subclasses){
+			this.relation = relation;
+			this.inverse = inverse;
+			this.subclasses = subclasses;
+		}
+
+	}
+
 	@Override
 	public <T extends IdEObject> T getFirst(Class<T> class1) {
 		return getAll(class1).iterator().next();

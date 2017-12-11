@@ -27,7 +27,7 @@ import org.bimserver.database.queries.om.Query;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.models.ifc2x3tc1.IfcProduct;
+import org.bimserver.emf.IdEObject;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ServiceHolder;
@@ -73,7 +73,7 @@ public interface BimServerClientInterface extends ServiceHolder, AutoCloseable {
 	 * @param ifcProduct
 	 * @return
 	 */
-	Geometry getGeometry(long roid, IfcProduct ifcProduct);
+	Geometry getGeometry(long roid, IdEObject ifcProduct);
 
 	AuthInterface getBimServerAuthInterface() throws PublicInterfaceNotFoundException;
 	RemoteServiceInterface getRemoteServiceInterface() throws PublicInterfaceNotFoundException;
