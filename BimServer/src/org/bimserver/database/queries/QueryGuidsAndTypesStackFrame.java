@@ -92,7 +92,7 @@ public class QueryGuidsAndTypesStackFrame extends DatabaseReadingStackFrame {
 				return new ObjectIdentifier(oid, (short)oid);
 			}
 		} else {
-			throw new UnsupportedOperationException();
+			throw new UnsupportedOperationException("Attribute " + attribute.getName() + " does not have the \"singleindex\" annotation");
 		}
 		return null;
 	}

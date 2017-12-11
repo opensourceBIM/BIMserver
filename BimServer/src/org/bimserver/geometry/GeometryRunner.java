@@ -67,6 +67,7 @@ public class GeometryRunner implements Runnable {
 	private Map<Long, ProductDef> map;
 	private ReportJob job;
 	private boolean reuseGeometry;
+	private boolean writeOutputFiles = false;
 
 	public GeometryRunner(StreamingGeometryGenerator streamingGeometryGenerator, EClass eClass, RenderEnginePool renderEnginePool, DatabaseSession databaseSession, RenderEngineSettings renderEngineSettings, ObjectProvider objectProvider,
 			StreamingSerializerPlugin ifcSerializerPlugin, RenderEngineFilter renderEngineFilter, GenerateGeometryResult generateGeometryResult, QueryContext queryContext, Query originalQuery, boolean geometryReused,
@@ -158,6 +159,9 @@ public class GeometryRunner implements Runnable {
 							for (HashMapVirtualObject ifcProduct : objects) {
 								if (!this.streamingGeometryGenerator.running) {
 									return;
+								}
+								if (ifcProduct.get("GlobalId").equals("1sZn$z_i91bPOCQJOkOibU")) {
+									System.out.println();
 								}
 								Integer expressId = oidToEid.get(ifcProduct.getOid());
 								try {
@@ -526,6 +530,9 @@ public class GeometryRunner implements Runnable {
 						if (!notFoundObjects.isEmpty()) {
 							int debugId = writeDebugFile(bytes, false, notFoundObjects);
 							job.setException(new Exception("No express objects found in model"), debugId);
+						} else if (writeOutputFiles) {
+							int debugId = writeDebugFile(bytes, false, null);
+							job.setDebugFile(debugId);
 						}
 						in.close();
 					} catch (Throwable e) {

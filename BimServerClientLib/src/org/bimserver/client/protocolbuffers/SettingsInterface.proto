@@ -133,26 +133,27 @@ message SServerSettings {
 	optional string icon = 12;
 	optional string name = 13;
 	optional int64 oid = 14;
-	optional bool pluginStrictVersionChecking = 15;
-	optional int32 protocolBuffersPort = 16;
-	optional int32 renderEngineProcesses = 17;
-	optional bool reuseGeometry = 18;
-	optional int32 rid = 19;
-	optional bool sendConfirmationEmailAfterRegistration = 20;
-	optional bool sendEmailOnNewRevision = 21;
-	optional string serviceRepositoryUrl = 22;
-	optional int32 sessionTimeOutSeconds = 23;
-	optional string siteAddress = 24;
-	optional string smtpPassword = 25;
-	optional int32 smtpPort = 26;
-	optional SSmtpProtocol smtpProtocol = 27;
-	optional string smtpServer = 28;
-	optional string smtpUsername = 29;
-	optional bool storeLastLogin = 30;
-	optional bool storeServiceRuns = 31;
-	optional int64 webModuleId = 32;
-	repeated int64 webModules = 33;
-	repeated string whitelistedDomains = 34;
+	optional bool optimizeMappedItems = 15;
+	optional bool pluginStrictVersionChecking = 16;
+	optional int32 protocolBuffersPort = 17;
+	optional int32 renderEngineProcesses = 18;
+	optional bool reuseGeometry = 19;
+	optional int32 rid = 20;
+	optional bool sendConfirmationEmailAfterRegistration = 21;
+	optional bool sendEmailOnNewRevision = 22;
+	optional string serviceRepositoryUrl = 23;
+	optional int32 sessionTimeOutSeconds = 24;
+	optional string siteAddress = 25;
+	optional string smtpPassword = 26;
+	optional int32 smtpPort = 27;
+	optional SSmtpProtocol smtpProtocol = 28;
+	optional string smtpServer = 29;
+	optional string smtpUsername = 30;
+	optional bool storeLastLogin = 31;
+	optional bool storeServiceRuns = 32;
+	optional int64 webModuleId = 33;
+	repeated int64 webModules = 34;
+	repeated string whitelistedDomains = 35;
 }
 
 message GetServerSettingsResponse {

@@ -82,4 +82,8 @@ public class ReportJob {
 	public GeometryGenerationReport getReport() {
 		return report;
 	}
+
+	public void setDebugFile(int debugId) {
+		this.debugId = debugId;
+	}
 }

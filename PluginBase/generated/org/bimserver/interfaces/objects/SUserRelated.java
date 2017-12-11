@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SUserRemovedFromProject.class, SPasswordReset.class, SUserDeleted.class, SNewUserAdded.class, SUserChanged.class, SPasswordChanged.class, SUserUndeleted.class, SUserAddedToProject.class})
+@XmlSeeAlso(value={SPasswordChanged.class, SUserDeleted.class, SUserUndeleted.class, SUserAddedToProject.class, SPasswordReset.class, SUserRemovedFromProject.class, SNewUserAdded.class, SUserChanged.class})
 public class SUserRelated extends SLogAction implements SDataBase
 {
 	private long oid = -1;
