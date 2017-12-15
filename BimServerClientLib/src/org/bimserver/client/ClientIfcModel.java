@@ -3,6 +3,7 @@ package org.bimserver.client;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -62,7 +63,7 @@ public class ClientIfcModel extends IfcModel {
 	public enum ModelState {
 		NONE, LOADING, FULLY_LOADED
 	}
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(ClientIfcModel.class);
 	private BimServerClient bimServerClient;
 	private ModelState modelState = ModelState.NONE;
@@ -75,7 +76,8 @@ public class ClientIfcModel extends IfcModel {
 	private boolean recordChanges;
 	private boolean includeGeometry;
 
-	public ClientIfcModel(BimServerClient bimServerClient, long poid, long roid, boolean deep, PackageMetaData packageMetaData, boolean recordChanges, boolean includeGeometry) throws ServerException, UserException, PublicInterfaceNotFoundException {
+	public ClientIfcModel(BimServerClient bimServerClient, long poid, long roid, boolean deep, PackageMetaData packageMetaData, boolean recordChanges, boolean includeGeometry)
+			throws ServerException, UserException, PublicInterfaceNotFoundException {
 		super(packageMetaData, null);
 		this.recordChanges = recordChanges;
 		this.bimServerClient = bimServerClient;
@@ -164,7 +166,7 @@ public class ClientIfcModel extends IfcModel {
 			}
 		}
 	};
-	
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ClientIfcModel branch(long poid, boolean recordChanges) {
 		// TODO this should of course be done server side, without any copying
@@ -196,8 +198,8 @@ public class ClientIfcModel extends IfcModel {
 				Object sourceValue = sourceObject.eGet(eStructuralFeature);
 				if (eStructuralFeature instanceof EReference) {
 					if (eStructuralFeature.isMany()) {
-						List sourceList = (List)sourceValue;
-						List targetList = (List)targetObject.eGet(eStructuralFeature);
+						List sourceList = (List) sourceValue;
+						List targetList = (List) targetObject.eGet(eStructuralFeature);
 						for (Object sourceItem : sourceList) {
 							IdEObject e = map.get(sourceItem);
 							if (e != null) {
@@ -209,8 +211,8 @@ public class ClientIfcModel extends IfcModel {
 					}
 				} else {
 					if (eStructuralFeature.isMany()) {
-						List sourceList = (List)sourceValue;
-						List targetList = (List)targetObject.eGet(eStructuralFeature);
+						List sourceList = (List) sourceValue;
+						List targetList = (List) targetObject.eGet(eStructuralFeature);
 						for (Object sourceItem : sourceList) {
 							targetList.add(sourceItem);
 						}
@@ -223,7 +225,7 @@ public class ClientIfcModel extends IfcModel {
 		branch.setModelState(ModelState.FULLY_LOADED);
 		return branch;
 	}
-	
+
 	private void setModelState(ModelState modelState) {
 		this.modelState = modelState;
 	}
@@ -241,8 +243,7 @@ public class ClientIfcModel extends IfcModel {
 
 	public long getJsonSerializerOid() throws ServerException, UserException, PublicInterfaceNotFoundException {
 		if (ifcSerializerOid == -1) {
-			SSerializerPluginConfiguration serializerPluginConfiguration = bimServerClient.getPluginInterface().getSerializerByPluginClassName(
-					"org.bimserver.serializers.JsonStreamingSerializerPlugin");
+			SSerializerPluginConfiguration serializerPluginConfiguration = bimServerClient.getPluginInterface().getSerializerByPluginClassName("org.bimserver.serializers.JsonStreamingSerializerPlugin");
 			if (serializerPluginConfiguration != null) {
 				ifcSerializerOid = serializerPluginConfiguration.getOid();
 			} else {
@@ -254,8 +255,7 @@ public class ClientIfcModel extends IfcModel {
 
 	public long getBinaryGeometrySerializerOid() throws ServerException, UserException, PublicInterfaceNotFoundException {
 		if (binaryGeometrySerializerOid == -1) {
-			SSerializerPluginConfiguration serializerPluginConfiguration = bimServerClient.getPluginInterface().getSerializerByPluginClassName(
-					"org.bimserver.serializers.binarygeometry.BinaryGeometrySerializerPlugin");
+			SSerializerPluginConfiguration serializerPluginConfiguration = bimServerClient.getPluginInterface().getSerializerByPluginClassName("org.bimserver.serializers.binarygeometry.BinaryGeometrySerializerPlugin");
 			if (serializerPluginConfiguration != null) {
 				binaryGeometrySerializerOid = serializerPluginConfiguration.getOid();
 			} else {
@@ -264,14 +264,14 @@ public class ClientIfcModel extends IfcModel {
 		}
 		return binaryGeometrySerializerOid;
 	}
-	
+
 	private void loadDeep() throws ServerException, UserException, PublicInterfaceNotFoundException, QueryException {
 		if (modelState != ModelState.FULLY_LOADED && modelState != ModelState.LOADING) {
 			modelState = ModelState.LOADING;
 			Query query = new Query("test", getPackageMetaData());
 			QueryPart queryPart = query.createQueryPart();
 			queryPart.setIncludeAllFields(true);
-			
+
 			ObjectNode queryNode = new JsonQueryObjectModelConverter(query.getPackageMetaData()).toJson(query);
 			Long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), queryNode.toString(), getJsonSerializerOid(), false);
 			waitForDonePreparing(topicId);
@@ -294,15 +294,16 @@ public class ClientIfcModel extends IfcModel {
 		if (includeGeometry) {
 			getModelMetaData().setMinBounds(getBimServerClient().getServiceInterface().getModelMinBounds(roid));
 			getModelMetaData().setMaxBounds(getBimServerClient().getServiceInterface().getModelMaxBounds(roid));
-			
+
 			Query query = new Query("test", getPackageMetaData());
 			QueryPart queryPart = query.createQueryPart();
 
 			Map<Long, Long> geometryInfoOidToOid = new HashMap<>();
 
-      EClass ifcProductClass = getPackageMetaData().getEClass("IfcProduct");
-      EStructuralFeature geometryFeature = ifcProductClass.getEStructuralFeature("geometry");
-			for (IdEObject ifcProduct : super.getAllWithSubTypes(ifcProductClass)) {
+			EClass ifcProductClass = getPackageMetaData().getEClass("IfcProduct");
+			EStructuralFeature geometryFeature = ifcProductClass.getEStructuralFeature("geometry");
+			List<IdEObject> allWithSubTypes = new ArrayList<>(super.getAllWithSubTypes(ifcProductClass));
+			for (IdEObject ifcProduct : allWithSubTypes) {
 				GeometryInfo geometry = (GeometryInfo) ifcProduct.eGet(geometryFeature);
 				if (geometry != null) {
 					if (geometry.getData() == null || geometry.getData().getIndices() == null) {
@@ -321,14 +322,15 @@ public class ClientIfcModel extends IfcModel {
 			include.addField("data");
 
 			long serializerOid = bimServerClient.getBinaryGeometryMessagingStreamingSerializerOid();
-			
+
 			long topicId = bimServerClient.query(query, roid, serializerOid);
 			// TODO use websocket notifications
 			waitForDonePreparing(topicId);
 			InputStream inputStream = bimServerClient.getDownloadData(topicId);
 			try {
-//				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-//				IOUtils.copy(inputStream, byteArrayOutputStream);
+				// ByteArrayOutputStream byteArrayOutputStream = new
+				// ByteArrayOutputStream();
+				// IOUtils.copy(inputStream, byteArrayOutputStream);
 				processGeometryInputStream(inputStream, geometryInfoOidToOid);
 			} catch (Throwable e) {
 				e.printStackTrace();
@@ -339,7 +341,7 @@ public class ClientIfcModel extends IfcModel {
 	}
 
 	private void waitForDonePreparing(long topicId) throws UserException, ServerException, PublicInterfaceNotFoundException {
-		for (int i=0; i<10; i++) {
+		for (int i = 0; i < 10; i++) {
 			SLongActionState progress = bimServerClient.getRegistry().getProgress(topicId);
 			if (progress != null) {
 				if (progress.getTitle() != null && progress.getTitle().equals("Done preparing")) {
@@ -371,10 +373,10 @@ public class ClientIfcModel extends IfcModel {
 						throw new GeometryException("Unsupported version " + formatVersion + " / 11");
 					}
 					int skip = 4 - (7 % 4);
-					if(skip != 0 && skip != 4) {
+					if (skip != 0 && skip != 4) {
 						dataInputStream.readFully(new byte[skip]);
 					}
-					for (int i=0; i<6; i++) {
+					for (int i = 0; i < 6; i++) {
 						dataInputStream.readDouble();
 					}
 				} else if (type == 5) {
@@ -386,33 +388,33 @@ public class ClientIfcModel extends IfcModel {
 						geometryInfo = create(GeometryInfo.class);
 					}
 					add(geometryInfoOid, geometryInfo);
-					
+
 					Long ifcProductOid = geometryInfoOidToOid.get(geometryInfoOid);
 					if (ifcProductOid == null) {
 						throw new GeometryException("Missing geometry info id: " + geometryInfoOid);
 					}
 					IdEObject ifcProduct = get(ifcProductOid);
 
-          EStructuralFeature geometryFeature = getPackageMetaData().getEClass("IfcProduct").getEStructuralFeature("geometry");
-          ifcProduct.eSet(geometryFeature, geometryInfo);
-					
+					EStructuralFeature geometryFeature = getPackageMetaData().getEClass("IfcProduct").getEStructuralFeature("geometry");
+					ifcProduct.eSet(geometryFeature, geometryInfo);
+
 					org.bimserver.models.geometry.Vector3f minBounds = GeometryFactory.eINSTANCE.createVector3f();
 					minBounds.setX(dataInputStream.readDouble());
 					minBounds.setY(dataInputStream.readDouble());
 					minBounds.setZ(dataInputStream.readDouble());
-					
+
 					org.bimserver.models.geometry.Vector3f maxBounds = GeometryFactory.eINSTANCE.createVector3f();
 					maxBounds.setX(dataInputStream.readDouble());
 					maxBounds.setY(dataInputStream.readDouble());
 					maxBounds.setZ(dataInputStream.readDouble());
-					
+
 					geometryInfo.setMinBounds(minBounds);
 					geometryInfo.setMaxBounds(maxBounds);
-					
+
 					byte[] transformation = new byte[16 * 8];
 					dataInputStream.readFully(transformation);
 					geometryInfo.setTransformation(transformation);
-					
+
 					long geometryDataOid = dataInputStream.readLong();
 					GeometryData geometryData = (GeometryData) get(geometryDataOid);
 					if (geometryData == null) {
@@ -425,18 +427,18 @@ public class ClientIfcModel extends IfcModel {
 				} else if (type == 1) {
 					dataInputStream.readFully(new byte[7]);
 					long geometryDataOid = dataInputStream.readLong();
-					
+
 					GeometryData geometryData = (GeometryData) get(geometryDataOid);
 					if (geometryData == null) {
 						geometryData = GeometryFactory.eINSTANCE.createGeometryData();
 						add(geometryDataOid, geometryData);
 					}
-					
+
 					int nrIndices = dataInputStream.readInt();
 					byte[] indices = new byte[nrIndices * 4];
 					dataInputStream.readFully(indices);
 					geometryData.setIndices(indices);
-	
+
 					int colorType = dataInputStream.readInt();
 					if (colorType == 1) {
 						dataInputStream.readFloat();
@@ -449,12 +451,12 @@ public class ClientIfcModel extends IfcModel {
 					byte[] vertices = new byte[nrVertices * 4];
 					dataInputStream.readFully(vertices);
 					geometryData.setVertices(vertices);
-					
+
 					int nrNormals = dataInputStream.readInt();
 					byte[] normals = new byte[nrNormals * 4];
 					dataInputStream.readFully(normals);
 					geometryData.setNormals(normals);
-					
+
 					int nrMaterials = dataInputStream.readInt();
 					byte[] materials = new byte[nrMaterials * 4];
 					dataInputStream.readFully(materials);
@@ -496,7 +498,7 @@ public class ClientIfcModel extends IfcModel {
 			LOGGER.info("Loading all " + eClass.getName());
 			try {
 				modelState = ModelState.LOADING;
-				
+
 				Query query = new Query(getPackageMetaData());
 				QueryPart queryPart = query.createQueryPart();
 				queryPart.addType(eClass, false);
@@ -505,10 +507,10 @@ public class ClientIfcModel extends IfcModel {
 					include.addType(eClass, false);
 					include.addField("geometry");
 				}
-				
+
 				JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
 				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
-				
+
 				waitForDonePreparing(topicId);
 
 				processDownload(topicId);
@@ -600,13 +602,13 @@ public class ClientIfcModel extends IfcModel {
 			if (idEObjectImpl != null && !idEObjectImpl.isLoadedOrLoading()) {
 				idEObjectImpl.setLoadingState(State.LOADING);
 				modelState = ModelState.LOADING;
-				
+
 				Query query = new Query(getPackageMetaData());
 				QueryPart queryPart = query.createQueryPart();
 				queryPart.addOid(oid);
-				
+
 				JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
-				
+
 				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
 				waitForDonePreparing(topicId);
 				processDownload(topicId);
@@ -622,7 +624,7 @@ public class ClientIfcModel extends IfcModel {
 	public IdEObject getNoFetch(long oid) {
 		return super.get(oid);
 	}
-	
+
 	@Override
 	public Collection<IdEObject> getValues() {
 		try {
@@ -638,11 +640,11 @@ public class ClientIfcModel extends IfcModel {
 		if (!loadedClasses.contains(eClass.getName()) && modelState != ModelState.FULLY_LOADED) {
 			try {
 				modelState = ModelState.LOADING;
-				
+
 				Query query = new Query(getPackageMetaData());
 				QueryPart queryPart = query.createQueryPart();
 				queryPart.addType(eClass, true);
-				
+
 				if (includeGeometry && getPackageMetaData().getEClass("IfcProduct").isSuperTypeOf(eClass)) {
 					Include include = queryPart.createInclude();
 					include.addType(eClass, true);
@@ -651,7 +653,7 @@ public class ClientIfcModel extends IfcModel {
 
 				JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
 				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
-				
+
 				waitForDonePreparing(topicId);
 				processDownload(topicId);
 				bimServerClient.getServiceInterface().cleanupLongAction(topicId);
@@ -687,7 +689,7 @@ public class ClientIfcModel extends IfcModel {
 	public boolean containsNoFetch(long oid) {
 		return super.contains(oid);
 	}
-	
+
 	@Override
 	public boolean containsGuid(String guid) {
 		getByGuid(guid);
@@ -705,15 +707,15 @@ public class ClientIfcModel extends IfcModel {
 		if (idEObject == null) {
 			try {
 				modelState = ModelState.LOADING;
-				
+
 				Query query = new Query(getPackageMetaData());
 				QueryPart queryPart = query.createQueryPart();
 				queryPart.addGuid(guid);
-				
+
 				JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
-				
+
 				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
-				
+
 				waitForDonePreparing(topicId);
 				processDownload(topicId);
 				bimServerClient.getServiceInterface().cleanupLongAction(topicId);
@@ -735,9 +737,9 @@ public class ClientIfcModel extends IfcModel {
 		if (eClassifier == null) {
 			throw new IfcModelInterfaceException("EClass not found " + clazz);
 		}
-		return create((EClass)eClassifier);
+		return create((EClass) eClassifier);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T extends IdEObject> T create(EClass eClass, long oid) throws IfcModelInterfaceException {
@@ -753,7 +755,7 @@ public class ClientIfcModel extends IfcModel {
 	public <T extends IdEObject> T create(EClass eClass) throws IfcModelInterfaceException, ObjectAlreadyExistsException {
 		final IdEObjectImpl idEObject = (IdEObjectImpl) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		idEObject.setModel(this);
-		
+
 		if (recordChanges) {
 			idEObject.eAdapters().add(adapter);
 			try {
@@ -778,21 +780,34 @@ public class ClientIfcModel extends IfcModel {
 					if (newValue != EStructuralFeature.Internal.DynamicValueHolder.NIL) {
 						LowLevelInterface lowLevelInterface = getBimServerClient().getLowLevelInterface();
 						if (eFeature.getName().equals("wrappedValue")) {
-							// Wrapped objects get the same oid as their "parent" object, so we know which object the client wants to update. That's why we can use idEObject.getOid() here
-							// We are making this crazy hack ever crazier, let's iterate over our parents features, and see if there is one matching our wrapped type...
-							// Seriously, when there are multiple fields of the same type, this fails miserably, a real fix should probably store the parent-oid + feature name in the wrapped object (requires two extra, volatile, fields),
-							// or we just don't support this (just create a new wrapped object too), we could even throw some sort of exception. Hack morally okay because it's client-side...
+							// Wrapped objects get the same oid as their
+							// "parent" object, so we know which object the
+							// client wants to update. That's why we can use
+							// idEObject.getOid() here
+							// We are making this crazy hack ever crazier, let's
+							// iterate over our parents features, and see if
+							// there is one matching our wrapped type...
+							// Seriously, when there are multiple fields of the
+							// same type, this fails miserably, a real fix
+							// should probably store the parent-oid + feature
+							// name in the wrapped object (requires two extra,
+							// volatile, fields),
+							// or we just don't support this (just create a new
+							// wrapped object too), we could even throw some
+							// sort of exception. Hack morally okay because it's
+							// client-side...
 							EReference foundReference = null;
 							if (contains(idEObject.getOid())) {
 								IdEObject parentObject = get(idEObject.getOid());
 								int found = 0;
 								foundReference = null;
 								for (EReference testReference : parentObject.eClass().getEAllReferences()) {
-									if (((EClass)testReference.getEType()).isSuperTypeOf(idEObject.eClass())) {
+									if (((EClass) testReference.getEType()).isSuperTypeOf(idEObject.eClass())) {
 										foundReference = testReference;
 										found++;
 										if (found > 1) {
-											throw new RuntimeException("Sorry, crazy hack could not resolve the right field, please let BIMserver developer know (debug info: " + parentObject.eClass().getName() + ", " + idEObject.eClass().getName() + ")");
+											throw new RuntimeException(
+													"Sorry, crazy hack could not resolve the right field, please let BIMserver developer know (debug info: " + parentObject.eClass().getName() + ", " + idEObject.eClass().getName() + ")");
 										}
 									}
 								}
@@ -826,7 +841,7 @@ public class ClientIfcModel extends IfcModel {
 									lowLevelInterface.setEnumAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), ((Enum<?>) newValue).toString());
 								} else if (eFeature instanceof EReference) {
 									if (newValue == null) {
-										lowLevelInterface.setReference(getTransactionId(),idEObject. getOid(), eFeature.getName(), -1L);
+										lowLevelInterface.setReference(getTransactionId(), idEObject.getOid(), eFeature.getName(), -1L);
 									} else {
 										lowLevelInterface.setReference(getTransactionId(), idEObject.getOid(), eFeature.getName(), ((IdEObject) newValue).getOid());
 									}
@@ -847,9 +862,9 @@ public class ClientIfcModel extends IfcModel {
 								lowLevelInterface.setIntegerAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Integer) newValue);
 							} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEByteArray()) {
 								if (newValue instanceof byte[]) {
-									Byte[] n = new Byte[((byte[])newValue).length];
-									for (int i=0; i<n.length; i++) {
-										n[i] = ((byte[])newValue)[i];										
+									Byte[] n = new Byte[((byte[]) newValue).length];
+									for (int i = 0; i < n.length; i++) {
+										n[i] = ((byte[]) newValue)[i];
 									}
 									newValue = n;
 								}
@@ -875,10 +890,11 @@ public class ClientIfcModel extends IfcModel {
 			}
 		}
 	}
-	
+
 	public void checkin(long poid, String comment) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		this.fixOids(new OidProvider() {
 			private long c = 1;
+
 			@Override
 			public long newOid(EClass eClass) {
 				return c++;
@@ -888,7 +904,7 @@ public class ClientIfcModel extends IfcModel {
 		SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("json", poid);
 		bimServerClient.checkin(poid, comment, deserializer.getOid(), false, Flow.SYNC, -1, "test", new SerializerInputstream(sharedJsonSerializer));
 	}
-	
+
 	public void load(IdEObject object) {
 		loadExplicit(object.getOid());
 	}
@@ -906,17 +922,19 @@ public class ClientIfcModel extends IfcModel {
 		}
 	}
 
-//	@Override
-//	public void query(ObjectNode query) {
-//		try {
-//			modelState = ModelState.LOADING;
-//			Long downloadByTypes = bimServerClient.getServiceInterface().downloadByJsonQuery(Collections.singleton(roid), query.toString(), getJsonSerializerOid(), true);
-//			processDownload(downloadByTypes);
-//			modelState = ModelState.NONE;
-//		} catch (Exception e) {
-//			LOGGER.error("", e);
-//		}
-//	}
+	// @Override
+	// public void query(ObjectNode query) {
+	// try {
+	// modelState = ModelState.LOADING;
+	// Long downloadByTypes =
+	// bimServerClient.getServiceInterface().downloadByJsonQuery(Collections.singleton(roid),
+	// query.toString(), getJsonSerializerOid(), true);
+	// processDownload(downloadByTypes);
+	// modelState = ModelState.NONE;
+	// } catch (Exception e) {
+	// LOGGER.error("", e);
+	// }
+	// }
 
 	public void queryNew(Query query, IfcModelChangeListener ifcModelChangeListener) {
 		try {
@@ -924,7 +942,7 @@ public class ClientIfcModel extends IfcModel {
 			JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
 			Long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
 			waitForDonePreparing(topicId);
-			
+
 			if (ifcModelChangeListener != null) {
 				addChangeListener(ifcModelChangeListener);
 			}
@@ -933,34 +951,36 @@ public class ClientIfcModel extends IfcModel {
 			if (ifcModelChangeListener != null) {
 				removeChangeListener(ifcModelChangeListener);
 			}
-			
+
 			modelState = ModelState.NONE;
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
 	}
 
-//	@Override
-//	public SIfcHeader getIfcHeader() {
-//		SIfcHeader ifcHeader = super.getIfcHeader();
-//		if (ifcHeader == null) {
-//			try {
-//				SRevision revision = bimServerClient.getServiceInterface().getRevision(roid);
-//				if (revision.getConcreteRevisions().size() == 1) {
-//					ifcHeader = bimServerClient.getServiceInterface().getIfcHeader(revision.getConcreteRevisions().get(0));
-//					if (ifcHeader != null) {
-//						setIfcHeader(ifcHeader);
-//					}
-//					return ifcHeader;
-//				}
-//			} catch (ServerException e) {
-//				LOGGER.error("", e);
-//			} catch (UserException e) {
-//				LOGGER.error("", e);
-//			} catch (PublicInterfaceNotFoundException e) {
-//				LOGGER.error("", e);
-//			}
-//		}
-//		return null;
-//	}
+	// @Override
+	// public SIfcHeader getIfcHeader() {
+	// SIfcHeader ifcHeader = super.getIfcHeader();
+	// if (ifcHeader == null) {
+	// try {
+	// SRevision revision =
+	// bimServerClient.getServiceInterface().getRevision(roid);
+	// if (revision.getConcreteRevisions().size() == 1) {
+	// ifcHeader =
+	// bimServerClient.getServiceInterface().getIfcHeader(revision.getConcreteRevisions().get(0));
+	// if (ifcHeader != null) {
+	// setIfcHeader(ifcHeader);
+	// }
+	// return ifcHeader;
+	// }
+	// } catch (ServerException e) {
+	// LOGGER.error("", e);
+	// } catch (UserException e) {
+	// LOGGER.error("", e);
+	// } catch (PublicInterfaceNotFoundException e) {
+	// LOGGER.error("", e);
+	// }
+	// }
+	// return null;
+	// }
 }
