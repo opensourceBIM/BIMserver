@@ -3,6 +3,7 @@ package org.bimserver.plugins.services;
 import java.util.Collections;
 import java.util.Set;
 
+import org.bimserver.bimbots.BimBotsException;
 import org.bimserver.bimbots.BimBotsInput;
 import org.bimserver.bimbots.BimBotsOutput;
 import org.bimserver.bimbots.BimBotsServiceInterface;
@@ -62,13 +63,21 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 	}
 
 	@Override
-	public Set<String> getAvailableOutputs() {
-		return Collections.singleton(getOutputSchema());
+	public Set<String> getAvailableOutputs() throws BimBotsException {
+		String outputSchema = getOutputSchema();
+		if (outputSchema == null) {
+			throw new BimBotsException("No output schema provided");
+		}
+		return Collections.singleton(outputSchema);
 	}
 	
 	@Override
-	public Set<String> getAvailableInputs() {
-		return Collections.singleton(SchemaName.IFC_STEP_2X3TC1.name());
+	public Set<String> getAvailableInputs() throws BimBotsException {
+		String input = SchemaName.IFC_STEP_2X3TC1.name();
+		if (input == null) {
+			throw new BimBotsException("No input schema provided");
+		}
+		return Collections.singleton(input);
 	}
 
 	public abstract String getOutputSchema();

@@ -51,6 +51,8 @@ import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.utils.InputStreamDataSource;
 import org.bimserver.webservices.authorization.AuthenticationException;
 import org.bimserver.webservices.authorization.Authorization;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -59,6 +61,8 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class ServiceRunnerServlet extends SubServlet {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(ServiceRunnerServlet.class);
+	
 	public ServiceRunnerServlet(BimServer bimServer, ServletContext servletContext) {
 		super(bimServer, servletContext);
 	}
@@ -226,36 +230,40 @@ public class ServiceRunnerServlet extends SubServlet {
 				if (pluginDescriptor.getPluginInterfaceClassName().equals(ServicePlugin.class.getName())) {
 					ServicePlugin servicePlugin = getBimServer().getPluginManager().getServicePlugin(pluginDescriptor.getPluginClassName(), true);
 					if (servicePlugin instanceof BimBotsServiceInterface) {
-						BimBotsServiceInterface bimBotsServiceInterface = (BimBotsServiceInterface)servicePlugin;
-						
-						ObjectNode descriptorJson = mapper.createObjectNode();
-						descriptorJson.put("id", pluginDescriptor.getOid());
-						descriptorJson.put("name", pluginDescriptor.getName());
-						descriptorJson.put("description", pluginDescriptor.getDescription());
-						descriptorJson.put("provider", getBimServer().getServerSettingsCache().getServerSettings().getName());
-						descriptorJson.put("providerIcon", getBimServer().getServerSettingsCache().getServerSettings().getIcon());
-						
-						ArrayNode inputs = mapper.createArrayNode();
-						ArrayNode outputs = mapper.createArrayNode();
-						
-						for (String schemaName : bimBotsServiceInterface.getAvailableInputs()) {
-							inputs.add(schemaName);
+						try {
+							BimBotsServiceInterface bimBotsServiceInterface = (BimBotsServiceInterface)servicePlugin;
+							
+							ObjectNode descriptorJson = mapper.createObjectNode();
+							descriptorJson.put("id", pluginDescriptor.getOid());
+							descriptorJson.put("name", pluginDescriptor.getName());
+							descriptorJson.put("description", pluginDescriptor.getDescription());
+							descriptorJson.put("provider", getBimServer().getServerSettingsCache().getServerSettings().getName());
+							descriptorJson.put("providerIcon", getBimServer().getServerSettingsCache().getServerSettings().getIcon());
+							
+							ArrayNode inputs = mapper.createArrayNode();
+							ArrayNode outputs = mapper.createArrayNode();
+							
+							for (String schemaName : bimBotsServiceInterface.getAvailableInputs()) {
+								inputs.add(schemaName);
+							}
+							for (String schemaName : bimBotsServiceInterface.getAvailableOutputs()) {
+								outputs.add(schemaName);
+							}
+							
+							descriptorJson.set("inputs", inputs);
+							descriptorJson.set("outputs", outputs);
+							
+							ObjectNode oauth = mapper.createObjectNode();
+							oauth.put("authorizationUrl", getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/oauth/authorize");
+							oauth.put("registerUrl", getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/oauth/register");
+							oauth.put("tokenUrl", getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/oauth/access");
+							
+							descriptorJson.set("oauth", oauth);
+							descriptorJson.put("resourceUrl", getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/services");
+							array.add(descriptorJson);
+						} catch (Exception e) {
+							LOGGER.error("", e);
 						}
-						for (String schemaName : bimBotsServiceInterface.getAvailableOutputs()) {
-							outputs.add(schemaName);
-						}
-						
-						descriptorJson.set("inputs", inputs);
-						descriptorJson.set("outputs", outputs);
-						
-						ObjectNode oauth = mapper.createObjectNode();
-						oauth.put("authorizationUrl", getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/oauth/authorize");
-						oauth.put("registerUrl", getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/oauth/register");
-						oauth.put("tokenUrl", getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/oauth/access");
-						
-						descriptorJson.set("oauth", oauth);
-						descriptorJson.put("resourceUrl", getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/services");
-						array.add(descriptorJson);
 					}
 				}
 			}
