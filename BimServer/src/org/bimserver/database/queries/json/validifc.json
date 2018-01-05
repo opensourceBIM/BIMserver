@@ -315,7 +315,12 @@
          ]
       },
       "IfcEllipse": {
-         "type": "IfcEllipse"
+         "type": "IfcEllipse",
+         "field": "Position",
+         "includes": [
+	         "IfcAxis2Placement3D",
+	         "IfcAxis2Placement2D"
+         ]
       },
       "IfcDirection": {
          "type": "IfcDirection"

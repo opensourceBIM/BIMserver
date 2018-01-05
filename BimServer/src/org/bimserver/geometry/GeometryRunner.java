@@ -51,6 +51,8 @@ import org.bimserver.shared.WrappedVirtualObject;
 import org.bimserver.utils.GeometryUtils;
 import org.eclipse.emf.ecore.EClass;
 
+import com.google.common.base.Joiner;
+
 public class GeometryRunner implements Runnable {
 
 	private final StreamingGeometryGenerator streamingGeometryGenerator;
@@ -529,7 +531,7 @@ public class GeometryRunner implements Runnable {
 					try {
 						if (!notFoundObjects.isEmpty()) {
 							int debugId = writeDebugFile(bytes, false, notFoundObjects);
-							job.setException(new Exception("No express objects found in model"), debugId);
+							job.setException(new Exception("Missing objects in model (" + Joiner.on(", ").join(notFoundObjects.keySet()) + ")"), debugId);
 						} else if (writeOutputFiles) {
 							int debugId = writeDebugFile(bytes, false, null);
 							job.setDebugFile(debugId);
