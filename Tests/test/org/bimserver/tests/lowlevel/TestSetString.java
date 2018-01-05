@@ -36,7 +36,7 @@ public class TestSetString extends TestWithEmbeddedServer {
 			
 			bimServerClient.download(newProject.getLastRevisionId(), serializer.getOid(), Paths.get("test1.ifc"));
 
-			IfcModelInterface model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), false, false);
+			IfcModelInterface model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true, false);
 			long tid = lowLevelInterface.startTransaction(newProject.getOid());
 			
 			IfcRoot wall = (IfcRoot) model.getByGuid("3Ep4r0uuX5ywPYOUG2H2A4");
@@ -44,8 +44,6 @@ public class TestSetString extends TestWithEmbeddedServer {
 			bimServerClient.getLowLevelInterface().setStringAttribute(tid, wall.getOid(), "Name", "Test 12345");
 			
 			long roid = lowLevelInterface.commitTransaction(tid, "v2");
-			
-			bimServerClient.download(newProject.getLastRevisionId(), serializer.getOid(), Paths.get("test2.ifc"));
 			
 			bimServerClient.download(roid, serializer.getOid(), Paths.get("test3.ifc"));
 		} catch (Exception e) {

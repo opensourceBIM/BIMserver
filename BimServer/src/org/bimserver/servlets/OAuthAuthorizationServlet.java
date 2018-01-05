@@ -65,8 +65,12 @@ public class OAuthAuthorizationServlet extends SubServlet {
 
 		String authType = request.getParameter("auth_type");
 		if (request.getParameter("token") == null) {
-			httpServletResponse.sendRedirect("/apps/bimviews/?page=OAuth&auth_type=" + authType + "&client_id=" + request.getParameter("client_id") + "&response_type=" + request.getParameter("response_type") + "&redirect_uri="
-					+ request.getParameter("redirect_uri"));
+			String location = "/apps/bimviews/?page=OAuth&auth_type=" + authType + "&client_id=" + request.getParameter("client_id") + "&response_type=" + request.getParameter("response_type") + "&redirect_uri="
+					+ request.getParameter("redirect_uri");
+			if (request.getParameter("state") != null) {
+				location += "&state=" + request.getParameter("state");
+			}
+			httpServletResponse.sendRedirect(location);
 			return;
 		}
 

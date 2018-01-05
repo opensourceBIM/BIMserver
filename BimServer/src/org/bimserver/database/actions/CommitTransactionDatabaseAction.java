@@ -217,10 +217,12 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 //				ByteBuffer buffer = ByteBuffer.allocate(8 * s);
 //				buffer.order(ByteOrder.LITTLE_ENDIAN);
 				for (EClass eClass : packageMetaData.getEClasses()) {
-					long oid = startOids.get(eClass);
-					if (!DatabaseSession.perRecordVersioning(eClass)) {
-						oidCounters.put(eClass, oid);
+					if (startOids.containsKey(eClass)) {
+						long oid = startOids.get(eClass);
+						if (!DatabaseSession.perRecordVersioning(eClass)) {
+							oidCounters.put(eClass, oid);
 //						buffer.putLong(oid);
+						}
 					}
 				}
 

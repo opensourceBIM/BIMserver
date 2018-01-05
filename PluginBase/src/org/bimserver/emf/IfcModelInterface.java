@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.plugins.ObjectAlreadyExistsException;
 import org.bimserver.plugins.ObjectAlreadyStoredException;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
