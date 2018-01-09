@@ -217,12 +217,10 @@
       "IfcStyledItem": {
          "type": "IfcStyledItem",
          "fields": [
-            "Item",
             "Styles"
          ],
          "includes": [
-            "IfcPresentationStyleAssignment",
-            "IfcRepresentationItem"
+            "IfcPresentationStyleAssignment"
          ]
       },
       "IfcRepresentationItem": {
@@ -562,8 +560,14 @@
       },
       "IfcFacetedBrep": {
          "type": "IfcFacetedBrep",
-         "field": "Outer",
-         "include": "IfcConnectedFaceSet"
+         "fields": [
+         	"Outer", 
+         	"StyledByItem"
+         ],
+         "includes": [
+         	"IfcConnectedFaceSet",
+         	"IfcStyledItem"
+         ]
       },
       "IfcMappedItem": {
          "type": "IfcMappedItem",

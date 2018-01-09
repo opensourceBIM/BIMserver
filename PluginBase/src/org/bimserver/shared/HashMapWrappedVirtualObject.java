@@ -84,4 +84,9 @@ public class HashMapWrappedVirtualObject extends AbstractHashMapVirtualObject im
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	@Override
+	public int hashCode() {
+		return map.hashCode();
+	}
 }

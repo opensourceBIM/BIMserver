@@ -669,6 +669,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		if (geometryData.has("materials")) {
 			hashCode += Arrays.hashCode((byte[])geometryData.get("materials"));
 		}
+		if (geometryData.has("color")) {
+			hashCode += ((HashMapWrappedVirtualObject)geometryData.get("color")).hashCode();
+		}
 		return hashCode;
 	}
 
