@@ -1,8 +1,20 @@
 package org.bimserver.changes;
 
+import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
+
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.queries.QueryObjectProvider;
+import org.bimserver.database.queries.om.Query;
+import org.bimserver.database.queries.om.QueryException;
+import org.bimserver.database.queries.om.QueryPart;
+import org.bimserver.emf.PackageMetaData;
+import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.exceptions.UserException;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
 
 public class RemoveAttributeChange implements Change {
 
@@ -18,7 +30,35 @@ public class RemoveAttributeChange implements Change {
 
 	@SuppressWarnings("rawtypes")
 	@Override
-	public void execute(Transaction transaction) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		throw new UserException("Not implemented");
+	public void execute(Transaction transaction) throws UserException, BimserverLockConflictException, BimserverDatabaseException, IOException, QueryException {
+		PackageMetaData packageMetaData = transaction.getDatabaseSession().getMetaDataManager().getPackageMetaData(transaction.getProject().getSchema());
+
+		if (transaction.getDatabaseSession().getEClassForOid(oid).getName().equals("IfcFurnishingElement")) {
+			System.out.println();
+		}
+		
+		HashMapVirtualObject object = transaction.get(oid);
+		if (object == null) {
+			Query query = new Query(packageMetaData);
+			QueryPart queryPart = query.createQueryPart();
+			queryPart.addOid(oid);
+
+			QueryObjectProvider queryObjectProvider = new QueryObjectProvider(transaction.getDatabaseSession(), transaction.getBimServer(), query, Collections.singleton(transaction.getPreviousRevision().getOid()), packageMetaData);
+			object = queryObjectProvider.next();
+			transaction.updated(object);
+		}
+		
+		EClass eClass = transaction.getDatabaseSession().getEClassForOid(oid);
+		if (object == null) {
+			throw new UserException("No object of type \"" + eClass.getName() + "\" with oid " + oid + " found in project with pid " + transaction.getProject().getId());
+		}
+		EAttribute eAttribute = packageMetaData.getEAttribute(eClass.getName(), attributeName);
+		if (eAttribute == null) {
+			throw new UserException("No attribute with the name \"" + attributeName + "\" found in class \"" + eClass.getName() + "\"");
+		}
+		if (eAttribute.isMany()) {
+			List list = (List)object.get(eAttribute.getName());
+			list.remove(index);
+		}
 	}
 }
