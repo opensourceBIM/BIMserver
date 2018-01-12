@@ -220,14 +220,15 @@ public class QueryObjectProvider implements ObjectProvider {
 
 	public boolean hasReadOrIsGoingToRead(EClass eClass) {
 		for (QueryPart queryPart : query.getQueryParts()) {
+			boolean allNull = queryPart.getGuids() == null && queryPart.getNames() == null && queryPart.getOids() == null && queryPart.getInBoundingBox() == null && queryPart.getProperties() == null && queryPart.getClassifications() == null;
 			if (queryPart.hasTypes()) {
 				if (typeDefContains(queryPart, eClass)) {
-					if (queryPart.getGuids() == null && queryPart.getNames() == null && queryPart.getOids() == null && queryPart.getInBoundingBox() == null && queryPart.getProperties() == null && queryPart.getClassifications() == null) {
+					if (allNull) {
 						return true;
 					}
 				}
 			} else {
-				return (queryPart.getGuids() == null && queryPart.getNames() == null && queryPart.getOids() == null && queryPart.getInBoundingBox() == null && queryPart.getProperties() == null && queryPart.getClassifications() == null);
+				return allNull;
 			}
 		}
 		return false;

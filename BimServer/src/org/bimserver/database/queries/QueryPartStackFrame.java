@@ -28,6 +28,7 @@ import java.util.Set;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.queries.om.InBoundingBox;
 import org.bimserver.database.queries.om.Include.TypeDef;
+import org.bimserver.database.queries.om.Properties;
 import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.shared.QueryContext;
@@ -42,7 +43,7 @@ public class QueryPartStackFrame extends StackFrame {
 	private final Map<EClass, List<Long>> oids;
 	private final Set<String> guids;
 	private final Set<String> names;
-	private Map<String, Object> properties;
+	private Map<String, Properties> properties;
 	private InBoundingBox inBoundingBox;
 	private Set<String> classifications;
 

@@ -31,6 +31,7 @@ public class Query {
 	private String name;
 	private PackageMetaData packageMetaData;
 	private boolean doubleBuffer;
+	private int version;
 	
 	public Query(String name, PackageMetaData packageMetaData) {
 		this.name = name;
@@ -104,5 +105,13 @@ public class Query {
 	
 	public boolean isDoubleBuffer() {
 		return doubleBuffer;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+	
+	public int getVersion() {
+		return version;
 	}
 }

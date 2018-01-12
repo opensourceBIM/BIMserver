@@ -34,7 +34,7 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 	private Set<Long> oids;
 	private Set<String> guids;
 	private Set<String> names;
-	private Map<String, Object> properties;
+	private Map<String, Properties> properties;
 	private Set<String> classifications;
 	private PackageMetaData packageMetaData;
 	private InBoundingBox inBoundingBox;
@@ -82,15 +82,21 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 		return guids;
 	}
 	
-	public Map<String, Object> getProperties() {
+	public Map<String, Properties> getProperties() {
 		return properties;
 	}
 
-	public void addProperty(String key, Object value) {
+	public void addProperty(String propertySetName, String key, Object value) {
 		if (this.properties == null) {
-			this.properties = new HashMap<String, Object>();
+			this.properties = new HashMap<>();
 		}
-		this.properties.put(key, value);
+		Properties properties = this.properties.get(propertySetName);
+		if (properties == null) {
+			properties = new Properties(key, value);
+			this.properties.put(propertySetName, properties);
+		} else {
+			properties.add(key, value);
+		}
 	}
 
 	public void setInBoundingBox(InBoundingBox inBoundingBox) {

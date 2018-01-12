@@ -41,6 +41,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 public class JsonQueryObjectModelConverter {
 	private static final Map<String, Include> CACHED_DEFINES = new HashMap<>();
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+	private static final int LATEST_VERSION = 2;
 	private PackageMetaData packageMetaData;
 
 	public JsonQueryObjectModelConverter(PackageMetaData packageMetaData) {
@@ -151,6 +152,14 @@ public class JsonQueryObjectModelConverter {
 	
 	public Query parseJson(String queryName, ObjectNode fullQuery) throws QueryException {
 		Query query = new Query(queryName, packageMetaData);
+		int version = LATEST_VERSION;
+		if (fullQuery.has("version")) {
+			version = fullQuery.get("version").asInt();
+		}
+		if (version != LATEST_VERSION) {
+			throw new QueryException("Only version " + LATEST_VERSION + " supported by this version of BIMserver");
+		}
+		query.setVersion(version);
 		query.setDoubleBuffer(fullQuery.has("doublebuffer") ? fullQuery.get("doublebuffer").asBoolean() : false);
 		if (fullQuery.has("defines")) {
 			JsonNode defines = fullQuery.get("defines");
@@ -494,24 +503,7 @@ public class JsonQueryObjectModelConverter {
 			JsonNode propertiesNode = objectNode.get("properties");
 			if (propertiesNode instanceof ObjectNode) {
 				ObjectNode properties = (ObjectNode) objectNode.get("properties");
-				Iterator<Entry<String, JsonNode>> fields = properties.fields();
-				while (fields.hasNext()) {
-					Entry<String, JsonNode> entry = fields.next();
-					JsonNode value = entry.getValue();
-					if (value.isValueNode()) {
-						if (value.getNodeType() == JsonNodeType.BOOLEAN) {
-							queryPart.addProperty(entry.getKey(), value.asBoolean());
-						} else if (value.getNodeType() == JsonNodeType.NUMBER) {
-							queryPart.addProperty(entry.getKey(), value.asDouble());
-						} else if (value.getNodeType() == JsonNodeType.STRING) {
-							queryPart.addProperty(entry.getKey(), value.asText());
-						} else if (value.getNodeType() == JsonNodeType.NULL) {
-							queryPart.addProperty(entry.getKey(), null);
-						} 
-					} else {
-						throw new QueryException("property \"" + entry.getKey() + "\" type not supported");
-					}
-				}
+				parseProperties(queryPart, properties);
 			} else {
 				throw new QueryException("\"properties\" must be of type object");
 			}
@@ -584,6 +576,39 @@ public class JsonQueryObjectModelConverter {
 		}
 		
 		query.addQueryPart(queryPart);
+	}
+
+	private void parseProperties(QueryPart queryPart, ObjectNode properties) throws QueryException {
+		Iterator<Entry<String, JsonNode>> fields = properties.fields();
+		while (fields.hasNext()) {
+			Entry<String, JsonNode> entry = fields.next();
+			String propertySetName = entry.getKey();
+			JsonNode value = entry.getValue();
+			if (value.isObject()) {
+				ObjectNode set = (ObjectNode)value;
+				Iterator<Entry<String, JsonNode>> propertySetFields = set.fields();
+				while (propertySetFields.hasNext()) {
+					Entry<String, JsonNode> propertyEntry = propertySetFields.next();
+					JsonNode propertyValue = propertyEntry.getValue();
+					
+					if (propertyValue.isValueNode()) {
+						if (propertyValue.getNodeType() == JsonNodeType.BOOLEAN) {
+							queryPart.addProperty(propertySetName, propertyEntry.getKey(), propertyValue.asBoolean());
+						} else if (propertyValue.getNodeType() == JsonNodeType.NUMBER) {
+							queryPart.addProperty(propertySetName, propertyEntry.getKey(), propertyValue.asDouble());
+						} else if (propertyValue.getNodeType() == JsonNodeType.STRING) {
+							queryPart.addProperty(propertySetName, propertyEntry.getKey(), propertyValue.asText());
+						} else if (propertyValue.getNodeType() == JsonNodeType.NULL) {
+							queryPart.addProperty(propertySetName, propertyEntry.getKey(), null);
+						}
+					} else {
+						throw new QueryException("property \"" + propertyEntry.getKey() + "\" type not supported");
+					}
+				}				
+			} else {
+				throw new QueryException("Query language has changed, propertyset name required now");
+			}
+		}
 	}
 	
 	private double checkFloat(ObjectNode node, String key) throws QueryException {

@@ -28,13 +28,14 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.DatabaseSession.GetResult;
 import org.bimserver.database.Record;
 import org.bimserver.database.SearchingRecordIterator;
+import org.bimserver.database.queries.om.Properties;
 import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;
-import org.eclipse.emf.common.util.Enumerator;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.HashMapWrappedVirtualObject;
 import org.bimserver.shared.QueryContext;
 import org.bimserver.utils.BinUtils;
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
 
 public class QueryPropertiesAndTypesStackFrame extends DatabaseReadingStackFrame implements ObjectProvidingStackFrame {
@@ -42,9 +43,9 @@ public class QueryPropertiesAndTypesStackFrame extends DatabaseReadingStackFrame
 	private EClass eClass;
 	private SearchingRecordIterator typeRecordIterator;
 	private Record record;
-	private Map<String, Object> properties;
+	private Map<String, Properties> properties;
 
-	public QueryPropertiesAndTypesStackFrame(QueryObjectProvider queryObjectProvider, EClass eClass, QueryPart queryPart, QueryContext reusable, Map<String, Object> properties) throws BimserverDatabaseException {
+	public QueryPropertiesAndTypesStackFrame(QueryObjectProvider queryObjectProvider, EClass eClass, QueryPart queryPart, QueryContext reusable, Map<String, Properties> properties) throws BimserverDatabaseException {
 		super(reusable, queryObjectProvider, queryPart);
 		this.eClass = eClass;
 		this.properties = properties;
@@ -101,6 +102,10 @@ public class QueryPropertiesAndTypesStackFrame extends DatabaseReadingStackFrame
 		if (currentObject != null) {
 			DatabaseSession databaseSession = getQueryObjectProvider().getDatabaseSession();
 			List<Long> isDefinedByOids = (List<Long>) currentObject.get("IsDefinedBy");
+			int totalQueryProperties = 0;
+			for (String key : this.properties.keySet()) {
+				totalQueryProperties += this.properties.get(key).count();
+			}
 			if (isDefinedByOids != null) {
 				Set<String> propertyKeysMatched = new HashSet<>();
 				for (Long definedByOid : isDefinedByOids) {
@@ -110,23 +115,26 @@ public class QueryPropertiesAndTypesStackFrame extends DatabaseReadingStackFrame
 						Long ifcPropertySetDefinition = (Long) ifcRelDefinesByProperties.get("RelatingPropertyDefinition");
 						if (getPackageMetaData().getEClass("IfcPropertySet").isSuperTypeOf(databaseSession.getEClassForOid(ifcPropertySetDefinition))) {
 							HashMapVirtualObject ifcPropertySet = getByOid(ifcPropertySetDefinition);
-							List<Long> properties = (List<Long>) ifcPropertySet.get("HasProperties");
-							for (long propertyOid : properties) {
-								if (getPackageMetaData().getEClass("IfcPropertySingleValue").isSuperTypeOf(databaseSession.getEClassForOid(propertyOid))) {
-									HashMapVirtualObject property = getByOid(propertyOid);
-									String name = (String) property.get("Name");
-									HashMapWrappedVirtualObject value = (HashMapWrappedVirtualObject) property.get("NominalValue");
-									for (String queryPropertyName : this.properties.keySet()) {
-										Object queryPropertyValue = this.properties.get(queryPropertyName);
-										if (queryPropertyName.equals(name)) {
+							String propertySetName = (String) ifcPropertySet.get("Name");
+							Properties propertiesObject = (Properties)properties.get(propertySetName);
+							if (propertiesObject != null) {
+								List<Long> properties = (List<Long>) ifcPropertySet.get("HasProperties");
+								for (long propertyOid : properties) {
+									if (getPackageMetaData().getEClass("IfcPropertySingleValue").isSuperTypeOf(databaseSession.getEClassForOid(propertyOid))) {
+										HashMapVirtualObject property = getByOid(propertyOid);
+										String name = (String) property.get("Name");
+										HashMapWrappedVirtualObject value = (HashMapWrappedVirtualObject) property.get("NominalValue");
+										if (propertiesObject.has(name)) {
+											Object queryPropertyValue = propertiesObject.get(name);
+											
 											Object wrappedValue = value.eGet(value.eClass().getEStructuralFeature("wrappedValue"));
 											if (value.eClass().getName().equals("IfcBoolean")) {
 												Enumerator tristate = (Enumerator)wrappedValue;
 												if (tristate.getName().toLowerCase().equals(queryPropertyValue.toString())) {
-													propertyKeysMatched.add(queryPropertyName);
+													propertyKeysMatched.add(propertySetName + "___" + name);
 												}
 											} else if (wrappedValue.equals(queryPropertyValue)) {
-												propertyKeysMatched.add(queryPropertyName);
+												propertyKeysMatched.add(propertySetName + "___" + name);
 											}
 										}
 									}
@@ -135,7 +143,8 @@ public class QueryPropertiesAndTypesStackFrame extends DatabaseReadingStackFrame
 						}
 					}
 				}
-				if (propertyKeysMatched.size() != this.properties.size()) {
+				if (propertyKeysMatched.size() != totalQueryProperties) {
+					// All properties should have matched, atm all properties provided in the query are evaluated as AND
 					currentObject = null;
 				}
 			}
