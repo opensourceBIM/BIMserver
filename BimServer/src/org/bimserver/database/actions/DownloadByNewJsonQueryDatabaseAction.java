@@ -150,7 +150,11 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 									if (refOid instanceof Long) {
 										IdEObject ref = ifcModel.get((long) refOid);
 										if (ref != null) {
-											list.addUnique(ref);
+											if (eReference.isUnique()) {
+												list.add(ref);
+											} else {
+												list.addUnique(ref);
+											}
 										}
 									} else if (refOid instanceof HashMapWrappedVirtualObject) {
 //										IdEObject ref = ifcModel.get(((HashMapWrappedVirtualObject) refOid).get);
