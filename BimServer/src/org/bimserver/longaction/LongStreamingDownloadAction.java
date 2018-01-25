@@ -99,6 +99,7 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 			this.filename = Joiner.on("-").join(projectNames);
 
 			PluginConfiguration serializerPluginConfiguration = databaseSession.get(serializerOid, OldQuery.getDefault());
+			org.bimserver.plugins.PluginConfiguration pluginConfiguration = new org.bimserver.plugins.PluginConfiguration(serializerPluginConfiguration.getSettings());
 			if (serializerPluginConfiguration == null) {
 				LOGGER.info("No serializer config found");
 			} else {
@@ -131,14 +132,14 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 					QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, getBimServer(), query, roids, packageMetaData);
 					if (plugin instanceof MessagingStreamingSerializerPlugin) {
 						MessagingStreamingSerializerPlugin serializerPlugin = (MessagingStreamingSerializerPlugin)plugin;
-						messagingStreamingSerializer = serializerPlugin.createSerializer(null);
+						messagingStreamingSerializer = serializerPlugin.createSerializer(pluginConfiguration);
 						
 						messagingStreamingSerializer.init(queryObjectProvider, projectInfo, getBimServer().getPluginManager(), packageMetaData);
 						
 						changeActionState(ActionState.STARTED, "Done preparing", -1);
 					} else if (plugin instanceof StreamingSerializerPlugin) {
 						StreamingSerializerPlugin streamingSerializerPlugin = (StreamingSerializerPlugin)plugin;
-						serializer = streamingSerializerPlugin.createSerializer(null);
+						serializer = streamingSerializerPlugin.createSerializer(pluginConfiguration);
 						
 						serializer.init(queryObjectProvider, projectInfo, null, getBimServer().getPluginManager(), packageMetaData);
 						
