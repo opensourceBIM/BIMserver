@@ -519,6 +519,8 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 	}
 
 	public void rollback() throws BimserverDatabaseException {
+		// TODO do we need to remove indices too?
+		
 		LOGGER.info("Rolling back");
 		int pid = newRevision.getProject().getId();
 		int rid = newRevision.getRid();
