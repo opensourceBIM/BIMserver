@@ -1366,7 +1366,7 @@ public class PluginManager implements PluginManagerInterface {
 					} else {
 						if (dependency.getGroupId().equals("org.opensourcebim") && (dependency.getArtifactId().equals("shared") || dependency.getArtifactId().equals("pluginbase"))) {
 						} else {
-							MavenPluginLocation mavenPluginLocation = mavenPluginRepository.getPluginLocation(model.getRepositories().get(0).getUrl(), dependency.getGroupId(), dependency.getArtifactId());
+							MavenPluginLocation mavenPluginLocation = mavenPluginRepository.getPluginLocation(dependency.getGroupId(), dependency.getArtifactId());
 
 							try {
 								Path depJarFile = mavenPluginLocation.getVersionJar(dependency.getVersion());
