@@ -444,4 +444,9 @@ public class Database implements BimDatabase {
 		}
 		return eClass;
 	}
+
+	@Override
+	public String getTableName(EClass eClass) {
+		return eClass.getEPackage().getName() + "_" + eClass.getName();
+	}
 }

@@ -998,6 +998,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	}
 
 	public int getCount(EClass eClass, IfcModelInterface model, int pid, int rid) throws BimserverDatabaseException {
+		// TODO, only need to fetch the first byte of the value to be able to do the null-check, needs change in keyvaluestore layer
 		checkOpen();
 		int count = 0;
 		SearchingRecordIterator recordIterator = database.getKeyValueStore().getRecordIterator(eClass.getEPackage().getName() + "_" + eClass.getName(),
@@ -2260,5 +2261,11 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	
 	public HashMapVirtualObject getFromCache(long oid) {
 		return voCache.get(oid);
+	}
+
+	public <T extends IdEObject> List<T> getAll(Class<T> class1) throws BimserverDatabaseException {
+		EClass eClass = getEClass(class1.getPackage().getName(), class1.getSimpleName());
+		IfcModelInterface allOfType = getAllOfType(eClass, OldQuery.getDefault());
+		return allOfType.getAll(class1);
 	}
 }

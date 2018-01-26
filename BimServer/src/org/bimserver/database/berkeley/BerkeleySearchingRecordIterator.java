@@ -40,13 +40,15 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 	private byte[] nextStartSearchingAt;
 	private long cursorId;
 	private BerkeleyKeyValueStore berkeleyKeyValueStore;
+	private boolean onlyKeys;
 
-	public BerkeleySearchingRecordIterator(Cursor cursor, BerkeleyKeyValueStore berkeleyKeyValueStore, long cursorId, byte[] mustStartWith, byte[] startSearchingAt) throws BimserverLockConflictException {
+	public BerkeleySearchingRecordIterator(Cursor cursor, BerkeleyKeyValueStore berkeleyKeyValueStore, long cursorId, byte[] mustStartWith, byte[] startSearchingAt, boolean onlyKeys) throws BimserverLockConflictException {
 		this.cursor = cursor;
 		this.berkeleyKeyValueStore = berkeleyKeyValueStore;
 		this.cursorId = cursorId;
 		this.mustStartWith = mustStartWith;
 		this.nextStartSearchingAt = startSearchingAt;
+		this.onlyKeys = onlyKeys;
 	}
 
 	public long getCursorId() {
@@ -57,6 +59,9 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 		this.nextStartSearchingAt = null;
 		DatabaseEntry key = new DatabaseEntry(startSearchingAt);
 		DatabaseEntry value = new DatabaseEntry();
+		if (onlyKeys) {
+			value.setPartial(0, 0, true);
+		}
 		try {
 			OperationStatus next = cursor.getSearchKeyRange(key, value, LockMode.DEFAULT);
 			if (next == OperationStatus.SUCCESS) {
@@ -81,6 +86,9 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 		}
 		DatabaseEntry key = new DatabaseEntry();
 		DatabaseEntry value = new DatabaseEntry();
+		if (onlyKeys) {
+			value.setPartial(0, 0, true);
+		}
 		try {
 			OperationStatus next = cursor.getNext(key, value, LockMode.DEFAULT);
 			if (next == OperationStatus.SUCCESS) {
@@ -120,6 +128,9 @@ public class BerkeleySearchingRecordIterator implements SearchingRecordIterator 
 		}
 		DatabaseEntry key = new DatabaseEntry();
 		DatabaseEntry value = new DatabaseEntry();
+		if (onlyKeys) {
+			value.setPartial(0, 0, true);
+		}
 		try {
 			OperationStatus next = cursor.getLast(key, value, LockMode.DEFAULT);
 			if (next == OperationStatus.SUCCESS) {

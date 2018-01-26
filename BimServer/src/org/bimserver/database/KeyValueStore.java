@@ -87,4 +87,6 @@ public interface KeyValueStore {
 	void delete(String indexTableName, byte[] featureBytesOldIndex, byte[] array, DatabaseSession databaseSession) throws BimserverLockConflictException;
 
 	boolean isTransactional(DatabaseSession databaseSession, String tableName) throws BimserverDatabaseException;
+
+	SearchingRecordIterator getRecordIterator(String tableName, byte[] mustStartWith, byte[] startSearchingAt, DatabaseSession databaseSession, boolean keysOnly) throws BimserverLockConflictException, BimserverDatabaseException;
 }

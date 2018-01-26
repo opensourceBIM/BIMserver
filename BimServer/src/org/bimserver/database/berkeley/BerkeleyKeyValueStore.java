@@ -375,12 +375,12 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	}
 
 	@Override
-	public SearchingRecordIterator getRecordIterator(String tableName, byte[] mustStartWith, byte[] startSearchingAt, DatabaseSession databaseSession) throws BimserverLockConflictException, BimserverDatabaseException {
+	public SearchingRecordIterator getRecordIterator(String tableName, byte[] mustStartWith, byte[] startSearchingAt, DatabaseSession databaseSession, boolean keysOnly) throws BimserverLockConflictException, BimserverDatabaseException {
 		Cursor cursor = null;
 		try {
 			TableWrapper tableWrapper = getTableWrapper(tableName);
 			cursor = tableWrapper.getDatabase().openCursor(getTransaction(databaseSession, tableWrapper), getCursorConfig(tableWrapper));
-			BerkeleySearchingRecordIterator berkeleySearchingRecordIterator = new BerkeleySearchingRecordIterator(cursor, this, cursorCounter.incrementAndGet(), mustStartWith, startSearchingAt);
+			BerkeleySearchingRecordIterator berkeleySearchingRecordIterator = new BerkeleySearchingRecordIterator(cursor, this, cursorCounter.incrementAndGet(), mustStartWith, startSearchingAt, keysOnly);
 			if (MONITOR_CURSOR_STACK_TRACES) {
 				openCursors.put(berkeleySearchingRecordIterator.getCursorId(), new Exception().getStackTrace());
 			}
@@ -398,6 +398,11 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 			LOGGER.error("", e1);
 		}
 		return null;
+	}
+
+	@Override
+	public SearchingRecordIterator getRecordIterator(String tableName, byte[] mustStartWith, byte[] startSearchingAt, DatabaseSession databaseSession) throws BimserverLockConflictException, BimserverDatabaseException {
+		return getRecordIterator(tableName, mustStartWith, startSearchingAt, databaseSession, false);
 	}
 
 	@Override

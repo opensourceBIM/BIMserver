@@ -20,6 +20,7 @@ package org.bimserver;
 import java.io.IOException;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.net.URL;
+import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.SecureRandom;
@@ -51,7 +52,10 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.KeyValueStore;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.Record;
+import org.bimserver.database.RecordIterator;
 import org.bimserver.database.berkeley.BerkeleyKeyValueStore;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.database.migrations.InconsistentModelsException;
@@ -60,6 +64,7 @@ import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.MetaDataManager;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.endpoints.EndPointManager;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
@@ -73,6 +78,7 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.ServerStarted;
 import org.bimserver.models.store.BooleanType;
+import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DoubleType;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.LongType;
@@ -85,6 +91,7 @@ import org.bimserver.models.store.PluginBundleType;
 import org.bimserver.models.store.PluginBundleVersion;
 import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.PluginDescriptor;
+import org.bimserver.models.store.Project;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.ServerInfo;
 import org.bimserver.models.store.ServerSettings;
@@ -665,8 +672,7 @@ public class BimServer {
 				serverInfoManager.setErrorMessage("Inconsistent models");
 			}
 
-			DatabaseSession encsession = bimDatabase.createSession();
-			try {
+			try (DatabaseSession encsession = bimDatabase.createSession()) {
 				byte[] encryptionkeyBytes = null;
 				if (!bimDatabase.getRegistry().has(ENCRYPTIONKEY, encsession)) {
 					encryptionkeyBytes = new byte[16];
@@ -677,9 +683,9 @@ public class BimServer {
 					encryptionkeyBytes = bimDatabase.getRegistry().readByteArray(ENCRYPTIONKEY, encsession);
 				}
 				encryptionkey = new SecretKeySpec(encryptionkeyBytes, "AES");
-			} finally {
-				encsession.close();
 			}
+			
+			cleanupStaleData();
 
 			protocolBuffersMetaData = new ProtocolBuffersMetaData();
 			protocolBuffersMetaData.load(servicesMap, ProtocolBuffersBimServerClientFactory.class);
@@ -752,6 +758,62 @@ public class BimServer {
 			LOGGER.error("", e);
 			serverInfoManager.setErrorMessage(e.getMessage());
 		}
+	}
+
+	private void cleanupStaleData() throws BimserverDatabaseException {
+		long s = System.nanoTime();
+		try (DatabaseSession session = bimDatabase.createSession()) {
+			for (Project project : session.getAll(Project.class)) {
+				int recordsRemoved = 0;
+				if (project.getName().equals("INT-Store")) {
+					continue;
+				}
+				if (project.getRevisions().size() == 0) {
+					recordsRemoved += checkPidRid(session, project, project.getId(), 0);
+				} else {
+					ConcreteRevision lastConcreteRevision = project.getLastConcreteRevision();
+					recordsRemoved += checkPidRid(session, project, project.getId(), lastConcreteRevision.getId());
+				}
+				if (recordsRemoved > 0) {
+					LOGGER.info("Removed " + recordsRemoved + " stale records for project " + project.getName());
+				}
+			}
+		}
+		long e = System.nanoTime();
+		LOGGER.info("Checking for stale records took " + ((e - s) / 1000000) + " ms");
+	}
+
+	private int checkPidRid(DatabaseSession session, Project project, int pid, int rid) throws BimserverDatabaseException, BimserverLockConflictException {
+		ByteBuffer buffer = ByteBuffer.allocate(4);
+		buffer.putInt(pid);
+
+		int removed = 0;
+		
+		KeyValueStore keyValueStore = session.getKeyValueStore();
+		PackageMetaData packageMetaData = bimDatabase.getMetaDataManager().getPackageMetaData(project.getSchema());
+		for (EClass eClass : packageMetaData.getAllClasses()) {
+			String tableName = bimDatabase.getTableName(eClass);
+			if (!keyValueStore.isTransactional(session, tableName)) {
+				try (RecordIterator iterator = keyValueStore.getRecordIterator(tableName, buffer.array(), buffer.array(), session, true)) {
+					Record record = iterator.next();
+					while (record != null) {
+						ByteBuffer keyBuffer = ByteBuffer.wrap(record.getKey());
+						if (keyBuffer.capacity() != 16) {
+							throw new BimserverDatabaseException("Unexpected key size: " + keyBuffer.capacity());
+						}
+						keyBuffer.getInt(); // pid
+						keyBuffer.getLong(); // oid
+						int recordRid = -keyBuffer.getInt(); // rid
+						if (recordRid > rid) {
+							keyValueStore.delete(tableName, record.getKey(), session);
+							removed++;
+						}
+						record = iterator.next();
+					}
+				}
+			}
+		}
+		return removed;
 	}
 
 	public MavenPluginRepository getMavenPluginRepository() {

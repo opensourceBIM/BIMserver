@@ -40,4 +40,6 @@ public interface BimDatabase {
 	Registry getRegistry();
 
 	EClass getEClassForOid(long oid) throws BimserverDatabaseException;
+
+	String getTableName(EClass eClass);
 }
