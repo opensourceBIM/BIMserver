@@ -93,7 +93,7 @@ public class LocalDevBimServerStarter {
 						}
 					}
 				});
-			} else if (bimServer.getServerInfo().getServerState() == ServerState.RUNNING) {
+			} else if (bimServer.getServerInfo().getServerState() == ServerState.RUNNING || bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
 				try {
 					AdminInterface adminInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(AdminInterface.class);
