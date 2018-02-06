@@ -772,7 +772,9 @@ public class BimServer {
 					recordsRemoved += checkPidRid(session, project, project.getId(), 0);
 				} else {
 					ConcreteRevision lastConcreteRevision = project.getLastConcreteRevision();
-					recordsRemoved += checkPidRid(session, project, project.getId(), lastConcreteRevision.getId());
+					if (lastConcreteRevision != null) {
+						recordsRemoved += checkPidRid(session, project, project.getId(), lastConcreteRevision.getId());
+					}
 				}
 				if (recordsRemoved > 0) {
 					LOGGER.info("Removed " + recordsRemoved + " stale records for project " + project.getName());

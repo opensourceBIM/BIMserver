@@ -80,19 +80,7 @@ public class LocalDevBimServerStarter {
 		Logger LOGGER = LoggerFactory.getLogger(LocalDevBimServerStarter.class);
 		try {
 			bimServer.start();
-			if (bimServer.getServerInfo().getServerState() != ServerState.MIGRATION_REQUIRED) {
-				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
-				try {
-					AdminInterface adminInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(AdminInterface.class);
-					adminInterface.setup("http://localhost:" + port, name, "My Description", "http://localhost:" + port + "/img/bimserver.png", "Administrator", "admin@bimserver.org", "admin");
-					SettingsInterface settingsInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(SettingsInterface.class);
-					settingsInterface.setCacheOutputFiles(false);
-					settingsInterface.setPluginStrictVersionChecking(false);
-				} catch (Exception e) {
-					// Ignore
-				}
-				bimServer.activateServices();
-			} else {
+			if (bimServer.getServerInfo().getServerState() == ServerState.MIGRATION_REQUIRED) {
 				bimServer.getServerInfoManager().registerStateChangeListener(new StateChangeListener() {
 					@Override
 					public void stateChanged(ServerState oldState, ServerState newState) {
@@ -105,6 +93,20 @@ public class LocalDevBimServerStarter {
 						}
 					}
 				});
+			} else if (bimServer.getServerInfo().getServerState() == ServerState.RUNNING) {
+				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
+				try {
+					AdminInterface adminInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(AdminInterface.class);
+					adminInterface.setup("http://localhost:" + port, name, "My Description", "http://localhost:" + port + "/img/bimserver.png", "Administrator", "admin@bimserver.org", "admin");
+					SettingsInterface settingsInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(SettingsInterface.class);
+					settingsInterface.setCacheOutputFiles(false);
+					settingsInterface.setPluginStrictVersionChecking(false);
+				} catch (Exception e) {
+					// Ignore
+				}
+				bimServer.activateServices();
+			} else {
+				LOGGER.error("BIMserver did not startup correctly");
 			}
 		} catch (PluginException e) {
 			LOGGER.error("", e);
