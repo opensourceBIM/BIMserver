@@ -4,10 +4,12 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.shared.GuidCompressor;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.QueryContext;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class CreateObjectChange implements Change {
 
@@ -35,6 +37,16 @@ public class CreateObjectChange implements Change {
 		QueryContext queryContext = new QueryContext(transaction.getDatabaseSession(), packageMetaData, transaction.getConcreteRevision().getProject().getId(), transaction.getPreviousRevision() == null ? 1 : transaction.getPreviousRevision().getRid() + 1, -1, 0); // TODO
 		
 		HashMapVirtualObject object = new HashMapVirtualObject(queryContext, eClass, oid);
+		
+		if (generateGuid) {
+			EStructuralFeature globalIdFeature = eObject.eClass().getEStructuralFeature("GlobalId");
+			if (globalIdFeature != null) {
+				eObject.eSet(globalIdFeature, GuidCompressor.getNewIfcGloballyUniqueId());
+			} else {
+				throw new UserException("Cannot generate GUID for " + eObject.eClass().getName() + ", no GlobalId property");
+			}
+		}
+		
 		transaction.created(object);
 	}
 }
