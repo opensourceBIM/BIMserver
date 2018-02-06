@@ -37,9 +37,12 @@ import org.bimserver.shared.QueryContext;
 import org.bimserver.utils.BinUtils;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class QueryPropertiesAndTypesStackFrame extends DatabaseReadingStackFrame implements ObjectProvidingStackFrame {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(QueryPropertiesAndTypesStackFrame.class);
 	private EClass eClass;
 	private SearchingRecordIterator typeRecordIterator;
 	private Record record;
@@ -113,34 +116,22 @@ public class QueryPropertiesAndTypesStackFrame extends DatabaseReadingStackFrame
 					if (getPackageMetaData().getEClass("IfcRelDefinesByProperties").isSuperTypeOf(eClass)) {
 						HashMapVirtualObject ifcRelDefinesByProperties = getByOid(definedByOid);
 						Long ifcPropertySetDefinition = (Long) ifcRelDefinesByProperties.get("RelatingPropertyDefinition");
-						if (getPackageMetaData().getEClass("IfcPropertySet").isSuperTypeOf(databaseSession.getEClassForOid(ifcPropertySetDefinition))) {
-							HashMapVirtualObject ifcPropertySet = getByOid(ifcPropertySetDefinition);
-							String propertySetName = (String) ifcPropertySet.get("Name");
-							Properties propertiesObject = (Properties)properties.get(propertySetName);
-							if (propertiesObject != null) {
-								List<Long> properties = (List<Long>) ifcPropertySet.get("HasProperties");
-								for (long propertyOid : properties) {
-									if (getPackageMetaData().getEClass("IfcPropertySingleValue").isSuperTypeOf(databaseSession.getEClassForOid(propertyOid))) {
-										HashMapVirtualObject property = getByOid(propertyOid);
-										String name = (String) property.get("Name");
-										HashMapWrappedVirtualObject value = (HashMapWrappedVirtualObject) property.get("NominalValue");
-										if (propertiesObject.has(name)) {
-											Object queryPropertyValue = propertiesObject.get(name);
-											
-											Object wrappedValue = value.eGet(value.eClass().getEStructuralFeature("wrappedValue"));
-											if (value.eClass().getName().equals("IfcBoolean")) {
-												Enumerator tristate = (Enumerator)wrappedValue;
-												if (tristate.getName().toLowerCase().equals(queryPropertyValue.toString())) {
-													propertyKeysMatched.add(propertySetName + "___" + name);
-												}
-											} else if (wrappedValue.equals(queryPropertyValue)) {
-												propertyKeysMatched.add(propertySetName + "___" + name);
-											}
-										}
-									}
+						processPropertySet(databaseSession, propertyKeysMatched, ifcPropertySetDefinition);
+					} else if (getPackageMetaData().getEClass("IfcRelDefinesByType").isSuperTypeOf(eClass)){
+						HashMapVirtualObject ifcRelDefinesByType = getByOid(definedByOid);
+						Long relatingTypeId = (Long) ifcRelDefinesByType.get("RelatingType");
+						EClass eClassForOid = databaseSession.getEClassForOid(relatingTypeId);
+						if (getPackageMetaData().getEClass("IfcTypeObject").isSuperTypeOf(eClassForOid)) {
+							HashMapVirtualObject ifcTypeObject = getByOid(relatingTypeId);
+							List<Long> propertySets = (List<Long>) ifcTypeObject.get("HasPropertySets");
+							if (propertySets != null) {
+								for (Long propertySetId : propertySets) {
+									processPropertySet(databaseSession, propertyKeysMatched, propertySetId);
 								}
 							}
 						}
+					} else {
+						LOGGER.info(eClass.getName());
 					}
 				}
 				if (propertyKeysMatched.size() != totalQueryProperties) {
@@ -153,6 +144,53 @@ public class QueryPropertiesAndTypesStackFrame extends DatabaseReadingStackFrame
 		processPossibleIncludes(currentObject, eClass, getQueryPart());
 		
 		return false;
+	}
+
+	@SuppressWarnings("unchecked")
+	private void processPropertySet(DatabaseSession databaseSession, Set<String> propertyKeysMatched, Long ifcPropertySetDefinition) throws BimserverDatabaseException {
+		EClass eClassForOid = databaseSession.getEClassForOid(ifcPropertySetDefinition);
+		if (getPackageMetaData().getEClass("IfcPropertySet").isSuperTypeOf(eClassForOid)) {
+			HashMapVirtualObject ifcPropertySet = getByOid(ifcPropertySetDefinition);
+			String propertySetName = (String) ifcPropertySet.get("Name");
+			Properties propertiesObject = (Properties)properties.get(propertySetName);
+			if (propertiesObject != null) {
+				List<Long> properties = (List<Long>) ifcPropertySet.get("HasProperties");
+				for (long propertyOid : properties) {
+					if (getPackageMetaData().getEClass("IfcPropertySingleValue").isSuperTypeOf(databaseSession.getEClassForOid(propertyOid))) {
+						HashMapVirtualObject property = getByOid(propertyOid);
+						String name = (String) property.get("Name");
+						HashMapWrappedVirtualObject value = (HashMapWrappedVirtualObject) property.get("NominalValue");
+						if (propertiesObject.has(name)) {
+							Object queryPropertyValue = propertiesObject.get(name);
+							
+							Object wrappedValue = value.eGet(value.eClass().getEStructuralFeature("wrappedValue"));
+							if (value.eClass().getName().equals("IfcBoolean")) {
+								Enumerator tristate = (Enumerator)wrappedValue;
+								if (tristate.getName().toLowerCase().equals(queryPropertyValue.toString())) {
+									propertyKeysMatched.add(propertySetName + "___" + name);
+								}
+							} else if (wrappedValue.equals(queryPropertyValue)) {
+								propertyKeysMatched.add(propertySetName + "___" + name);
+							}
+						}
+					}
+				}
+			}
+		} else if (getPackageMetaData().getEClass("IfcPropertySetDefinition").isSuperTypeOf(eClassForOid)) {
+			HashMapVirtualObject ifcPropertySet = getByOid(ifcPropertySetDefinition);
+			Properties propertiesObject = (Properties)properties.get(ifcPropertySet.eClass().getName());
+			if (propertiesObject != null) {
+				for (String key : propertiesObject.keys()) {
+					if (ifcPropertySet.has(key)) {
+						if (ifcPropertySet.get(key).toString().equals(propertiesObject.get(key))) {
+							propertyKeysMatched.add(ifcPropertySet.eClass().getName() + "___" + key);
+						}
+					}
+				}
+			}
+		} else {
+			LOGGER.info(eClassForOid.getName());
+		}
 	}
 }
 

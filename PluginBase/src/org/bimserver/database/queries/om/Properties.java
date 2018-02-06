@@ -2,6 +2,7 @@ package org.bimserver.database.queries.om;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class Properties {
 
@@ -25,5 +26,9 @@ public class Properties {
 
 	public Object get(String name) {
 		return mappings.get(name);
+	}
+	
+	public Set<String> keys() {
+		return mappings.keySet();
 	}
 }
