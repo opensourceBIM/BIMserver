@@ -73,4 +73,12 @@ public class Transaction {
 	public void updated(HashMapVirtualObject object) {
 		updated.put(object.getOid(), object);
 	}
+	
+	public void deleted(HashMapVirtualObject object) {
+		deleted.put(object.getOid(), object);
+	}
+	
+	public Collection<HashMapVirtualObject> getDeleted() {
+		return deleted.values();
+	}
 }

@@ -186,6 +186,9 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		for (HashMapVirtualObject object : transaction.getUpdated()) {
 			getDatabaseSession().save(object, concreteRevision.getId());
 		}
+		for (HashMapVirtualObject object : transaction.getDeleted()) {
+			getDatabaseSession().delete(object, concreteRevision.getId());
+		}
 		
 //		ifcModel.fixInverseMismatches();
 

@@ -2268,4 +2268,13 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		IfcModelInterface allOfType = getAllOfType(eClass, OldQuery.getDefault());
 		return allOfType.getAll(class1);
 	}
+
+	public void delete(HashMapVirtualObject object, int newRid) throws BimserverLockConflictException, BimserverConcurrentModificationDatabaseException, BimserverDatabaseException {
+		ByteBuffer keyBuffer = ByteBuffer.allocate(16);
+		fillKeyBuffer(keyBuffer, object.getPid(), object.getOid(), newRid);
+		EClass eClass = object.eClass();
+		String tableName = eClass.getEPackage().getName() + "_" + eClass.getName();
+		database.getKeyValueStore().storeNoOverwrite(tableName, keyBuffer.array(), new byte[] { -1 }, this);
+		database.incrementCommittedWrites(1);
+	}
 }

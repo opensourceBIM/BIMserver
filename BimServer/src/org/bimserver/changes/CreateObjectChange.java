@@ -15,7 +15,6 @@ public class CreateObjectChange implements Change {
 
 	private final long oid;
 	private final String type;
-	private IdEObjectImpl eObject;
 	private EClass eClass;
 	private Boolean generateGuid;
 
@@ -39,11 +38,11 @@ public class CreateObjectChange implements Change {
 		HashMapVirtualObject object = new HashMapVirtualObject(queryContext, eClass, oid);
 		
 		if (generateGuid) {
-			EStructuralFeature globalIdFeature = eObject.eClass().getEStructuralFeature("GlobalId");
+			EStructuralFeature globalIdFeature = object.eClass().getEStructuralFeature("GlobalId");
 			if (globalIdFeature != null) {
-				eObject.eSet(globalIdFeature, GuidCompressor.getNewIfcGloballyUniqueId());
+				object.setAttribute(globalIdFeature, GuidCompressor.getNewIfcGloballyUniqueId());
 			} else {
-				throw new UserException("Cannot generate GUID for " + eObject.eClass().getName() + ", no GlobalId property");
+				throw new UserException("Cannot generate GUID for " + object.eClass().getName() + ", no GlobalId property");
 			}
 		}
 		
