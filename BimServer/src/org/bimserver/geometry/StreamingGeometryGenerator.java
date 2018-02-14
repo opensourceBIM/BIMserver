@@ -264,7 +264,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 								List<HashMapVirtualObject> representations = representation.getDirectListFeature(representationsFeature);
 								if (representations != null) {
 									for (HashMapVirtualObject representationItem : representations) {
-										if (representationItem.get("RepresentationIdentifier").equals("Body")) {
+										String representationIdentifier = (String) representationItem.get("RepresentationIdentifier");
+										if (representationIdentifier.equals("Body") || representationIdentifier.equals("Facetation")) {
 											List<HashMapVirtualObject> items = representationItem.getDirectListFeature(itemsFeature);
 											for (HashMapVirtualObject item : items) {
 												report.addRepresentationItem(item.eClass().getName());
@@ -407,14 +408,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 							HashMapVirtualObject representation = next.getDirectFeature(representationFeature);
 							if (representation != null) {
 								List<HashMapVirtualObject> list = representation.getDirectListFeature(packageMetaData.getEReference("IfcProductRepresentation", "Representations"));
-								boolean goForIt = false;
-								if (list != null) {
-									for (HashMapVirtualObject o : list) {
-										if (o.get("RepresentationIdentifier").equals("Body")) {
-											goForIt = true;
-										}
-									}
-								}
+								boolean goForIt = goForIt(list);
 								if (goForIt) {
 									Query query = new Query("Main " + eClass.getName(), packageMetaData);
 									QueryPart queryPart = query.createQueryPart();
@@ -428,14 +422,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 												representation = next.getDirectFeature(representationFeature);
 												if (representation != null) {
 													list = representation.getDirectListFeature(packageMetaData.getEReference("IfcProductRepresentation", "Representations"));
-													boolean goForIt2 = false;
-													if (list != null) {
-														for (HashMapVirtualObject o : list) {
-															if (o.get("RepresentationIdentifier").equals("Body")) {
-																goForIt2 = true;
-															}
-														}
-													}
+													boolean goForIt2 = goForIt(list);
 													if (goForIt2) {
 														queryPart.addOid(next.getOid());
 														x++;
@@ -478,6 +465,18 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			LOGGER.debug("", e);
 		}
 		return generateGeometryResult;
+	}
+
+	private boolean goForIt(List<HashMapVirtualObject> list) {
+		boolean goForIt = false;
+		if (list != null) {
+			for (HashMapVirtualObject o : list) {
+				if (o.get("RepresentationIdentifier").equals("Body") || o.get("RepresentationIdentifier").equals("Facetation")) {
+					goForIt = true;
+				}
+			}
+		}
+		return goForIt;
 	}
 
 	private void writeDebugFile() throws IOException {
