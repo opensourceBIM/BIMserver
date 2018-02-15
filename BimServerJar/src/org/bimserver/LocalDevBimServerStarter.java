@@ -57,7 +57,7 @@ public class LocalDevBimServerStarter {
 		if (home != null) {
 			config.setHomeDir(home);
 		} else {
-			config.setHomeDir(Paths.get("home" + (id == -1 ? "" : id)));
+			config.setHomeDir(Paths.get("tmptestdata/home" + (id == -1 ? "" : id)));
 		}
 		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(Paths.get("../")));
 		config.setStartEmbeddedWebServer(true);
