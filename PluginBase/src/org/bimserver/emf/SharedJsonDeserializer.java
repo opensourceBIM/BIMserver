@@ -39,7 +39,6 @@ import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.shared.ListWaitingObject;
-import org.bimserver.shared.SingleWaitingObject;
 import org.bimserver.shared.WaitingList;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.eclipse.emf.common.util.AbstractEList;
@@ -323,6 +322,7 @@ public class SharedJsonDeserializer {
 										if (jsonReader.nextName().equals("_t")) {
 											String t = jsonReader.nextString();
 											IdEObject wrappedObject = (IdEObject) model.create(model.getPackageMetaData().getEClassIncludingDependencies(t), -1);
+											((IdEObjectImpl)wrappedObject).setLoadingState(State.LOADING);
 											if (eStructuralFeature.getEAnnotation("dbembed") != null) {
 												for (EStructuralFeature eStructuralFeature2 : wrappedObject.eClass().getEAllStructuralFeatures()) {
 													String fn = jsonReader.nextName();
@@ -340,6 +340,7 @@ public class SharedJsonDeserializer {
 													object.eSet(eStructuralFeature, wrappedObject);
 												}
 											}
+											((IdEObjectImpl)wrappedObject).setLoadingState(State.LOADED);
 										}
 										jsonReader.endObject();
 									} else {
