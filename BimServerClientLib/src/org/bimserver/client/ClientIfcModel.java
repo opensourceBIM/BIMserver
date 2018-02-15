@@ -387,6 +387,8 @@ public class ClientIfcModel extends IfcModel {
 					if (geometryInfo == null) {
 						geometryInfo = create(GeometryInfo.class);
 					}
+					((IdEObjectImpl)geometryInfo).setOid(geometryInfoOid);
+					((IdEObjectImpl)geometryInfo).setLoadingState(State.LOADING);
 					add(geometryInfoOid, geometryInfo);
 
 					Long ifcProductOid = geometryInfoOidToOid.get(geometryInfoOid);
@@ -422,6 +424,7 @@ public class ClientIfcModel extends IfcModel {
 						add(geometryDataOid, geometryData);
 					}
 					geometryInfo.setData(geometryData);
+					((IdEObjectImpl)geometryData).setLoadingState(State.LOADED);
 				} else if (type == 3) {
 					throw new GeometryException("Parts not supported");
 				} else if (type == 1) {
@@ -433,6 +436,8 @@ public class ClientIfcModel extends IfcModel {
 						geometryData = GeometryFactory.eINSTANCE.createGeometryData();
 						add(geometryDataOid, geometryData);
 					}
+					((IdEObjectImpl)geometryData).setOid(geometryDataOid);
+					((IdEObjectImpl)geometryData).setLoadingState(State.LOADING);
 
 					int nrIndices = dataInputStream.readInt();
 					byte[] indices = new byte[nrIndices * 4];
@@ -461,6 +466,7 @@ public class ClientIfcModel extends IfcModel {
 					byte[] materials = new byte[nrMaterials * 4];
 					dataInputStream.readFully(materials);
 					geometryData.setMaterials(materials);
+					((IdEObjectImpl)geometryData).setLoadingState(State.LOADED);
 				} else if (type == 6) {
 					done = true;
 				} else {
@@ -775,7 +781,7 @@ public class ClientIfcModel extends IfcModel {
 			return;
 		}
 		if (!eFeature.isMany()) {
-			if (getModelState() != ModelState.LOADING) {
+			if (getModelState() != ModelState.LOADING && ((IdEObjectImpl)idEObject).getLoadingState() != State.LOADING) {
 				try {
 					if (newValue != EStructuralFeature.Internal.DynamicValueHolder.NIL) {
 						LowLevelInterface lowLevelInterface = getBimServerClient().getLowLevelInterface();
@@ -906,6 +912,9 @@ public class ClientIfcModel extends IfcModel {
 	}
 
 	public void load(IdEObject object) {
+		if (((IdEObjectImpl)object).getLoadingState() == State.LOADING) {
+			return;
+		}
 		loadExplicit(object.getOid());
 	}
 
