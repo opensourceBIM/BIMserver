@@ -24,16 +24,19 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
 import org.bimserver.EmbeddedWebServer;
 import org.bimserver.LocalDevPluginLoader;
+import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.utils.PathUtils;
+import org.bimserver.webservices.authorization.SystemAuthorization;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.slf4j.LoggerFactory;
@@ -49,7 +52,7 @@ public class AllTests {
 
 	private static void setup() {
 		// Create a config
-		Path home = Paths.get("home-" + new Random().nextInt(1000000000));
+		Path home = Paths.get("tmptestdata/home-" + new Random().nextInt(1000000000));
 		
 		// Remove the home dir if it's there
 		if (Files.exists(home)) {
@@ -85,6 +88,7 @@ public class AllTests {
 
 			// Setup the server
 			client.getAdminInterface().setup("http://localhost:8080", "Test Name", "Test Description", "noicon", "Administrator", "admin@bimserver.org", "admin");
+			bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).getSettingsInterface().setCacheOutputFiles(false);
 		
 			client.disconnect();
 			
