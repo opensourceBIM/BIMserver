@@ -75,6 +75,10 @@ public class RemoveReferenceChange implements Change {
 		if (object == null) {
 			throw new UserException("No object of type \"" + eClass.getName() + "\" with oid " + oid + " found in project with pid " + transaction.getProject().getId());
 		}
+		if (!ChangeHelper.canBeChanged(eClass)) {
+			throw new UserException("Only objects from the following schemas are allowed to be changed: Ifc2x3tc1 and IFC4, this object (" + eClass.getName() + ") is from the \"" + eClass.getEPackage().getName() + "\" package");
+		}
+
 		EReference eReference = packageMetaData.getEReference(eClass.getName(), referenceName);
 		if (eReference == null) {
 			throw new UserException("No reference with the name \"" + referenceName + "\" found in class \"" + eClass.getName() + "\"");

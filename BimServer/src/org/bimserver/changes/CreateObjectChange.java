@@ -35,6 +35,10 @@ public class CreateObjectChange implements Change {
 
 		QueryContext queryContext = new QueryContext(transaction.getDatabaseSession(), packageMetaData, transaction.getConcreteRevision().getProject().getId(), transaction.getPreviousRevision() == null ? 1 : transaction.getPreviousRevision().getRid() + 1, -1, 0); // TODO
 		
+		if (!ChangeHelper.canBeChanged(eClass)) {
+			throw new UserException("Only objects from the following schemas are allowed to be changed: Ifc2x3tc1 and IFC4, this object (" + eClass.getName() + ") is from the \"" + eClass.getEPackage().getName() + "\" package");
+		}
+
 		HashMapVirtualObject object = new HashMapVirtualObject(queryContext, eClass, oid);
 		
 		if (generateGuid) {
