@@ -69,7 +69,9 @@ public class OAuthAuthorizationServlet extends SubServlet {
 			String location = "/apps/bimviews/?page=OAuth&auth_type=" + authType + "&client_id=" + request.getParameter("client_id") + "&response_type=" + request.getParameter("response_type") + "&redirect_uri="
 					+ request.getParameter("redirect_uri");
 			if (request.getParameter("state") != null) {
-				location += "&state=" + URLEncoder.encode(request.getParameter("state"), "UTF-8");
+				String encodedState = URLEncoder.encode(request.getParameter("state"), "UTF-8");
+				encodedState = encodedState.replace("+", "%2B"); // Why I hate OAuth2, REST and any "standard" using GET requests, URL encoding...
+				location += "&state=" + encodedState;
 			}
 			LOGGER.info("Redirecting to " + location);
 			httpServletResponse.sendRedirect(location);
