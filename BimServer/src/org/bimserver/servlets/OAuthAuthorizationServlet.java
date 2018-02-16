@@ -20,6 +20,7 @@ package org.bimserver.servlets;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URLEncoder;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -68,7 +69,7 @@ public class OAuthAuthorizationServlet extends SubServlet {
 			String location = "/apps/bimviews/?page=OAuth&auth_type=" + authType + "&client_id=" + request.getParameter("client_id") + "&response_type=" + request.getParameter("response_type") + "&redirect_uri="
 					+ request.getParameter("redirect_uri");
 			if (request.getParameter("state") != null) {
-				location += "&state=" + request.getParameter("state");
+				location += "&state=" + URLEncoder.encode(request.getParameter("state"), "UTF-8");
 			}
 			LOGGER.info("Redirecting to " + location);
 			httpServletResponse.sendRedirect(location);
