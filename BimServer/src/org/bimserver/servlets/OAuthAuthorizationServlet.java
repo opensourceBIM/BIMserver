@@ -70,6 +70,7 @@ public class OAuthAuthorizationServlet extends SubServlet {
 			if (request.getParameter("state") != null) {
 				location += "&state=" + request.getParameter("state");
 			}
+			LOGGER.info("Redirecting to " + location);
 			httpServletResponse.sendRedirect(location);
 			return;
 		}
