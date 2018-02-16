@@ -1,5 +1,7 @@
 package org.bimserver.database.actions;
 
+import java.util.Date;
+
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.GenerateGeometryResult;
@@ -12,10 +14,15 @@ import org.bimserver.geometry.GeometryGenerationReport;
 import org.bimserver.geometry.StreamingGeometryGenerator;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.ExtendedData;
+import org.bimserver.models.store.File;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.User;
 import org.bimserver.shared.QueryContext;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+
+import com.google.common.base.Charsets;
 
 public class RegenerateGeometryDatabaseAction extends ProjectBasedDatabaseAction<Void> {
 
@@ -66,6 +73,31 @@ public class RegenerateGeometryDatabaseAction extends ProjectBasedDatabaseAction
 			
 			concreteRevision.setMinBounds(generateGeometry.getMinBoundsAsVector3f());
 			concreteRevision.setMaxBounds(generateGeometry.getMaxBoundsAsVector3f());
+			
+			ExtendedData extendedData = getDatabaseSession().create(ExtendedData.class);
+			File file = getDatabaseSession().create(File.class);
+			byte[] bytes = report.toHtml().getBytes(Charsets.UTF_8);
+			file.setData(bytes);
+			file.setFilename("geometrygenerationreport.html");
+			file.setMime("text/html");
+			file.setSize(bytes.length);
+			User actingUser = getUserByUoid(uoid);
+			extendedData.setUser(actingUser);
+			extendedData.setTitle("Geometry generation report (rerun)");
+			extendedData.setAdded(new Date());
+			extendedData.setSize(file.getData().length);
+			extendedData.setFile(file);
+			revision.getExtendedData().add(extendedData);
+			extendedData.setProject(revision.getProject());
+			extendedData.setRevision(revision);
+			
+			getDatabaseSession().store(file);
+			getDatabaseSession().store(extendedData);
+			getDatabaseSession().store(revision);
+			
+			if (extendedData.getSchema() != null) {
+				getDatabaseSession().store(extendedData.getSchema());
+			}
 			
 			getDatabaseSession().store(concreteRevision);
 			
