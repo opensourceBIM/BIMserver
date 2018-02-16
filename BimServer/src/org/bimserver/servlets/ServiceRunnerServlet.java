@@ -81,8 +81,10 @@ public class ServiceRunnerServlet extends SubServlet {
 			}
 		}
 		if (token == null) {
-			token = request.getHeader("token");
+			token = request.getHeader("Token");
 		}
+		
+		LOGGER.info("Token: " + token);
 		
 		String serviceName = request.getHeader("ServiceName");
 		if (serviceName == null) {
@@ -91,9 +93,11 @@ public class ServiceRunnerServlet extends SubServlet {
 				serviceName = serviceName.substring(10);
 			}
 		}
+		LOGGER.info("ServiceName: " + serviceName);
 		long serviceOid = Long.parseLong(serviceName);
 		
 		String inputType = request.getHeader("Input-Type");
+		LOGGER.info("Input-Type: " + inputType);
 		
 		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
 			Authorization authorization = Authorization.fromToken(getBimServer().getEncryptionKey(), token);
