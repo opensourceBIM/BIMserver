@@ -88,7 +88,8 @@ public class RootServlet extends HttpServlet {
 				response.setHeader("Access-Control-Allow-Origin", "*");
 			}
 			response.setHeader("Access-Control-Allow-Headers", "Content-Type, Input-Type, Token");
-
+			response.setHeader("Access-Control-Expose-Headers", "Content-Length, Data-Title, Output-Type");
+			
 			if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
 				return;
 			}
