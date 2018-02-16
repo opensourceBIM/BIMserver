@@ -20,7 +20,6 @@ package org.bimserver.servlets;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URLEncoder;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -29,7 +28,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 
-import org.apache.http.client.utils.URIBuilder;
 import org.apache.oltu.oauth2.as.request.OAuthAuthzRequest;
 import org.apache.oltu.oauth2.as.response.OAuthASResponse;
 import org.apache.oltu.oauth2.as.response.OAuthASResponse.OAuthAuthorizationResponseBuilder;
@@ -124,6 +122,7 @@ public class OAuthAuthorizationServlet extends SubServlet {
 				String redirectURI = oauthRequest.getParam(OAuth.OAUTH_REDIRECT_URI);
 
 				OAuthAuthorizationResponseBuilder build = builder.location(redirectURI).setParam("address", getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/json");
+				build.setParam("serviceaddress", getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/services");
 				if (oauthCode.getAuthorization() instanceof SingleProjectAuthorization) {
 					SingleProjectAuthorization singleProjectAuthorization = (SingleProjectAuthorization) oauthCode.getAuthorization();
 					build.setParam("poid", "" + singleProjectAuthorization.getProject().getOid());
