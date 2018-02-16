@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
 
+import org.apache.http.client.utils.URIBuilder;
 import org.apache.oltu.oauth2.as.request.OAuthAuthzRequest;
 import org.apache.oltu.oauth2.as.response.OAuthASResponse;
 import org.apache.oltu.oauth2.as.response.OAuthASResponse.OAuthAuthorizationResponseBuilder;
@@ -53,6 +54,8 @@ import org.bimserver.webservices.authorization.AuthenticationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.net.UrlEscapers;
+
 public class OAuthAuthorizationServlet extends SubServlet {
 	private static final Logger LOGGER = LoggerFactory.getLogger(OAuthAuthorizationServlet.class);
 
@@ -71,9 +74,8 @@ public class OAuthAuthorizationServlet extends SubServlet {
 			if (request.getParameter("state") != null) {
 				String state = request.getParameter("state");
 				LOGGER.info("Incoming state: " + state);
-				String encodedState = URLEncoder.encode(request.getParameter("state"), "UTF-8");
+				String encodedState = UrlEscapers.urlFragmentEscaper().escape(state);
 				LOGGER.info("Encoded state: " + encodedState);
-				encodedState = encodedState.replace("+", "%2B"); // Why I hate OAuth2, REST and any "standard" using GET requests, URL encoding...
 				location += "&state=" + encodedState;
 			}
 			LOGGER.info("Redirecting to " + location);
