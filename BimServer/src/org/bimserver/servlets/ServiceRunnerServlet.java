@@ -103,9 +103,11 @@ public class ServiceRunnerServlet extends SubServlet {
 			Authorization authorization = Authorization.fromToken(getBimServer().getEncryptionKey(), token);
 			User user = session.get(authorization.getUoid(), OldQuery.getDefault());
 			if (user == null) {
+				LOGGER.error("Service \"" + serviceName + "\" not found for this user");
 				throw new UserException("No user found with uoid " + authorization.getUoid());
 			}
 			if (user.getState() == ObjectState.DELETED) {
+				LOGGER.error("User has been deleted");
 				throw new UserException("User has been deleted");
 			}
 			InternalServicePluginConfiguration foundService = null;
@@ -117,14 +119,17 @@ public class ServiceRunnerServlet extends SubServlet {
 				}
 			}
 			if (foundService == null) {
+				LOGGER.info("Service \"" + serviceName + "\" not found for this user");
 				throw new ServletException("Service \"" + serviceName + "\" not found for this user");
 			}
 			PluginDescriptor pluginDescriptor = foundService.getPluginDescriptor();
 			ServicePlugin servicePlugin = getBimServer().getPluginManager().getServicePlugin(pluginDescriptor.getPluginClassName(), true);
 			if (servicePlugin instanceof BimBotsServiceInterface) {
+				LOGGER.info("Found service " + servicePlugin);
 				BimBotsServiceInterface bimBotsServiceInterface = (BimBotsServiceInterface)servicePlugin;
 				try {
 					if (getBimServer().getServerSettingsCache().getServerSettings().isStoreServiceRuns()) {
+						LOGGER.info("Storing intermediate results");
 						// When we store service runs, we can just use the streaming deserializer to stream directly to the database, after that we'll trigger the actual service
 						
 						// Create or find project and link user and service to project
@@ -180,7 +185,8 @@ public class ServiceRunnerServlet extends SubServlet {
 						response.getOutputStream().write(output.getData());
 					} else {
 						// When we don't store the service runs, there is no other way than to just use the old deserializer and run the service from the EMF model
-						
+						LOGGER.info("NOT Storing intermediate results");
+
 						DeserializerPlugin deserializerPlugin = getBimServer().getPluginManager().getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
 						if (deserializerPlugin == null) {
 							throw new BimBotsException("No deserializer plugin found");
@@ -203,23 +209,23 @@ public class ServiceRunnerServlet extends SubServlet {
 						response.getOutputStream().write(output.getData());
 					}
 				} catch (BimBotsException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				} catch (DeserializeException e) {
-					e.printStackTrace();
+					LOGGER.error("", e);
 				} catch (PluginException e) {
-					e.printStackTrace();
-				} catch (ServerException e1) {
-					e1.printStackTrace();
+					LOGGER.error("", e);
+				} catch (ServerException e) {
+					LOGGER.error("", e);
 				}
 			} else {
 				throw new ServletException("Service \"" + serviceName + "\" does not implement the BimBotsServiceInterface");
 			}
 		} catch (AuthenticationException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (BimserverDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (UserException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 
@@ -274,11 +280,11 @@ public class ServiceRunnerServlet extends SubServlet {
 			response.setContentType("application/json");
 			response.getOutputStream().write(mapper.writeValueAsBytes(result));
 		} catch (BimserverDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (JsonProcessingException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 	}
 }
