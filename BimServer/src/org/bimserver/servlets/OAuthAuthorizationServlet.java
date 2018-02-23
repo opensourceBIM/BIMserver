@@ -121,22 +121,15 @@ public class OAuthAuthorizationServlet extends SubServlet {
 
 				String redirectURI = oauthRequest.getParam(OAuth.OAUTH_REDIRECT_URI);
 
-				OAuthAuthorizationResponseBuilder build = builder.location(redirectURI).setParam("address", getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/json");
-				build.setParam("serviceaddress", getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/services");
-				if (oauthCode.getAuthorization() instanceof SingleProjectAuthorization) {
-					SingleProjectAuthorization singleProjectAuthorization = (SingleProjectAuthorization) oauthCode.getAuthorization();
-					build.setParam("poid", "" + singleProjectAuthorization.getProject().getOid());
-				} else if (oauthCode.getAuthorization() instanceof RunServiceAuthorization) {
-					RunServiceAuthorization auth = (RunServiceAuthorization) oauthCode.getAuthorization();
-					build.setParam("soid", "" + auth.getService().getOid());
+				if (redirectURI != null && !redirectURI.equals("")) {
+					URI uri = makeUrl(redirectURI, oauthCode, builder);
+					LOGGER.info("Redirecting to " + uri);
+					httpServletResponse.sendRedirect(uri.toString());
+				} else {
+					URI uri = makeUrl("http://fakeaddress", oauthCode, builder);
+					httpServletResponse.getWriter().println("No redirectURI provided");
+					httpServletResponse.getWriter().println("Would have redirected to: " + uri);
 				}
-				final OAuthResponse response = build.buildQueryMessage();
-				String locationUri = response.getLocationUri();
-				URI url = new URI(locationUri);
-
-				LOGGER.info("Redirecting to " + url);
-
-				httpServletResponse.sendRedirect(locationUri);
 			} catch (OAuthProblemException e) {
 				final Response.ResponseBuilder responseBuilder = Response.status(HttpServletResponse.SC_FOUND);
 
@@ -164,5 +157,21 @@ public class OAuthAuthorizationServlet extends SubServlet {
 		} catch (AuthenticationException e2) {
 			e2.printStackTrace();
 		}
+	}
+
+	private URI makeUrl(String redirectURI, OAuthAuthorizationCode oauthCode, OAuthAuthorizationResponseBuilder builder) throws OAuthSystemException, URISyntaxException {
+		OAuthAuthorizationResponseBuilder build = builder.location(redirectURI).setParam("address", getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/json");
+		build.setParam("serviceaddress", getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/services");
+		if (oauthCode.getAuthorization() instanceof SingleProjectAuthorization) {
+			SingleProjectAuthorization singleProjectAuthorization = (SingleProjectAuthorization) oauthCode.getAuthorization();
+			build.setParam("poid", "" + singleProjectAuthorization.getProject().getOid());
+		} else if (oauthCode.getAuthorization() instanceof RunServiceAuthorization) {
+			RunServiceAuthorization auth = (RunServiceAuthorization) oauthCode.getAuthorization();
+			build.setParam("soid", "" + auth.getService().getOid());
+		}
+		final OAuthResponse response = build.buildQueryMessage();
+		String locationUri = response.getLocationUri();
+		URI url = new URI(locationUri);
+		return url;
 	}
 }
