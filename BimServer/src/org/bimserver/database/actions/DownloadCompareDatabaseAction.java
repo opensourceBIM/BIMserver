@@ -19,6 +19,7 @@ package org.bimserver.database.actions;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import org.bimserver.BimServer;
@@ -31,23 +32,6 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.models.ifc2x3tc1.IfcCharacterStyleSelect;
-import org.bimserver.models.ifc2x3tc1.IfcColourRgb;
-import org.bimserver.models.ifc2x3tc1.IfcCurveStyle;
-import org.bimserver.models.ifc2x3tc1.IfcFillAreaStyle;
-import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleAssignment;
-import org.bimserver.models.ifc2x3tc1.IfcPresentationStyleSelect;
-import org.bimserver.models.ifc2x3tc1.IfcProduct;
-import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
-import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
-import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
-import org.bimserver.models.ifc2x3tc1.IfcStyledItem;
-import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyle;
-import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleElementSelect;
-import org.bimserver.models.ifc2x3tc1.IfcSurfaceStyleRendering;
-import org.bimserver.models.ifc2x3tc1.IfcSymbolStyle;
-import org.bimserver.models.ifc2x3tc1.IfcTextStyle;
-import org.bimserver.models.ifc2x3tc1.IfcTextStyleForDefinedFont;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.CompareContainer;
 import org.bimserver.models.store.CompareItem;
@@ -73,6 +57,8 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseAction<IfcModelInterface> {
 
@@ -82,8 +68,8 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 	private final CompareType compareType;
 	private final long mcid;
 
-	public DownloadCompareDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, long mcid,
-			CompareType compareType, Authorization authorization, ObjectIDM objectIDM) {
+	public DownloadCompareDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, long mcid, CompareType compareType,
+			Authorization authorization, ObjectIDM objectIDM) {
 		super(bimServer, databaseSession, accessMethod, authorization);
 		this.mcid = mcid;
 		Iterator<Long> iterator = roids.iterator();
@@ -91,7 +77,7 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 		this.roid2 = iterator.next();
 		this.compareType = compareType;
 	}
-	
+
 	public org.bimserver.plugins.modelcompare.ModelCompare getModelCompare() throws ModelCompareException, BimserverDatabaseException {
 		Revision revision1 = getDatabaseSession().get(roid1, OldQuery.getDefault());
 		Revision revision2 = getDatabaseSession().get(roid2, OldQuery.getDefault());
@@ -131,10 +117,12 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 			} catch (ModelCompareException e) {
 				throw new UserException(e);
 			}
-//			bimServer.getCompareCache().storeResults(roid1, roid2, compareType, compareIdentifier, compareResults);
+			// bimServer.getCompareCache().storeResults(roid1, roid2,
+			// compareType, compareIdentifier, compareResults);
 
 			ModelMerger merger = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid());
-			IfcModelInterface mergedModel = new ServerIfcModel(model1.getPackageMetaData(), null, getDatabaseSession());
+			PackageMetaData packageMetaData = model1.getPackageMetaData();
+			IfcModelInterface mergedModel = new ServerIfcModel(packageMetaData, null, getDatabaseSession());
 			mergedModel = merger.merge(project, new IfcModelSet(model1, model2), new ModelHelper(getBimServer().getMetaDataManager(), mergedModel));
 			mergedModel.getModelMetaData().setName(project.getName() + "." + revision1.getId() + "." + revision2.getId());
 
@@ -155,35 +143,40 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 				}
 			}
 
-			IfcColourRgb red = mergedModel.createAndAdd(IfcColourRgb.class);
-			red.setName("red");
-			red.setRed(0.5);
-			red.setGreen(0.0);
-			red.setBlue(0.0);
+			EClass ifcColourRgbClass = packageMetaData.getEClass("IfcColourRgb");
+			EStructuralFeature nameFeature = ifcColourRgbClass.getEStructuralFeature("Name");
+			EStructuralFeature redFeature = ifcColourRgbClass.getEStructuralFeature("Red");
+			EStructuralFeature greenFeature = ifcColourRgbClass.getEStructuralFeature("Green");
+			EStructuralFeature blueFeature = ifcColourRgbClass.getEStructuralFeature("Blue");
 
-			IfcColourRgb green = mergedModel.createAndAdd(IfcColourRgb.class);
-			green.setName("green");
-			green.setRed(0);
-			green.setGreen(0.5);
-			green.setBlue(0);
+			IdEObject red = mergedModel.createAndAdd(ifcColourRgbClass);
+			red.eSet(nameFeature, "red");
+			red.eSet(redFeature, 0.5D);
+			red.eSet(greenFeature, 0.0D);
+			red.eSet(blueFeature, 0.0D);
 
-			IfcColourRgb blue = mergedModel.createAndAdd(IfcColourRgb.class);
-			blue.setName("blue");
-			blue.setRed(0);
-			blue.setGreen(0);
-			blue.setBlue(0.5);
+			IdEObject green = mergedModel.createAndAdd(ifcColourRgbClass);
+			green.eSet(nameFeature, "green");
+			green.eSet(redFeature, 0D);
+			green.eSet(greenFeature, 0.5D);
+			green.eSet(blueFeature, 0D);
 
-			for (IdEObject idEObject : mergedModel.getValues()) {
-				if (idEObject instanceof IfcProduct) {
-					IfcProduct product = (IfcProduct) idEObject;
-					IfcColourRgb color = null;
-					if (added.contains(product.getOid())) {
-						color = green;
-					} else if (deleted.contains(product.getOid())) {
-						color = red;
-					} else if (modified.contains(product.getOid())) {
-						color = blue;
-					}
+			IdEObject blue = mergedModel.createAndAdd(ifcColourRgbClass);
+			blue.eSet(nameFeature, "blue");
+			blue.eSet(redFeature, 0D);
+			blue.eSet(greenFeature, 0D);
+			blue.eSet(blueFeature, 0.5D);
+
+			for (IdEObject product : mergedModel.getAllWithSubTypes(packageMetaData.getEClass("IfcProduct"))) {
+				IdEObject color = null;
+				if (added.contains(product.getOid())) {
+					color = green;
+				} else if (deleted.contains(product.getOid())) {
+					color = red;
+				} else if (modified.contains(product.getOid())) {
+					color = blue;
+				}
+				if (color != null) {
 					setColor(mergedModel, product, color);
 				}
 			}
@@ -196,75 +189,71 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 		}
 	}
 
-	private void setColor(IfcModelInterface model, IfcProduct product, IfcColourRgb color) throws IfcModelInterfaceException {
-		IfcProductRepresentation representation = product.getRepresentation();
+	@SuppressWarnings("unchecked")
+	private void setColor(IfcModelInterface model, IdEObject product, IdEObject color) throws IfcModelInterfaceException {
+		EStructuralFeature representationFeature = product.eClass().getEStructuralFeature("Representation");
+		IdEObject representation = (IdEObject) product.eGet(representationFeature);
 		if (representation != null) {
-			EList<IfcRepresentation> representations = representation.getRepresentations();
-			for (IfcRepresentation ifcRepresentation : representations) {
-				EList<IfcRepresentationItem> representationItems = ifcRepresentation.getItems();
-				for (IfcRepresentationItem ifcRepresentationItem : representationItems) {
-					EList<IfcStyledItem> styledByItems = ifcRepresentationItem.getStyledByItem();
+			EStructuralFeature representationsFeature = representation.eClass().getEStructuralFeature("Representations");
+			List<IdEObject> representations = (EList<IdEObject>) representation.eGet(representationsFeature);
+			for (IdEObject ifcRepresentation : representations) {
+				EStructuralFeature itemsFeature = ifcRepresentation.eClass().getEStructuralFeature("Items");
+				List<IdEObject> representationItems = (EList<IdEObject>) ifcRepresentation.eGet(itemsFeature);
+				EStructuralFeature representationIdentifierFeature = ifcRepresentation.eClass().getEStructuralFeature("RepresentationIdentifier");
+				String identifier = (String) ifcRepresentation.eGet(representationIdentifierFeature);
+				for (IdEObject ifcRepresentationItem : representationItems) {
+					EStructuralFeature styledByItemFeature = ifcRepresentationItem.eClass().getEStructuralFeature("StyledByItem");
+					List<IdEObject> styledByItems = (EList<IdEObject>) ifcRepresentationItem.eGet(styledByItemFeature);
 					if (styledByItems.isEmpty()) {
-						createStyledByItems(model, ifcRepresentationItem, ifcRepresentation.getRepresentationIdentifier(), color);
+						createStyledByItems(model, ifcRepresentationItem, identifier, color);
 					} else {
-						for (IfcStyledItem ifcStyledItem : styledByItems) {
-							EList<IfcPresentationStyleAssignment> styledItemStyles = ifcStyledItem.getStyles();
+						for (IdEObject ifcStyledItem : styledByItems) {
+							EStructuralFeature stylesFeature = ifcStyledItem.eClass().getEStructuralFeature("Styles");
+							List<IdEObject> styledItemStyles = (List<IdEObject>) ifcStyledItem.eGet(stylesFeature);
 							if (styledItemStyles.isEmpty()) {
-								createStyledItemStyles(model, ifcRepresentation.getRepresentationIdentifier(), ifcStyledItem, color);
+								createStyledItemStyles(model, identifier, ifcStyledItem, color);
 							} else {
-								for (IfcPresentationStyleAssignment ifcPresentationStyleAssignment : styledItemStyles) {
-									EList<IfcPresentationStyleSelect> presentationStyleAssignmentStyles = ifcPresentationStyleAssignment.getStyles();
+								for (IdEObject ifcPresentationStyleAssignment : styledItemStyles) {
+									EStructuralFeature stylesFeature2 = ifcPresentationStyleAssignment.eClass().getEStructuralFeature("Styles");
+									List<IdEObject> presentationStyleAssignmentStyles = (List<IdEObject>) ifcPresentationStyleAssignment.eGet(stylesFeature2);
 									if (presentationStyleAssignmentStyles.isEmpty()) {
-										createPresentationStyleAssignmentStyles(model, ifcRepresentation.getRepresentationIdentifier(), ifcPresentationStyleAssignment,
-												color);
+										createPresentationStyleAssignmentStyles(model, identifier, ifcPresentationStyleAssignment, color);
 									} else {
-										for (IfcPresentationStyleSelect ifcPresentationStyleSelect : presentationStyleAssignmentStyles) {
-											if (ifcPresentationStyleSelect instanceof IfcSurfaceStyle) {
-												IfcSurfaceStyle ifcSurfaceStyle = (IfcSurfaceStyle) ifcPresentationStyleSelect;
-												EList<IfcSurfaceStyleElementSelect> surfaceStyleStyles = ifcSurfaceStyle.getStyles();
+										for (IdEObject ifcPresentationStyleSelect : presentationStyleAssignmentStyles) {
+											if (ifcPresentationStyleSelect.eClass().getName().equals("IfcSurfaceStyle")) {
+												EStructuralFeature stylesFeature3 = ifcPresentationStyleSelect.eClass().getEStructuralFeature("Styles");
+												List<IdEObject> surfaceStyleStyles = (List<IdEObject>) ifcPresentationStyleSelect.eGet(stylesFeature3);
 												if (surfaceStyleStyles.isEmpty()) {
-													createSurfaceStyleStyles(model, ifcRepresentation.getRepresentationIdentifier(), ifcSurfaceStyle, color);
+													createSurfaceStyleStyles(model, identifier, ifcPresentationStyleSelect, color);
 												} else {
 													boolean renderingFound = false;
-													for (IfcSurfaceStyleElementSelect ifcSurfaceStyleElementSelect : surfaceStyleStyles) {
-														if (ifcSurfaceStyleElementSelect instanceof IfcSurfaceStyleRendering) {
+													for (IdEObject ifcSurfaceStyleElementSelect : surfaceStyleStyles) {
+														if (ifcSurfaceStyleElementSelect.eClass().getName().equals("IfcSurfaceStyleRendering")) {
 															renderingFound = true;
-															IfcSurfaceStyleRendering ifcSurfaceStyleRendering = (IfcSurfaceStyleRendering) ifcSurfaceStyleElementSelect;
-															if (color != null) {
-																ifcSurfaceStyleRendering.setDiffuseColour(color);
-																ifcSurfaceStyleRendering.setReflectionColour(color);
-																ifcSurfaceStyleRendering.setSpecularColour(color);
-																ifcSurfaceStyleRendering.setSurfaceColour(color);
-																ifcSurfaceStyleRendering.setTransmissionColour(color);
-															} else {
-																ifcSurfaceStyleRendering.setTransparency(0.5);
-															}
+															IdEObject ifcSurfaceStyleRendering = (IdEObject) ifcSurfaceStyleElementSelect;
+															setColour(color, ifcSurfaceStyleRendering);
 														}
 													}
 													if (!renderingFound) {
-														createSurfaceStyleStyles(model, ifcRepresentation.getRepresentationIdentifier(), ifcSurfaceStyle, color);
+														createSurfaceStyleStyles(model, identifier, ifcPresentationStyleSelect, color);
 													}
 												}
-											} else if (ifcPresentationStyleSelect instanceof IfcTextStyle) {
-												IfcTextStyle ifcTextStyle = (IfcTextStyle) ifcPresentationStyleSelect;
-												IfcCharacterStyleSelect textCharacterAppearance = ifcTextStyle.getTextCharacterAppearance();
-												if (textCharacterAppearance instanceof IfcTextStyleForDefinedFont) {
-													// IfcTextStyleForDefinedFont
-													// is the only subclass of
-													// IfcCharacterStyleSelect
-													IfcTextStyleForDefinedFont ifcTextStyleForDefinedFont = (IfcTextStyleForDefinedFont) textCharacterAppearance;
-													ifcTextStyleForDefinedFont.setColour(color);
+											} else if (ifcPresentationStyleSelect.eClass().getName().equals("IfcTextStyle")) {
+												EStructuralFeature textCharacterAppearanceFeature = ifcPresentationStyleSelect.eClass().getEStructuralFeature("TextCharacterAppearance");
+												IdEObject textCharacterAppearance = (IdEObject) ifcPresentationStyleSelect.eGet(textCharacterAppearanceFeature);
+												if (textCharacterAppearance.eClass().getName().equals("IfcTextStyleForDefinedFont")) {
+													// IfcTextStyleForDefinedFont is the only subclass of IfcCharacterStyleSelect
+													textCharacterAppearance.eSet(textCharacterAppearance.eClass().getEStructuralFeature("Colour"), color);
 												}
-											} else if (ifcPresentationStyleSelect instanceof IfcCurveStyle) {
-												IfcCurveStyle ifcCurveStyle = (IfcCurveStyle) ifcPresentationStyleSelect;
-												ifcCurveStyle.setCurveColour(color);
-											} else if (ifcPresentationStyleSelect instanceof IfcFillAreaStyle) {
-												IfcFillAreaStyle ifcFillAreaStyle = (IfcFillAreaStyle) ifcPresentationStyleSelect;
-												ifcFillAreaStyle.getFillStyles().clear();
-												ifcFillAreaStyle.getFillStyles().add(color);
-											} else if (ifcPresentationStyleSelect instanceof IfcSymbolStyle) {
-												IfcSymbolStyle ifcSymbolStyle = (IfcSymbolStyle) ifcPresentationStyleSelect;
-												ifcSymbolStyle.setStyleOfSymbol(color);
+											} else if (ifcPresentationStyleSelect.eClass().getName().equals("IfcCurveStyle")) {
+												ifcPresentationStyleSelect.eSet(ifcPresentationStyleSelect.eClass().getEStructuralFeature("CurveColour"), color);
+											} else if (ifcPresentationStyleSelect.eClass().getName().equals("IfcFillAreaStyle")) {
+												EStructuralFeature fillStylesFeature = ifcPresentationStyleSelect.eClass().getEStructuralFeature("FillStyles");
+												List<IdEObject> list = (List<IdEObject>) ifcPresentationStyleSelect.eGet(fillStylesFeature);
+												list.clear();
+												list.add(color);
+											} else if (ifcPresentationStyleSelect.eClass().getName().equals("IfcSymbolStyle")) {
+												ifcPresentationStyleSelect.eSet(ifcPresentationStyleSelect.eClass().getEStructuralFeature("StyleOfSymbol"), color);
 											}
 										}
 									}
@@ -277,41 +266,63 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 		}
 	}
 
-	private void createSurfaceStyleStyles(IfcModelInterface model, String representationIdentifier, IfcSurfaceStyle ifcSurfaceStyle, IfcColourRgb color) throws IfcModelInterfaceException {
-		IfcSurfaceStyleRendering ifcSurfaceStyleRendering = model.create(IfcSurfaceStyleRendering.class);
-		ifcSurfaceStyle.getStyles().add(ifcSurfaceStyleRendering);
+	@SuppressWarnings("unchecked")
+	private void createSurfaceStyleStyles(IfcModelInterface model, String representationIdentifier, IdEObject ifcSurfaceStyle, IdEObject color) throws IfcModelInterfaceException {
+		EClass ifcSurfaceStyleRenderingClass = model.getPackageMetaData().getEClass("IfcSurfaceStyleRendering");
+		IdEObject ifcSurfaceStyleRendering = model.create(ifcSurfaceStyleRenderingClass);
+		EStructuralFeature stylesFeature = ifcSurfaceStyle.eClass().getEStructuralFeature("Styles");
+		((List<IdEObject>)(ifcSurfaceStyle.eGet(stylesFeature))).add(ifcSurfaceStyleRendering);
+		setColour(color, ifcSurfaceStyleRendering);
+	}
+
+	private void setColour(IdEObject color, IdEObject ifcSurfaceStyleRendering) {
 		if (color != null) {
-			ifcSurfaceStyleRendering.setDiffuseColour(color);
-			ifcSurfaceStyleRendering.setReflectionColour(color);
-			ifcSurfaceStyleRendering.setSpecularColour(color);
-			ifcSurfaceStyleRendering.setSurfaceColour(color);
-			ifcSurfaceStyleRendering.setTransmissionColour(color);
+			EStructuralFeature diffuseColourFeature = ifcSurfaceStyleRendering.eClass().getEStructuralFeature("DiffuseColour");
+			EStructuralFeature reflectionColourFeature = ifcSurfaceStyleRendering.eClass().getEStructuralFeature("ReflectionColour");
+			EStructuralFeature specularColourFeature = ifcSurfaceStyleRendering.eClass().getEStructuralFeature("SpecularColour");
+			EStructuralFeature surfaceColourFeature = ifcSurfaceStyleRendering.eClass().getEStructuralFeature("SurfaceColour");
+			EStructuralFeature transmissionColourFeature = ifcSurfaceStyleRendering.eClass().getEStructuralFeature("TransmissionColour");
+
+			ifcSurfaceStyleRendering.eSet(diffuseColourFeature, color);
+			ifcSurfaceStyleRendering.eSet(reflectionColourFeature, color);
+			ifcSurfaceStyleRendering.eSet(specularColourFeature, color);
+			ifcSurfaceStyleRendering.eSet(surfaceColourFeature, color);
+			ifcSurfaceStyleRendering.eSet(transmissionColourFeature, color);
 		} else {
-			ifcSurfaceStyleRendering.setTransparency(0.5);
+			EStructuralFeature transparancyFeature = ifcSurfaceStyleRendering.eClass().getEStructuralFeature("Transparency");
+			ifcSurfaceStyleRendering.eSet(transparancyFeature, 0.5D);
 		}
 	}
 
-	private void createPresentationStyleAssignmentStyles(IfcModelInterface model, String representationIdentifier,
-			IfcPresentationStyleAssignment ifcPresentationStyleAssignment, IfcColourRgb color) throws IfcModelInterfaceException {
+	@SuppressWarnings("unchecked")
+	private void createPresentationStyleAssignmentStyles(IfcModelInterface model, String representationIdentifier, IdEObject ifcPresentationStyleAssignment, IdEObject color)
+			throws IfcModelInterfaceException {
 		if (representationIdentifier.equals("Body")) {
-			IfcSurfaceStyle ifcPresentationStyleSelect = model.create(IfcSurfaceStyle.class);
-			ifcPresentationStyleAssignment.getStyles().add(ifcPresentationStyleSelect);
+			IdEObject ifcPresentationStyleSelect = model.create(model.getPackageMetaData().getEClass("IfcSurfaceStyle"));
+			EStructuralFeature stylesFeature = ifcPresentationStyleAssignment.eClass().getEStructuralFeature("Styles");
+			List<IdEObject> list = (List<IdEObject>) ifcPresentationStyleAssignment.eGet(stylesFeature);
+			list.add(ifcPresentationStyleSelect);
 			createSurfaceStyleStyles(model, representationIdentifier, ifcPresentationStyleSelect, color);
 		} else {
 			// Unimplemented
 		}
 	}
 
-	private void createStyledByItems(IfcModelInterface model, IfcRepresentationItem ifcRepresentationItem, String representationIdentifier,
-			IfcColourRgb color) throws IfcModelInterfaceException {
-		IfcStyledItem ifcStyledItem = model.create(IfcStyledItem.class);
-		ifcRepresentationItem.getStyledByItem().add(ifcStyledItem);
+	@SuppressWarnings("unchecked")
+	private void createStyledByItems(IfcModelInterface model, IdEObject ifcRepresentationItem, String representationIdentifier, IdEObject color) throws IfcModelInterfaceException {
+		IdEObject ifcStyledItem = model.create(model.getPackageMetaData().getEClass("IfcStyledItem"));
+		EStructuralFeature styledByItemFeature = ifcStyledItem.eClass().getEStructuralFeature("StyledByItem");
+		List<IdEObject> list = (List<IdEObject>) ifcRepresentationItem.eGet(styledByItemFeature);
+		list.add(ifcStyledItem);
 		createStyledItemStyles(model, representationIdentifier, ifcStyledItem, color);
 	}
 
-	private void createStyledItemStyles(IfcModelInterface model, String representationIdentifier, IfcStyledItem ifcStyledItem, IfcColourRgb color) throws IfcModelInterfaceException {
-		IfcPresentationStyleAssignment ifcPresentationStyleAssignment = model.create(IfcPresentationStyleAssignment.class);
-		ifcStyledItem.getStyles().add(ifcPresentationStyleAssignment);
+	@SuppressWarnings("unchecked")
+	private void createStyledItemStyles(IfcModelInterface model, String representationIdentifier, IdEObject ifcStyledItem, IdEObject color) throws IfcModelInterfaceException {
+		IdEObject ifcPresentationStyleAssignment = model.create(model.getPackageMetaData().getEClass("IfcPresentationStyleAssignment"));
+		EStructuralFeature stylesFeature = ifcStyledItem.eClass().getEStructuralFeature("Styles");
+		List<IdEObject> list = (List<IdEObject>) ifcStyledItem.eGet(stylesFeature);
+		list.add(ifcPresentationStyleAssignment);
 		createPresentationStyleAssignmentStyles(model, representationIdentifier, ifcPresentationStyleAssignment, color);
 	}
 

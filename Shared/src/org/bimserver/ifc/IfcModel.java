@@ -16,8 +16,20 @@ package org.bimserver.ifc;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.function.Predicate;
 
@@ -29,28 +41,6 @@ import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.ModelMetaData;
 import org.bimserver.emf.OidProvider;
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.models.ifc2x3tc1.IfcAnnotation;
-import org.bimserver.models.ifc2x3tc1.IfcAnnotationCurveOccurrence;
-import org.bimserver.models.ifc2x3tc1.IfcDimensionCurve;
-import org.bimserver.models.ifc2x3tc1.IfcElement;
-import org.bimserver.models.ifc2x3tc1.IfcGrid;
-import org.bimserver.models.ifc2x3tc1.IfcLayeredItem;
-import org.bimserver.models.ifc2x3tc1.IfcObjectDefinition;
-import org.bimserver.models.ifc2x3tc1.IfcPresentationLayerAssignment;
-import org.bimserver.models.ifc2x3tc1.IfcProduct;
-import org.bimserver.models.ifc2x3tc1.IfcProductDefinitionShape;
-import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
-import org.bimserver.models.ifc2x3tc1.IfcPropertyDefinition;
-import org.bimserver.models.ifc2x3tc1.IfcRelAssociates;
-import org.bimserver.models.ifc2x3tc1.IfcRelConnectsStructuralActivity;
-import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
-import org.bimserver.models.ifc2x3tc1.IfcRelReferencedInSpatialStructure;
-import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
-import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
-import org.bimserver.models.ifc2x3tc1.IfcRoot;
-import org.bimserver.models.ifc2x3tc1.IfcStructuralActivityAssignmentSelect;
-import org.bimserver.models.ifc2x3tc1.IfcStructuralItem;
-import org.bimserver.models.ifc2x3tc1.IfcTerminatorSymbol;
 import org.bimserver.plugins.ObjectAlreadyExistsException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
@@ -82,7 +72,7 @@ public abstract class IfcModel implements IfcModelInterface {
 	// Objects without oid, usually embedded when serialized
 	private final Set<IdEObject> unidentifiedObjects = new HashSet<IdEObject>();
 
-	private Map<String, IfcRoot> guidIndexed;
+	private Map<String, IdEObject> guidIndexed;
 	private Map<EClass, List<? extends IdEObject>> indexPerClass;
 	private Map<EClass, List<? extends IdEObject>> indexPerClassWithSubTypes;
 	private Map<EClass, Map<String, IdEObject>> guidIndex;
@@ -167,12 +157,14 @@ public abstract class IfcModel implements IfcModelInterface {
 				guidIndex.put((EClass) classifier, map);
 			}
 		}
+		EClass ifcRootEclass = packageMetaData.getEClass("IfcRoot");
+		EStructuralFeature guidFeature = ifcRootEclass.getEStructuralFeature("GlobalId");
 		for (Long key : objects.keySet()) {
 			IdEObject value = objects.get((Long) key);
-			if (value instanceof IfcRoot) {
-				IfcRoot ifcRoot = (IfcRoot) value;
-				if (ifcRoot.getGlobalId() != null) {
-					guidIndex.get(value.eClass()).put(ifcRoot.getGlobalId(), value);
+			if (ifcRootEclass.isSuperTypeOf(value.eClass())) {
+				Object guid = value.eGet(guidFeature);
+				if (guid != null) {
+					guidIndex.get(value.eClass()).put((String)guid, value);
 				}
 			}
 		}
@@ -186,19 +178,21 @@ public abstract class IfcModel implements IfcModelInterface {
 				nameIndex.put((EClass) classifier, map);
 			}
 		}
+		EClass ifcRootEclass = packageMetaData.getEClass("IfcRoot");
+		EStructuralFeature nameFeature = ifcRootEclass.getEStructuralFeature("Name");
 		for (Long key : objects.keySet()) {
 			IdEObject value = objects.get((Long) key);
-			if (value instanceof IfcRoot) {
-				IfcRoot ifcRoot = (IfcRoot) value;
-				if (ifcRoot.getName() != null) {
-					nameIndex.get(value.eClass()).put(ifcRoot.getName(), value);
+			if (ifcRootEclass.isSuperTypeOf(value.eClass())) {
+				Object name = value.eGet(nameFeature);
+				if (name != null) {
+					nameIndex.get(value.eClass()).put((String)name, value);
 				}
 			}
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	public void sortAllAggregates(ObjectIDM objectIDM, IfcRoot ifcRoot) {
+	public void sortAllAggregates(ObjectIDM objectIDM, IdEObject ifcRoot) {
 		for (EStructuralFeature eStructuralFeature : ifcRoot.eClass().getEAllStructuralFeatures()) {
 			if (objectIDM.shouldFollowReference(ifcRoot.eClass(), ifcRoot.eClass(), eStructuralFeature)) {
 				if (eStructuralFeature.getUpperBound() == -1 || eStructuralFeature.getUpperBound() > 1) {
@@ -317,7 +311,11 @@ public abstract class IfcModel implements IfcModelInterface {
 		if (nameIndex == null) {
 			buildNameIndex();
 		}
-		return nameIndex.get(eClass).keySet();
+		Map<String, IdEObject> map = nameIndex.get(eClass);
+		if (map == null) {
+			return new HashSet<>();
+		}
+		return map.keySet();
 	}
 
 	public IdEObject getByName(EClass eClass, String name) {
@@ -411,17 +409,19 @@ public abstract class IfcModel implements IfcModelInterface {
 	}
 
 	public void indexGuids() {
-		guidIndexed = new HashMap<String, IfcRoot>();
+		guidIndexed = new HashMap<String, IdEObject>();
 		for (IdEObject idEObject : objects.values()) {
 			indexGuid(idEObject);
 		}
 	}
 
 	private void indexGuid(IdEObject idEObject) {
-		if (idEObject instanceof IfcRoot) {
-			IfcRoot ifcRoot = (IfcRoot) idEObject;
-			if (ifcRoot.getGlobalId() != null) {
-				guidIndexed.put(ifcRoot.getGlobalId(), ifcRoot);
+		EClass ifcRootEclass = packageMetaData.getEClass("IfcRoot");
+		EStructuralFeature guidFeature = ifcRootEclass.getEStructuralFeature("GlobalId");
+		if (ifcRootEclass.isSuperTypeOf(idEObject.eClass())) {
+			Object guid = idEObject.eGet(guidFeature);
+			if (guid != null) {
+				guidIndexed.put((String)guid, idEObject);
 			}
 		}
 	}
@@ -969,6 +969,7 @@ public abstract class IfcModel implements IfcModelInterface {
 	public PackageMetaData getPackageMetaData() {
 		return packageMetaData;
 	}
+	@SuppressWarnings("unchecked")
 	@Override
 	public void fixInverseMismatches() {
 		int nrFixes = 0;

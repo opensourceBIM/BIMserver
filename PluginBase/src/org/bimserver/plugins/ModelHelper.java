@@ -189,6 +189,7 @@ public class ModelHelper {
 		long oid = -1;
 		if (keepOriginalOids) {
 			oid = original.getOid();
+			((IdEObjectImpl)newObject).setOid(oid);
 		} else {
 			if (newObject.getOid() == -1) {
 				if (oidProvider != null) {
