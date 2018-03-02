@@ -474,4 +474,13 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	public NotificationRegistryInterface getNotificationRegistryInterface() throws PublicInterfaceNotFoundException {
 		return get(NotificationRegistryInterface.class);
 	}
+
+	@Override
+	public void saveDownloadData(long topicId, Path path) throws IOException {
+		try (InputStream inputStream = channel.getDownloadData(baseAddress, token, topicId)) {
+			try (OutputStream newOutputStream = Files.newOutputStream(path)) {
+				IOUtils.copy(inputStream, newOutputStream);
+			}
+		}
+	}
 }
