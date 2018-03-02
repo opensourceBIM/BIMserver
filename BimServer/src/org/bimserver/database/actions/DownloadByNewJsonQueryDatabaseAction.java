@@ -161,6 +161,20 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 //										if (ref != null) {
 //											list.add(ref);
 //										}
+									} else if (refOid instanceof HashMapVirtualObject) {
+										HashMapVirtualObject hashMapVirtualObject = (HashMapVirtualObject)refOid;
+										IdEObject listObject = packageMetaData.create(hashMapVirtualObject.eClass());
+										List subList = (List<?>) hashMapVirtualObject.get("List");
+										List newList = (List<?>) listObject.eGet(listObject.eClass().getEStructuralFeature("List"));
+										for (Object o : subList) {
+											if (o instanceof HashMapWrappedVirtualObject) {
+												newList.add(convertWrapped(revision, ifcModel, (HashMapWrappedVirtualObject)o));
+											} else {
+												newList.add(o);
+											}
+										}
+										list.addUnique(listObject);
+									} else {
 									}
 								}
 							}
@@ -170,14 +184,9 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 								long refOid = (Long)r;
 								idEObject.eSet(eReference, ifcModel.get(refOid));
 							} else if (r instanceof HashMapWrappedVirtualObject) {
-								HashMapWrappedVirtualObject hashMapWrappedVirtualObject = (HashMapWrappedVirtualObject)r;
-								IdEObject embeddedObject = ifcModel.create(hashMapWrappedVirtualObject.eClass());
-								((IdEObjectImpl)embeddedObject).setOid(-1);
-								((IdEObjectImpl)embeddedObject).setPid(revision.getProject().getId());
-								idEObject.eSet(eReference, embeddedObject);
-								for (EAttribute eAttribute : hashMapWrappedVirtualObject.eClass().getEAllAttributes()) {
-									embeddedObject.eSet(eAttribute, hashMapWrappedVirtualObject.eGet(eAttribute));
-								}
+								idEObject.eSet(eReference, convertWrapped(revision, ifcModel, (HashMapWrappedVirtualObject) r));
+							} else if (r instanceof HashMapVirtualObject) {
+							} else {
 							}
 						}
 					}
@@ -278,6 +287,16 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 //		if (name.endsWith("-")) {
 //			name = name.substring(0, name.length()-1);
 //		}
+	}
+
+	private IdEObject convertWrapped(Revision revision, IfcModelInterface ifcModel, HashMapWrappedVirtualObject hashMapWrappedVirtualObject) throws IfcModelInterfaceException {
+		IdEObject embeddedObject = ifcModel.create(hashMapWrappedVirtualObject.eClass());
+		((IdEObjectImpl)embeddedObject).setOid(-1);
+		((IdEObjectImpl)embeddedObject).setPid(revision.getProject().getId());
+		for (EAttribute eAttribute : hashMapWrappedVirtualObject.eClass().getEAllAttributes()) {
+			embeddedObject.eSet(eAttribute, hashMapWrappedVirtualObject.eGet(eAttribute));
+		}
+		return embeddedObject;
 	}
 	
 	public int getProgress() {

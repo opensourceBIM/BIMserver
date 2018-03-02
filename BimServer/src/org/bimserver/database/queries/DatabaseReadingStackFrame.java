@@ -141,7 +141,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 		}
 		if (include.hasFields()) {
 			for (EStructuralFeature eStructuralFeature : include.getFields()) {
-				// TODO do we really have to iterate through the EAtrributes as well?
+				// TODO do we really have to iterate through the EAtrributes as well? You should not use fields for attributes anyways, so there should be none ...
 				object.addUseForSerialization(eStructuralFeature);
 			}
 		}

@@ -320,7 +320,6 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 			}
 			((IdEObjectImpl) idEObject).setRid(rid);
 			((IdEObjectImpl) idEObject).useInverses(false);
-
 			
 			if (DEVELOPER_DEBUG && StorePackage.eINSTANCE == idEObject.eClass().getEPackage()) {
 				LOGGER.info("Read: " + idEObject.eClass().getName() + " pid=" + query.getPid() + " oid=" + oid + " rid=" + rid);
