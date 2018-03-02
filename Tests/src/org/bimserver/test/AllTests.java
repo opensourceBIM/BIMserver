@@ -36,6 +36,7 @@ import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.utils.PathUtils;
+import org.bimserver.webservices.ServiceMap;
 import org.bimserver.webservices.authorization.SystemAuthorization;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -87,8 +88,9 @@ public class AllTests {
 			BimServerClientInterface client = bimServer.getBimServerClientFactory().create();
 
 			// Setup the server
-			client.getAdminInterface().setup("http://localhost:8080", "Test Name", "Test Description", "noicon", "Administrator", "admin@bimserver.org", "admin");
-			bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).getSettingsInterface().setCacheOutputFiles(false);
+			client.getAdminInterface().setup("http://localhost:7010", "Test Name", "Test Description", "noicon", "Administrator", "admin@bimserver.org", "admin");
+			ServiceMap serviceMap = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL);
+			serviceMap.getSettingsInterface().setCacheOutputFiles(false);
 		
 			client.disconnect();
 			
@@ -127,7 +129,6 @@ public class AllTests {
 			setup();
 		}
 		BimServerClientFactory bimServerClientFactory = bimServer.getBimServerClientFactory();
-		System.out.println(bimServerClientFactory);
 		return bimServerClientFactory;
 	}
 	
