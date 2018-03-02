@@ -136,6 +136,24 @@ public class IfcMetricImpl extends IfcConstraintImpl implements IfcMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetDataValue() {
+		eUnset(Ifc4Package.Literals.IFC_METRIC__DATA_VALUE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDataValue() {
+		return eIsSet(Ifc4Package.Literals.IFC_METRIC__DATA_VALUE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcReference getReferencePath() {
 		return (IfcReference) eGet(Ifc4Package.Literals.IFC_METRIC__REFERENCE_PATH, true);
 	}

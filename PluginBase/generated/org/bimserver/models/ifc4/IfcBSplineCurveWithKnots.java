@@ -31,6 +31,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineCurveWithKnots#getKnots <em>Knots</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineCurveWithKnots#getKnotsAsString <em>Knots As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineCurveWithKnots#getKnotSpec <em>Knot Spec</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcBSplineCurveWithKnots#getUpperIndexOnKnots <em>Upper Index On Knots</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBSplineCurveWithKnots()
@@ -114,5 +115,58 @@ public interface IfcBSplineCurveWithKnots extends IfcBSplineCurve {
 	 * @generated
 	 */
 	void setKnotSpec(IfcKnotType value);
+
+	/**
+	 * Returns the value of the '<em><b>Upper Index On Knots</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Upper Index On Knots</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Upper Index On Knots</em>' attribute.
+	 * @see #isSetUpperIndexOnKnots()
+	 * @see #unsetUpperIndexOnKnots()
+	 * @see #setUpperIndexOnKnots(long)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBSplineCurveWithKnots_UpperIndexOnKnots()
+	 * @model unsettable="true" derived="true"
+	 * @generated
+	 */
+	long getUpperIndexOnKnots();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcBSplineCurveWithKnots#getUpperIndexOnKnots <em>Upper Index On Knots</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Upper Index On Knots</em>' attribute.
+	 * @see #isSetUpperIndexOnKnots()
+	 * @see #unsetUpperIndexOnKnots()
+	 * @see #getUpperIndexOnKnots()
+	 * @generated
+	 */
+	void setUpperIndexOnKnots(long value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcBSplineCurveWithKnots#getUpperIndexOnKnots <em>Upper Index On Knots</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetUpperIndexOnKnots()
+	 * @see #getUpperIndexOnKnots()
+	 * @see #setUpperIndexOnKnots(long)
+	 * @generated
+	 */
+	void unsetUpperIndexOnKnots();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcBSplineCurveWithKnots#getUpperIndexOnKnots <em>Upper Index On Knots</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Upper Index On Knots</em>' attribute is set.
+	 * @see #unsetUpperIndexOnKnots()
+	 * @see #getUpperIndexOnKnots()
+	 * @see #setUpperIndexOnKnots(long)
+	 * @generated
+	 */
+	boolean isSetUpperIndexOnKnots();
 
 } // IfcBSplineCurveWithKnots

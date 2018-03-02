@@ -30,8 +30,9 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineCurve#getDegree <em>Degree</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineCurve#getControlPointsList <em>Control Points List</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineCurve#getCurveForm <em>Curve Form</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcBSplineCurve#isClosedCurve <em>Closed Curve</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcBSplineCurve#isSelfIntersect <em>Self Intersect</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcBSplineCurve#getClosedCurve <em>Closed Curve</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcBSplineCurve#getSelfIntersect <em>Self Intersect</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcBSplineCurve#getUpperIndexOnControlPoints <em>Upper Index On Control Points</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBSplineCurve()
@@ -112,6 +113,7 @@ public interface IfcBSplineCurve extends IfcBoundedCurve {
 
 	/**
 	 * Returns the value of the '<em><b>Closed Curve</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.bimserver.models.ifc4.Tristate}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Closed Curve</em>' attribute isn't clear,
@@ -119,25 +121,28 @@ public interface IfcBSplineCurve extends IfcBoundedCurve {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Closed Curve</em>' attribute.
-	 * @see #setClosedCurve(boolean)
+	 * @see org.bimserver.models.ifc4.Tristate
+	 * @see #setClosedCurve(Tristate)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBSplineCurve_ClosedCurve()
 	 * @model
 	 * @generated
 	 */
-	boolean isClosedCurve();
+	Tristate getClosedCurve();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcBSplineCurve#isClosedCurve <em>Closed Curve</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcBSplineCurve#getClosedCurve <em>Closed Curve</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Closed Curve</em>' attribute.
-	 * @see #isClosedCurve()
+	 * @see org.bimserver.models.ifc4.Tristate
+	 * @see #getClosedCurve()
 	 * @generated
 	 */
-	void setClosedCurve(boolean value);
+	void setClosedCurve(Tristate value);
 
 	/**
 	 * Returns the value of the '<em><b>Self Intersect</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.bimserver.models.ifc4.Tristate}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Self Intersect</em>' attribute isn't clear,
@@ -145,21 +150,76 @@ public interface IfcBSplineCurve extends IfcBoundedCurve {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Self Intersect</em>' attribute.
-	 * @see #setSelfIntersect(boolean)
+	 * @see org.bimserver.models.ifc4.Tristate
+	 * @see #setSelfIntersect(Tristate)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBSplineCurve_SelfIntersect()
 	 * @model
 	 * @generated
 	 */
-	boolean isSelfIntersect();
+	Tristate getSelfIntersect();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcBSplineCurve#isSelfIntersect <em>Self Intersect</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcBSplineCurve#getSelfIntersect <em>Self Intersect</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Self Intersect</em>' attribute.
-	 * @see #isSelfIntersect()
+	 * @see org.bimserver.models.ifc4.Tristate
+	 * @see #getSelfIntersect()
 	 * @generated
 	 */
-	void setSelfIntersect(boolean value);
+	void setSelfIntersect(Tristate value);
+
+	/**
+	 * Returns the value of the '<em><b>Upper Index On Control Points</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Upper Index On Control Points</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Upper Index On Control Points</em>' attribute.
+	 * @see #isSetUpperIndexOnControlPoints()
+	 * @see #unsetUpperIndexOnControlPoints()
+	 * @see #setUpperIndexOnControlPoints(long)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBSplineCurve_UpperIndexOnControlPoints()
+	 * @model unsettable="true" derived="true"
+	 * @generated
+	 */
+	long getUpperIndexOnControlPoints();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcBSplineCurve#getUpperIndexOnControlPoints <em>Upper Index On Control Points</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Upper Index On Control Points</em>' attribute.
+	 * @see #isSetUpperIndexOnControlPoints()
+	 * @see #unsetUpperIndexOnControlPoints()
+	 * @see #getUpperIndexOnControlPoints()
+	 * @generated
+	 */
+	void setUpperIndexOnControlPoints(long value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcBSplineCurve#getUpperIndexOnControlPoints <em>Upper Index On Control Points</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetUpperIndexOnControlPoints()
+	 * @see #getUpperIndexOnControlPoints()
+	 * @see #setUpperIndexOnControlPoints(long)
+	 * @generated
+	 */
+	void unsetUpperIndexOnControlPoints();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcBSplineCurve#getUpperIndexOnControlPoints <em>Upper Index On Control Points</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Upper Index On Control Points</em>' attribute is set.
+	 * @see #unsetUpperIndexOnControlPoints()
+	 * @see #getUpperIndexOnControlPoints()
+	 * @see #setUpperIndexOnControlPoints(long)
+	 * @generated
+	 */
+	boolean isSetUpperIndexOnControlPoints();
 
 } // IfcBSplineCurve

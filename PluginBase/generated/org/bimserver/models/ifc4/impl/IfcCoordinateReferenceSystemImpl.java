@@ -18,7 +18,9 @@ package org.bimserver.models.ifc4.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.ifc4.Ifc4Package;
+import org.bimserver.models.ifc4.IfcCoordinateOperation;
 import org.bimserver.models.ifc4.IfcCoordinateReferenceSystem;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -33,6 +35,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCoordinateReferenceSystemImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCoordinateReferenceSystemImpl#getGeodeticDatum <em>Geodetic Datum</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCoordinateReferenceSystemImpl#getVerticalDatum <em>Vertical Datum</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcCoordinateReferenceSystemImpl#getHasCoordinateOperation <em>Has Coordinate Operation</em>}</li>
  * </ul>
  *
  * @generated
@@ -83,24 +86,6 @@ public class IfcCoordinateReferenceSystemImpl extends IdEObjectImpl implements I
 	 */
 	public void setName(String newName) {
 		eSet(Ifc4Package.Literals.IFC_COORDINATE_REFERENCE_SYSTEM__NAME, newName);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetName() {
-		eUnset(Ifc4Package.Literals.IFC_COORDINATE_REFERENCE_SYSTEM__NAME);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetName() {
-		return eIsSet(Ifc4Package.Literals.IFC_COORDINATE_REFERENCE_SYSTEM__NAME);
 	}
 
 	/**
@@ -162,6 +147,24 @@ public class IfcCoordinateReferenceSystemImpl extends IdEObjectImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public void unsetGeodeticDatum() {
+		eUnset(Ifc4Package.Literals.IFC_COORDINATE_REFERENCE_SYSTEM__GEODETIC_DATUM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetGeodeticDatum() {
+		return eIsSet(Ifc4Package.Literals.IFC_COORDINATE_REFERENCE_SYSTEM__GEODETIC_DATUM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getVerticalDatum() {
 		return (String) eGet(Ifc4Package.Literals.IFC_COORDINATE_REFERENCE_SYSTEM__VERTICAL_DATUM, true);
 	}
@@ -191,6 +194,34 @@ public class IfcCoordinateReferenceSystemImpl extends IdEObjectImpl implements I
 	 */
 	public boolean isSetVerticalDatum() {
 		return eIsSet(Ifc4Package.Literals.IFC_COORDINATE_REFERENCE_SYSTEM__VERTICAL_DATUM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<IfcCoordinateOperation> getHasCoordinateOperation() {
+		return (EList<IfcCoordinateOperation>) eGet(Ifc4Package.Literals.IFC_COORDINATE_REFERENCE_SYSTEM__HAS_COORDINATE_OPERATION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetHasCoordinateOperation() {
+		eUnset(Ifc4Package.Literals.IFC_COORDINATE_REFERENCE_SYSTEM__HAS_COORDINATE_OPERATION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHasCoordinateOperation() {
+		return eIsSet(Ifc4Package.Literals.IFC_COORDINATE_REFERENCE_SYSTEM__HAS_COORDINATE_OPERATION);
 	}
 
 } //IfcCoordinateReferenceSystemImpl

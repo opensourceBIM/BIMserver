@@ -35,10 +35,9 @@ import org.eclipse.emf.ecore.EClass;
  * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTessellatedFaceSetImpl#getCoordinates <em>Coordinates</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.impl.IfcTessellatedFaceSetImpl#getNormals <em>Normals</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.impl.IfcTessellatedFaceSetImpl#getClosed <em>Closed</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTessellatedFaceSetImpl#getHasColours <em>Has Colours</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTessellatedFaceSetImpl#getHasTextures <em>Has Textures</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcTessellatedFaceSetImpl#getDim <em>Dim</em>}</li>
  * </ul>
  *
  * @generated
@@ -79,52 +78,6 @@ public class IfcTessellatedFaceSetImpl extends IfcTessellatedItemImpl implements
 	 */
 	public void setCoordinates(IfcCartesianPointList3D newCoordinates) {
 		eSet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__COORDINATES, newCoordinates);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	public EList<ListOfIfcParameterValue> getNormals() {
-		return (EList<ListOfIfcParameterValue>) eGet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__NORMALS, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Tristate getClosed() {
-		return (Tristate) eGet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__CLOSED, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setClosed(Tristate newClosed) {
-		eSet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__CLOSED, newClosed);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetClosed() {
-		eUnset(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__CLOSED);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetClosed() {
-		return eIsSet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__CLOSED);
 	}
 
 	/**
@@ -181,6 +134,42 @@ public class IfcTessellatedFaceSetImpl extends IfcTessellatedItemImpl implements
 	 */
 	public boolean isSetHasTextures() {
 		return eIsSet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__HAS_TEXTURES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getDim() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__DIM, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDim(long newDim) {
+		eSet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__DIM, newDim);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDim() {
+		eUnset(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__DIM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDim() {
+		return eIsSet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__DIM);
 	}
 
 } //IfcTessellatedFaceSetImpl

@@ -100,7 +100,16 @@ public enum IfcBuildingElementProxyTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USERDEFINED(6, "USERDEFINED", "USERDEFINED");
+	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
+	/**
+	* The '<em><b>PROVISIONFORSPACE</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #PROVISIONFORSPACE_VALUE
+	* @generated
+	* @ordered
+	*/
+	PROVISIONFORSPACE(7, "PROVISIONFORSPACE", "PROVISIONFORSPACE");
 
 	/**
 	 * The '<em><b>NULL</b></em>' literal value.
@@ -208,12 +217,28 @@ public enum IfcBuildingElementProxyTypeEnum implements Enumerator {
 	public static final int USERDEFINED_VALUE = 6;
 
 	/**
+	 * The '<em><b>PROVISIONFORSPACE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>PROVISIONFORSPACE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PROVISIONFORSPACE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PROVISIONFORSPACE_VALUE = 7;
+
+	/**
 	 * An array of all the '<em><b>Ifc Building Element Proxy Type Enum</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBuildingElementProxyTypeEnum[] VALUES_ARRAY = new IfcBuildingElementProxyTypeEnum[] { NULL, COMPLEX, ELEMENT, PROVISIONFORVOID, NOTDEFINED, PARTIAL, USERDEFINED, };
+	private static final IfcBuildingElementProxyTypeEnum[] VALUES_ARRAY = new IfcBuildingElementProxyTypeEnum[] { NULL, COMPLEX, ELEMENT, PROVISIONFORVOID, NOTDEFINED, PARTIAL, USERDEFINED,
+			PROVISIONFORSPACE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Building Element Proxy Type Enum</b></em>' enumerators.
@@ -283,6 +308,8 @@ public enum IfcBuildingElementProxyTypeEnum implements Enumerator {
 			return PARTIAL;
 		case USERDEFINED_VALUE:
 			return USERDEFINED;
+		case PROVISIONFORSPACE_VALUE:
+			return PROVISIONFORSPACE;
 		}
 		return null;
 	}

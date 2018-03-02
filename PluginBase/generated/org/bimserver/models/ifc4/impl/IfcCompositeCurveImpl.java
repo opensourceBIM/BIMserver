@@ -19,6 +19,7 @@ package org.bimserver.models.ifc4.impl;
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcCompositeCurve;
 import org.bimserver.models.ifc4.IfcCompositeCurveSegment;
+import org.bimserver.models.ifc4.Tristate;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
@@ -31,7 +32,9 @@ import org.eclipse.emf.ecore.EClass;
  * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCompositeCurveImpl#getSegments <em>Segments</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.impl.IfcCompositeCurveImpl#isSelfIntersect <em>Self Intersect</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcCompositeCurveImpl#getSelfIntersect <em>Self Intersect</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcCompositeCurveImpl#getClosedCurve <em>Closed Curve</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcCompositeCurveImpl#getNSegments <em>NSegments</em>}</li>
  * </ul>
  *
  * @generated
@@ -71,8 +74,8 @@ public class IfcCompositeCurveImpl extends IfcBoundedCurveImpl implements IfcCom
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSelfIntersect() {
-		return (Boolean) eGet(Ifc4Package.Literals.IFC_COMPOSITE_CURVE__SELF_INTERSECT, true);
+	public Tristate getSelfIntersect() {
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_COMPOSITE_CURVE__SELF_INTERSECT, true);
 	}
 
 	/**
@@ -80,8 +83,80 @@ public class IfcCompositeCurveImpl extends IfcBoundedCurveImpl implements IfcCom
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSelfIntersect(boolean newSelfIntersect) {
+	public void setSelfIntersect(Tristate newSelfIntersect) {
 		eSet(Ifc4Package.Literals.IFC_COMPOSITE_CURVE__SELF_INTERSECT, newSelfIntersect);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Tristate getClosedCurve() {
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_COMPOSITE_CURVE__CLOSED_CURVE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setClosedCurve(Tristate newClosedCurve) {
+		eSet(Ifc4Package.Literals.IFC_COMPOSITE_CURVE__CLOSED_CURVE, newClosedCurve);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetClosedCurve() {
+		eUnset(Ifc4Package.Literals.IFC_COMPOSITE_CURVE__CLOSED_CURVE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetClosedCurve() {
+		return eIsSet(Ifc4Package.Literals.IFC_COMPOSITE_CURVE__CLOSED_CURVE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getNSegments() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_COMPOSITE_CURVE__NSEGMENTS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNSegments(long newNSegments) {
+		eSet(Ifc4Package.Literals.IFC_COMPOSITE_CURVE__NSEGMENTS, newNSegments);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetNSegments() {
+		eUnset(Ifc4Package.Literals.IFC_COMPOSITE_CURVE__NSEGMENTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetNSegments() {
+		return eIsSet(Ifc4Package.Literals.IFC_COMPOSITE_CURVE__NSEGMENTS);
 	}
 
 } //IfcCompositeCurveImpl

@@ -238,7 +238,8 @@ public enum IfcStructuralCurveMemberTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcStructuralCurveMemberTypeEnum[] VALUES_ARRAY = new IfcStructuralCurveMemberTypeEnum[] { NULL, PIN_JOINED_MEMBER, NOTDEFINED, CABLE, RIGID_JOINED_MEMBER, COMPRESSION_MEMBER, TENSION_MEMBER, USERDEFINED, };
+	private static final IfcStructuralCurveMemberTypeEnum[] VALUES_ARRAY = new IfcStructuralCurveMemberTypeEnum[] { NULL, PIN_JOINED_MEMBER, NOTDEFINED, CABLE, RIGID_JOINED_MEMBER, COMPRESSION_MEMBER,
+			TENSION_MEMBER, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Structural Curve Member Type Enum</b></em>' enumerators.

@@ -31,6 +31,8 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRationalBSplineCurveWithKnotsImpl#getWeightsData <em>Weights Data</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcRationalBSplineCurveWithKnotsImpl#getWeightsDataAsString <em>Weights Data As String</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcRationalBSplineCurveWithKnotsImpl#getWeights <em>Weights</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcRationalBSplineCurveWithKnotsImpl#getWeightsAsString <em>Weights As String</em>}</li>
  * </ul>
  *
  * @generated
@@ -73,6 +75,78 @@ public class IfcRationalBSplineCurveWithKnotsImpl extends IfcBSplineCurveWithKno
 	@SuppressWarnings("unchecked")
 	public EList<String> getWeightsDataAsString() {
 		return (EList<String>) eGet(Ifc4Package.Literals.IFC_RATIONAL_BSPLINE_CURVE_WITH_KNOTS__WEIGHTS_DATA_AS_STRING, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public double getWeights() {
+		return (Double) eGet(Ifc4Package.Literals.IFC_RATIONAL_BSPLINE_CURVE_WITH_KNOTS__WEIGHTS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setWeights(double newWeights) {
+		eSet(Ifc4Package.Literals.IFC_RATIONAL_BSPLINE_CURVE_WITH_KNOTS__WEIGHTS, newWeights);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetWeights() {
+		eUnset(Ifc4Package.Literals.IFC_RATIONAL_BSPLINE_CURVE_WITH_KNOTS__WEIGHTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetWeights() {
+		return eIsSet(Ifc4Package.Literals.IFC_RATIONAL_BSPLINE_CURVE_WITH_KNOTS__WEIGHTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getWeightsAsString() {
+		return (String) eGet(Ifc4Package.Literals.IFC_RATIONAL_BSPLINE_CURVE_WITH_KNOTS__WEIGHTS_AS_STRING, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setWeightsAsString(String newWeightsAsString) {
+		eSet(Ifc4Package.Literals.IFC_RATIONAL_BSPLINE_CURVE_WITH_KNOTS__WEIGHTS_AS_STRING, newWeightsAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetWeightsAsString() {
+		eUnset(Ifc4Package.Literals.IFC_RATIONAL_BSPLINE_CURVE_WITH_KNOTS__WEIGHTS_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetWeightsAsString() {
+		return eIsSet(Ifc4Package.Literals.IFC_RATIONAL_BSPLINE_CURVE_WITH_KNOTS__WEIGHTS_AS_STRING);
 	}
 
 } //IfcRationalBSplineCurveWithKnotsImpl

@@ -31,6 +31,8 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator#getScale <em>Scale</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator#getScaleAsString <em>Scale As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator#getDim <em>Dim</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator#getScl <em>Scl</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator#getSclAsString <em>Scl As String</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCartesianTransformationOperator()
@@ -328,5 +330,111 @@ public interface IfcCartesianTransformationOperator extends IfcGeometricRepresen
 	 * @generated
 	 */
 	boolean isSetDim();
+
+	/**
+	 * Returns the value of the '<em><b>Scl</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Scl</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Scl</em>' attribute.
+	 * @see #isSetScl()
+	 * @see #unsetScl()
+	 * @see #setScl(double)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCartesianTransformationOperator_Scl()
+	 * @model unsettable="true" derived="true"
+	 * @generated
+	 */
+	double getScl();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator#getScl <em>Scl</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Scl</em>' attribute.
+	 * @see #isSetScl()
+	 * @see #unsetScl()
+	 * @see #getScl()
+	 * @generated
+	 */
+	void setScl(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator#getScl <em>Scl</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetScl()
+	 * @see #getScl()
+	 * @see #setScl(double)
+	 * @generated
+	 */
+	void unsetScl();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator#getScl <em>Scl</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Scl</em>' attribute is set.
+	 * @see #unsetScl()
+	 * @see #getScl()
+	 * @see #setScl(double)
+	 * @generated
+	 */
+	boolean isSetScl();
+
+	/**
+	 * Returns the value of the '<em><b>Scl As String</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Scl As String</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Scl As String</em>' attribute.
+	 * @see #isSetSclAsString()
+	 * @see #unsetSclAsString()
+	 * @see #setSclAsString(String)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCartesianTransformationOperator_SclAsString()
+	 * @model unsettable="true"
+	 * @generated
+	 */
+	String getSclAsString();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator#getSclAsString <em>Scl As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Scl As String</em>' attribute.
+	 * @see #isSetSclAsString()
+	 * @see #unsetSclAsString()
+	 * @see #getSclAsString()
+	 * @generated
+	 */
+	void setSclAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator#getSclAsString <em>Scl As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetSclAsString()
+	 * @see #getSclAsString()
+	 * @see #setSclAsString(String)
+	 * @generated
+	 */
+	void unsetSclAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator#getSclAsString <em>Scl As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Scl As String</em>' attribute is set.
+	 * @see #unsetSclAsString()
+	 * @see #getSclAsString()
+	 * @see #setSclAsString(String)
+	 * @generated
+	 */
+	boolean isSetSclAsString();
 
 } // IfcCartesianTransformationOperator

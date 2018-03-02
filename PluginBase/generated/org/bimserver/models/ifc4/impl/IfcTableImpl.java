@@ -35,6 +35,9 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTableImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTableImpl#getRows <em>Rows</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTableImpl#getColumns <em>Columns</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcTableImpl#getNumberOfCellsInRow <em>Number Of Cells In Row</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcTableImpl#getNumberOfDataRows <em>Number Of Data Rows</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcTableImpl#getNumberOfHeadings <em>Number Of Headings</em>}</li>
  * </ul>
  *
  * @generated
@@ -159,6 +162,114 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 */
 	public boolean isSetColumns() {
 		return eIsSet(Ifc4Package.Literals.IFC_TABLE__COLUMNS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getNumberOfCellsInRow() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_TABLE__NUMBER_OF_CELLS_IN_ROW, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNumberOfCellsInRow(long newNumberOfCellsInRow) {
+		eSet(Ifc4Package.Literals.IFC_TABLE__NUMBER_OF_CELLS_IN_ROW, newNumberOfCellsInRow);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetNumberOfCellsInRow() {
+		eUnset(Ifc4Package.Literals.IFC_TABLE__NUMBER_OF_CELLS_IN_ROW);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetNumberOfCellsInRow() {
+		return eIsSet(Ifc4Package.Literals.IFC_TABLE__NUMBER_OF_CELLS_IN_ROW);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getNumberOfDataRows() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_TABLE__NUMBER_OF_DATA_ROWS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNumberOfDataRows(long newNumberOfDataRows) {
+		eSet(Ifc4Package.Literals.IFC_TABLE__NUMBER_OF_DATA_ROWS, newNumberOfDataRows);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetNumberOfDataRows() {
+		eUnset(Ifc4Package.Literals.IFC_TABLE__NUMBER_OF_DATA_ROWS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetNumberOfDataRows() {
+		return eIsSet(Ifc4Package.Literals.IFC_TABLE__NUMBER_OF_DATA_ROWS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getNumberOfHeadings() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_TABLE__NUMBER_OF_HEADINGS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNumberOfHeadings(long newNumberOfHeadings) {
+		eSet(Ifc4Package.Literals.IFC_TABLE__NUMBER_OF_HEADINGS, newNumberOfHeadings);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetNumberOfHeadings() {
+		eUnset(Ifc4Package.Literals.IFC_TABLE__NUMBER_OF_HEADINGS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetNumberOfHeadings() {
+		return eIsSet(Ifc4Package.Literals.IFC_TABLE__NUMBER_OF_HEADINGS);
 	}
 
 } //IfcTableImpl

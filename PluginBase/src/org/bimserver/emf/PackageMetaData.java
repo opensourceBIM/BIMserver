@@ -518,6 +518,11 @@ public class PackageMetaData implements ObjectFactory {
 	}
 	
 	public boolean hasInverse(EReference eReference) {
+		/*
+		 * This has been implemented manually, but with the assistance of the output of Express2Emf (which dumps all the mismatched inverses in the schema).
+		 * Code has been updated for IFC4_ADD2
+		 * 
+		 */
 		if (hasInverseCache.containsKey(eReference)) {
 			return hasInverseCache.get(eReference);
 		}
@@ -547,8 +552,9 @@ public class PackageMetaData implements ObjectFactory {
 					hasInverse = true;
 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements()) {
 					hasInverse = true;
-				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelCoversBldgElements_RelatingBuildingElement()) {
-					hasInverse = true;
+					// Removed in IFC4 _after_ IFC4-final
+//				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelCoversBldgElements_RelatingBuildingElement()) {
+//					hasInverse = true;
 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssociatesClassification_RelatingClassification()) {
 					hasInverse = true;
 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcClassificationReference_ReferencedSource()) {
@@ -585,6 +591,18 @@ public class PackageMetaData implements ObjectFactory {
  					hasInverse = true;
  				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelConnectsStructuralActivity_RelatingElement()) {
  					hasInverse = true;
+
+ 				// New in IFC4 _after_ IFC4-final
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcCoordinateOperation_SourceCRS()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssignsToProduct_RelatingProduct()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcResourceConstraintRelationship_RelatedResourceObjects()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcResourceApprovalRelationship_RelatedResourceObjects()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssignsToProduct_RelatingProduct()) {
+ 					hasInverse = true;
  				}			
 			} 
 		}
@@ -593,6 +611,11 @@ public class PackageMetaData implements ObjectFactory {
 	}
 	
 	public EReference getInverseOrOpposite(EClass eClassOfOtherEnd, EStructuralFeature eStructuralFeature) {
+		/*
+		 * This has been implemented manually, but with the assistance of the output of Express2Emf (which dumps all the mismatched inverses in the schema).
+		 * Code has been updated for IFC4_ADD2
+		 * 
+		 */
 		if (eStructuralFeature instanceof EAttribute) {
 			return null;
 		}
@@ -746,11 +769,12 @@ public class PackageMetaData implements ObjectFactory {
 					return Ifc4Package.eINSTANCE.getIfcTimeSeries_HasExternalReference();
 				}
 			}
-			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcRelCoversBldgElements_RelatingBuildingElement()) {
-				if (Ifc4Package.eINSTANCE.getIfcBuildingElement().isSuperTypeOf(eClassOfOtherEnd)) {
-					return Ifc4Package.eINSTANCE.getIfcBuildingElement_HasCoverings();
-				}
-			}
+			// Removed in IFC4 _after_ IFC4-final
+//			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcRelCoversBldgElements_RelatingBuildingElement()) {
+//				if (Ifc4Package.eINSTANCE.getIfcBuildingElement().isSuperTypeOf(eClassOfOtherEnd)) {
+//					return Ifc4Package.eINSTANCE.getIfcBuildingElement_HasCoverings();
+//				}
+//			}
 			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcRelAssociatesClassification_RelatingClassification()) {
 				if (Ifc4Package.eINSTANCE.getIfcClassification().isSuperTypeOf(eClassOfOtherEnd)) {
 					return Ifc4Package.eINSTANCE.getIfcClassification_ClassificationForObjects();
@@ -810,10 +834,12 @@ public class PackageMetaData implements ObjectFactory {
 			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcRelAssignsToProcess_RelatingProcess()) {
 				if (Ifc4Package.eINSTANCE.getIfcProcess().isSuperTypeOf(eClassOfOtherEnd)) {
 					return Ifc4Package.eINSTANCE.getIfcProcess_OperatesOn();
-				} else if (Ifc4Package.eINSTANCE.getIfcProduct().isSuperTypeOf(eClassOfOtherEnd)) {
-					return Ifc4Package.eINSTANCE.getIfcProduct_ReferencedBy();
-				} else if (Ifc4Package.eINSTANCE.getIfcTypeProduct().isSuperTypeOf(eClassOfOtherEnd)) {
-					return Ifc4Package.eINSTANCE.getIfcTypeProduct_ReferencedBy();
+					
+				// Removed in IFC4 _after_ IFC4-final
+//				} else if (Ifc4Package.eINSTANCE.getIfcProduct().isSuperTypeOf(eClassOfOtherEnd)) {
+//					return Ifc4Package.eINSTANCE.getIfcProduct_ReferencedBy();
+//				} else if (Ifc4Package.eINSTANCE.getIfcTypeProduct().isSuperTypeOf(eClassOfOtherEnd)) {
+//					return Ifc4Package.eINSTANCE.getIfcTypeProduct_ReferencedBy();
 				} else if (Ifc4Package.eINSTANCE.getIfcTypeProcess().isSuperTypeOf(eClassOfOtherEnd)) {
 					return Ifc4Package.eINSTANCE.getIfcTypeProcess_OperatesOn();
 				}
@@ -835,6 +861,34 @@ public class PackageMetaData implements ObjectFactory {
 					return Ifc4Package.eINSTANCE.getIfcResource_ResourceOf();
 				} else if (Ifc4Package.eINSTANCE.getIfcTypeResource().isSuperTypeOf(eClassOfOtherEnd)) {
 					return Ifc4Package.eINSTANCE.getIfcTypeResource_ResourceOf();
+				}
+			}
+			// New in IFC4 _after_ IFC4-final
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcCoordinateOperation_SourceCRS()) {
+				if (Ifc4Package.eINSTANCE.getIfcCoordinateReferenceSystem().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcCoordinateReferenceSystem_HasCoordinateOperation();
+				} else if (Ifc4Package.eINSTANCE.getIfcGeometricRepresentationContext().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcGeometricRepresentationContext_HasCoordinateOperation();
+				}
+			}
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcRelAssignsToProduct_RelatingProduct()) {
+				if (Ifc4Package.eINSTANCE.getIfcProduct().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcProduct_ReferencedBy();
+				}
+			}
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcResourceConstraintRelationship_RelatedResourceObjects()) {
+				if (Ifc4Package.eINSTANCE.getIfcProperty().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcProperty_HasConstraints();
+				}
+			}
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcResourceApprovalRelationship_RelatedResourceObjects()) {
+				if (Ifc4Package.eINSTANCE.getIfcProperty().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcProperty_HasApprovals();
+				}
+			}
+			if (eStructuralFeature == Ifc4Package.eINSTANCE.getIfcRelAssignsToProduct_RelatingProduct()) {
+				if (Ifc4Package.eINSTANCE.getIfcTypeProduct().isSuperTypeOf(eClassOfOtherEnd)) {
+					return Ifc4Package.eINSTANCE.getIfcTypeProduct_ReferencedBy();
 				}
 			}
 		}

@@ -39,7 +39,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialLayerImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialLayerImpl#getCategory <em>Category</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialLayerImpl#getPriority <em>Priority</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialLayerImpl#getPriorityAsString <em>Priority As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcMaterialLayerImpl#getToMaterialLayerSet <em>To Material Layer Set</em>}</li>
  * </ul>
  *
@@ -286,8 +285,8 @@ public class IfcMaterialLayerImpl extends IfcMaterialDefinitionImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getPriority() {
-		return (Double) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER__PRIORITY, true);
+	public long getPriority() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER__PRIORITY, true);
 	}
 
 	/**
@@ -295,7 +294,7 @@ public class IfcMaterialLayerImpl extends IfcMaterialDefinitionImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPriority(double newPriority) {
+	public void setPriority(long newPriority) {
 		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER__PRIORITY, newPriority);
 	}
 
@@ -315,42 +314,6 @@ public class IfcMaterialLayerImpl extends IfcMaterialDefinitionImpl implements I
 	 */
 	public boolean isSetPriority() {
 		return eIsSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER__PRIORITY);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getPriorityAsString() {
-		return (String) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER__PRIORITY_AS_STRING, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPriorityAsString(String newPriorityAsString) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER__PRIORITY_AS_STRING, newPriorityAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetPriorityAsString() {
-		eUnset(Ifc4Package.Literals.IFC_MATERIAL_LAYER__PRIORITY_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetPriorityAsString() {
-		return eIsSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER__PRIORITY_AS_STRING);
 	}
 
 	/**

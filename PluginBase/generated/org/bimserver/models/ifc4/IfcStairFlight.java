@@ -25,7 +25,7 @@ package org.bimserver.models.ifc4;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.bimserver.models.ifc4.IfcStairFlight#getNumberOfRiser <em>Number Of Riser</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcStairFlight#getNumberOfRisers <em>Number Of Risers</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcStairFlight#getNumberOfTreads <em>Number Of Treads</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcStairFlight#getRiserHeight <em>Riser Height</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcStairFlight#getRiserHeightAsString <em>Riser Height As String</em>}</li>
@@ -40,57 +40,57 @@ package org.bimserver.models.ifc4;
  */
 public interface IfcStairFlight extends IfcBuildingElement {
 	/**
-	 * Returns the value of the '<em><b>Number Of Riser</b></em>' attribute.
+	 * Returns the value of the '<em><b>Number Of Risers</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Number Of Riser</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Number Of Risers</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Number Of Riser</em>' attribute.
-	 * @see #isSetNumberOfRiser()
-	 * @see #unsetNumberOfRiser()
-	 * @see #setNumberOfRiser(long)
-	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStairFlight_NumberOfRiser()
+	 * @return the value of the '<em>Number Of Risers</em>' attribute.
+	 * @see #isSetNumberOfRisers()
+	 * @see #unsetNumberOfRisers()
+	 * @see #setNumberOfRisers(long)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStairFlight_NumberOfRisers()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	long getNumberOfRiser();
+	long getNumberOfRisers();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcStairFlight#getNumberOfRiser <em>Number Of Riser</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcStairFlight#getNumberOfRisers <em>Number Of Risers</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Number Of Riser</em>' attribute.
-	 * @see #isSetNumberOfRiser()
-	 * @see #unsetNumberOfRiser()
-	 * @see #getNumberOfRiser()
+	 * @param value the new value of the '<em>Number Of Risers</em>' attribute.
+	 * @see #isSetNumberOfRisers()
+	 * @see #unsetNumberOfRisers()
+	 * @see #getNumberOfRisers()
 	 * @generated
 	 */
-	void setNumberOfRiser(long value);
+	void setNumberOfRisers(long value);
 
 	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcStairFlight#getNumberOfRiser <em>Number Of Riser</em>}' attribute.
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcStairFlight#getNumberOfRisers <em>Number Of Risers</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isSetNumberOfRiser()
-	 * @see #getNumberOfRiser()
-	 * @see #setNumberOfRiser(long)
+	 * @see #isSetNumberOfRisers()
+	 * @see #getNumberOfRisers()
+	 * @see #setNumberOfRisers(long)
 	 * @generated
 	 */
-	void unsetNumberOfRiser();
+	void unsetNumberOfRisers();
 
 	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcStairFlight#getNumberOfRiser <em>Number Of Riser</em>}' attribute is set.
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcStairFlight#getNumberOfRisers <em>Number Of Risers</em>}' attribute is set.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Number Of Riser</em>' attribute is set.
-	 * @see #unsetNumberOfRiser()
-	 * @see #getNumberOfRiser()
-	 * @see #setNumberOfRiser(long)
+	 * @return whether the value of the '<em>Number Of Risers</em>' attribute is set.
+	 * @see #unsetNumberOfRisers()
+	 * @see #getNumberOfRisers()
+	 * @see #setNumberOfRisers(long)
 	 * @generated
 	 */
-	boolean isSetNumberOfRiser();
+	boolean isSetNumberOfRisers();
 
 	/**
 	 * Returns the value of the '<em><b>Number Of Treads</b></em>' attribute.

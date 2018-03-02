@@ -413,8 +413,8 @@ public enum IfcCommunicationsApplianceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCommunicationsApplianceTypeEnum[] VALUES_ARRAY = new IfcCommunicationsApplianceTypeEnum[] { NULL, GATEWAY, NETWORKAPPLIANCE, ROUTER, MODEM, USERDEFINED, ANTENNA, SCANNER, NETWORKHUB, NETWORKBRIDGE, NOTDEFINED,
-			PRINTER, COMPUTER, REPEATER, FAX, };
+	private static final IfcCommunicationsApplianceTypeEnum[] VALUES_ARRAY = new IfcCommunicationsApplianceTypeEnum[] { NULL, GATEWAY, NETWORKAPPLIANCE, ROUTER, MODEM, USERDEFINED, ANTENNA, SCANNER,
+			NETWORKHUB, NETWORKBRIDGE, NOTDEFINED, PRINTER, COMPUTER, REPEATER, FAX, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Communications Appliance Type Enum</b></em>' enumerators.

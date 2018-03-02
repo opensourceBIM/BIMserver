@@ -32,8 +32,8 @@ package org.bimserver.models.ifc4;
  * @model
  * @generated
  */
-public interface IfcBoolean extends IfcModulusOfRotationalSubgradeReactionSelect, IfcModulusOfSubgradeReactionSelect, IfcModulusOfTranslationalSubgradeReactionSelect, IfcRotationalStiffnessSelect, IfcSimpleValue,
-		IfcTranslationalStiffnessSelect, IfcWarpingStiffnessSelect, IfcValue {
+public interface IfcBoolean extends IfcModulusOfRotationalSubgradeReactionSelect, IfcModulusOfSubgradeReactionSelect, IfcModulusOfTranslationalSubgradeReactionSelect, IfcRotationalStiffnessSelect,
+		IfcSimpleValue, IfcTranslationalStiffnessSelect, IfcWarpingStiffnessSelect, IfcValue {
 	/**
 	 * Returns the value of the '<em><b>Wrapped Value</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.bimserver.models.ifc4.Tristate}.

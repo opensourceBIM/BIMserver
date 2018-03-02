@@ -38,6 +38,7 @@ import org.eclipse.emf.common.util.EList;
 public interface IfcRelCoversBldgElements extends IfcRelConnects {
 	/**
 	 * Returns the value of the '<em><b>Relating Building Element</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.ifc4.IfcElement#getHasCoverings <em>Has Coverings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Relating Building Element</em>' reference isn't clear,
@@ -47,7 +48,8 @@ public interface IfcRelCoversBldgElements extends IfcRelConnects {
 	 * @return the value of the '<em>Relating Building Element</em>' reference.
 	 * @see #setRelatingBuildingElement(IfcElement)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelCoversBldgElements_RelatingBuildingElement()
-	 * @model
+	 * @see org.bimserver.models.ifc4.IfcElement#getHasCoverings
+	 * @model opposite="HasCoverings"
 	 * @generated
 	 */
 	IfcElement getRelatingBuildingElement();

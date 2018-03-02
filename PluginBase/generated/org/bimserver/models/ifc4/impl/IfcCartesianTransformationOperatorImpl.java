@@ -36,6 +36,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCartesianTransformationOperatorImpl#getScale <em>Scale</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCartesianTransformationOperatorImpl#getScaleAsString <em>Scale As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCartesianTransformationOperatorImpl#getDim <em>Dim</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcCartesianTransformationOperatorImpl#getScl <em>Scl</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcCartesianTransformationOperatorImpl#getSclAsString <em>Scl As String</em>}</li>
  * </ul>
  *
  * @generated
@@ -256,6 +258,78 @@ public class IfcCartesianTransformationOperatorImpl extends IfcGeometricRepresen
 	 */
 	public boolean isSetDim() {
 		return eIsSet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR__DIM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public double getScl() {
+		return (Double) eGet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR__SCL, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setScl(double newScl) {
+		eSet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR__SCL, newScl);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetScl() {
+		eUnset(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR__SCL);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetScl() {
+		return eIsSet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR__SCL);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getSclAsString() {
+		return (String) eGet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR__SCL_AS_STRING, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSclAsString(String newSclAsString) {
+		eSet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR__SCL_AS_STRING, newSclAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetSclAsString() {
+		eUnset(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR__SCL_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSclAsString() {
+		return eIsSet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR__SCL_AS_STRING);
 	}
 
 } //IfcCartesianTransformationOperatorImpl

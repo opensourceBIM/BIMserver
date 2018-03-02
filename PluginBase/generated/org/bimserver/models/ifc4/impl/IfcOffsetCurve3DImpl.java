@@ -20,6 +20,7 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcCurve;
 import org.bimserver.models.ifc4.IfcDirection;
 import org.bimserver.models.ifc4.IfcOffsetCurve3D;
+import org.bimserver.models.ifc4.Tristate;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -33,7 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcOffsetCurve3DImpl#getBasisCurve <em>Basis Curve</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcOffsetCurve3DImpl#getDistance <em>Distance</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcOffsetCurve3DImpl#getDistanceAsString <em>Distance As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.impl.IfcOffsetCurve3DImpl#isSelfIntersect <em>Self Intersect</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcOffsetCurve3DImpl#getSelfIntersect <em>Self Intersect</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcOffsetCurve3DImpl#getRefDirection <em>Ref Direction</em>}</li>
  * </ul>
  *
@@ -118,8 +119,8 @@ public class IfcOffsetCurve3DImpl extends IfcCurveImpl implements IfcOffsetCurve
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSelfIntersect() {
-		return (Boolean) eGet(Ifc4Package.Literals.IFC_OFFSET_CURVE3_D__SELF_INTERSECT, true);
+	public Tristate getSelfIntersect() {
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_OFFSET_CURVE3_D__SELF_INTERSECT, true);
 	}
 
 	/**
@@ -127,7 +128,7 @@ public class IfcOffsetCurve3DImpl extends IfcCurveImpl implements IfcOffsetCurve
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSelfIntersect(boolean newSelfIntersect) {
+	public void setSelfIntersect(Tristate newSelfIntersect) {
 		eSet(Ifc4Package.Literals.IFC_OFFSET_CURVE3_D__SELF_INTERSECT, newSelfIntersect);
 	}
 

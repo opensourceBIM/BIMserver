@@ -33,7 +33,6 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialLayer#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialLayer#getCategory <em>Category</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialLayer#getPriority <em>Priority</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcMaterialLayer#getPriorityAsString <em>Priority As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcMaterialLayer#getToMaterialLayerSet <em>To Material Layer Set</em>}</li>
  * </ul>
  *
@@ -373,12 +372,12 @@ public interface IfcMaterialLayer extends IfcMaterialDefinition {
 	 * @return the value of the '<em>Priority</em>' attribute.
 	 * @see #isSetPriority()
 	 * @see #unsetPriority()
-	 * @see #setPriority(double)
+	 * @see #setPriority(long)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialLayer_Priority()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	double getPriority();
+	long getPriority();
 
 	/**
 	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcMaterialLayer#getPriority <em>Priority</em>}' attribute.
@@ -390,7 +389,7 @@ public interface IfcMaterialLayer extends IfcMaterialDefinition {
 	 * @see #getPriority()
 	 * @generated
 	 */
-	void setPriority(double value);
+	void setPriority(long value);
 
 	/**
 	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcMaterialLayer#getPriority <em>Priority</em>}' attribute.
@@ -398,7 +397,7 @@ public interface IfcMaterialLayer extends IfcMaterialDefinition {
 	 * <!-- end-user-doc -->
 	 * @see #isSetPriority()
 	 * @see #getPriority()
-	 * @see #setPriority(double)
+	 * @see #setPriority(long)
 	 * @generated
 	 */
 	void unsetPriority();
@@ -410,63 +409,10 @@ public interface IfcMaterialLayer extends IfcMaterialDefinition {
 	 * @return whether the value of the '<em>Priority</em>' attribute is set.
 	 * @see #unsetPriority()
 	 * @see #getPriority()
-	 * @see #setPriority(double)
+	 * @see #setPriority(long)
 	 * @generated
 	 */
 	boolean isSetPriority();
-
-	/**
-	 * Returns the value of the '<em><b>Priority As String</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Priority As String</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Priority As String</em>' attribute.
-	 * @see #isSetPriorityAsString()
-	 * @see #unsetPriorityAsString()
-	 * @see #setPriorityAsString(String)
-	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialLayer_PriorityAsString()
-	 * @model unsettable="true"
-	 * @generated
-	 */
-	String getPriorityAsString();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcMaterialLayer#getPriorityAsString <em>Priority As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Priority As String</em>' attribute.
-	 * @see #isSetPriorityAsString()
-	 * @see #unsetPriorityAsString()
-	 * @see #getPriorityAsString()
-	 * @generated
-	 */
-	void setPriorityAsString(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcMaterialLayer#getPriorityAsString <em>Priority As String</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetPriorityAsString()
-	 * @see #getPriorityAsString()
-	 * @see #setPriorityAsString(String)
-	 * @generated
-	 */
-	void unsetPriorityAsString();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcMaterialLayer#getPriorityAsString <em>Priority As String</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Priority As String</em>' attribute is set.
-	 * @see #unsetPriorityAsString()
-	 * @see #getPriorityAsString()
-	 * @see #setPriorityAsString(String)
-	 * @generated
-	 */
-	boolean isSetPriorityAsString();
 
 	/**
 	 * Returns the value of the '<em><b>To Material Layer Set</b></em>' reference.

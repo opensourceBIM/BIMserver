@@ -30,6 +30,9 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcTable#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTable#getRows <em>Rows</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTable#getColumns <em>Columns</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcTable#getNumberOfCellsInRow <em>Number Of Cells In Row</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcTable#getNumberOfDataRows <em>Number Of Data Rows</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcTable#getNumberOfHeadings <em>Number Of Headings</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTable()
@@ -93,7 +96,6 @@ public interface IfcTable extends IfcMetricValueSelect, IfcObjectReferenceSelect
 	/**
 	 * Returns the value of the '<em><b>Rows</b></em>' reference list.
 	 * The list contents are of type {@link org.bimserver.models.ifc4.IfcTableRow}.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.models.ifc4.IfcTableRow#getOfTable <em>Of Table</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Rows</em>' reference list isn't clear,
@@ -104,8 +106,7 @@ public interface IfcTable extends IfcMetricValueSelect, IfcObjectReferenceSelect
 	 * @see #isSetRows()
 	 * @see #unsetRows()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTable_Rows()
-	 * @see org.bimserver.models.ifc4.IfcTableRow#getOfTable
-	 * @model opposite="OfTable" unsettable="true"
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcTableRow> getRows();
@@ -169,5 +170,164 @@ public interface IfcTable extends IfcMetricValueSelect, IfcObjectReferenceSelect
 	 * @generated
 	 */
 	boolean isSetColumns();
+
+	/**
+	 * Returns the value of the '<em><b>Number Of Cells In Row</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Number Of Cells In Row</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Number Of Cells In Row</em>' attribute.
+	 * @see #isSetNumberOfCellsInRow()
+	 * @see #unsetNumberOfCellsInRow()
+	 * @see #setNumberOfCellsInRow(long)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTable_NumberOfCellsInRow()
+	 * @model unsettable="true" derived="true"
+	 * @generated
+	 */
+	long getNumberOfCellsInRow();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcTable#getNumberOfCellsInRow <em>Number Of Cells In Row</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Number Of Cells In Row</em>' attribute.
+	 * @see #isSetNumberOfCellsInRow()
+	 * @see #unsetNumberOfCellsInRow()
+	 * @see #getNumberOfCellsInRow()
+	 * @generated
+	 */
+	void setNumberOfCellsInRow(long value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcTable#getNumberOfCellsInRow <em>Number Of Cells In Row</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetNumberOfCellsInRow()
+	 * @see #getNumberOfCellsInRow()
+	 * @see #setNumberOfCellsInRow(long)
+	 * @generated
+	 */
+	void unsetNumberOfCellsInRow();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcTable#getNumberOfCellsInRow <em>Number Of Cells In Row</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Number Of Cells In Row</em>' attribute is set.
+	 * @see #unsetNumberOfCellsInRow()
+	 * @see #getNumberOfCellsInRow()
+	 * @see #setNumberOfCellsInRow(long)
+	 * @generated
+	 */
+	boolean isSetNumberOfCellsInRow();
+
+	/**
+	 * Returns the value of the '<em><b>Number Of Data Rows</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Number Of Data Rows</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Number Of Data Rows</em>' attribute.
+	 * @see #isSetNumberOfDataRows()
+	 * @see #unsetNumberOfDataRows()
+	 * @see #setNumberOfDataRows(long)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTable_NumberOfDataRows()
+	 * @model unsettable="true" derived="true"
+	 * @generated
+	 */
+	long getNumberOfDataRows();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcTable#getNumberOfDataRows <em>Number Of Data Rows</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Number Of Data Rows</em>' attribute.
+	 * @see #isSetNumberOfDataRows()
+	 * @see #unsetNumberOfDataRows()
+	 * @see #getNumberOfDataRows()
+	 * @generated
+	 */
+	void setNumberOfDataRows(long value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcTable#getNumberOfDataRows <em>Number Of Data Rows</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetNumberOfDataRows()
+	 * @see #getNumberOfDataRows()
+	 * @see #setNumberOfDataRows(long)
+	 * @generated
+	 */
+	void unsetNumberOfDataRows();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcTable#getNumberOfDataRows <em>Number Of Data Rows</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Number Of Data Rows</em>' attribute is set.
+	 * @see #unsetNumberOfDataRows()
+	 * @see #getNumberOfDataRows()
+	 * @see #setNumberOfDataRows(long)
+	 * @generated
+	 */
+	boolean isSetNumberOfDataRows();
+
+	/**
+	 * Returns the value of the '<em><b>Number Of Headings</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Number Of Headings</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Number Of Headings</em>' attribute.
+	 * @see #isSetNumberOfHeadings()
+	 * @see #unsetNumberOfHeadings()
+	 * @see #setNumberOfHeadings(long)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTable_NumberOfHeadings()
+	 * @model unsettable="true" derived="true"
+	 * @generated
+	 */
+	long getNumberOfHeadings();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcTable#getNumberOfHeadings <em>Number Of Headings</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Number Of Headings</em>' attribute.
+	 * @see #isSetNumberOfHeadings()
+	 * @see #unsetNumberOfHeadings()
+	 * @see #getNumberOfHeadings()
+	 * @generated
+	 */
+	void setNumberOfHeadings(long value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcTable#getNumberOfHeadings <em>Number Of Headings</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetNumberOfHeadings()
+	 * @see #getNumberOfHeadings()
+	 * @see #setNumberOfHeadings(long)
+	 * @generated
+	 */
+	void unsetNumberOfHeadings();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcTable#getNumberOfHeadings <em>Number Of Headings</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Number Of Headings</em>' attribute is set.
+	 * @see #unsetNumberOfHeadings()
+	 * @see #getNumberOfHeadings()
+	 * @see #setNumberOfHeadings(long)
+	 * @generated
+	 */
+	boolean isSetNumberOfHeadings();
 
 } // IfcTable

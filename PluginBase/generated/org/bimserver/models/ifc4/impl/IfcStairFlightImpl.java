@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bimserver.models.ifc4.impl.IfcStairFlightImpl#getNumberOfRiser <em>Number Of Riser</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcStairFlightImpl#getNumberOfRisers <em>Number Of Risers</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStairFlightImpl#getNumberOfTreads <em>Number Of Treads</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStairFlightImpl#getRiserHeight <em>Riser Height</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcStairFlightImpl#getRiserHeightAsString <em>Riser Height As String</em>}</li>
@@ -65,8 +65,8 @@ public class IfcStairFlightImpl extends IfcBuildingElementImpl implements IfcSta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getNumberOfRiser() {
-		return (Long) eGet(Ifc4Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_RISER, true);
+	public long getNumberOfRisers() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_RISERS, true);
 	}
 
 	/**
@@ -74,8 +74,8 @@ public class IfcStairFlightImpl extends IfcBuildingElementImpl implements IfcSta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNumberOfRiser(long newNumberOfRiser) {
-		eSet(Ifc4Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_RISER, newNumberOfRiser);
+	public void setNumberOfRisers(long newNumberOfRisers) {
+		eSet(Ifc4Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_RISERS, newNumberOfRisers);
 	}
 
 	/**
@@ -83,8 +83,8 @@ public class IfcStairFlightImpl extends IfcBuildingElementImpl implements IfcSta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetNumberOfRiser() {
-		eUnset(Ifc4Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_RISER);
+	public void unsetNumberOfRisers() {
+		eUnset(Ifc4Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_RISERS);
 	}
 
 	/**
@@ -92,8 +92,8 @@ public class IfcStairFlightImpl extends IfcBuildingElementImpl implements IfcSta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetNumberOfRiser() {
-		return eIsSet(Ifc4Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_RISER);
+	public boolean isSetNumberOfRisers() {
+		return eIsSet(Ifc4Package.Literals.IFC_STAIR_FLIGHT__NUMBER_OF_RISERS);
 	}
 
 	/**

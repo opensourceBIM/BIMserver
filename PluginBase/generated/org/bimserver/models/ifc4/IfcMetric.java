@@ -127,9 +127,11 @@ public interface IfcMetric extends IfcConstraint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Data Value</em>' reference.
+	 * @see #isSetDataValue()
+	 * @see #unsetDataValue()
 	 * @see #setDataValue(IfcMetricValueSelect)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMetric_DataValue()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	IfcMetricValueSelect getDataValue();
@@ -139,10 +141,35 @@ public interface IfcMetric extends IfcConstraint {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Data Value</em>' reference.
+	 * @see #isSetDataValue()
+	 * @see #unsetDataValue()
 	 * @see #getDataValue()
 	 * @generated
 	 */
 	void setDataValue(IfcMetricValueSelect value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcMetric#getDataValue <em>Data Value</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDataValue()
+	 * @see #getDataValue()
+	 * @see #setDataValue(IfcMetricValueSelect)
+	 * @generated
+	 */
+	void unsetDataValue();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcMetric#getDataValue <em>Data Value</em>}' reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Data Value</em>' reference is set.
+	 * @see #unsetDataValue()
+	 * @see #getDataValue()
+	 * @see #setDataValue(IfcMetricValueSelect)
+	 * @generated
+	 */
+	boolean isSetDataValue();
 
 	/**
 	 * Returns the value of the '<em><b>Reference Path</b></em>' reference.

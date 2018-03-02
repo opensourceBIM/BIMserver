@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EClass;
  * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcEdgeLoopImpl#getEdgeList <em>Edge List</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcEdgeLoopImpl#getNe <em>Ne</em>}</li>
  * </ul>
  *
  * @generated
@@ -63,6 +64,42 @@ public class IfcEdgeLoopImpl extends IfcLoopImpl implements IfcEdgeLoop {
 	@SuppressWarnings("unchecked")
 	public EList<IfcOrientedEdge> getEdgeList() {
 		return (EList<IfcOrientedEdge>) eGet(Ifc4Package.Literals.IFC_EDGE_LOOP__EDGE_LIST, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getNe() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_EDGE_LOOP__NE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNe(long newNe) {
+		eSet(Ifc4Package.Literals.IFC_EDGE_LOOP__NE, newNe);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetNe() {
+		eUnset(Ifc4Package.Literals.IFC_EDGE_LOOP__NE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetNe() {
+		return eIsSet(Ifc4Package.Literals.IFC_EDGE_LOOP__NE);
 	}
 
 } //IfcEdgeLoopImpl

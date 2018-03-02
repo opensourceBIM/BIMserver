@@ -34,6 +34,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurfaceWithKnots#getVKnots <em>VKnots</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurfaceWithKnots#getVKnotsAsString <em>VKnots As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurfaceWithKnots#getKnotSpec <em>Knot Spec</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurfaceWithKnots#getKnotVUpper <em>Knot VUpper</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurfaceWithKnots#getKnotUUpper <em>Knot UUpper</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBSplineSurfaceWithKnots()
@@ -165,5 +167,111 @@ public interface IfcBSplineSurfaceWithKnots extends IfcBSplineSurface {
 	 * @generated
 	 */
 	void setKnotSpec(IfcKnotType value);
+
+	/**
+	 * Returns the value of the '<em><b>Knot VUpper</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Knot VUpper</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Knot VUpper</em>' attribute.
+	 * @see #isSetKnotVUpper()
+	 * @see #unsetKnotVUpper()
+	 * @see #setKnotVUpper(long)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBSplineSurfaceWithKnots_KnotVUpper()
+	 * @model unsettable="true" derived="true"
+	 * @generated
+	 */
+	long getKnotVUpper();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcBSplineSurfaceWithKnots#getKnotVUpper <em>Knot VUpper</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Knot VUpper</em>' attribute.
+	 * @see #isSetKnotVUpper()
+	 * @see #unsetKnotVUpper()
+	 * @see #getKnotVUpper()
+	 * @generated
+	 */
+	void setKnotVUpper(long value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcBSplineSurfaceWithKnots#getKnotVUpper <em>Knot VUpper</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetKnotVUpper()
+	 * @see #getKnotVUpper()
+	 * @see #setKnotVUpper(long)
+	 * @generated
+	 */
+	void unsetKnotVUpper();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcBSplineSurfaceWithKnots#getKnotVUpper <em>Knot VUpper</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Knot VUpper</em>' attribute is set.
+	 * @see #unsetKnotVUpper()
+	 * @see #getKnotVUpper()
+	 * @see #setKnotVUpper(long)
+	 * @generated
+	 */
+	boolean isSetKnotVUpper();
+
+	/**
+	 * Returns the value of the '<em><b>Knot UUpper</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Knot UUpper</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Knot UUpper</em>' attribute.
+	 * @see #isSetKnotUUpper()
+	 * @see #unsetKnotUUpper()
+	 * @see #setKnotUUpper(long)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBSplineSurfaceWithKnots_KnotUUpper()
+	 * @model unsettable="true" derived="true"
+	 * @generated
+	 */
+	long getKnotUUpper();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcBSplineSurfaceWithKnots#getKnotUUpper <em>Knot UUpper</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Knot UUpper</em>' attribute.
+	 * @see #isSetKnotUUpper()
+	 * @see #unsetKnotUUpper()
+	 * @see #getKnotUUpper()
+	 * @generated
+	 */
+	void setKnotUUpper(long value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcBSplineSurfaceWithKnots#getKnotUUpper <em>Knot UUpper</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetKnotUUpper()
+	 * @see #getKnotUUpper()
+	 * @see #setKnotUUpper(long)
+	 * @generated
+	 */
+	void unsetKnotUUpper();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcBSplineSurfaceWithKnots#getKnotUUpper <em>Knot UUpper</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Knot UUpper</em>' attribute is set.
+	 * @see #unsetKnotUUpper()
+	 * @see #getKnotUUpper()
+	 * @see #setKnotUUpper(long)
+	 * @generated
+	 */
+	boolean isSetKnotUUpper();
 
 } // IfcBSplineSurfaceWithKnots

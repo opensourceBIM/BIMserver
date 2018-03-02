@@ -213,7 +213,8 @@ public enum IfcElectricDistributionBoardTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcElectricDistributionBoardTypeEnum[] VALUES_ARRAY = new IfcElectricDistributionBoardTypeEnum[] { NULL, NOTDEFINED, DISTRIBUTIONBOARD, CONSUMERUNIT, SWITCHBOARD, MOTORCONTROLCENTRE, USERDEFINED, };
+	private static final IfcElectricDistributionBoardTypeEnum[] VALUES_ARRAY = new IfcElectricDistributionBoardTypeEnum[] { NULL, NOTDEFINED, DISTRIBUTIONBOARD, CONSUMERUNIT, SWITCHBOARD,
+			MOTORCONTROLCENTRE, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Electric Distribution Board Type Enum</b></em>' enumerators.

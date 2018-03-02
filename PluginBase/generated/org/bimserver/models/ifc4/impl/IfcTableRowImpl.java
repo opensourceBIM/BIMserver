@@ -35,7 +35,6 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTableRowImpl#getRowCells <em>Row Cells</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTableRowImpl#getIsHeading <em>Is Heading</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.impl.IfcTableRowImpl#getOfTable <em>Of Table</em>}</li>
  * </ul>
  *
  * @generated
@@ -132,42 +131,6 @@ public class IfcTableRowImpl extends IdEObjectImpl implements IfcTableRow {
 	 */
 	public boolean isSetIsHeading() {
 		return eIsSet(Ifc4Package.Literals.IFC_TABLE_ROW__IS_HEADING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IfcTable getOfTable() {
-		return (IfcTable) eGet(Ifc4Package.Literals.IFC_TABLE_ROW__OF_TABLE, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOfTable(IfcTable newOfTable) {
-		eSet(Ifc4Package.Literals.IFC_TABLE_ROW__OF_TABLE, newOfTable);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetOfTable() {
-		eUnset(Ifc4Package.Literals.IFC_TABLE_ROW__OF_TABLE);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetOfTable() {
-		return eIsSet(Ifc4Package.Literals.IFC_TABLE_ROW__OF_TABLE);
 	}
 
 } //IfcTableRowImpl

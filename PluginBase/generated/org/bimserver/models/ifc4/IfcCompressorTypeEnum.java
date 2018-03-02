@@ -488,8 +488,8 @@ public enum IfcCompressorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCompressorTypeEnum[] VALUES_ARRAY = new IfcCompressorTypeEnum[] { NULL, TWINSCREW, SINGLESCREW, SINGLESTAGE, RECIPROCATING, TROCHOIDAL, OPENTYPE, ROTARYVANE, SEMIHERMETIC, USERDEFINED, HERMETIC, DYNAMIC,
-			NOTDEFINED, SCROLL, WELDEDSHELLHERMETIC, BOOSTER, ROLLINGPISTON, ROTARY, };
+	private static final IfcCompressorTypeEnum[] VALUES_ARRAY = new IfcCompressorTypeEnum[] { NULL, TWINSCREW, SINGLESCREW, SINGLESTAGE, RECIPROCATING, TROCHOIDAL, OPENTYPE, ROTARYVANE, SEMIHERMETIC,
+			USERDEFINED, HERMETIC, DYNAMIC, NOTDEFINED, SCROLL, WELDEDSHELLHERMETIC, BOOSTER, ROLLINGPISTON, ROTARY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Compressor Type Enum</b></em>' enumerators.

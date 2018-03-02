@@ -27,6 +27,8 @@ package org.bimserver.models.ifc4;
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator2DnonUniform#getScale2 <em>Scale2</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator2DnonUniform#getScale2AsString <em>Scale2 As String</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator2DnonUniform#getScl2 <em>Scl2</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator2DnonUniform#getScl2AsString <em>Scl2 As String</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCartesianTransformationOperator2DnonUniform()
@@ -139,5 +141,111 @@ public interface IfcCartesianTransformationOperator2DnonUniform extends IfcCarte
 	 * @generated
 	 */
 	boolean isSetScale2AsString();
+
+	/**
+	 * Returns the value of the '<em><b>Scl2</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Scl2</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Scl2</em>' attribute.
+	 * @see #isSetScl2()
+	 * @see #unsetScl2()
+	 * @see #setScl2(double)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCartesianTransformationOperator2DnonUniform_Scl2()
+	 * @model unsettable="true" derived="true"
+	 * @generated
+	 */
+	double getScl2();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator2DnonUniform#getScl2 <em>Scl2</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Scl2</em>' attribute.
+	 * @see #isSetScl2()
+	 * @see #unsetScl2()
+	 * @see #getScl2()
+	 * @generated
+	 */
+	void setScl2(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator2DnonUniform#getScl2 <em>Scl2</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetScl2()
+	 * @see #getScl2()
+	 * @see #setScl2(double)
+	 * @generated
+	 */
+	void unsetScl2();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator2DnonUniform#getScl2 <em>Scl2</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Scl2</em>' attribute is set.
+	 * @see #unsetScl2()
+	 * @see #getScl2()
+	 * @see #setScl2(double)
+	 * @generated
+	 */
+	boolean isSetScl2();
+
+	/**
+	 * Returns the value of the '<em><b>Scl2 As String</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Scl2 As String</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Scl2 As String</em>' attribute.
+	 * @see #isSetScl2AsString()
+	 * @see #unsetScl2AsString()
+	 * @see #setScl2AsString(String)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCartesianTransformationOperator2DnonUniform_Scl2AsString()
+	 * @model unsettable="true"
+	 * @generated
+	 */
+	String getScl2AsString();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator2DnonUniform#getScl2AsString <em>Scl2 As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Scl2 As String</em>' attribute.
+	 * @see #isSetScl2AsString()
+	 * @see #unsetScl2AsString()
+	 * @see #getScl2AsString()
+	 * @generated
+	 */
+	void setScl2AsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator2DnonUniform#getScl2AsString <em>Scl2 As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetScl2AsString()
+	 * @see #getScl2AsString()
+	 * @see #setScl2AsString(String)
+	 * @generated
+	 */
+	void unsetScl2AsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcCartesianTransformationOperator2DnonUniform#getScl2AsString <em>Scl2 As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Scl2 As String</em>' attribute is set.
+	 * @see #unsetScl2AsString()
+	 * @see #getScl2AsString()
+	 * @see #setScl2AsString(String)
+	 * @generated
+	 */
+	boolean isSetScl2AsString();
 
 } // IfcCartesianTransformationOperator2DnonUniform

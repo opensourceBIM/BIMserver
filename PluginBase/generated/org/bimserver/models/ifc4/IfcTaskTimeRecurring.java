@@ -25,7 +25,7 @@ package org.bimserver.models.ifc4;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.bimserver.models.ifc4.IfcTaskTimeRecurring#getRecurrance <em>Recurrance</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcTaskTimeRecurring#getRecurrence <em>Recurrence</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTaskTimeRecurring()
@@ -34,29 +34,29 @@ package org.bimserver.models.ifc4;
  */
 public interface IfcTaskTimeRecurring extends IfcTaskTime {
 	/**
-	 * Returns the value of the '<em><b>Recurrance</b></em>' reference.
+	 * Returns the value of the '<em><b>Recurrence</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Recurrance</em>' reference isn't clear,
+	 * If the meaning of the '<em>Recurrence</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Recurrance</em>' reference.
-	 * @see #setRecurrance(IfcRecurrencePattern)
-	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTaskTimeRecurring_Recurrance()
+	 * @return the value of the '<em>Recurrence</em>' reference.
+	 * @see #setRecurrence(IfcRecurrencePattern)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTaskTimeRecurring_Recurrence()
 	 * @model
 	 * @generated
 	 */
-	IfcRecurrencePattern getRecurrance();
+	IfcRecurrencePattern getRecurrence();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcTaskTimeRecurring#getRecurrance <em>Recurrance</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcTaskTimeRecurring#getRecurrence <em>Recurrence</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Recurrance</em>' reference.
-	 * @see #getRecurrance()
+	 * @param value the new value of the '<em>Recurrence</em>' reference.
+	 * @see #getRecurrence()
 	 * @generated
 	 */
-	void setRecurrance(IfcRecurrencePattern value);
+	void setRecurrence(IfcRecurrencePattern value);
 
 } // IfcTaskTimeRecurring

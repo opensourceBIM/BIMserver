@@ -43,23 +43,22 @@ public enum IfcExternalSpatialElementTypeEnum implements Enumerator {
 	NULL(0, "NULL", "NULL"),
 
 	/**
-	 * The '<em><b>NOTDEFIEND</b></em>' literal object.
+	 * The '<em><b>NOTDEFINED</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFIEND_VALUE
+	 * @see #NOTDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOTDEFIEND(1, "NOTDEFIEND", "NOTDEFIEND"),
-
+	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 	/**
-	 * The '<em><b>EXTERNAL</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #EXTERNAL_VALUE
-	 * @generated
-	 * @ordered
-	 */
+	* The '<em><b>EXTERNAL</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #EXTERNAL_VALUE
+	* @generated
+	* @ordered
+	*/
 	EXTERNAL(2, "EXTERNAL", "EXTERNAL"),
 
 	/**
@@ -118,19 +117,19 @@ public enum IfcExternalSpatialElementTypeEnum implements Enumerator {
 	public static final int NULL_VALUE = 0;
 
 	/**
-	 * The '<em><b>NOTDEFIEND</b></em>' literal value.
+	 * The '<em><b>NOTDEFINED</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>NOTDEFIEND</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>NOTDEFINED</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #NOTDEFIEND
+	 * @see #NOTDEFINED
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOTDEFIEND_VALUE = 1;
+	public static final int NOTDEFINED_VALUE = 1;
 
 	/**
 	 * The '<em><b>EXTERNAL</b></em>' literal value.
@@ -213,7 +212,8 @@ public enum IfcExternalSpatialElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcExternalSpatialElementTypeEnum[] VALUES_ARRAY = new IfcExternalSpatialElementTypeEnum[] { NULL, NOTDEFIEND, EXTERNAL, EXTERNAL_FIRE, EXTERNAL_WATER, USERDEFINED, EXTERNAL_EARTH, };
+	private static final IfcExternalSpatialElementTypeEnum[] VALUES_ARRAY = new IfcExternalSpatialElementTypeEnum[] { NULL, NOTDEFINED, EXTERNAL, EXTERNAL_FIRE, EXTERNAL_WATER, USERDEFINED,
+			EXTERNAL_EARTH, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc External Spatial Element Type Enum</b></em>' enumerators.
@@ -271,8 +271,8 @@ public enum IfcExternalSpatialElementTypeEnum implements Enumerator {
 		switch (value) {
 		case NULL_VALUE:
 			return NULL;
-		case NOTDEFIEND_VALUE:
-			return NOTDEFIEND;
+		case NOTDEFINED_VALUE:
+			return NOTDEFINED;
 		case EXTERNAL_VALUE:
 			return EXTERNAL;
 		case EXTERNAL_FIRE_VALUE:

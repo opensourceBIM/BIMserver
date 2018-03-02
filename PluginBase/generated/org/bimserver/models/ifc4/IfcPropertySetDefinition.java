@@ -132,7 +132,7 @@ public interface IfcPropertySetDefinition extends IfcPropertyDefinition, IfcProp
 	 * @see #isSetDefinesOccurrence()
 	 * @see #unsetDefinesOccurrence()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPropertySetDefinition_DefinesOccurrence()
-	 * @model unsettable="true" upper="2"
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	EList<IfcRelDefinesByProperties> getDefinesOccurrence();

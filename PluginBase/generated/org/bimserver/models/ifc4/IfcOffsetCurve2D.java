@@ -28,7 +28,7 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcOffsetCurve2D#getBasisCurve <em>Basis Curve</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcOffsetCurve2D#getDistance <em>Distance</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcOffsetCurve2D#getDistanceAsString <em>Distance As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcOffsetCurve2D#isSelfIntersect <em>Self Intersect</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcOffsetCurve2D#getSelfIntersect <em>Self Intersect</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcOffsetCurve2D()
@@ -116,6 +116,7 @@ public interface IfcOffsetCurve2D extends IfcCurve {
 
 	/**
 	 * Returns the value of the '<em><b>Self Intersect</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.bimserver.models.ifc4.Tristate}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Self Intersect</em>' attribute isn't clear,
@@ -123,21 +124,23 @@ public interface IfcOffsetCurve2D extends IfcCurve {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Self Intersect</em>' attribute.
-	 * @see #setSelfIntersect(boolean)
+	 * @see org.bimserver.models.ifc4.Tristate
+	 * @see #setSelfIntersect(Tristate)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcOffsetCurve2D_SelfIntersect()
 	 * @model
 	 * @generated
 	 */
-	boolean isSelfIntersect();
+	Tristate getSelfIntersect();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcOffsetCurve2D#isSelfIntersect <em>Self Intersect</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcOffsetCurve2D#getSelfIntersect <em>Self Intersect</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Self Intersect</em>' attribute.
-	 * @see #isSelfIntersect()
+	 * @see org.bimserver.models.ifc4.Tristate
+	 * @see #getSelfIntersect()
 	 * @generated
 	 */
-	void setSelfIntersect(boolean value);
+	void setSelfIntersect(Tristate value);
 
 } // IfcOffsetCurve2D

@@ -223,6 +223,8 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 			return (EObject) createIfcCartesianPoint();
 		case Ifc4Package.IFC_CARTESIAN_POINT_LIST:
 			return (EObject) createIfcCartesianPointList();
+		case Ifc4Package.IFC_CARTESIAN_POINT_LIST2_D:
+			return (EObject) createIfcCartesianPointList2D();
 		case Ifc4Package.IFC_CARTESIAN_POINT_LIST3_D:
 			return (EObject) createIfcCartesianPointList3D();
 		case Ifc4Package.IFC_CARTESIAN_TRANSFORMATION_OPERATOR:
@@ -701,6 +703,12 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 			return (EObject) createIfcImageTexture();
 		case Ifc4Package.IFC_INDEXED_COLOUR_MAP:
 			return (EObject) createIfcIndexedColourMap();
+		case Ifc4Package.IFC_INDEXED_POLY_CURVE:
+			return (EObject) createIfcIndexedPolyCurve();
+		case Ifc4Package.IFC_INDEXED_POLYGONAL_FACE:
+			return (EObject) createIfcIndexedPolygonalFace();
+		case Ifc4Package.IFC_INDEXED_POLYGONAL_FACE_WITH_VOIDS:
+			return (EObject) createIfcIndexedPolygonalFaceWithVoids();
 		case Ifc4Package.IFC_INDEXED_TEXTURE_MAP:
 			return (EObject) createIfcIndexedTextureMap();
 		case Ifc4Package.IFC_INDEXED_TRIANGLE_TEXTURE_MAP:
@@ -709,6 +717,8 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 			return (EObject) createIfcInterceptor();
 		case Ifc4Package.IFC_INTERCEPTOR_TYPE:
 			return (EObject) createIfcInterceptorType();
+		case Ifc4Package.IFC_INTERSECTION_CURVE:
+			return (EObject) createIfcIntersectionCurve();
 		case Ifc4Package.IFC_INVENTORY:
 			return (EObject) createIfcInventory();
 		case Ifc4Package.IFC_IRREGULAR_TIME_SERIES:
@@ -927,6 +937,8 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 			return (EObject) createIfcPolyLoop();
 		case Ifc4Package.IFC_POLYGONAL_BOUNDED_HALF_SPACE:
 			return (EObject) createIfcPolygonalBoundedHalfSpace();
+		case Ifc4Package.IFC_POLYGONAL_FACE_SET:
+			return (EObject) createIfcPolygonalFaceSet();
 		case Ifc4Package.IFC_POLYLINE:
 			return (EObject) createIfcPolyline();
 		case Ifc4Package.IFC_PORT:
@@ -1227,6 +1239,8 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 			return (EObject) createIfcSanitaryTerminalType();
 		case Ifc4Package.IFC_SCHEDULING_TIME:
 			return (EObject) createIfcSchedulingTime();
+		case Ifc4Package.IFC_SEAM_CURVE:
+			return (EObject) createIfcSeamCurve();
 		case Ifc4Package.IFC_SECTION_PROPERTIES:
 			return (EObject) createIfcSectionProperties();
 		case Ifc4Package.IFC_SECTION_REINFORCEMENT_PROPERTIES:
@@ -1293,6 +1307,8 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 			return (EObject) createIfcSpatialZoneType();
 		case Ifc4Package.IFC_SPHERE:
 			return (EObject) createIfcSphere();
+		case Ifc4Package.IFC_SPHERICAL_SURFACE:
+			return (EObject) createIfcSphericalSurface();
 		case Ifc4Package.IFC_STACK_TERMINAL:
 			return (EObject) createIfcStackTerminal();
 		case Ifc4Package.IFC_STACK_TERMINAL_TYPE:
@@ -1393,6 +1409,8 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 			return (EObject) createIfcSubedge();
 		case Ifc4Package.IFC_SURFACE:
 			return (EObject) createIfcSurface();
+		case Ifc4Package.IFC_SURFACE_CURVE:
+			return (EObject) createIfcSurfaceCurve();
 		case Ifc4Package.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID:
 			return (EObject) createIfcSurfaceCurveSweptAreaSolid();
 		case Ifc4Package.IFC_SURFACE_FEATURE:
@@ -1501,6 +1519,8 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 			return (EObject) createIfcTopologicalRepresentationItem();
 		case Ifc4Package.IFC_TOPOLOGY_REPRESENTATION:
 			return (EObject) createIfcTopologyRepresentation();
+		case Ifc4Package.IFC_TOROIDAL_SURFACE:
+			return (EObject) createIfcToroidalSurface();
 		case Ifc4Package.IFC_TRANSFORMER:
 			return (EObject) createIfcTransformer();
 		case Ifc4Package.IFC_TRANSFORMER_TYPE:
@@ -1599,6 +1619,8 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 			return (EObject) createIfcZShapeProfileDef();
 		case Ifc4Package.IFC_ZONE:
 			return (EObject) createIfcZone();
+		case Ifc4Package.IFC_STRIPPED_OPTIONAL:
+			return (EObject) createIfcStrippedOptional();
 		case Ifc4Package.IFC_ABSORBED_DOSE_MEASURE:
 			return (EObject) createIfcAbsorbedDoseMeasure();
 		case Ifc4Package.IFC_ACCELERATION_MEASURE:
@@ -1611,6 +1633,8 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 			return (EObject) createIfcAreaDensityMeasure();
 		case Ifc4Package.IFC_AREA_MEASURE:
 			return (EObject) createIfcAreaMeasure();
+		case Ifc4Package.IFC_BINARY:
+			return (EObject) createIfcBinary();
 		case Ifc4Package.IFC_BOOLEAN:
 			return (EObject) createIfcBoolean();
 		case Ifc4Package.IFC_CARDINAL_POINT_REFERENCE:
@@ -1841,6 +1865,8 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 			return (EObject) createIfcNonNegativeLengthMeasure();
 		case Ifc4Package.IFC_NORMALISED_RATIO_MEASURE:
 			return (EObject) createIfcNormalisedRatioMeasure();
+		case Ifc4Package.IFC_POSITIVE_INTEGER:
+			return (EObject) createIfcPositiveInteger();
 		case Ifc4Package.IFC_POSITIVE_LENGTH_MEASURE:
 			return (EObject) createIfcPositiveLengthMeasure();
 		case Ifc4Package.IFC_POSITIVE_PLANE_ANGLE_MEASURE:
@@ -2140,6 +2166,8 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 			return createIfcPipeSegmentTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_PLATE_TYPE_ENUM:
 			return createIfcPlateTypeEnumFromString(eDataType, initialValue);
+		case Ifc4Package.IFC_PREFERRED_SURFACE_CURVE_REPRESENTATION:
+			return createIfcPreferredSurfaceCurveRepresentationFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_PROCEDURE_TYPE_ENUM:
 			return createIfcProcedureTypeEnumFromString(eDataType, initialValue);
 		case Ifc4Package.IFC_PROFILE_TYPE_ENUM:
@@ -2567,6 +2595,8 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 			return convertIfcPipeSegmentTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_PLATE_TYPE_ENUM:
 			return convertIfcPlateTypeEnumToString(eDataType, instanceValue);
+		case Ifc4Package.IFC_PREFERRED_SURFACE_CURVE_REPRESENTATION:
+			return convertIfcPreferredSurfaceCurveRepresentationToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_PROCEDURE_TYPE_ENUM:
 			return convertIfcProcedureTypeEnumToString(eDataType, instanceValue);
 		case Ifc4Package.IFC_PROFILE_TYPE_ENUM:
@@ -3500,6 +3530,16 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	public IfcCartesianPointList createIfcCartesianPointList() {
 		IfcCartesianPointListImpl ifcCartesianPointList = new IfcCartesianPointListImpl();
 		return ifcCartesianPointList;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcCartesianPointList2D createIfcCartesianPointList2D() {
+		IfcCartesianPointList2DImpl ifcCartesianPointList2D = new IfcCartesianPointList2DImpl();
+		return ifcCartesianPointList2D;
 	}
 
 	/**
@@ -5897,6 +5937,36 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public IfcIndexedPolyCurve createIfcIndexedPolyCurve() {
+		IfcIndexedPolyCurveImpl ifcIndexedPolyCurve = new IfcIndexedPolyCurveImpl();
+		return ifcIndexedPolyCurve;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcIndexedPolygonalFace createIfcIndexedPolygonalFace() {
+		IfcIndexedPolygonalFaceImpl ifcIndexedPolygonalFace = new IfcIndexedPolygonalFaceImpl();
+		return ifcIndexedPolygonalFace;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcIndexedPolygonalFaceWithVoids createIfcIndexedPolygonalFaceWithVoids() {
+		IfcIndexedPolygonalFaceWithVoidsImpl ifcIndexedPolygonalFaceWithVoids = new IfcIndexedPolygonalFaceWithVoidsImpl();
+		return ifcIndexedPolygonalFaceWithVoids;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcIndexedTextureMap createIfcIndexedTextureMap() {
 		IfcIndexedTextureMapImpl ifcIndexedTextureMap = new IfcIndexedTextureMapImpl();
 		return ifcIndexedTextureMap;
@@ -5930,6 +6000,16 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	public IfcInterceptorType createIfcInterceptorType() {
 		IfcInterceptorTypeImpl ifcInterceptorType = new IfcInterceptorTypeImpl();
 		return ifcInterceptorType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcIntersectionCurve createIfcIntersectionCurve() {
+		IfcIntersectionCurveImpl ifcIntersectionCurve = new IfcIntersectionCurveImpl();
+		return ifcIntersectionCurve;
 	}
 
 	/**
@@ -7020,6 +7100,16 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	public IfcPolygonalBoundedHalfSpace createIfcPolygonalBoundedHalfSpace() {
 		IfcPolygonalBoundedHalfSpaceImpl ifcPolygonalBoundedHalfSpace = new IfcPolygonalBoundedHalfSpaceImpl();
 		return ifcPolygonalBoundedHalfSpace;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcPolygonalFaceSet createIfcPolygonalFaceSet() {
+		IfcPolygonalFaceSetImpl ifcPolygonalFaceSet = new IfcPolygonalFaceSetImpl();
+		return ifcPolygonalFaceSet;
 	}
 
 	/**
@@ -8527,6 +8617,16 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public IfcSeamCurve createIfcSeamCurve() {
+		IfcSeamCurveImpl ifcSeamCurve = new IfcSeamCurveImpl();
+		return ifcSeamCurve;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcSectionProperties createIfcSectionProperties() {
 		IfcSectionPropertiesImpl ifcSectionProperties = new IfcSectionPropertiesImpl();
 		return ifcSectionProperties;
@@ -8850,6 +8950,16 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	public IfcSphere createIfcSphere() {
 		IfcSphereImpl ifcSphere = new IfcSphereImpl();
 		return ifcSphere;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcSphericalSurface createIfcSphericalSurface() {
+		IfcSphericalSurfaceImpl ifcSphericalSurface = new IfcSphericalSurfaceImpl();
+		return ifcSphericalSurface;
 	}
 
 	/**
@@ -9350,6 +9460,16 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	public IfcSurface createIfcSurface() {
 		IfcSurfaceImpl ifcSurface = new IfcSurfaceImpl();
 		return ifcSurface;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcSurfaceCurve createIfcSurfaceCurve() {
+		IfcSurfaceCurveImpl ifcSurfaceCurve = new IfcSurfaceCurveImpl();
+		return ifcSurfaceCurve;
 	}
 
 	/**
@@ -9897,6 +10017,16 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public IfcToroidalSurface createIfcToroidalSurface() {
+		IfcToroidalSurfaceImpl ifcToroidalSurface = new IfcToroidalSurfaceImpl();
+		return ifcToroidalSurface;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcTransformer createIfcTransformer() {
 		IfcTransformerImpl ifcTransformer = new IfcTransformerImpl();
 		return ifcTransformer;
@@ -10387,6 +10517,16 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public IfcStrippedOptional createIfcStrippedOptional() {
+		IfcStrippedOptionalImpl ifcStrippedOptional = new IfcStrippedOptionalImpl();
+		return ifcStrippedOptional;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public IfcAbsorbedDoseMeasure createIfcAbsorbedDoseMeasure() {
 		IfcAbsorbedDoseMeasureImpl ifcAbsorbedDoseMeasure = new IfcAbsorbedDoseMeasureImpl();
 		return ifcAbsorbedDoseMeasure;
@@ -10440,6 +10580,16 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	public IfcAreaMeasure createIfcAreaMeasure() {
 		IfcAreaMeasureImpl ifcAreaMeasure = new IfcAreaMeasureImpl();
 		return ifcAreaMeasure;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcBinary createIfcBinary() {
+		IfcBinaryImpl ifcBinary = new IfcBinaryImpl();
+		return ifcBinary;
 	}
 
 	/**
@@ -11590,6 +11740,16 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	public IfcNormalisedRatioMeasure createIfcNormalisedRatioMeasure() {
 		IfcNormalisedRatioMeasureImpl ifcNormalisedRatioMeasure = new IfcNormalisedRatioMeasureImpl();
 		return ifcNormalisedRatioMeasure;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcPositiveInteger createIfcPositiveInteger() {
+		IfcPositiveIntegerImpl ifcPositiveInteger = new IfcPositiveIntegerImpl();
+		return ifcPositiveInteger;
 	}
 
 	/**
@@ -14471,6 +14631,27 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * @generated
 	 */
 	public String convertIfcPlateTypeEnumToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IfcPreferredSurfaceCurveRepresentation createIfcPreferredSurfaceCurveRepresentationFromString(EDataType eDataType, String initialValue) {
+		IfcPreferredSurfaceCurveRepresentation result = IfcPreferredSurfaceCurveRepresentation.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertIfcPreferredSurfaceCurveRepresentationToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

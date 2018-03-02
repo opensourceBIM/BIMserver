@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineCurveWithKnotsImpl#getKnots <em>Knots</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineCurveWithKnotsImpl#getKnotsAsString <em>Knots As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineCurveWithKnotsImpl#getKnotSpec <em>Knot Spec</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineCurveWithKnotsImpl#getUpperIndexOnKnots <em>Upper Index On Knots</em>}</li>
  * </ul>
  *
  * @generated
@@ -104,6 +105,42 @@ public class IfcBSplineCurveWithKnotsImpl extends IfcBSplineCurveImpl implements
 	 */
 	public void setKnotSpec(IfcKnotType newKnotSpec) {
 		eSet(Ifc4Package.Literals.IFC_BSPLINE_CURVE_WITH_KNOTS__KNOT_SPEC, newKnotSpec);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getUpperIndexOnKnots() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_BSPLINE_CURVE_WITH_KNOTS__UPPER_INDEX_ON_KNOTS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUpperIndexOnKnots(long newUpperIndexOnKnots) {
+		eSet(Ifc4Package.Literals.IFC_BSPLINE_CURVE_WITH_KNOTS__UPPER_INDEX_ON_KNOTS, newUpperIndexOnKnots);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetUpperIndexOnKnots() {
+		eUnset(Ifc4Package.Literals.IFC_BSPLINE_CURVE_WITH_KNOTS__UPPER_INDEX_ON_KNOTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetUpperIndexOnKnots() {
+		return eIsSet(Ifc4Package.Literals.IFC_BSPLINE_CURVE_WITH_KNOTS__UPPER_INDEX_ON_KNOTS);
 	}
 
 } //IfcBSplineCurveWithKnotsImpl

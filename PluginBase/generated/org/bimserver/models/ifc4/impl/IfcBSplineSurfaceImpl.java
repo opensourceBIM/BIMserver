@@ -20,6 +20,7 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcBSplineSurface;
 import org.bimserver.models.ifc4.IfcBSplineSurfaceForm;
 import org.bimserver.models.ifc4.ListOfIfcCartesianPoint;
+import org.bimserver.models.ifc4.Tristate;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
@@ -35,9 +36,11 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceImpl#getVDegree <em>VDegree</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceImpl#getControlPointsList <em>Control Points List</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceImpl#getSurfaceForm <em>Surface Form</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceImpl#isUClosed <em>UClosed</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceImpl#isVClosed <em>VClosed</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceImpl#isSelfIntersect <em>Self Intersect</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceImpl#getUClosed <em>UClosed</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceImpl#getVClosed <em>VClosed</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceImpl#getSelfIntersect <em>Self Intersect</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceImpl#getUUpper <em>UUpper</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceImpl#getVUpper <em>VUpper</em>}</li>
  * </ul>
  *
  * @generated
@@ -131,8 +134,8 @@ public class IfcBSplineSurfaceImpl extends IfcBoundedSurfaceImpl implements IfcB
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isUClosed() {
-		return (Boolean) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__UCLOSED, true);
+	public Tristate getUClosed() {
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__UCLOSED, true);
 	}
 
 	/**
@@ -140,7 +143,7 @@ public class IfcBSplineSurfaceImpl extends IfcBoundedSurfaceImpl implements IfcB
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUClosed(boolean newUClosed) {
+	public void setUClosed(Tristate newUClosed) {
 		eSet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__UCLOSED, newUClosed);
 	}
 
@@ -149,8 +152,8 @@ public class IfcBSplineSurfaceImpl extends IfcBoundedSurfaceImpl implements IfcB
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isVClosed() {
-		return (Boolean) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__VCLOSED, true);
+	public Tristate getVClosed() {
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__VCLOSED, true);
 	}
 
 	/**
@@ -158,7 +161,7 @@ public class IfcBSplineSurfaceImpl extends IfcBoundedSurfaceImpl implements IfcB
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVClosed(boolean newVClosed) {
+	public void setVClosed(Tristate newVClosed) {
 		eSet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__VCLOSED, newVClosed);
 	}
 
@@ -167,8 +170,8 @@ public class IfcBSplineSurfaceImpl extends IfcBoundedSurfaceImpl implements IfcB
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSelfIntersect() {
-		return (Boolean) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__SELF_INTERSECT, true);
+	public Tristate getSelfIntersect() {
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__SELF_INTERSECT, true);
 	}
 
 	/**
@@ -176,8 +179,80 @@ public class IfcBSplineSurfaceImpl extends IfcBoundedSurfaceImpl implements IfcB
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSelfIntersect(boolean newSelfIntersect) {
+	public void setSelfIntersect(Tristate newSelfIntersect) {
 		eSet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__SELF_INTERSECT, newSelfIntersect);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getUUpper() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__UUPPER, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUUpper(long newUUpper) {
+		eSet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__UUPPER, newUUpper);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetUUpper() {
+		eUnset(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__UUPPER);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetUUpper() {
+		return eIsSet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__UUPPER);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getVUpper() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__VUPPER, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setVUpper(long newVUpper) {
+		eSet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__VUPPER, newVUpper);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetVUpper() {
+		eUnset(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__VUPPER);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetVUpper() {
+		return eIsSet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__VUPPER);
 	}
 
 } //IfcBSplineSurfaceImpl

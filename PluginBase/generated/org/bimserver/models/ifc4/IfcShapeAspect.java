@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcShapeAspect#getShapeRepresentations <em>Shape Representations</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcShapeAspect#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcShapeAspect#getDescription <em>Description</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcShapeAspect#isProductDefinitional <em>Product Definitional</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcShapeAspect#getProductDefinitional <em>Product Definitional</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcShapeAspect#getPartOfProductDefinitionShape <em>Part Of Product Definition Shape</em>}</li>
  * </ul>
  *
@@ -167,6 +167,7 @@ public interface IfcShapeAspect extends IdEObject {
 
 	/**
 	 * Returns the value of the '<em><b>Product Definitional</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.bimserver.models.ifc4.Tristate}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Product Definitional</em>' attribute isn't clear,
@@ -174,22 +175,24 @@ public interface IfcShapeAspect extends IdEObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Product Definitional</em>' attribute.
-	 * @see #setProductDefinitional(boolean)
+	 * @see org.bimserver.models.ifc4.Tristate
+	 * @see #setProductDefinitional(Tristate)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcShapeAspect_ProductDefinitional()
 	 * @model
 	 * @generated
 	 */
-	boolean isProductDefinitional();
+	Tristate getProductDefinitional();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcShapeAspect#isProductDefinitional <em>Product Definitional</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcShapeAspect#getProductDefinitional <em>Product Definitional</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Product Definitional</em>' attribute.
-	 * @see #isProductDefinitional()
+	 * @see org.bimserver.models.ifc4.Tristate
+	 * @see #getProductDefinitional()
 	 * @generated
 	 */
-	void setProductDefinitional(boolean value);
+	void setProductDefinitional(Tristate value);
 
 	/**
 	 * Returns the value of the '<em><b>Part Of Product Definition Shape</b></em>' reference.

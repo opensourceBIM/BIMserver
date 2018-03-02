@@ -31,8 +31,6 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bimserver.models.ifc4.impl.IfcSurfaceStyleRenderingImpl#getTransparency <em>Transparency</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.impl.IfcSurfaceStyleRenderingImpl#getTransparencyAsString <em>Transparency As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSurfaceStyleRenderingImpl#getDiffuseColour <em>Diffuse Colour</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSurfaceStyleRenderingImpl#getTransmissionColour <em>Transmission Colour</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSurfaceStyleRenderingImpl#getDiffuseTransmissionColour <em>Diffuse Transmission Colour</em>}</li>
@@ -62,78 +60,6 @@ public class IfcSurfaceStyleRenderingImpl extends IfcSurfaceStyleShadingImpl imp
 	@Override
 	protected EClass eStaticClass() {
 		return Ifc4Package.Literals.IFC_SURFACE_STYLE_RENDERING;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public double getTransparency() {
-		return (Double) eGet(Ifc4Package.Literals.IFC_SURFACE_STYLE_RENDERING__TRANSPARENCY, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTransparency(double newTransparency) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_RENDERING__TRANSPARENCY, newTransparency);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetTransparency() {
-		eUnset(Ifc4Package.Literals.IFC_SURFACE_STYLE_RENDERING__TRANSPARENCY);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTransparency() {
-		return eIsSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_RENDERING__TRANSPARENCY);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getTransparencyAsString() {
-		return (String) eGet(Ifc4Package.Literals.IFC_SURFACE_STYLE_RENDERING__TRANSPARENCY_AS_STRING, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTransparencyAsString(String newTransparencyAsString) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_RENDERING__TRANSPARENCY_AS_STRING, newTransparencyAsString);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetTransparencyAsString() {
-		eUnset(Ifc4Package.Literals.IFC_SURFACE_STYLE_RENDERING__TRANSPARENCY_AS_STRING);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetTransparencyAsString() {
-		return eIsSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_RENDERING__TRANSPARENCY_AS_STRING);
 	}
 
 	/**

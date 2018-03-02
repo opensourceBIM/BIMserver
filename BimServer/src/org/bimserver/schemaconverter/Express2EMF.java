@@ -367,8 +367,8 @@ public class Express2EMF {
 			reference.setEOpposite(eRef);
 			eRef.setEOpposite(reference);
 		} else {
-			LOGGER.info("Inverse mismatch");
-			LOGGER.info(classifier.getName() + "." + reference.getName() + " => " + cls.getName() + "." + eRef.getName());
+			System.out.println("Inverse mismatch");
+			System.out.println(classifier.getName() + "." + reference.getName() + " => " + cls.getName() + "." + eRef.getName());
 		}
 		cls.getEStructuralFeatures().add(eRef);
 	}
@@ -394,6 +394,9 @@ public class Express2EMF {
 	}
 
 	private void processAttribute(EntityDefinition ent, Attribute attrib) {
+		if (attrib.getName().equals("RasterCode")) {
+			System.out.println();
+		}
 		ExplicitAttribute expAttrib = (ExplicitAttribute) attrib;
 		BaseType domain = expAttrib.getDomain();
 		if (ent.getName().equals("IfcRelConnectsPathElements") && (attrib.getName().equals("RelatingPriorities") || attrib.getName().equals("RelatedPriorities"))) {
@@ -573,7 +576,7 @@ public class Express2EMF {
 				eAttribute.setEType(EcorePackage.eINSTANCE.getEByteArray());
 				cls.getEStructuralFeatures().add(eAttribute);
 			} else if (bt == null) {
-				// These are the new 2-dimensional arrays in IFC4, there are 10 of them
+				// These are the new 2-dimensional arrays in IFC4, there are 10 of them (more in add2)
 				addTwoDimensionalArray(ent.getName(), attrib.getName());
 			}
 			if (domain instanceof ArrayType) {
@@ -654,6 +657,12 @@ public class Express2EMF {
 			finalType = schemaPack.getEClassifier("IfcParameterValue");
 		} else if (entityName.equals("IfcTriangulatedFaceSet") && attribName.equals("CoordIndex")) {
 			finalType = EcorePackage.eINSTANCE.getELong();
+		} else if (entityName.equals("IfcCartesianPointList2D") && attribName.equals("CoordList")) {
+			finalType = schemaPack.getEClassifier("IfcCartesianPoint");
+		} else if (entityName.equals("IfcIndexedPolygonalFaceWithVoids") && attribName.equals("InnerCoordIndices")) {
+			finalType = EcorePackage.eINSTANCE.getELong();
+		} else if (entityName.equals("IfcTriangulatedFaceSet") && attribName.equals("Normals")) {
+			finalType = schemaPack.getEClassifier("IfcParameterValue");
 		} else if (entityName.equals("IfcTriangulatedFaceSet") && attribName.equals("NormalIndex")) {
 			finalType = EcorePackage.eINSTANCE.getELong();
 		} else {
@@ -813,6 +822,8 @@ public class Express2EMF {
 			wrapperAttrib.setEType(schemaPack.getEClassifier("Tristate"));
 		} else if (type.getDomain() instanceof NumberType) {
 			wrapperAttrib.setEType(ePackage.getEDouble());
+		} else if (type.getDomain() instanceof BinaryType) {
+			wrapperAttrib.setEType(ePackage.getEByteArray());
 		} else if (type.getDomain() instanceof LogicalType) {
 			wrapperAttrib.setEType(schemaPack.getEClassifier("Tristate"));
 		}

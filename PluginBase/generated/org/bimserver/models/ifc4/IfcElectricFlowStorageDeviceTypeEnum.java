@@ -238,7 +238,8 @@ public enum IfcElectricFlowStorageDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcElectricFlowStorageDeviceTypeEnum[] VALUES_ARRAY = new IfcElectricFlowStorageDeviceTypeEnum[] { NULL, BATTERY, CAPACITORBANK, NOTDEFINED, HARMONICFILTER, UPS, USERDEFINED, INDUCTORBANK, };
+	private static final IfcElectricFlowStorageDeviceTypeEnum[] VALUES_ARRAY = new IfcElectricFlowStorageDeviceTypeEnum[] { NULL, BATTERY, CAPACITORBANK, NOTDEFINED, HARMONICFILTER, UPS, USERDEFINED,
+			INDUCTORBANK, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Electric Flow Storage Device Type Enum</b></em>' enumerators.

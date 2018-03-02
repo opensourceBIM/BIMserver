@@ -19,6 +19,8 @@ package org.bimserver.models.ifc4.impl;
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcTriangulatedFaceSet;
 import org.bimserver.models.ifc4.ListOfELong;
+import org.bimserver.models.ifc4.ListOfIfcParameterValue;
+import org.bimserver.models.ifc4.Tristate;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
@@ -30,8 +32,11 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcTriangulatedFaceSetImpl#getNormals <em>Normals</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcTriangulatedFaceSetImpl#getClosed <em>Closed</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcTriangulatedFaceSetImpl#getCoordIndex <em>Coord Index</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.impl.IfcTriangulatedFaceSetImpl#getNormalIndex <em>Normal Index</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcTriangulatedFaceSetImpl#getPnIndex <em>Pn Index</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcTriangulatedFaceSetImpl#getNumberOfTriangles <em>Number Of Triangles</em>}</li>
  * </ul>
  *
  * @generated
@@ -62,6 +67,52 @@ public class IfcTriangulatedFaceSetImpl extends IfcTessellatedFaceSetImpl implem
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	public EList<ListOfIfcParameterValue> getNormals() {
+		return (EList<ListOfIfcParameterValue>) eGet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__NORMALS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Tristate getClosed() {
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__CLOSED, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setClosed(Tristate newClosed) {
+		eSet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__CLOSED, newClosed);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetClosed() {
+		eUnset(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__CLOSED);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetClosed() {
+		return eIsSet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__CLOSED);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
 	public EList<ListOfELong> getCoordIndex() {
 		return (EList<ListOfELong>) eGet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__COORD_INDEX, true);
 	}
@@ -72,8 +123,62 @@ public class IfcTriangulatedFaceSetImpl extends IfcTessellatedFaceSetImpl implem
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<ListOfELong> getNormalIndex() {
-		return (EList<ListOfELong>) eGet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__NORMAL_INDEX, true);
+	public EList<Long> getPnIndex() {
+		return (EList<Long>) eGet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__PN_INDEX, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetPnIndex() {
+		eUnset(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__PN_INDEX);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetPnIndex() {
+		return eIsSet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__PN_INDEX);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getNumberOfTriangles() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__NUMBER_OF_TRIANGLES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNumberOfTriangles(long newNumberOfTriangles) {
+		eSet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__NUMBER_OF_TRIANGLES, newNumberOfTriangles);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetNumberOfTriangles() {
+		eUnset(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__NUMBER_OF_TRIANGLES);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetNumberOfTriangles() {
+		return eIsSet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__NUMBER_OF_TRIANGLES);
 	}
 
 } //IfcTriangulatedFaceSetImpl

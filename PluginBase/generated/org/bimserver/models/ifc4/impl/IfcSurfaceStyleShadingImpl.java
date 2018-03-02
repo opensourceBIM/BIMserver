@@ -30,6 +30,8 @@ import org.eclipse.emf.ecore.EClass;
  * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcSurfaceStyleShadingImpl#getSurfaceColour <em>Surface Colour</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcSurfaceStyleShadingImpl#getTransparency <em>Transparency</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcSurfaceStyleShadingImpl#getTransparencyAsString <em>Transparency As String</em>}</li>
  * </ul>
  *
  * @generated
@@ -70,6 +72,78 @@ public class IfcSurfaceStyleShadingImpl extends IfcPresentationItemImpl implemen
 	 */
 	public void setSurfaceColour(IfcColourRgb newSurfaceColour) {
 		eSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_SHADING__SURFACE_COLOUR, newSurfaceColour);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public double getTransparency() {
+		return (Double) eGet(Ifc4Package.Literals.IFC_SURFACE_STYLE_SHADING__TRANSPARENCY, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTransparency(double newTransparency) {
+		eSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_SHADING__TRANSPARENCY, newTransparency);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetTransparency() {
+		eUnset(Ifc4Package.Literals.IFC_SURFACE_STYLE_SHADING__TRANSPARENCY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTransparency() {
+		return eIsSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_SHADING__TRANSPARENCY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getTransparencyAsString() {
+		return (String) eGet(Ifc4Package.Literals.IFC_SURFACE_STYLE_SHADING__TRANSPARENCY_AS_STRING, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTransparencyAsString(String newTransparencyAsString) {
+		eSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_SHADING__TRANSPARENCY_AS_STRING, newTransparencyAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetTransparencyAsString() {
+		eUnset(Ifc4Package.Literals.IFC_SURFACE_STYLE_SHADING__TRANSPARENCY_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetTransparencyAsString() {
+		return eIsSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_SHADING__TRANSPARENCY_AS_STRING);
 	}
 
 } //IfcSurfaceStyleShadingImpl

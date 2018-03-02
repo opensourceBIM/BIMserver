@@ -313,8 +313,8 @@ public enum IfcConstructionEquipmentResourceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcConstructionEquipmentResourceTypeEnum[] VALUES_ARRAY = new IfcConstructionEquipmentResourceTypeEnum[] { NULL, DEMOLISHING, TRANSPORTING, PAVING, NOTDEFINED, EARTHMOVING, HEATING, LIGHTING, PUMPING, USERDEFINED,
-			ERECTING, };
+	private static final IfcConstructionEquipmentResourceTypeEnum[] VALUES_ARRAY = new IfcConstructionEquipmentResourceTypeEnum[] { NULL, DEMOLISHING, TRANSPORTING, PAVING, NOTDEFINED, EARTHMOVING,
+			HEATING, LIGHTING, PUMPING, USERDEFINED, ERECTING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Construction Equipment Resource Type Enum</b></em>' enumerators.

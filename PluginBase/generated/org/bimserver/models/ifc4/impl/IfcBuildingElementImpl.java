@@ -26,12 +26,6 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Ifc Building Element</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc4.impl.IfcBuildingElementImpl#getHasCoverings <em>Has Coverings</em>}</li>
- * </ul>
  *
  * @generated
  */
@@ -53,34 +47,6 @@ public class IfcBuildingElementImpl extends IfcElementImpl implements IfcBuildin
 	@Override
 	protected EClass eStaticClass() {
 		return Ifc4Package.Literals.IFC_BUILDING_ELEMENT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	public EList<IfcRelCoversBldgElements> getHasCoverings() {
-		return (EList<IfcRelCoversBldgElements>) eGet(Ifc4Package.Literals.IFC_BUILDING_ELEMENT__HAS_COVERINGS, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void unsetHasCoverings() {
-		eUnset(Ifc4Package.Literals.IFC_BUILDING_ELEMENT__HAS_COVERINGS);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetHasCoverings() {
-		return eIsSet(Ifc4Package.Literals.IFC_BUILDING_ELEMENT__HAS_COVERINGS);
 	}
 
 } //IfcBuildingElementImpl

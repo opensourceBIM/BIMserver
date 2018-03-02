@@ -24,6 +24,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Ifc Cartesian Point List</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcCartesianPointListImpl#getDim <em>Dim</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -45,6 +51,42 @@ public class IfcCartesianPointListImpl extends IfcGeometricRepresentationItemImp
 	@Override
 	protected EClass eStaticClass() {
 		return Ifc4Package.Literals.IFC_CARTESIAN_POINT_LIST;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getDim() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_CARTESIAN_POINT_LIST__DIM, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDim(long newDim) {
+		eSet(Ifc4Package.Literals.IFC_CARTESIAN_POINT_LIST__DIM, newDim);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDim() {
+		eUnset(Ifc4Package.Literals.IFC_CARTESIAN_POINT_LIST__DIM);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDim() {
+		return eIsSet(Ifc4Package.Literals.IFC_CARTESIAN_POINT_LIST__DIM);
 	}
 
 } //IfcCartesianPointListImpl

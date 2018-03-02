@@ -238,7 +238,8 @@ public enum IfcMedicalDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcMedicalDeviceTypeEnum[] VALUES_ARRAY = new IfcMedicalDeviceTypeEnum[] { NULL, NOTDEFINED, FEEDAIRUNIT, VACUUMSTATION, OXYGENPLANT, USERDEFINED, AIRSTATION, OXYGENGENERATOR, };
+	private static final IfcMedicalDeviceTypeEnum[] VALUES_ARRAY = new IfcMedicalDeviceTypeEnum[] { NULL, NOTDEFINED, FEEDAIRUNIT, VACUUMSTATION, OXYGENPLANT, USERDEFINED, AIRSTATION,
+			OXYGENGENERATOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Medical Device Type Enum</b></em>' enumerators.

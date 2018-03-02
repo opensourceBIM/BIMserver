@@ -19,6 +19,7 @@ package org.bimserver.models.ifc4.impl;
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcPresentationLayerWithStyle;
 import org.bimserver.models.ifc4.IfcPresentationStyle;
+import org.bimserver.models.ifc4.Tristate;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
@@ -30,9 +31,9 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bimserver.models.ifc4.impl.IfcPresentationLayerWithStyleImpl#isLayerOn <em>Layer On</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.impl.IfcPresentationLayerWithStyleImpl#isLayerFrozen <em>Layer Frozen</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.impl.IfcPresentationLayerWithStyleImpl#isLayerBlocked <em>Layer Blocked</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcPresentationLayerWithStyleImpl#getLayerOn <em>Layer On</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcPresentationLayerWithStyleImpl#getLayerFrozen <em>Layer Frozen</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcPresentationLayerWithStyleImpl#getLayerBlocked <em>Layer Blocked</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcPresentationLayerWithStyleImpl#getLayerStyles <em>Layer Styles</em>}</li>
  * </ul>
  *
@@ -63,8 +64,8 @@ public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssig
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isLayerOn() {
-		return (Boolean) eGet(Ifc4Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_ON, true);
+	public Tristate getLayerOn() {
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_ON, true);
 	}
 
 	/**
@@ -72,7 +73,7 @@ public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssig
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLayerOn(boolean newLayerOn) {
+	public void setLayerOn(Tristate newLayerOn) {
 		eSet(Ifc4Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_ON, newLayerOn);
 	}
 
@@ -81,8 +82,8 @@ public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssig
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isLayerFrozen() {
-		return (Boolean) eGet(Ifc4Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_FROZEN, true);
+	public Tristate getLayerFrozen() {
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_FROZEN, true);
 	}
 
 	/**
@@ -90,7 +91,7 @@ public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssig
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLayerFrozen(boolean newLayerFrozen) {
+	public void setLayerFrozen(Tristate newLayerFrozen) {
 		eSet(Ifc4Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_FROZEN, newLayerFrozen);
 	}
 
@@ -99,8 +100,8 @@ public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssig
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isLayerBlocked() {
-		return (Boolean) eGet(Ifc4Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_BLOCKED, true);
+	public Tristate getLayerBlocked() {
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_BLOCKED, true);
 	}
 
 	/**
@@ -108,7 +109,7 @@ public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssig
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLayerBlocked(boolean newLayerBlocked) {
+	public void setLayerBlocked(Tristate newLayerBlocked) {
 		eSet(Ifc4Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_BLOCKED, newLayerBlocked);
 	}
 

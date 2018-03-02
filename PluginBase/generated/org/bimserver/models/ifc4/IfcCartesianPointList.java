@@ -21,10 +21,69 @@ package org.bimserver.models.ifc4;
  * A representation of the model object '<em><b>Ifc Cartesian Point List</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link org.bimserver.models.ifc4.IfcCartesianPointList#getDim <em>Dim</em>}</li>
+ * </ul>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCartesianPointList()
  * @model
  * @generated
  */
 public interface IfcCartesianPointList extends IfcGeometricRepresentationItem {
+
+	/**
+	 * Returns the value of the '<em><b>Dim</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Dim</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Dim</em>' attribute.
+	 * @see #isSetDim()
+	 * @see #unsetDim()
+	 * @see #setDim(long)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCartesianPointList_Dim()
+	 * @model unsettable="true" derived="true"
+	 * @generated
+	 */
+	long getDim();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcCartesianPointList#getDim <em>Dim</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Dim</em>' attribute.
+	 * @see #isSetDim()
+	 * @see #unsetDim()
+	 * @see #getDim()
+	 * @generated
+	 */
+	void setDim(long value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcCartesianPointList#getDim <em>Dim</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDim()
+	 * @see #getDim()
+	 * @see #setDim(long)
+	 * @generated
+	 */
+	void unsetDim();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcCartesianPointList#getDim <em>Dim</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Dim</em>' attribute is set.
+	 * @see #unsetDim()
+	 * @see #getDim()
+	 * @see #setDim(long)
+	 * @generated
+	 */
+	boolean isSetDim();
 } // IfcCartesianPointList

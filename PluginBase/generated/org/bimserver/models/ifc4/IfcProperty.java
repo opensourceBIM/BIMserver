@@ -33,6 +33,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcProperty#getPropertyForDependance <em>Property For Dependance</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcProperty#getPropertyDependsOn <em>Property Depends On</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcProperty#getPartOfComplex <em>Part Of Complex</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcProperty#getHasConstraints <em>Has Constraints</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcProperty#getHasApprovals <em>Has Approvals</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcProperty()
@@ -282,5 +284,83 @@ public interface IfcProperty extends IfcPropertyAbstraction {
 	 * @generated
 	 */
 	boolean isSetPartOfComplex();
+
+	/**
+	 * Returns the value of the '<em><b>Has Constraints</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.ifc4.IfcResourceConstraintRelationship}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Has Constraints</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Has Constraints</em>' reference list.
+	 * @see #isSetHasConstraints()
+	 * @see #unsetHasConstraints()
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcProperty_HasConstraints()
+	 * @model unsettable="true"
+	 * @generated
+	 */
+	EList<IfcResourceConstraintRelationship> getHasConstraints();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcProperty#getHasConstraints <em>Has Constraints</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHasConstraints()
+	 * @see #getHasConstraints()
+	 * @generated
+	 */
+	void unsetHasConstraints();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcProperty#getHasConstraints <em>Has Constraints</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Has Constraints</em>' reference list is set.
+	 * @see #unsetHasConstraints()
+	 * @see #getHasConstraints()
+	 * @generated
+	 */
+	boolean isSetHasConstraints();
+
+	/**
+	 * Returns the value of the '<em><b>Has Approvals</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.ifc4.IfcResourceApprovalRelationship}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Has Approvals</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Has Approvals</em>' reference list.
+	 * @see #isSetHasApprovals()
+	 * @see #unsetHasApprovals()
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcProperty_HasApprovals()
+	 * @model unsettable="true"
+	 * @generated
+	 */
+	EList<IfcResourceApprovalRelationship> getHasApprovals();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcProperty#getHasApprovals <em>Has Approvals</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHasApprovals()
+	 * @see #getHasApprovals()
+	 * @generated
+	 */
+	void unsetHasApprovals();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcProperty#getHasApprovals <em>Has Approvals</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Has Approvals</em>' reference list is set.
+	 * @see #unsetHasApprovals()
+	 * @see #getHasApprovals()
+	 * @generated
+	 */
+	boolean isSetHasApprovals();
 
 } // IfcProperty

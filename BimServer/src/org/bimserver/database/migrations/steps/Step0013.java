@@ -29,7 +29,7 @@ public class Step0013 extends Migration {
 
 	@Override
 	public void migrate(Schema schema, DatabaseSession databaseSession) {
-		schema.loadEcore("ifc4.ecore", getClass().getResourceAsStream("IFC4.ecore"));
+		schema.loadEcore("ifc4.ecore", getClass().getResourceAsStream("IFC4_ADD2.ecore"));
 		EClass project = schema.getEClass("store", "Project");
 		schema.createEAttribute(project, "schema", EcorePackage.eINSTANCE.getEString());
 		EClass revisionSummaryType = schema.getEClass("store", "RevisionSummaryType");

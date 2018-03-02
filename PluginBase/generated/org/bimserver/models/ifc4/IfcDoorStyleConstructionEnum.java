@@ -288,7 +288,8 @@ public enum IfcDoorStyleConstructionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDoorStyleConstructionEnum[] VALUES_ARRAY = new IfcDoorStyleConstructionEnum[] { NULL, ALUMINIUM, HIGH_GRADE_STEEL, ALUMINIUM_PLASTIC, NOTDEFINED, STEEL, WOOD, ALUMINIUM_WOOD, USERDEFINED, PLASTIC, };
+	private static final IfcDoorStyleConstructionEnum[] VALUES_ARRAY = new IfcDoorStyleConstructionEnum[] { NULL, ALUMINIUM, HIGH_GRADE_STEEL, ALUMINIUM_PLASTIC, NOTDEFINED, STEEL, WOOD,
+			ALUMINIUM_WOOD, USERDEFINED, PLASTIC, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Door Style Construction Enum</b></em>' enumerators.

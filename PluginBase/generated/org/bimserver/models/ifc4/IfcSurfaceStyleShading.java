@@ -26,6 +26,8 @@ package org.bimserver.models.ifc4;
  * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcSurfaceStyleShading#getSurfaceColour <em>Surface Colour</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcSurfaceStyleShading#getTransparency <em>Transparency</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcSurfaceStyleShading#getTransparencyAsString <em>Transparency As String</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSurfaceStyleShading()
@@ -58,5 +60,111 @@ public interface IfcSurfaceStyleShading extends IfcPresentationItem, IfcSurfaceS
 	 * @generated
 	 */
 	void setSurfaceColour(IfcColourRgb value);
+
+	/**
+	 * Returns the value of the '<em><b>Transparency</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Transparency</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Transparency</em>' attribute.
+	 * @see #isSetTransparency()
+	 * @see #unsetTransparency()
+	 * @see #setTransparency(double)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSurfaceStyleShading_Transparency()
+	 * @model unsettable="true"
+	 * @generated
+	 */
+	double getTransparency();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcSurfaceStyleShading#getTransparency <em>Transparency</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Transparency</em>' attribute.
+	 * @see #isSetTransparency()
+	 * @see #unsetTransparency()
+	 * @see #getTransparency()
+	 * @generated
+	 */
+	void setTransparency(double value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcSurfaceStyleShading#getTransparency <em>Transparency</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetTransparency()
+	 * @see #getTransparency()
+	 * @see #setTransparency(double)
+	 * @generated
+	 */
+	void unsetTransparency();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcSurfaceStyleShading#getTransparency <em>Transparency</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Transparency</em>' attribute is set.
+	 * @see #unsetTransparency()
+	 * @see #getTransparency()
+	 * @see #setTransparency(double)
+	 * @generated
+	 */
+	boolean isSetTransparency();
+
+	/**
+	 * Returns the value of the '<em><b>Transparency As String</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Transparency As String</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Transparency As String</em>' attribute.
+	 * @see #isSetTransparencyAsString()
+	 * @see #unsetTransparencyAsString()
+	 * @see #setTransparencyAsString(String)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSurfaceStyleShading_TransparencyAsString()
+	 * @model unsettable="true"
+	 * @generated
+	 */
+	String getTransparencyAsString();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcSurfaceStyleShading#getTransparencyAsString <em>Transparency As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Transparency As String</em>' attribute.
+	 * @see #isSetTransparencyAsString()
+	 * @see #unsetTransparencyAsString()
+	 * @see #getTransparencyAsString()
+	 * @generated
+	 */
+	void setTransparencyAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcSurfaceStyleShading#getTransparencyAsString <em>Transparency As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetTransparencyAsString()
+	 * @see #getTransparencyAsString()
+	 * @see #setTransparencyAsString(String)
+	 * @generated
+	 */
+	void unsetTransparencyAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcSurfaceStyleShading#getTransparencyAsString <em>Transparency As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Transparency As String</em>' attribute is set.
+	 * @see #unsetTransparencyAsString()
+	 * @see #getTransparencyAsString()
+	 * @see #setTransparencyAsString(String)
+	 * @generated
+	 */
+	boolean isSetTransparencyAsString();
 
 } // IfcSurfaceStyleShading

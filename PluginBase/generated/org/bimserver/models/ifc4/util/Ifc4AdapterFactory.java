@@ -468,6 +468,11 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseIfcCartesianPointList2D(IfcCartesianPointList2D object) {
+			return createIfcCartesianPointList2DAdapter();
+		}
+
+		@Override
 		public Adapter caseIfcCartesianPointList3D(IfcCartesianPointList3D object) {
 			return createIfcCartesianPointList3DAdapter();
 		}
@@ -1663,6 +1668,21 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseIfcIndexedPolyCurve(IfcIndexedPolyCurve object) {
+			return createIfcIndexedPolyCurveAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcIndexedPolygonalFace(IfcIndexedPolygonalFace object) {
+			return createIfcIndexedPolygonalFaceAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcIndexedPolygonalFaceWithVoids(IfcIndexedPolygonalFaceWithVoids object) {
+			return createIfcIndexedPolygonalFaceWithVoidsAdapter();
+		}
+
+		@Override
 		public Adapter caseIfcIndexedTextureMap(IfcIndexedTextureMap object) {
 			return createIfcIndexedTextureMapAdapter();
 		}
@@ -1680,6 +1700,11 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseIfcInterceptorType(IfcInterceptorType object) {
 			return createIfcInterceptorTypeAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcIntersectionCurve(IfcIntersectionCurve object) {
+			return createIfcIntersectionCurveAdapter();
 		}
 
 		@Override
@@ -2225,6 +2250,11 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseIfcPolygonalBoundedHalfSpace(IfcPolygonalBoundedHalfSpace object) {
 			return createIfcPolygonalBoundedHalfSpaceAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcPolygonalFaceSet(IfcPolygonalFaceSet object) {
+			return createIfcPolygonalFaceSetAdapter();
 		}
 
 		@Override
@@ -2978,6 +3008,11 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseIfcSeamCurve(IfcSeamCurve object) {
+			return createIfcSeamCurveAdapter();
+		}
+
+		@Override
 		public Adapter caseIfcSectionProperties(IfcSectionProperties object) {
 			return createIfcSectionPropertiesAdapter();
 		}
@@ -3140,6 +3175,11 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseIfcSphere(IfcSphere object) {
 			return createIfcSphereAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcSphericalSurface(IfcSphericalSurface object) {
+			return createIfcSphericalSurfaceAdapter();
 		}
 
 		@Override
@@ -3390,6 +3430,11 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseIfcSurface(IfcSurface object) {
 			return createIfcSurfaceAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcSurfaceCurve(IfcSurfaceCurve object) {
+			return createIfcSurfaceCurveAdapter();
 		}
 
 		@Override
@@ -3663,6 +3708,11 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseIfcToroidalSurface(IfcToroidalSurface object) {
+			return createIfcToroidalSurfaceAdapter();
+		}
+
+		@Override
 		public Adapter caseIfcTransformer(IfcTransformer object) {
 			return createIfcTransformerAdapter();
 		}
@@ -3908,6 +3958,11 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseIfcStrippedOptional(IfcStrippedOptional object) {
+			return createIfcStrippedOptionalAdapter();
+		}
+
+		@Override
 		public Adapter caseIfcAbsorbedDoseMeasure(IfcAbsorbedDoseMeasure object) {
 			return createIfcAbsorbedDoseMeasureAdapter();
 		}
@@ -3935,6 +3990,11 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseIfcAreaMeasure(IfcAreaMeasure object) {
 			return createIfcAreaMeasureAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcBinary(IfcBinary object) {
+			return createIfcBinaryAdapter();
 		}
 
 		@Override
@@ -4513,6 +4573,11 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseIfcPositiveInteger(IfcPositiveInteger object) {
+			return createIfcPositiveIntegerAdapter();
+		}
+
+		@Override
 		public Adapter caseIfcPositiveLengthMeasure(IfcPositiveLengthMeasure object) {
 			return createIfcPositiveLengthMeasureAdapter();
 		}
@@ -4740,6 +4805,11 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseIfcRotationalStiffnessSelect(IfcRotationalStiffnessSelect object) {
 			return createIfcRotationalStiffnessSelectAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcSegmentIndexSelect(IfcSegmentIndexSelect object) {
+			return createIfcSegmentIndexSelectAdapter();
 		}
 
 		@Override
@@ -5970,6 +6040,20 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIfcCartesianPointListAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.IfcCartesianPointList2D <em>Ifc Cartesian Point List2 D</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc4.IfcCartesianPointList2D
+	 * @generated
+	 */
+	public Adapter createIfcCartesianPointList2DAdapter() {
 		return null;
 	}
 
@@ -9320,6 +9404,48 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.IfcIndexedPolyCurve <em>Ifc Indexed Poly Curve</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc4.IfcIndexedPolyCurve
+	 * @generated
+	 */
+	public Adapter createIfcIndexedPolyCurveAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.IfcIndexedPolygonalFace <em>Ifc Indexed Polygonal Face</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc4.IfcIndexedPolygonalFace
+	 * @generated
+	 */
+	public Adapter createIfcIndexedPolygonalFaceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.IfcIndexedPolygonalFaceWithVoids <em>Ifc Indexed Polygonal Face With Voids</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc4.IfcIndexedPolygonalFaceWithVoids
+	 * @generated
+	 */
+	public Adapter createIfcIndexedPolygonalFaceWithVoidsAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.IfcIndexedTextureMap <em>Ifc Indexed Texture Map</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -9372,6 +9498,20 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIfcInterceptorTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.IfcIntersectionCurve <em>Ifc Intersection Curve</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc4.IfcIntersectionCurve
+	 * @generated
+	 */
+	public Adapter createIfcIntersectionCurveAdapter() {
 		return null;
 	}
 
@@ -10898,6 +11038,20 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIfcPolygonalBoundedHalfSpaceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.IfcPolygonalFaceSet <em>Ifc Polygonal Face Set</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc4.IfcPolygonalFaceSet
+	 * @generated
+	 */
+	public Adapter createIfcPolygonalFaceSetAdapter() {
 		return null;
 	}
 
@@ -13002,6 +13156,20 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.IfcSeamCurve <em>Ifc Seam Curve</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc4.IfcSeamCurve
+	 * @generated
+	 */
+	public Adapter createIfcSeamCurveAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.IfcSectionProperties <em>Ifc Section Properties</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -13460,6 +13628,20 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIfcSphereAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.IfcSphericalSurface <em>Ifc Spherical Surface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc4.IfcSphericalSurface
+	 * @generated
+	 */
+	public Adapter createIfcSphericalSurfaceAdapter() {
 		return null;
 	}
 
@@ -14160,6 +14342,20 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIfcSurfaceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.IfcSurfaceCurve <em>Ifc Surface Curve</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc4.IfcSurfaceCurve
+	 * @generated
+	 */
+	public Adapter createIfcSurfaceCurveAdapter() {
 		return null;
 	}
 
@@ -14920,6 +15116,20 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.IfcToroidalSurface <em>Ifc Toroidal Surface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc4.IfcToroidalSurface
+	 * @generated
+	 */
+	public Adapter createIfcToroidalSurfaceAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.IfcTransformer <em>Ifc Transformer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -15606,6 +15816,20 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.IfcStrippedOptional <em>Ifc Stripped Optional</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc4.IfcStrippedOptional
+	 * @generated
+	 */
+	public Adapter createIfcStrippedOptionalAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.IfcAbsorbedDoseMeasure <em>Ifc Absorbed Dose Measure</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -15686,6 +15910,20 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIfcAreaMeasureAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.IfcBinary <em>Ifc Binary</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc4.IfcBinary
+	 * @generated
+	 */
+	public Adapter createIfcBinaryAdapter() {
 		return null;
 	}
 
@@ -17300,6 +17538,20 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.IfcPositiveInteger <em>Ifc Positive Integer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc4.IfcPositiveInteger
+	 * @generated
+	 */
+	public Adapter createIfcPositiveIntegerAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.IfcPositiveLengthMeasure <em>Ifc Positive Length Measure</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -17940,6 +18192,20 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIfcRotationalStiffnessSelectAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.IfcSegmentIndexSelect <em>Ifc Segment Index Select</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc4.IfcSegmentIndexSelect
+	 * @generated
+	 */
+	public Adapter createIfcSegmentIndexSelectAdapter() {
 		return null;
 	}
 

@@ -30,7 +30,6 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcTableRow#getRowCells <em>Row Cells</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTableRow#getIsHeading <em>Is Heading</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTableRow#getOfTable <em>Of Table</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTableRow()
@@ -133,60 +132,5 @@ public interface IfcTableRow extends IdEObject {
 	 * @generated
 	 */
 	boolean isSetIsHeading();
-
-	/**
-	 * Returns the value of the '<em><b>Of Table</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.models.ifc4.IfcTable#getRows <em>Rows</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Of Table</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Of Table</em>' reference.
-	 * @see #isSetOfTable()
-	 * @see #unsetOfTable()
-	 * @see #setOfTable(IfcTable)
-	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTableRow_OfTable()
-	 * @see org.bimserver.models.ifc4.IfcTable#getRows
-	 * @model opposite="Rows" unsettable="true"
-	 * @generated
-	 */
-	IfcTable getOfTable();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcTableRow#getOfTable <em>Of Table</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Of Table</em>' reference.
-	 * @see #isSetOfTable()
-	 * @see #unsetOfTable()
-	 * @see #getOfTable()
-	 * @generated
-	 */
-	void setOfTable(IfcTable value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcTableRow#getOfTable <em>Of Table</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetOfTable()
-	 * @see #getOfTable()
-	 * @see #setOfTable(IfcTable)
-	 * @generated
-	 */
-	void unsetOfTable();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcTableRow#getOfTable <em>Of Table</em>}' reference is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Of Table</em>' reference is set.
-	 * @see #unsetOfTable()
-	 * @see #getOfTable()
-	 * @see #setOfTable(IfcTable)
-	 * @generated
-	 */
-	boolean isSetOfTable();
 
 } // IfcTableRow

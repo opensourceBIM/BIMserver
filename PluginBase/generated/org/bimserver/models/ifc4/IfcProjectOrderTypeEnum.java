@@ -238,7 +238,8 @@ public enum IfcProjectOrderTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcProjectOrderTypeEnum[] VALUES_ARRAY = new IfcProjectOrderTypeEnum[] { NULL, NOTDEFINED, MOVEORDER, WORKORDER, CHANGEORDER, MAINTENANCEWORKORDER, USERDEFINED, PURCHASEORDER, };
+	private static final IfcProjectOrderTypeEnum[] VALUES_ARRAY = new IfcProjectOrderTypeEnum[] { NULL, NOTDEFINED, MOVEORDER, WORKORDER, CHANGEORDER, MAINTENANCEWORKORDER, USERDEFINED,
+			PURCHASEORDER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Project Order Type Enum</b></em>' enumerators.

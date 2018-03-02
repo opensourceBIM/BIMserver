@@ -28,7 +28,9 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcCompositeCurve#getSegments <em>Segments</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcCompositeCurve#isSelfIntersect <em>Self Intersect</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcCompositeCurve#getSelfIntersect <em>Self Intersect</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcCompositeCurve#getClosedCurve <em>Closed Curve</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcCompositeCurve#getNSegments <em>NSegments</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCompositeCurve()
@@ -56,6 +58,7 @@ public interface IfcCompositeCurve extends IfcBoundedCurve {
 
 	/**
 	 * Returns the value of the '<em><b>Self Intersect</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.bimserver.models.ifc4.Tristate}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Self Intersect</em>' attribute isn't clear,
@@ -63,21 +66,132 @@ public interface IfcCompositeCurve extends IfcBoundedCurve {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Self Intersect</em>' attribute.
-	 * @see #setSelfIntersect(boolean)
+	 * @see org.bimserver.models.ifc4.Tristate
+	 * @see #setSelfIntersect(Tristate)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCompositeCurve_SelfIntersect()
 	 * @model
 	 * @generated
 	 */
-	boolean isSelfIntersect();
+	Tristate getSelfIntersect();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcCompositeCurve#isSelfIntersect <em>Self Intersect</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcCompositeCurve#getSelfIntersect <em>Self Intersect</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Self Intersect</em>' attribute.
-	 * @see #isSelfIntersect()
+	 * @see org.bimserver.models.ifc4.Tristate
+	 * @see #getSelfIntersect()
 	 * @generated
 	 */
-	void setSelfIntersect(boolean value);
+	void setSelfIntersect(Tristate value);
+
+	/**
+	 * Returns the value of the '<em><b>Closed Curve</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.bimserver.models.ifc4.Tristate}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Closed Curve</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Closed Curve</em>' attribute.
+	 * @see org.bimserver.models.ifc4.Tristate
+	 * @see #isSetClosedCurve()
+	 * @see #unsetClosedCurve()
+	 * @see #setClosedCurve(Tristate)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCompositeCurve_ClosedCurve()
+	 * @model unsettable="true" derived="true"
+	 * @generated
+	 */
+	Tristate getClosedCurve();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcCompositeCurve#getClosedCurve <em>Closed Curve</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Closed Curve</em>' attribute.
+	 * @see org.bimserver.models.ifc4.Tristate
+	 * @see #isSetClosedCurve()
+	 * @see #unsetClosedCurve()
+	 * @see #getClosedCurve()
+	 * @generated
+	 */
+	void setClosedCurve(Tristate value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcCompositeCurve#getClosedCurve <em>Closed Curve</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetClosedCurve()
+	 * @see #getClosedCurve()
+	 * @see #setClosedCurve(Tristate)
+	 * @generated
+	 */
+	void unsetClosedCurve();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcCompositeCurve#getClosedCurve <em>Closed Curve</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Closed Curve</em>' attribute is set.
+	 * @see #unsetClosedCurve()
+	 * @see #getClosedCurve()
+	 * @see #setClosedCurve(Tristate)
+	 * @generated
+	 */
+	boolean isSetClosedCurve();
+
+	/**
+	 * Returns the value of the '<em><b>NSegments</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>NSegments</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>NSegments</em>' attribute.
+	 * @see #isSetNSegments()
+	 * @see #unsetNSegments()
+	 * @see #setNSegments(long)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCompositeCurve_NSegments()
+	 * @model unsettable="true" derived="true"
+	 * @generated
+	 */
+	long getNSegments();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcCompositeCurve#getNSegments <em>NSegments</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>NSegments</em>' attribute.
+	 * @see #isSetNSegments()
+	 * @see #unsetNSegments()
+	 * @see #getNSegments()
+	 * @generated
+	 */
+	void setNSegments(long value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcCompositeCurve#getNSegments <em>NSegments</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetNSegments()
+	 * @see #getNSegments()
+	 * @see #setNSegments(long)
+	 * @generated
+	 */
+	void unsetNSegments();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcCompositeCurve#getNSegments <em>NSegments</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>NSegments</em>' attribute is set.
+	 * @see #unsetNSegments()
+	 * @see #getNSegments()
+	 * @see #setNSegments(long)
+	 * @generated
+	 */
+	boolean isSetNSegments();
 
 } // IfcCompositeCurve

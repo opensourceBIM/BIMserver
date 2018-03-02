@@ -28,7 +28,8 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcIndexedColourMap#getMappedTo <em>Mapped To</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcIndexedColourMap#getOverrides <em>Overrides</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcIndexedColourMap#getOpacity <em>Opacity</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcIndexedColourMap#getOpacityAsString <em>Opacity As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcIndexedColourMap#getColours <em>Colours</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcIndexedColourMap#getColourIndex <em>Colour Index</em>}</li>
  * </ul>
@@ -67,57 +68,110 @@ public interface IfcIndexedColourMap extends IfcPresentationItem {
 	void setMappedTo(IfcTessellatedFaceSet value);
 
 	/**
-	 * Returns the value of the '<em><b>Overrides</b></em>' reference.
+	 * Returns the value of the '<em><b>Opacity</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Overrides</em>' reference isn't clear,
+	 * If the meaning of the '<em>Opacity</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Overrides</em>' reference.
-	 * @see #isSetOverrides()
-	 * @see #unsetOverrides()
-	 * @see #setOverrides(IfcSurfaceStyleShading)
-	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcIndexedColourMap_Overrides()
+	 * @return the value of the '<em>Opacity</em>' attribute.
+	 * @see #isSetOpacity()
+	 * @see #unsetOpacity()
+	 * @see #setOpacity(double)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcIndexedColourMap_Opacity()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	IfcSurfaceStyleShading getOverrides();
+	double getOpacity();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcIndexedColourMap#getOverrides <em>Overrides</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcIndexedColourMap#getOpacity <em>Opacity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Overrides</em>' reference.
-	 * @see #isSetOverrides()
-	 * @see #unsetOverrides()
-	 * @see #getOverrides()
+	 * @param value the new value of the '<em>Opacity</em>' attribute.
+	 * @see #isSetOpacity()
+	 * @see #unsetOpacity()
+	 * @see #getOpacity()
 	 * @generated
 	 */
-	void setOverrides(IfcSurfaceStyleShading value);
+	void setOpacity(double value);
 
 	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcIndexedColourMap#getOverrides <em>Overrides</em>}' reference.
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcIndexedColourMap#getOpacity <em>Opacity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isSetOverrides()
-	 * @see #getOverrides()
-	 * @see #setOverrides(IfcSurfaceStyleShading)
+	 * @see #isSetOpacity()
+	 * @see #getOpacity()
+	 * @see #setOpacity(double)
 	 * @generated
 	 */
-	void unsetOverrides();
+	void unsetOpacity();
 
 	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcIndexedColourMap#getOverrides <em>Overrides</em>}' reference is set.
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcIndexedColourMap#getOpacity <em>Opacity</em>}' attribute is set.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Overrides</em>' reference is set.
-	 * @see #unsetOverrides()
-	 * @see #getOverrides()
-	 * @see #setOverrides(IfcSurfaceStyleShading)
+	 * @return whether the value of the '<em>Opacity</em>' attribute is set.
+	 * @see #unsetOpacity()
+	 * @see #getOpacity()
+	 * @see #setOpacity(double)
 	 * @generated
 	 */
-	boolean isSetOverrides();
+	boolean isSetOpacity();
+
+	/**
+	 * Returns the value of the '<em><b>Opacity As String</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Opacity As String</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Opacity As String</em>' attribute.
+	 * @see #isSetOpacityAsString()
+	 * @see #unsetOpacityAsString()
+	 * @see #setOpacityAsString(String)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcIndexedColourMap_OpacityAsString()
+	 * @model unsettable="true"
+	 * @generated
+	 */
+	String getOpacityAsString();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcIndexedColourMap#getOpacityAsString <em>Opacity As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Opacity As String</em>' attribute.
+	 * @see #isSetOpacityAsString()
+	 * @see #unsetOpacityAsString()
+	 * @see #getOpacityAsString()
+	 * @generated
+	 */
+	void setOpacityAsString(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcIndexedColourMap#getOpacityAsString <em>Opacity As String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetOpacityAsString()
+	 * @see #getOpacityAsString()
+	 * @see #setOpacityAsString(String)
+	 * @generated
+	 */
+	void unsetOpacityAsString();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcIndexedColourMap#getOpacityAsString <em>Opacity As String</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Opacity As String</em>' attribute is set.
+	 * @see #unsetOpacityAsString()
+	 * @see #getOpacityAsString()
+	 * @see #setOpacityAsString(String)
+	 * @generated
+	 */
+	boolean isSetOpacityAsString();
 
 	/**
 	 * Returns the value of the '<em><b>Colours</b></em>' reference.

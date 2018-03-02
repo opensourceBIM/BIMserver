@@ -30,8 +30,8 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcTendonType#getNominalDiameterAsString <em>Nominal Diameter As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTendonType#getCrossSectionArea <em>Cross Section Area</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcTendonType#getCrossSectionAreaAsString <em>Cross Section Area As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTendonType#getSheethDiameter <em>Sheeth Diameter</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTendonType#getSheethDiameterAsString <em>Sheeth Diameter As String</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcTendonType#getSheathDiameter <em>Sheath Diameter</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcTendonType#getSheathDiameterAsString <em>Sheath Diameter As String</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTendonType()
@@ -281,109 +281,109 @@ public interface IfcTendonType extends IfcReinforcingElementType {
 	boolean isSetCrossSectionAreaAsString();
 
 	/**
-	 * Returns the value of the '<em><b>Sheeth Diameter</b></em>' attribute.
+	 * Returns the value of the '<em><b>Sheath Diameter</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Sheeth Diameter</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Sheath Diameter</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sheeth Diameter</em>' attribute.
-	 * @see #isSetSheethDiameter()
-	 * @see #unsetSheethDiameter()
-	 * @see #setSheethDiameter(double)
-	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTendonType_SheethDiameter()
+	 * @return the value of the '<em>Sheath Diameter</em>' attribute.
+	 * @see #isSetSheathDiameter()
+	 * @see #unsetSheathDiameter()
+	 * @see #setSheathDiameter(double)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTendonType_SheathDiameter()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	double getSheethDiameter();
+	double getSheathDiameter();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcTendonType#getSheethDiameter <em>Sheeth Diameter</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcTendonType#getSheathDiameter <em>Sheath Diameter</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sheeth Diameter</em>' attribute.
-	 * @see #isSetSheethDiameter()
-	 * @see #unsetSheethDiameter()
-	 * @see #getSheethDiameter()
+	 * @param value the new value of the '<em>Sheath Diameter</em>' attribute.
+	 * @see #isSetSheathDiameter()
+	 * @see #unsetSheathDiameter()
+	 * @see #getSheathDiameter()
 	 * @generated
 	 */
-	void setSheethDiameter(double value);
+	void setSheathDiameter(double value);
 
 	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcTendonType#getSheethDiameter <em>Sheeth Diameter</em>}' attribute.
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcTendonType#getSheathDiameter <em>Sheath Diameter</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isSetSheethDiameter()
-	 * @see #getSheethDiameter()
-	 * @see #setSheethDiameter(double)
+	 * @see #isSetSheathDiameter()
+	 * @see #getSheathDiameter()
+	 * @see #setSheathDiameter(double)
 	 * @generated
 	 */
-	void unsetSheethDiameter();
+	void unsetSheathDiameter();
 
 	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcTendonType#getSheethDiameter <em>Sheeth Diameter</em>}' attribute is set.
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcTendonType#getSheathDiameter <em>Sheath Diameter</em>}' attribute is set.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Sheeth Diameter</em>' attribute is set.
-	 * @see #unsetSheethDiameter()
-	 * @see #getSheethDiameter()
-	 * @see #setSheethDiameter(double)
+	 * @return whether the value of the '<em>Sheath Diameter</em>' attribute is set.
+	 * @see #unsetSheathDiameter()
+	 * @see #getSheathDiameter()
+	 * @see #setSheathDiameter(double)
 	 * @generated
 	 */
-	boolean isSetSheethDiameter();
+	boolean isSetSheathDiameter();
 
 	/**
-	 * Returns the value of the '<em><b>Sheeth Diameter As String</b></em>' attribute.
+	 * Returns the value of the '<em><b>Sheath Diameter As String</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Sheeth Diameter As String</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Sheath Diameter As String</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sheeth Diameter As String</em>' attribute.
-	 * @see #isSetSheethDiameterAsString()
-	 * @see #unsetSheethDiameterAsString()
-	 * @see #setSheethDiameterAsString(String)
-	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTendonType_SheethDiameterAsString()
+	 * @return the value of the '<em>Sheath Diameter As String</em>' attribute.
+	 * @see #isSetSheathDiameterAsString()
+	 * @see #unsetSheathDiameterAsString()
+	 * @see #setSheathDiameterAsString(String)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTendonType_SheathDiameterAsString()
 	 * @model unsettable="true"
 	 * @generated
 	 */
-	String getSheethDiameterAsString();
+	String getSheathDiameterAsString();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcTendonType#getSheethDiameterAsString <em>Sheeth Diameter As String</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcTendonType#getSheathDiameterAsString <em>Sheath Diameter As String</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sheeth Diameter As String</em>' attribute.
-	 * @see #isSetSheethDiameterAsString()
-	 * @see #unsetSheethDiameterAsString()
-	 * @see #getSheethDiameterAsString()
+	 * @param value the new value of the '<em>Sheath Diameter As String</em>' attribute.
+	 * @see #isSetSheathDiameterAsString()
+	 * @see #unsetSheathDiameterAsString()
+	 * @see #getSheathDiameterAsString()
 	 * @generated
 	 */
-	void setSheethDiameterAsString(String value);
+	void setSheathDiameterAsString(String value);
 
 	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcTendonType#getSheethDiameterAsString <em>Sheeth Diameter As String</em>}' attribute.
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcTendonType#getSheathDiameterAsString <em>Sheath Diameter As String</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isSetSheethDiameterAsString()
-	 * @see #getSheethDiameterAsString()
-	 * @see #setSheethDiameterAsString(String)
+	 * @see #isSetSheathDiameterAsString()
+	 * @see #getSheathDiameterAsString()
+	 * @see #setSheathDiameterAsString(String)
 	 * @generated
 	 */
-	void unsetSheethDiameterAsString();
+	void unsetSheathDiameterAsString();
 
 	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcTendonType#getSheethDiameterAsString <em>Sheeth Diameter As String</em>}' attribute is set.
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcTendonType#getSheathDiameterAsString <em>Sheath Diameter As String</em>}' attribute is set.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Sheeth Diameter As String</em>' attribute is set.
-	 * @see #unsetSheethDiameterAsString()
-	 * @see #getSheethDiameterAsString()
-	 * @see #setSheethDiameterAsString(String)
+	 * @return whether the value of the '<em>Sheath Diameter As String</em>' attribute is set.
+	 * @see #unsetSheathDiameterAsString()
+	 * @see #getSheathDiameterAsString()
+	 * @see #setSheathDiameterAsString(String)
 	 * @generated
 	 */
-	boolean isSetSheethDiameterAsString();
+	boolean isSetSheathDiameterAsString();
 
 } // IfcTendonType

@@ -363,8 +363,8 @@ public enum IfcSimplePropertyTemplateTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSimplePropertyTemplateTypeEnum[] VALUES_ARRAY = new IfcSimplePropertyTemplateTypeEnum[] { NULL, QTIME, PLISTVALUE, QLENGTH, QVOLUME, QWEIGHT, PREFERENCEVALUE, PTABLEVALUE, QAREA, QCOUNT, PSINGLEVALUE,
-			PENUMERATEDVALUE, PBOUNDEDVALUE, };
+	private static final IfcSimplePropertyTemplateTypeEnum[] VALUES_ARRAY = new IfcSimplePropertyTemplateTypeEnum[] { NULL, QTIME, PLISTVALUE, QLENGTH, QVOLUME, QWEIGHT, PREFERENCEVALUE, PTABLEVALUE,
+			QAREA, QCOUNT, PSINGLEVALUE, PENUMERATEDVALUE, PBOUNDEDVALUE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Simple Property Template Type Enum</b></em>' enumerators.

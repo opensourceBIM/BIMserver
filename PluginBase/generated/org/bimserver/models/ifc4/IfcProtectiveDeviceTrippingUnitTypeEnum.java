@@ -213,7 +213,8 @@ public enum IfcProtectiveDeviceTrippingUnitTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcProtectiveDeviceTrippingUnitTypeEnum[] VALUES_ARRAY = new IfcProtectiveDeviceTrippingUnitTypeEnum[] { NULL, RESIDUALCURRENT, ELECTRONIC, NOTDEFINED, USERDEFINED, THERMAL, ELECTROMAGNETIC, };
+	private static final IfcProtectiveDeviceTrippingUnitTypeEnum[] VALUES_ARRAY = new IfcProtectiveDeviceTrippingUnitTypeEnum[] { NULL, RESIDUALCURRENT, ELECTRONIC, NOTDEFINED, USERDEFINED, THERMAL,
+			ELECTROMAGNETIC, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Protective Device Tripping Unit Type Enum</b></em>' enumerators.

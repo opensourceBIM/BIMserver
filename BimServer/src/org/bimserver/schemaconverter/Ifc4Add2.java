@@ -19,9 +19,9 @@ package org.bimserver.schemaconverter;
 
 import java.io.File;
 
-public class Ifc4 {
+public class Ifc4Add2 {
 	public static void main(String[] args) {
-		Express2EMF express2emf = new Express2EMF(new File("deploy/IFC4.exp"), "ifc4", "http://buildingsmart.ifc4.ecore");
-		express2emf.writeEMF("../BimServer/src/org/bimserver/database/migrations/steps/" + "IFC4.ecore");
+		Express2EMF express2emf = new Express2EMF(new File("deploy/IFC4_ADD2.exp"), "ifc4", "http://buildingsmart.ifc4.ecore");
+		express2emf.writeEMF("../BimServer/src/org/bimserver/database/migrations/steps/" + "IFC4_ADD2.ecore");
 	}
 }

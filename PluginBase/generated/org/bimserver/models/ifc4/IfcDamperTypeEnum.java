@@ -388,8 +388,8 @@ public enum IfcDamperTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDamperTypeEnum[] VALUES_ARRAY = new IfcDamperTypeEnum[] { NULL, CONTROLDAMPER, FUMEHOODEXHAUST, BALANCINGDAMPER, GRAVITYRELIEFDAMPER, USERDEFINED, FIREDAMPER, NOTDEFINED, GRAVITYDAMPER, BLASTDAMPER,
-			BACKDRAFTDAMPER, FIRESMOKEDAMPER, RELIEFDAMPER, SMOKEDAMPER, };
+	private static final IfcDamperTypeEnum[] VALUES_ARRAY = new IfcDamperTypeEnum[] { NULL, CONTROLDAMPER, FUMEHOODEXHAUST, BALANCINGDAMPER, GRAVITYRELIEFDAMPER, USERDEFINED, FIREDAMPER, NOTDEFINED,
+			GRAVITYDAMPER, BLASTDAMPER, BACKDRAFTDAMPER, FIRESMOKEDAMPER, RELIEFDAMPER, SMOKEDAMPER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Damper Type Enum</b></em>' enumerators.

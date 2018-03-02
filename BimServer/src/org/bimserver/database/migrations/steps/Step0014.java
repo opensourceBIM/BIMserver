@@ -44,6 +44,6 @@ public class Step0014 extends Migration {
 
 	@Override
 	public String getDescription() {
-		return "Initial IFC4 model";
+		return "Added more server settings";
 	}
 }

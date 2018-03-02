@@ -28,22 +28,21 @@ import org.eclipse.emf.ecore.util.Switch;
  * starting with the actual class of the object and proceeding up the
  * inheritance hierarchy until a non-null result is returned, which is the
  * result of the switch. <!-- end-user-doc -->
- * 
  * @see org.bimserver.models.ifc4.Ifc4Package
  * @generated
  */
 public class Ifc4Switch<T> extends Switch<T> {
 	/**
-	 * The cached model package <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached model package
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected static Ifc4Package modelPackage;
 
 	/**
-	 * Creates an instance of the switch. <!-- begin-user-doc --> <!--
+	 * Creates an instance of the switch.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Ifc4Switch() {
@@ -1646,6 +1645,21 @@ public class Ifc4Switch<T> extends Switch<T> {
 				result = caseIfcRepresentationItem(ifcCartesianPointList);
 			if (result == null)
 				result = caseIfcLayeredItem(ifcCartesianPointList);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_CARTESIAN_POINT_LIST2_D: {
+			IfcCartesianPointList2D ifcCartesianPointList2D = (IfcCartesianPointList2D) theEObject;
+			T result = caseIfcCartesianPointList2D(ifcCartesianPointList2D);
+			if (result == null)
+				result = caseIfcCartesianPointList(ifcCartesianPointList2D);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcCartesianPointList2D);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcCartesianPointList2D);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcCartesianPointList2D);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -6521,6 +6535,59 @@ public class Ifc4Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case Ifc4Package.IFC_INDEXED_POLY_CURVE: {
+			IfcIndexedPolyCurve ifcIndexedPolyCurve = (IfcIndexedPolyCurve) theEObject;
+			T result = caseIfcIndexedPolyCurve(ifcIndexedPolyCurve);
+			if (result == null)
+				result = caseIfcBoundedCurve(ifcIndexedPolyCurve);
+			if (result == null)
+				result = caseIfcCurve(ifcIndexedPolyCurve);
+			if (result == null)
+				result = caseIfcCurveOrEdgeCurve(ifcIndexedPolyCurve);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcIndexedPolyCurve);
+			if (result == null)
+				result = caseIfcGeometricSetSelect(ifcIndexedPolyCurve);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcIndexedPolyCurve);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcIndexedPolyCurve);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_INDEXED_POLYGONAL_FACE: {
+			IfcIndexedPolygonalFace ifcIndexedPolygonalFace = (IfcIndexedPolygonalFace) theEObject;
+			T result = caseIfcIndexedPolygonalFace(ifcIndexedPolygonalFace);
+			if (result == null)
+				result = caseIfcTessellatedItem(ifcIndexedPolygonalFace);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcIndexedPolygonalFace);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcIndexedPolygonalFace);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcIndexedPolygonalFace);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_INDEXED_POLYGONAL_FACE_WITH_VOIDS: {
+			IfcIndexedPolygonalFaceWithVoids ifcIndexedPolygonalFaceWithVoids = (IfcIndexedPolygonalFaceWithVoids) theEObject;
+			T result = caseIfcIndexedPolygonalFaceWithVoids(ifcIndexedPolygonalFaceWithVoids);
+			if (result == null)
+				result = caseIfcIndexedPolygonalFace(ifcIndexedPolygonalFaceWithVoids);
+			if (result == null)
+				result = caseIfcTessellatedItem(ifcIndexedPolygonalFaceWithVoids);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcIndexedPolygonalFaceWithVoids);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcIndexedPolygonalFaceWithVoids);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcIndexedPolygonalFaceWithVoids);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case Ifc4Package.IFC_INDEXED_TEXTURE_MAP: {
 			IfcIndexedTextureMap ifcIndexedTextureMap = (IfcIndexedTextureMap) theEObject;
 			T result = caseIfcIndexedTextureMap(ifcIndexedTextureMap);
@@ -6597,6 +6664,27 @@ public class Ifc4Switch<T> extends Switch<T> {
 				result = caseIfcRoot(ifcInterceptorType);
 			if (result == null)
 				result = caseIfcDefinitionSelect(ifcInterceptorType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_INTERSECTION_CURVE: {
+			IfcIntersectionCurve ifcIntersectionCurve = (IfcIntersectionCurve) theEObject;
+			T result = caseIfcIntersectionCurve(ifcIntersectionCurve);
+			if (result == null)
+				result = caseIfcSurfaceCurve(ifcIntersectionCurve);
+			if (result == null)
+				result = caseIfcCurve(ifcIntersectionCurve);
+			if (result == null)
+				result = caseIfcCurveOnSurface(ifcIntersectionCurve);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcIntersectionCurve);
+			if (result == null)
+				result = caseIfcGeometricSetSelect(ifcIntersectionCurve);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcIntersectionCurve);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcIntersectionCurve);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -7365,6 +7453,24 @@ public class Ifc4Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		}
+		return null;
+	}
+	
+	/**
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * @generated
+	 */
+	@Override
+	protected T doSwitch(int classifierID, EObject theEObject) {
+		T t = doSwitch2(classifierID, theEObject);
+		if (t != null) {
+			return t;
+		}
+		switch(classifierID) {
 		case Ifc4Package.IFC_MECHANICAL_FASTENER_TYPE: {
 			IfcMechanicalFastenerType ifcMechanicalFastenerType = (IfcMechanicalFastenerType) theEObject;
 			T result = caseIfcMechanicalFastenerType(ifcMechanicalFastenerType);
@@ -7496,26 +7602,6 @@ public class Ifc4Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		}
-		return null;
-	}
-
-	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns
-	 * a non null result; it yields that result. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @return the first non-null result returned by a <code>caseXXX</code>
-	 *         call.
-	 * @generated
-	 */
-	@Override
-	protected T doSwitch(int classifierID, EObject theEObject) {
-		T doSwitch2 = doSwitch2(classifierID, theEObject);
-		if (doSwitch2 != null) {
-			return doSwitch2;
-		}
-		switch (classifierID) {
 		case Ifc4Package.IFC_MEMBER_TYPE: {
 			IfcMemberType ifcMemberType = (IfcMemberType) theEObject;
 			T result = caseIfcMemberType(ifcMemberType);
@@ -8476,6 +8562,25 @@ public class Ifc4Switch<T> extends Switch<T> {
 				result = caseIfcRepresentationItem(ifcPolygonalBoundedHalfSpace);
 			if (result == null)
 				result = caseIfcLayeredItem(ifcPolygonalBoundedHalfSpace);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_POLYGONAL_FACE_SET: {
+			IfcPolygonalFaceSet ifcPolygonalFaceSet = (IfcPolygonalFaceSet) theEObject;
+			T result = caseIfcPolygonalFaceSet(ifcPolygonalFaceSet);
+			if (result == null)
+				result = caseIfcTessellatedFaceSet(ifcPolygonalFaceSet);
+			if (result == null)
+				result = caseIfcTessellatedItem(ifcPolygonalFaceSet);
+			if (result == null)
+				result = caseIfcBooleanOperand(ifcPolygonalFaceSet);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcPolygonalFaceSet);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcPolygonalFaceSet);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcPolygonalFaceSet);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -10770,6 +10875,27 @@ public class Ifc4Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case Ifc4Package.IFC_SEAM_CURVE: {
+			IfcSeamCurve ifcSeamCurve = (IfcSeamCurve) theEObject;
+			T result = caseIfcSeamCurve(ifcSeamCurve);
+			if (result == null)
+				result = caseIfcSurfaceCurve(ifcSeamCurve);
+			if (result == null)
+				result = caseIfcCurve(ifcSeamCurve);
+			if (result == null)
+				result = caseIfcCurveOnSurface(ifcSeamCurve);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcSeamCurve);
+			if (result == null)
+				result = caseIfcGeometricSetSelect(ifcSeamCurve);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcSeamCurve);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcSeamCurve);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case Ifc4Package.IFC_SECTION_PROPERTIES: {
 			IfcSectionProperties ifcSectionProperties = (IfcSectionProperties) theEObject;
 			T result = caseIfcSectionProperties(ifcSectionProperties);
@@ -11431,6 +11557,27 @@ public class Ifc4Switch<T> extends Switch<T> {
 				result = caseIfcRepresentationItem(ifcSphere);
 			if (result == null)
 				result = caseIfcLayeredItem(ifcSphere);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SPHERICAL_SURFACE: {
+			IfcSphericalSurface ifcSphericalSurface = (IfcSphericalSurface) theEObject;
+			T result = caseIfcSphericalSurface(ifcSphericalSurface);
+			if (result == null)
+				result = caseIfcElementarySurface(ifcSphericalSurface);
+			if (result == null)
+				result = caseIfcSurface(ifcSphericalSurface);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcSphericalSurface);
+			if (result == null)
+				result = caseIfcGeometricSetSelect(ifcSphericalSurface);
+			if (result == null)
+				result = caseIfcSurfaceOrFaceSurface(ifcSphericalSurface);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcSphericalSurface);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcSphericalSurface);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -12401,6 +12548,25 @@ public class Ifc4Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case Ifc4Package.IFC_SURFACE_CURVE: {
+			IfcSurfaceCurve ifcSurfaceCurve = (IfcSurfaceCurve) theEObject;
+			T result = caseIfcSurfaceCurve(ifcSurfaceCurve);
+			if (result == null)
+				result = caseIfcCurve(ifcSurfaceCurve);
+			if (result == null)
+				result = caseIfcCurveOnSurface(ifcSurfaceCurve);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcSurfaceCurve);
+			if (result == null)
+				result = caseIfcGeometricSetSelect(ifcSurfaceCurve);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcSurfaceCurve);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcSurfaceCurve);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case Ifc4Package.IFC_SURFACE_CURVE_SWEPT_AREA_SOLID: {
 			IfcSurfaceCurveSweptAreaSolid ifcSurfaceCurveSweptAreaSolid = (IfcSurfaceCurveSweptAreaSolid) theEObject;
 			T result = caseIfcSurfaceCurveSweptAreaSolid(ifcSurfaceCurveSweptAreaSolid);
@@ -13051,6 +13217,8 @@ public class Ifc4Switch<T> extends Switch<T> {
 			if (result == null)
 				result = caseIfcTessellatedItem(ifcTessellatedFaceSet);
 			if (result == null)
+				result = caseIfcBooleanOperand(ifcTessellatedFaceSet);
+			if (result == null)
 				result = caseIfcGeometricRepresentationItem(ifcTessellatedFaceSet);
 			if (result == null)
 				result = caseIfcRepresentationItem(ifcTessellatedFaceSet);
@@ -13247,6 +13415,27 @@ public class Ifc4Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case Ifc4Package.IFC_TOROIDAL_SURFACE: {
+			IfcToroidalSurface ifcToroidalSurface = (IfcToroidalSurface) theEObject;
+			T result = caseIfcToroidalSurface(ifcToroidalSurface);
+			if (result == null)
+				result = caseIfcElementarySurface(ifcToroidalSurface);
+			if (result == null)
+				result = caseIfcSurface(ifcToroidalSurface);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcToroidalSurface);
+			if (result == null)
+				result = caseIfcGeometricSetSelect(ifcToroidalSurface);
+			if (result == null)
+				result = caseIfcSurfaceOrFaceSurface(ifcToroidalSurface);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcToroidalSurface);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcToroidalSurface);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case Ifc4Package.IFC_TRANSFORMER: {
 			IfcTransformer ifcTransformer = (IfcTransformer) theEObject;
 			T result = caseIfcTransformer(ifcTransformer);
@@ -13367,6 +13556,8 @@ public class Ifc4Switch<T> extends Switch<T> {
 				result = caseIfcTessellatedFaceSet(ifcTriangulatedFaceSet);
 			if (result == null)
 				result = caseIfcTessellatedItem(ifcTriangulatedFaceSet);
+			if (result == null)
+				result = caseIfcBooleanOperand(ifcTriangulatedFaceSet);
 			if (result == null)
 				result = caseIfcGeometricRepresentationItem(ifcTriangulatedFaceSet);
 			if (result == null)
@@ -14274,6 +14465,13 @@ public class Ifc4Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case Ifc4Package.IFC_STRIPPED_OPTIONAL: {
+			IfcStrippedOptional ifcStrippedOptional = (IfcStrippedOptional) theEObject;
+			T result = caseIfcStrippedOptional(ifcStrippedOptional);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case Ifc4Package.IFC_ABSORBED_DOSE_MEASURE: {
 			IfcAbsorbedDoseMeasure ifcAbsorbedDoseMeasure = (IfcAbsorbedDoseMeasure) theEObject;
 			T result = caseIfcAbsorbedDoseMeasure(ifcAbsorbedDoseMeasure);
@@ -14360,6 +14558,13 @@ public class Ifc4Switch<T> extends Switch<T> {
 				result = caseIfcAppliedValueSelect(ifcAreaMeasure);
 			if (result == null)
 				result = caseIfcMetricValueSelect(ifcAreaMeasure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_BINARY: {
+			IfcBinary ifcBinary = (IfcBinary) theEObject;
+			T result = caseIfcBinary(ifcBinary);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -16015,6 +16220,23 @@ public class Ifc4Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case Ifc4Package.IFC_POSITIVE_INTEGER: {
+			IfcPositiveInteger ifcPositiveInteger = (IfcPositiveInteger) theEObject;
+			T result = caseIfcPositiveInteger(ifcPositiveInteger);
+			if (result == null)
+				result = caseIfcInteger(ifcPositiveInteger);
+			if (result == null)
+				result = caseIfcSimpleValue(ifcPositiveInteger);
+			if (result == null)
+				result = caseIfcValue(ifcPositiveInteger);
+			if (result == null)
+				result = caseIfcAppliedValueSelect(ifcPositiveInteger);
+			if (result == null)
+				result = caseIfcMetricValueSelect(ifcPositiveInteger);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case Ifc4Package.IFC_POSITIVE_LENGTH_MEASURE: {
 			IfcPositiveLengthMeasure ifcPositiveLengthMeasure = (IfcPositiveLengthMeasure) theEObject;
 			T result = caseIfcPositiveLengthMeasure(ifcPositiveLengthMeasure);
@@ -16405,6 +16627,13 @@ public class Ifc4Switch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case Ifc4Package.IFC_SEGMENT_INDEX_SELECT: {
+			IfcSegmentIndexSelect ifcSegmentIndexSelect = (IfcSegmentIndexSelect) theEObject;
+			T result = caseIfcSegmentIndexSelect(ifcSegmentIndexSelect);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case Ifc4Package.IFC_SHELL: {
 			IfcShell ifcShell = (IfcShell) theEObject;
 			T result = caseIfcShell(ifcShell);
@@ -16589,15 +16818,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Action Request</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Action Request</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Action Request</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Action Request</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -16623,15 +16849,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Actor Role</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Actor Role</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Actor Role</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Actor Role</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -16657,15 +16880,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Actuator Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Actuator Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Actuator Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Actuator Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -16691,15 +16911,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Advanced Brep</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Advanced Brep</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Advanced Brep</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Advanced Brep</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -16708,15 +16925,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Advanced Brep With Voids</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Advanced Brep With Voids</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Advanced Brep With Voids</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Advanced Brep With Voids</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -16725,15 +16939,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Advanced Face</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Advanced Face</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Advanced Face</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Advanced Face</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -16742,15 +16953,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Air Terminal</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Air Terminal</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Air Terminal</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Air Terminal</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -16759,15 +16967,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Air Terminal Box</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Air Terminal Box</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Air Terminal Box</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Air Terminal Box</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -16776,15 +16981,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Air Terminal Box Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Air Terminal Box Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Air Terminal Box Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Air Terminal Box Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -16793,15 +16995,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Air Terminal Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Air Terminal Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Air Terminal Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Air Terminal Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -16810,15 +17009,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Air To Air Heat Recovery</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Air To Air Heat Recovery</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Air To Air Heat Recovery</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Air To Air Heat Recovery</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -16827,15 +17023,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Air To Air Heat Recovery Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Air To Air Heat Recovery Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Air To Air Heat Recovery Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Air To Air Heat Recovery Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -16861,15 +17054,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Alarm Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Alarm Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Alarm Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Alarm Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -16878,15 +17068,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Annotation</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Annotation</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Annotation</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Annotation</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -16895,15 +17082,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Annotation Fill Area</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Annotation Fill Area</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Annotation Fill Area</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Annotation Fill Area</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -16912,15 +17096,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Application</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Application</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Application</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Application</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -16929,15 +17110,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Applied Value</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Applied Value</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Applied Value</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Applied Value</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -16963,15 +17141,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Approval Relationship</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Approval Relationship</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Approval Relationship</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Approval Relationship</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -16980,15 +17155,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Arbitrary Closed Profile Def</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Arbitrary Closed Profile Def</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Arbitrary Closed Profile Def</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Arbitrary Closed Profile Def</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -16997,15 +17169,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Arbitrary Open Profile Def</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Arbitrary Open Profile Def</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Arbitrary Open Profile Def</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Arbitrary Open Profile Def</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17014,15 +17183,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Arbitrary Profile Def With Voids</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Arbitrary Profile Def With Voids</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Arbitrary Profile Def With Voids</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Arbitrary Profile Def With Voids</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17048,15 +17214,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Asymmetric IShape Profile Def</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Asymmetric IShape Profile Def</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Asymmetric IShape Profile Def</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Asymmetric IShape Profile Def</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17065,15 +17228,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Audio Visual Appliance</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Audio Visual Appliance</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Audio Visual Appliance</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Audio Visual Appliance</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17082,15 +17242,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Audio Visual Appliance Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Audio Visual Appliance Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Audio Visual Appliance Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Audio Visual Appliance Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17099,15 +17256,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Axis1 Placement</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Axis1 Placement</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Axis1 Placement</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Axis1 Placement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17116,15 +17270,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Axis2 Placement2 D</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Axis2 Placement2 D</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Axis2 Placement2 D</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Axis2 Placement2 D</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17133,15 +17284,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Axis2 Placement3 D</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Axis2 Placement3 D</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Axis2 Placement3 D</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Axis2 Placement3 D</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17150,15 +17298,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * BSpline Curve</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc BSpline Curve</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         BSpline Curve</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc BSpline Curve</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17167,15 +17312,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * BSpline Curve With Knots</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc BSpline Curve With Knots</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         BSpline Curve With Knots</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc BSpline Curve With Knots</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17184,15 +17326,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * BSpline Surface</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc BSpline Surface</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         BSpline Surface</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc BSpline Surface</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17201,15 +17340,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * BSpline Surface With Knots</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc BSpline Surface With Knots</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         BSpline Surface With Knots</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc BSpline Surface With Knots</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17235,15 +17371,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Beam Standard Case</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Beam Standard Case</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Beam Standard Case</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Beam Standard Case</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17252,15 +17385,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Beam Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Beam Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Beam Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Beam Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17269,15 +17399,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Blob Texture</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Blob Texture</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Blob Texture</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Blob Texture</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17320,15 +17447,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Boiler Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Boiler Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Boiler Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Boiler Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17337,15 +17461,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Boolean Clipping Result</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Boolean Clipping Result</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Boolean Clipping Result</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Boolean Clipping Result</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17354,15 +17475,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Boolean Result</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Boolean Result</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Boolean Result</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Boolean Result</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17371,15 +17489,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Boundary Condition</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Boundary Condition</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Boundary Condition</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Boundary Condition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17388,15 +17503,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Boundary Curve</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Boundary Curve</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Boundary Curve</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Boundary Curve</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17405,15 +17517,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Boundary Edge Condition</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Boundary Edge Condition</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Boundary Edge Condition</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Boundary Edge Condition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17422,15 +17531,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Boundary Face Condition</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Boundary Face Condition</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Boundary Face Condition</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Boundary Face Condition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17439,15 +17545,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Boundary Node Condition</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Boundary Node Condition</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Boundary Node Condition</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Boundary Node Condition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17456,15 +17559,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Boundary Node Condition Warping</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Boundary Node Condition Warping</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Boundary Node Condition Warping</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Boundary Node Condition Warping</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17473,15 +17573,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Bounded Curve</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Bounded Curve</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Bounded Curve</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Bounded Curve</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17490,15 +17587,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Bounded Surface</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Bounded Surface</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Bounded Surface</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Bounded Surface</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17507,15 +17601,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Bounding Box</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Bounding Box</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Bounding Box</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Bounding Box</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17524,15 +17615,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Boxed Half Space</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Boxed Half Space</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Boxed Half Space</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Boxed Half Space</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17558,15 +17646,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Building Element</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Building Element</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Building Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Building Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17575,15 +17660,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Building Element Part</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Building Element Part</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Building Element Part</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Building Element Part</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17592,15 +17674,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Building Element Part Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Building Element Part Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Building Element Part Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Building Element Part Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17609,15 +17688,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Building Element Proxy</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Building Element Proxy</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Building Element Proxy</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Building Element Proxy</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17626,15 +17702,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Building Element Proxy Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Building Element Proxy Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Building Element Proxy Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Building Element Proxy Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17643,15 +17716,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Building Element Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Building Element Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Building Element Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Building Element Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17660,15 +17730,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Building Storey</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Building Storey</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Building Storey</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Building Storey</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17677,15 +17744,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Building System</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Building System</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Building System</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Building System</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17711,15 +17775,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Burner Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Burner Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Burner Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Burner Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17728,15 +17789,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * CShape Profile Def</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc CShape Profile Def</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         CShape Profile Def</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc CShape Profile Def</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17745,15 +17803,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Cable Carrier Fitting</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Cable Carrier Fitting</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Cable Carrier Fitting</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Cable Carrier Fitting</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17762,15 +17817,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Cable Carrier Fitting Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Cable Carrier Fitting Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Cable Carrier Fitting Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Cable Carrier Fitting Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17779,15 +17831,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Cable Carrier Segment</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Cable Carrier Segment</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Cable Carrier Segment</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Cable Carrier Segment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17796,15 +17845,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Cable Carrier Segment Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Cable Carrier Segment Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Cable Carrier Segment Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Cable Carrier Segment Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17813,15 +17859,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Cable Fitting</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Cable Fitting</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Cable Fitting</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Cable Fitting</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17830,15 +17873,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Cable Fitting Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Cable Fitting Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Cable Fitting Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Cable Fitting Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17847,15 +17887,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Cable Segment</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Cable Segment</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Cable Segment</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Cable Segment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17864,15 +17901,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Cable Segment Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Cable Segment Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Cable Segment Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Cable Segment Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17881,15 +17915,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Cartesian Point</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Cartesian Point</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Cartesian Point</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Cartesian Point</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17898,15 +17929,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Cartesian Point List</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Cartesian Point List</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Cartesian Point List</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Cartesian Point List</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17915,15 +17943,27 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Cartesian Point List3 D</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Cartesian Point List2 D</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Cartesian Point List2 D</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcCartesianPointList2D(IfcCartesianPointList2D object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Cartesian Point List3 D</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Cartesian Point List3 D</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Cartesian Point List3 D</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17932,15 +17972,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Cartesian Transformation Operator</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Cartesian Transformation Operator</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Cartesian Transformation Operator</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Cartesian Transformation Operator</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17949,15 +17986,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Cartesian Transformation Operator2 D</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Cartesian Transformation Operator2 D</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Cartesian Transformation Operator2 D</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Cartesian Transformation Operator2 D</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -17983,15 +18017,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Cartesian Transformation Operator3 D</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Cartesian Transformation Operator3 D</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Cartesian Transformation Operator3 D</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Cartesian Transformation Operator3 D</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18017,15 +18048,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Center Line Profile Def</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Center Line Profile Def</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Center Line Profile Def</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Center Line Profile Def</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18051,15 +18079,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Chiller Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Chiller Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Chiller Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Chiller Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18085,15 +18110,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Chimney Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Chimney Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Chimney Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Chimney Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18119,15 +18141,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Circle Hollow Profile Def</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Circle Hollow Profile Def</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Circle Hollow Profile Def</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Circle Hollow Profile Def</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18136,15 +18155,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Circle Profile Def</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Circle Profile Def</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Circle Profile Def</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Circle Profile Def</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18153,15 +18169,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Civil Element</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Civil Element</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Civil Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Civil Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18170,15 +18183,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Civil Element Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Civil Element Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Civil Element Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Civil Element Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18187,15 +18197,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Classification</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Classification</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Classification</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Classification</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18204,15 +18211,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Classification Reference</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Classification Reference</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Classification Reference</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Classification Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18221,15 +18225,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Closed Shell</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Closed Shell</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Closed Shell</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Closed Shell</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18255,15 +18256,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Coil Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Coil Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Coil Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Coil Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18272,15 +18270,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Colour Rgb</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Colour Rgb</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Colour Rgb</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Colour Rgb</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18289,15 +18284,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Colour Rgb List</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Colour Rgb List</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Colour Rgb List</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Colour Rgb List</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18306,15 +18298,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Colour Specification</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Colour Specification</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Colour Specification</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Colour Specification</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18340,15 +18329,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Column Standard Case</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Column Standard Case</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Column Standard Case</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Column Standard Case</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18357,15 +18343,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Column Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Column Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Column Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Column Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18374,15 +18357,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Communications Appliance</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Communications Appliance</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Communications Appliance</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Communications Appliance</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18391,15 +18371,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Communications Appliance Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Communications Appliance Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Communications Appliance Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Communications Appliance Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18408,15 +18385,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Complex Property</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Complex Property</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Complex Property</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Complex Property</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18425,15 +18399,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Complex Property Template</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Complex Property Template</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Complex Property Template</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Complex Property Template</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18442,15 +18413,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Composite Curve</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Composite Curve</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Composite Curve</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Composite Curve</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18459,15 +18427,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Composite Curve On Surface</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Composite Curve On Surface</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Composite Curve On Surface</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Composite Curve On Surface</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18476,15 +18441,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Composite Curve Segment</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Composite Curve Segment</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Composite Curve Segment</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Composite Curve Segment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18493,15 +18455,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Composite Profile Def</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Composite Profile Def</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Composite Profile Def</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Composite Profile Def</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18510,15 +18469,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Compressor</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Compressor</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Compressor</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Compressor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18527,15 +18483,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Compressor Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Compressor Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Compressor Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Compressor Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18544,15 +18497,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Condenser</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Condenser</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Condenser</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Condenser</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18561,15 +18511,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Condenser Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Condenser Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Condenser Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Condenser Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18595,15 +18542,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Connected Face Set</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Connected Face Set</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Connected Face Set</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Connected Face Set</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18612,15 +18556,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Connection Curve Geometry</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Connection Curve Geometry</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Connection Curve Geometry</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Connection Curve Geometry</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18629,15 +18570,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Connection Geometry</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Connection Geometry</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Connection Geometry</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Connection Geometry</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18646,15 +18584,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Connection Point Eccentricity</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Connection Point Eccentricity</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Connection Point Eccentricity</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Connection Point Eccentricity</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18663,15 +18598,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Connection Point Geometry</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Connection Point Geometry</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Connection Point Geometry</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Connection Point Geometry</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18680,15 +18612,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Connection Surface Geometry</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Connection Surface Geometry</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Connection Surface Geometry</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Connection Surface Geometry</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18697,15 +18626,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Connection Volume Geometry</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Connection Volume Geometry</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Connection Volume Geometry</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Connection Volume Geometry</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18714,15 +18640,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Constraint</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Constraint</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Constraint</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Constraint</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18731,15 +18654,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Construction Equipment Resource</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Construction Equipment Resource</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Construction Equipment Resource</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Construction Equipment Resource</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18748,15 +18668,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Construction Equipment Resource Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Construction Equipment Resource Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Construction Equipment Resource Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Construction Equipment Resource Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18765,15 +18682,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Construction Material Resource</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Construction Material Resource</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Construction Material Resource</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Construction Material Resource</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18782,15 +18696,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Construction Material Resource Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Construction Material Resource Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Construction Material Resource Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Construction Material Resource Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18799,15 +18710,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Construction Product Resource</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Construction Product Resource</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Construction Product Resource</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Construction Product Resource</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18816,15 +18724,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Construction Product Resource Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Construction Product Resource Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Construction Product Resource Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Construction Product Resource Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18833,15 +18738,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Construction Resource</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Construction Resource</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Construction Resource</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Construction Resource</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18850,15 +18752,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Construction Resource Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Construction Resource Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Construction Resource Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Construction Resource Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18884,15 +18783,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Context Dependent Unit</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Context Dependent Unit</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Context Dependent Unit</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Context Dependent Unit</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18918,15 +18814,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Controller</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Controller</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Controller</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Controller</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18935,15 +18828,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Controller Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Controller Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Controller Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Controller Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18952,15 +18842,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Conversion Based Unit</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Conversion Based Unit</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Conversion Based Unit</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Conversion Based Unit</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18969,15 +18856,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Conversion Based Unit With Offset</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Conversion Based Unit With Offset</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Conversion Based Unit With Offset</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Conversion Based Unit With Offset</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -18986,15 +18870,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Cooled Beam</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Cooled Beam</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Cooled Beam</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Cooled Beam</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19003,15 +18884,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Cooled Beam Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Cooled Beam Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Cooled Beam Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Cooled Beam Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19020,15 +18898,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Cooling Tower</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Cooling Tower</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Cooling Tower</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Cooling Tower</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19037,15 +18912,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Cooling Tower Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Cooling Tower Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Cooling Tower Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Cooling Tower Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19054,15 +18926,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Coordinate Operation</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Coordinate Operation</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Coordinate Operation</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Coordinate Operation</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19071,15 +18940,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Coordinate Reference System</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Coordinate Reference System</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Coordinate Reference System</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Coordinate Reference System</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19088,15 +18954,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Cost Item</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Cost Item</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Cost Item</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Cost Item</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19105,15 +18968,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Cost Schedule</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Cost Schedule</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Cost Schedule</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Cost Schedule</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19122,15 +18982,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Cost Value</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Cost Value</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Cost Value</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Cost Value</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19156,15 +19013,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Covering Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Covering Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Covering Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Covering Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19173,15 +19027,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Crew Resource</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Crew Resource</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Crew Resource</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Crew Resource</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19190,15 +19041,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Crew Resource Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Crew Resource Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Crew Resource Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Crew Resource Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19207,15 +19055,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Csg Primitive3 D</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Csg Primitive3 D</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Csg Primitive3 D</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Csg Primitive3 D</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19224,15 +19069,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Csg Solid</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Csg Solid</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Csg Solid</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Csg Solid</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19241,15 +19083,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Currency Relationship</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Currency Relationship</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Currency Relationship</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Currency Relationship</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19258,15 +19097,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Curtain Wall</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Curtain Wall</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Curtain Wall</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Curtain Wall</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19275,15 +19111,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Curtain Wall Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Curtain Wall Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Curtain Wall Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Curtain Wall Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19309,15 +19142,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Curve Bounded Plane</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Curve Bounded Plane</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Curve Bounded Plane</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Curve Bounded Plane</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19326,15 +19156,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Curve Bounded Surface</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Curve Bounded Surface</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Curve Bounded Surface</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Curve Bounded Surface</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19343,15 +19170,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Curve Style</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Curve Style</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Curve Style</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Curve Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19360,15 +19184,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Curve Style Font</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Curve Style Font</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Curve Style Font</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Curve Style Font</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19377,15 +19198,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Curve Style Font And Scaling</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Curve Style Font And Scaling</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Curve Style Font And Scaling</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Curve Style Font And Scaling</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19394,15 +19212,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Curve Style Font Pattern</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Curve Style Font Pattern</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Curve Style Font Pattern</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Curve Style Font Pattern</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19411,15 +19226,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Cylindrical Surface</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Cylindrical Surface</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Cylindrical Surface</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Cylindrical Surface</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19445,15 +19257,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Damper Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Damper Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Damper Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Damper Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19462,15 +19271,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Derived Profile Def</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Derived Profile Def</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Derived Profile Def</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Derived Profile Def</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19479,15 +19285,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Derived Unit</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Derived Unit</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Derived Unit</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Derived Unit</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19496,15 +19299,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Derived Unit Element</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Derived Unit Element</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Derived Unit Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Derived Unit Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19513,15 +19313,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Dimensional Exponents</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Dimensional Exponents</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Dimensional Exponents</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Dimensional Exponents</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19530,15 +19327,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Direction</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Direction</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Direction</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Direction</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19547,15 +19341,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Discrete Accessory</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Discrete Accessory</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Discrete Accessory</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Discrete Accessory</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19564,15 +19355,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Discrete Accessory Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Discrete Accessory Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Discrete Accessory Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Discrete Accessory Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19581,15 +19369,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Distribution Chamber Element</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Distribution Chamber Element</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Distribution Chamber Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Distribution Chamber Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19598,15 +19383,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Distribution Chamber Element Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Distribution Chamber Element Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Distribution Chamber Element Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Distribution Chamber Element Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19615,15 +19397,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Distribution Circuit</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Distribution Circuit</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Distribution Circuit</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Distribution Circuit</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19632,15 +19411,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Distribution Control Element</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Distribution Control Element</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Distribution Control Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Distribution Control Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19649,15 +19425,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Distribution Control Element Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Distribution Control Element Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Distribution Control Element Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Distribution Control Element Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19666,15 +19439,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Distribution Element</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Distribution Element</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Distribution Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Distribution Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19683,15 +19453,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Distribution Element Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Distribution Element Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Distribution Element Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Distribution Element Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19700,15 +19467,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Distribution Flow Element</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Distribution Flow Element</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Distribution Flow Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Distribution Flow Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19717,15 +19481,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Distribution Flow Element Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Distribution Flow Element Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Distribution Flow Element Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Distribution Flow Element Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19734,15 +19495,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Distribution Port</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Distribution Port</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Distribution Port</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Distribution Port</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19751,15 +19509,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Distribution System</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Distribution System</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Distribution System</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Distribution System</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19768,15 +19523,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Document Information</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Document Information</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Document Information</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Document Information</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19785,15 +19537,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Document Information Relationship</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Document Information Relationship</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Document Information Relationship</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Document Information Relationship</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19802,15 +19551,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Document Reference</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Document Reference</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Document Reference</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Document Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19836,15 +19582,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Door Lining Properties</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Door Lining Properties</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Door Lining Properties</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Door Lining Properties</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19853,15 +19596,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Door Panel Properties</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Door Panel Properties</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Door Panel Properties</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Door Panel Properties</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19870,15 +19610,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Door Standard Case</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Door Standard Case</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Door Standard Case</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Door Standard Case</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19887,15 +19624,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Door Style</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Door Style</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Door Style</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Door Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19904,15 +19638,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Door Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Door Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Door Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Door Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19921,15 +19652,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Draughting Pre Defined Colour</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Draughting Pre Defined Colour</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Draughting Pre Defined Colour</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Draughting Pre Defined Colour</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19938,15 +19666,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Draughting Pre Defined Curve Font</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Draughting Pre Defined Curve Font</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Draughting Pre Defined Curve Font</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Draughting Pre Defined Curve Font</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19955,15 +19680,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Duct Fitting</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Duct Fitting</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Duct Fitting</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Duct Fitting</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19972,15 +19694,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Duct Fitting Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Duct Fitting Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Duct Fitting Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Duct Fitting Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -19989,15 +19708,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Duct Segment</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Duct Segment</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Duct Segment</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Duct Segment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20006,15 +19722,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Duct Segment Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Duct Segment Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Duct Segment Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Duct Segment Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20023,15 +19736,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Duct Silencer</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Duct Silencer</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Duct Silencer</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Duct Silencer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20040,15 +19750,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Duct Silencer Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Duct Silencer Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Duct Silencer Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Duct Silencer Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20074,15 +19781,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Edge Curve</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Edge Curve</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Edge Curve</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Edge Curve</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20091,15 +19795,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Edge Loop</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Edge Loop</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Edge Loop</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Edge Loop</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20108,15 +19809,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Electric Appliance</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Electric Appliance</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Electric Appliance</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Electric Appliance</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20125,15 +19823,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Electric Appliance Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Electric Appliance Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Electric Appliance Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Electric Appliance Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20142,15 +19837,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Electric Distribution Board</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Electric Distribution Board</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Electric Distribution Board</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Electric Distribution Board</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20159,15 +19851,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Electric Distribution Board Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Electric Distribution Board Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Electric Distribution Board Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Electric Distribution Board Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20176,15 +19865,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Electric Flow Storage Device</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Electric Flow Storage Device</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Electric Flow Storage Device</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Electric Flow Storage Device</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20193,15 +19879,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Electric Flow Storage Device Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Electric Flow Storage Device Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Electric Flow Storage Device Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Electric Flow Storage Device Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20210,15 +19893,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Electric Generator</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Electric Generator</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Electric Generator</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Electric Generator</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20227,15 +19907,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Electric Generator Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Electric Generator Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Electric Generator Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Electric Generator Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20244,15 +19921,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Electric Motor</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Electric Motor</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Electric Motor</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Electric Motor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20261,15 +19935,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Electric Motor Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Electric Motor Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Electric Motor Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Electric Motor Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20278,15 +19949,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Electric Time Control</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Electric Time Control</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Electric Time Control</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Electric Time Control</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20295,15 +19963,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Electric Time Control Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Electric Time Control Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Electric Time Control Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Electric Time Control Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20329,15 +19994,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Element Assembly</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Element Assembly</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Element Assembly</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Element Assembly</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20346,15 +20008,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Element Assembly Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Element Assembly Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Element Assembly Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Element Assembly Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20363,15 +20022,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Element Component</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Element Component</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Element Component</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Element Component</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20380,15 +20036,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Element Component Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Element Component Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Element Component Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Element Component Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20397,15 +20050,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Element Quantity</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Element Quantity</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Element Quantity</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Element Quantity</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20414,15 +20064,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Element Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Element Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Element Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Element Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20431,15 +20078,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Elementary Surface</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Elementary Surface</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Elementary Surface</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Elementary Surface</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20465,15 +20109,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Ellipse Profile Def</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Ellipse Profile Def</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Ellipse Profile Def</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Ellipse Profile Def</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20482,15 +20123,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Energy Conversion Device</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Energy Conversion Device</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Energy Conversion Device</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Energy Conversion Device</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20499,15 +20137,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Energy Conversion Device Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Energy Conversion Device Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Energy Conversion Device Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Energy Conversion Device Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20533,15 +20168,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Engine Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Engine Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Engine Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Engine Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20550,15 +20182,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Evaporative Cooler</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Evaporative Cooler</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Evaporative Cooler</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Evaporative Cooler</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20567,15 +20196,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Evaporative Cooler Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Evaporative Cooler Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Evaporative Cooler Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Evaporative Cooler Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20584,15 +20210,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Evaporator</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Evaporator</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Evaporator</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Evaporator</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20601,15 +20224,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Evaporator Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Evaporator Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Evaporator Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Evaporator Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20635,15 +20255,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Event Time</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Event Time</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Event Time</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Event Time</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20652,15 +20269,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Event Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Event Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Event Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Event Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20669,15 +20283,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Extended Properties</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Extended Properties</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Extended Properties</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Extended Properties</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20686,15 +20297,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * External Information</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc External Information</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         External Information</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc External Information</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20703,15 +20311,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * External Reference</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc External Reference</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         External Reference</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc External Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20720,15 +20325,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * External Reference Relationship</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc External Reference Relationship</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         External Reference Relationship</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc External Reference Relationship</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20737,15 +20339,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * External Spatial Element</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc External Spatial Element</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         External Spatial Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc External Spatial Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20754,15 +20353,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * External Spatial Structure Element</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc External Spatial Structure Element</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         External Spatial Structure Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc External Spatial Structure Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20771,15 +20367,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Externally Defined Hatch Style</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Externally Defined Hatch Style</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Externally Defined Hatch Style</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Externally Defined Hatch Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20788,15 +20381,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Externally Defined Surface Style</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Externally Defined Surface Style</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Externally Defined Surface Style</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Externally Defined Surface Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20805,15 +20395,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Externally Defined Text Font</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Externally Defined Text Font</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Externally Defined Text Font</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Externally Defined Text Font</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20822,15 +20409,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Extruded Area Solid</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Extruded Area Solid</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Extruded Area Solid</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Extruded Area Solid</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20839,15 +20423,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Extruded Area Solid Tapered</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Extruded Area Solid Tapered</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Extruded Area Solid Tapered</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Extruded Area Solid Tapered</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20873,15 +20454,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Face Based Surface Model</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Face Based Surface Model</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Face Based Surface Model</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Face Based Surface Model</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20890,15 +20468,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Face Bound</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Face Bound</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Face Bound</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Face Bound</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20907,15 +20482,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Face Outer Bound</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Face Outer Bound</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Face Outer Bound</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Face Outer Bound</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20924,15 +20496,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Face Surface</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Face Surface</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Face Surface</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Face Surface</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20941,15 +20510,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Faceted Brep</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Faceted Brep</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Faceted Brep</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Faceted Brep</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20958,15 +20524,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Faceted Brep With Voids</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Faceted Brep With Voids</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Faceted Brep With Voids</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Faceted Brep With Voids</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -20975,15 +20538,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Failure Connection Condition</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Failure Connection Condition</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Failure Connection Condition</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Failure Connection Condition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21043,15 +20603,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Fastener Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Fastener Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Fastener Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Fastener Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21060,15 +20617,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Feature Element</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Feature Element</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Feature Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Feature Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21077,15 +20631,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Feature Element Addition</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Feature Element Addition</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Feature Element Addition</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Feature Element Addition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21094,15 +20645,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Feature Element Subtraction</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Feature Element Subtraction</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Feature Element Subtraction</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Feature Element Subtraction</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21111,15 +20659,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Fill Area Style</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Fill Area Style</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Fill Area Style</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Fill Area Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21128,15 +20673,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Fill Area Style Hatching</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Fill Area Style Hatching</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Fill Area Style Hatching</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Fill Area Style Hatching</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21145,15 +20687,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Fill Area Style Tiles</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Fill Area Style Tiles</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Fill Area Style Tiles</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Fill Area Style Tiles</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21179,15 +20718,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Filter Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Filter Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Filter Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Filter Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21196,15 +20732,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Fire Suppression Terminal</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Fire Suppression Terminal</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Fire Suppression Terminal</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Fire Suppression Terminal</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21213,15 +20746,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Fire Suppression Terminal Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Fire Suppression Terminal Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Fire Suppression Terminal Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Fire Suppression Terminal Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21230,15 +20760,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Fixed Reference Swept Area Solid</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Fixed Reference Swept Area Solid</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Fixed Reference Swept Area Solid</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Fixed Reference Swept Area Solid</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21247,15 +20774,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Flow Controller</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Flow Controller</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Flow Controller</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Flow Controller</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21264,15 +20788,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Flow Controller Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Flow Controller Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Flow Controller Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Flow Controller Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21281,15 +20802,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Flow Fitting</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Flow Fitting</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Flow Fitting</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Flow Fitting</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21298,15 +20816,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Flow Fitting Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Flow Fitting Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Flow Fitting Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Flow Fitting Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21315,15 +20830,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Flow Instrument</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Flow Instrument</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Flow Instrument</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Flow Instrument</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21332,15 +20844,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Flow Instrument Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Flow Instrument Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Flow Instrument Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Flow Instrument Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21349,15 +20858,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Flow Meter</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Flow Meter</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Flow Meter</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Flow Meter</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21366,15 +20872,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Flow Meter Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Flow Meter Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Flow Meter Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Flow Meter Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21383,15 +20886,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Flow Moving Device</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Flow Moving Device</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Flow Moving Device</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Flow Moving Device</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21400,15 +20900,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Flow Moving Device Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Flow Moving Device Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Flow Moving Device Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Flow Moving Device Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21417,15 +20914,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Flow Segment</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Flow Segment</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Flow Segment</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Flow Segment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21434,15 +20928,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Flow Segment Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Flow Segment Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Flow Segment Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Flow Segment Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21451,15 +20942,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Flow Storage Device</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Flow Storage Device</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Flow Storage Device</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Flow Storage Device</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21468,15 +20956,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Flow Storage Device Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Flow Storage Device Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Flow Storage Device Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Flow Storage Device Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21485,15 +20970,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Flow Terminal</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Flow Terminal</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Flow Terminal</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Flow Terminal</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21502,15 +20984,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Flow Terminal Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Flow Terminal Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Flow Terminal Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Flow Terminal Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21519,15 +20998,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Flow Treatment Device</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Flow Treatment Device</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Flow Treatment Device</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Flow Treatment Device</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21536,15 +21012,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Flow Treatment Device Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Flow Treatment Device Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Flow Treatment Device Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Flow Treatment Device Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21570,15 +21043,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Footing Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Footing Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Footing Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Footing Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21587,15 +21057,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Furnishing Element</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Furnishing Element</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Furnishing Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Furnishing Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21604,15 +21071,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Furnishing Element Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Furnishing Element Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Furnishing Element Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Furnishing Element Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21621,15 +21085,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Furniture</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Furniture</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Furniture</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Furniture</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21638,15 +21099,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Furniture Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Furniture Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Furniture Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Furniture Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21655,15 +21113,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Geographic Element</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Geographic Element</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Geographic Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Geographic Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21672,15 +21127,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Geographic Element Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Geographic Element Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Geographic Element Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Geographic Element Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21689,15 +21141,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Geometric Curve Set</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Geometric Curve Set</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Geometric Curve Set</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Geometric Curve Set</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21706,15 +21155,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Geometric Representation Context</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Geometric Representation Context</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Geometric Representation Context</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Geometric Representation Context</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21723,15 +21169,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Geometric Representation Item</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Geometric Representation Item</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Geometric Representation Item</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Geometric Representation Item</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21740,15 +21183,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Geometric Representation Sub Context</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Geometric Representation Sub Context</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Geometric Representation Sub Context</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Geometric Representation Sub Context</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21757,15 +21197,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Geometric Set</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Geometric Set</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Geometric Set</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Geometric Set</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21791,15 +21228,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Grid Axis</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Grid Axis</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Grid Axis</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Grid Axis</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21808,15 +21242,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Grid Placement</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Grid Placement</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Grid Placement</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Grid Placement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21842,15 +21273,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Half Space Solid</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Half Space Solid</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Half Space Solid</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Half Space Solid</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21859,15 +21287,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Heat Exchanger</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Heat Exchanger</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Heat Exchanger</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Heat Exchanger</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21876,15 +21301,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Heat Exchanger Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Heat Exchanger Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Heat Exchanger Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Heat Exchanger Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21893,15 +21315,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Humidifier</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Humidifier</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Humidifier</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Humidifier</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21910,15 +21329,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Humidifier Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Humidifier Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Humidifier Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Humidifier Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21927,15 +21343,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * IShape Profile Def</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc IShape Profile Def</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         IShape Profile Def</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc IShape Profile Def</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21944,15 +21357,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Image Texture</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Image Texture</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Image Texture</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Image Texture</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21961,15 +21371,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Indexed Colour Map</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Indexed Colour Map</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Indexed Colour Map</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Indexed Colour Map</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21978,15 +21385,57 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Indexed Texture Map</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Indexed Poly Curve</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Indexed Poly Curve</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcIndexedPolyCurve(IfcIndexedPolyCurve object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Indexed Polygonal Face</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Indexed Polygonal Face</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcIndexedPolygonalFace(IfcIndexedPolygonalFace object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Indexed Polygonal Face With Voids</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Indexed Polygonal Face With Voids</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcIndexedPolygonalFaceWithVoids(IfcIndexedPolygonalFaceWithVoids object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Indexed Texture Map</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Indexed Texture Map</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Indexed Texture Map</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -21995,15 +21444,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Indexed Triangle Texture Map</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Indexed Triangle Texture Map</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Indexed Triangle Texture Map</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Indexed Triangle Texture Map</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22012,15 +21458,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Interceptor</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Interceptor</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Interceptor</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Interceptor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22029,15 +21472,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Interceptor Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Interceptor Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Interceptor Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Interceptor Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22046,15 +21486,27 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Inventory</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Intersection Curve</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Intersection Curve</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcIntersectionCurve(IfcIntersectionCurve object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Inventory</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Inventory</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Inventory</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22063,15 +21515,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Irregular Time Series</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Irregular Time Series</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Irregular Time Series</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Irregular Time Series</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22080,15 +21529,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Irregular Time Series Value</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Irregular Time Series Value</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Irregular Time Series Value</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Irregular Time Series Value</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22097,15 +21543,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Junction Box</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Junction Box</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Junction Box</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Junction Box</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22114,15 +21557,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Junction Box Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Junction Box Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Junction Box Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Junction Box Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22131,15 +21571,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * LShape Profile Def</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc LShape Profile Def</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         LShape Profile Def</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc LShape Profile Def</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22148,15 +21585,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Labor Resource</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Labor Resource</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Labor Resource</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Labor Resource</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22165,15 +21599,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Labor Resource Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Labor Resource Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Labor Resource Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Labor Resource Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22216,15 +21647,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Lamp Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Lamp Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Lamp Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Lamp Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22233,15 +21661,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Library Information</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Library Information</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Library Information</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Library Information</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22250,15 +21675,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Library Reference</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Library Reference</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Library Reference</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Library Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22267,15 +21689,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Light Distribution Data</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Light Distribution Data</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Light Distribution Data</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Light Distribution Data</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22284,15 +21703,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Light Fixture</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Light Fixture</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Light Fixture</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Light Fixture</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22301,15 +21717,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Light Fixture Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Light Fixture Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Light Fixture Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Light Fixture Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22318,15 +21731,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Light Intensity Distribution</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Light Intensity Distribution</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Light Intensity Distribution</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Light Intensity Distribution</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22335,15 +21745,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Light Source</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Light Source</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Light Source</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Light Source</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22352,15 +21759,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Light Source Ambient</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Light Source Ambient</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Light Source Ambient</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Light Source Ambient</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22369,15 +21773,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Light Source Directional</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Light Source Directional</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Light Source Directional</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Light Source Directional</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22386,15 +21787,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Light Source Goniometric</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Light Source Goniometric</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Light Source Goniometric</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Light Source Goniometric</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22403,15 +21801,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Light Source Positional</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Light Source Positional</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Light Source Positional</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Light Source Positional</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22420,15 +21815,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Light Source Spot</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Light Source Spot</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Light Source Spot</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Light Source Spot</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22454,15 +21846,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Local Placement</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Local Placement</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Local Placement</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Local Placement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22488,15 +21877,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Manifold Solid Brep</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Manifold Solid Brep</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Manifold Solid Brep</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Manifold Solid Brep</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22505,15 +21891,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Map Conversion</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Map Conversion</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Map Conversion</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Map Conversion</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22522,15 +21905,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Mapped Item</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Mapped Item</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Mapped Item</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Mapped Item</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22556,15 +21936,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Material Classification Relationship</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Material Classification Relationship</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Material Classification Relationship</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Material Classification Relationship</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22573,15 +21950,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Material Constituent</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Material Constituent</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Material Constituent</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Material Constituent</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22590,15 +21964,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Material Constituent Set</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Material Constituent Set</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Material Constituent Set</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Material Constituent Set</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22607,15 +21978,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Material Definition</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Material Definition</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Material Definition</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Material Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22624,15 +21992,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Material Definition Representation</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Material Definition Representation</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Material Definition Representation</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Material Definition Representation</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22641,15 +22006,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Material Layer</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Material Layer</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Material Layer</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Material Layer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22658,15 +22020,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Material Layer Set</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Material Layer Set</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Material Layer Set</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Material Layer Set</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22675,15 +22034,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Material Layer Set Usage</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Material Layer Set Usage</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Material Layer Set Usage</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Material Layer Set Usage</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22692,15 +22048,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Material Layer With Offsets</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Material Layer With Offsets</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Material Layer With Offsets</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Material Layer With Offsets</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22709,15 +22062,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Material List</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Material List</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Material List</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Material List</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22726,15 +22076,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Material Profile</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Material Profile</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Material Profile</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Material Profile</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22743,15 +22090,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Material Profile Set</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Material Profile Set</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Material Profile Set</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Material Profile Set</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22760,15 +22104,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Material Profile Set Usage</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Material Profile Set Usage</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Material Profile Set Usage</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Material Profile Set Usage</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22777,15 +22118,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Material Profile Set Usage Tapering</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Material Profile Set Usage Tapering</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Material Profile Set Usage Tapering</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Material Profile Set Usage Tapering</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22794,15 +22132,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Material Profile With Offsets</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Material Profile With Offsets</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Material Profile With Offsets</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Material Profile With Offsets</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22811,15 +22146,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Material Properties</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Material Properties</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Material Properties</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Material Properties</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22828,15 +22160,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Material Relationship</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Material Relationship</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Material Relationship</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Material Relationship</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22845,15 +22174,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Material Usage Definition</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Material Usage Definition</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Material Usage Definition</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Material Usage Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22862,15 +22188,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Measure With Unit</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Measure With Unit</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Measure With Unit</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Measure With Unit</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22879,15 +22202,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Mechanical Fastener</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Mechanical Fastener</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Mechanical Fastener</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Mechanical Fastener</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22896,15 +22216,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Mechanical Fastener Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Mechanical Fastener Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Mechanical Fastener Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Mechanical Fastener Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22913,15 +22230,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Medical Device</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Medical Device</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Medical Device</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Medical Device</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22930,15 +22244,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Medical Device Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Medical Device Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Medical Device Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Medical Device Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22964,15 +22275,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Member Standard Case</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Member Standard Case</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Member Standard Case</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Member Standard Case</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -22981,15 +22289,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Member Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Member Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Member Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Member Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23015,15 +22320,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Mirrored Profile Def</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Mirrored Profile Def</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Mirrored Profile Def</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Mirrored Profile Def</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23032,15 +22334,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Monetary Unit</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Monetary Unit</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Monetary Unit</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Monetary Unit</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23049,15 +22348,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Motor Connection</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Motor Connection</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Motor Connection</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Motor Connection</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23066,15 +22362,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Motor Connection Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Motor Connection Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Motor Connection Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Motor Connection Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23083,15 +22376,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Named Unit</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Named Unit</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Named Unit</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Named Unit</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23117,15 +22407,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Object Definition</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Object Definition</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Object Definition</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Object Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23134,15 +22421,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Object Placement</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Object Placement</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Object Placement</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Object Placement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23151,15 +22435,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Objective</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Objective</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Objective</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Objective</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23185,15 +22466,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Offset Curve2 D</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Offset Curve2 D</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Offset Curve2 D</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Offset Curve2 D</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23202,15 +22480,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Offset Curve3 D</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Offset Curve3 D</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Offset Curve3 D</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Offset Curve3 D</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23219,15 +22494,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Open Shell</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Open Shell</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Open Shell</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Open Shell</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23236,15 +22508,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Opening Element</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Opening Element</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Opening Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Opening Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23253,15 +22522,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Opening Standard Case</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Opening Standard Case</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Opening Standard Case</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Opening Standard Case</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23270,15 +22536,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Organization</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Organization</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Organization</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Organization</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23287,15 +22550,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Organization Relationship</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Organization Relationship</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Organization Relationship</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Organization Relationship</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23304,15 +22564,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Oriented Edge</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Oriented Edge</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Oriented Edge</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Oriented Edge</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23321,15 +22578,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Outer Boundary Curve</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Outer Boundary Curve</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Outer Boundary Curve</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Outer Boundary Curve</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23355,15 +22609,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Outlet Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Outlet Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Outlet Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Outlet Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23372,15 +22623,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Owner History</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Owner History</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Owner History</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Owner History</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23389,15 +22637,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Parameterized Profile Def</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Parameterized Profile Def</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Parameterized Profile Def</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Parameterized Profile Def</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23440,15 +22685,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Performance History</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Performance History</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Performance History</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Performance History</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23457,15 +22699,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Permeable Covering Properties</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Permeable Covering Properties</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Permeable Covering Properties</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Permeable Covering Properties</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23508,15 +22747,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Person And Organization</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Person And Organization</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Person And Organization</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Person And Organization</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23525,15 +22761,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Physical Complex Quantity</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Physical Complex Quantity</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Physical Complex Quantity</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Physical Complex Quantity</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23542,15 +22775,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Physical Quantity</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Physical Quantity</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Physical Quantity</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Physical Quantity</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23559,15 +22789,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Physical Simple Quantity</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Physical Simple Quantity</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Physical Simple Quantity</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Physical Simple Quantity</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23593,15 +22820,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Pile Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Pile Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Pile Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Pile Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23610,15 +22834,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Pipe Fitting</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Pipe Fitting</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Pipe Fitting</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Pipe Fitting</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23627,15 +22848,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Pipe Fitting Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Pipe Fitting Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Pipe Fitting Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Pipe Fitting Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23644,15 +22862,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Pipe Segment</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Pipe Segment</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Pipe Segment</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Pipe Segment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23661,15 +22876,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Pipe Segment Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Pipe Segment Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Pipe Segment Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Pipe Segment Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23678,15 +22890,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Pixel Texture</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Pixel Texture</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Pixel Texture</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Pixel Texture</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23695,15 +22904,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Placement</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Placement</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Placement</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Placement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23712,15 +22918,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Planar Box</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Planar Box</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Planar Box</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Planar Box</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23729,15 +22932,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Planar Extent</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Planar Extent</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Planar Extent</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Planar Extent</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23780,15 +22980,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Plate Standard Case</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Plate Standard Case</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Plate Standard Case</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Plate Standard Case</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23797,15 +22994,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Plate Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Plate Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Plate Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Plate Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23831,15 +23025,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Point On Curve</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Point On Curve</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Point On Curve</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Point On Curve</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23848,15 +23039,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Point On Surface</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Point On Surface</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Point On Surface</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Point On Surface</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23865,15 +23053,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Poly Loop</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Poly Loop</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Poly Loop</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Poly Loop</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23882,19 +23067,31 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Polygonal Bounded Half Space</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Polygonal Bounded Half Space</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Polygonal Bounded Half Space</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Polygonal Bounded Half Space</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
 	public T caseIfcPolygonalBoundedHalfSpace(IfcPolygonalBoundedHalfSpace object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Polygonal Face Set</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Polygonal Face Set</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcPolygonalFaceSet(IfcPolygonalFaceSet object) {
 		return null;
 	}
 
@@ -23933,15 +23130,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Postal Address</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Postal Address</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Postal Address</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Postal Address</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23950,15 +23144,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Pre Defined Colour</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Pre Defined Colour</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Pre Defined Colour</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Pre Defined Colour</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23967,15 +23158,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Pre Defined Curve Font</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Pre Defined Curve Font</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Pre Defined Curve Font</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Pre Defined Curve Font</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -23984,15 +23172,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Pre Defined Item</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Pre Defined Item</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Pre Defined Item</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Pre Defined Item</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24001,15 +23186,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Pre Defined Properties</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Pre Defined Properties</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Pre Defined Properties</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Pre Defined Properties</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24018,15 +23200,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Pre Defined Property Set</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Pre Defined Property Set</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Pre Defined Property Set</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Pre Defined Property Set</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24035,15 +23214,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Pre Defined Text Font</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Pre Defined Text Font</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Pre Defined Text Font</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Pre Defined Text Font</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24052,15 +23228,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Presentation Item</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Presentation Item</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Presentation Item</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Presentation Item</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24069,15 +23242,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Presentation Layer Assignment</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Presentation Layer Assignment</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Presentation Layer Assignment</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Presentation Layer Assignment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24086,15 +23256,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Presentation Layer With Style</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Presentation Layer With Style</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Presentation Layer With Style</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Presentation Layer With Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24103,15 +23270,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Presentation Style</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Presentation Style</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Presentation Style</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Presentation Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24120,15 +23284,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Presentation Style Assignment</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Presentation Style Assignment</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Presentation Style Assignment</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Presentation Style Assignment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24137,15 +23298,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Procedure</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Procedure</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Procedure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Procedure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24154,15 +23312,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Procedure Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Procedure Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Procedure Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Procedure Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24205,15 +23360,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Product Definition Shape</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Product Definition Shape</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Product Definition Shape</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Product Definition Shape</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24222,15 +23374,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Product Representation</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Product Representation</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Product Representation</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Product Representation</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24239,15 +23388,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Profile Def</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Profile Def</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Profile Def</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Profile Def</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24256,15 +23402,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Profile Properties</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Profile Properties</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Profile Properties</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Profile Properties</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24290,15 +23433,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Project Library</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Project Library</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Project Library</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Project Library</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24307,15 +23447,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Project Order</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Project Order</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Project Order</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Project Order</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24324,15 +23461,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Projected CRS</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Projected CRS</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Projected CRS</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Projected CRS</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24341,15 +23475,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Projection Element</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Projection Element</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Projection Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Projection Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24375,15 +23506,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Property Abstraction</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Property Abstraction</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Property Abstraction</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Property Abstraction</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24392,15 +23520,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Property Bounded Value</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Property Bounded Value</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Property Bounded Value</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Property Bounded Value</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24409,15 +23534,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Property Definition</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Property Definition</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Property Definition</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Property Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24426,15 +23548,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Property Dependency Relationship</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Property Dependency Relationship</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Property Dependency Relationship</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Property Dependency Relationship</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24443,15 +23562,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Property Enumerated Value</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Property Enumerated Value</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Property Enumerated Value</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Property Enumerated Value</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24460,15 +23576,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Property Enumeration</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Property Enumeration</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Property Enumeration</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Property Enumeration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24477,15 +23590,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Property List Value</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Property List Value</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Property List Value</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Property List Value</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24494,15 +23604,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Property Reference Value</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Property Reference Value</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Property Reference Value</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Property Reference Value</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24511,15 +23618,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Property Set</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Property Set</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Property Set</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Property Set</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24528,15 +23632,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Property Set Definition</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Property Set Definition</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Property Set Definition</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Property Set Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24545,15 +23646,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Property Set Template</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Property Set Template</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Property Set Template</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Property Set Template</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24562,15 +23660,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Property Single Value</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Property Single Value</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Property Single Value</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Property Single Value</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24579,15 +23674,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Property Table Value</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Property Table Value</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Property Table Value</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Property Table Value</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24596,15 +23688,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Property Template</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Property Template</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Property Template</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Property Template</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24613,15 +23702,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Property Template Definition</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Property Template Definition</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Property Template Definition</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Property Template Definition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24630,15 +23716,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Protective Device</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Protective Device</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Protective Device</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Protective Device</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24647,15 +23730,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Protective Device Tripping Unit</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Protective Device Tripping Unit</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Protective Device Tripping Unit</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Protective Device Tripping Unit</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24664,15 +23744,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Protective Device Tripping Unit Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Protective Device Tripping Unit Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Protective Device Tripping Unit Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Protective Device Tripping Unit Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24681,15 +23758,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Protective Device Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Protective Device Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Protective Device Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Protective Device Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24732,15 +23806,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Pump Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Pump Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Pump Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Pump Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24749,15 +23820,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Quantity Area</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Quantity Area</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Quantity Area</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Quantity Area</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24766,15 +23834,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Quantity Count</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Quantity Count</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Quantity Count</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Quantity Count</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24783,15 +23848,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Quantity Length</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Quantity Length</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Quantity Length</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Quantity Length</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24800,15 +23862,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Quantity Set</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Quantity Set</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Quantity Set</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Quantity Set</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24817,15 +23876,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Quantity Time</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Quantity Time</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Quantity Time</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Quantity Time</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24834,15 +23890,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Quantity Volume</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Quantity Volume</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Quantity Volume</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Quantity Volume</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24851,15 +23904,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Quantity Weight</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Quantity Weight</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Quantity Weight</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Quantity Weight</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24885,15 +23935,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Railing Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Railing Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Railing Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Railing Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24919,15 +23966,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Ramp Flight</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Ramp Flight</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Ramp Flight</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Ramp Flight</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24936,15 +23980,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Ramp Flight Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Ramp Flight Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Ramp Flight Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Ramp Flight Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24953,15 +23994,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Ramp Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Ramp Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Ramp Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Ramp Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24970,15 +24008,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rational BSpline Curve With Knots</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rational BSpline Curve With Knots</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rational BSpline Curve With Knots</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rational BSpline Curve With Knots</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -24987,15 +24022,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rational BSpline Surface With Knots</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rational BSpline Surface With Knots</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rational BSpline Surface With Knots</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rational BSpline Surface With Knots</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25004,15 +24036,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rectangle Hollow Profile Def</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rectangle Hollow Profile Def</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rectangle Hollow Profile Def</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rectangle Hollow Profile Def</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25021,15 +24050,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rectangle Profile Def</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rectangle Profile Def</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rectangle Profile Def</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rectangle Profile Def</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25038,15 +24064,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rectangular Pyramid</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rectangular Pyramid</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rectangular Pyramid</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rectangular Pyramid</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25055,15 +24078,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rectangular Trimmed Surface</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rectangular Trimmed Surface</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rectangular Trimmed Surface</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rectangular Trimmed Surface</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25072,15 +24092,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Recurrence Pattern</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Recurrence Pattern</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Recurrence Pattern</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Recurrence Pattern</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25089,15 +24106,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Reference</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Reference</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Reference</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25106,15 +24120,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Regular Time Series</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Regular Time Series</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Regular Time Series</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Regular Time Series</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25123,15 +24134,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Reinforcement Bar Properties</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Reinforcement Bar Properties</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Reinforcement Bar Properties</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Reinforcement Bar Properties</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25140,15 +24148,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Reinforcement Definition Properties</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Reinforcement Definition Properties</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Reinforcement Definition Properties</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Reinforcement Definition Properties</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25157,15 +24162,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Reinforcing Bar</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Reinforcing Bar</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Reinforcing Bar</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Reinforcing Bar</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25174,15 +24176,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Reinforcing Bar Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Reinforcing Bar Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Reinforcing Bar Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Reinforcing Bar Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25191,15 +24190,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Reinforcing Element</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Reinforcing Element</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Reinforcing Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Reinforcing Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25208,15 +24204,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Reinforcing Element Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Reinforcing Element Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Reinforcing Element Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Reinforcing Element Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25225,15 +24218,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Reinforcing Mesh</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Reinforcing Mesh</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Reinforcing Mesh</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Reinforcing Mesh</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25242,15 +24232,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Reinforcing Mesh Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Reinforcing Mesh Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Reinforcing Mesh Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Reinforcing Mesh Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25259,15 +24246,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Aggregates</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Aggregates</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Aggregates</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Aggregates</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25276,15 +24260,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Assigns</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Assigns</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Assigns</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Assigns</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25293,15 +24274,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Assigns To Actor</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Assigns To Actor</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Assigns To Actor</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Assigns To Actor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25310,15 +24288,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Assigns To Control</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Assigns To Control</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Assigns To Control</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Assigns To Control</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25327,15 +24302,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Assigns To Group</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Assigns To Group</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Assigns To Group</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Assigns To Group</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25344,15 +24316,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Assigns To Group By Factor</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Assigns To Group By Factor</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Assigns To Group By Factor</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Assigns To Group By Factor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25361,15 +24330,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Assigns To Process</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Assigns To Process</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Assigns To Process</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Assigns To Process</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25378,15 +24344,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Assigns To Product</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Assigns To Product</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Assigns To Product</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Assigns To Product</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25395,15 +24358,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Assigns To Resource</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Assigns To Resource</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Assigns To Resource</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Assigns To Resource</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25412,15 +24372,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Associates</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Associates</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Associates</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Associates</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25429,15 +24386,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Associates Approval</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Associates Approval</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Associates Approval</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Associates Approval</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25446,15 +24400,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Associates Classification</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Associates Classification</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Associates Classification</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Associates Classification</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25463,15 +24414,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Associates Constraint</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Associates Constraint</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Associates Constraint</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Associates Constraint</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25480,15 +24428,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Associates Document</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Associates Document</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Associates Document</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Associates Document</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25497,15 +24442,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Associates Library</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Associates Library</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Associates Library</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Associates Library</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25514,15 +24456,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Associates Material</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Associates Material</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Associates Material</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Associates Material</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25531,15 +24470,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Connects</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Connects</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Connects</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Connects</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25548,15 +24484,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Connects Elements</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Connects Elements</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Connects Elements</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Connects Elements</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25565,15 +24498,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Connects Path Elements</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Connects Path Elements</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Connects Path Elements</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Connects Path Elements</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25582,15 +24512,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Connects Port To Element</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Connects Port To Element</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Connects Port To Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Connects Port To Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25599,15 +24526,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Connects Ports</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Connects Ports</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Connects Ports</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Connects Ports</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25616,15 +24540,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Connects Structural Activity</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Connects Structural Activity</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Connects Structural Activity</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Connects Structural Activity</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25633,15 +24554,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Connects Structural Member</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Connects Structural Member</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Connects Structural Member</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Connects Structural Member</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25650,15 +24568,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Connects With Eccentricity</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Connects With Eccentricity</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Connects With Eccentricity</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Connects With Eccentricity</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25667,15 +24582,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Connects With Realizing Elements</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Connects With Realizing Elements</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Connects With Realizing Elements</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Connects With Realizing Elements</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25684,15 +24596,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Contained In Spatial Structure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Contained In Spatial Structure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Contained In Spatial Structure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Contained In Spatial Structure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25701,15 +24610,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Covers Bldg Elements</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Covers Bldg Elements</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Covers Bldg Elements</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Covers Bldg Elements</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25718,15 +24624,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Covers Spaces</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Covers Spaces</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Covers Spaces</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Covers Spaces</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25735,15 +24638,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Declares</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Declares</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Declares</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Declares</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25752,15 +24652,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Decomposes</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Decomposes</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Decomposes</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Decomposes</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25769,15 +24666,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Defines</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Defines</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Defines</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Defines</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25786,15 +24680,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Defines By Object</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Defines By Object</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Defines By Object</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Defines By Object</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25803,15 +24694,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Defines By Properties</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Defines By Properties</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Defines By Properties</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Defines By Properties</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25820,15 +24708,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Defines By Template</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Defines By Template</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Defines By Template</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Defines By Template</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25837,15 +24722,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Defines By Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Defines By Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Defines By Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Defines By Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25854,15 +24736,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Fills Element</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Fills Element</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Fills Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Fills Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25871,15 +24750,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Flow Control Elements</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Flow Control Elements</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Flow Control Elements</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Flow Control Elements</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25888,15 +24764,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Interferes Elements</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Interferes Elements</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Interferes Elements</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Interferes Elements</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25905,15 +24778,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Nests</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Nests</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Nests</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Nests</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25922,15 +24792,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Projects Element</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Projects Element</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Projects Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Projects Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25939,15 +24806,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Referenced In Spatial Structure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Referenced In Spatial Structure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Referenced In Spatial Structure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Referenced In Spatial Structure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25956,15 +24820,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Sequence</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Sequence</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Sequence</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Sequence</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25973,15 +24834,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Services Buildings</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Services Buildings</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Services Buildings</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Services Buildings</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -25990,15 +24848,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Space Boundary</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Space Boundary</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Space Boundary</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Space Boundary</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26007,15 +24862,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Space Boundary1st Level</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Space Boundary1st Level</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Space Boundary1st Level</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Space Boundary1st Level</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26024,15 +24876,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Space Boundary2nd Level</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Space Boundary2nd Level</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Space Boundary2nd Level</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Space Boundary2nd Level</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26041,15 +24890,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rel Voids Element</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rel Voids Element</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rel Voids Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rel Voids Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26058,15 +24904,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Relationship</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Relationship</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Relationship</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Relationship</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26075,15 +24918,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Reparametrised Composite Curve Segment</em>'. <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Reparametrised Composite Curve Segment</em>'.
+	 * <!-- begin-user-doc -->
 	 * This implementation returns null; returning a non-null result will
 	 * terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Reparametrised Composite Curve Segment</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Reparametrised Composite Curve Segment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26092,15 +24932,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Representation</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Representation</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Representation</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Representation</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26109,15 +24946,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Representation Context</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Representation Context</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Representation Context</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Representation Context</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26126,15 +24960,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Representation Item</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Representation Item</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Representation Item</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Representation Item</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26143,15 +24974,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Representation Map</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Representation Map</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Representation Map</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Representation Map</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26177,15 +25005,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Resource Approval Relationship</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Resource Approval Relationship</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Resource Approval Relationship</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Resource Approval Relationship</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26194,15 +25019,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Resource Constraint Relationship</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Resource Constraint Relationship</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Resource Constraint Relationship</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Resource Constraint Relationship</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26211,15 +25033,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Resource Level Relationship</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Resource Level Relationship</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Resource Level Relationship</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Resource Level Relationship</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26228,15 +25047,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Resource Time</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Resource Time</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Resource Time</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Resource Time</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26245,15 +25061,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Revolved Area Solid</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Revolved Area Solid</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Revolved Area Solid</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Revolved Area Solid</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26262,15 +25075,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Revolved Area Solid Tapered</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Revolved Area Solid Tapered</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Revolved Area Solid Tapered</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Revolved Area Solid Tapered</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26279,15 +25089,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Right Circular Cone</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Right Circular Cone</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Right Circular Cone</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Right Circular Cone</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26296,15 +25103,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Right Circular Cylinder</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Right Circular Cylinder</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Right Circular Cylinder</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Right Circular Cylinder</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26330,15 +25134,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Roof Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Roof Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Roof Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Roof Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26364,15 +25165,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rounded Rectangle Profile Def</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rounded Rectangle Profile Def</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rounded Rectangle Profile Def</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rounded Rectangle Profile Def</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26398,15 +25196,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Sanitary Terminal</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Sanitary Terminal</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Sanitary Terminal</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Sanitary Terminal</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26415,15 +25210,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Sanitary Terminal Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Sanitary Terminal Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Sanitary Terminal Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Sanitary Terminal Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26432,15 +25224,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Scheduling Time</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Scheduling Time</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Scheduling Time</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Scheduling Time</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26449,15 +25238,27 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Section Properties</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Seam Curve</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Seam Curve</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcSeamCurve(IfcSeamCurve object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Section Properties</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Section Properties</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Section Properties</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26466,15 +25267,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Section Reinforcement Properties</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Section Reinforcement Properties</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Section Reinforcement Properties</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Section Reinforcement Properties</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26483,15 +25281,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Sectioned Spine</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Sectioned Spine</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Sectioned Spine</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Sectioned Spine</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26517,15 +25312,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Sensor Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Sensor Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Sensor Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Sensor Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26534,15 +25326,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Shading Device</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Shading Device</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Shading Device</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Shading Device</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26551,15 +25340,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Shading Device Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Shading Device Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Shading Device Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Shading Device Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26568,15 +25354,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Shape Aspect</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Shape Aspect</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Shape Aspect</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Shape Aspect</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26585,15 +25368,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Shape Model</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Shape Model</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Shape Model</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Shape Model</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26602,15 +25382,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Shape Representation</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Shape Representation</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Shape Representation</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Shape Representation</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26619,15 +25396,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Shell Based Surface Model</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Shell Based Surface Model</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Shell Based Surface Model</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Shell Based Surface Model</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26636,15 +25410,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Simple Property</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Simple Property</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Simple Property</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Simple Property</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26653,15 +25424,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Simple Property Template</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Simple Property Template</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Simple Property Template</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Simple Property Template</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26704,15 +25472,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Slab Elemented Case</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Slab Elemented Case</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Slab Elemented Case</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Slab Elemented Case</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26721,15 +25486,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Slab Standard Case</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Slab Standard Case</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Slab Standard Case</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Slab Standard Case</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26738,15 +25500,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Slab Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Slab Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Slab Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Slab Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26755,15 +25514,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Slippage Connection Condition</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Slippage Connection Condition</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Slippage Connection Condition</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Slippage Connection Condition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26772,15 +25528,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Solar Device</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Solar Device</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Solar Device</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Solar Device</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26789,15 +25542,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Solar Device Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Solar Device Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Solar Device Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Solar Device Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26806,15 +25556,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Solid Model</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Solid Model</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Solid Model</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Solid Model</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26840,15 +25587,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Space Heater</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Space Heater</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Space Heater</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Space Heater</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26857,15 +25601,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Space Heater Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Space Heater Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Space Heater Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Space Heater Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26874,15 +25615,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Space Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Space Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Space Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Space Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26891,15 +25629,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Spatial Element</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Spatial Element</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Spatial Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Spatial Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26908,15 +25643,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Spatial Element Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Spatial Element Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Spatial Element Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Spatial Element Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26925,15 +25657,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Spatial Structure Element</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Spatial Structure Element</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Spatial Structure Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Spatial Structure Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26942,15 +25671,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Spatial Structure Element Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Spatial Structure Element Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Spatial Structure Element Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Spatial Structure Element Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26959,15 +25685,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Spatial Zone</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Spatial Zone</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Spatial Zone</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Spatial Zone</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -26976,15 +25699,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Spatial Zone Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Spatial Zone Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Spatial Zone Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Spatial Zone Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27010,15 +25730,27 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Stack Terminal</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Spherical Surface</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Spherical Surface</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcSphericalSurface(IfcSphericalSurface object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Stack Terminal</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Stack Terminal</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Stack Terminal</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27027,15 +25759,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Stack Terminal Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Stack Terminal Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Stack Terminal Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Stack Terminal Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27061,15 +25790,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Stair Flight</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Stair Flight</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Stair Flight</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Stair Flight</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27078,15 +25804,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Stair Flight Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Stair Flight Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Stair Flight Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Stair Flight Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27095,15 +25818,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Stair Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Stair Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Stair Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Stair Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27112,15 +25832,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Action</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Action</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Action</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Action</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27129,15 +25846,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Activity</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Activity</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Activity</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Activity</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27146,15 +25860,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Analysis Model</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Analysis Model</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Analysis Model</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Analysis Model</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27163,15 +25874,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Connection</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Connection</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Connection</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Connection</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27180,15 +25888,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Connection Condition</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Connection Condition</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Connection Condition</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Connection Condition</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27197,15 +25902,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Curve Action</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Curve Action</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Curve Action</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Curve Action</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27214,15 +25916,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Curve Connection</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Curve Connection</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Curve Connection</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Curve Connection</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27231,15 +25930,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Curve Member</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Curve Member</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Curve Member</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Curve Member</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27248,15 +25944,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Curve Member Varying</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Curve Member Varying</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Curve Member Varying</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Curve Member Varying</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27265,15 +25958,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Curve Reaction</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Curve Reaction</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Curve Reaction</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Curve Reaction</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27282,15 +25972,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Item</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Item</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Item</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Item</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27299,15 +25986,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Linear Action</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Linear Action</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Linear Action</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Linear Action</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27316,15 +26000,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Load</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Load</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Load</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Load</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27333,15 +26014,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Load Case</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Load Case</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Load Case</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Load Case</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27350,15 +26028,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Load Configuration</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Load Configuration</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Load Configuration</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Load Configuration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27367,15 +26042,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Load Group</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Load Group</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Load Group</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Load Group</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27384,15 +26056,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Load Linear Force</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Load Linear Force</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Load Linear Force</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Load Linear Force</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27401,15 +26070,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Load Or Result</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Load Or Result</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Load Or Result</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Load Or Result</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27418,15 +26084,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Load Planar Force</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Load Planar Force</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Load Planar Force</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Load Planar Force</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27435,15 +26098,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Load Single Displacement</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Load Single Displacement</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Load Single Displacement</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Load Single Displacement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27452,15 +26112,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Load Single Displacement Distortion</em>'. <!-- begin-user-doc
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Load Single Displacement Distortion</em>'.
+	 * <!-- begin-user-doc
 	 * --> This implementation returns null; returning a non-null result will
 	 * terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Load Single Displacement Distortion</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Load Single Displacement Distortion</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27469,15 +26126,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Load Single Force</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Load Single Force</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Load Single Force</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Load Single Force</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27486,15 +26140,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Load Single Force Warping</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Load Single Force Warping</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Load Single Force Warping</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Load Single Force Warping</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27503,15 +26154,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Load Static</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Load Static</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Load Static</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Load Static</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27520,15 +26168,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Load Temperature</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Load Temperature</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Load Temperature</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Load Temperature</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27537,15 +26182,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Member</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Member</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Member</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Member</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27554,15 +26196,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Planar Action</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Planar Action</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Planar Action</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Planar Action</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27571,15 +26210,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Point Action</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Point Action</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Point Action</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Point Action</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27588,15 +26224,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Point Connection</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Point Connection</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Point Connection</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Point Connection</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27605,15 +26238,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Point Reaction</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Point Reaction</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Point Reaction</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Point Reaction</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27622,15 +26252,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Reaction</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Reaction</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Reaction</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Reaction</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27639,15 +26266,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Result Group</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Result Group</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Result Group</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Result Group</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27656,15 +26280,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Surface Action</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Surface Action</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Surface Action</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Surface Action</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27673,15 +26294,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Surface Connection</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Surface Connection</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Surface Connection</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Surface Connection</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27690,15 +26308,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Surface Member</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Surface Member</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Surface Member</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Surface Member</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27707,15 +26322,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Surface Member Varying</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Surface Member Varying</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Surface Member Varying</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Surface Member Varying</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27724,15 +26336,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Surface Reaction</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Surface Reaction</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Surface Reaction</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Surface Reaction</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27741,15 +26350,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Style Model</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Style Model</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Style Model</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Style Model</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27758,15 +26364,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Styled Item</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Styled Item</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Styled Item</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Styled Item</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27775,15 +26378,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Styled Representation</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Styled Representation</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Styled Representation</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Styled Representation</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27792,15 +26392,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Sub Contract Resource</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Sub Contract Resource</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Sub Contract Resource</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Sub Contract Resource</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27809,15 +26406,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Sub Contract Resource Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Sub Contract Resource Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Sub Contract Resource Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Sub Contract Resource Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27860,15 +26454,27 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Surface Curve Swept Area Solid</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Surface Curve</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Surface Curve</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcSurfaceCurve(IfcSurfaceCurve object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Surface Curve Swept Area Solid</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Surface Curve Swept Area Solid</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Surface Curve Swept Area Solid</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27877,15 +26483,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Surface Feature</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Surface Feature</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Surface Feature</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Surface Feature</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27894,15 +26497,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Surface Of Linear Extrusion</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Surface Of Linear Extrusion</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Surface Of Linear Extrusion</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Surface Of Linear Extrusion</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27911,15 +26511,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Surface Of Revolution</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Surface Of Revolution</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Surface Of Revolution</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Surface Of Revolution</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27928,15 +26525,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Surface Reinforcement Area</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Surface Reinforcement Area</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Surface Reinforcement Area</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Surface Reinforcement Area</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27945,15 +26539,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Surface Style</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Surface Style</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Surface Style</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Surface Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27962,15 +26553,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Surface Style Lighting</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Surface Style Lighting</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Surface Style Lighting</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Surface Style Lighting</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27979,15 +26567,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Surface Style Refraction</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Surface Style Refraction</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Surface Style Refraction</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Surface Style Refraction</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -27996,15 +26581,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Surface Style Rendering</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Surface Style Rendering</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Surface Style Rendering</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Surface Style Rendering</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28013,15 +26595,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Surface Style Shading</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Surface Style Shading</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Surface Style Shading</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Surface Style Shading</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28030,15 +26609,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Surface Style With Textures</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Surface Style With Textures</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Surface Style With Textures</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Surface Style With Textures</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28047,15 +26623,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Surface Texture</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Surface Texture</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Surface Texture</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Surface Texture</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28064,15 +26637,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Swept Area Solid</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Swept Area Solid</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Swept Area Solid</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Swept Area Solid</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28081,15 +26651,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Swept Disk Solid</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Swept Disk Solid</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Swept Disk Solid</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Swept Disk Solid</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28098,15 +26665,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Swept Disk Solid Polygonal</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Swept Disk Solid Polygonal</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Swept Disk Solid Polygonal</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Swept Disk Solid Polygonal</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28115,15 +26679,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Swept Surface</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Swept Surface</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Swept Surface</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Swept Surface</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28132,15 +26693,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Switching Device</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Switching Device</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Switching Device</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Switching Device</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28149,15 +26707,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Switching Device Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Switching Device Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Switching Device Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Switching Device Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28183,15 +26738,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * System Furniture Element</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc System Furniture Element</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         System Furniture Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc System Furniture Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28200,15 +26752,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * System Furniture Element Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc System Furniture Element Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         System Furniture Element Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc System Furniture Element Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28217,15 +26766,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * TShape Profile Def</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc TShape Profile Def</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         TShape Profile Def</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc TShape Profile Def</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28251,15 +26797,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Table Column</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Table Column</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Table Column</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Table Column</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28268,15 +26811,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Table Row</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Table Row</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Table Row</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Table Row</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28302,15 +26842,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Tank Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Tank Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Tank Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Tank Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28336,15 +26873,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Task Time</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Task Time</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Task Time</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Task Time</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28353,15 +26887,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Task Time Recurring</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Task Time Recurring</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Task Time Recurring</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Task Time Recurring</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28370,15 +26901,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Task Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Task Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Task Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Task Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28387,15 +26915,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Telecom Address</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Telecom Address</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Telecom Address</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Telecom Address</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28421,15 +26946,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Tendon Anchor</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Tendon Anchor</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Tendon Anchor</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Tendon Anchor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28438,15 +26960,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Tendon Anchor Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Tendon Anchor Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Tendon Anchor Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Tendon Anchor Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28455,15 +26974,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Tendon Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Tendon Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Tendon Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Tendon Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28472,15 +26988,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Tessellated Face Set</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Tessellated Face Set</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Tessellated Face Set</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Tessellated Face Set</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28489,15 +27002,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Tessellated Item</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Tessellated Item</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Tessellated Item</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Tessellated Item</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28506,15 +27016,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Text Literal</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Text Literal</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Text Literal</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Text Literal</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28523,15 +27030,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Text Literal With Extent</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Text Literal With Extent</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Text Literal With Extent</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Text Literal With Extent</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28540,15 +27044,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Text Style</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Text Style</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Text Style</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Text Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28557,15 +27058,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Text Style Font Model</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Text Style Font Model</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Text Style Font Model</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Text Style Font Model</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28574,15 +27072,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Text Style For Defined Font</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Text Style For Defined Font</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Text Style For Defined Font</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Text Style For Defined Font</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28591,15 +27086,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Text Style Text Model</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Text Style Text Model</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Text Style Text Model</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Text Style Text Model</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28608,15 +27100,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Texture Coordinate</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Texture Coordinate</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Texture Coordinate</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Texture Coordinate</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28625,15 +27114,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Texture Coordinate Generator</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Texture Coordinate Generator</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Texture Coordinate Generator</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Texture Coordinate Generator</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28642,15 +27128,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Texture Map</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Texture Map</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Texture Map</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Texture Map</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28659,15 +27142,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Texture Vertex</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Texture Vertex</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Texture Vertex</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Texture Vertex</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28676,15 +27156,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Texture Vertex List</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Texture Vertex List</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Texture Vertex List</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Texture Vertex List</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28693,15 +27170,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Time Period</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Time Period</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Time Period</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Time Period</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28710,15 +27184,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Time Series</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Time Series</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Time Series</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Time Series</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28727,15 +27198,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Time Series Value</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Time Series Value</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Time Series Value</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Time Series Value</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28744,15 +27212,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Topological Representation Item</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Topological Representation Item</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Topological Representation Item</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Topological Representation Item</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28761,15 +27226,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Topology Representation</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Topology Representation</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Topology Representation</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Topology Representation</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28778,15 +27240,27 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Transformer</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Toroidal Surface</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Toroidal Surface</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcToroidalSurface(IfcToroidalSurface object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Transformer</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Transformer</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Transformer</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28795,15 +27269,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Transformer Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Transformer Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Transformer Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Transformer Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28812,15 +27283,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Transport Element</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Transport Element</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Transport Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Transport Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28829,15 +27297,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Transport Element Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Transport Element Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Transport Element Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Transport Element Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28846,15 +27311,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Trapezium Profile Def</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Trapezium Profile Def</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Trapezium Profile Def</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Trapezium Profile Def</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28863,15 +27325,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Triangulated Face Set</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Triangulated Face Set</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Triangulated Face Set</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Triangulated Face Set</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28880,15 +27339,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Trimmed Curve</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Trimmed Curve</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Trimmed Curve</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Trimmed Curve</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28897,15 +27353,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Tube Bundle</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Tube Bundle</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Tube Bundle</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Tube Bundle</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28914,15 +27367,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Tube Bundle Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Tube Bundle Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Tube Bundle Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Tube Bundle Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28931,15 +27381,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Type Object</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Type Object</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Type Object</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Type Object</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28948,15 +27395,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Type Process</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Type Process</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Type Process</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Type Process</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28965,15 +27409,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Type Product</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Type Product</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Type Product</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Type Product</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28982,15 +27423,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Type Resource</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Type Resource</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Type Resource</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Type Resource</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -28999,15 +27437,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * UShape Profile Def</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc UShape Profile Def</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         UShape Profile Def</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc UShape Profile Def</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29016,15 +27451,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Unit Assignment</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Unit Assignment</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Unit Assignment</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Unit Assignment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29033,15 +27465,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Unitary Control Element</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Unitary Control Element</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Unitary Control Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Unitary Control Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29050,15 +27479,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Unitary Control Element Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Unitary Control Element Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Unitary Control Element Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Unitary Control Element Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29067,15 +27493,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Unitary Equipment</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Unitary Equipment</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Unitary Equipment</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Unitary Equipment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29084,15 +27507,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Unitary Equipment Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Unitary Equipment Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Unitary Equipment Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Unitary Equipment Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29118,15 +27538,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Valve Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Valve Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Valve Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Valve Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29169,15 +27586,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Vertex Loop</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Vertex Loop</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Vertex Loop</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Vertex Loop</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29186,15 +27600,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Vertex Point</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Vertex Point</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Vertex Point</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Vertex Point</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29203,15 +27614,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Vibration Isolator</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Vibration Isolator</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Vibration Isolator</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Vibration Isolator</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29220,15 +27628,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Vibration Isolator Type</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Vibration Isolator Type</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Vibration Isolator Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Vibration Isolator Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29237,15 +27642,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Virtual Element</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Virtual Element</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Virtual Element</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Virtual Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29254,15 +27656,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Virtual Grid Intersection</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Virtual Grid Intersection</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Virtual Grid Intersection</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Virtual Grid Intersection</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29271,15 +27670,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Voiding Feature</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Voiding Feature</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Voiding Feature</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Voiding Feature</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29305,15 +27701,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Wall Elemented Case</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Wall Elemented Case</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Wall Elemented Case</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Wall Elemented Case</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29322,15 +27715,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Wall Standard Case</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Wall Standard Case</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Wall Standard Case</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Wall Standard Case</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29339,15 +27729,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Wall Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Wall Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Wall Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Wall Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29356,15 +27743,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Waste Terminal</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Waste Terminal</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Waste Terminal</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Waste Terminal</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29373,15 +27757,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Waste Terminal Type</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Waste Terminal Type</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Waste Terminal Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Waste Terminal Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29407,15 +27788,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Window Lining Properties</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Window Lining Properties</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Window Lining Properties</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Window Lining Properties</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29424,15 +27802,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Window Panel Properties</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Window Panel Properties</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Window Panel Properties</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Window Panel Properties</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29441,15 +27816,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Window Standard Case</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Window Standard Case</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Window Standard Case</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Window Standard Case</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29458,15 +27830,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Window Style</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Window Style</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Window Style</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Window Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29475,15 +27844,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Window Type</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Window Type</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Window Type</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Window Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29492,15 +27858,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Work Calendar</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Work Calendar</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Work Calendar</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Work Calendar</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29509,15 +27872,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Work Control</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Work Control</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Work Control</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Work Control</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29526,15 +27886,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Work Plan</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Work Plan</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Work Plan</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Work Plan</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29543,15 +27900,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Work Schedule</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Work Schedule</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Work Schedule</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Work Schedule</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29560,15 +27914,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Work Time</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Work Time</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Work Time</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Work Time</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29577,15 +27928,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * ZShape Profile Def</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc ZShape Profile Def</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         ZShape Profile Def</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc ZShape Profile Def</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29611,15 +27959,27 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Absorbed Dose Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Stripped Optional</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Stripped Optional</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcStrippedOptional(IfcStrippedOptional object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Absorbed Dose Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Absorbed Dose Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Absorbed Dose Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29628,15 +27988,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Acceleration Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Acceleration Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Acceleration Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Acceleration Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29645,15 +28002,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Amount Of Substance Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Amount Of Substance Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Amount Of Substance Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Amount Of Substance Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29662,15 +28016,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Angular Velocity Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Angular Velocity Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Angular Velocity Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Angular Velocity Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29679,15 +28030,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Area Density Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Area Density Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Area Density Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Area Density Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29696,19 +28044,31 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Area Measure</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Area Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Area Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Area Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
 	public T caseIfcAreaMeasure(IfcAreaMeasure object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Binary</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Binary</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcBinary(IfcBinary object) {
 		return null;
 	}
 
@@ -29730,15 +28090,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Cardinal Point Reference</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Cardinal Point Reference</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Cardinal Point Reference</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Cardinal Point Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29747,15 +28104,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Context Dependent Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Context Dependent Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Context Dependent Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Context Dependent Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29764,15 +28118,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Count Measure</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Count Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Count Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Count Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29781,15 +28132,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Curvature Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Curvature Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Curvature Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Curvature Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29815,15 +28163,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Date Time</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Date Time</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Date Time</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Date Time</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29832,15 +28177,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Day In Month Number</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Day In Month Number</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Day In Month Number</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Day In Month Number</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29849,15 +28191,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Day In Week Number</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Day In Week Number</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Day In Week Number</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Day In Week Number</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29866,15 +28205,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Descriptive Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Descriptive Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Descriptive Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Descriptive Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29883,15 +28219,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Dimension Count</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Dimension Count</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Dimension Count</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Dimension Count</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29900,15 +28233,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Dose Equivalent Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Dose Equivalent Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Dose Equivalent Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Dose Equivalent Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29934,15 +28264,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Dynamic Viscosity Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Dynamic Viscosity Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Dynamic Viscosity Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Dynamic Viscosity Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29951,15 +28278,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Electric Capacitance Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Electric Capacitance Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Electric Capacitance Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Electric Capacitance Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29968,15 +28292,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Electric Charge Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Electric Charge Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Electric Charge Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Electric Charge Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -29985,15 +28306,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Electric Conductance Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Electric Conductance Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Electric Conductance Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Electric Conductance Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30002,15 +28320,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Electric Current Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Electric Current Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Electric Current Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Electric Current Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30019,15 +28334,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Electric Resistance Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Electric Resistance Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Electric Resistance Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Electric Resistance Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30036,15 +28348,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Electric Voltage Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Electric Voltage Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Electric Voltage Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Electric Voltage Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30053,15 +28362,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Energy Measure</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Energy Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Energy Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Energy Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30070,15 +28376,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Font Style</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Font Style</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Font Style</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Font Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30087,15 +28390,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Font Variant</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Font Variant</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Font Variant</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Font Variant</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30104,15 +28404,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Font Weight</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Font Weight</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Font Weight</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Font Weight</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30121,15 +28418,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Force Measure</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Force Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Force Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Force Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30138,15 +28432,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Frequency Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Frequency Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Frequency Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Frequency Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30155,15 +28446,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Globally Unique Id</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Globally Unique Id</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Globally Unique Id</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Globally Unique Id</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30172,15 +28460,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Heat Flux Density Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Heat Flux Density Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Heat Flux Density Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Heat Flux Density Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30189,15 +28474,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Heating Value Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Heating Value Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Heating Value Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Heating Value Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30206,15 +28488,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Identifier</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Identifier</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Identifier</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Identifier</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30223,15 +28502,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Illuminance Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Illuminance Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Illuminance Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Illuminance Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30240,15 +28516,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Inductance Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Inductance Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Inductance Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Inductance Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30274,15 +28547,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Integer Count Rate Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Integer Count Rate Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Integer Count Rate Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Integer Count Rate Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30291,15 +28561,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Ion Concentration Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Ion Concentration Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Ion Concentration Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Ion Concentration Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30308,15 +28575,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Isothermal Moisture Capacity Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Isothermal Moisture Capacity Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Isothermal Moisture Capacity Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Isothermal Moisture Capacity Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30325,15 +28589,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Kinematic Viscosity Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Kinematic Viscosity Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Kinematic Viscosity Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Kinematic Viscosity Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30359,15 +28620,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Length Measure</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Length Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Length Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Length Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30376,15 +28634,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Linear Force Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Linear Force Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Linear Force Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Linear Force Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30393,15 +28648,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Linear Moment Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Linear Moment Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Linear Moment Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Linear Moment Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30410,15 +28662,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Linear Stiffness Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Linear Stiffness Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Linear Stiffness Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Linear Stiffness Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30427,15 +28676,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Linear Velocity Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Linear Velocity Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Linear Velocity Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Linear Velocity Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30461,15 +28707,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Luminous Flux Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Luminous Flux Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Luminous Flux Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Luminous Flux Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30478,15 +28721,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Luminous Intensity Distribution Measure</em>'. <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Luminous Intensity Distribution Measure</em>'.
+	 * <!-- begin-user-doc -->
 	 * This implementation returns null; returning a non-null result will
 	 * terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Luminous Intensity Distribution Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Luminous Intensity Distribution Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30495,15 +28735,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Luminous Intensity Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Luminous Intensity Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Luminous Intensity Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Luminous Intensity Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30512,15 +28749,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Magnetic Flux Density Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Magnetic Flux Density Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Magnetic Flux Density Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Magnetic Flux Density Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30529,15 +28763,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Magnetic Flux Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Magnetic Flux Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Magnetic Flux Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Magnetic Flux Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30546,15 +28777,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Mass Density Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Mass Density Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Mass Density Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Mass Density Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30563,15 +28791,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Mass Flow Rate Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Mass Flow Rate Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Mass Flow Rate Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Mass Flow Rate Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30580,15 +28805,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Mass Measure</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Mass Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Mass Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Mass Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30597,15 +28819,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Mass Per Length Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Mass Per Length Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Mass Per Length Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Mass Per Length Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30614,15 +28833,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Modulus Of Elasticity Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Modulus Of Elasticity Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Modulus Of Elasticity Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Modulus Of Elasticity Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30631,15 +28847,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Modulus Of Linear Subgrade Reaction Measure</em>'. <!-- begin-user-doc
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Modulus Of Linear Subgrade Reaction Measure</em>'.
+	 * <!-- begin-user-doc
 	 * --> This implementation returns null; returning a non-null result will
 	 * terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Modulus Of Linear Subgrade Reaction Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Modulus Of Linear Subgrade Reaction Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30665,15 +28878,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Modulus Of Subgrade Reaction Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Modulus Of Subgrade Reaction Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Modulus Of Subgrade Reaction Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Modulus Of Subgrade Reaction Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30682,15 +28892,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Moisture Diffusivity Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Moisture Diffusivity Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Moisture Diffusivity Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Moisture Diffusivity Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30699,15 +28906,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Molecular Weight Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Molecular Weight Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Molecular Weight Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Molecular Weight Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30716,15 +28920,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Moment Of Inertia Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Moment Of Inertia Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Moment Of Inertia Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Moment Of Inertia Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30733,15 +28934,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Monetary Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Monetary Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Monetary Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Monetary Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30750,15 +28948,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Month In Year Number</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Month In Year Number</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Month In Year Number</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Month In Year Number</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30767,15 +28962,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Numeric Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Numeric Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Numeric Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Numeric Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30784,15 +28976,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * PH Measure</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc PH Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         PH Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc PH Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30801,15 +28990,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Parameter Value</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Parameter Value</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Parameter Value</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Parameter Value</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30818,15 +29004,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Planar Force Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Planar Force Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Planar Force Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Planar Force Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30835,15 +29018,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Plane Angle Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Plane Angle Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Plane Angle Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Plane Angle Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30852,15 +29032,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Power Measure</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Power Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Power Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Power Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30869,15 +29046,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Presentable Text</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Presentable Text</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Presentable Text</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Presentable Text</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30886,15 +29060,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Pressure Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Pressure Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Pressure Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Pressure Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30903,15 +29074,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Radio Activity Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Radio Activity Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Radio Activity Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Radio Activity Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30920,15 +29088,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Ratio Measure</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Ratio Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Ratio Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Ratio Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30954,15 +29119,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rotational Frequency Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rotational Frequency Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rotational Frequency Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rotational Frequency Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30971,15 +29133,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rotational Mass Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rotational Mass Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rotational Mass Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rotational Mass Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -30988,15 +29147,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rotational Stiffness Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rotational Stiffness Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rotational Stiffness Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rotational Stiffness Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31005,15 +29161,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Section Modulus Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Section Modulus Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Section Modulus Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Section Modulus Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31022,15 +29175,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Sectional Area Integral Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Sectional Area Integral Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Sectional Area Integral Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Sectional Area Integral Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31039,15 +29189,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Shear Modulus Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Shear Modulus Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Shear Modulus Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Shear Modulus Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31056,15 +29203,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Solid Angle Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Solid Angle Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Solid Angle Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Solid Angle Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31073,15 +29217,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Sound Power Level Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Sound Power Level Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Sound Power Level Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Sound Power Level Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31090,15 +29231,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Sound Power Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Sound Power Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Sound Power Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Sound Power Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31107,15 +29245,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Sound Pressure Level Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Sound Pressure Level Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Sound Pressure Level Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Sound Pressure Level Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31124,15 +29259,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Sound Pressure Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Sound Pressure Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Sound Pressure Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Sound Pressure Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31141,15 +29273,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Specific Heat Capacity Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Specific Heat Capacity Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Specific Heat Capacity Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Specific Heat Capacity Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31158,15 +29287,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Specular Exponent</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Specular Exponent</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Specular Exponent</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Specular Exponent</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31175,15 +29301,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Specular Roughness</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Specular Roughness</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Specular Roughness</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Specular Roughness</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31192,15 +29315,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Temperature Gradient Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Temperature Gradient Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Temperature Gradient Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Temperature Gradient Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31209,15 +29329,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Temperature Rate Of Change Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Temperature Rate Of Change Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Temperature Rate Of Change Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Temperature Rate Of Change Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31243,15 +29360,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Text Alignment</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Text Alignment</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Text Alignment</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Text Alignment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31260,15 +29374,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Text Decoration</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Text Decoration</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Text Decoration</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Text Decoration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31277,15 +29388,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Text Font Name</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Text Font Name</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Text Font Name</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Text Font Name</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31294,15 +29402,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Text Transformation</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Text Transformation</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Text Transformation</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Text Transformation</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31311,15 +29416,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Thermal Admittance Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Thermal Admittance Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Thermal Admittance Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Thermal Admittance Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31328,15 +29430,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Thermal Conductivity Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Thermal Conductivity Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Thermal Conductivity Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Thermal Conductivity Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31345,15 +29444,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Thermal Expansion Coefficient Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Thermal Expansion Coefficient Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Thermal Expansion Coefficient Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Thermal Expansion Coefficient Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31362,15 +29458,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Thermal Resistance Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Thermal Resistance Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Thermal Resistance Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Thermal Resistance Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31379,15 +29472,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Thermal Transmittance Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Thermal Transmittance Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Thermal Transmittance Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Thermal Transmittance Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31396,15 +29486,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Thermodynamic Temperature Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Thermodynamic Temperature Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Thermodynamic Temperature Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Thermodynamic Temperature Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31430,15 +29517,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Time Measure</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Time Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Time Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Time Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31447,15 +29531,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Time Stamp</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Time Stamp</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Time Stamp</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Time Stamp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31464,15 +29545,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Torque Measure</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Torque Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Torque Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Torque Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31481,15 +29559,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * URI Reference</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc URI Reference</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         URI Reference</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc URI Reference</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31498,15 +29573,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Vapor Permeability Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Vapor Permeability Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Vapor Permeability Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Vapor Permeability Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31515,15 +29587,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Volume Measure</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Volume Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Volume Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Volume Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31532,15 +29601,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Volumetric Flow Rate Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Volumetric Flow Rate Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Volumetric Flow Rate Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Volumetric Flow Rate Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31549,15 +29615,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Warping Constant Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Warping Constant Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Warping Constant Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Warping Constant Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31566,15 +29629,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Warping Moment Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Warping Moment Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Warping Moment Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Warping Moment Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31583,15 +29643,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Box Alignment</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Box Alignment</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Box Alignment</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Box Alignment</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31600,15 +29657,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Compound Plane Angle Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Compound Plane Angle Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Compound Plane Angle Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Compound Plane Angle Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31617,15 +29671,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Language Id</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Language Id</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Language Id</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Language Id</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31634,15 +29685,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Non Negative Length Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Non Negative Length Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Non Negative Length Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Non Negative Length Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31651,15 +29699,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Normalised Ratio Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Normalised Ratio Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Normalised Ratio Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Normalised Ratio Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31668,15 +29713,27 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Positive Length Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Positive Integer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Positive Integer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcPositiveInteger(IfcPositiveInteger object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Positive Length Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Positive Length Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Positive Length Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31685,15 +29742,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Positive Plane Angle Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Positive Plane Angle Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Positive Plane Angle Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Positive Plane Angle Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31702,15 +29756,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Positive Ratio Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Positive Ratio Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Positive Ratio Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Positive Ratio Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31719,15 +29770,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Complex Number</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Complex Number</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Complex Number</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Complex Number</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31736,15 +29784,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Null Style</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Null Style</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Null Style</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Null Style</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31753,15 +29798,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Actor Select</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Actor Select</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Actor Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Actor Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31770,15 +29812,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Applied Value Select</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Applied Value Select</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Applied Value Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Applied Value Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31787,15 +29826,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Axis2 Placement</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Axis2 Placement</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Axis2 Placement</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Axis2 Placement</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31804,15 +29840,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Bending Parameter Select</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Bending Parameter Select</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Bending Parameter Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Bending Parameter Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31821,15 +29854,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Boolean Operand</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Boolean Operand</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Boolean Operand</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Boolean Operand</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31838,15 +29868,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Classification Reference Select</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Classification Reference Select</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Classification Reference Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Classification Reference Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31855,15 +29882,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Classification Select</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Classification Select</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Classification Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Classification Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31889,15 +29913,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Colour Or Factor</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Colour Or Factor</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Colour Or Factor</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Colour Or Factor</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31906,15 +29927,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Coordinate Reference System Select</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Coordinate Reference System Select</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Coordinate Reference System Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Coordinate Reference System Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31923,15 +29941,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Csg Select</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Csg Select</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Csg Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Csg Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31940,15 +29955,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Curve Font Or Scaled Curve Font Select</em>'. <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Curve Font Or Scaled Curve Font Select</em>'.
+	 * <!-- begin-user-doc -->
 	 * This implementation returns null; returning a non-null result will
 	 * terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Curve Font Or Scaled Curve Font Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Curve Font Or Scaled Curve Font Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31957,15 +29969,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Curve On Surface</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Curve On Surface</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Curve On Surface</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Curve On Surface</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31974,15 +29983,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Curve Or Edge Curve</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Curve Or Edge Curve</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Curve Or Edge Curve</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Curve Or Edge Curve</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -31991,15 +29997,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Curve Style Font Select</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Curve Style Font Select</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Curve Style Font Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Curve Style Font Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32008,15 +30011,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Definition Select</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Definition Select</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Definition Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Definition Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32025,15 +30025,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Derived Measure Value</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Derived Measure Value</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Derived Measure Value</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Derived Measure Value</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32042,15 +30039,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Document Select</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Document Select</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Document Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Document Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32059,15 +30053,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Fill Style Select</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Fill Style Select</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Fill Style Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Fill Style Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32076,15 +30067,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Geometric Set Select</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Geometric Set Select</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Geometric Set Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Geometric Set Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32093,15 +30081,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Grid Placement Direction Select</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Grid Placement Direction Select</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Grid Placement Direction Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Grid Placement Direction Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32110,15 +30095,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Hatch Line Distance Select</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Hatch Line Distance Select</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Hatch Line Distance Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Hatch Line Distance Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32127,15 +30109,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Layered Item</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Layered Item</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Layered Item</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Layered Item</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32144,15 +30123,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Library Select</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Library Select</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Library Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Library Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32161,15 +30137,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Light Distribution Data Source Select</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Light Distribution Data Source Select</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Light Distribution Data Source Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Light Distribution Data Source Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32178,15 +30151,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Material Select</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Material Select</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Material Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Material Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32195,15 +30165,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Measure Value</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Measure Value</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Measure Value</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Measure Value</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32212,15 +30179,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Metric Value Select</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Metric Value Select</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Metric Value Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Metric Value Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32229,15 +30193,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Modulus Of Rotational Subgrade Reaction Select</em>'. <!-- begin-user-doc
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Modulus Of Rotational Subgrade Reaction Select</em>'.
+	 * <!-- begin-user-doc
 	 * --> This implementation returns null; returning a non-null result will
 	 * terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Modulus Of Rotational Subgrade Reaction Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Modulus Of Rotational Subgrade Reaction Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32246,15 +30207,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Modulus Of Subgrade Reaction Select</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Modulus Of Subgrade Reaction Select</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Modulus Of Subgrade Reaction Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Modulus Of Subgrade Reaction Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32280,15 +30238,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Object Reference Select</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Object Reference Select</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Object Reference Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Object Reference Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32297,15 +30252,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Point Or Vertex Point</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Point Or Vertex Point</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Point Or Vertex Point</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Point Or Vertex Point</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32314,15 +30266,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Presentation Style Select</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Presentation Style Select</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Presentation Style Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Presentation Style Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32331,15 +30280,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Process Select</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Process Select</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Process Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Process Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32348,15 +30294,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Product Representation Select</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Product Representation Select</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Product Representation Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Product Representation Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32365,15 +30308,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Product Select</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Product Select</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Product Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Product Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32382,15 +30322,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Property Set Definition Select</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Property Set Definition Select</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Property Set Definition Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Property Set Definition Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32399,15 +30336,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Resource Object Select</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Resource Object Select</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Resource Object Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Resource Object Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32416,15 +30350,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Resource Select</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Resource Select</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Resource Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Resource Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32433,19 +30364,31 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Rotational Stiffness Select</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Rotational Stiffness Select</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Rotational Stiffness Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Rotational Stiffness Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
 	public T caseIfcRotationalStiffnessSelect(IfcRotationalStiffnessSelect object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Segment Index Select</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Segment Index Select</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIfcSegmentIndexSelect(IfcSegmentIndexSelect object) {
 		return null;
 	}
 
@@ -32467,15 +30410,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Simple Value</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Simple Value</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Simple Value</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Simple Value</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32484,15 +30424,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Size Select</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Size Select</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Size Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Size Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32501,15 +30438,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Solid Or Shell</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Solid Or Shell</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Solid Or Shell</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Solid Or Shell</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32518,15 +30452,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Space Boundary Select</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Space Boundary Select</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Space Boundary Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Space Boundary Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32535,15 +30466,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Specular Highlight Select</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Specular Highlight Select</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Specular Highlight Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Specular Highlight Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32552,15 +30480,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Structural Activity Assignment Select</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Structural Activity Assignment Select</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Structural Activity Assignment Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Structural Activity Assignment Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32569,15 +30494,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Style Assignment Select</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Style Assignment Select</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Style Assignment Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Style Assignment Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32586,15 +30508,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Surface Or Face Surface</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Surface Or Face Surface</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Surface Or Face Surface</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Surface Or Face Surface</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32603,15 +30522,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Surface Style Element Select</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Surface Style Element Select</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Surface Style Element Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Surface Style Element Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32620,15 +30536,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Text Font Select</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Text Font Select</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Text Font Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Text Font Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32637,15 +30550,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Time Or Ratio Select</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Time Or Ratio Select</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Time Or Ratio Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Time Or Ratio Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32654,15 +30564,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Translational Stiffness Select</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Translational Stiffness Select</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Translational Stiffness Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Translational Stiffness Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32671,15 +30578,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Trimming Select</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Trimming Select</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Trimming Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Trimming Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32722,15 +30626,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Vector Or Direction</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Vector Or Direction</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Vector Or Direction</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Vector Or Direction</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32739,15 +30640,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Ifc
-	 * Warping Stiffness Select</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Ifc Warping Stiffness Select</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Ifc
-	 *         Warping Stiffness Select</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ifc Warping Stiffness Select</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32756,15 +30654,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>List
-	 * Of Ifc Cartesian Point</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>List Of Ifc Cartesian Point</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>List
-	 *         Of Ifc Cartesian Point</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>List Of Ifc Cartesian Point</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32773,15 +30668,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>List
-	 * Of Ifc Length Measure</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>List Of Ifc Length Measure</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>List
-	 *         Of Ifc Length Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>List Of Ifc Length Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32790,15 +30682,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>List
-	 * Of Ifc Normalised Ratio Measure</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>List Of Ifc Normalised Ratio Measure</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate
 	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>List
-	 *         Of Ifc Normalised Ratio Measure</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>List Of Ifc Normalised Ratio Measure</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32824,15 +30713,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>List
-	 * Of EDouble</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>List Of EDouble</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>List
-	 *         Of EDouble</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>List Of EDouble</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32841,15 +30727,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>List
-	 * Of Ifc Parameter Value</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>List Of Ifc Parameter Value</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>List
-	 *         Of Ifc Parameter Value</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>List Of Ifc Parameter Value</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -32858,15 +30741,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of
-	 * '<em>EObject</em>'. <!-- begin-user-doc --> This implementation returns
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * <!-- begin-user-doc --> This implementation returns
 	 * null; returning a non-null result will terminate the switch, but this is
 	 * the last case anyway. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of
-	 *         '<em>EObject</em>'.
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */

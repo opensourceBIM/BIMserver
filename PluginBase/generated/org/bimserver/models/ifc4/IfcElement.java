@@ -39,6 +39,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcElement#getProvidesBoundaries <em>Provides Boundaries</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcElement#getConnectedFrom <em>Connected From</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcElement#getContainedInStructure <em>Contained In Structure</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcElement#getHasCoverings <em>Has Coverings</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcElement()
@@ -545,5 +546,46 @@ public interface IfcElement extends IfcProduct, IfcStructuralActivityAssignmentS
 	 * @generated
 	 */
 	boolean isSetContainedInStructure();
+
+	/**
+	 * Returns the value of the '<em><b>Has Coverings</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.ifc4.IfcRelCoversBldgElements}.
+	 * It is bidirectional and its opposite is '{@link org.bimserver.models.ifc4.IfcRelCoversBldgElements#getRelatingBuildingElement <em>Relating Building Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Has Coverings</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Has Coverings</em>' reference list.
+	 * @see #isSetHasCoverings()
+	 * @see #unsetHasCoverings()
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcElement_HasCoverings()
+	 * @see org.bimserver.models.ifc4.IfcRelCoversBldgElements#getRelatingBuildingElement
+	 * @model opposite="RelatingBuildingElement" unsettable="true"
+	 * @generated
+	 */
+	EList<IfcRelCoversBldgElements> getHasCoverings();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcElement#getHasCoverings <em>Has Coverings</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHasCoverings()
+	 * @see #getHasCoverings()
+	 * @generated
+	 */
+	void unsetHasCoverings();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcElement#getHasCoverings <em>Has Coverings</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Has Coverings</em>' reference list is set.
+	 * @see #unsetHasCoverings()
+	 * @see #getHasCoverings()
+	 * @generated
+	 */
+	boolean isSetHasCoverings();
 
 } // IfcElement

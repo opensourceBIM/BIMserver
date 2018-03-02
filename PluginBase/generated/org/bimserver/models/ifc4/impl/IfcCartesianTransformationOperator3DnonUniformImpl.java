@@ -32,6 +32,10 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCartesianTransformationOperator3DnonUniformImpl#getScale2AsString <em>Scale2 As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCartesianTransformationOperator3DnonUniformImpl#getScale3 <em>Scale3</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcCartesianTransformationOperator3DnonUniformImpl#getScale3AsString <em>Scale3 As String</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcCartesianTransformationOperator3DnonUniformImpl#getScl3 <em>Scl3</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcCartesianTransformationOperator3DnonUniformImpl#getScl3AsString <em>Scl3 As String</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcCartesianTransformationOperator3DnonUniformImpl#getScl2 <em>Scl2</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcCartesianTransformationOperator3DnonUniformImpl#getScl2AsString <em>Scl2 As String</em>}</li>
  * </ul>
  *
  * @generated
@@ -198,6 +202,150 @@ public class IfcCartesianTransformationOperator3DnonUniformImpl extends IfcCarte
 	 */
 	public boolean isSetScale3AsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_DNON_UNIFORM__SCALE3_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public double getScl3() {
+		return (Double) eGet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_DNON_UNIFORM__SCL3, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setScl3(double newScl3) {
+		eSet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_DNON_UNIFORM__SCL3, newScl3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetScl3() {
+		eUnset(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_DNON_UNIFORM__SCL3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetScl3() {
+		return eIsSet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_DNON_UNIFORM__SCL3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getScl3AsString() {
+		return (String) eGet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_DNON_UNIFORM__SCL3_AS_STRING, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setScl3AsString(String newScl3AsString) {
+		eSet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_DNON_UNIFORM__SCL3_AS_STRING, newScl3AsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetScl3AsString() {
+		eUnset(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_DNON_UNIFORM__SCL3_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetScl3AsString() {
+		return eIsSet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_DNON_UNIFORM__SCL3_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public double getScl2() {
+		return (Double) eGet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_DNON_UNIFORM__SCL2, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setScl2(double newScl2) {
+		eSet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_DNON_UNIFORM__SCL2, newScl2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetScl2() {
+		eUnset(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_DNON_UNIFORM__SCL2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetScl2() {
+		return eIsSet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_DNON_UNIFORM__SCL2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getScl2AsString() {
+		return (String) eGet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_DNON_UNIFORM__SCL2_AS_STRING, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setScl2AsString(String newScl2AsString) {
+		eSet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_DNON_UNIFORM__SCL2_AS_STRING, newScl2AsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetScl2AsString() {
+		eUnset(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_DNON_UNIFORM__SCL2_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetScl2AsString() {
+		return eIsSet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_DNON_UNIFORM__SCL2_AS_STRING);
 	}
 
 } //IfcCartesianTransformationOperator3DnonUniformImpl

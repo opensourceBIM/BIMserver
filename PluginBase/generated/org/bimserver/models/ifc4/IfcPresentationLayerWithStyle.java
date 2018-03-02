@@ -27,9 +27,9 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.bimserver.models.ifc4.IfcPresentationLayerWithStyle#isLayerOn <em>Layer On</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcPresentationLayerWithStyle#isLayerFrozen <em>Layer Frozen</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcPresentationLayerWithStyle#isLayerBlocked <em>Layer Blocked</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcPresentationLayerWithStyle#getLayerOn <em>Layer On</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcPresentationLayerWithStyle#getLayerFrozen <em>Layer Frozen</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcPresentationLayerWithStyle#getLayerBlocked <em>Layer Blocked</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcPresentationLayerWithStyle#getLayerStyles <em>Layer Styles</em>}</li>
  * </ul>
  *
@@ -40,6 +40,7 @@ import org.eclipse.emf.common.util.EList;
 public interface IfcPresentationLayerWithStyle extends IfcPresentationLayerAssignment {
 	/**
 	 * Returns the value of the '<em><b>Layer On</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.bimserver.models.ifc4.Tristate}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Layer On</em>' attribute isn't clear,
@@ -47,25 +48,28 @@ public interface IfcPresentationLayerWithStyle extends IfcPresentationLayerAssig
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Layer On</em>' attribute.
-	 * @see #setLayerOn(boolean)
+	 * @see org.bimserver.models.ifc4.Tristate
+	 * @see #setLayerOn(Tristate)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPresentationLayerWithStyle_LayerOn()
 	 * @model
 	 * @generated
 	 */
-	boolean isLayerOn();
+	Tristate getLayerOn();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcPresentationLayerWithStyle#isLayerOn <em>Layer On</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcPresentationLayerWithStyle#getLayerOn <em>Layer On</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Layer On</em>' attribute.
-	 * @see #isLayerOn()
+	 * @see org.bimserver.models.ifc4.Tristate
+	 * @see #getLayerOn()
 	 * @generated
 	 */
-	void setLayerOn(boolean value);
+	void setLayerOn(Tristate value);
 
 	/**
 	 * Returns the value of the '<em><b>Layer Frozen</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.bimserver.models.ifc4.Tristate}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Layer Frozen</em>' attribute isn't clear,
@@ -73,25 +77,28 @@ public interface IfcPresentationLayerWithStyle extends IfcPresentationLayerAssig
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Layer Frozen</em>' attribute.
-	 * @see #setLayerFrozen(boolean)
+	 * @see org.bimserver.models.ifc4.Tristate
+	 * @see #setLayerFrozen(Tristate)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPresentationLayerWithStyle_LayerFrozen()
 	 * @model
 	 * @generated
 	 */
-	boolean isLayerFrozen();
+	Tristate getLayerFrozen();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcPresentationLayerWithStyle#isLayerFrozen <em>Layer Frozen</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcPresentationLayerWithStyle#getLayerFrozen <em>Layer Frozen</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Layer Frozen</em>' attribute.
-	 * @see #isLayerFrozen()
+	 * @see org.bimserver.models.ifc4.Tristate
+	 * @see #getLayerFrozen()
 	 * @generated
 	 */
-	void setLayerFrozen(boolean value);
+	void setLayerFrozen(Tristate value);
 
 	/**
 	 * Returns the value of the '<em><b>Layer Blocked</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.bimserver.models.ifc4.Tristate}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Layer Blocked</em>' attribute isn't clear,
@@ -99,22 +106,24 @@ public interface IfcPresentationLayerWithStyle extends IfcPresentationLayerAssig
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Layer Blocked</em>' attribute.
-	 * @see #setLayerBlocked(boolean)
+	 * @see org.bimserver.models.ifc4.Tristate
+	 * @see #setLayerBlocked(Tristate)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPresentationLayerWithStyle_LayerBlocked()
 	 * @model
 	 * @generated
 	 */
-	boolean isLayerBlocked();
+	Tristate getLayerBlocked();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcPresentationLayerWithStyle#isLayerBlocked <em>Layer Blocked</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcPresentationLayerWithStyle#getLayerBlocked <em>Layer Blocked</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Layer Blocked</em>' attribute.
-	 * @see #isLayerBlocked()
+	 * @see org.bimserver.models.ifc4.Tristate
+	 * @see #getLayerBlocked()
 	 * @generated
 	 */
-	void setLayerBlocked(boolean value);
+	void setLayerBlocked(Tristate value);
 
 	/**
 	 * Returns the value of the '<em><b>Layer Styles</b></em>' reference list.

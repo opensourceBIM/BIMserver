@@ -33,7 +33,8 @@ import org.eclipse.emf.ecore.EClass;
  * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcIndexedColourMapImpl#getMappedTo <em>Mapped To</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.impl.IfcIndexedColourMapImpl#getOverrides <em>Overrides</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcIndexedColourMapImpl#getOpacity <em>Opacity</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcIndexedColourMapImpl#getOpacityAsString <em>Opacity As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcIndexedColourMapImpl#getColours <em>Colours</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcIndexedColourMapImpl#getColourIndex <em>Colour Index</em>}</li>
  * </ul>
@@ -83,8 +84,8 @@ public class IfcIndexedColourMapImpl extends IfcPresentationItemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcSurfaceStyleShading getOverrides() {
-		return (IfcSurfaceStyleShading) eGet(Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__OVERRIDES, true);
+	public double getOpacity() {
+		return (Double) eGet(Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__OPACITY, true);
 	}
 
 	/**
@@ -92,8 +93,8 @@ public class IfcIndexedColourMapImpl extends IfcPresentationItemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOverrides(IfcSurfaceStyleShading newOverrides) {
-		eSet(Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__OVERRIDES, newOverrides);
+	public void setOpacity(double newOpacity) {
+		eSet(Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__OPACITY, newOpacity);
 	}
 
 	/**
@@ -101,8 +102,8 @@ public class IfcIndexedColourMapImpl extends IfcPresentationItemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetOverrides() {
-		eUnset(Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__OVERRIDES);
+	public void unsetOpacity() {
+		eUnset(Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__OPACITY);
 	}
 
 	/**
@@ -110,8 +111,44 @@ public class IfcIndexedColourMapImpl extends IfcPresentationItemImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isSetOverrides() {
-		return eIsSet(Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__OVERRIDES);
+	public boolean isSetOpacity() {
+		return eIsSet(Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__OPACITY);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getOpacityAsString() {
+		return (String) eGet(Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__OPACITY_AS_STRING, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOpacityAsString(String newOpacityAsString) {
+		eSet(Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__OPACITY_AS_STRING, newOpacityAsString);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetOpacityAsString() {
+		eUnset(Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__OPACITY_AS_STRING);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOpacityAsString() {
+		return eIsSet(Ifc4Package.Literals.IFC_INDEXED_COLOUR_MAP__OPACITY_AS_STRING);
 	}
 
 	/**

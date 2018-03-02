@@ -18,6 +18,7 @@ package org.bimserver.models.ifc4.impl;
 
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcAxis2Placement;
+import org.bimserver.models.ifc4.IfcCoordinateOperation;
 import org.bimserver.models.ifc4.IfcDirection;
 import org.bimserver.models.ifc4.IfcGeometricRepresentationContext;
 import org.bimserver.models.ifc4.IfcGeometricRepresentationSubContext;
@@ -38,6 +39,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcGeometricRepresentationContextImpl#getWorldCoordinateSystem <em>World Coordinate System</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcGeometricRepresentationContextImpl#getTrueNorth <em>True North</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcGeometricRepresentationContextImpl#getHasSubContexts <em>Has Sub Contexts</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcGeometricRepresentationContextImpl#getHasCoordinateOperation <em>Has Coordinate Operation</em>}</li>
  * </ul>
  *
  * @generated
@@ -232,6 +234,34 @@ public class IfcGeometricRepresentationContextImpl extends IfcRepresentationCont
 	 */
 	public boolean isSetHasSubContexts() {
 		return eIsSet(Ifc4Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__HAS_SUB_CONTEXTS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<IfcCoordinateOperation> getHasCoordinateOperation() {
+		return (EList<IfcCoordinateOperation>) eGet(Ifc4Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__HAS_COORDINATE_OPERATION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetHasCoordinateOperation() {
+		eUnset(Ifc4Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__HAS_COORDINATE_OPERATION);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHasCoordinateOperation() {
+		return eIsSet(Ifc4Package.Literals.IFC_GEOMETRIC_REPRESENTATION_CONTEXT__HAS_COORDINATE_OPERATION);
 	}
 
 } //IfcGeometricRepresentationContextImpl

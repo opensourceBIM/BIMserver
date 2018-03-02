@@ -738,6 +738,15 @@ public interface Ifc4Factory extends EFactory {
 	IfcCartesianPointList createIfcCartesianPointList();
 
 	/**
+	 * Returns a new object of class '<em>Ifc Cartesian Point List2 D</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Cartesian Point List2 D</em>'.
+	 * @generated
+	 */
+	IfcCartesianPointList2D createIfcCartesianPointList2D();
+
+	/**
 	 * Returns a new object of class '<em>Ifc Cartesian Point List3 D</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2889,6 +2898,33 @@ public interface Ifc4Factory extends EFactory {
 	IfcIndexedColourMap createIfcIndexedColourMap();
 
 	/**
+	 * Returns a new object of class '<em>Ifc Indexed Poly Curve</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Indexed Poly Curve</em>'.
+	 * @generated
+	 */
+	IfcIndexedPolyCurve createIfcIndexedPolyCurve();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Indexed Polygonal Face</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Indexed Polygonal Face</em>'.
+	 * @generated
+	 */
+	IfcIndexedPolygonalFace createIfcIndexedPolygonalFace();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Indexed Polygonal Face With Voids</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Indexed Polygonal Face With Voids</em>'.
+	 * @generated
+	 */
+	IfcIndexedPolygonalFaceWithVoids createIfcIndexedPolygonalFaceWithVoids();
+
+	/**
 	 * Returns a new object of class '<em>Ifc Indexed Texture Map</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2923,6 +2959,15 @@ public interface Ifc4Factory extends EFactory {
 	 * @generated
 	 */
 	IfcInterceptorType createIfcInterceptorType();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Intersection Curve</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Intersection Curve</em>'.
+	 * @generated
+	 */
+	IfcIntersectionCurve createIfcIntersectionCurve();
 
 	/**
 	 * Returns a new object of class '<em>Ifc Inventory</em>'.
@@ -3904,6 +3949,15 @@ public interface Ifc4Factory extends EFactory {
 	 * @generated
 	 */
 	IfcPolygonalBoundedHalfSpace createIfcPolygonalBoundedHalfSpace();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Polygonal Face Set</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Polygonal Face Set</em>'.
+	 * @generated
+	 */
+	IfcPolygonalFaceSet createIfcPolygonalFaceSet();
 
 	/**
 	 * Returns a new object of class '<em>Ifc Polyline</em>'.
@@ -5256,6 +5310,15 @@ public interface Ifc4Factory extends EFactory {
 	IfcSchedulingTime createIfcSchedulingTime();
 
 	/**
+	 * Returns a new object of class '<em>Ifc Seam Curve</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Seam Curve</em>'.
+	 * @generated
+	 */
+	IfcSeamCurve createIfcSeamCurve();
+
+	/**
 	 * Returns a new object of class '<em>Ifc Section Properties</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5551,6 +5614,15 @@ public interface Ifc4Factory extends EFactory {
 	 * @generated
 	 */
 	IfcSphere createIfcSphere();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Spherical Surface</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Spherical Surface</em>'.
+	 * @generated
+	 */
+	IfcSphericalSurface createIfcSphericalSurface();
 
 	/**
 	 * Returns a new object of class '<em>Ifc Stack Terminal</em>'.
@@ -6001,6 +6073,15 @@ public interface Ifc4Factory extends EFactory {
 	 * @generated
 	 */
 	IfcSurface createIfcSurface();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Surface Curve</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Surface Curve</em>'.
+	 * @generated
+	 */
+	IfcSurfaceCurve createIfcSurfaceCurve();
 
 	/**
 	 * Returns a new object of class '<em>Ifc Surface Curve Swept Area Solid</em>'.
@@ -6489,6 +6570,15 @@ public interface Ifc4Factory extends EFactory {
 	IfcTopologyRepresentation createIfcTopologyRepresentation();
 
 	/**
+	 * Returns a new object of class '<em>Ifc Toroidal Surface</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Toroidal Surface</em>'.
+	 * @generated
+	 */
+	IfcToroidalSurface createIfcToroidalSurface();
+
+	/**
 	 * Returns a new object of class '<em>Ifc Transformer</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6930,6 +7020,15 @@ public interface Ifc4Factory extends EFactory {
 	IfcZone createIfcZone();
 
 	/**
+	 * Returns a new object of class '<em>Ifc Stripped Optional</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Stripped Optional</em>'.
+	 * @generated
+	 */
+	IfcStrippedOptional createIfcStrippedOptional();
+
+	/**
 	 * Returns a new object of class '<em>Ifc Absorbed Dose Measure</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6982,6 +7081,15 @@ public interface Ifc4Factory extends EFactory {
 	 * @generated
 	 */
 	IfcAreaMeasure createIfcAreaMeasure();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Binary</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Binary</em>'.
+	 * @generated
+	 */
+	IfcBinary createIfcBinary();
 
 	/**
 	 * Returns a new object of class '<em>Ifc Boolean</em>'.
@@ -8017,6 +8125,15 @@ public interface Ifc4Factory extends EFactory {
 	 * @generated
 	 */
 	IfcNormalisedRatioMeasure createIfcNormalisedRatioMeasure();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Positive Integer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Positive Integer</em>'.
+	 * @generated
+	 */
+	IfcPositiveInteger createIfcPositiveInteger();
 
 	/**
 	 * Returns a new object of class '<em>Ifc Positive Length Measure</em>'.

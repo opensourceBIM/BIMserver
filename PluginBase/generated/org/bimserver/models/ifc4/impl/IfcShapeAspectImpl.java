@@ -21,6 +21,7 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcProductRepresentationSelect;
 import org.bimserver.models.ifc4.IfcShapeAspect;
 import org.bimserver.models.ifc4.IfcShapeModel;
+import org.bimserver.models.ifc4.Tristate;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
@@ -35,7 +36,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcShapeAspectImpl#getShapeRepresentations <em>Shape Representations</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcShapeAspectImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcShapeAspectImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.impl.IfcShapeAspectImpl#isProductDefinitional <em>Product Definitional</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcShapeAspectImpl#getProductDefinitional <em>Product Definitional</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcShapeAspectImpl#getPartOfProductDefinitionShape <em>Part Of Product Definition Shape</em>}</li>
  * </ul>
  *
@@ -158,8 +159,8 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isProductDefinitional() {
-		return (Boolean) eGet(Ifc4Package.Literals.IFC_SHAPE_ASPECT__PRODUCT_DEFINITIONAL, true);
+	public Tristate getProductDefinitional() {
+		return (Tristate) eGet(Ifc4Package.Literals.IFC_SHAPE_ASPECT__PRODUCT_DEFINITIONAL, true);
 	}
 
 	/**
@@ -167,7 +168,7 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setProductDefinitional(boolean newProductDefinitional) {
+	public void setProductDefinitional(Tristate newProductDefinitional) {
 		eSet(Ifc4Package.Literals.IFC_SHAPE_ASPECT__PRODUCT_DEFINITIONAL, newProductDefinitional);
 	}
 

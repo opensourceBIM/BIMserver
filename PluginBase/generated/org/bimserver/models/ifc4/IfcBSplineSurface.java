@@ -31,9 +31,11 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurface#getVDegree <em>VDegree</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurface#getControlPointsList <em>Control Points List</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurface#getSurfaceForm <em>Surface Form</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurface#isUClosed <em>UClosed</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurface#isVClosed <em>VClosed</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurface#isSelfIntersect <em>Self Intersect</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurface#getUClosed <em>UClosed</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurface#getVClosed <em>VClosed</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurface#getSelfIntersect <em>Self Intersect</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurface#getUUpper <em>UUpper</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcBSplineSurface#getVUpper <em>VUpper</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBSplineSurface()
@@ -140,6 +142,7 @@ public interface IfcBSplineSurface extends IfcBoundedSurface {
 
 	/**
 	 * Returns the value of the '<em><b>UClosed</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.bimserver.models.ifc4.Tristate}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>UClosed</em>' attribute isn't clear,
@@ -147,25 +150,28 @@ public interface IfcBSplineSurface extends IfcBoundedSurface {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>UClosed</em>' attribute.
-	 * @see #setUClosed(boolean)
+	 * @see org.bimserver.models.ifc4.Tristate
+	 * @see #setUClosed(Tristate)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBSplineSurface_UClosed()
 	 * @model
 	 * @generated
 	 */
-	boolean isUClosed();
+	Tristate getUClosed();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcBSplineSurface#isUClosed <em>UClosed</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcBSplineSurface#getUClosed <em>UClosed</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>UClosed</em>' attribute.
-	 * @see #isUClosed()
+	 * @see org.bimserver.models.ifc4.Tristate
+	 * @see #getUClosed()
 	 * @generated
 	 */
-	void setUClosed(boolean value);
+	void setUClosed(Tristate value);
 
 	/**
 	 * Returns the value of the '<em><b>VClosed</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.bimserver.models.ifc4.Tristate}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>VClosed</em>' attribute isn't clear,
@@ -173,25 +179,28 @@ public interface IfcBSplineSurface extends IfcBoundedSurface {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>VClosed</em>' attribute.
-	 * @see #setVClosed(boolean)
+	 * @see org.bimserver.models.ifc4.Tristate
+	 * @see #setVClosed(Tristate)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBSplineSurface_VClosed()
 	 * @model
 	 * @generated
 	 */
-	boolean isVClosed();
+	Tristate getVClosed();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcBSplineSurface#isVClosed <em>VClosed</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcBSplineSurface#getVClosed <em>VClosed</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>VClosed</em>' attribute.
-	 * @see #isVClosed()
+	 * @see org.bimserver.models.ifc4.Tristate
+	 * @see #getVClosed()
 	 * @generated
 	 */
-	void setVClosed(boolean value);
+	void setVClosed(Tristate value);
 
 	/**
 	 * Returns the value of the '<em><b>Self Intersect</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.bimserver.models.ifc4.Tristate}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Self Intersect</em>' attribute isn't clear,
@@ -199,21 +208,129 @@ public interface IfcBSplineSurface extends IfcBoundedSurface {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Self Intersect</em>' attribute.
-	 * @see #setSelfIntersect(boolean)
+	 * @see org.bimserver.models.ifc4.Tristate
+	 * @see #setSelfIntersect(Tristate)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBSplineSurface_SelfIntersect()
 	 * @model
 	 * @generated
 	 */
-	boolean isSelfIntersect();
+	Tristate getSelfIntersect();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcBSplineSurface#isSelfIntersect <em>Self Intersect</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcBSplineSurface#getSelfIntersect <em>Self Intersect</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Self Intersect</em>' attribute.
-	 * @see #isSelfIntersect()
+	 * @see org.bimserver.models.ifc4.Tristate
+	 * @see #getSelfIntersect()
 	 * @generated
 	 */
-	void setSelfIntersect(boolean value);
+	void setSelfIntersect(Tristate value);
+
+	/**
+	 * Returns the value of the '<em><b>UUpper</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>UUpper</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>UUpper</em>' attribute.
+	 * @see #isSetUUpper()
+	 * @see #unsetUUpper()
+	 * @see #setUUpper(long)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBSplineSurface_UUpper()
+	 * @model unsettable="true" derived="true"
+	 * @generated
+	 */
+	long getUUpper();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcBSplineSurface#getUUpper <em>UUpper</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>UUpper</em>' attribute.
+	 * @see #isSetUUpper()
+	 * @see #unsetUUpper()
+	 * @see #getUUpper()
+	 * @generated
+	 */
+	void setUUpper(long value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcBSplineSurface#getUUpper <em>UUpper</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetUUpper()
+	 * @see #getUUpper()
+	 * @see #setUUpper(long)
+	 * @generated
+	 */
+	void unsetUUpper();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcBSplineSurface#getUUpper <em>UUpper</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>UUpper</em>' attribute is set.
+	 * @see #unsetUUpper()
+	 * @see #getUUpper()
+	 * @see #setUUpper(long)
+	 * @generated
+	 */
+	boolean isSetUUpper();
+
+	/**
+	 * Returns the value of the '<em><b>VUpper</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>VUpper</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>VUpper</em>' attribute.
+	 * @see #isSetVUpper()
+	 * @see #unsetVUpper()
+	 * @see #setVUpper(long)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBSplineSurface_VUpper()
+	 * @model unsettable="true" derived="true"
+	 * @generated
+	 */
+	long getVUpper();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcBSplineSurface#getVUpper <em>VUpper</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>VUpper</em>' attribute.
+	 * @see #isSetVUpper()
+	 * @see #unsetVUpper()
+	 * @see #getVUpper()
+	 * @generated
+	 */
+	void setVUpper(long value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcBSplineSurface#getVUpper <em>VUpper</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetVUpper()
+	 * @see #getVUpper()
+	 * @see #setVUpper(long)
+	 * @generated
+	 */
+	void unsetVUpper();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcBSplineSurface#getVUpper <em>VUpper</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>VUpper</em>' attribute is set.
+	 * @see #unsetVUpper()
+	 * @see #getVUpper()
+	 * @see #setVUpper(long)
+	 * @generated
+	 */
+	boolean isSetVUpper();
 
 } // IfcBSplineSurface

@@ -28,6 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcEdgeLoop#getEdgeList <em>Edge List</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcEdgeLoop#getNe <em>Ne</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcEdgeLoop()
@@ -50,5 +51,58 @@ public interface IfcEdgeLoop extends IfcLoop {
 	 * @generated
 	 */
 	EList<IfcOrientedEdge> getEdgeList();
+
+	/**
+	 * Returns the value of the '<em><b>Ne</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Ne</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Ne</em>' attribute.
+	 * @see #isSetNe()
+	 * @see #unsetNe()
+	 * @see #setNe(long)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcEdgeLoop_Ne()
+	 * @model unsettable="true" derived="true"
+	 * @generated
+	 */
+	long getNe();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcEdgeLoop#getNe <em>Ne</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Ne</em>' attribute.
+	 * @see #isSetNe()
+	 * @see #unsetNe()
+	 * @see #getNe()
+	 * @generated
+	 */
+	void setNe(long value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcEdgeLoop#getNe <em>Ne</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetNe()
+	 * @see #getNe()
+	 * @see #setNe(long)
+	 * @generated
+	 */
+	void unsetNe();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcEdgeLoop#getNe <em>Ne</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Ne</em>' attribute is set.
+	 * @see #unsetNe()
+	 * @see #getNe()
+	 * @see #setNe(long)
+	 * @generated
+	 */
+	boolean isSetNe();
 
 } // IfcEdgeLoop

@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bimserver.models.ifc4.impl.IfcTaskTimeRecurringImpl#getRecurrance <em>Recurrance</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcTaskTimeRecurringImpl#getRecurrence <em>Recurrence</em>}</li>
  * </ul>
  *
  * @generated
@@ -59,8 +59,8 @@ public class IfcTaskTimeRecurringImpl extends IfcTaskTimeImpl implements IfcTask
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IfcRecurrencePattern getRecurrance() {
-		return (IfcRecurrencePattern) eGet(Ifc4Package.Literals.IFC_TASK_TIME_RECURRING__RECURRANCE, true);
+	public IfcRecurrencePattern getRecurrence() {
+		return (IfcRecurrencePattern) eGet(Ifc4Package.Literals.IFC_TASK_TIME_RECURRING__RECURRENCE, true);
 	}
 
 	/**
@@ -68,8 +68,8 @@ public class IfcTaskTimeRecurringImpl extends IfcTaskTimeImpl implements IfcTask
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRecurrance(IfcRecurrencePattern newRecurrance) {
-		eSet(Ifc4Package.Literals.IFC_TASK_TIME_RECURRING__RECURRANCE, newRecurrance);
+	public void setRecurrence(IfcRecurrencePattern newRecurrence) {
+		eSet(Ifc4Package.Literals.IFC_TASK_TIME_RECURRING__RECURRENCE, newRecurrence);
 	}
 
 } //IfcTaskTimeRecurringImpl

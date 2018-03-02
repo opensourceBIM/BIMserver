@@ -363,7 +363,8 @@ public enum IfcSanitaryTerminalTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSanitaryTerminalTypeEnum[] VALUES_ARRAY = new IfcSanitaryTerminalTypeEnum[] { NULL, NOTDEFINED, SHOWER, SINK, CISTERN, WASHHANDBASIN, BIDET, USERDEFINED, SANITARYFOUNTAIN, TOILETPAN, URINAL, BATH, WCSEAT, };
+	private static final IfcSanitaryTerminalTypeEnum[] VALUES_ARRAY = new IfcSanitaryTerminalTypeEnum[] { NULL, NOTDEFINED, SHOWER, SINK, CISTERN, WASHHANDBASIN, BIDET, USERDEFINED, SANITARYFOUNTAIN,
+			TOILETPAN, URINAL, BATH, WCSEAT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Sanitary Terminal Type Enum</b></em>' enumerators.

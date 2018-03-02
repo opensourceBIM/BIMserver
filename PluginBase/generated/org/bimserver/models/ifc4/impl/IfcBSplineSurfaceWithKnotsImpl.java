@@ -37,6 +37,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceWithKnotsImpl#getVKnots <em>VKnots</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceWithKnotsImpl#getVKnotsAsString <em>VKnots As String</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceWithKnotsImpl#getKnotSpec <em>Knot Spec</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceWithKnotsImpl#getKnotVUpper <em>Knot VUpper</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcBSplineSurfaceWithKnotsImpl#getKnotUUpper <em>Knot UUpper</em>}</li>
  * </ul>
  *
  * @generated
@@ -137,6 +139,78 @@ public class IfcBSplineSurfaceWithKnotsImpl extends IfcBSplineSurfaceImpl implem
 	 */
 	public void setKnotSpec(IfcKnotType newKnotSpec) {
 		eSet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__KNOT_SPEC, newKnotSpec);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getKnotVUpper() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__KNOT_VUPPER, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setKnotVUpper(long newKnotVUpper) {
+		eSet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__KNOT_VUPPER, newKnotVUpper);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetKnotVUpper() {
+		eUnset(Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__KNOT_VUPPER);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetKnotVUpper() {
+		return eIsSet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__KNOT_VUPPER);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getKnotUUpper() {
+		return (Long) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__KNOT_UUPPER, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setKnotUUpper(long newKnotUUpper) {
+		eSet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__KNOT_UUPPER, newKnotUUpper);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetKnotUUpper() {
+		eUnset(Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__KNOT_UUPPER);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetKnotUUpper() {
+		return eIsSet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE_WITH_KNOTS__KNOT_UUPPER);
 	}
 
 } //IfcBSplineSurfaceWithKnotsImpl

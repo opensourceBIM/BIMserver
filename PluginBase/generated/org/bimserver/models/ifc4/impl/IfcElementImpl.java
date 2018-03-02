@@ -21,6 +21,7 @@ import org.bimserver.models.ifc4.IfcElement;
 import org.bimserver.models.ifc4.IfcRelConnectsElements;
 import org.bimserver.models.ifc4.IfcRelConnectsWithRealizingElements;
 import org.bimserver.models.ifc4.IfcRelContainedInSpatialStructure;
+import org.bimserver.models.ifc4.IfcRelCoversBldgElements;
 import org.bimserver.models.ifc4.IfcRelFillsElement;
 import org.bimserver.models.ifc4.IfcRelInterferesElements;
 import org.bimserver.models.ifc4.IfcRelProjectsElement;
@@ -50,6 +51,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcElementImpl#getProvidesBoundaries <em>Provides Boundaries</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcElementImpl#getConnectedFrom <em>Connected From</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcElementImpl#getContainedInStructure <em>Contained In Structure</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcElementImpl#getHasCoverings <em>Has Coverings</em>}</li>
  * </ul>
  *
  * @generated
@@ -416,6 +418,34 @@ public class IfcElementImpl extends IfcProductImpl implements IfcElement {
 	 */
 	public boolean isSetContainedInStructure() {
 		return eIsSet(Ifc4Package.Literals.IFC_ELEMENT__CONTAINED_IN_STRUCTURE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<IfcRelCoversBldgElements> getHasCoverings() {
+		return (EList<IfcRelCoversBldgElements>) eGet(Ifc4Package.Literals.IFC_ELEMENT__HAS_COVERINGS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetHasCoverings() {
+		eUnset(Ifc4Package.Literals.IFC_ELEMENT__HAS_COVERINGS);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetHasCoverings() {
+		return eIsSet(Ifc4Package.Literals.IFC_ELEMENT__HAS_COVERINGS);
 	}
 
 } //IfcElementImpl

@@ -26,6 +26,7 @@ package org.bimserver.models.ifc4;
  * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.IfcBuildingSystem#getPredefinedType <em>Predefined Type</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcBuildingSystem#getLongName <em>Long Name</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBuildingSystem()
@@ -88,5 +89,58 @@ public interface IfcBuildingSystem extends IfcSystem {
 	 * @generated
 	 */
 	boolean isSetPredefinedType();
+
+	/**
+	 * Returns the value of the '<em><b>Long Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Long Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Long Name</em>' attribute.
+	 * @see #isSetLongName()
+	 * @see #unsetLongName()
+	 * @see #setLongName(String)
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBuildingSystem_LongName()
+	 * @model unsettable="true"
+	 * @generated
+	 */
+	String getLongName();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.ifc4.IfcBuildingSystem#getLongName <em>Long Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Long Name</em>' attribute.
+	 * @see #isSetLongName()
+	 * @see #unsetLongName()
+	 * @see #getLongName()
+	 * @generated
+	 */
+	void setLongName(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcBuildingSystem#getLongName <em>Long Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetLongName()
+	 * @see #getLongName()
+	 * @see #setLongName(String)
+	 * @generated
+	 */
+	void unsetLongName();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcBuildingSystem#getLongName <em>Long Name</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Long Name</em>' attribute is set.
+	 * @see #unsetLongName()
+	 * @see #getLongName()
+	 * @see #setLongName(String)
+	 * @generated
+	 */
+	boolean isSetLongName();
 
 } // IfcBuildingSystem

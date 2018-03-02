@@ -16,6 +16,8 @@
  */
 package org.bimserver.models.ifc4;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Ifc Coordinate Reference System</b></em>'.
@@ -29,6 +31,7 @@ package org.bimserver.models.ifc4;
  *   <li>{@link org.bimserver.models.ifc4.IfcCoordinateReferenceSystem#getDescription <em>Description</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCoordinateReferenceSystem#getGeodeticDatum <em>Geodetic Datum</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcCoordinateReferenceSystem#getVerticalDatum <em>Vertical Datum</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcCoordinateReferenceSystem#getHasCoordinateOperation <em>Has Coordinate Operation</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCoordinateReferenceSystem()
@@ -45,11 +48,9 @@ public interface IfcCoordinateReferenceSystem extends IfcCoordinateReferenceSyst
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #isSetName()
-	 * @see #unsetName()
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCoordinateReferenceSystem_Name()
-	 * @model unsettable="true"
+	 * @model
 	 * @generated
 	 */
 	String getName();
@@ -59,35 +60,10 @@ public interface IfcCoordinateReferenceSystem extends IfcCoordinateReferenceSyst
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #isSetName()
-	 * @see #unsetName()
 	 * @see #getName()
 	 * @generated
 	 */
 	void setName(String value);
-
-	/**
-	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcCoordinateReferenceSystem#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetName()
-	 * @see #getName()
-	 * @see #setName(String)
-	 * @generated
-	 */
-	void unsetName();
-
-	/**
-	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcCoordinateReferenceSystem#getName <em>Name</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Name</em>' attribute is set.
-	 * @see #unsetName()
-	 * @see #getName()
-	 * @see #setName(String)
-	 * @generated
-	 */
-	boolean isSetName();
 
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.
@@ -151,9 +127,11 @@ public interface IfcCoordinateReferenceSystem extends IfcCoordinateReferenceSyst
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Geodetic Datum</em>' attribute.
+	 * @see #isSetGeodeticDatum()
+	 * @see #unsetGeodeticDatum()
 	 * @see #setGeodeticDatum(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCoordinateReferenceSystem_GeodeticDatum()
-	 * @model
+	 * @model unsettable="true"
 	 * @generated
 	 */
 	String getGeodeticDatum();
@@ -163,10 +141,35 @@ public interface IfcCoordinateReferenceSystem extends IfcCoordinateReferenceSyst
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Geodetic Datum</em>' attribute.
+	 * @see #isSetGeodeticDatum()
+	 * @see #unsetGeodeticDatum()
 	 * @see #getGeodeticDatum()
 	 * @generated
 	 */
 	void setGeodeticDatum(String value);
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcCoordinateReferenceSystem#getGeodeticDatum <em>Geodetic Datum</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetGeodeticDatum()
+	 * @see #getGeodeticDatum()
+	 * @see #setGeodeticDatum(String)
+	 * @generated
+	 */
+	void unsetGeodeticDatum();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcCoordinateReferenceSystem#getGeodeticDatum <em>Geodetic Datum</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Geodetic Datum</em>' attribute is set.
+	 * @see #unsetGeodeticDatum()
+	 * @see #getGeodeticDatum()
+	 * @see #setGeodeticDatum(String)
+	 * @generated
+	 */
+	boolean isSetGeodeticDatum();
 
 	/**
 	 * Returns the value of the '<em><b>Vertical Datum</b></em>' attribute.
@@ -220,5 +223,44 @@ public interface IfcCoordinateReferenceSystem extends IfcCoordinateReferenceSyst
 	 * @generated
 	 */
 	boolean isSetVerticalDatum();
+
+	/**
+	 * Returns the value of the '<em><b>Has Coordinate Operation</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.ifc4.IfcCoordinateOperation}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Has Coordinate Operation</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Has Coordinate Operation</em>' reference list.
+	 * @see #isSetHasCoordinateOperation()
+	 * @see #unsetHasCoordinateOperation()
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCoordinateReferenceSystem_HasCoordinateOperation()
+	 * @model unsettable="true" upper="2"
+	 * @generated
+	 */
+	EList<IfcCoordinateOperation> getHasCoordinateOperation();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcCoordinateReferenceSystem#getHasCoordinateOperation <em>Has Coordinate Operation</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHasCoordinateOperation()
+	 * @see #getHasCoordinateOperation()
+	 * @generated
+	 */
+	void unsetHasCoordinateOperation();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcCoordinateReferenceSystem#getHasCoordinateOperation <em>Has Coordinate Operation</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Has Coordinate Operation</em>' reference list is set.
+	 * @see #unsetHasCoordinateOperation()
+	 * @see #getHasCoordinateOperation()
+	 * @generated
+	 */
+	boolean isSetHasCoordinateOperation();
 
 } // IfcCoordinateReferenceSystem

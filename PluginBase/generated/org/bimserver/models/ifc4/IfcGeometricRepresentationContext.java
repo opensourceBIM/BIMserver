@@ -33,6 +33,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.ifc4.IfcGeometricRepresentationContext#getWorldCoordinateSystem <em>World Coordinate System</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcGeometricRepresentationContext#getTrueNorth <em>True North</em>}</li>
  *   <li>{@link org.bimserver.models.ifc4.IfcGeometricRepresentationContext#getHasSubContexts <em>Has Sub Contexts</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.IfcGeometricRepresentationContext#getHasCoordinateOperation <em>Has Coordinate Operation</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcGeometricRepresentationContext()
@@ -291,5 +292,44 @@ public interface IfcGeometricRepresentationContext extends IfcRepresentationCont
 	 * @generated
 	 */
 	boolean isSetHasSubContexts();
+
+	/**
+	 * Returns the value of the '<em><b>Has Coordinate Operation</b></em>' reference list.
+	 * The list contents are of type {@link org.bimserver.models.ifc4.IfcCoordinateOperation}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Has Coordinate Operation</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Has Coordinate Operation</em>' reference list.
+	 * @see #isSetHasCoordinateOperation()
+	 * @see #unsetHasCoordinateOperation()
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcGeometricRepresentationContext_HasCoordinateOperation()
+	 * @model unsettable="true" upper="2"
+	 * @generated
+	 */
+	EList<IfcCoordinateOperation> getHasCoordinateOperation();
+
+	/**
+	 * Unsets the value of the '{@link org.bimserver.models.ifc4.IfcGeometricRepresentationContext#getHasCoordinateOperation <em>Has Coordinate Operation</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetHasCoordinateOperation()
+	 * @see #getHasCoordinateOperation()
+	 * @generated
+	 */
+	void unsetHasCoordinateOperation();
+
+	/**
+	 * Returns whether the value of the '{@link org.bimserver.models.ifc4.IfcGeometricRepresentationContext#getHasCoordinateOperation <em>Has Coordinate Operation</em>}' reference list is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Has Coordinate Operation</em>' reference list is set.
+	 * @see #unsetHasCoordinateOperation()
+	 * @see #getHasCoordinateOperation()
+	 * @generated
+	 */
+	boolean isSetHasCoordinateOperation();
 
 } // IfcGeometricRepresentationContext

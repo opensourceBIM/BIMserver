@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.IfcBuildingSystemImpl#getPredefinedType <em>Predefined Type</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.IfcBuildingSystemImpl#getLongName <em>Long Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -88,6 +89,42 @@ public class IfcBuildingSystemImpl extends IfcSystemImpl implements IfcBuildingS
 	 */
 	public boolean isSetPredefinedType() {
 		return eIsSet(Ifc4Package.Literals.IFC_BUILDING_SYSTEM__PREDEFINED_TYPE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getLongName() {
+		return (String) eGet(Ifc4Package.Literals.IFC_BUILDING_SYSTEM__LONG_NAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLongName(String newLongName) {
+		eSet(Ifc4Package.Literals.IFC_BUILDING_SYSTEM__LONG_NAME, newLongName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetLongName() {
+		eUnset(Ifc4Package.Literals.IFC_BUILDING_SYSTEM__LONG_NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetLongName() {
+		return eIsSet(Ifc4Package.Literals.IFC_BUILDING_SYSTEM__LONG_NAME);
 	}
 
 } //IfcBuildingSystemImpl
