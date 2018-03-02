@@ -35,7 +35,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -1047,10 +1047,10 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		}
 		getBimServer().getCheckinsInProgress().put(poid, getAuthorization().getUoid());
 		DeserializerPluginConfiguration deserializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, OldQuery.getDefault());
-		PluginBundleVersion pluginBundleVersion = deserializerPluginConfiguration.getPluginDescriptor().getPluginBundleVersion();
 		if (deserializerPluginConfiguration == null) {
 			throw new UserException("Deserializer with oid " + deserializerOid + " not found");
 		} else {
+			PluginBundleVersion pluginBundleVersion = deserializerPluginConfiguration.getPluginDescriptor().getPluginBundleVersion();
 			Plugin plugin = getBimServer().getPluginManager().getPlugin(deserializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
 			if (plugin != null) {
 				if (plugin instanceof DeserializerPlugin) {
@@ -1387,7 +1387,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		downloadParameters.setModelCompareIdentifier(mcid);
 		downloadParameters.setCompareType(getBimServer().getSConverter().convertFromSObject(type));
 		downloadParameters.setSerializerOid(serializerOid);
-		Set<Long> roids = new HashSet<>();
+		Set<Long> roids = new LinkedHashSet<>();
 		roids.add(roid1);
 		roids.add(roid2);
 		downloadParameters.setRoids(roids);
