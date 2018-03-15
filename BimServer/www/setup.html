@@ -546,6 +546,8 @@ function Setup(cd, address) {
 					console.log(artifacts);
 					Global.api.call("PluginInterface", "installPreBuiltPlugins", {
 						artifacts: artifacts
+					}, function(){
+						callback();
 					});
 				} else {
 					Global.api.call("PluginInterface", "getInstalledPluginBundles", {}, function(bundles){
