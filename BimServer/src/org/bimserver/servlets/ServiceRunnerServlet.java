@@ -180,6 +180,7 @@ public class ServiceRunnerServlet extends SubServlet {
 						
 						response.setHeader("Output-Type", output.getSchemaName());
 						response.setHeader("Data-Title", output.getTitle());
+						response.setHeader("Data-Identifier", "" + project.getOid());
 						response.setHeader("Content-Type", output.getContentType());
 						response.setHeader("Content-Disposition", output.getContentDisposition());
 						response.getOutputStream().write(output.getData());
