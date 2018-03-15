@@ -16,30 +16,23 @@
  */
 package org.bimserver.models.ifc2x3tc1;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Text Style With Box Characteristics</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextStyleWithBoxCharacteristics#getBoxHeight <em>Box Height</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextStyleWithBoxCharacteristics#getBoxHeightAsString <em>Box Height As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextStyleWithBoxCharacteristics#getBoxWidth <em>Box Width</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextStyleWithBoxCharacteristics#getBoxWidthAsString <em>Box Width As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextStyleWithBoxCharacteristics#getBoxSlantAngle <em>Box Slant Angle</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextStyleWithBoxCharacteristics#getBoxSlantAngleAsString <em>Box Slant Angle As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextStyleWithBoxCharacteristics#getBoxRotateAngle <em>Box Rotate Angle</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextStyleWithBoxCharacteristics#getBoxRotateAngleAsString <em>Box Rotate Angle As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcTextStyleWithBoxCharacteristics#getCharacterSpacing <em>Character Spacing</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcTextStyleWithBoxCharacteristics()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcTextStyleWithBoxCharacteristics extends IfcTextStyleSelect {
 	/**
 	 * Returns the value of the '<em><b>Box Height</b></em>' attribute.

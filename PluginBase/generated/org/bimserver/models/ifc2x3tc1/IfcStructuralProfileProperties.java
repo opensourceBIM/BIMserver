@@ -16,53 +16,23 @@
  */
 package org.bimserver.models.ifc2x3tc1;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Structural Profile Properties</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getTorsionalConstantX <em>Torsional Constant X</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getTorsionalConstantXAsString <em>Torsional Constant XAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getMomentOfInertiaYZ <em>Moment Of Inertia YZ</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getMomentOfInertiaYZAsString <em>Moment Of Inertia YZ As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getMomentOfInertiaY <em>Moment Of Inertia Y</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getMomentOfInertiaYAsString <em>Moment Of Inertia YAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getMomentOfInertiaZ <em>Moment Of Inertia Z</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getMomentOfInertiaZAsString <em>Moment Of Inertia ZAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getWarpingConstant <em>Warping Constant</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getWarpingConstantAsString <em>Warping Constant As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getShearCentreZ <em>Shear Centre Z</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getShearCentreZAsString <em>Shear Centre ZAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getShearCentreY <em>Shear Centre Y</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getShearCentreYAsString <em>Shear Centre YAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getShearDeformationAreaZ <em>Shear Deformation Area Z</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getShearDeformationAreaZAsString <em>Shear Deformation Area ZAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getShearDeformationAreaY <em>Shear Deformation Area Y</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getShearDeformationAreaYAsString <em>Shear Deformation Area YAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getMaximumSectionModulusY <em>Maximum Section Modulus Y</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getMaximumSectionModulusYAsString <em>Maximum Section Modulus YAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getMinimumSectionModulusY <em>Minimum Section Modulus Y</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getMinimumSectionModulusYAsString <em>Minimum Section Modulus YAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getMaximumSectionModulusZ <em>Maximum Section Modulus Z</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getMaximumSectionModulusZAsString <em>Maximum Section Modulus ZAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getMinimumSectionModulusZ <em>Minimum Section Modulus Z</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getMinimumSectionModulusZAsString <em>Minimum Section Modulus ZAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getTorsionalSectionModulus <em>Torsional Section Modulus</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getTorsionalSectionModulusAsString <em>Torsional Section Modulus As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getCentreOfGravityInX <em>Centre Of Gravity In X</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getCentreOfGravityInXAsString <em>Centre Of Gravity In XAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getCentreOfGravityInY <em>Centre Of Gravity In Y</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralProfileProperties#getCentreOfGravityInYAsString <em>Centre Of Gravity In YAs String</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcStructuralProfileProperties()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcStructuralProfileProperties extends IfcGeneralProfileProperties {
 	/**
 	 * Returns the value of the '<em><b>Torsional Constant X</b></em>' attribute.

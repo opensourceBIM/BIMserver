@@ -16,28 +16,23 @@
  */
 package org.bimserver.models.ifc4;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Window</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindow#getOverallHeight <em>Overall Height</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindow#getOverallHeightAsString <em>Overall Height As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindow#getOverallWidth <em>Overall Width</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindow#getOverallWidthAsString <em>Overall Width As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindow#getPredefinedType <em>Predefined Type</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindow#getPartitioningType <em>Partitioning Type</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindow#getUserDefinedPartitioningType <em>User Defined Partitioning Type</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc4.Ifc4Package#getIfcWindow()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcWindow extends IfcBuildingElement {
 	/**
 	 * Returns the value of the '<em><b>Overall Height</b></em>' attribute.

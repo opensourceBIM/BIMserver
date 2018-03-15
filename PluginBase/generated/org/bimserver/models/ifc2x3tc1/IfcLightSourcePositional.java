@@ -16,30 +16,23 @@
  */
 package org.bimserver.models.ifc2x3tc1;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Light Source Positional</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLightSourcePositional#getPosition <em>Position</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLightSourcePositional#getRadius <em>Radius</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLightSourcePositional#getRadiusAsString <em>Radius As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLightSourcePositional#getConstantAttenuation <em>Constant Attenuation</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLightSourcePositional#getConstantAttenuationAsString <em>Constant Attenuation As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLightSourcePositional#getDistanceAttenuation <em>Distance Attenuation</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLightSourcePositional#getDistanceAttenuationAsString <em>Distance Attenuation As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLightSourcePositional#getQuadricAttenuation <em>Quadric Attenuation</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLightSourcePositional#getQuadricAttenuationAsString <em>Quadric Attenuation As String</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcLightSourcePositional()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcLightSourcePositional extends IfcLightSource {
 	/**
 	 * Returns the value of the '<em><b>Position</b></em>' reference.

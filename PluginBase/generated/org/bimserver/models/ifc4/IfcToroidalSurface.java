@@ -16,25 +16,23 @@
  */
 package org.bimserver.models.ifc4;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Toroidal Surface</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc4.IfcToroidalSurface#getMajorRadius <em>Major Radius</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcToroidalSurface#getMajorRadiusAsString <em>Major Radius As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcToroidalSurface#getMinorRadius <em>Minor Radius</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcToroidalSurface#getMinorRadiusAsString <em>Minor Radius As String</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc4.Ifc4Package#getIfcToroidalSurface()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcToroidalSurface extends IfcElementarySurface {
 	/**
 	 * Returns the value of the '<em><b>Major Radius</b></em>' attribute.

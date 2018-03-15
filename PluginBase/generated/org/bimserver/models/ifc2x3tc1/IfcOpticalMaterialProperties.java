@@ -16,39 +16,23 @@
  */
 package org.bimserver.models.ifc2x3tc1;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Optical Material Properties</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOpticalMaterialProperties#getVisibleTransmittance <em>Visible Transmittance</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOpticalMaterialProperties#getVisibleTransmittanceAsString <em>Visible Transmittance As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOpticalMaterialProperties#getSolarTransmittance <em>Solar Transmittance</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOpticalMaterialProperties#getSolarTransmittanceAsString <em>Solar Transmittance As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOpticalMaterialProperties#getThermalIrTransmittance <em>Thermal Ir Transmittance</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOpticalMaterialProperties#getThermalIrTransmittanceAsString <em>Thermal Ir Transmittance As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOpticalMaterialProperties#getThermalIrEmissivityBack <em>Thermal Ir Emissivity Back</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOpticalMaterialProperties#getThermalIrEmissivityBackAsString <em>Thermal Ir Emissivity Back As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOpticalMaterialProperties#getThermalIrEmissivityFront <em>Thermal Ir Emissivity Front</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOpticalMaterialProperties#getThermalIrEmissivityFrontAsString <em>Thermal Ir Emissivity Front As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOpticalMaterialProperties#getVisibleReflectanceBack <em>Visible Reflectance Back</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOpticalMaterialProperties#getVisibleReflectanceBackAsString <em>Visible Reflectance Back As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOpticalMaterialProperties#getVisibleReflectanceFront <em>Visible Reflectance Front</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOpticalMaterialProperties#getVisibleReflectanceFrontAsString <em>Visible Reflectance Front As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOpticalMaterialProperties#getSolarReflectanceFront <em>Solar Reflectance Front</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOpticalMaterialProperties#getSolarReflectanceFrontAsString <em>Solar Reflectance Front As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOpticalMaterialProperties#getSolarReflectanceBack <em>Solar Reflectance Back</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcOpticalMaterialProperties#getSolarReflectanceBackAsString <em>Solar Reflectance Back As String</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcOpticalMaterialProperties()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcOpticalMaterialProperties extends IfcMaterialProperties {
 	/**
 	 * Returns the value of the '<em><b>Visible Transmittance</b></em>' attribute.

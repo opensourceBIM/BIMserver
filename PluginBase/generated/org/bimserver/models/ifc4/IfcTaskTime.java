@@ -16,39 +16,23 @@
  */
 package org.bimserver.models.ifc4;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Task Time</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc4.IfcTaskTime#getDurationType <em>Duration Type</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTaskTime#getScheduleDuration <em>Schedule Duration</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTaskTime#getScheduleStart <em>Schedule Start</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTaskTime#getScheduleFinish <em>Schedule Finish</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTaskTime#getEarlyStart <em>Early Start</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTaskTime#getEarlyFinish <em>Early Finish</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTaskTime#getLateStart <em>Late Start</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTaskTime#getLateFinish <em>Late Finish</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTaskTime#getFreeFloat <em>Free Float</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTaskTime#getTotalFloat <em>Total Float</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTaskTime#getIsCritical <em>Is Critical</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTaskTime#getStatusTime <em>Status Time</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTaskTime#getActualDuration <em>Actual Duration</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTaskTime#getActualStart <em>Actual Start</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTaskTime#getActualFinish <em>Actual Finish</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTaskTime#getRemainingTime <em>Remaining Time</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTaskTime#getCompletion <em>Completion</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTaskTime#getCompletionAsString <em>Completion As String</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTaskTime()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcTaskTime extends IfcSchedulingTime {
 	/**
 	 * Returns the value of the '<em><b>Duration Type</b></em>' attribute.

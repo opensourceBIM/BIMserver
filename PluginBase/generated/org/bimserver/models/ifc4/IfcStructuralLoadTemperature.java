@@ -16,27 +16,23 @@
  */
 package org.bimserver.models.ifc4;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Structural Load Temperature</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadTemperature#getDeltaTConstant <em>Delta TConstant</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadTemperature#getDeltaTConstantAsString <em>Delta TConstant As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadTemperature#getDeltaTY <em>Delta TY</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadTemperature#getDeltaTYAsString <em>Delta TY As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadTemperature#getDeltaTZ <em>Delta TZ</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadTemperature#getDeltaTZAsString <em>Delta TZ As String</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadTemperature()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcStructuralLoadTemperature extends IfcStructuralLoadStatic {
 	/**
 	 * Returns the value of the '<em><b>Delta TConstant</b></em>' attribute.

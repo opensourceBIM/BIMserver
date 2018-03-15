@@ -16,39 +16,23 @@
  */
 package org.bimserver.models.ifc4;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc TShape Profile Def</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc4.IfcTShapeProfileDef#getDepth <em>Depth</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTShapeProfileDef#getDepthAsString <em>Depth As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTShapeProfileDef#getFlangeWidth <em>Flange Width</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTShapeProfileDef#getFlangeWidthAsString <em>Flange Width As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTShapeProfileDef#getWebThickness <em>Web Thickness</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTShapeProfileDef#getWebThicknessAsString <em>Web Thickness As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTShapeProfileDef#getFlangeThickness <em>Flange Thickness</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTShapeProfileDef#getFlangeThicknessAsString <em>Flange Thickness As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTShapeProfileDef#getFilletRadius <em>Fillet Radius</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTShapeProfileDef#getFilletRadiusAsString <em>Fillet Radius As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTShapeProfileDef#getFlangeEdgeRadius <em>Flange Edge Radius</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTShapeProfileDef#getFlangeEdgeRadiusAsString <em>Flange Edge Radius As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTShapeProfileDef#getWebEdgeRadius <em>Web Edge Radius</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTShapeProfileDef#getWebEdgeRadiusAsString <em>Web Edge Radius As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTShapeProfileDef#getWebSlope <em>Web Slope</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTShapeProfileDef#getWebSlopeAsString <em>Web Slope As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTShapeProfileDef#getFlangeSlope <em>Flange Slope</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTShapeProfileDef#getFlangeSlopeAsString <em>Flange Slope As String</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTShapeProfileDef()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcTShapeProfileDef extends IfcParameterizedProfileDef {
 	/**
 	 * Returns the value of the '<em><b>Depth</b></em>' attribute.

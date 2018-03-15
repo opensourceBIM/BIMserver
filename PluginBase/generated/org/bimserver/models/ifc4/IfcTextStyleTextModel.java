@@ -16,28 +16,23 @@
  */
 package org.bimserver.models.ifc4;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Text Style Text Model</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc4.IfcTextStyleTextModel#getTextIndent <em>Text Indent</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTextStyleTextModel#getTextAlign <em>Text Align</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTextStyleTextModel#getTextDecoration <em>Text Decoration</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTextStyleTextModel#getLetterSpacing <em>Letter Spacing</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTextStyleTextModel#getWordSpacing <em>Word Spacing</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTextStyleTextModel#getTextTransform <em>Text Transform</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTextStyleTextModel#getLineHeight <em>Line Height</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTextStyleTextModel()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcTextStyleTextModel extends IfcPresentationItem {
 	/**
 	 * Returns the value of the '<em><b>Text Indent</b></em>' reference.

@@ -16,29 +16,23 @@
  */
 package org.bimserver.models.ifc2x3tc1;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Structural Steel Profile Properties</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralSteelProfileProperties#getShearAreaZ <em>Shear Area Z</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralSteelProfileProperties#getShearAreaZAsString <em>Shear Area ZAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralSteelProfileProperties#getShearAreaY <em>Shear Area Y</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralSteelProfileProperties#getShearAreaYAsString <em>Shear Area YAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralSteelProfileProperties#getPlasticShapeFactorY <em>Plastic Shape Factor Y</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralSteelProfileProperties#getPlasticShapeFactorYAsString <em>Plastic Shape Factor YAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralSteelProfileProperties#getPlasticShapeFactorZ <em>Plastic Shape Factor Z</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralSteelProfileProperties#getPlasticShapeFactorZAsString <em>Plastic Shape Factor ZAs String</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcStructuralSteelProfileProperties()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcStructuralSteelProfileProperties extends IfcStructuralProfileProperties {
 	/**
 	 * Returns the value of the '<em><b>Shear Area Z</b></em>' attribute.

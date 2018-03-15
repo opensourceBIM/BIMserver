@@ -16,28 +16,23 @@
  */
 package org.bimserver.models.ifc4;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Material Constituent</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc4.IfcMaterialConstituent#getName <em>Name</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcMaterialConstituent#getDescription <em>Description</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcMaterialConstituent#getMaterial <em>Material</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcMaterialConstituent#getFraction <em>Fraction</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcMaterialConstituent#getFractionAsString <em>Fraction As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcMaterialConstituent#getCategory <em>Category</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcMaterialConstituent#getToMaterialConstituentSet <em>To Material Constituent Set</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialConstituent()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcMaterialConstituent extends IfcMaterialDefinition {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

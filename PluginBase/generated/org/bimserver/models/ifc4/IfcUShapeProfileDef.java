@@ -16,35 +16,23 @@
  */
 package org.bimserver.models.ifc4;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc UShape Profile Def</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc4.IfcUShapeProfileDef#getDepth <em>Depth</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcUShapeProfileDef#getDepthAsString <em>Depth As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcUShapeProfileDef#getFlangeWidth <em>Flange Width</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcUShapeProfileDef#getFlangeWidthAsString <em>Flange Width As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcUShapeProfileDef#getWebThickness <em>Web Thickness</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcUShapeProfileDef#getWebThicknessAsString <em>Web Thickness As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcUShapeProfileDef#getFlangeThickness <em>Flange Thickness</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcUShapeProfileDef#getFlangeThicknessAsString <em>Flange Thickness As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcUShapeProfileDef#getFilletRadius <em>Fillet Radius</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcUShapeProfileDef#getFilletRadiusAsString <em>Fillet Radius As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcUShapeProfileDef#getEdgeRadius <em>Edge Radius</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcUShapeProfileDef#getEdgeRadiusAsString <em>Edge Radius As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcUShapeProfileDef#getFlangeSlope <em>Flange Slope</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcUShapeProfileDef#getFlangeSlopeAsString <em>Flange Slope As String</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc4.Ifc4Package#getIfcUShapeProfileDef()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcUShapeProfileDef extends IfcParameterizedProfileDef {
 	/**
 	 * Returns the value of the '<em><b>Depth</b></em>' attribute.

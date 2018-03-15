@@ -16,29 +16,23 @@
  */
 package org.bimserver.models.ifc2x3tc1;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Light Source Goniometric</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLightSourceGoniometric#getPosition <em>Position</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLightSourceGoniometric#getColourAppearance <em>Colour Appearance</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLightSourceGoniometric#getColourTemperature <em>Colour Temperature</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLightSourceGoniometric#getColourTemperatureAsString <em>Colour Temperature As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLightSourceGoniometric#getLuminousFlux <em>Luminous Flux</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLightSourceGoniometric#getLuminousFluxAsString <em>Luminous Flux As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLightSourceGoniometric#getLightEmissionSource <em>Light Emission Source</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLightSourceGoniometric#getLightDistributionDataSource <em>Light Distribution Data Source</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcLightSourceGoniometric()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcLightSourceGoniometric extends IfcLightSource {
 	/**
 	 * Returns the value of the '<em><b>Position</b></em>' reference.

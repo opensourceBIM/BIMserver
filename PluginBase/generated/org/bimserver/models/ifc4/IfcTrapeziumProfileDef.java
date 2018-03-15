@@ -16,29 +16,23 @@
  */
 package org.bimserver.models.ifc4;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Trapezium Profile Def</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc4.IfcTrapeziumProfileDef#getBottomXDim <em>Bottom XDim</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTrapeziumProfileDef#getBottomXDimAsString <em>Bottom XDim As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTrapeziumProfileDef#getTopXDim <em>Top XDim</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTrapeziumProfileDef#getTopXDimAsString <em>Top XDim As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTrapeziumProfileDef#getYDim <em>YDim</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTrapeziumProfileDef#getYDimAsString <em>YDim As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTrapeziumProfileDef#getTopXOffset <em>Top XOffset</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTrapeziumProfileDef#getTopXOffsetAsString <em>Top XOffset As String</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTrapeziumProfileDef()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcTrapeziumProfileDef extends IfcParameterizedProfileDef {
 	/**
 	 * Returns the value of the '<em><b>Bottom XDim</b></em>' attribute.

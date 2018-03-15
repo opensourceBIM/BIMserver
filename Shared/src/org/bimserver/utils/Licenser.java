@@ -25,25 +25,25 @@ public class Licenser {
 			processProject(project);
 		}
 		processProject(new File("C:\\Git\\Bcf\\Bcf"));
-		processProject(new File("C:\\Git\\bimql2\\BimQL"));
+//		processProject(new File("C:\\Git\\bimql2\\BimQL"));
 		processProject(new File("C:\\Git\\BinarySerializers\\BinarySerializers"));
-		processProject(new File("C:\\Git\\BuildingSMARTLibrary\\BuildingSMARTLibrary"));
-		processProject(new File("C:\\Git\\CesiumLoader\\CesiumLoader"));
-		processProject(new File("C:\\Git\\Charting\\Charting"));
-		processProject(new File("C:\\Git\\CityGML\\CityGML"));
-		processProject(new File("C:\\Git\\ClashDetectionService\\ClashDetection"));
-		processProject(new File("C:\\Git\\Collada\\Collada"));
+//		processProject(new File("C:\\Git\\BuildingSMARTLibrary\\BuildingSMARTLibrary"));
+//		processProject(new File("C:\\Git\\CesiumLoader\\CesiumLoader"));
+//		processProject(new File("C:\\Git\\Charting\\Charting"));
+//		processProject(new File("C:\\Git\\CityGML\\CityGML"));
+//		processProject(new File("C:\\Git\\ClashDetectionService\\ClashDetection"));
+//		processProject(new File("C:\\Git\\Collada\\Collada"));
 		processProject(new File("C:\\Git\\DemoPlugins\\DemoPlugins"));
 		processProject(new File("C:\\Git\\GltfSerializers\\Gltf"));
-		processProject(new File("C:\\Git\\IfcEngine\\IfcEngine"));
+//		processProject(new File("C:\\Git\\IfcEngine\\IfcEngine"));
 		processProject(new File("C:\\Git\\IfcOpenShell-BIMserver-plugin"));
 		processProject(new File("C:\\Git\\IfcPlugins\\IfcPlugins"));
-		processProject(new File("C:\\Software\\Eclipse\\Git\\IfcValidator"));
-		processProject(new File("C:\\Git\\JavaModelChecker\\JavaModelChecker"));
-		processProject(new File("C:\\Git\\JavaQueryEngine\\JavaQueryEngine"));
+//		processProject(new File("C:\\Software\\Eclipse\\Git\\IfcValidator"));
+//		processProject(new File("C:\\Git\\JavaModelChecker\\JavaModelChecker"));
+//		processProject(new File("C:\\Git\\JavaQueryEngine\\JavaQueryEngine"));
 		processProject(new File("C:\\Git\\Mergers\\Mergers"));
-		processProject(new File("C:\\Git\\TestFiles\\TestData"));
-		processProject(new File("C:\\Git\\TestFramework\\TestFramework"));
+//		processProject(new File("C:\\Git\\TestFiles\\TestData"));
+//		processProject(new File("C:\\Git\\TestFramework\\TestFramework"));
 		processProject(new File("C:\\Git\\BIMserver6\\Tests"));
 		processProject(new File("C:\\Git\\Tools\\Tools"));
 		System.out.println("Unchanged: " + same);
@@ -53,13 +53,16 @@ public class Licenser {
 
 	private void processProject(File project) {
 		if (!project.getName().startsWith(".")) {
-			File srcFolder = new File(project, "src");
-			if (srcFolder.exists()) {
-				String license = getCommentedLicenseText(new File(project, "license.txt"));
-				if (license != null) {
-					process(srcFolder, license);
-				} else {
-					System.out.println("No license.txt found in " + project);
+			String[] subFolders = new String[]{"src", "test", "generated"};
+			for (String subFolder : subFolders) {
+				File srcFolder = new File(project, subFolder);
+				if (srcFolder.exists()) {
+					String license = getCommentedLicenseText(new File(project, "license.txt"));
+					if (license != null) {
+						process(srcFolder, license);
+					} else {
+						System.out.println("No license.txt found in " + project);
+					}
 				}
 			}
 		}

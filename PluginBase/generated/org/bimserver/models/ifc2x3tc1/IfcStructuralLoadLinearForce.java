@@ -16,33 +16,23 @@
  */
 package org.bimserver.models.ifc2x3tc1;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Structural Load Linear Force</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralLoadLinearForce#getLinearForceX <em>Linear Force X</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralLoadLinearForce#getLinearForceXAsString <em>Linear Force XAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralLoadLinearForce#getLinearForceY <em>Linear Force Y</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralLoadLinearForce#getLinearForceYAsString <em>Linear Force YAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralLoadLinearForce#getLinearForceZ <em>Linear Force Z</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralLoadLinearForce#getLinearForceZAsString <em>Linear Force ZAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralLoadLinearForce#getLinearMomentX <em>Linear Moment X</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralLoadLinearForce#getLinearMomentXAsString <em>Linear Moment XAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralLoadLinearForce#getLinearMomentY <em>Linear Moment Y</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralLoadLinearForce#getLinearMomentYAsString <em>Linear Moment YAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralLoadLinearForce#getLinearMomentZ <em>Linear Moment Z</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcStructuralLoadLinearForce#getLinearMomentZAsString <em>Linear Moment ZAs String</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcStructuralLoadLinearForce()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	/**
 	 * Returns the value of the '<em><b>Linear Force X</b></em>' attribute.

@@ -16,44 +16,23 @@
  */
 package org.bimserver.models.ifc4;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Window Lining Properties</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getLiningDepth <em>Lining Depth</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getLiningDepthAsString <em>Lining Depth As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getLiningThickness <em>Lining Thickness</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getLiningThicknessAsString <em>Lining Thickness As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getTransomThickness <em>Transom Thickness</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getTransomThicknessAsString <em>Transom Thickness As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getMullionThickness <em>Mullion Thickness</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getMullionThicknessAsString <em>Mullion Thickness As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getFirstTransomOffset <em>First Transom Offset</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getFirstTransomOffsetAsString <em>First Transom Offset As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getSecondTransomOffset <em>Second Transom Offset</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getSecondTransomOffsetAsString <em>Second Transom Offset As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getFirstMullionOffset <em>First Mullion Offset</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getFirstMullionOffsetAsString <em>First Mullion Offset As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getSecondMullionOffset <em>Second Mullion Offset</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getSecondMullionOffsetAsString <em>Second Mullion Offset As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getShapeAspectStyle <em>Shape Aspect Style</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getLiningOffset <em>Lining Offset</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getLiningOffsetAsString <em>Lining Offset As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getLiningToPanelOffsetX <em>Lining To Panel Offset X</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getLiningToPanelOffsetXAsString <em>Lining To Panel Offset XAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getLiningToPanelOffsetY <em>Lining To Panel Offset Y</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcWindowLiningProperties#getLiningToPanelOffsetYAsString <em>Lining To Panel Offset YAs String</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc4.Ifc4Package#getIfcWindowLiningProperties()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcWindowLiningProperties extends IfcPreDefinedPropertySet {
 	/**
 	 * Returns the value of the '<em><b>Lining Depth</b></em>' attribute.

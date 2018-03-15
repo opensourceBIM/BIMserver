@@ -16,36 +16,23 @@
  */
 package org.bimserver.models.ifc4;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Tendon</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc4.IfcTendon#getPredefinedType <em>Predefined Type</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTendon#getNominalDiameter <em>Nominal Diameter</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTendon#getNominalDiameterAsString <em>Nominal Diameter As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTendon#getCrossSectionArea <em>Cross Section Area</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTendon#getCrossSectionAreaAsString <em>Cross Section Area As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTendon#getTensionForce <em>Tension Force</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTendon#getTensionForceAsString <em>Tension Force As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTendon#getPreStress <em>Pre Stress</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTendon#getPreStressAsString <em>Pre Stress As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTendon#getFrictionCoefficient <em>Friction Coefficient</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTendon#getFrictionCoefficientAsString <em>Friction Coefficient As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTendon#getAnchorageSlip <em>Anchorage Slip</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTendon#getAnchorageSlipAsString <em>Anchorage Slip As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTendon#getMinCurvatureRadius <em>Min Curvature Radius</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcTendon#getMinCurvatureRadiusAsString <em>Min Curvature Radius As String</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTendon()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcTendon extends IfcReinforcingElement {
 	/**
 	 * Returns the value of the '<em><b>Predefined Type</b></em>' attribute.

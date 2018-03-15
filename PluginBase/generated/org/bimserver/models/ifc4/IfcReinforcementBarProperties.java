@@ -16,31 +16,23 @@
  */
 package org.bimserver.models.ifc4;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Reinforcement Bar Properties</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcementBarProperties#getTotalCrossSectionArea <em>Total Cross Section Area</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcementBarProperties#getTotalCrossSectionAreaAsString <em>Total Cross Section Area As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcementBarProperties#getSteelGrade <em>Steel Grade</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcementBarProperties#getBarSurface <em>Bar Surface</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcementBarProperties#getEffectiveDepth <em>Effective Depth</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcementBarProperties#getEffectiveDepthAsString <em>Effective Depth As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcementBarProperties#getNominalBarDiameter <em>Nominal Bar Diameter</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcementBarProperties#getNominalBarDiameterAsString <em>Nominal Bar Diameter As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcementBarProperties#getBarCount <em>Bar Count</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcementBarProperties#getBarCountAsString <em>Bar Count As String</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc4.Ifc4Package#getIfcReinforcementBarProperties()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcReinforcementBarProperties extends IfcPreDefinedProperties {
 	/**
 	 * Returns the value of the '<em><b>Total Cross Section Area</b></em>' attribute.

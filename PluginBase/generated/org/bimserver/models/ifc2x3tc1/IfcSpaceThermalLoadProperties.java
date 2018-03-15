@@ -16,34 +16,23 @@
  */
 package org.bimserver.models.ifc2x3tc1;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Space Thermal Load Properties</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpaceThermalLoadProperties#getApplicableValueRatio <em>Applicable Value Ratio</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpaceThermalLoadProperties#getApplicableValueRatioAsString <em>Applicable Value Ratio As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpaceThermalLoadProperties#getThermalLoadSource <em>Thermal Load Source</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpaceThermalLoadProperties#getPropertySource <em>Property Source</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpaceThermalLoadProperties#getSourceDescription <em>Source Description</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpaceThermalLoadProperties#getMaximumValue <em>Maximum Value</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpaceThermalLoadProperties#getMaximumValueAsString <em>Maximum Value As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpaceThermalLoadProperties#getMinimumValue <em>Minimum Value</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpaceThermalLoadProperties#getMinimumValueAsString <em>Minimum Value As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpaceThermalLoadProperties#getThermalLoadTimeSeriesValues <em>Thermal Load Time Series Values</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpaceThermalLoadProperties#getUserDefinedThermalLoadSource <em>User Defined Thermal Load Source</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpaceThermalLoadProperties#getUserDefinedPropertySource <em>User Defined Property Source</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcSpaceThermalLoadProperties#getThermalLoadType <em>Thermal Load Type</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcSpaceThermalLoadProperties()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcSpaceThermalLoadProperties extends IfcPropertySetDefinition {
 	/**
 	 * Returns the value of the '<em><b>Applicable Value Ratio</b></em>' attribute.

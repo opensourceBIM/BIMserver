@@ -16,39 +16,23 @@
  */
 package org.bimserver.models.ifc2x3tc1;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Crane Rail FShape Profile Def</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCraneRailFShapeProfileDef#getOverallHeight <em>Overall Height</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCraneRailFShapeProfileDef#getOverallHeightAsString <em>Overall Height As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCraneRailFShapeProfileDef#getHeadWidth <em>Head Width</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCraneRailFShapeProfileDef#getHeadWidthAsString <em>Head Width As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCraneRailFShapeProfileDef#getRadius <em>Radius</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCraneRailFShapeProfileDef#getRadiusAsString <em>Radius As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCraneRailFShapeProfileDef#getHeadDepth2 <em>Head Depth2</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCraneRailFShapeProfileDef#getHeadDepth2AsString <em>Head Depth2 As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCraneRailFShapeProfileDef#getHeadDepth3 <em>Head Depth3</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCraneRailFShapeProfileDef#getHeadDepth3AsString <em>Head Depth3 As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCraneRailFShapeProfileDef#getWebThickness <em>Web Thickness</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCraneRailFShapeProfileDef#getWebThicknessAsString <em>Web Thickness As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCraneRailFShapeProfileDef#getBaseDepth1 <em>Base Depth1</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCraneRailFShapeProfileDef#getBaseDepth1AsString <em>Base Depth1 As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCraneRailFShapeProfileDef#getBaseDepth2 <em>Base Depth2</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCraneRailFShapeProfileDef#getBaseDepth2AsString <em>Base Depth2 As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCraneRailFShapeProfileDef#getCentreOfGravityInY <em>Centre Of Gravity In Y</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcCraneRailFShapeProfileDef#getCentreOfGravityInYAsString <em>Centre Of Gravity In YAs String</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcCraneRailFShapeProfileDef()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcCraneRailFShapeProfileDef extends IfcParameterizedProfileDef {
 	/**
 	 * Returns the value of the '<em><b>Overall Height</b></em>' attribute.

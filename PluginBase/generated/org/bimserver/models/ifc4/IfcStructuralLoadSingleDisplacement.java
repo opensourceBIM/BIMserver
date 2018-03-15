@@ -16,33 +16,23 @@
  */
 package org.bimserver.models.ifc4;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Structural Load Single Displacement</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadSingleDisplacement#getDisplacementX <em>Displacement X</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadSingleDisplacement#getDisplacementXAsString <em>Displacement XAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadSingleDisplacement#getDisplacementY <em>Displacement Y</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadSingleDisplacement#getDisplacementYAsString <em>Displacement YAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadSingleDisplacement#getDisplacementZ <em>Displacement Z</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadSingleDisplacement#getDisplacementZAsString <em>Displacement ZAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadSingleDisplacement#getRotationalDisplacementRX <em>Rotational Displacement RX</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadSingleDisplacement#getRotationalDisplacementRXAsString <em>Rotational Displacement RX As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadSingleDisplacement#getRotationalDisplacementRY <em>Rotational Displacement RY</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadSingleDisplacement#getRotationalDisplacementRYAsString <em>Rotational Displacement RY As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadSingleDisplacement#getRotationalDisplacementRZ <em>Rotational Displacement RZ</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcStructuralLoadSingleDisplacement#getRotationalDisplacementRZAsString <em>Rotational Displacement RZ As String</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadSingleDisplacement()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcStructuralLoadSingleDisplacement extends IfcStructuralLoadStatic {
 	/**
 	 * Returns the value of the '<em><b>Displacement X</b></em>' attribute.

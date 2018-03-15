@@ -16,28 +16,23 @@
  */
 package org.bimserver.models.ifc2x3tc1;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Rel Connects Structural Member</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelConnectsStructuralMember#getRelatingStructuralMember <em>Relating Structural Member</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelConnectsStructuralMember#getRelatedStructuralConnection <em>Related Structural Connection</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelConnectsStructuralMember#getAppliedCondition <em>Applied Condition</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelConnectsStructuralMember#getAdditionalConditions <em>Additional Conditions</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelConnectsStructuralMember#getSupportedLength <em>Supported Length</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelConnectsStructuralMember#getSupportedLengthAsString <em>Supported Length As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcRelConnectsStructuralMember#getConditionCoordinateSystem <em>Condition Coordinate System</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcRelConnectsStructuralMember()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcRelConnectsStructuralMember extends IfcRelConnects {
 	/**
 	 * Returns the value of the '<em><b>Relating Structural Member</b></em>' reference.

@@ -16,45 +16,23 @@
  */
 package org.bimserver.models.ifc4;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Asymmetric IShape Profile Def</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getBottomFlangeWidth <em>Bottom Flange Width</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getBottomFlangeWidthAsString <em>Bottom Flange Width As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getOverallDepth <em>Overall Depth</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getOverallDepthAsString <em>Overall Depth As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getWebThickness <em>Web Thickness</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getWebThicknessAsString <em>Web Thickness As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getBottomFlangeThickness <em>Bottom Flange Thickness</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getBottomFlangeThicknessAsString <em>Bottom Flange Thickness As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getBottomFlangeFilletRadius <em>Bottom Flange Fillet Radius</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getBottomFlangeFilletRadiusAsString <em>Bottom Flange Fillet Radius As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getTopFlangeWidth <em>Top Flange Width</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getTopFlangeWidthAsString <em>Top Flange Width As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getTopFlangeThickness <em>Top Flange Thickness</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getTopFlangeThicknessAsString <em>Top Flange Thickness As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getTopFlangeFilletRadius <em>Top Flange Fillet Radius</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getTopFlangeFilletRadiusAsString <em>Top Flange Fillet Radius As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getBottomFlangeEdgeRadius <em>Bottom Flange Edge Radius</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getBottomFlangeEdgeRadiusAsString <em>Bottom Flange Edge Radius As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getBottomFlangeSlope <em>Bottom Flange Slope</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getBottomFlangeSlopeAsString <em>Bottom Flange Slope As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getTopFlangeEdgeRadius <em>Top Flange Edge Radius</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getTopFlangeEdgeRadiusAsString <em>Top Flange Edge Radius As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getTopFlangeSlope <em>Top Flange Slope</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcAsymmetricIShapeProfileDef#getTopFlangeSlopeAsString <em>Top Flange Slope As String</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc4.Ifc4Package#getIfcAsymmetricIShapeProfileDef()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcAsymmetricIShapeProfileDef extends IfcParameterizedProfileDef {
 	/**
 	 * Returns the value of the '<em><b>Bottom Flange Width</b></em>' attribute.

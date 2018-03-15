@@ -16,33 +16,23 @@
  */
 package org.bimserver.models.ifc2x3tc1;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Failure Connection Condition</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFailureConnectionCondition#getTensionFailureX <em>Tension Failure X</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFailureConnectionCondition#getTensionFailureXAsString <em>Tension Failure XAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFailureConnectionCondition#getTensionFailureY <em>Tension Failure Y</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFailureConnectionCondition#getTensionFailureYAsString <em>Tension Failure YAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFailureConnectionCondition#getTensionFailureZ <em>Tension Failure Z</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFailureConnectionCondition#getTensionFailureZAsString <em>Tension Failure ZAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFailureConnectionCondition#getCompressionFailureX <em>Compression Failure X</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFailureConnectionCondition#getCompressionFailureXAsString <em>Compression Failure XAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFailureConnectionCondition#getCompressionFailureY <em>Compression Failure Y</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFailureConnectionCondition#getCompressionFailureYAsString <em>Compression Failure YAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFailureConnectionCondition#getCompressionFailureZ <em>Compression Failure Z</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFailureConnectionCondition#getCompressionFailureZAsString <em>Compression Failure ZAs String</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcFailureConnectionCondition()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCondition {
 	/**
 	 * Returns the value of the '<em><b>Tension Failure X</b></em>' attribute.

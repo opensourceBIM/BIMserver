@@ -16,46 +16,23 @@
  */
 package org.bimserver.models.ifc4;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Door Lining Properties</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getLiningDepth <em>Lining Depth</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getLiningDepthAsString <em>Lining Depth As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getLiningThickness <em>Lining Thickness</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getLiningThicknessAsString <em>Lining Thickness As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getThresholdDepth <em>Threshold Depth</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getThresholdDepthAsString <em>Threshold Depth As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getThresholdThickness <em>Threshold Thickness</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getThresholdThicknessAsString <em>Threshold Thickness As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getTransomThickness <em>Transom Thickness</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getTransomThicknessAsString <em>Transom Thickness As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getTransomOffset <em>Transom Offset</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getTransomOffsetAsString <em>Transom Offset As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getLiningOffset <em>Lining Offset</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getLiningOffsetAsString <em>Lining Offset As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getThresholdOffset <em>Threshold Offset</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getThresholdOffsetAsString <em>Threshold Offset As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getCasingThickness <em>Casing Thickness</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getCasingThicknessAsString <em>Casing Thickness As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getCasingDepth <em>Casing Depth</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getCasingDepthAsString <em>Casing Depth As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getShapeAspectStyle <em>Shape Aspect Style</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getLiningToPanelOffsetX <em>Lining To Panel Offset X</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getLiningToPanelOffsetXAsString <em>Lining To Panel Offset XAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getLiningToPanelOffsetY <em>Lining To Panel Offset Y</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcDoorLiningProperties#getLiningToPanelOffsetYAsString <em>Lining To Panel Offset YAs String</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDoorLiningProperties()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcDoorLiningProperties extends IfcPreDefinedPropertySet {
 	/**
 	 * Returns the value of the '<em><b>Lining Depth</b></em>' attribute.

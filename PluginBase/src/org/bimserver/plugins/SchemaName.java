@@ -1,7 +1,7 @@
 package org.bimserver.plugins;
 
 /******************************************************************************
- * Copyright (C) 2009-2017  BIMserver.org
+ * Copyright (C) 2009-2018  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -16,12 +16,6 @@ package org.bimserver.plugins;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-
-/*
- * 
- * SchemaName is not an extensive list of all schema names. Where appropriate, just use a String.
- * 
- */
 
 public enum SchemaName {
 	IFC_STEP_2X3TC1,

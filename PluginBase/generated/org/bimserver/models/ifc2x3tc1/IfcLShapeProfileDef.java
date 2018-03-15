@@ -16,37 +16,23 @@
  */
 package org.bimserver.models.ifc2x3tc1;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc LShape Profile Def</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLShapeProfileDef#getDepth <em>Depth</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLShapeProfileDef#getDepthAsString <em>Depth As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLShapeProfileDef#getWidth <em>Width</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLShapeProfileDef#getWidthAsString <em>Width As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLShapeProfileDef#getThickness <em>Thickness</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLShapeProfileDef#getThicknessAsString <em>Thickness As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLShapeProfileDef#getFilletRadius <em>Fillet Radius</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLShapeProfileDef#getFilletRadiusAsString <em>Fillet Radius As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLShapeProfileDef#getEdgeRadius <em>Edge Radius</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLShapeProfileDef#getEdgeRadiusAsString <em>Edge Radius As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLShapeProfileDef#getLegSlope <em>Leg Slope</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLShapeProfileDef#getLegSlopeAsString <em>Leg Slope As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLShapeProfileDef#getCentreOfGravityInX <em>Centre Of Gravity In X</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLShapeProfileDef#getCentreOfGravityInXAsString <em>Centre Of Gravity In XAs String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLShapeProfileDef#getCentreOfGravityInY <em>Centre Of Gravity In Y</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcLShapeProfileDef#getCentreOfGravityInYAsString <em>Centre Of Gravity In YAs String</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcLShapeProfileDef()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcLShapeProfileDef extends IfcParameterizedProfileDef {
 	/**
 	 * Returns the value of the '<em><b>Depth</b></em>' attribute.

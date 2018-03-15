@@ -16,48 +16,23 @@
  */
 package org.bimserver.models.ifc2x3tc1;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Schedule Time Control</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getActualStart <em>Actual Start</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getEarlyStart <em>Early Start</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getLateStart <em>Late Start</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getScheduleStart <em>Schedule Start</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getActualFinish <em>Actual Finish</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getEarlyFinish <em>Early Finish</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getLateFinish <em>Late Finish</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getScheduleFinish <em>Schedule Finish</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getScheduleDuration <em>Schedule Duration</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getScheduleDurationAsString <em>Schedule Duration As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getActualDuration <em>Actual Duration</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getActualDurationAsString <em>Actual Duration As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getRemainingTime <em>Remaining Time</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getRemainingTimeAsString <em>Remaining Time As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getFreeFloat <em>Free Float</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getFreeFloatAsString <em>Free Float As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getTotalFloat <em>Total Float</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getTotalFloatAsString <em>Total Float As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getIsCritical <em>Is Critical</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getStatusTime <em>Status Time</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getStartFloat <em>Start Float</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getStartFloatAsString <em>Start Float As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getFinishFloat <em>Finish Float</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getFinishFloatAsString <em>Finish Float As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getCompletion <em>Completion</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getCompletionAsString <em>Completion As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcScheduleTimeControl#getScheduleTimeControlAssigned <em>Schedule Time Control Assigned</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcScheduleTimeControl()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcScheduleTimeControl extends IfcControl {
 	/**
 	 * Returns the value of the '<em><b>Actual Start</b></em>' reference.

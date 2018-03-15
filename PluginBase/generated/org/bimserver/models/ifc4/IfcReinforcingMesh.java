@@ -16,38 +16,23 @@
  */
 package org.bimserver.models.ifc4;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Reinforcing Mesh</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMesh#getMeshLength <em>Mesh Length</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMesh#getMeshLengthAsString <em>Mesh Length As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMesh#getMeshWidth <em>Mesh Width</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMesh#getMeshWidthAsString <em>Mesh Width As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMesh#getLongitudinalBarNominalDiameter <em>Longitudinal Bar Nominal Diameter</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMesh#getLongitudinalBarNominalDiameterAsString <em>Longitudinal Bar Nominal Diameter As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMesh#getTransverseBarNominalDiameter <em>Transverse Bar Nominal Diameter</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMesh#getTransverseBarNominalDiameterAsString <em>Transverse Bar Nominal Diameter As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMesh#getLongitudinalBarCrossSectionArea <em>Longitudinal Bar Cross Section Area</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMesh#getLongitudinalBarCrossSectionAreaAsString <em>Longitudinal Bar Cross Section Area As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMesh#getTransverseBarCrossSectionArea <em>Transverse Bar Cross Section Area</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMesh#getTransverseBarCrossSectionAreaAsString <em>Transverse Bar Cross Section Area As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMesh#getLongitudinalBarSpacing <em>Longitudinal Bar Spacing</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMesh#getLongitudinalBarSpacingAsString <em>Longitudinal Bar Spacing As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMesh#getTransverseBarSpacing <em>Transverse Bar Spacing</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMesh#getTransverseBarSpacingAsString <em>Transverse Bar Spacing As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc4.IfcReinforcingMesh#getPredefinedType <em>Predefined Type</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc4.Ifc4Package#getIfcReinforcingMesh()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcReinforcingMesh extends IfcReinforcingElement {
 	/**
 	 * Returns the value of the '<em><b>Mesh Length</b></em>' attribute.

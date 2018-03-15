@@ -16,41 +16,23 @@
  */
 package org.bimserver.models.ifc2x3tc1;
 
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Ifc Fluid Flow Properties</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFluidFlowProperties#getPropertySource <em>Property Source</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFluidFlowProperties#getFlowConditionTimeSeries <em>Flow Condition Time Series</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFluidFlowProperties#getVelocityTimeSeries <em>Velocity Time Series</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFluidFlowProperties#getFlowrateTimeSeries <em>Flowrate Time Series</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFluidFlowProperties#getFluid <em>Fluid</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFluidFlowProperties#getPressureTimeSeries <em>Pressure Time Series</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFluidFlowProperties#getUserDefinedPropertySource <em>User Defined Property Source</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFluidFlowProperties#getTemperatureSingleValue <em>Temperature Single Value</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFluidFlowProperties#getTemperatureSingleValueAsString <em>Temperature Single Value As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFluidFlowProperties#getWetBulbTemperatureSingleValue <em>Wet Bulb Temperature Single Value</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFluidFlowProperties#getWetBulbTemperatureSingleValueAsString <em>Wet Bulb Temperature Single Value As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFluidFlowProperties#getWetBulbTemperatureTimeSeries <em>Wet Bulb Temperature Time Series</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFluidFlowProperties#getTemperatureTimeSeries <em>Temperature Time Series</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFluidFlowProperties#getFlowrateSingleValue <em>Flowrate Single Value</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFluidFlowProperties#getFlowConditionSingleValue <em>Flow Condition Single Value</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFluidFlowProperties#getFlowConditionSingleValueAsString <em>Flow Condition Single Value As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFluidFlowProperties#getVelocitySingleValue <em>Velocity Single Value</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFluidFlowProperties#getVelocitySingleValueAsString <em>Velocity Single Value As String</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFluidFlowProperties#getPressureSingleValue <em>Pressure Single Value</em>}</li>
- *   <li>{@link org.bimserver.models.ifc2x3tc1.IfcFluidFlowProperties#getPressureSingleValueAsString <em>Pressure Single Value As String</em>}</li>
- * </ul>
- *
- * @see org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package#getIfcFluidFlowProperties()
- * @model
- * @generated
- */
+/******************************************************************************
+ * Copyright (C) 2009-2018  BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
+ *****************************************************************************/
+
 public interface IfcFluidFlowProperties extends IfcPropertySetDefinition {
 	/**
 	 * Returns the value of the '<em><b>Property Source</b></em>' attribute.
