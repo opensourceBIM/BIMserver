@@ -2016,7 +2016,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		if (usePre) {
 			try {
 				Path file = getBimServer().getResourceFetcher().getFile("pre/extendeddataschemas.json");
-				if (Files.exists(file)) {
+				if (file != null && Files.exists(file)) {
 					content = new String(Files.readAllBytes(file), Charsets.UTF_8);
 				}
 			} catch (IOException e) {

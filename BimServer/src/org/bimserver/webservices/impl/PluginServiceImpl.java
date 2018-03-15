@@ -1624,7 +1624,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public Boolean hasPreBuiltPlugins() throws UserException {
 		try {
-			Path file = getBimServer().getResourceFetcher().getFile("/pre");
+			Path file = getBimServer().getResourceFetcher().getFile("pre");
 			if (file != null) {
 				return Files.isDirectory(file);
 			} else {

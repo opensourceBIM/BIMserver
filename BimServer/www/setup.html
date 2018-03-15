@@ -540,10 +540,13 @@ function Setup(cd, address) {
 				if (prebuilt) {
 					debugger;
 					var artifacts = [];
-					for (var key in requiredPlugin) {
-						artifacts.push(requiredPlugin[key].artifactId);
+					for (var key in requiredPlugins) {
+						artifacts.push(requiredPlugins[key].artifactId);
 					}
-					Global.api.call("PluginInterface", "installPreBuiltPlugins", artifacts);
+					console.log(artifacts);
+					Global.api.call("PluginInterface", "installPreBuiltPlugins", {
+						artifacts: artifacts
+					});
 				} else {
 					Global.api.call("PluginInterface", "getInstalledPluginBundles", {}, function(bundles){
 						bundles.forEach(function(bundle){
