@@ -677,4 +677,10 @@ public interface PluginInterface extends PublicInterface {
 	
 	@WebMethod(action = "listPluginsInBundle")
 	List<SPluginDescriptor> listPluginsInBundle(@WebParam(name = "pluginBundleVersionOid", partName = "listPluginsInBundle.pluginBundleVersionOid") Long pluginBundleVersionOid) throws ServerException, UserException;
+	
+	@WebMethod(action = "hasPreBuiltPlugins")
+	Boolean hasPreBuiltPlugins() throws UserException, ServerException;
+	
+	@WebMethod(action = "installPreBuiltPlugins")
+	void installPreBuiltPlugins(@WebParam(name = "artifacts", partName = "installPreBuiltPlugins.artifacts") List<String> artifacts) throws UserException, ServerException;
 }

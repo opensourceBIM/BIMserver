@@ -16,7 +16,6 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-
 import java.util.Date;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
@@ -25,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SProjectDeleted.class, SNewProjectAdded.class, SProjectUndeleted.class, SProjectUpdated.class})
+@XmlSeeAlso(value={SProjectUndeleted.class, SProjectUpdated.class, SNewProjectAdded.class, SProjectDeleted.class})
 public class SProjectRelated extends SLogAction implements SDataBase
 {
 	private long oid = -1;

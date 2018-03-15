@@ -21,11 +21,16 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.function.Consumer;
+
+import javax.activation.DataHandler;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -69,6 +74,7 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
+import org.bimserver.utils.ByteArrayDataSource;
 import org.bimserver.webservices.SLogComparator;
 import org.bimserver.webservices.SMigrationComparator;
 import org.bimserver.webservices.SPluginDescriptorComparator;

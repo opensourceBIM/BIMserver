@@ -1,7 +1,7 @@
 package org.bimserver.pb;
 
 /******************************************************************************
- * Copyright (C) 2009-2017  BIMserver.org
+ * Copyright (C) 2009-2018  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -170,6 +170,10 @@ service PluginInterface {
 	rpc getWebModuleByName (GetWebModuleByNameRequest) returns (GetWebModuleByNameResponse);
 
 	rpc hasActiveSerializer (HasActiveSerializerRequest) returns (HasActiveSerializerResponse);
+
+	rpc hasPreBuiltPlugins (HasPreBuiltPluginsRequest) returns (HasPreBuiltPluginsResponse);
+
+	rpc installPreBuiltPlugins (InstallPreBuiltPluginsRequest) returns (VoidResponse);
 
 	rpc installPluginBundle (InstallPluginBundleRequest) returns (VoidResponse);
 
@@ -1032,6 +1036,18 @@ message HasActiveSerializerRequest {
 message HasActiveSerializerResponse {
 	optional string errorMessage = 1;
 	optional bool value = 2;
+}
+
+message HasPreBuiltPluginsRequest {
+}
+
+message HasPreBuiltPluginsResponse {
+	optional string errorMessage = 1;
+	optional bool value = 2;
+}
+
+message InstallPreBuiltPluginsRequest {
+	repeated string artifacts = 1;
 }
 
 message InstallPluginBundleRequest {

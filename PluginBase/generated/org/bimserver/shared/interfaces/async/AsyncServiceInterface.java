@@ -16,7 +16,6 @@ package org.bimserver.shared.interfaces.async;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-
 import java.util.concurrent.ExecutorService;
 import org.bimserver.shared.interfaces.ServiceInterface;
 
@@ -1312,11 +1311,11 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void getAllRepositoryExtendedDataSchemas(final GetAllRepositoryExtendedDataSchemasCallback callback) {
+	public void getAllRepositoryExtendedDataSchemas(final java.lang.Boolean usePre, final GetAllRepositoryExtendedDataSchemasCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.getAllRepositoryExtendedDataSchemas());
+					callback.success(syncService.getAllRepositoryExtendedDataSchemas(usePre));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

@@ -16,7 +16,6 @@ package org.bimserver.shared.interfaces;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.exceptions.ServerException;
 
@@ -293,6 +292,13 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	
 	public java.lang.Boolean hasActiveSerializer(java.lang.String contentType) throws UserException, ServerException {
 		return null;
+	}
+	
+	public java.lang.Boolean hasPreBuiltPlugins() throws UserException, ServerException {
+		return null;
+	}
+	
+	public void installPreBuiltPlugins(java.util.List<java.lang.String> artifacts) throws UserException, ServerException {
 	}
 	
 	public void installPluginBundle(java.lang.String repository, java.lang.String groupId, java.lang.String artifactId, java.lang.String version, java.util.List<org.bimserver.interfaces.objects.SPluginInformation> plugins) throws UserException, ServerException {

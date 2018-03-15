@@ -1,5 +1,5 @@
 
-º‹
+¨ﬂ
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoNewServicesInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"b
 AddDeserializerRequestH
 deserializer (22.org.bimserver.pb.SDeserializerPluginConfiguration">
@@ -496,7 +496,13 @@ parameters (2&.org.bimserver.pb.SParameterDefinition"m
 contentType (	"B
 HasActiveSerializerResponse
 errorMessage (	
-value ("ù
+value ("
+HasPreBuiltPluginsRequest"A
+HasPreBuiltPluginsResponse
+errorMessage (	
+value ("2
+InstallPreBuiltPluginsRequest
+	artifacts (	"ù
 InstallPluginBundleRequest
 
 repository (	
@@ -593,7 +599,7 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*å
 SPrimitiveEnum_DOUBLE
 SPrimitiveEnum_BOOLEAN
 SPrimitiveEnum_STRING
-SPrimitiveEnum_BYTE_ARRAY2˙U
+SPrimitiveEnum_BYTE_ARRAY2÷W
 PluginInterfacef
 addDeserializer(.org.bimserver.pb.AddDeserializerRequest).org.bimserver.pb.AddDeserializerResponseo
 addInternalService+.org.bimserver.pb.AddInternalServiceRequest,.org.bimserver.pb.AddInternalServiceResponsef
@@ -665,7 +671,9 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*å
 getSerializerByPluginClassName7.org.bimserver.pb.GetSerializerByPluginClassNameRequest8.org.bimserver.pb.GetSerializerByPluginClassNameResponsei
 getWebModuleById).org.bimserver.pb.GetWebModuleByIdRequest*.org.bimserver.pb.GetWebModuleByIdResponseo
 getWebModuleByName+.org.bimserver.pb.GetWebModuleByNameRequest,.org.bimserver.pb.GetWebModuleByNameResponser
-hasActiveSerializer,.org.bimserver.pb.HasActiveSerializerRequest-.org.bimserver.pb.HasActiveSerializerResponsec
+hasActiveSerializer,.org.bimserver.pb.HasActiveSerializerRequest-.org.bimserver.pb.HasActiveSerializerResponseo
+hasPreBuiltPlugins+.org.bimserver.pb.HasPreBuiltPluginsRequest,.org.bimserver.pb.HasPreBuiltPluginsResponsei
+installPreBuiltPlugins/.org.bimserver.pb.InstallPreBuiltPluginsRequest.org.bimserver.pb.VoidResponsec
 installPluginBundle,.org.bimserver.pb.InstallPluginBundleRequest.org.bimserver.pb.VoidResponses
 installPluginBundleFromFile4.org.bimserver.pb.InstallPluginBundleFromFileRequest.org.bimserver.pb.VoidResponseq
 installPluginBundleFromUrl3.org.bimserver.pb.InstallPluginBundleFromUrlRequest.org.bimserver.pb.VoidResponsel

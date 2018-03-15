@@ -16,7 +16,6 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-
 import javax.activation.DataHandler;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;

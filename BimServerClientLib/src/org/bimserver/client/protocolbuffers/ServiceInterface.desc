@@ -1,5 +1,5 @@
 
-Žˆ
+žˆ
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -582,8 +582,9 @@ onlyActive ("Y
 poid ("e
 GetAllRelatedProjectsResponse
 errorMessage (	.
-value (2.org.bimserver.pb.SProjectSmall",
-*GetAllRepositoryExtendedDataSchemasRequest"y
+value (2.org.bimserver.pb.SProjectSmall"<
+*GetAllRepositoryExtendedDataSchemasRequest
+usePre ("y
 +GetAllRepositoryExtendedDataSchemasResponse
 errorMessage (	4
 value (2%.org.bimserver.pb.SExtendedDataSchema"&

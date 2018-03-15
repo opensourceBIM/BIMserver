@@ -1053,7 +1053,7 @@ public interface ServiceInterface extends PublicInterface {
 	 * @throws UserException
 	 */
 	@WebMethod(action="getAllRepositoryExtendedDataSchemas")
-	List<SExtendedDataSchema> getAllRepositoryExtendedDataSchemas() throws ServerException, UserException;
+	List<SExtendedDataSchema> getAllRepositoryExtendedDataSchemas(@WebParam(name = "usePre", partName = "getAllRepositoryExtendedDataSchemas.usePre") Boolean usePre) throws ServerException, UserException;
 
 	/**
 	 * @return

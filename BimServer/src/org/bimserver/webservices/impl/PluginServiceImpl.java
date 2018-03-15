@@ -20,6 +20,8 @@ package org.bimserver.webservices.impl;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -28,6 +30,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Consumer;
 
 import javax.activation.DataHandler;
 
@@ -141,6 +144,7 @@ import org.bimserver.schemaconverter.SchemaConverterFactory;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.PluginInterface;
+import org.bimserver.utils.ByteArrayDataSource;
 import org.bimserver.utils.NetUtils;
 import org.bimserver.webservices.SPluginConfigurationComparator;
 import org.bimserver.webservices.ServiceMap;
@@ -1613,6 +1617,51 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			return handleException(e);
 		} finally {
 			session.close();
+		}
+	}
+	
+
+	@Override
+	public Boolean hasPreBuiltPlugins() throws UserException {
+		try {
+			Path file = getBimServer().getResourceFetcher().getFile("/pre");
+			if (file != null) {
+				return Files.isDirectory(file);
+			} else {
+				return false;
+			}
+		} catch (IOException e) {
+			throw new UserException(e);
+		}
+	}
+
+	@Override
+	public void installPreBuiltPlugins(List<String> artifacts) {
+		Set<String> set = new HashSet<>(artifacts);
+		try {
+			Path prePath = getBimServer().getResourceFetcher().getFile("pre");
+			if (Files.isDirectory(prePath)) {
+				Files.list(prePath).forEach(new Consumer<Path>() {
+					@Override
+					public void accept(Path t) {
+						String filename = t.getFileName().toString();
+						if (filename.endsWith(".jar")) {
+							if (filename.contains("-")) {
+								if (set.contains(filename.substring(0, filename.indexOf("-")))) {
+									try {
+										DataHandler dataHandler = new DataHandler(new ByteArrayDataSource(filename, Files.readAllBytes(t)));
+										getServiceMap().getPluginInterface().installPluginBundleFromFile(dataHandler, true, true);
+									} catch (IOException | UserException | ServerException e1) {
+										e1.printStackTrace();
+									}
+								}
+							}
+						}
+					}
+				});
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }

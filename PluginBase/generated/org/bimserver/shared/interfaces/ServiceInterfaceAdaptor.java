@@ -16,7 +16,6 @@ package org.bimserver.shared.interfaces;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.exceptions.ServerException;
 
@@ -218,7 +217,7 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
-	public java.util.List<org.bimserver.interfaces.objects.SExtendedDataSchema> getAllRepositoryExtendedDataSchemas() throws UserException, ServerException {
+	public java.util.List<org.bimserver.interfaces.objects.SExtendedDataSchema> getAllRepositoryExtendedDataSchemas(java.lang.Boolean usePre) throws UserException, ServerException {
 		return null;
 	}
 	

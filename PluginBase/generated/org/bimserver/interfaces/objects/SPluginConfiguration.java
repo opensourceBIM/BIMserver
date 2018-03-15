@@ -16,7 +16,6 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
@@ -24,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SModelMergerPluginConfiguration.class, SQueryEnginePluginConfiguration.class, SModelComparePluginConfiguration.class, SDeserializerPluginConfiguration.class, SRenderEnginePluginConfiguration.class, SWebModulePluginConfiguration.class, SObjectIDMPluginConfiguration.class, SSerializerPluginConfiguration.class, SInternalServicePluginConfiguration.class})
+@XmlSeeAlso(value={SRenderEnginePluginConfiguration.class, SDeserializerPluginConfiguration.class, SInternalServicePluginConfiguration.class, SSerializerPluginConfiguration.class, SObjectIDMPluginConfiguration.class, SModelComparePluginConfiguration.class, SWebModulePluginConfiguration.class, SQueryEnginePluginConfiguration.class, SModelMergerPluginConfiguration.class})
 public class SPluginConfiguration implements SDataBase
 {
 	private long oid = -1;

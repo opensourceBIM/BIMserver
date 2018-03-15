@@ -228,6 +228,7 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
 import org.bimserver.models.store.SerializerPluginConfiguration;
+import org.bimserver.models.store.ServerState;
 import org.bimserver.models.store.Service;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.models.store.StoreExtendedData;
@@ -2010,10 +2011,22 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 
 	@Override
-	public List<SExtendedDataSchema> getAllRepositoryExtendedDataSchemas() throws ServerException, UserException {
+	public List<SExtendedDataSchema> getAllRepositoryExtendedDataSchemas(Boolean usePre) throws ServerException, UserException {
+		String content = null;
+		if (usePre) {
+			try {
+				Path file = getBimServer().getResourceFetcher().getFile("pre/extendeddataschemas.json");
+				if (Files.exists(file)) {
+					content = new String(Files.readAllBytes(file), Charsets.UTF_8);
+				}
+			} catch (IOException e) {
+			}
+		}
 		try {
+			if (content == null) {
+				content = NetUtils.getContent(new URL(getServiceMap().get(SettingsInterface.class).getServiceRepositoryUrl() + "/extendeddataschemas.json"), 5000);
+			}
 			List<SExtendedDataSchema> extendedDataSchemas = new ArrayList<SExtendedDataSchema>();
-			String content = NetUtils.getContent(new URL(getServiceMap().get(SettingsInterface.class).getServiceRepositoryUrl() + "/extendeddataschemas.json"), 5000);
 			JSONObject root = new JSONObject(new JSONTokener(content));
 			JSONArray extendedDataSchemasJson = root.getJSONArray("extendeddataschemas");
 			for (int i = 0; i < extendedDataSchemasJson.length(); i++) {

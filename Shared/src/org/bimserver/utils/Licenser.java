@@ -38,13 +38,13 @@ public class Licenser {
 //		processProject(new File("C:\\Git\\IfcEngine\\IfcEngine"));
 		processProject(new File("C:\\Git\\IfcOpenShell-BIMserver-plugin"));
 		processProject(new File("C:\\Git\\IfcPlugins\\IfcPlugins"));
-//		processProject(new File("C:\\Software\\Eclipse\\Git\\IfcValidator"));
-//		processProject(new File("C:\\Git\\JavaModelChecker\\JavaModelChecker"));
-//		processProject(new File("C:\\Git\\JavaQueryEngine\\JavaQueryEngine"));
+		processProject(new File("C:\\Software\\Eclipse\\Git\\IfcValidator"));
+		processProject(new File("C:\\Git\\JavaModelChecker\\JavaModelChecker"));
+		processProject(new File("C:\\Git\\JavaQueryEngine\\JavaQueryEngine"));
 		processProject(new File("C:\\Git\\Mergers\\Mergers"));
 //		processProject(new File("C:\\Git\\TestFiles\\TestData"));
-//		processProject(new File("C:\\Git\\TestFramework\\TestFramework"));
-		processProject(new File("C:\\Git\\BIMserver6\\Tests"));
+		processProject(new File("C:\\Git\\TestFramework\\TestFramework"));
+//		processProject(new File("C:\\Git\\BIMserver6\\Tests"));
 		processProject(new File("C:\\Git\\Tools\\Tools"));
 		System.out.println("Unchanged: " + same);
 		System.out.println("Changed: " + changed);

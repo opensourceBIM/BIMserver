@@ -536,22 +536,33 @@ function Setup(cd, address) {
 			scratchmap[key] = requiredPlugins[key];
 		});
 		Global.api.call("SettingsInterface", "setPluginStrictVersionChecking", {strict: false}, function(){
-			Global.api.call("PluginInterface", "getInstalledPluginBundles", {}, function(bundles){
-				bundles.forEach(function(bundle){
-					var installedVersion = bundle.installedVersion;
-					if (scratchmap[installedVersion.artifactId] != null) {
-						o.logInfo("Already installed " + installedVersion.artifactId);
-						delete scratchmap[installedVersion.artifactId];
+			Global.api.call("PluginInterface", "hasPreBuiltPlugins", {}, function(prebuilt){
+				if (prebuilt) {
+					debugger;
+					var artifacts = [];
+					for (var key in requiredPlugin) {
+						artifacts.push(requiredPlugin[key].artifactId);
 					}
-				});
-				if (Object.keys(scratchmap).length > 0) {
-					o.installPluginBundle(scratchmap, callback);
+					Global.api.call("PluginInterface", "installPreBuiltPlugins", artifacts);
 				} else {
-					callback();
+					Global.api.call("PluginInterface", "getInstalledPluginBundles", {}, function(bundles){
+						bundles.forEach(function(bundle){
+							var installedVersion = bundle.installedVersion;
+							if (scratchmap[installedVersion.artifactId] != null) {
+								o.logInfo("Already installed " + installedVersion.artifactId);
+								delete scratchmap[installedVersion.artifactId];
+							}
+						});
+						if (Object.keys(scratchmap).length > 0) {
+							o.installPluginBundle(scratchmap, callback);
+						} else {
+							callback();
+						}
+					}, function(message){
+						o.logError(message);
+						o.abort();
+					});
 				}
-			}, function(message){
-				o.logError(message);
-				o.abort();
 			});
         }, function(message){
 			o.logError(message);
@@ -563,7 +574,7 @@ function Setup(cd, address) {
 		if (o.hasInternet) {
 			o.logInfo("Installing all extended data schemas...");
 			o.incLevel();
-			Global.api.call("ServiceInterface", "getAllRepositoryExtendedDataSchemas", {}, function(data){
+			Global.api.call("ServiceInterface", "getAllRepositoryExtendedDataSchemas", {usePre: true}, function(data){
 				var requests = [];
 				data.forEach(function(extendedDataSchema){
 					var request = {

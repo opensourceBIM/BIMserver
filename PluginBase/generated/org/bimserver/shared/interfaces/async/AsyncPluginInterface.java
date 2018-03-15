@@ -16,7 +16,6 @@ package org.bimserver.shared.interfaces.async;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-
 import java.util.concurrent.ExecutorService;
 import org.bimserver.shared.interfaces.PluginInterface;
 
@@ -382,6 +381,16 @@ public class AsyncPluginInterface {
 	
 	public interface HasActiveSerializerCallback {
 		void success(java.lang.Boolean result);
+		void error(Throwable e);
+	}
+	
+	public interface HasPreBuiltPluginsCallback {
+		void success(java.lang.Boolean result);
+		void error(Throwable e);
+	}
+	
+	public interface InstallPreBuiltPluginsCallback {
+		void success();
 		void error(Throwable e);
 	}
 	
@@ -1358,6 +1367,31 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.hasActiveSerializer(contentType));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void hasPreBuiltPlugins(final HasPreBuiltPluginsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.hasPreBuiltPlugins());
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void installPreBuiltPlugins(final java.util.List<java.lang.String> artifacts, final InstallPreBuiltPluginsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.installPreBuiltPlugins(artifacts);
+					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);
 				}
