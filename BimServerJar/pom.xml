@@ -39,6 +39,7 @@
 				<configuration>
 					<descriptor>assembly.xml</descriptor>
 					<finalName>starter</finalName>
+					<appendAssemblyId>false</appendAssemblyId>
 					<archive>
 						<manifest>
 							<mainClass>org.bimserver.starter.Starter</mainClass>
