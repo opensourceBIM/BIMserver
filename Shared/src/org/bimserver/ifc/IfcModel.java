@@ -18,7 +18,6 @@ package org.bimserver.ifc;
  *****************************************************************************/
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -32,13 +31,11 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.function.Predicate;
 
 import org.bimserver.emf.*;
 import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc4.Ifc4Package;
-import org.bimserver.models.ifc4.impl.Ifc4PackageImpl;
 import org.bimserver.plugins.ObjectAlreadyExistsException;
 import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
