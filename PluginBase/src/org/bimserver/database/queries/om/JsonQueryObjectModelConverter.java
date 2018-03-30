@@ -197,7 +197,6 @@ public class JsonQueryObjectModelConverter {
 
 	private void parseDefines(Query query, ObjectNode jsonNode) throws QueryException {
 		Iterator<String> fieldNames = jsonNode.fieldNames();
-		int i=0;
 		// First pass, get all the name and create stub includes, using two passing to allow the usage of includes defined later in the structure
 		while (fieldNames.hasNext()) {
 			String fieldName = fieldNames.next();
@@ -208,7 +207,6 @@ public class JsonQueryObjectModelConverter {
 			} else {
 				throw new QueryException("\"defines\"[" + fieldName + "] must be of type object");
 			}
-			i++;
 		}
 		// Second pass, actually construct the includes
 		fieldNames = jsonNode.fieldNames();
