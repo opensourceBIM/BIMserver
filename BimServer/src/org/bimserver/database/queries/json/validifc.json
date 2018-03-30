@@ -238,10 +238,13 @@
          "include": {
             "type": "IfcRelDefinesByProperties",
             "field": "RelatingPropertyDefinition",
-            "include": {
+            "includes": [{
                "type": "IfcPropertySet",
                "field": "HasProperties"
-            }
+            }, {
+            	"type": "IfcElementQuantity",
+            	"field": "Quantities"
+            }]
          }
       },
       "IfcOpenShell": {
