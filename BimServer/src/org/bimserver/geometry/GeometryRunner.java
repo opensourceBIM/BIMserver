@@ -179,9 +179,6 @@ public class GeometryRunner implements Runnable {
 								if (!this.streamingGeometryGenerator.running) {
 									return;
 								}
-								if (ifcProduct.get("GlobalId").equals("1sZn$z_i91bPOCQJOkOibU")) {
-									System.out.println();
-								}
 								Integer expressId = oidToEid.get(ifcProduct.getOid());
 								try {
 									RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(expressId);
@@ -248,6 +245,8 @@ public class GeometryRunner implements Runnable {
 
 										Set<Color4f> usedColors = new HashSet<>();
 
+										boolean hasTransparency = false;
+										
 										if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
 											boolean hasMaterial = false;
 											float[] vertex_colors = new float[vertices.length / 3 * 4];
@@ -264,6 +263,9 @@ public class GeometryRunner implements Runnable {
 															color.set(l, val);
 														}
 														usedColors.add(color);
+														if (color.getA() < 1) {
+															hasTransparency = true;
+														}
 													}
 												}
 											}
@@ -290,6 +292,8 @@ public class GeometryRunner implements Runnable {
 										}
 
 										geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), geometryData.getOid(), 0);
+										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_HasTransparency(), hasTransparency);
+										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_HasTransparency(), hasTransparency);
 
 										long size = this.streamingGeometryGenerator.getSize(geometryData);
 

@@ -290,6 +290,15 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getGeometryInfo_HasTransparency() {
+		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getVector3f() {
 		if (vector3fEClass == null) {
 			vector3fEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers().get(1);
@@ -388,6 +397,15 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 */
 	public EReference getGeometryData_Color() {
 		return (EReference) getGeometryData().getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGeometryData_HasTransparency() {
+		return (EAttribute) getGeometryData().getEStructuralFeatures().get(6);
 	}
 
 	/**

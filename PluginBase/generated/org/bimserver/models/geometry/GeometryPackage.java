@@ -196,13 +196,22 @@ public interface GeometryPackage extends EPackage {
 	int GEOMETRY_INFO__MAX_BOUNDS_UNTRANSLATED = 10;
 
 	/**
+	 * The feature id for the '<em><b>Has Transparency</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_INFO__HAS_TRANSPARENCY = 11;
+
+	/**
 	 * The number of structural features of the '<em>Info</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO_FEATURE_COUNT = 11;
+	int GEOMETRY_INFO_FEATURE_COUNT = 12;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.Vector3fImpl <em>Vector3f</em>}' class.
@@ -315,13 +324,22 @@ public interface GeometryPackage extends EPackage {
 	int GEOMETRY_DATA__COLOR = 5;
 
 	/**
+	 * The feature id for the '<em><b>Has Transparency</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_DATA__HAS_TRANSPARENCY = 6;
+
+	/**
 	 * The number of structural features of the '<em>Data</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_DATA_FEATURE_COUNT = 6;
+	int GEOMETRY_DATA_FEATURE_COUNT = 7;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.Vector4fImpl <em>Vector4f</em>}' class.
@@ -510,6 +528,17 @@ public interface GeometryPackage extends EPackage {
 	EReference getGeometryInfo_MaxBoundsUntranslated();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryInfo#isHasTransparency <em>Has Transparency</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Has Transparency</em>'.
+	 * @see org.bimserver.models.geometry.GeometryInfo#isHasTransparency()
+	 * @see #getGeometryInfo()
+	 * @generated
+	 */
+	EAttribute getGeometryInfo_HasTransparency();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.geometry.Vector3f <em>Vector3f</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -627,6 +656,17 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getGeometryData_Color();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryData#isHasTransparency <em>Has Transparency</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Has Transparency</em>'.
+	 * @see org.bimserver.models.geometry.GeometryData#isHasTransparency()
+	 * @see #getGeometryData()
+	 * @generated
+	 */
+	EAttribute getGeometryData_HasTransparency();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.geometry.Vector4f <em>Vector4f</em>}'.
@@ -803,6 +843,14 @@ public interface GeometryPackage extends EPackage {
 		EReference GEOMETRY_INFO__MAX_BOUNDS_UNTRANSLATED = eINSTANCE.getGeometryInfo_MaxBoundsUntranslated();
 
 		/**
+		 * The meta object literal for the '<em><b>Has Transparency</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GEOMETRY_INFO__HAS_TRANSPARENCY = eINSTANCE.getGeometryInfo_HasTransparency();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.geometry.impl.Vector3fImpl <em>Vector3f</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -893,6 +941,14 @@ public interface GeometryPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GEOMETRY_DATA__COLOR = eINSTANCE.getGeometryData_Color();
+
+		/**
+		 * The meta object literal for the '<em><b>Has Transparency</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GEOMETRY_DATA__HAS_TRANSPARENCY = eINSTANCE.getGeometryData_HasTransparency();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.geometry.impl.Vector4fImpl <em>Vector4f</em>}' class.

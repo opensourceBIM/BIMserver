@@ -55,6 +55,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getVolume <em>Volume</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getMinBoundsUntranslated <em>Min Bounds Untranslated</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getMaxBoundsUntranslated <em>Max Bounds Untranslated</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#isHasTransparency <em>Has Transparency</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo()
@@ -348,5 +349,31 @@ public interface GeometryInfo extends IdEObject {
 	 * @generated
 	 */
 	void setMaxBoundsUntranslated(Vector3f value);
+
+	/**
+	 * Returns the value of the '<em><b>Has Transparency</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Has Transparency</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Has Transparency</em>' attribute.
+	 * @see #setHasTransparency(boolean)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_HasTransparency()
+	 * @model
+	 * @generated
+	 */
+	boolean isHasTransparency();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#isHasTransparency <em>Has Transparency</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Has Transparency</em>' attribute.
+	 * @see #isHasTransparency()
+	 * @generated
+	 */
+	void setHasTransparency(boolean value);
 
 } // GeometryInfo

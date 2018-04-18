@@ -59,6 +59,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getVolume <em>Volume</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getMinBoundsUntranslated <em>Min Bounds Untranslated</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getMaxBoundsUntranslated <em>Max Bounds Untranslated</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#isHasTransparency <em>Has Transparency</em>}</li>
  * </ul>
  *
  * @generated
@@ -289,6 +290,24 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 */
 	public void setMaxBoundsUntranslated(Vector3f newMaxBoundsUntranslated) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__MAX_BOUNDS_UNTRANSLATED, newMaxBoundsUntranslated);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isHasTransparency() {
+		return (Boolean) eGet(GeometryPackage.Literals.GEOMETRY_INFO__HAS_TRANSPARENCY, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setHasTransparency(boolean newHasTransparency) {
+		eSet(GeometryPackage.Literals.GEOMETRY_INFO__HAS_TRANSPARENCY, newHasTransparency);
 	}
 
 } //GeometryInfoImpl

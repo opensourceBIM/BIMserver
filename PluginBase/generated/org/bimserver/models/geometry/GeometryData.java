@@ -50,6 +50,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getMaterials <em>Materials</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getMaterialIndices <em>Material Indices</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getColor <em>Color</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#isHasTransparency <em>Has Transparency</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData()
@@ -213,5 +214,31 @@ public interface GeometryData extends IdEObject {
 	 * @generated
 	 */
 	void setColor(Vector4f value);
+
+	/**
+	 * Returns the value of the '<em><b>Has Transparency</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Has Transparency</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Has Transparency</em>' attribute.
+	 * @see #setHasTransparency(boolean)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_HasTransparency()
+	 * @model
+	 * @generated
+	 */
+	boolean isHasTransparency();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#isHasTransparency <em>Has Transparency</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Has Transparency</em>' attribute.
+	 * @see #isHasTransparency()
+	 * @generated
+	 */
+	void setHasTransparency(boolean value);
 
 } // GeometryData
