@@ -251,6 +251,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			getDatabaseSession().store(concreteRevision);
 			getDatabaseSession().store(project);
 		} catch (Throwable e) {
+			bimServer.getCheckinsInProgress().remove(poid);
 			if (e instanceof BimserverDatabaseException) {
 				throw (BimserverDatabaseException) e;
 			}

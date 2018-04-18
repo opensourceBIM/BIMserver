@@ -143,15 +143,19 @@ public class UploadServlet extends SubServlet {
 									}
 								} catch (Exception e) {
 									// First handle the remaining stream, so we can send the exception
-									IOUtils.copy(realStream, new OutputStream() {
-										@Override
-										public void write(int b) throws IOException {
-										}
-										
-										@Override
-										public void write(byte[] b, int off, int len) throws IOException {
-										}
-									});
+									try {
+										IOUtils.copy(realStream, new OutputStream() {
+											@Override
+											public void write(int b) throws IOException {
+											}
+											
+											@Override
+											public void write(byte[] b, int off, int len) throws IOException {
+											}
+										});
+									} catch (Exception e2) {
+										// Ignore
+									}
 									throw e;
 								}
 							}
