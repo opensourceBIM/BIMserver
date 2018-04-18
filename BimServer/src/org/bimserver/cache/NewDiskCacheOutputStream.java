@@ -28,12 +28,12 @@ import org.bimserver.plugins.serializers.RemovableFileOutputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class NewDiskCacheOutputStream extends RemovableFileOutputStream {
+public class NewDiskCacheOutputStream extends RemovableFileOutputStream implements DiskCacheItem {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(NewDiskCacheOutputStream.class);
-	private NewDiskCacheManager diskCacheManager;
-	private Path file;
-	private Path tempFile;
+	private final NewDiskCacheManager diskCacheManager;
+	private final Path file;
+	private final Path tempFile;
 	private final CountDownLatch latch = new CountDownLatch(1);
 	private final DownloadDescriptor downloadDescriptor;
 

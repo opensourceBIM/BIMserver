@@ -26,9 +26,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import javax.activation.DataSource;
-
 import org.bimserver.BimServer;
+import org.bimserver.plugins.serializers.MessagingStreamingSerializer;
 import org.bimserver.utils.PathUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +38,7 @@ public class NewDiskCacheManager {
 	private final Path cacheDir;
 	private final BimServer bimServer;
 	private final Set<String> cachedFileNames = new HashSet<>();
-	private final Map<String, NewDiskCacheOutputStream> busyCaching = new HashMap<>();
+	private final Map<String, DiskCacheItem> busyCaching = new HashMap<>();
 
 	public NewDiskCacheManager(BimServer bimServer, Path cacheDir) {
 		this.bimServer = bimServer;
@@ -80,17 +79,17 @@ public class NewDiskCacheManager {
 		return bimServer.getServerSettingsCache().getServerSettings().getCacheOutputFiles();
 	}
 
-	public DataSource get(DownloadDescriptor downloadDescriptor) {
+	public Path get(DownloadDescriptor downloadDescriptor) {
 		if (isEnabled()) {
 			String cacheKey = downloadDescriptor.getCacheKey();
-			NewDiskCacheOutputStream diskCacheOutputStream = null;
+			DiskCacheItem diskCacheItem = null;
 			synchronized (busyCaching) {
-				diskCacheOutputStream = busyCaching.get(cacheKey);
+				diskCacheItem = busyCaching.get(cacheKey);
 			}
-			if (diskCacheOutputStream != null) {
+			if (diskCacheItem != null) {
 				try {
 					LOGGER.info("Waiting for " + cacheKey);
-					diskCacheOutputStream.waitForFinish();
+					diskCacheItem.waitForFinish();
 				} catch (InterruptedException e) {
 					LOGGER.error("", e);
 				}
@@ -103,14 +102,27 @@ public class NewDiskCacheManager {
 				LOGGER.error("File " + file.getFileName().toString() + " not found in cache");
 			} else {
 				LOGGER.info("Reading from cache " + cacheKey);
-				FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(file);
-				fileInputStreamDataSource.setName(downloadDescriptor.getFileNameWithoutExtension());
-				return fileInputStreamDataSource;
+				return file;
 			}
 		}
 		return null;
 	}
 
+	public NewDiskCacheWriter startCachingWriter(DownloadDescriptor downloadDescriptor, MessagingStreamingSerializer messagingStreamingSerializer) {
+		try {
+			String cacheKey = downloadDescriptor.getCacheKey();
+			LOGGER.info("Start caching " + cacheKey);
+			NewDiskCacheWriter out = new NewDiskCacheWriter(this, cacheDir.resolve(cacheKey), downloadDescriptor, messagingStreamingSerializer);
+			synchronized (busyCaching) {
+				busyCaching.put(cacheKey, out);
+			}
+			return out;
+		} catch (FileNotFoundException e) {
+			LOGGER.error("", e);
+		}
+		return null;
+	}
+	
 	public NewDiskCacheOutputStream startCaching(DownloadDescriptor downloadDescriptor) {
 		try {
 			String cacheKey = downloadDescriptor.getCacheKey();
@@ -144,9 +156,9 @@ public class NewDiskCacheManager {
 		return removed;
 	}
 
-	public void doneGenerating(NewDiskCacheOutputStream diskCacheOutputStream) {
+	public void doneGenerating(DiskCacheItem diskCacheItem) {
 		synchronized (busyCaching) {
-			String cacheKey = diskCacheOutputStream.getDownloadDescriptor().getCacheKey();
+			String cacheKey = diskCacheItem.getDownloadDescriptor().getCacheKey();
 			LOGGER.info("Done caching " + cacheKey);
 			busyCaching.remove(cacheKey);
 			cachedFileNames.add(cacheKey);

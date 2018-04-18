@@ -1,5 +1,7 @@
 package org.bimserver.longaction;
 
+import java.nio.file.Path;
+
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -26,6 +28,8 @@ import javax.activation.DataSource;
 
 import org.bimserver.BimServer;
 import org.bimserver.cache.DownloadDescriptor;
+import org.bimserver.cache.FileCacheReadingWriter;
+import org.bimserver.cache.FileInputStreamDataSource;
 import org.bimserver.cache.NewDiskCacheOutputStream;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
@@ -69,6 +73,7 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 	private String filename;
 	private SCheckoutResult checkoutResult = new SCheckoutResult();
 	private DownloadDescriptor downloadDescriptor;
+	private Path cacheFile;
 
 	public LongStreamingDownloadAction(BimServer bimServer, String username, String userUsername, Authorization authorization, Long serializerOid, String jsonQuery, Set<Long> roids) {
 		super(bimServer, username, userUsername, authorization);
@@ -112,8 +117,24 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 				downloadDescriptor = new DownloadDescriptor(packageMetaData, jsonQuery, roids, query, serializerOid, this.filename);
 				
 				if (getBimServer().getNewDiskCacheManager().contains(downloadDescriptor)) {
-					DataSource dataSource = getBimServer().getNewDiskCacheManager().get(downloadDescriptor);
-					checkoutResult.setFile(new DataHandler(dataSource));
+					cacheFile = getBimServer().getNewDiskCacheManager().get(downloadDescriptor);
+					FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(cacheFile);
+					fileInputStreamDataSource.setName(downloadDescriptor.getFileNameWithoutExtension());
+					checkoutResult.setFile(new DataHandler(fileInputStreamDataSource));
+					
+//					if (diskCacheItem instanceof NewDiskCacheOutputStream) {
+//					} else if (diskCacheItem instanceof NewDiskCacheWriter){
+//						FileCacheReadingWriter fileCacheReadingWriter = new FileCacheReadingWriter(file);
+//						fileCacheReadingWriter.setName(downloadDescriptor.getFileNameWithoutExtension());
+//						return fileCacheReadingWriter;
+//					}
+//
+//					
+//					if (cache instanceof DataSource) {
+//						checkoutResult.setFile(new DataHandler((DataSource) cache));
+//					} else {
+//						streamer = true;
+//					}
 					
 					changeActionState(ActionState.STARTED, "Done preparing", -1);
 				} else {
@@ -166,7 +187,7 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 	}
 
 	public SCheckoutResult getCheckoutResult() throws SerializerException {
-		if (checkoutResult.getFile() != null) {
+		if (cacheFile != null) {
 			// already populated by cached file
 			return checkoutResult;
 		}
@@ -201,6 +222,15 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 	}
 
 	public Writer getMessagingStreamingSerializer() {
+		if (getBimServer().getNewDiskCacheManager().isEnabled()) {
+			if (getBimServer().getNewDiskCacheManager().contains(downloadDescriptor)) {
+				FileCacheReadingWriter fileCacheReadingWriter = new FileCacheReadingWriter(cacheFile);
+				fileCacheReadingWriter.setName(downloadDescriptor.getFileNameWithoutExtension());
+				return fileCacheReadingWriter;
+			} else {
+				return getBimServer().getNewDiskCacheManager().startCachingWriter(downloadDescriptor, messagingStreamingSerializer);
+			}
+		}
 		return messagingStreamingSerializer;
 	}
 }

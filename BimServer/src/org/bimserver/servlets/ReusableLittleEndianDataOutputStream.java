@@ -29,8 +29,8 @@ import com.google.common.primitives.Longs;
 
 public class ReusableLittleEndianDataOutputStream extends LittleEndianSerializerDataOutputStream {
 
-	GrowingByteBuffer growingByteBuffer = new GrowingByteBuffer(100000);
-	private DataOutputStream dataOutputStream;
+	private final GrowingByteBuffer growingByteBuffer = new GrowingByteBuffer(100000);
+	private final DataOutputStream dataOutputStream;
 
 	public ReusableLittleEndianDataOutputStream() {
 		dataOutputStream = new DataOutputStream(new OutputStream() {
@@ -53,6 +53,11 @@ public class ReusableLittleEndianDataOutputStream extends LittleEndianSerializer
 	@Override
 	public void write(byte[] b, int off, int len) throws IOException {
 		growingByteBuffer.ensureExtraCapacity(len);
+		dataOutputStream.write(b, off, len);
+	}
+
+	@Override
+	public void writeUnchecked(byte[] b, int off, int len) throws IOException {
 		dataOutputStream.write(b, off, len);
 	}
 
@@ -80,7 +85,6 @@ public class ReusableLittleEndianDataOutputStream extends LittleEndianSerializer
 	 */
 	@Override
 	public void writeFloat(float v) throws IOException {
-		growingByteBuffer.ensureExtraCapacity(4);
 		writeInt(Float.floatToIntBits(v));
 	}
 
@@ -157,5 +161,40 @@ public class ReusableLittleEndianDataOutputStream extends LittleEndianSerializer
 	public void writeByte(byte val) throws IOException {
 		growingByteBuffer.ensureExtraCapacity(1);
 		dataOutputStream.write((byte)val);
+	}
+	
+	@Override
+	public void ensureExtraCapacity(int length) {
+		growingByteBuffer.ensureExtraCapacity(length);
+	}
+	
+	@Override
+	public void writeDoubleUnchecked(double value) throws IOException {
+		writeLongUnchecked(Double.doubleToLongBits(value));
+	}
+	
+	@Override
+	public void writeFloatUnchecked(float v) throws IOException {
+		writeIntUnchecked(Float.floatToIntBits(v));
+	}
+	
+	@Override
+	public void writeIntUnchecked(int v) throws IOException {
+		dataOutputStream.write(0xFF & v);
+		dataOutputStream.write(0xFF & (v >> 8));
+		dataOutputStream.write(0xFF & (v >> 16));
+		dataOutputStream.write(0xFF & (v >> 24));
+	}
+	
+	@Override
+	public void writeLongUnchecked(long value) throws IOException {
+		byte[] bytes = Longs.toByteArray(Long.reverseBytes(value));
+		dataOutputStream.write(bytes, 0, bytes.length);
+	}
+	
+	@Override
+	public void writeShortUnchecked(short v) throws IOException {
+		dataOutputStream.write(0xFF & v);
+		dataOutputStream.write(0xFF & (v >> 8));
 	}
 }
