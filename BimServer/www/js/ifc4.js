@@ -896,13 +896,19 @@
           "inverse": false
         },
         "ClosedCurve": {
-          "type": "boolean",
+          "type": "enum",
           "reference": false,
           "many": false,
           "inverse": false
         },
         "SelfIntersect": {
-          "type": "boolean",
+          "type": "enum",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "UpperIndexOnControlPoints": {
+          "type": "long",
           "reference": false,
           "many": false,
           "inverse": false
@@ -935,6 +941,12 @@
         },
         "KnotSpec": {
           "type": "enum",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "UpperIndexOnKnots": {
+          "type": "long",
           "reference": false,
           "many": false,
           "inverse": false
@@ -972,19 +984,31 @@
           "inverse": false
         },
         "UClosed": {
-          "type": "boolean",
+          "type": "enum",
           "reference": false,
           "many": false,
           "inverse": false
         },
         "VClosed": {
-          "type": "boolean",
+          "type": "enum",
           "reference": false,
           "many": false,
           "inverse": false
         },
         "SelfIntersect": {
-          "type": "boolean",
+          "type": "enum",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "UUpper": {
+          "type": "long",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "VUpper": {
+          "type": "long",
           "reference": false,
           "many": false,
           "inverse": false
@@ -1035,6 +1059,18 @@
         },
         "KnotSpec": {
           "type": "enum",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "KnotVUpper": {
+          "type": "long",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "KnotUUpper": {
+          "type": "long",
           "reference": false,
           "many": false,
           "inverse": false
@@ -1484,14 +1520,7 @@
       "superclasses": [
         "IfcElement"
       ],
-      "fields": {
-        "HasCoverings": {
-          "type": "IfcRelCoversBldgElements",
-          "reference": true,
-          "many": true,
-          "inverse": true
-        }
-      }
+      "fields": {}
     },
     "IfcBuildingElementPart": {
       "domain": "ifcsharedcomponentelements",
@@ -1584,6 +1613,12 @@
       "fields": {
         "PredefinedType": {
           "type": "enum",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "LongName": {
+          "type": "string",
           "reference": false,
           "many": false,
           "inverse": false
@@ -1830,7 +1865,28 @@
       "superclasses": [
         "IfcGeometricRepresentationItem"
       ],
-      "fields": {}
+      "fields": {
+        "Dim": {
+          "type": "long",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        }
+      }
+    },
+    "IfcCartesianPointList2D": {
+      "domain": "ifcgeometricmodelresource",
+      "superclasses": [
+        "IfcCartesianPointList"
+      ],
+      "fields": {
+        "CoordList": {
+          "type": "ListOfIfcCartesianPoint",
+          "reference": true,
+          "many": true,
+          "inverse": false
+        }
+      }
     },
     "IfcCartesianPointList3D": {
       "domain": "ifcgeometricmodelresource",
@@ -1887,6 +1943,18 @@
           "reference": false,
           "many": false,
           "inverse": false
+        },
+        "Scl": {
+          "type": "double",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "SclAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -1910,6 +1978,18 @@
           "inverse": false
         },
         "Scale2AsString": {
+          "type": "string",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "Scl2": {
+          "type": "double",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "Scl2AsString": {
           "type": "string",
           "reference": false,
           "many": false,
@@ -1956,6 +2036,30 @@
           "inverse": false
         },
         "Scale3AsString": {
+          "type": "string",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "Scl3": {
+          "type": "double",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "Scl3AsString": {
+          "type": "string",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "Scl2": {
+          "type": "double",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "Scl2AsString": {
           "type": "string",
           "reference": false,
           "many": false,
@@ -2450,7 +2554,19 @@
           "inverse": true
         },
         "SelfIntersect": {
-          "type": "boolean",
+          "type": "enum",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "ClosedCurve": {
+          "type": "enum",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "NSegments": {
+          "type": "long",
           "reference": false,
           "many": false,
           "inverse": false
@@ -3158,7 +3274,7 @@
           "type": "IfcCoordinateReferenceSystemSelect",
           "reference": true,
           "many": false,
-          "inverse": false
+          "inverse": true
         },
         "TargetCRS": {
           "type": "IfcCoordinateReferenceSystem",
@@ -3197,6 +3313,12 @@
           "reference": false,
           "many": false,
           "inverse": false
+        },
+        "HasCoordinateOperation": {
+          "type": "IfcCoordinateOperation",
+          "reference": true,
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -4660,6 +4782,12 @@
           "reference": true,
           "many": true,
           "inverse": false
+        },
+        "Ne": {
+          "type": "long",
+          "reference": false,
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -4906,6 +5034,12 @@
         },
         "ContainedInStructure": {
           "type": "IfcRelContainedInSpatialStructure",
+          "reference": true,
+          "many": true,
+          "inverse": true
+        },
+        "HasCoverings": {
+          "type": "IfcRelCoversBldgElements",
           "reference": true,
           "many": true,
           "inverse": true
@@ -6226,6 +6360,12 @@
           "reference": true,
           "many": true,
           "inverse": true
+        },
+        "HasCoordinateOperation": {
+          "type": "IfcCoordinateOperation",
+          "reference": true,
+          "many": true,
+          "inverse": true
         }
       }
     },
@@ -6615,9 +6755,15 @@
           "many": false,
           "inverse": true
         },
-        "Overrides": {
-          "type": "IfcSurfaceStyleShading",
-          "reference": true,
+        "Opacity": {
+          "type": "double",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "OpacityAsString": {
+          "type": "string",
+          "reference": false,
           "many": false,
           "inverse": false
         },
@@ -6630,6 +6776,66 @@
         "ColourIndex": {
           "type": "long",
           "reference": false,
+          "many": true,
+          "inverse": false
+        }
+      }
+    },
+    "IfcIndexedPolyCurve": {
+      "domain": "ifcgeometryresource",
+      "superclasses": [
+        "IfcBoundedCurve"
+      ],
+      "fields": {
+        "Points": {
+          "type": "IfcCartesianPointList",
+          "reference": true,
+          "many": false,
+          "inverse": false
+        },
+        "Segments": {
+          "type": "IfcSegmentIndexSelect",
+          "reference": true,
+          "many": true,
+          "inverse": false
+        },
+        "SelfIntersect": {
+          "type": "enum",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        }
+      }
+    },
+    "IfcIndexedPolygonalFace": {
+      "domain": "ifcgeometricmodelresource",
+      "superclasses": [
+        "IfcTessellatedItem"
+      ],
+      "fields": {
+        "CoordIndex": {
+          "type": "long",
+          "reference": false,
+          "many": true,
+          "inverse": false
+        },
+        "ToFaceSet": {
+          "type": "IfcPolygonalFaceSet",
+          "reference": true,
+          "many": true,
+          "inverse": true
+        }
+      }
+    },
+    "IfcIndexedPolygonalFaceWithVoids": {
+      "domain": "ifcgeometricmodelresource",
+      "superclasses": [
+        "IfcIndexedPolygonalFace"
+      ],
+      "fields": {
+        "InnerCoordIndices": {
+          "type": "ListOfELong",
+          "reference": true,
           "many": true,
           "inverse": false
         }
@@ -6696,6 +6902,13 @@
           "inverse": false
         }
       }
+    },
+    "IfcIntersectionCurve": {
+      "domain": "ifcgeometryresource",
+      "superclasses": [
+        "IfcSurfaceCurve"
+      ],
+      "fields": {}
     },
     "IfcInventory": {
       "domain": "ifcsharedfacilitieselements",
@@ -7760,13 +7973,7 @@
           "inverse": false
         },
         "Priority": {
-          "type": "double",
-          "reference": false,
-          "many": false,
-          "inverse": false
-        },
-        "PriorityAsString": {
-          "type": "string",
+          "type": "long",
           "reference": false,
           "many": false,
           "inverse": false
@@ -7938,13 +8145,7 @@
           "inverse": false
         },
         "Priority": {
-          "type": "double",
-          "reference": false,
-          "many": false,
-          "inverse": false
-        },
-        "PriorityAsString": {
-          "type": "string",
+          "type": "long",
           "reference": false,
           "many": false,
           "inverse": false
@@ -8560,7 +8761,7 @@
           "inverse": false
         },
         "SelfIntersect": {
-          "type": "boolean",
+          "type": "enum",
           "reference": false,
           "many": false,
           "inverse": false
@@ -8592,7 +8793,7 @@
           "inverse": false
         },
         "SelfIntersect": {
-          "type": "boolean",
+          "type": "enum",
           "reference": false,
           "many": false,
           "inverse": false
@@ -9491,6 +9692,32 @@
         }
       }
     },
+    "IfcPolygonalFaceSet": {
+      "domain": "ifcgeometricmodelresource",
+      "superclasses": [
+        "IfcTessellatedFaceSet"
+      ],
+      "fields": {
+        "Closed": {
+          "type": "enum",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "Faces": {
+          "type": "IfcIndexedPolygonalFace",
+          "reference": true,
+          "many": true,
+          "inverse": true
+        },
+        "PnIndex": {
+          "type": "long",
+          "reference": false,
+          "many": true,
+          "inverse": false
+        }
+      }
+    },
     "IfcPolyline": {
       "domain": "ifcgeometryresource",
       "superclasses": [
@@ -9675,19 +9902,19 @@
       ],
       "fields": {
         "LayerOn": {
-          "type": "boolean",
+          "type": "enum",
           "reference": false,
           "many": false,
           "inverse": false
         },
         "LayerFrozen": {
-          "type": "boolean",
+          "type": "enum",
           "reference": false,
           "many": false,
           "inverse": false
         },
         "LayerBlocked": {
-          "type": "boolean",
+          "type": "enum",
           "reference": false,
           "many": false,
           "inverse": false
@@ -10037,6 +10264,18 @@
         },
         "PartOfComplex": {
           "type": "IfcComplexProperty",
+          "reference": true,
+          "many": true,
+          "inverse": true
+        },
+        "HasConstraints": {
+          "type": "IfcResourceConstraintRelationship",
+          "reference": true,
+          "many": true,
+          "inverse": true
+        },
+        "HasApprovals": {
+          "type": "IfcResourceApprovalRelationship",
           "reference": true,
           "many": true,
           "inverse": true
@@ -10754,6 +10993,18 @@
           "reference": false,
           "many": true,
           "inverse": false
+        },
+        "Weights": {
+          "type": "double",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "WeightsAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -10767,6 +11018,18 @@
           "type": "ListOfEDouble",
           "reference": true,
           "many": true,
+          "inverse": false
+        },
+        "Weights": {
+          "type": "double",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "WeightsAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false,
           "inverse": false
         }
       }
@@ -12682,7 +12945,7 @@
           "type": "IfcResourceObjectSelect",
           "reference": true,
           "many": true,
-          "inverse": false
+          "inverse": true
         },
         "RelatingApproval": {
           "type": "IfcApproval",
@@ -12708,7 +12971,7 @@
           "type": "IfcResourceObjectSelect",
           "reference": true,
           "many": true,
-          "inverse": false
+          "inverse": true
         }
       }
     },
@@ -13106,6 +13369,13 @@
         }
       }
     },
+    "IfcSeamCurve": {
+      "domain": "ifcgeometryresource",
+      "superclasses": [
+        "IfcSurfaceCurve"
+      ],
+      "fields": {}
+    },
     "IfcSectionProperties": {
       "domain": "ifcprofileresource",
       "superclasses": [
@@ -13305,7 +13575,7 @@
           "inverse": false
         },
         "ProductDefinitional": {
-          "type": "boolean",
+          "type": "enum",
           "reference": false,
           "many": false,
           "inverse": false
@@ -13804,6 +14074,26 @@
         }
       }
     },
+    "IfcSphericalSurface": {
+      "domain": "ifcgeometryresource",
+      "superclasses": [
+        "IfcElementarySurface"
+      ],
+      "fields": {
+        "Radius": {
+          "type": "double",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "RadiusAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        }
+      }
+    },
     "IfcStackTerminal": {
       "domain": "ifcplumbingfireprotectiondomain",
       "superclasses": [
@@ -13852,7 +14142,7 @@
         "IfcBuildingElement"
       ],
       "fields": {
-        "NumberOfRiser": {
+        "NumberOfRisers": {
           "type": "long",
           "reference": false,
           "many": false,
@@ -14881,6 +15171,33 @@
         }
       }
     },
+    "IfcSurfaceCurve": {
+      "domain": "ifcgeometryresource",
+      "superclasses": [
+        "IfcCurve",
+        "IfcCurveOnSurface"
+      ],
+      "fields": {
+        "Curve3D": {
+          "type": "IfcCurve",
+          "reference": true,
+          "many": false,
+          "inverse": false
+        },
+        "AssociatedGeometry": {
+          "type": "IfcPcurve",
+          "reference": true,
+          "many": true,
+          "inverse": false
+        },
+        "MasterRepresentation": {
+          "type": "enum",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        }
+      }
+    },
     "IfcSurfaceCurveSweptAreaSolid": {
       "domain": "ifcgeometricmodelresource",
       "superclasses": [
@@ -15116,18 +15433,6 @@
         "IfcSurfaceStyleShading"
       ],
       "fields": {
-        "Transparency": {
-          "type": "double",
-          "reference": false,
-          "many": false,
-          "inverse": false
-        },
-        "TransparencyAsString": {
-          "type": "string",
-          "reference": false,
-          "many": false,
-          "inverse": false
-        },
         "DiffuseColour": {
           "type": "IfcColourOrFactor",
           "reference": true,
@@ -15182,6 +15487,18 @@
         "SurfaceColour": {
           "type": "IfcColourRgb",
           "reference": true,
+          "many": false,
+          "inverse": false
+        },
+        "Transparency": {
+          "type": "double",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "TransparencyAsString": {
+          "type": "string",
+          "reference": false,
           "many": false,
           "inverse": false
         }
@@ -15577,12 +15894,30 @@
           "type": "IfcTableRow",
           "reference": true,
           "many": true,
-          "inverse": true
+          "inverse": false
         },
         "Columns": {
           "type": "IfcTableColumn",
           "reference": true,
           "many": true,
+          "inverse": false
+        },
+        "NumberOfCellsInRow": {
+          "type": "long",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "NumberOfDataRows": {
+          "type": "long",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "NumberOfHeadings": {
+          "type": "long",
+          "reference": false,
+          "many": false,
           "inverse": false
         }
       }
@@ -15638,12 +15973,6 @@
           "reference": false,
           "many": false,
           "inverse": false
-        },
-        "OfTable": {
-          "type": "IfcTable",
-          "reference": true,
-          "many": false,
-          "inverse": true
         }
       }
     },
@@ -15841,7 +16170,7 @@
         "IfcTaskTime"
       ],
       "fields": {
-        "Recurrance": {
+        "Recurrence": {
           "type": "IfcRecurrencePattern",
           "reference": true,
           "many": false,
@@ -16075,13 +16404,13 @@
           "many": false,
           "inverse": false
         },
-        "SheethDiameter": {
+        "SheathDiameter": {
           "type": "double",
           "reference": false,
           "many": false,
           "inverse": false
         },
-        "SheethDiameterAsString": {
+        "SheathDiameterAsString": {
           "type": "string",
           "reference": false,
           "many": false,
@@ -16092,24 +16421,13 @@
     "IfcTessellatedFaceSet": {
       "domain": "ifcgeometricmodelresource",
       "superclasses": [
-        "IfcTessellatedItem"
+        "IfcTessellatedItem",
+        "IfcBooleanOperand"
       ],
       "fields": {
         "Coordinates": {
           "type": "IfcCartesianPointList3D",
           "reference": true,
-          "many": false,
-          "inverse": false
-        },
-        "Normals": {
-          "type": "ListOfIfcParameterValue",
-          "reference": true,
-          "many": true,
-          "inverse": false
-        },
-        "Closed": {
-          "type": "enum",
-          "reference": false,
           "many": false,
           "inverse": false
         },
@@ -16124,6 +16442,12 @@
           "reference": true,
           "many": true,
           "inverse": true
+        },
+        "Dim": {
+          "type": "long",
+          "reference": false,
+          "many": false,
+          "inverse": false
         }
       }
     },
@@ -16523,6 +16847,38 @@
       ],
       "fields": {}
     },
+    "IfcToroidalSurface": {
+      "domain": "ifcgeometryresource",
+      "superclasses": [
+        "IfcElementarySurface"
+      ],
+      "fields": {
+        "MajorRadius": {
+          "type": "double",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "MajorRadiusAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "MinorRadius": {
+          "type": "double",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
+        "MinorRadiusAsString": {
+          "type": "string",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        }
+      }
+    },
     "IfcTransformer": {
       "domain": "ifcelectricaldomain",
       "superclasses": [
@@ -16641,16 +16997,34 @@
         "IfcTessellatedFaceSet"
       ],
       "fields": {
+        "Normals": {
+          "type": "ListOfIfcParameterValue",
+          "reference": true,
+          "many": true,
+          "inverse": false
+        },
+        "Closed": {
+          "type": "enum",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        },
         "CoordIndex": {
           "type": "ListOfELong",
           "reference": true,
           "many": true,
           "inverse": false
         },
-        "NormalIndex": {
-          "type": "ListOfELong",
-          "reference": true,
+        "PnIndex": {
+          "type": "long",
+          "reference": false,
           "many": true,
+          "inverse": false
+        },
+        "NumberOfTriangles": {
+          "type": "long",
+          "reference": false,
+          "many": false,
           "inverse": false
         }
       }
@@ -17784,6 +18158,18 @@
         }
       }
     },
+    "IfcStrippedOptional": {
+      "domain": null,
+      "superclasses": [],
+      "fields": {
+        "wrappedValue": {
+          "type": "enum",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        }
+      }
+    },
     "IfcAbsorbedDoseMeasure": {
       "domain": "ifcmeasureresource",
       "superclasses": [
@@ -17898,6 +18284,18 @@
         },
         "wrappedValueAsString": {
           "type": "string",
+          "reference": false,
+          "many": false,
+          "inverse": false
+        }
+      }
+    },
+    "IfcBinary": {
+      "domain": "ifcmeasureresource",
+      "superclasses": [],
+      "fields": {
+        "wrappedValue": {
+          "type": "bytearray",
           "reference": false,
           "many": false,
           "inverse": false
@@ -19973,6 +20371,13 @@
       ],
       "fields": {}
     },
+    "IfcPositiveInteger": {
+      "domain": "ifcmeasureresource",
+      "superclasses": [
+        "IfcInteger"
+      ],
+      "fields": {}
+    },
     "IfcPositiveLengthMeasure": {
       "domain": "ifcmeasureresource",
       "superclasses": [
@@ -20131,6 +20536,7 @@
     "IfcPipeFittingTypeEnum": {},
     "IfcPipeSegmentTypeEnum": {},
     "IfcPlateTypeEnum": {},
+    "IfcPreferredSurfaceCurveRepresentation": {},
     "IfcProcedureTypeEnum": {},
     "IfcProfileTypeEnum": {},
     "IfcProjectOrderTypeEnum": {},
@@ -20450,6 +20856,11 @@
     },
     "IfcRotationalStiffnessSelect": {
       "domain": "ifcstructuralloadresource",
+      "superclasses": [],
+      "fields": {}
+    },
+    "IfcSegmentIndexSelect": {
+      "domain": "ifcgeometryresource",
       "superclasses": [],
       "fields": {}
     },
