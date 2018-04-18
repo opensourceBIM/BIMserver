@@ -176,7 +176,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>buildingsmartlibrary</artifactId>
-			<version>1.0.11</version>
+			<version>1.0.13</version>
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish</groupId>

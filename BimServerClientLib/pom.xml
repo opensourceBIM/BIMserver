@@ -23,12 +23,12 @@
 		<dependency>
 			<groupId>org.eclipse.jetty.websocket</groupId>
 			<artifactId>websocket-api</artifactId>
-			<version>9.3.6.v20151106</version>
+			<version>9.4.9.v20180320</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.jetty.websocket</groupId>
 			<artifactId>websocket-client</artifactId>
-			<version>9.3.6.v20151106</version>
+			<version>9.4.9.v20180320</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
