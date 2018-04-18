@@ -173,13 +173,13 @@ service PluginInterface {
 
 	rpc hasPreBuiltPlugins (HasPreBuiltPluginsRequest) returns (HasPreBuiltPluginsResponse);
 
-	rpc installPreBuiltPlugins (InstallPreBuiltPluginsRequest) returns (VoidResponse);
-
 	rpc installPluginBundle (InstallPluginBundleRequest) returns (VoidResponse);
 
 	rpc installPluginBundleFromFile (InstallPluginBundleFromFileRequest) returns (VoidResponse);
 
 	rpc installPluginBundleFromUrl (InstallPluginBundleFromUrlRequest) returns (VoidResponse);
+
+	rpc installPreBuiltPlugins (InstallPreBuiltPluginsRequest) returns (VoidResponse);
 
 	rpc listAllWebModules (ListAllWebModulesRequest) returns (ListAllWebModulesResponse);
 
@@ -1046,10 +1046,6 @@ message HasPreBuiltPluginsResponse {
 	optional bool value = 2;
 }
 
-message InstallPreBuiltPluginsRequest {
-	repeated string artifacts = 1;
-}
-
 message InstallPluginBundleRequest {
 	optional string repository = 1;
 	optional string groupId = 2;
@@ -1068,6 +1064,10 @@ message InstallPluginBundleFromUrlRequest {
 	optional string url = 1;
 	optional bool installAllPluginsForAllUsers = 2;
 	optional bool installAllPluginsForNewUsers = 3;
+}
+
+message InstallPreBuiltPluginsRequest {
+	repeated string artifacts = 1;
 }
 
 message ListAllWebModulesRequest {

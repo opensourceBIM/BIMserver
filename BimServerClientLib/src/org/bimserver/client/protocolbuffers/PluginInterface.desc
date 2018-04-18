@@ -500,9 +500,7 @@ parameters (2&.org.bimserver.pb.SParameterDefinition"m
 HasPreBuiltPluginsRequest"A
 HasPreBuiltPluginsResponse
 errorMessage (	
-value ("2
-InstallPreBuiltPluginsRequest
-	artifacts (	"
+value ("
 InstallPluginBundleRequest
 
 repository (	
@@ -518,7 +516,9 @@ artifactId (	
 !InstallPluginBundleFromUrlRequest
 url (	$
 installAllPluginsForAllUsers ($
-installAllPluginsForNewUsers ("
+installAllPluginsForNewUsers ("2
+InstallPreBuiltPluginsRequest
+	artifacts (	"
 ListAllWebModulesRequest"q
 ListAllWebModulesResponse
 errorMessage (	>
@@ -672,11 +672,11 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*Œ
 getWebModuleById).org.bimserver.pb.GetWebModuleByIdRequest*.org.bimserver.pb.GetWebModuleByIdResponseo
 getWebModuleByName+.org.bimserver.pb.GetWebModuleByNameRequest,.org.bimserver.pb.GetWebModuleByNameResponser
 hasActiveSerializer,.org.bimserver.pb.HasActiveSerializerRequest-.org.bimserver.pb.HasActiveSerializerResponseo
-hasPreBuiltPlugins+.org.bimserver.pb.HasPreBuiltPluginsRequest,.org.bimserver.pb.HasPreBuiltPluginsResponsei
-installPreBuiltPlugins/.org.bimserver.pb.InstallPreBuiltPluginsRequest.org.bimserver.pb.VoidResponsec
+hasPreBuiltPlugins+.org.bimserver.pb.HasPreBuiltPluginsRequest,.org.bimserver.pb.HasPreBuiltPluginsResponsec
 installPluginBundle,.org.bimserver.pb.InstallPluginBundleRequest.org.bimserver.pb.VoidResponses
 installPluginBundleFromFile4.org.bimserver.pb.InstallPluginBundleFromFileRequest.org.bimserver.pb.VoidResponseq
-installPluginBundleFromUrl3.org.bimserver.pb.InstallPluginBundleFromUrlRequest.org.bimserver.pb.VoidResponsel
+installPluginBundleFromUrl3.org.bimserver.pb.InstallPluginBundleFromUrlRequest.org.bimserver.pb.VoidResponsei
+installPreBuiltPlugins/.org.bimserver.pb.InstallPreBuiltPluginsRequest.org.bimserver.pb.VoidResponsel
 listAllWebModules*.org.bimserver.pb.ListAllWebModulesRequest+.org.bimserver.pb.ListAllWebModulesResponser
 listPluginsInBundle,.org.bimserver.pb.ListPluginsInBundleRequest-.org.bimserver.pb.ListPluginsInBundleResponsei
 setDefaultModelCompare/.org.bimserver.pb.SetDefaultModelCompareRequest.org.bimserver.pb.VoidResponseg

@@ -298,9 +298,6 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
-	public void installPreBuiltPlugins(java.util.List<java.lang.String> artifacts) throws UserException, ServerException {
-	}
-	
 	public void installPluginBundle(java.lang.String repository, java.lang.String groupId, java.lang.String artifactId, java.lang.String version, java.util.List<org.bimserver.interfaces.objects.SPluginInformation> plugins) throws UserException, ServerException {
 	}
 	
@@ -308,6 +305,9 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	}
 	
 	public void installPluginBundleFromUrl(java.lang.String url, java.lang.Boolean installAllPluginsForAllUsers, java.lang.Boolean installAllPluginsForNewUsers) throws UserException, ServerException {
+	}
+	
+	public void installPreBuiltPlugins(java.util.List<java.lang.String> artifacts) throws UserException, ServerException {
 	}
 	
 	public java.util.List<org.bimserver.interfaces.objects.SWebModulePluginConfiguration> listAllWebModules() throws UserException, ServerException {
