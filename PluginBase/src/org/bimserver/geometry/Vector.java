@@ -1,5 +1,7 @@
 package org.bimserver.geometry;
 
+import com.google.common.base.Joiner;
+
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -83,6 +85,10 @@ public class Vector {
 		System.out.println(v[0] + ", " + v[1] + ", " + v[2] + (v.length == 4 ? (", " + v[3]) : ""));
 	}
 
+	public static void dump(float[] v, int start) {
+		System.out.println(v[start * 4 + 0] + ", " + v[start * 4 + 1] + ", " + v[start * 4 + 2] + ", " + v[start * 4 + 3]);
+	}
+
 	public static void dump(String pre, float[] v) {
 		System.out.println(pre + ": " + v[0] + ", " + v[1] + ", " + v[2] + (v.length == 4 ? (", " + v[3]) : ""));
 	}
@@ -107,5 +113,15 @@ public class Vector {
 		triangle[2][2] = 0;
 		
 		System.out.println(getArea(triangle));
+	}
+	public static void dump(String message, double[] inputVertex) {
+		System.out.println(message);
+		for (int i=0; i<inputVertex.length; i++) {
+			System.out.print(inputVertex[i]);
+			if (i != inputVertex.length - 1) {
+				System.out.print(", ");
+			}
+		}
+		System.out.println();
 	}
 }
