@@ -1024,8 +1024,10 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			return checkinInternal(topicId, poid, comment, deserializerOid, fileSize, fileName, dataHandler.getInputStream(), merge,
 					sync, session, username, userUsername, project, file, newServiceId);
 		} catch (UserException e) {
+			getBimServer().getCheckinsInProgress().remove(poid);
 			throw e;
 		} catch (Throwable e) {
+			getBimServer().getCheckinsInProgress().remove(poid);
 			LOGGER.error("", e);
 			throw new ServerException(e);
 		} finally {
@@ -1074,6 +1076,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 					getBimServer().getLongActionManager().start(longAction);
 					if (sync) {
 						longAction.waitForCompletion();
+						getBimServer().getCheckinsInProgress().remove(poid);
 					}
 					return longAction.getProgressTopic().getKey().getId();
 				} else if (plugin instanceof StreamingDeserializerPlugin) {
@@ -1087,6 +1090,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 					getBimServer().getLongActionManager().start(longAction);
 					if (sync) {
 						longAction.waitForCompletion();
+						getBimServer().getCheckinsInProgress().remove(poid);
 					}
 					return longAction.getProgressTopic().getKey().getId();
 				} else {

@@ -23,4 +23,5 @@ import java.io.OutputStream;
 public interface Writer {
 
 	boolean writeMessage(OutputStream outputStream, ProgressReporter progressReporter) throws IOException, SerializerException;
+	void close() throws IOException;
 }

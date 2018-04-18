@@ -66,6 +66,19 @@ public class LittleEndianSerializerDataOutputStream extends SerializerDataOutput
 	}
 
 	/**
+	 * Writes a {@code float} as specified by
+	 * {@link DataOutputStream#writeFloat(float)}, except using little-endian
+	 * byte order.
+	 *
+	 * @throws IOException
+	 *             if an I/O error occurs
+	 */
+	@Override
+	public void writeFloatUnchecked(float v) throws IOException {
+		writeIntUnchecked(Float.floatToIntBits(v));
+	}
+
+	/**
 	 * Writes an {@code int} as specified by
 	 * {@link DataOutputStream#writeInt(int)}, except using little-endian byte
 	 * order.
@@ -75,6 +88,22 @@ public class LittleEndianSerializerDataOutputStream extends SerializerDataOutput
 	 */
 	@Override
 	public void writeInt(int v) throws IOException {
+		outputStream.write(0xFF & v);
+		outputStream.write(0xFF & (v >> 8));
+		outputStream.write(0xFF & (v >> 16));
+		outputStream.write(0xFF & (v >> 24));
+	}
+
+	/**
+	 * Writes an {@code int} as specified by
+	 * {@link DataOutputStream#writeInt(int)}, except using little-endian byte
+	 * order.
+	 *
+	 * @throws IOException
+	 *             if an I/O error occurs
+	 */
+	@Override
+	public void writeIntUnchecked(int v) throws IOException {
 		outputStream.write(0xFF & v);
 		outputStream.write(0xFF & (v >> 8));
 		outputStream.write(0xFF & (v >> 16));
@@ -130,5 +159,31 @@ public class LittleEndianSerializerDataOutputStream extends SerializerDataOutput
 	@Override
 	public void writeByte(byte val) throws IOException {
 		outputStream.write((byte)val);
+	}
+
+	@Override
+	public void ensureExtraCapacity(int i) {
+	}
+
+	@Override
+	public void writeDoubleUnchecked(double value) throws IOException {
+		writeLong(Double.doubleToLongBits(value));
+	}
+
+	@Override
+	public void writeLongUnchecked(long value) throws IOException {
+		byte[] bytes = Longs.toByteArray(Long.reverseBytes(value));
+		write(bytes, 0, bytes.length);
+	}
+
+	@Override
+	public void writeShortUnchecked(short v) throws IOException {
+		outputStream.write(0xFF & v);
+		outputStream.write(0xFF & (v >> 8));
+	}
+
+	@Override
+	public void writeUnchecked(byte[] b, int off, int len) throws IOException {
+		outputStream.write(b, off, len);
 	}
 }

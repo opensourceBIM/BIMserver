@@ -436,6 +436,9 @@ public class PackageMetaData implements ObjectFactory {
 	}
 
 	private void buildUseForSerializationSet(EClass eClass) {
+		if (eClass == Ifc4Package.eINSTANCE.getIfcSurfaceStyleShading()) {
+			System.out.println();
+		}
 		if (this.getSchemaDefinition() != null) {
 			if (!useForSerialization.containsKey(eClass)) {
 				HashSet<EStructuralFeature> set = new HashSet<>();

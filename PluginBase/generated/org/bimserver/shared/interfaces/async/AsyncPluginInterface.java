@@ -389,11 +389,6 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
-	public interface InstallPreBuiltPluginsCallback {
-		void success();
-		void error(Throwable e);
-	}
-	
 	public interface InstallPluginBundleCallback {
 		void success();
 		void error(Throwable e);
@@ -405,6 +400,11 @@ public class AsyncPluginInterface {
 	}
 	
 	public interface InstallPluginBundleFromUrlCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
+	public interface InstallPreBuiltPluginsCallback {
 		void success();
 		void error(Throwable e);
 	}
@@ -1386,19 +1386,6 @@ public class AsyncPluginInterface {
 		});
 	}
 	
-	public void installPreBuiltPlugins(final java.util.List<java.lang.String> artifacts, final InstallPreBuiltPluginsCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					syncService.installPreBuiltPlugins(artifacts);
-					callback.success();
-				} catch (Throwable e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
 	public void installPluginBundle(final java.lang.String repository, final java.lang.String groupId, final java.lang.String artifactId, final java.lang.String version, final java.util.List<org.bimserver.interfaces.objects.SPluginInformation> plugins, final InstallPluginBundleCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1430,6 +1417,19 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					syncService.installPluginBundleFromUrl(url, installAllPluginsForAllUsers, installAllPluginsForNewUsers);
+					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void installPreBuiltPlugins(final java.util.List<java.lang.String> artifacts, final InstallPreBuiltPluginsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.installPreBuiltPlugins(artifacts);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);

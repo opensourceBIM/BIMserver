@@ -68,6 +68,8 @@ public class PublicInterfaceFactory implements ServiceFactory {
 		} catch (Exception e) {
 			if (e instanceof UserException) {
 				throw (UserException)e;
+			} else if (e instanceof org.bimserver.webservices.authorization.AuthenticationException) {
+				throw new InvalidTokenException(e.getMessage());
 			} else {
 				throw new UserException(e);
 			}

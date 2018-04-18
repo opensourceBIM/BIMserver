@@ -386,7 +386,7 @@ public class ClientIfcModel extends IfcModel {
 						throw new GeometryException("Protocol != BGS (" + protocol + ")");
 					}
 					byte formatVersion = dataInputStream.readByte();
-					if (formatVersion != 11) {
+					if (formatVersion != 12) {
 						throw new GeometryException("Unsupported version " + formatVersion + " / 11");
 					}
 					int skip = 4 - (7 % 4);
@@ -400,6 +400,7 @@ public class ClientIfcModel extends IfcModel {
 					dataInputStream.readFully(new byte[7]);
 					dataInputStream.readLong(); // roid
 					long geometryInfoOid = dataInputStream.readLong();
+					dataInputStream.readLong(); // transparent
 					GeometryInfo geometryInfo = (GeometryInfo) get(geometryInfoOid);
 					if (geometryInfo == null) {
 						geometryInfo = create(GeometryInfo.class);
@@ -446,6 +447,7 @@ public class ClientIfcModel extends IfcModel {
 					throw new GeometryException("Parts not supported");
 				} else if (type == 1) {
 					dataInputStream.readFully(new byte[7]);
+					dataInputStream.readLong(); // transparent
 					long geometryDataOid = dataInputStream.readLong();
 
 					GeometryData geometryData = (GeometryData) get(geometryDataOid);

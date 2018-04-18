@@ -390,11 +390,11 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 							long masterOid = map.values().iterator().next().getOid();
 							for (ProductDef pd : map.values()) {
 								done.add(pd.getOid());
-								if (!optimizeMappedItems) {
+//								if (!optimizeMappedItems) {
 									queryPart.addOid(pd.getOid());
-								} else {
-									pd.setMasterOid(masterOid);
-								}
+//								} else {
+//									pd.setMasterOid(masterOid);
+//								}
 							}
 							if (optimizeMappedItems) {
 								queryPart.addOid(masterOid);

@@ -1109,6 +1109,11 @@ public class Matrix {
 		return result;
 	}
 
+	public static void dump(String message, double[] matrix) {
+		System.out.println(message);
+		dump(matrix);
+	}
+	
 	public static void dump(double[] matrix) {
 		for (int c=0; c<4; c++) {
 			for (int r=0; r<4; r++) {
@@ -1126,6 +1131,12 @@ public class Matrix {
 	
 	public static double[] identity() {
 		double matrix[] = new double[16];
+		setIdentityM(matrix, 0);
+		return matrix;
+	}
+	
+	public static float[] identityF() {
+		float matrix[] = new float[16];
 		setIdentityM(matrix, 0);
 		return matrix;
 	}

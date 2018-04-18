@@ -40,6 +40,7 @@ public class SGeometryInfo implements SDataBase
 	private double volume;
 	private SVector3f minBoundsUntranslated;
 	private SVector3f maxBoundsUntranslated;
+	private boolean hasTransparency;
 
 	public long getOid() {
 		return this.oid;
@@ -100,6 +101,9 @@ public class SGeometryInfo implements SDataBase
 		if (sField.getName().equals("maxBoundsUntranslated")) {
 			return getMaxBoundsUntranslated();
 		}
+		if (sField.getName().equals("hasTransparency")) {
+			return isHasTransparency();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -152,6 +156,10 @@ public class SGeometryInfo implements SDataBase
 		}
 		if (sField.getName().equals("maxBoundsUntranslated")) {
 			setMaxBoundsUntranslated((SVector3f)val);
+			return;
+		}
+		if (sField.getName().equals("hasTransparency")) {
+			setHasTransparency((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -256,6 +264,14 @@ public class SGeometryInfo implements SDataBase
 		this.maxBoundsUntranslated = maxBoundsUntranslated;
 	}
 	
+	
+	public boolean isHasTransparency() {
+		return hasTransparency;
+	}
+
+	public void setHasTransparency(boolean hasTransparency) {
+		this.hasTransparency = hasTransparency;
+	}
 	
 	@Override
 	public int hashCode() {

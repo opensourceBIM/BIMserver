@@ -35,6 +35,7 @@ public class SGeometryData implements SDataBase
 	private byte[] materials;
 	private byte[] materialIndices;
 	private SVector4f color;
+	private boolean hasTransparency;
 
 	public long getOid() {
 		return this.oid;
@@ -80,6 +81,9 @@ public class SGeometryData implements SDataBase
 		if (sField.getName().equals("color")) {
 			return getColor();
 		}
+		if (sField.getName().equals("hasTransparency")) {
+			return isHasTransparency();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -112,6 +116,10 @@ public class SGeometryData implements SDataBase
 		}
 		if (sField.getName().equals("color")) {
 			setColor((SVector4f)val);
+			return;
+		}
+		if (sField.getName().equals("hasTransparency")) {
+			setHasTransparency((Boolean)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -173,6 +181,14 @@ public class SGeometryData implements SDataBase
 		this.color = color;
 	}
 	
+	
+	public boolean isHasTransparency() {
+		return hasTransparency;
+	}
+
+	public void setHasTransparency(boolean hasTransparency) {
+		this.hasTransparency = hasTransparency;
+	}
 	
 	@Override
 	public int hashCode() {

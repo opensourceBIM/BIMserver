@@ -19,6 +19,7 @@ package org.bimserver.servlets;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.nio.ByteBuffer;
 import java.util.GregorianCalendar;
 
 import org.apache.commons.io.output.NullWriter;
@@ -38,6 +39,7 @@ import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
 import org.bimserver.utils.Formatters;
 import org.bimserver.utils.GrowingByteBuffer;
+import org.bimserver.webservices.InvalidTokenException;
 import org.bimserver.webservices.ServiceMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -81,9 +83,9 @@ public class Streamer implements EndPoint {
 				Thread thread = new Thread(){
 					@Override
 					public void run() {
+						Writer writer = null;
 						try {
 							LongAction<?> longAction = bimServer.getLongActionManager().getLongAction(topicId);
-							Writer writer = null;
 							if (longAction instanceof LongStreamingDownloadAction) {
 								LongStreamingDownloadAction longStreamingDownloadAction = (LongStreamingDownloadAction)longAction;
 								writer = longStreamingDownloadAction.getMessagingStreamingSerializer();
@@ -114,15 +116,26 @@ public class Streamer implements EndPoint {
 								byteArrayOutputStream.writeLong(topicId);
 								writeMessage = writer.writeMessage(byteArrayOutputStream, progressReporter);
 								bytes += growingByteBuffer.usedSize();
-								streamingSocketInterface.sendBlocking(growingByteBuffer.array(), 0, growingByteBuffer.usedSize());
+								ByteBuffer newBuffer = ByteBuffer.allocate(growingByteBuffer.usedSize());
+								newBuffer.put(growingByteBuffer.array(), 0, growingByteBuffer.usedSize());
+								streamingSocketInterface.sendBlocking(newBuffer.array(), 0, newBuffer.capacity());
 								counter++;
 							} while (writeMessage);
 							long end = System.nanoTime();
 							LOGGER.info(counter + " messages written " + Formatters.bytesToString(bytes) + " in " + ((end - start) / 1000000) + " ms");
 						} catch (IOException e) {
+							LOGGER.error("", e);
 							// Probably closed/F5-ed browser
 						} catch (SerializerException e) {
 							LOGGER.error("", e);
+						} finally {
+							try {
+								if (writer != null) {
+									writer.close();
+								}
+							} catch (IOException e) {
+								LOGGER.error("", e);
+							}
 						}
 					}
 				};
@@ -139,6 +152,10 @@ public class Streamer implements EndPoint {
 				
 				JsonObject enpointMessage = new JsonObject();
 				enpointMessage.add("endpointid", new JsonPrimitive(endpointid));
+				streamingSocketInterface.send(enpointMessage);
+			} catch (InvalidTokenException e) {
+				JsonObject enpointMessage = new JsonObject();
+				enpointMessage.addProperty("error", "Invalid token");
 				streamingSocketInterface.send(enpointMessage);
 			} catch (UserException e) {
 				LOGGER.error("", e);

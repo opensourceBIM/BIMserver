@@ -11605,6 +11605,7 @@ public class SConverter {
 		result.setTransformation(input.getTransformation());
 		result.setArea(input.getArea());
 		result.setVolume(input.getVolume());
+		result.setHasTransparency(input.isHasTransparency());
 		Vector3f minBoundsVal = input.getMinBounds();
 		result.setMinBounds(convertToSObject(minBoundsVal));
 		Vector3f maxBoundsVal = input.getMaxBounds();
@@ -11646,6 +11647,7 @@ public class SConverter {
 		result.setTransformation(input.getTransformation());
 		result.setArea(input.getArea());
 		result.setVolume(input.getVolume());
+		result.setHasTransparency(input.isHasTransparency());
 		result.setMinBounds(convertFromSObject(input.getMinBounds(), session));
 		result.setMaxBounds(convertFromSObject(input.getMaxBounds(), session));
 		result.setData((GeometryData)session.get(GeometryPackage.eINSTANCE.getGeometryData(), input.getDataId(), OldQuery.getDefault()));
@@ -11773,6 +11775,7 @@ public class SConverter {
 		result.setNormals(input.getNormals());
 		result.setMaterials(input.getMaterials());
 		result.setMaterialIndices(input.getMaterialIndices());
+		result.setHasTransparency(input.isHasTransparency());
 		Vector4f colorVal = input.getColor();
 		result.setColor(convertToSObject(colorVal));
 		return result;
@@ -11805,6 +11808,7 @@ public class SConverter {
 		result.setNormals(input.getNormals());
 		result.setMaterials(input.getMaterials());
 		result.setMaterialIndices(input.getMaterialIndices());
+		result.setHasTransparency(input.isHasTransparency());
 		result.setColor(convertFromSObject(input.getColor(), session));
 		return result;
 	}

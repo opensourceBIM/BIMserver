@@ -47,7 +47,7 @@ public class IfcSchemaToJson {
 		FileOutputStream fos = null;
 		try {
 			fos = new FileOutputStream(new File("www/js/ifc4.js"));
-			new IfcSchemaToJson().convert(fos, new File("C:\\Users\\Ruben de Laat\\Downloads\\20130305_IFC4_HTML_distribution\\IFC4\\schema"), Ifc4Package.eINSTANCE);
+			new IfcSchemaToJson().convert(fos, new File("C:\\Users\\Ruben de Laat\\Downloads\\ifc4-add2\\schema"), Ifc4Package.eINSTANCE);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
