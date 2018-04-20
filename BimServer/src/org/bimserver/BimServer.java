@@ -1120,7 +1120,11 @@ public class BimServer {
 							}
 						}
 						
-						pluginManager.loadFromPluginDir(pluginBundleVersionIdentifier, getSConverter().convertToSObject(pluginBundleVersion), plugins, serverSettingsCache.getServerSettings().isPluginStrictVersionChecking());
+						try {
+							pluginManager.loadFromPluginDir(pluginBundleVersionIdentifier, getSConverter().convertToSObject(pluginBundleVersion), plugins, serverSettingsCache.getServerSettings().isPluginStrictVersionChecking());
+						} catch (Throwable e) {
+							LOGGER.error("", e);
+						}
 					}
 				}
 			} catch (Exception e) {
