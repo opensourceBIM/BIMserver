@@ -18,7 +18,8 @@ package org.bimserver.shared.exceptions;
  *****************************************************************************/
 
 public enum ErrorCode {
-	SET_REFERENCE_FAILED_OPPOSITE_ALREADY_SET(500);
+	SET_REFERENCE_FAILED_OPPOSITE_ALREADY_SET(500), 
+	ENDPOINT_NOT_FOUND(600);
 
 	private int code;
 

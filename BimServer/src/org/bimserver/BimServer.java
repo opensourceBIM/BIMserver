@@ -803,7 +803,10 @@ public class BimServer {
 						if (keyBuffer.capacity() != 16) {
 							throw new BimserverDatabaseException("Unexpected key size: " + keyBuffer.capacity());
 						}
-						keyBuffer.getInt(); // pid
+						int foundPid = keyBuffer.getInt(); // pid
+						if (foundPid != pid) {
+							throw new RuntimeException("PID does not match, this should never happen, please contact developer");
+						}
 						keyBuffer.getLong(); // oid
 						int recordRid = -keyBuffer.getInt(); // rid
 						if (recordRid > rid) {

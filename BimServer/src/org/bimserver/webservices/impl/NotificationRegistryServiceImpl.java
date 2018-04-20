@@ -44,6 +44,7 @@ import org.bimserver.notifications.ProgressNotification;
 import org.bimserver.notifications.ProgressOnRevisionTopic;
 import org.bimserver.notifications.ProgressTopic;
 import org.bimserver.notifications.TopicRegisterException;
+import org.bimserver.shared.exceptions.ErrorCode;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationRegistryInterface;
@@ -86,7 +87,7 @@ public class NotificationRegistryServiceImpl extends GenericServiceImpl implemen
 	private EndPoint getEndPoint(long endPointId) throws UserException {
 		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
 		if (endPoint == null) {
-			throw new UserException("Endpoint with id " + endPointId + " not found");
+			throw new UserException("Endpoint with id " + endPointId + " not found", ErrorCode.ENDPOINT_NOT_FOUND);
 		}
 		return endPoint;
 	}
