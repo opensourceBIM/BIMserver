@@ -44,11 +44,10 @@ public class QueryStackFrame extends StackFrame {
 
 	@Override
 	public boolean process() throws BimserverDatabaseException, QueryException {
-		QueryPart next = queryIterator.next();
-		queryObjectProvider.push(new QueryPartStackFrame(queryObjectProvider, next, reusable));
 		if (queryIterator.hasNext()) {
-			return false;
+			QueryPart next = queryIterator.next();
+			queryObjectProvider.push(new QueryPartStackFrame(queryObjectProvider, next, reusable));
 		}
-		return true;
+		return !queryIterator.hasNext();
 	}
 }
