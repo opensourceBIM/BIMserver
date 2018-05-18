@@ -47,6 +47,10 @@
 			</p>
 		</div>
 	</div>
+	<div class="panel panel-default privacy">
+		<div class="panel-heading">Privacy</div>
+		<div class="panel-body"></div>
+	</div>
 </div>
 <script>
 function Status(cd, serverInfo) {
@@ -66,5 +70,7 @@ function Status(cd, serverInfo) {
 			});
 		});
 	});
+	
+	$(".privacy .panel-body").load("privacy.html");
 }
 </script>

@@ -33,6 +33,10 @@
 							<targetPath>WEB-INF</targetPath>
 						</resource>
 						<resource>
+							<directory>extra</directory>
+							<targetPath>../BimServer/www</targetPath>
+						</resource>
+						<resource>
 							<directory>.</directory>
 							<includes>
 								<include>license.txt</include>
