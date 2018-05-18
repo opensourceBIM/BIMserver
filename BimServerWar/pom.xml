@@ -34,8 +34,10 @@
 						</resource>
 						<resource>
 							<directory>extra</directory>
-							<targetPath>../BimServer/www</targetPath>
-							<include>*.html</include>
+							<targetPath>/</targetPath>
+							<includes>
+								<include>*.html</include>
+							</includes>
 						</resource>
 						<resource>
 							<directory>.</directory>
