@@ -35,6 +35,7 @@
 						<resource>
 							<directory>extra</directory>
 							<targetPath>../BimServer/www</targetPath>
+							<include>*.html</include>
 						</resource>
 						<resource>
 							<directory>.</directory>
