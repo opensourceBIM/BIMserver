@@ -92,6 +92,8 @@ public class ClientIfcModel extends IfcModel {
 	private int cachedObjectCount = -1;
 	private boolean recordChanges;
 	private boolean includeGeometry;
+	
+	private ClientDebugInfo clientDebugInfo = new ClientDebugInfo();
 
 	public ClientIfcModel(BimServerClient bimServerClient, long poid, long roid, boolean deep, PackageMetaData packageMetaData, boolean recordChanges, boolean includeGeometry)
 			throws ServerException, UserException, PublicInterfaceNotFoundException {
@@ -283,6 +285,7 @@ public class ClientIfcModel extends IfcModel {
 	}
 
 	private void loadDeep() throws ServerException, UserException, PublicInterfaceNotFoundException, QueryException {
+		long start = System.nanoTime();
 		if (modelState != ModelState.FULLY_LOADED && modelState != ModelState.LOADING) {
 			modelState = ModelState.LOADING;
 			Query query = new Query("test", getPackageMetaData());
@@ -305,6 +308,8 @@ public class ClientIfcModel extends IfcModel {
 				LOGGER.error("", e);
 			}
 		}
+		long end = System.nanoTime();
+		LOGGER.info((((end - start) / 1000000) + " ms"));
 	}
 
 	private void loadGeometry() throws QueryException, ServerException, UserException, PublicInterfaceNotFoundException, IOException, GeometryException, IfcModelInterfaceException {
@@ -344,6 +349,7 @@ public class ClientIfcModel extends IfcModel {
 			// TODO use websocket notifications
 			waitForDonePreparing(topicId);
 			InputStream inputStream = bimServerClient.getDownloadData(topicId);
+			clientDebugInfo.incrementGetDownloadData();
 			try {
 				// ByteArrayOutputStream byteArrayOutputStream = new
 				// ByteArrayOutputStream();
@@ -355,6 +361,10 @@ public class ClientIfcModel extends IfcModel {
 				bimServerClient.getServiceInterface().cleanupLongAction(topicId);
 			}
 		}
+	}
+	
+	public ClientDebugInfo getClientDebugInfo() {
+		return clientDebugInfo;
 	}
 
 	private void waitForDonePreparing(long topicId) throws UserException, ServerException, PublicInterfaceNotFoundException {
@@ -501,6 +511,7 @@ public class ClientIfcModel extends IfcModel {
 
 	private void processDownload(Long topicId) throws UserException, ServerException, PublicInterfaceNotFoundException, IfcModelInterfaceException, IOException {
 		InputStream downloadData = bimServerClient.getDownloadData(topicId);
+		clientDebugInfo.incrementGetDownloadData();
 		if (downloadData == null) {
 			throw new IfcModelInterfaceException("No InputStream to read from");
 		}

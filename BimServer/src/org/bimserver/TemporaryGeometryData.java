@@ -17,7 +17,7 @@ package org.bimserver;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-public class Q {
+public class TemporaryGeometryData {
 
 	private long oid;
 	private double area;
@@ -27,7 +27,7 @@ public class Q {
 	private double[] mibu;
 	private double[] mabu;
 
-	public Q(long oid, double area, double volume, int nrPrimitives, long size, double[] mibu, double[] mabu) {
+	public TemporaryGeometryData(long oid, double area, double volume, int nrPrimitives, long size, double[] mibu, double[] mabu) {
 		this.oid = oid;
 		this.area = area;
 		this.volume = volume;

@@ -180,6 +180,8 @@ public class SharedJsonDeserializer {
 						object = (IdEObjectImpl) model.create(eClass, oid);
 					}
 				}
+				
+				object.useInverses(false);
 
 				if (jsonReader.nextName().equals("_s")) {
 					int state = jsonReader.nextInt();
@@ -378,6 +380,7 @@ public class SharedJsonDeserializer {
 								}
 							}
 						}
+						object.useInverses(true);
 						object.setLoadingState(State.LOADED);
 					} else {
 						// state not_loaded

@@ -517,6 +517,14 @@
             "IfcRevolvedAreaSolid"
          ]
       },
+      "IfcSpecificMappingShapeRepresentation": {
+         "type": "IfcShapeRepresentation",
+         "fields": ["ContextOfItems"],
+         "includes": [
+            "IfcGeometricRepresentationContext",
+            "IfcGeometricRepresentationSubContext"
+         ]
+      },
       "IfcFaceBasedSurfaceModel": {
          "type": "IfcFaceBasedSurfaceModel",
          "field": "FbsmFaces",
@@ -528,7 +536,7 @@
          "type": "IfcTopologyRepresentation"
       },
       "IfcStyledRepresentation": {
-         "type": "IfcTopologyRepresentation"
+         "type": "IfcStyledRepresentation"
       },
       "Representation": {
          "type": "IfcProduct",
@@ -542,6 +550,17 @@
                "IfcShapeRepresentation",
                "IfcTopologyRepresentation",
                "IfcStyledRepresentation"
+            ]
+         }
+      },
+      "RepresentationSpecificMapping": {
+         "type": "IfcProduct",
+         "field": "Representation",
+         "include": {
+            "type": "IfcProductRepresentation",
+            "field": "Representations",
+            "includes": [
+               "IfcSpecificMappingShapeRepresentation"
             ]
          }
       },

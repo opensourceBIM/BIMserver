@@ -24,7 +24,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -39,8 +38,8 @@ import org.bimserver.GenerateGeometryResult;
 import org.bimserver.ObjectListener;
 import org.bimserver.ObjectProviderProxy;
 import org.bimserver.ProductDef;
-import org.bimserver.Q;
 import org.bimserver.Range;
+import org.bimserver.TemporaryGeometryData;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.queries.QueryObjectProvider;
 import org.bimserver.database.queries.om.Query;
@@ -67,11 +66,13 @@ import org.bimserver.shared.VirtualObject;
 import org.bimserver.shared.WrappedVirtualObject;
 import org.bimserver.utils.GeometryUtils;
 import org.eclipse.emf.ecore.EClass;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Joiner;
 
 public class GeometryRunner implements Runnable {
 
+	private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(GeometryRunner.class);
 	private final StreamingGeometryGenerator streamingGeometryGenerator;
 	private EClass eClass;
 	private RenderEngineSettings renderEngineSettings;
@@ -87,10 +88,11 @@ public class GeometryRunner implements Runnable {
 	private ReportJob job;
 	private boolean reuseGeometry;
 	private boolean writeOutputFiles = false;
+	private GeometryGenerationDebugger geometryGenerationDebugger;
 
 	public GeometryRunner(StreamingGeometryGenerator streamingGeometryGenerator, EClass eClass, RenderEnginePool renderEnginePool, DatabaseSession databaseSession, RenderEngineSettings renderEngineSettings, ObjectProvider objectProvider,
 			StreamingSerializerPlugin ifcSerializerPlugin, RenderEngineFilter renderEngineFilter, GenerateGeometryResult generateGeometryResult, QueryContext queryContext, Query originalQuery, boolean geometryReused,
-			Map<Long, ProductDef> map, ReportJob job, boolean reuseGeometry) {
+			Map<Long, ProductDef> map, ReportJob job, boolean reuseGeometry, GeometryGenerationDebugger geometryGenerationDebugger) {
 		this.streamingGeometryGenerator = streamingGeometryGenerator;
 		this.eClass = eClass;
 		this.renderEnginePool = renderEnginePool;
@@ -105,6 +107,7 @@ public class GeometryRunner implements Runnable {
 		this.map = map;
 		this.job = job;
 		this.reuseGeometry = reuseGeometry;
+		this.geometryGenerationDebugger = geometryGenerationDebugger;
 		this.job.setUsesMapping(map != null);
 	}
 
@@ -151,7 +154,7 @@ public class GeometryRunner implements Runnable {
 
 				Set<Range> reusableGeometryData = new HashSet<>();
 
-				Map<Long, Q> productToData = new HashMap<>();
+				Map<Long, TemporaryGeometryData> productToData = new HashMap<>();
 				try {
 					if (!objects.isEmpty()) {
 						renderEngine = renderEnginePool.borrowObject();
@@ -173,7 +176,7 @@ public class GeometryRunner implements Runnable {
 
 							OidConvertingSerializer oidConvertingSerializer = (OidConvertingSerializer) ifcSerializer;
 							Map<Long, Integer> oidToEid = oidConvertingSerializer.getOidToEid();
-							Map<Long, double[]> matrices = new HashMap<>();
+							Map<Long, DebuggingInfo> debuggingInfo = new HashMap<>();
 
 							for (HashMapVirtualObject ifcProduct : objects) {
 								if (!this.streamingGeometryGenerator.running) {
@@ -359,7 +362,7 @@ public class GeometryRunner implements Runnable {
 													geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), renderEngineInstance.getVolume());
 													geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), indices.length / 3);
 
-													productToData.put(ifcProduct.getOid(), new Q(geometryData.getOid(), renderEngineInstance.getArea(), renderEngineInstance.getVolume(), indices.length / 3, size, mibu, mabu));
+													productToData.put(ifcProduct.getOid(), new TemporaryGeometryData(geometryData.getOid(), renderEngineInstance.getArea(), renderEngineInstance.getVolume(), indices.length / 3, size, mibu, mabu));
 													geometryData.save();
 												}
 											} else {
@@ -378,7 +381,7 @@ public class GeometryRunner implements Runnable {
 												if (geometryReused) {
 													range.setGeometryDataOid(geometryData.getOid());
 													reusableGeometryData.add(range);
-													productToData.put(ifcProduct.getOid(), new Q(geometryData.getOid(), renderEngineInstance.getArea(), renderEngineInstance.getVolume(), indices.length / 3, size, mibu, mabu));
+													productToData.put(ifcProduct.getOid(), new TemporaryGeometryData(geometryData.getOid(), renderEngineInstance.getArea(), renderEngineInstance.getVolume(), indices.length / 3, size, mibu, mabu));
 												}
 												this.streamingGeometryGenerator.hashes.put(hash, geometryData.getOid());
 												geometryData.save();
@@ -390,7 +393,7 @@ public class GeometryRunner implements Runnable {
 
 										calculateObb(geometryInfo, productTranformationMatrix, indices, vertices, generateGeometryResult);
 										this.streamingGeometryGenerator.setTransformationMatrix(geometryInfo, productTranformationMatrix);
-										matrices.put(ifcProduct.getOid(), productTranformationMatrix);
+										debuggingInfo.put(ifcProduct.getOid(), new DebuggingInfo(productTranformationMatrix, indices, vertices));
 
 										geometryInfo.save();
 										this.streamingGeometryGenerator.totalBytes.addAndGet(size);
@@ -440,6 +443,7 @@ public class GeometryRunner implements Runnable {
 							}
 
 							if (geometryReused && map != null) {
+								// We pick the first product and use that product to try and get the original data
 								long firstKey = map.keySet().iterator().next();
 								ProductDef masterProductDef = map.get(firstKey);
 								for (long key : map.keySet()) {
@@ -447,15 +451,15 @@ public class GeometryRunner implements Runnable {
 										ProductDef productDef = map.get(key);
 										HashMapVirtualObject ifcProduct = productDef.getObject();
 
-										Q q = productToData.get(productDef.getMasterOid());
-										if (q != null) {
+										TemporaryGeometryData masterGeometryData = productToData.get(productDef.getMasterOid());
+										if (masterGeometryData != null) {
 											VirtualObject geometryInfo = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getGeometryInfo());
 
 											WrappedVirtualObject minBounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
 											WrappedVirtualObject maxBounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
 
-											double[] mibu = q.getMibu();
-											double[] mabu = q.getMibu();
+											double[] mibu = masterGeometryData.getMibu();
+											double[] mabu = masterGeometryData.getMabu();
 
 											double[] mibt = new double[4];
 											double[] mabt = new double[4];
@@ -489,13 +493,14 @@ public class GeometryRunner implements Runnable {
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MinBoundsUntranslated(), minBoundsUntranslated);
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MaxBoundsUntranslated(), maxBoundsUntranslated);
 
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), q.getArea());
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), q.getVolume());
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), q.getNrPrimitives());
+											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), masterGeometryData.getArea());
+											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), masterGeometryData.getVolume());
+											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), masterGeometryData.getNrPrimitives());
 
-											this.streamingGeometryGenerator.bytesSavedByMapping.addAndGet(q.getSize());
-											this.streamingGeometryGenerator.totalBytes.addAndGet(q.getSize());
+											this.streamingGeometryGenerator.bytesSavedByMapping.addAndGet(masterGeometryData.getSize());
+											this.streamingGeometryGenerator.totalBytes.addAndGet(masterGeometryData.getSize());
 
+											// First, invert the master's mapping matrix
 											double[] inverted = Matrix.identity();
 											if (!Matrix.invertM(inverted, 0, masterProductDef.getMappingMatrix(), 0)) {
 												System.out.println("No inverse");
@@ -503,19 +508,42 @@ public class GeometryRunner implements Runnable {
 
 											double[] finalMatrix = Matrix.identity();
 											double[] totalTranformationMatrix = Matrix.identity();
+											// Apply the mapping matrix of the product
 											Matrix.multiplyMM(finalMatrix, 0, productDef.getMappingMatrix(), 0, inverted, 0);
+											// Apply the product matrix of the product
 											Matrix.multiplyMM(totalTranformationMatrix, 0, productDef.getProductMatrix(), 0, finalMatrix, 0);
 
-											if (matrices.containsKey(ifcProduct.getOid())) {
-												if (!Arrays.equals(matrices.get(ifcProduct.getOid()), totalTranformationMatrix)) {
-													System.out.println("Not the same " + ifcProduct.get("GlobalId"));
-													Matrix.dump(matrices.get(ifcProduct.getOid()));
-													System.out.println();
-													Matrix.dump(totalTranformationMatrix);
+											if (geometryGenerationDebugger != null) {
+												if (debuggingInfo.containsKey(ifcProduct.getOid())) {
+													DebuggingInfo debuggingInfo2 = debuggingInfo.get(ifcProduct.getOid());
+													DebuggingInfo debuggingInfo3 = debuggingInfo.get(productDef.getMasterOid());
+													
+													if (debuggingInfo2.getIndices().length != debuggingInfo3.getIndices().length) {
+														LOGGER.error("Different sizes for indices, weird...");
+														LOGGER.error(ifcProduct.getOid() + " / " + productDef.getMasterOid());
+													} else {
+														for (int i=0; i<debuggingInfo2.getIndices().length; i++) {
+															int index = debuggingInfo2.getIndices()[i];
+															float[] vertex = new float[]{debuggingInfo2.getVertices()[index * 3], debuggingInfo2.getVertices()[index * 3 + 1], debuggingInfo2.getVertices()[index * 3 + 2], 1};
+															float[] transformedOriginal = new float[4];
+															Matrix.multiplyMV(transformedOriginal, 0, debuggingInfo2.getProductTranformationMatrix(), 0, vertex, 0);
+															float[] transformedNew = new float[4];
+															int index2 = debuggingInfo3.getIndices()[i];
+															float[] vertex2 = new float[]{debuggingInfo3.getVertices()[index2 * 3], debuggingInfo3.getVertices()[index2 * 3 + 1], debuggingInfo3.getVertices()[index2 * 3 + 2], 1};
+															Matrix.multiplyMV(transformedNew, 0, totalTranformationMatrix, 0, vertex2, 0);
+															
+															// TODO margin should depend on bb of complete model
+															if (!almostTheSame((String)ifcProduct.get("GlobalId"), transformedNew, transformedOriginal, 0.05F)) {
+																geometryGenerationDebugger.transformedVertexNotMatching(ifcProduct, transformedOriginal, transformedNew, debuggingInfo2.getProductTranformationMatrix(), totalTranformationMatrix);
+															}
+														}
+													}
+													
+//												almostTheSame((String)ifcProduct.get("GlobalId"), debuggingInfo2.getProductTranformationMatrix(), totalTranformationMatrix, 0.01D);
 												}
 											}
 
-											geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), q.getOid(), 0);
+											geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), masterGeometryData.getOid(), 0);
 
 											// for (int i = 0; i <
 											// indices.length; i++) {
@@ -580,6 +608,42 @@ public class GeometryRunner implements Runnable {
 		job.setEndNanos(end);
 	}
 
+	private boolean almostTheSame(String identifier, double[] a, double[] b, double margin) {
+		if (a.length != b.length) {
+			throw new RuntimeException("Unequal sizes");
+		}
+		for (int i=0; i<a.length; i++) {
+			double q = a[i];
+			double r = b[i];
+			if (Math.abs(q - r) < margin) {
+				// OK
+			} else {
+				System.out.println("Not the same " + identifier);
+				Matrix.dump(a);
+				System.out.println();
+				Matrix.dump(b);
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	private boolean almostTheSame(String identifier, float[] a, float[] b, float margin) {
+		if (a.length != b.length) {
+			throw new RuntimeException("Unequal sizes");
+		}
+		for (int i=0; i<a.length; i++) {
+			double q = a[i];
+			double r = b[i];
+			if (Math.abs(q - r) < margin) {
+				// OK
+			} else {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	private synchronized int writeDebugFile(byte[] bytes, boolean error, Map<Integer, String> notFoundObjects) throws FileNotFoundException, IOException {
 		boolean debug = true;
 		if (debug) {

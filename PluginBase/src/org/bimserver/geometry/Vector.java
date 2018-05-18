@@ -36,6 +36,9 @@ public class Vector {
     public static double[] subtract(double[] u, double[] v){
     	return new double[]{u[X]-v[X],u[Y]-v[Y],u[Z]-v[Z], 1};
     }
+    public static float[] subtract(float[] u, float[] v){
+    	return new float[]{u[X]-v[X],u[Y]-v[Y],u[Z]-v[Z], 1};
+    }
     //scalar product
     public static float[] scalarProduct(float r, float[] u){
         return new float[]{u[X]*r,u[Y]*r,u[Z]*r};
@@ -123,5 +126,12 @@ public class Vector {
 			}
 		}
 		System.out.println();
+	}
+	public static float[] copy(float[] currentStartPosition) {
+		float[] result = new float[currentStartPosition.length];
+		for (int i=0; i<currentStartPosition.length; i++) {
+			result[i] = currentStartPosition[i];
+		}
+		return result;
 	}
 }
