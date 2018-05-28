@@ -171,7 +171,9 @@ public class ServiceRunnerServlet extends SubServlet {
 							e.printStackTrace();
 						}
 						
-						BimServerBimBotsInput input = new BimServerBimBotsInput(getBimServer(), authorization.getUoid(), null, null, model);
+						SchemaName schema = SchemaName.valueOf(inputType);
+						
+						BimServerBimBotsInput input = new BimServerBimBotsInput(getBimServer(), authorization.getUoid(), schema, null, model);
 						BimBotsOutput output = bimBotsServiceInterface.runBimBot(input, getBimServer().getSConverter().convertToSObject(foundService.getSettings()));
 						
 						SExtendedData extendedData = new SExtendedData();
