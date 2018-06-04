@@ -761,6 +761,7 @@ public class BimServer {
 	}
 
 	private void cleanupStaleData() throws BimserverDatabaseException {
+		LOGGER.info("Checking for stale records, this can take some time...");
 		long s = System.nanoTime();
 		try (DatabaseSession session = bimDatabase.createSession()) {
 			for (Project project : session.getAll(Project.class)) {
