@@ -599,6 +599,21 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		Include representationInclude = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Representation");
 		queryPart.addInclude(representationInclude);
 		Include objectPlacement = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ObjectPlacement");
+		
+		if (eClass.getName().equals("IfcOpeningElement")) {
+			// In this case, we need to use the FillsVoids reference to get to an object on which we can add the decomposes include as well, otherwise we'll never get to the IfcProject level
+			Include fillsVoidsInclude = queryPart.createInclude();
+			fillsVoidsInclude.addType(eClass, false);
+			fillsVoidsInclude.addField("VoidsElements");
+			Include fillsInclude = fillsVoidsInclude.createInclude();
+			fillsInclude.addType(packageMetaData.getEClass("IfcRelVoidsElement"), false);
+			fillsInclude.addField("RelatingBuildingElement");
+
+			fillsInclude.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Decomposes"));
+			fillsInclude.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":OwnerHistory"));
+			fillsInclude.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ContainedInStructure"));
+		}
+		
 		queryPart.addInclude(objectPlacement);
 		if (packageMetaData.getEClass("IfcElement").isSuperTypeOf(eClass)) {
 			Include openingsInclude = queryPart.createInclude();
