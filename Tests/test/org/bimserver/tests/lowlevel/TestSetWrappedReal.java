@@ -34,7 +34,7 @@ import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.test.TestWithEmbeddedServer;
 import org.junit.Test;
 
-public class TestSetWrappedInteger extends TestWithEmbeddedServer {
+public class TestSetWrappedReal extends TestWithEmbeddedServer {
 
 	@Test
 	public void test() {
@@ -58,7 +58,7 @@ public class TestSetWrappedInteger extends TestWithEmbeddedServer {
 			
 			IfcPropertySingleValue ifcPropertySingleValue = model.getAll(IfcPropertySingleValue.class).iterator().next();
 
-			bimServerClient.getLowLevelInterface().setWrappedIntegerAttribute(tid, ifcPropertySingleValue.getOid(), "NominalValue", "IfcInteger", 12345);
+			bimServerClient.getLowLevelInterface().setWrappedDoubleAttribute(tid, ifcPropertySingleValue.getOid(), "NominalValue", "IfcReal", 1234D);
 
 			long roid = lowLevelInterface.commitTransaction(tid, "v2");
 			

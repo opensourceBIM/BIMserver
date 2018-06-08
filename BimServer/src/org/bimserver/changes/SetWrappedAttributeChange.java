@@ -117,10 +117,10 @@ public class SetWrappedAttributeChange implements Change {
 				}
 				wrappedObject.set(wrappedObject.eClass().getEStructuralFeature("wrappedValue").getName(), value);
 				object.set(eReference.getName(), wrappedObject);
+				if (value instanceof Double) {
+					wrappedObject.set(wrappedObject.eClass().getEStructuralFeature("wrappedValueAsString").getName(), String.valueOf((Double)value));
+				}
 			}
-//			if (value instanceof Double) {
-//				idEObject.eSet(idEObject.eClass().getEStructuralFeature(attributeName + "AsString"), String.valueOf((Double)value));
-//			}
 		}
 	}
 }
