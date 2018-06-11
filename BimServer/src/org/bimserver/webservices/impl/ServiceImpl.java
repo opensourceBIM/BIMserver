@@ -257,6 +257,7 @@ import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.compare.CompareWriter;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
@@ -963,6 +964,31 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	@Override
 	public Long initiateCheckin(Long poid, Long deserializerOid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
+		
+		ProgressOnProjectTopic progressTopic = getBimServer().getNotificationsManager().createProgressOnProjectTopic(getAuthorization().getUoid(), poid, SProgressTopicType.UPLOAD, "Checkin");
+		long topicId = progressTopic.getKey().getId();
+
+		try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession()) {
+			Project tmpProject = tmpSession.get(poid, OldQuery.getDefault());
+			if (tmpProject.getCheckinInProgress() != topicId && tmpProject.getCheckinInProgress() != 0) {
+				Thread.sleep(1000);
+				throw new UserException("Checkin in progress on this project (topicId: " + tmpProject.getCheckinInProgress() + "), please try again later");
+			}
+			tmpProject.setCheckinInProgress(topicId);
+			tmpSession.store(tmpProject);
+			tmpSession.commit();
+		} catch (BimserverDatabaseException e) {
+			// TODO
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ServiceException e) {
+			if (e instanceof UserException) {
+				throw (UserException)e;
+			}
+			e.printStackTrace();
+		}
+		
 		final DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
@@ -976,9 +1002,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			if (project == null) {
 				throw new UserException("No project found with poid " + poid);
 			}
-			
-			ProgressOnProjectTopic progressTopic = getBimServer().getNotificationsManager().createProgressOnProjectTopic(getAuthorization().getUoid(), poid, SProgressTopicType.UPLOAD, "Checkin");
-			
+
 			return progressTopic.getKey().getId();
 		} catch (UserException e) {
 			throw e;
@@ -996,10 +1020,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		String username = "Unknown";
 		String userUsername = "Unknown";
 		try {
-			if (getBimServer().getCheckinsInProgress().containsKey(poid)) {
-				Thread.sleep(1000);
-				throw new UserException("Checkin in progress on this project, please try again later");
-			}
 			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
 			Project project = session.get(poid, OldQuery.getDefault());
 			if (project == null) {
@@ -1024,14 +1044,30 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			return checkinInternal(topicId, poid, comment, deserializerOid, fileSize, fileName, dataHandler.getInputStream(), merge,
 					sync, session, username, userUsername, project, file, newServiceId);
 		} catch (UserException e) {
-			getBimServer().getCheckinsInProgress().remove(poid);
+			try {
+				clearCheckinInProgress(poid);
+			} catch (BimserverDatabaseException | ServiceException e1) {
+				LOGGER.error("", e1);
+			}
 			throw e;
 		} catch (Throwable e) {
-			getBimServer().getCheckinsInProgress().remove(poid);
+			try {
+				clearCheckinInProgress(poid);
+			} catch (BimserverDatabaseException | ServiceException e1) {
+				LOGGER.error("", e1);
+			}
 			LOGGER.error("", e);
 			throw new ServerException(e);
 		} finally {
 			session.close();
+		}
+	}
+	
+	private void clearCheckinInProgress(long poid) throws BimserverDatabaseException, ServiceException {
+		try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession()) {
+			Project project = tmpSession.get(poid, OldQuery.getDefault());
+			project.setCheckinInProgress(0);
+			tmpSession.commit();
 		}
 	}
 	
@@ -1043,12 +1079,9 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	private Long checkinInternal(Long topicId, final Long poid, final String comment, Long deserializerOid,
 			Long fileSize, String fileName, InputStream originalInputStream, Boolean merge, Boolean sync,
 			final DatabaseSession session, String username, String userUsername, Project project, Path file, long newServiceId)
-					throws BimserverDatabaseException, UserException, IOException, DeserializeException,
-					CannotBeScheduledException {
-		if (getBimServer().getCheckinsInProgress().containsKey(poid)) {
-			throw new UserException("Checkin in progress on this project, please try again later");
-		}
-		getBimServer().getCheckinsInProgress().put(poid, getAuthorization().getUoid());
+					throws BimserverDatabaseException, IOException, DeserializeException,
+					CannotBeScheduledException, ServiceException {
+
 		DeserializerPluginConfiguration deserializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, OldQuery.getDefault());
 		if (deserializerPluginConfiguration == null) {
 			throw new UserException("Deserializer with oid " + deserializerOid + " not found");
@@ -1071,12 +1104,12 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 						inputStream.close();
 					}
 					
-					CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, fileName, merge, newServiceId);
+					CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, fileName, merge, newServiceId, topicId);
 					LongCheckinAction longAction = new LongCheckinAction(topicId, getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
 					getBimServer().getLongActionManager().start(longAction);
 					if (sync) {
 						longAction.waitForCompletion();
-						getBimServer().getCheckinsInProgress().remove(poid);
+						clearCheckinInProgress(poid);
 					}
 					return longAction.getProgressTopic().getKey().getId();
 				} else if (plugin instanceof StreamingDeserializerPlugin) {
@@ -1085,12 +1118,12 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 					StreamingDeserializer streamingDeserializer = streaminDeserializerPlugin.createDeserializer(new PluginConfiguration(settings));
 					streamingDeserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData(project.getSchema()));
 					RestartableInputStream restartableInputStream = new RestartableInputStream(originalInputStream, file);
-					StreamingCheckinDatabaseAction checkinDatabaseAction = new StreamingCheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), comment, fileName, restartableInputStream, streamingDeserializer, fileSize, newServiceId, pluginBundleVersion);
+					StreamingCheckinDatabaseAction checkinDatabaseAction = new StreamingCheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), comment, fileName, restartableInputStream, streamingDeserializer, fileSize, newServiceId, pluginBundleVersion, topicId);
 					LongStreamingCheckinAction longAction = new LongStreamingCheckinAction(topicId, getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
 					getBimServer().getLongActionManager().start(longAction);
 					if (sync) {
 						longAction.waitForCompletion();
-						getBimServer().getCheckinsInProgress().remove(poid);
+						clearCheckinInProgress(poid);
 					}
 					return longAction.getProgressTopic().getKey().getId();
 				} else {
@@ -1101,7 +1134,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			}
 		}
 	}
-	
 	
 	@Override
 	public Long checkin(final Long poid, final String comment, Long deserializerOid, Long fileSize, String fileName, DataHandler dataHandler, Boolean merge, Boolean sync) throws ServerException, UserException {
@@ -1117,9 +1149,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		String username = "Unknown";
 		String userUsername = "Unknown";
 		try {
-			if (getBimServer().getCheckinsInProgress().containsKey(poid)) {
-				throw new UserException("Checkin in progress on this project, please try again later");
-			}
+			Long topicId = initiateCheckin(poid, deserializerOid);
+
 			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
 			username = user.getName();
 			userUsername = user.getUsername();
@@ -1136,8 +1167,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			if (project == null) {
 				throw new UserException("No project found with poid " + poid);
 			}
-			
-			Long topicId = initiateCheckin(poid, deserializerOid);
 			
 			URL url = new URL(urlString);
 			URLConnection openConnection = url.openConnection();

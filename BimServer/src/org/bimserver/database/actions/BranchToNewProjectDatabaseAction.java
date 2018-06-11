@@ -94,7 +94,7 @@ public class BranchToNewProjectDatabaseAction extends AbstractBranchDatabaseActi
 		}
 		model.resetOids();
 		final Project newProject = new AddProjectDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), projectName, "ifc2x3tc1", authorization).execute();
-		CheckinDatabaseAction createCheckinAction = new CheckinDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), newProject.getOid(), authorization, model, comment, comment, false, -1);
+		CheckinDatabaseAction createCheckinAction = new CheckinDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), newProject.getOid(), authorization, model, comment, comment, false, -1, -1); // TODO
 		return createCheckinAction.execute();
 	}
 }

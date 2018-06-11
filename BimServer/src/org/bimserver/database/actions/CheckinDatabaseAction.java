@@ -55,6 +55,7 @@ import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.modelchecker.ModelChecker;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
 import org.bimserver.renderengine.RenderEnginePool;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 import org.bimserver.webservices.authorization.ExplicitRightsAuthorization;
@@ -77,8 +78,9 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	private long fileSize;
 	private IfcModelInterface model;
 	private long newServiceId;
+	private long topicId;
 
-	public CheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, IfcModelInterface model, String comment, String fileName, boolean merge, long newServiceId) {
+	public CheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, IfcModelInterface model, String comment, String fileName, boolean merge, long newServiceId, long topicId) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.poid = poid;
@@ -88,6 +90,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 		this.fileName = fileName;
 		this.merge = merge;
 		this.newServiceId = newServiceId;
+		this.topicId = topicId;
 	}
 	
 	public IfcModelInterface getModel() {
@@ -97,7 +100,6 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	@Override
 	public ConcreteRevision execute() throws UserException, BimserverDatabaseException {
 		try {
-			bimServer.getCheckinsInProgress().put(poid, getActingUid());
 			if (fileSize == -1) {
 				setProgress("Deserializing IFC file...", -1);
 			} else {
@@ -243,7 +245,11 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 				@Override
 				public void execute() throws UserException {
-					bimServer.getCheckinsInProgress().remove(poid);
+					try {
+						clearCheckinInProgress();
+					} catch (BimserverDatabaseException | ServiceException e) {
+						LOGGER.error("", e);
+					}
 					bimServer.getNotificationsManager().notify(new NewRevisionNotification(bimServer, project.getOid(), revision.getOid(), authorization));
 				}
 			});
@@ -251,7 +257,11 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			getDatabaseSession().store(concreteRevision);
 			getDatabaseSession().store(project);
 		} catch (Throwable e) {
-			bimServer.getCheckinsInProgress().remove(poid);
+			try {
+				clearCheckinInProgress();
+			} catch (ServiceException e1) {
+				LOGGER.error("", e1);
+			}
 			if (e instanceof BimserverDatabaseException) {
 				throw (BimserverDatabaseException) e;
 			}
@@ -262,6 +272,15 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			throw new UserException(e);
 		}
 		return concreteRevision;
+	}
+	
+	private void clearCheckinInProgress() throws BimserverDatabaseException, ServiceException {
+		try (DatabaseSession tmpSession = bimServer.getDatabase().createSession()) {
+			Project project = tmpSession.get(poid, OldQuery.getDefault());
+			project.setCheckinInProgress(0);
+			tmpSession.store(project);
+			tmpSession.commit();
+		}
 	}
 
 	public String getFileName() {

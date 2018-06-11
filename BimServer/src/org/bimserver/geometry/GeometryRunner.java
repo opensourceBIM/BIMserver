@@ -213,6 +213,7 @@ public class GeometryRunner implements Runnable {
 										maxBounds.set("y", -Double.POSITIVE_INFINITY);
 										maxBounds.set("z", -Double.POSITIVE_INFINITY);
 
+										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_IfcProductOid(), ifcProduct.getOid());
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MinBounds(), minBounds);
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MaxBounds(), maxBounds);
 
@@ -236,6 +237,7 @@ public class GeometryRunner implements Runnable {
 										VirtualObject geometryData = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getGeometryData());
 
 										int[] indices = geometry.getIndices();
+										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Reused(), 1);
 										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Indices(), GeometryUtils.intArrayToByteArray(indices));
 										float[] vertices = geometry.getVertices();
 										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Vertices(), GeometryUtils.floatArrayToByteArray(vertices));
@@ -316,7 +318,13 @@ public class GeometryRunner implements Runnable {
 											float[] lastVertex = new float[] { vertices[indices[indices.length - 1] * 3], vertices[indices[indices.length - 1] * 3 + 1], vertices[indices[indices.length - 1] * 3 + 2] };
 											Range range = new Range(firstVertex, lastVertex);
 											if (this.streamingGeometryGenerator.hashes.containsKey(hash)) {
-												geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), this.streamingGeometryGenerator.hashes.get(hash), 0);
+												Long referenceOid = this.streamingGeometryGenerator.hashes.get(hash);
+												HashMapVirtualObject referencedData = databaseSession.getFromCache(referenceOid);
+												// TODO sometimes referencedData == null, probably a concurrency issue
+												Integer currentValue = (Integer) referencedData.get("reused");
+												referencedData.set("reused", currentValue + 1);
+												referencedData.saveOverwrite();
+												geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), referenceOid, 0);
 												this.streamingGeometryGenerator.bytesSavedByHash.addAndGet(size);
 											} else if (geometryReused) {
 												boolean found = false;
@@ -364,6 +372,7 @@ public class GeometryRunner implements Runnable {
 
 													productToData.put(ifcProduct.getOid(), new TemporaryGeometryData(geometryData.getOid(), renderEngineInstance.getArea(), renderEngineInstance.getVolume(), indices.length / 3, size, mibu, mabu));
 													geometryData.save();
+													databaseSession.cache((HashMapVirtualObject) geometryData);
 												}
 											} else {
 												// if (sizes.containsKey(size)
@@ -382,13 +391,15 @@ public class GeometryRunner implements Runnable {
 													range.setGeometryDataOid(geometryData.getOid());
 													reusableGeometryData.add(range);
 													productToData.put(ifcProduct.getOid(), new TemporaryGeometryData(geometryData.getOid(), renderEngineInstance.getArea(), renderEngineInstance.getVolume(), indices.length / 3, size, mibu, mabu));
-												}
+												} // TODO else??
 												this.streamingGeometryGenerator.hashes.put(hash, geometryData.getOid());
-												geometryData.save();
+												geometryData.save(); // TODO Why??
+												databaseSession.cache((HashMapVirtualObject) geometryData);
 												// sizes.put(size, ifcProduct);
 											}
 										} else {
 											geometryData.save();
+											databaseSession.cache((HashMapVirtualObject) geometryData);
 										}
 
 										calculateObb(geometryInfo, productTranformationMatrix, indices, vertices, generateGeometryResult);
@@ -490,6 +501,8 @@ public class GeometryRunner implements Runnable {
 											maxBoundsUntranslated.set("y", mabu[1]);
 											maxBoundsUntranslated.set("z", mabu[2]);
 
+											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_IfcProductOid(), ifcProduct.getOid());
+											
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MinBoundsUntranslated(), minBoundsUntranslated);
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MaxBoundsUntranslated(), maxBoundsUntranslated);
 
@@ -543,6 +556,10 @@ public class GeometryRunner implements Runnable {
 												}
 											}
 
+											HashMapVirtualObject referencedData = databaseSession.getFromCache(masterGeometryData.getOid());
+											Integer currentValue = (Integer) referencedData.get("reused");
+											referencedData.set("reused", currentValue + 1);
+											referencedData.saveOverwrite();
 											geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), masterGeometryData.getOid(), 0);
 
 											// for (int i = 0; i <

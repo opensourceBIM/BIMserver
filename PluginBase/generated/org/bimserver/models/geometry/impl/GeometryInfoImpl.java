@@ -60,6 +60,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getMinBoundsUntranslated <em>Min Bounds Untranslated</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getMaxBoundsUntranslated <em>Max Bounds Untranslated</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#isHasTransparency <em>Has Transparency</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getIfcProductOid <em>Ifc Product Oid</em>}</li>
  * </ul>
  *
  * @generated
@@ -308,6 +309,24 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 */
 	public void setHasTransparency(boolean newHasTransparency) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__HAS_TRANSPARENCY, newHasTransparency);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getIfcProductOid() {
+		return (Long) eGet(GeometryPackage.Literals.GEOMETRY_INFO__IFC_PRODUCT_OID, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIfcProductOid(long newIfcProductOid) {
+		eSet(GeometryPackage.Literals.GEOMETRY_INFO__IFC_PRODUCT_OID, newIfcProductOid);
 	}
 
 } //GeometryInfoImpl

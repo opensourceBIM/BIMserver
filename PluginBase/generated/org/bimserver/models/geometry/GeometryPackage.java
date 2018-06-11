@@ -205,13 +205,22 @@ public interface GeometryPackage extends EPackage {
 	int GEOMETRY_INFO__HAS_TRANSPARENCY = 11;
 
 	/**
+	 * The feature id for the '<em><b>Ifc Product Oid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_INFO__IFC_PRODUCT_OID = 12;
+
+	/**
 	 * The number of structural features of the '<em>Info</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO_FEATURE_COUNT = 12;
+	int GEOMETRY_INFO_FEATURE_COUNT = 13;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.Vector3fImpl <em>Vector3f</em>}' class.
@@ -333,13 +342,22 @@ public interface GeometryPackage extends EPackage {
 	int GEOMETRY_DATA__HAS_TRANSPARENCY = 6;
 
 	/**
+	 * The feature id for the '<em><b>Reused</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_DATA__REUSED = 7;
+
+	/**
 	 * The number of structural features of the '<em>Data</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_DATA_FEATURE_COUNT = 7;
+	int GEOMETRY_DATA_FEATURE_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.Vector4fImpl <em>Vector4f</em>}' class.
@@ -539,6 +557,17 @@ public interface GeometryPackage extends EPackage {
 	EAttribute getGeometryInfo_HasTransparency();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryInfo#getIfcProductOid <em>Ifc Product Oid</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Ifc Product Oid</em>'.
+	 * @see org.bimserver.models.geometry.GeometryInfo#getIfcProductOid()
+	 * @see #getGeometryInfo()
+	 * @generated
+	 */
+	EAttribute getGeometryInfo_IfcProductOid();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.geometry.Vector3f <em>Vector3f</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -667,6 +696,17 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getGeometryData_HasTransparency();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryData#getReused <em>Reused</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Reused</em>'.
+	 * @see org.bimserver.models.geometry.GeometryData#getReused()
+	 * @see #getGeometryData()
+	 * @generated
+	 */
+	EAttribute getGeometryData_Reused();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.geometry.Vector4f <em>Vector4f</em>}'.
@@ -851,6 +891,14 @@ public interface GeometryPackage extends EPackage {
 		EAttribute GEOMETRY_INFO__HAS_TRANSPARENCY = eINSTANCE.getGeometryInfo_HasTransparency();
 
 		/**
+		 * The meta object literal for the '<em><b>Ifc Product Oid</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GEOMETRY_INFO__IFC_PRODUCT_OID = eINSTANCE.getGeometryInfo_IfcProductOid();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.geometry.impl.Vector3fImpl <em>Vector3f</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -949,6 +997,14 @@ public interface GeometryPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute GEOMETRY_DATA__HAS_TRANSPARENCY = eINSTANCE.getGeometryData_HasTransparency();
+
+		/**
+		 * The meta object literal for the '<em><b>Reused</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GEOMETRY_DATA__REUSED = eINSTANCE.getGeometryData_Reused();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.geometry.impl.Vector4fImpl <em>Vector4f</em>}' class.

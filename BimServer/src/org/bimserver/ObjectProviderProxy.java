@@ -22,6 +22,7 @@ import java.io.IOException;
 import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.plugins.serializers.ObjectProvider;
 import org.bimserver.shared.HashMapVirtualObject;
+import org.eclipse.emf.ecore.EClass;
 
 public class ObjectProviderProxy implements ObjectProvider {
 
@@ -45,5 +46,10 @@ public class ObjectProviderProxy implements ObjectProvider {
 	@Override
 	public ObjectProvider copy() throws IOException, QueryException {
 		return objectProvider.copy();
+	}
+
+	@Override
+	public EClass getEClassForOid(long oid) {
+		return objectProvider.getEClassForOid(oid);
 	}
 }

@@ -71,6 +71,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Project#getSchema <em>Schema</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#isSendEmailOnNewRevision <em>Send Email On New Revision</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#getNewServices <em>New Services</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Project#getCheckinInProgress <em>Checkin In Progress</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getProject()
@@ -602,5 +603,31 @@ public interface Project extends IdEObject {
 	 * @generated
 	 */
 	EList<NewService> getNewServices();
+
+	/**
+	 * Returns the value of the '<em><b>Checkin In Progress</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Checkin In Progress</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Checkin In Progress</em>' attribute.
+	 * @see #setCheckinInProgress(long)
+	 * @see org.bimserver.models.store.StorePackage#getProject_CheckinInProgress()
+	 * @model
+	 * @generated
+	 */
+	long getCheckinInProgress();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Project#getCheckinInProgress <em>Checkin In Progress</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Checkin In Progress</em>' attribute.
+	 * @see #getCheckinInProgress()
+	 * @generated
+	 */
+	void setCheckinInProgress(long value);
 
 } // Project

@@ -41,6 +41,7 @@ public class SGeometryInfo implements SDataBase
 	private SVector3f minBoundsUntranslated;
 	private SVector3f maxBoundsUntranslated;
 	private boolean hasTransparency;
+	private long ifcProductOid;
 
 	public long getOid() {
 		return this.oid;
@@ -104,6 +105,9 @@ public class SGeometryInfo implements SDataBase
 		if (sField.getName().equals("hasTransparency")) {
 			return isHasTransparency();
 		}
+		if (sField.getName().equals("ifcProductOid")) {
+			return getIfcProductOid();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -160,6 +164,10 @@ public class SGeometryInfo implements SDataBase
 		}
 		if (sField.getName().equals("hasTransparency")) {
 			setHasTransparency((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("ifcProductOid")) {
+			setIfcProductOid((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -271,6 +279,14 @@ public class SGeometryInfo implements SDataBase
 
 	public void setHasTransparency(boolean hasTransparency) {
 		this.hasTransparency = hasTransparency;
+	}
+	
+	public long getIfcProductOid() {
+		return ifcProductOid;
+	}
+
+	public void setIfcProductOid(long ifcProductOid) {
+		this.ifcProductOid = ifcProductOid;
 	}
 	
 	@Override

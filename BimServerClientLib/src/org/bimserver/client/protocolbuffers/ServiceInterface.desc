@@ -1,5 +1,5 @@
 
-žˆ
+éˆ
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -129,35 +129,36 @@ revisionId (
 value ("8
 AddProjectRequest
 projectName (	
-schema (	"Ì
-SProject
-	checkouts (
-concreteRevisions (
-createdById (
-createdDate (
-description (	>
-exportLengthMeasurePrefix (2.org.bimserver.pb.SSIPrefix
-extendedData (
-geoTagId (
-hasAuthorizedUsers	 (
+schema (	"ç
+SProject
+checkinInProgress (
+	checkouts (
+concreteRevisions (
+createdById (
+createdDate (
+description (	>
+exportLengthMeasurePrefix (2.org.bimserver.pb.SSIPrefix
+extendedData (
+geoTagId	 (
+hasAuthorizedUsers
+ (
 
-id
- (
-lastConcreteRevisionId (
-lastRevisionId (
-logs (
-modelCheckers (
-name (	
-newServices (
-oid (
-parentId (
-	revisions (
-rid (
-schema (	
-sendEmailOnNewRevision (
-services (-
-state (2.org.bimserver.pb.SObjectState
-subProjects ("U
+id (
+lastConcreteRevisionId (
+lastRevisionId (
+logs (
+modelCheckers (
+name (	
+newServices (
+oid (
+parentId (
+	revisions (
+rid (
+schema (	
+sendEmailOnNewRevision (
+services (-
+state (2.org.bimserver.pb.SObjectState
+subProjects ("U
 AddProjectResponse
 errorMessage (	)
 value (2.org.bimserver.pb.SProject"X
@@ -747,23 +748,25 @@ revisionNr (
 rid (	
 x (	
 y (	
-z ("ˆ
+z ("¸
 SGeometryInfo
 area (
-dataId (.
-	maxBounds (2.org.bimserver.pb.SVector3f:
-maxBoundsUntranslated (2.org.bimserver.pb.SVector3f.
-	minBounds (2.org.bimserver.pb.SVector3f:
-minBoundsUntranslated (2.org.bimserver.pb.SVector3f
-oid (
-primitiveCount (
-rid	 (
+dataId (
+hasTransparency (
+ifcProductOid (.
+	maxBounds (2.org.bimserver.pb.SVector3f:
+maxBoundsUntranslated (2.org.bimserver.pb.SVector3f.
+	minBounds (2.org.bimserver.pb.SVector3f:
+minBoundsUntranslated (2.org.bimserver.pb.SVector3f
+oid	 (
+primitiveCount
+ (
+rid (
 
-startIndex
- (
-startVertex (
-transformation (
-volume ("_
+startIndex (
+startVertex (
+transformation (
+volume ("_
 GetGeometryInfoResponse
 errorMessage (	.
 value (2.org.bimserver.pb.SGeometryInfo"$

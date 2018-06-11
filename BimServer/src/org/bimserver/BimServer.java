@@ -33,7 +33,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -196,7 +195,6 @@ public class BimServer {
 	private MetricsRegistry metricsRegistry;
 	private RenderEnginePools renderEnginePools;
 	private MavenPluginRepository mavenPluginRepository;
-	private final ConcurrentHashMap<Long, Long> checkinsInProgress = new ConcurrentHashMap<>(); // poid -> uoid
 
 	/**
 	 * Create a new BIMserver
@@ -765,10 +763,13 @@ public class BimServer {
 		long s = System.nanoTime();
 		try (DatabaseSession session = bimDatabase.createSession()) {
 			for (Project project : session.getAll(Project.class)) {
-				int recordsRemoved = 0;
+				if (project.getCheckinInProgress() == 0) {
+					continue;
+				}
 				if (project.getName().equals("INT-Store")) {
 					continue;
 				}
+				int recordsRemoved = 0;
 				if (project.getRevisions().size() == 0) {
 					recordsRemoved += checkPidRid(session, project, project.getId(), 0);
 				} else {
@@ -780,7 +781,12 @@ public class BimServer {
 				if (recordsRemoved > 0) {
 					LOGGER.info("Removed " + recordsRemoved + " stale records for project " + project.getName());
 				}
+				project.setCheckinInProgress(0);
+				session.store(project);
 			}
+			session.commit();
+		} catch (ServiceException e1) {
+			LOGGER.error("", e1);
 		}
 		long e = System.nanoTime();
 		LOGGER.info("Checking for stale records took " + ((e - s) / 1000000) + " ms");
@@ -1478,12 +1484,5 @@ public class BimServer {
 
 	public void setEmbeddedWebServer(EmbeddedWebServerInterface embeddedWebServer) {
 		this.embeddedWebServer = embeddedWebServer;
-	}
-	
-	public ConcurrentHashMap<Long, Long> getCheckinsInProgress() {
-//		for (Long key : checkinsInProgress.keySet()) {
-//			System.out.println(key + ": " + checkinsInProgress.get(key));
-//		}
-		return checkinsInProgress;
 	}
 }

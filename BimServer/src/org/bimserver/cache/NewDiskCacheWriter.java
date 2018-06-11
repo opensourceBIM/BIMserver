@@ -57,7 +57,9 @@ public class NewDiskCacheWriter implements Writer, DiskCacheItem, Closeable {
 		LOGGER.info("Renaming temp file " + tempFile.getFileName().toString() + " to " + file.getFileName().toString());
 		outputStream.writeInt(-1);
 		outputStream.close();
-		Files.move(tempFile, file);
+		if (Files.exists(tempFile)) {
+			Files.move(tempFile, file);
+		}
 		newDiskCacheManager.doneGenerating(this);
 		latch.countDown();
 	}

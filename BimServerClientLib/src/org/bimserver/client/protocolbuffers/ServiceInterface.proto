@@ -501,31 +501,32 @@ enum SObjectState{
 }
 
 message SProject {
-	repeated int64 checkouts = 1;
-	repeated int64 concreteRevisions = 2;
-	optional int64 createdById = 3;
-	optional int64 createdDate = 4;
-	optional string description = 5;
-	optional SSIPrefix exportLengthMeasurePrefix = 6;
-	repeated int64 extendedData = 7;
-	optional int64 geoTagId = 8;
-	repeated int64 hasAuthorizedUsers = 9;
-	optional int32 id = 10;
-	optional int64 lastConcreteRevisionId = 11;
-	optional int64 lastRevisionId = 12;
-	repeated int64 logs = 13;
-	repeated int64 modelCheckers = 14;
-	optional string name = 15;
-	repeated int64 newServices = 16;
-	optional int64 oid = 17;
-	optional int64 parentId = 18;
-	repeated int64 revisions = 19;
-	optional int32 rid = 20;
-	optional string schema = 21;
-	optional bool sendEmailOnNewRevision = 22;
-	repeated int64 services = 23;
-	optional SObjectState state = 24;
-	repeated int64 subProjects = 25;
+	optional int64 checkinInProgress = 1;
+	repeated int64 checkouts = 2;
+	repeated int64 concreteRevisions = 3;
+	optional int64 createdById = 4;
+	optional int64 createdDate = 5;
+	optional string description = 6;
+	optional SSIPrefix exportLengthMeasurePrefix = 7;
+	repeated int64 extendedData = 8;
+	optional int64 geoTagId = 9;
+	repeated int64 hasAuthorizedUsers = 10;
+	optional int32 id = 11;
+	optional int64 lastConcreteRevisionId = 12;
+	optional int64 lastRevisionId = 13;
+	repeated int64 logs = 14;
+	repeated int64 modelCheckers = 15;
+	optional string name = 16;
+	repeated int64 newServices = 17;
+	optional int64 oid = 18;
+	optional int64 parentId = 19;
+	repeated int64 revisions = 20;
+	optional int32 rid = 21;
+	optional string schema = 22;
+	optional bool sendEmailOnNewRevision = 23;
+	repeated int64 services = 24;
+	optional SObjectState state = 25;
+	repeated int64 subProjects = 26;
 }
 
 message AddProjectResponse {
@@ -1423,17 +1424,19 @@ message SVector3f {
 message SGeometryInfo {
 	optional double area = 1;
 	optional int64 dataId = 2;
-	optional SVector3f maxBounds = 3;
-	optional SVector3f maxBoundsUntranslated = 4;
-	optional SVector3f minBounds = 5;
-	optional SVector3f minBoundsUntranslated = 6;
-	optional int64 oid = 7;
-	optional int32 primitiveCount = 8;
-	optional int32 rid = 9;
-	optional int32 startIndex = 10;
-	optional int32 startVertex = 11;
-	optional bytes transformation = 12;
-	optional double volume = 13;
+	optional bool hasTransparency = 3;
+	optional int64 ifcProductOid = 4;
+	optional SVector3f maxBounds = 5;
+	optional SVector3f maxBoundsUntranslated = 6;
+	optional SVector3f minBounds = 7;
+	optional SVector3f minBoundsUntranslated = 8;
+	optional int64 oid = 9;
+	optional int32 primitiveCount = 10;
+	optional int32 rid = 11;
+	optional int32 startIndex = 12;
+	optional int32 startVertex = 13;
+	optional bytes transformation = 14;
+	optional double volume = 15;
 }
 
 message GetGeometryInfoResponse {

@@ -34,6 +34,7 @@ public interface VirtualObject extends MinimalVirtualObject {
 	void setAttribute(EStructuralFeature feature, Object val) throws BimserverDatabaseException;
 	void setReference(EStructuralFeature feature, long referenceOid, int bufferPosition) throws BimserverDatabaseException;
 	void save() throws BimserverDatabaseException;
+	void saveOverwrite() throws BimserverDatabaseException;
 	ByteBuffer write() throws BimserverDatabaseException;
 	void eUnset(EStructuralFeature feature) throws BimserverDatabaseException;
 	int getRid();

@@ -90,7 +90,7 @@ public class BranchToExistingProjectDatabaseAction extends AbstractBranchDatabas
 			throw new UserException(e);
 		}
 		model.resetOids();
-		CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), destPoid, authorization, model, comment, comment, false, -1);
+		CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), destPoid, authorization, model, comment, comment, false, -1, -1); // TODO
 		return checkinDatabaseAction.execute();
 	}
 }

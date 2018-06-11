@@ -200,14 +200,25 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 			}
 		} else {
 			if (getBimServer().getNewDiskCacheManager().isEnabled()) {
-				NewDiskCacheOutputStream diskCacheOutputStream = getBimServer().getNewDiskCacheManager().startCaching(downloadDescriptor);
-				CacheStoringStreamingSerializerDataSource cacheStoringEmfSerializerDataSource = new CacheStoringStreamingSerializerDataSource(serializer, diskCacheOutputStream, new DoneListener() {
-					@Override
-					public void done() {
-						changeActionState(ActionState.FINISHED, "Done", 100);
+				if (getBimServer().getNewDiskCacheManager().contains(downloadDescriptor)) {
+					cacheFile = getBimServer().getNewDiskCacheManager().get(downloadDescriptor);
+					FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(cacheFile);
+					fileInputStreamDataSource.setName(downloadDescriptor.getFileNameWithoutExtension());
+					checkoutResult.setFile(new DataHandler(fileInputStreamDataSource));
+				} else {
+					try {
+						NewDiskCacheOutputStream diskCacheOutputStream = getBimServer().getNewDiskCacheManager().startCaching(downloadDescriptor);
+						CacheStoringStreamingSerializerDataSource cacheStoringEmfSerializerDataSource = new CacheStoringStreamingSerializerDataSource(serializer, diskCacheOutputStream, new DoneListener() {
+							@Override
+							public void done() {
+								changeActionState(ActionState.FINISHED, "Done", 100);
+							}
+						}); 
+						checkoutResult.setFile(new DataHandler(cacheStoringEmfSerializerDataSource));
+					} catch (Exception e) {
+						LOGGER.error("", e);
 					}
-				}); 
-				checkoutResult.setFile(new DataHandler(cacheStoringEmfSerializerDataSource));
+				}
 			} else {
 				StreamingSerializerDataSource streamingSerializerDataSource = new StreamingSerializerDataSource(filename, serializer, new DoneListener() {
 					@Override
@@ -224,7 +235,7 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 	public Writer getMessagingStreamingSerializer() {
 		if (getBimServer().getNewDiskCacheManager().isEnabled()) {
 			if (getBimServer().getNewDiskCacheManager().contains(downloadDescriptor)) {
-				FileCacheReadingWriter fileCacheReadingWriter = new FileCacheReadingWriter(cacheFile);
+				FileCacheReadingWriter fileCacheReadingWriter = new FileCacheReadingWriter(getBimServer().getNewDiskCacheManager().get(downloadDescriptor));
 				fileCacheReadingWriter.setName(downloadDescriptor.getFileNameWithoutExtension());
 				return fileCacheReadingWriter;
 			} else {

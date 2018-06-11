@@ -306,13 +306,22 @@ public interface StorePackage extends EPackage {
 	int PROJECT__NEW_SERVICES = 22;
 
 	/**
+	 * The feature id for the '<em><b>Checkin In Progress</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__CHECKIN_IN_PROGRESS = 23;
+
+	/**
 	 * The number of structural features of the '<em>Project</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_FEATURE_COUNT = 23;
+	int PROJECT_FEATURE_COUNT = 24;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.UserImpl <em>User</em>}' class.
@@ -7573,6 +7582,17 @@ public interface StorePackage extends EPackage {
 	EReference getProject_NewServices();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Project#getCheckinInProgress <em>Checkin In Progress</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Checkin In Progress</em>'.
+	 * @see org.bimserver.models.store.Project#getCheckinInProgress()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EAttribute getProject_CheckinInProgress();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.User <em>User</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14247,6 +14267,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROJECT__NEW_SERVICES = eINSTANCE.getProject_NewServices();
+
+		/**
+		 * The meta object literal for the '<em><b>Checkin In Progress</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROJECT__CHECKIN_IN_PROGRESS = eINSTANCE.getProject_CheckinInProgress();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.UserImpl <em>User</em>}' class.

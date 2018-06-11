@@ -69,6 +69,7 @@ import org.bimserver.plugins.deserializers.ByteProgressReporter;
 import org.bimserver.plugins.deserializers.StreamingDeserializer;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.QueryContext;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 import org.bimserver.webservices.authorization.ExplicitRightsAuthorization;
@@ -99,8 +100,9 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 	private Revision newRevision;
 	private PackageMetaData packageMetaData;
 	private PluginBundleVersion pluginBundleVersion;
+	private long topicId;
 
-	public StreamingCheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, String comment, String fileName, InputStream inputStream, StreamingDeserializer deserializer, long fileSize, long newServiceId, PluginBundleVersion pluginBundleVersion) {
+	public StreamingCheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, String comment, String fileName, InputStream inputStream, StreamingDeserializer deserializer, long fileSize, long newServiceId, PluginBundleVersion pluginBundleVersion, long topicId) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.poid = poid;
@@ -112,6 +114,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 		this.fileSize = fileSize;
 		this.newServiceId = newServiceId;
 		this.pluginBundleVersion = pluginBundleVersion;
+		this.topicId = topicId;
 	}
 
 	public HashMapVirtualObject getByOid(PackageMetaData packageMetaData, DatabaseSession databaseSession, long roid, long oid) throws JsonParseException, JsonMappingException, IOException, QueryException, BimserverDatabaseException {
@@ -126,8 +129,6 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 	@Override
 	public ConcreteRevision execute() throws UserException, BimserverDatabaseException {
 		try {
-			bimServer.getCheckinsInProgress().put(poid, getActingUid());
-
 			if (inputStream instanceof RestartableInputStream) {
 				((RestartableInputStream)inputStream).restartIfAtEnd();
 			}
@@ -382,6 +383,18 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 				@Override
 				public void execute() throws UserException {
 					bimServer.getNotificationsManager().notify(new NewRevisionNotification(bimServer, project.getOid(), revision.getOid(), authorization));
+					try (DatabaseSession tmpSession = bimServer.getDatabase().createSession()) {
+						Project project = tmpSession.get(poid, OldQuery.getDefault());
+						project.setCheckinInProgress(0);
+						tmpSession.store(project);
+						try {
+							tmpSession.commit();
+						} catch (ServiceException e) {
+							LOGGER.error("", e);
+						}
+					} catch (BimserverDatabaseException e1) {
+						LOGGER.error("", e1);
+					}
 				}
 			});
 
@@ -395,8 +408,6 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 				throw (UserException) e;
 			}
 			throw new UserException(e);
-		} finally {
-			bimServer.getCheckinsInProgress().remove(poid);
 		}
 		return concreteRevision;
 	}

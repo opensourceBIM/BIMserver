@@ -1,4 +1,4 @@
-package org.bimserver.plugins.serializers;
+package org.bimserver.database.migrations.steps;
 
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
@@ -17,22 +17,25 @@ package org.bimserver.plugins.serializers;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import java.io.IOException;
-
-import org.bimserver.BimserverDatabaseException;
-import org.bimserver.database.queries.om.QueryException;
-import org.bimserver.shared.HashMapVirtualObject;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.migrations.Migration;
+import org.bimserver.database.migrations.Schema;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EcorePackage;
 
-public interface ObjectProvider {
+public class Step0039 extends Migration {
 
-	/**
-	 * @return Will return new objects as long as the query finds more. Will never return the same object twice. Returns @null when no more objects can be found.
-	 * @throws BimserverDatabaseException
-	 */
-	HashMapVirtualObject next() throws BimserverDatabaseException;
+	@Override
+	public void migrate(Schema schema, DatabaseSession databaseSession) {
+		EClass geometryData = schema.getEClass("geometry", "GeometryData");
+		EClass geometryInfo = schema.getEClass("geometry", "GeometryInfo");
+		schema.createEAttribute(geometryData, "reused", EcorePackage.eINSTANCE.getEInt());
+		
+		schema.createEAttribute(geometryInfo, "ifcProductOid", EcorePackage.eINSTANCE.getELong());
+	}
 
-	ObjectProvider copy() throws IOException, QueryException;
-
-	EClass getEClassForOid(long oid);
+	@Override
+	public String getDescription() {
+		return "Add hasReuse attributes";
+	}
 }

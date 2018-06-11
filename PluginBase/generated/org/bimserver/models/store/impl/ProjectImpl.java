@@ -84,6 +84,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getSchema <em>Schema</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#isSendEmailOnNewRevision <em>Send Email On New Revision</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getNewServices <em>New Services</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getCheckinInProgress <em>Checkin In Progress</em>}</li>
  * </ul>
  *
  * @generated
@@ -450,6 +451,24 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	@SuppressWarnings("unchecked")
 	public EList<NewService> getNewServices() {
 		return (EList<NewService>) eGet(StorePackage.Literals.PROJECT__NEW_SERVICES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getCheckinInProgress() {
+		return (Long) eGet(StorePackage.Literals.PROJECT__CHECKIN_IN_PROGRESS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCheckinInProgress(long newCheckinInProgress) {
+		eSet(StorePackage.Literals.PROJECT__CHECKIN_IN_PROGRESS, newCheckinInProgress);
 	}
 
 } //ProjectImpl

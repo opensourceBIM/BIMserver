@@ -256,6 +256,10 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 		getDatabaseInterface().save(this);
 	}
 
+	public void saveOverwrite() throws BimserverDatabaseException {
+		getDatabaseInterface().saveOverwrite(this);
+	}
+	
 	@Override
 	public int reserveSpaceForReference(EStructuralFeature feature) {
 		int pos = buffer.position();

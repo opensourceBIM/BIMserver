@@ -55,6 +55,7 @@ public class SProject implements SDataBase
 	private java.lang.String schema;
 	private boolean sendEmailOnNewRevision;
 	private List<Long> newServices = new ArrayList<Long>();
+	private long checkinInProgress;
 
 	public long getOid() {
 		return this.oid;
@@ -150,6 +151,9 @@ public class SProject implements SDataBase
 		}
 		if (sField.getName().equals("newServices")) {
 			return getNewServices();
+		}
+		if (sField.getName().equals("checkinInProgress")) {
+			return getCheckinInProgress();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -252,6 +256,10 @@ public class SProject implements SDataBase
 		}
 		if (sField.getName().equals("newServices")) {
 			setNewServices((List<Long>)val);
+			return;
+		}
+		if (sField.getName().equals("checkinInProgress")) {
+			setCheckinInProgress((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -447,6 +455,14 @@ public class SProject implements SDataBase
 
 	public void setNewServices(List<Long> newServices) {
 		this.newServices = newServices;
+	}
+	
+	public long getCheckinInProgress() {
+		return checkinInProgress;
+	}
+
+	public void setCheckinInProgress(long checkinInProgress) {
+		this.checkinInProgress = checkinInProgress;
 	}
 	
 	@Override

@@ -56,6 +56,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getMinBoundsUntranslated <em>Min Bounds Untranslated</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getMaxBoundsUntranslated <em>Max Bounds Untranslated</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#isHasTransparency <em>Has Transparency</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getIfcProductOid <em>Ifc Product Oid</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo()
@@ -375,5 +376,31 @@ public interface GeometryInfo extends IdEObject {
 	 * @generated
 	 */
 	void setHasTransparency(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Ifc Product Oid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Ifc Product Oid</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Ifc Product Oid</em>' attribute.
+	 * @see #setIfcProductOid(long)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_IfcProductOid()
+	 * @model
+	 * @generated
+	 */
+	long getIfcProductOid();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getIfcProductOid <em>Ifc Product Oid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Ifc Product Oid</em>' attribute.
+	 * @see #getIfcProductOid()
+	 * @generated
+	 */
+	void setIfcProductOid(long value);
 
 } // GeometryInfo

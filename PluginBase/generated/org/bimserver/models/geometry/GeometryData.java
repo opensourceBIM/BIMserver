@@ -51,6 +51,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getMaterialIndices <em>Material Indices</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getColor <em>Color</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#isHasTransparency <em>Has Transparency</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#getReused <em>Reused</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData()
@@ -240,5 +241,31 @@ public interface GeometryData extends IdEObject {
 	 * @generated
 	 */
 	void setHasTransparency(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Reused</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Reused</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Reused</em>' attribute.
+	 * @see #setReused(int)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_Reused()
+	 * @model
+	 * @generated
+	 */
+	int getReused();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getReused <em>Reused</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Reused</em>' attribute.
+	 * @see #getReused()
+	 * @generated
+	 */
+	void setReused(int value);
 
 } // GeometryData

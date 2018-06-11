@@ -123,15 +123,18 @@ public class NewDiskCacheManager {
 		return null;
 	}
 	
-	public NewDiskCacheOutputStream startCaching(DownloadDescriptor downloadDescriptor) {
+	public NewDiskCacheOutputStream startCaching(DownloadDescriptor downloadDescriptor) throws Exception {
 		try {
 			String cacheKey = downloadDescriptor.getCacheKey();
-			LOGGER.info("Start caching " + cacheKey);
-			NewDiskCacheOutputStream out = new NewDiskCacheOutputStream(this, cacheDir.resolve(cacheKey), downloadDescriptor);
 			synchronized (busyCaching) {
+				if (busyCaching.containsKey(cacheKey)) {
+					throw new Exception("This key is already being cached");
+				}
+				LOGGER.info("Start caching " + cacheKey);
+				NewDiskCacheOutputStream out = new NewDiskCacheOutputStream(this, cacheDir.resolve(cacheKey), downloadDescriptor);
 				busyCaching.put(cacheKey, out);
+				return out;
 			}
-			return out;
 		} catch (FileNotFoundException e) {
 			LOGGER.error("", e);
 		}

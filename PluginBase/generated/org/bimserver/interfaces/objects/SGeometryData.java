@@ -36,6 +36,7 @@ public class SGeometryData implements SDataBase
 	private byte[] materialIndices;
 	private SVector4f color;
 	private boolean hasTransparency;
+	private int reused;
 
 	public long getOid() {
 		return this.oid;
@@ -84,6 +85,9 @@ public class SGeometryData implements SDataBase
 		if (sField.getName().equals("hasTransparency")) {
 			return isHasTransparency();
 		}
+		if (sField.getName().equals("reused")) {
+			return getReused();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -120,6 +124,10 @@ public class SGeometryData implements SDataBase
 		}
 		if (sField.getName().equals("hasTransparency")) {
 			setHasTransparency((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("reused")) {
+			setReused((Integer)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -188,6 +196,14 @@ public class SGeometryData implements SDataBase
 
 	public void setHasTransparency(boolean hasTransparency) {
 		this.hasTransparency = hasTransparency;
+	}
+	
+	public int getReused() {
+		return reused;
+	}
+
+	public void setReused(int reused) {
+		this.reused = reused;
 	}
 	
 	@Override
