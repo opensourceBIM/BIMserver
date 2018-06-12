@@ -23,7 +23,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
@@ -54,7 +54,7 @@ public class GeometryGenerationReport {
 	private long numberOfObjects;
 	private int numberOfTriangles;
 	private boolean reuseGeometry;
-	private Set<String> debugFiles = new HashSet<>();
+	private Map<String, Integer> debugFiles = new LinkedHashMap<>();
 	
 	public void incrementTriangles(int triangles) {
 		this.numberOfTriangles += triangles;
@@ -203,13 +203,12 @@ public class GeometryGenerationReport {
 		builder.append("<table>");
 		builder.append("<thead><tr><th>ID</th><th>Filename</th></tr></thead>");
 		builder.append("<tbody>");
-		int i = 1;
-		for (String debugFile : debugFiles) {
+		for (String debugFile : debugFiles.keySet()) {
 			builder.append("<tr>");
+			int i = debugFiles.get(debugFile);
 			builder.append("<td><a name=\"debug" + i + "\">" + i + "</a></td>");
 			builder.append("<td>" + debugFile + "</td>");
 			builder.append("</tr>");
-			i++;
 		}
 		builder.append("</tbody></table>");
 
@@ -267,7 +266,11 @@ public class GeometryGenerationReport {
 	}
 	
 	public int addDebugFile(String filename) {
-		debugFiles.add(filename);
-		return debugFiles.size();
+		if (!debugFiles.containsKey(filename)) {
+			debugFiles.put(filename, debugFiles.size() + 1);
+			return debugFiles.size();
+		} else {
+			return debugFiles.get(filename);
+		}
 	}
 }
