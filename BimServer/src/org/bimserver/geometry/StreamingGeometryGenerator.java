@@ -257,6 +257,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					Include itemsInclude = representationsInclude.createInclude();
 					itemsInclude.addType(packageMetaData.getEClass("IfcShapeRepresentation"), false);
 					itemsInclude.addFieldDirect("Items");
+					itemsInclude.addFieldDirect("ContextOfItems");
 					Include mappingSourceInclude = itemsInclude.createInclude();
 					mappingSourceInclude.addType(packageMetaData.getEClass("IfcMappedItem"), false);
 					mappingSourceInclude.addFieldDirect("MappingSource");
@@ -283,6 +284,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 								List<HashMapVirtualObject> representations = representation.getDirectListFeature(representationsFeature);
 								if (representations != null) {
 									for (HashMapVirtualObject representationItem : representations) {
+										if (!usableContext(representationItem)) {
+											continue;
+										}
 										String representationIdentifier = (String) representationItem.get("RepresentationIdentifier");
 										if (representationIdentifier != null && (representationIdentifier.equals("Body") || representationIdentifier.equals("Facetation"))) {
 											List<HashMapVirtualObject> items = representationItem.getDirectListFeature(itemsFeature);
@@ -439,7 +443,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					rInclude.addType(packageMetaData.getEClass("IfcProductRepresentation"), false);
 					rInclude.addFieldDirect("Representations");
 					Include representationsInclude2 = rInclude.createInclude();
-					representationsInclude2.addType(packageMetaData.getEClass("IfcShapeModel"), false);
+					representationsInclude2.addType(packageMetaData.getEClass("IfcShapeModel"), true);
+					representationsInclude2.addFieldDirect("ContextOfItems");
 					
 					queryObjectProvider2 = new QueryObjectProvider(databaseSession, bimServer, query3, Collections.singleton(queryContext.getRoid()), packageMetaData);
 					next = queryObjectProvider2.next();
@@ -511,15 +516,31 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	private boolean goForIt(List<HashMapVirtualObject> list) {
 		boolean goForIt = false;
 		if (list != null) {
-			for (HashMapVirtualObject o : list) {
-				if (o.get("RepresentationIdentifier").equals("Body") || o.get("RepresentationIdentifier").equals("Facetation")) {
-					goForIt = true;
+			for (HashMapVirtualObject representationItem : list) {
+				if (usableContext(representationItem)) {
+					if (representationItem.get("RepresentationIdentifier").equals("Body") || representationItem.get("RepresentationIdentifier").equals("Facetation")) {
+						goForIt = true;
+					}
 				}
 			}
 		}
 		return goForIt;
 	}
 
+	private boolean usableContext(HashMapVirtualObject representationItem) {
+		HashMapVirtualObject context = representationItem.getDirectFeature(representationItem.eClass().getEStructuralFeature("ContextOfItems"));
+		if (context == null) {
+			LOGGER.debug("No context: " + representationItem);
+			return false;
+		}
+		Object contextType = context.get("ContextType");
+		if (!contextType.equals("Model") && !contextType.equals("Design")) {
+			LOGGER.debug("No Model/Design context: " + contextType);
+			return false;
+		}
+		return true;
+	}
+	
 	private void writeDebugFile() throws IOException {
 		Path debugPath = bimServer.getHomeDir().resolve("debug");
 		if (!Files.exists(debugPath)) {
