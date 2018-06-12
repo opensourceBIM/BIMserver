@@ -401,6 +401,18 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			getDatabaseSession().store(concreteRevision);
 			getDatabaseSession().store(project);
 		} catch (Throwable e) {
+			try (DatabaseSession tmpSession = bimServer.getDatabase().createSession()) {
+				Project project = tmpSession.get(poid, OldQuery.getDefault());
+				project.setCheckinInProgress(0);
+				tmpSession.store(project);
+				try {
+					tmpSession.commit();
+				} catch (ServiceException e2) {
+					LOGGER.error("", e2);
+				}
+			} catch (BimserverDatabaseException e1) {
+				LOGGER.error("", e1);
+			}
 			if (e instanceof BimserverDatabaseException) {
 				throw (BimserverDatabaseException) e;
 			}
