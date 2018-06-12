@@ -1,5 +1,7 @@
 package org.bimserver.shared;
 
+import java.util.UUID;
+
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -22,4 +24,8 @@ public class Guid {
 	int    Data2;
 	int    Data3;
 	char[] Data4 = new char[8];
+	
+	public UUID test() {
+		return UUID.fromString(GuidCompressor.getUncompressedStringFromGuid(this));
+	}
 }

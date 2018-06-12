@@ -66,7 +66,7 @@ public class GuidCompressor {
 	 * @param uncompressedGuidString the uncompressed String representation of a GUID
 	 * @return an Guid-object
 	 */
-	private static Guid getGuidFromUncompressedString(String uncompressedGuidString){
+	public static Guid getGuidFromUncompressedString(String uncompressedGuidString){
 		String[] parts = uncompressedGuidString.split("-");
 		Guid guid = new Guid();
 		guid.Data1 = Long.parseLong(parts[0], 16);
@@ -95,7 +95,7 @@ public class GuidCompressor {
 	 * @param guid the Guid-object
 	 * @return String with a length of 22 characters
 	 */
-	private static String getCompressedStringFromGuid(Guid guid)
+	public static String getCompressedStringFromGuid(Guid guid)
 	{
 	    long[] num = new long[6];
 	    char[][] str = new char[6][5];
@@ -200,7 +200,7 @@ public class GuidCompressor {
 	 * @param guid contains the reconstructed Guid as a result of this method 
 	 * @return true if no error occurred
 	 */
-	private static boolean getGuidFromCompressedString(String string, Guid guid)
+	public static boolean getGuidFromCompressedString(String string, Guid guid) throws InvalidGuidException
 	{
 	    char[][] str = new char[6][5];
 	    int len, i, j, m;
@@ -208,7 +208,7 @@ public class GuidCompressor {
 
 	    len = string.length();
 	    if (len != 22)
-	        return false;
+	       throw new InvalidGuidException(string, "Length must be 22");
 
 	    j = 0;
 	    m = 2;
@@ -223,7 +223,7 @@ public class GuidCompressor {
 	    }
 	    for (i = 0; i < 6; i++) {
 	        if (!cv_from_64 (num[i], str[i])) {
-	            return false;
+	        	 throw new InvalidGuidException(string);
 	        }
 	    }
 
@@ -249,7 +249,7 @@ public class GuidCompressor {
 	 * @param guid the Guid-object to be converted
 	 * @return the uncompressed String representation of a GUID
 	 */
-	private static String getUncompressedStringFromGuid(Guid guid){
+	public static String getUncompressedStringFromGuid(Guid guid){
 		String result = new String();
 		result += String.format("%1$08x", guid.Data1); 
 		result += "-";
@@ -277,14 +277,23 @@ public class GuidCompressor {
 	 * Converts a compressed String representation of a GUID into an uncompressed one
 	 * @param compressedString the String representation which gets uncompressed
 	 * @return the uncompressed String representation
+	 * @throws InvalidGuidException 
 	 */
-	public static String uncompressGuidString(String compressedString){
+	public static String uncompressGuidString(String compressedString) throws InvalidGuidException{
 		Guid guid = new Guid();
 		getGuidFromCompressedString(compressedString, guid);
 		return getUncompressedStringFromGuid(guid);
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(GuidCompressor.uncompressGuidString("1_MvLDs9r0eAPqtR3GOY9_"));
+		try {
+			System.out.println(GuidCompressor.uncompressGuidString("1_MvLDs9r0eAPqtR3GOY9_"));
+			Guid guid = new Guid();
+			System.out.println(getGuidFromCompressedString("HG0002Hfz0199_80KQ2900", guid));
+			UUID uuid = guid.test();
+			System.out.println(uuid);
+		} catch (InvalidGuidException e) {
+			e.printStackTrace();
+		}
 	}
 }
