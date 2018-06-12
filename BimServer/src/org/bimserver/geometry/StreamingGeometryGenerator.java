@@ -284,7 +284,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 								if (representations != null) {
 									for (HashMapVirtualObject representationItem : representations) {
 										String representationIdentifier = (String) representationItem.get("RepresentationIdentifier");
-										if (representationIdentifier.equals("Body") || representationIdentifier.equals("Facetation")) {
+										if (representationIdentifier != null && (representationIdentifier.equals("Body") || representationIdentifier.equals("Facetation"))) {
 											List<HashMapVirtualObject> items = representationItem.getDirectListFeature(itemsFeature);
 											if (items.size() > 1) {
 												// Only if there is just one item, we'll store this for reuse
@@ -398,6 +398,14 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 //							queryPart3.addType(packageMetaData.getEClass("IfcMappedItem"), false);
 
 							long masterOid = map.values().iterator().next().getOid();
+							
+							double[] inverted = Matrix.identity();
+							ProductDef masterProductDef = map.get(masterOid);
+							if (!Matrix.invertM(inverted, 0, masterProductDef.getMappingMatrix(), 0)) {
+								LOGGER.info("No inverse, this mapping will be skipped and processed as normal");
+								continue;
+							}
+							
 							for (ProductDef pd : map.values()) {
 								done.add(pd.getOid());
 								if (!optimizeMappedItems) {
