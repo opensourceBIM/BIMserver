@@ -21,11 +21,10 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -55,7 +54,7 @@ public class GeometryGenerationReport {
 	private long numberOfObjects;
 	private int numberOfTriangles;
 	private boolean reuseGeometry;
-	private List<String> debugFiles = new ArrayList<>();
+	private Set<String> debugFiles = new HashSet<>();
 	
 	public void incrementTriangles(int triangles) {
 		this.numberOfTriangles += triangles;
@@ -204,11 +203,13 @@ public class GeometryGenerationReport {
 		builder.append("<table>");
 		builder.append("<thead><tr><th>ID</th><th>Filename</th></tr></thead>");
 		builder.append("<tbody>");
-		for (int i=1; i<=debugFiles.size(); i++) {
+		int i = 1;
+		for (String debugFile : debugFiles) {
 			builder.append("<tr>");
 			builder.append("<td><a name=\"debug" + i + "\">" + i + "</a></td>");
-			builder.append("<td>" + debugFiles.get(i - 1) + "</td>");
+			builder.append("<td>" + debugFile + "</td>");
 			builder.append("</tr>");
+			i++;
 		}
 		builder.append("</tbody></table>");
 
