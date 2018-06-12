@@ -320,7 +320,6 @@ public class GeometryRunner implements Runnable {
 											if (this.streamingGeometryGenerator.hashes.containsKey(hash)) {
 												Long referenceOid = this.streamingGeometryGenerator.hashes.get(hash);
 												HashMapVirtualObject referencedData = databaseSession.getFromCache(referenceOid);
-												// TODO sometimes referencedData == null, probably a concurrency issue
 												Integer currentValue = (Integer) referencedData.get("reused");
 												referencedData.set("reused", currentValue + 1);
 												referencedData.saveOverwrite();
@@ -392,9 +391,9 @@ public class GeometryRunner implements Runnable {
 													reusableGeometryData.add(range);
 													productToData.put(ifcProduct.getOid(), new TemporaryGeometryData(geometryData.getOid(), renderEngineInstance.getArea(), renderEngineInstance.getVolume(), indices.length / 3, size, mibu, mabu));
 												} // TODO else??
+												databaseSession.cache((HashMapVirtualObject) geometryData);
 												this.streamingGeometryGenerator.hashes.put(hash, geometryData.getOid());
 												geometryData.save(); // TODO Why??
-												databaseSession.cache((HashMapVirtualObject) geometryData);
 												// sizes.put(size, ifcProduct);
 											}
 										} else {
@@ -516,7 +515,8 @@ public class GeometryRunner implements Runnable {
 											// First, invert the master's mapping matrix
 											double[] inverted = Matrix.identity();
 											if (!Matrix.invertM(inverted, 0, masterProductDef.getMappingMatrix(), 0)) {
-												System.out.println("No inverse");
+												LOGGER.info("No inverse, this should not be able to happen at this time, please report");
+												continue;
 											}
 
 											double[] finalMatrix = Matrix.identity();
