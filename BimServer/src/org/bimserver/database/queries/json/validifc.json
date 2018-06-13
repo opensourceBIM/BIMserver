@@ -514,6 +514,7 @@
             "IfcGeometricSet",
             "IfcTrimmedCurve",
             "IfcFaceBasedSurfaceModel",
+            "IfcSweptDiskSolid",
             "IfcRevolvedAreaSolid"
          ]
       },
