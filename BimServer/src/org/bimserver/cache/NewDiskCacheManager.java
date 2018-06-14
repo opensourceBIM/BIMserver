@@ -101,7 +101,7 @@ public class NewDiskCacheManager {
 				busyCaching.remove(downloadDescriptor.getCacheKey());
 				LOGGER.error("File " + file.getFileName().toString() + " not found in cache");
 			} else {
-				LOGGER.info("Reading from cache " + cacheKey);
+//				LOGGER.info("Reading from cache " + cacheKey);
 				return file;
 			}
 		}

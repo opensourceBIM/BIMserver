@@ -32,6 +32,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.ServerIfcModel;
@@ -106,7 +107,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	private StackTraceElement[] stackTrace;
 	private final ObjectCache objectCache = new ObjectCache();
 	private Map<EClass, Long> startOids;
-	private final Map<Long, HashMapVirtualObject> voCache = new HashMap<>();
+	private final Map<Long, HashMapVirtualObject> voCache = new ConcurrentHashMap<>();
 	private long reads;
 
 	public enum SessionState {

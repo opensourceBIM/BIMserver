@@ -52,6 +52,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getColor <em>Color</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#isHasTransparency <em>Has Transparency</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getReused <em>Reused</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#getType <em>Type</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData()
@@ -267,5 +268,31 @@ public interface GeometryData extends IdEObject {
 	 * @generated
 	 */
 	void setReused(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type</em>' attribute.
+	 * @see #setType(short)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_Type()
+	 * @model
+	 * @generated
+	 */
+	short getType();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getType <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type</em>' attribute.
+	 * @see #getType()
+	 * @generated
+	 */
+	void setType(short value);
 
 } // GeometryData

@@ -85,6 +85,8 @@ public class GenerateUtils {
 					return "Integer";
 				} else if (eType == EcorePackage.eINSTANCE.getELong() || eType == EcorePackage.eINSTANCE.getELongObject()) {
 					return "Long";
+				} else if (eType == EcorePackage.eINSTANCE.getEShort() || eType == EcorePackage.eINSTANCE.getEShortObject()) {
+					return "Short";
 				} else if (eType == EcorePackage.eINSTANCE.getEDouble() || eType == EcorePackage.eINSTANCE.getEDoubleObject()) {
 					return "Double";
 				} else if (eType == EcorePackage.eINSTANCE.getEBoolean() || eType == EcorePackage.eINSTANCE.getEBooleanObject()) {

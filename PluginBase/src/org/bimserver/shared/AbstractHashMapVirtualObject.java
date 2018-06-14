@@ -29,6 +29,8 @@ public abstract class AbstractHashMapVirtualObject {
 	public int getPrimitiveSize(EDataType eDataType, Object val) {
 		if (eDataType == EcorePackage.eINSTANCE.getEInt() || eDataType == EcorePackage.eINSTANCE.getEIntegerObject()) {
 			return 4;
+		} else if (eDataType == EcorePackage.eINSTANCE.getEShort() || eDataType == EcorePackage.eINSTANCE.getEShortObject()) {
+			return 2;
 		} else if (eDataType == EcorePackage.eINSTANCE.getEFloat() || eDataType == EcorePackage.eINSTANCE.getEFloatObject()) {
 			return 4;
 		} else if (eDataType == EcorePackage.eINSTANCE.getEBoolean() || eDataType == EcorePackage.eINSTANCE.getEBooleanObject()) {

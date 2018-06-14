@@ -389,6 +389,12 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 			} else {
 				buffer.putInt((Integer) value);
 			}
+		} else if (type == EcorePackage.eINSTANCE.getEShort() || type == EcorePackage.eINSTANCE.getEShortObject()) {
+			if (value == null) {
+				buffer.putShort((short) 0);
+			} else {
+				buffer.putShort((Short) value);
+			}
 		} else if (type == EcorePackage.eINSTANCE.getEDouble() || type == EcorePackage.eINSTANCE.getEDoubleObject()) {
 			if (value == null) {
 				buffer.putDouble(0D);

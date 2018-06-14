@@ -30,6 +30,7 @@ public class Step0039 extends Migration {
 		EClass geometryData = schema.getEClass("geometry", "GeometryData");
 		EClass geometryInfo = schema.getEClass("geometry", "GeometryInfo");
 		schema.createEAttribute(geometryData, "reused", EcorePackage.eINSTANCE.getEInt());
+		schema.createEAttribute(geometryData, "type", EcorePackage.eINSTANCE.getEShort());
 		
 		schema.createEAttribute(geometryInfo, "ifcProductOid", EcorePackage.eINSTANCE.getELong());
 	}

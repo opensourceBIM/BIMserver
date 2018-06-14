@@ -68,8 +68,6 @@ import org.bimserver.utils.GeometryUtils;
 import org.eclipse.emf.ecore.EClass;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.base.Joiner;
-
 public class GeometryRunner implements Runnable {
 
 	private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(GeometryRunner.class);
@@ -150,7 +148,7 @@ public class GeometryRunner implements Runnable {
 				IOUtils.copy(ifcSerializer.getInputStream(), baos);
 				bytes = baos.toByteArray();
 				InputStream in = new ByteArrayInputStream(bytes);
-				Map<Integer, String> notFoundObjects = new HashMap<>();
+				Map<Integer, HashMapVirtualObject> notFoundObjects = new HashMap<>();
 
 				Set<Range> reusableGeometryData = new HashSet<>();
 
@@ -236,6 +234,7 @@ public class GeometryRunner implements Runnable {
 
 										VirtualObject geometryData = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getGeometryData());
 
+										geometryData.set("type", databaseSession.getCid(eClass));
 										int[] indices = geometry.getIndices();
 										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Reused(), 1);
 										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Indices(), GeometryUtils.intArrayToByteArray(indices));
@@ -317,9 +316,12 @@ public class GeometryRunner implements Runnable {
 											float[] firstVertex = new float[] { vertices[indices[0]], vertices[indices[0] + 1], vertices[indices[0] + 2] };
 											float[] lastVertex = new float[] { vertices[indices[indices.length - 1] * 3], vertices[indices[indices.length - 1] * 3 + 1], vertices[indices[indices.length - 1] * 3 + 2] };
 											Range range = new Range(firstVertex, lastVertex);
-											if (this.streamingGeometryGenerator.hashes.containsKey(hash)) {
-												Long referenceOid = this.streamingGeometryGenerator.hashes.get(hash);
+											Long referenceOid = this.streamingGeometryGenerator.hashes.get(hash);
+											if (referenceOid != null) {
 												HashMapVirtualObject referencedData = databaseSession.getFromCache(referenceOid);
+												if (referencedData == null) {
+													LOGGER.error("Object not found in cache: " + referenceOid + " (hash: " + hash + ")");
+												}
 												Integer currentValue = (Integer) referencedData.get("reused");
 												referencedData.set("reused", currentValue + 1);
 												referencedData.saveOverwrite();
@@ -445,7 +447,7 @@ public class GeometryRunner implements Runnable {
 										// ifcProduct.eClass().getName() + " " +
 										// (expressId) + "/" +
 										// ifcProduct.getOid());
-										notFoundObjects.put(expressId, ifcProduct.eClass().getName());
+										notFoundObjects.put(expressId, ifcProduct);
 									}
 								} catch (BimserverDatabaseException | RenderEngineException e) {
 									StreamingGeometryGenerator.LOGGER.error("", e);
@@ -597,7 +599,13 @@ public class GeometryRunner implements Runnable {
 					try {
 						if (!notFoundObjects.isEmpty()) {
 							int debugId = writeDebugFile(bytes, false, notFoundObjects);
-							job.setException(new Exception("Missing objects in model (" + Joiner.on(", ").join(notFoundObjects.keySet()) + ")"), debugId);
+							StringBuilder sb = new StringBuilder();
+							for (Integer key : notFoundObjects.keySet()) {
+								sb.append(key + " (" + notFoundObjects.get(key).getOid() + ")");
+								sb.append(", ");
+							}
+							sb.delete(sb.length() - 2, sb.length());
+							job.setException(new Exception("Missing objects in model (" + sb.toString() + ")"), debugId);
 						} else if (writeOutputFiles) {
 							int debugId = writeDebugFile(bytes, false, null);
 							job.setDebugFile(debugId);
@@ -661,7 +669,7 @@ public class GeometryRunner implements Runnable {
 		return true;
 	}
 	
-	private synchronized int writeDebugFile(byte[] bytes, boolean error, Map<Integer, String> notFoundObjects) throws FileNotFoundException, IOException {
+	private synchronized int writeDebugFile(byte[] bytes, boolean error, Map<Integer, HashMapVirtualObject> notFoundObjects) throws FileNotFoundException, IOException {
 		boolean debug = true;
 		if (debug) {
 			Path debugPath = this.streamingGeometryGenerator.bimServer.getHomeDir().resolve("debug");

@@ -37,6 +37,7 @@ public class SGeometryData implements SDataBase
 	private SVector4f color;
 	private boolean hasTransparency;
 	private int reused;
+	private short type;
 
 	public long getOid() {
 		return this.oid;
@@ -88,6 +89,9 @@ public class SGeometryData implements SDataBase
 		if (sField.getName().equals("reused")) {
 			return getReused();
 		}
+		if (sField.getName().equals("type")) {
+			return getType();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -128,6 +132,10 @@ public class SGeometryData implements SDataBase
 		}
 		if (sField.getName().equals("reused")) {
 			setReused((Integer)val);
+			return;
+		}
+		if (sField.getName().equals("type")) {
+			setType((Short)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -204,6 +212,14 @@ public class SGeometryData implements SDataBase
 
 	public void setReused(int reused) {
 		this.reused = reused;
+	}
+	
+	public short getType() {
+		return type;
+	}
+
+	public void setType(short type) {
+		this.type = type;
 	}
 	
 	@Override

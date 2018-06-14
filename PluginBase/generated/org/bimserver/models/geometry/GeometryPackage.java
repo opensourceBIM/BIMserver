@@ -351,13 +351,22 @@ public interface GeometryPackage extends EPackage {
 	int GEOMETRY_DATA__REUSED = 7;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_DATA__TYPE = 8;
+
+	/**
 	 * The number of structural features of the '<em>Data</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_DATA_FEATURE_COUNT = 8;
+	int GEOMETRY_DATA_FEATURE_COUNT = 9;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.Vector4fImpl <em>Vector4f</em>}' class.
@@ -709,6 +718,17 @@ public interface GeometryPackage extends EPackage {
 	EAttribute getGeometryData_Reused();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryData#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.bimserver.models.geometry.GeometryData#getType()
+	 * @see #getGeometryData()
+	 * @generated
+	 */
+	EAttribute getGeometryData_Type();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.geometry.Vector4f <em>Vector4f</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1005,6 +1025,14 @@ public interface GeometryPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute GEOMETRY_DATA__REUSED = eINSTANCE.getGeometryData_Reused();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GEOMETRY_DATA__TYPE = eINSTANCE.getGeometryData_Type();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.geometry.impl.Vector4fImpl <em>Vector4f</em>}' class.

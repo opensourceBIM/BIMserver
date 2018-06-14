@@ -324,6 +324,8 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 			return buffer.getFloat();
 		} else if (classifier == EcorePackage.eINSTANCE.getEDouble() || classifier == EcorePackage.eINSTANCE.getEDoubleObject()) {
 			return buffer.getDouble();
+		} else if (classifier == EcorePackage.eINSTANCE.getEShort() || classifier == EcorePackage.eINSTANCE.getEShortObject()) {
+			return buffer.getShort();
 		} else if (classifier == EcorePackage.eINSTANCE.getEBoolean() || classifier == EcorePackage.eINSTANCE.getEBooleanObject()) {
 			return buffer.get() == 1;
 		} else if (classifier == EcorePackage.eINSTANCE.getEDate()) {

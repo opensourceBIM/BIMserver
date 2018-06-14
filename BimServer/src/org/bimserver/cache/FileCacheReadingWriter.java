@@ -1,5 +1,6 @@
 package org.bimserver.cache;
 
+import java.io.BufferedInputStream;
 import java.io.Closeable;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -18,11 +19,12 @@ public class FileCacheReadingWriter implements Writer, Closeable {
 	private Path file;
 	private DataInputStream inputStream;
 	private int nextSize = -1;
+	private byte[] buffer;
 
 	public FileCacheReadingWriter(Path file) {
 		this.file = file;
 		try {
-			inputStream = new DataInputStream(Files.newInputStream(file));
+			inputStream = new DataInputStream(new BufferedInputStream(Files.newInputStream(file)));
 			nextSize = inputStream.readInt();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -31,9 +33,11 @@ public class FileCacheReadingWriter implements Writer, Closeable {
 	
 	@Override
 	public boolean writeMessage(OutputStream outputStream, ProgressReporter progressReporter) throws IOException, SerializerException {
-		byte[] buffer = new byte[nextSize];
-		ByteStreams.readFully(inputStream, buffer);
-		outputStream.write(buffer);
+		if (buffer == null || nextSize > buffer.length) {
+			buffer = new byte[nextSize];
+		}
+		ByteStreams.readFully(inputStream, buffer, 0, nextSize);
+		outputStream.write(buffer, 0, nextSize);
 		nextSize = inputStream.readInt();
 		return nextSize != -1;
 	}

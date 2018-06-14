@@ -55,6 +55,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getColor <em>Color</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#isHasTransparency <em>Has Transparency</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getReused <em>Reused</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -231,6 +232,24 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 */
 	public void setReused(int newReused) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__REUSED, newReused);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public short getType() {
+		return (Short) eGet(GeometryPackage.Literals.GEOMETRY_DATA__TYPE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setType(short newType) {
+		eSet(GeometryPackage.Literals.GEOMETRY_DATA__TYPE, newType);
 	}
 
 } //GeometryDataImpl

@@ -23,6 +23,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.ENamedElement;
 
 public interface ObjectProvider {
 
@@ -35,4 +36,6 @@ public interface ObjectProvider {
 	ObjectProvider copy() throws IOException, QueryException;
 
 	EClass getEClassForOid(long oid);
+
+	EClass getEClassForCid(short cid);
 }

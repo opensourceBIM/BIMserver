@@ -179,7 +179,7 @@ public class SClass implements Comparable<SClass> {
 	public boolean isPrimitive() {
 		if (instanceClass.isPrimitive()) {
 			return true;
-		} else if (instanceClass == Long.class || instanceClass == Integer.class || instanceClass == Float.class || instanceClass == Double.class || instanceClass == Boolean.class || instanceClass == Character.class) {
+		} else if (instanceClass == Long.class || instanceClass == Integer.class || instanceClass == Short.class || instanceClass == Float.class || instanceClass == Double.class || instanceClass == Boolean.class || instanceClass == Character.class) {
 			return true;
 		} else if (instanceClass == Date.class) {
 			return true;
@@ -255,6 +255,10 @@ public class SClass implements Comparable<SClass> {
 
 	public boolean isLong() {
 		return name.equals("java.lang.Long") || name.equals("long");
+	}
+
+	public boolean isShort() {
+		return name.equals("java.lang.Short") || name.equals("short");
 	}
 
 	public boolean isByteArray() {

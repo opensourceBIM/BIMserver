@@ -52,4 +52,9 @@ public class ObjectProviderProxy implements ObjectProvider {
 	public EClass getEClassForOid(long oid) {
 		return objectProvider.getEClassForOid(oid);
 	}
+
+	@Override
+	public EClass getEClassForCid(short cid) {
+		return objectProvider.getEClassForCid(cid);
+	}
 }

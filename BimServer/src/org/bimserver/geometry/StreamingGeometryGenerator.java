@@ -142,6 +142,11 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		}
 	}
 	
+	private boolean hasValidRepresentationIdentifier(HashMapVirtualObject representationItem) {
+		String representationIdentifier = (String) representationItem.get("RepresentationIdentifier");
+		return representationIdentifier != null && (representationIdentifier.equals("Body") || representationIdentifier.equals("Facetation"));
+	}
+	
 	@SuppressWarnings("unchecked")
 	public GenerateGeometryResult generateGeometry(long uoid, final DatabaseSession databaseSession, QueryContext queryContext) throws BimserverDatabaseException, GeometryGeneratingException {
 		GenerateGeometryResult generateGeometryResult = new GenerateGeometryResult();
@@ -243,6 +248,10 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			} else {
 				classes = packageMetaData.getEClasses();
 			}
+			
+			// Phase 1 (mapped item detection) sometimes detects that mapped items have invalid (unsupported) RepresentationIdentifier values, this set keeps track of objects to skip in Phase 2 because of that
+			Set<Long> toSkip = new HashSet<>();
+			
 			for (EClass eClass : classes) {
 				if (packageMetaData.getEClass("IfcProduct").isSuperTypeOf(eClass)) {
 					Query query2 = new Query(eClass.getName() + "Main query", packageMetaData);
@@ -264,6 +273,10 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					mappingSourceInclude.addFieldDirect("MappingTarget");
 					Include representationMap = mappingSourceInclude.createInclude();
 					representationMap.addType(packageMetaData.getEClass("IfcRepresentationMap"), false);
+					representationMap.addFieldDirect("MappedRepresentation");
+					Include createInclude = representationMap.createInclude();
+					createInclude.addType(packageMetaData.getEClass("IfcShapeRepresentation"), true);
+					
 					Include targetInclude = mappingSourceInclude.createInclude();
 					targetInclude.addType(packageMetaData.getEClass("IfcCartesianTransformationOperator3D"), false);
 					targetInclude.addFieldDirect("Axis1");
@@ -287,8 +300,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 										if (!usableContext(representationItem)) {
 											continue;
 										}
-										String representationIdentifier = (String) representationItem.get("RepresentationIdentifier");
-										if (representationIdentifier != null && (representationIdentifier.equals("Body") || representationIdentifier.equals("Facetation"))) {
+										if (hasValidRepresentationIdentifier(representationItem)) {
 											List<HashMapVirtualObject> items = representationItem.getDirectListFeature(itemsFeature);
 											if (items.size() > 1) {
 												// Only if there is just one item, we'll store this for reuse
@@ -297,6 +309,19 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 											for (HashMapVirtualObject item : items) {
 												report.addRepresentationItem(item.eClass().getName());
 												HashMapVirtualObject mappingTarget = item.getDirectFeature(packageMetaData.getEReference("IfcMappedItem", "MappingTarget"));
+												HashMapVirtualObject mappingSourceOfMappedItem = item.getDirectFeature(packageMetaData.getEReference("IfcMappedItem", "MappingSource"));
+												if (mappingSourceOfMappedItem == null) {
+													LOGGER.info("No mapping source");
+													continue;
+												}
+												HashMapVirtualObject mappedRepresentation = mappingSourceOfMappedItem.getDirectFeature(packageMetaData.getEReference("IfcRepresentationMap", "MappedRepresentation"));
+
+												if (!hasValidRepresentationIdentifier(mappedRepresentation)) {
+													// Skip this mapping, we should store somewhere that this object should also be skipped in the normal way
+													LOGGER.info("Skipping because of invalid RepresentationIdentifier in mapped item");
+													toSkip.add(next.getOid());
+													continue;
+												}
 												double[] mappingMatrix = Matrix.identity();
 												double[] productMatrix = Matrix.identity();
 												if (mappingTarget != null) {
@@ -440,7 +465,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					include3.addType(eClass, false);
 					include3.addFieldDirect("Representation");
 					Include rInclude = include3.createInclude();
-					rInclude.addType(packageMetaData.getEClass("IfcProductRepresentation"), false);
+					rInclude.addType(packageMetaData.getEClass("IfcProductRepresentation"), true);
 					rInclude.addFieldDirect("Representations");
 					Include representationsInclude2 = rInclude.createInclude();
 					representationsInclude2.addType(packageMetaData.getEClass("IfcShapeModel"), true);
@@ -449,7 +474,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					queryObjectProvider2 = new QueryObjectProvider(databaseSession, bimServer, query3, Collections.singleton(queryContext.getRoid()), packageMetaData);
 					next = queryObjectProvider2.next();
 					while (next != null) {
-						if (next.eClass() == eClass && !done.contains(next.getOid())) {
+						if (next.eClass() == eClass && !done.contains(next.getOid()) && !toSkip.contains(next.getOid())) {
 							HashMapVirtualObject representation = next.getDirectFeature(representationFeature);
 							if (representation != null) {
 								List<HashMapVirtualObject> list = representation.getDirectListFeature(packageMetaData.getEReference("IfcProductRepresentation", "Representations"));
@@ -463,6 +488,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 									while (next != null && x < maxObjectsPerFile) {
 										next = queryObjectProvider2.next();
 										if (next != null) {
+											if (next.get("GlobalId").equals("0$Myh0q4n3mAG1$r$h2CQM")) {
+												System.out.println();
+											}
 											if (next.eClass() == eClass && !done.contains(next.getOid())) {
 												representation = next.getDirectFeature(representationFeature);
 												if (representation != null) {
@@ -518,7 +546,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		if (list != null) {
 			for (HashMapVirtualObject representationItem : list) {
 				if (usableContext(representationItem)) {
-					if (representationItem.get("RepresentationIdentifier").equals("Body") || representationItem.get("RepresentationIdentifier").equals("Facetation")) {
+					Object representationIdentifier = representationItem.get("RepresentationIdentifier");
+					if (representationIdentifier != null && (representationIdentifier.equals("Body") || representationIdentifier.equals("Facetation"))) {
 						goForIt = true;
 					}
 				}

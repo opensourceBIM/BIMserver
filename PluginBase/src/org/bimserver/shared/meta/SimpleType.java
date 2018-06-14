@@ -27,6 +27,7 @@ public enum SimpleType {
 	ENUM,
 	STRING,
 	LONG,
+	SHORT,
 	INT,
 	BOOLEAN,
 	FLOAT,
@@ -48,6 +49,8 @@ public enum SimpleType {
 		} else if (instanceClass == Long.class) {
 			return LONG;
 		} else if (instanceClass == Integer.class) {
+			return SHORT;
+		} else if (instanceClass == Short.class) {
 			return INT;
 		} else if (instanceClass == Boolean.class) {
 			return BOOLEAN;

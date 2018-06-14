@@ -210,6 +210,10 @@ public class JsonConverter {
 				if (object instanceof JsonPrimitive) {
 					return ((JsonPrimitive) object).getAsLong();
 				}
+			} else if (definedType.isShort()) {
+				if (object instanceof JsonPrimitive) {
+					return ((JsonPrimitive) object).getAsShort();
+				}
 			} else if (definedType.isEnum()) {
 				JsonPrimitive primitive = (JsonPrimitive) object;
 				for (Object enumConstantObject : definedType.getInstanceClass().getEnumConstants()) {

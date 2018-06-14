@@ -109,6 +109,15 @@ public class QueryObjectProvider implements ObjectProvider {
 		}
 		return null;
 	}
+
+	public EClass getEClassForCid(short cid) {
+		try {
+			return databaseSession.getEClass(cid);
+		} catch (BimserverDatabaseException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	public static QueryObjectProvider fromJsonNode(DatabaseSession databaseSession, BimServer bimServer, JsonNode fullQuery, Set<Long> roids, PackageMetaData packageMetaData) throws JsonParseException, JsonMappingException, IOException, QueryException {
 		if (fullQuery instanceof ObjectNode) {
