@@ -306,8 +306,12 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 												// Only if there is just one item, we'll store this for reuse
 												continue;
 											}
+											// So this next loop always results in 1 (or no) loops
 											for (HashMapVirtualObject item : items) {
 												report.addRepresentationItem(item.eClass().getName());
+												if (!packageMetaData.getEClass("IfcMappedItem").isSuperTypeOf(item.eClass())) {
+													continue; // All non IfcMappedItem objects will be done in phase 2
+												}
 												HashMapVirtualObject mappingTarget = item.getDirectFeature(packageMetaData.getEReference("IfcMappedItem", "MappingTarget"));
 												HashMapVirtualObject mappingSourceOfMappedItem = item.getDirectFeature(packageMetaData.getEReference("IfcMappedItem", "MappingSource"));
 												if (mappingSourceOfMappedItem == null) {
