@@ -149,12 +149,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="summary" eType="#//RevisionSummary"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#//User"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ifcHeader" eType="#//IfcHeader"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="minBounds" eType="ecore:EClass geometry#//Vector3f">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bounds" eType="ecore:EClass geometry#//Bounds">
       <eAnnotations source="dbembed"/>
       <eAnnotations source="embedsreference"/>
       <eAnnotations source="hidden"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="maxBounds" eType="ecore:EClass geometry#//Vector3f">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boundsUntranslated" eType="ecore:EClass geometry#//Bounds">
       <eAnnotations source="dbembed"/>
       <eAnnotations source="embedsreference"/>
       <eAnnotations source="hidden"/>

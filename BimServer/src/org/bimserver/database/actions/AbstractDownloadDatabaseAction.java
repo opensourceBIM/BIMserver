@@ -70,8 +70,9 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 						geometryInfo.forceLoad();
 						geometryInfo.getData().forceLoad();
 						geometryInfo.getTransformation();
-						geometryInfo.getMinBounds().forceLoad();
-						geometryInfo.getMaxBounds().forceLoad();
+						geometryInfo.getBounds().forceLoad();
+						geometryInfo.getBounds().getMin().forceLoad();
+						geometryInfo.getBounds().getMax().forceLoad();
 					}
 				}
 			}

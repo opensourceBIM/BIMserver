@@ -97,22 +97,22 @@ public interface GeometryPackage extends EPackage {
 	int GEOMETRY_INFO = 0;
 
 	/**
-	 * The feature id for the '<em><b>Min Bounds</b></em>' reference.
+	 * The feature id for the '<em><b>Bounds</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO__MIN_BOUNDS = 0;
+	int GEOMETRY_INFO__BOUNDS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Max Bounds</b></em>' reference.
+	 * The feature id for the '<em><b>Bounds Untranslated</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO__MAX_BOUNDS = 1;
+	int GEOMETRY_INFO__BOUNDS_UNTRANSLATED = 1;
 
 	/**
 	 * The feature id for the '<em><b>Start Vertex</b></em>' attribute.
@@ -178,31 +178,13 @@ public interface GeometryPackage extends EPackage {
 	int GEOMETRY_INFO__VOLUME = 8;
 
 	/**
-	 * The feature id for the '<em><b>Min Bounds Untranslated</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GEOMETRY_INFO__MIN_BOUNDS_UNTRANSLATED = 9;
-
-	/**
-	 * The feature id for the '<em><b>Max Bounds Untranslated</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GEOMETRY_INFO__MAX_BOUNDS_UNTRANSLATED = 10;
-
-	/**
 	 * The feature id for the '<em><b>Has Transparency</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO__HAS_TRANSPARENCY = 11;
+	int GEOMETRY_INFO__HAS_TRANSPARENCY = 9;
 
 	/**
 	 * The feature id for the '<em><b>Ifc Product Oid</b></em>' attribute.
@@ -211,7 +193,7 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO__IFC_PRODUCT_OID = 12;
+	int GEOMETRY_INFO__IFC_PRODUCT_OID = 10;
 
 	/**
 	 * The number of structural features of the '<em>Info</em>' class.
@@ -220,7 +202,7 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO_FEATURE_COUNT = 13;
+	int GEOMETRY_INFO_FEATURE_COUNT = 11;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.Vector3fImpl <em>Vector3f</em>}' class.
@@ -269,6 +251,43 @@ public interface GeometryPackage extends EPackage {
 	int VECTOR3F_FEATURE_COUNT = 3;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.BoundsImpl <em>Bounds</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.geometry.impl.BoundsImpl
+	 * @see org.bimserver.models.geometry.impl.GeometryPackageImpl#getBounds()
+	 * @generated
+	 */
+	int BOUNDS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Min</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUNDS__MIN = 0;
+
+	/**
+	 * The feature id for the '<em><b>Max</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUNDS__MAX = 1;
+
+	/**
+	 * The number of structural features of the '<em>Bounds</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUNDS_FEATURE_COUNT = 2;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.GeometryDataImpl <em>Data</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -276,7 +295,7 @@ public interface GeometryPackage extends EPackage {
 	 * @see org.bimserver.models.geometry.impl.GeometryPackageImpl#getGeometryData()
 	 * @generated
 	 */
-	int GEOMETRY_DATA = 2;
+	int GEOMETRY_DATA = 3;
 
 	/**
 	 * The feature id for the '<em><b>Indices</b></em>' attribute.
@@ -360,13 +379,22 @@ public interface GeometryPackage extends EPackage {
 	int GEOMETRY_DATA__TYPE = 8;
 
 	/**
+	 * The feature id for the '<em><b>Most Used Color</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_DATA__MOST_USED_COLOR = 9;
+
+	/**
 	 * The number of structural features of the '<em>Data</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_DATA_FEATURE_COUNT = 9;
+	int GEOMETRY_DATA_FEATURE_COUNT = 10;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.Vector4fImpl <em>Vector4f</em>}' class.
@@ -376,7 +404,7 @@ public interface GeometryPackage extends EPackage {
 	 * @see org.bimserver.models.geometry.impl.GeometryPackageImpl#getVector4f()
 	 * @generated
 	 */
-	int VECTOR4F = 3;
+	int VECTOR4F = 4;
 
 	/**
 	 * The feature id for the '<em><b>X</b></em>' attribute.
@@ -434,26 +462,26 @@ public interface GeometryPackage extends EPackage {
 	EClass getGeometryInfo();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryInfo#getMinBounds <em>Min Bounds</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryInfo#getBounds <em>Bounds</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Min Bounds</em>'.
-	 * @see org.bimserver.models.geometry.GeometryInfo#getMinBounds()
+	 * @return the meta object for the reference '<em>Bounds</em>'.
+	 * @see org.bimserver.models.geometry.GeometryInfo#getBounds()
 	 * @see #getGeometryInfo()
 	 * @generated
 	 */
-	EReference getGeometryInfo_MinBounds();
+	EReference getGeometryInfo_Bounds();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryInfo#getMaxBounds <em>Max Bounds</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryInfo#getBoundsUntranslated <em>Bounds Untranslated</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Max Bounds</em>'.
-	 * @see org.bimserver.models.geometry.GeometryInfo#getMaxBounds()
+	 * @return the meta object for the reference '<em>Bounds Untranslated</em>'.
+	 * @see org.bimserver.models.geometry.GeometryInfo#getBoundsUntranslated()
 	 * @see #getGeometryInfo()
 	 * @generated
 	 */
-	EReference getGeometryInfo_MaxBounds();
+	EReference getGeometryInfo_BoundsUntranslated();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryInfo#getStartVertex <em>Start Vertex</em>}'.
@@ -533,28 +561,6 @@ public interface GeometryPackage extends EPackage {
 	EAttribute getGeometryInfo_Volume();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryInfo#getMinBoundsUntranslated <em>Min Bounds Untranslated</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Min Bounds Untranslated</em>'.
-	 * @see org.bimserver.models.geometry.GeometryInfo#getMinBoundsUntranslated()
-	 * @see #getGeometryInfo()
-	 * @generated
-	 */
-	EReference getGeometryInfo_MinBoundsUntranslated();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryInfo#getMaxBoundsUntranslated <em>Max Bounds Untranslated</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Max Bounds Untranslated</em>'.
-	 * @see org.bimserver.models.geometry.GeometryInfo#getMaxBoundsUntranslated()
-	 * @see #getGeometryInfo()
-	 * @generated
-	 */
-	EReference getGeometryInfo_MaxBoundsUntranslated();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryInfo#isHasTransparency <em>Has Transparency</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -618,6 +624,38 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getVector3f_Z();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.geometry.Bounds <em>Bounds</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Bounds</em>'.
+	 * @see org.bimserver.models.geometry.Bounds
+	 * @generated
+	 */
+	EClass getBounds();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.Bounds#getMin <em>Min</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Min</em>'.
+	 * @see org.bimserver.models.geometry.Bounds#getMin()
+	 * @see #getBounds()
+	 * @generated
+	 */
+	EReference getBounds_Min();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.Bounds#getMax <em>Max</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Max</em>'.
+	 * @see org.bimserver.models.geometry.Bounds#getMax()
+	 * @see #getBounds()
+	 * @generated
+	 */
+	EReference getBounds_Max();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.geometry.GeometryData <em>Data</em>}'.
@@ -729,6 +767,17 @@ public interface GeometryPackage extends EPackage {
 	EAttribute getGeometryData_Type();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryData#getMostUsedColor <em>Most Used Color</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Most Used Color</em>'.
+	 * @see org.bimserver.models.geometry.GeometryData#getMostUsedColor()
+	 * @see #getGeometryData()
+	 * @generated
+	 */
+	EReference getGeometryData_MostUsedColor();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.geometry.Vector4f <em>Vector4f</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -815,20 +864,20 @@ public interface GeometryPackage extends EPackage {
 		EClass GEOMETRY_INFO = eINSTANCE.getGeometryInfo();
 
 		/**
-		 * The meta object literal for the '<em><b>Min Bounds</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Bounds</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GEOMETRY_INFO__MIN_BOUNDS = eINSTANCE.getGeometryInfo_MinBounds();
+		EReference GEOMETRY_INFO__BOUNDS = eINSTANCE.getGeometryInfo_Bounds();
 
 		/**
-		 * The meta object literal for the '<em><b>Max Bounds</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Bounds Untranslated</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GEOMETRY_INFO__MAX_BOUNDS = eINSTANCE.getGeometryInfo_MaxBounds();
+		EReference GEOMETRY_INFO__BOUNDS_UNTRANSLATED = eINSTANCE.getGeometryInfo_BoundsUntranslated();
 
 		/**
 		 * The meta object literal for the '<em><b>Start Vertex</b></em>' attribute feature.
@@ -887,22 +936,6 @@ public interface GeometryPackage extends EPackage {
 		EAttribute GEOMETRY_INFO__VOLUME = eINSTANCE.getGeometryInfo_Volume();
 
 		/**
-		 * The meta object literal for the '<em><b>Min Bounds Untranslated</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GEOMETRY_INFO__MIN_BOUNDS_UNTRANSLATED = eINSTANCE.getGeometryInfo_MinBoundsUntranslated();
-
-		/**
-		 * The meta object literal for the '<em><b>Max Bounds Untranslated</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GEOMETRY_INFO__MAX_BOUNDS_UNTRANSLATED = eINSTANCE.getGeometryInfo_MaxBoundsUntranslated();
-
-		/**
 		 * The meta object literal for the '<em><b>Has Transparency</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -951,6 +984,32 @@ public interface GeometryPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute VECTOR3F__Z = eINSTANCE.getVector3f_Z();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.geometry.impl.BoundsImpl <em>Bounds</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.geometry.impl.BoundsImpl
+		 * @see org.bimserver.models.geometry.impl.GeometryPackageImpl#getBounds()
+		 * @generated
+		 */
+		EClass BOUNDS = eINSTANCE.getBounds();
+
+		/**
+		 * The meta object literal for the '<em><b>Min</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BOUNDS__MIN = eINSTANCE.getBounds_Min();
+
+		/**
+		 * The meta object literal for the '<em><b>Max</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BOUNDS__MAX = eINSTANCE.getBounds_Max();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.geometry.impl.GeometryDataImpl <em>Data</em>}' class.
@@ -1033,6 +1092,14 @@ public interface GeometryPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute GEOMETRY_DATA__TYPE = eINSTANCE.getGeometryData_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Most Used Color</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GEOMETRY_DATA__MOST_USED_COLOR = eINSTANCE.getGeometryData_MostUsedColor();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.geometry.impl.Vector4fImpl <em>Vector4f</em>}' class.

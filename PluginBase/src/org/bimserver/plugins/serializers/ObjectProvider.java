@@ -23,7 +23,8 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.ENamedElement;
+
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public interface ObjectProvider {
 
@@ -38,4 +39,6 @@ public interface ObjectProvider {
 	EClass getEClassForOid(long oid);
 
 	EClass getEClassForCid(short cid);
+	
+	ObjectNode getQueryNode();
 }

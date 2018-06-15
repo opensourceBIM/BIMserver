@@ -36,6 +36,7 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.models.geometry.Bounds;
 import org.bimserver.models.geometry.Vector3f;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.IfcHeader;
@@ -66,8 +67,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getSummary <em>Summary</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getUser <em>User</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getIfcHeader <em>Ifc Header</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getMinBounds <em>Min Bounds</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getMaxBounds <em>Max Bounds</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getBounds <em>Bounds</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getBoundsUntranslated <em>Bounds Untranslated</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getOidCounters <em>Oid Counters</em>}</li>
  * </ul>
  *
@@ -298,8 +299,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Vector3f getMinBounds() {
-		return (Vector3f) eGet(StorePackage.Literals.CONCRETE_REVISION__MIN_BOUNDS, true);
+	public Bounds getBounds() {
+		return (Bounds) eGet(StorePackage.Literals.CONCRETE_REVISION__BOUNDS, true);
 	}
 
 	/**
@@ -307,8 +308,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMinBounds(Vector3f newMinBounds) {
-		eSet(StorePackage.Literals.CONCRETE_REVISION__MIN_BOUNDS, newMinBounds);
+	public void setBounds(Bounds newBounds) {
+		eSet(StorePackage.Literals.CONCRETE_REVISION__BOUNDS, newBounds);
 	}
 
 	/**
@@ -316,8 +317,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Vector3f getMaxBounds() {
-		return (Vector3f) eGet(StorePackage.Literals.CONCRETE_REVISION__MAX_BOUNDS, true);
+	public Bounds getBoundsUntranslated() {
+		return (Bounds) eGet(StorePackage.Literals.CONCRETE_REVISION__BOUNDS_UNTRANSLATED, true);
 	}
 
 	/**
@@ -325,8 +326,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMaxBounds(Vector3f newMaxBounds) {
-		eSet(StorePackage.Literals.CONCRETE_REVISION__MAX_BOUNDS, newMaxBounds);
+	public void setBoundsUntranslated(Bounds newBoundsUntranslated) {
+		eSet(StorePackage.Literals.CONCRETE_REVISION__BOUNDS_UNTRANSLATED, newBoundsUntranslated);
 	}
 
 	/**

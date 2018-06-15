@@ -1,5 +1,7 @@
 package org.bimserver.plugins.serializers;
 
+import org.bimserver.interfaces.objects.SBounds;
+
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -27,8 +29,8 @@ public class ProjectInfo {
 	private double z;
 	private double directionAngle;
 	private String authorName;
-	private SVector3f minBounds;
-	private SVector3f maxBounds;
+	private SBounds boundsUntranslated;
+	private SBounds bounds;
 
 	public String getName() {
 		return name;
@@ -87,18 +89,26 @@ public class ProjectInfo {
 	}
 
 	public SVector3f getMinBounds() {
-		return minBounds;
+		return bounds.getMin();
+	}
+	
+	public SBounds getBounds() {
+		return bounds;
 	}
 
-	public void setMinBounds(SVector3f minBounds) {
-		this.minBounds = minBounds;
+	public SBounds getBoundsUntranslated() {
+		return boundsUntranslated;
 	}
-
+	
+	public void setBoundsUntranslated(SBounds boundsUntranslated) {
+		this.boundsUntranslated = boundsUntranslated;
+	}
+	
 	public SVector3f getMaxBounds() {
-		return maxBounds;
+		return bounds.getMax();
 	}
 
-	public void setMaxBounds(SVector3f maxBounds) {
-		this.maxBounds = maxBounds;
+	public void setBounds(SBounds bounds) {
+		this.bounds = bounds;
 	}
 }

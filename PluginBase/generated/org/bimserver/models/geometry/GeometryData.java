@@ -53,6 +53,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.geometry.GeometryData#isHasTransparency <em>Has Transparency</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getReused <em>Reused</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getType <em>Type</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#getMostUsedColor <em>Most Used Color</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData()
@@ -294,5 +295,31 @@ public interface GeometryData extends IdEObject {
 	 * @generated
 	 */
 	void setType(short value);
+
+	/**
+	 * Returns the value of the '<em><b>Most Used Color</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Most Used Color</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Most Used Color</em>' reference.
+	 * @see #setMostUsedColor(Vector4f)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_MostUsedColor()
+	 * @model
+	 * @generated
+	 */
+	Vector4f getMostUsedColor();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getMostUsedColor <em>Most Used Color</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Most Used Color</em>' reference.
+	 * @see #getMostUsedColor()
+	 * @generated
+	 */
+	void setMostUsedColor(Vector4f value);
 
 } // GeometryData

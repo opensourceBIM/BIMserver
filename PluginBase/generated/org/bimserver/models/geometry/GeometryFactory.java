@@ -71,6 +71,15 @@ public interface GeometryFactory extends EFactory {
 	Vector3f createVector3f();
 
 	/**
+	 * Returns a new object of class '<em>Bounds</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Bounds</em>'.
+	 * @generated
+	 */
+	Bounds createBounds();
+
+	/**
 	 * Returns a new object of class '<em>Data</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

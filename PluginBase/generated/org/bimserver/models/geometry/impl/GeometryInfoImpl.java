@@ -34,6 +34,7 @@ package org.bimserver.models.geometry.impl;
  *****************************************************************************/
 
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.models.geometry.Bounds;
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.geometry.GeometryPackage;
@@ -48,8 +49,8 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getMinBounds <em>Min Bounds</em>}</li>
- *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getMaxBounds <em>Max Bounds</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getBounds <em>Bounds</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getBoundsUntranslated <em>Bounds Untranslated</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getStartVertex <em>Start Vertex</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getStartIndex <em>Start Index</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getPrimitiveCount <em>Primitive Count</em>}</li>
@@ -57,8 +58,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getTransformation <em>Transformation</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getArea <em>Area</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getVolume <em>Volume</em>}</li>
- *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getMinBoundsUntranslated <em>Min Bounds Untranslated</em>}</li>
- *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getMaxBoundsUntranslated <em>Max Bounds Untranslated</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#isHasTransparency <em>Has Transparency</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getIfcProductOid <em>Ifc Product Oid</em>}</li>
  * </ul>
@@ -100,8 +99,8 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Vector3f getMinBounds() {
-		return (Vector3f) eGet(GeometryPackage.Literals.GEOMETRY_INFO__MIN_BOUNDS, true);
+	public Bounds getBounds() {
+		return (Bounds) eGet(GeometryPackage.Literals.GEOMETRY_INFO__BOUNDS, true);
 	}
 
 	/**
@@ -109,8 +108,8 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMinBounds(Vector3f newMinBounds) {
-		eSet(GeometryPackage.Literals.GEOMETRY_INFO__MIN_BOUNDS, newMinBounds);
+	public void setBounds(Bounds newBounds) {
+		eSet(GeometryPackage.Literals.GEOMETRY_INFO__BOUNDS, newBounds);
 	}
 
 	/**
@@ -118,8 +117,8 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Vector3f getMaxBounds() {
-		return (Vector3f) eGet(GeometryPackage.Literals.GEOMETRY_INFO__MAX_BOUNDS, true);
+	public Bounds getBoundsUntranslated() {
+		return (Bounds) eGet(GeometryPackage.Literals.GEOMETRY_INFO__BOUNDS_UNTRANSLATED, true);
 	}
 
 	/**
@@ -127,8 +126,8 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMaxBounds(Vector3f newMaxBounds) {
-		eSet(GeometryPackage.Literals.GEOMETRY_INFO__MAX_BOUNDS, newMaxBounds);
+	public void setBoundsUntranslated(Bounds newBoundsUntranslated) {
+		eSet(GeometryPackage.Literals.GEOMETRY_INFO__BOUNDS_UNTRANSLATED, newBoundsUntranslated);
 	}
 
 	/**
@@ -255,42 +254,6 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 */
 	public void setVolume(double newVolume) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__VOLUME, newVolume);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Vector3f getMinBoundsUntranslated() {
-		return (Vector3f) eGet(GeometryPackage.Literals.GEOMETRY_INFO__MIN_BOUNDS_UNTRANSLATED, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMinBoundsUntranslated(Vector3f newMinBoundsUntranslated) {
-		eSet(GeometryPackage.Literals.GEOMETRY_INFO__MIN_BOUNDS_UNTRANSLATED, newMinBoundsUntranslated);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Vector3f getMaxBoundsUntranslated() {
-		return (Vector3f) eGet(GeometryPackage.Literals.GEOMETRY_INFO__MAX_BOUNDS_UNTRANSLATED, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMaxBoundsUntranslated(Vector3f newMaxBoundsUntranslated) {
-		eSet(GeometryPackage.Literals.GEOMETRY_INFO__MAX_BOUNDS_UNTRANSLATED, newMaxBoundsUntranslated);
 	}
 
 	/**

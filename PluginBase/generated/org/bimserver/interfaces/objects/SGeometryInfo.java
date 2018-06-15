@@ -29,8 +29,8 @@ public class SGeometryInfo implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	private SVector3f minBounds;
-	private SVector3f maxBounds;
+	private SBounds bounds;
+	private SBounds boundsUntranslated;
 	private java.lang.Integer startVertex;
 	private java.lang.Integer startIndex;
 	private java.lang.Integer primitiveCount;
@@ -38,8 +38,6 @@ public class SGeometryInfo implements SDataBase
 	private byte[] transformation;
 	private double area;
 	private double volume;
-	private SVector3f minBoundsUntranslated;
-	private SVector3f maxBoundsUntranslated;
 	private boolean hasTransparency;
 	private long ifcProductOid;
 
@@ -69,11 +67,11 @@ public class SGeometryInfo implements SDataBase
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("minBounds")) {
-			return getMinBounds();
+		if (sField.getName().equals("bounds")) {
+			return getBounds();
 		}
-		if (sField.getName().equals("maxBounds")) {
-			return getMaxBounds();
+		if (sField.getName().equals("boundsUntranslated")) {
+			return getBoundsUntranslated();
 		}
 		if (sField.getName().equals("startVertex")) {
 			return getStartVertex();
@@ -96,12 +94,6 @@ public class SGeometryInfo implements SDataBase
 		if (sField.getName().equals("volume")) {
 			return getVolume();
 		}
-		if (sField.getName().equals("minBoundsUntranslated")) {
-			return getMinBoundsUntranslated();
-		}
-		if (sField.getName().equals("maxBoundsUntranslated")) {
-			return getMaxBoundsUntranslated();
-		}
 		if (sField.getName().equals("hasTransparency")) {
 			return isHasTransparency();
 		}
@@ -118,12 +110,12 @@ public class SGeometryInfo implements SDataBase
 	}
 
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("minBounds")) {
-			setMinBounds((SVector3f)val);
+		if (sField.getName().equals("bounds")) {
+			setBounds((SBounds)val);
 			return;
 		}
-		if (sField.getName().equals("maxBounds")) {
-			setMaxBounds((SVector3f)val);
+		if (sField.getName().equals("boundsUntranslated")) {
+			setBoundsUntranslated((SBounds)val);
 			return;
 		}
 		if (sField.getName().equals("startVertex")) {
@@ -154,14 +146,6 @@ public class SGeometryInfo implements SDataBase
 			setVolume((Double)val);
 			return;
 		}
-		if (sField.getName().equals("minBoundsUntranslated")) {
-			setMinBoundsUntranslated((SVector3f)val);
-			return;
-		}
-		if (sField.getName().equals("maxBoundsUntranslated")) {
-			setMaxBoundsUntranslated((SVector3f)val);
-			return;
-		}
 		if (sField.getName().equals("hasTransparency")) {
 			setHasTransparency((Boolean)val);
 			return;
@@ -181,21 +165,21 @@ public class SGeometryInfo implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	public SVector3f getMinBounds() {
-		return minBounds;
+	public SBounds getBounds() {
+		return bounds;
 	}
 
-	public void setMinBounds(SVector3f minBounds) {
-		this.minBounds = minBounds;
+	public void setBounds(SBounds bounds) {
+		this.bounds = bounds;
 	}
 	
 	
-	public SVector3f getMaxBounds() {
-		return maxBounds;
+	public SBounds getBoundsUntranslated() {
+		return boundsUntranslated;
 	}
 
-	public void setMaxBounds(SVector3f maxBounds) {
-		this.maxBounds = maxBounds;
+	public void setBoundsUntranslated(SBounds boundsUntranslated) {
+		this.boundsUntranslated = boundsUntranslated;
 	}
 	
 	
@@ -254,24 +238,6 @@ public class SGeometryInfo implements SDataBase
 	public void setVolume(double volume) {
 		this.volume = volume;
 	}
-	
-	public SVector3f getMinBoundsUntranslated() {
-		return minBoundsUntranslated;
-	}
-
-	public void setMinBoundsUntranslated(SVector3f minBoundsUntranslated) {
-		this.minBoundsUntranslated = minBoundsUntranslated;
-	}
-	
-	
-	public SVector3f getMaxBoundsUntranslated() {
-		return maxBoundsUntranslated;
-	}
-
-	public void setMaxBoundsUntranslated(SVector3f maxBoundsUntranslated) {
-		this.maxBoundsUntranslated = maxBoundsUntranslated;
-	}
-	
 	
 	public boolean isHasTransparency() {
 		return hasTransparency;

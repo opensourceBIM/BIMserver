@@ -439,6 +439,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetNrPrimitivesTotalCallback {
+		void success(java.lang.Long result);
+		void error(Throwable e);
+	}
+	
 	public interface GetOidByGuidCallback {
 		void success(java.lang.Long result);
 		void error(Throwable e);
@@ -531,6 +536,16 @@ public class AsyncServiceInterface {
 	
 	public interface GetTopLevelProjectByNameCallback {
 		void success(org.bimserver.interfaces.objects.SProject result);
+		void error(Throwable e);
+	}
+	
+	public interface GetTotalBoundsCallback {
+		void success(org.bimserver.interfaces.objects.SBounds result);
+		void error(Throwable e);
+	}
+	
+	public interface GetTotalUntranslatedBoundsCallback {
+		void success(org.bimserver.interfaces.objects.SBounds result);
 		void error(Throwable e);
 	}
 	
@@ -1683,6 +1698,18 @@ public class AsyncServiceInterface {
 		});
 	}
 	
+	public void getNrPrimitivesTotal(final java.util.Set<java.lang.Long> roids, final GetNrPrimitivesTotalCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getNrPrimitivesTotal(roids));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getOidByGuid(final java.lang.Long roid, final java.lang.String guid, final GetOidByGuidCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1904,6 +1931,30 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getTopLevelProjectByName(name));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getTotalBounds(final java.util.Set<java.lang.Long> roids, final GetTotalBoundsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getTotalBounds(roids));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getTotalUntranslatedBounds(final java.util.Set<java.lang.Long> roids, final GetTotalUntranslatedBoundsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getTotalUntranslatedBounds(roids));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

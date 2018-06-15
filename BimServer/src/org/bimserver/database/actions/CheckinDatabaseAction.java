@@ -36,6 +36,8 @@ import org.bimserver.database.PostCommitAction;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.mail.MailSystem;
+import org.bimserver.models.geometry.Bounds;
+import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
@@ -206,8 +208,10 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 				RenderEnginePool pool = bimServer.getRenderEnginePools().getRenderEnginePool(model.getPackageMetaData().getSchema(), defaultRenderEngine.getPluginDescriptor().getPluginClassName(), new PluginConfiguration(defaultRenderEngine.getSettings()));
 
 				GenerateGeometryResult generateGeometry = new GeometryGenerator(bimServer).generateGeometry(pool, bimServer.getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), true, geometryCache);
-				concreteRevision.setMinBounds(generateGeometry.getMinBoundsAsVector3f());
-				concreteRevision.setMaxBounds(generateGeometry.getMaxBoundsAsVector3f());
+
+				concreteRevision.setBounds(generateGeometry.getBounds());
+				concreteRevision.setBoundsUntranslated(generateGeometry.getBoundsUntranslated());
+
 				for (Revision other : concreteRevision.getRevisions()) {
 					other.setHasGeometry(true);
 				}

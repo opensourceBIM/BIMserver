@@ -29,6 +29,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.geometry.Matrix;
+import org.bimserver.models.geometry.Bounds;
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.GeometryInfo;
@@ -104,8 +105,12 @@ public class OfflineGeometryGenerator {
 					GeometryInfo geometryInfo = null;
 					geometryInfo = GeometryFactory.eINSTANCE.createGeometryInfo();
 
-					geometryInfo.setMinBounds(createVector3f(model.getPackageMetaData(), model, Double.POSITIVE_INFINITY));
-					geometryInfo.setMaxBounds(createVector3f(model.getPackageMetaData(), model, -Double.POSITIVE_INFINITY));
+					Bounds bounds = GeometryFactory.eINSTANCE.createBounds();
+					
+					bounds.setMin(createVector3f(model.getPackageMetaData(), model, Double.POSITIVE_INFINITY));
+					bounds.setMax(createVector3f(model.getPackageMetaData(), model, -Double.POSITIVE_INFINITY));
+					
+					geometryInfo.setBounds(bounds);
 
 					try {
 						double area = renderEngineInstance.getArea();
@@ -277,12 +282,13 @@ public class OfflineGeometryGenerator {
 		x = result[0];
 		y = result[1];
 		z = result[2];
-		geometryInfo.getMinBounds().setX(Math.min(x, geometryInfo.getMinBounds().getX()));
-		geometryInfo.getMinBounds().setY(Math.min(y, geometryInfo.getMinBounds().getY()));
-		geometryInfo.getMinBounds().setZ(Math.min(z, geometryInfo.getMinBounds().getZ()));
-		geometryInfo.getMaxBounds().setX(Math.max(x, geometryInfo.getMaxBounds().getX()));
-		geometryInfo.getMaxBounds().setY(Math.max(y, geometryInfo.getMaxBounds().getY()));
-		geometryInfo.getMaxBounds().setZ(Math.max(z, geometryInfo.getMaxBounds().getZ()));
+		Bounds bounds = geometryInfo.getBounds();
+		bounds.getMin().setX(Math.min(x, bounds.getMin().getX()));
+		bounds.getMin().setY(Math.min(y, bounds.getMin().getY()));
+		bounds.getMin().setZ(Math.min(z, bounds.getMin().getZ()));
+		bounds.getMax().setX(Math.max(x, bounds.getMax().getX()));
+		bounds.getMax().setY(Math.max(y, bounds.getMax().getY()));
+		bounds.getMax().setZ(Math.max(z, bounds.getMax().getZ()));
 
 		generateGeometryResult.getMinBounds().setX(Math.min(x, generateGeometryResult.getMinBounds().getX()));
 		generateGeometryResult.getMinBounds().setY(Math.min(y, generateGeometryResult.getMinBounds().getY()));

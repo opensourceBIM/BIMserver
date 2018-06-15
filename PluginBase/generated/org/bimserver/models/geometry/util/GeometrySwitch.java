@@ -114,6 +114,13 @@ public class GeometrySwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case GeometryPackage.BOUNDS: {
+			Bounds bounds = (Bounds) theEObject;
+			T result = caseBounds(bounds);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		case GeometryPackage.GEOMETRY_DATA: {
 			GeometryData geometryData = (GeometryData) theEObject;
 			T result = caseGeometryData(geometryData);
@@ -160,6 +167,21 @@ public class GeometrySwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseVector3f(Vector3f object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Bounds</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Bounds</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBounds(Bounds object) {
 		return null;
 	}
 

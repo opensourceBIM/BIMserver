@@ -30,6 +30,7 @@ import javax.jws.soap.SOAPBinding.Style;
 import javax.jws.soap.SOAPBinding.Use;
 import javax.xml.bind.annotation.XmlMimeType;
 
+import org.bimserver.interfaces.objects.SBounds;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SCompareResult;
 import org.bimserver.interfaces.objects.SCompareType;
@@ -1461,6 +1462,9 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getNrPrimitives")
 	Long getNrPrimitives(@WebParam(name = "roid", partName = "getNrPrimitives.roid") Long roid) throws ServerException, UserException;
 	
+	@WebMethod(action = "getNrPrimitivesTotal")
+	Long getNrPrimitivesTotal(@WebParam(name = "roids", partName = "getNrPrimitivesTotal.roids") Set<Long> roids) throws ServerException, UserException;
+	
 	/**
 	 * @param poid
 	 * @param sService
@@ -1491,6 +1495,12 @@ public interface ServiceInterface extends PublicInterface {
 	
 	@WebMethod(action = "checkInternetConnection")
 	Boolean checkInternetConnection() throws UserException, ServerException;
+
+	@WebMethod(action = "getTotalBounds")
+	SBounds getTotalBounds(@WebParam(name = "roids", partName = "getTotalBounds.roids") Set<Long> roids) throws ServerException, UserException;
+
+	@WebMethod(action = "getTotalUntranslatedBounds")
+	SBounds getTotalUntranslatedBounds(@WebParam(name = "roids", partName = "getTotalUntranslatedBounds.roids") Set<Long> roids) throws ServerException, UserException;
 	
 	@WebMethod(action = "getModelMinBounds")
 	SVector3f getModelMinBounds(@WebParam(name = "roid", partName = "getModelMinBounds.roid") Long roid) throws ServerException, UserException;

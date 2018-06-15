@@ -21,6 +21,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
 public class Step0040 extends Migration {
@@ -30,6 +31,12 @@ public class Step0040 extends Migration {
 		EClass project = schema.getEClass("store", "Project");
 		
 		schema.createEAttribute(project, "checkinInProgress", EcorePackage.eINSTANCE.getELong());
+		
+		EClass geometryData = schema.getEClass("geometry", "GeometryData");
+		EReference reference = schema.createEReference(geometryData, "mostUsedColor", schema.getEClass("geometry", "Vector4f"));
+		reference.getEAnnotations().add(createDbEmbedReferenceAnnotation());
+		reference.getEAnnotations().add(createEmbedsReferenceAnnotation());
+		reference.getEAnnotations().add(createHiddenAnnotation());
 	}
 
 	@Override

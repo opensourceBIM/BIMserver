@@ -270,4 +270,9 @@ public class QueryObjectProvider implements ObjectProvider {
 	public void addRead(long oid) {
 		oidsRead.add(oid);
 	}
+
+	@Override
+	public ObjectNode getQueryNode() {
+		return new JsonQueryObjectModelConverter(packageMetaData).toJson(query);
+	}
 }

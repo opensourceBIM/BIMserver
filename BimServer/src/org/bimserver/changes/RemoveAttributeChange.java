@@ -50,10 +50,6 @@ public class RemoveAttributeChange implements Change {
 	public void execute(Transaction transaction) throws UserException, BimserverLockConflictException, BimserverDatabaseException, IOException, QueryException {
 		PackageMetaData packageMetaData = transaction.getDatabaseSession().getMetaDataManager().getPackageMetaData(transaction.getProject().getSchema());
 
-		if (transaction.getDatabaseSession().getEClassForOid(oid).getName().equals("IfcFurnishingElement")) {
-			System.out.println();
-		}
-		
 		HashMapVirtualObject object = transaction.get(oid);
 		if (object == null) {
 			Query query = new Query(packageMetaData);

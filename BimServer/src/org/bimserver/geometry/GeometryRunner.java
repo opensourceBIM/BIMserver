@@ -200,6 +200,7 @@ public class GeometryRunner implements Runnable {
 									if (geometry != null && geometry.getNrIndices() > 0) {
 										VirtualObject geometryInfo = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getGeometryInfo());
 
+										WrappedVirtualObject bounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getBounds());
 										WrappedVirtualObject minBounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
 										WrappedVirtualObject maxBounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
 
@@ -212,9 +213,11 @@ public class GeometryRunner implements Runnable {
 										maxBounds.set("z", -Double.POSITIVE_INFINITY);
 
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_IfcProductOid(), ifcProduct.getOid());
-										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MinBounds(), minBounds);
-										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MaxBounds(), maxBounds);
+										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Bounds(), bounds);
+										bounds.setAttribute(GeometryPackage.eINSTANCE.getBounds_Min(), minBounds);
+										bounds.setAttribute(GeometryPackage.eINSTANCE.getBounds_Max(), maxBounds);
 
+										WrappedVirtualObject boundsUntranslated = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getBounds());
 										WrappedVirtualObject minBoundsUntranslated = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
 										WrappedVirtualObject maxBoundsUntranslated = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
 
@@ -226,8 +229,10 @@ public class GeometryRunner implements Runnable {
 										maxBoundsUntranslated.set("y", -Double.POSITIVE_INFINITY);
 										maxBoundsUntranslated.set("z", -Double.POSITIVE_INFINITY);
 
-										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MinBoundsUntranslated(), minBoundsUntranslated);
-										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MaxBoundsUntranslated(), maxBoundsUntranslated);
+										boundsUntranslated.setAttribute(GeometryPackage.eINSTANCE.getBounds_Min(), minBoundsUntranslated);
+										boundsUntranslated.setAttribute(GeometryPackage.eINSTANCE.getBounds_Max(), maxBoundsUntranslated);
+										
+										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_BoundsUntranslated(), boundsUntranslated);
 
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), renderEngineInstance.getArea());
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), renderEngineInstance.getVolume());
@@ -247,7 +252,7 @@ public class GeometryRunner implements Runnable {
 										job.setTrianglesGenerated(indices.length / 3);
 										job.getReport().incrementTriangles(indices.length / 3);
 
-										Set<Color4f> usedColors = new HashSet<>();
+										Map<Color4f, Integer> usedColors = new HashMap<>();
 
 										boolean hasTransparency = false;
 										
@@ -266,22 +271,42 @@ public class GeometryRunner implements Runnable {
 															vertex_colors[4 * k + l] = val;
 															color.set(l, val);
 														}
-														usedColors.add(color);
+														if (usedColors.containsKey(color)) {
+															usedColors.put(color, usedColors.get(color) + 1);
+														} else {
+															usedColors.put(color, 1);
+														}
 														if (color.getA() < 1) {
 															hasTransparency = true;
 														}
 													}
 												}
 											}
-											if (usedColors.size() == 1) {
+											if (usedColors.size() == 0) {
+											} else if (usedColors.size() == 1) {
 												WrappedVirtualObject color = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector4f());
-												Color4f firstColor = usedColors.iterator().next();
+												Color4f firstColor = usedColors.keySet().iterator().next();
 												color.set("x", firstColor.getR());
 												color.set("y", firstColor.getG());
 												color.set("z", firstColor.getB());
 												color.set("w", firstColor.getA());
 												geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Color(), color);
 												hasMaterial = false;
+											} else {
+												Color4f mostUsed = null;
+												int timesUsed = 0;
+												for (Color4f color : usedColors.keySet()) {
+													if (mostUsed == null || usedColors.get(color) > timesUsed) {
+														mostUsed = color;
+													}
+												}
+
+												WrappedVirtualObject color = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector4f());
+												color.set("x", mostUsed.getR());
+												color.set("y", mostUsed.getG());
+												color.set("z", mostUsed.getB());
+												color.set("w", mostUsed.getA());
+												geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_MostUsedColor(), color);
 											}
 											if (hasMaterial) {
 												geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Materials(), GeometryUtils.floatArrayToByteArray(vertex_colors));
@@ -467,30 +492,14 @@ public class GeometryRunner implements Runnable {
 										if (masterGeometryData != null) {
 											VirtualObject geometryInfo = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getGeometryInfo());
 
+											WrappedVirtualObject bounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getBounds());
 											WrappedVirtualObject minBounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
 											WrappedVirtualObject maxBounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
 
 											double[] mibu = masterGeometryData.getMibu();
 											double[] mabu = masterGeometryData.getMabu();
 
-											double[] mibt = new double[4];
-											double[] mabt = new double[4];
-
-											// TODO
-											Matrix.multiplyMV(mibt, 0, productDef.getProductMatrix(), 0, mibu, 0);
-											Matrix.multiplyMV(mabt, 0, productDef.getProductMatrix(), 0, mabu, 0);
-
-											minBounds.set("x", mibt[0]);
-											minBounds.set("y", mibt[1]);
-											minBounds.set("z", mibt[2]);
-
-											maxBounds.set("x", mabt[0]);
-											maxBounds.set("y", mabt[1]);
-											maxBounds.set("z", mabt[2]);
-
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MinBounds(), minBounds);
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MaxBounds(), maxBounds);
-
+											WrappedVirtualObject boundsUntranslated = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getBounds());
 											WrappedVirtualObject minBoundsUntranslated = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
 											WrappedVirtualObject maxBoundsUntranslated = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
 
@@ -504,8 +513,9 @@ public class GeometryRunner implements Runnable {
 
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_IfcProductOid(), ifcProduct.getOid());
 											
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MinBoundsUntranslated(), minBoundsUntranslated);
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_MaxBoundsUntranslated(), maxBoundsUntranslated);
+											boundsUntranslated.setAttribute(GeometryPackage.eINSTANCE.getBounds_Min(), minBoundsUntranslated);
+											boundsUntranslated.setAttribute(GeometryPackage.eINSTANCE.getBounds_Max(), maxBoundsUntranslated);
+											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_BoundsUntranslated(), boundsUntranslated);
 
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), masterGeometryData.getArea());
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), masterGeometryData.getVolume());
@@ -558,6 +568,24 @@ public class GeometryRunner implements Runnable {
 												}
 											}
 
+											double[] mibt = new double[4];
+											double[] mabt = new double[4];
+
+											Matrix.multiplyMV(mibt, 0, totalTranformationMatrix, 0, mibu, 0);
+											Matrix.multiplyMV(mabt, 0, totalTranformationMatrix, 0, mabu, 0);
+
+											minBounds.set("x", mibt[0]);
+											minBounds.set("y", mibt[1]);
+											minBounds.set("z", mibt[2]);
+
+											maxBounds.set("x", mabt[0]);
+											maxBounds.set("y", mabt[1]);
+											maxBounds.set("z", mabt[2]);
+
+											bounds.setAttribute(GeometryPackage.eINSTANCE.getBounds_Min(), minBounds);
+											bounds.setAttribute(GeometryPackage.eINSTANCE.getBounds_Max(), maxBounds);
+											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Bounds(), bounds);
+											
 											HashMapVirtualObject referencedData = databaseSession.getFromCache(masterGeometryData.getOid());
 											Integer currentValue = (Integer) referencedData.get("reused");
 											referencedData.set("reused", currentValue + 1);
@@ -645,7 +673,6 @@ public class GeometryRunner implements Runnable {
 			} else {
 				System.out.println("Not the same " + identifier);
 				Matrix.dump(a);
-				System.out.println();
 				Matrix.dump(b);
 				return false;
 			}

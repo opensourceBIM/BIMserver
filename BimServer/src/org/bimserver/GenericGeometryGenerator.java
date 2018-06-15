@@ -211,7 +211,6 @@ public class GenericGeometryGenerator {
 			Vector.dump("Was", v1);
 			Vector.dump("Became", resultVector);
 			Vector.dump("Should be", v2);
-			System.out.println();
 			return false;
 		}
 		return true;

@@ -25,6 +25,8 @@ import java.util.Random;
 
 import org.bimserver.emf.PackageMetaData;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 public class Query {
 	private final Map<String, Include> defines = new HashMap<>();
 	private final List<QueryPart> queryParts = new ArrayList<>();
@@ -32,6 +34,7 @@ public class Query {
 	private PackageMetaData packageMetaData;
 	private boolean doubleBuffer;
 	private int version;
+	private ObjectNode geometrySettings;
 	
 	public Query(String name, PackageMetaData packageMetaData) {
 		this.name = name;
@@ -113,5 +116,13 @@ public class Query {
 	
 	public int getVersion() {
 		return version;
+	}
+
+	public void setGeometrySettings(ObjectNode geometrySettings) {
+		this.geometrySettings = geometrySettings;
+	}
+	
+	public ObjectNode getGeometrySettings() {
+		return geometrySettings;
 	}
 }

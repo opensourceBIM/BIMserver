@@ -51,6 +51,8 @@ import org.bimserver.emf.PackageMetaData;
 import org.bimserver.geometry.GeometryGenerationReport;
 import org.bimserver.geometry.StreamingGeometryGenerator;
 import org.bimserver.mail.MailSystem;
+import org.bimserver.models.geometry.Bounds;
+import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.NewRevisionAdded;
@@ -261,8 +263,8 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 				other.setHasGeometry(true);
 			}
 			
-			concreteRevision.setMinBounds(generateGeometry.getMinBoundsAsVector3f());
-			concreteRevision.setMaxBounds(generateGeometry.getMaxBoundsAsVector3f());
+			concreteRevision.setBounds(generateGeometry.getBounds());
+			concreteRevision.setBoundsUntranslated(generateGeometry.getBoundsUntranslated());
 
 			setProgress("Doing other stuff...", -1);
 			

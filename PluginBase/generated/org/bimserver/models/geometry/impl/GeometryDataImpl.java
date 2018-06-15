@@ -56,6 +56,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#isHasTransparency <em>Has Transparency</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getReused <em>Reused</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getMostUsedColor <em>Most Used Color</em>}</li>
  * </ul>
  *
  * @generated
@@ -250,6 +251,24 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 */
 	public void setType(short newType) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__TYPE, newType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Vector4f getMostUsedColor() {
+		return (Vector4f) eGet(GeometryPackage.Literals.GEOMETRY_DATA__MOST_USED_COLOR, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMostUsedColor(Vector4f newMostUsedColor) {
+		eSet(GeometryPackage.Literals.GEOMETRY_DATA__MOST_USED_COLOR, newMostUsedColor);
 	}
 
 } //GeometryDataImpl

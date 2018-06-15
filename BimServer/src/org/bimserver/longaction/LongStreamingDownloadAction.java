@@ -93,8 +93,8 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 			for (Long roid : roids) {
 				Revision revision = databaseSession.get(roid, OldQuery.getDefault());
 				ConcreteRevision concreteRevision = revision.getConcreteRevisions().get(0);
-				projectInfo.setMinBounds(getBimServer().getSConverter().convertToSObject(concreteRevision.getMinBounds()));
-				projectInfo.setMaxBounds(getBimServer().getSConverter().convertToSObject(concreteRevision.getMaxBounds()));
+				projectInfo.setBounds(getBimServer().getSConverter().convertToSObject(concreteRevision.getBounds()));
+				projectInfo.setBoundsUntranslated(getBimServer().getSConverter().convertToSObject(concreteRevision.getBoundsUntranslated()));
 				projectInfo.setName("" + roids.iterator().next());
 				packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
 				projectNames.add(revision.getProject().getName() + "." + revision.getId());

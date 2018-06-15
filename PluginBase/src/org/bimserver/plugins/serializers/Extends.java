@@ -44,8 +44,8 @@ public class Extends {
 	}
 
 	public void integrate(GeometryInfo geometryInfo) {
-		Vector3f min = geometryInfo.getMinBounds();
-		Vector3f max = geometryInfo.getMaxBounds();
+		Vector3f min = geometryInfo.getBounds().getMin();
+		Vector3f max = geometryInfo.getBounds().getMax();
 		addToMinExtents(new double[]{min.getX(), min.getY(), min.getZ()});
 		addToMaxExtents(new double[]{max.getX(), max.getY(), max.getZ()});
 	}

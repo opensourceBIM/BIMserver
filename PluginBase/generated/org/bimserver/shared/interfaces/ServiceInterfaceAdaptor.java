@@ -341,6 +341,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
+	public java.lang.Long getNrPrimitivesTotal(java.util.Set<java.lang.Long> roids) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.lang.Long getOidByGuid(java.lang.Long roid, java.lang.String guid) throws UserException, ServerException {
 		return null;
 	}
@@ -414,6 +418,14 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 	}
 	
 	public org.bimserver.interfaces.objects.SProject getTopLevelProjectByName(java.lang.String name) throws UserException, ServerException {
+		return null;
+	}
+	
+	public org.bimserver.interfaces.objects.SBounds getTotalBounds(java.util.Set<java.lang.Long> roids) throws UserException, ServerException {
+		return null;
+	}
+	
+	public org.bimserver.interfaces.objects.SBounds getTotalUntranslatedBounds(java.util.Set<java.lang.Long> roids) throws UserException, ServerException {
 		return null;
 	}
 	

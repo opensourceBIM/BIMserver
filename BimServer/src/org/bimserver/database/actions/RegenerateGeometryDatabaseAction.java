@@ -29,6 +29,8 @@ import org.bimserver.database.OldQuery;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.geometry.GeometryGenerationReport;
 import org.bimserver.geometry.StreamingGeometryGenerator;
+import org.bimserver.models.geometry.Bounds;
+import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.ExtendedData;
@@ -88,8 +90,8 @@ public class RegenerateGeometryDatabaseAction extends ProjectBasedDatabaseAction
 				other.setHasGeometry(true);
 			}
 			
-			concreteRevision.setMinBounds(generateGeometry.getMinBoundsAsVector3f());
-			concreteRevision.setMaxBounds(generateGeometry.getMaxBoundsAsVector3f());
+			concreteRevision.setBounds(generateGeometry.getBounds());
+			concreteRevision.setBoundsUntranslated(generateGeometry.getBoundsUntranslated());
 			
 			ExtendedData extendedData = getDatabaseSession().create(ExtendedData.class);
 			File file = getDatabaseSession().create(File.class);

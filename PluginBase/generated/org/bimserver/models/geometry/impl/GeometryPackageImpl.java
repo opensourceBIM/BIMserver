@@ -90,6 +90,13 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass boundsEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass geometryDataEClass = null;
 
 	/**
@@ -191,7 +198,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGeometryInfo_MinBounds() {
+	public EReference getGeometryInfo_Bounds() {
 		return (EReference) getGeometryInfo().getEStructuralFeatures().get(0);
 	}
 
@@ -200,7 +207,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGeometryInfo_MaxBounds() {
+	public EReference getGeometryInfo_BoundsUntranslated() {
 		return (EReference) getGeometryInfo().getEStructuralFeatures().get(1);
 	}
 
@@ -272,26 +279,8 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGeometryInfo_MinBoundsUntranslated() {
-		return (EReference) getGeometryInfo().getEStructuralFeatures().get(9);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getGeometryInfo_MaxBoundsUntranslated() {
-		return (EReference) getGeometryInfo().getEStructuralFeatures().get(10);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getGeometryInfo_HasTransparency() {
-		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(11);
+		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -300,7 +289,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * @generated
 	 */
 	public EAttribute getGeometryInfo_IfcProductOid() {
-		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(12);
+		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -347,9 +336,39 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getBounds() {
+		if (boundsEClass == null) {
+			boundsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers().get(2);
+		}
+		return boundsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBounds_Min() {
+		return (EReference) getBounds().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBounds_Max() {
+		return (EReference) getBounds().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getGeometryData() {
 		if (geometryDataEClass == null) {
-			geometryDataEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers().get(2);
+			geometryDataEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers().get(3);
 		}
 		return geometryDataEClass;
 	}
@@ -440,9 +459,18 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getGeometryData_MostUsedColor() {
+		return (EReference) getGeometryData().getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getVector4f() {
 		if (vector4fEClass == null) {
-			vector4fEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers().get(3);
+			vector4fEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers().get(4);
 		}
 		return vector4fEClass;
 	}

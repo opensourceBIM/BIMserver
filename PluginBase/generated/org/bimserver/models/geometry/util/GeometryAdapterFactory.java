@@ -110,6 +110,11 @@ public class GeometryAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseBounds(Bounds object) {
+			return createBoundsAdapter();
+		}
+
+		@Override
 		public Adapter caseGeometryData(GeometryData object) {
 			return createGeometryDataAdapter();
 		}
@@ -163,6 +168,20 @@ public class GeometryAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createVector3fAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.geometry.Bounds <em>Bounds</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.geometry.Bounds
+	 * @generated
+	 */
+	public Adapter createBoundsAdapter() {
 		return null;
 	}
 

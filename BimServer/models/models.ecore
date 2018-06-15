@@ -4,12 +4,12 @@
   <ecore:EPackage name="geometry" nsURI="geometry" nsPrefix="geometry">
     <eClassifiers xsi:type="ecore:EClass" name="GeometryInfo">
       <eAnnotations source="hidden"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="minBounds" eType="#/0/Vector3f">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="bounds" eType="#/0/Bounds">
         <eAnnotations source="dbembed"/>
         <eAnnotations source="embedsreference"/>
         <eAnnotations source="hidden"/>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="maxBounds" eType="#/0/Vector3f">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="boundsUntranslated" eType="#/0/Bounds">
         <eAnnotations source="dbembed"/>
         <eAnnotations source="embedsreference"/>
         <eAnnotations source="hidden"/>
@@ -23,18 +23,6 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="transformation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="area" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="volume" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="minBoundsUntranslated"
-          eType="#/0/Vector3f">
-        <eAnnotations source="dbembed"/>
-        <eAnnotations source="embedsreference"/>
-        <eAnnotations source="hidden"/>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="maxBoundsUntranslated"
-          eType="#/0/Vector3f">
-        <eAnnotations source="dbembed"/>
-        <eAnnotations source="embedsreference"/>
-        <eAnnotations source="hidden"/>
-      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasTransparency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="ifcProductOid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     </eClassifiers>
@@ -43,6 +31,18 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="y" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="z" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Bounds">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="min" eType="#/0/Vector3f">
+        <eAnnotations source="dbembed"/>
+        <eAnnotations source="embedsreference"/>
+        <eAnnotations source="hidden"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="max" eType="#/0/Vector3f">
+        <eAnnotations source="dbembed"/>
+        <eAnnotations source="embedsreference"/>
+        <eAnnotations source="hidden"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GeometryData">
       <eAnnotations source="nolazyload"/>
@@ -60,6 +60,11 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasTransparency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="reused" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EShort"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="mostUsedColor" eType="#/0/Vector4f">
+        <eAnnotations source="dbembed"/>
+        <eAnnotations source="embedsreference"/>
+        <eAnnotations source="hidden"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Vector4f">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
@@ -20034,12 +20039,12 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="summary" eType="#/4/RevisionSummary"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/4/User"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ifcHeader" eType="#/4/IfcHeader"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="minBounds" eType="#/0/Vector3f">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="bounds" eType="#/0/Bounds">
         <eAnnotations source="dbembed"/>
         <eAnnotations source="embedsreference"/>
         <eAnnotations source="hidden"/>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="maxBounds" eType="#/0/Vector3f">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="boundsUntranslated" eType="#/0/Bounds">
         <eAnnotations source="dbembed"/>
         <eAnnotations source="embedsreference"/>
         <eAnnotations source="hidden"/>

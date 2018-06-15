@@ -1,5 +1,5 @@
 
-Èà
+·é
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -748,25 +748,28 @@ revisionNr (
 rid (	
 x (	
 y (	
-z ("∏
+z ("w
+SBounds(
+max (2.org.bimserver.pb.SVector3f(
+min (2.org.bimserver.pb.SVector3f
+oid (
+rid ("¬
 SGeometryInfo
-area (
-dataId (
-hasTransparency (
-ifcProductOid (.
-	maxBounds (2.org.bimserver.pb.SVector3f:
-maxBoundsUntranslated (2.org.bimserver.pb.SVector3f.
-	minBounds (2.org.bimserver.pb.SVector3f:
-minBoundsUntranslated (2.org.bimserver.pb.SVector3f
-oid	 (
-primitiveCount
- (
-rid (
+area ()
+bounds (2.org.bimserver.pb.SBounds5
+boundsUntranslated (2.org.bimserver.pb.SBounds
+dataId (
+hasTransparency (
+ifcProductOid (
+oid (
+primitiveCount (
+rid	 (
 
-startIndex (
-startVertex (
-transformation (
-volume ("_
+startIndex
+ (
+startVertex (
+transformation (
+volume ("_
 GetGeometryInfoResponse
 errorMessage (	.
 value (2.org.bimserver.pb.SGeometryInfo"$
@@ -819,6 +822,11 @@ SIfcHeader
 GetNrPrimitivesRequest
 roid (">
 GetNrPrimitivesResponse
+errorMessage (	
+value (",
+GetNrPrimitivesTotalRequest
+roids ("C
+GetNrPrimitivesTotalResponse
 errorMessage (	
 value ("1
 GetOidByGuidRequest
@@ -975,7 +983,17 @@ settingsId (
 name (	"c
  GetTopLevelProjectByNameResponse
 errorMessage (	)
-value (2.org.bimserver.pb.SProject"$
+value (2.org.bimserver.pb.SProject"&
+GetTotalBoundsRequest
+roids ("X
+GetTotalBoundsResponse
+errorMessage (	(
+value (2.org.bimserver.pb.SBounds"2
+!GetTotalUntranslatedBoundsRequest
+roids ("d
+"GetTotalUntranslatedBoundsResponse
+errorMessage (	(
+value (2.org.bimserver.pb.SBounds"$
 GetUserByUoidRequest
 uoid ("U
 GetUserByUoidResponse
@@ -1470,7 +1488,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2Ùu
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2⁄x
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
@@ -1555,7 +1573,8 @@ deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserRes
 getModelMaxBounds*.org.bimserver.pb.GetModelMaxBoundsRequest+.org.bimserver.pb.GetModelMaxBoundsResponsel
 getModelMinBounds*.org.bimserver.pb.GetModelMinBoundsRequest+.org.bimserver.pb.GetModelMinBoundsResponse`
 getNewService&.org.bimserver.pb.GetNewServiceRequest'.org.bimserver.pb.GetNewServiceResponsef
-getNrPrimitives(.org.bimserver.pb.GetNrPrimitivesRequest).org.bimserver.pb.GetNrPrimitivesResponse]
+getNrPrimitives(.org.bimserver.pb.GetNrPrimitivesRequest).org.bimserver.pb.GetNrPrimitivesResponseu
+getNrPrimitivesTotal-.org.bimserver.pb.GetNrPrimitivesTotalRequest..org.bimserver.pb.GetNrPrimitivesTotalResponse]
 getOidByGuid%.org.bimserver.pb.GetOidByGuidRequest&.org.bimserver.pb.GetOidByGuidResponsei
 getProjectByPoid).org.bimserver.pb.GetProjectByPoidRequest*.org.bimserver.pb.GetProjectByPoidResponsex
 getProjectSmallByPoid..org.bimserver.pb.GetProjectSmallByPoidRequest/.org.bimserver.pb.GetProjectSmallByPoidResponsel
@@ -1575,7 +1594,9 @@ getService#.org.bimserver.pb.GetServiceRequest$.org.bimserver.pb.GetServiceRes
 getSubProjectByName,.org.bimserver.pb.GetSubProjectByNameRequest-.org.bimserver.pb.GetSubProjectByNameResponsec
 getSubProjects'.org.bimserver.pb.GetSubProjectsRequest(.org.bimserver.pb.GetSubProjectsResponse•
 $getSuggestedDeserializerForExtension=.org.bimserver.pb.GetSuggestedDeserializerForExtensionRequest>.org.bimserver.pb.GetSuggestedDeserializerForExtensionResponseÅ
-getTopLevelProjectByName1.org.bimserver.pb.GetTopLevelProjectByNameRequest2.org.bimserver.pb.GetTopLevelProjectByNameResponse`
+getTopLevelProjectByName1.org.bimserver.pb.GetTopLevelProjectByNameRequest2.org.bimserver.pb.GetTopLevelProjectByNameResponsec
+getTotalBounds'.org.bimserver.pb.GetTotalBoundsRequest(.org.bimserver.pb.GetTotalBoundsResponseá
+getTotalUntranslatedBounds3.org.bimserver.pb.GetTotalUntranslatedBoundsRequest4.org.bimserver.pb.GetTotalUntranslatedBoundsResponse`
 getUserByUoid&.org.bimserver.pb.GetUserByUoidRequest'.org.bimserver.pb.GetUserByUoidResponsel
 getUserByUserName*.org.bimserver.pb.GetUserByUserNameRequest+.org.bimserver.pb.GetUserByUserNameResponseo
 getUserRelatedLogs+.org.bimserver.pb.GetUserRelatedLogsRequest,.org.bimserver.pb.GetUserRelatedLogsResponsef

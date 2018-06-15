@@ -38,6 +38,7 @@ public class SGeometryData implements SDataBase
 	private boolean hasTransparency;
 	private int reused;
 	private short type;
+	private SVector4f mostUsedColor;
 
 	public long getOid() {
 		return this.oid;
@@ -92,6 +93,9 @@ public class SGeometryData implements SDataBase
 		if (sField.getName().equals("type")) {
 			return getType();
 		}
+		if (sField.getName().equals("mostUsedColor")) {
+			return getMostUsedColor();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -136,6 +140,10 @@ public class SGeometryData implements SDataBase
 		}
 		if (sField.getName().equals("type")) {
 			setType((Short)val);
+			return;
+		}
+		if (sField.getName().equals("mostUsedColor")) {
+			setMostUsedColor((SVector4f)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -221,6 +229,15 @@ public class SGeometryData implements SDataBase
 	public void setType(short type) {
 		this.type = type;
 	}
+	
+	public SVector4f getMostUsedColor() {
+		return mostUsedColor;
+	}
+
+	public void setMostUsedColor(SVector4f mostUsedColor) {
+		this.mostUsedColor = mostUsedColor;
+	}
+	
 	
 	@Override
 	public int hashCode() {

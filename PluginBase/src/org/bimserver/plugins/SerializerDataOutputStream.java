@@ -36,4 +36,8 @@ public abstract class SerializerDataOutputStream extends OutputStream {
 	public abstract void writeUTF(String value) throws IOException;
 	public abstract void ensureExtraCapacity(int i);
 	public abstract void writeUnchecked(byte[] b, int off, int len) throws IOException;
+	public abstract void writeByte(int val) throws IOException;
+	public abstract void writeByteUnchecked(int val) throws IOException;
+	public abstract void align8() throws IOException;
+	public abstract void align4() throws IOException;
 }

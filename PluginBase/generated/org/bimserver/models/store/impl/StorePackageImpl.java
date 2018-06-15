@@ -1698,7 +1698,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConcreteRevision_MinBounds() {
+	public EReference getConcreteRevision_Bounds() {
 		return (EReference) getConcreteRevision().getEStructuralFeatures().get(11);
 	}
 
@@ -1707,7 +1707,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConcreteRevision_MaxBounds() {
+	public EReference getConcreteRevision_BoundsUntranslated() {
 		return (EReference) getConcreteRevision().getEStructuralFeatures().get(12);
 	}
 

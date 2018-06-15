@@ -1,5 +1,7 @@
 package org.bimserver;
 
+import org.bimserver.models.geometry.Bounds;
+
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -24,10 +26,14 @@ public class GenerateGeometryResult {
 
 	private double[] min;
 	private double[] max;
+	private double[] minUntranslated;
+	private double[] maxUntranslated;
 
 	public GenerateGeometryResult() {
 		min = new double[]{Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE};
 		max = new double[]{-Double.MAX_VALUE, -Double.MAX_VALUE, -Double.MAX_VALUE};
+		minUntranslated = new double[]{Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE};
+		maxUntranslated = new double[]{-Double.MAX_VALUE, -Double.MAX_VALUE, -Double.MAX_VALUE};
 	}
 
 	public double[] getMin() {
@@ -36,6 +42,42 @@ public class GenerateGeometryResult {
 	
 	public double[] getMax() {
 		return max;
+	}
+	
+	public Bounds getBoundsUntranslated() {
+		Bounds bounds = GeometryFactory.eINSTANCE.createBounds();
+		Vector3f min = GeometryFactory.eINSTANCE.createVector3f();
+		min.setX(this.minUntranslated[0]);
+		min.setY(this.minUntranslated[1]);
+		min.setZ(this.minUntranslated[2]);
+		
+		Vector3f max = GeometryFactory.eINSTANCE.createVector3f();
+		max.setX(this.maxUntranslated[0]);
+		max.setY(this.maxUntranslated[1]);
+		max.setZ(this.maxUntranslated[2]);
+		
+		bounds.setMin(min);
+		bounds.setMax(max);
+		
+		return bounds;
+	}
+	
+	public Bounds getBounds() {
+		Bounds bounds = GeometryFactory.eINSTANCE.createBounds();
+		Vector3f min = GeometryFactory.eINSTANCE.createVector3f();
+		min.setX(this.min[0]);
+		min.setY(this.min[1]);
+		min.setZ(this.min[2]);
+		
+		Vector3f max = GeometryFactory.eINSTANCE.createVector3f();
+		max.setX(this.max[0]);
+		max.setY(this.max[1]);
+		max.setZ(this.max[2]);
+		
+		bounds.setMin(min);
+		bounds.setMax(max);
+		
+		return bounds;
 	}
 	
 	public Vector3f getMinBoundsAsVector3f() {
@@ -78,6 +120,30 @@ public class GenerateGeometryResult {
 		return max[2];
 	}
 
+	public double getUntranslatedMinX() {
+		return minUntranslated[0];
+	}
+	
+	public double getUntranslatedMinY() {
+		return minUntranslated[1];
+	}
+	
+	public double getUntranslatedMinZ() {
+		return minUntranslated[2];
+	}
+	
+	public double getUntranslatedMaxX() {
+		return maxUntranslated[0];
+	}
+	
+	public double getUntranslatedMaxY() {
+		return maxUntranslated[1];
+	}
+	
+	public double getUntranslatedMaxZ() {
+		return maxUntranslated[2];
+	}
+	
 	public void setMinX(double value) {
 		min[0] = value;
 	}
@@ -100,5 +166,29 @@ public class GenerateGeometryResult {
 	
 	public void setMaxZ(double value) {
 		max[2] = value;
+	}
+
+	public void setUntranslatedMinX(double value) {
+		minUntranslated[0] = value;
+	}
+	
+	public void setUntranslatedMinY(double value) {
+		minUntranslated[1] = value;
+	}
+	
+	public void setUntranslatedMinZ(double value) {
+		minUntranslated[2] = value;
+	}
+	
+	public void setUntranslatedMaxX(double value) {
+		maxUntranslated[0] = value;
+	}
+	
+	public void setUntranslatedMaxY(double value) {
+		maxUntranslated[1] = value;
+	}
+	
+	public void setUntranslatedMaxZ(double value) {
+		maxUntranslated[2] = value;
 	}
 }

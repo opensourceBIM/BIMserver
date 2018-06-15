@@ -1818,15 +1818,28 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		return eObject;
 	}
 
-	private IdEObject readEmbeddedValue(EStructuralFeature feature, ByteBuffer buffer, EClass eClass, QueryInterface query) {
+	private IdEObject readEmbeddedValue(EStructuralFeature feature, ByteBuffer buffer, EClass eClass, QueryInterface query) throws BimserverDatabaseException {
 		IdEObject eObject = createInternal(eClass, query);
 		for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
 			if (eStructuralFeature.isMany()) {
 				// Not implemented
 			} else {
-				Object primitiveValue = readPrimitiveValue(eStructuralFeature.getEType(), buffer, query);
-				((IdEObjectImpl) eObject).setLoaded();
-				eObject.eSet(eStructuralFeature, primitiveValue);
+				if (eStructuralFeature.getEType() instanceof EDataType) {
+					Object primitiveValue = readPrimitiveValue(eStructuralFeature.getEType(), buffer, query);
+					((IdEObjectImpl) eObject).setLoaded();
+					eObject.eSet(eStructuralFeature, primitiveValue);
+				} else {
+					buffer.order(ByteOrder.LITTLE_ENDIAN);
+					short cid = buffer.getShort();
+					buffer.order(ByteOrder.BIG_ENDIAN);
+					if (cid == -1) {
+						// null, do nothing
+					} else if (cid < 0) {
+						// non minus one and negative cid means value is embedded in record
+						EClass referenceClass = database.getEClassForCid((short) (-cid));
+						eObject.eSet(eStructuralFeature, readEmbeddedValue(eStructuralFeature, buffer, referenceClass, query));
+					}
+				}
 			}
 		}
 		return eObject;
@@ -1980,7 +1993,6 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 
 	private void writeEmbeddedValue(int pid, int rid, Object value, ByteBuffer buffer, PackageMetaData packageMetaData) throws BimserverDatabaseException {
 		IdEObject wrappedValue = (IdEObject) value;
-
 		Short cid = database.getCidOfEClass(wrappedValue.eClass());
 		buffer.order(ByteOrder.LITTLE_ENDIAN);
 		buffer.putShort((short) -cid);
@@ -1990,7 +2002,12 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 			if (eStructuralFeature.isMany()) {
 				writeList(wrappedValue, buffer, packageMetaData, eStructuralFeature);
 			} else {
-				writePrimitiveValue(eStructuralFeature, wrappedValue.eGet(eStructuralFeature), buffer);
+				Object val = wrappedValue.eGet(eStructuralFeature);
+				if (eStructuralFeature.getEType() instanceof EClass) {
+					writeEmbeddedValue(pid, rid, val, buffer, packageMetaData);
+				} else {
+					writePrimitiveValue(eStructuralFeature, val, buffer);
+				}
 			}
 		}
 	}

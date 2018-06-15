@@ -48,6 +48,7 @@ import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
+import org.bimserver.models.geometry.Bounds;
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.GeometryInfo;
@@ -438,8 +439,12 @@ public class ClientIfcModel extends IfcModel {
 					maxBounds.setY(dataInputStream.readDouble());
 					maxBounds.setZ(dataInputStream.readDouble());
 
-					geometryInfo.setMinBounds(minBounds);
-					geometryInfo.setMaxBounds(maxBounds);
+					Bounds bounds = GeometryFactory.eINSTANCE.createBounds();
+					
+					bounds.setMin(minBounds);
+					bounds.setMax(maxBounds);
+					
+					geometryInfo.setBounds(bounds);
 
 					byte[] transformation = new byte[16 * 8];
 					dataInputStream.readFully(transformation);

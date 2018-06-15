@@ -16,21 +16,21 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SDoubleType.class, SByteArrayType.class, SBooleanType.class, SLongType.class, SStringType.class})
-public class SPrimitiveType extends SType implements SDataBase
+public class SBounds implements SDataBase
 {
 	private long oid = -1;
 	private int rid = 0;
 
 	@XmlTransient
 	private static SClass sClass;
+	private SVector3f min;
+	private SVector3f max;
 
 	public long getOid() {
 		return this.oid;
@@ -54,10 +54,16 @@ public class SPrimitiveType extends SType implements SDataBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SPrimitiveType.sClass = sClass;
+		SBounds.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
+		if (sField.getName().equals("min")) {
+			return getMin();
+		}
+		if (sField.getName().equals("max")) {
+			return getMax();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -68,6 +74,14 @@ public class SPrimitiveType extends SType implements SDataBase
 	}
 
 	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("min")) {
+			setMin((SVector3f)val);
+			return;
+		}
+		if (sField.getName().equals("max")) {
+			setMax((SVector3f)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -78,6 +92,24 @@ public class SPrimitiveType extends SType implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+	
+	public SVector3f getMin() {
+		return min;
+	}
+
+	public void setMin(SVector3f min) {
+		this.min = min;
+	}
+	
+	
+	public SVector3f getMax() {
+		return max;
+	}
+
+	public void setMax(SVector3f max) {
+		this.max = max;
+	}
+	
 	
 	@Override
 	public int hashCode() {
@@ -95,7 +127,7 @@ public class SPrimitiveType extends SType implements SDataBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SPrimitiveType other = (SPrimitiveType) obj;
+		SBounds other = (SBounds) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

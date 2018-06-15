@@ -187,6 +187,8 @@ service ServiceInterface {
 
 	rpc getNrPrimitives (GetNrPrimitivesRequest) returns (GetNrPrimitivesResponse);
 
+	rpc getNrPrimitivesTotal (GetNrPrimitivesTotalRequest) returns (GetNrPrimitivesTotalResponse);
+
 	rpc getOidByGuid (GetOidByGuidRequest) returns (GetOidByGuidResponse);
 
 	rpc getProjectByPoid (GetProjectByPoidRequest) returns (GetProjectByPoidResponse);
@@ -224,6 +226,10 @@ service ServiceInterface {
 	rpc getSuggestedDeserializerForExtension (GetSuggestedDeserializerForExtensionRequest) returns (GetSuggestedDeserializerForExtensionResponse);
 
 	rpc getTopLevelProjectByName (GetTopLevelProjectByNameRequest) returns (GetTopLevelProjectByNameResponse);
+
+	rpc getTotalBounds (GetTotalBoundsRequest) returns (GetTotalBoundsResponse);
+
+	rpc getTotalUntranslatedBounds (GetTotalUntranslatedBoundsRequest) returns (GetTotalUntranslatedBoundsResponse);
 
 	rpc getUserByUoid (GetUserByUoidRequest) returns (GetUserByUoidResponse);
 
@@ -1421,22 +1427,27 @@ message SVector3f {
 	optional double z = 5;
 }
 
+message SBounds {
+	optional SVector3f max = 1;
+	optional SVector3f min = 2;
+	optional int64 oid = 3;
+	optional int32 rid = 4;
+}
+
 message SGeometryInfo {
 	optional double area = 1;
-	optional int64 dataId = 2;
-	optional bool hasTransparency = 3;
-	optional int64 ifcProductOid = 4;
-	optional SVector3f maxBounds = 5;
-	optional SVector3f maxBoundsUntranslated = 6;
-	optional SVector3f minBounds = 7;
-	optional SVector3f minBoundsUntranslated = 8;
-	optional int64 oid = 9;
-	optional int32 primitiveCount = 10;
-	optional int32 rid = 11;
-	optional int32 startIndex = 12;
-	optional int32 startVertex = 13;
-	optional bytes transformation = 14;
-	optional double volume = 15;
+	optional SBounds bounds = 2;
+	optional SBounds boundsUntranslated = 3;
+	optional int64 dataId = 4;
+	optional bool hasTransparency = 5;
+	optional int64 ifcProductOid = 6;
+	optional int64 oid = 7;
+	optional int32 primitiveCount = 8;
+	optional int32 rid = 9;
+	optional int32 startIndex = 10;
+	optional int32 startVertex = 11;
+	optional bytes transformation = 12;
+	optional double volume = 13;
 }
 
 message GetGeometryInfoResponse {
@@ -1519,6 +1530,15 @@ message GetNrPrimitivesRequest {
 }
 
 message GetNrPrimitivesResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
+}
+
+message GetNrPrimitivesTotalRequest {
+	repeated int64 roids = 1;
+}
+
+message GetNrPrimitivesTotalResponse {
 	optional string errorMessage = 1;
 	optional int64 value = 2;
 }
@@ -1759,6 +1779,24 @@ message GetTopLevelProjectByNameRequest {
 message GetTopLevelProjectByNameResponse {
 	optional string errorMessage = 1;
 	optional SProject value = 2;
+}
+
+message GetTotalBoundsRequest {
+	repeated int64 roids = 1;
+}
+
+message GetTotalBoundsResponse {
+	optional string errorMessage = 1;
+	optional SBounds value = 2;
+}
+
+message GetTotalUntranslatedBoundsRequest {
+	repeated int64 roids = 1;
+}
+
+message GetTotalUntranslatedBoundsResponse {
+	optional string errorMessage = 1;
+	optional SBounds value = 2;
 }
 
 message GetUserByUoidRequest {

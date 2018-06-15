@@ -45,6 +45,7 @@ import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;
 import org.bimserver.geometry.Matrix;
 import org.bimserver.ifc.BasicIfcModel;
+import org.bimserver.models.geometry.Bounds;
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.GeometryInfo;
@@ -196,10 +197,17 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 										geometryInfo = GeometryFactory.eINSTANCE.createGeometryInfo();
 									}
 
-									geometryInfo.setMinBounds(createVector3f(packageMetaData, model, Double.POSITIVE_INFINITY, databaseSession, store, pid, rid));
-									geometryInfo.setMaxBounds(createVector3f(packageMetaData, model, -Double.POSITIVE_INFINITY, databaseSession, store, pid, rid));
-									geometryInfo.setMinBoundsUntranslated(createVector3f(packageMetaData, model, Double.POSITIVE_INFINITY, databaseSession, store, pid, rid));
-									geometryInfo.setMaxBoundsUntranslated(createVector3f(packageMetaData, model, -Double.POSITIVE_INFINITY, databaseSession, store, pid, rid));
+									Bounds bounds = GeometryFactory.eINSTANCE.createBounds();
+									
+									bounds.setMin(createVector3f(packageMetaData, model, Double.POSITIVE_INFINITY, databaseSession, store, pid, rid));
+									bounds.setMax(createVector3f(packageMetaData, model, -Double.POSITIVE_INFINITY, databaseSession, store, pid, rid));
+									geometryInfo.setBounds(bounds);
+									
+									Bounds boundsUntranslated = GeometryFactory.eINSTANCE.createBounds();
+
+									boundsUntranslated.setMin(createVector3f(packageMetaData, model, Double.POSITIVE_INFINITY, databaseSession, store, pid, rid));
+									boundsUntranslated.setMax(createVector3f(packageMetaData, model, -Double.POSITIVE_INFINITY, databaseSession, store, pid, rid));
+									geometryInfo.setBoundsUntranslated(boundsUntranslated);
 
 									try {
 										double area = renderEngineInstance.getArea();
@@ -357,8 +365,12 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 			GeometryInfo geometryInfo = model.createAndAdd(GeometryPackage.eINSTANCE.getGeometryInfo(), databaseSession.newOid(GeometryPackage.eINSTANCE.getGeometryInfo()));
 			databaseSession.store(geometryInfo, pid, rid);
 
-			geometryInfo.setMinBounds(createVector3f(packageMetaData, model, Double.POSITIVE_INFINITY, databaseSession, store, pid, rid));
-			geometryInfo.setMaxBounds(createVector3f(packageMetaData, model, -Double.POSITIVE_INFINITY, databaseSession, store, pid, rid));
+			Bounds bounds = GeometryFactory.eINSTANCE.createBounds();
+			
+			bounds.setMin(createVector3f(packageMetaData, model, Double.POSITIVE_INFINITY, databaseSession, store, pid, rid));
+			bounds.setMax(createVector3f(packageMetaData, model, -Double.POSITIVE_INFINITY, databaseSession, store, pid, rid));
+			
+			geometryInfo.setBounds(bounds);
 			
 			GeometryData geometryData = model.createAndAdd(GeometryPackage.eINSTANCE.getGeometryData(), databaseSession.newOid(GeometryPackage.eINSTANCE.getGeometryData()));
 			databaseSession.store(geometryData, pid, rid);
@@ -567,13 +579,13 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 		return hashCode;
 	}
 
-	private void processExtendsUntranslated(GeometryInfo geometryInfo, float[] vertices, int index, GenerateGeometryResult generateGeometryResult2) throws BimserverDatabaseException {
+	private void processExtendsUntranslated(GeometryInfo geometryInfo, float[] vertices, int index, GenerateGeometryResult generateGeometryResult) throws BimserverDatabaseException {
 		double x = vertices[index];
 		double y = vertices[index + 1];
 		double z = vertices[index + 2];
 		
-		Vector3f minBounds = geometryInfo.getMinBoundsUntranslated();
-		Vector3f maxBounds = geometryInfo.getMaxBoundsUntranslated();
+		Vector3f minBounds = geometryInfo.getBoundsUntranslated().getMin();
+		Vector3f maxBounds = geometryInfo.getBoundsUntranslated().getMax();
 		
 		minBounds.setX(Math.min(x, (double)minBounds.getX()));
 		minBounds.setY(Math.min(y, (double)minBounds.getY()));
@@ -581,6 +593,13 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 		maxBounds.setX(Math.max(x, (double)maxBounds.getX()));
 		maxBounds.setY(Math.max(y, (double)maxBounds.getY()));
 		maxBounds.setZ(Math.max(z, (double)maxBounds.getZ()));
+		
+		generateGeometryResult.setUntranslatedMinX(Math.min(x, generateGeometryResult.getUntranslatedMinX()));
+		generateGeometryResult.setUntranslatedMinY(Math.min(y, generateGeometryResult.getUntranslatedMinY()));
+		generateGeometryResult.setUntranslatedMinZ(Math.min(z, generateGeometryResult.getUntranslatedMinZ()));
+		generateGeometryResult.setUntranslatedMaxX(Math.max(x, generateGeometryResult.getUntranslatedMaxX()));
+		generateGeometryResult.setUntranslatedMaxY(Math.max(y, generateGeometryResult.getUntranslatedMaxY()));
+		generateGeometryResult.setUntranslatedMaxZ(Math.max(z, generateGeometryResult.getUntranslatedMaxZ()));
 	}
 
 	private void processExtends(GeometryInfo geometryInfo, double[] transformationMatrix, float[] vertices, int index, GenerateGeometryResult generateGeometryResult) {
@@ -593,12 +612,13 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 		x = result[0];
 		y = result[1];
 		z = result[2];
-		geometryInfo.getMinBounds().setX(Math.min(x, geometryInfo.getMinBounds().getX()));
-		geometryInfo.getMinBounds().setY(Math.min(y, geometryInfo.getMinBounds().getY()));
-		geometryInfo.getMinBounds().setZ(Math.min(z, geometryInfo.getMinBounds().getZ()));
-		geometryInfo.getMaxBounds().setX(Math.max(x, geometryInfo.getMaxBounds().getX()));
-		geometryInfo.getMaxBounds().setY(Math.max(y, geometryInfo.getMaxBounds().getY()));
-		geometryInfo.getMaxBounds().setZ(Math.max(z, geometryInfo.getMaxBounds().getZ()));
+		Bounds bounds = geometryInfo.getBounds();
+		bounds.getMin().setX(Math.min(x, bounds.getMin().getX()));
+		bounds.getMin().setY(Math.min(y, bounds.getMin().getY()));
+		bounds.getMin().setZ(Math.min(z, bounds.getMin().getZ()));
+		bounds.getMax().setX(Math.max(x, bounds.getMax().getX()));
+		bounds.getMax().setY(Math.max(y, bounds.getMax().getY()));
+		bounds.getMax().setZ(Math.max(z, bounds.getMax().getZ()));
 
 		generateGeometryResult.setMinX(Math.min(x, generateGeometryResult.getMinX()));
 		generateGeometryResult.setMinY(Math.min(y, generateGeometryResult.getMinY()));
@@ -629,15 +649,20 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 				geometryData.setNormals(geometryCacheEntry.getNormals().array());
 				GeometryInfo geometryInfo = databaseSession.create(GeometryPackage.eINSTANCE.getGeometryInfo(), pid, rid);
 				Vector3f min = databaseSession.create(GeometryPackage.eINSTANCE.getVector3f(), pid, rid);
-				min.setX(geometryCacheEntry.getGeometryInfo().getMinBounds().getX());
-				min.setY(geometryCacheEntry.getGeometryInfo().getMinBounds().getY());
-				min.setZ(geometryCacheEntry.getGeometryInfo().getMinBounds().getZ());
+				min.setX(geometryCacheEntry.getGeometryInfo().getBounds().getMin().getX());
+				min.setY(geometryCacheEntry.getGeometryInfo().getBounds().getMin().getY());
+				min.setZ(geometryCacheEntry.getGeometryInfo().getBounds().getMin().getZ());
 				Vector3f max = databaseSession.create(GeometryPackage.eINSTANCE.getVector3f(), pid, rid);
-				max.setX(geometryCacheEntry.getGeometryInfo().getMaxBounds().getX());
-				max.setY(geometryCacheEntry.getGeometryInfo().getMaxBounds().getY());
-				max.setZ(geometryCacheEntry.getGeometryInfo().getMaxBounds().getZ());
-				geometryInfo.setMinBounds(min);
-				geometryInfo.setMaxBounds(max);
+				max.setX(geometryCacheEntry.getGeometryInfo().getBounds().getMax().getX());
+				max.setY(geometryCacheEntry.getGeometryInfo().getBounds().getMax().getY());
+				max.setZ(geometryCacheEntry.getGeometryInfo().getBounds().getMax().getZ());
+				
+				Bounds bounds = GeometryFactory.eINSTANCE.createBounds();
+				
+				bounds.setMin(min);
+				bounds.setMax(max);
+				
+				geometryInfo.setBounds(bounds);
 				geometryInfo.setData(geometryData);
 				ifcProduct.eSet(ifcProduct.eClass().getEStructuralFeature("geometry"), geometryInfo);
 			}

@@ -813,22 +813,22 @@ public interface StorePackage extends EPackage {
 	int CONCRETE_REVISION__IFC_HEADER = 10;
 
 	/**
-	 * The feature id for the '<em><b>Min Bounds</b></em>' reference.
+	 * The feature id for the '<em><b>Bounds</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONCRETE_REVISION__MIN_BOUNDS = 11;
+	int CONCRETE_REVISION__BOUNDS = 11;
 
 	/**
-	 * The feature id for the '<em><b>Max Bounds</b></em>' reference.
+	 * The feature id for the '<em><b>Bounds Untranslated</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONCRETE_REVISION__MAX_BOUNDS = 12;
+	int CONCRETE_REVISION__BOUNDS_UNTRANSLATED = 12;
 
 	/**
 	 * The feature id for the '<em><b>Oid Counters</b></em>' attribute.
@@ -8162,26 +8162,26 @@ public interface StorePackage extends EPackage {
 	EReference getConcreteRevision_IfcHeader();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ConcreteRevision#getMinBounds <em>Min Bounds</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ConcreteRevision#getBounds <em>Bounds</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Min Bounds</em>'.
-	 * @see org.bimserver.models.store.ConcreteRevision#getMinBounds()
+	 * @return the meta object for the reference '<em>Bounds</em>'.
+	 * @see org.bimserver.models.store.ConcreteRevision#getBounds()
 	 * @see #getConcreteRevision()
 	 * @generated
 	 */
-	EReference getConcreteRevision_MinBounds();
+	EReference getConcreteRevision_Bounds();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ConcreteRevision#getMaxBounds <em>Max Bounds</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ConcreteRevision#getBoundsUntranslated <em>Bounds Untranslated</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Max Bounds</em>'.
-	 * @see org.bimserver.models.store.ConcreteRevision#getMaxBounds()
+	 * @return the meta object for the reference '<em>Bounds Untranslated</em>'.
+	 * @see org.bimserver.models.store.ConcreteRevision#getBoundsUntranslated()
 	 * @see #getConcreteRevision()
 	 * @generated
 	 */
-	EReference getConcreteRevision_MaxBounds();
+	EReference getConcreteRevision_BoundsUntranslated();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ConcreteRevision#getOidCounters <em>Oid Counters</em>}'.
@@ -14699,20 +14699,20 @@ public interface StorePackage extends EPackage {
 		EReference CONCRETE_REVISION__IFC_HEADER = eINSTANCE.getConcreteRevision_IfcHeader();
 
 		/**
-		 * The meta object literal for the '<em><b>Min Bounds</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Bounds</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONCRETE_REVISION__MIN_BOUNDS = eINSTANCE.getConcreteRevision_MinBounds();
+		EReference CONCRETE_REVISION__BOUNDS = eINSTANCE.getConcreteRevision_Bounds();
 
 		/**
-		 * The meta object literal for the '<em><b>Max Bounds</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Bounds Untranslated</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONCRETE_REVISION__MAX_BOUNDS = eINSTANCE.getConcreteRevision_MaxBounds();
+		EReference CONCRETE_REVISION__BOUNDS_UNTRANSLATED = eINSTANCE.getConcreteRevision_BoundsUntranslated();
 
 		/**
 		 * The meta object literal for the '<em><b>Oid Counters</b></em>' attribute feature.

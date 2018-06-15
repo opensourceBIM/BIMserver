@@ -301,8 +301,22 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 		for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
 			if (eStructuralFeature.isMany()) {
 			} else {
-				Object primitiveValue = readPrimitiveValue(eStructuralFeature.getEType(), buffer);
-				eObject.setAttribute(eStructuralFeature, primitiveValue);
+				if (eStructuralFeature.getEType() instanceof EDataType) {
+					Object primitiveValue = readPrimitiveValue(eStructuralFeature.getEType(), buffer);
+					eObject.setAttribute(eStructuralFeature, primitiveValue);
+				} else {
+					buffer.order(ByteOrder.LITTLE_ENDIAN);
+					short cid = buffer.getShort();
+					buffer.order(ByteOrder.BIG_ENDIAN);
+					if (cid == -1) {
+						// null, do nothing
+					} else if (cid < 0) {
+						// negative cid means value is embedded in
+						// record
+						EClass referenceClass = queryObjectProvider.getDatabaseSession().getEClass((short) (-cid));
+						eObject.setAttribute(eStructuralFeature, readEmbeddedValue(eStructuralFeature, buffer, referenceClass));
+					}
+				}
 			}
 		}
 		return eObject;

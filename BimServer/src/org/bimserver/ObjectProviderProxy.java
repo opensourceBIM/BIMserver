@@ -24,6 +24,8 @@ import org.bimserver.plugins.serializers.ObjectProvider;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.eclipse.emf.ecore.EClass;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 public class ObjectProviderProxy implements ObjectProvider {
 
 	private ObjectProvider objectProvider;
@@ -56,5 +58,10 @@ public class ObjectProviderProxy implements ObjectProvider {
 	@Override
 	public EClass getEClassForCid(short cid) {
 		return objectProvider.getEClassForCid(cid);
+	}
+
+	@Override
+	public ObjectNode getQueryNode() {
+		return objectProvider.getQueryNode();
 	}
 }

@@ -74,8 +74,8 @@ public class TestGeometry extends TestWithEmbeddedServer {
 			for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
 				GeometryInfo geometryInfo = ifcProduct.getGeometry();
 				if (geometryInfo != null) {
-					Vector3f minBounds = geometryInfo.getMinBounds();
-					Vector3f maxBounds = geometryInfo.getMinBounds();
+					Vector3f minBounds = geometryInfo.getBounds().getMin();
+					Vector3f maxBounds = geometryInfo.getBounds().getMax();
 					Assert.assertNotNull(minBounds);
 					Assert.assertNotNull(maxBounds);
 					nrTriangles += geometryInfo.getPrimitiveCount();

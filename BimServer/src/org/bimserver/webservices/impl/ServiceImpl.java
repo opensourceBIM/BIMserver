@@ -161,6 +161,7 @@ import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SAction;
+import org.bimserver.interfaces.objects.SBounds;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SCheckoutResult;
 import org.bimserver.interfaces.objects.SCompareResult;
@@ -206,6 +207,8 @@ import org.bimserver.longaction.LongStreamingCheckinAction;
 import org.bimserver.longaction.LongStreamingDownloadAction;
 import org.bimserver.mail.EmailMessage;
 import org.bimserver.mail.MailSystem;
+import org.bimserver.models.geometry.Bounds;
+import org.bimserver.models.geometry.Vector3f;
 import org.bimserver.models.log.LogAction;
 import org.bimserver.models.store.Action;
 import org.bimserver.models.store.CheckinRevision;
@@ -228,7 +231,6 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
 import org.bimserver.models.store.SerializerPluginConfiguration;
-import org.bimserver.models.store.ServerState;
 import org.bimserver.models.store.Service;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.models.store.StoreExtendedData;
@@ -2739,6 +2741,24 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 
 	@Override
+	public Long getNrPrimitivesTotal(Set<Long> roids) throws ServerException, UserException {
+		requireAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			long total = 0;
+			for (long roid : roids) {
+				BimDatabaseAction<Long> action = new GetNrPrimitivesDatabaseAction(getBimServer(), session, getInternalAccessMethod(), roid, getAuthorization());
+				total += session.executeAndCommitAction(action);
+			}
+			return total;
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
 	public Long addNewServiceToProject(Long poid, SNewService sService, SAction sAction) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -2807,7 +2827,112 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			Revision revision = session.get(roid, OldQuery.getDefault());
-			return getBimServer().getSConverter().convertToSObject(revision.getLastConcreteRevision().getMaxBounds());
+			return getBimServer().getSConverter().convertToSObject(revision.getLastConcreteRevision().getBounds().getMax());
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public SBounds getTotalBounds(Set<Long> roids) throws ServerException, UserException {
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			double[] totalMin = new double[]{Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE};
+			double[] totalMax = new double[]{-Double.MAX_VALUE, -Double.MAX_VALUE, -Double.MAX_VALUE};
+			for (Long roid : roids) {
+				Revision revision = session.get(roid, OldQuery.getDefault());
+				Bounds bounds = revision.getLastConcreteRevision().getBounds();
+				Vector3f min = bounds.getMin();
+				Vector3f max = bounds.getMax();
+				if (min.getX() < totalMin[0]) {
+					totalMin[0] = min.getX();
+				}
+				if (min.getY() < totalMin[1]) {
+					totalMin[1] = min.getY();
+				}
+				if (min.getZ() < totalMin[2]) {
+					totalMin[2] = min.getZ();
+				}
+				if (max.getX() > totalMax[0]) {
+					totalMax[0] = max.getX();
+				}
+				if (max.getY() > totalMax[1]) {
+					totalMax[1] = max.getY();
+				}
+				if (max.getZ() > totalMax[2]) {
+					totalMax[2] = max.getZ();
+				}
+			}
+			SBounds sBounds = new SBounds();
+			SVector3f sMin = new SVector3f();
+			SVector3f sMax = new SVector3f();
+			sBounds.setMin(sMin);
+			sBounds.setMax(sMax);
+			
+			sMin.setX(totalMin[0]);
+			sMin.setY(totalMin[1]);
+			sMin.setZ(totalMin[2]);
+			
+			sMax.setX(totalMax[0]);
+			sMax.setY(totalMax[1]);
+			sMax.setZ(totalMax[2]);
+			
+			return sBounds;
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public SBounds getTotalUntranslatedBounds(Set<Long> roids) throws ServerException, UserException {
+		// TODO duplicate code with getTotalBounds
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			double[] totalMin = new double[]{Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE};
+			double[] totalMax = new double[]{-Double.MAX_VALUE, -Double.MAX_VALUE, -Double.MAX_VALUE};
+			for (Long roid : roids) {
+				Revision revision = session.get(roid, OldQuery.getDefault());
+				Bounds bounds = revision.getLastConcreteRevision().getBoundsUntranslated();
+				Vector3f min = bounds.getMin();
+				Vector3f max = bounds.getMax();
+				if (min.getX() < totalMin[0]) {
+					totalMin[0] = min.getX();
+				}
+				if (min.getY() < totalMin[1]) {
+					totalMin[1] = min.getY();
+				}
+				if (min.getZ() < totalMin[2]) {
+					totalMin[2] = min.getZ();
+				}
+				if (max.getX() > totalMax[0]) {
+					totalMax[0] = max.getX();
+				}
+				if (max.getY() > totalMax[1]) {
+					totalMax[1] = max.getY();
+				}
+				if (max.getZ() > totalMax[2]) {
+					totalMax[2] = max.getZ();
+				}
+			}
+			SBounds sBounds = new SBounds();
+			SVector3f sMin = new SVector3f();
+			SVector3f sMax = new SVector3f();
+			sBounds.setMin(sMin);
+			sBounds.setMax(sMax);
+			
+			sMin.setX(totalMin[0]);
+			sMin.setY(totalMin[1]);
+			sMin.setZ(totalMin[2]);
+			
+			sMax.setX(totalMax[0]);
+			sMax.setY(totalMax[1]);
+			sMax.setZ(totalMax[2]);
+			
+			return sBounds;
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -2820,7 +2945,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			Revision revision = session.get(roid, OldQuery.getDefault());
-			return getBimServer().getSConverter().convertToSObject(revision.getLastConcreteRevision().getMinBounds());
+			return getBimServer().getSConverter().convertToSObject(revision.getLastConcreteRevision().getBounds().getMin());
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {

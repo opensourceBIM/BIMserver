@@ -57,6 +57,24 @@ public class ReusableLittleEndianDataOutputStream extends LittleEndianSerializer
 	}
 
 	@Override
+	public void align4() throws IOException {
+		int extra = 4 - (growingByteBuffer.position() % 4);
+		if (extra > 0 && extra != 8) {
+			growingByteBuffer.ensureExtraCapacity(extra);
+			dataOutputStream.write(new byte[extra]);
+		}
+	}
+	
+	@Override
+	public void align8() throws IOException {
+		int extra = 8 - (growingByteBuffer.position() % 8);
+		if (extra > 0 && extra != 8) {
+			growingByteBuffer.ensureExtraCapacity(extra);
+			dataOutputStream.write(new byte[extra]);
+		}
+	}
+	
+	@Override
 	public void writeUnchecked(byte[] b, int off, int len) throws IOException {
 		dataOutputStream.write(b, off, len);
 	}
@@ -71,7 +89,6 @@ public class ReusableLittleEndianDataOutputStream extends LittleEndianSerializer
 	 */
 	@Override
 	public void writeDouble(double v) throws IOException {
-		growingByteBuffer.ensureExtraCapacity(8);
 		writeLong(Double.doubleToLongBits(v));
 	}
 
@@ -115,7 +132,6 @@ public class ReusableLittleEndianDataOutputStream extends LittleEndianSerializer
 	 */
 	@Override
 	public void writeLong(long v) throws IOException {
-		growingByteBuffer.ensureExtraCapacity(8);
 		byte[] bytes = Longs.toByteArray(Long.reverseBytes(v));
 		write(bytes, 0, bytes.length);
 	}
@@ -161,6 +177,18 @@ public class ReusableLittleEndianDataOutputStream extends LittleEndianSerializer
 	public void writeByte(byte val) throws IOException {
 		growingByteBuffer.ensureExtraCapacity(1);
 		dataOutputStream.write((byte)val);
+	}
+
+	@Override
+	public void writeByte(int val) throws IOException {
+		growingByteBuffer.ensureExtraCapacity(1);
+		dataOutputStream.writeByte(val);
+	}
+
+	@Override
+	public void writeByteUnchecked(int val) throws IOException {
+		growingByteBuffer.ensureExtraCapacity(1);
+		dataOutputStream.writeByte(val);
 	}
 	
 	@Override

@@ -74,7 +74,12 @@ public class HashMapWrappedVirtualObject extends AbstractHashMapVirtualObject im
 	public int getSize() {
 		int size = 2;
 		for (EStructuralFeature eStructuralFeature : map.keySet()) {
-			size += getPrimitiveSize((EDataType) eStructuralFeature.getEType(), map.get(eStructuralFeature));
+			Object val = map.get(eStructuralFeature);
+			if (eStructuralFeature.getEType() instanceof EDataType) {
+				size += getPrimitiveSize((EDataType) eStructuralFeature.getEType(), val);
+			} else {
+				size += ((HashMapWrappedVirtualObject)val).getSize();
+			}
 		}
 		return size;
 	}

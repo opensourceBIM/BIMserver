@@ -43,8 +43,8 @@ public class SConcreteRevision implements SDataBase
 	private long summaryId = -1;
 	private long userId = -1;
 	private long ifcHeaderId = -1;
-	private SVector3f minBounds;
-	private SVector3f maxBounds;
+	private SBounds bounds;
+	private SBounds boundsUntranslated;
 	private byte[] oidCounters;
 
 	public long getOid() {
@@ -106,11 +106,11 @@ public class SConcreteRevision implements SDataBase
 		if (sField.getName().equals("ifcHeaderId")) {
 			return getIfcHeaderId();
 		}
-		if (sField.getName().equals("minBounds")) {
-			return getMinBounds();
+		if (sField.getName().equals("bounds")) {
+			return getBounds();
 		}
-		if (sField.getName().equals("maxBounds")) {
-			return getMaxBounds();
+		if (sField.getName().equals("boundsUntranslated")) {
+			return getBoundsUntranslated();
 		}
 		if (sField.getName().equals("oidCounters")) {
 			return getOidCounters();
@@ -170,12 +170,12 @@ public class SConcreteRevision implements SDataBase
 			setIfcHeaderId((Long)val);
 			return;
 		}
-		if (sField.getName().equals("minBounds")) {
-			setMinBounds((SVector3f)val);
+		if (sField.getName().equals("bounds")) {
+			setBounds((SBounds)val);
 			return;
 		}
-		if (sField.getName().equals("maxBounds")) {
-			setMaxBounds((SVector3f)val);
+		if (sField.getName().equals("boundsUntranslated")) {
+			setBoundsUntranslated((SBounds)val);
 			return;
 		}
 		if (sField.getName().equals("oidCounters")) {
@@ -281,21 +281,21 @@ public class SConcreteRevision implements SDataBase
 		this.ifcHeaderId = ifcHeaderId;
 	}
 	
-	public SVector3f getMinBounds() {
-		return minBounds;
+	public SBounds getBounds() {
+		return bounds;
 	}
 
-	public void setMinBounds(SVector3f minBounds) {
-		this.minBounds = minBounds;
+	public void setBounds(SBounds bounds) {
+		this.bounds = bounds;
 	}
 	
 	
-	public SVector3f getMaxBounds() {
-		return maxBounds;
+	public SBounds getBoundsUntranslated() {
+		return boundsUntranslated;
 	}
 
-	public void setMaxBounds(SVector3f maxBounds) {
-		this.maxBounds = maxBounds;
+	public void setBoundsUntranslated(SBounds boundsUntranslated) {
+		this.boundsUntranslated = boundsUntranslated;
 	}
 	
 	

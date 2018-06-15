@@ -236,7 +236,7 @@ public class Database implements BimDatabase {
 		settings.getWhitelistedDomains().add("localhost");
 		settings.getWhitelistedDomains().add("localhost:8080");
 		settings.setPluginStrictVersionChecking(true);
-		settings.setOptimizeMappedItems(false);
+		settings.setOptimizeMappedItems(true);
 		return settings;
 	}
 	
