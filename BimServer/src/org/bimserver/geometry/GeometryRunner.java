@@ -538,6 +538,8 @@ public class GeometryRunner implements Runnable {
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), masterGeometryData.getVolume());
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), masterGeometryData.getNrPrimitives());
 
+											job.getReport().incrementTriangles(masterGeometryData.getNrPrimitives());
+											
 											this.streamingGeometryGenerator.bytesSavedByMapping.addAndGet(masterGeometryData.getSize());
 											this.streamingGeometryGenerator.totalBytes.addAndGet(masterGeometryData.getSize());
 

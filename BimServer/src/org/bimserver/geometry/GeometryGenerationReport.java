@@ -38,7 +38,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class GeometryGenerationReport {
 
-	private static final String REPORT_VERSION = "1.0";
+	private static final String REPORT_VERSION = "1.1";
 	private String renderEngineName;
 	private String renderEngineVersion;
 	private String renderEnginePluginVersion;
@@ -57,11 +57,16 @@ public class GeometryGenerationReport {
 	private boolean useMappingOptimization;
 	private long numberOfObjects;
 	private int numberOfTriangles;
+	private int numberOfTrianglesIncludingReuse;
 	private boolean reuseGeometry;
 	private Map<String, Integer> debugFiles = new LinkedHashMap<>();
 	
-	public void incrementTriangles(int triangles) {
+	public synchronized void incrementTriangles(int triangles) {
 		this.numberOfTriangles += triangles;
+	}
+
+	public void incrementTrianglesIncludingReuse(int triangles) {
+		this.numberOfTrianglesIncludingReuse += triangles;
 	}
 	
 	public void setRenderEngineName(String renderEngineName) {
@@ -122,6 +127,7 @@ public class GeometryGenerationReport {
 		ifcModel.put("schema", ifcSchema.name());
 		ifcModel.put("objects", numberOfObjects);
 		ifcModel.put("triangles", numberOfTriangles);
+		ifcModel.put("trianglesIncludingReuse", numberOfTrianglesIncludingReuse);
 		
 		ObjectNode user = objectMapper.createObjectNode();
 		user.put("name", userName);
@@ -212,6 +218,7 @@ public class GeometryGenerationReport {
 		builder.append("<tr><td>Schema</td><td>" + ifcSchema + "</td></tr>");
 		builder.append("<tr><td>Objects</td><td>" + numberOfObjects + "</td></tr>");
 		builder.append("<tr><td>Triangles</td><td>" + numberOfTriangles + "</td></tr>");
+		builder.append("<tr><td>Triangles including reuse</td><td>" + numberOfTrianglesIncludingReuse + "</td></tr>");
 		builder.append("</tbody></table>");
 		
 		builder.append("<h3>User</h3>");
@@ -363,5 +370,9 @@ public class GeometryGenerationReport {
 		} else {
 			return debugFiles.get(filename);
 		}
+	}
+	
+	public int getNumberOfTrianglesIncludingReuse() {
+		return numberOfTrianglesIncludingReuse;
 	}
 }
