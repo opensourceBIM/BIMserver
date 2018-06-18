@@ -31,6 +31,7 @@ public class ProjectInfo {
 	private String authorName;
 	private SBounds boundsUntranslated;
 	private SBounds bounds;
+	private float multiplierToMm;
 
 	public String getName() {
 		return name;
@@ -110,5 +111,13 @@ public class ProjectInfo {
 
 	public void setBounds(SBounds bounds) {
 		this.bounds = bounds;
+	}
+
+	public float getMultiplierToMm() {
+		return multiplierToMm;
+	}
+	
+	public void setMultiplierToMm(float multiplierToMm) {
+		this.multiplierToMm = multiplierToMm;
 	}
 }

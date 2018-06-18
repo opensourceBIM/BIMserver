@@ -70,6 +70,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getBounds <em>Bounds</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getBoundsUntranslated <em>Bounds Untranslated</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getOidCounters <em>Oid Counters</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getMultiplierToMm <em>Multiplier To Mm</em>}</li>
  * </ul>
  *
  * @generated
@@ -346,6 +347,24 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 */
 	public void setOidCounters(byte[] newOidCounters) {
 		eSet(StorePackage.Literals.CONCRETE_REVISION__OID_COUNTERS, newOidCounters);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public float getMultiplierToMm() {
+		return (Float) eGet(StorePackage.Literals.CONCRETE_REVISION__MULTIPLIER_TO_MM, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMultiplierToMm(float newMultiplierToMm) {
+		eSet(StorePackage.Literals.CONCRETE_REVISION__MULTIPLIER_TO_MM, newMultiplierToMm);
 	}
 
 } //ConcreteRevisionImpl

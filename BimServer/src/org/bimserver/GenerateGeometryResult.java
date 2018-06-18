@@ -28,6 +28,7 @@ public class GenerateGeometryResult {
 	private double[] max;
 	private double[] minUntranslated;
 	private double[] maxUntranslated;
+	private float multiplierToMm;
 
 	public GenerateGeometryResult() {
 		min = new double[]{Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE};
@@ -190,5 +191,13 @@ public class GenerateGeometryResult {
 	
 	public void setUntranslatedMaxZ(double value) {
 		maxUntranslated[2] = value;
+	}
+
+	public void setMultiplierToMm(float multiplierToMm) {
+		this.multiplierToMm = multiplierToMm;
+	}
+	
+	public float getMultiplierToMm() {
+		return multiplierToMm;
 	}
 }

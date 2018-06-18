@@ -209,6 +209,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 
 				GenerateGeometryResult generateGeometry = new GeometryGenerator(bimServer).generateGeometry(pool, bimServer.getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), true, geometryCache);
 
+				concreteRevision.setMultiplierToMm(generateGeometry.getMultiplierToMm());
 				concreteRevision.setBounds(generateGeometry.getBounds());
 				concreteRevision.setBoundsUntranslated(generateGeometry.getBoundsUntranslated());
 

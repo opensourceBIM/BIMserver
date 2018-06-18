@@ -60,6 +60,7 @@ import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;
 import org.bimserver.models.geometry.GeometryPackage;
+import org.bimserver.models.ifc2x3tc1.IfcSIPrefix;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
@@ -77,6 +78,7 @@ import org.bimserver.shared.QueryContext;
 import org.bimserver.shared.VirtualObject;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.Formatters;
+import org.bimserver.utils.IfcUtils;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -248,6 +250,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			} else {
 				classes = packageMetaData.getEClasses();
 			}
+
+			generateGeometryResult.setMultiplierToMm(processUnits(databaseSession, queryContext));
 			
 			// Phase 1 (mapped item detection) sometimes detects that mapped items have invalid (unsupported) RepresentationIdentifier values, this set keeps track of objects to skip in Phase 2 because of that
 			Set<Long> toSkip = new HashSet<>();
@@ -322,7 +326,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 												if (!hasValidRepresentationIdentifier(mappedRepresentation)) {
 													// Skip this mapping, we should store somewhere that this object should also be skipped in the normal way
-													LOGGER.info("Skipping because of invalid RepresentationIdentifier in mapped item");
+													LOGGER.info("Skipping because of invalid RepresentationIdentifier in mapped item (" + (String) mappedRepresentation.get("RepresentationIdentifier") + ")");
 													toSkip.add(next.getOid());
 													continue;
 												}
@@ -540,6 +544,37 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			LOGGER.debug("", e);
 		}
 		return generateGeometryResult;
+	}
+
+	private float processUnits(DatabaseSession databaseSession, QueryContext queryContext) throws QueryException, IOException, BimserverDatabaseException {
+		Query query = new Query("Unit query", packageMetaData);
+		QueryPart unitQueryPart = query.createQueryPart();
+		unitQueryPart.addType(packageMetaData.getEClass("IfcProject"), false);
+		Include unitsInContextInclude = unitQueryPart.createInclude();
+		unitsInContextInclude.addType(packageMetaData.getEClass("IfcProject"), false);
+		unitsInContextInclude.addField("UnitsInContext");
+		Include units = unitsInContextInclude.createInclude();
+		units.addType(packageMetaData.getEClass("IfcUnitAssignment"), false);
+		units.addField("Units");
+		Include unit = units.createInclude();
+		unit.addType(packageMetaData.getEClass("IfcSIUnit"), false);
+		
+		QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
+		HashMapVirtualObject next = queryObjectProvider.next();
+		while (next != null) {
+			if (packageMetaData.getEClass("IfcSIUnit").isSuperTypeOf(next.eClass())) {
+				if (next.get("UnitType") == packageMetaData.getEEnumLiteral("IfcUnitEnum", "LENGTHUNIT").getInstance()) {
+					Object prefix = next.get("Prefix");
+					if (prefix == null) {
+						return 1000f;
+					}
+					// TODO make this schema independent
+					return 1f / IfcUtils.getLengthUnitPrefixMm((IfcSIPrefix) prefix);
+				}
+			}
+			next = queryObjectProvider.next();
+		}
+		return 1000f;
 	}
 
 	private boolean goForIt(List<HashMapVirtualObject> list) {

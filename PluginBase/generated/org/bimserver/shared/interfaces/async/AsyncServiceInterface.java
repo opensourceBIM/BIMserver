@@ -414,6 +414,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetModelBoundsCallback {
+		void success(org.bimserver.interfaces.objects.SBounds result);
+		void error(Throwable e);
+	}
+	
 	public interface GetModelCheckerInstanceCallback {
 		void success(org.bimserver.interfaces.objects.SModelCheckerInstance result);
 		void error(Throwable e);
@@ -1631,6 +1636,18 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getLastExtendedDataOfRevisionAndSchema(roid, schemaId));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getModelBounds(final java.lang.Long roid, final GetModelBoundsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getModelBounds(roid));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

@@ -840,13 +840,22 @@ public interface StorePackage extends EPackage {
 	int CONCRETE_REVISION__OID_COUNTERS = 13;
 
 	/**
+	 * The feature id for the '<em><b>Multiplier To Mm</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_REVISION__MULTIPLIER_TO_MM = 14;
+
+	/**
 	 * The number of structural features of the '<em>Concrete Revision</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONCRETE_REVISION_FEATURE_COUNT = 14;
+	int CONCRETE_REVISION_FEATURE_COUNT = 15;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.GeoTagImpl <em>Geo Tag</em>}' class.
@@ -8195,6 +8204,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getConcreteRevision_OidCounters();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ConcreteRevision#getMultiplierToMm <em>Multiplier To Mm</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Multiplier To Mm</em>'.
+	 * @see org.bimserver.models.store.ConcreteRevision#getMultiplierToMm()
+	 * @see #getConcreteRevision()
+	 * @generated
+	 */
+	EAttribute getConcreteRevision_MultiplierToMm();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.GeoTag <em>Geo Tag</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14721,6 +14741,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CONCRETE_REVISION__OID_COUNTERS = eINSTANCE.getConcreteRevision_OidCounters();
+
+		/**
+		 * The meta object literal for the '<em><b>Multiplier To Mm</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONCRETE_REVISION__MULTIPLIER_TO_MM = eINSTANCE.getConcreteRevision_MultiplierToMm();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.GeoTagImpl <em>Geo Tag</em>}' class.

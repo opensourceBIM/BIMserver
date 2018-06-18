@@ -63,6 +63,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getBounds <em>Bounds</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getBoundsUntranslated <em>Bounds Untranslated</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getOidCounters <em>Oid Counters</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ConcreteRevision#getMultiplierToMm <em>Multiplier To Mm</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getConcreteRevision()
@@ -428,5 +429,31 @@ public interface ConcreteRevision extends IdEObject {
 	 * @generated
 	 */
 	void setOidCounters(byte[] value);
+
+	/**
+	 * Returns the value of the '<em><b>Multiplier To Mm</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Multiplier To Mm</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Multiplier To Mm</em>' attribute.
+	 * @see #setMultiplierToMm(float)
+	 * @see org.bimserver.models.store.StorePackage#getConcreteRevision_MultiplierToMm()
+	 * @model
+	 * @generated
+	 */
+	float getMultiplierToMm();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ConcreteRevision#getMultiplierToMm <em>Multiplier To Mm</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Multiplier To Mm</em>' attribute.
+	 * @see #getMultiplierToMm()
+	 * @generated
+	 */
+	void setMultiplierToMm(float value);
 
 } // ConcreteRevision

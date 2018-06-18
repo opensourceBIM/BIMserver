@@ -1,5 +1,5 @@
 
-·é
+«ê
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -798,7 +798,12 @@ SIfcHeader
 schemaId ("v
 .GetLastExtendedDataOfRevisionAndSchemaResponse
 errorMessage (	.
-value (2.org.bimserver.pb.SExtendedData"0
+value (2.org.bimserver.pb.SExtendedData"%
+GetModelBoundsRequest
+roid ("X
+GetModelBoundsResponse
+errorMessage (	(
+value (2.org.bimserver.pb.SBounds"0
 GetModelCheckerInstanceRequest
 mcioid ("o
 GetModelCheckerInstanceResponse
@@ -1488,7 +1493,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2⁄x
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2øy
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
@@ -1568,7 +1573,8 @@ deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserRes
 	getGeoTag".org.bimserver.pb.GetGeoTagRequest#.org.bimserver.pb.GetGeoTagResponsef
 getGeometryInfo(.org.bimserver.pb.GetGeometryInfoRequest).org.bimserver.pb.GetGeometryInfoResponse]
 getIfcHeader%.org.bimserver.pb.GetIfcHeaderRequest&.org.bimserver.pb.GetIfcHeaderResponse´
-&getLastExtendedDataOfRevisionAndSchema?.org.bimserver.pb.GetLastExtendedDataOfRevisionAndSchemaRequest@.org.bimserver.pb.GetLastExtendedDataOfRevisionAndSchemaResponse~
+&getLastExtendedDataOfRevisionAndSchema?.org.bimserver.pb.GetLastExtendedDataOfRevisionAndSchemaRequest@.org.bimserver.pb.GetLastExtendedDataOfRevisionAndSchemaResponsec
+getModelBounds'.org.bimserver.pb.GetModelBoundsRequest(.org.bimserver.pb.GetModelBoundsResponse~
 getModelCheckerInstance0.org.bimserver.pb.GetModelCheckerInstanceRequest1.org.bimserver.pb.GetModelCheckerInstanceResponsel
 getModelMaxBounds*.org.bimserver.pb.GetModelMaxBoundsRequest+.org.bimserver.pb.GetModelMaxBoundsResponsel
 getModelMinBounds*.org.bimserver.pb.GetModelMinBoundsRequest+.org.bimserver.pb.GetModelMinBoundsResponse`

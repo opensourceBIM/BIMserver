@@ -87,7 +87,7 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 			PackageMetaData packageMetaData = null;
 			ProjectInfo projectInfo = new ProjectInfo();
 			
-			// TODO projectinfo should contain info for multiple projects/revisions, not just one
+			// TODO projectinfo should contain info for multiple projects/revisions, not just one (the first one atm)
 			
 			List<String> projectNames = new ArrayList<>();
 			for (Long roid : roids) {
@@ -95,6 +95,7 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 				ConcreteRevision concreteRevision = revision.getConcreteRevisions().get(0);
 				projectInfo.setBounds(getBimServer().getSConverter().convertToSObject(concreteRevision.getBounds()));
 				projectInfo.setBoundsUntranslated(getBimServer().getSConverter().convertToSObject(concreteRevision.getBoundsUntranslated()));
+				projectInfo.setMultiplierToMm(concreteRevision.getMultiplierToMm());
 				projectInfo.setName("" + roids.iterator().next());
 				packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
 				projectNames.add(revision.getProject().getName() + "." + revision.getId());
@@ -117,10 +118,12 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 				downloadDescriptor = new DownloadDescriptor(packageMetaData, jsonQuery, roids, query, serializerOid, this.filename);
 				
 				if (getBimServer().getNewDiskCacheManager().contains(downloadDescriptor)) {
-					cacheFile = getBimServer().getNewDiskCacheManager().get(downloadDescriptor);
-					FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(cacheFile);
-					fileInputStreamDataSource.setName(downloadDescriptor.getFileNameWithoutExtension());
-					checkoutResult.setFile(new DataHandler(fileInputStreamDataSource));
+					// 4 lines disabled just to test...
+					
+//					cacheFile = getBimServer().getNewDiskCacheManager().get(downloadDescriptor);
+//					FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(cacheFile);
+//					fileInputStreamDataSource.setName(downloadDescriptor.getFileNameWithoutExtension());
+//					checkoutResult.setFile(new DataHandler(fileInputStreamDataSource));
 					
 //					if (diskCacheItem instanceof NewDiskCacheOutputStream) {
 //					} else if (diskCacheItem instanceof NewDiskCacheWriter){

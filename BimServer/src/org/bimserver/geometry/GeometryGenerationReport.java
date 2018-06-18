@@ -32,6 +32,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.bimserver.emf.Schema;
 import org.bimserver.utils.Formatters;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 public class GeometryGenerationReport {
 
 	private static final String REPORT_VERSION = "1.0";
@@ -99,6 +103,93 @@ public class GeometryGenerationReport {
 	
 	public void setOriginalIfcFileSize(long originalIfcFileSize) {
 		this.originalIfcFileSize = originalIfcFileSize;
+	}
+	
+	public ObjectNode toJson() {
+		ObjectMapper objectMapper = new ObjectMapper();
+		ObjectNode result = objectMapper.createObjectNode();
+		
+		ObjectNode renderEngine = objectMapper.createObjectNode();
+		result.set("renderEngine", renderEngine);
+		renderEngine.put("name", renderEngineName);
+		renderEngine.put("version", renderEngineVersion);
+		renderEngine.put("pluginVersion", renderEnginePluginVersion);
+		
+		ObjectNode ifcModel = objectMapper.createObjectNode();
+		result.set("ifcModel", ifcModel);
+		ifcModel.put("filename", originalIfcFileName);
+		ifcModel.put("filesize", originalIfcFileSize);
+		ifcModel.put("schema", ifcSchema.name());
+		ifcModel.put("objects", numberOfObjects);
+		ifcModel.put("triangles", numberOfTriangles);
+		
+		ObjectNode user = objectMapper.createObjectNode();
+		user.put("name", userName);
+		user.put("username", userUserName);
+		result.set("user", user);
+		
+		ObjectNode settings = objectMapper.createObjectNode();
+		settings.put("maxObjectsPerFile", maxObjectsPerFile);
+		settings.put("reuseGeometry", reuseGeometry);
+		settings.put("useMappingOptimization", useMappingOptimization);
+		result.set("settings", settings);
+		
+		ObjectNode deserializer = objectMapper.createObjectNode();
+		deserializer.put("name", originalDeserializer);
+		result.set("deserializer", deserializer);
+		
+		ObjectNode system = objectMapper.createObjectNode();
+		system.put("cores", availableProcessors);
+		result.set("system", system);
+		
+		ArrayNode jobsArray = objectMapper.createArrayNode();
+		result.set("jobs", jobsArray);
+		for (ReportJob job : jobs) {
+			ObjectNode jobNode = objectMapper.createObjectNode();
+			jobNode.put("mainType", job.getMainType());
+			jobNode.put("nrObjects", job.getNrObjects());
+			jobNode.put("usesMapping", job.isUsesMapping());
+			jobNode.put("trianglesGenerated", job.getTrianglesGenerated());
+			jobNode.put("totalTimeNanos", job.getTotalNanos());
+			
+			if (job.getException() != null) {
+				StringWriter writer = new StringWriter();
+				job.getException().printStackTrace(new PrintWriter(writer));
+				jobNode.put("exception", writer.toString());
+			}
+			if (job.getDebugId() != -1) {
+				jobNode.put("debugId", job.getDebugId());
+			}
+			
+			jobsArray.add(jobNode);
+		}
+		
+		ObjectNode processing = objectMapper.createObjectNode();
+		result.set("processing", processing);
+		processing.put("start", start.getTimeInMillis());
+		processing.put("stop", end.getTimeInMillis());
+		processing.put("totaltime", (end.getTimeInMillis() - start.getTimeInMillis()));
+		
+		ArrayNode geometry = objectMapper.createArrayNode();
+		result.set("geometry", geometry);
+		for (String type : representationItems.keySet()) {
+			ObjectNode geometryNode = objectMapper.createObjectNode();
+			geometryNode.put("type", type);
+			geometryNode.put("count", representationItems.get(type).get());
+			geometry.add(geometryNode);
+		}
+
+		ArrayNode debugFiles = objectMapper.createArrayNode();
+		result.set("debugFiles", debugFiles);
+		for (String debugFile : this.debugFiles.keySet()) {
+			int i = this.debugFiles.get(debugFile);
+			ObjectNode debugNode = objectMapper.createObjectNode();
+			debugNode.put("id", i);
+			debugNode.put("debugFile", debugFile);
+			debugFiles.add(debugNode);
+		}
+		
+		return result;
 	}
 	
 	public String toHtml() {

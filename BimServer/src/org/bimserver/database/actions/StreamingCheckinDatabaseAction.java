@@ -263,6 +263,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 				other.setHasGeometry(true);
 			}
 			
+			concreteRevision.setMultiplierToMm(generateGeometry.getMultiplierToMm());
 			concreteRevision.setBounds(generateGeometry.getBounds());
 			concreteRevision.setBoundsUntranslated(generateGeometry.getBoundsUntranslated());
 
@@ -357,29 +358,11 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 				concreteRevision.setClear(true);
 			}
 
-			ExtendedData extendedData = getDatabaseSession().create(ExtendedData.class);
-			File file = getDatabaseSession().create(File.class);
-			byte[] bytes = report.toHtml().getBytes(Charsets.UTF_8);
-			file.setData(bytes);
-			file.setFilename("geometrygenerationreport.html");
-			file.setMime("text/html");
-			file.setSize(bytes.length);
-			User actingUser = getUserByUoid(authorization.getUoid());
-			extendedData.setUser(actingUser);
-			extendedData.setTitle("Geometry generation report");
-			extendedData.setAdded(new Date());
-			extendedData.setSize(file.getData().length);
-			extendedData.setFile(file);
-			revision.getExtendedData().add(extendedData);
-			extendedData.setProject(revision.getProject());
-			extendedData.setRevision(revision);
-			
-			getDatabaseSession().store(file);
-			getDatabaseSession().store(extendedData);
-			
-			if (extendedData.getSchema() != null) {
-				getDatabaseSession().store(extendedData.getSchema());
-			}
+			byte[] htmlBytes = report.toHtml().getBytes(Charsets.UTF_8);
+			byte[] jsonBytes = report.toJson().toString().getBytes(Charsets.UTF_8);
+
+			storeExtendedData(htmlBytes, "html", "text/html", revision);
+			storeExtendedData(jsonBytes, "json", "application/json", revision);
 			
 			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 				@Override
@@ -424,6 +407,31 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			throw new UserException(e);
 		}
 		return concreteRevision;
+	}
+
+	private void storeExtendedData(byte[] bytes, String mime, String extension, final Revision revision) throws BimserverDatabaseException {
+		ExtendedData extendedData = getDatabaseSession().create(ExtendedData.class);
+		File file = getDatabaseSession().create(File.class);
+		file.setData(bytes);
+		file.setFilename("geometrygenerationreport." + extension);
+		file.setMime(mime);
+		file.setSize(bytes.length);
+		User actingUser = getUserByUoid(authorization.getUoid());
+		extendedData.setUser(actingUser);
+		extendedData.setTitle("Geometry generation report (" + mime + ")");
+		extendedData.setAdded(new Date());
+		extendedData.setSize(file.getData().length);
+		extendedData.setFile(file);
+		revision.getExtendedData().add(extendedData);
+		extendedData.setProject(revision.getProject());
+		extendedData.setRevision(revision);
+		
+		getDatabaseSession().store(file);
+		getDatabaseSession().store(extendedData);
+		
+		if (extendedData.getSchema() != null) {
+			getDatabaseSession().store(extendedData.getSchema());
+		}
 	}
 
 	@SuppressWarnings("unchecked")

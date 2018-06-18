@@ -109,6 +109,14 @@ public class GeometryRunner implements Runnable {
 		this.job.setUsesMapping(map != null);
 	}
 
+	public float area(float[] triangle) {
+		return (float) (0.5f * 
+			Math.sqrt(
+				Math.pow(((triangle[3] * triangle[7]) - (triangle[6] * triangle[4])), 2) +
+				Math.pow(((triangle[6] * triangle[1]) - (triangle[0] * triangle[7])), 2) +
+				Math.pow(((triangle[0] * triangle[4]) - (triangle[3] * triangle[1])), 2)));
+	}
+
 	@Override
 	public void run() {
 		long start = System.nanoTime();
@@ -252,33 +260,40 @@ public class GeometryRunner implements Runnable {
 										job.setTrianglesGenerated(indices.length / 3);
 										job.getReport().incrementTriangles(indices.length / 3);
 
-										Map<Color4f, Integer> usedColors = new HashMap<>();
+										Map<Color4f, Float> usedColors = new HashMap<>();
 
 										boolean hasTransparency = false;
 										
 										if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
 											boolean hasMaterial = false;
 											float[] vertex_colors = new float[vertices.length / 3 * 4];
+											float[] vertex = new float[9];
 											for (int i = 0; i < geometry.getMaterialIndices().length; ++i) {
 												int c = geometry.getMaterialIndices()[i];
-												for (int j = 0; j < 3; ++j) {
-													int k = indices[i * 3 + j];
-													if (c > -1) {
+												if (c > -1) {
+													Color4f color = new Color4f();
+													for (int l = 0; l < 4; ++l) {
+														float val = geometry.getMaterials()[4 * c + l];
+														color.set(l, val);
+													}
+													for (int j = 0; j < 3; ++j) {
+														int k = indices[i * 3 + j];
+														vertex[j * 3 + 0] = vertices[3 * k];
+														vertex[j * 3 + 1] = vertices[3 * k + 1];
+														vertex[j * 3 + 2] = vertices[3 * k + 2];
 														hasMaterial = true;
-														Color4f color = new Color4f();
 														for (int l = 0; l < 4; ++l) {
 															float val = geometry.getMaterials()[4 * c + l];
 															vertex_colors[4 * k + l] = val;
-															color.set(l, val);
 														}
-														if (usedColors.containsKey(color)) {
-															usedColors.put(color, usedColors.get(color) + 1);
-														} else {
-															usedColors.put(color, 1);
-														}
-														if (color.getA() < 1) {
-															hasTransparency = true;
-														}
+													}
+													if (usedColors.containsKey(color)) {
+														usedColors.put(color, usedColors.get(color) + area(vertex));
+													} else {
+														usedColors.put(color, area(vertex));
+													}
+													if (color.getA() < 1) {
+														hasTransparency = true;
 													}
 												}
 											}
@@ -294,10 +309,12 @@ public class GeometryRunner implements Runnable {
 												hasMaterial = false;
 											} else {
 												Color4f mostUsed = null;
-												int timesUsed = 0;
+												float totalArea = 0;
 												for (Color4f color : usedColors.keySet()) {
-													if (mostUsed == null || usedColors.get(color) > timesUsed) {
+													float area = usedColors.get(color);
+													if (mostUsed == null || area > totalArea) {
 														mostUsed = color;
+														totalArea = area;
 													}
 												}
 

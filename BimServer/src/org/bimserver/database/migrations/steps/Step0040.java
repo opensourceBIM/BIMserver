@@ -37,6 +37,9 @@ public class Step0040 extends Migration {
 		reference.getEAnnotations().add(createDbEmbedReferenceAnnotation());
 		reference.getEAnnotations().add(createEmbedsReferenceAnnotation());
 		reference.getEAnnotations().add(createHiddenAnnotation());
+		
+		EClass concreteRevision = schema.getEClass("store", "ConcreteRevision");
+		schema.createEAttribute(concreteRevision, "multiplierToMm", EcorePackage.eINSTANCE.getEFloat());
 	}
 
 	@Override

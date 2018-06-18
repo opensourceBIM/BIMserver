@@ -114,6 +114,7 @@ import org.bimserver.database.actions.GetGeometryInfoDatabaseAction;
 import org.bimserver.database.actions.GetIfcHeaderDatabaseAction;
 import org.bimserver.database.actions.GetModelCheckerOidDatabaseAction;
 import org.bimserver.database.actions.GetNrPrimitivesDatabaseAction;
+import org.bimserver.database.actions.GetNrPrimitivesTotalDatabaseAction;
 import org.bimserver.database.actions.GetOidByGuidDatabaseAction;
 import org.bimserver.database.actions.GetProjectByPoidDatabaseAction;
 import org.bimserver.database.actions.GetProjectsByNameDatabaseAction;
@@ -214,6 +215,7 @@ import org.bimserver.models.store.Action;
 import org.bimserver.models.store.CheckinRevision;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CompareResult;
+import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
@@ -2745,12 +2747,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			long total = 0;
-			for (long roid : roids) {
-				BimDatabaseAction<Long> action = new GetNrPrimitivesDatabaseAction(getBimServer(), session, getInternalAccessMethod(), roid, getAuthorization());
-				total += session.executeAndCommitAction(action);
-			}
-			return total;
+			return new GetNrPrimitivesTotalDatabaseAction(getBimServer(), session, getInternalAccessMethod(), roids, getAuthorization()).execute();
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -2836,6 +2833,19 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 	
 	@Override
+	public SBounds getModelBounds(Long roid) throws ServerException, UserException {
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			Revision revision = session.get(roid, OldQuery.getDefault());
+			return getBimServer().getSConverter().convertToSObject(revision.getLastConcreteRevision().getBounds());
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
 	public SBounds getTotalBounds(Set<Long> roids) throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
@@ -2843,9 +2853,28 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			double[] totalMax = new double[]{-Double.MAX_VALUE, -Double.MAX_VALUE, -Double.MAX_VALUE};
 			for (Long roid : roids) {
 				Revision revision = session.get(roid, OldQuery.getDefault());
-				Bounds bounds = revision.getLastConcreteRevision().getBounds();
+				ConcreteRevision lastConcreteRevision = revision.getLastConcreteRevision();
+				Bounds bounds = lastConcreteRevision.getBounds();
+				
+				if (bounds.getMin().getX() == Double.MAX_VALUE || bounds.getMin().getY() == Double.MAX_VALUE || bounds.getMin().getZ() == Double.MAX_VALUE ||
+						bounds.getMax().getX() == -Double.MAX_VALUE || bounds.getMax().getY() == -Double.MAX_VALUE || bounds.getMax().getZ() == -Double.MAX_VALUE) {
+					// Probably no objects or weird error, let's skip this one
+					continue;
+				}
+				
 				Vector3f min = bounds.getMin();
 				Vector3f max = bounds.getMax();
+				
+				// TODO multiplying to mm should be an option
+				
+				if (lastConcreteRevision.getMultiplierToMm() != 1f) {
+					min.setX(min.getX() * lastConcreteRevision.getMultiplierToMm());
+					min.setY(min.getY() * lastConcreteRevision.getMultiplierToMm());
+					min.setZ(min.getZ() * lastConcreteRevision.getMultiplierToMm());
+					max.setX(max.getX() * lastConcreteRevision.getMultiplierToMm());
+					max.setY(max.getY() * lastConcreteRevision.getMultiplierToMm());
+					max.setZ(max.getZ() * lastConcreteRevision.getMultiplierToMm());
+				}
 				if (min.getX() < totalMin[0]) {
 					totalMin[0] = min.getX();
 				}
@@ -2896,9 +2925,29 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			double[] totalMax = new double[]{-Double.MAX_VALUE, -Double.MAX_VALUE, -Double.MAX_VALUE};
 			for (Long roid : roids) {
 				Revision revision = session.get(roid, OldQuery.getDefault());
-				Bounds bounds = revision.getLastConcreteRevision().getBoundsUntranslated();
+				ConcreteRevision lastConcreteRevision = revision.getLastConcreteRevision();
+				Bounds bounds = lastConcreteRevision.getBoundsUntranslated();
+				
+				if (bounds.getMin().getX() == Double.MAX_VALUE || bounds.getMin().getY() == Double.MAX_VALUE || bounds.getMin().getZ() == Double.MAX_VALUE ||
+						bounds.getMax().getX() == -Double.MAX_VALUE || bounds.getMax().getY() == -Double.MAX_VALUE || bounds.getMax().getZ() == -Double.MAX_VALUE) {
+					// Probably no objects or weird error, let's skip this one
+					continue;
+				}
+				
 				Vector3f min = bounds.getMin();
 				Vector3f max = bounds.getMax();
+				
+				// TODO multiplying to mm should be an option
+				
+				if (lastConcreteRevision.getMultiplierToMm() != 1d) {
+					min.setX(min.getX() * lastConcreteRevision.getMultiplierToMm());
+					min.setY(min.getY() * lastConcreteRevision.getMultiplierToMm());
+					min.setZ(min.getZ() * lastConcreteRevision.getMultiplierToMm());
+					max.setX(max.getX() * lastConcreteRevision.getMultiplierToMm());
+					max.setY(max.getY() * lastConcreteRevision.getMultiplierToMm());
+					max.setZ(max.getZ() * lastConcreteRevision.getMultiplierToMm());
+				}
+				
 				if (min.getX() < totalMin[0]) {
 					totalMin[0] = min.getX();
 				}

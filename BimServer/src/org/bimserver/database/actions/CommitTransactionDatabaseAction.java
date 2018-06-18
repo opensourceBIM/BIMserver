@@ -232,6 +232,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 
 				GenerateGeometryResult generateGeometry = streamingGeometryGenerator.generateGeometry(authorization.getUoid(), getDatabaseSession(), queryContext);
 				
+				concreteRevision.setMultiplierToMm(generateGeometry.getMultiplierToMm());
 				concreteRevision.setBounds(generateGeometry.getBounds());
 				concreteRevision.setBoundsUntranslated(generateGeometry.getBoundsUntranslated());
 			} catch (GeometryGeneratingException e) {

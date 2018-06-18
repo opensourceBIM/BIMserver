@@ -46,6 +46,7 @@ public class SConcreteRevision implements SDataBase
 	private SBounds bounds;
 	private SBounds boundsUntranslated;
 	private byte[] oidCounters;
+	private float multiplierToMm;
 
 	public long getOid() {
 		return this.oid;
@@ -115,6 +116,9 @@ public class SConcreteRevision implements SDataBase
 		if (sField.getName().equals("oidCounters")) {
 			return getOidCounters();
 		}
+		if (sField.getName().equals("multiplierToMm")) {
+			return getMultiplierToMm();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -180,6 +184,10 @@ public class SConcreteRevision implements SDataBase
 		}
 		if (sField.getName().equals("oidCounters")) {
 			setOidCounters((byte[])val);
+			return;
+		}
+		if (sField.getName().equals("multiplierToMm")) {
+			setMultiplierToMm((Float)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -305,6 +313,14 @@ public class SConcreteRevision implements SDataBase
 
 	public void setOidCounters(byte[] oidCounters) {
 		this.oidCounters = oidCounters;
+	}
+	
+	public float getMultiplierToMm() {
+		return multiplierToMm;
+	}
+
+	public void setMultiplierToMm(float multiplierToMm) {
+		this.multiplierToMm = multiplierToMm;
 	}
 	
 	@Override
