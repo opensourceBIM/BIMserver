@@ -566,14 +566,16 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 				if (next.get("UnitType") == packageMetaData.getEEnumLiteral("IfcUnitEnum", "LENGTHUNIT").getInstance()) {
 					Object prefix = next.get("Prefix");
 					if (prefix == null) {
+						// Meters, we need to multiply by 1000
 						return 1000f;
 					}
 					// TODO make this schema independent
-					return 1f / IfcUtils.getLengthUnitPrefixMm((IfcSIPrefix) prefix);
+					return 1f / (IfcUtils.getLengthUnitPrefixMm((IfcSIPrefix) prefix) * 1000f);
 				}
 			}
 			next = queryObjectProvider.next();
 		}
+		// Assume meters, we need to multiply by 1000
 		return 1000f;
 	}
 
