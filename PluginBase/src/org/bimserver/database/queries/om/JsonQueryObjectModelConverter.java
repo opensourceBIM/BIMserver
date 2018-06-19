@@ -113,7 +113,7 @@ public class JsonQueryObjectModelConverter {
 		}
 		
 		if (query.getGeometrySettings() != null) {
-			queryNode.set("geometrySettings", query.getGeometrySettings());
+			queryNode.set("loaderSettings", query.getGeometrySettings());
 		}
 		
 		return queryNode;
@@ -564,8 +564,8 @@ public class JsonQueryObjectModelConverter {
 			}
 		}
 		
-		if (objectNode.has("geometrySettings")) {
-			query.setGeometrySettings((ObjectNode)objectNode.get("geometrySettings"));
+		if (objectNode.has("loaderSettings")) {
+			query.setGeometrySettings((ObjectNode)objectNode.get("loaderSettings"));
 		}
 		
 		if (objectNode.has("fields")) {
@@ -575,7 +575,7 @@ public class JsonQueryObjectModelConverter {
 		Iterator<String> fieldNames = objectNode.fieldNames();
 		while (fieldNames.hasNext()) {
 			String fieldName = fieldNames.next();
-			if (fieldName.equals("includeAllFields") || fieldName.equals("type") || fieldName.equals("types") || fieldName.equals("oid") || fieldName.equals("oids") || fieldName.equals("guid") || fieldName.equals("guids") || fieldName.equals("name") || fieldName.equals("names") || fieldName.equals("properties") || fieldName.equals("inBoundingBox") || fieldName.equals("include") || fieldName.equals("includes") || fieldName.equalsIgnoreCase("includeAllSubtypes") || fieldName.equals("classifications") || fieldName.equals("doublebuffer") || fieldName.equals("version")  || fieldName.equals("geometrySettings")) {
+			if (fieldName.equals("includeAllFields") || fieldName.equals("type") || fieldName.equals("types") || fieldName.equals("oid") || fieldName.equals("oids") || fieldName.equals("guid") || fieldName.equals("guids") || fieldName.equals("name") || fieldName.equals("names") || fieldName.equals("properties") || fieldName.equals("inBoundingBox") || fieldName.equals("include") || fieldName.equals("includes") || fieldName.equalsIgnoreCase("includeAllSubtypes") || fieldName.equals("classifications") || fieldName.equals("doublebuffer") || fieldName.equals("version")  || fieldName.equals("loaderSettings")) {
 				// fine
 			} else {
 				throw new QueryException("Unknown field: \"" + fieldName + "\"");
