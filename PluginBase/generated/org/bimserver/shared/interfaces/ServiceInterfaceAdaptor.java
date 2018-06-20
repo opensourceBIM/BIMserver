@@ -429,7 +429,7 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SBounds getTotalUntranslatedBounds(java.util.Set<java.lang.Long> roids) throws UserException, ServerException {
+	public org.bimserver.interfaces.objects.SBounds getTotalUntransformedBounds(java.util.Set<java.lang.Long> roids) throws UserException, ServerException {
 		return null;
 	}
 	

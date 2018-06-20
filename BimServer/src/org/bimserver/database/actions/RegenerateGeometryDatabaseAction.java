@@ -97,8 +97,8 @@ public class RegenerateGeometryDatabaseAction extends ProjectBasedDatabaseAction
 			byte[] htmlBytes = report.toHtml().getBytes(Charsets.UTF_8);
 			byte[] jsonBytes = report.toJson().toString().getBytes(Charsets.UTF_8);
 
-			storeExtendedData(htmlBytes, "html", "text/html", revision);
-			storeExtendedData(jsonBytes, "json", "application/json", revision);
+			storeExtendedData(htmlBytes, "text/html", "html", revision);
+			storeExtendedData(jsonBytes, "application/json", "json", revision);
 			
 			getDatabaseSession().store(revision);
 			getDatabaseSession().store(concreteRevision);

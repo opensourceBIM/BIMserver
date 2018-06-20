@@ -549,7 +549,7 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
-	public interface GetTotalUntranslatedBoundsCallback {
+	public interface GetTotalUntransformedBoundsCallback {
 		void success(org.bimserver.interfaces.objects.SBounds result);
 		void error(Throwable e);
 	}
@@ -1967,11 +1967,11 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void getTotalUntranslatedBounds(final java.util.Set<java.lang.Long> roids, final GetTotalUntranslatedBoundsCallback callback) {
+	public void getTotalUntransformedBounds(final java.util.Set<java.lang.Long> roids, final GetTotalUntransformedBoundsCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.getTotalUntranslatedBounds(roids));
+					callback.success(syncService.getTotalUntransformedBounds(roids));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

@@ -231,7 +231,7 @@ service ServiceInterface {
 
 	rpc getTotalBounds (GetTotalBoundsRequest) returns (GetTotalBoundsResponse);
 
-	rpc getTotalUntranslatedBounds (GetTotalUntranslatedBoundsRequest) returns (GetTotalUntranslatedBoundsResponse);
+	rpc getTotalUntransformedBounds (GetTotalUntransformedBoundsRequest) returns (GetTotalUntransformedBoundsResponse);
 
 	rpc getUserByUoid (GetUserByUoidRequest) returns (GetUserByUoidResponse);
 
@@ -1801,11 +1801,11 @@ message GetTotalBoundsResponse {
 	optional SBounds value = 2;
 }
 
-message GetTotalUntranslatedBoundsRequest {
+message GetTotalUntransformedBoundsRequest {
 	repeated int64 roids = 1;
 }
 
-message GetTotalUntranslatedBoundsResponse {
+message GetTotalUntransformedBoundsResponse {
 	optional string errorMessage = 1;
 	optional SBounds value = 2;
 }

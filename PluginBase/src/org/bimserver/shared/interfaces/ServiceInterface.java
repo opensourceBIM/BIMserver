@@ -1499,8 +1499,8 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getTotalBounds")
 	SBounds getTotalBounds(@WebParam(name = "roids", partName = "getTotalBounds.roids") Set<Long> roids) throws ServerException, UserException;
 
-	@WebMethod(action = "getTotalUntranslatedBounds")
-	SBounds getTotalUntranslatedBounds(@WebParam(name = "roids", partName = "getTotalUntranslatedBounds.roids") Set<Long> roids) throws ServerException, UserException;
+	@WebMethod(action = "getTotalUntransformedBounds")
+	SBounds getTotalUntransformedBounds(@WebParam(name = "roids", partName = "getTotalUntransformedBounds.roids") Set<Long> roids) throws ServerException, UserException;
 	
 	@WebMethod(action = "getModelMinBounds")
 	SVector3f getModelMinBounds(@WebParam(name = "roid", partName = "getModelMinBounds.roid") Long roid) throws ServerException, UserException;

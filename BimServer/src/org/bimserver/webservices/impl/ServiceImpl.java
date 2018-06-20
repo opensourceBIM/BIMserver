@@ -2917,7 +2917,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 	
 	@Override
-	public SBounds getTotalUntranslatedBounds(Set<Long> roids) throws ServerException, UserException {
+	public SBounds getTotalUntransformedBounds(Set<Long> roids) throws ServerException, UserException {
 		// TODO duplicate code with getTotalBounds
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {

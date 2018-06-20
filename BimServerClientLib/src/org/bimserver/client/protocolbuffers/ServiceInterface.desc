@@ -1,5 +1,5 @@
 
-«ê
+Ãê
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -993,10 +993,10 @@ settingsId (
 roids ("X
 GetTotalBoundsResponse
 errorMessage (	(
-value (2.org.bimserver.pb.SBounds"2
-!GetTotalUntranslatedBoundsRequest
-roids ("d
-"GetTotalUntranslatedBoundsResponse
+value (2.org.bimserver.pb.SBounds"3
+"GetTotalUntransformedBoundsRequest
+roids ("e
+#GetTotalUntransformedBoundsResponse
 errorMessage (	(
 value (2.org.bimserver.pb.SBounds"$
 GetUserByUoidRequest
@@ -1493,7 +1493,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2øy
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2¬y
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
@@ -1601,8 +1601,8 @@ getService#.org.bimserver.pb.GetServiceRequest$.org.bimserver.pb.GetServiceRes
 getSubProjects'.org.bimserver.pb.GetSubProjectsRequest(.org.bimserver.pb.GetSubProjectsResponse•
 $getSuggestedDeserializerForExtension=.org.bimserver.pb.GetSuggestedDeserializerForExtensionRequest>.org.bimserver.pb.GetSuggestedDeserializerForExtensionResponseÅ
 getTopLevelProjectByName1.org.bimserver.pb.GetTopLevelProjectByNameRequest2.org.bimserver.pb.GetTopLevelProjectByNameResponsec
-getTotalBounds'.org.bimserver.pb.GetTotalBoundsRequest(.org.bimserver.pb.GetTotalBoundsResponseá
-getTotalUntranslatedBounds3.org.bimserver.pb.GetTotalUntranslatedBoundsRequest4.org.bimserver.pb.GetTotalUntranslatedBoundsResponse`
+getTotalBounds'.org.bimserver.pb.GetTotalBoundsRequest(.org.bimserver.pb.GetTotalBoundsResponseä
+getTotalUntransformedBounds4.org.bimserver.pb.GetTotalUntransformedBoundsRequest5.org.bimserver.pb.GetTotalUntransformedBoundsResponse`
 getUserByUoid&.org.bimserver.pb.GetUserByUoidRequest'.org.bimserver.pb.GetUserByUoidResponsel
 getUserByUserName*.org.bimserver.pb.GetUserByUserNameRequest+.org.bimserver.pb.GetUserByUserNameResponseo
 getUserRelatedLogs+.org.bimserver.pb.GetUserRelatedLogsRequest,.org.bimserver.pb.GetUserRelatedLogsResponsef
