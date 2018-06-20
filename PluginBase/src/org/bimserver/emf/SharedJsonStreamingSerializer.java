@@ -35,6 +35,7 @@ import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.HashMapWrappedVirtualObject;
 import org.bimserver.shared.MinimalVirtualObject;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
@@ -289,7 +290,12 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 			print("\"_t\":\"" + object.eClass().getName() + "\",");
 			for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
 				print("\"" + eStructuralFeature.getName() + "\":");
-				writePrimitive(eStructuralFeature, object.eGet(eStructuralFeature));
+				if (eStructuralFeature.getEType() instanceof EDataType) {
+					writePrimitive(eStructuralFeature, object.eGet(eStructuralFeature));
+				} else {
+					Object val = object.eGet(eStructuralFeature);
+					write((MinimalVirtualObject) val);
+				}
 				if (object.eClass().getEAllStructuralFeatures().get(object.eClass().getEAllStructuralFeatures().size()-1) != eStructuralFeature) {
 					print(",");
 				}
