@@ -118,12 +118,10 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 				downloadDescriptor = new DownloadDescriptor(packageMetaData, jsonQuery, roids, query, serializerOid, this.filename);
 				
 				if (getBimServer().getNewDiskCacheManager().contains(downloadDescriptor)) {
-					// 4 lines disabled just to test...
-					
-//					cacheFile = getBimServer().getNewDiskCacheManager().get(downloadDescriptor);
-//					FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(cacheFile);
-//					fileInputStreamDataSource.setName(downloadDescriptor.getFileNameWithoutExtension());
-//					checkoutResult.setFile(new DataHandler(fileInputStreamDataSource));
+					cacheFile = getBimServer().getNewDiskCacheManager().get(downloadDescriptor);
+					FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(cacheFile);
+					fileInputStreamDataSource.setName(downloadDescriptor.getFileNameWithoutExtension());
+					checkoutResult.setFile(new DataHandler(fileInputStreamDataSource));
 					
 //					if (diskCacheItem instanceof NewDiskCacheOutputStream) {
 //					} else if (diskCacheItem instanceof NewDiskCacheWriter){
