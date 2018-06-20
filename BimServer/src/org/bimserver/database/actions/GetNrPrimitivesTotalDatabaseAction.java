@@ -73,7 +73,7 @@ public class GetNrPrimitivesTotalDatabaseAction extends BimDatabaseAction<Long> 
 				Revision revision = getDatabaseSession().get(roid, OldQuery.getDefault());
 				for (ExtendedData extendedData : revision.getExtendedData()) {
 					// TODO ugly
-					if (extendedData.getTitle().equals("Geometry generation report (json)")) {
+					if (extendedData.getTitle().equals("Geometry generation report (application/json)") || extendedData.getTitle().equals("Geometry generation report (json)")) {
 						ObjectNode generationReport = objectMapper.readValue(extendedData.getFile().getData(), ObjectNode.class);
 						totalPrimitives += generationReport.get("ifcModel").get("triangles").asLong();
 					}
