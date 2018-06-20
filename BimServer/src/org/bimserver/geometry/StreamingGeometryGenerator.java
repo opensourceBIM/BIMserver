@@ -306,7 +306,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 										}
 										if (hasValidRepresentationIdentifier(representationItem)) {
 											List<HashMapVirtualObject> items = representationItem.getDirectListFeature(itemsFeature);
-											if (items.size() > 1) {
+											if (items == null || items.size() > 1) {
 												// Only if there is just one item, we'll store this for reuse
 												continue;
 											}
