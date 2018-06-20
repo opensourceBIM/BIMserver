@@ -59,7 +59,7 @@ public class ReusableLittleEndianDataOutputStream extends LittleEndianSerializer
 	@Override
 	public void align4() throws IOException {
 		int extra = 4 - (growingByteBuffer.position() % 4);
-		if (extra > 0 && extra != 8) {
+		if (extra > 0 && extra != 4) {
 			growingByteBuffer.ensureExtraCapacity(extra);
 			dataOutputStream.write(new byte[extra]);
 		}

@@ -224,7 +224,7 @@ public class LittleEndianSerializerDataOutputStream extends SerializerDataOutput
 	@Override
 	public void align4() throws IOException {
 		int extra = 4 - (bytesWritten % 4);
-		if (extra > 0 && extra != 8) {
+		if (extra > 0 && extra != 4) {
 			write(new byte[extra]);
 		}
 	}
