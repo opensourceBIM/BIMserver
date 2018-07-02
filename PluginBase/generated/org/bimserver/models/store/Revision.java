@@ -65,6 +65,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Revision#getService <em>Service</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#isHasGeometry <em>Has Geometry</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getServicesLinked <em>Services Linked</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Revision#getDensityCollection <em>Density Collection</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Revision#getNrPrimitives <em>Nr Primitives</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getRevision()
@@ -476,5 +478,57 @@ public interface Revision extends IdEObject {
 	 * @generated
 	 */
 	EList<NewService> getServicesLinked();
+
+	/**
+	 * Returns the value of the '<em><b>Density Collection</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Density Collection</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Density Collection</em>' reference.
+	 * @see #setDensityCollection(DensityCollection)
+	 * @see org.bimserver.models.store.StorePackage#getRevision_DensityCollection()
+	 * @model
+	 * @generated
+	 */
+	DensityCollection getDensityCollection();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Revision#getDensityCollection <em>Density Collection</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Density Collection</em>' reference.
+	 * @see #getDensityCollection()
+	 * @generated
+	 */
+	void setDensityCollection(DensityCollection value);
+
+	/**
+	 * Returns the value of the '<em><b>Nr Primitives</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Nr Primitives</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nr Primitives</em>' attribute.
+	 * @see #setNrPrimitives(long)
+	 * @see org.bimserver.models.store.StorePackage#getRevision_NrPrimitives()
+	 * @model
+	 * @generated
+	 */
+	long getNrPrimitives();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Revision#getNrPrimitives <em>Nr Primitives</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Nr Primitives</em>' attribute.
+	 * @see #getNrPrimitives()
+	 * @generated
+	 */
+	void setNrPrimitives(long value);
 
 } // Revision

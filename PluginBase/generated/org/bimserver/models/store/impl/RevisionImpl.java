@@ -39,6 +39,8 @@ import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.log.RevisionRelated;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.Density;
+import org.bimserver.models.store.DensityCollection;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.NewService;
 import org.bimserver.models.store.Project;
@@ -74,6 +76,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getService <em>Service</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#isHasGeometry <em>Has Geometry</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getServicesLinked <em>Services Linked</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getDensityCollection <em>Density Collection</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getNrPrimitives <em>Nr Primitives</em>}</li>
  * </ul>
  *
  * @generated
@@ -372,6 +376,42 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	@SuppressWarnings("unchecked")
 	public EList<NewService> getServicesLinked() {
 		return (EList<NewService>) eGet(StorePackage.Literals.REVISION__SERVICES_LINKED, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DensityCollection getDensityCollection() {
+		return (DensityCollection) eGet(StorePackage.Literals.REVISION__DENSITY_COLLECTION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDensityCollection(DensityCollection newDensityCollection) {
+		eSet(StorePackage.Literals.REVISION__DENSITY_COLLECTION, newDensityCollection);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getNrPrimitives() {
+		return (Long) eGet(StorePackage.Literals.REVISION__NR_PRIMITIVES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNrPrimitives(long newNrPrimitives) {
+		eSet(StorePackage.Literals.REVISION__NR_PRIMITIVES, newNrPrimitives);
 	}
 
 } //RevisionImpl

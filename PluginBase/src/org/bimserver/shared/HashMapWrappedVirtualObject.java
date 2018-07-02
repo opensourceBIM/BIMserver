@@ -19,6 +19,7 @@ package org.bimserver.shared;
 
 import java.nio.ByteBuffer;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.bimserver.BimserverDatabaseException;
@@ -72,13 +73,28 @@ public class HashMapWrappedVirtualObject extends AbstractHashMapVirtualObject im
 
 	@Override
 	public int getSize() {
+		if (eClass.getName().equals("DensityCollection")) {
+			System.out.println();
+		}
 		int size = 2;
 		for (EStructuralFeature eStructuralFeature : map.keySet()) {
 			Object val = map.get(eStructuralFeature);
-			if (eStructuralFeature.getEType() instanceof EDataType) {
-				size += getPrimitiveSize((EDataType) eStructuralFeature.getEType(), val);
+			if (eStructuralFeature.isMany()) {
+				size += 4;
+				List list = (List)val;
+				for (Object o : list) {
+					if (o instanceof HashMapWrappedVirtualObject) {
+						size += ((HashMapWrappedVirtualObject) o).getSize();
+					} else {
+						throw new UnsupportedOperationException();
+					}
+				}
 			} else {
-				size += ((HashMapWrappedVirtualObject)val).getSize();
+				if (eStructuralFeature.getEType() instanceof EDataType) {
+					size += getPrimitiveSize((EDataType) eStructuralFeature.getEType(), val);
+				} else {
+					size += ((HashMapWrappedVirtualObject)val).getSize();
+				}
 			}
 		}
 		return size;

@@ -695,13 +695,31 @@ public interface StorePackage extends EPackage {
 	int REVISION__SERVICES_LINKED = 16;
 
 	/**
+	 * The feature id for the '<em><b>Density Collection</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION__DENSITY_COLLECTION = 17;
+
+	/**
+	 * The feature id for the '<em><b>Nr Primitives</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION__NR_PRIMITIVES = 18;
+
+	/**
 	 * The number of structural features of the '<em>Revision</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION_FEATURE_COUNT = 17;
+	int REVISION_FEATURE_COUNT = 19;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ConcreteRevisionImpl <em>Concrete Revision</em>}' class.
@@ -822,13 +840,13 @@ public interface StorePackage extends EPackage {
 	int CONCRETE_REVISION__BOUNDS = 11;
 
 	/**
-	 * The feature id for the '<em><b>Bounds Untranslated</b></em>' reference.
+	 * The feature id for the '<em><b>Bounds Untransformed</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONCRETE_REVISION__BOUNDS_UNTRANSLATED = 12;
+	int CONCRETE_REVISION__BOUNDS_UNTRANSFORMED = 12;
 
 	/**
 	 * The feature id for the '<em><b>Oid Counters</b></em>' attribute.
@@ -849,13 +867,22 @@ public interface StorePackage extends EPackage {
 	int CONCRETE_REVISION__MULTIPLIER_TO_MM = 14;
 
 	/**
+	 * The feature id for the '<em><b>Density Collection</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_REVISION__DENSITY_COLLECTION = 15;
+
+	/**
 	 * The number of structural features of the '<em>Concrete Revision</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONCRETE_REVISION_FEATURE_COUNT = 15;
+	int CONCRETE_REVISION_FEATURE_COUNT = 16;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.GeoTagImpl <em>Geo Tag</em>}' class.
@@ -7158,6 +7185,98 @@ public interface StorePackage extends EPackage {
 	int RUN_SERVICE_AUTHORIZATION_FEATURE_COUNT = AUTHORIZATION_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.DensityCollectionImpl <em>Density Collection</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.DensityCollectionImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDensityCollection()
+	 * @generated
+	 */
+	int DENSITY_COLLECTION = 103;
+
+	/**
+	 * The feature id for the '<em><b>Densities</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DENSITY_COLLECTION__DENSITIES = 0;
+
+	/**
+	 * The number of structural features of the '<em>Density Collection</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DENSITY_COLLECTION_FEATURE_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.DensityImpl <em>Density</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.DensityImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDensity()
+	 * @generated
+	 */
+	int DENSITY = 104;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DENSITY__TYPE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Geometry Info Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DENSITY__GEOMETRY_INFO_ID = 1;
+
+	/**
+	 * The feature id for the '<em><b>Triangles</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DENSITY__TRIANGLES = 2;
+
+	/**
+	 * The feature id for the '<em><b>Volume</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DENSITY__VOLUME = 3;
+
+	/**
+	 * The feature id for the '<em><b>Density</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DENSITY__DENSITY = 4;
+
+	/**
+	 * The number of structural features of the '<em>Density</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DENSITY_FEATURE_COUNT = 5;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7165,7 +7284,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 103;
+	int USER_TYPE = 105;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -7175,7 +7294,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 104;
+	int SI_PREFIX = 106;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -7185,7 +7304,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 105;
+	int OBJECT_STATE = 107;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -7195,7 +7314,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 106;
+	int COMPARE_TYPE = 108;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -7205,7 +7324,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 107;
+	int ACTION_STATE = 109;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -7215,7 +7334,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 108;
+	int SERVER_STATE = 110;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}' enum.
@@ -7225,7 +7344,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getTrigger()
 	 * @generated
 	 */
-	int TRIGGER = 109;
+	int TRIGGER = 111;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServiceSimpleType <em>Service Simple Type</em>}' enum.
@@ -7235,7 +7354,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceSimpleType()
 	 * @generated
 	 */
-	int SERVICE_SIMPLE_TYPE = 110;
+	int SERVICE_SIMPLE_TYPE = 112;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PrimitiveEnum <em>Primitive Enum</em>}' enum.
@@ -7245,7 +7364,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPrimitiveEnum()
 	 * @generated
 	 */
-	int PRIMITIVE_ENUM = 111;
+	int PRIMITIVE_ENUM = 113;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.NotifictionResultEnum <em>Notifiction Result Enum</em>}' enum.
@@ -7255,7 +7374,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNotifictionResultEnum()
 	 * @generated
 	 */
-	int NOTIFICTION_RESULT_ENUM = 112;
+	int NOTIFICTION_RESULT_ENUM = 114;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ProgressTopicType <em>Progress Topic Type</em>}' enum.
@@ -7265,7 +7384,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getProgressTopicType()
 	 * @generated
 	 */
-	int PROGRESS_TOPIC_TYPE = 113;
+	int PROGRESS_TOPIC_TYPE = 115;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ModelCheckerResultType <em>Model Checker Result Type</em>}' enum.
@@ -7275,7 +7394,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelCheckerResultType()
 	 * @generated
 	 */
-	int MODEL_CHECKER_RESULT_TYPE = 114;
+	int MODEL_CHECKER_RESULT_TYPE = 116;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SmtpProtocol <em>Smtp Protocol</em>}' enum.
@@ -7285,7 +7404,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSmtpProtocol()
 	 * @generated
 	 */
-	int SMTP_PROTOCOL = 115;
+	int SMTP_PROTOCOL = 117;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PluginBundleType <em>Plugin Bundle Type</em>}' enum.
@@ -7295,7 +7414,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginBundleType()
 	 * @generated
 	 */
-	int PLUGIN_BUNDLE_TYPE = 116;
+	int PLUGIN_BUNDLE_TYPE = 118;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PluginType <em>Plugin Type</em>}' enum.
@@ -7305,7 +7424,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginType()
 	 * @generated
 	 */
-	int PLUGIN_TYPE = 117;
+	int PLUGIN_TYPE = 119;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServiceStatus <em>Service Status</em>}' enum.
@@ -7315,7 +7434,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceStatus()
 	 * @generated
 	 */
-	int SERVICE_STATUS = 118;
+	int SERVICE_STATUS = 120;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -7325,7 +7444,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 119;
+	int DATA_HANDLER = 121;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -8040,6 +8159,28 @@ public interface StorePackage extends EPackage {
 	EReference getRevision_ServicesLinked();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Revision#getDensityCollection <em>Density Collection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Density Collection</em>'.
+	 * @see org.bimserver.models.store.Revision#getDensityCollection()
+	 * @see #getRevision()
+	 * @generated
+	 */
+	EReference getRevision_DensityCollection();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Revision#getNrPrimitives <em>Nr Primitives</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Nr Primitives</em>'.
+	 * @see org.bimserver.models.store.Revision#getNrPrimitives()
+	 * @see #getRevision()
+	 * @generated
+	 */
+	EAttribute getRevision_NrPrimitives();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ConcreteRevision <em>Concrete Revision</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8182,15 +8323,15 @@ public interface StorePackage extends EPackage {
 	EReference getConcreteRevision_Bounds();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ConcreteRevision#getBoundsUntranslated <em>Bounds Untranslated</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ConcreteRevision#getBoundsUntransformed <em>Bounds Untransformed</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Bounds Untranslated</em>'.
-	 * @see org.bimserver.models.store.ConcreteRevision#getBoundsUntranslated()
+	 * @return the meta object for the reference '<em>Bounds Untransformed</em>'.
+	 * @see org.bimserver.models.store.ConcreteRevision#getBoundsUntransformed()
 	 * @see #getConcreteRevision()
 	 * @generated
 	 */
-	EReference getConcreteRevision_BoundsUntranslated();
+	EReference getConcreteRevision_BoundsUntransformed();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ConcreteRevision#getOidCounters <em>Oid Counters</em>}'.
@@ -8213,6 +8354,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getConcreteRevision_MultiplierToMm();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ConcreteRevision#getDensityCollection <em>Density Collection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Density Collection</em>'.
+	 * @see org.bimserver.models.store.ConcreteRevision#getDensityCollection()
+	 * @see #getConcreteRevision()
+	 * @generated
+	 */
+	EReference getConcreteRevision_DensityCollection();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.GeoTag <em>Geo Tag</em>}'.
@@ -13902,6 +14054,92 @@ public interface StorePackage extends EPackage {
 	EReference getRunServiceAuthorization_Service();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.DensityCollection <em>Density Collection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Density Collection</em>'.
+	 * @see org.bimserver.models.store.DensityCollection
+	 * @generated
+	 */
+	EClass getDensityCollection();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.DensityCollection#getDensities <em>Densities</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Densities</em>'.
+	 * @see org.bimserver.models.store.DensityCollection#getDensities()
+	 * @see #getDensityCollection()
+	 * @generated
+	 */
+	EReference getDensityCollection_Densities();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.Density <em>Density</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Density</em>'.
+	 * @see org.bimserver.models.store.Density
+	 * @generated
+	 */
+	EClass getDensity();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Density#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.bimserver.models.store.Density#getType()
+	 * @see #getDensity()
+	 * @generated
+	 */
+	EAttribute getDensity_Type();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Density#getGeometryInfoId <em>Geometry Info Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Geometry Info Id</em>'.
+	 * @see org.bimserver.models.store.Density#getGeometryInfoId()
+	 * @see #getDensity()
+	 * @generated
+	 */
+	EAttribute getDensity_GeometryInfoId();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Density#getTriangles <em>Triangles</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Triangles</em>'.
+	 * @see org.bimserver.models.store.Density#getTriangles()
+	 * @see #getDensity()
+	 * @generated
+	 */
+	EAttribute getDensity_Triangles();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Density#getVolume <em>Volume</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Volume</em>'.
+	 * @see org.bimserver.models.store.Density#getVolume()
+	 * @see #getDensity()
+	 * @generated
+	 */
+	EAttribute getDensity_Volume();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Density#getDensity <em>Density</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Density</em>'.
+	 * @see org.bimserver.models.store.Density#getDensity()
+	 * @see #getDensity()
+	 * @generated
+	 */
+	EAttribute getDensity_Density();
+
+	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.UserType <em>User Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14621,6 +14859,22 @@ public interface StorePackage extends EPackage {
 		EReference REVISION__SERVICES_LINKED = eINSTANCE.getRevision_ServicesLinked();
 
 		/**
+		 * The meta object literal for the '<em><b>Density Collection</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REVISION__DENSITY_COLLECTION = eINSTANCE.getRevision_DensityCollection();
+
+		/**
+		 * The meta object literal for the '<em><b>Nr Primitives</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REVISION__NR_PRIMITIVES = eINSTANCE.getRevision_NrPrimitives();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ConcreteRevisionImpl <em>Concrete Revision</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -14727,12 +14981,12 @@ public interface StorePackage extends EPackage {
 		EReference CONCRETE_REVISION__BOUNDS = eINSTANCE.getConcreteRevision_Bounds();
 
 		/**
-		 * The meta object literal for the '<em><b>Bounds Untranslated</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Bounds Untransformed</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONCRETE_REVISION__BOUNDS_UNTRANSLATED = eINSTANCE.getConcreteRevision_BoundsUntranslated();
+		EReference CONCRETE_REVISION__BOUNDS_UNTRANSFORMED = eINSTANCE.getConcreteRevision_BoundsUntransformed();
 
 		/**
 		 * The meta object literal for the '<em><b>Oid Counters</b></em>' attribute feature.
@@ -14749,6 +15003,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CONCRETE_REVISION__MULTIPLIER_TO_MM = eINSTANCE.getConcreteRevision_MultiplierToMm();
+
+		/**
+		 * The meta object literal for the '<em><b>Density Collection</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONCRETE_REVISION__DENSITY_COLLECTION = eINSTANCE.getConcreteRevision_DensityCollection();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.GeoTagImpl <em>Geo Tag</em>}' class.
@@ -19155,6 +19417,74 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference RUN_SERVICE_AUTHORIZATION__SERVICE = eINSTANCE.getRunServiceAuthorization_Service();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.DensityCollectionImpl <em>Density Collection</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.DensityCollectionImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getDensityCollection()
+		 * @generated
+		 */
+		EClass DENSITY_COLLECTION = eINSTANCE.getDensityCollection();
+
+		/**
+		 * The meta object literal for the '<em><b>Densities</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DENSITY_COLLECTION__DENSITIES = eINSTANCE.getDensityCollection_Densities();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.DensityImpl <em>Density</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.DensityImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getDensity()
+		 * @generated
+		 */
+		EClass DENSITY = eINSTANCE.getDensity();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DENSITY__TYPE = eINSTANCE.getDensity_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Geometry Info Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DENSITY__GEOMETRY_INFO_ID = eINSTANCE.getDensity_GeometryInfoId();
+
+		/**
+		 * The meta object literal for the '<em><b>Triangles</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DENSITY__TRIANGLES = eINSTANCE.getDensity_Triangles();
+
+		/**
+		 * The meta object literal for the '<em><b>Volume</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DENSITY__VOLUME = eINSTANCE.getDensity_Volume();
+
+		/**
+		 * The meta object literal for the '<em><b>Density</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DENSITY__DENSITY = eINSTANCE.getDensity_Density();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.

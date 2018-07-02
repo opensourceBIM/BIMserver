@@ -301,10 +301,20 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 		buffer.order(ByteOrder.BIG_ENDIAN);
 		for (EStructuralFeature eStructuralFeature : wrappedValue.eClass().getEAllStructuralFeatures()) {
 			Object val = wrappedValue.eGet(eStructuralFeature);
-			if (eStructuralFeature.getEType() instanceof EDataType) {
-				writePrimitiveValue(eStructuralFeature, val, buffer);
+			if (eStructuralFeature.isMany()) {
+				List list = (List)val;
+				buffer.putInt(list.size());
+				for (Object o : list) {
+					if (o instanceof HashMapWrappedVirtualObject) {
+						writeWrappedValue(pid, rid, (VirtualObject) o, buffer, packageMetaData);
+					}
+				}
 			} else {
-				writeWrappedValue(pid, rid, (HashMapWrappedVirtualObject) val, buffer, packageMetaData);
+				if (eStructuralFeature.getEType() instanceof EDataType) {
+					writePrimitiveValue(eStructuralFeature, val, buffer);
+				} else {
+					writeWrappedValue(pid, rid, (HashMapWrappedVirtualObject) val, buffer, packageMetaData);
+				}
 			}
 		}
 	}

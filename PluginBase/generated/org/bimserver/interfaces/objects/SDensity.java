@@ -16,26 +16,24 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SInternalServicePluginConfiguration.class, SQueryEnginePluginConfiguration.class, SModelMergerPluginConfiguration.class, SDeserializerPluginConfiguration.class, SSerializerPluginConfiguration.class, SModelComparePluginConfiguration.class, SObjectIDMPluginConfiguration.class, SRenderEnginePluginConfiguration.class, SWebModulePluginConfiguration.class})
-public class SPluginConfiguration implements SDataBase
+public class SDensity implements SDataBase
 {
 	private long oid = -1;
 	private int rid = 0;
 
 	@XmlTransient
 	private static SClass sClass;
-	private java.lang.String name;
-	private java.lang.Boolean enabled;
-	private java.lang.String description;
-	private long pluginDescriptorId = -1;
-	private long settingsId = -1;
+	private java.lang.String type;
+	private long geometryInfoId;
+	private long triangles;
+	private float volume;
+	private float density;
 
 	public long getOid() {
 		return this.oid;
@@ -59,24 +57,24 @@ public class SPluginConfiguration implements SDataBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SPluginConfiguration.sClass = sClass;
+		SDensity.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("name")) {
-			return getName();
+		if (sField.getName().equals("type")) {
+			return getType();
 		}
-		if (sField.getName().equals("enabled")) {
-			return getEnabled();
+		if (sField.getName().equals("geometryInfoId")) {
+			return getGeometryInfoId();
 		}
-		if (sField.getName().equals("description")) {
-			return getDescription();
+		if (sField.getName().equals("triangles")) {
+			return getTriangles();
 		}
-		if (sField.getName().equals("pluginDescriptorId")) {
-			return getPluginDescriptorId();
+		if (sField.getName().equals("volume")) {
+			return getVolume();
 		}
-		if (sField.getName().equals("settingsId")) {
-			return getSettingsId();
+		if (sField.getName().equals("density")) {
+			return getDensity();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -88,24 +86,24 @@ public class SPluginConfiguration implements SDataBase
 	}
 
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("name")) {
-			setName((String)val);
+		if (sField.getName().equals("type")) {
+			setType((String)val);
 			return;
 		}
-		if (sField.getName().equals("enabled")) {
-			setEnabled((Boolean)val);
+		if (sField.getName().equals("geometryInfoId")) {
+			setGeometryInfoId((Long)val);
 			return;
 		}
-		if (sField.getName().equals("description")) {
-			setDescription((String)val);
+		if (sField.getName().equals("triangles")) {
+			setTriangles((Long)val);
 			return;
 		}
-		if (sField.getName().equals("pluginDescriptorId")) {
-			setPluginDescriptorId((Long)val);
+		if (sField.getName().equals("volume")) {
+			setVolume((Float)val);
 			return;
 		}
-		if (sField.getName().equals("settingsId")) {
-			setSettingsId((Long)val);
+		if (sField.getName().equals("density")) {
+			setDensity((Float)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -119,44 +117,44 @@ public class SPluginConfiguration implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	public java.lang.String getName() {
-		return name;
+	public java.lang.String getType() {
+		return type;
 	}
 
-	public void setName(java.lang.String name) {
-		this.name = name;
+	public void setType(java.lang.String type) {
+		this.type = type;
 	}
 	
-	public java.lang.Boolean getEnabled() {
-		return enabled;
+	public long getGeometryInfoId() {
+		return geometryInfoId;
 	}
 
-	public void setEnabled(java.lang.Boolean enabled) {
-		this.enabled = enabled;
+	public void setGeometryInfoId(long geometryInfoId) {
+		this.geometryInfoId = geometryInfoId;
 	}
 	
-	public java.lang.String getDescription() {
-		return description;
+	public long getTriangles() {
+		return triangles;
 	}
 
-	public void setDescription(java.lang.String description) {
-		this.description = description;
+	public void setTriangles(long triangles) {
+		this.triangles = triangles;
 	}
 	
-	public long getPluginDescriptorId() {
-		return pluginDescriptorId;
+	public float getVolume() {
+		return volume;
 	}
 
-	public void setPluginDescriptorId(long pluginDescriptorId) {
-		this.pluginDescriptorId = pluginDescriptorId;
+	public void setVolume(float volume) {
+		this.volume = volume;
 	}
 	
-	public long getSettingsId() {
-		return settingsId;
+	public float getDensity() {
+		return density;
 	}
 
-	public void setSettingsId(long settingsId) {
-		this.settingsId = settingsId;
+	public void setDensity(float density) {
+		this.density = density;
 	}
 	
 	@Override
@@ -175,7 +173,7 @@ public class SPluginConfiguration implements SDataBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SPluginConfiguration other = (SPluginConfiguration) obj;
+		SDensity other = (SDensity) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

@@ -34,6 +34,7 @@ import org.bimserver.interfaces.objects.SBounds;
 import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SCompareResult;
 import org.bimserver.interfaces.objects.SCompareType;
+import org.bimserver.interfaces.objects.SDensity;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
@@ -1514,5 +1515,15 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "regenerateGeometry")
 	Long regenerateGeometry(
 		@WebParam(name = "roid", partName = "regenerateGeometry.roid") Long roid,
-		@WebParam(name = "eoid", partName = "regenerateGeometry.eoid") Long eoid) throws ServerException, UserException;	
+		@WebParam(name = "eoid", partName = "regenerateGeometry.eoid") Long eoid) throws ServerException, UserException;
+
+	@WebMethod(action = "getModelBoundsUntransformed")
+	SBounds getModelBoundsUntransformed(
+		@WebParam(name = "roid", partName = "getModelBoundsUntransformed.roid") Long roid) throws ServerException, UserException;
+	
+	@WebMethod(action = "getDensityThreshold")
+	SDensity getDensityThreshold(
+		@WebParam(name = "roid", partName = "getDensityThreshold.roid") Long roid, 
+		@WebParam(name = "nrTriangles", partName = "getDensityThreshold.nrTriangles") Long nrTriangles,
+		@WebParam(name = "excludedTypes", partName = "getDensityThreshold.excludedTypes") Set<String> excludedTypes) throws ServerException, UserException;
 }

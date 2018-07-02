@@ -227,7 +227,7 @@ public class QueryObjectProvider implements ObjectProvider {
 			}
 			if (typeDef.isIncludeSubTypes()) {
 				for (EClass subType : packageMetaData.getAllSubClasses(eClass)) {
-					if (subType == eClass) {
+					if (subType == eClass && !typeDef.excludes(subType)) {
 						return true;
 					}
 				}

@@ -50,7 +50,7 @@ import org.eclipse.emf.ecore.EClass;
  * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getBounds <em>Bounds</em>}</li>
- *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getBoundsUntranslated <em>Bounds Untranslated</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getBoundsUntransformed <em>Bounds Untransformed</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getStartVertex <em>Start Vertex</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getStartIndex <em>Start Index</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getPrimitiveCount <em>Primitive Count</em>}</li>
@@ -60,6 +60,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getVolume <em>Volume</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#isHasTransparency <em>Has Transparency</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getIfcProductOid <em>Ifc Product Oid</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getBoundsMm <em>Bounds Mm</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getBoundsUntransformedMm <em>Bounds Untransformed Mm</em>}</li>
  * </ul>
  *
  * @generated
@@ -117,8 +119,8 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Bounds getBoundsUntranslated() {
-		return (Bounds) eGet(GeometryPackage.Literals.GEOMETRY_INFO__BOUNDS_UNTRANSLATED, true);
+	public Bounds getBoundsUntransformed() {
+		return (Bounds) eGet(GeometryPackage.Literals.GEOMETRY_INFO__BOUNDS_UNTRANSFORMED, true);
 	}
 
 	/**
@@ -126,8 +128,8 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBoundsUntranslated(Bounds newBoundsUntranslated) {
-		eSet(GeometryPackage.Literals.GEOMETRY_INFO__BOUNDS_UNTRANSLATED, newBoundsUntranslated);
+	public void setBoundsUntransformed(Bounds newBoundsUntransformed) {
+		eSet(GeometryPackage.Literals.GEOMETRY_INFO__BOUNDS_UNTRANSFORMED, newBoundsUntransformed);
 	}
 
 	/**
@@ -290,6 +292,42 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 */
 	public void setIfcProductOid(long newIfcProductOid) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__IFC_PRODUCT_OID, newIfcProductOid);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Bounds getBoundsMm() {
+		return (Bounds) eGet(GeometryPackage.Literals.GEOMETRY_INFO__BOUNDS_MM, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBoundsMm(Bounds newBoundsMm) {
+		eSet(GeometryPackage.Literals.GEOMETRY_INFO__BOUNDS_MM, newBoundsMm);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Bounds getBoundsUntransformedMm() {
+		return (Bounds) eGet(GeometryPackage.Literals.GEOMETRY_INFO__BOUNDS_UNTRANSFORMED_MM, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBoundsUntransformedMm(Bounds newBoundsUntransformedMm) {
+		eSet(GeometryPackage.Literals.GEOMETRY_INFO__BOUNDS_UNTRANSFORMED_MM, newBoundsUntransformedMm);
 	}
 
 } //GeometryInfoImpl

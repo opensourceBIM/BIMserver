@@ -151,6 +151,8 @@ service ServiceInterface {
 
 	rpc getCheckoutWarnings (GetCheckoutWarningsRequest) returns (GetCheckoutWarningsResponse);
 
+	rpc getDensityThreshold (GetDensityThresholdRequest) returns (GetDensityThresholdResponse);
+
 	rpc getDeserializerById (GetDeserializerByIdRequest) returns (GetDeserializerByIdResponse);
 
 	rpc getDeserializerByName (GetDeserializerByNameRequest) returns (GetDeserializerByNameResponse);
@@ -178,6 +180,8 @@ service ServiceInterface {
 	rpc getLastExtendedDataOfRevisionAndSchema (GetLastExtendedDataOfRevisionAndSchemaRequest) returns (GetLastExtendedDataOfRevisionAndSchemaResponse);
 
 	rpc getModelBounds (GetModelBoundsRequest) returns (GetModelBoundsResponse);
+
+	rpc getModelBoundsUntransformed (GetModelBoundsUntransformedRequest) returns (GetModelBoundsUntransformedResponse);
 
 	rpc getModelCheckerInstance (GetModelCheckerInstanceRequest) returns (GetModelCheckerInstanceResponse);
 
@@ -918,20 +922,22 @@ message SRevision {
 	optional string comment = 3;
 	repeated int64 concreteRevisions = 4;
 	optional int64 date = 5;
-	repeated int64 extendedData = 6;
-	optional bool hasGeometry = 7;
-	optional int32 id = 8;
-	optional int64 lastConcreteRevisionId = 9;
-	optional string lastError = 10;
-	repeated int64 logs = 11;
-	optional int64 oid = 12;
-	optional int64 projectId = 13;
-	optional int32 rid = 14;
-	optional int64 serviceId = 15;
-	repeated int64 servicesLinked = 16;
-	optional int64 size = 17;
-	optional string tag = 18;
-	optional int64 userId = 19;
+	optional int64 densityCollectionId = 6;
+	repeated int64 extendedData = 7;
+	optional bool hasGeometry = 8;
+	optional int32 id = 9;
+	optional int64 lastConcreteRevisionId = 10;
+	optional string lastError = 11;
+	repeated int64 logs = 12;
+	optional int64 nrPrimitives = 13;
+	optional int64 oid = 14;
+	optional int64 projectId = 15;
+	optional int32 rid = 16;
+	optional int64 serviceId = 17;
+	repeated int64 servicesLinked = 18;
+	optional int64 size = 19;
+	optional string tag = 20;
+	optional int64 userId = 21;
 }
 
 message SCheckout {
@@ -1274,6 +1280,27 @@ message GetCheckoutWarningsResponse {
 	repeated string value = 2;
 }
 
+message GetDensityThresholdRequest {
+	optional int64 roid = 1;
+	optional int64 nrTriangles = 2;
+	repeated string excludedTypes = 3;
+}
+
+message SDensity {
+	optional float density = 1;
+	optional int64 geometryInfoId = 2;
+	optional int64 oid = 3;
+	optional int32 rid = 4;
+	optional int64 triangles = 5;
+	optional string type = 6;
+	optional float volume = 7;
+}
+
+message GetDensityThresholdResponse {
+	optional string errorMessage = 1;
+	optional SDensity value = 2;
+}
+
 message GetDeserializerByIdRequest {
 	optional int64 oid = 1;
 }
@@ -1439,17 +1466,19 @@ message SBounds {
 message SGeometryInfo {
 	optional double area = 1;
 	optional SBounds bounds = 2;
-	optional SBounds boundsUntranslated = 3;
-	optional int64 dataId = 4;
-	optional bool hasTransparency = 5;
-	optional int64 ifcProductOid = 6;
-	optional int64 oid = 7;
-	optional int32 primitiveCount = 8;
-	optional int32 rid = 9;
-	optional int32 startIndex = 10;
-	optional int32 startVertex = 11;
-	optional bytes transformation = 12;
-	optional double volume = 13;
+	optional SBounds boundsMm = 3;
+	optional SBounds boundsUntransformed = 4;
+	optional SBounds boundsUntransformedMm = 5;
+	optional int64 dataId = 6;
+	optional bool hasTransparency = 7;
+	optional int64 ifcProductOid = 8;
+	optional int64 oid = 9;
+	optional int32 primitiveCount = 10;
+	optional int32 rid = 11;
+	optional int32 startIndex = 12;
+	optional int32 startVertex = 13;
+	optional bytes transformation = 14;
+	optional double volume = 15;
 }
 
 message GetGeometryInfoResponse {
@@ -1496,6 +1525,15 @@ message GetModelBoundsRequest {
 }
 
 message GetModelBoundsResponse {
+	optional string errorMessage = 1;
+	optional SBounds value = 2;
+}
+
+message GetModelBoundsUntransformedRequest {
+	optional int64 roid = 1;
+}
+
+message GetModelBoundsUntransformedResponse {
 	optional string errorMessage = 1;
 	optional SBounds value = 2;
 }

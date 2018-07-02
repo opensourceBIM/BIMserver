@@ -95,20 +95,61 @@ public class QueryBoundingBoxStackFrame extends DatabaseReadingStackFrame implem
 			if (currentObject.has("geometry")) {
 				long geometryInfoId = (Long) currentObject.get("geometry");
 				HashMapVirtualObject geometryInfo = getByOid(geometryInfoId);
-				HashMapWrappedVirtualObject minBounds = (HashMapWrappedVirtualObject) geometryInfo.get("minBounds");
-				HashMapWrappedVirtualObject maxBounds = (HashMapWrappedVirtualObject) geometryInfo.get("maxBounds");
+				
+				// TODO the querying party should be able to force the units used
+				// TODO use some spatial indexing, this is getting slow now that it's actually used
+				
+				
+				HashMapWrappedVirtualObject bounds = (HashMapWrappedVirtualObject) geometryInfo.get("boundsMm");
+				HashMapWrappedVirtualObject minBounds = (HashMapWrappedVirtualObject) bounds.eGet("min");
+				HashMapWrappedVirtualObject maxBounds = (HashMapWrappedVirtualObject) bounds.eGet("max");
 				double minX = (double) minBounds.eGet("x");
 				double minY = (double) minBounds.eGet("y");
 				double minZ = (double) minBounds.eGet("z");
 				double maxX = (double) maxBounds.eGet("x");
 				double maxY = (double) maxBounds.eGet("y");
 				double maxZ = (double) maxBounds.eGet("z");
+				
+				if (inBoundingBox.getDensityLowerThreshold() != null) {
+					int nrTriangles = (int) geometryInfo.get("primitiveCount");
+					float volume = (float)(double)geometryInfo.get("volume");
+					volume = (float) ((maxX - minX) * (maxY - minY) * (maxZ - minZ));
+					float density = nrTriangles / volume;
+					if (density > inBoundingBox.getDensityLowerThreshold()) {
+						currentObject = null;
+						return false;
+					}
+				}
+				if (inBoundingBox.getDensityUpperThreshold() != null) {
+					int nrTriangles = (int) geometryInfo.get("primitiveCount");
+					float volume = (float)(double)geometryInfo.get("volume");
+					volume = (float) ((maxX - minX) * (maxY - minY) * (maxZ - minZ));
+					float density = nrTriangles / volume;
+					if (density <= inBoundingBox.getDensityUpperThreshold()) {
+						currentObject = null;
+						return false;
+					}
+				}
 				if (inBoundingBox.isPartial()) {
 					if (
 					 (minX <= inBoundingBox.getX() + inBoundingBox.getWidth() && maxX >= inBoundingBox.getX()) &&
 			         (minY <= inBoundingBox.getY() + inBoundingBox.getHeight() && maxY >= inBoundingBox.getY()) &&
 			         (minZ <= inBoundingBox.getZ() + inBoundingBox.getDepth() && maxZ >= inBoundingBox.getZ())) {
 						
+					} else {
+						currentObject = null;
+					}
+				} else if (inBoundingBox.isUseCenterPoint()) {
+					double centerX = (minX + maxX) / 2f;
+					double centerY = (minY + maxY) / 2f;
+					double centerZ = (minZ + maxZ) / 2f;
+					if (
+							centerX > inBoundingBox.getX() &&
+							centerY > inBoundingBox.getY() &&
+							centerZ > inBoundingBox.getZ() &&
+							centerX <= inBoundingBox.getX() + inBoundingBox.getWidth() &&
+							centerY <= inBoundingBox.getY() + inBoundingBox.getHeight() &&
+							centerZ <= inBoundingBox.getZ() + inBoundingBox.getDepth()) {
 					} else {
 						currentObject = null;
 					}

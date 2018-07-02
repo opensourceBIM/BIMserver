@@ -92,7 +92,7 @@ public class RegenerateGeometryDatabaseAction extends ProjectBasedDatabaseAction
 			
 			concreteRevision.setMultiplierToMm(generateGeometry.getMultiplierToMm());
 			concreteRevision.setBounds(generateGeometry.getBounds());
-			concreteRevision.setBoundsUntranslated(generateGeometry.getBoundsUntranslated());
+			concreteRevision.setBoundsUntransformed(generateGeometry.getBoundsUntransformed());
 			
 			byte[] htmlBytes = report.toHtml().getBytes(Charsets.UTF_8);
 			byte[] jsonBytes = report.toJson().toString().getBytes(Charsets.UTF_8);

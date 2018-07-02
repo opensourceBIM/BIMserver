@@ -349,6 +349,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetDensityThresholdCallback {
+		void success(org.bimserver.interfaces.objects.SDensity result);
+		void error(Throwable e);
+	}
+	
 	public interface GetDeserializerByIdCallback {
 		void success(org.bimserver.interfaces.objects.SDeserializerPluginConfiguration result);
 		void error(Throwable e);
@@ -415,6 +420,11 @@ public class AsyncServiceInterface {
 	}
 	
 	public interface GetModelBoundsCallback {
+		void success(org.bimserver.interfaces.objects.SBounds result);
+		void error(Throwable e);
+	}
+	
+	public interface GetModelBoundsUntransformedCallback {
 		void success(org.bimserver.interfaces.objects.SBounds result);
 		void error(Throwable e);
 	}
@@ -1487,6 +1497,18 @@ public class AsyncServiceInterface {
 		});
 	}
 	
+	public void getDensityThreshold(final java.lang.Long roid, final java.lang.Long nrTriangles, final java.util.Set<java.lang.String> excludedTypes, final GetDensityThresholdCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getDensityThreshold(roid, nrTriangles, excludedTypes));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getDeserializerById(final java.lang.Long oid, final GetDeserializerByIdCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1648,6 +1670,18 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getModelBounds(roid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getModelBoundsUntransformed(final java.lang.Long roid, final GetModelBoundsUntransformedCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getModelBoundsUntransformed(roid));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

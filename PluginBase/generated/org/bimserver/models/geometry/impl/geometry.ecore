@@ -8,7 +8,7 @@
       <eAnnotations source="embedsreference"/>
       <eAnnotations source="hidden"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="boundsUntranslated" eType="#//Bounds">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boundsUntransformed" eType="#//Bounds">
       <eAnnotations source="dbembed"/>
       <eAnnotations source="embedsreference"/>
       <eAnnotations source="hidden"/>
@@ -24,6 +24,17 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="volume" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasTransparency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ifcProductOid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boundsMm" eType="#//Bounds">
+      <eAnnotations source="dbembed"/>
+      <eAnnotations source="embedsreference"/>
+      <eAnnotations source="hidden"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boundsUntransformedMm"
+        eType="#//Bounds">
+      <eAnnotations source="dbembed"/>
+      <eAnnotations source="embedsreference"/>
+      <eAnnotations source="hidden"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Vector3f">
     <eAnnotations source="hidden"/>

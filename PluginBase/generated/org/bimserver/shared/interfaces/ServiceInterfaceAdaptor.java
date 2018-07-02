@@ -269,6 +269,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
+	public org.bimserver.interfaces.objects.SDensity getDensityThreshold(java.lang.Long roid, java.lang.Long nrTriangles, java.util.Set<java.lang.String> excludedTypes) throws UserException, ServerException {
+		return null;
+	}
+	
 	public org.bimserver.interfaces.objects.SDeserializerPluginConfiguration getDeserializerById(java.lang.Long oid) throws UserException, ServerException {
 		return null;
 	}
@@ -322,6 +326,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 	}
 	
 	public org.bimserver.interfaces.objects.SBounds getModelBounds(java.lang.Long roid) throws UserException, ServerException {
+		return null;
+	}
+	
+	public org.bimserver.interfaces.objects.SBounds getModelBoundsUntransformed(java.lang.Long roid) throws UserException, ServerException {
 		return null;
 	}
 	

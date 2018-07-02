@@ -114,6 +114,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 	protected void processPossibleInclude(HashMapVirtualObject object, CanInclude previousInclude, Include include) throws QueryException, BimserverDatabaseException {
 		if (include.hasTypes()) {
 			for (TypeDef filterClass : include.getTypes()) {
+				// TODO also exclude the possibly excluded types here
 				if (!filterClass.geteClass().isSuperTypeOf(object.eClass())) {
 //					System.out.println(filterClass.getName() + " / " + currentObject.eClass().getName());
 					// TODO too many times queries are spending time here

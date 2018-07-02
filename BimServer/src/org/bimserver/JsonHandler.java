@@ -55,6 +55,7 @@ public class JsonHandler {
 
 	public void execute(JsonObject incomingMessage, HttpServletRequest httpRequest, Writer out) {
 		JsonWriter jsonWriter = new JsonWriter(out);
+		jsonWriter.setLenient(true);
 		try {
 			jsonWriter.beginObject();
 			String token = incomingMessage.has("token") ? incomingMessage.get("token").getAsString() : null;

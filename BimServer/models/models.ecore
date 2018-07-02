@@ -9,7 +9,8 @@
         <eAnnotations source="embedsreference"/>
         <eAnnotations source="hidden"/>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="boundsUntranslated" eType="#/0/Bounds">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="boundsUntransformed"
+          eType="#/0/Bounds">
         <eAnnotations source="dbembed"/>
         <eAnnotations source="embedsreference"/>
         <eAnnotations source="hidden"/>
@@ -25,6 +26,17 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="volume" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasTransparency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="ifcProductOid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="boundsMm" eType="#/0/Bounds">
+        <eAnnotations source="dbembed"/>
+        <eAnnotations source="embedsreference"/>
+        <eAnnotations source="hidden"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="boundsUntransformedMm"
+          eType="#/0/Bounds">
+        <eAnnotations source="dbembed"/>
+        <eAnnotations source="embedsreference"/>
+        <eAnnotations source="hidden"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Vector3f">
       <eAnnotations source="hidden"/>
@@ -20024,6 +20036,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasGeometry" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="servicesLinked" upperBound="-1"
           eType="#/4/NewService"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="densityCollection" eType="#/4/DensityCollection"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="nrPrimitives" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConcreteRevision">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
@@ -20044,13 +20058,15 @@
         <eAnnotations source="embedsreference"/>
         <eAnnotations source="hidden"/>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="boundsUntranslated" eType="#/0/Bounds">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="boundsUntransformed"
+          eType="#/0/Bounds">
         <eAnnotations source="dbembed"/>
         <eAnnotations source="embedsreference"/>
         <eAnnotations source="hidden"/>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="oidCounters" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiplierToMm" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="densityCollection" eType="#/4/DensityCollection"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GeoTag">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
@@ -20944,6 +20960,21 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RunServiceAuthorization" eSuperTypes="#/4/Authorization">
       <eStructuralFeatures xsi:type="ecore:EReference" name="service" eType="#/4/InternalServicePluginConfiguration"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DensityCollection">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="densities" unique="false"
+          upperBound="-1" eType="#/4/Density">
+        <eAnnotations source="dbembed"/>
+        <eAnnotations source="embedsreference"/>
+        <eAnnotations source="hidden"/>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Density">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="geometryInfoId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="triangles" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="volume" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="density" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
     </eClassifiers>
   </ecore:EPackage>
 </xmi:XMI>

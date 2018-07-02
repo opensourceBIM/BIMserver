@@ -27,6 +27,9 @@ public class InBoundingBox extends PartOfQuery {
 	private double height;
 	private double depth;
 	private boolean partial;
+	private boolean useCenterPoint;
+	private Float densityLowerThreshold;
+	private Float densityUpperThreshold;
 
 	public InBoundingBox(double x, double y, double z, double width, double height, double depth) {
 		this.x = x;
@@ -80,5 +83,29 @@ public class InBoundingBox extends PartOfQuery {
 
 	public void setPartial(boolean partial) {
 		this.partial = partial;
+	}
+
+	public Float getDensityLowerThreshold() {
+		return densityLowerThreshold;
+	}
+
+	public void setDensityLowerThreshold(Float densityLowerThreshold) {
+		this.densityLowerThreshold = densityLowerThreshold;
+	}
+
+	public Float getDensityUpperThreshold() {
+		return densityUpperThreshold;
+	}
+
+	public void setDensityUpperThreshold(Float densityUpperThreshold) {
+		this.densityUpperThreshold = densityUpperThreshold;
+	}
+
+	public boolean isUseCenterPoint() {
+		return useCenterPoint;
+	}
+
+	public void setUseCenterPoint(boolean useCenterPoint) {
+		this.useCenterPoint = useCenterPoint;
 	}
 }

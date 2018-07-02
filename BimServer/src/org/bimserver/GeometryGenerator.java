@@ -207,7 +207,7 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 
 									boundsUntranslated.setMin(createVector3f(packageMetaData, model, Double.POSITIVE_INFINITY, databaseSession, store, pid, rid));
 									boundsUntranslated.setMax(createVector3f(packageMetaData, model, -Double.POSITIVE_INFINITY, databaseSession, store, pid, rid));
-									geometryInfo.setBoundsUntranslated(boundsUntranslated);
+									geometryInfo.setBoundsUntransformed(boundsUntranslated);
 
 									try {
 										double area = renderEngineInstance.getArea();
@@ -584,8 +584,8 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 		double y = vertices[index + 1];
 		double z = vertices[index + 2];
 		
-		Vector3f minBounds = geometryInfo.getBoundsUntranslated().getMin();
-		Vector3f maxBounds = geometryInfo.getBoundsUntranslated().getMax();
+		Vector3f minBounds = geometryInfo.getBoundsUntransformed().getMin();
+		Vector3f maxBounds = geometryInfo.getBoundsUntransformed().getMax();
 		
 		minBounds.setX(Math.min(x, (double)minBounds.getX()));
 		minBounds.setY(Math.min(y, (double)minBounds.getY()));

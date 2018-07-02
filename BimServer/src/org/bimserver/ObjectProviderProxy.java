@@ -30,6 +30,7 @@ public class ObjectProviderProxy implements ObjectProvider {
 
 	private ObjectProvider objectProvider;
 	private ObjectListener objectListener;
+	private HashMapVirtualObject last = null;
 
 	public ObjectProviderProxy(ObjectProvider objectProvider, ObjectListener objectListener) {
 		this.objectProvider = objectProvider;
@@ -40,6 +41,10 @@ public class ObjectProviderProxy implements ObjectProvider {
 	public HashMapVirtualObject next() throws BimserverDatabaseException {
 		HashMapVirtualObject next = objectProvider.next();
 		if (next != null) {
+			if (next == last) {
+				throw new BimserverDatabaseException("Endless loop detected");
+			}
+			last = next;
 			objectListener.newObject(next);
 		}
 		return next;

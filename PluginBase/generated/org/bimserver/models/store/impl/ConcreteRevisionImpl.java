@@ -39,6 +39,8 @@ import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.geometry.Bounds;
 import org.bimserver.models.geometry.Vector3f;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.Density;
+import org.bimserver.models.store.DensityCollection;
 import org.bimserver.models.store.IfcHeader;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
@@ -68,9 +70,10 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getUser <em>User</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getIfcHeader <em>Ifc Header</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getBounds <em>Bounds</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getBoundsUntranslated <em>Bounds Untranslated</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getBoundsUntransformed <em>Bounds Untransformed</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getOidCounters <em>Oid Counters</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getMultiplierToMm <em>Multiplier To Mm</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ConcreteRevisionImpl#getDensityCollection <em>Density Collection</em>}</li>
  * </ul>
  *
  * @generated
@@ -318,8 +321,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Bounds getBoundsUntranslated() {
-		return (Bounds) eGet(StorePackage.Literals.CONCRETE_REVISION__BOUNDS_UNTRANSLATED, true);
+	public Bounds getBoundsUntransformed() {
+		return (Bounds) eGet(StorePackage.Literals.CONCRETE_REVISION__BOUNDS_UNTRANSFORMED, true);
 	}
 
 	/**
@@ -327,8 +330,8 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBoundsUntranslated(Bounds newBoundsUntranslated) {
-		eSet(StorePackage.Literals.CONCRETE_REVISION__BOUNDS_UNTRANSLATED, newBoundsUntranslated);
+	public void setBoundsUntransformed(Bounds newBoundsUntransformed) {
+		eSet(StorePackage.Literals.CONCRETE_REVISION__BOUNDS_UNTRANSFORMED, newBoundsUntransformed);
 	}
 
 	/**
@@ -365,6 +368,24 @@ public class ConcreteRevisionImpl extends IdEObjectImpl implements ConcreteRevis
 	 */
 	public void setMultiplierToMm(float newMultiplierToMm) {
 		eSet(StorePackage.Literals.CONCRETE_REVISION__MULTIPLIER_TO_MM, newMultiplierToMm);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DensityCollection getDensityCollection() {
+		return (DensityCollection) eGet(StorePackage.Literals.CONCRETE_REVISION__DENSITY_COLLECTION, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDensityCollection(DensityCollection newDensityCollection) {
+		eSet(StorePackage.Literals.CONCRETE_REVISION__DENSITY_COLLECTION, newDensityCollection);
 	}
 
 } //ConcreteRevisionImpl

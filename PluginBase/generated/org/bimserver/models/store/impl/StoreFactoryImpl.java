@@ -292,6 +292,10 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createNewService();
 		case StorePackage.RUN_SERVICE_AUTHORIZATION:
 			return (EObject) createRunServiceAuthorization();
+		case StorePackage.DENSITY_COLLECTION:
+			return (EObject) createDensityCollection();
+		case StorePackage.DENSITY:
+			return (EObject) createDensity();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -1419,6 +1423,26 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public RunServiceAuthorization createRunServiceAuthorization() {
 		RunServiceAuthorizationImpl runServiceAuthorization = new RunServiceAuthorizationImpl();
 		return runServiceAuthorization;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DensityCollection createDensityCollection() {
+		DensityCollectionImpl densityCollection = new DensityCollectionImpl();
+		return densityCollection;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Density createDensity() {
+		DensityImpl density = new DensityImpl();
+		return density;
 	}
 
 	/**

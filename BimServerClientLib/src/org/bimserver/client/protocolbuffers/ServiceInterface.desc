@@ -1,5 +1,5 @@
 
-Ãê
+ªó
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -414,29 +414,31 @@ dataObject (2.org.bimserver.pb.SDataObject
 errorMessage (	&
 value (2.org.bimserver.pb.SUser",
 GetAllCheckoutsByUserRequest
-uoid ("‡
+uoid ("ì
 	SRevision
 bmi (
 	checkouts (
 comment (	
 concreteRevisions (
-date (
-extendedData (
-hasGeometry (
+date (
+densityCollectionId (
+extendedData (
+hasGeometry (
 
-id (
-lastConcreteRevisionId	 (
-	lastError
- (	
-logs (
-oid (
-	projectId (
-rid (
-	serviceId (
-servicesLinked (
-size (
-tag (	
-userId ("—
+id	 (
+lastConcreteRevisionId
+ (
+	lastError (	
+logs (
+nrPrimitives (
+oid (
+	projectId (
+rid (
+	serviceId (
+servicesLinked (
+size (
+tag (	
+userId ("—
 	SCheckout
 active (,
 checkin (2.org.bimserver.pb.SRevision
@@ -644,7 +646,22 @@ $GetAvailableClassesInRevisionRequest
 poid ("B
 GetCheckoutWarningsResponse
 errorMessage (	
-value (	")
+value (	"V
+GetDensityThresholdRequest
+roid (
+nrTriangles (
+excludedTypes (	"~
+SDensity
+density (
+geometryInfoId (
+oid (
+rid (
+	triangles (
+type (	
+volume ("^
+GetDensityThresholdResponse
+errorMessage (	)
+value (2.org.bimserver.pb.SDensity")
 GetDeserializerByIdRequest
 oid ("∏
  SDeserializerPluginConfiguration
@@ -753,23 +770,25 @@ revisionNr (
 max (2.org.bimserver.pb.SVector3f(
 min (2.org.bimserver.pb.SVector3f
 oid (
-rid ("¬
+rid ("™
 SGeometryInfo
 area ()
-bounds (2.org.bimserver.pb.SBounds5
-boundsUntranslated (2.org.bimserver.pb.SBounds
-dataId (
-hasTransparency (
-ifcProductOid (
-oid (
-primitiveCount (
-rid	 (
+bounds (2.org.bimserver.pb.SBounds+
+boundsMm (2.org.bimserver.pb.SBounds6
+boundsUntransformed (2.org.bimserver.pb.SBounds8
+boundsUntransformedMm (2.org.bimserver.pb.SBounds
+dataId (
+hasTransparency (
+ifcProductOid (
+oid	 (
+primitiveCount
+ (
+rid (
 
-startIndex
- (
-startVertex (
-transformation (
-volume ("_
+startIndex (
+startVertex (
+transformation (
+volume ("_
 GetGeometryInfoResponse
 errorMessage (	.
 value (2.org.bimserver.pb.SGeometryInfo"$
@@ -802,6 +821,11 @@ SIfcHeader
 GetModelBoundsRequest
 roid ("X
 GetModelBoundsResponse
+errorMessage (	(
+value (2.org.bimserver.pb.SBounds"2
+"GetModelBoundsUntransformedRequest
+roid ("e
+#GetModelBoundsUntransformedResponse
 errorMessage (	(
 value (2.org.bimserver.pb.SBounds"0
 GetModelCheckerInstanceRequest
@@ -1493,7 +1517,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2¬y
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2√{
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
@@ -1561,6 +1585,7 @@ deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserRes
 getAvailableClassesInRevision6.org.bimserver.pb.GetAvailableClassesInRevisionRequest7.org.bimserver.pb.GetAvailableClassesInRevisionResponseo
 getCheckinWarnings+.org.bimserver.pb.GetCheckinWarningsRequest,.org.bimserver.pb.GetCheckinWarningsResponser
 getCheckoutWarnings,.org.bimserver.pb.GetCheckoutWarningsRequest-.org.bimserver.pb.GetCheckoutWarningsResponser
+getDensityThreshold,.org.bimserver.pb.GetDensityThresholdRequest-.org.bimserver.pb.GetDensityThresholdResponser
 getDeserializerById,.org.bimserver.pb.GetDeserializerByIdRequest-.org.bimserver.pb.GetDeserializerByIdResponsex
 getDeserializerByName..org.bimserver.pb.GetDeserializerByNameRequest/.org.bimserver.pb.GetDeserializerByNameResponsef
 getDownloadData(.org.bimserver.pb.GetDownloadDataRequest).org.bimserver.pb.GetDownloadDataResponsef
@@ -1574,7 +1599,8 @@ deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserRes
 getGeometryInfo(.org.bimserver.pb.GetGeometryInfoRequest).org.bimserver.pb.GetGeometryInfoResponse]
 getIfcHeader%.org.bimserver.pb.GetIfcHeaderRequest&.org.bimserver.pb.GetIfcHeaderResponse´
 &getLastExtendedDataOfRevisionAndSchema?.org.bimserver.pb.GetLastExtendedDataOfRevisionAndSchemaRequest@.org.bimserver.pb.GetLastExtendedDataOfRevisionAndSchemaResponsec
-getModelBounds'.org.bimserver.pb.GetModelBoundsRequest(.org.bimserver.pb.GetModelBoundsResponse~
+getModelBounds'.org.bimserver.pb.GetModelBoundsRequest(.org.bimserver.pb.GetModelBoundsResponseä
+getModelBoundsUntransformed4.org.bimserver.pb.GetModelBoundsUntransformedRequest5.org.bimserver.pb.GetModelBoundsUntransformedResponse~
 getModelCheckerInstance0.org.bimserver.pb.GetModelCheckerInstanceRequest1.org.bimserver.pb.GetModelCheckerInstanceResponsel
 getModelMaxBounds*.org.bimserver.pb.GetModelMaxBoundsRequest+.org.bimserver.pb.GetModelMaxBoundsResponsel
 getModelMinBounds*.org.bimserver.pb.GetModelMinBoundsRequest+.org.bimserver.pb.GetModelMinBoundsResponse`

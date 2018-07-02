@@ -49,6 +49,8 @@ public class SRevision implements SDataBase
 	private long serviceId = -1;
 	private boolean hasGeometry;
 	private List<Long> servicesLinked = new ArrayList<Long>();
+	private long densityCollectionId = -1;
+	private long nrPrimitives;
 
 	public long getOid() {
 		return this.oid;
@@ -127,6 +129,12 @@ public class SRevision implements SDataBase
 		if (sField.getName().equals("servicesLinked")) {
 			return getServicesLinked();
 		}
+		if (sField.getName().equals("densityCollectionId")) {
+			return getDensityCollectionId();
+		}
+		if (sField.getName().equals("nrPrimitives")) {
+			return getNrPrimitives();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -204,6 +212,14 @@ public class SRevision implements SDataBase
 		}
 		if (sField.getName().equals("servicesLinked")) {
 			setServicesLinked((List<Long>)val);
+			return;
+		}
+		if (sField.getName().equals("densityCollectionId")) {
+			setDensityCollectionId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("nrPrimitives")) {
+			setNrPrimitives((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -351,6 +367,22 @@ public class SRevision implements SDataBase
 
 	public void setServicesLinked(List<Long> servicesLinked) {
 		this.servicesLinked = servicesLinked;
+	}
+	
+	public long getDensityCollectionId() {
+		return densityCollectionId;
+	}
+
+	public void setDensityCollectionId(long densityCollectionId) {
+		this.densityCollectionId = densityCollectionId;
+	}
+	
+	public long getNrPrimitives() {
+		return nrPrimitives;
+	}
+
+	public void setNrPrimitives(long nrPrimitives) {
+		this.nrPrimitives = nrPrimitives;
 	}
 	
 	@Override

@@ -19,6 +19,8 @@ package org.bimserver.database.actions;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Map;
 import java.util.Set;
@@ -35,12 +37,12 @@ import org.bimserver.database.OldQuery;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.geometry.Density;
 import org.bimserver.mail.MailSystem;
-import org.bimserver.models.geometry.Bounds;
-import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.DensityCollection;
 import org.bimserver.models.store.IfcHeader;
 import org.bimserver.models.store.ModelCheckerInstance;
 import org.bimserver.models.store.ModelCheckerResult;
@@ -49,6 +51,7 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.Service;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.notifications.NewRevisionNotification;
@@ -57,6 +60,8 @@ import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.modelchecker.ModelChecker;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
 import org.bimserver.renderengine.RenderEnginePool;
+import org.bimserver.shared.HashMapVirtualObject;
+import org.bimserver.shared.VirtualObject;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
@@ -209,9 +214,29 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 
 				GenerateGeometryResult generateGeometry = new GeometryGenerator(bimServer).generateGeometry(pool, bimServer.getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), true, geometryCache);
 
+				// TODO OUTDATED!!!
+				
+				// TODO deduplicate (this is duplicated 4 times now!)
 				concreteRevision.setMultiplierToMm(generateGeometry.getMultiplierToMm());
 				concreteRevision.setBounds(generateGeometry.getBounds());
-				concreteRevision.setBoundsUntranslated(generateGeometry.getBoundsUntranslated());
+				concreteRevision.setBoundsUntransformed(generateGeometry.getBoundsUntransformed());
+				
+				DensityCollection densityCollection = getDatabaseSession().create(DensityCollection.class);
+				concreteRevision.eSet(StorePackage.eINSTANCE.getConcreteRevision_DensityCollection(), densityCollection);
+				
+				Collections.sort(generateGeometry.getDensities(), new Comparator<Density>(){
+					@Override
+					public int compare(Density o1, Density o2) {
+						return (int) ((o1.getDensityValue() - o2.getDensityValue()) * 10000000);
+					}});
+				for (Density density : generateGeometry.getDensities()) {
+					org.bimserver.models.store.Density dbDensity = getDatabaseSession().create(org.bimserver.models.store.Density.class);
+					dbDensity.setDensity(density.getDensityValue());
+					dbDensity.setGeometryInfoId(density.getGeometryInfoId());
+					dbDensity.setTriangles(density.getNrPrimitives());
+					dbDensity.setVolume(density.getVolume());
+					densityCollection.getDensities().add(dbDensity);
+				}
 
 				for (Revision other : concreteRevision.getRevisions()) {
 					other.setHasGeometry(true);

@@ -566,11 +566,11 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 				if (next.get("UnitType") == packageMetaData.getEEnumLiteral("IfcUnitEnum", "LENGTHUNIT").getInstance()) {
 					Object prefix = next.get("Prefix");
 					if (prefix == null) {
-						// Meters, we need to multiply by 1000
+						// Meters, we need to multiply by 1000 to go to mm
 						return 1000f;
 					}
 					// TODO make this schema independent
-					return 1f / (IfcUtils.getLengthUnitPrefixMm((IfcSIPrefix) prefix) * 1000f);
+					return IfcUtils.getLengthUnitPrefixMm((IfcSIPrefix) prefix) * 1000f;
 				}
 			}
 			next = queryObjectProvider.next();
@@ -601,6 +601,10 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			return false;
 		}
 		Object contextType = context.get("ContextType");
+		if (contextType == null) {
+			LOGGER.debug("No ContextType: " + representationItem);
+			return false;
+		}
 		if (!contextType.equals("Model") && !contextType.equals("Design")) {
 			LOGGER.debug("No Model/Design context: " + contextType);
 			return false;
@@ -871,7 +875,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		double y = vertices[index + 1];
 		double z = vertices[index + 2];
 		
-		HashMapWrappedVirtualObject bounds = (HashMapWrappedVirtualObject) geometryInfo.eGet(GeometryPackage.eINSTANCE.getGeometryInfo_BoundsUntranslated());
+		HashMapWrappedVirtualObject bounds = (HashMapWrappedVirtualObject) geometryInfo.eGet(GeometryPackage.eINSTANCE.getGeometryInfo_BoundsUntransformed());
 		HashMapWrappedVirtualObject minBounds = (HashMapWrappedVirtualObject) bounds.eGet(GeometryPackage.eINSTANCE.getBounds_Min());
 		HashMapWrappedVirtualObject maxBounds = (HashMapWrappedVirtualObject) bounds.eGet(GeometryPackage.eINSTANCE.getBounds_Max());
 		
@@ -890,7 +894,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		generateGeometryResult.setUntranslatedMaxZ(Math.max(z, generateGeometryResult.getUntranslatedMaxZ()));
 	}
 
-	void processExtends(VirtualObject geometryInfo, double[] transformationMatrix, float[] vertices, int index, GenerateGeometryResult generateGeometryResult) throws BimserverDatabaseException {
+	void processExtends(HashMapWrappedVirtualObject minBounds, HashMapWrappedVirtualObject maxBounds, double[] transformationMatrix, float[] vertices, int index, GenerateGeometryResult generateGeometryResult) throws BimserverDatabaseException {
 		double x = vertices[index];
 		double y = vertices[index + 1];
 		double z = vertices[index + 2];
@@ -901,10 +905,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		x = result[0];
 		y = result[1];
 		z = result[2];
-		
-		HashMapWrappedVirtualObject bounds = (HashMapWrappedVirtualObject) geometryInfo.eGet(GeometryPackage.eINSTANCE.getGeometryInfo_Bounds());
-		HashMapWrappedVirtualObject minBounds = (HashMapWrappedVirtualObject) bounds.eGet(GeometryPackage.eINSTANCE.getBounds_Min());
-		HashMapWrappedVirtualObject maxBounds = (HashMapWrappedVirtualObject) bounds.eGet(GeometryPackage.eINSTANCE.getBounds_Max());
 		
 		minBounds.set("x", Math.min(x, (double)minBounds.eGet("x")));
 		minBounds.set("y", Math.min(y, (double)minBounds.eGet("y")));

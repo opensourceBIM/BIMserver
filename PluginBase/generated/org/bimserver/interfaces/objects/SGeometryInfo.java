@@ -30,7 +30,7 @@ public class SGeometryInfo implements SDataBase
 	@XmlTransient
 	private static SClass sClass;
 	private SBounds bounds;
-	private SBounds boundsUntranslated;
+	private SBounds boundsUntransformed;
 	private java.lang.Integer startVertex;
 	private java.lang.Integer startIndex;
 	private java.lang.Integer primitiveCount;
@@ -40,6 +40,8 @@ public class SGeometryInfo implements SDataBase
 	private double volume;
 	private boolean hasTransparency;
 	private long ifcProductOid;
+	private SBounds boundsMm;
+	private SBounds boundsUntransformedMm;
 
 	public long getOid() {
 		return this.oid;
@@ -70,8 +72,8 @@ public class SGeometryInfo implements SDataBase
 		if (sField.getName().equals("bounds")) {
 			return getBounds();
 		}
-		if (sField.getName().equals("boundsUntranslated")) {
-			return getBoundsUntranslated();
+		if (sField.getName().equals("boundsUntransformed")) {
+			return getBoundsUntransformed();
 		}
 		if (sField.getName().equals("startVertex")) {
 			return getStartVertex();
@@ -100,6 +102,12 @@ public class SGeometryInfo implements SDataBase
 		if (sField.getName().equals("ifcProductOid")) {
 			return getIfcProductOid();
 		}
+		if (sField.getName().equals("boundsMm")) {
+			return getBoundsMm();
+		}
+		if (sField.getName().equals("boundsUntransformedMm")) {
+			return getBoundsUntransformedMm();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -114,8 +122,8 @@ public class SGeometryInfo implements SDataBase
 			setBounds((SBounds)val);
 			return;
 		}
-		if (sField.getName().equals("boundsUntranslated")) {
-			setBoundsUntranslated((SBounds)val);
+		if (sField.getName().equals("boundsUntransformed")) {
+			setBoundsUntransformed((SBounds)val);
 			return;
 		}
 		if (sField.getName().equals("startVertex")) {
@@ -154,6 +162,14 @@ public class SGeometryInfo implements SDataBase
 			setIfcProductOid((Long)val);
 			return;
 		}
+		if (sField.getName().equals("boundsMm")) {
+			setBoundsMm((SBounds)val);
+			return;
+		}
+		if (sField.getName().equals("boundsUntransformedMm")) {
+			setBoundsUntransformedMm((SBounds)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -174,12 +190,12 @@ public class SGeometryInfo implements SDataBase
 	}
 	
 	
-	public SBounds getBoundsUntranslated() {
-		return boundsUntranslated;
+	public SBounds getBoundsUntransformed() {
+		return boundsUntransformed;
 	}
 
-	public void setBoundsUntranslated(SBounds boundsUntranslated) {
-		this.boundsUntranslated = boundsUntranslated;
+	public void setBoundsUntransformed(SBounds boundsUntransformed) {
+		this.boundsUntransformed = boundsUntransformed;
 	}
 	
 	
@@ -254,6 +270,24 @@ public class SGeometryInfo implements SDataBase
 	public void setIfcProductOid(long ifcProductOid) {
 		this.ifcProductOid = ifcProductOid;
 	}
+	
+	public SBounds getBoundsMm() {
+		return boundsMm;
+	}
+
+	public void setBoundsMm(SBounds boundsMm) {
+		this.boundsMm = boundsMm;
+	}
+	
+	
+	public SBounds getBoundsUntransformedMm() {
+		return boundsUntransformedMm;
+	}
+
+	public void setBoundsUntransformedMm(SBounds boundsUntransformedMm) {
+		this.boundsUntransformedMm = boundsUntransformedMm;
+	}
+	
 	
 	@Override
 	public int hashCode() {

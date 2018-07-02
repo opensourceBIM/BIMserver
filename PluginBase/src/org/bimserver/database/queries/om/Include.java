@@ -31,10 +31,17 @@ public class Include extends PartOfQuery implements CanInclude {
 	public static class TypeDef {
 		private EClass eClass;
 		private boolean includeSubTypes;
+		private Set<EClass> excluded;
 		
 		public TypeDef(EClass eClass, boolean includeSubTypes) {
 			this.eClass = eClass;
 			this.includeSubTypes = includeSubTypes;
+		}
+
+		public TypeDef(EClass eClass, boolean includeSubTypes, Set<EClass> excluded) {
+			this.eClass = eClass;
+			this.includeSubTypes = includeSubTypes;
+			this.excluded = excluded;
 		}
 		
 		public EClass geteClass() {
@@ -43,6 +50,18 @@ public class Include extends PartOfQuery implements CanInclude {
 		
 		public boolean isIncludeSubTypes() {
 			return includeSubTypes;
+		}
+		
+		public Set<EClass> getExcluded() {
+			return excluded;
+		}
+
+		public boolean excludes(EClass subType) {
+			return excluded != null && excluded.contains(subType);
+		}
+
+		public boolean hasExcludes() {
+			return excluded != null;
 		}
 	}
 	

@@ -610,6 +610,16 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseDensityCollection(DensityCollection object) {
+			return createDensityCollectionAdapter();
+		}
+
+		@Override
+		public Adapter caseDensity(Density object) {
+			return createDensityAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -2067,6 +2077,34 @@ public class StoreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRunServiceAuthorizationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.DensityCollection <em>Density Collection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.DensityCollection
+	 * @generated
+	 */
+	public Adapter createDensityCollectionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.store.Density <em>Density</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.store.Density
+	 * @generated
+	 */
+	public Adapter createDensityAdapter() {
 		return null;
 	}
 

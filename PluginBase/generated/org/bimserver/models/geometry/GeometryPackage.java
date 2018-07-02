@@ -106,13 +106,13 @@ public interface GeometryPackage extends EPackage {
 	int GEOMETRY_INFO__BOUNDS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Bounds Untranslated</b></em>' reference.
+	 * The feature id for the '<em><b>Bounds Untransformed</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO__BOUNDS_UNTRANSLATED = 1;
+	int GEOMETRY_INFO__BOUNDS_UNTRANSFORMED = 1;
 
 	/**
 	 * The feature id for the '<em><b>Start Vertex</b></em>' attribute.
@@ -196,13 +196,31 @@ public interface GeometryPackage extends EPackage {
 	int GEOMETRY_INFO__IFC_PRODUCT_OID = 10;
 
 	/**
+	 * The feature id for the '<em><b>Bounds Mm</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_INFO__BOUNDS_MM = 11;
+
+	/**
+	 * The feature id for the '<em><b>Bounds Untransformed Mm</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_INFO__BOUNDS_UNTRANSFORMED_MM = 12;
+
+	/**
 	 * The number of structural features of the '<em>Info</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO_FEATURE_COUNT = 11;
+	int GEOMETRY_INFO_FEATURE_COUNT = 13;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.Vector3fImpl <em>Vector3f</em>}' class.
@@ -473,15 +491,15 @@ public interface GeometryPackage extends EPackage {
 	EReference getGeometryInfo_Bounds();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryInfo#getBoundsUntranslated <em>Bounds Untranslated</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryInfo#getBoundsUntransformed <em>Bounds Untransformed</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Bounds Untranslated</em>'.
-	 * @see org.bimserver.models.geometry.GeometryInfo#getBoundsUntranslated()
+	 * @return the meta object for the reference '<em>Bounds Untransformed</em>'.
+	 * @see org.bimserver.models.geometry.GeometryInfo#getBoundsUntransformed()
 	 * @see #getGeometryInfo()
 	 * @generated
 	 */
-	EReference getGeometryInfo_BoundsUntranslated();
+	EReference getGeometryInfo_BoundsUntransformed();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryInfo#getStartVertex <em>Start Vertex</em>}'.
@@ -581,6 +599,28 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getGeometryInfo_IfcProductOid();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryInfo#getBoundsMm <em>Bounds Mm</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Bounds Mm</em>'.
+	 * @see org.bimserver.models.geometry.GeometryInfo#getBoundsMm()
+	 * @see #getGeometryInfo()
+	 * @generated
+	 */
+	EReference getGeometryInfo_BoundsMm();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryInfo#getBoundsUntransformedMm <em>Bounds Untransformed Mm</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Bounds Untransformed Mm</em>'.
+	 * @see org.bimserver.models.geometry.GeometryInfo#getBoundsUntransformedMm()
+	 * @see #getGeometryInfo()
+	 * @generated
+	 */
+	EReference getGeometryInfo_BoundsUntransformedMm();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.geometry.Vector3f <em>Vector3f</em>}'.
@@ -872,12 +912,12 @@ public interface GeometryPackage extends EPackage {
 		EReference GEOMETRY_INFO__BOUNDS = eINSTANCE.getGeometryInfo_Bounds();
 
 		/**
-		 * The meta object literal for the '<em><b>Bounds Untranslated</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Bounds Untransformed</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GEOMETRY_INFO__BOUNDS_UNTRANSLATED = eINSTANCE.getGeometryInfo_BoundsUntranslated();
+		EReference GEOMETRY_INFO__BOUNDS_UNTRANSFORMED = eINSTANCE.getGeometryInfo_BoundsUntransformed();
 
 		/**
 		 * The meta object literal for the '<em><b>Start Vertex</b></em>' attribute feature.
@@ -950,6 +990,22 @@ public interface GeometryPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute GEOMETRY_INFO__IFC_PRODUCT_OID = eINSTANCE.getGeometryInfo_IfcProductOid();
+
+		/**
+		 * The meta object literal for the '<em><b>Bounds Mm</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GEOMETRY_INFO__BOUNDS_MM = eINSTANCE.getGeometryInfo_BoundsMm();
+
+		/**
+		 * The meta object literal for the '<em><b>Bounds Untransformed Mm</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GEOMETRY_INFO__BOUNDS_UNTRANSFORMED_MM = eINSTANCE.getGeometryInfo_BoundsUntransformedMm();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.geometry.impl.Vector3fImpl <em>Vector3f</em>}' class.

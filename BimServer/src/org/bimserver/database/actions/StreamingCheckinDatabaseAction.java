@@ -21,7 +21,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -48,15 +50,15 @@ import org.bimserver.database.queries.om.Query;
 import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.geometry.Density;
 import org.bimserver.geometry.GeometryGenerationReport;
 import org.bimserver.geometry.StreamingGeometryGenerator;
 import org.bimserver.mail.MailSystem;
-import org.bimserver.models.geometry.Bounds;
-import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.DensityCollection;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.File;
 import org.bimserver.models.store.IfcHeader;
@@ -65,6 +67,8 @@ import org.bimserver.models.store.PluginBundleVersion;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.Service;
+import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.notifications.NewRevisionNotification;
 import org.bimserver.plugins.deserializers.ByteProgressReporter;
@@ -265,7 +269,55 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			
 			concreteRevision.setMultiplierToMm(generateGeometry.getMultiplierToMm());
 			concreteRevision.setBounds(generateGeometry.getBounds());
-			concreteRevision.setBoundsUntranslated(generateGeometry.getBoundsUntranslated());
+			concreteRevision.setBoundsUntransformed(generateGeometry.getBoundsUntransformed());
+
+			DensityCollection densityCollection = getDatabaseSession().create(DensityCollection.class);
+			concreteRevision.eSet(StorePackage.eINSTANCE.getConcreteRevision_DensityCollection(), densityCollection);
+			
+			List<org.bimserver.models.store.Density> newList = new ArrayList<>();
+			for (Density density : generateGeometry.getDensities()) {
+				org.bimserver.models.store.Density dbDensity = StoreFactory.eINSTANCE.createDensity();
+				try {
+					dbDensity.setType(density.getType());
+				} catch (NullPointerException e) {
+					System.out.println();
+				}
+				dbDensity.setDensity(density.getDensityValue());
+				dbDensity.setGeometryInfoId(density.getGeometryInfoId());
+				dbDensity.setTriangles(density.getNrPrimitives());
+				dbDensity.setVolume(density.getVolume());
+				newList.add(dbDensity);
+			}
+			newList.sort(new Comparator<org.bimserver.models.store.Density>(){
+				@Override
+				public int compare(org.bimserver.models.store.Density o1, org.bimserver.models.store.Density o2) {
+					return Float.compare(o1.getDensity(), o2.getDensity());
+				}});
+			densityCollection.getDensities().addAll(newList);
+			
+			// TODO copy code to other 3 places, better deduplicate this code
+			
+			// For all revisions created, we need to repopulate the density arrays and make sure those are sorted
+			for (Revision rev : result.getRevisions()) {
+				long nrTriangles = 0;
+				densityCollection = getDatabaseSession().create(DensityCollection.class);
+				rev.eSet(StorePackage.eINSTANCE.getRevision_DensityCollection(), densityCollection);
+				List<org.bimserver.models.store.Density> newList2 = new ArrayList<>();
+				for (ConcreteRevision concreteRevision2 : rev.getConcreteRevisions()) {
+					for (org.bimserver.models.store.Density density : concreteRevision2.getDensityCollection().getDensities()) {
+						newList2.add(density);
+						nrTriangles += density.getTriangles();
+					}
+				}
+				densityCollection.getDensities().clear();
+				newList2.sort(new Comparator<org.bimserver.models.store.Density>(){
+					@Override
+					public int compare(org.bimserver.models.store.Density o1, org.bimserver.models.store.Density o2) {
+						return Float.compare(o1.getDensity(), o2.getDensity());
+					}});
+				densityCollection.getDensities().addAll(newList2);
+				rev.eSet(StorePackage.eINSTANCE.getRevision_NrPrimitives(), nrTriangles);
+			}
 
 			setProgress("Doing other stuff...", -1);
 			

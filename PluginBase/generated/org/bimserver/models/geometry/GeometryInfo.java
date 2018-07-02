@@ -45,7 +45,7 @@ import org.bimserver.emf.IdEObject;
  * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getBounds <em>Bounds</em>}</li>
- *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getBoundsUntranslated <em>Bounds Untranslated</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getBoundsUntransformed <em>Bounds Untransformed</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getStartVertex <em>Start Vertex</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getStartIndex <em>Start Index</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getPrimitiveCount <em>Primitive Count</em>}</li>
@@ -55,6 +55,8 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getVolume <em>Volume</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#isHasTransparency <em>Has Transparency</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getIfcProductOid <em>Ifc Product Oid</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getBoundsMm <em>Bounds Mm</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getBoundsUntransformedMm <em>Bounds Untransformed Mm</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo()
@@ -90,30 +92,30 @@ public interface GeometryInfo extends IdEObject {
 	void setBounds(Bounds value);
 
 	/**
-	 * Returns the value of the '<em><b>Bounds Untranslated</b></em>' reference.
+	 * Returns the value of the '<em><b>Bounds Untransformed</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Bounds Untranslated</em>' reference isn't clear,
+	 * If the meaning of the '<em>Bounds Untransformed</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Bounds Untranslated</em>' reference.
-	 * @see #setBoundsUntranslated(Bounds)
-	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_BoundsUntranslated()
+	 * @return the value of the '<em>Bounds Untransformed</em>' reference.
+	 * @see #setBoundsUntransformed(Bounds)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_BoundsUntransformed()
 	 * @model
 	 * @generated
 	 */
-	Bounds getBoundsUntranslated();
+	Bounds getBoundsUntransformed();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getBoundsUntranslated <em>Bounds Untranslated</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getBoundsUntransformed <em>Bounds Untransformed</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Bounds Untranslated</em>' reference.
-	 * @see #getBoundsUntranslated()
+	 * @param value the new value of the '<em>Bounds Untransformed</em>' reference.
+	 * @see #getBoundsUntransformed()
 	 * @generated
 	 */
-	void setBoundsUntranslated(Bounds value);
+	void setBoundsUntransformed(Bounds value);
 
 	/**
 	 * Returns the value of the '<em><b>Start Vertex</b></em>' attribute.
@@ -348,5 +350,57 @@ public interface GeometryInfo extends IdEObject {
 	 * @generated
 	 */
 	void setIfcProductOid(long value);
+
+	/**
+	 * Returns the value of the '<em><b>Bounds Mm</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Bounds Mm</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Bounds Mm</em>' reference.
+	 * @see #setBoundsMm(Bounds)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_BoundsMm()
+	 * @model
+	 * @generated
+	 */
+	Bounds getBoundsMm();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getBoundsMm <em>Bounds Mm</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Bounds Mm</em>' reference.
+	 * @see #getBoundsMm()
+	 * @generated
+	 */
+	void setBoundsMm(Bounds value);
+
+	/**
+	 * Returns the value of the '<em><b>Bounds Untransformed Mm</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Bounds Untransformed Mm</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Bounds Untransformed Mm</em>' reference.
+	 * @see #setBoundsUntransformedMm(Bounds)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_BoundsUntransformedMm()
+	 * @model
+	 * @generated
+	 */
+	Bounds getBoundsUntransformedMm();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getBoundsUntransformedMm <em>Bounds Untransformed Mm</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Bounds Untransformed Mm</em>' reference.
+	 * @see #getBoundsUntransformedMm()
+	 * @generated
+	 */
+	void setBoundsUntransformedMm(Bounds value);
 
 } // GeometryInfo

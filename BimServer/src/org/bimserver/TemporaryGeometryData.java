@@ -26,8 +26,10 @@ public class TemporaryGeometryData {
 	private long size;
 	private double[] mibu;
 	private double[] mabu;
+	private int[] indices;
+	private float[] vertices;
 
-	public TemporaryGeometryData(long oid, double area, double volume, int nrPrimitives, long size, double[] mibu, double[] mabu) {
+	public TemporaryGeometryData(long oid, double area, double volume, int nrPrimitives, long size, double[] mibu, double[] mabu, int[] indices, float[] vertices) {
 		this.oid = oid;
 		this.area = area;
 		this.volume = volume;
@@ -35,6 +37,16 @@ public class TemporaryGeometryData {
 		this.size = size;
 		this.mibu = mibu;
 		this.mabu = mabu;
+		this.indices = indices;
+		this.vertices = vertices;
+	}
+	
+	public int[] getIndices() {
+		return indices;
+	}
+	
+	public float[] getVertices() {
+		return vertices;
 	}
 	
 	public double[] getMibu() {

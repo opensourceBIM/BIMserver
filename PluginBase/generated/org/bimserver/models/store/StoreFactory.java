@@ -980,6 +980,24 @@ public interface StoreFactory extends EFactory {
 	RunServiceAuthorization createRunServiceAuthorization();
 
 	/**
+	 * Returns a new object of class '<em>Density Collection</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Density Collection</em>'.
+	 * @generated
+	 */
+	DensityCollection createDensityCollection();
+
+	/**
+	 * Returns a new object of class '<em>Density</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Density</em>'.
+	 * @generated
+	 */
+	Density createDensity();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -61,9 +61,10 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getUser <em>User</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getIfcHeader <em>Ifc Header</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getBounds <em>Bounds</em>}</li>
- *   <li>{@link org.bimserver.models.store.ConcreteRevision#getBoundsUntranslated <em>Bounds Untranslated</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ConcreteRevision#getBoundsUntransformed <em>Bounds Untransformed</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getOidCounters <em>Oid Counters</em>}</li>
  *   <li>{@link org.bimserver.models.store.ConcreteRevision#getMultiplierToMm <em>Multiplier To Mm</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ConcreteRevision#getDensityCollection <em>Density Collection</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getConcreteRevision()
@@ -379,30 +380,30 @@ public interface ConcreteRevision extends IdEObject {
 	void setBounds(Bounds value);
 
 	/**
-	 * Returns the value of the '<em><b>Bounds Untranslated</b></em>' reference.
+	 * Returns the value of the '<em><b>Bounds Untransformed</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Bounds Untranslated</em>' reference isn't clear,
+	 * If the meaning of the '<em>Bounds Untransformed</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Bounds Untranslated</em>' reference.
-	 * @see #setBoundsUntranslated(Bounds)
-	 * @see org.bimserver.models.store.StorePackage#getConcreteRevision_BoundsUntranslated()
+	 * @return the value of the '<em>Bounds Untransformed</em>' reference.
+	 * @see #setBoundsUntransformed(Bounds)
+	 * @see org.bimserver.models.store.StorePackage#getConcreteRevision_BoundsUntransformed()
 	 * @model
 	 * @generated
 	 */
-	Bounds getBoundsUntranslated();
+	Bounds getBoundsUntransformed();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.ConcreteRevision#getBoundsUntranslated <em>Bounds Untranslated</em>}' reference.
+	 * Sets the value of the '{@link org.bimserver.models.store.ConcreteRevision#getBoundsUntransformed <em>Bounds Untransformed</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Bounds Untranslated</em>' reference.
-	 * @see #getBoundsUntranslated()
+	 * @param value the new value of the '<em>Bounds Untransformed</em>' reference.
+	 * @see #getBoundsUntransformed()
 	 * @generated
 	 */
-	void setBoundsUntranslated(Bounds value);
+	void setBoundsUntransformed(Bounds value);
 
 	/**
 	 * Returns the value of the '<em><b>Oid Counters</b></em>' attribute.
@@ -455,5 +456,31 @@ public interface ConcreteRevision extends IdEObject {
 	 * @generated
 	 */
 	void setMultiplierToMm(float value);
+
+	/**
+	 * Returns the value of the '<em><b>Density Collection</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Density Collection</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Density Collection</em>' reference.
+	 * @see #setDensityCollection(DensityCollection)
+	 * @see org.bimserver.models.store.StorePackage#getConcreteRevision_DensityCollection()
+	 * @model
+	 * @generated
+	 */
+	DensityCollection getDensityCollection();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ConcreteRevision#getDensityCollection <em>Density Collection</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Density Collection</em>' reference.
+	 * @see #getDensityCollection()
+	 * @generated
+	 */
+	void setDensityCollection(DensityCollection value);
 
 } // ConcreteRevision

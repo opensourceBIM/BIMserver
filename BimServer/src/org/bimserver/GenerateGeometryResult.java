@@ -1,5 +1,9 @@
 package org.bimserver;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.bimserver.geometry.Density;
 import org.bimserver.models.geometry.Bounds;
 
 /******************************************************************************
@@ -21,20 +25,22 @@ import org.bimserver.models.geometry.Bounds;
 
 import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.Vector3f;
+import org.bimserver.shared.VirtualObject;
 
 public class GenerateGeometryResult {
 
 	private double[] min;
 	private double[] max;
-	private double[] minUntranslated;
-	private double[] maxUntranslated;
+	private double[] minUntransformed;
+	private double[] maxUntransformed;
 	private float multiplierToMm;
+	private List<Density> densities = new ArrayList<>();
 
 	public GenerateGeometryResult() {
 		min = new double[]{Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE};
 		max = new double[]{-Double.MAX_VALUE, -Double.MAX_VALUE, -Double.MAX_VALUE};
-		minUntranslated = new double[]{Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE};
-		maxUntranslated = new double[]{-Double.MAX_VALUE, -Double.MAX_VALUE, -Double.MAX_VALUE};
+		minUntransformed = new double[]{Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE};
+		maxUntransformed = new double[]{-Double.MAX_VALUE, -Double.MAX_VALUE, -Double.MAX_VALUE};
 	}
 
 	public double[] getMin() {
@@ -45,17 +51,17 @@ public class GenerateGeometryResult {
 		return max;
 	}
 	
-	public Bounds getBoundsUntranslated() {
+	public Bounds getBoundsUntransformed() {
 		Bounds bounds = GeometryFactory.eINSTANCE.createBounds();
 		Vector3f min = GeometryFactory.eINSTANCE.createVector3f();
-		min.setX(this.minUntranslated[0]);
-		min.setY(this.minUntranslated[1]);
-		min.setZ(this.minUntranslated[2]);
+		min.setX(this.minUntransformed[0]);
+		min.setY(this.minUntransformed[1]);
+		min.setZ(this.minUntransformed[2]);
 		
 		Vector3f max = GeometryFactory.eINSTANCE.createVector3f();
-		max.setX(this.maxUntranslated[0]);
-		max.setY(this.maxUntranslated[1]);
-		max.setZ(this.maxUntranslated[2]);
+		max.setX(this.maxUntransformed[0]);
+		max.setY(this.maxUntransformed[1]);
+		max.setZ(this.maxUntransformed[2]);
 		
 		bounds.setMin(min);
 		bounds.setMax(max);
@@ -122,27 +128,27 @@ public class GenerateGeometryResult {
 	}
 
 	public double getUntranslatedMinX() {
-		return minUntranslated[0];
+		return minUntransformed[0];
 	}
 	
 	public double getUntranslatedMinY() {
-		return minUntranslated[1];
+		return minUntransformed[1];
 	}
 	
 	public double getUntranslatedMinZ() {
-		return minUntranslated[2];
+		return minUntransformed[2];
 	}
 	
 	public double getUntranslatedMaxX() {
-		return maxUntranslated[0];
+		return maxUntransformed[0];
 	}
 	
 	public double getUntranslatedMaxY() {
-		return maxUntranslated[1];
+		return maxUntransformed[1];
 	}
 	
 	public double getUntranslatedMaxZ() {
-		return maxUntranslated[2];
+		return maxUntransformed[2];
 	}
 	
 	public void setMinX(double value) {
@@ -170,27 +176,27 @@ public class GenerateGeometryResult {
 	}
 
 	public void setUntranslatedMinX(double value) {
-		minUntranslated[0] = value;
+		minUntransformed[0] = value;
 	}
 	
 	public void setUntranslatedMinY(double value) {
-		minUntranslated[1] = value;
+		minUntransformed[1] = value;
 	}
 	
 	public void setUntranslatedMinZ(double value) {
-		minUntranslated[2] = value;
+		minUntransformed[2] = value;
 	}
 	
 	public void setUntranslatedMaxX(double value) {
-		maxUntranslated[0] = value;
+		maxUntransformed[0] = value;
 	}
 	
 	public void setUntranslatedMaxY(double value) {
-		maxUntranslated[1] = value;
+		maxUntransformed[1] = value;
 	}
 	
 	public void setUntranslatedMaxZ(double value) {
-		maxUntranslated[2] = value;
+		maxUntransformed[2] = value;
 	}
 
 	public void setMultiplierToMm(float multiplierToMm) {
@@ -199,5 +205,13 @@ public class GenerateGeometryResult {
 	
 	public float getMultiplierToMm() {
 		return multiplierToMm;
+	}
+
+	public synchronized void addDensity(Density density) {
+		densities.add(density);
+	}
+	
+	public List<Density> getDensities() {
+		return densities;
 	}
 }

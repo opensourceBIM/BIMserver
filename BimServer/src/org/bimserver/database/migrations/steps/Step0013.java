@@ -64,20 +64,20 @@ public class Step0013 extends Migration {
 		geometryInfoBounds.getEAnnotations().add(createEmbedsReferenceAnnotation());
 		geometryInfoBounds.getEAnnotations().add(createHiddenAnnotation());
 
-		EReference geometryInfoBoundsUntranslated = schema.createEReference(geometryInfo, "boundsUntranslated", bounds, Multiplicity.SINGLE);
-		geometryInfoBoundsUntranslated.getEAnnotations().add(createDbEmbedReferenceAnnotation());
-		geometryInfoBoundsUntranslated.getEAnnotations().add(createEmbedsReferenceAnnotation());
-		geometryInfoBoundsUntranslated.getEAnnotations().add(createHiddenAnnotation());
+		EReference geometryInfoBoundsUntransformed = schema.createEReference(geometryInfo, "boundsUntransformed", bounds, Multiplicity.SINGLE);
+		geometryInfoBoundsUntransformed.getEAnnotations().add(createDbEmbedReferenceAnnotation());
+		geometryInfoBoundsUntransformed.getEAnnotations().add(createEmbedsReferenceAnnotation());
+		geometryInfoBoundsUntransformed.getEAnnotations().add(createHiddenAnnotation());
 
 		EReference concreteRevisionBounds = schema.createEReference(concreteRevisionClass, "bounds", bounds, Multiplicity.SINGLE);
 		concreteRevisionBounds.getEAnnotations().add(createDbEmbedReferenceAnnotation());
 		concreteRevisionBounds.getEAnnotations().add(createEmbedsReferenceAnnotation());
 		concreteRevisionBounds.getEAnnotations().add(createHiddenAnnotation());
 
-		EReference concreteRevisionBoundsUntranslated = schema.createEReference(concreteRevisionClass, "boundsUntranslated", bounds, Multiplicity.SINGLE);
-		concreteRevisionBoundsUntranslated.getEAnnotations().add(createDbEmbedReferenceAnnotation());
-		concreteRevisionBoundsUntranslated.getEAnnotations().add(createEmbedsReferenceAnnotation());
-		concreteRevisionBoundsUntranslated.getEAnnotations().add(createHiddenAnnotation());
+		EReference concreteRevisionBoundsUntransformed = schema.createEReference(concreteRevisionClass, "boundsUntransformed", bounds, Multiplicity.SINGLE);
+		concreteRevisionBoundsUntransformed.getEAnnotations().add(createDbEmbedReferenceAnnotation());
+		concreteRevisionBoundsUntransformed.getEAnnotations().add(createEmbedsReferenceAnnotation());
+		concreteRevisionBoundsUntransformed.getEAnnotations().add(createHiddenAnnotation());
 		
 		vector3f.getEAnnotations().add(createHiddenAnnotation());
 		geometryInfo.getEAnnotations().add(createHiddenAnnotation());

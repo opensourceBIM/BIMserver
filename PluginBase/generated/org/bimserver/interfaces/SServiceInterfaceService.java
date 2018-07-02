@@ -564,6 +564,16 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SRunServiceAuthorization();
 					}
 				}));
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SDensityCollection"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SDensityCollection();
+					}
+				}));
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SDensity"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SDensity();
+					}
+				}));
 			super.init();
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);

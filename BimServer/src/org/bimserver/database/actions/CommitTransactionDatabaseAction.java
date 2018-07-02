@@ -234,7 +234,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 				
 				concreteRevision.setMultiplierToMm(generateGeometry.getMultiplierToMm());
 				concreteRevision.setBounds(generateGeometry.getBounds());
-				concreteRevision.setBoundsUntranslated(generateGeometry.getBoundsUntranslated());
+				concreteRevision.setBoundsUntransformed(generateGeometry.getBoundsUntransformed());
 			} catch (GeometryGeneratingException e) {
 				throw new UserException(e);
 			}

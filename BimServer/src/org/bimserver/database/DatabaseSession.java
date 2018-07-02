@@ -60,6 +60,7 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.DatabaseInformationCategory;
 import org.bimserver.models.store.DatabaseInformationItem;
+import org.bimserver.models.store.DensityCollection;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
@@ -476,7 +477,11 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 							if (referenceClass == null) {
 								throw new BimserverDatabaseException("No class found for cid " + (-cid));
 							}
-							referencedObject = readWrappedValue(feature, buffer, referenceClass, query);
+							if (feature.isMany()) {
+								referencedObject = readEmbeddedValue(feature, buffer, referenceClass, query);
+							} else {
+								referencedObject = readWrappedValue(feature, buffer, referenceClass, query);
+							}
 						} else if (cid > 0) {
 							// positive cid means value is a
 							// reference
@@ -631,6 +636,8 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 					} else if (feature.getEAnnotation("twodimensionalarray") != null) {
 						EStructuralFeature lf = listObject.eClass().getEStructuralFeature("List");
 						writeList(listObject, buffer, packageMetaData, lf);
+					} else if (feature.getEAnnotation("dbembed") != null) {
+						writeEmbeddedValue(object.getPid(), object.getRid(), listObject, buffer, packageMetaData);
 					} else {
 						writeReference(object, listObject, buffer, feature);
 					}

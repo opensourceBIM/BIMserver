@@ -51,6 +51,13 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 			types = new ArrayList<>();
 		}
 		types.add(new TypeDef(type, includeAllSubTypes));
+	}
+	
+	public void addType(EClass type, boolean includeAllSubTypes, Set<EClass> excludedEClasses) {
+		if (types == null) {
+			types = new ArrayList<>();
+		}
+		types.add(new TypeDef(type, includeAllSubTypes, excludedEClasses));
 //		if (includeAllSubTypes) {
 //			types.addAll(packageMetaData.getAllSubClasses(type));
 //		}

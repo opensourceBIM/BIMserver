@@ -44,9 +44,10 @@ public class SConcreteRevision implements SDataBase
 	private long userId = -1;
 	private long ifcHeaderId = -1;
 	private SBounds bounds;
-	private SBounds boundsUntranslated;
+	private SBounds boundsUntransformed;
 	private byte[] oidCounters;
 	private float multiplierToMm;
+	private long densityCollectionId = -1;
 
 	public long getOid() {
 		return this.oid;
@@ -110,14 +111,17 @@ public class SConcreteRevision implements SDataBase
 		if (sField.getName().equals("bounds")) {
 			return getBounds();
 		}
-		if (sField.getName().equals("boundsUntranslated")) {
-			return getBoundsUntranslated();
+		if (sField.getName().equals("boundsUntransformed")) {
+			return getBoundsUntransformed();
 		}
 		if (sField.getName().equals("oidCounters")) {
 			return getOidCounters();
 		}
 		if (sField.getName().equals("multiplierToMm")) {
 			return getMultiplierToMm();
+		}
+		if (sField.getName().equals("densityCollectionId")) {
+			return getDensityCollectionId();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -178,8 +182,8 @@ public class SConcreteRevision implements SDataBase
 			setBounds((SBounds)val);
 			return;
 		}
-		if (sField.getName().equals("boundsUntranslated")) {
-			setBoundsUntranslated((SBounds)val);
+		if (sField.getName().equals("boundsUntransformed")) {
+			setBoundsUntransformed((SBounds)val);
 			return;
 		}
 		if (sField.getName().equals("oidCounters")) {
@@ -188,6 +192,10 @@ public class SConcreteRevision implements SDataBase
 		}
 		if (sField.getName().equals("multiplierToMm")) {
 			setMultiplierToMm((Float)val);
+			return;
+		}
+		if (sField.getName().equals("densityCollectionId")) {
+			setDensityCollectionId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -298,12 +306,12 @@ public class SConcreteRevision implements SDataBase
 	}
 	
 	
-	public SBounds getBoundsUntranslated() {
-		return boundsUntranslated;
+	public SBounds getBoundsUntransformed() {
+		return boundsUntransformed;
 	}
 
-	public void setBoundsUntranslated(SBounds boundsUntranslated) {
-		this.boundsUntranslated = boundsUntranslated;
+	public void setBoundsUntransformed(SBounds boundsUntransformed) {
+		this.boundsUntransformed = boundsUntransformed;
 	}
 	
 	
@@ -321,6 +329,14 @@ public class SConcreteRevision implements SDataBase
 
 	public void setMultiplierToMm(float multiplierToMm) {
 		this.multiplierToMm = multiplierToMm;
+	}
+	
+	public long getDensityCollectionId() {
+		return densityCollectionId;
+	}
+
+	public void setDensityCollectionId(long densityCollectionId) {
+		this.densityCollectionId = densityCollectionId;
 	}
 	
 	@Override

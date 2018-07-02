@@ -207,7 +207,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGeometryInfo_BoundsUntranslated() {
+	public EReference getGeometryInfo_BoundsUntransformed() {
 		return (EReference) getGeometryInfo().getEStructuralFeatures().get(1);
 	}
 
@@ -290,6 +290,24 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 */
 	public EAttribute getGeometryInfo_IfcProductOid() {
 		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGeometryInfo_BoundsMm() {
+		return (EReference) getGeometryInfo().getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGeometryInfo_BoundsUntransformedMm() {
+		return (EReference) getGeometryInfo().getEStructuralFeatures().get(12);
 	}
 
 	/**

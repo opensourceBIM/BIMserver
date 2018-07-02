@@ -799,6 +799,20 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass densityCollectionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass densityEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum userTypeEEnum = null;
 
 	/**
@@ -1587,6 +1601,24 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getRevision_DensityCollection() {
+		return (EReference) getRevision().getEStructuralFeatures().get(17);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRevision_NrPrimitives() {
+		return (EAttribute) getRevision().getEStructuralFeatures().get(18);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getConcreteRevision() {
 		if (concreteRevisionEClass == null) {
 			concreteRevisionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(6);
@@ -1707,7 +1739,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConcreteRevision_BoundsUntranslated() {
+	public EReference getConcreteRevision_BoundsUntransformed() {
 		return (EReference) getConcreteRevision().getEStructuralFeatures().get(12);
 	}
 
@@ -1727,6 +1759,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EAttribute getConcreteRevision_MultiplierToMm() {
 		return (EAttribute) getConcreteRevision().getEStructuralFeatures().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConcreteRevision_DensityCollection() {
+		return (EReference) getConcreteRevision().getEStructuralFeatures().get(15);
 	}
 
 	/**
@@ -6758,6 +6799,84 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EReference getRunServiceAuthorization_Service() {
 		return (EReference) getRunServiceAuthorization().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDensityCollection() {
+		if (densityCollectionEClass == null) {
+			densityCollectionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(120);
+		}
+		return densityCollectionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDensityCollection_Densities() {
+		return (EReference) getDensityCollection().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDensity() {
+		if (densityEClass == null) {
+			densityEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(121);
+		}
+		return densityEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDensity_Type() {
+		return (EAttribute) getDensity().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDensity_GeometryInfoId() {
+		return (EAttribute) getDensity().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDensity_Triangles() {
+		return (EAttribute) getDensity().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDensity_Volume() {
+		return (EAttribute) getDensity().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDensity_Density() {
+		return (EAttribute) getDensity().getEStructuralFeatures().get(4);
 	}
 
 	/**

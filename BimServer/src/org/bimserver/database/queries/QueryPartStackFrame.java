@@ -87,7 +87,15 @@ public class QueryPartStackFrame extends StackFrame {
 			for (TypeDef typeDef : partialQuery.getTypes()) {
 				set.add(typeDef.geteClass());
 				if (typeDef.isIncludeSubTypes()) {
-					set.addAll(reusable.getPackageMetaData().getAllSubClasses(typeDef.geteClass()));
+					if (typeDef.hasExcludes()) {
+						for (EClass eClass : reusable.getPackageMetaData().getAllSubClasses(typeDef.geteClass())) {
+							if (!typeDef.excludes(eClass)) {
+								set.add(eClass);
+							}
+						}
+					} else {
+						set.addAll(reusable.getPackageMetaData().getAllSubClasses(typeDef.geteClass()));
+					}
 				}
 			}
 			typeIterator = set.iterator();

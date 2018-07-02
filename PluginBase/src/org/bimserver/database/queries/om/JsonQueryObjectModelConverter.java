@@ -19,10 +19,14 @@ package org.bimserver.database.queries.om;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.bimserver.database.queries.om.Include.TypeDef;
 import org.bimserver.emf.PackageMetaData;
@@ -70,6 +74,13 @@ public class JsonQueryObjectModelConverter {
 						ObjectNode typeDefNode = OBJECT_MAPPER.createObjectNode();
 						typeDefNode.put("name", type.geteClass().getName());
 						typeDefNode.put("includeAllSubTypes", type.isIncludeSubTypes());
+						if (type.hasExcludes()) {
+							ArrayNode exludeNodes = OBJECT_MAPPER.createArrayNode();
+							for (EClass excl : type.getExcluded()) {
+								exludeNodes.add(excl.getName());
+							}
+							typeDefNode.set("exclude", exludeNodes);
+						}
 						typesNode.add(typeDefNode);
 					} else {
 						typesNode.add(type.geteClass().getName());
@@ -92,6 +103,8 @@ public class JsonQueryObjectModelConverter {
 				inBoundingBoxNode.put("height", queryPart.getInBoundingBox().getHeight());
 				inBoundingBoxNode.put("depth", queryPart.getInBoundingBox().getDepth());
 				inBoundingBoxNode.put("partial", queryPart.getInBoundingBox().isPartial());
+				inBoundingBoxNode.put("densityLowerThreshold", queryPart.getInBoundingBox().getDensityLowerThreshold());
+				inBoundingBoxNode.put("densityUpperThreshold", queryPart.getInBoundingBox().getDensityUpperThreshold());
 				queryPartNode.set("inBoundingBox", inBoundingBoxNode);
 			}
 			if (queryPart.hasIncludes() || queryPart.hasReferences()) {
@@ -396,13 +409,21 @@ public class JsonQueryObjectModelConverter {
 			JsonNode typeNode = objectNode.get("type");
 			if (typeNode.isTextual()) {
 				String type = typeNode.asText();
-				addType(objectNode, queryPart, type, false);
+				addType(objectNode, queryPart, type, false, null);
 			} else if (typeNode.isObject()) {
 				ObjectNode typeDef = (ObjectNode) typeNode;
 				if (!typeDef.has("name")) {
 					throw new QueryException("Missing name");
 				}
-				addType(objectNode, queryPart, typeDef.get("name").asText(), typeDef.has("includeAllSubTypes") && typeDef.get("includeAllSubTypes").asBoolean());
+				List<String> stringList = null;
+				if (typeDef.has("exclude")) {
+					stringList = new ArrayList<>();
+					ArrayNode excludeNodes = (ArrayNode) typeDef.get("exclude");
+					for (JsonNode excludeNode : excludeNodes) {
+						stringList.add(excludeNode.asText());
+					}
+				}
+				addType(objectNode, queryPart, typeDef.get("name").asText(), typeDef.has("includeAllSubTypes") && typeDef.get("includeAllSubTypes").asBoolean(), stringList);
 			} else {
 				throw new QueryException("\"type\" must be of type string");
 			}
@@ -415,10 +436,18 @@ public class JsonQueryObjectModelConverter {
 					JsonNode typeNode = types.get(i);
 					if (typeNode.isTextual()) {
 						String type = typeNode.asText();
-						addType(objectNode, queryPart, type, false);
+						addType(objectNode, queryPart, type, false, null);
 					} else if (typeNode.isObject()) {
 						ObjectNode typeDef = (ObjectNode) typeNode;
-						addType(objectNode, queryPart, typeDef.get("name").asText(), typeDef.has("includeAllSubTypes") && typeDef.get("includeAllSubTypes").asBoolean());
+						List<String> stringList = null;
+						if (typeDef.has("exlude")) {
+							stringList = new ArrayList<>();
+							ArrayNode excludeNodes = (ArrayNode) typeDef.get("exclude");
+							for (JsonNode excludeNode : excludeNodes) {
+								stringList.add(excludeNode.asText());
+							}
+						}
+						addType(objectNode, queryPart, typeDef.get("name").asText(), typeDef.has("includeAllSubTypes") && typeDef.get("includeAllSubTypes").asBoolean(), stringList);
 					} else {
 						throw new QueryException("\"types\"[" + i + "] must be of type string");
 					}
@@ -538,8 +567,17 @@ public class JsonQueryObjectModelConverter {
 				double height = checkFloat(boundingBox, "height");
 				double depth = checkFloat(boundingBox, "depth");
 				InBoundingBox inBoundingBox = new InBoundingBox(x, y, z, width, height, depth);
+				if (boundingBox.has("densityLowerThreshold")) {
+					inBoundingBox.setDensityLowerThreshold((float) boundingBox.get("densityLowerThreshold").asDouble());
+				}
+				if (boundingBox.has("densityUpperThreshold")) {
+					inBoundingBox.setDensityUpperThreshold((float) boundingBox.get("densityUpperThreshold").asDouble());
+				}
 				if (boundingBox.has("partial")) {
 					inBoundingBox.setPartial(boundingBox.get("partial").asBoolean());
+				}
+				if (boundingBox.has("useCenterPoint")) {
+					inBoundingBox.setUseCenterPoint(boundingBox.get("useCenterPoint").asBoolean());
 				}
 				queryPart.setInBoundingBox(inBoundingBox);
 			} else {
@@ -630,7 +668,7 @@ public class JsonQueryObjectModelConverter {
 		}
 	}
 
-	private void addType(ObjectNode objectNode, QueryPart queryPart, String type, boolean includeAllSubTypes) throws QueryException {
+	private void addType(ObjectNode objectNode, QueryPart queryPart, String type, boolean includeAllSubTypes, List<String> excluded) throws QueryException {
 		if (type.equals("Object")) {
 			// no type filter
 			return;
@@ -639,6 +677,13 @@ public class JsonQueryObjectModelConverter {
 		if (eClass == null) {
 			throw new QueryException("Type \"" + type + "\" not found");
 		}
-		queryPart.addType(eClass, includeAllSubTypes);
+		Set<EClass> excludedEClasses = null;
+		if (excluded != null) {
+			excludedEClasses = new HashSet<>();
+			for (String excl : excluded) {
+				excludedEClasses.add(packageMetaData.getEClassIncludingDependencies(excl));
+			}
+		}
+		queryPart.addType(eClass, includeAllSubTypes, excludedEClasses);
 	}
 }

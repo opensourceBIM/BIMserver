@@ -167,6 +167,7 @@ import org.bimserver.interfaces.objects.SCheckout;
 import org.bimserver.interfaces.objects.SCheckoutResult;
 import org.bimserver.interfaces.objects.SCompareResult;
 import org.bimserver.interfaces.objects.SCompareType;
+import org.bimserver.interfaces.objects.SDensity;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SExtendedData;
@@ -216,6 +217,7 @@ import org.bimserver.models.store.CheckinRevision;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.Density;
 import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
@@ -2837,7 +2839,50 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			Revision revision = session.get(roid, OldQuery.getDefault());
-			return getBimServer().getSConverter().convertToSObject(revision.getLastConcreteRevision().getBounds());
+			ConcreteRevision lastConcreteRevision = revision.getLastConcreteRevision();
+			Bounds bounds = lastConcreteRevision.getBounds();
+			
+			Vector3f min = bounds.getMin();
+			Vector3f max = bounds.getMax();
+			
+			if (lastConcreteRevision.getMultiplierToMm() != 1f) {
+				min.setX(min.getX() * lastConcreteRevision.getMultiplierToMm());
+				min.setY(min.getY() * lastConcreteRevision.getMultiplierToMm());
+				min.setZ(min.getZ() * lastConcreteRevision.getMultiplierToMm());
+				max.setX(max.getX() * lastConcreteRevision.getMultiplierToMm());
+				max.setY(max.getY() * lastConcreteRevision.getMultiplierToMm());
+				max.setZ(max.getZ() * lastConcreteRevision.getMultiplierToMm());
+			}
+			
+			return getBimServer().getSConverter().convertToSObject(bounds);
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public SBounds getModelBoundsUntransformed(Long roid) throws ServerException, UserException {
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			Revision revision = session.get(roid, OldQuery.getDefault());
+			ConcreteRevision lastConcreteRevision = revision.getLastConcreteRevision();
+			Bounds bounds = lastConcreteRevision.getBoundsUntransformed();
+			
+			Vector3f min = bounds.getMin();
+			Vector3f max = bounds.getMax();
+			
+			if (lastConcreteRevision.getMultiplierToMm() != 1f) {
+				min.setX(min.getX() * lastConcreteRevision.getMultiplierToMm());
+				min.setY(min.getY() * lastConcreteRevision.getMultiplierToMm());
+				min.setZ(min.getZ() * lastConcreteRevision.getMultiplierToMm());
+				max.setX(max.getX() * lastConcreteRevision.getMultiplierToMm());
+				max.setY(max.getY() * lastConcreteRevision.getMultiplierToMm());
+				max.setZ(max.getZ() * lastConcreteRevision.getMultiplierToMm());
+			}
+			
+			return getBimServer().getSConverter().convertToSObject(bounds);
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -2926,7 +2971,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			for (Long roid : roids) {
 				Revision revision = session.get(roid, OldQuery.getDefault());
 				ConcreteRevision lastConcreteRevision = revision.getLastConcreteRevision();
-				Bounds bounds = lastConcreteRevision.getBoundsUntranslated();
+				Bounds bounds = lastConcreteRevision.getBoundsUntransformed();
 				
 				if (bounds.getMin().getX() == Double.MAX_VALUE || bounds.getMin().getY() == Double.MAX_VALUE || bounds.getMin().getZ() == Double.MAX_VALUE ||
 						bounds.getMax().getX() == -Double.MAX_VALUE || bounds.getMax().getY() == -Double.MAX_VALUE || bounds.getMax().getZ() == -Double.MAX_VALUE) {
@@ -3015,6 +3060,39 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			getBimServer().getLongActionManager().start(longAction);
 			
 			return progressTopic.getKey().getId();
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public SDensity getDensityThreshold(Long roid, Long nrTriangles, Set<String> excludedTypes) throws ServerException, UserException {
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			Revision revision = session.get(roid, OldQuery.getDefault());
+			EList<Density> densities = revision.getDensityCollection().getDensities();
+			long cumulativeTriangles = 0;
+			Density densityResult = null;
+			for (Density density : densities) {
+				if (excludedTypes.contains(density.getType())) {
+					continue;
+				}
+				if (cumulativeTriangles + density.getTriangles() > nrTriangles) {
+					// This is useful information, so the client knows exactly how many triangles will be loaded by using this threshold
+					break;
+				}
+				cumulativeTriangles += density.getTriangles();
+				densityResult = density;
+			}
+			if (densityResult == null) {
+				SDensity sDensity = new SDensity();
+				return sDensity;
+			} else {
+				densityResult.setTriangles(cumulativeTriangles);
+				return getBimServer().getSConverter().convertToSObject(densityResult);
+			}
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
