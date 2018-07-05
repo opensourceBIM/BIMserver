@@ -131,13 +131,36 @@ public class QueryBoundingBoxStackFrame extends DatabaseReadingStackFrame implem
 					}
 				}
 				if (inBoundingBox.isPartial()) {
-					if (
-					 (minX <= inBoundingBox.getX() + inBoundingBox.getWidth() && maxX >= inBoundingBox.getX()) &&
-			         (minY <= inBoundingBox.getY() + inBoundingBox.getHeight() && maxY >= inBoundingBox.getY()) &&
-			         (minZ <= inBoundingBox.getZ() + inBoundingBox.getDepth() && maxZ >= inBoundingBox.getZ())) {
-						
+//					if ((maxX >= inBoundingBox.getX() && inBoundingBox.getX() + inBoundingBox.getWidth() >= minX) &&
+//						(maxY >= inBoundingBox.getY() && inBoundingBox.getY() + inBoundingBox.getHeight() >= minY) &&
+//						(maxZ >= inBoundingBox.getZ() && inBoundingBox.getZ() + inBoundingBox.getDepth() >= minZ)) {
+//						
+//					} else {
+//						currentObject = null;
+//					}
+					if (minX >= inBoundingBox.getX() &&
+					minY >= inBoundingBox.getY() &&
+					minZ >= inBoundingBox.getZ() &&
+					maxX <= inBoundingBox.getX() + inBoundingBox.getWidth() &&
+					maxY <= inBoundingBox.getY() + inBoundingBox.getHeight() &&
+					maxZ <= inBoundingBox.getZ() + inBoundingBox.getDepth()) {
+						// OK
+					} else if (minX <= inBoundingBox.getX() &&
+							minY <= inBoundingBox.getY() &&
+							minZ <= inBoundingBox.getZ() &&
+							maxX >= inBoundingBox.getX() + inBoundingBox.getWidth() &&
+							maxY >= inBoundingBox.getY() + inBoundingBox.getHeight() &&
+							maxZ >= inBoundingBox.getZ() + inBoundingBox.getDepth()) {
+						// OK
 					} else {
-						currentObject = null;
+						if (
+							(minX <= inBoundingBox.getX() + inBoundingBox.getWidth() && maxX >= inBoundingBox.getX()) &&
+							(minY <= inBoundingBox.getY() + inBoundingBox.getHeight() && maxY >= inBoundingBox.getY()) &&
+							(minZ <= inBoundingBox.getZ() + inBoundingBox.getDepth() && maxZ >= inBoundingBox.getZ())) {
+							// OK
+						} else {
+							currentObject = null;
+						}
 					}
 				} else if (inBoundingBox.isUseCenterPoint()) {
 					double centerX = (minX + maxX) / 2f;
@@ -158,9 +181,29 @@ public class QueryBoundingBoxStackFrame extends DatabaseReadingStackFrame implem
 						minX > inBoundingBox.getX() &&
 						minY > inBoundingBox.getY() &&
 						minZ > inBoundingBox.getZ() &&
-						maxX < inBoundingBox.getX() + inBoundingBox.getWidth() &&
-						maxY < inBoundingBox.getY() + inBoundingBox.getHeight() &&
-						maxZ < inBoundingBox.getZ() + inBoundingBox.getDepth()) {
+						maxX <= inBoundingBox.getX() + inBoundingBox.getWidth() &&
+						maxY <= inBoundingBox.getY() + inBoundingBox.getHeight() &&
+						maxZ <= inBoundingBox.getZ() + inBoundingBox.getDepth()) {
+						if (inBoundingBox.isExcludeOctants()) {
+							for (int x=0; x<2; x++) {
+								for (int y=0; y<2; y++) {
+									for (int z=0; z<2; z++) {
+										if (
+											minX > inBoundingBox.getX() + (x * inBoundingBox.getWidth() / 2) &&
+											minY > inBoundingBox.getY() + (y * inBoundingBox.getHeight() / 2) &&
+											minZ > inBoundingBox.getZ() + (z * inBoundingBox.getDepth() / 2) &&
+											maxX < inBoundingBox.getX() + ((x == 0 ? 0.5f : 1f) * inBoundingBox.getWidth()) &&
+											maxY < inBoundingBox.getY() + ((y == 0 ? 0.5f : 1f) * inBoundingBox.getHeight()) &&
+											maxZ < inBoundingBox.getZ() + ((z == 0 ? 0.5f : 1f) * inBoundingBox.getDepth())) {
+											currentObject = null;
+											break;
+										}
+									}
+								}
+							}
+						} else {
+							// OK
+						}
 					} else {
 						currentObject = null;
 					}

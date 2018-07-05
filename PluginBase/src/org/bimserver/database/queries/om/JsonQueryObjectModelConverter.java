@@ -579,6 +579,9 @@ public class JsonQueryObjectModelConverter {
 				if (boundingBox.has("useCenterPoint")) {
 					inBoundingBox.setUseCenterPoint(boundingBox.get("useCenterPoint").asBoolean());
 				}
+				if (boundingBox.has("excludeOctants")) {
+					inBoundingBox.setExcludeOctants(boundingBox.get("excludeOctants").asBoolean());
+				}
 				queryPart.setInBoundingBox(inBoundingBox);
 			} else {
 				throw new QueryException("\"inBoundingBox\" should be of type object");

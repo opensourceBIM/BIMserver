@@ -35,10 +35,14 @@ public interface ObjectProvider {
 	HashMapVirtualObject next() throws BimserverDatabaseException;
 
 	ObjectProvider copy() throws IOException, QueryException;
+	
+	HashMapVirtualObject getByOid(long oid);
 
 	EClass getEClassForOid(long oid);
 
 	EClass getEClassForCid(short cid);
 	
 	ObjectNode getQueryNode();
+
+	void cache(HashMapVirtualObject object);
 }

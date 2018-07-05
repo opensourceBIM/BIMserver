@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.BimServer;
@@ -35,6 +36,7 @@ import org.bimserver.emf.MetaDataManager;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.plugins.serializers.ObjectProvider;
 import org.bimserver.shared.HashMapVirtualObject;
+import org.bimserver.shared.QueryContext;
 import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -94,6 +96,11 @@ public class QueryObjectProvider implements ObjectProvider {
 
 	public HashMapVirtualObject getFromCache(long oid) {
 		return databaseSession.getFromCache(oid);
+	}
+	
+	@Override
+	public HashMapVirtualObject getByOid(long oid) {
+		return getFromCache(oid);
 	}
 	
 	public QueryObjectProvider copy() throws IOException, QueryException {

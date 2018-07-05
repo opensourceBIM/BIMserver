@@ -28,6 +28,7 @@ public class InBoundingBox extends PartOfQuery {
 	private double depth;
 	private boolean partial;
 	private boolean useCenterPoint;
+	private boolean excludeOctants;
 	private Float densityLowerThreshold;
 	private Float densityUpperThreshold;
 
@@ -107,5 +108,13 @@ public class InBoundingBox extends PartOfQuery {
 
 	public void setUseCenterPoint(boolean useCenterPoint) {
 		this.useCenterPoint = useCenterPoint;
+	}
+
+	public boolean isExcludeOctants() {
+		return excludeOctants;
+	}
+
+	public void setExcludeOctants(boolean excludeOctants) {
+		this.excludeOctants = excludeOctants;
 	}
 }

@@ -69,4 +69,15 @@ public class ObjectProviderProxy implements ObjectProvider {
 	public ObjectNode getQueryNode() {
 		return objectProvider.getQueryNode();
 	}
+
+	@Override
+	public HashMapVirtualObject getByOid(long oid) {
+		return objectProvider.getByOid(oid);
+	}
+
+	@Override
+	public void cache(HashMapVirtualObject object) {
+		// TODO Auto-generated method stub
+		
+	}
 }
