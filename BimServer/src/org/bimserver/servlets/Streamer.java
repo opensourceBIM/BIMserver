@@ -122,7 +122,7 @@ public class Streamer implements EndPoint {
 								counter++;
 							} while (writeMessage);
 							long end = System.nanoTime();
-							LOGGER.info(counter + " messages written " + Formatters.bytesToString(bytes) + " in " + ((end - start) / 1000000) + " ms");
+//							LOGGER.info(counter + " messages written " + Formatters.bytesToString(bytes) + " in " + ((end - start) / 1000000) + " ms");
 						} catch (IOException e) {
 							LOGGER.error("", e);
 							// Probably closed/F5-ed browser

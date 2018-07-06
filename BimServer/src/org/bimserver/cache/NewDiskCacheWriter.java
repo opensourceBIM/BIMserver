@@ -54,7 +54,7 @@ public class NewDiskCacheWriter implements Writer, DiskCacheItem, Closeable {
 
 	@Override
 	public void close() throws IOException {
-		LOGGER.info("Renaming temp file " + tempFile.getFileName().toString() + " to " + file.getFileName().toString());
+//		LOGGER.info("Renaming temp file " + tempFile.getFileName().toString() + " to " + file.getFileName().toString());
 		outputStream.writeInt(-1);
 		outputStream.close();
 		if (Files.exists(tempFile)) {

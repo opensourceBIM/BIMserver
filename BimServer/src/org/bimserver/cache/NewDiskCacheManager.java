@@ -101,7 +101,7 @@ public class NewDiskCacheManager {
 				busyCaching.remove(downloadDescriptor.getCacheKey());
 				LOGGER.error("File " + file.getFileName().toString() + " not found in cache");
 			} else {
-				LOGGER.info("Reading from cache " + cacheKey);
+//				LOGGER.info("Reading from cache " + cacheKey);
 				return file;
 			}
 		}
@@ -111,7 +111,7 @@ public class NewDiskCacheManager {
 	public NewDiskCacheWriter startCachingWriter(DownloadDescriptor downloadDescriptor, MessagingStreamingSerializer messagingStreamingSerializer) {
 		try {
 			String cacheKey = downloadDescriptor.getCacheKey();
-			LOGGER.info("Start caching " + cacheKey);
+//			LOGGER.info("Start caching " + cacheKey);
 			NewDiskCacheWriter out = new NewDiskCacheWriter(this, cacheDir.resolve(cacheKey), downloadDescriptor, messagingStreamingSerializer);
 			synchronized (busyCaching) {
 				busyCaching.put(cacheKey, out);
@@ -130,7 +130,7 @@ public class NewDiskCacheManager {
 				if (busyCaching.containsKey(cacheKey)) {
 					throw new Exception("This key is already being cached");
 				}
-				LOGGER.info("Start caching " + cacheKey);
+//				LOGGER.info("Start caching " + cacheKey);
 				NewDiskCacheOutputStream out = new NewDiskCacheOutputStream(this, cacheDir.resolve(cacheKey), downloadDescriptor);
 				busyCaching.put(cacheKey, out);
 				return out;
@@ -162,7 +162,7 @@ public class NewDiskCacheManager {
 	public void doneGenerating(DiskCacheItem diskCacheItem) {
 		synchronized (busyCaching) {
 			String cacheKey = diskCacheItem.getDownloadDescriptor().getCacheKey();
-			LOGGER.info("Done caching " + cacheKey);
+//			LOGGER.info("Done caching " + cacheKey);
 			busyCaching.remove(cacheKey);
 			cachedFileNames.add(cacheKey);
 		}
@@ -170,7 +170,7 @@ public class NewDiskCacheManager {
 
 	public void remove(NewDiskCacheOutputStream diskCacheOutputStream) {
 		String cacheKey = diskCacheOutputStream.getDownloadDescriptor().getCacheKey();
-		LOGGER.info("Removing cache " + cacheKey);
+//		LOGGER.info("Removing cache " + cacheKey);
 		cachedFileNames.remove(cacheKey);
 		synchronized (busyCaching) {
 			busyCaching.remove(cacheKey);
