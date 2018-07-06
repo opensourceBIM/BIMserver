@@ -60,7 +60,6 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.DatabaseInformationCategory;
 import org.bimserver.models.store.DatabaseInformationItem;
-import org.bimserver.models.store.DensityCollection;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
@@ -86,6 +85,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EEnumImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -452,7 +452,8 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 				 */
 				int listSize = buffer.getInt();
 
-				AbstractEList<Object> list = (AbstractEList<Object>) idEObject.eGet(feature);
+				BasicEList<Object> list = (BasicEList<Object>) idEObject.eGet(feature);
+				list.grow(listSize);
 				for (int i = 0; i < listSize; i++) {
 					if (feature.getEAnnotation("twodimensionalarray") != null) {
 						IdEObjectImpl newObject = createInternal((EClass) feature.getEType(), query);
