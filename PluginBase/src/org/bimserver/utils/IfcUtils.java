@@ -447,7 +447,7 @@ public class IfcUtils {
 							IfcSIPrefix prefix = ifcSIUnit.getPrefix();
 							if (prefix != null) {
 								prefixFound = true;
-								lengthUnitPrefix = getLengthUnitPrefixMm(prefix);
+								lengthUnitPrefix = getLengthUnitPrefixMm(prefix.getName());
 								break;
 							}
 						}
@@ -460,58 +460,58 @@ public class IfcUtils {
 		return lengthUnitPrefix;
 	}
 
-	public static float getLengthUnitPrefixMm(IfcSIPrefix prefix) {
+	public static float getLengthUnitPrefixMm(String prefix) {
 		float lengthUnitPrefix = 1f;
 		switch (prefix) {
-		case EXA:
+		case "EXA":
 			lengthUnitPrefix = 1.0e18f;
 			break;
-		case PETA:
+		case "PETA":
 			lengthUnitPrefix = 1.0e15f;
 			break;
-		case TERA:
+		case "TERA":
 			lengthUnitPrefix = 1.0e12f;
 			break;
-		case GIGA:
+		case "GIGA":
 			lengthUnitPrefix = 1.0e9f;
 			break;
-		case MEGA:
+		case "MEGA":
 			lengthUnitPrefix = 1.0e6f;
 			break;
-		case KILO:
+		case "KILO":
 			lengthUnitPrefix = 1.0e3f;
 			break;
-		case HECTO:
+		case "HECTO":
 			lengthUnitPrefix = 1.0e2f;
 			break;
-		case DECA:
+		case "DECA":
 			lengthUnitPrefix = 1.0e1f;
 			break;
-		case DECI:
+		case "DECI":
 			lengthUnitPrefix = 1.0e-1f;
 			break;
-		case CENTI:
+		case "CENTI":
 			lengthUnitPrefix = 1.0e-2f;
 			break;
-		case MILLI:
+		case "MILLI":
 			lengthUnitPrefix = 1.0e-3f;
 			break;
-		case MICRO:
+		case "MICRO":
 			lengthUnitPrefix = 1.0e-6f;
 			break;
-		case NANO:
+		case "NANO":
 			lengthUnitPrefix = 1.0e-9f;
 			break;
-		case PICO:
+		case "PICO":
 			lengthUnitPrefix = 1.0e-12f;
 			break;
-		case FEMTO:
+		case "FEMTO":
 			lengthUnitPrefix = 1.0e-15f;
 			break;
-		case ATTO:
+		case "ATTO":
 			lengthUnitPrefix = 1.0e-18f;
 			break;
-		case NULL:
+		case "NULL":
 			break;
 		}
 		return lengthUnitPrefix;

@@ -79,6 +79,7 @@ import org.bimserver.shared.VirtualObject;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.Formatters;
 import org.bimserver.utils.IfcUtils;
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -569,8 +570,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 						// Meters, we need to multiply by 1000 to go to mm
 						return 1000f;
 					}
-					// TODO make this schema independent
-					return IfcUtils.getLengthUnitPrefixMm((IfcSIPrefix) prefix) * 1000f;
+					return IfcUtils.getLengthUnitPrefixMm(((Enumerator) prefix).getName()) * 1000f;
 				}
 			}
 			next = queryObjectProvider.next();
