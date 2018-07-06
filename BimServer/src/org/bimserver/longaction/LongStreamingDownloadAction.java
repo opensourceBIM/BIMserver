@@ -90,9 +90,12 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 			// TODO projectinfo should contain info for multiple projects/revisions, not just one (the first one atm)
 			
 			List<String> projectNames = new ArrayList<>();
+			
 			for (Long roid : roids) {
 				Revision revision = databaseSession.get(roid, OldQuery.getDefault());
-				ConcreteRevision concreteRevision = revision.getConcreteRevisions().get(0);
+				ConcreteRevision concreteRevision = revision.getLastConcreteRevision();
+				
+				// TODO this is not correct, the total bounds should be used of all roids (or the common parent should be used)
 				projectInfo.setBounds(getBimServer().getSConverter().convertToSObject(concreteRevision.getBounds()));
 				projectInfo.setBoundsUntranslated(getBimServer().getSConverter().convertToSObject(concreteRevision.getBoundsUntransformed()));
 				projectInfo.setMultiplierToMm(concreteRevision.getMultiplierToMm());
