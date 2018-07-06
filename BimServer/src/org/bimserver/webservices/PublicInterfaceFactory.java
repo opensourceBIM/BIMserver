@@ -51,18 +51,24 @@ public class PublicInterfaceFactory implements ServiceFactory {
 	
 	public synchronized ServiceMap get(String token, AccessMethod accessMethod) throws UserException {
 		try {
-			Authorization authorization = Authorization.fromToken(bimServer.getEncryptionKey(), token);
-			DatabaseSession session = bimServer.getDatabase().createSession();
-			try {
-				User user = session.get(authorization.getUoid(), OldQuery.getDefault());
-				if (user == null) {
-					throw new UserException("No user found with uoid " + authorization.getUoid());
+			Authorization authorization = bimServer.getAuthCache().getAuthorization(token);
+			if (authorization == null) {
+				authorization = Authorization.fromToken(bimServer.getEncryptionKey(), token);
+				// We do this on login as well, so no need to do for cached auth
+				// TODO When a user is being deleted, this auth cache should be updated accordingly
+				// TODO A logout method should be added
+				DatabaseSession session = bimServer.getDatabase().createSession();
+				try {
+					User user = session.get(authorization.getUoid(), OldQuery.getDefault());
+					if (user == null) {
+						throw new UserException("No user found with uoid " + authorization.getUoid());
+					}
+					if (user.getState() == ObjectState.DELETED) {
+						throw new UserException("User has been deleted");
+					}
+				} finally {
+					session.close();
 				}
-				if (user.getState() == ObjectState.DELETED) {
-					throw new UserException("User has been deleted");
-				}
-			} finally {
-				session.close();
 			}
 			return get(authorization, accessMethod);
 		} catch (Exception e) {

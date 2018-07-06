@@ -195,6 +195,7 @@ public class BimServer {
 	private MetricsRegistry metricsRegistry;
 	private RenderEnginePools renderEnginePools;
 	private MavenPluginRepository mavenPluginRepository;
+	private AuthCache authCache;
 
 	/**
 	 * Create a new BIMserver
@@ -640,6 +641,8 @@ public class BimServer {
 			schemaConverterManager.registerConverter(new Ifc2x3tc1ToIfc4SchemaConverterFactory());
 			schemaConverterManager.registerConverter(new Ifc4ToIfc2x3tc1SchemaConverterFactory());
 
+			authCache = new AuthCache(this);
+			
 			metricsRegistry = new MetricsRegistry();
 
 			Path mavenPath = config.getHomeDir().resolve("maven");
@@ -1484,5 +1487,9 @@ public class BimServer {
 
 	public void setEmbeddedWebServer(EmbeddedWebServerInterface embeddedWebServer) {
 		this.embeddedWebServer = embeddedWebServer;
+	}
+	
+	public AuthCache getAuthCache() {
+		return authCache;
 	}
 }
