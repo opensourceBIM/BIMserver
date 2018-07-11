@@ -58,6 +58,7 @@ import org.bimserver.database.RecordIterator;
 import org.bimserver.database.berkeley.BerkeleyKeyValueStore;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.database.migrations.InconsistentModelsException;
+import org.bimserver.database.queries.GeometryAccellerator;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
@@ -77,6 +78,7 @@ import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.ServerStarted;
 import org.bimserver.models.store.BooleanType;
+import org.bimserver.models.store.ByteArrayType;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DoubleType;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
@@ -196,6 +198,7 @@ public class BimServer {
 	private RenderEnginePools renderEnginePools;
 	private MavenPluginRepository mavenPluginRepository;
 	private AuthCache authCache;
+	private GeometryAccellerator geometryAccellerator;
 
 	/**
 	 * Create a new BIMserver
@@ -638,6 +641,8 @@ public class BimServer {
 			Path databaseDir = config.getHomeDir().resolve("database");
 			BerkeleyKeyValueStore keyValueStore = new BerkeleyKeyValueStore(databaseDir);
 
+			geometryAccellerator = new GeometryAccellerator(this);
+			
 			schemaConverterManager.registerConverter(new Ifc2x3tc1ToIfc4SchemaConverterFactory());
 			schemaConverterManager.registerConverter(new Ifc4ToIfc2x3tc1SchemaConverterFactory());
 
@@ -1038,6 +1043,11 @@ public class BimServer {
 			longType.setValue(((LongType) input).getValue());
 			session.store(longType);
 			return longType;
+		} else if (input instanceof ByteArrayType) {
+			ByteArrayType byteArrayType = session.create(ByteArrayType.class);
+			byteArrayType.setValue(((ByteArrayType) input).getValue());
+			session.store(byteArrayType);
+			return byteArrayType;
 		}
 		return null;
 	}

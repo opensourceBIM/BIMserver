@@ -25,7 +25,6 @@ import org.bimserver.models.geometry.Bounds;
 
 import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.Vector3f;
-import org.bimserver.shared.VirtualObject;
 
 public class GenerateGeometryResult {
 

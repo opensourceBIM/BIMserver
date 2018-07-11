@@ -11,8 +11,8 @@
   <genPackages prefix="Geometry" basePackage="org.bimserver.models" disposableProviderFactory="true"
       loadInitialization="true" ecorePackage="models.ecore#/0">
     <genClasses ecoreClass="models.ecore#/0/GeometryInfo">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryInfo/minBounds"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryInfo/maxBounds"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryInfo/bounds"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryInfo/boundsUntransformed"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/startVertex"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/startIndex"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/primitiveCount"/>
@@ -20,11 +20,19 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/transformation"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/area"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/volume"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/hasTransparency"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/ifcProductOid"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryInfo/boundsMm"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryInfo/boundsUntransformedMm"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/Vector3f">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector3f/x"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector3f/y"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector3f/z"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/Bounds">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Bounds/min"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Bounds/max"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/GeometryData">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/indices"/>
@@ -32,6 +40,17 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/normals"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/materials"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/materialIndices"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryData/color"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/hasTransparency"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/reused"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryData/mostUsedColor"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/Vector4f">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector4f/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector4f/y"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector4f/z"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector4f/w"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Ifc2x3tc1" basePackage="org.bimserver.models" disposableProviderFactory="true"
@@ -5606,6 +5625,7 @@
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcBuildingElementProxyTypeEnum/NOTDEFINED"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcBuildingElementProxyTypeEnum/PARTIAL"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcBuildingElementProxyTypeEnum/USERDEFINED"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcBuildingElementProxyTypeEnum/PROVISIONFORSPACE"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/2/IfcBuildingSystemTypeEnum">
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcBuildingSystemTypeEnum/NULL"/>
@@ -6305,7 +6325,7 @@
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/2/IfcExternalSpatialElementTypeEnum">
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcExternalSpatialElementTypeEnum/NULL"/>
-      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcExternalSpatialElementTypeEnum/NOTDEFIEND"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcExternalSpatialElementTypeEnum/NOTDEFINED"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcExternalSpatialElementTypeEnum/EXTERNAL"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcExternalSpatialElementTypeEnum/EXTERNAL_FIRE"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcExternalSpatialElementTypeEnum/EXTERNAL_WATER"/>
@@ -6775,6 +6795,12 @@
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcPlateTypeEnum/USERDEFINED"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcPlateTypeEnum/SHEET"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/2/IfcPreferredSurfaceCurveRepresentation">
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcPreferredSurfaceCurveRepresentation/NULL"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcPreferredSurfaceCurveRepresentation/PCURVE_S2"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcPreferredSurfaceCurveRepresentation/PCURVE_S1"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcPreferredSurfaceCurveRepresentation/CURVE3D"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/2/IfcProcedureTypeEnum">
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcProcedureTypeEnum/NULL"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcProcedureTypeEnum/CALIBRATION"/>
@@ -7060,26 +7086,30 @@
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/2/IfcSensorTypeEnum">
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/NULL"/>
-      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/HUMIDITYSENSOR"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/PHSENSOR"/>
-      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/PRESSURESENSOR"/>
-      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/RADIATIONSENSOR"/>
-      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/FIRESENSOR"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/USERDEFINED"/>
-      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/CONTACTSENSOR"/>
-      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/GASSENSOR"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/WINDSENSOR"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/HEATSENSOR"/>
-      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/IONCONCENTRATIONSENSOR"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/MOVEMENTSENSOR"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/NOTDEFINED"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/FROSTSENSOR"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/IDENTIFIERSENSOR"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/LEVELSENSOR"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/FLOWSENSOR"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/HUMIDITYSENSOR"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/PRESSURESENSOR"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/COSENSOR"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/RADIATIONSENSOR"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/FIRESENSOR"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/CONTACTSENSOR"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/GASSENSOR"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/IONCONCENTRATIONSENSOR"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/CO2SENSOR"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/RADIOACTIVITYSENSOR"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/LIGHTSENSOR"/>
-      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/LEVELSENSOR"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/SOUNDSENSOR"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/TEMPERATURESENSOR"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/CONDUCTANCESENSOR"/>
-      <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/FLOWSENSOR"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/MOISTURESENSOR"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/2/IfcSensorTypeEnum/SMOKESENSOR"/>
     </genEnums>
@@ -7789,12 +7819,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBSplineCurve/CurveForm"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBSplineCurve/ClosedCurve"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBSplineCurve/SelfIntersect"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBSplineCurve/UpperIndexOnControlPoints"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcBSplineCurveWithKnots">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBSplineCurveWithKnots/KnotMultiplicities"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBSplineCurveWithKnots/Knots"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBSplineCurveWithKnots/KnotsAsString"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBSplineCurveWithKnots/KnotSpec"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBSplineCurveWithKnots/UpperIndexOnKnots"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcBSplineSurface">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBSplineSurface/UDegree"/>
@@ -7804,6 +7836,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBSplineSurface/UClosed"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBSplineSurface/VClosed"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBSplineSurface/SelfIntersect"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBSplineSurface/UUpper"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBSplineSurface/VUpper"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcBSplineSurfaceWithKnots">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBSplineSurfaceWithKnots/UMultiplicities"/>
@@ -7813,6 +7847,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBSplineSurfaceWithKnots/VKnots"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBSplineSurfaceWithKnots/VKnotsAsString"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBSplineSurfaceWithKnots/KnotSpec"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBSplineSurfaceWithKnots/KnotVUpper"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBSplineSurfaceWithKnots/KnotUUpper"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcBeam">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBeam/PredefinedType"/>
@@ -7896,9 +7932,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBuilding/ElevationOfTerrainAsString"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcBuilding/BuildingAddress"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/2/IfcBuildingElement">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcBuildingElement/HasCoverings"/>
-    </genClasses>
+    <genClasses ecoreClass="models.ecore#/2/IfcBuildingElement"/>
     <genClasses ecoreClass="models.ecore#/2/IfcBuildingElementPart">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBuildingElementPart/PredefinedType"/>
     </genClasses>
@@ -7918,6 +7952,7 @@
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcBuildingSystem">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBuildingSystem/PredefinedType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBuildingSystem/LongName"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcBurner">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBurner/PredefinedType"/>
@@ -7966,7 +8001,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCartesianPoint/CoordinatesAsString"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCartesianPoint/Dim"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/2/IfcCartesianPointList"/>
+    <genClasses ecoreClass="models.ecore#/2/IfcCartesianPointList">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCartesianPointList/Dim"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/2/IfcCartesianPointList2D">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcCartesianPointList2D/CoordList"/>
+    </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcCartesianPointList3D">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcCartesianPointList3D/CoordList"/>
     </genClasses>
@@ -7977,11 +8017,15 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCartesianTransformationOperator/Scale"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCartesianTransformationOperator/ScaleAsString"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCartesianTransformationOperator/Dim"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCartesianTransformationOperator/Scl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCartesianTransformationOperator/SclAsString"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcCartesianTransformationOperator2D"/>
     <genClasses ecoreClass="models.ecore#/2/IfcCartesianTransformationOperator2DnonUniform">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCartesianTransformationOperator2DnonUniform/Scale2"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCartesianTransformationOperator2DnonUniform/Scale2AsString"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCartesianTransformationOperator2DnonUniform/Scl2"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCartesianTransformationOperator2DnonUniform/Scl2AsString"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcCartesianTransformationOperator3D">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcCartesianTransformationOperator3D/Axis3"/>
@@ -7991,6 +8035,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCartesianTransformationOperator3DnonUniform/Scale2AsString"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCartesianTransformationOperator3DnonUniform/Scale3"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCartesianTransformationOperator3DnonUniform/Scale3AsString"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCartesianTransformationOperator3DnonUniform/Scl3"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCartesianTransformationOperator3DnonUniform/Scl3AsString"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCartesianTransformationOperator3DnonUniform/Scl2"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCartesianTransformationOperator3DnonUniform/Scl2AsString"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcCenterLineProfileDef">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCenterLineProfileDef/Thickness"/>
@@ -8086,6 +8134,8 @@
     <genClasses ecoreClass="models.ecore#/2/IfcCompositeCurve">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcCompositeCurve/Segments"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCompositeCurve/SelfIntersect"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCompositeCurve/ClosedCurve"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCompositeCurve/NSegments"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcCompositeCurveOnSurface"/>
     <genClasses ecoreClass="models.ecore#/2/IfcCompositeCurveSegment">
@@ -8233,6 +8283,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCoordinateReferenceSystem/Description"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCoordinateReferenceSystem/GeodeticDatum"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCoordinateReferenceSystem/VerticalDatum"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcCoordinateReferenceSystem/HasCoordinateOperation"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcCostItem">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcCostItem/PredefinedType"/>
@@ -8509,6 +8560,7 @@
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcEdgeLoop">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcEdgeLoop/EdgeList"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcEdgeLoop/Ne"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcElectricAppliance">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcElectricAppliance/PredefinedType"/>
@@ -8559,6 +8611,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcElement/ProvidesBoundaries"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcElement/ConnectedFrom"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcElement/ContainedInStructure"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcElement/HasCoverings"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcElementAssembly">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcElementAssembly/AssemblyPlace"/>
@@ -8807,6 +8860,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcGeometricRepresentationContext/WorldCoordinateSystem"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcGeometricRepresentationContext/TrueNorth"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcGeometricRepresentationContext/HasSubContexts"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcGeometricRepresentationContext/HasCoordinateOperation"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcGeometricRepresentationItem"/>
     <genClasses ecoreClass="models.ecore#/2/IfcGeometricRepresentationSubContext">
@@ -8881,9 +8935,22 @@
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcIndexedColourMap">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcIndexedColourMap/MappedTo"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcIndexedColourMap/Overrides"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcIndexedColourMap/Opacity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcIndexedColourMap/OpacityAsString"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcIndexedColourMap/Colours"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcIndexedColourMap/ColourIndex"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/2/IfcIndexedPolyCurve">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcIndexedPolyCurve/Points"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcIndexedPolyCurve/Segments"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcIndexedPolyCurve/SelfIntersect"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/2/IfcIndexedPolygonalFace">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcIndexedPolygonalFace/CoordIndex"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcIndexedPolygonalFace/ToFaceSet"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/2/IfcIndexedPolygonalFaceWithVoids">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcIndexedPolygonalFaceWithVoids/InnerCoordIndices"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcIndexedTextureMap">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcIndexedTextureMap/MappedTo"/>
@@ -8898,6 +8965,7 @@
     <genClasses ecoreClass="models.ecore#/2/IfcInterceptorType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcInterceptorType/PredefinedType"/>
     </genClasses>
+    <genClasses ecoreClass="models.ecore#/2/IfcIntersectionCurve"/>
     <genClasses ecoreClass="models.ecore#/2/IfcInventory">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcInventory/PredefinedType"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcInventory/Jurisdiction"/>
@@ -9098,7 +9166,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcMaterialLayer/Description"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcMaterialLayer/Category"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcMaterialLayer/Priority"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcMaterialLayer/PriorityAsString"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcMaterialLayer/ToMaterialLayerSet"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcMaterialLayerSet">
@@ -9131,7 +9198,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcMaterialProfile/Material"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcMaterialProfile/Profile"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcMaterialProfile/Priority"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcMaterialProfile/PriorityAsString"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcMaterialProfile/Category"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcMaterialProfile/ToMaterialProfileSet"/>
     </genClasses>
@@ -9427,6 +9493,11 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcPolygonalBoundedHalfSpace/Position"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcPolygonalBoundedHalfSpace/PolygonalBoundary"/>
     </genClasses>
+    <genClasses ecoreClass="models.ecore#/2/IfcPolygonalFaceSet">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcPolygonalFaceSet/Closed"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcPolygonalFaceSet/Faces"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcPolygonalFaceSet/PnIndex"/>
+    </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcPolyline">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcPolyline/Points"/>
     </genClasses>
@@ -9530,6 +9601,8 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcProperty/PropertyForDependance"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcProperty/PropertyDependsOn"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcProperty/PartOfComplex"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcProperty/HasConstraints"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcProperty/HasApprovals"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcPropertyAbstraction">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcPropertyAbstraction/HasExternalReferences"/>
@@ -9671,9 +9744,13 @@
     <genClasses ecoreClass="models.ecore#/2/IfcRationalBSplineCurveWithKnots">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcRationalBSplineCurveWithKnots/WeightsData"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcRationalBSplineCurveWithKnots/WeightsDataAsString"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcRationalBSplineCurveWithKnots/Weights"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcRationalBSplineCurveWithKnots/WeightsAsString"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcRationalBSplineSurfaceWithKnots">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcRationalBSplineSurfaceWithKnots/WeightsData"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcRationalBSplineSurfaceWithKnots/Weights"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcRationalBSplineSurfaceWithKnots/WeightsAsString"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcRectangleHollowProfileDef">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcRectangleHollowProfileDef/WallThickness"/>
@@ -10118,6 +10195,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcSchedulingTime/DataOrigin"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcSchedulingTime/UserDefinedDataOrigin"/>
     </genClasses>
+    <genClasses ecoreClass="models.ecore#/2/IfcSeamCurve"/>
     <genClasses ecoreClass="models.ecore#/2/IfcSectionProperties">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcSectionProperties/SectionType"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcSectionProperties/StartProfile"/>
@@ -10252,6 +10330,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcSphere/Radius"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcSphere/RadiusAsString"/>
     </genClasses>
+    <genClasses ecoreClass="models.ecore#/2/IfcSphericalSurface">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcSphericalSurface/Radius"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcSphericalSurface/RadiusAsString"/>
+    </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcStackTerminal">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcStackTerminal/PredefinedType"/>
     </genClasses>
@@ -10262,7 +10344,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcStair/PredefinedType"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcStairFlight">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcStairFlight/NumberOfRiser"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcStairFlight/NumberOfRisers"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcStairFlight/NumberOfTreads"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcStairFlight/RiserHeight"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcStairFlight/RiserHeightAsString"/>
@@ -10455,6 +10537,11 @@
     <genClasses ecoreClass="models.ecore#/2/IfcSurface">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcSurface/Dim"/>
     </genClasses>
+    <genClasses ecoreClass="models.ecore#/2/IfcSurfaceCurve">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcSurfaceCurve/Curve3D"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcSurfaceCurve/AssociatedGeometry"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcSurfaceCurve/MasterRepresentation"/>
+    </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcSurfaceCurveSweptAreaSolid">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcSurfaceCurveSweptAreaSolid/Directrix"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcSurfaceCurveSweptAreaSolid/StartParam"/>
@@ -10499,8 +10586,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcSurfaceStyleRefraction/DispersionFactorAsString"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcSurfaceStyleRendering">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcSurfaceStyleRendering/Transparency"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcSurfaceStyleRendering/TransparencyAsString"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcSurfaceStyleRendering/DiffuseColour"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcSurfaceStyleRendering/TransmissionColour"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcSurfaceStyleRendering/DiffuseTransmissionColour"/>
@@ -10511,6 +10596,8 @@
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcSurfaceStyleShading">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcSurfaceStyleShading/SurfaceColour"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcSurfaceStyleShading/Transparency"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcSurfaceStyleShading/TransparencyAsString"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcSurfaceStyleWithTextures">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcSurfaceStyleWithTextures/Textures"/>
@@ -10586,6 +10673,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcTable/Name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcTable/Rows"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcTable/Columns"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcTable/NumberOfCellsInRow"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcTable/NumberOfDataRows"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcTable/NumberOfHeadings"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcTableColumn">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcTableColumn/Identifier"/>
@@ -10597,7 +10687,6 @@
     <genClasses ecoreClass="models.ecore#/2/IfcTableRow">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcTableRow/RowCells"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcTableRow/IsHeading"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcTableRow/OfTable"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcTank">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcTank/PredefinedType"/>
@@ -10634,7 +10723,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcTaskTime/CompletionAsString"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcTaskTimeRecurring">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcTaskTimeRecurring/Recurrance"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcTaskTimeRecurring/Recurrence"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcTaskType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcTaskType/PredefinedType"/>
@@ -10677,15 +10766,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcTendonType/NominalDiameterAsString"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcTendonType/CrossSectionArea"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcTendonType/CrossSectionAreaAsString"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcTendonType/SheethDiameter"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcTendonType/SheethDiameterAsString"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcTendonType/SheathDiameter"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcTendonType/SheathDiameterAsString"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcTessellatedFaceSet">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcTessellatedFaceSet/Coordinates"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcTessellatedFaceSet/Normals"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcTessellatedFaceSet/Closed"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcTessellatedFaceSet/HasColours"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcTessellatedFaceSet/HasTextures"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcTessellatedFaceSet/Dim"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcTessellatedItem"/>
     <genClasses ecoreClass="models.ecore#/2/IfcTextLiteral">
@@ -10762,6 +10850,12 @@
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcTopologicalRepresentationItem"/>
     <genClasses ecoreClass="models.ecore#/2/IfcTopologyRepresentation"/>
+    <genClasses ecoreClass="models.ecore#/2/IfcToroidalSurface">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcToroidalSurface/MajorRadius"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcToroidalSurface/MajorRadiusAsString"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcToroidalSurface/MinorRadius"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcToroidalSurface/MinorRadiusAsString"/>
+    </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcTransformer">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcTransformer/PredefinedType"/>
     </genClasses>
@@ -10785,8 +10879,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcTrapeziumProfileDef/TopXOffsetAsString"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcTriangulatedFaceSet">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcTriangulatedFaceSet/Normals"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcTriangulatedFaceSet/Closed"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcTriangulatedFaceSet/CoordIndex"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcTriangulatedFaceSet/NormalIndex"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcTriangulatedFaceSet/PnIndex"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcTriangulatedFaceSet/NumberOfTriangles"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcTrimmedCurve">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/IfcTrimmedCurve/BasisCurve"/>
@@ -11000,6 +11097,9 @@
     <genClasses ecoreClass="models.ecore#/2/IfcZone">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcZone/LongName"/>
     </genClasses>
+    <genClasses ecoreClass="models.ecore#/2/IfcStrippedOptional">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcStrippedOptional/wrappedValue"/>
+    </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcAbsorbedDoseMeasure">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcAbsorbedDoseMeasure/wrappedValue"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcAbsorbedDoseMeasure/wrappedValueAsString"/>
@@ -11023,6 +11123,9 @@
     <genClasses ecoreClass="models.ecore#/2/IfcAreaMeasure">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcAreaMeasure/wrappedValue"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcAreaMeasure/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/2/IfcBinary">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBinary/wrappedValue"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcBoolean">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcBoolean/wrappedValue"/>
@@ -11443,6 +11546,7 @@
     <genClasses ecoreClass="models.ecore#/2/IfcLanguageId"/>
     <genClasses ecoreClass="models.ecore#/2/IfcNonNegativeLengthMeasure"/>
     <genClasses ecoreClass="models.ecore#/2/IfcNormalisedRatioMeasure"/>
+    <genClasses ecoreClass="models.ecore#/2/IfcPositiveInteger"/>
     <genClasses ecoreClass="models.ecore#/2/IfcPositiveLengthMeasure"/>
     <genClasses ecoreClass="models.ecore#/2/IfcPositivePlaneAngleMeasure"/>
     <genClasses ecoreClass="models.ecore#/2/IfcPositiveRatioMeasure"/>
@@ -11494,6 +11598,7 @@
     <genClasses image="false" ecoreClass="models.ecore#/2/IfcResourceObjectSelect"/>
     <genClasses image="false" ecoreClass="models.ecore#/2/IfcResourceSelect"/>
     <genClasses image="false" ecoreClass="models.ecore#/2/IfcRotationalStiffnessSelect"/>
+    <genClasses image="false" ecoreClass="models.ecore#/2/IfcSegmentIndexSelect"/>
     <genClasses image="false" ecoreClass="models.ecore#/2/IfcShell"/>
     <genClasses image="false" ecoreClass="models.ecore#/2/IfcSimpleValue"/>
     <genClasses image="false" ecoreClass="models.ecore#/2/IfcSizeSelect"/>
@@ -11521,8 +11626,8 @@
     <genClasses ecoreClass="models.ecore#/2/ListOfIfcNormalisedRatioMeasure">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/ListOfIfcNormalisedRatioMeasure/List"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/2/ListOfEInt">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ListOfEInt/List"/>
+    <genClasses ecoreClass="models.ecore#/2/ListOfELong">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ListOfELong/List"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/ListOfEDouble">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ListOfEDouble/List"/>
@@ -11663,15 +11768,11 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/4/ServerState">
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/ServerState/UNDEFINED"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/ServerState/NOT_SETUP"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/ServerState/SETUP"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/ServerState/MIGRATION_REQUIRED"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/ServerState/MIGRATION_IMPOSSIBLE"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/ServerState/FATAL_ERROR"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/ServerState/RUNNING"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/4/ExtendedDataSchemaType">
-      <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/ExtendedDataSchemaType/XSD"/>
-      <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/ExtendedDataSchemaType/PDF"/>
-      <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/ExtendedDataSchemaType/TXT"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/4/Trigger">
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/Trigger/NEW_REVISION"/>
@@ -11723,6 +11824,30 @@
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/SmtpProtocol/SMTPS"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/SmtpProtocol/STARTTLS"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/4/PluginBundleType">
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/PluginBundleType/MAVEN"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/PluginBundleType/GITHUB"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/PluginBundleType/LOCAL"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/PluginBundleType/LOCAL_DEV"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/4/PluginType">
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/PluginType/SERIALIZER"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/PluginType/DESERIALIZER"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/PluginType/RENDER_ENGINE"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/PluginType/QUERY_ENGINE"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/PluginType/OBJECT_IDM"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/PluginType/WEB_MODULE"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/PluginType/MODEL_MERGER"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/PluginType/MODEL_COMPARE"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/PluginType/MODEL_CHECKER"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/PluginType/STILL_IMAGE_RENDER"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/PluginType/SERVICE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/4/ServiceStatus">
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/ServiceStatus/NEW"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/ServiceStatus/AUTHENTICATED"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/ServiceStatus/NO_AUTHENTICATION"/>
+    </genEnums>
     <genDataTypes ecoreDataType="models.ecore#/4/DataHandler"/>
     <genClasses ecoreClass="models.ecore#/4/Project">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Project/id"/>
@@ -11747,6 +11872,8 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/Project/modelCheckers"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Project/schema"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Project/sendEmailOnNewRevision"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/Project/newServices"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Project/checkinInProgress"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/4/User">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/User/name"/>
@@ -11768,6 +11895,8 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/User/extendedData"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/User/services"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/User/logs"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/User/oAuthAuthorizationCodes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/User/oAuthIssuedAuthorizationCodes"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/4/Revision">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Revision/id"/>
@@ -11786,6 +11915,11 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/Revision/logs"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/Revision/service"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Revision/hasGeometry"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/Revision/bounds"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/Revision/boundsUntransformed"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/Revision/servicesLinked"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/Revision/densityCollection"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Revision/nrPrimitives"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/4/ConcreteRevision">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ConcreteRevision/id"/>
@@ -11799,9 +11933,11 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/ConcreteRevision/summary"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/ConcreteRevision/user"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/ConcreteRevision/ifcHeader"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/ConcreteRevision/minBounds"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/ConcreteRevision/maxBounds"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/ConcreteRevision/bounds"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/ConcreteRevision/boundsUntransformed"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ConcreteRevision/oidCounters"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ConcreteRevision/multiplierToMm"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/ConcreteRevision/densityCollection"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/4/GeoTag">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/GeoTag/enabled"/>
@@ -11848,15 +11984,22 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ServerSettings/reuseGeometry"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ServerSettings/allowCreateValidatedUser"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ServerSettings/renderEngineProcesses"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ServerSettings/pluginStrictVersionChecking"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ServerSettings/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ServerSettings/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ServerSettings/icon"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ServerSettings/storeLastLogin"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ServerSettings/storeServiceRuns"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ServerSettings/optimizeMappedItems"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/4/UserSettings">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/UserSettings/serializers"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/UserSettings/objectIDMs"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/UserSettings/renderEngines"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/UserSettings/deserializers"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/UserSettings/queryengines"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/UserSettings/modelmergers"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/UserSettings/modelcompares"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/UserSettings/queryEngines"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/UserSettings/modelMergers"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/UserSettings/modelCompares"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/UserSettings/defaultModelMerger"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/UserSettings/defaultModelCompare"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/UserSettings/defaultQueryEngine"/>
@@ -11864,7 +12007,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/UserSettings/defaultSerializer"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/UserSettings/defaultObjectIDM"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/UserSettings/services"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/UserSettings/messagingSerializerPlugins"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/4/PluginConfiguration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginConfiguration/name"/>
@@ -11894,6 +12036,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/DownloadResult/projectName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/DownloadResult/revisionNr"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/DownloadResult/file"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/DownloadResult/serializerOid"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/4/CheckoutResult"/>
     <genClasses ecoreClass="models.ecore#/4/DataValue">
@@ -11951,17 +12094,17 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/DatabaseInformation/categories"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/4/PluginDescriptor">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginDescriptor/simpleName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginDescriptor/defaultName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginDescriptor/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginDescriptor/pluginClassName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginDescriptor/description"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginDescriptor/location"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginDescriptor/enabled"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginDescriptor/pluginInterfaceClassName"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/PluginDescriptor/configurations"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginDescriptor/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginDescriptor/installForNewUsers"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/PluginDescriptor/pluginBundleVersion"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/4/SerializerPluginDescriptor"/>
-    <genClasses ecoreClass="models.ecore#/4/DeserializerPluginDescriptor"/>
     <genClasses ecoreClass="models.ecore#/4/RevisionSummaryType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/RevisionSummaryType/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/RevisionSummaryType/count"/>
@@ -12021,26 +12164,25 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Version/major"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Version/minor"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Version/revision"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Version/fullString"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Version/date"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Version/downloadUrl"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Version/supportUrl"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Version/supportEmail"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/4/RenderEnginePluginDescriptor"/>
     <genClasses ecoreClass="models.ecore#/4/File">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/File/data"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/File/filename"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/File/mime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/File/size"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/4/ExtendedDataSchema">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ExtendedDataSchema/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ExtendedDataSchema/url"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ExtendedDataSchema/namespace"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ExtendedDataSchema/contentType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ExtendedDataSchema/description"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/ExtendedDataSchema/file"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ExtendedDataSchema/size"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ExtendedDataSchema/validate"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ExtendedDataSchema/type"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/ExtendedDataSchema/users"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/ExtendedDataSchema/extendedData"/>
     </genClasses>
@@ -12055,19 +12197,15 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/ExtendedData/revision"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/ExtendedData/project"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/4/QueryEnginePluginDescriptor"/>
     <genClasses ecoreClass="models.ecore#/4/QueryEnginePluginConfiguration">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/QueryEnginePluginConfiguration/userSettings"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/4/WebModulePluginDescriptor"/>
     <genClasses ecoreClass="models.ecore#/4/WebModulePluginConfiguration">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/WebModulePluginConfiguration/serverSettings"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/4/ModelMergerPluginDescriptor"/>
     <genClasses ecoreClass="models.ecore#/4/ModelMergerPluginConfiguration">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/ModelMergerPluginConfiguration/userSettings"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/4/ModelComparePluginDescriptor"/>
     <genClasses ecoreClass="models.ecore#/4/ModelComparePluginConfiguration">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/ModelComparePluginConfiguration/userSettings"/>
     </genClasses>
@@ -12093,6 +12231,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ServiceDescriptor/companyUrl"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ServiceDescriptor/tokenUrl"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ServiceDescriptor/newProfileUrl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ServiceDescriptor/registerUrl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ServiceDescriptor/authorizeUrl"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/4/Service">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Service/name"/>
@@ -12121,7 +12261,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Token/tokenString"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Token/expires"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/4/ServicePluginDescriptor"/>
     <genClasses ecoreClass="models.ecore#/4/InternalServicePluginConfiguration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/InternalServicePluginConfiguration/remoteAccessible"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/InternalServicePluginConfiguration/userSettings"/>
@@ -12167,6 +12306,7 @@
     </genClasses>
     <genClasses ecoreClass="models.ecore#/4/ParameterDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ParameterDefinition/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ParameterDefinition/identifier"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ParameterDefinition/required"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ParameterDefinition/description"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/ParameterDefinition/type"/>
@@ -12197,6 +12337,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/ArrayType/values"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/4/Parameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Parameter/identifier"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Parameter/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/Parameter/value"/>
     </genClasses>
@@ -12300,10 +12441,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ModelCheckerInstance/valid"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ModelCheckerInstance/modelCheckerPluginClassName"/>
     </genClasses>
-    <genClasses ecoreClass="models.ecore#/4/ModelCheckerPluginDescriptor"/>
-    <genClasses ecoreClass="models.ecore#/4/MessagingSerializerPluginConfiguration">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/MessagingSerializerPluginConfiguration/userSettings"/>
-    </genClasses>
+    <genClasses ecoreClass="models.ecore#/4/MessagingSerializerPluginConfiguration"/>
     <genClasses ecoreClass="models.ecore#/4/Metrics">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/Metrics/interfaces"/>
     </genClasses>
@@ -12318,6 +12456,111 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/MethodMetric/averageMs"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/MethodMetric/shortestMs"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/MethodMetric/longestMs"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/4/PluginBundleVersion">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginBundleVersion/version"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginBundleVersion/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginBundleVersion/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginBundleVersion/mismatch"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginBundleVersion/repository"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginBundleVersion/groupId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginBundleVersion/artifactId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginBundleVersion/icon"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginBundleVersion/organization"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginBundleVersion/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginBundleVersion/date"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/4/PluginBundle">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginBundle/organization"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginBundle/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/PluginBundle/latestVersion"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/PluginBundle/availableVersions"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/PluginBundle/installedVersion"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/4/PluginInformation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginInformation/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginInformation/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginInformation/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginInformation/enabled"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginInformation/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginInformation/installForAllUsers"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginInformation/installForNewUsers"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/4/OAuthServer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/OAuthServer/registrationUrl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/OAuthServer/clientId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/OAuthServer/clientSecret"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/OAuthServer/clientName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/OAuthServer/clientIcon"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/OAuthServer/clientUrl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/OAuthServer/clientDescription"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/OAuthServer/redirectUrl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/OAuthServer/expiresAt"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/OAuthServer/issuedAt"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/OAuthServer/incoming"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/OAuthServer/apiUrl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/OAuthServer/registrationEndpoint"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/4/OAuthAuthorizationCode">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/OAuthAuthorizationCode/oauthServer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/OAuthAuthorizationCode/code"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/OAuthAuthorizationCode/authorization"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/OAuthAuthorizationCode/user"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/4/Authorization"/>
+    <genClasses ecoreClass="models.ecore#/4/SingleProjectAuthorization">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/SingleProjectAuthorization/project"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/4/NewServiceDescriptor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/NewServiceDescriptor/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/NewServiceDescriptor/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/NewServiceDescriptor/provider"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/NewServiceDescriptor/authorizationUrl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/NewServiceDescriptor/tokenUrl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/NewServiceDescriptor/resourceUrl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/NewServiceDescriptor/registerUrl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/NewServiceDescriptor/inputs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/NewServiceDescriptor/outputs"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/4/FormatSerializerMap">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/FormatSerializerMap/format"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/FormatSerializerMap/serializers"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/4/Action"/>
+    <genClasses ecoreClass="models.ecore#/4/StoreExtendedData"/>
+    <genClasses ecoreClass="models.ecore#/4/CheckinRevision">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/CheckinRevision/project"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/4/NewService">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/NewService/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/NewService/provider"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/NewService/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/NewService/authorizationUrl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/NewService/tokenUrl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/NewService/resourceUrl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/NewService/registerUrl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/NewService/input"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/NewService/oauthCode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/NewService/status"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/NewService/serializer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/NewService/output"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/NewService/action"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/NewService/accessToken"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/NewService/project"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/NewService/stateJson"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/4/RunServiceAuthorization">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/RunServiceAuthorization/service"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/4/DensityCollection">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/DensityCollection/densities"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/4/Density">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Density/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Density/geometryInfoId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Density/triangles"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Density/volume"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Density/density"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

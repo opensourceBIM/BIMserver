@@ -48,6 +48,8 @@ public class SRevision implements SDataBase
 	private List<Long> logs = new ArrayList<Long>();
 	private long serviceId = -1;
 	private boolean hasGeometry;
+	private SBounds bounds;
+	private SBounds boundsUntransformed;
 	private List<Long> servicesLinked = new ArrayList<Long>();
 	private long densityCollectionId = -1;
 	private long nrPrimitives;
@@ -125,6 +127,12 @@ public class SRevision implements SDataBase
 		}
 		if (sField.getName().equals("hasGeometry")) {
 			return isHasGeometry();
+		}
+		if (sField.getName().equals("bounds")) {
+			return getBounds();
+		}
+		if (sField.getName().equals("boundsUntransformed")) {
+			return getBoundsUntransformed();
 		}
 		if (sField.getName().equals("servicesLinked")) {
 			return getServicesLinked();
@@ -208,6 +216,14 @@ public class SRevision implements SDataBase
 		}
 		if (sField.getName().equals("hasGeometry")) {
 			setHasGeometry((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("bounds")) {
+			setBounds((SBounds)val);
+			return;
+		}
+		if (sField.getName().equals("boundsUntransformed")) {
+			setBoundsUntransformed((SBounds)val);
 			return;
 		}
 		if (sField.getName().equals("servicesLinked")) {
@@ -360,6 +376,24 @@ public class SRevision implements SDataBase
 	public void setHasGeometry(boolean hasGeometry) {
 		this.hasGeometry = hasGeometry;
 	}
+	
+	public SBounds getBounds() {
+		return bounds;
+	}
+
+	public void setBounds(SBounds bounds) {
+		this.bounds = bounds;
+	}
+	
+	
+	public SBounds getBoundsUntransformed() {
+		return boundsUntransformed;
+	}
+
+	public void setBoundsUntransformed(SBounds boundsUntransformed) {
+		this.boundsUntransformed = boundsUntransformed;
+	}
+	
 	
 	public List<Long> getServicesLinked() {
 		return servicesLinked;

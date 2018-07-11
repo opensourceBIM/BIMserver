@@ -40,6 +40,7 @@ public class Step0013 extends Migration {
 		schema.createEPackage("geometry");
 		
 		EClass concreteRevisionClass = schema.getEClass("store", "ConcreteRevision");
+		EClass revisionClass = schema.getEClass("store", "Revision");
 		
 		EClass geometryInfo = schema.createEClass("geometry", "GeometryInfo");
 		EClass vector3f = schema.createEClass("geometry", "Vector3f");
@@ -78,7 +79,17 @@ public class Step0013 extends Migration {
 		concreteRevisionBoundsUntransformed.getEAnnotations().add(createDbEmbedReferenceAnnotation());
 		concreteRevisionBoundsUntransformed.getEAnnotations().add(createEmbedsReferenceAnnotation());
 		concreteRevisionBoundsUntransformed.getEAnnotations().add(createHiddenAnnotation());
-		
+
+		EReference revisionBounds = schema.createEReference(revisionClass, "bounds", bounds, Multiplicity.SINGLE);
+		revisionBounds.getEAnnotations().add(createDbEmbedReferenceAnnotation());
+		revisionBounds.getEAnnotations().add(createEmbedsReferenceAnnotation());
+		revisionBounds.getEAnnotations().add(createHiddenAnnotation());
+
+		EReference revisionBoundsUntransformed = schema.createEReference(revisionClass, "boundsUntransformed", bounds, Multiplicity.SINGLE);
+		revisionBoundsUntransformed.getEAnnotations().add(createDbEmbedReferenceAnnotation());
+		revisionBoundsUntransformed.getEAnnotations().add(createEmbedsReferenceAnnotation());
+		revisionBoundsUntransformed.getEAnnotations().add(createHiddenAnnotation());
+
 		vector3f.getEAnnotations().add(createHiddenAnnotation());
 		geometryInfo.getEAnnotations().add(createHiddenAnnotation());
 		schema.createEAttribute(geometryInfo, "startVertex", EcorePackage.eINSTANCE.getEIntegerObject(), Multiplicity.SINGLE);

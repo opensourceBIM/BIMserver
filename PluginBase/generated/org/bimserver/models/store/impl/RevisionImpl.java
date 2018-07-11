@@ -36,6 +36,7 @@ package org.bimserver.models.store.impl;
 import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.models.geometry.Bounds;
 import org.bimserver.models.log.RevisionRelated;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
@@ -75,6 +76,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getLogs <em>Logs</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getService <em>Service</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#isHasGeometry <em>Has Geometry</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getBounds <em>Bounds</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getBoundsUntransformed <em>Bounds Untransformed</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getServicesLinked <em>Services Linked</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getDensityCollection <em>Density Collection</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getNrPrimitives <em>Nr Primitives</em>}</li>
@@ -366,6 +369,42 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 */
 	public void setHasGeometry(boolean newHasGeometry) {
 		eSet(StorePackage.Literals.REVISION__HAS_GEOMETRY, newHasGeometry);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Bounds getBounds() {
+		return (Bounds) eGet(StorePackage.Literals.REVISION__BOUNDS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBounds(Bounds newBounds) {
+		eSet(StorePackage.Literals.REVISION__BOUNDS, newBounds);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Bounds getBoundsUntransformed() {
+		return (Bounds) eGet(StorePackage.Literals.REVISION__BOUNDS_UNTRANSFORMED, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBoundsUntransformed(Bounds newBoundsUntransformed) {
+		eSet(StorePackage.Literals.REVISION__BOUNDS_UNTRANSFORMED, newBoundsUntransformed);
 	}
 
 	/**

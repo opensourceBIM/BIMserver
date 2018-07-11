@@ -686,13 +686,31 @@ public interface StorePackage extends EPackage {
 	int REVISION__HAS_GEOMETRY = 15;
 
 	/**
+	 * The feature id for the '<em><b>Bounds</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION__BOUNDS = 16;
+
+	/**
+	 * The feature id for the '<em><b>Bounds Untransformed</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION__BOUNDS_UNTRANSFORMED = 17;
+
+	/**
 	 * The feature id for the '<em><b>Services Linked</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION__SERVICES_LINKED = 16;
+	int REVISION__SERVICES_LINKED = 18;
 
 	/**
 	 * The feature id for the '<em><b>Density Collection</b></em>' reference.
@@ -701,7 +719,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION__DENSITY_COLLECTION = 17;
+	int REVISION__DENSITY_COLLECTION = 19;
 
 	/**
 	 * The feature id for the '<em><b>Nr Primitives</b></em>' attribute.
@@ -710,7 +728,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION__NR_PRIMITIVES = 18;
+	int REVISION__NR_PRIMITIVES = 20;
 
 	/**
 	 * The number of structural features of the '<em>Revision</em>' class.
@@ -719,7 +737,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION_FEATURE_COUNT = 19;
+	int REVISION_FEATURE_COUNT = 21;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ConcreteRevisionImpl <em>Concrete Revision</em>}' class.
@@ -8148,6 +8166,28 @@ public interface StorePackage extends EPackage {
 	EAttribute getRevision_HasGeometry();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Revision#getBounds <em>Bounds</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Bounds</em>'.
+	 * @see org.bimserver.models.store.Revision#getBounds()
+	 * @see #getRevision()
+	 * @generated
+	 */
+	EReference getRevision_Bounds();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Revision#getBoundsUntransformed <em>Bounds Untransformed</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Bounds Untransformed</em>'.
+	 * @see org.bimserver.models.store.Revision#getBoundsUntransformed()
+	 * @see #getRevision()
+	 * @generated
+	 */
+	EReference getRevision_BoundsUntransformed();
+
+	/**
 	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.Revision#getServicesLinked <em>Services Linked</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14849,6 +14889,22 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute REVISION__HAS_GEOMETRY = eINSTANCE.getRevision_HasGeometry();
+
+		/**
+		 * The meta object literal for the '<em><b>Bounds</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REVISION__BOUNDS = eINSTANCE.getRevision_Bounds();
+
+		/**
+		 * The meta object literal for the '<em><b>Bounds Untransformed</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REVISION__BOUNDS_UNTRANSFORMED = eINSTANCE.getRevision_BoundsUntransformed();
 
 		/**
 		 * The meta object literal for the '<em><b>Services Linked</b></em>' reference list feature.

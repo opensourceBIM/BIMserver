@@ -54,7 +54,10 @@ import org.bimserver.geometry.Density;
 import org.bimserver.geometry.GeometryGenerationReport;
 import org.bimserver.geometry.StreamingGeometryGenerator;
 import org.bimserver.mail.MailSystem;
+import org.bimserver.models.geometry.Bounds;
+import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.GeometryPackage;
+import org.bimserver.models.geometry.Vector3f;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
@@ -271,17 +274,86 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			concreteRevision.setBounds(generateGeometry.getBounds());
 			concreteRevision.setBoundsUntransformed(generateGeometry.getBoundsUntransformed());
 
+			// TODO terrible code, but had to get it going quickly, will cleanup later
+			
+			for (Revision revision : result.getRevisions()) {
+				Bounds newBounds = GeometryFactory.eINSTANCE.createBounds();
+				Vector3f min = GeometryFactory.eINSTANCE.createVector3f();
+				min.setX(Double.MAX_VALUE);
+				min.setY(Double.MAX_VALUE);
+				min.setZ(Double.MAX_VALUE);
+				Vector3f max = GeometryFactory.eINSTANCE.createVector3f();
+				max.setX(-Double.MAX_VALUE);
+				max.setY(-Double.MAX_VALUE);
+				max.setZ(-Double.MAX_VALUE);
+				newBounds.setMin(min);
+				newBounds.setMax(max);
+				
+				Bounds newBoundsu = GeometryFactory.eINSTANCE.createBounds();
+				Vector3f minu = GeometryFactory.eINSTANCE.createVector3f();
+				minu.setX(Double.MAX_VALUE);
+				minu.setY(Double.MAX_VALUE);
+				minu.setZ(Double.MAX_VALUE);
+				Vector3f maxu = GeometryFactory.eINSTANCE.createVector3f();
+				maxu.setX(-Double.MAX_VALUE);
+				maxu.setY(-Double.MAX_VALUE);
+				maxu.setZ(-Double.MAX_VALUE);
+				newBoundsu.setMin(minu);
+				newBoundsu.setMax(maxu);
+
+				for (ConcreteRevision concreteRevision2 : revision.getConcreteRevisions()) {
+					Vector3f min2 = concreteRevision2.getBounds().getMin();
+					Vector3f max2 = concreteRevision2.getBounds().getMax();
+					if (min2.getX() < min2.getX()) {
+						min.setX(min.getX());
+					}
+					if (min2.getY() < min2.getY()) {
+						min.setY(min.getY());
+					}
+					if (min2.getZ() < min2.getZ()) {
+						min.setZ(min.getZ());
+					}
+					if (max2.getX() > max2.getX()) {
+						max.setX(max.getX());
+					}
+					if (max2.getY() > max2.getY()) {
+						max.setY(max.getY());
+					}
+					if (max2.getZ() > max2.getZ()) {
+						max.setZ(max2.getZ());
+					}
+					
+					Vector3f min2u = concreteRevision2.getBoundsUntransformed().getMin();
+					Vector3f max2u = concreteRevision2.getBoundsUntransformed().getMax();
+					if (min2u.getX() < minu.getX()) {
+						minu.setX(min2u.getX());
+					}
+					if (min2u.getY() < minu.getY()) {
+						minu.setY(min2u.getY());
+					}
+					if (min2u.getZ() < minu.getZ()) {
+						minu.setZ(min2u.getZ());
+					}
+					if (max2u.getX() > maxu.getX()) {
+						maxu.setX(max2u.getX());
+					}
+					if (max2u.getY() > maxu.getY()) {
+						maxu.setY(max2u.getY());
+					}
+					if (max2u.getZ() > maxu.getZ()) {
+						maxu.setZ(max2u.getZ());
+					}
+
+				}
+			}
+			
 			DensityCollection densityCollection = getDatabaseSession().create(DensityCollection.class);
 			concreteRevision.eSet(StorePackage.eINSTANCE.getConcreteRevision_DensityCollection(), densityCollection);
 			
 			List<org.bimserver.models.store.Density> newList = new ArrayList<>();
 			for (Density density : generateGeometry.getDensities()) {
 				org.bimserver.models.store.Density dbDensity = StoreFactory.eINSTANCE.createDensity();
-				try {
-					dbDensity.setType(density.getType());
-				} catch (NullPointerException e) {
-					System.out.println();
-				}
+				dbDensity.setType(density.getType());
 				dbDensity.setDensity(density.getDensityValue());
 				dbDensity.setGeometryInfoId(density.getGeometryInfoId());
 				dbDensity.setTriangles(density.getNrPrimitives());

@@ -20034,6 +20034,17 @@
           eType="#/3/RevisionRelated" eOpposite="#/3/RevisionRelated/revision"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="service" eType="#/4/Service"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasGeometry" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="bounds" eType="#/0/Bounds">
+        <eAnnotations source="dbembed"/>
+        <eAnnotations source="embedsreference"/>
+        <eAnnotations source="hidden"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="boundsUntransformed"
+          eType="#/0/Bounds">
+        <eAnnotations source="dbembed"/>
+        <eAnnotations source="embedsreference"/>
+        <eAnnotations source="hidden"/>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="servicesLinked" upperBound="-1"
           eType="#/4/NewService"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="densityCollection" eType="#/4/DensityCollection"/>
