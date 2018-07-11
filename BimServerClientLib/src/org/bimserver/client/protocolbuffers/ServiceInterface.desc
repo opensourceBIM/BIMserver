@@ -1,5 +1,5 @@
 
-»—
+ž˜
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -414,31 +414,44 @@ dataObject (2.org.bimserver.pb.SDataObject
 errorMessage (	&
 value (2.org.bimserver.pb.SUser",
 GetAllCheckoutsByUserRequest
-uoid ("“
+uoid ("F
+	SVector3f
+oid (
+rid (	
+x (	
+y (	
+z ("w
+SBounds(
+max (2.org.bimserver.pb.SVector3f(
+min (2.org.bimserver.pb.SVector3f
+oid (
+rid ("ö
 	SRevision
-bmi (
-	checkouts (
-comment (	
-concreteRevisions (
-date (
-densityCollectionId (
-extendedData (
-hasGeometry (
+bmi ()
+bounds (2.org.bimserver.pb.SBounds6
+boundsUntransformed (2.org.bimserver.pb.SBounds
+	checkouts (
+comment (	
+concreteRevisions (
+date (
+densityCollectionId (
+extendedData	 (
+hasGeometry
+ (
 
-id	 (
-lastConcreteRevisionId
- (
-	lastError (	
-logs (
-nrPrimitives (
-oid (
-	projectId (
-rid (
-	serviceId (
-servicesLinked (
-size (
-tag (	
-userId ("Ñ
+id (
+lastConcreteRevisionId (
+	lastError (	
+logs (
+nrPrimitives (
+oid (
+	projectId (
+rid (
+	serviceId (
+servicesLinked (
+size (
+tag (	
+userId ("Ñ
 	SCheckout
 active (,
 checkin (2.org.bimserver.pb.SRevision
@@ -759,18 +772,7 @@ revisionNr (
 value (2.org.bimserver.pb.SGeoTag"3
 GetGeometryInfoRequest
 roid (
-oid ("F
-	SVector3f
-oid (
-rid (	
-x (	
-y (	
-z ("w
-SBounds(
-max (2.org.bimserver.pb.SVector3f(
-min (2.org.bimserver.pb.SVector3f
-oid (
-rid ("ª
+oid ("ª
 SGeometryInfo
 area ()
 bounds (2.org.bimserver.pb.SBounds+

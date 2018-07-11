@@ -55,6 +55,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getVolume <em>Volume</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#isHasTransparency <em>Has Transparency</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getIfcProductOid <em>Ifc Product Oid</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getDensity <em>Density</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getBoundsMm <em>Bounds Mm</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getBoundsUntransformedMm <em>Bounds Untransformed Mm</em>}</li>
  * </ul>
@@ -350,6 +351,32 @@ public interface GeometryInfo extends IdEObject {
 	 * @generated
 	 */
 	void setIfcProductOid(long value);
+
+	/**
+	 * Returns the value of the '<em><b>Density</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Density</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Density</em>' attribute.
+	 * @see #setDensity(float)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_Density()
+	 * @model
+	 * @generated
+	 */
+	float getDensity();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getDensity <em>Density</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Density</em>' attribute.
+	 * @see #getDensity()
+	 * @generated
+	 */
+	void setDensity(float value);
 
 	/**
 	 * Returns the value of the '<em><b>Bounds Mm</b></em>' reference.

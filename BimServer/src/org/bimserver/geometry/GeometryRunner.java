@@ -356,13 +356,12 @@ public class GeometryRunner implements Runnable {
 										float volume = (float)renderEngineInstance.getVolume();
 										
 										// Overwrite temporarely until IOS volume is OK
-										volume = getVolumeFromBounds(boundsMm);
-										if (volume == 0f) {
-											volume = 0.00001f;
-										}
+										volume = getVolumeFromBounds(boundsUntransformed);
 										float nrTriangles = geometry.getNrIndices() / 3;
 										
-										Density density = new Density(eClass.getName(), volume, (long) nrTriangles, geometryInfo.getOid());
+										Density density = new Density(eClass.getName(), volume, getBiggestFaceFromBounds(boundsUntransformed), (long) nrTriangles, geometryInfo.getOid());
+										
+										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Density(), density.getDensityValue());
 										
 										generateGeometryResult.addDensity(density);
 
@@ -629,15 +628,14 @@ public class GeometryRunner implements Runnable {
 											float volume = (float)masterGeometryData.getVolume();
 											
 											// Overwrite temporarely until IOS volume is OK
-											volume = getVolumeFromBounds(boundsMm);
-											if (volume == 0f) {
-												volume = 0.00001f;
-											}
+											volume = getVolumeFromBounds(boundsUntransformed);
 
 											float nrTriangles = masterGeometryData.getNrPrimitives();
 
 											// Temporarely until IOS volume is OK
-											Density density = new Density(eClass.getName(), volume, (long) nrTriangles, geometryInfo.getOid());
+											Density density = new Density(eClass.getName(), volume, getBiggestFaceFromBounds(boundsUntransformed), (long) nrTriangles, geometryInfo.getOid());
+
+											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Density(), density.getDensityValue());
 											
 											generateGeometryResult.addDensity(density);
 											
@@ -716,13 +714,46 @@ public class GeometryRunner implements Runnable {
 		job.setEndNanos(end);
 	}
 	
-	private float getVolumeFromBounds(HashMapWrappedVirtualObject bounds) throws GeometryGeneratingException {
+	private float getVolumeFromBounds(HashMapWrappedVirtualObject bounds) throws GeometryGeneratingException { HashMapWrappedVirtualObject min = (HashMapWrappedVirtualObject) bounds.eGet("min");
+		HashMapWrappedVirtualObject max = (HashMapWrappedVirtualObject) bounds.eGet("max");
+		
+		double minX = (double)min.eGet(min.eClass().getEStructuralFeature("x"));
+		double minY = (double)min.eGet(min.eClass().getEStructuralFeature("y"));
+		double minZ = (double)min.eGet(min.eClass().getEStructuralFeature("z"));
+
+		double maxX = (double)max.eGet(max.eClass().getEStructuralFeature("x"));
+		double maxY = (double)max.eGet(max.eClass().getEStructuralFeature("y"));
+		double maxZ = (double)max.eGet(max.eClass().getEStructuralFeature("z"));
+		
+		float volume = (float) (
+				(maxX - minX) *
+				(maxY - minY) *
+				(maxZ - minZ));
+		
+		if (volume == 0f) {
+			volume = 0.00001f;
+		}
+
+		return volume;
+	}
+
+	private float getBiggestFaceFromBounds(HashMapWrappedVirtualObject bounds) throws GeometryGeneratingException {
 		HashMapWrappedVirtualObject min = (HashMapWrappedVirtualObject) bounds.eGet("min");
 		HashMapWrappedVirtualObject max = (HashMapWrappedVirtualObject) bounds.eGet("max");
-		float volume = (float) (((double)max.eGet(max.eClass().getEStructuralFeature("x")) - (double)min.eGet(min.eClass().getEStructuralFeature("x"))) *
-				((double)max.eGet(max.eClass().getEStructuralFeature("y")) - (double)min.eGet(min.eClass().getEStructuralFeature("y"))) *
-				((double)max.eGet(max.eClass().getEStructuralFeature("z")) - (double)min.eGet(min.eClass().getEStructuralFeature("z"))));
-		return volume;
+
+		double minX = (double)min.eGet(min.eClass().getEStructuralFeature("x"));
+		double minY = (double)min.eGet(min.eClass().getEStructuralFeature("y"));
+		double minZ = (double)min.eGet(min.eClass().getEStructuralFeature("z"));
+
+		double maxX = (double)max.eGet(max.eClass().getEStructuralFeature("x"));
+		double maxY = (double)max.eGet(max.eClass().getEStructuralFeature("y"));
+		double maxZ = (double)max.eGet(max.eClass().getEStructuralFeature("z"));
+		
+		float front = (float) ((maxX - minX) * (maxY - minY));
+		float top = (float) ((maxX - minX) * (maxZ - minZ));
+		float side = (float) ((maxY - minY) * (maxZ - minZ));
+		
+		return Math.max(Math.max(front, top), side);
 	}
 
 	private HashMapWrappedVirtualObject createMmBounds(HashMapVirtualObject geometryInfo, HashMapWrappedVirtualObject boundsUntransformed, float toMmFactor) throws BimserverDatabaseException {

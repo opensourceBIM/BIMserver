@@ -916,28 +916,45 @@ message GetAllCheckoutsByUserRequest {
 	optional int64 uoid = 1;
 }
 
+message SVector3f {
+	optional int64 oid = 1;
+	optional int32 rid = 2;
+	optional double x = 3;
+	optional double y = 4;
+	optional double z = 5;
+}
+
+message SBounds {
+	optional SVector3f max = 1;
+	optional SVector3f min = 2;
+	optional int64 oid = 3;
+	optional int32 rid = 4;
+}
+
 message SRevision {
 	optional int32 bmi = 1;
-	repeated int64 checkouts = 2;
-	optional string comment = 3;
-	repeated int64 concreteRevisions = 4;
-	optional int64 date = 5;
-	optional int64 densityCollectionId = 6;
-	repeated int64 extendedData = 7;
-	optional bool hasGeometry = 8;
-	optional int32 id = 9;
-	optional int64 lastConcreteRevisionId = 10;
-	optional string lastError = 11;
-	repeated int64 logs = 12;
-	optional int64 nrPrimitives = 13;
-	optional int64 oid = 14;
-	optional int64 projectId = 15;
-	optional int32 rid = 16;
-	optional int64 serviceId = 17;
-	repeated int64 servicesLinked = 18;
-	optional int64 size = 19;
-	optional string tag = 20;
-	optional int64 userId = 21;
+	optional SBounds bounds = 2;
+	optional SBounds boundsUntransformed = 3;
+	repeated int64 checkouts = 4;
+	optional string comment = 5;
+	repeated int64 concreteRevisions = 6;
+	optional int64 date = 7;
+	optional int64 densityCollectionId = 8;
+	repeated int64 extendedData = 9;
+	optional bool hasGeometry = 10;
+	optional int32 id = 11;
+	optional int64 lastConcreteRevisionId = 12;
+	optional string lastError = 13;
+	repeated int64 logs = 14;
+	optional int64 nrPrimitives = 15;
+	optional int64 oid = 16;
+	optional int64 projectId = 17;
+	optional int32 rid = 18;
+	optional int64 serviceId = 19;
+	repeated int64 servicesLinked = 20;
+	optional int64 size = 21;
+	optional string tag = 22;
+	optional int64 userId = 23;
 }
 
 message SCheckout {
@@ -1446,21 +1463,6 @@ message GetGeoTagResponse {
 message GetGeometryInfoRequest {
 	optional int64 roid = 1;
 	optional int64 oid = 2;
-}
-
-message SVector3f {
-	optional int64 oid = 1;
-	optional int32 rid = 2;
-	optional double x = 3;
-	optional double y = 4;
-	optional double z = 5;
-}
-
-message SBounds {
-	optional SVector3f max = 1;
-	optional SVector3f min = 2;
-	optional int64 oid = 3;
-	optional int32 rid = 4;
 }
 
 message SGeometryInfo {

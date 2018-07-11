@@ -197,6 +197,7 @@ public class ServiceRunnerServlet extends SubServlet {
 						extendedData.setSchemaId(extendedDataSchema.getOid());
 						serviceInterface.addExtendedDataToRevision(project.getLastRevisionId(), extendedData);
 						
+						response.setContentLength(output.getData().length);
 						response.setHeader("Output-Type", output.getSchemaName());
 						response.setHeader("Data-Title", output.getTitle());
 						response.setHeader("Data-Identifier", "" + project.getOid());
@@ -222,6 +223,7 @@ public class ServiceRunnerServlet extends SubServlet {
 						
 						BimServerBimBotsInput input = new BimServerBimBotsInput(getBimServer(), authorization.getUoid(), schema, data, model);
 						BimBotsOutput output = bimBotsServiceInterface.runBimBot(input, getBimServer().getSConverter().convertToSObject(foundService.getSettings()));
+						response.setContentLength(output.getData().length);
 						response.setHeader("Output-Type", output.getSchemaName());
 						response.setHeader("Data-Title", output.getTitle());
 						response.setHeader("Content-Type", output.getContentType());

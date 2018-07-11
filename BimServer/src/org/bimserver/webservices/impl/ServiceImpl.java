@@ -3080,7 +3080,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 					continue;
 				}
 				if (cumulativeTriangles + density.getTriangles() > nrTriangles) {
-					// This is useful information, so the client knows exactly how many triangles will be loaded by using this threshold
 					break;
 				}
 				cumulativeTriangles += density.getTriangles();
@@ -3090,6 +3089,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				SDensity sDensity = new SDensity();
 				return sDensity;
 			} else {
+				// This is useful information, so the client knows exactly how many triangles will be loaded by using this threshold
 				densityResult.setTriangles(cumulativeTriangles);
 				return getBimServer().getSConverter().convertToSObject(densityResult);
 			}

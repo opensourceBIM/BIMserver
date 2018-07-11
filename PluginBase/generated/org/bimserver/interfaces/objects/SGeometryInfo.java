@@ -40,6 +40,7 @@ public class SGeometryInfo implements SDataBase
 	private double volume;
 	private boolean hasTransparency;
 	private long ifcProductOid;
+	private float density;
 	private SBounds boundsMm;
 	private SBounds boundsUntransformedMm;
 
@@ -102,6 +103,9 @@ public class SGeometryInfo implements SDataBase
 		if (sField.getName().equals("ifcProductOid")) {
 			return getIfcProductOid();
 		}
+		if (sField.getName().equals("density")) {
+			return getDensity();
+		}
 		if (sField.getName().equals("boundsMm")) {
 			return getBoundsMm();
 		}
@@ -160,6 +164,10 @@ public class SGeometryInfo implements SDataBase
 		}
 		if (sField.getName().equals("ifcProductOid")) {
 			setIfcProductOid((Long)val);
+			return;
+		}
+		if (sField.getName().equals("density")) {
+			setDensity((Float)val);
 			return;
 		}
 		if (sField.getName().equals("boundsMm")) {
@@ -269,6 +277,14 @@ public class SGeometryInfo implements SDataBase
 
 	public void setIfcProductOid(long ifcProductOid) {
 		this.ifcProductOid = ifcProductOid;
+	}
+	
+	public float getDensity() {
+		return density;
+	}
+
+	public void setDensity(float density) {
+		this.density = density;
 	}
 	
 	public SBounds getBoundsMm() {

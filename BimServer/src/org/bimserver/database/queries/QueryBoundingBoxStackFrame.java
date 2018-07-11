@@ -111,20 +111,14 @@ public class QueryBoundingBoxStackFrame extends DatabaseReadingStackFrame implem
 				double maxZ = (double) maxBounds.eGet("z");
 				
 				if (inBoundingBox.getDensityLowerThreshold() != null) {
-					int nrTriangles = (int) geometryInfo.get("primitiveCount");
-					float volume = (float)(double)geometryInfo.get("volume");
-					volume = (float) ((maxX - minX) * (maxY - minY) * (maxZ - minZ));
-					float density = nrTriangles / volume;
+					float density = (float) geometryInfo.get("density");
 					if (density > inBoundingBox.getDensityLowerThreshold()) {
 						currentObject = null;
 						return false;
 					}
 				}
 				if (inBoundingBox.getDensityUpperThreshold() != null) {
-					int nrTriangles = (int) geometryInfo.get("primitiveCount");
-					float volume = (float)(double)geometryInfo.get("volume");
-					volume = (float) ((maxX - minX) * (maxY - minY) * (maxZ - minZ));
-					float density = nrTriangles / volume;
+					float density = (float) geometryInfo.get("density");
 					if (density <= inBoundingBox.getDensityUpperThreshold()) {
 						currentObject = null;
 						return false;

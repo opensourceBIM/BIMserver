@@ -5,10 +5,12 @@ public class Density {
 	private long nrPrimitives;
 	private long geometryInfoId;
 	private String type;
+	private float biggestFaceArea;
 
-	public Density(String type, float volume, long nrPrimitives, long geometryInfoId) {
+	public Density(String type, float volume, float biggestFaceArea, long nrPrimitives, long geometryInfoId) {
 		this.type = type;
 		this.volume = volume;
+		this.biggestFaceArea = biggestFaceArea;
 		this.nrPrimitives = nrPrimitives;
 		this.geometryInfoId = geometryInfoId;
 	}
@@ -30,14 +32,18 @@ public class Density {
 	}
 	
 	public float getDensityValue() {
-		if (volume == 0f) {
+		if (biggestFaceArea == 0f) {
 			return 0;
 		}
-		float d = nrPrimitives / volume;
+		float d = nrPrimitives / biggestFaceArea;
 		if (d < 0) {
 			// WTF
 			d = 0;
 		}
 		return d;
+	}
+	
+	public float getBiggestFaceArea() {
+		return biggestFaceArea;
 	}
 }

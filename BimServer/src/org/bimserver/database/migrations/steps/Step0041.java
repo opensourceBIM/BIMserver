@@ -56,6 +56,8 @@ public class Step0041 extends Migration {
 		EClass bounds = schema.getEClass("geometry", "Bounds");
 		EClass geometryInfo = schema.getEClass("geometry", "GeometryInfo");
 		
+		schema.createEAttribute(geometryInfo, "density", EcorePackage.eINSTANCE.getEFloat());
+		
 		EReference boundsMm = schema.createEReference(geometryInfo, "boundsMm", bounds);
 		boundsMm.getEAnnotations().add(createDbEmbedReferenceAnnotation());
 		boundsMm.getEAnnotations().add(createEmbedsReferenceAnnotation());
