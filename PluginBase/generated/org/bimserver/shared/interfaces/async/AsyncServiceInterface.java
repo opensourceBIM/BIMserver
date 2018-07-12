@@ -549,6 +549,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetTileCountsCallback {
+		void success(java.util.List<java.lang.Integer> result);
+		void error(Throwable e);
+	}
+	
 	public interface GetTopLevelProjectByNameCallback {
 		void success(org.bimserver.interfaces.objects.SProject result);
 		void error(Throwable e);
@@ -1970,6 +1975,18 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getSuggestedDeserializerForExtension(extension, poid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getTileCounts(final java.util.Set<java.lang.Long> roids, final java.util.Set<java.lang.String> excludedTypes, final java.lang.Integer depth, final GetTileCountsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getTileCounts(roids, excludedTypes, depth));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

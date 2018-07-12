@@ -429,6 +429,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
+	public java.util.List<java.lang.Integer> getTileCounts(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> excludedTypes, java.lang.Integer depth) throws UserException, ServerException {
+		return null;
+	}
+	
 	public org.bimserver.interfaces.objects.SProject getTopLevelProjectByName(java.lang.String name) throws UserException, ServerException {
 		return null;
 	}

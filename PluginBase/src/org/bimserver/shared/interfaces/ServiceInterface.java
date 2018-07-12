@@ -1526,4 +1526,10 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "roid", partName = "getDensityThreshold.roid") Long roid, 
 		@WebParam(name = "nrTriangles", partName = "getDensityThreshold.nrTriangles") Long nrTriangles,
 		@WebParam(name = "excludedTypes", partName = "getDensityThreshold.excludedTypes") Set<String> excludedTypes) throws ServerException, UserException;
+	
+	@WebMethod(action = "getTileCounts")
+	List<Integer> getTileCounts(
+		@WebParam(name = "roids", partName = "getTileCounts.roids") Set<Long> roids, 
+		@WebParam(name = "excludedTypes", partName = "getTileCounts.excludedTypes") Set<String> excludedTypes,
+		@WebParam(name = "depth", partName = "getTileCounts.depth") Integer depth) throws ServerException, UserException;
 }

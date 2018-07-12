@@ -1502,4 +1502,8 @@ public class BimServer {
 	public AuthCache getAuthCache() {
 		return authCache;
 	}
+	
+	public GeometryAccellerator getGeometryAccellerator() {
+		return geometryAccellerator;
+	}
 }

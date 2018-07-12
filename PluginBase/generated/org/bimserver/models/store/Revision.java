@@ -67,6 +67,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Revision#isHasGeometry <em>Has Geometry</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getBounds <em>Bounds</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getBoundsUntransformed <em>Bounds Untransformed</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Revision#getBoundsMm <em>Bounds Mm</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Revision#getBoundsUntransformedMm <em>Bounds Untransformed Mm</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getServicesLinked <em>Services Linked</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getDensityCollection <em>Density Collection</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getNrPrimitives <em>Nr Primitives</em>}</li>
@@ -517,6 +519,58 @@ public interface Revision extends IdEObject {
 	 * @generated
 	 */
 	void setBoundsUntransformed(Bounds value);
+
+	/**
+	 * Returns the value of the '<em><b>Bounds Mm</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Bounds Mm</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Bounds Mm</em>' reference.
+	 * @see #setBoundsMm(Bounds)
+	 * @see org.bimserver.models.store.StorePackage#getRevision_BoundsMm()
+	 * @model
+	 * @generated
+	 */
+	Bounds getBoundsMm();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Revision#getBoundsMm <em>Bounds Mm</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Bounds Mm</em>' reference.
+	 * @see #getBoundsMm()
+	 * @generated
+	 */
+	void setBoundsMm(Bounds value);
+
+	/**
+	 * Returns the value of the '<em><b>Bounds Untransformed Mm</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Bounds Untransformed Mm</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Bounds Untransformed Mm</em>' reference.
+	 * @see #setBoundsUntransformedMm(Bounds)
+	 * @see org.bimserver.models.store.StorePackage#getRevision_BoundsUntransformedMm()
+	 * @model
+	 * @generated
+	 */
+	Bounds getBoundsUntransformedMm();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Revision#getBoundsUntransformedMm <em>Bounds Untransformed Mm</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Bounds Untransformed Mm</em>' reference.
+	 * @see #getBoundsUntransformedMm()
+	 * @generated
+	 */
+	void setBoundsUntransformedMm(Bounds value);
 
 	/**
 	 * Returns the value of the '<em><b>Services Linked</b></em>' reference list.

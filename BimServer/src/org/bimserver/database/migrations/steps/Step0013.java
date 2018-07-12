@@ -90,6 +90,16 @@ public class Step0013 extends Migration {
 		revisionBoundsUntransformed.getEAnnotations().add(createEmbedsReferenceAnnotation());
 		revisionBoundsUntransformed.getEAnnotations().add(createHiddenAnnotation());
 
+		EReference revisionBoundsMm = schema.createEReference(revisionClass, "boundsMm", bounds, Multiplicity.SINGLE);
+		revisionBoundsMm.getEAnnotations().add(createDbEmbedReferenceAnnotation());
+		revisionBoundsMm.getEAnnotations().add(createEmbedsReferenceAnnotation());
+		revisionBoundsMm.getEAnnotations().add(createHiddenAnnotation());
+		
+		EReference revisionBoundsUntransformedMm = schema.createEReference(revisionClass, "boundsUntransformedMm", bounds, Multiplicity.SINGLE);
+		revisionBoundsUntransformedMm.getEAnnotations().add(createDbEmbedReferenceAnnotation());
+		revisionBoundsUntransformedMm.getEAnnotations().add(createEmbedsReferenceAnnotation());
+		revisionBoundsUntransformedMm.getEAnnotations().add(createHiddenAnnotation());
+
 		vector3f.getEAnnotations().add(createHiddenAnnotation());
 		geometryInfo.getEAnnotations().add(createHiddenAnnotation());
 		schema.createEAttribute(geometryInfo, "startVertex", EcorePackage.eINSTANCE.getEIntegerObject(), Multiplicity.SINGLE);

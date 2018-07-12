@@ -25,6 +25,7 @@ import java.util.Map;
 import org.bimserver.BimserverDatabaseException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class HashMapWrappedVirtualObject extends AbstractHashMapVirtualObject implements WrappedVirtualObject {
@@ -73,9 +74,6 @@ public class HashMapWrappedVirtualObject extends AbstractHashMapVirtualObject im
 
 	@Override
 	public int getSize() {
-		if (eClass.getName().equals("DensityCollection")) {
-			System.out.println();
-		}
 		int size = 2;
 		for (EStructuralFeature eStructuralFeature : map.keySet()) {
 			Object val = map.get(eStructuralFeature);
@@ -102,12 +100,26 @@ public class HashMapWrappedVirtualObject extends AbstractHashMapVirtualObject im
 
 	@Override
 	public boolean useFeatureForSerialization(EStructuralFeature feature, int index) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	
 	@Override
 	public int hashCode() {
 		return map.hashCode();
+	}
+
+	@Override
+	public AbstractHashMapVirtualObject getDirectFeature(EStructuralFeature eReference) {
+		return (AbstractHashMapVirtualObject) eGet(eReference.getName());
+	}
+
+	@Override
+	public Object get(String string) {
+		return eGet(string);
+	}
+
+	@Override
+	public List<HashMapVirtualObject> getDirectListFeature(EStructuralFeature representationsFeature) {
+		return (List<HashMapVirtualObject>) eGet(representationsFeature.getName());
 	}
 }

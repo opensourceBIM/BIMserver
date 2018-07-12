@@ -1613,7 +1613,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRevision_ServicesLinked() {
+	public EReference getRevision_BoundsMm() {
 		return (EReference) getRevision().getEStructuralFeatures().get(18);
 	}
 
@@ -1622,7 +1622,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRevision_DensityCollection() {
+	public EReference getRevision_BoundsUntransformedMm() {
 		return (EReference) getRevision().getEStructuralFeatures().get(19);
 	}
 
@@ -1631,8 +1631,26 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getRevision_ServicesLinked() {
+		return (EReference) getRevision().getEStructuralFeatures().get(20);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRevision_DensityCollection() {
+		return (EReference) getRevision().getEStructuralFeatures().get(21);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getRevision_NrPrimitives() {
-		return (EAttribute) getRevision().getEStructuralFeatures().get(20);
+		return (EAttribute) getRevision().getEStructuralFeatures().get(22);
 	}
 
 	/**

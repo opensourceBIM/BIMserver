@@ -78,6 +78,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#isHasGeometry <em>Has Geometry</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getBounds <em>Bounds</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getBoundsUntransformed <em>Bounds Untransformed</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getBoundsMm <em>Bounds Mm</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getBoundsUntransformedMm <em>Bounds Untransformed Mm</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getServicesLinked <em>Services Linked</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getDensityCollection <em>Density Collection</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getNrPrimitives <em>Nr Primitives</em>}</li>
@@ -405,6 +407,42 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 */
 	public void setBoundsUntransformed(Bounds newBoundsUntransformed) {
 		eSet(StorePackage.Literals.REVISION__BOUNDS_UNTRANSFORMED, newBoundsUntransformed);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Bounds getBoundsMm() {
+		return (Bounds) eGet(StorePackage.Literals.REVISION__BOUNDS_MM, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBoundsMm(Bounds newBoundsMm) {
+		eSet(StorePackage.Literals.REVISION__BOUNDS_MM, newBoundsMm);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Bounds getBoundsUntransformedMm() {
+		return (Bounds) eGet(StorePackage.Literals.REVISION__BOUNDS_UNTRANSFORMED_MM, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBoundsUntransformedMm(Bounds newBoundsUntransformedMm) {
+		eSet(StorePackage.Literals.REVISION__BOUNDS_UNTRANSFORMED_MM, newBoundsUntransformedMm);
 	}
 
 	/**

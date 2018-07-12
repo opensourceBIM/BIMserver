@@ -72,6 +72,7 @@ import org.bimserver.plugins.renderengine.RenderEngineFilter;
 import org.bimserver.plugins.renderengine.RenderEngineSettings;
 import org.bimserver.plugins.serializers.StreamingSerializerPlugin;
 import org.bimserver.renderengine.RenderEnginePool;
+import org.bimserver.shared.AbstractHashMapVirtualObject;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.HashMapWrappedVirtualObject;
 import org.bimserver.shared.QueryContext;
@@ -144,7 +145,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		}
 	}
 	
-	private boolean hasValidRepresentationIdentifier(HashMapVirtualObject representationItem) {
+	private boolean hasValidRepresentationIdentifier(AbstractHashMapVirtualObject representationItem) {
 		String representationIdentifier = (String) representationItem.get("RepresentationIdentifier");
 		return representationIdentifier != null && (representationIdentifier.equals("Body") || representationIdentifier.equals("Facetation"));
 	}
@@ -296,7 +297,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					HashMapVirtualObject next = queryObjectProvider2.next();
 					while (next != null) {
 						if (next.eClass() == eClass) {
-							HashMapVirtualObject representation = next.getDirectFeature(representationFeature);
+							AbstractHashMapVirtualObject representation = next.getDirectFeature(representationFeature);
 							if (representation != null) {
 								List<HashMapVirtualObject> representations = representation.getDirectListFeature(representationsFeature);
 								if (representations != null) {
@@ -316,13 +317,13 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 												if (!packageMetaData.getEClass("IfcMappedItem").isSuperTypeOf(item.eClass())) {
 													continue; // All non IfcMappedItem objects will be done in phase 2
 												}
-												HashMapVirtualObject mappingTarget = item.getDirectFeature(packageMetaData.getEReference("IfcMappedItem", "MappingTarget"));
-												HashMapVirtualObject mappingSourceOfMappedItem = item.getDirectFeature(packageMetaData.getEReference("IfcMappedItem", "MappingSource"));
+												AbstractHashMapVirtualObject mappingTarget = item.getDirectFeature(packageMetaData.getEReference("IfcMappedItem", "MappingTarget"));
+												AbstractHashMapVirtualObject mappingSourceOfMappedItem = item.getDirectFeature(packageMetaData.getEReference("IfcMappedItem", "MappingSource"));
 												if (mappingSourceOfMappedItem == null) {
 													LOGGER.info("No mapping source");
 													continue;
 												}
-												HashMapVirtualObject mappedRepresentation = mappingSourceOfMappedItem.getDirectFeature(packageMetaData.getEReference("IfcRepresentationMap", "MappedRepresentation"));
+												AbstractHashMapVirtualObject mappedRepresentation = mappingSourceOfMappedItem.getDirectFeature(packageMetaData.getEReference("IfcRepresentationMap", "MappedRepresentation"));
 
 												if (!hasValidRepresentationIdentifier(mappedRepresentation)) {
 													// Skip this mapping, we should store somewhere that this object should also be skipped in the normal way
@@ -333,10 +334,10 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 												double[] mappingMatrix = Matrix.identity();
 												double[] productMatrix = Matrix.identity();
 												if (mappingTarget != null) {
-													HashMapVirtualObject axis1 = mappingTarget.getDirectFeature(packageMetaData.getEReference("IfcCartesianTransformationOperator", "Axis1"));
-													HashMapVirtualObject axis2 = mappingTarget.getDirectFeature(packageMetaData.getEReference("IfcCartesianTransformationOperator", "Axis2"));
-													HashMapVirtualObject axis3 = mappingTarget.getDirectFeature(packageMetaData.getEReference("IfcCartesianTransformationOperator", "Axis3"));
-													HashMapVirtualObject localOrigin = mappingTarget.getDirectFeature(packageMetaData.getEReference("IfcCartesianTransformationOperator", "LocalOrigin"));
+													AbstractHashMapVirtualObject axis1 = mappingTarget.getDirectFeature(packageMetaData.getEReference("IfcCartesianTransformationOperator", "Axis1"));
+													AbstractHashMapVirtualObject axis2 = mappingTarget.getDirectFeature(packageMetaData.getEReference("IfcCartesianTransformationOperator", "Axis2"));
+													AbstractHashMapVirtualObject axis3 = mappingTarget.getDirectFeature(packageMetaData.getEReference("IfcCartesianTransformationOperator", "Axis3"));
+													AbstractHashMapVirtualObject localOrigin = mappingTarget.getDirectFeature(packageMetaData.getEReference("IfcCartesianTransformationOperator", "LocalOrigin"));
 													
 													double[] a1 = null;
 													double[] a2 = null;
@@ -392,17 +393,17 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 													};
 												}
 												
-												HashMapVirtualObject placement = next.getDirectFeature(packageMetaData.getEReference("IfcProduct", "ObjectPlacement"));
+												AbstractHashMapVirtualObject placement = next.getDirectFeature(packageMetaData.getEReference("IfcProduct", "ObjectPlacement"));
 												if (placement != null) {
 													productMatrix = placementToMatrix(placement);
 												}
 												
-												HashMapVirtualObject mappingSource = item.getDirectFeature(mappingSourceFeature);
+												AbstractHashMapVirtualObject mappingSource = item.getDirectFeature(mappingSourceFeature);
 												if (mappingSource != null) {
-													Map<Long, ProductDef> map = representationMapToProduct.get(mappingSource.getOid());
+													Map<Long, ProductDef> map = representationMapToProduct.get(((HashMapVirtualObject)mappingSource).getOid());
 													if (map == null) {
 														map = new LinkedHashMap<>();
-														representationMapToProduct.put(mappingSource.getOid(), map);
+														representationMapToProduct.put(((HashMapVirtualObject)mappingSource).getOid(), map);
 													}
 													ProductDef pd = new ProductDef(next.getOid());
 													pd.setMappedItemOid(item.getOid());
@@ -440,6 +441,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 							ProductDef masterProductDef = map.get(masterOid);
 							if (!Matrix.invertM(inverted, 0, masterProductDef.getMappingMatrix(), 0)) {
 								LOGGER.info("No inverse, this mapping will be skipped and processed as normal");
+								// This is probably because of mirroring of something funky
+								
+								// TODO we should however be able to squeeze out a little more reuse by finding another master...
 								continue;
 							}
 							
@@ -483,7 +487,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					next = queryObjectProvider2.next();
 					while (next != null) {
 						if (next.eClass() == eClass && !done.contains(next.getOid()) && !toSkip.contains(next.getOid())) {
-							HashMapVirtualObject representation = next.getDirectFeature(representationFeature);
+							AbstractHashMapVirtualObject representation = next.getDirectFeature(representationFeature);
 							if (representation != null) {
 								List<HashMapVirtualObject> list = representation.getDirectListFeature(packageMetaData.getEReference("IfcProductRepresentation", "Representations"));
 								boolean goForIt = goForIt(list);
@@ -595,7 +599,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	}
 
 	private boolean usableContext(HashMapVirtualObject representationItem) {
-		HashMapVirtualObject context = representationItem.getDirectFeature(representationItem.eClass().getEStructuralFeature("ContextOfItems"));
+		AbstractHashMapVirtualObject context = representationItem.getDirectFeature(representationItem.eClass().getEStructuralFeature("ContextOfItems"));
 		if (context == null) {
 			LOGGER.debug("No context: " + representationItem);
 			return false;
@@ -629,12 +633,12 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	
 	// Pretty sure this is working correctly
 	@SuppressWarnings("unchecked")
-	public double[] placement3DToMatrix(HashMapVirtualObject ifcAxis2Placement3D) {
+	public double[] placement3DToMatrix(AbstractHashMapVirtualObject ifcAxis2Placement3D) {
 		EReference refDirectionFeature = packageMetaData.getEReference("IfcAxis2Placement3D", "RefDirection");
-		HashMapVirtualObject location = ifcAxis2Placement3D.getDirectFeature(packageMetaData.getEReference("IfcPlacement", "Location"));
+		AbstractHashMapVirtualObject location = ifcAxis2Placement3D.getDirectFeature(packageMetaData.getEReference("IfcPlacement", "Location"));
 		if (ifcAxis2Placement3D.getDirectFeature(packageMetaData.getEReference("IfcAxis2Placement3D", "Axis")) != null && ifcAxis2Placement3D.getDirectFeature(refDirectionFeature) != null) {
-			HashMapVirtualObject axis = ifcAxis2Placement3D.getDirectFeature(packageMetaData.getEReference("IfcAxis2Placement3D", "Axis"));
-			HashMapVirtualObject direction = ifcAxis2Placement3D.getDirectFeature(refDirectionFeature);
+			AbstractHashMapVirtualObject axis = ifcAxis2Placement3D.getDirectFeature(packageMetaData.getEReference("IfcAxis2Placement3D", "Axis"));
+			AbstractHashMapVirtualObject direction = ifcAxis2Placement3D.getDirectFeature(refDirectionFeature);
 			List<Double> axisDirectionRatios = (List<Double>) axis.get("DirectionRatios");
 			List<Double> directionDirectionRatios = (List<Double>) direction.get("DirectionRatios");
 			List<Double> locationCoordinates = (List<Double>) location.get("Coordinates");
@@ -658,11 +662,11 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		return Matrix.identity();
 	}
 	
-	private double[] placementToMatrix(HashMapVirtualObject placement) {
-		HashMapVirtualObject placementRelTo = placement.getDirectFeature(packageMetaData.getEReference("IfcLocalPlacement", "PlacementRelTo"));
+	private double[] placementToMatrix(AbstractHashMapVirtualObject placement) {
+		AbstractHashMapVirtualObject placementRelTo = placement.getDirectFeature(packageMetaData.getEReference("IfcLocalPlacement", "PlacementRelTo"));
 		double[] matrix = Matrix.identity();
 		if (placement.eClass().getName().equals("IfcLocalPlacement")) {
-			HashMapVirtualObject relativePlacement = placement.getDirectFeature(packageMetaData.getEReference("IfcLocalPlacement", "RelativePlacement"));
+			AbstractHashMapVirtualObject relativePlacement = placement.getDirectFeature(packageMetaData.getEReference("IfcLocalPlacement", "RelativePlacement"));
 			if (relativePlacement != null && relativePlacement.eClass().getName().equals("IfcAxis2Placement3D")) {
 				matrix = placement3DToMatrix(relativePlacement);
 			}

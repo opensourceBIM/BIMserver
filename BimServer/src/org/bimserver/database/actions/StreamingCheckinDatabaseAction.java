@@ -288,6 +288,18 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 				max.setZ(-Double.MAX_VALUE);
 				newBounds.setMin(min);
 				newBounds.setMax(max);
+
+				Bounds newBoundsMm = GeometryFactory.eINSTANCE.createBounds();
+				Vector3f minMm = GeometryFactory.eINSTANCE.createVector3f();
+				minMm.setX(Double.MAX_VALUE);
+				minMm.setY(Double.MAX_VALUE);
+				minMm.setZ(Double.MAX_VALUE);
+				Vector3f maxMm = GeometryFactory.eINSTANCE.createVector3f();
+				maxMm.setX(-Double.MAX_VALUE);
+				maxMm.setY(-Double.MAX_VALUE);
+				maxMm.setZ(-Double.MAX_VALUE);
+				newBoundsMm.setMin(minMm);
+				newBoundsMm.setMax(maxMm);
 				
 				Bounds newBoundsu = GeometryFactory.eINSTANCE.createBounds();
 				Vector3f minu = GeometryFactory.eINSTANCE.createVector3f();
@@ -301,26 +313,65 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 				newBoundsu.setMin(minu);
 				newBoundsu.setMax(maxu);
 
+				Bounds newBoundsuMm = GeometryFactory.eINSTANCE.createBounds();
+				Vector3f minuMm = GeometryFactory.eINSTANCE.createVector3f();
+				minuMm.setX(Double.MAX_VALUE);
+				minuMm.setY(Double.MAX_VALUE);
+				minuMm.setZ(Double.MAX_VALUE);
+				Vector3f maxuMm = GeometryFactory.eINSTANCE.createVector3f();
+				maxuMm.setX(-Double.MAX_VALUE);
+				maxuMm.setY(-Double.MAX_VALUE);
+				maxuMm.setZ(-Double.MAX_VALUE);
+				newBoundsuMm.setMin(minuMm);
+				newBoundsuMm.setMax(maxuMm);
+				
+				revision.setBounds(newBounds);
+				revision.setBoundsUntransformed(newBoundsu);
+				revision.setBoundsMm(newBoundsMm);
+				revision.setBoundsUntransformedMm(newBoundsuMm);
+				
 				for (ConcreteRevision concreteRevision2 : revision.getConcreteRevisions()) {
 					Vector3f min2 = concreteRevision2.getBounds().getMin();
 					Vector3f max2 = concreteRevision2.getBounds().getMax();
-					if (min2.getX() < min2.getX()) {
-						min.setX(min.getX());
+
+					float mm = concreteRevision2.getMultiplierToMm();
+					
+					if (min2.getX() < min.getX()) {
+						min.setX(min2.getX());
 					}
-					if (min2.getY() < min2.getY()) {
-						min.setY(min.getY());
+					if (min2.getY() < min.getY()) {
+						min.setY(min2.getY());
 					}
-					if (min2.getZ() < min2.getZ()) {
-						min.setZ(min.getZ());
+					if (min2.getZ() < min.getZ()) {
+						min.setZ(min2.getZ());
 					}
-					if (max2.getX() > max2.getX()) {
-						max.setX(max.getX());
+					if (max2.getX() > max.getX()) {
+						max.setX(max2.getX());
 					}
-					if (max2.getY() > max2.getY()) {
-						max.setY(max.getY());
+					if (max2.getY() > max.getY()) {
+						max.setY(max2.getY());
 					}
-					if (max2.getZ() > max2.getZ()) {
+					if (max2.getZ() > max.getZ()) {
 						max.setZ(max2.getZ());
+					}
+
+					if (min2.getX() * mm < minMm.getX()) {
+						minMm.setX(min2.getX() * mm);
+					}
+					if (min2.getY() * mm < minMm.getY()) {
+						minMm.setY(min2.getY() * mm);
+					}
+					if (min2.getZ() * mm < minMm.getZ()) {
+						minMm.setZ(min2.getZ() * mm);
+					}
+					if (max2.getX() * mm > maxMm.getX()) {
+						maxMm.setX(max2.getX() * mm);
+					}
+					if (max2.getY() * mm > maxMm.getY()) {
+						maxMm.setY(max2.getY() * mm);
+					}
+					if (max2.getZ() * mm > maxMm.getZ()) {
+						maxMm.setZ(max2.getZ() * mm);
 					}
 					
 					Vector3f min2u = concreteRevision2.getBoundsUntransformed().getMin();
@@ -343,7 +394,25 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 					if (max2u.getZ() > maxu.getZ()) {
 						maxu.setZ(max2u.getZ());
 					}
-
+					
+					if (min2u.getX() * mm < minuMm.getX()) {
+						minuMm.setX(min2u.getX() * mm);
+					}
+					if (min2u.getY() * mm < minuMm.getY()) {
+						minuMm.setY(min2u.getY() * mm);
+					}
+					if (min2u.getZ() * mm < minuMm.getZ()) {
+						minuMm.setZ(min2u.getZ() * mm);
+					}
+					if (max2u.getX() * mm > maxuMm.getX()) {
+						maxuMm.setX(max2u.getX() * mm);
+					}
+					if (max2u.getY() * mm > maxuMm.getY()) {
+						maxuMm.setY(max2u.getY() * mm);
+					}
+					if (max2u.getZ() * mm> maxuMm.getZ()) {
+						maxuMm.setZ(max2u.getZ() * mm);
+					}
 				}
 			}
 			

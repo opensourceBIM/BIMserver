@@ -35,10 +35,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -150,9 +152,15 @@ import org.bimserver.database.actions.UploadFileDatabaseAction;
 import org.bimserver.database.actions.UserHasCheckinRightsDatabaseAction;
 import org.bimserver.database.actions.UserHasRightsDatabaseAction;
 import org.bimserver.database.actions.ValidateModelCheckerDatabaseAction;
+import org.bimserver.database.queries.Node;
+import org.bimserver.database.queries.Octree;
+import org.bimserver.database.queries.QueryObjectProvider;
+import org.bimserver.database.queries.Traverser;
 import org.bimserver.database.queries.om.DefaultQueries;
+import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
+import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
@@ -210,6 +218,7 @@ import org.bimserver.longaction.LongStreamingDownloadAction;
 import org.bimserver.mail.EmailMessage;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.geometry.Bounds;
+import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.geometry.Vector3f;
 import org.bimserver.models.log.LogAction;
 import org.bimserver.models.store.Action;
@@ -260,7 +269,9 @@ import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.serializers.StreamingSerializerPlugin;
 import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.shared.AbstractHashMapVirtualObject;
 import org.bimserver.shared.BimServerClientFactory;
+import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.compare.CompareWriter;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -281,6 +292,7 @@ import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 import org.codehaus.jettison.json.JSONTokener;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.opensourcebim.bcf.BcfException;
 import org.opensourcebim.bcf.BcfFile;
 import org.opensourcebim.bcf.ReadOptions;
@@ -3093,6 +3105,42 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				densityResult.setTriangles(cumulativeTriangles);
 				return getBimServer().getSConverter().convertToSObject(densityResult);
 			}
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public List<Integer> getTileCounts(Set<Long> roids, Set<String> excludedTypes, Integer depth) throws ServerException, UserException {
+		long start = System.nanoTime();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			Octree<Long> octree = getBimServer().getGeometryAccellerator().getOctree(roids, excludedTypes, depth, 0);
+			
+			int size = 0;
+			for (int l=0; l<=octree.getDeepestLevel(); l++) {
+				size += Math.pow(8, l);
+			}
+			List<Integer> result = new ArrayList<>(size);
+			for (int i=0; i<size; i++) {
+				result.add(0);
+			}
+
+			AtomicInteger t = new AtomicInteger();
+			octree.traverseBreathFirst(new Traverser<Long>() {
+				@Override
+				public void traverse(Node<Long> node) {
+					result.set(node.getId(), node.getNrObjects());
+					t.addAndGet(node.getNrObjects());
+				}
+			});
+//			System.out.println(t.get());
+			
+//			System.out.println((((System.nanoTime() - start) / 1000000) + " ms"));
+			
+			return result;
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {

@@ -142,6 +142,17 @@
       <eAnnotations source="embedsreference"/>
       <eAnnotations source="hidden"/>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boundsMm" eType="ecore:EClass geometry#//Bounds">
+      <eAnnotations source="dbembed"/>
+      <eAnnotations source="embedsreference"/>
+      <eAnnotations source="hidden"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boundsUntransformedMm"
+        eType="ecore:EClass geometry#//Bounds">
+      <eAnnotations source="dbembed"/>
+      <eAnnotations source="embedsreference"/>
+      <eAnnotations source="hidden"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="servicesLinked" upperBound="-1"
         eType="#//NewService"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="densityCollection" eType="#//DensityCollection"/>

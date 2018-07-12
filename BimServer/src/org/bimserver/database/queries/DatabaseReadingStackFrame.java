@@ -133,9 +133,13 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 							processPossibleIncludes(byOid, byOid.eClass(), include);
 						}
 					} else {
-						HashMapVirtualObject byOid = getByOid((Long)ref, true);
-						object.setDirectReference(eReference, byOid);
-						processPossibleIncludes(byOid, byOid.eClass(), include);
+						if (ref instanceof Long) {
+							HashMapVirtualObject byOid = getByOid((Long)ref, true);
+							object.setDirectReference(eReference, byOid);
+							processPossibleIncludes(byOid, byOid.eClass(), include);
+						} else {
+							object.setDirectReference(eReference, (HashMapWrappedVirtualObject)ref);
+						}
 					}
 				}
 			}

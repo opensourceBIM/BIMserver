@@ -31,6 +31,421 @@ import org.slf4j.LoggerFactory;
 
 public class SConverter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SConverter.class);
+
+	public Set<SGeometryInfo> convertToSSetGeometryInfo(Collection<GeometryInfo> input) {
+		Set<SGeometryInfo> result = new HashSet<SGeometryInfo>();
+		for (GeometryInfo o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<GeometryInfo> convertFromSSetGeometryInfo(Collection<SGeometryInfo> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<GeometryInfo> result = new HashSet<GeometryInfo>();
+		for (SGeometryInfo o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SGeometryInfo> convertToSListGeometryInfo(Collection<GeometryInfo> input) {
+		List<SGeometryInfo> result = new ArrayList<SGeometryInfo>();
+		for (GeometryInfo o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<GeometryInfo> convertFromSListGeometryInfo(Collection<SGeometryInfo> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<GeometryInfo> result = new ArrayList<GeometryInfo>();
+		for (SGeometryInfo o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SGeometryInfo convertToSObject(GeometryInfo input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SGeometryInfo result = new SGeometryInfo();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setStartVertex(input.getStartVertex());
+		result.setStartIndex(input.getStartIndex());
+		result.setPrimitiveCount(input.getPrimitiveCount());
+		result.setTransformation(input.getTransformation());
+		result.setArea(input.getArea());
+		result.setVolume(input.getVolume());
+		result.setHasTransparency(input.isHasTransparency());
+		result.setIfcProductOid(input.getIfcProductOid());
+		result.setDensity(input.getDensity());
+		Bounds boundsVal = input.getBounds();
+		result.setBounds(convertToSObject(boundsVal));
+		Bounds boundsUntransformedVal = input.getBoundsUntransformed();
+		result.setBoundsUntransformed(convertToSObject(boundsUntransformedVal));
+		GeometryData dataVal = input.getData();
+		result.setDataId(dataVal == null ? -1 : dataVal.getOid());
+		Bounds boundsMmVal = input.getBoundsMm();
+		result.setBoundsMm(convertToSObject(boundsMmVal));
+		Bounds boundsUntransformedMmVal = input.getBoundsUntransformedMm();
+		result.setBoundsUntransformedMm(convertToSObject(boundsUntransformedMmVal));
+		return result;
+	}
+
+	public GeometryInfo convertFromSObject(SGeometryInfo input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		GeometryInfo result = convertFromSObject(input, GeometryFactory.eINSTANCE.createGeometryInfo(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public GeometryInfo convertFromSObject(SGeometryInfo input) throws BimserverDatabaseException {
+		GeometryInfo result = convertFromSObject(input, GeometryFactory.eINSTANCE.createGeometryInfo(), null);
+		return result;
+	}
+
+	public GeometryInfo convertFromSObject(SGeometryInfo input, GeometryInfo result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setStartVertex(input.getStartVertex());
+		result.setStartIndex(input.getStartIndex());
+		result.setPrimitiveCount(input.getPrimitiveCount());
+		result.setTransformation(input.getTransformation());
+		result.setArea(input.getArea());
+		result.setVolume(input.getVolume());
+		result.setHasTransparency(input.isHasTransparency());
+		result.setIfcProductOid(input.getIfcProductOid());
+		result.setDensity(input.getDensity());
+		result.setBounds(convertFromSObject(input.getBounds(), session));
+		result.setBoundsUntransformed(convertFromSObject(input.getBoundsUntransformed(), session));
+		result.setData((GeometryData)session.get(GeometryPackage.eINSTANCE.getGeometryData(), input.getDataId(), OldQuery.getDefault()));
+		result.setBoundsMm(convertFromSObject(input.getBoundsMm(), session));
+		result.setBoundsUntransformedMm(convertFromSObject(input.getBoundsUntransformedMm(), session));
+		return result;
+	}
+
+	public Set<SVector3f> convertToSSetVector3f(Collection<Vector3f> input) {
+		Set<SVector3f> result = new HashSet<SVector3f>();
+		for (Vector3f o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<Vector3f> convertFromSSetVector3f(Collection<SVector3f> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<Vector3f> result = new HashSet<Vector3f>();
+		for (SVector3f o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SVector3f> convertToSListVector3f(Collection<Vector3f> input) {
+		List<SVector3f> result = new ArrayList<SVector3f>();
+		for (Vector3f o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<Vector3f> convertFromSListVector3f(Collection<SVector3f> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<Vector3f> result = new ArrayList<Vector3f>();
+		for (SVector3f o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SVector3f convertToSObject(Vector3f input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SVector3f result = new SVector3f();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setX(input.getX());
+		result.setY(input.getY());
+		result.setZ(input.getZ());
+		return result;
+	}
+
+	public Vector3f convertFromSObject(SVector3f input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		Vector3f result = convertFromSObject(input, GeometryFactory.eINSTANCE.createVector3f(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public Vector3f convertFromSObject(SVector3f input) throws BimserverDatabaseException {
+		Vector3f result = convertFromSObject(input, GeometryFactory.eINSTANCE.createVector3f(), null);
+		return result;
+	}
+
+	public Vector3f convertFromSObject(SVector3f input, Vector3f result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setX(input.getX());
+		result.setY(input.getY());
+		result.setZ(input.getZ());
+		return result;
+	}
+
+	public Set<SBounds> convertToSSetBounds(Collection<Bounds> input) {
+		Set<SBounds> result = new HashSet<SBounds>();
+		for (Bounds o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<Bounds> convertFromSSetBounds(Collection<SBounds> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<Bounds> result = new HashSet<Bounds>();
+		for (SBounds o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SBounds> convertToSListBounds(Collection<Bounds> input) {
+		List<SBounds> result = new ArrayList<SBounds>();
+		for (Bounds o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<Bounds> convertFromSListBounds(Collection<SBounds> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<Bounds> result = new ArrayList<Bounds>();
+		for (SBounds o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SBounds convertToSObject(Bounds input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SBounds result = new SBounds();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		Vector3f minVal = input.getMin();
+		result.setMin(convertToSObject(minVal));
+		Vector3f maxVal = input.getMax();
+		result.setMax(convertToSObject(maxVal));
+		return result;
+	}
+
+	public Bounds convertFromSObject(SBounds input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		Bounds result = convertFromSObject(input, GeometryFactory.eINSTANCE.createBounds(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public Bounds convertFromSObject(SBounds input) throws BimserverDatabaseException {
+		Bounds result = convertFromSObject(input, GeometryFactory.eINSTANCE.createBounds(), null);
+		return result;
+	}
+
+	public Bounds convertFromSObject(SBounds input, Bounds result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setMin(convertFromSObject(input.getMin(), session));
+		result.setMax(convertFromSObject(input.getMax(), session));
+		return result;
+	}
+
+	public Set<SGeometryData> convertToSSetGeometryData(Collection<GeometryData> input) {
+		Set<SGeometryData> result = new HashSet<SGeometryData>();
+		for (GeometryData o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<GeometryData> convertFromSSetGeometryData(Collection<SGeometryData> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<GeometryData> result = new HashSet<GeometryData>();
+		for (SGeometryData o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SGeometryData> convertToSListGeometryData(Collection<GeometryData> input) {
+		List<SGeometryData> result = new ArrayList<SGeometryData>();
+		for (GeometryData o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<GeometryData> convertFromSListGeometryData(Collection<SGeometryData> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<GeometryData> result = new ArrayList<GeometryData>();
+		for (SGeometryData o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SGeometryData convertToSObject(GeometryData input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SGeometryData result = new SGeometryData();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setIndices(input.getIndices());
+		result.setVertices(input.getVertices());
+		result.setNormals(input.getNormals());
+		result.setMaterials(input.getMaterials());
+		result.setMaterialIndices(input.getMaterialIndices());
+		result.setHasTransparency(input.isHasTransparency());
+		result.setReused(input.getReused());
+		result.setType(input.getType());
+		Vector4f colorVal = input.getColor();
+		result.setColor(convertToSObject(colorVal));
+		Vector4f mostUsedColorVal = input.getMostUsedColor();
+		result.setMostUsedColor(convertToSObject(mostUsedColorVal));
+		return result;
+	}
+
+	public GeometryData convertFromSObject(SGeometryData input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		GeometryData result = convertFromSObject(input, GeometryFactory.eINSTANCE.createGeometryData(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public GeometryData convertFromSObject(SGeometryData input) throws BimserverDatabaseException {
+		GeometryData result = convertFromSObject(input, GeometryFactory.eINSTANCE.createGeometryData(), null);
+		return result;
+	}
+
+	public GeometryData convertFromSObject(SGeometryData input, GeometryData result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setIndices(input.getIndices());
+		result.setVertices(input.getVertices());
+		result.setNormals(input.getNormals());
+		result.setMaterials(input.getMaterials());
+		result.setMaterialIndices(input.getMaterialIndices());
+		result.setHasTransparency(input.isHasTransparency());
+		result.setReused(input.getReused());
+		result.setType(input.getType());
+		result.setColor(convertFromSObject(input.getColor(), session));
+		result.setMostUsedColor(convertFromSObject(input.getMostUsedColor(), session));
+		return result;
+	}
+
+	public Set<SVector4f> convertToSSetVector4f(Collection<Vector4f> input) {
+		Set<SVector4f> result = new HashSet<SVector4f>();
+		for (Vector4f o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public Set<Vector4f> convertFromSSetVector4f(Collection<SVector4f> input, DatabaseSession session) throws BimserverDatabaseException {
+		Set<Vector4f> result = new HashSet<Vector4f>();
+		for (SVector4f o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public List<SVector4f> convertToSListVector4f(Collection<Vector4f> input) {
+		List<SVector4f> result = new ArrayList<SVector4f>();
+		for (Vector4f o : input) {
+			result.add(convertToSObject(o));
+		}
+		return result;
+	}
+
+	public List<Vector4f> convertFromSListVector4f(Collection<SVector4f> input, DatabaseSession session) throws BimserverDatabaseException {
+		List<Vector4f> result = new ArrayList<Vector4f>();
+		for (SVector4f o : input) {
+			result.add(convertFromSObject(o, session));
+		}
+		return result;
+	}
+
+	public SVector4f convertToSObject(Vector4f input) {
+		if (input == null) {
+			return null;
+		}
+		
+		SVector4f result = new SVector4f();
+		result.setOid(input.getOid());
+		result.setRid(input.getRid());
+		result.setX(input.getX());
+		result.setY(input.getY());
+		result.setZ(input.getZ());
+		result.setW(input.getW());
+		return result;
+	}
+
+	public Vector4f convertFromSObject(SVector4f input, DatabaseSession session) throws BimserverDatabaseException {
+		if (session == null) {
+			throw new BimserverDatabaseException("session == null, use the other method");
+		}
+		LOGGER.info("Potential unlinked object created");
+		Vector4f result = convertFromSObject(input, GeometryFactory.eINSTANCE.createVector4f(), session);
+		
+		((IdEObjectImpl)result).setOid(input.getOid());
+		((IdEObjectImpl)result).setRid(input.getRid());
+		
+		return result;
+	}
+
+	public Vector4f convertFromSObject(SVector4f input) throws BimserverDatabaseException {
+		Vector4f result = convertFromSObject(input, GeometryFactory.eINSTANCE.createVector4f(), null);
+		return result;
+	}
+
+	public Vector4f convertFromSObject(SVector4f input, Vector4f result, DatabaseSession session) throws BimserverDatabaseException {
+		if (input == null) {
+			return null;
+		}
+		result.setX(input.getX());
+		result.setY(input.getY());
+		result.setZ(input.getZ());
+		result.setW(input.getW());
+		return result;
+	}
 		public SAccessMethod convertToSObject(AccessMethod input) {
 			return SAccessMethod.values()[input.ordinal()];
 		}
@@ -3108,6 +3523,10 @@ public class SConverter {
 		result.setBounds(convertToSObject(boundsVal));
 		Bounds boundsUntransformedVal = input.getBoundsUntransformed();
 		result.setBoundsUntransformed(convertToSObject(boundsUntransformedVal));
+		Bounds boundsMmVal = input.getBoundsMm();
+		result.setBoundsMm(convertToSObject(boundsMmVal));
+		Bounds boundsUntransformedMmVal = input.getBoundsUntransformedMm();
+		result.setBoundsUntransformedMm(convertToSObject(boundsUntransformedMmVal));
 		List<Long> listservicesLinked = new ArrayList<Long>();
 		for (NewService v : input.getServicesLinked()) {
 			listservicesLinked.add(v.getOid());
@@ -3171,6 +3590,8 @@ public class SConverter {
 		result.setService((Service)session.get(StorePackage.eINSTANCE.getService(), input.getServiceId(), OldQuery.getDefault()));
 		result.setBounds(convertFromSObject(input.getBounds(), session));
 		result.setBoundsUntransformed(convertFromSObject(input.getBoundsUntransformed(), session));
+		result.setBoundsMm(convertFromSObject(input.getBoundsMm(), session));
+		result.setBoundsUntransformedMm(convertFromSObject(input.getBoundsUntransformedMm(), session));
 		List<NewService> listservicesLinked = result.getServicesLinked();
 		for (long oid : input.getServicesLinked()) {
 			listservicesLinked.add((NewService)session.get(StorePackage.eINSTANCE.getNewService(), oid, OldQuery.getDefault()));
@@ -11729,421 +12150,6 @@ public class SConverter {
 		result.setTriangles(input.getTriangles());
 		result.setVolume(input.getVolume());
 		result.setDensity(input.getDensity());
-		return result;
-	}
-
-	public Set<SGeometryInfo> convertToSSetGeometryInfo(Collection<GeometryInfo> input) {
-		Set<SGeometryInfo> result = new HashSet<SGeometryInfo>();
-		for (GeometryInfo o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<GeometryInfo> convertFromSSetGeometryInfo(Collection<SGeometryInfo> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<GeometryInfo> result = new HashSet<GeometryInfo>();
-		for (SGeometryInfo o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SGeometryInfo> convertToSListGeometryInfo(Collection<GeometryInfo> input) {
-		List<SGeometryInfo> result = new ArrayList<SGeometryInfo>();
-		for (GeometryInfo o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<GeometryInfo> convertFromSListGeometryInfo(Collection<SGeometryInfo> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<GeometryInfo> result = new ArrayList<GeometryInfo>();
-		for (SGeometryInfo o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SGeometryInfo convertToSObject(GeometryInfo input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SGeometryInfo result = new SGeometryInfo();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setStartVertex(input.getStartVertex());
-		result.setStartIndex(input.getStartIndex());
-		result.setPrimitiveCount(input.getPrimitiveCount());
-		result.setTransformation(input.getTransformation());
-		result.setArea(input.getArea());
-		result.setVolume(input.getVolume());
-		result.setHasTransparency(input.isHasTransparency());
-		result.setIfcProductOid(input.getIfcProductOid());
-		result.setDensity(input.getDensity());
-		Bounds boundsVal = input.getBounds();
-		result.setBounds(convertToSObject(boundsVal));
-		Bounds boundsUntransformedVal = input.getBoundsUntransformed();
-		result.setBoundsUntransformed(convertToSObject(boundsUntransformedVal));
-		GeometryData dataVal = input.getData();
-		result.setDataId(dataVal == null ? -1 : dataVal.getOid());
-		Bounds boundsMmVal = input.getBoundsMm();
-		result.setBoundsMm(convertToSObject(boundsMmVal));
-		Bounds boundsUntransformedMmVal = input.getBoundsUntransformedMm();
-		result.setBoundsUntransformedMm(convertToSObject(boundsUntransformedMmVal));
-		return result;
-	}
-
-	public GeometryInfo convertFromSObject(SGeometryInfo input, DatabaseSession session) throws BimserverDatabaseException {
-		if (session == null) {
-			throw new BimserverDatabaseException("session == null, use the other method");
-		}
-		LOGGER.info("Potential unlinked object created");
-		GeometryInfo result = convertFromSObject(input, GeometryFactory.eINSTANCE.createGeometryInfo(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public GeometryInfo convertFromSObject(SGeometryInfo input) throws BimserverDatabaseException {
-		GeometryInfo result = convertFromSObject(input, GeometryFactory.eINSTANCE.createGeometryInfo(), null);
-		return result;
-	}
-
-	public GeometryInfo convertFromSObject(SGeometryInfo input, GeometryInfo result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setStartVertex(input.getStartVertex());
-		result.setStartIndex(input.getStartIndex());
-		result.setPrimitiveCount(input.getPrimitiveCount());
-		result.setTransformation(input.getTransformation());
-		result.setArea(input.getArea());
-		result.setVolume(input.getVolume());
-		result.setHasTransparency(input.isHasTransparency());
-		result.setIfcProductOid(input.getIfcProductOid());
-		result.setDensity(input.getDensity());
-		result.setBounds(convertFromSObject(input.getBounds(), session));
-		result.setBoundsUntransformed(convertFromSObject(input.getBoundsUntransformed(), session));
-		result.setData((GeometryData)session.get(GeometryPackage.eINSTANCE.getGeometryData(), input.getDataId(), OldQuery.getDefault()));
-		result.setBoundsMm(convertFromSObject(input.getBoundsMm(), session));
-		result.setBoundsUntransformedMm(convertFromSObject(input.getBoundsUntransformedMm(), session));
-		return result;
-	}
-
-	public Set<SVector3f> convertToSSetVector3f(Collection<Vector3f> input) {
-		Set<SVector3f> result = new HashSet<SVector3f>();
-		for (Vector3f o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<Vector3f> convertFromSSetVector3f(Collection<SVector3f> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<Vector3f> result = new HashSet<Vector3f>();
-		for (SVector3f o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SVector3f> convertToSListVector3f(Collection<Vector3f> input) {
-		List<SVector3f> result = new ArrayList<SVector3f>();
-		for (Vector3f o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<Vector3f> convertFromSListVector3f(Collection<SVector3f> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<Vector3f> result = new ArrayList<Vector3f>();
-		for (SVector3f o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SVector3f convertToSObject(Vector3f input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SVector3f result = new SVector3f();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setX(input.getX());
-		result.setY(input.getY());
-		result.setZ(input.getZ());
-		return result;
-	}
-
-	public Vector3f convertFromSObject(SVector3f input, DatabaseSession session) throws BimserverDatabaseException {
-		if (session == null) {
-			throw new BimserverDatabaseException("session == null, use the other method");
-		}
-		LOGGER.info("Potential unlinked object created");
-		Vector3f result = convertFromSObject(input, GeometryFactory.eINSTANCE.createVector3f(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public Vector3f convertFromSObject(SVector3f input) throws BimserverDatabaseException {
-		Vector3f result = convertFromSObject(input, GeometryFactory.eINSTANCE.createVector3f(), null);
-		return result;
-	}
-
-	public Vector3f convertFromSObject(SVector3f input, Vector3f result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setX(input.getX());
-		result.setY(input.getY());
-		result.setZ(input.getZ());
-		return result;
-	}
-
-	public Set<SBounds> convertToSSetBounds(Collection<Bounds> input) {
-		Set<SBounds> result = new HashSet<SBounds>();
-		for (Bounds o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<Bounds> convertFromSSetBounds(Collection<SBounds> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<Bounds> result = new HashSet<Bounds>();
-		for (SBounds o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SBounds> convertToSListBounds(Collection<Bounds> input) {
-		List<SBounds> result = new ArrayList<SBounds>();
-		for (Bounds o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<Bounds> convertFromSListBounds(Collection<SBounds> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<Bounds> result = new ArrayList<Bounds>();
-		for (SBounds o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SBounds convertToSObject(Bounds input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SBounds result = new SBounds();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		Vector3f minVal = input.getMin();
-		result.setMin(convertToSObject(minVal));
-		Vector3f maxVal = input.getMax();
-		result.setMax(convertToSObject(maxVal));
-		return result;
-	}
-
-	public Bounds convertFromSObject(SBounds input, DatabaseSession session) throws BimserverDatabaseException {
-		if (session == null) {
-			throw new BimserverDatabaseException("session == null, use the other method");
-		}
-		LOGGER.info("Potential unlinked object created");
-		Bounds result = convertFromSObject(input, GeometryFactory.eINSTANCE.createBounds(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public Bounds convertFromSObject(SBounds input) throws BimserverDatabaseException {
-		Bounds result = convertFromSObject(input, GeometryFactory.eINSTANCE.createBounds(), null);
-		return result;
-	}
-
-	public Bounds convertFromSObject(SBounds input, Bounds result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setMin(convertFromSObject(input.getMin(), session));
-		result.setMax(convertFromSObject(input.getMax(), session));
-		return result;
-	}
-
-	public Set<SGeometryData> convertToSSetGeometryData(Collection<GeometryData> input) {
-		Set<SGeometryData> result = new HashSet<SGeometryData>();
-		for (GeometryData o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<GeometryData> convertFromSSetGeometryData(Collection<SGeometryData> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<GeometryData> result = new HashSet<GeometryData>();
-		for (SGeometryData o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SGeometryData> convertToSListGeometryData(Collection<GeometryData> input) {
-		List<SGeometryData> result = new ArrayList<SGeometryData>();
-		for (GeometryData o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<GeometryData> convertFromSListGeometryData(Collection<SGeometryData> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<GeometryData> result = new ArrayList<GeometryData>();
-		for (SGeometryData o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SGeometryData convertToSObject(GeometryData input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SGeometryData result = new SGeometryData();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setIndices(input.getIndices());
-		result.setVertices(input.getVertices());
-		result.setNormals(input.getNormals());
-		result.setMaterials(input.getMaterials());
-		result.setMaterialIndices(input.getMaterialIndices());
-		result.setHasTransparency(input.isHasTransparency());
-		result.setReused(input.getReused());
-		result.setType(input.getType());
-		Vector4f colorVal = input.getColor();
-		result.setColor(convertToSObject(colorVal));
-		Vector4f mostUsedColorVal = input.getMostUsedColor();
-		result.setMostUsedColor(convertToSObject(mostUsedColorVal));
-		return result;
-	}
-
-	public GeometryData convertFromSObject(SGeometryData input, DatabaseSession session) throws BimserverDatabaseException {
-		if (session == null) {
-			throw new BimserverDatabaseException("session == null, use the other method");
-		}
-		LOGGER.info("Potential unlinked object created");
-		GeometryData result = convertFromSObject(input, GeometryFactory.eINSTANCE.createGeometryData(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public GeometryData convertFromSObject(SGeometryData input) throws BimserverDatabaseException {
-		GeometryData result = convertFromSObject(input, GeometryFactory.eINSTANCE.createGeometryData(), null);
-		return result;
-	}
-
-	public GeometryData convertFromSObject(SGeometryData input, GeometryData result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setIndices(input.getIndices());
-		result.setVertices(input.getVertices());
-		result.setNormals(input.getNormals());
-		result.setMaterials(input.getMaterials());
-		result.setMaterialIndices(input.getMaterialIndices());
-		result.setHasTransparency(input.isHasTransparency());
-		result.setReused(input.getReused());
-		result.setType(input.getType());
-		result.setColor(convertFromSObject(input.getColor(), session));
-		result.setMostUsedColor(convertFromSObject(input.getMostUsedColor(), session));
-		return result;
-	}
-
-	public Set<SVector4f> convertToSSetVector4f(Collection<Vector4f> input) {
-		Set<SVector4f> result = new HashSet<SVector4f>();
-		for (Vector4f o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public Set<Vector4f> convertFromSSetVector4f(Collection<SVector4f> input, DatabaseSession session) throws BimserverDatabaseException {
-		Set<Vector4f> result = new HashSet<Vector4f>();
-		for (SVector4f o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public List<SVector4f> convertToSListVector4f(Collection<Vector4f> input) {
-		List<SVector4f> result = new ArrayList<SVector4f>();
-		for (Vector4f o : input) {
-			result.add(convertToSObject(o));
-		}
-		return result;
-	}
-
-	public List<Vector4f> convertFromSListVector4f(Collection<SVector4f> input, DatabaseSession session) throws BimserverDatabaseException {
-		List<Vector4f> result = new ArrayList<Vector4f>();
-		for (SVector4f o : input) {
-			result.add(convertFromSObject(o, session));
-		}
-		return result;
-	}
-
-	public SVector4f convertToSObject(Vector4f input) {
-		if (input == null) {
-			return null;
-		}
-		
-		SVector4f result = new SVector4f();
-		result.setOid(input.getOid());
-		result.setRid(input.getRid());
-		result.setX(input.getX());
-		result.setY(input.getY());
-		result.setZ(input.getZ());
-		result.setW(input.getW());
-		return result;
-	}
-
-	public Vector4f convertFromSObject(SVector4f input, DatabaseSession session) throws BimserverDatabaseException {
-		if (session == null) {
-			throw new BimserverDatabaseException("session == null, use the other method");
-		}
-		LOGGER.info("Potential unlinked object created");
-		Vector4f result = convertFromSObject(input, GeometryFactory.eINSTANCE.createVector4f(), session);
-		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
-		
-		return result;
-	}
-
-	public Vector4f convertFromSObject(SVector4f input) throws BimserverDatabaseException {
-		Vector4f result = convertFromSObject(input, GeometryFactory.eINSTANCE.createVector4f(), null);
-		return result;
-	}
-
-	public Vector4f convertFromSObject(SVector4f input, Vector4f result, DatabaseSession session) throws BimserverDatabaseException {
-		if (input == null) {
-			return null;
-		}
-		result.setX(input.getX());
-		result.setY(input.getY());
-		result.setZ(input.getZ());
-		result.setW(input.getW());
 		return result;
 	}
 }

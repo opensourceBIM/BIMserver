@@ -387,6 +387,8 @@ public class GeometryRunner implements Runnable {
 												geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), referenceOid, 0);
 												this.streamingGeometryGenerator.bytesSavedByHash.addAndGet(size);
 											} else if (geometryReused) {
+												// This is true when this geometry is part of a mapped item mapping (and used more than once)
+												
 												boolean found = false;
 												// for (Range r :
 												// reusableGeometryData) {
@@ -452,9 +454,14 @@ public class GeometryRunner implements Runnable {
 //													reusableGeometryData.add(range);
 //													productToData.put(ifcProduct.getOid(), new TemporaryGeometryData(geometryData.getOid(), renderEngineInstance.getArea(), renderEngineInstance.getVolume(), indices.length / 3, size, mibu, mabu, indices, vertices));
 //												} // TODO else??
+												
+												// So reuse is on, the data was not found by hash, and this item is not in a mapped item
+												
+												// By saving it before putting it in the cache/hashmap, we make sure we won't get a BimserverConcurrentModificationException
+												geometryData.save(); // TODO Why??
+
 												databaseSession.cache((HashMapVirtualObject) geometryData);
 												this.streamingGeometryGenerator.hashes.put(hash, geometryData.getOid());
-												geometryData.save(); // TODO Why??
 												// sizes.put(size, ifcProduct);
 											}
 										} else {
@@ -642,6 +649,12 @@ public class GeometryRunner implements Runnable {
 											HashMapVirtualObject referencedData = databaseSession.getFromCache(masterGeometryData.getOid());
 											Integer currentValue = (Integer) referencedData.get("reused");
 											referencedData.set("reused", currentValue + 1);
+											
+											// TODO this keeping track of the amount of reuse, takes it's toll on memory usage. Basically all geometry ends up in memory by the time the Geometry generation is done
+											// We should try to see whether we can use BDB's mechanism to do partial retrievals/updates of a records here, because we only need to update just one value
+											// Another, simpler option would be to introduce another layer between GeometryInfo and GeometryData, so we don't have to cache the actual data (vertices etc... the bulk)
+											// In that case however the BinarySerializer would increase in complexity
+											
 											referencedData.saveOverwrite();
 											geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), masterGeometryData.getOid(), 0);
 
