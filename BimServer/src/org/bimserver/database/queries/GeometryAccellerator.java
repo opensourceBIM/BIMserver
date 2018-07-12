@@ -48,7 +48,7 @@ public class GeometryAccellerator {
 				totalBounds.integrate(revision.getBoundsMm());
 			}
 
-			Octree<Long> octree = new Octree<>(totalBounds, 5);
+			Octree<Long> octree = new Octree<>(totalBounds, key.getMaxDepth());
 
 			// Assuming all given roids are of projects that all have the same schema
 			Revision revision = databaseSession.get(key.getRoids().iterator().next(), OldQuery.getDefault());
