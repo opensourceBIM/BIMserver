@@ -35,6 +35,11 @@ public class SPackage {
 	private void init() {
 			try {
 	
+		Class.forName("org.bimserver.interfaces.objects.SGeometryInfo");
+		Class.forName("org.bimserver.interfaces.objects.SVector3f");
+		Class.forName("org.bimserver.interfaces.objects.SBounds");
+		Class.forName("org.bimserver.interfaces.objects.SGeometryData");
+		Class.forName("org.bimserver.interfaces.objects.SVector4f");
 		Class.forName("org.bimserver.interfaces.objects.SAccessMethod");
 		Class.forName("org.bimserver.interfaces.objects.SLogAction");
 		Class.forName("org.bimserver.interfaces.objects.SServerLog");
@@ -188,11 +193,6 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SRunServiceAuthorization");
 		Class.forName("org.bimserver.interfaces.objects.SDensityCollection");
 		Class.forName("org.bimserver.interfaces.objects.SDensity");
-		Class.forName("org.bimserver.interfaces.objects.SGeometryInfo");
-		Class.forName("org.bimserver.interfaces.objects.SVector3f");
-		Class.forName("org.bimserver.interfaces.objects.SBounds");
-		Class.forName("org.bimserver.interfaces.objects.SGeometryData");
-		Class.forName("org.bimserver.interfaces.objects.SVector4f");
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);
 		}

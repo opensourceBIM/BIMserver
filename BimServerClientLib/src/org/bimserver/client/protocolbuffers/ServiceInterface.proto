@@ -231,6 +231,8 @@ service ServiceInterface {
 
 	rpc getSuggestedDeserializerForExtension (GetSuggestedDeserializerForExtensionRequest) returns (GetSuggestedDeserializerForExtensionResponse);
 
+	rpc getTileCounts (GetTileCountsRequest) returns (GetTileCountsResponse);
+
 	rpc getTopLevelProjectByName (GetTopLevelProjectByNameRequest) returns (GetTopLevelProjectByNameResponse);
 
 	rpc getTotalBounds (GetTotalBoundsRequest) returns (GetTotalBoundsResponse);
@@ -1472,15 +1474,16 @@ message SGeometryInfo {
 	optional SBounds boundsUntransformed = 4;
 	optional SBounds boundsUntransformedMm = 5;
 	optional int64 dataId = 6;
-	optional bool hasTransparency = 7;
-	optional int64 ifcProductOid = 8;
-	optional int64 oid = 9;
-	optional int32 primitiveCount = 10;
-	optional int32 rid = 11;
-	optional int32 startIndex = 12;
-	optional int32 startVertex = 13;
-	optional bytes transformation = 14;
-	optional double volume = 15;
+	optional float density = 7;
+	optional bool hasTransparency = 8;
+	optional int64 ifcProductOid = 9;
+	optional int64 oid = 10;
+	optional int32 primitiveCount = 11;
+	optional int32 rid = 12;
+	optional int32 startIndex = 13;
+	optional int32 startVertex = 14;
+	optional bytes transformation = 15;
+	optional double volume = 16;
 }
 
 message GetGeometryInfoResponse {
@@ -1821,6 +1824,17 @@ message GetSuggestedDeserializerForExtensionRequest {
 message GetSuggestedDeserializerForExtensionResponse {
 	optional string errorMessage = 1;
 	optional SDeserializerPluginConfiguration value = 2;
+}
+
+message GetTileCountsRequest {
+	repeated int64 roids = 1;
+	repeated string excludedTypes = 2;
+	optional int32 depth = 3;
+}
+
+message GetTileCountsResponse {
+	optional string errorMessage = 1;
+	repeated int32 value = 2;
 }
 
 message GetTopLevelProjectByNameRequest {

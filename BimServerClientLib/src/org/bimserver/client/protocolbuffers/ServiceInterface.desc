@@ -1,5 +1,5 @@
 
-ûò
+úö
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -772,25 +772,26 @@ revisionNr (
 value (2.org.bimserver.pb.SGeoTag"3
 GetGeometryInfoRequest
 roid (
-oid ("™
+oid ("ª
 SGeometryInfo
 area ()
 bounds (2.org.bimserver.pb.SBounds+
 boundsMm (2.org.bimserver.pb.SBounds6
 boundsUntransformed (2.org.bimserver.pb.SBounds8
 boundsUntransformedMm (2.org.bimserver.pb.SBounds
-dataId (
-hasTransparency (
-ifcProductOid (
-oid	 (
-primitiveCount
- (
-rid (
+dataId (
+density (
+hasTransparency (
+ifcProductOid	 (
+oid
+ (
+primitiveCount (
+rid (
 
-startIndex (
-startVertex (
-transformation (
-volume ("_
+startIndex (
+startVertex (
+transformation (
+volume ("_
 GetGeometryInfoResponse
 errorMessage (	.
 value (2.org.bimserver.pb.SGeometryInfo"$
@@ -1009,7 +1010,14 @@ settingsId (
 poid ("á
 ,GetSuggestedDeserializerForExtensionResponse
 errorMessage (	A
-value (22.org.bimserver.pb.SDeserializerPluginConfiguration"/
+value (22.org.bimserver.pb.SDeserializerPluginConfiguration"K
+GetTileCountsRequest
+roids (
+excludedTypes (	
+depth ("<
+GetTileCountsResponse
+errorMessage (	
+value ("/
 GetTopLevelProjectByNameRequest
 name (	"c
  GetTopLevelProjectByNameResponse
@@ -1519,7 +1527,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2√{
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2•|
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
@@ -1627,7 +1635,8 @@ getService#.org.bimserver.pb.GetServiceRequest$.org.bimserver.pb.GetServiceRes
 getServiceDescriptor-.org.bimserver.pb.GetServiceDescriptorRequest..org.bimserver.pb.GetServiceDescriptorResponser
 getSubProjectByName,.org.bimserver.pb.GetSubProjectByNameRequest-.org.bimserver.pb.GetSubProjectByNameResponsec
 getSubProjects'.org.bimserver.pb.GetSubProjectsRequest(.org.bimserver.pb.GetSubProjectsResponse•
-$getSuggestedDeserializerForExtension=.org.bimserver.pb.GetSuggestedDeserializerForExtensionRequest>.org.bimserver.pb.GetSuggestedDeserializerForExtensionResponseÅ
+$getSuggestedDeserializerForExtension=.org.bimserver.pb.GetSuggestedDeserializerForExtensionRequest>.org.bimserver.pb.GetSuggestedDeserializerForExtensionResponse`
+getTileCounts&.org.bimserver.pb.GetTileCountsRequest'.org.bimserver.pb.GetTileCountsResponseÅ
 getTopLevelProjectByName1.org.bimserver.pb.GetTopLevelProjectByNameRequest2.org.bimserver.pb.GetTopLevelProjectByNameResponsec
 getTotalBounds'.org.bimserver.pb.GetTotalBoundsRequest(.org.bimserver.pb.GetTotalBoundsResponseä
 getTotalUntransformedBounds4.org.bimserver.pb.GetTotalUntransformedBoundsRequest5.org.bimserver.pb.GetTotalUntransformedBoundsResponse`
