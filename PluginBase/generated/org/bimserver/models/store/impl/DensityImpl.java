@@ -33,7 +33,8 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.DensityImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.DensityImpl#getGeometryInfoId <em>Geometry Info Id</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.DensityImpl#getTriangles <em>Triangles</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.DensityImpl#getTrianglesBelow <em>Triangles Below</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.DensityImpl#getTrianglesAbove <em>Triangles Above</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.DensityImpl#getVolume <em>Volume</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.DensityImpl#getDensity <em>Density</em>}</li>
  * </ul>
@@ -111,8 +112,8 @@ public class DensityImpl extends IdEObjectImpl implements Density {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public long getTriangles() {
-		return (Long) eGet(StorePackage.Literals.DENSITY__TRIANGLES, true);
+	public long getTrianglesBelow() {
+		return (Long) eGet(StorePackage.Literals.DENSITY__TRIANGLES_BELOW, true);
 	}
 
 	/**
@@ -120,8 +121,26 @@ public class DensityImpl extends IdEObjectImpl implements Density {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTriangles(long newTriangles) {
-		eSet(StorePackage.Literals.DENSITY__TRIANGLES, newTriangles);
+	public void setTrianglesBelow(long newTrianglesBelow) {
+		eSet(StorePackage.Literals.DENSITY__TRIANGLES_BELOW, newTrianglesBelow);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getTrianglesAbove() {
+		return (Long) eGet(StorePackage.Literals.DENSITY__TRIANGLES_ABOVE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTrianglesAbove(long newTrianglesAbove) {
+		eSet(StorePackage.Literals.DENSITY__TRIANGLES_ABOVE, newTrianglesAbove);
 	}
 
 	/**

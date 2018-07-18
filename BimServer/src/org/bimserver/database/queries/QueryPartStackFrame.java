@@ -18,6 +18,7 @@ package org.bimserver.database.queries;
  *****************************************************************************/
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -31,7 +32,9 @@ import org.bimserver.database.queries.om.Include.TypeDef;
 import org.bimserver.database.queries.om.Properties;
 import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;
+import org.bimserver.database.queries.om.Tiles;
 import org.bimserver.shared.QueryContext;
+import org.codehaus.plexus.logging.Logger;
 import org.eclipse.emf.ecore.EClass;
 
 public class QueryPartStackFrame extends StackFrame {
@@ -46,6 +49,7 @@ public class QueryPartStackFrame extends StackFrame {
 	private Map<String, Properties> properties;
 	private InBoundingBox inBoundingBox;
 	private Set<String> classifications;
+	private Tiles tiles;
 
 	public QueryPartStackFrame(QueryObjectProvider queryObjectProvider, QueryPart partialQuery, QueryContext reusable) throws BimserverDatabaseException, QueryException {
 		this.queryObjectProvider = queryObjectProvider;
@@ -113,6 +117,7 @@ public class QueryPartStackFrame extends StackFrame {
 		this.properties = partialQuery.getProperties();
 		this.classifications = partialQuery.getClassifications();
 		this.inBoundingBox = partialQuery.getInBoundingBox();
+		this.tiles = partialQuery.getTiles();
 	}
 
 	@Override
@@ -137,6 +142,28 @@ public class QueryPartStackFrame extends StackFrame {
 				queryObjectProvider.push(new QueryClassificationsAndTypesStackFrame(queryObjectProvider, eClass, partialQuery, reusable, classifications));
 			} else if (inBoundingBox != null) {
 				queryObjectProvider.push(new QueryBoundingBoxStackFrame(queryObjectProvider, eClass, partialQuery, reusable, inBoundingBox));
+			} else if (tiles != null) {
+				// TODO excludedClasses
+
+				List<Long> oids = new ArrayList<>();
+
+				Octree<Long> octree = queryObjectProvider.getBimServer().getGeometryAccellerator().getOctree(Collections.singleton(reusable.getRoid()), null, tiles.getGeometryIdsToReuse(), 3, tiles.getMinimumThreshold());
+				for (Integer tileId : tiles.getTileIds()) {
+					Node<Long> node = octree.getById(tileId);
+					if (node != null) {
+						for (ObjectWrapper<Long> objectWrapper : node.getValues()) {
+							long objectId = objectWrapper.getV();
+							if (eClass.isSuperTypeOf(queryObjectProvider.getDatabaseSession().getEClassForOid(objectId))) {
+								oids.add(objectId);
+							}
+						}
+					} else {
+						System.out.println("Node not found: " + tileId);
+					}
+				}
+				if (!oids.isEmpty()) {
+					queryObjectProvider.push(new QueryOidsAndTypesStackFrame(queryObjectProvider, eClass, partialQuery, reusable, oids));
+				}
 			} else {
 				queryObjectProvider.push(new QueryTypeStackFrame(queryObjectProvider, eClass, reusable, partialQuery));
 			}

@@ -349,9 +349,26 @@ public class GeometryRunner implements Runnable {
 											this.streamingGeometryGenerator.processExtendsUntranslated(geometryInfo, vertices, indices[i] * 3, generateGeometryResult);
 										}
 										
-										geometryInfo.set("boundsUntransformedMm", createMmBounds(geometryInfo, boundsUntransformed, generateGeometryResult.getMultiplierToMm()));
+										HashMapWrappedVirtualObject boundsUntransformedMm = createMmBounds(geometryInfo, boundsUntransformed, generateGeometryResult.getMultiplierToMm());
+										geometryInfo.set("boundsUntransformedMm", boundsUntransformedMm);
 										HashMapWrappedVirtualObject boundsMm = createMmBounds(geometryInfo, bounds, generateGeometryResult.getMultiplierToMm());
 										geometryInfo.set("boundsMm", boundsMm);
+										
+										HashMapWrappedVirtualObject geometryDataBounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getBounds());
+										WrappedVirtualObject geometryDataBoundsMin = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
+										WrappedVirtualObject geometryDataBoundsMax = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
+
+										geometryDataBoundsMin.set("x", ((HashMapWrappedVirtualObject)boundsMm.get("min")).get("x"));
+										geometryDataBoundsMin.set("y", ((HashMapWrappedVirtualObject)boundsMm.get("min")).get("y"));
+										geometryDataBoundsMin.set("z", ((HashMapWrappedVirtualObject)boundsMm.get("min")).get("z"));
+
+										geometryDataBoundsMax.set("x", ((HashMapWrappedVirtualObject)boundsMm.get("max")).get("x"));
+										geometryDataBoundsMax.set("y", ((HashMapWrappedVirtualObject)boundsMm.get("max")).get("y"));
+										geometryDataBoundsMax.set("z", ((HashMapWrappedVirtualObject)boundsMm.get("max")).get("z"));
+
+										geometryDataBounds.setAttribute(GeometryPackage.eINSTANCE.getBounds_Min(), geometryDataBoundsMin);
+										geometryDataBounds.setAttribute(GeometryPackage.eINSTANCE.getBounds_Max(), geometryDataBoundsMax);
+										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_BoundsMm(), geometryDataBounds);
 										
 										float volume = (float)renderEngineInstance.getVolume();
 										
@@ -359,7 +376,7 @@ public class GeometryRunner implements Runnable {
 										volume = getVolumeFromBounds(boundsUntransformed);
 										float nrTriangles = geometry.getNrIndices() / 3;
 										
-										Density density = new Density(eClass.getName(), volume, getBiggestFaceFromBounds(boundsUntransformed), (long) nrTriangles, geometryInfo.getOid());
+										Density density = new Density(eClass.getName(), volume, getBiggestFaceFromBounds(boundsUntransformedMm), (long) nrTriangles, geometryInfo.getOid());
 										
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Density(), density.getDensityValue());
 										
@@ -383,6 +400,8 @@ public class GeometryRunner implements Runnable {
 												}
 												Integer currentValue = (Integer) referencedData.get("reused");
 												referencedData.set("reused", currentValue + 1);
+												HashMapWrappedVirtualObject dataBounds = (HashMapWrappedVirtualObject) referencedData.get("boundsMm");
+												extendBounds(boundsMm, dataBounds);
 												referencedData.saveOverwrite();
 												geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), referenceOid, 0);
 												this.streamingGeometryGenerator.bytesSavedByHash.addAndGet(size);
@@ -628,7 +647,8 @@ public class GeometryRunner implements Runnable {
 												this.streamingGeometryGenerator.processExtends(minBounds, maxBounds, totalTranformationMatrix, masterGeometryData.getVertices(), masterGeometryData.getIndices()[i] * 3, generateGeometryResult);
 											}
 
-											geometryInfo.set("boundsUntransformedMm", createMmBounds(geometryInfo, boundsUntransformed, generateGeometryResult.getMultiplierToMm()));
+											HashMapWrappedVirtualObject boundsUntransformedMm = createMmBounds(geometryInfo, boundsUntransformed, generateGeometryResult.getMultiplierToMm());
+											geometryInfo.set("boundsUntransformedMm", boundsUntransformedMm);
 											HashMapWrappedVirtualObject boundsMm = createMmBounds(geometryInfo, bounds, generateGeometryResult.getMultiplierToMm());
 											geometryInfo.set("boundsMm", boundsMm);
 											
@@ -640,7 +660,7 @@ public class GeometryRunner implements Runnable {
 											float nrTriangles = masterGeometryData.getNrPrimitives();
 
 											// Temporarely until IOS volume is OK
-											Density density = new Density(eClass.getName(), volume, getBiggestFaceFromBounds(boundsUntransformed), (long) nrTriangles, geometryInfo.getOid());
+											Density density = new Density(eClass.getName(), volume, getBiggestFaceFromBounds(boundsUntransformedMm), (long) nrTriangles, geometryInfo.getOid());
 
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Density(), density.getDensityValue());
 											
@@ -649,6 +669,8 @@ public class GeometryRunner implements Runnable {
 											HashMapVirtualObject referencedData = databaseSession.getFromCache(masterGeometryData.getOid());
 											Integer currentValue = (Integer) referencedData.get("reused");
 											referencedData.set("reused", currentValue + 1);
+											HashMapWrappedVirtualObject dataBounds = (HashMapWrappedVirtualObject) referencedData.get("boundsMm");
+											extendBounds(boundsMm, dataBounds);
 											
 											// TODO this keeping track of the amount of reuse, takes it's toll on memory usage. Basically all geometry ends up in memory by the time the Geometry generation is done
 											// We should try to see whether we can use BDB's mechanism to do partial retrievals/updates of a records here, because we only need to update just one value
@@ -727,7 +749,43 @@ public class GeometryRunner implements Runnable {
 		job.setEndNanos(end);
 	}
 	
-	private float getVolumeFromBounds(HashMapWrappedVirtualObject bounds) throws GeometryGeneratingException { HashMapWrappedVirtualObject min = (HashMapWrappedVirtualObject) bounds.eGet("min");
+	private void extendBounds(HashMapWrappedVirtualObject source, HashMapWrappedVirtualObject target) throws BimserverDatabaseException {
+		HashMapWrappedVirtualObject sourceMin = (HashMapWrappedVirtualObject) source.eGet("min");
+		HashMapWrappedVirtualObject sourceMax = (HashMapWrappedVirtualObject) source.eGet("max");
+		
+		HashMapWrappedVirtualObject targetMin = (HashMapWrappedVirtualObject) target.eGet("min");
+		HashMapWrappedVirtualObject targetMax = (HashMapWrappedVirtualObject) target.eGet("max");
+		
+		extendMin(sourceMin, targetMin);
+		extendMax(sourceMax, targetMax);
+	}
+	
+	private void extendMin(HashMapWrappedVirtualObject sourceMin, HashMapWrappedVirtualObject targetMin) throws BimserverDatabaseException {
+		if (((double)sourceMin.get("x")) < (double)targetMin.get("x")) {
+			targetMin.set("x", sourceMin.get("x"));
+		}
+		if (((double)sourceMin.get("y")) < (double)targetMin.get("y")) {
+			targetMin.set("y", sourceMin.get("y"));
+		}
+		if (((double)sourceMin.get("z")) < (double)targetMin.get("z")) {
+			targetMin.set("z", sourceMin.get("z"));
+		}
+	}
+
+	private void extendMax(HashMapWrappedVirtualObject sourceMax, HashMapWrappedVirtualObject targetMax) throws BimserverDatabaseException {
+		if (((double)sourceMax.get("x")) > (double)targetMax.get("x")) {
+			targetMax.set("x", sourceMax.get("x"));
+		}
+		if (((double)sourceMax.get("y")) > (double)targetMax.get("y")) {
+			targetMax.set("y", sourceMax.get("y"));
+		}
+		if (((double)sourceMax.get("z")) > (double)targetMax.get("z")) {
+			targetMax.set("z", sourceMax.get("z"));
+		}
+	}
+	
+	private float getVolumeFromBounds(HashMapWrappedVirtualObject bounds) throws GeometryGeneratingException { 
+		HashMapWrappedVirtualObject min = (HashMapWrappedVirtualObject) bounds.eGet("min");
 		HashMapWrappedVirtualObject max = (HashMapWrappedVirtualObject) bounds.eGet("max");
 		
 		double minX = (double)min.eGet(min.eClass().getEStructuralFeature("x"));

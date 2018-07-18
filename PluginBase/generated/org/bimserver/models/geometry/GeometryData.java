@@ -54,6 +54,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getReused <em>Reused</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getMostUsedColor <em>Most Used Color</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#getBoundsMm <em>Bounds Mm</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData()
@@ -321,5 +322,31 @@ public interface GeometryData extends IdEObject {
 	 * @generated
 	 */
 	void setMostUsedColor(Vector4f value);
+
+	/**
+	 * Returns the value of the '<em><b>Bounds Mm</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Bounds Mm</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Bounds Mm</em>' reference.
+	 * @see #setBoundsMm(Bounds)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_BoundsMm()
+	 * @model
+	 * @generated
+	 */
+	Bounds getBoundsMm();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getBoundsMm <em>Bounds Mm</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Bounds Mm</em>' reference.
+	 * @see #getBoundsMm()
+	 * @generated
+	 */
+	void setBoundsMm(Bounds value);
 
 } // GeometryData

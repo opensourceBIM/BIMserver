@@ -282,4 +282,8 @@ public class QueryObjectProvider implements ObjectProvider {
 	public ObjectNode getQueryNode() {
 		return new JsonQueryObjectModelConverter(packageMetaData).toJson(query);
 	}
+
+	public BimServer getBimServer() {
+		return bimServer;
+	}
 }

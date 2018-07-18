@@ -173,6 +173,8 @@ service ServiceInterface {
 
 	rpc getGeoTag (GetGeoTagRequest) returns (GetGeoTagResponse);
 
+	rpc getGeometryDataToReuse (GetGeometryDataToReuseRequest) returns (GetGeometryDataToReuseResponse);
+
 	rpc getGeometryInfo (GetGeometryInfoRequest) returns (GetGeometryInfoResponse);
 
 	rpc getIfcHeader (GetIfcHeaderRequest) returns (GetIfcHeaderResponse);
@@ -936,27 +938,29 @@ message SBounds {
 message SRevision {
 	optional int32 bmi = 1;
 	optional SBounds bounds = 2;
-	optional SBounds boundsUntransformed = 3;
-	repeated int64 checkouts = 4;
-	optional string comment = 5;
-	repeated int64 concreteRevisions = 6;
-	optional int64 date = 7;
-	optional int64 densityCollectionId = 8;
-	repeated int64 extendedData = 9;
-	optional bool hasGeometry = 10;
-	optional int32 id = 11;
-	optional int64 lastConcreteRevisionId = 12;
-	optional string lastError = 13;
-	repeated int64 logs = 14;
-	optional int64 nrPrimitives = 15;
-	optional int64 oid = 16;
-	optional int64 projectId = 17;
-	optional int32 rid = 18;
-	optional int64 serviceId = 19;
-	repeated int64 servicesLinked = 20;
-	optional int64 size = 21;
-	optional string tag = 22;
-	optional int64 userId = 23;
+	optional SBounds boundsMm = 3;
+	optional SBounds boundsUntransformed = 4;
+	optional SBounds boundsUntransformedMm = 5;
+	repeated int64 checkouts = 6;
+	optional string comment = 7;
+	repeated int64 concreteRevisions = 8;
+	optional int64 date = 9;
+	optional int64 densityCollectionId = 10;
+	repeated int64 extendedData = 11;
+	optional bool hasGeometry = 12;
+	optional int32 id = 13;
+	optional int64 lastConcreteRevisionId = 14;
+	optional string lastError = 15;
+	repeated int64 logs = 16;
+	optional int64 nrPrimitives = 17;
+	optional int64 oid = 18;
+	optional int64 projectId = 19;
+	optional int32 rid = 20;
+	optional int64 serviceId = 21;
+	repeated int64 servicesLinked = 22;
+	optional int64 size = 23;
+	optional string tag = 24;
+	optional int64 userId = 25;
 }
 
 message SCheckout {
@@ -1462,6 +1466,17 @@ message GetGeoTagResponse {
 	optional SGeoTag value = 2;
 }
 
+message GetGeometryDataToReuseRequest {
+	repeated int64 roids = 1;
+	repeated string excludedTypes = 2;
+	optional int32 trianglesToSave = 3;
+}
+
+message GetGeometryDataToReuseResponse {
+	optional string errorMessage = 1;
+	repeated int64 value = 2;
+}
+
 message GetGeometryInfoRequest {
 	optional int64 roid = 1;
 	optional int64 oid = 2;
@@ -1829,7 +1844,8 @@ message GetSuggestedDeserializerForExtensionResponse {
 message GetTileCountsRequest {
 	repeated int64 roids = 1;
 	repeated string excludedTypes = 2;
-	optional int32 depth = 3;
+	repeated int64 geometryIdsToReuse = 3;
+	optional int32 depth = 4;
 }
 
 message GetTileCountsResponse {

@@ -12,12 +12,21 @@ public class Node<V> {
 	private static int q;
 	private int deepestLevel;
 	private int maxDepth;
+	private Octree<V> root;
 	
-	public Node(Bounds bounds, int level, int parentId, int localId, int maxDepth) {
+	public Node(Octree<V> root, Bounds bounds, int level, int parentId, int localId, int maxDepth) {
+		this.id = parentId * 8 + localId;
+		if (root != null) {
+			root.addToList(this);
+		}
+		this.root = root;
 		this.bounds = bounds;
 		this.level = level;
 		this.maxDepth = maxDepth;
-		this.id = parentId * 8 + localId;
+	}
+	
+	protected void setRoot(Octree<V> root) {
+		this.root = root;
 	}
 	
 	public int getId() {
@@ -38,7 +47,7 @@ public class Node<V> {
 						if (bounds.within(offset)) {
 							Node<V> node = nodes[x * 4 + y * 2 + z];
 							if (node == null) {
-								node = new Node<>(offset, this.level + 1, this.id, localId, maxDepth);
+								node = new Node<>(root, offset, this.level + 1, this.id, localId, maxDepth);
 								nodes[x * 4 + y * 2 + z] = node;
 							}
 							int finalLevel = node.add(v, bounds);

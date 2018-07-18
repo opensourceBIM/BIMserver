@@ -233,7 +233,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 					org.bimserver.models.store.Density dbDensity = getDatabaseSession().create(org.bimserver.models.store.Density.class);
 					dbDensity.setDensity(density.getDensityValue());
 					dbDensity.setGeometryInfoId(density.getGeometryInfoId());
-					dbDensity.setTriangles(density.getNrPrimitives());
+					dbDensity.setTrianglesBelow(density.getNrPrimitives());
 					dbDensity.setVolume(density.getVolume());
 					densityCollection.getDensities().add(dbDensity);
 				}

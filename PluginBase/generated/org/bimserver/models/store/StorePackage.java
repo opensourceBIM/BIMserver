@@ -7277,13 +7277,22 @@ public interface StorePackage extends EPackage {
 	int DENSITY__GEOMETRY_INFO_ID = 1;
 
 	/**
-	 * The feature id for the '<em><b>Triangles</b></em>' attribute.
+	 * The feature id for the '<em><b>Triangles Below</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DENSITY__TRIANGLES = 2;
+	int DENSITY__TRIANGLES_BELOW = 2;
+
+	/**
+	 * The feature id for the '<em><b>Triangles Above</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DENSITY__TRIANGLES_ABOVE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Volume</b></em>' attribute.
@@ -7292,7 +7301,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DENSITY__VOLUME = 3;
+	int DENSITY__VOLUME = 4;
 
 	/**
 	 * The feature id for the '<em><b>Density</b></em>' attribute.
@@ -7301,7 +7310,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DENSITY__DENSITY = 4;
+	int DENSITY__DENSITY = 5;
 
 	/**
 	 * The number of structural features of the '<em>Density</em>' class.
@@ -7310,7 +7319,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DENSITY_FEATURE_COUNT = 5;
+	int DENSITY_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
@@ -14187,15 +14196,26 @@ public interface StorePackage extends EPackage {
 	EAttribute getDensity_GeometryInfoId();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Density#getTriangles <em>Triangles</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Density#getTrianglesBelow <em>Triangles Below</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Triangles</em>'.
-	 * @see org.bimserver.models.store.Density#getTriangles()
+	 * @return the meta object for the attribute '<em>Triangles Below</em>'.
+	 * @see org.bimserver.models.store.Density#getTrianglesBelow()
 	 * @see #getDensity()
 	 * @generated
 	 */
-	EAttribute getDensity_Triangles();
+	EAttribute getDensity_TrianglesBelow();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Density#getTrianglesAbove <em>Triangles Above</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Triangles Above</em>'.
+	 * @see org.bimserver.models.store.Density#getTrianglesAbove()
+	 * @see #getDensity()
+	 * @generated
+	 */
+	EAttribute getDensity_TrianglesAbove();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Density#getVolume <em>Volume</em>}'.
@@ -19575,12 +19595,20 @@ public interface StorePackage extends EPackage {
 		EAttribute DENSITY__GEOMETRY_INFO_ID = eINSTANCE.getDensity_GeometryInfoId();
 
 		/**
-		 * The meta object literal for the '<em><b>Triangles</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Triangles Below</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DENSITY__TRIANGLES = eINSTANCE.getDensity_Triangles();
+		EAttribute DENSITY__TRIANGLES_BELOW = eINSTANCE.getDensity_TrianglesBelow();
+
+		/**
+		 * The meta object literal for the '<em><b>Triangles Above</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DENSITY__TRIANGLES_ABOVE = eINSTANCE.getDensity_TrianglesAbove();
 
 		/**
 		 * The meta object literal for the '<em><b>Volume</b></em>' attribute feature.

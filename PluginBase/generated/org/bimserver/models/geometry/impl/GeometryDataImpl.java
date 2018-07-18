@@ -34,6 +34,7 @@ package org.bimserver.models.geometry.impl;
  *****************************************************************************/
 
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.models.geometry.Bounds;
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.geometry.Vector4f;
@@ -57,6 +58,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getReused <em>Reused</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getMostUsedColor <em>Most Used Color</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getBoundsMm <em>Bounds Mm</em>}</li>
  * </ul>
  *
  * @generated
@@ -269,6 +271,24 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 */
 	public void setMostUsedColor(Vector4f newMostUsedColor) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__MOST_USED_COLOR, newMostUsedColor);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Bounds getBoundsMm() {
+		return (Bounds) eGet(GeometryPackage.Literals.GEOMETRY_DATA__BOUNDS_MM, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBoundsMm(Bounds newBoundsMm) {
+		eSet(GeometryPackage.Literals.GEOMETRY_DATA__BOUNDS_MM, newBoundsMm);
 	}
 
 } //GeometryDataImpl

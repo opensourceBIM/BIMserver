@@ -6896,7 +6896,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDensity_Triangles() {
+	public EAttribute getDensity_TrianglesBelow() {
 		return (EAttribute) getDensity().getEStructuralFeatures().get(2);
 	}
 
@@ -6905,7 +6905,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDensity_Volume() {
+	public EAttribute getDensity_TrianglesAbove() {
 		return (EAttribute) getDensity().getEStructuralFeatures().get(3);
 	}
 
@@ -6914,8 +6914,17 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDensity_Density() {
+	public EAttribute getDensity_Volume() {
 		return (EAttribute) getDensity().getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDensity_Density() {
+		return (EAttribute) getDensity().getEStructuralFeatures().get(5);
 	}
 
 	/**

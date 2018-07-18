@@ -313,6 +313,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
+	public java.util.Set<java.lang.Long> getGeometryDataToReuse(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> excludedTypes, java.lang.Integer trianglesToSave) throws UserException, ServerException {
+		return null;
+	}
+	
 	public org.bimserver.interfaces.objects.SGeometryInfo getGeometryInfo(java.lang.Long roid, java.lang.Long oid) throws UserException, ServerException {
 		return null;
 	}
@@ -429,7 +433,7 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
-	public java.util.List<java.lang.Integer> getTileCounts(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> excludedTypes, java.lang.Integer depth) throws UserException, ServerException {
+	public java.util.List<java.lang.Integer> getTileCounts(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> excludedTypes, java.util.Set<java.lang.Long> geometryIdsToReuse, java.lang.Integer depth) throws UserException, ServerException {
 		return null;
 	}
 	

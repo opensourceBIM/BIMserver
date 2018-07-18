@@ -37,7 +37,8 @@ public class Step0041 extends Migration {
 		EClass density = schema.createEClass("store", "Density");
 		schema.createEAttribute(density, "type", EcorePackage.eINSTANCE.getEString());
 		schema.createEAttribute(density, "geometryInfoId", EcorePackage.eINSTANCE.getELong());
-		schema.createEAttribute(density, "triangles", EcorePackage.eINSTANCE.getELong());
+		schema.createEAttribute(density, "trianglesBelow", EcorePackage.eINSTANCE.getELong());
+		schema.createEAttribute(density, "trianglesAbove", EcorePackage.eINSTANCE.getELong());
 		schema.createEAttribute(density, "volume", EcorePackage.eINSTANCE.getEFloat());
 		schema.createEAttribute(density, "density", EcorePackage.eINSTANCE.getEFloat());
 		
@@ -55,6 +56,7 @@ public class Step0041 extends Migration {
 		
 		EClass bounds = schema.getEClass("geometry", "Bounds");
 		EClass geometryInfo = schema.getEClass("geometry", "GeometryInfo");
+		EClass geometryData = schema.getEClass("geometry", "GeometryData");
 		
 		schema.createEAttribute(geometryInfo, "density", EcorePackage.eINSTANCE.getEFloat());
 		
@@ -62,6 +64,11 @@ public class Step0041 extends Migration {
 		boundsMm.getEAnnotations().add(createDbEmbedReferenceAnnotation());
 		boundsMm.getEAnnotations().add(createEmbedsReferenceAnnotation());
 		boundsMm.getEAnnotations().add(createHiddenAnnotation());
+
+		EReference boundsMmGeometryData = schema.createEReference(geometryData, "boundsMm", bounds);
+		boundsMmGeometryData.getEAnnotations().add(createDbEmbedReferenceAnnotation());
+		boundsMmGeometryData.getEAnnotations().add(createEmbedsReferenceAnnotation());
+		boundsMmGeometryData.getEAnnotations().add(createHiddenAnnotation());
 		
 		EReference boundsMmUntransformed = schema.createEReference(geometryInfo, "boundsUntransformedMm", bounds);
 		boundsMmUntransformed.getEAnnotations().add(createDbEmbedReferenceAnnotation());

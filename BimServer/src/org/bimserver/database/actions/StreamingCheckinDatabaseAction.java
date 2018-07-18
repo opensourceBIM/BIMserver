@@ -425,7 +425,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 				dbDensity.setType(density.getType());
 				dbDensity.setDensity(density.getDensityValue());
 				dbDensity.setGeometryInfoId(density.getGeometryInfoId());
-				dbDensity.setTriangles(density.getNrPrimitives());
+				dbDensity.setTrianglesBelow(density.getNrPrimitives());
 				dbDensity.setVolume(density.getVolume());
 				newList.add(dbDensity);
 			}
@@ -447,7 +447,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 				for (ConcreteRevision concreteRevision2 : rev.getConcreteRevisions()) {
 					for (org.bimserver.models.store.Density density : concreteRevision2.getDensityCollection().getDensities()) {
 						newList2.add(density);
-						nrTriangles += density.getTriangles();
+						nrTriangles += density.getTrianglesBelow();
 					}
 				}
 				densityCollection.getDensities().clear();

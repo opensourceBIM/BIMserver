@@ -35,7 +35,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -154,13 +153,10 @@ import org.bimserver.database.actions.UserHasRightsDatabaseAction;
 import org.bimserver.database.actions.ValidateModelCheckerDatabaseAction;
 import org.bimserver.database.queries.Node;
 import org.bimserver.database.queries.Octree;
-import org.bimserver.database.queries.QueryObjectProvider;
 import org.bimserver.database.queries.Traverser;
 import org.bimserver.database.queries.om.DefaultQueries;
-import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
-import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
@@ -218,7 +214,6 @@ import org.bimserver.longaction.LongStreamingDownloadAction;
 import org.bimserver.mail.EmailMessage;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.geometry.Bounds;
-import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.geometry.Vector3f;
 import org.bimserver.models.log.LogAction;
 import org.bimserver.models.store.Action;
@@ -269,9 +264,7 @@ import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.serializers.StreamingSerializerPlugin;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.shared.AbstractHashMapVirtualObject;
 import org.bimserver.shared.BimServerClientFactory;
-import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.compare.CompareWriter;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -292,7 +285,6 @@ import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 import org.codehaus.jettison.json.JSONTokener;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 import org.opensourcebim.bcf.BcfException;
 import org.opensourcebim.bcf.BcfFile;
 import org.opensourcebim.bcf.ReadOptions;
@@ -3085,26 +3077,27 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		try {
 			Revision revision = session.get(roid, OldQuery.getDefault());
 			EList<Density> densities = revision.getDensityCollection().getDensities();
-			long cumulativeTriangles = 0;
+			long cumulativeTrianglesBelow = 0;
+			long cumulativeTrianglesAbove = 0;
 			Density densityResult = null;
 			for (Density density : densities) {
 				if (excludedTypes.contains(density.getType())) {
 					continue;
 				}
-				if (cumulativeTriangles + density.getTriangles() > nrTriangles) {
-					break;
+				if (cumulativeTrianglesBelow + density.getTrianglesBelow() > nrTriangles) {
+					cumulativeTrianglesAbove += density.getTrianglesBelow(); // Not a typo
+				} else {
+					cumulativeTrianglesBelow += density.getTrianglesBelow();
+					densityResult = density;
 				}
-				cumulativeTriangles += density.getTriangles();
-				densityResult = density;
 			}
 			if (densityResult == null) {
-				SDensity sDensity = new SDensity();
-				return sDensity;
-			} else {
-				// This is useful information, so the client knows exactly how many triangles will be loaded by using this threshold
-				densityResult.setTriangles(cumulativeTriangles);
-				return getBimServer().getSConverter().convertToSObject(densityResult);
+				densityResult = densities.get(0);
 			}
+			// This is useful information, so the client knows exactly how many triangles will be loaded by using this threshold
+			densityResult.setTrianglesBelow(cumulativeTrianglesBelow);
+			densityResult.setTrianglesAbove(cumulativeTrianglesAbove);
+			return getBimServer().getSConverter().convertToSObject(densityResult);
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -3113,11 +3106,11 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 
 	@Override
-	public List<Integer> getTileCounts(Set<Long> roids, Set<String> excludedTypes, Integer depth) throws ServerException, UserException {
+	public List<Integer> getTileCounts(Set<Long> roids, Set<String> excludedTypes, Set<Long> geometryIdsToReuse, Integer depth) throws ServerException, UserException {
 		long start = System.nanoTime();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			Octree<Long> octree = getBimServer().getGeometryAccellerator().getOctree(roids, excludedTypes, depth, 0);
+			Octree<Long> octree = getBimServer().getGeometryAccellerator().getOctree(roids, excludedTypes, geometryIdsToReuse, depth, 0);
 			
 			int size = 0;
 			for (int l=0; l<=octree.getDeepestLevel(); l++) {
@@ -3146,5 +3139,10 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		} finally {
 			session.close();
 		}
+	}
+	
+	@Override
+	public Set<Long> getGeometryDataToReuse(Set<Long> roids, Set<String> excludedTypes, Integer trianglesToSave) {
+		return getBimServer().getGeometryAccellerator().getGeometryDataToReuse(roids, excludedTypes, trianglesToSave);
 	}
 }

@@ -1,5 +1,5 @@
 
-úö
+√ù
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -425,33 +425,35 @@ dataObject (2.org.bimserver.pb.SDataObject
 max (2.org.bimserver.pb.SVector3f(
 min (2.org.bimserver.pb.SVector3f
 oid (
-rid ("ˆ
+rid ("›
 	SRevision
 bmi ()
-bounds (2.org.bimserver.pb.SBounds6
-boundsUntransformed (2.org.bimserver.pb.SBounds
-	checkouts (
-comment (	
-concreteRevisions (
-date (
-densityCollectionId (
-extendedData	 (
-hasGeometry
- (
+bounds (2.org.bimserver.pb.SBounds+
+boundsMm (2.org.bimserver.pb.SBounds6
+boundsUntransformed (2.org.bimserver.pb.SBounds8
+boundsUntransformedMm (2.org.bimserver.pb.SBounds
+	checkouts (
+comment (	
+concreteRevisions (
+date	 (
+densityCollectionId
+ (
+extendedData (
+hasGeometry (
 
-id (
-lastConcreteRevisionId (
-	lastError (	
-logs (
-nrPrimitives (
-oid (
-	projectId (
-rid (
-	serviceId (
-servicesLinked (
-size (
-tag (	
-userId ("—
+id (
+lastConcreteRevisionId (
+	lastError (	
+logs (
+nrPrimitives (
+oid (
+	projectId (
+rid (
+	serviceId (
+servicesLinked (
+size (
+tag (	
+userId ("—
 	SCheckout
 active (,
 checkin (2.org.bimserver.pb.SRevision
@@ -769,7 +771,14 @@ revisionNr (
 z	 ("S
 GetGeoTagResponse
 errorMessage (	(
-value (2.org.bimserver.pb.SGeoTag"3
+value (2.org.bimserver.pb.SGeoTag"^
+GetGeometryDataToReuseRequest
+roids (
+excludedTypes (	
+trianglesToSave ("E
+GetGeometryDataToReuseResponse
+errorMessage (	
+value ("3
 GetGeometryInfoRequest
 roid (
 oid ("ª
@@ -1010,11 +1019,12 @@ settingsId (
 poid ("á
 ,GetSuggestedDeserializerForExtensionResponse
 errorMessage (	A
-value (22.org.bimserver.pb.SDeserializerPluginConfiguration"K
+value (22.org.bimserver.pb.SDeserializerPluginConfiguration"g
 GetTileCountsRequest
 roids (
-excludedTypes (	
-depth ("<
+excludedTypes (	
+geometryIdsToReuse (
+depth ("<
 GetTileCountsResponse
 errorMessage (	
 value ("/
@@ -1527,7 +1537,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2•|
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2¢}
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
@@ -1605,7 +1615,8 @@ deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserRes
 #getExtendedDataSchemaFromRepository<.org.bimserver.pb.GetExtendedDataSchemaFromRepositoryRequest=.org.bimserver.pb.GetExtendedDataSchemaFromRepositoryResponseN
 getFile .org.bimserver.pb.GetFileRequest!.org.bimserver.pb.GetFileResponseZ
 getFileMeta$.org.bimserver.pb.GetFileMetaRequest%.org.bimserver.pb.GetFileMetaResponseT
-	getGeoTag".org.bimserver.pb.GetGeoTagRequest#.org.bimserver.pb.GetGeoTagResponsef
+	getGeoTag".org.bimserver.pb.GetGeoTagRequest#.org.bimserver.pb.GetGeoTagResponse{
+getGeometryDataToReuse/.org.bimserver.pb.GetGeometryDataToReuseRequest0.org.bimserver.pb.GetGeometryDataToReuseResponsef
 getGeometryInfo(.org.bimserver.pb.GetGeometryInfoRequest).org.bimserver.pb.GetGeometryInfoResponse]
 getIfcHeader%.org.bimserver.pb.GetIfcHeaderRequest&.org.bimserver.pb.GetIfcHeaderResponse´
 &getLastExtendedDataOfRevisionAndSchema?.org.bimserver.pb.GetLastExtendedDataOfRevisionAndSchemaRequest@.org.bimserver.pb.GetLastExtendedDataOfRevisionAndSchemaResponsec

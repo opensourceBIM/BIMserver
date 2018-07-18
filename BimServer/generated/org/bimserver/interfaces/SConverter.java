@@ -333,6 +333,8 @@ public class SConverter {
 		result.setColor(convertToSObject(colorVal));
 		Vector4f mostUsedColorVal = input.getMostUsedColor();
 		result.setMostUsedColor(convertToSObject(mostUsedColorVal));
+		Bounds boundsMmVal = input.getBoundsMm();
+		result.setBoundsMm(convertToSObject(boundsMmVal));
 		return result;
 	}
 
@@ -368,6 +370,7 @@ public class SConverter {
 		result.setType(input.getType());
 		result.setColor(convertFromSObject(input.getColor(), session));
 		result.setMostUsedColor(convertFromSObject(input.getMostUsedColor(), session));
+		result.setBoundsMm(convertFromSObject(input.getBoundsMm(), session));
 		return result;
 	}
 
@@ -12117,7 +12120,8 @@ public class SConverter {
 		result.setRid(input.getRid());
 		result.setType(input.getType());
 		result.setGeometryInfoId(input.getGeometryInfoId());
-		result.setTriangles(input.getTriangles());
+		result.setTrianglesBelow(input.getTrianglesBelow());
+		result.setTrianglesAbove(input.getTrianglesAbove());
 		result.setVolume(input.getVolume());
 		result.setDensity(input.getDensity());
 		return result;
@@ -12147,7 +12151,8 @@ public class SConverter {
 		}
 		result.setType(input.getType());
 		result.setGeometryInfoId(input.getGeometryInfoId());
-		result.setTriangles(input.getTriangles());
+		result.setTrianglesBelow(input.getTrianglesBelow());
+		result.setTrianglesAbove(input.getTrianglesAbove());
 		result.setVolume(input.getVolume());
 		result.setDensity(input.getDensity());
 		return result;

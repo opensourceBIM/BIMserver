@@ -415,13 +415,22 @@ public interface GeometryPackage extends EPackage {
 	int GEOMETRY_DATA__MOST_USED_COLOR = 9;
 
 	/**
+	 * The feature id for the '<em><b>Bounds Mm</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_DATA__BOUNDS_MM = 10;
+
+	/**
 	 * The number of structural features of the '<em>Data</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_DATA_FEATURE_COUNT = 10;
+	int GEOMETRY_DATA_FEATURE_COUNT = 11;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.Vector4fImpl <em>Vector4f</em>}' class.
@@ -838,6 +847,17 @@ public interface GeometryPackage extends EPackage {
 	EReference getGeometryData_MostUsedColor();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryData#getBoundsMm <em>Bounds Mm</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Bounds Mm</em>'.
+	 * @see org.bimserver.models.geometry.GeometryData#getBoundsMm()
+	 * @see #getGeometryData()
+	 * @generated
+	 */
+	EReference getGeometryData_BoundsMm();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.geometry.Vector4f <em>Vector4f</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1184,6 +1204,14 @@ public interface GeometryPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GEOMETRY_DATA__MOST_USED_COLOR = eINSTANCE.getGeometryData_MostUsedColor();
+
+		/**
+		 * The meta object literal for the '<em><b>Bounds Mm</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GEOMETRY_DATA__BOUNDS_MM = eINSTANCE.getGeometryData_BoundsMm();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.geometry.impl.Vector4fImpl <em>Vector4f</em>}' class.

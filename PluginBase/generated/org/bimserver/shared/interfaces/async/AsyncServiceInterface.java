@@ -404,6 +404,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetGeometryDataToReuseCallback {
+		void success(java.util.Set<java.lang.Long> result);
+		void error(Throwable e);
+	}
+	
 	public interface GetGeometryInfoCallback {
 		void success(org.bimserver.interfaces.objects.SGeometryInfo result);
 		void error(Throwable e);
@@ -1634,6 +1639,18 @@ public class AsyncServiceInterface {
 		});
 	}
 	
+	public void getGeometryDataToReuse(final java.util.Set<java.lang.Long> roids, final java.util.Set<java.lang.String> excludedTypes, final java.lang.Integer trianglesToSave, final GetGeometryDataToReuseCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getGeometryDataToReuse(roids, excludedTypes, trianglesToSave));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getGeometryInfo(final java.lang.Long roid, final java.lang.Long oid, final GetGeometryInfoCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1982,11 +1999,11 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void getTileCounts(final java.util.Set<java.lang.Long> roids, final java.util.Set<java.lang.String> excludedTypes, final java.lang.Integer depth, final GetTileCountsCallback callback) {
+	public void getTileCounts(final java.util.Set<java.lang.Long> roids, final java.util.Set<java.lang.String> excludedTypes, final java.util.Set<java.lang.Long> geometryIdsToReuse, final java.lang.Integer depth, final GetTileCountsCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.getTileCounts(roids, excludedTypes, depth));
+					callback.success(syncService.getTileCounts(roids, excludedTypes, geometryIdsToReuse, depth));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

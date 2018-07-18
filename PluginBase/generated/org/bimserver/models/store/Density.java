@@ -29,7 +29,8 @@ import org.bimserver.emf.IdEObject;
  * <ul>
  *   <li>{@link org.bimserver.models.store.Density#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.store.Density#getGeometryInfoId <em>Geometry Info Id</em>}</li>
- *   <li>{@link org.bimserver.models.store.Density#getTriangles <em>Triangles</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Density#getTrianglesBelow <em>Triangles Below</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Density#getTrianglesAbove <em>Triangles Above</em>}</li>
  *   <li>{@link org.bimserver.models.store.Density#getVolume <em>Volume</em>}</li>
  *   <li>{@link org.bimserver.models.store.Density#getDensity <em>Density</em>}</li>
  * </ul>
@@ -93,30 +94,56 @@ public interface Density extends IdEObject {
 	void setGeometryInfoId(long value);
 
 	/**
-	 * Returns the value of the '<em><b>Triangles</b></em>' attribute.
+	 * Returns the value of the '<em><b>Triangles Below</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Triangles</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Triangles Below</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Triangles</em>' attribute.
-	 * @see #setTriangles(long)
-	 * @see org.bimserver.models.store.StorePackage#getDensity_Triangles()
+	 * @return the value of the '<em>Triangles Below</em>' attribute.
+	 * @see #setTrianglesBelow(long)
+	 * @see org.bimserver.models.store.StorePackage#getDensity_TrianglesBelow()
 	 * @model
 	 * @generated
 	 */
-	long getTriangles();
+	long getTrianglesBelow();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Density#getTriangles <em>Triangles</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.store.Density#getTrianglesBelow <em>Triangles Below</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Triangles</em>' attribute.
-	 * @see #getTriangles()
+	 * @param value the new value of the '<em>Triangles Below</em>' attribute.
+	 * @see #getTrianglesBelow()
 	 * @generated
 	 */
-	void setTriangles(long value);
+	void setTrianglesBelow(long value);
+
+	/**
+	 * Returns the value of the '<em><b>Triangles Above</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Triangles Above</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Triangles Above</em>' attribute.
+	 * @see #setTrianglesAbove(long)
+	 * @see org.bimserver.models.store.StorePackage#getDensity_TrianglesAbove()
+	 * @model
+	 * @generated
+	 */
+	long getTrianglesAbove();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Density#getTrianglesAbove <em>Triangles Above</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Triangles Above</em>' attribute.
+	 * @see #getTrianglesAbove()
+	 * @generated
+	 */
+	void setTrianglesAbove(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Volume</b></em>' attribute.

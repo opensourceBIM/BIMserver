@@ -587,6 +587,24 @@ public class JsonQueryObjectModelConverter {
 				throw new QueryException("\"inBoundingBox\" should be of type object");
 			}
 		}
+		if (objectNode.has("tiles")) {
+			Tiles tiles = new Tiles();
+			ObjectNode tilesNode = (ObjectNode) objectNode.get("tiles");
+			ArrayNode tileIdsNode = (ArrayNode) tilesNode.get("ids");
+			for (JsonNode jsonNode : tileIdsNode) {
+				tiles.add(jsonNode.asInt());
+			}
+			if (tilesNode.has("densityUpperThreshold")) {
+				tiles.setMinimumThreshold((float) tilesNode.get("densityUpperThreshold").asDouble());
+			}
+			if (tilesNode.has("geometryDataToReuse")) {
+				ArrayNode geometryDataToReuse = (ArrayNode) tilesNode.get("geometryDataToReuse");
+				for (JsonNode node : geometryDataToReuse) {
+					tiles.addGeometryIdToReuse(node.asLong());
+				}
+			}
+			queryPart.setTiles(tiles);
+		}
 
 		if (objectNode.has("include")) {
 			JsonNode includeNode = objectNode.get("include");
@@ -616,7 +634,7 @@ public class JsonQueryObjectModelConverter {
 		Iterator<String> fieldNames = objectNode.fieldNames();
 		while (fieldNames.hasNext()) {
 			String fieldName = fieldNames.next();
-			if (fieldName.equals("includeAllFields") || fieldName.equals("type") || fieldName.equals("types") || fieldName.equals("oid") || fieldName.equals("oids") || fieldName.equals("guid") || fieldName.equals("guids") || fieldName.equals("name") || fieldName.equals("names") || fieldName.equals("properties") || fieldName.equals("inBoundingBox") || fieldName.equals("include") || fieldName.equals("includes") || fieldName.equalsIgnoreCase("includeAllSubtypes") || fieldName.equals("classifications") || fieldName.equals("doublebuffer") || fieldName.equals("version")  || fieldName.equals("loaderSettings")) {
+			if (fieldName.equals("includeAllFields") || fieldName.equals("type") || fieldName.equals("types") || fieldName.equals("oid") || fieldName.equals("oids") || fieldName.equals("guid") || fieldName.equals("guids") || fieldName.equals("name") || fieldName.equals("names") || fieldName.equals("properties") || fieldName.equals("inBoundingBox") || fieldName.equals("include") || fieldName.equals("includes") || fieldName.equalsIgnoreCase("includeAllSubtypes") || fieldName.equals("classifications") || fieldName.equals("doublebuffer") || fieldName.equals("version")  || fieldName.equals("loaderSettings") || fieldName.equals("tiles")) {
 				// fine
 			} else {
 				throw new QueryException("Unknown field: \"" + fieldName + "\"");

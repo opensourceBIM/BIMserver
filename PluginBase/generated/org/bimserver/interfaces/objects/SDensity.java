@@ -31,7 +31,8 @@ public class SDensity implements SDataBase
 	private static SClass sClass;
 	private java.lang.String type;
 	private long geometryInfoId;
-	private long triangles;
+	private long trianglesBelow;
+	private long trianglesAbove;
 	private float volume;
 	private float density;
 
@@ -67,8 +68,11 @@ public class SDensity implements SDataBase
 		if (sField.getName().equals("geometryInfoId")) {
 			return getGeometryInfoId();
 		}
-		if (sField.getName().equals("triangles")) {
-			return getTriangles();
+		if (sField.getName().equals("trianglesBelow")) {
+			return getTrianglesBelow();
+		}
+		if (sField.getName().equals("trianglesAbove")) {
+			return getTrianglesAbove();
 		}
 		if (sField.getName().equals("volume")) {
 			return getVolume();
@@ -94,8 +98,12 @@ public class SDensity implements SDataBase
 			setGeometryInfoId((Long)val);
 			return;
 		}
-		if (sField.getName().equals("triangles")) {
-			setTriangles((Long)val);
+		if (sField.getName().equals("trianglesBelow")) {
+			setTrianglesBelow((Long)val);
+			return;
+		}
+		if (sField.getName().equals("trianglesAbove")) {
+			setTrianglesAbove((Long)val);
 			return;
 		}
 		if (sField.getName().equals("volume")) {
@@ -133,12 +141,20 @@ public class SDensity implements SDataBase
 		this.geometryInfoId = geometryInfoId;
 	}
 	
-	public long getTriangles() {
-		return triangles;
+	public long getTrianglesBelow() {
+		return trianglesBelow;
 	}
 
-	public void setTriangles(long triangles) {
-		this.triangles = triangles;
+	public void setTrianglesBelow(long trianglesBelow) {
+		this.trianglesBelow = trianglesBelow;
+	}
+	
+	public long getTrianglesAbove() {
+		return trianglesAbove;
+	}
+
+	public void setTrianglesAbove(long trianglesAbove) {
+		this.trianglesAbove = trianglesAbove;
 	}
 	
 	public float getVolume() {

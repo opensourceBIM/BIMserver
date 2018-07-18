@@ -39,6 +39,7 @@ public class SGeometryData implements SDataBase
 	private int reused;
 	private short type;
 	private SVector4f mostUsedColor;
+	private SBounds boundsMm;
 
 	public long getOid() {
 		return this.oid;
@@ -96,6 +97,9 @@ public class SGeometryData implements SDataBase
 		if (sField.getName().equals("mostUsedColor")) {
 			return getMostUsedColor();
 		}
+		if (sField.getName().equals("boundsMm")) {
+			return getBoundsMm();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -144,6 +148,10 @@ public class SGeometryData implements SDataBase
 		}
 		if (sField.getName().equals("mostUsedColor")) {
 			setMostUsedColor((SVector4f)val);
+			return;
+		}
+		if (sField.getName().equals("boundsMm")) {
+			setBoundsMm((SBounds)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -236,6 +244,15 @@ public class SGeometryData implements SDataBase
 
 	public void setMostUsedColor(SVector4f mostUsedColor) {
 		this.mostUsedColor = mostUsedColor;
+	}
+	
+	
+	public SBounds getBoundsMm() {
+		return boundsMm;
+	}
+
+	public void setBoundsMm(SBounds boundsMm) {
+		this.boundsMm = boundsMm;
 	}
 	
 	
