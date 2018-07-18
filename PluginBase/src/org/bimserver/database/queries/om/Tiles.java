@@ -9,6 +9,7 @@ public class Tiles {
 	private final Set<Long> geometryIdsToReuse = new HashSet<>();
 	private float minimumThreshold;
 	private Object nodes;
+	private int maxDepth;
 	
 	public void add(int tileId) {
 		tileIds.add(tileId);
@@ -40,5 +41,13 @@ public class Tiles {
 	
 	public Object getNodes() {
 		return nodes;
+	}
+
+	public int getMaxDepth() {
+		return maxDepth;
+	}
+	
+	public void setMaxDepth(int maxDepth) {
+		this.maxDepth = maxDepth;
 	}
 }

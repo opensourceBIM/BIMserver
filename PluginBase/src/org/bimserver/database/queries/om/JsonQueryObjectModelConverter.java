@@ -603,6 +603,9 @@ public class JsonQueryObjectModelConverter {
 					tiles.addGeometryIdToReuse(node.asLong());
 				}
 			}
+			if (tilesNode.has("maxDepth")) {
+				tiles.setMaxDepth(tilesNode.get("maxDepth").asInt());
+			}
 			queryPart.setTiles(tiles);
 		}
 
