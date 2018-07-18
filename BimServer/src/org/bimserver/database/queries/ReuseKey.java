@@ -1,16 +1,15 @@
 package org.bimserver.database.queries;
 
 import java.util.Set;
-import java.util.TreeSet;
 
 public class ReuseKey {
 
-	private Set<Long> roids;
-	private Set<String> excludedClasses;
+	private final Set<Long> roids;
+	private final Set<String> excludedClasses;
 
 	public ReuseKey(Set<Long> roids, Set<String> excludedClasses) {
-		this.roids = new TreeSet<>(roids);
-		this.setExcludedClasses(new TreeSet<>(excludedClasses));
+		this.roids = roids;
+		this.excludedClasses = excludedClasses;
 	}
 
 	public Set<Long> getRoids() {
@@ -19,10 +18,6 @@ public class ReuseKey {
 
 	public Set<String> getExcludedClasses() {
 		return excludedClasses;
-	}
-
-	public void setExcludedClasses(Set<String> excludedClasses) {
-		this.excludedClasses = excludedClasses;
 	}
 
 	@Override

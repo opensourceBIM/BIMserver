@@ -2,6 +2,8 @@ package org.bimserver.database.queries;
 
 import java.util.Set;
 
+import com.google.common.base.Joiner;
+
 public class OctreeKey {
 	private final Set<Long> roids;
 	private final Set<String> excludedClasses;
@@ -81,5 +83,18 @@ public class OctreeKey {
 		} else if (!roids.equals(other.roids))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		if (excludedClasses != null) {
+			builder.append(Joiner.on(", ").join(this.excludedClasses) + "\n");
+		}
+		builder.append(Joiner.on(", ").join(this.geometryIdsToReuse) + "\n");
+		builder.append(maxDepth + "\n");
+		builder.append(minimumThreshold + "\n");
+		builder.append(roids + "\n");
+		return builder.toString();
 	}
 }

@@ -34,7 +34,6 @@ import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.database.queries.om.Tiles;
 import org.bimserver.shared.QueryContext;
-import org.codehaus.plexus.logging.Logger;
 import org.eclipse.emf.ecore.EClass;
 
 public class QueryPartStackFrame extends StackFrame {
@@ -146,8 +145,19 @@ public class QueryPartStackFrame extends StackFrame {
 				// TODO excludedClasses
 
 				List<Long> oids = new ArrayList<>();
+				
+				Set<String> exludeStrings = new HashSet<>();
+				for (TypeDef typeDef : partialQuery.getTypes()) {
+					if (typeDef.isIncludeSubTypes()) {
+						if (typeDef.hasExcludes()) {
+							for (EClass eClass2 : typeDef.getExcluded()) {
+								exludeStrings.add(eClass2.getName());
+							}
+						}
+					}
+				}
 
-				Octree<Long> octree = queryObjectProvider.getBimServer().getGeometryAccellerator().getOctree(Collections.singleton(reusable.getRoid()), null, tiles.getGeometryIdsToReuse(), 3, tiles.getMinimumThreshold());
+				Octree<Long> octree = queryObjectProvider.getBimServer().getGeometryAccellerator().getOctree(Collections.singleton(reusable.getRoid()), exludeStrings, tiles.getGeometryIdsToReuse(), 3, tiles.getMinimumThreshold());
 				for (Integer tileId : tiles.getTileIds()) {
 					Node<Long> node = octree.getById(tileId);
 					if (node != null) {

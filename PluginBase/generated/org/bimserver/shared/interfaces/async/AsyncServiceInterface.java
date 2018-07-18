@@ -1999,11 +1999,11 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void getTileCounts(final java.util.Set<java.lang.Long> roids, final java.util.Set<java.lang.String> excludedTypes, final java.util.Set<java.lang.Long> geometryIdsToReuse, final java.lang.Integer depth, final GetTileCountsCallback callback) {
+	public void getTileCounts(final java.util.Set<java.lang.Long> roids, final java.util.Set<java.lang.String> excludedTypes, final java.util.Set<java.lang.Long> geometryIdsToReuse, final java.lang.Float threshold, final java.lang.Integer depth, final GetTileCountsCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.getTileCounts(roids, excludedTypes, geometryIdsToReuse, depth));
+					callback.success(syncService.getTileCounts(roids, excludedTypes, geometryIdsToReuse, threshold, depth));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

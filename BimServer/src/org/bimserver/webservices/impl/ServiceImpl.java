@@ -3106,11 +3106,10 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 
 	@Override
-	public List<Integer> getTileCounts(Set<Long> roids, Set<String> excludedTypes, Set<Long> geometryIdsToReuse, Integer depth) throws ServerException, UserException {
-		long start = System.nanoTime();
+	public List<Integer> getTileCounts(Set<Long> roids, Set<String> excludedTypes, Set<Long> geometryIdsToReuse, Float threshold, Integer depth) throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			Octree<Long> octree = getBimServer().getGeometryAccellerator().getOctree(roids, excludedTypes, geometryIdsToReuse, depth, 0);
+			Octree<Long> octree = getBimServer().getGeometryAccellerator().getOctree(roids, excludedTypes, geometryIdsToReuse, depth, threshold);
 			
 			int size = 0;
 			for (int l=0; l<=octree.getDeepestLevel(); l++) {
@@ -3129,10 +3128,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 					t.addAndGet(node.getNrObjects());
 				}
 			});
-//			System.out.println(t.get());
-			
-//			System.out.println((((System.nanoTime() - start) / 1000000) + " ms"));
-			
 			return result;
 		} catch (Exception e) {
 			return handleException(e);

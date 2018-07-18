@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
 
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
@@ -21,24 +22,43 @@ import org.bimserver.shared.AbstractHashMapVirtualObject;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.eclipse.emf.ecore.EClass;
 
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
+
 public class GeometryAccellerator {
-	private final Map<OctreeKey, Octree<Long>> octries = new HashMap<>();
-	private final Map<ReuseKey, ReuseSet> reuseSets = new HashMap<>();
 	private BimServer bimServer;
+	private LoadingCache<OctreeKey, Octree<Long>> octrees;
+	private LoadingCache<ReuseKey, ReuseSet> reuseSets;
 
 	public GeometryAccellerator(BimServer bimServer) {
 		this.bimServer = bimServer;
+
+		octrees = CacheBuilder.newBuilder().maximumSize(10000).build(new CacheLoader<OctreeKey, Octree<Long>>() {
+			public Octree<Long> load(OctreeKey key) {
+				return generateOctree(key);
+			}
+		});
+		
+		reuseSets = CacheBuilder.newBuilder().maximumSize(10000).build(new CacheLoader<ReuseKey, ReuseSet>() {
+			public ReuseSet load(ReuseKey key) {
+				return generateReuseSet(key);
+			}
+		});
 	}
 
 	public Octree<Long> getOctree(Set<Long> roids, Set<String> excludedClasses, Set<Long> geometryIdsToReuse, int maxDepth, float minimumThreshold) {
 		OctreeKey key = new OctreeKey(roids, excludedClasses, geometryIdsToReuse, maxDepth, minimumThreshold);
-		if (!octries.containsKey(key)) {
-			octries.put(key, generateOctree(key));
+		try {
+			return octrees.get(key);
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+			return null;
 		}
-		return octries.get(key);
 	}
 
 	private Octree<Long> generateOctree(OctreeKey key) {
+		long start = System.nanoTime();
 		try (DatabaseSession databaseSession = bimServer.getDatabase().createSession()) {
 			org.bimserver.database.queries.Bounds totalBounds = new org.bimserver.database.queries.Bounds();
 
@@ -95,27 +115,31 @@ public class GeometryAccellerator {
 				AbstractHashMapVirtualObject geometry = next.getDirectFeature(packageMetaData.getEReference("IfcProduct", "geometry"));
 				if (geometry != null) {
 					float density = (float) geometry.get("density");
-					if (density < key.getMinimumThreshold()) {
-						continue;
-					}
-					long geometryDataId = (long) geometry.get("data");
-					AbstractHashMapVirtualObject boundsMm = geometry.getDirectFeature(GeometryPackage.eINSTANCE.getGeometryInfo_BoundsMm());
-					if (key.getGeometryIdsToReuse().contains(geometryDataId)) {
-						// Special case, we now have to use the complete bounding box of all reused objects, instead of using the object's aabb
-						HashMapVirtualObject geometryData = queryObjectProvider.getByOid(geometryDataId);
-						boundsMm = geometryData.getDirectFeature(GeometryPackage.eINSTANCE.getGeometryData_BoundsMm());
-					}
-					if (boundsMm != null) {
-						AbstractHashMapVirtualObject min = boundsMm.getDirectFeature(GeometryPackage.eINSTANCE.getBounds_Min());
-						AbstractHashMapVirtualObject max = boundsMm.getDirectFeature(GeometryPackage.eINSTANCE.getBounds_Max());
-						
-						org.bimserver.database.queries.Bounds objectBounds = new org.bimserver.database.queries.Bounds((double) min.get("x"), (double) min.get("y"), (double) min.get("z"), (double) max.get("x"), (double) max.get("y"),
-								(double) max.get("z"));
-						octree.add(next.getOid(), objectBounds);
+					if (density >= key.getMinimumThreshold()) {
+						long geometryDataId = (long) geometry.get("data");
+						AbstractHashMapVirtualObject boundsMm = geometry.getDirectFeature(GeometryPackage.eINSTANCE.getGeometryInfo_BoundsMm());
+						if (key.getGeometryIdsToReuse().contains(geometryDataId)) {
+							// Special case, we now have to use the complete
+							// bounding box of all reused objects, instead of using
+							// the object's aabb
+							HashMapVirtualObject geometryData = queryObjectProvider.getByOid(geometryDataId);
+							boundsMm = geometryData.getDirectFeature(GeometryPackage.eINSTANCE.getGeometryData_BoundsMm());
+						}
+						if (boundsMm != null) {
+							AbstractHashMapVirtualObject min = boundsMm.getDirectFeature(GeometryPackage.eINSTANCE.getBounds_Min());
+							AbstractHashMapVirtualObject max = boundsMm.getDirectFeature(GeometryPackage.eINSTANCE.getBounds_Max());
+	
+							org.bimserver.database.queries.Bounds objectBounds = new org.bimserver.database.queries.Bounds((double) min.get("x"), (double) min.get("y"), (double) min.get("z"), (double) max.get("x"), (double) max.get("y"),
+									(double) max.get("z"));
+							octree.add(next.getOid(), objectBounds);
+						}
 					}
 				}
 				next = queryObjectProvider.next();
 			}
+
+			long end = System.nanoTime();
+			System.out.println("generateOctree " + ((end - start) / 1000000) + " ms");
 
 			return octree;
 		} catch (BimserverDatabaseException e) {
@@ -130,25 +154,28 @@ public class GeometryAccellerator {
 
 	public Set<Long> getGeometryDataToReuse(Set<Long> roids, Set<String> excludedTypes, Integer trianglesToSave) {
 		ReuseKey key = new ReuseKey(roids, excludedTypes);
-		if (!reuseSets.containsKey(key)) {
-			reuseSets.put(key, generateReuseSet(key));
+		try {
+			return reuseSets.get(key).getListOfGeometryDataIds(trianglesToSave);
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+			return null;
 		}
-		return reuseSets.get(key).getListOfGeometryDataIds(trianglesToSave);
 	}
 
 	private ReuseSet generateReuseSet(ReuseKey key) {
+		long start = System.nanoTime();
 		ReuseSet reuseSet = new ReuseSet();
 		try (DatabaseSession databaseSession = bimServer.getDatabase().createSession()) {
 			// Assuming all given roids are of projects that all have the same
 			// schema
-			
+
 			Map<Long, HashMapVirtualObject> geometryDataMap = listGeometryData(databaseSession, key.getRoids());
-			
+
 			Revision revision = databaseSession.get(key.getRoids().iterator().next(), OldQuery.getDefault());
 			PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
-			
+
 			Query query = new Query(packageMetaData);
-			
+
 			Set<EClass> excluded = new HashSet<>();
 			for (String exclude : key.getExcludedClasses()) {
 				excluded.add(packageMetaData.getEClass(exclude));
@@ -163,16 +190,16 @@ public class GeometryAccellerator {
 			Include geometryInfo = product.createInclude();
 			geometryInfo.addType(GeometryPackage.eINSTANCE.getGeometryInfo(), false);
 			geometryInfo.addFieldDirect("data");
-			
+
 			QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, key.getRoids(), packageMetaData);
 			HashMapVirtualObject next = queryObjectProvider.next();
 			while (next != null) {
 				AbstractHashMapVirtualObject geometry = next.getDirectFeature(packageMetaData.getEReference("IfcProduct", "geometry"));
 				if (geometry != null) {
-					Long dataId = (Long)geometry.get("data");
+					Long dataId = (Long) geometry.get("data");
 					HashMapVirtualObject data = geometryDataMap.get(dataId);
 					if (data != null) {
-						reuseSet.add(data.getOid(), (int)data.get("reused"), (int)geometry.get("primitiveCount"));
+						reuseSet.add(data.getOid(), (int) data.get("reused"), (int) geometry.get("primitiveCount"));
 					} else {
 						System.out.println("No data");
 					}
@@ -186,17 +213,19 @@ public class GeometryAccellerator {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		long end = System.nanoTime();
+		System.out.println("generateReuseSet: " + ((end - start) / 1000000) + " ms");
 		return reuseSet;
 	}
-	
+
 	private Map<Long, HashMapVirtualObject> listGeometryData(DatabaseSession databaseSession, Set<Long> roids) throws BimserverDatabaseException, IOException, QueryException {
 		Map<Long, HashMapVirtualObject> map = new HashMap<>();
-		
+
 		Revision revision = databaseSession.get(roids.iterator().next(), OldQuery.getDefault());
 		PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
-		
+
 		Query query = new Query(packageMetaData);
-		
+
 		QueryPart queryPart = query.createQueryPart();
 		queryPart.addType(GeometryPackage.eINSTANCE.getGeometryData(), false);
 
