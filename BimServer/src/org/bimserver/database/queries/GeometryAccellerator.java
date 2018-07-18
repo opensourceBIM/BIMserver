@@ -28,14 +28,14 @@ import com.google.common.cache.LoadingCache;
 
 public class GeometryAccellerator {
 	private BimServer bimServer;
-	private LoadingCache<OctreeKey, Octree<Long>> octrees;
+	private LoadingCache<OctreeKey, Octree<GeometryObject>> octrees;
 	private LoadingCache<ReuseKey, ReuseSet> reuseSets;
 
 	public GeometryAccellerator(BimServer bimServer) {
 		this.bimServer = bimServer;
 
-		octrees = CacheBuilder.newBuilder().maximumSize(10000).build(new CacheLoader<OctreeKey, Octree<Long>>() {
-			public Octree<Long> load(OctreeKey key) {
+		octrees = CacheBuilder.newBuilder().maximumSize(10000).build(new CacheLoader<OctreeKey, Octree<GeometryObject>>() {
+			public Octree<GeometryObject> load(OctreeKey key) {
 				return generateOctree(key);
 			}
 		});
@@ -47,7 +47,7 @@ public class GeometryAccellerator {
 		});
 	}
 
-	public Octree<Long> getOctree(Set<Long> roids, Set<String> excludedClasses, Set<Long> geometryIdsToReuse, int maxDepth, float minimumThreshold) {
+	public Octree<GeometryObject> getOctree(Set<Long> roids, Set<String> excludedClasses, Set<Long> geometryIdsToReuse, int maxDepth, float minimumThreshold) {
 		OctreeKey key = new OctreeKey(roids, excludedClasses, geometryIdsToReuse, maxDepth, minimumThreshold);
 		try {
 			return octrees.get(key);
@@ -57,7 +57,7 @@ public class GeometryAccellerator {
 		}
 	}
 
-	private Octree<Long> generateOctree(OctreeKey key) {
+	private Octree<GeometryObject> generateOctree(OctreeKey key) {
 		long start = System.nanoTime();
 		try (DatabaseSession databaseSession = bimServer.getDatabase().createSession()) {
 			org.bimserver.database.queries.Bounds totalBounds = new org.bimserver.database.queries.Bounds();
@@ -71,7 +71,7 @@ public class GeometryAccellerator {
 				totalBounds.integrate(revision.getBoundsMm());
 			}
 
-			Octree<Long> octree = new Octree<>(totalBounds, key.getMaxDepth());
+			Octree<GeometryObject> octree = new Octree<>(totalBounds, key.getMaxDepth());
 
 			// Assuming all given roids are of projects that all have the same
 			// schema
@@ -131,7 +131,7 @@ public class GeometryAccellerator {
 	
 							org.bimserver.database.queries.Bounds objectBounds = new org.bimserver.database.queries.Bounds((double) min.get("x"), (double) min.get("y"), (double) min.get("z"), (double) max.get("x"), (double) max.get("y"),
 									(double) max.get("z"));
-							octree.add(next.getOid(), objectBounds);
+							octree.add(new GeometryObject(next.getOid(), next.getRoid()), objectBounds);
 						}
 					}
 				}
@@ -140,7 +140,7 @@ public class GeometryAccellerator {
 
 			long end = System.nanoTime();
 			System.out.println("generateOctree " + ((end - start) / 1000000) + " ms");
-
+			System.out.println(key.toString());
 			return octree;
 		} catch (BimserverDatabaseException e) {
 			e.printStackTrace();

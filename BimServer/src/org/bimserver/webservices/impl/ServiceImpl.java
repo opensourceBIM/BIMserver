@@ -151,6 +151,7 @@ import org.bimserver.database.actions.UploadFileDatabaseAction;
 import org.bimserver.database.actions.UserHasCheckinRightsDatabaseAction;
 import org.bimserver.database.actions.UserHasRightsDatabaseAction;
 import org.bimserver.database.actions.ValidateModelCheckerDatabaseAction;
+import org.bimserver.database.queries.GeometryObject;
 import org.bimserver.database.queries.Node;
 import org.bimserver.database.queries.Octree;
 import org.bimserver.database.queries.Traverser;
@@ -3109,7 +3110,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public List<Integer> getTileCounts(Set<Long> roids, Set<String> excludedTypes, Set<Long> geometryIdsToReuse, Float threshold, Integer depth) throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			Octree<Long> octree = getBimServer().getGeometryAccellerator().getOctree(roids, excludedTypes, geometryIdsToReuse, depth, threshold);
+			Octree<GeometryObject> octree = getBimServer().getGeometryAccellerator().getOctree(roids, excludedTypes, geometryIdsToReuse, depth, threshold);
 			
 			int size = 0;
 			for (int l=0; l<=octree.getDeepestLevel(); l++) {
@@ -3121,9 +3122,9 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			}
 
 			AtomicInteger t = new AtomicInteger();
-			octree.traverseBreathFirst(new Traverser<Long>() {
+			octree.traverseBreathFirst(new Traverser<GeometryObject>() {
 				@Override
-				public void traverse(Node<Long> node) {
+				public void traverse(Node<GeometryObject> node) {
 					result.set(node.getId(), node.getNrObjects());
 					t.addAndGet(node.getNrObjects());
 				}

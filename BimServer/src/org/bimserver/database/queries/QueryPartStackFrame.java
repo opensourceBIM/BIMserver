@@ -142,33 +142,18 @@ public class QueryPartStackFrame extends StackFrame {
 			} else if (inBoundingBox != null) {
 				queryObjectProvider.push(new QueryBoundingBoxStackFrame(queryObjectProvider, eClass, partialQuery, reusable, inBoundingBox));
 			} else if (tiles != null) {
-				// TODO excludedClasses
-
 				List<Long> oids = new ArrayList<>();
-				
-				Set<String> exludeStrings = new HashSet<>();
-				for (TypeDef typeDef : partialQuery.getTypes()) {
-					if (typeDef.isIncludeSubTypes()) {
-						if (typeDef.hasExcludes()) {
-							for (EClass eClass2 : typeDef.getExcluded()) {
-								exludeStrings.add(eClass2.getName());
-							}
-						}
-					}
-				}
 
-				Octree<Long> octree = queryObjectProvider.getBimServer().getGeometryAccellerator().getOctree(Collections.singleton(reusable.getRoid()), exludeStrings, tiles.getGeometryIdsToReuse(), 3, tiles.getMinimumThreshold());
-				for (Integer tileId : tiles.getTileIds()) {
-					Node<Long> node = octree.getById(tileId);
-					if (node != null) {
-						for (ObjectWrapper<Long> objectWrapper : node.getValues()) {
-							long objectId = objectWrapper.getV();
+				Set<Node<GeometryObject>> nodes = (Set<Node<GeometryObject>>) tiles.getNodes();
+				for (Node<GeometryObject> node : nodes) {
+					for (ObjectWrapper<GeometryObject> objectWrapper : node.getValues()) {
+						GeometryObject geometryObject = objectWrapper.getV();
+						if (geometryObject.getRoid() == reusable.getRoid()) {
+							long objectId = geometryObject.getOid();
 							if (eClass.isSuperTypeOf(queryObjectProvider.getDatabaseSession().getEClassForOid(objectId))) {
 								oids.add(objectId);
 							}
 						}
-					} else {
-						System.out.println("Node not found: " + tileId);
 					}
 				}
 				if (!oids.isEmpty()) {

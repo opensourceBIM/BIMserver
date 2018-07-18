@@ -1,5 +1,7 @@
 package org.bimserver.database.queries;
 
+import java.util.HashSet;
+
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -21,7 +23,11 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
+import org.bimserver.database.queries.om.Include.TypeDef;
 import org.bimserver.database.queries.om.QueryException;
+import org.bimserver.database.queries.om.QueryPart;
+import org.bimserver.database.queries.om.Tiles;
+import org.eclipse.emf.ecore.EClass;
 
 public class StartFrame extends StackFrame {
 
@@ -32,6 +38,29 @@ public class StartFrame extends StackFrame {
 		this.queryObjectProvider = queryObjectProvider;
 		if (roids.size() == 0) {
 			throw new QueryException("At least one roid required");
+		}
+		for (QueryPart queryPart : queryObjectProvider.getQuery().getQueryParts()) {
+			Tiles tiles = queryPart.getTiles();
+			if (tiles != null) {
+				Set<String> exludeStrings = new HashSet<>();
+				for (TypeDef typeDef : queryPart.getTypes()) {
+					if (typeDef.isIncludeSubTypes()) {
+						if (typeDef.hasExcludes()) {
+							for (EClass eClass2 : typeDef.getExcluded()) {
+								exludeStrings.add(eClass2.getName());
+							}
+						}
+					}
+				}
+
+				Octree<GeometryObject> octree = queryObjectProvider.getBimServer().getGeometryAccellerator().getOctree(roids, exludeStrings, tiles.getGeometryIdsToReuse(), 3, tiles.getMinimumThreshold());
+				Set<Node<GeometryObject>> nodes = new HashSet<>();
+				tiles.setNodes(nodes);
+				for (Integer tileId : tiles.getTileIds()) {
+					Node<GeometryObject> node = octree.getById(tileId);
+					nodes.add(node);
+				}
+			}
 		}
 		this.roidsIterator = roids.iterator();
 	}

@@ -8,6 +8,7 @@ public class Tiles {
 	private final Set<Integer> tileIds = new HashSet<>();
 	private final Set<Long> geometryIdsToReuse = new HashSet<>();
 	private float minimumThreshold;
+	private Object nodes;
 	
 	public void add(int tileId) {
 		tileIds.add(tileId);
@@ -31,5 +32,13 @@ public class Tiles {
 	
 	public Set<Long> getGeometryIdsToReuse() {
 		return geometryIdsToReuse;
+	}
+
+	public void setNodes(Object nodes) {
+		this.nodes = nodes;
+	}
+	
+	public Object getNodes() {
+		return nodes;
 	}
 }
