@@ -1,5 +1,5 @@
 
-√ù
+Ùù
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -665,15 +665,16 @@ $GetAvailableClassesInRevisionRequest
 GetDensityThresholdRequest
 roid (
 nrTriangles (
-excludedTypes (	"~
+excludedTypes (	"õ
 SDensity
 density (
 geometryInfoId (
 oid (
-rid (
-	triangles (
-type (	
-volume ("^
+rid (
+trianglesAbove (
+trianglesBelow (
+type (	
+volume ("^
 GetDensityThresholdResponse
 errorMessage (	)
 value (2.org.bimserver.pb.SDensity")
@@ -1019,12 +1020,13 @@ settingsId (
 poid ("á
 ,GetSuggestedDeserializerForExtensionResponse
 errorMessage (	A
-value (22.org.bimserver.pb.SDeserializerPluginConfiguration"g
+value (22.org.bimserver.pb.SDeserializerPluginConfiguration"z
 GetTileCountsRequest
 roids (
 excludedTypes (	
-geometryIdsToReuse (
-depth ("<
+geometryIdsToReuse (
+	threshold (
+depth ("<
 GetTileCountsResponse
 errorMessage (	
 value ("/

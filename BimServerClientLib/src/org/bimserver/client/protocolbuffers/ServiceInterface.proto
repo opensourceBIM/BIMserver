@@ -1314,9 +1314,10 @@ message SDensity {
 	optional int64 geometryInfoId = 2;
 	optional int64 oid = 3;
 	optional int32 rid = 4;
-	optional int64 triangles = 5;
-	optional string type = 6;
-	optional float volume = 7;
+	optional int64 trianglesAbove = 5;
+	optional int64 trianglesBelow = 6;
+	optional string type = 7;
+	optional float volume = 8;
 }
 
 message GetDensityThresholdResponse {
@@ -1845,7 +1846,8 @@ message GetTileCountsRequest {
 	repeated int64 roids = 1;
 	repeated string excludedTypes = 2;
 	repeated int64 geometryIdsToReuse = 3;
-	optional int32 depth = 4;
+	optional float threshold = 4;
+	optional int32 depth = 5;
 }
 
 message GetTileCountsResponse {
