@@ -331,8 +331,6 @@ public class GeometryRunner implements Runnable {
 											}
 											if (hasMaterial) {
 												geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Materials(), vertex_colors);
-											} else {
-												System.out.println();
 											}
 										}
 
