@@ -69,6 +69,8 @@ import org.bimserver.utils.GeometryUtils;
 import org.eclipse.emf.ecore.EClass;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.primitives.UnsignedBytes;
+
 public class GeometryRunner implements Runnable {
 
 	private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(GeometryRunner.class);
@@ -266,15 +268,16 @@ public class GeometryRunner implements Runnable {
 										boolean hasTransparency = false;
 										
 										if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
+											float[] materials = geometry.getMaterials();
 											boolean hasMaterial = false;
-											float[] vertex_colors = new float[vertices.length / 3 * 4];
+											byte[] vertex_colors = new byte[(vertices.length / 3) * 4];
 											float[] vertex = new float[9];
 											for (int i = 0; i < geometry.getMaterialIndices().length; ++i) {
 												int c = geometry.getMaterialIndices()[i];
 												if (c > -1) {
 													Color4f color = new Color4f();
 													for (int l = 0; l < 4; ++l) {
-														float val = geometry.getMaterials()[4 * c + l];
+														float val = materials[4 * c + l];
 														color.set(l, val);
 													}
 													for (int j = 0; j < 3; ++j) {
@@ -284,8 +287,8 @@ public class GeometryRunner implements Runnable {
 														vertex[j * 3 + 2] = vertices[3 * k + 2];
 														hasMaterial = true;
 														for (int l = 0; l < 4; ++l) {
-															float val = geometry.getMaterials()[4 * c + l];
-															vertex_colors[4 * k + l] = val;
+															float val = materials[4 * c + l];
+															vertex_colors[4 * k + l] = UnsignedBytes.checkedCast((int)(val * 255));
 														}
 													}
 													if (usedColors.containsKey(color)) {
@@ -327,7 +330,9 @@ public class GeometryRunner implements Runnable {
 												geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_MostUsedColor(), color);
 											}
 											if (hasMaterial) {
-												geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Materials(), GeometryUtils.floatArrayToByteArray(vertex_colors));
+												geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Materials(), vertex_colors);
+											} else {
+												System.out.println();
 											}
 										}
 
