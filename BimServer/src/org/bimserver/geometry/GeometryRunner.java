@@ -22,6 +22,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
@@ -256,8 +258,9 @@ public class GeometryRunner implements Runnable {
 										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Indices(), GeometryUtils.intArrayToByteArray(indices));
 										float[] vertices = geometry.getVertices();
 										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Vertices(), GeometryUtils.floatArrayToByteArray(vertices));
-										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Normals(), GeometryUtils.floatArrayToByteArray(geometry.getNormals()));
-
+										float[] normals = geometry.getNormals();
+										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Normals(), GeometryUtils.floatArrayToByteArray(normals));
+										
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), indices.length / 3);
 										
 										job.setTrianglesGenerated(indices.length / 3);
@@ -356,6 +359,9 @@ public class GeometryRunner implements Runnable {
 										geometryInfo.set("boundsUntransformedMm", boundsUntransformedMm);
 										HashMapWrappedVirtualObject boundsMm = createMmBounds(geometryInfo, bounds, generateGeometryResult.getMultiplierToMm());
 										geometryInfo.set("boundsMm", boundsMm);
+
+										ByteBuffer normalsQuantized = quantizeNormals(normals);
+										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_NormalsQuantized(), normalsQuantized.array());
 										
 										HashMapWrappedVirtualObject geometryDataBounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getBounds());
 										WrappedVirtualObject geometryDataBoundsMin = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
@@ -752,6 +758,70 @@ public class GeometryRunner implements Runnable {
 		job.setEndNanos(end);
 	}
 	
+	private ByteBuffer quantizeColors(byte[] vertex_colors) {
+		ByteBuffer quantizedColors = ByteBuffer.wrap(new byte[vertex_colors.length]);
+		for (int i=0; i<vertex_colors.length; i++) {
+			float c = vertex_colors[i];
+			quantizedColors.put(UnsignedBytes.checkedCast((int) (c * 255)));
+		}
+		return quantizedColors;
+	}
+
+	private ByteBuffer quantizeNormals(float[] normals) {
+		ByteBuffer quantizedNormals = ByteBuffer.wrap(new byte[normals.length]);
+		quantizedNormals.order(ByteOrder.LITTLE_ENDIAN);
+		for (int i=0; i<normals.length; i++) {
+			float normal = normals[i];
+			quantizedNormals.put((byte)(normal * 127));
+		}
+		return quantizedNormals;
+	}
+
+	private float[] createQuantizationMatrixFromBounds(HashMapWrappedVirtualObject boundsMm) {
+		float[] matrix = Matrix.identityF();
+		float scale = 32768;
+		
+		HashMapWrappedVirtualObject min = (HashMapWrappedVirtualObject) boundsMm.get("min");
+		HashMapWrappedVirtualObject max = (HashMapWrappedVirtualObject) boundsMm.get("max");
+		
+		// Move the model with its center to the origin
+		Matrix.translateM(matrix, 0, (float)(-((double)max.eGet("x") + (double)min.eGet("x")) / 2f), (float)(-((double)max.eGet("y") + (double)min.eGet("y")) / 2f), (float)(-((double)max.eGet("z") + (double)min.eGet("z")) / 2f));
+
+		// Scale the model to make sure all values fit within a 2-byte signed short
+		Matrix.scaleM(matrix, 0, (float)(scale / ((double)max.eGet("x") - (double)min.eGet("x"))), (float)(scale / ((double)max.eGet("y") - (double)min.eGet("y"))), (float)(scale / ((double)max.eGet("z") - (double)min.eGet("z"))));
+
+		return matrix;
+	}
+
+	private ByteBuffer quantizeVertices(float[] vertices, float[] quantizationMatrix, float multiplierToMm) {
+		ByteBuffer quantizedBuffer = ByteBuffer.wrap(new byte[vertices.length * 2]);
+		quantizedBuffer.order(ByteOrder.LITTLE_ENDIAN);
+		
+		float[] vertex = new float[4];
+		float[] result = new float[4];
+		vertex[3] = 1;
+		int nrVertices = vertices.length;
+		for (int i=0; i<nrVertices; i+=3) {
+			vertex[0] = vertices[i];
+			vertex[1] = vertices[i+1];
+			vertex[2] = vertices[i+2];
+	
+			if (multiplierToMm != 1f) {
+				vertex[0] = vertex[0] * multiplierToMm;
+				vertex[1] = vertex[1] * multiplierToMm;
+				vertex[2] = vertex[2] * multiplierToMm;
+			}
+
+			Matrix.multiplyMV(result, 0, quantizationMatrix, 0, vertex, 0);
+			
+			quantizedBuffer.putShort((short)result[0]);
+			quantizedBuffer.putShort((short)result[1]);
+			quantizedBuffer.putShort((short)result[2]);
+		}
+
+		return quantizedBuffer;
+	}
+
 	private void extendBounds(HashMapWrappedVirtualObject source, HashMapWrappedVirtualObject target) throws BimserverDatabaseException {
 		HashMapWrappedVirtualObject sourceMin = (HashMapWrappedVirtualObject) source.eGet("min");
 		HashMapWrappedVirtualObject sourceMax = (HashMapWrappedVirtualObject) source.eGet("max");

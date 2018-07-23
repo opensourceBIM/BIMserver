@@ -530,6 +530,12 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			
 			executor.shutdown();
 			executor.awaitTermination(24, TimeUnit.HOURS);
+			
+			// Need total bounds
+//			float[] quantizationMatrix = createQuantizationMatrixFromBounds(boundsMm);
+//			ByteBuffer verticesQuantized = quantizeVertices(vertices, quantizationMatrix, generateGeometryResult.getMultiplierToMm());
+//			geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_VerticesQuantized(), verticesQuantized.array());
+
 
 			long end = System.nanoTime();
 			long total = totalBytes.get() - (bytesSavedByHash.get() + bytesSavedByTransformation.get() + bytesSavedByMapping.get());
