@@ -101,7 +101,7 @@ public class Schema {
 		return new HashSet<EPackage>(packages.values());
 	}
 	
-	private void initIndirectSubClasses(EClass eClass) {
+	private Set<EClass> initIndirectSubClasses(EClass eClass) {
 		HashSet<EClass> set = new HashSet<EClass>();
 		indirectSubClasses.put(eClass, set);
 		set.add(eClass);
@@ -113,6 +113,7 @@ public class Schema {
 				}
 			}
 		}
+		return set;
 	}
 	
 	public EPackage getEPackage(String name) {
@@ -304,7 +305,11 @@ public class Schema {
 	}
 
 	public Set<EClass> getSubClasses(EClass eClass) {
-		return indirectSubClasses.get(eClass);
+		Set<EClass> set = indirectSubClasses.get(eClass);
+		if (set == null) {
+			return initIndirectSubClasses(eClass);
+		}
+		return set;
 	}
 
 	public EEnum getEEnum(String packageName, String enumName) {
