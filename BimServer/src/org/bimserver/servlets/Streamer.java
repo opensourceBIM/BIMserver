@@ -81,8 +81,7 @@ public class Streamer implements EndPoint {
 		} else if (request.has("action")) {
 			if (request.get("action").getAsString().equals("download")) {
 				final long topicId = request.get("topicId").getAsLong();
-				Thread thread = new Thread(){
-					@Override
+				bimServer.getExecutorService().execute(new Runnable() {
 					public void run() {
 						Writer writer = null;
 						try {
@@ -115,7 +114,7 @@ public class Streamer implements EndPoint {
 								writeMessage = writer.writeMessage(byteArrayOutputStream, progressReporter);
 								ByteBuffer newBuffer = ByteBuffer.allocate(growingByteBuffer.usedSize());
 								newBuffer.put(growingByteBuffer.array(), 0, growingByteBuffer.usedSize());
-								streamingSocketInterface.sendBlocking(newBuffer.array(), 0, newBuffer.capacity());
+								streamingSocketInterface.send(newBuffer.array(), 0, newBuffer.capacity());
 							} while (writeMessage);
 //							LOGGER.info(counter + " messages written " + Formatters.bytesToString(bytes) + " in " + ((end - start) / 1000000) + " ms");
 						} catch (IOException e) {
@@ -133,20 +132,23 @@ public class Streamer implements EndPoint {
 							}
 						}
 					}
-				};
-				thread.setName("Streamer " + topicId);
-				thread.start();
+				});
 			}
 		} else if (request.has("request")) {
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			OutputStreamWriter outputStreamWriter = new OutputStreamWriter(baos);
-			bimServer.getJsonHandler().execute(request, null, outputStreamWriter);
-			try {
-				outputStreamWriter.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			streamingSocketInterface.sendAsText(baos.toByteArray());
+			bimServer.getExecutorService().execute(new Runnable() {
+				@Override
+				public void run() {
+					ByteArrayOutputStream baos = new ByteArrayOutputStream();
+					OutputStreamWriter outputStreamWriter = new OutputStreamWriter(baos);
+					bimServer.getJsonHandler().execute(request, null, outputStreamWriter);
+					try {
+						outputStreamWriter.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					streamingSocketInterface.sendAsText(baos.toByteArray());
+				}
+			});
 		} else if (request.has("token")) {
 			String token = request.get("token").getAsString();
 			try {
