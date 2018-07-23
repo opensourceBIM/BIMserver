@@ -44,6 +44,7 @@ import org.bimserver.shared.StreamingSocketInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Charsets;
 import com.google.gson.JsonObject;
 
 @WebListener
@@ -138,6 +139,13 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 	public Future<Void> send(byte[] data, int start, int length) {
 		synchronized (this) {
 			return websocketSession.getAsyncRemote().sendBinary(ByteBuffer.wrap(data, start, length));
+		}
+	}
+
+	@Override
+	public Future<Void> sendAsText(byte[] data) {
+		synchronized (this) {
+			return websocketSession.getAsyncRemote().sendText(new String(data, Charsets.UTF_8));
 		}
 	}
 

@@ -60,6 +60,11 @@ public class JsonHandler {
 			jsonWriter.beginObject();
 			String token = incomingMessage.has("token") ? incomingMessage.get("token").getAsString() : null;
 			String oAuthCode = incomingMessage.has("oauthcode") ? incomingMessage.get("oauthcode").getAsString() : null;
+			long messageId = incomingMessage.has("id") ? incomingMessage.get("id").getAsLong() : -1;
+			if (messageId != -1) {
+				jsonWriter.name("id");
+				jsonWriter.value(messageId);
+			}
 			if (incomingMessage.has("request")) {
 				jsonWriter.name("response");
 				processSingleRequest(incomingMessage.getAsJsonObject("request"), token, oAuthCode, httpRequest, jsonWriter);
@@ -210,12 +215,13 @@ public class JsonHandler {
 			return bimServer.getServiceFactory().get(AccessMethod.JSON).get(interfaceClass);
 		}
 		
-		OAuthAccessResourceRequest oauthRequest;
-		try {
-			oauthRequest = new OAuthAccessResourceRequest(httpRequest, ParameterStyle.HEADER);
-			token = oauthRequest.getAccessToken();
-		} catch (OAuthSystemException e) {
-		} catch (OAuthProblemException e) {
+		if (httpRequest != null) {
+			try {
+				OAuthAccessResourceRequest oauthRequest = new OAuthAccessResourceRequest(httpRequest, ParameterStyle.HEADER);
+				token = oauthRequest.getAccessToken();
+			} catch (OAuthSystemException e) {
+			} catch (OAuthProblemException e) {
+			}
 		}
 		
 		if (token == null) {

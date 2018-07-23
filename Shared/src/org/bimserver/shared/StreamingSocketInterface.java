@@ -27,4 +27,5 @@ public interface StreamingSocketInterface {
 	void send(JsonObject request);
 	Future<Void> send(byte[] data, int start, int length);
 	void sendBlocking(byte[] data, int start, int length) throws IOException;
+	Future<Void> sendAsText(byte[] data);
 }
