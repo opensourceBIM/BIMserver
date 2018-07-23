@@ -42,6 +42,9 @@ public abstract class Authorization {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Authorization.class);
 	private final GregorianCalendar expires = new GregorianCalendar();
 	private long uoid = -1;
+	
+	// Volatile
+	private String username;
 
 	public Authorization(int expires, TimeUnit expiresUnit) {
 		this.expires.add(Calendar.SECOND, (int) TimeUnit.SECONDS.convert(expires, expiresUnit));
@@ -231,5 +234,13 @@ public abstract class Authorization {
 
 	public void setUoid(long uoid) {
 		this.uoid = uoid;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
 	}
 }

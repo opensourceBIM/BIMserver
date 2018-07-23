@@ -63,6 +63,7 @@ public class AutologinDatabaseAction extends BimDatabaseAction<String>{
 				getDatabaseSession().store(user);
 			}
 			authorization.setUoid(user.getOid());
+			authorization.setUsername(user.getUsername());
 			String asHexToken = authorization.asHexToken(bimServer.getEncryptionKey());
 			
 			serviceMap.setAuthorization(authorization);

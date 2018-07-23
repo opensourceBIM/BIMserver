@@ -76,6 +76,7 @@ public class LoginDatabaseAction extends BimDatabaseAction<String> {
 					authorization = new UserAuthorization(bimServer.getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS);
 				}
 				authorization.setUoid(user.getOid());
+				authorization.setUsername(user.getUsername());
 				String asHexToken = authorization.asHexToken(bimServer.getEncryptionKey());
 				serviceMap.setAuthorization(authorization);
 				bimServer.getAuthCache().store(asHexToken, authorization);
