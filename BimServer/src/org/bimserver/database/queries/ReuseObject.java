@@ -48,4 +48,8 @@ public class ReuseObject {
 			return false;
 		return true;
 	}
+
+	public void inc() {
+		reused++;
+	}
 }

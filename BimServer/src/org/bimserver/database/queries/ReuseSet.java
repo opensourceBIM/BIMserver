@@ -43,4 +43,13 @@ public class ReuseSet {
 		}
 		set.add(reuseObject);
 	}
+
+	public void add(ReuseObject reuseObject) {
+		Set<ReuseObject> set = map.get(reuseObject.getSaveablePrimitives());
+		if (set == null) {
+			set = new HashSet<>();
+			map.put(reuseObject.getSaveablePrimitives(), set);
+		}
+		set.add(reuseObject);
+	}
 }

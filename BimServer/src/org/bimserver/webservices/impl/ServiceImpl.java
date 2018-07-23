@@ -412,13 +412,12 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	@Override
 	public Long download(Set<Long> roids, String jsonQuery, Long serializerOid, Boolean sync) throws ServerException, UserException {
 		try {
-			User user = null;
+			String username = getAuthorization().getUsername();
 			DatabaseSession session = getBimServer().getDatabase().createSession();
 			Plugin plugin = null;
 			try {
 				SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, OldQuery.getDefault());
 				plugin = getBimServer().getPluginManager().getPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
-				user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
 			} catch (BimserverDatabaseException e) {
 				throw new UserException(e);
 			} finally {
@@ -426,7 +425,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			}
 			
 			if (plugin instanceof StreamingSerializerPlugin || plugin instanceof MessagingStreamingSerializerPlugin) {
-				LongStreamingDownloadAction longDownloadAction = new LongStreamingDownloadAction(getBimServer(), user == null ? "Unknown" : user.getName(), user == null ? "Unknown" : user.getUsername(), getAuthorization(), serializerOid, jsonQuery, roids);
+				LongStreamingDownloadAction longDownloadAction = new LongStreamingDownloadAction(getBimServer(), username, username, getAuthorization(), serializerOid, jsonQuery, roids);
 				try {
 					getBimServer().getLongActionManager().start(longDownloadAction);
 				} catch (Exception e) {
