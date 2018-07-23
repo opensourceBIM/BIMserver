@@ -16,10 +16,13 @@ import org.bimserver.database.queries.om.Query;
 import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.interfaces.objects.SDensity;
 import org.bimserver.models.geometry.GeometryPackage;
+import org.bimserver.models.store.Density;
 import org.bimserver.models.store.Revision;
 import org.bimserver.shared.AbstractHashMapVirtualObject;
 import org.bimserver.shared.HashMapVirtualObject;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import com.google.common.cache.CacheBuilder;
@@ -29,6 +32,7 @@ import com.google.common.cache.LoadingCache;
 public class GeometryAccellerator {
 	private BimServer bimServer;
 	private LoadingCache<OctreeKey, Octree<GeometryObject>> octrees;
+	private LoadingCache<DensityThresholdKey, DensityThreshold> densityThresholds;
 	private LoadingCache<ReuseKey, ReuseSet> reuseSets;
 
 	public GeometryAccellerator(BimServer bimServer) {
@@ -43,6 +47,13 @@ public class GeometryAccellerator {
 		reuseSets = CacheBuilder.newBuilder().maximumSize(10000).build(new CacheLoader<ReuseKey, ReuseSet>() {
 			public ReuseSet load(ReuseKey key) {
 				return generateReuseSet(key);
+			}
+		});
+		
+		densityThresholds = CacheBuilder.newBuilder().maximumSize(10000).build(new CacheLoader<DensityThresholdKey, DensityThreshold>() {
+			@Override
+			public DensityThreshold load(DensityThresholdKey key) throws Exception {
+				return generateDensityThreshold(key);
 			}
 		});
 	}
@@ -153,6 +164,38 @@ public class GeometryAccellerator {
 		return null;
 	}
 
+	private DensityThreshold generateDensityThreshold(DensityThresholdKey key) {
+		DensityThreshold densityThreshold = new DensityThreshold();
+		try (DatabaseSession session = bimServer.getDatabase().createSession()) {
+			Revision revision = session.get(key.getRoid(), OldQuery.getDefault());
+			EList<Density> densities = revision.getDensityCollection().getDensities();
+			long cumulativeTrianglesBelow = 0;
+			long cumulativeTrianglesAbove = 0;
+			Density densityResult = null;
+			for (Density density : densities) {
+				if (key.getExcludedTypes().contains(density.getType())) {
+					continue;
+				}
+				if (cumulativeTrianglesBelow + density.getTrianglesBelow() > key.getNrTriangles()) {
+					cumulativeTrianglesAbove += density.getTrianglesBelow(); // Not a typo
+				} else {
+					cumulativeTrianglesBelow += density.getTrianglesBelow();
+					densityResult = density;
+				}
+			}
+			if (densityResult == null) {
+				densityResult = densities.get(0);
+			}
+			// This is useful information, so the client knows exactly how many triangles will be loaded by using this threshold
+			densityResult.setTrianglesBelow(cumulativeTrianglesBelow);
+			densityResult.setTrianglesAbove(cumulativeTrianglesAbove);
+			densityThreshold.setDensity(bimServer.getSConverter().convertToSObject(densityResult));
+		} catch (BimserverDatabaseException e) {
+			e.printStackTrace();
+		}
+		return densityThreshold;
+	}
+	
 	public Set<Long> getGeometryDataToReuse(Set<Long> roids, Set<String> excludedTypes, Integer trianglesToSave) {
 		ReuseKey key = new ReuseKey(roids, excludedTypes);
 //		return generateReuseSet(key).getListOfGeometryDataIds(trianglesToSave);
@@ -243,5 +286,15 @@ public class GeometryAccellerator {
 			next = queryObjectProvider.next();
 		}
 		return map;
+	}
+
+	public SDensity getDensityThreshold(Long roid, Long nrTriangles, Set<String> excludedTypes) {
+		DensityThresholdKey key = new DensityThresholdKey(roid, nrTriangles, excludedTypes);
+		try {
+			return densityThresholds.get(key).getDensity();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

@@ -2967,8 +2967,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	@Override
 	public SBounds getTotalUntransformedBounds(Set<Long> roids) throws ServerException, UserException {
 		// TODO duplicate code with getTotalBounds
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
+		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
 			double[] totalMin = new double[]{Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE};
 			double[] totalMax = new double[]{-Double.MAX_VALUE, -Double.MAX_VALUE, -Double.MAX_VALUE};
 			for (Long roid : roids) {
@@ -3032,28 +3031,22 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			return sBounds;
 		} catch (Exception e) {
 			return handleException(e);
-		} finally {
-			session.close();
 		}
 	}
 	
 	@Override
 	public SVector3f getModelMinBounds(Long roid) throws ServerException, UserException {
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
+		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
 			Revision revision = session.get(roid, OldQuery.getDefault());
 			return getBimServer().getSConverter().convertToSObject(revision.getLastConcreteRevision().getBounds().getMin());
 		} catch (Exception e) {
 			return handleException(e);
-		} finally {
-			session.close();
 		}
 	}
 	
 	@Override
 	public Long regenerateGeometry(Long roid, Long eoid) throws ServerException, UserException {
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
+		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
 			Revision revision = session.get(roid, OldQuery.getDefault());
 			SUser user = getCurrentUser();
 			ProgressOnProjectTopic progressTopic = getBimServer().getNotificationsManager().createProgressOnProjectTopic(getAuthorization().getUoid(), revision.getProject().getOid(), SProgressTopicType.UPLOAD, "Regenerate geometry");
@@ -3065,67 +3058,30 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			return progressTopic.getKey().getId();
 		} catch (Exception e) {
 			return handleException(e);
-		} finally {
-			session.close();
 		}
 	}
 
 	@Override
 	public SDensity getDensityThreshold(Long roid, Long nrTriangles, Set<String> excludedTypes) throws ServerException, UserException {
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			Revision revision = session.get(roid, OldQuery.getDefault());
-			EList<Density> densities = revision.getDensityCollection().getDensities();
-			long cumulativeTrianglesBelow = 0;
-			long cumulativeTrianglesAbove = 0;
-			Density densityResult = null;
-			for (Density density : densities) {
-				if (excludedTypes.contains(density.getType())) {
-					continue;
-				}
-				if (cumulativeTrianglesBelow + density.getTrianglesBelow() > nrTriangles) {
-					cumulativeTrianglesAbove += density.getTrianglesBelow(); // Not a typo
-				} else {
-					cumulativeTrianglesBelow += density.getTrianglesBelow();
-					densityResult = density;
-				}
-			}
-			if (densityResult == null) {
-				densityResult = densities.get(0);
-			}
-			// This is useful information, so the client knows exactly how many triangles will be loaded by using this threshold
-			densityResult.setTrianglesBelow(cumulativeTrianglesBelow);
-			densityResult.setTrianglesAbove(cumulativeTrianglesAbove);
-			return getBimServer().getSConverter().convertToSObject(densityResult);
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
+		return getBimServer().getGeometryAccellerator().getDensityThreshold(roid, nrTriangles, excludedTypes);
 	}
 
 	@Override
 	public List<Integer> getTileCounts(Set<Long> roids, Set<String> excludedTypes, Set<Long> geometryIdsToReuse, Float threshold, Integer depth) throws ServerException, UserException {
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			Octree<GeometryObject> octree = getBimServer().getGeometryAccellerator().getOctree(roids, excludedTypes, geometryIdsToReuse, depth, threshold);
+		Octree<GeometryObject> octree = getBimServer().getGeometryAccellerator().getOctree(roids, excludedTypes, geometryIdsToReuse, depth, threshold);
 
-			List<Integer> result = new ArrayList<>();
-			octree.traverseBreathFirst(new Traverser<GeometryObject>() {
-				@Override
-				public void traverse(Node<GeometryObject> node) {
-					if (node.getNrObjects() > 0) {
-						result.add(node.getId());
-						result.add(node.getNrObjects());
-					}
+		List<Integer> result = new ArrayList<>();
+		// TODO non-breath-first is probably faster, don't think it matters for the client (ATM)
+		octree.traverseBreathFirst(new Traverser<GeometryObject>() {
+			@Override
+			public void traverse(Node<GeometryObject> node) {
+				if (node.getNrObjects() > 0) {
+					result.add(node.getId());
+					result.add(node.getNrObjects());
 				}
-			});
-			return result;
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
+			}
+		});
+		return result;
 	}
 	
 	@Override
