@@ -59,6 +59,9 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getMostUsedColor <em>Most Used Color</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getBoundsMm <em>Bounds Mm</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getNormalsQuantized <em>Normals Quantized</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getVerticesQuantized <em>Vertices Quantized</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getColorsQuantized <em>Colors Quantized</em>}</li>
  * </ul>
  *
  * @generated
@@ -289,6 +292,60 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 */
 	public void setBoundsMm(Bounds newBoundsMm) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__BOUNDS_MM, newBoundsMm);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public byte[] getNormalsQuantized() {
+		return (byte[]) eGet(GeometryPackage.Literals.GEOMETRY_DATA__NORMALS_QUANTIZED, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNormalsQuantized(byte[] newNormalsQuantized) {
+		eSet(GeometryPackage.Literals.GEOMETRY_DATA__NORMALS_QUANTIZED, newNormalsQuantized);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public byte[] getVerticesQuantized() {
+		return (byte[]) eGet(GeometryPackage.Literals.GEOMETRY_DATA__VERTICES_QUANTIZED, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setVerticesQuantized(byte[] newVerticesQuantized) {
+		eSet(GeometryPackage.Literals.GEOMETRY_DATA__VERTICES_QUANTIZED, newVerticesQuantized);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public byte[] getColorsQuantized() {
+		return (byte[]) eGet(GeometryPackage.Literals.GEOMETRY_DATA__COLORS_QUANTIZED, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setColorsQuantized(byte[] newColorsQuantized) {
+		eSet(GeometryPackage.Literals.GEOMETRY_DATA__COLORS_QUANTIZED, newColorsQuantized);
 	}
 
 } //GeometryDataImpl

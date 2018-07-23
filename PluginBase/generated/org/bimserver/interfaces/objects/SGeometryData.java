@@ -40,6 +40,9 @@ public class SGeometryData implements SDataBase
 	private short type;
 	private SVector4f mostUsedColor;
 	private SBounds boundsMm;
+	private byte[] normalsQuantized;
+	private byte[] verticesQuantized;
+	private byte[] colorsQuantized;
 
 	public long getOid() {
 		return this.oid;
@@ -100,6 +103,15 @@ public class SGeometryData implements SDataBase
 		if (sField.getName().equals("boundsMm")) {
 			return getBoundsMm();
 		}
+		if (sField.getName().equals("normalsQuantized")) {
+			return getNormalsQuantized();
+		}
+		if (sField.getName().equals("verticesQuantized")) {
+			return getVerticesQuantized();
+		}
+		if (sField.getName().equals("colorsQuantized")) {
+			return getColorsQuantized();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -152,6 +164,18 @@ public class SGeometryData implements SDataBase
 		}
 		if (sField.getName().equals("boundsMm")) {
 			setBoundsMm((SBounds)val);
+			return;
+		}
+		if (sField.getName().equals("normalsQuantized")) {
+			setNormalsQuantized((byte[])val);
+			return;
+		}
+		if (sField.getName().equals("verticesQuantized")) {
+			setVerticesQuantized((byte[])val);
+			return;
+		}
+		if (sField.getName().equals("colorsQuantized")) {
+			setColorsQuantized((byte[])val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -255,6 +279,30 @@ public class SGeometryData implements SDataBase
 		this.boundsMm = boundsMm;
 	}
 	
+	
+	public byte[] getNormalsQuantized() {
+		return normalsQuantized;
+	}
+
+	public void setNormalsQuantized(byte[] normalsQuantized) {
+		this.normalsQuantized = normalsQuantized;
+	}
+	
+	public byte[] getVerticesQuantized() {
+		return verticesQuantized;
+	}
+
+	public void setVerticesQuantized(byte[] verticesQuantized) {
+		this.verticesQuantized = verticesQuantized;
+	}
+	
+	public byte[] getColorsQuantized() {
+		return colorsQuantized;
+	}
+
+	public void setColorsQuantized(byte[] colorsQuantized) {
+		this.colorsQuantized = colorsQuantized;
+	}
 	
 	@Override
 	public int hashCode() {

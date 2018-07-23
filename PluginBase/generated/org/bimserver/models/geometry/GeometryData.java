@@ -55,6 +55,9 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getMostUsedColor <em>Most Used Color</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getBoundsMm <em>Bounds Mm</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#getNormalsQuantized <em>Normals Quantized</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#getVerticesQuantized <em>Vertices Quantized</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#getColorsQuantized <em>Colors Quantized</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData()
@@ -348,5 +351,83 @@ public interface GeometryData extends IdEObject {
 	 * @generated
 	 */
 	void setBoundsMm(Bounds value);
+
+	/**
+	 * Returns the value of the '<em><b>Normals Quantized</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Normals Quantized</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Normals Quantized</em>' attribute.
+	 * @see #setNormalsQuantized(byte[])
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_NormalsQuantized()
+	 * @model
+	 * @generated
+	 */
+	byte[] getNormalsQuantized();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getNormalsQuantized <em>Normals Quantized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Normals Quantized</em>' attribute.
+	 * @see #getNormalsQuantized()
+	 * @generated
+	 */
+	void setNormalsQuantized(byte[] value);
+
+	/**
+	 * Returns the value of the '<em><b>Vertices Quantized</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Vertices Quantized</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Vertices Quantized</em>' attribute.
+	 * @see #setVerticesQuantized(byte[])
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_VerticesQuantized()
+	 * @model
+	 * @generated
+	 */
+	byte[] getVerticesQuantized();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getVerticesQuantized <em>Vertices Quantized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Vertices Quantized</em>' attribute.
+	 * @see #getVerticesQuantized()
+	 * @generated
+	 */
+	void setVerticesQuantized(byte[] value);
+
+	/**
+	 * Returns the value of the '<em><b>Colors Quantized</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Colors Quantized</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Colors Quantized</em>' attribute.
+	 * @see #setColorsQuantized(byte[])
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_ColorsQuantized()
+	 * @model
+	 * @generated
+	 */
+	byte[] getColorsQuantized();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getColorsQuantized <em>Colors Quantized</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Colors Quantized</em>' attribute.
+	 * @see #getColorsQuantized()
+	 * @generated
+	 */
+	void setColorsQuantized(byte[] value);
 
 } // GeometryData

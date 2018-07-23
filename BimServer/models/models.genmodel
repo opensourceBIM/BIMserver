@@ -47,6 +47,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/type"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryData/mostUsedColor"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryData/boundsMm"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/normalsQuantized"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/verticesQuantized"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/colorsQuantized"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/Vector4f">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector4f/x"/>
