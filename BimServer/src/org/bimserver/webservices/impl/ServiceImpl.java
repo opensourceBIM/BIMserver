@@ -39,7 +39,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -3110,22 +3109,15 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			Octree<GeometryObject> octree = getBimServer().getGeometryAccellerator().getOctree(roids, excludedTypes, geometryIdsToReuse, depth, threshold);
-			
-			int size = 0;
-			for (int l=0; l<=octree.getDeepestLevel(); l++) {
-				size += Math.pow(8, l);
-			}
-			List<Integer> result = new ArrayList<>(size);
-			for (int i=0; i<size; i++) {
-				result.add(0);
-			}
 
-			AtomicInteger t = new AtomicInteger();
+			List<Integer> result = new ArrayList<>();
 			octree.traverseBreathFirst(new Traverser<GeometryObject>() {
 				@Override
 				public void traverse(Node<GeometryObject> node) {
-					result.set(node.getId(), node.getNrObjects());
-					t.addAndGet(node.getNrObjects());
+					if (node.getNrObjects() > 0) {
+						result.add(node.getId());
+						result.add(node.getNrObjects());
+					}
 				}
 			});
 			return result;
