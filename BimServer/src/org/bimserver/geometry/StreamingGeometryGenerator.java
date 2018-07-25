@@ -59,7 +59,10 @@ import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;
+import org.bimserver.models.geometry.Bounds;
+import org.bimserver.models.geometry.Buffer;
 import org.bimserver.models.geometry.GeometryPackage;
+import org.bimserver.models.geometry.Vector3f;
 import org.bimserver.models.ifc2x3tc1.IfcSIPrefix;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.User;
@@ -127,6 +130,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 	private boolean reuseGeometry;
 	private boolean optimizeMappedItems;
+	
+	private final Map<Long, Tuple<HashMapVirtualObject, float[]>> geometryDataMap = new HashMap<>();
 
 	private GeometryGenerationDebugger geometryGenerationDebugger = new GeometryGenerationDebugger();
 
@@ -252,7 +257,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 				classes = packageMetaData.getEClasses();
 			}
 
-			generateGeometryResult.setMultiplierToMm(processUnits(databaseSession, queryContext));
+			float multiplierToMm = processUnits(databaseSession, queryContext);
+			generateGeometryResult.setMultiplierToMm(multiplierToMm);
 			
 			// Phase 1 (mapped item detection) sometimes detects that mapped items have invalid (unsupported) RepresentationIdentifier values, this set keeps track of objects to skip in Phase 2 because of that
 			Set<Long> toSkip = new HashSet<>();
@@ -536,6 +542,20 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 //			ByteBuffer verticesQuantized = quantizeVertices(vertices, quantizationMatrix, generateGeometryResult.getMultiplierToMm());
 //			geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_VerticesQuantized(), verticesQuantized.array());
 
+			LOGGER.info("Generating quantized vertices");
+			float[] quantizationMatrix = createQuantizationMatrixFromBounds(generateGeometryResult.getBoundsUntransformed(), multiplierToMm);
+			for (Long id : geometryDataMap.keySet()) {
+				Tuple<HashMapVirtualObject, float[]> tuple = geometryDataMap.get(id);
+				
+				HashMapVirtualObject buffer = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getBuffer());
+//				Buffer buffer = databaseSession.create(Buffer.class);
+				buffer.set("data", quantizeVertices(tuple.getB(), quantizationMatrix, multiplierToMm).array());
+//				buffer.setData(quantizeVertices(tuple.getB(), quantizationMatrix, multiplierToMm).array());
+//				databaseSession.store(buffer);
+				buffer.save();
+				tuple.getA().set("verticesQuantized", buffer.getOid());
+				tuple.getA().saveOverwrite();
+			}
 
 			long end = System.nanoTime();
 			long total = totalBytes.get() - (bytesSavedByHash.get() + bytesSavedByTransformation.get() + bytesSavedByMapping.get());
@@ -554,6 +574,82 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			LOGGER.debug("", e);
 		}
 		return generateGeometryResult;
+	}
+	
+	private float[] createQuantizationMatrixFromBounds(Bounds bounds, float multiplierToMm) {
+		float[] matrix = Matrix.identityF();
+		float scale = 32768;
+		
+		Vector3f min = bounds.getMin();
+		Vector3f max = bounds.getMax();
+		
+		float[] minArray = new float[] {
+			(float) (min.getX() * multiplierToMm),
+			(float) (min.getY() * multiplierToMm),
+			(float) (min.getZ() * multiplierToMm)
+		};
+
+		float[] maxArray = new float[] {
+			(float) (max.getX() * multiplierToMm),
+			(float) (max.getY() * multiplierToMm),
+			(float) (max.getZ() * multiplierToMm)
+		};
+		
+		// Scale the model to make sure all values fit within a 2-byte signed short
+		Matrix.scaleM(matrix, 0, (float)(scale / ((double)maxArray[0] - (double)minArray[0])), (float)(scale / ((double)maxArray[1] - (double)minArray[1])), (float)(scale / ((double)maxArray[2] - (double)minArray[2])));
+
+		// Move the model with its center to the origin
+		Matrix.translateM(matrix, 0, (float)(-((double)maxArray[0] + (double)minArray[0]) / 2f), (float)(-((double)maxArray[1] + (double)minArray[1]) / 2f), (float)(-((double)maxArray[2] + (double)minArray[2]) / 2f));
+
+		// Scale to mm
+//		Matrix.scaleM(matrix, 0, multiplierToMm, multiplierToMm, multiplierToMm);
+		
+		return matrix;
+	}
+	
+	private float[] createQuantizationMatrixFromBounds(HashMapWrappedVirtualObject boundsMm) {
+		float[] matrix = Matrix.identityF();
+		float scale = 32768;
+		
+		HashMapWrappedVirtualObject min = (HashMapWrappedVirtualObject) boundsMm.get("min");
+		HashMapWrappedVirtualObject max = (HashMapWrappedVirtualObject) boundsMm.get("max");
+		
+		// Move the model with its center to the origin
+		Matrix.translateM(matrix, 0, (float)(-((double)max.eGet("x") + (double)min.eGet("x")) / 2f), (float)(-((double)max.eGet("y") + (double)min.eGet("y")) / 2f), (float)(-((double)max.eGet("z") + (double)min.eGet("z")) / 2f));
+
+		// Scale the model to make sure all values fit within a 2-byte signed short
+		Matrix.scaleM(matrix, 0, (float)(scale / ((double)max.eGet("x") - (double)min.eGet("x"))), (float)(scale / ((double)max.eGet("y") - (double)min.eGet("y"))), (float)(scale / ((double)max.eGet("z") - (double)min.eGet("z"))));
+
+		return matrix;
+	}
+
+	private ByteBuffer quantizeVertices(float[] vertices, float[] quantizationMatrix, float multiplierToMm) {
+		ByteBuffer quantizedBuffer = ByteBuffer.wrap(new byte[vertices.length * 2]);
+		quantizedBuffer.order(ByteOrder.LITTLE_ENDIAN);
+		
+		float[] vertex = new float[4];
+		float[] result = new float[4];
+		vertex[3] = 1;
+		int nrVertices = vertices.length;
+		for (int i=0; i<nrVertices; i+=3) {
+			vertex[0] = vertices[i];
+			vertex[1] = vertices[i+1];
+			vertex[2] = vertices[i+2];
+	
+			if (multiplierToMm != 1f) {
+				vertex[0] = vertex[0] * multiplierToMm;
+				vertex[1] = vertex[1] * multiplierToMm;
+				vertex[2] = vertex[2] * multiplierToMm;
+			}
+
+			Matrix.multiplyMV(result, 0, quantizationMatrix, 0, vertex, 0);
+			
+			quantizedBuffer.putShort((short)result[0]);
+			quantizedBuffer.putShort((short)result[1]);
+			quantizedBuffer.putShort((short)result[2]);
+		}
+
+		return quantizedBuffer;
 	}
 
 	private float processUnits(DatabaseSession databaseSession, QueryContext queryContext) throws QueryException, IOException, BimserverDatabaseException {
@@ -947,5 +1043,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	
 	public String getRenderEngineName() {
 		return renderEngineName;
+	}
+
+	public void cacheGeometryData(HashMapVirtualObject geometryData, float[] vertices) {
+		geometryDataMap.put(geometryData.getOid(), new Tuple<>(geometryData, vertices));
 	}
 }

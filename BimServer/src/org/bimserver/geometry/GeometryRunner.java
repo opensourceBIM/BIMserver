@@ -251,7 +251,7 @@ public class GeometryRunner implements Runnable {
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), renderEngineInstance.getVolume());
 
 										HashMapVirtualObject geometryData = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getGeometryData());
-
+										
 										geometryData.set("type", databaseSession.getCid(eClass));
 										int[] indices = geometry.getIndices();
 										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Reused(), 1);
@@ -268,6 +268,8 @@ public class GeometryRunner implements Runnable {
 										
 										job.setTrianglesGenerated(indices.length / 3);
 										job.getReport().incrementTriangles(indices.length / 3);
+										
+										streamingGeometryGenerator.cacheGeometryData(geometryData, vertices);
 
 										Map<Color4f, Float> usedColors = new HashMap<>();
 
@@ -694,6 +696,8 @@ public class GeometryRunner implements Runnable {
 											// We should try to see whether we can use BDB's mechanism to do partial retrievals/updates of a records here, because we only need to update just one value
 											// Another, simpler option would be to introduce another layer between GeometryInfo and GeometryData, so we don't have to cache the actual data (vertices etc... the bulk)
 											// In that case however the BinarySerializer would increase in complexity
+											
+											// This seems to have been partially solved now since GeometryData does not contain the bulk of the data anymore (the byte[]s are now in "Buffer").
 											
 											referencedData.saveOverwrite();
 											geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), masterGeometryData.getOid(), 0);

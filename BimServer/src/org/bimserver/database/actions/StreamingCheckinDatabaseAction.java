@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -52,9 +53,11 @@ import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.geometry.Density;
 import org.bimserver.geometry.GeometryGenerationReport;
+import org.bimserver.geometry.Matrix;
 import org.bimserver.geometry.StreamingGeometryGenerator;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.geometry.Bounds;
+import org.bimserver.models.geometry.Buffer;
 import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.geometry.Vector3f;
@@ -459,6 +462,10 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 				densityCollection.getDensities().addAll(newList2);
 				rev.eSet(StorePackage.eINSTANCE.getRevision_NrPrimitives(), nrTriangles);
 			}
+			
+//			float[] quantizationMatrix = createQuantizationMatrixFromBounds(newRevision.getBoundsMm());
+			
+//			generateQuantizedVertices(getDatabaseSession(), newRevision, quantizationMatrix, generateGeometry.getMultiplierToMm());
 
 			setProgress("Doing other stuff...", -1);
 			
@@ -600,6 +607,85 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			throw new UserException(e);
 		}
 		return concreteRevision;
+	}
+
+	private void generateQuantizedVertices(DatabaseSession databaseSession, Revision revision, float[] quantizationMatrix, float multiplierToMm) {
+		PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(revision.getProject().getSchema()); 
+		Query query = new Query(packageMetaData);
+		QueryPart queryPart = query.createQueryPart();
+		queryPart.addType(GeometryPackage.eINSTANCE.getGeometryData(), false);
+		Include geometryDataInclude = queryPart.createInclude();
+		try {
+			geometryDataInclude.addType(GeometryPackage.eINSTANCE.getGeometryData(), false);
+			geometryDataInclude.addFieldDirect("vertices");
+			
+			QueryObjectProvider objectProvider = new QueryObjectProvider(getDatabaseSession(), bimServer, query, Collections.singleton(revision.getOid()), packageMetaData);
+
+			HashMapVirtualObject next = objectProvider.next();
+			while (next != null) {
+				HashMapVirtualObject verticesBuffer = (HashMapVirtualObject) next.get("vertices");
+				ByteBuffer verticesData = ByteBuffer.wrap((byte[]) verticesBuffer.get("data"));
+				verticesData.order(ByteOrder.LITTLE_ENDIAN);
+				FloatBuffer vertices = verticesData.asFloatBuffer();
+				
+				ByteBuffer verticesQuantized = quantizeVertices(vertices.array(), quantizationMatrix, multiplierToMm);
+				Buffer buffer = getDatabaseSession().create(Buffer.class);
+				buffer.setData(verticesQuantized.array());
+				
+				next.set(GeometryPackage.eINSTANCE.getGeometryData_VerticesQuantized(), buffer);
+				next.saveOverwrite();
+				
+				next = objectProvider.next();
+				System.out.println("Generating quantized vertices");
+			}
+		} catch (Exception e) {
+			LOGGER.error("", e);
+		}
+	}
+	
+	private ByteBuffer quantizeVertices(float[] vertices, float[] quantizationMatrix, float multiplierToMm) {
+		ByteBuffer quantizedBuffer = ByteBuffer.wrap(new byte[vertices.length * 2]);
+		quantizedBuffer.order(ByteOrder.LITTLE_ENDIAN);
+		
+		float[] vertex = new float[4];
+		float[] result = new float[4];
+		vertex[3] = 1;
+		int nrVertices = vertices.length;
+		for (int i=0; i<nrVertices; i+=3) {
+			vertex[0] = vertices[i];
+			vertex[1] = vertices[i+1];
+			vertex[2] = vertices[i+2];
+	
+			if (multiplierToMm != 1f) {
+				vertex[0] = vertex[0] * multiplierToMm;
+				vertex[1] = vertex[1] * multiplierToMm;
+				vertex[2] = vertex[2] * multiplierToMm;
+			}
+
+			Matrix.multiplyMV(result, 0, quantizationMatrix, 0, vertex, 0);
+			
+			quantizedBuffer.putShort((short)result[0]);
+			quantizedBuffer.putShort((short)result[1]);
+			quantizedBuffer.putShort((short)result[2]);
+		}
+
+		return quantizedBuffer;
+	}
+	
+	private float[] createQuantizationMatrixFromBounds(Bounds bounds) {
+		float[] matrix = Matrix.identityF();
+		float scale = 32768;
+		
+		Vector3f min = bounds.getMin();
+		Vector3f max = bounds.getMax();
+		
+		// Move the model with its center to the origin
+		Matrix.translateM(matrix, 0, (float)(-((double)max.getX() + (double)min.getX()) / 2f), (float)(-((double)max.getY() + (double)min.getY()) / 2f), (float)(-((double)max.getZ() + (double)min.getZ()) / 2f));
+
+		// Scale the model to make sure all values fit within a 2-byte signed short
+		Matrix.scaleM(matrix, 0, (float)(scale / ((double)max.getX() - (double)min.getX())), (float)(scale / ((double)max.getY() - (double)min.getY())), (float)(scale / ((double)max.getZ() - (double)min.getZ())));
+
+		return matrix;
 	}
 
 	private void storeExtendedData(byte[] bytes, String mime, String extension, final Revision revision) throws BimserverDatabaseException {
