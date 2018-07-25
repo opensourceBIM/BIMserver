@@ -16,8 +16,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/startVertex"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/startIndex"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/primitiveCount"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryInfo/data"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/transformation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryInfo/data"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/area"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/volume"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/hasTransparency"/>
@@ -35,21 +35,26 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Bounds/min"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/Bounds/max"/>
     </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/Buffer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Buffer/data"/>
+    </genClasses>
     <genClasses ecoreClass="models.ecore#/0/GeometryData">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/indices"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/vertices"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/normals"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/materials"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/materialIndices"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/nrIndices"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/nrVertices"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/nrNormals"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/nrColors"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference models.ecore#/0/GeometryData/indices"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference models.ecore#/0/GeometryData/vertices"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference models.ecore#/0/GeometryData/verticesQuantized"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference models.ecore#/0/GeometryData/normals"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference models.ecore#/0/GeometryData/normalsQuantized"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference models.ecore#/0/GeometryData/colorsQuantized"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryData/color"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/hasTransparency"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/reused"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/type"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryData/mostUsedColor"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryData/boundsMm"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/normalsQuantized"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/verticesQuantized"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/colorsQuantized"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/Vector4f">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector4f/x"/>

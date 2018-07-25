@@ -44,20 +44,22 @@ import org.bimserver.emf.IdEObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#getNrIndices <em>Nr Indices</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#getNrVertices <em>Nr Vertices</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#getNrNormals <em>Nr Normals</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#getNrColors <em>Nr Colors</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getIndices <em>Indices</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getVertices <em>Vertices</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#getVerticesQuantized <em>Vertices Quantized</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getNormals <em>Normals</em>}</li>
- *   <li>{@link org.bimserver.models.geometry.GeometryData#getMaterials <em>Materials</em>}</li>
- *   <li>{@link org.bimserver.models.geometry.GeometryData#getMaterialIndices <em>Material Indices</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#getNormalsQuantized <em>Normals Quantized</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#getColorsQuantized <em>Colors Quantized</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getColor <em>Color</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#isHasTransparency <em>Has Transparency</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getReused <em>Reused</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getMostUsedColor <em>Most Used Color</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getBoundsMm <em>Bounds Mm</em>}</li>
- *   <li>{@link org.bimserver.models.geometry.GeometryData#getNormalsQuantized <em>Normals Quantized</em>}</li>
- *   <li>{@link org.bimserver.models.geometry.GeometryData#getVerticesQuantized <em>Vertices Quantized</em>}</li>
- *   <li>{@link org.bimserver.models.geometry.GeometryData#getColorsQuantized <em>Colors Quantized</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData()
@@ -67,134 +69,190 @@ import org.bimserver.emf.IdEObject;
  */
 public interface GeometryData extends IdEObject {
 	/**
-	 * Returns the value of the '<em><b>Indices</b></em>' attribute.
+	 * Returns the value of the '<em><b>Nr Indices</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Nr Indices</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nr Indices</em>' attribute.
+	 * @see #setNrIndices(int)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_NrIndices()
+	 * @model default="0"
+	 * @generated
+	 */
+	int getNrIndices();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getNrIndices <em>Nr Indices</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Nr Indices</em>' attribute.
+	 * @see #getNrIndices()
+	 * @generated
+	 */
+	void setNrIndices(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Nr Vertices</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Nr Vertices</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nr Vertices</em>' attribute.
+	 * @see #setNrVertices(int)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_NrVertices()
+	 * @model default="0"
+	 * @generated
+	 */
+	int getNrVertices();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getNrVertices <em>Nr Vertices</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Nr Vertices</em>' attribute.
+	 * @see #getNrVertices()
+	 * @generated
+	 */
+	void setNrVertices(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Nr Normals</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Nr Normals</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nr Normals</em>' attribute.
+	 * @see #setNrNormals(int)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_NrNormals()
+	 * @model default="0"
+	 * @generated
+	 */
+	int getNrNormals();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getNrNormals <em>Nr Normals</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Nr Normals</em>' attribute.
+	 * @see #getNrNormals()
+	 * @generated
+	 */
+	void setNrNormals(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Nr Colors</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Nr Colors</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nr Colors</em>' attribute.
+	 * @see #setNrColors(int)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_NrColors()
+	 * @model default="0"
+	 * @generated
+	 */
+	int getNrColors();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getNrColors <em>Nr Colors</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Nr Colors</em>' attribute.
+	 * @see #getNrColors()
+	 * @generated
+	 */
+	void setNrColors(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Indices</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Indices</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Indices</em>' attribute.
-	 * @see #setIndices(byte[])
+	 * @return the value of the '<em>Indices</em>' reference.
+	 * @see #setIndices(Buffer)
 	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_Indices()
 	 * @model
 	 * @generated
 	 */
-	byte[] getIndices();
+	Buffer getIndices();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getIndices <em>Indices</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getIndices <em>Indices</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Indices</em>' attribute.
+	 * @param value the new value of the '<em>Indices</em>' reference.
 	 * @see #getIndices()
 	 * @generated
 	 */
-	void setIndices(byte[] value);
+	void setIndices(Buffer value);
 
 	/**
-	 * Returns the value of the '<em><b>Vertices</b></em>' attribute.
+	 * Returns the value of the '<em><b>Vertices</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Vertices</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Vertices</em>' attribute.
-	 * @see #setVertices(byte[])
+	 * @return the value of the '<em>Vertices</em>' reference.
+	 * @see #setVertices(Buffer)
 	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_Vertices()
 	 * @model
 	 * @generated
 	 */
-	byte[] getVertices();
+	Buffer getVertices();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getVertices <em>Vertices</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getVertices <em>Vertices</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Vertices</em>' attribute.
+	 * @param value the new value of the '<em>Vertices</em>' reference.
 	 * @see #getVertices()
 	 * @generated
 	 */
-	void setVertices(byte[] value);
+	void setVertices(Buffer value);
 
 	/**
-	 * Returns the value of the '<em><b>Normals</b></em>' attribute.
+	 * Returns the value of the '<em><b>Normals</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Normals</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Normals</em>' attribute.
-	 * @see #setNormals(byte[])
+	 * @return the value of the '<em>Normals</em>' reference.
+	 * @see #setNormals(Buffer)
 	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_Normals()
 	 * @model
 	 * @generated
 	 */
-	byte[] getNormals();
+	Buffer getNormals();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getNormals <em>Normals</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getNormals <em>Normals</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Normals</em>' attribute.
+	 * @param value the new value of the '<em>Normals</em>' reference.
 	 * @see #getNormals()
 	 * @generated
 	 */
-	void setNormals(byte[] value);
-
-	/**
-	 * Returns the value of the '<em><b>Materials</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Materials</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Materials</em>' attribute.
-	 * @see #setMaterials(byte[])
-	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_Materials()
-	 * @model
-	 * @generated
-	 */
-	byte[] getMaterials();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getMaterials <em>Materials</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Materials</em>' attribute.
-	 * @see #getMaterials()
-	 * @generated
-	 */
-	void setMaterials(byte[] value);
-
-	/**
-	 * Returns the value of the '<em><b>Material Indices</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Material Indices</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Material Indices</em>' attribute.
-	 * @see #setMaterialIndices(byte[])
-	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_MaterialIndices()
-	 * @model
-	 * @generated
-	 */
-	byte[] getMaterialIndices();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getMaterialIndices <em>Material Indices</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Material Indices</em>' attribute.
-	 * @see #getMaterialIndices()
-	 * @generated
-	 */
-	void setMaterialIndices(byte[] value);
+	void setNormals(Buffer value);
 
 	/**
 	 * Returns the value of the '<em><b>Color</b></em>' reference.
@@ -353,81 +411,81 @@ public interface GeometryData extends IdEObject {
 	void setBoundsMm(Bounds value);
 
 	/**
-	 * Returns the value of the '<em><b>Normals Quantized</b></em>' attribute.
+	 * Returns the value of the '<em><b>Normals Quantized</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Normals Quantized</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Normals Quantized</em>' attribute.
-	 * @see #setNormalsQuantized(byte[])
+	 * @return the value of the '<em>Normals Quantized</em>' reference.
+	 * @see #setNormalsQuantized(Buffer)
 	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_NormalsQuantized()
 	 * @model
 	 * @generated
 	 */
-	byte[] getNormalsQuantized();
+	Buffer getNormalsQuantized();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getNormalsQuantized <em>Normals Quantized</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getNormalsQuantized <em>Normals Quantized</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Normals Quantized</em>' attribute.
+	 * @param value the new value of the '<em>Normals Quantized</em>' reference.
 	 * @see #getNormalsQuantized()
 	 * @generated
 	 */
-	void setNormalsQuantized(byte[] value);
+	void setNormalsQuantized(Buffer value);
 
 	/**
-	 * Returns the value of the '<em><b>Vertices Quantized</b></em>' attribute.
+	 * Returns the value of the '<em><b>Vertices Quantized</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Vertices Quantized</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Vertices Quantized</em>' attribute.
-	 * @see #setVerticesQuantized(byte[])
+	 * @return the value of the '<em>Vertices Quantized</em>' reference.
+	 * @see #setVerticesQuantized(Buffer)
 	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_VerticesQuantized()
 	 * @model
 	 * @generated
 	 */
-	byte[] getVerticesQuantized();
+	Buffer getVerticesQuantized();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getVerticesQuantized <em>Vertices Quantized</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getVerticesQuantized <em>Vertices Quantized</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Vertices Quantized</em>' attribute.
+	 * @param value the new value of the '<em>Vertices Quantized</em>' reference.
 	 * @see #getVerticesQuantized()
 	 * @generated
 	 */
-	void setVerticesQuantized(byte[] value);
+	void setVerticesQuantized(Buffer value);
 
 	/**
-	 * Returns the value of the '<em><b>Colors Quantized</b></em>' attribute.
+	 * Returns the value of the '<em><b>Colors Quantized</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Colors Quantized</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Colors Quantized</em>' attribute.
-	 * @see #setColorsQuantized(byte[])
+	 * @return the value of the '<em>Colors Quantized</em>' reference.
+	 * @see #setColorsQuantized(Buffer)
 	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_ColorsQuantized()
 	 * @model
 	 * @generated
 	 */
-	byte[] getColorsQuantized();
+	Buffer getColorsQuantized();
 
 	/**
-	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getColorsQuantized <em>Colors Quantized</em>}' attribute.
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getColorsQuantized <em>Colors Quantized</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Colors Quantized</em>' attribute.
+	 * @param value the new value of the '<em>Colors Quantized</em>' reference.
 	 * @see #getColorsQuantized()
 	 * @generated
 	 */
-	void setColorsQuantized(byte[] value);
+	void setColorsQuantized(Buffer value);
 
 } // GeometryData

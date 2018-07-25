@@ -342,4 +342,10 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 	public String toString() {
 		return "ByteBufferVirtualObject/" + eClass.getName();
 	}
+
+	@Override
+	public void set(EStructuralFeature eStructuralFeature, Object val) throws BimserverDatabaseException {
+		// TODO Auto-generated method stub
+		
+	}
 }

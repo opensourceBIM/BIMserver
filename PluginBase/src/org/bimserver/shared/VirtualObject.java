@@ -46,4 +46,5 @@ public interface VirtualObject extends MinimalVirtualObject {
 	int reserveSpaceForListReference() throws BimserverDatabaseException;
 	void endList();
 	boolean has(String string);
+	void set(EStructuralFeature eStructuralFeature, Object val) throws BimserverDatabaseException;
 }

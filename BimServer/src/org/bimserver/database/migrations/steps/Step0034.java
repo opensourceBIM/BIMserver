@@ -40,8 +40,6 @@ public class Step0034 extends Migration {
 		reference.getEAnnotations().add(createDbEmbedReferenceAnnotation());
 		reference.getEAnnotations().add(createEmbedsReferenceAnnotation());
 		reference.getEAnnotations().add(createHiddenAnnotation());
-		
-		schema.removeEReference(geometryData, "MaterialIndices");
 	}
 
 	@Override

@@ -142,22 +142,22 @@ public interface GeometryPackage extends EPackage {
 	int GEOMETRY_INFO__PRIMITIVE_COUNT = 4;
 
 	/**
-	 * The feature id for the '<em><b>Data</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GEOMETRY_INFO__DATA = 5;
-
-	/**
 	 * The feature id for the '<em><b>Transformation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO__TRANSFORMATION = 6;
+	int GEOMETRY_INFO__TRANSFORMATION = 5;
+
+	/**
+	 * The feature id for the '<em><b>Data</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_INFO__DATA = 6;
 
 	/**
 	 * The feature id for the '<em><b>Area</b></em>' attribute.
@@ -315,6 +315,34 @@ public interface GeometryPackage extends EPackage {
 	int BOUNDS_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.BufferImpl <em>Buffer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.geometry.impl.BufferImpl
+	 * @see org.bimserver.models.geometry.impl.GeometryPackageImpl#getBuffer()
+	 * @generated
+	 */
+	int BUFFER = 3;
+
+	/**
+	 * The feature id for the '<em><b>Data</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER__DATA = 0;
+
+	/**
+	 * The number of structural features of the '<em>Buffer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUFFER_FEATURE_COUNT = 1;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.GeometryDataImpl <em>Data</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -322,52 +350,97 @@ public interface GeometryPackage extends EPackage {
 	 * @see org.bimserver.models.geometry.impl.GeometryPackageImpl#getGeometryData()
 	 * @generated
 	 */
-	int GEOMETRY_DATA = 3;
+	int GEOMETRY_DATA = 4;
 
 	/**
-	 * The feature id for the '<em><b>Indices</b></em>' attribute.
+	 * The feature id for the '<em><b>Nr Indices</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_DATA__INDICES = 0;
+	int GEOMETRY_DATA__NR_INDICES = 0;
 
 	/**
-	 * The feature id for the '<em><b>Vertices</b></em>' attribute.
+	 * The feature id for the '<em><b>Nr Vertices</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_DATA__VERTICES = 1;
+	int GEOMETRY_DATA__NR_VERTICES = 1;
 
 	/**
-	 * The feature id for the '<em><b>Normals</b></em>' attribute.
+	 * The feature id for the '<em><b>Nr Normals</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_DATA__NORMALS = 2;
+	int GEOMETRY_DATA__NR_NORMALS = 2;
 
 	/**
-	 * The feature id for the '<em><b>Materials</b></em>' attribute.
+	 * The feature id for the '<em><b>Nr Colors</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_DATA__MATERIALS = 3;
+	int GEOMETRY_DATA__NR_COLORS = 3;
 
 	/**
-	 * The feature id for the '<em><b>Material Indices</b></em>' attribute.
+	 * The feature id for the '<em><b>Indices</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_DATA__MATERIAL_INDICES = 4;
+	int GEOMETRY_DATA__INDICES = 4;
+
+	/**
+	 * The feature id for the '<em><b>Vertices</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_DATA__VERTICES = 5;
+
+	/**
+	 * The feature id for the '<em><b>Vertices Quantized</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_DATA__VERTICES_QUANTIZED = 6;
+
+	/**
+	 * The feature id for the '<em><b>Normals</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_DATA__NORMALS = 7;
+
+	/**
+	 * The feature id for the '<em><b>Normals Quantized</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_DATA__NORMALS_QUANTIZED = 8;
+
+	/**
+	 * The feature id for the '<em><b>Colors Quantized</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_DATA__COLORS_QUANTIZED = 9;
 
 	/**
 	 * The feature id for the '<em><b>Color</b></em>' reference.
@@ -376,7 +449,7 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_DATA__COLOR = 5;
+	int GEOMETRY_DATA__COLOR = 10;
 
 	/**
 	 * The feature id for the '<em><b>Has Transparency</b></em>' attribute.
@@ -385,7 +458,7 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_DATA__HAS_TRANSPARENCY = 6;
+	int GEOMETRY_DATA__HAS_TRANSPARENCY = 11;
 
 	/**
 	 * The feature id for the '<em><b>Reused</b></em>' attribute.
@@ -394,7 +467,7 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_DATA__REUSED = 7;
+	int GEOMETRY_DATA__REUSED = 12;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -403,7 +476,7 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_DATA__TYPE = 8;
+	int GEOMETRY_DATA__TYPE = 13;
 
 	/**
 	 * The feature id for the '<em><b>Most Used Color</b></em>' reference.
@@ -412,7 +485,7 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_DATA__MOST_USED_COLOR = 9;
+	int GEOMETRY_DATA__MOST_USED_COLOR = 14;
 
 	/**
 	 * The feature id for the '<em><b>Bounds Mm</b></em>' reference.
@@ -421,34 +494,7 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_DATA__BOUNDS_MM = 10;
-
-	/**
-	 * The feature id for the '<em><b>Normals Quantized</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GEOMETRY_DATA__NORMALS_QUANTIZED = 11;
-
-	/**
-	 * The feature id for the '<em><b>Vertices Quantized</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GEOMETRY_DATA__VERTICES_QUANTIZED = 12;
-
-	/**
-	 * The feature id for the '<em><b>Colors Quantized</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GEOMETRY_DATA__COLORS_QUANTIZED = 13;
+	int GEOMETRY_DATA__BOUNDS_MM = 15;
 
 	/**
 	 * The number of structural features of the '<em>Data</em>' class.
@@ -457,7 +503,7 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_DATA_FEATURE_COUNT = 14;
+	int GEOMETRY_DATA_FEATURE_COUNT = 16;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.Vector4fImpl <em>Vector4f</em>}' class.
@@ -467,7 +513,7 @@ public interface GeometryPackage extends EPackage {
 	 * @see org.bimserver.models.geometry.impl.GeometryPackageImpl#getVector4f()
 	 * @generated
 	 */
-	int VECTOR4F = 4;
+	int VECTOR4F = 5;
 
 	/**
 	 * The feature id for the '<em><b>X</b></em>' attribute.
@@ -754,6 +800,27 @@ public interface GeometryPackage extends EPackage {
 	EReference getBounds_Max();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.geometry.Buffer <em>Buffer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Buffer</em>'.
+	 * @see org.bimserver.models.geometry.Buffer
+	 * @generated
+	 */
+	EClass getBuffer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.Buffer#getData <em>Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data</em>'.
+	 * @see org.bimserver.models.geometry.Buffer#getData()
+	 * @see #getBuffer()
+	 * @generated
+	 */
+	EAttribute getBuffer_Data();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.geometry.GeometryData <em>Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -764,59 +831,81 @@ public interface GeometryPackage extends EPackage {
 	EClass getGeometryData();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryData#getIndices <em>Indices</em>}'.
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryData#getNrIndices <em>Nr Indices</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Indices</em>'.
+	 * @return the meta object for the attribute '<em>Nr Indices</em>'.
+	 * @see org.bimserver.models.geometry.GeometryData#getNrIndices()
+	 * @see #getGeometryData()
+	 * @generated
+	 */
+	EAttribute getGeometryData_NrIndices();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryData#getNrVertices <em>Nr Vertices</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Nr Vertices</em>'.
+	 * @see org.bimserver.models.geometry.GeometryData#getNrVertices()
+	 * @see #getGeometryData()
+	 * @generated
+	 */
+	EAttribute getGeometryData_NrVertices();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryData#getNrNormals <em>Nr Normals</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Nr Normals</em>'.
+	 * @see org.bimserver.models.geometry.GeometryData#getNrNormals()
+	 * @see #getGeometryData()
+	 * @generated
+	 */
+	EAttribute getGeometryData_NrNormals();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryData#getNrColors <em>Nr Colors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Nr Colors</em>'.
+	 * @see org.bimserver.models.geometry.GeometryData#getNrColors()
+	 * @see #getGeometryData()
+	 * @generated
+	 */
+	EAttribute getGeometryData_NrColors();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryData#getIndices <em>Indices</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Indices</em>'.
 	 * @see org.bimserver.models.geometry.GeometryData#getIndices()
 	 * @see #getGeometryData()
 	 * @generated
 	 */
-	EAttribute getGeometryData_Indices();
+	EReference getGeometryData_Indices();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryData#getVertices <em>Vertices</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryData#getVertices <em>Vertices</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Vertices</em>'.
+	 * @return the meta object for the reference '<em>Vertices</em>'.
 	 * @see org.bimserver.models.geometry.GeometryData#getVertices()
 	 * @see #getGeometryData()
 	 * @generated
 	 */
-	EAttribute getGeometryData_Vertices();
+	EReference getGeometryData_Vertices();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryData#getNormals <em>Normals</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryData#getNormals <em>Normals</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Normals</em>'.
+	 * @return the meta object for the reference '<em>Normals</em>'.
 	 * @see org.bimserver.models.geometry.GeometryData#getNormals()
 	 * @see #getGeometryData()
 	 * @generated
 	 */
-	EAttribute getGeometryData_Normals();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryData#getMaterials <em>Materials</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Materials</em>'.
-	 * @see org.bimserver.models.geometry.GeometryData#getMaterials()
-	 * @see #getGeometryData()
-	 * @generated
-	 */
-	EAttribute getGeometryData_Materials();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryData#getMaterialIndices <em>Material Indices</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Material Indices</em>'.
-	 * @see org.bimserver.models.geometry.GeometryData#getMaterialIndices()
-	 * @see #getGeometryData()
-	 * @generated
-	 */
-	EAttribute getGeometryData_MaterialIndices();
+	EReference getGeometryData_Normals();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryData#getColor <em>Color</em>}'.
@@ -885,37 +974,37 @@ public interface GeometryPackage extends EPackage {
 	EReference getGeometryData_BoundsMm();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryData#getNormalsQuantized <em>Normals Quantized</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryData#getNormalsQuantized <em>Normals Quantized</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Normals Quantized</em>'.
+	 * @return the meta object for the reference '<em>Normals Quantized</em>'.
 	 * @see org.bimserver.models.geometry.GeometryData#getNormalsQuantized()
 	 * @see #getGeometryData()
 	 * @generated
 	 */
-	EAttribute getGeometryData_NormalsQuantized();
+	EReference getGeometryData_NormalsQuantized();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryData#getVerticesQuantized <em>Vertices Quantized</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryData#getVerticesQuantized <em>Vertices Quantized</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Vertices Quantized</em>'.
+	 * @return the meta object for the reference '<em>Vertices Quantized</em>'.
 	 * @see org.bimserver.models.geometry.GeometryData#getVerticesQuantized()
 	 * @see #getGeometryData()
 	 * @generated
 	 */
-	EAttribute getGeometryData_VerticesQuantized();
+	EReference getGeometryData_VerticesQuantized();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryData#getColorsQuantized <em>Colors Quantized</em>}'.
+	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryData#getColorsQuantized <em>Colors Quantized</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Colors Quantized</em>'.
+	 * @return the meta object for the reference '<em>Colors Quantized</em>'.
 	 * @see org.bimserver.models.geometry.GeometryData#getColorsQuantized()
 	 * @see #getGeometryData()
 	 * @generated
 	 */
-	EAttribute getGeometryData_ColorsQuantized();
+	EReference getGeometryData_ColorsQuantized();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.geometry.Vector4f <em>Vector4f</em>}'.
@@ -1176,6 +1265,24 @@ public interface GeometryPackage extends EPackage {
 		EReference BOUNDS__MAX = eINSTANCE.getBounds_Max();
 
 		/**
+		 * The meta object literal for the '{@link org.bimserver.models.geometry.impl.BufferImpl <em>Buffer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.geometry.impl.BufferImpl
+		 * @see org.bimserver.models.geometry.impl.GeometryPackageImpl#getBuffer()
+		 * @generated
+		 */
+		EClass BUFFER = eINSTANCE.getBuffer();
+
+		/**
+		 * The meta object literal for the '<em><b>Data</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BUFFER__DATA = eINSTANCE.getBuffer_Data();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.geometry.impl.GeometryDataImpl <em>Data</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1186,44 +1293,60 @@ public interface GeometryPackage extends EPackage {
 		EClass GEOMETRY_DATA = eINSTANCE.getGeometryData();
 
 		/**
-		 * The meta object literal for the '<em><b>Indices</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Nr Indices</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GEOMETRY_DATA__INDICES = eINSTANCE.getGeometryData_Indices();
+		EAttribute GEOMETRY_DATA__NR_INDICES = eINSTANCE.getGeometryData_NrIndices();
 
 		/**
-		 * The meta object literal for the '<em><b>Vertices</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Nr Vertices</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GEOMETRY_DATA__VERTICES = eINSTANCE.getGeometryData_Vertices();
+		EAttribute GEOMETRY_DATA__NR_VERTICES = eINSTANCE.getGeometryData_NrVertices();
 
 		/**
-		 * The meta object literal for the '<em><b>Normals</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Nr Normals</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GEOMETRY_DATA__NORMALS = eINSTANCE.getGeometryData_Normals();
+		EAttribute GEOMETRY_DATA__NR_NORMALS = eINSTANCE.getGeometryData_NrNormals();
 
 		/**
-		 * The meta object literal for the '<em><b>Materials</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Nr Colors</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GEOMETRY_DATA__MATERIALS = eINSTANCE.getGeometryData_Materials();
+		EAttribute GEOMETRY_DATA__NR_COLORS = eINSTANCE.getGeometryData_NrColors();
 
 		/**
-		 * The meta object literal for the '<em><b>Material Indices</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Indices</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GEOMETRY_DATA__MATERIAL_INDICES = eINSTANCE.getGeometryData_MaterialIndices();
+		EReference GEOMETRY_DATA__INDICES = eINSTANCE.getGeometryData_Indices();
+
+		/**
+		 * The meta object literal for the '<em><b>Vertices</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GEOMETRY_DATA__VERTICES = eINSTANCE.getGeometryData_Vertices();
+
+		/**
+		 * The meta object literal for the '<em><b>Normals</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GEOMETRY_DATA__NORMALS = eINSTANCE.getGeometryData_Normals();
 
 		/**
 		 * The meta object literal for the '<em><b>Color</b></em>' reference feature.
@@ -1274,28 +1397,28 @@ public interface GeometryPackage extends EPackage {
 		EReference GEOMETRY_DATA__BOUNDS_MM = eINSTANCE.getGeometryData_BoundsMm();
 
 		/**
-		 * The meta object literal for the '<em><b>Normals Quantized</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Normals Quantized</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GEOMETRY_DATA__NORMALS_QUANTIZED = eINSTANCE.getGeometryData_NormalsQuantized();
+		EReference GEOMETRY_DATA__NORMALS_QUANTIZED = eINSTANCE.getGeometryData_NormalsQuantized();
 
 		/**
-		 * The meta object literal for the '<em><b>Vertices Quantized</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Vertices Quantized</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GEOMETRY_DATA__VERTICES_QUANTIZED = eINSTANCE.getGeometryData_VerticesQuantized();
+		EReference GEOMETRY_DATA__VERTICES_QUANTIZED = eINSTANCE.getGeometryData_VerticesQuantized();
 
 		/**
-		 * The meta object literal for the '<em><b>Colors Quantized</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Colors Quantized</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute GEOMETRY_DATA__COLORS_QUANTIZED = eINSTANCE.getGeometryData_ColorsQuantized();
+		EReference GEOMETRY_DATA__COLORS_QUANTIZED = eINSTANCE.getGeometryData_ColorsQuantized();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.geometry.impl.Vector4fImpl <em>Vector4f</em>}' class.

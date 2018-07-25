@@ -16,23 +16,20 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-import java.util.Date;
-import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SUserAddedToProject.class, SUserChanged.class, SNewUserAdded.class, SPasswordReset.class, SUserDeleted.class, SUserRemovedFromProject.class, SUserUndeleted.class, SPasswordChanged.class})
-public class SUserRelated extends SLogAction implements SDataBase
+public class SBuffer implements SDataBase
 {
 	private long oid = -1;
 	private int rid = 0;
 
 	@XmlTransient
 	private static SClass sClass;
-	private long userId = -1;
+	private byte[] data;
 
 	public long getOid() {
 		return this.oid;
@@ -56,21 +53,12 @@ public class SUserRelated extends SLogAction implements SDataBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SUserRelated.sClass = sClass;
+		SBuffer.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("date")) {
-			return getDate();
-		}
-		if (sField.getName().equals("executorId")) {
-			return getExecutorId();
-		}
-		if (sField.getName().equals("accessMethod")) {
-			return getAccessMethod();
-		}
-		if (sField.getName().equals("userId")) {
-			return getUserId();
+		if (sField.getName().equals("data")) {
+			return getData();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -82,20 +70,8 @@ public class SUserRelated extends SLogAction implements SDataBase
 	}
 
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("date")) {
-			setDate((Date)val);
-			return;
-		}
-		if (sField.getName().equals("executorId")) {
-			setExecutorId((Long)val);
-			return;
-		}
-		if (sField.getName().equals("accessMethod")) {
-			setAccessMethod((SAccessMethod)val);
-			return;
-		}
-		if (sField.getName().equals("userId")) {
-			setUserId((Long)val);
+		if (sField.getName().equals("data")) {
+			setData((byte[])val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -109,12 +85,12 @@ public class SUserRelated extends SLogAction implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	public long getUserId() {
-		return userId;
+	public byte[] getData() {
+		return data;
 	}
 
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setData(byte[] data) {
+		this.data = data;
 	}
 	
 	@Override
@@ -133,7 +109,7 @@ public class SUserRelated extends SLogAction implements SDataBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SUserRelated other = (SUserRelated) obj;
+		SBuffer other = (SBuffer) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

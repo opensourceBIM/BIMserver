@@ -49,8 +49,8 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getStartVertex <em>Start Vertex</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getStartIndex <em>Start Index</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getPrimitiveCount <em>Primitive Count</em>}</li>
- *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getData <em>Data</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getTransformation <em>Transformation</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getData <em>Data</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getArea <em>Area</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getVolume <em>Volume</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#isHasTransparency <em>Has Transparency</em>}</li>

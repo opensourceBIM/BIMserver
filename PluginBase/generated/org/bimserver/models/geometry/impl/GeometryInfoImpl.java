@@ -54,8 +54,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getStartVertex <em>Start Vertex</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getStartIndex <em>Start Index</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getPrimitiveCount <em>Primitive Count</em>}</li>
- *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getData <em>Data</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getTransformation <em>Transformation</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getData <em>Data</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getArea <em>Area</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getVolume <em>Volume</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#isHasTransparency <em>Has Transparency</em>}</li>

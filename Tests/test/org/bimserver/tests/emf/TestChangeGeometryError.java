@@ -26,6 +26,8 @@ import java.util.List;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.models.geometry.Buffer;
+import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcWall;
 import org.bimserver.plugins.services.BimServerClientInterface;
@@ -55,7 +57,9 @@ public class TestChangeGeometryError extends TestWithEmbeddedServer {
 			IfcModelInterface model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), false, true, true);
 			List<IfcWall> walls = model.getAllWithSubTypes(Ifc2x3tc1Package.eINSTANCE.getIfcWall());
 			IfcWall firstWall = walls.get(0);
-			firstWall.getGeometry().getData().setVertices(new byte[10]);
+			Buffer buffer = GeometryFactory.eINSTANCE.createBuffer();
+			buffer.setData(new byte[10]);
+			firstWall.getGeometry().getData().setVertices(buffer);
 
 			model.commit("Tried to change geometry, which should not be possible");
 			fail("This have thrown an error");

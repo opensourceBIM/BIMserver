@@ -34,8 +34,8 @@ public class SGeometryInfo implements SDataBase
 	private java.lang.Integer startVertex;
 	private java.lang.Integer startIndex;
 	private java.lang.Integer primitiveCount;
-	private long dataId = -1;
 	private byte[] transformation;
+	private long dataId = -1;
 	private double area;
 	private double volume;
 	private boolean hasTransparency;
@@ -85,11 +85,11 @@ public class SGeometryInfo implements SDataBase
 		if (sField.getName().equals("primitiveCount")) {
 			return getPrimitiveCount();
 		}
-		if (sField.getName().equals("dataId")) {
-			return getDataId();
-		}
 		if (sField.getName().equals("transformation")) {
 			return getTransformation();
+		}
+		if (sField.getName().equals("dataId")) {
+			return getDataId();
 		}
 		if (sField.getName().equals("area")) {
 			return getArea();
@@ -142,12 +142,12 @@ public class SGeometryInfo implements SDataBase
 			setPrimitiveCount((Integer)val);
 			return;
 		}
-		if (sField.getName().equals("dataId")) {
-			setDataId((Long)val);
-			return;
-		}
 		if (sField.getName().equals("transformation")) {
 			setTransformation((byte[])val);
+			return;
+		}
+		if (sField.getName().equals("dataId")) {
+			setDataId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("area")) {
@@ -231,20 +231,20 @@ public class SGeometryInfo implements SDataBase
 		this.primitiveCount = primitiveCount;
 	}
 	
-	public long getDataId() {
-		return dataId;
-	}
-
-	public void setDataId(long dataId) {
-		this.dataId = dataId;
-	}
-	
 	public byte[] getTransformation() {
 		return transformation;
 	}
 
 	public void setTransformation(byte[] transformation) {
 		this.transformation = transformation;
+	}
+	
+	public long getDataId() {
+		return dataId;
+	}
+
+	public void setDataId(long dataId) {
+		this.dataId = dataId;
 	}
 	
 	public double getArea() {

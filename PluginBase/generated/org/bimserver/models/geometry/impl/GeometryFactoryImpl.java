@@ -95,6 +95,8 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 			return (EObject) createVector3f();
 		case GeometryPackage.BOUNDS:
 			return (EObject) createBounds();
+		case GeometryPackage.BUFFER:
+			return (EObject) createBuffer();
 		case GeometryPackage.GEOMETRY_DATA:
 			return (EObject) createGeometryData();
 		case GeometryPackage.VECTOR4F:
@@ -132,6 +134,16 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 	public Bounds createBounds() {
 		BoundsImpl bounds = new BoundsImpl();
 		return bounds;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Buffer createBuffer() {
+		BufferImpl buffer = new BufferImpl();
+		return buffer;
 	}
 
 	/**

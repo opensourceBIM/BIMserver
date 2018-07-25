@@ -35,6 +35,7 @@ package org.bimserver.models.geometry.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.geometry.Bounds;
+import org.bimserver.models.geometry.Buffer;
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.geometry.Vector4f;
@@ -48,20 +49,22 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getNrIndices <em>Nr Indices</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getNrVertices <em>Nr Vertices</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getNrNormals <em>Nr Normals</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getNrColors <em>Nr Colors</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getIndices <em>Indices</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getVertices <em>Vertices</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getVerticesQuantized <em>Vertices Quantized</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getNormals <em>Normals</em>}</li>
- *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getMaterials <em>Materials</em>}</li>
- *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getMaterialIndices <em>Material Indices</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getNormalsQuantized <em>Normals Quantized</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getColorsQuantized <em>Colors Quantized</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getColor <em>Color</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#isHasTransparency <em>Has Transparency</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getReused <em>Reused</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getMostUsedColor <em>Most Used Color</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getBoundsMm <em>Bounds Mm</em>}</li>
- *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getNormalsQuantized <em>Normals Quantized</em>}</li>
- *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getVerticesQuantized <em>Vertices Quantized</em>}</li>
- *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getColorsQuantized <em>Colors Quantized</em>}</li>
  * </ul>
  *
  * @generated
@@ -101,8 +104,8 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public byte[] getIndices() {
-		return (byte[]) eGet(GeometryPackage.Literals.GEOMETRY_DATA__INDICES, true);
+	public int getNrIndices() {
+		return (Integer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__NR_INDICES, true);
 	}
 
 	/**
@@ -110,7 +113,79 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIndices(byte[] newIndices) {
+	public void setNrIndices(int newNrIndices) {
+		eSet(GeometryPackage.Literals.GEOMETRY_DATA__NR_INDICES, newNrIndices);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getNrVertices() {
+		return (Integer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__NR_VERTICES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNrVertices(int newNrVertices) {
+		eSet(GeometryPackage.Literals.GEOMETRY_DATA__NR_VERTICES, newNrVertices);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getNrNormals() {
+		return (Integer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__NR_NORMALS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNrNormals(int newNrNormals) {
+		eSet(GeometryPackage.Literals.GEOMETRY_DATA__NR_NORMALS, newNrNormals);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getNrColors() {
+		return (Integer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__NR_COLORS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNrColors(int newNrColors) {
+		eSet(GeometryPackage.Literals.GEOMETRY_DATA__NR_COLORS, newNrColors);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Buffer getIndices() {
+		return (Buffer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__INDICES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIndices(Buffer newIndices) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__INDICES, newIndices);
 	}
 
@@ -119,8 +194,8 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public byte[] getVertices() {
-		return (byte[]) eGet(GeometryPackage.Literals.GEOMETRY_DATA__VERTICES, true);
+	public Buffer getVertices() {
+		return (Buffer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__VERTICES, true);
 	}
 
 	/**
@@ -128,7 +203,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVertices(byte[] newVertices) {
+	public void setVertices(Buffer newVertices) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__VERTICES, newVertices);
 	}
 
@@ -137,8 +212,8 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public byte[] getNormals() {
-		return (byte[]) eGet(GeometryPackage.Literals.GEOMETRY_DATA__NORMALS, true);
+	public Buffer getNormals() {
+		return (Buffer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__NORMALS, true);
 	}
 
 	/**
@@ -146,44 +221,8 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNormals(byte[] newNormals) {
+	public void setNormals(Buffer newNormals) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__NORMALS, newNormals);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public byte[] getMaterials() {
-		return (byte[]) eGet(GeometryPackage.Literals.GEOMETRY_DATA__MATERIALS, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMaterials(byte[] newMaterials) {
-		eSet(GeometryPackage.Literals.GEOMETRY_DATA__MATERIALS, newMaterials);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public byte[] getMaterialIndices() {
-		return (byte[]) eGet(GeometryPackage.Literals.GEOMETRY_DATA__MATERIAL_INDICES, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMaterialIndices(byte[] newMaterialIndices) {
-		eSet(GeometryPackage.Literals.GEOMETRY_DATA__MATERIAL_INDICES, newMaterialIndices);
 	}
 
 	/**
@@ -299,8 +338,8 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public byte[] getNormalsQuantized() {
-		return (byte[]) eGet(GeometryPackage.Literals.GEOMETRY_DATA__NORMALS_QUANTIZED, true);
+	public Buffer getNormalsQuantized() {
+		return (Buffer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__NORMALS_QUANTIZED, true);
 	}
 
 	/**
@@ -308,7 +347,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNormalsQuantized(byte[] newNormalsQuantized) {
+	public void setNormalsQuantized(Buffer newNormalsQuantized) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__NORMALS_QUANTIZED, newNormalsQuantized);
 	}
 
@@ -317,8 +356,8 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public byte[] getVerticesQuantized() {
-		return (byte[]) eGet(GeometryPackage.Literals.GEOMETRY_DATA__VERTICES_QUANTIZED, true);
+	public Buffer getVerticesQuantized() {
+		return (Buffer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__VERTICES_QUANTIZED, true);
 	}
 
 	/**
@@ -326,7 +365,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVerticesQuantized(byte[] newVerticesQuantized) {
+	public void setVerticesQuantized(Buffer newVerticesQuantized) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__VERTICES_QUANTIZED, newVerticesQuantized);
 	}
 
@@ -335,8 +374,8 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public byte[] getColorsQuantized() {
-		return (byte[]) eGet(GeometryPackage.Literals.GEOMETRY_DATA__COLORS_QUANTIZED, true);
+	public Buffer getColorsQuantized() {
+		return (Buffer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__COLORS_QUANTIZED, true);
 	}
 
 	/**
@@ -344,7 +383,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setColorsQuantized(byte[] newColorsQuantized) {
+	public void setColorsQuantized(Buffer newColorsQuantized) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__COLORS_QUANTIZED, newColorsQuantized);
 	}
 

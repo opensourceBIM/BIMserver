@@ -39,10 +39,10 @@ public class GeometrySimplifier {
 			ofType = new HashMap<>();
 			data.put(ifcProduct.eClass(), ofType);
 		}
-		Set<GeometryData> set = ofType.get(geometryData.getVertices().length);
+		Set<GeometryData> set = ofType.get(geometryData.getVertices().getData().length);
 		if (set == null) {
 			set = new HashSet<GeometryData>();
-			ofType.put(geometryData.getVertices().length, set);
+			ofType.put(geometryData.getVertices().getData().length, set);
 		}
 		set.add(geometryData);
 	}
@@ -51,7 +51,7 @@ public class GeometrySimplifier {
 		Set<GeometryData> result = new HashSet<>();
 		Map<Integer, Set<GeometryData>> ofType = data.get(ifcProduct.eClass());
 		if (ofType != null) {
-			Set<GeometryData> set = ofType.get(geometryData.getVertices().length);
+			Set<GeometryData> set = ofType.get(geometryData.getVertices().getData().length);
 			if (set != null) {
 				for (GeometryData d : set) {
 					if (d != ifcProduct.getGeometry().getData()) {
@@ -99,10 +99,10 @@ public class GeometrySimplifier {
 //	}
 
 	private boolean matchSameOrder(GeometryData geometryDate, GeometryData d) {
-		ByteBuffer bb1 = ByteBuffer.wrap(geometryDate.getVertices());
+		ByteBuffer bb1 = ByteBuffer.wrap(geometryDate.getVertices().getData());
 		bb1.order(ByteOrder.nativeOrder());
 		FloatBuffer buffer1 = bb1.asFloatBuffer();
-		ByteBuffer bb2 = ByteBuffer.wrap(d.getVertices());
+		ByteBuffer bb2 = ByteBuffer.wrap(d.getVertices().getData());
 		bb2.order(ByteOrder.nativeOrder());
 		FloatBuffer buffer2 = bb2.asFloatBuffer();
 		float lastX1 = buffer1.get(0);
@@ -129,10 +129,10 @@ public class GeometrySimplifier {
 	}
 
 	private boolean matchExactlyTheSame(GeometryData geometryDate, GeometryData d) {
-		ByteBuffer bb1 = ByteBuffer.wrap(geometryDate.getVertices());
+		ByteBuffer bb1 = ByteBuffer.wrap(geometryDate.getVertices().getData());
 		bb1.order(ByteOrder.LITTLE_ENDIAN);
 		FloatBuffer buffer1 = bb1.asFloatBuffer();
-		ByteBuffer bb2 = ByteBuffer.wrap(d.getVertices());
+		ByteBuffer bb2 = ByteBuffer.wrap(d.getVertices().getData());
 		bb2.order(ByteOrder.LITTLE_ENDIAN);
 		FloatBuffer buffer2 = bb2.asFloatBuffer();
 		if (buffer1.capacity() != buffer2.capacity()) {

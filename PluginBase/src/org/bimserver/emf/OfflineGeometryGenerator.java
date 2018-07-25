@@ -30,6 +30,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.geometry.Matrix;
 import org.bimserver.models.geometry.Bounds;
+import org.bimserver.models.geometry.Buffer;
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.GeometryInfo;
@@ -130,10 +131,10 @@ public class OfflineGeometryGenerator {
 					GeometryData geometryData = null;
 					geometryData = GeometryFactory.eINSTANCE.createGeometryData();
 
-					geometryData.setIndices(intArrayToByteArray(geometry.getIndices()));
-					geometryData.setVertices(floatArrayToByteArray(geometry.getVertices()));
-					geometryData.setMaterialIndices(intArrayToByteArray(geometry.getMaterialIndices()));
-					geometryData.setNormals(floatArrayToByteArray(geometry.getNormals()));
+					geometryData.setIndices(createBuffer(intArrayToByteArray(geometry.getIndices())));
+					geometryData.setVertices(createBuffer(floatArrayToByteArray(geometry.getVertices())));
+					geometryData.setColorsQuantized(createBuffer(intArrayToByteArray(geometry.getMaterialIndices())));
+					geometryData.setNormals(createBuffer(floatArrayToByteArray(geometry.getNormals())));
 					
 					geometryInfo.setPrimitiveCount(geometry.getIndices().length / 3);
 
@@ -153,7 +154,7 @@ public class OfflineGeometryGenerator {
 							}
 						}
 						if (hasMaterial) {
-							geometryData.setMaterials(floatArrayToByteArray(vertex_colors));
+							geometryData.setColorsQuantized(createBuffer(floatArrayToByteArray(vertex_colors)));
 						}
 					}
 
@@ -208,6 +209,12 @@ public class OfflineGeometryGenerator {
 		return generateGeometryResult;
 	}
 	
+	private Buffer createBuffer(byte[] data) {
+		Buffer buffer = GeometryFactory.eINSTANCE.createBuffer();
+		buffer.setData(data);
+		return buffer;
+	}
+
 	private byte[] floatArrayToByteArray(float[] vertices) {
 		if (vertices == null) {
 			return null;
@@ -256,19 +263,16 @@ public class OfflineGeometryGenerator {
 	private int hash(GeometryData geometryData) {
 		int hashCode = 0;
 		if (geometryData.getIndices() != null) {
-			hashCode += Arrays.hashCode(geometryData.getIndices());
+			hashCode += Arrays.hashCode(geometryData.getIndices().getData());
 		}
 		if (geometryData.getVertices() != null) {
-			hashCode += Arrays.hashCode(geometryData.getVertices());
+			hashCode += Arrays.hashCode(geometryData.getVertices().getData());
 		}
 		if (geometryData.getNormals() != null) {
-			hashCode += Arrays.hashCode(geometryData.getNormals());
+			hashCode += Arrays.hashCode(geometryData.getNormals().getData());
 		}
-		if (geometryData.getMaterialIndices() != null) {
-			hashCode += Arrays.hashCode(geometryData.getMaterialIndices());
-		}
-		if (geometryData.getMaterials() != null) {
-			hashCode += Arrays.hashCode(geometryData.getMaterials());
+		if (geometryData.getColorsQuantized() != null) {
+			hashCode += Arrays.hashCode(geometryData.getColorsQuantized().getData());
 		}
 		return hashCode;
 	}

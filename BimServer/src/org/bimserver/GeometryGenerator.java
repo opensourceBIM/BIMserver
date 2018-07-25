@@ -46,6 +46,7 @@ import org.bimserver.emf.Schema;
 import org.bimserver.geometry.Matrix;
 import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.models.geometry.Bounds;
+import org.bimserver.models.geometry.Buffer;
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.GeometryInfo;
@@ -232,10 +233,10 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 										geometryData = GeometryFactory.eINSTANCE.createGeometryData();
 									}
 
-									geometryData.setIndices(GeometryUtils.intArrayToByteArray(geometry.getIndices()));
-									geometryData.setVertices(GeometryUtils.floatArrayToByteArray(geometry.getVertices()));
+									geometryData.setIndices(createBuffer(GeometryUtils.intArrayToByteArray(geometry.getIndices())));
+									geometryData.setVertices(createBuffer(GeometryUtils.floatArrayToByteArray(geometry.getVertices())));
 //									geometryData.setMaterialIndices(intArrayToByteArray(geometry.getMaterialIndices()));
-									geometryData.setNormals(GeometryUtils.floatArrayToByteArray(geometry.getNormals()));
+									geometryData.setNormals(createBuffer(GeometryUtils.floatArrayToByteArray(geometry.getNormals())));
 									
 									geometryInfo.setPrimitiveCount(geometry.getIndices().length / 3);
 
@@ -255,7 +256,7 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 											}
 										}
 										if (hasMaterial) {
-											geometryData.setMaterials(GeometryUtils.floatArrayToByteArray(vertex_colors));
+											geometryData.setColorsQuantized(createBuffer(GeometryUtils.floatArrayToByteArray(vertex_colors)));
 										}
 									}
 
@@ -272,11 +273,10 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 
 									geometryInfo.setData(geometryData);
 
-									long length = (geometryData.getIndices() != null ? geometryData.getIndices().length : 0) + 
-												  (geometryData.getVertices() != null ? geometryData.getVertices().length : 0) + 
-												  (geometryData.getNormals() != null ? geometryData.getNormals().length : 0) + 
-												  (geometryData.getMaterials() != null ? geometryData.getMaterials().length : 0) +
-												  (geometryData.getMaterialIndices() != null ? geometryData.getMaterialIndices().length : 0);
+									long length = (geometryData.getIndices() != null ? geometryData.getIndices().getData().length: 0) + 
+												  (geometryData.getVertices() != null ? geometryData.getVertices().getData().length : 0) + 
+												  (geometryData.getNormals() != null ? geometryData.getNormals().getData().length : 0) + 
+												  (geometryData.getColorsQuantized() != null ? geometryData.getColorsQuantized().getData().length : 0);
 
 									setTransformationMatrix(geometryInfo, tranformationMatrix);
 									if (store) {
@@ -416,9 +416,9 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 				0, 0, 0
 			};
 			
-			geometryData.setIndices(GeometryUtils.intArrayToByteArray(indices));
-			geometryData.setVertices(GeometryUtils.floatArrayToByteArray(vertices));
-			geometryData.setNormals(GeometryUtils.floatArrayToByteArray(normals));
+			geometryData.setIndices(createBuffer(GeometryUtils.intArrayToByteArray(indices)));
+			geometryData.setVertices(createBuffer(GeometryUtils.floatArrayToByteArray(vertices)));
+			geometryData.setNormals(createBuffer(GeometryUtils.floatArrayToByteArray(normals)));
 			
 			geometryInfo.setPrimitiveCount(12);
 			geometryInfo.setData(geometryData);
@@ -562,19 +562,16 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 	private int hash(GeometryData geometryData) {
 		int hashCode = 0;
 		if (geometryData.getIndices() != null) {
-			hashCode += Arrays.hashCode(geometryData.getIndices());
+			hashCode += Arrays.hashCode(geometryData.getIndices().getData());
 		}
 		if (geometryData.getVertices() != null) {
-			hashCode += Arrays.hashCode(geometryData.getVertices());
+			hashCode += Arrays.hashCode(geometryData.getVertices().getData());
 		}
 		if (geometryData.getNormals() != null) {
-			hashCode += Arrays.hashCode(geometryData.getNormals());
+			hashCode += Arrays.hashCode(geometryData.getNormals().getData());
 		}
-		if (geometryData.getMaterialIndices() != null) {
-			hashCode += Arrays.hashCode(geometryData.getMaterialIndices());
-		}
-		if (geometryData.getMaterials() != null) {
-			hashCode += Arrays.hashCode(geometryData.getMaterials());
+		if (geometryData.getColorsQuantized() != null) {
+			hashCode += Arrays.hashCode(geometryData.getColorsQuantized().getData());
 		}
 		return hashCode;
 	}
@@ -645,8 +642,8 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 			GeometryCacheEntry geometryCacheEntry = geometryCache.get(ifcProduct.getExpressId());
 			if (geometryCacheEntry != null) {
 				GeometryData geometryData = databaseSession.create(GeometryPackage.eINSTANCE.getGeometryData(), pid, rid);
-				geometryData.setVertices(geometryCacheEntry.getVertices().array());
-				geometryData.setNormals(geometryCacheEntry.getNormals().array());
+				geometryData.setVertices(createBuffer(geometryCacheEntry.getVertices().array()));
+				geometryData.setNormals(createBuffer(geometryCacheEntry.getNormals().array()));
 				GeometryInfo geometryInfo = databaseSession.create(GeometryPackage.eINSTANCE.getGeometryInfo(), pid, rid);
 				Vector3f min = databaseSession.create(GeometryPackage.eINSTANCE.getVector3f(), pid, rid);
 				min.setX(geometryCacheEntry.getGeometryInfo().getBounds().getMin().getX());
@@ -681,5 +678,11 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 		vector3f.setY(defaultValue);
 		vector3f.setZ(defaultValue);
 		return vector3f;
+	}
+	
+	private Buffer createBuffer(byte[] data) {
+		Buffer buffer = GeometryFactory.eINSTANCE.createBuffer();
+		buffer.setData(data);
+		return buffer;
 	}
 }

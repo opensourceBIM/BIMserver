@@ -839,45 +839,49 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 	long getSize(VirtualObject geometryData) {
 		long size = 0;
-		if (geometryData.has("indices")) {
-			size += ((byte[])geometryData.get("indices")).length;
-		}
-		if (geometryData.has("vertices")) {
-			size += ((byte[])geometryData.get("vertices")).length;
-		}
-		if (geometryData.has("normals")) {
-			size += ((byte[])geometryData.get("normals")).length;
-		}
-		if (geometryData.has("materialIndices")) {
-			size += ((byte[])geometryData.get("materialIndices")).length;
-		}
-		if (geometryData.has("materials")) {
-			size += ((byte[])geometryData.get("materials")).length;
-		}
+		size += (int)geometryData.get("nrIndices") * 4;
+		size += (int)geometryData.get("nrVertices") * (4 + 2);
+		size += (int)geometryData.get("nrNormals") * (4 + 1);
+		size += (int)geometryData.get("nrColors") * (4 + 1);
 		return size;
 	}
 
+	// TODO add color??
+	int hash(int[] indices, float[] vertices, float[] normals, byte[] colors) {
+		int hashCode =0;
+		hashCode += Arrays.hashCode(indices);
+		hashCode += Arrays.hashCode(vertices);
+		hashCode += Arrays.hashCode(normals);
+		hashCode += Arrays.hashCode(colors);
+		
+		return hashCode;
+	}
+	
 	int hash(VirtualObject geometryData) {
 		int hashCode = 0;
 		if (geometryData.has("indices")) {
-			hashCode += Arrays.hashCode((byte[])geometryData.get("indices"));
+			hashCode += Arrays.hashCode(extractBufferData(geometryData.get("indices")));
 		}
 		if (geometryData.has("vertices")) {
-			hashCode += Arrays.hashCode((byte[])geometryData.get("vertices"));
+			hashCode += Arrays.hashCode(extractBufferData(geometryData.get("vertices")));
 		}
 		if (geometryData.has("normals")) {
-			hashCode += Arrays.hashCode((byte[])geometryData.get("normals"));
+			hashCode += Arrays.hashCode(extractBufferData(geometryData.get("normals")));
 		}
-		if (geometryData.has("materialIndices")) {
-			hashCode += Arrays.hashCode((byte[])geometryData.get("materialIndices"));
-		}
-		if (geometryData.has("materials")) {
-			hashCode += Arrays.hashCode((byte[])geometryData.get("materials"));
+		if (geometryData.has("colorsQuantized")) {
+			hashCode += Arrays.hashCode(extractBufferData(geometryData.get("colorsQuantized")));
 		}
 		if (geometryData.has("color")) {
 			hashCode += ((HashMapWrappedVirtualObject)geometryData.get("color")).hashCode();
 		}
 		return hashCode;
+	}
+	
+	private byte[] extractBufferData(Object buffer) {
+		if (buffer == null) {
+			return new byte[0];
+		}
+		return (byte[])((HashMapVirtualObject)buffer).get("data");
 	}
 
 	void processExtendsUntranslated(VirtualObject geometryInfo, float[] vertices, int index, GenerateGeometryResult generateGeometryResult) throws BimserverDatabaseException {

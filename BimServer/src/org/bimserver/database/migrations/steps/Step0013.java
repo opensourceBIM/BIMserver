@@ -80,53 +80,59 @@ public class Step0013 extends Migration {
 		concreteRevisionBoundsUntransformed.getEAnnotations().add(createEmbedsReferenceAnnotation());
 		concreteRevisionBoundsUntransformed.getEAnnotations().add(createHiddenAnnotation());
 
-		EReference revisionBounds = schema.createEReference(revisionClass, "bounds", bounds, Multiplicity.SINGLE);
+		EReference revisionBounds = schema.createEReference(revisionClass, "bounds", bounds);
 		revisionBounds.getEAnnotations().add(createDbEmbedReferenceAnnotation());
 		revisionBounds.getEAnnotations().add(createEmbedsReferenceAnnotation());
 		revisionBounds.getEAnnotations().add(createHiddenAnnotation());
 
-		EReference revisionBoundsUntransformed = schema.createEReference(revisionClass, "boundsUntransformed", bounds, Multiplicity.SINGLE);
+		EReference revisionBoundsUntransformed = schema.createEReference(revisionClass, "boundsUntransformed", bounds);
 		revisionBoundsUntransformed.getEAnnotations().add(createDbEmbedReferenceAnnotation());
 		revisionBoundsUntransformed.getEAnnotations().add(createEmbedsReferenceAnnotation());
 		revisionBoundsUntransformed.getEAnnotations().add(createHiddenAnnotation());
 
-		EReference revisionBoundsMm = schema.createEReference(revisionClass, "boundsMm", bounds, Multiplicity.SINGLE);
+		EReference revisionBoundsMm = schema.createEReference(revisionClass, "boundsMm", bounds);
 		revisionBoundsMm.getEAnnotations().add(createDbEmbedReferenceAnnotation());
 		revisionBoundsMm.getEAnnotations().add(createEmbedsReferenceAnnotation());
 		revisionBoundsMm.getEAnnotations().add(createHiddenAnnotation());
 		
-		EReference revisionBoundsUntransformedMm = schema.createEReference(revisionClass, "boundsUntransformedMm", bounds, Multiplicity.SINGLE);
+		EReference revisionBoundsUntransformedMm = schema.createEReference(revisionClass, "boundsUntransformedMm", bounds);
 		revisionBoundsUntransformedMm.getEAnnotations().add(createDbEmbedReferenceAnnotation());
 		revisionBoundsUntransformedMm.getEAnnotations().add(createEmbedsReferenceAnnotation());
 		revisionBoundsUntransformedMm.getEAnnotations().add(createHiddenAnnotation());
 
 		vector3f.getEAnnotations().add(createHiddenAnnotation());
 		geometryInfo.getEAnnotations().add(createHiddenAnnotation());
-		schema.createEAttribute(geometryInfo, "startVertex", EcorePackage.eINSTANCE.getEIntegerObject(), Multiplicity.SINGLE);
-		schema.createEAttribute(geometryInfo, "startIndex", EcorePackage.eINSTANCE.getEIntegerObject(), Multiplicity.SINGLE);
-		schema.createEAttribute(geometryInfo, "primitiveCount", EcorePackage.eINSTANCE.getEIntegerObject(), Multiplicity.SINGLE);
+		schema.createEAttribute(geometryInfo, "startVertex", EcorePackage.eINSTANCE.getEIntegerObject());
+		schema.createEAttribute(geometryInfo, "startIndex", EcorePackage.eINSTANCE.getEIntegerObject());
+		schema.createEAttribute(geometryInfo, "primitiveCount", EcorePackage.eINSTANCE.getEIntegerObject());
+		
+		EClass buffer = schema.createEClass("geometry", "Buffer");
+		schema.createEAttribute(buffer, "data", EcorePackage.eINSTANCE.getEByteArray());
 		
 		EClass geometryData = schema.createEClass("geometry", "GeometryData");
-		schema.createEAttribute(geometryData, "indices", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
-		schema.createEAttribute(geometryData, "vertices", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
-		schema.createEAttribute(geometryData, "normals", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
-		geometryData.getEAnnotations().add(createNoLazyLoadAnnotation());
-		geometryData.getEAnnotations().add(createHiddenAnnotation());
+		schema.createEAttribute(geometryData, "nrIndices", EcorePackage.eINSTANCE.getEInt()).setDefaultValueLiteral("0");
+		schema.createEAttribute(geometryData, "nrVertices", EcorePackage.eINSTANCE.getEInt()).setDefaultValueLiteral("0");
+		schema.createEAttribute(geometryData, "nrNormals", EcorePackage.eINSTANCE.getEInt()).setDefaultValueLiteral("0");
+		schema.createEAttribute(geometryData, "nrColors", EcorePackage.eINSTANCE.getEInt()).setDefaultValueLiteral("0");
+		
+		schema.createEReference(geometryData, "indices", buffer);
+		schema.createEReference(geometryData, "vertices", buffer);
+		schema.createEReference(geometryData, "verticesQuantized", buffer);
+		schema.createEReference(geometryData, "normals", buffer);
+		schema.createEReference(geometryData, "normalsQuantized", buffer);
+		schema.createEReference(geometryData, "colorsQuantized", buffer);
+		schema.createEAttribute(geometryInfo, "transformation", EcorePackage.eINSTANCE.getEByteArray());
 
-		schema.createEReference(geometryInfo, "data", geometryData, Multiplicity.SINGLE).getEAnnotations().add(createNoLazyLoadAnnotation());
+		schema.createEReference(geometryInfo, "data", geometryData).getEAnnotations().add(createNoLazyLoadAnnotation());
 
 		EClass ifcProductIfc2x3tc1 = schema.getEClass("ifc2x3tc1", "IfcProduct");
 		EClass ifcProductIfc4 = schema.getEClass("ifc4", "IfcProduct");
-		EReference ifc2x3Geometry = schema.createEReference(ifcProductIfc2x3tc1, "geometry", geometryInfo, Multiplicity.SINGLE);
+		EReference ifc2x3Geometry = schema.createEReference(ifcProductIfc2x3tc1, "geometry", geometryInfo);
 		ifc2x3Geometry.setUnsettable(true);
 		ifc2x3Geometry.getEAnnotations().add(createHiddenAnnotation());
-		EReference ifc4Geometry = schema.createEReference(ifcProductIfc4, "geometry", geometryInfo, Multiplicity.SINGLE);
+		EReference ifc4Geometry = schema.createEReference(ifcProductIfc4, "geometry", geometryInfo);
 		ifc4Geometry.setUnsettable(true);
 		ifc4Geometry.getEAnnotations().add(createHiddenAnnotation());
-		
-		schema.createEAttribute(geometryData, "materials", EcorePackage.eINSTANCE.getEByteArray());
-		schema.createEAttribute(geometryData, "materialIndices", EcorePackage.eINSTANCE.getEByteArray());
-		schema.createEAttribute(geometryInfo, "transformation", EcorePackage.eINSTANCE.getEByteArray(), Multiplicity.SINGLE);
 	}
 
 	@Override

@@ -250,16 +250,19 @@ public class GeometryRunner implements Runnable {
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), renderEngineInstance.getArea());
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), renderEngineInstance.getVolume());
 
-										VirtualObject geometryData = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getGeometryData());
+										HashMapVirtualObject geometryData = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getGeometryData());
 
 										geometryData.set("type", databaseSession.getCid(eClass));
 										int[] indices = geometry.getIndices();
 										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Reused(), 1);
-										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Indices(), GeometryUtils.intArrayToByteArray(indices));
+										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Indices(), createBuffer(queryContext, GeometryUtils.intArrayToByteArray(indices)));
+										geometryData.set("nrIndices", indices.length);
 										float[] vertices = geometry.getVertices();
-										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Vertices(), GeometryUtils.floatArrayToByteArray(vertices));
+										geometryData.set("nrVertices", vertices.length);
+										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Vertices(), createBuffer(queryContext, GeometryUtils.floatArrayToByteArray(vertices)));
 										float[] normals = geometry.getNormals();
-										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Normals(), GeometryUtils.floatArrayToByteArray(normals));
+										geometryData.set("nrNormals", normals.length);
+										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Normals(), createBuffer(queryContext, GeometryUtils.floatArrayToByteArray(normals)));
 										
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), indices.length / 3);
 										
@@ -270,10 +273,11 @@ public class GeometryRunner implements Runnable {
 
 										boolean hasTransparency = false;
 										
+										byte[] colors = new byte[0];
 										if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
 											float[] materials = geometry.getMaterials();
 											boolean hasMaterial = false;
-											byte[] vertex_colors = new byte[(vertices.length / 3) * 4];
+											colors = new byte[(vertices.length / 3) * 4];
 											float[] vertex = new float[9];
 											for (int i = 0; i < geometry.getMaterialIndices().length; ++i) {
 												int c = geometry.getMaterialIndices()[i];
@@ -291,7 +295,7 @@ public class GeometryRunner implements Runnable {
 														hasMaterial = true;
 														for (int l = 0; l < 4; ++l) {
 															float val = materials[4 * c + l];
-															vertex_colors[4 * k + l] = UnsignedBytes.checkedCast((int)(val * 255));
+															colors[4 * k + l] = UnsignedBytes.checkedCast((int)(val * 255));
 														}
 													}
 													if (usedColors.containsKey(color)) {
@@ -333,10 +337,15 @@ public class GeometryRunner implements Runnable {
 												geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_MostUsedColor(), color);
 											}
 											if (hasMaterial) {
-												geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Materials(), vertex_colors);
+												geometryData.set("nrColors", colors.length);
+												geometryData.set(GeometryPackage.eINSTANCE.getGeometryData_ColorsQuantized(), createBuffer(queryContext, colors));
+											} else {
+												geometryData.set("nrColors", 0);
 											}
+										} else {
+											geometryData.set("nrColors", 0);
 										}
-
+										
 										double[] productTranformationMatrix = new double[16];
 										if (translate && renderEngineInstance.getTransformationMatrix() != null) {
 											productTranformationMatrix = renderEngineInstance.getTransformationMatrix();
@@ -361,7 +370,7 @@ public class GeometryRunner implements Runnable {
 										geometryInfo.set("boundsMm", boundsMm);
 
 										ByteBuffer normalsQuantized = quantizeNormals(normals);
-										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_NormalsQuantized(), normalsQuantized.array());
+										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_NormalsQuantized(), createBuffer(queryContext, normalsQuantized.array()));
 										
 										HashMapWrappedVirtualObject geometryDataBounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getBounds());
 										WrappedVirtualObject geometryDataBoundsMin = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
@@ -397,7 +406,7 @@ public class GeometryRunner implements Runnable {
 												(double) maxBoundsUntranslated.eGet(GeometryPackage.eINSTANCE.getVector3f_Z()), 1d };
 
 										if (reuseGeometry) {
-											int hash = this.streamingGeometryGenerator.hash(geometryData);
+											int hash = this.streamingGeometryGenerator.hash(indices, vertices, normals, colors);
 											float[] firstVertex = new float[] { vertices[indices[0]], vertices[indices[0] + 1], vertices[indices[0] + 2] };
 											float[] lastVertex = new float[] { vertices[indices[indices.length - 1] * 3], vertices[indices[indices.length - 1] * 3 + 1], vertices[indices[indices.length - 1] * 3 + 2] };
 											Range range = new Range(firstVertex, lastVertex);
@@ -758,6 +767,13 @@ public class GeometryRunner implements Runnable {
 		job.setEndNanos(end);
 	}
 	
+	private long createBuffer(QueryContext queryContext, byte[] data) throws BimserverDatabaseException {
+		HashMapVirtualObject buffer = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getBuffer());
+		buffer.set("data", data);
+		buffer.save();
+		return buffer.getOid();
+	}
+
 	private ByteBuffer quantizeColors(byte[] vertex_colors) {
 		ByteBuffer quantizedColors = ByteBuffer.wrap(new byte[vertex_colors.length]);
 		for (int i=0; i<vertex_colors.length; i++) {

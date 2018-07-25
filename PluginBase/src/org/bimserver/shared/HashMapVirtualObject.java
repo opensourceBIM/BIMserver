@@ -280,6 +280,9 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 	
 	private void writeWrappedValue(int pid, int rid, VirtualObject wrappedValue, ByteBuffer buffer, PackageMetaData packageMetaData) throws BimserverDatabaseException {
 		EStructuralFeature eStructuralFeature = wrappedValue.eClass().getEStructuralFeature("wrappedValue");
+		if (eStructuralFeature == null) {
+			throw new BimserverDatabaseException("No wrappedValue on " + wrappedValue.eClass().getName());
+		}
 		Short cid = getDatabaseInterface().getCidOfEClass(wrappedValue.eClass());
 		buffer.order(ByteOrder.LITTLE_ENDIAN);
 		buffer.putShort((short) -cid);
@@ -589,6 +592,11 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 	@Override
 	public void set(String name, Object val) throws BimserverDatabaseException {
 		setAttribute(eClass.getEStructuralFeature(name), val);
+	}
+
+	@Override
+	public void set(EStructuralFeature eStructuralFeature, Object val) throws BimserverDatabaseException {
+		setAttribute(eStructuralFeature, val);
 	}
 	
 	@Override

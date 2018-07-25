@@ -49,6 +49,7 @@ import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.geometry.Bounds;
+import org.bimserver.models.geometry.Buffer;
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.GeometryInfo;
@@ -476,7 +477,9 @@ public class ClientIfcModel extends IfcModel {
 					int nrIndices = dataInputStream.readInt();
 					byte[] indices = new byte[nrIndices * 4];
 					dataInputStream.readFully(indices);
-					geometryData.setIndices(indices);
+					Buffer buffer = GeometryFactory.eINSTANCE.createBuffer();
+					buffer.setData(indices);
+					geometryData.setIndices(buffer);
 
 					int colorType = dataInputStream.readInt();
 					if (colorType == 1) {
@@ -489,17 +492,23 @@ public class ClientIfcModel extends IfcModel {
 					int nrVertices = dataInputStream.readInt();
 					byte[] vertices = new byte[nrVertices * 4];
 					dataInputStream.readFully(vertices);
-					geometryData.setVertices(vertices);
+					Buffer verticesBuffer = GeometryFactory.eINSTANCE.createBuffer();
+					verticesBuffer.setData(vertices);
+					geometryData.setVertices(verticesBuffer);
 
 					int nrNormals = dataInputStream.readInt();
 					byte[] normals = new byte[nrNormals * 4];
 					dataInputStream.readFully(normals);
-					geometryData.setNormals(normals);
+					Buffer normalsBuffer = GeometryFactory.eINSTANCE.createBuffer();
+					normalsBuffer.setData(normals);
+					geometryData.setNormals(normalsBuffer);
 
 					int nrMaterials = dataInputStream.readInt();
 					byte[] materials = new byte[nrMaterials * 4];
 					dataInputStream.readFully(materials);
-					geometryData.setMaterials(materials);
+					Buffer colorsBuffer = GeometryFactory.eINSTANCE.createBuffer();
+					colorsBuffer.setData(materials);
+					geometryData.setColorsQuantized(colorsBuffer);
 					((IdEObjectImpl)geometryData).setLoadingState(State.LOADED);
 				} else if (type == 6) {
 					done = true;

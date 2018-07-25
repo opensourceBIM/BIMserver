@@ -80,6 +80,15 @@ public interface GeometryFactory extends EFactory {
 	Bounds createBounds();
 
 	/**
+	 * Returns a new object of class '<em>Buffer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Buffer</em>'.
+	 * @generated
+	 */
+	Buffer createBuffer();
+
+	/**
 	 * Returns a new object of class '<em>Data</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

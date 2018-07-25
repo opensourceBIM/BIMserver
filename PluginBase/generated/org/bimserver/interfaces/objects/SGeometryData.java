@@ -29,20 +29,22 @@ public class SGeometryData implements SDataBase
 
 	@XmlTransient
 	private static SClass sClass;
-	private byte[] indices;
-	private byte[] vertices;
-	private byte[] normals;
-	private byte[] materials;
-	private byte[] materialIndices;
+	private int nrIndices;
+	private int nrVertices;
+	private int nrNormals;
+	private int nrColors;
+	private long indicesId = -1;
+	private long verticesId = -1;
+	private long verticesQuantizedId = -1;
+	private long normalsId = -1;
+	private long normalsQuantizedId = -1;
+	private long colorsQuantizedId = -1;
 	private SVector4f color;
 	private boolean hasTransparency;
 	private int reused;
 	private short type;
 	private SVector4f mostUsedColor;
 	private SBounds boundsMm;
-	private byte[] normalsQuantized;
-	private byte[] verticesQuantized;
-	private byte[] colorsQuantized;
 
 	public long getOid() {
 		return this.oid;
@@ -70,20 +72,35 @@ public class SGeometryData implements SDataBase
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("indices")) {
-			return getIndices();
+		if (sField.getName().equals("nrIndices")) {
+			return getNrIndices();
 		}
-		if (sField.getName().equals("vertices")) {
-			return getVertices();
+		if (sField.getName().equals("nrVertices")) {
+			return getNrVertices();
 		}
-		if (sField.getName().equals("normals")) {
-			return getNormals();
+		if (sField.getName().equals("nrNormals")) {
+			return getNrNormals();
 		}
-		if (sField.getName().equals("materials")) {
-			return getMaterials();
+		if (sField.getName().equals("nrColors")) {
+			return getNrColors();
 		}
-		if (sField.getName().equals("materialIndices")) {
-			return getMaterialIndices();
+		if (sField.getName().equals("indicesId")) {
+			return getIndicesId();
+		}
+		if (sField.getName().equals("verticesId")) {
+			return getVerticesId();
+		}
+		if (sField.getName().equals("verticesQuantizedId")) {
+			return getVerticesQuantizedId();
+		}
+		if (sField.getName().equals("normalsId")) {
+			return getNormalsId();
+		}
+		if (sField.getName().equals("normalsQuantizedId")) {
+			return getNormalsQuantizedId();
+		}
+		if (sField.getName().equals("colorsQuantizedId")) {
+			return getColorsQuantizedId();
 		}
 		if (sField.getName().equals("color")) {
 			return getColor();
@@ -103,15 +120,6 @@ public class SGeometryData implements SDataBase
 		if (sField.getName().equals("boundsMm")) {
 			return getBoundsMm();
 		}
-		if (sField.getName().equals("normalsQuantized")) {
-			return getNormalsQuantized();
-		}
-		if (sField.getName().equals("verticesQuantized")) {
-			return getVerticesQuantized();
-		}
-		if (sField.getName().equals("colorsQuantized")) {
-			return getColorsQuantized();
-		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -122,24 +130,44 @@ public class SGeometryData implements SDataBase
 	}
 
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("indices")) {
-			setIndices((byte[])val);
+		if (sField.getName().equals("nrIndices")) {
+			setNrIndices((Integer)val);
 			return;
 		}
-		if (sField.getName().equals("vertices")) {
-			setVertices((byte[])val);
+		if (sField.getName().equals("nrVertices")) {
+			setNrVertices((Integer)val);
 			return;
 		}
-		if (sField.getName().equals("normals")) {
-			setNormals((byte[])val);
+		if (sField.getName().equals("nrNormals")) {
+			setNrNormals((Integer)val);
 			return;
 		}
-		if (sField.getName().equals("materials")) {
-			setMaterials((byte[])val);
+		if (sField.getName().equals("nrColors")) {
+			setNrColors((Integer)val);
 			return;
 		}
-		if (sField.getName().equals("materialIndices")) {
-			setMaterialIndices((byte[])val);
+		if (sField.getName().equals("indicesId")) {
+			setIndicesId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("verticesId")) {
+			setVerticesId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("verticesQuantizedId")) {
+			setVerticesQuantizedId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("normalsId")) {
+			setNormalsId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("normalsQuantizedId")) {
+			setNormalsQuantizedId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("colorsQuantizedId")) {
+			setColorsQuantizedId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("color")) {
@@ -166,18 +194,6 @@ public class SGeometryData implements SDataBase
 			setBoundsMm((SBounds)val);
 			return;
 		}
-		if (sField.getName().equals("normalsQuantized")) {
-			setNormalsQuantized((byte[])val);
-			return;
-		}
-		if (sField.getName().equals("verticesQuantized")) {
-			setVerticesQuantized((byte[])val);
-			return;
-		}
-		if (sField.getName().equals("colorsQuantized")) {
-			setColorsQuantized((byte[])val);
-			return;
-		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -189,44 +205,84 @@ public class SGeometryData implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	public byte[] getIndices() {
-		return indices;
+	public int getNrIndices() {
+		return nrIndices;
 	}
 
-	public void setIndices(byte[] indices) {
-		this.indices = indices;
+	public void setNrIndices(int nrIndices) {
+		this.nrIndices = nrIndices;
 	}
 	
-	public byte[] getVertices() {
-		return vertices;
+	public int getNrVertices() {
+		return nrVertices;
 	}
 
-	public void setVertices(byte[] vertices) {
-		this.vertices = vertices;
+	public void setNrVertices(int nrVertices) {
+		this.nrVertices = nrVertices;
 	}
 	
-	public byte[] getNormals() {
-		return normals;
+	public int getNrNormals() {
+		return nrNormals;
 	}
 
-	public void setNormals(byte[] normals) {
-		this.normals = normals;
+	public void setNrNormals(int nrNormals) {
+		this.nrNormals = nrNormals;
 	}
 	
-	public byte[] getMaterials() {
-		return materials;
+	public int getNrColors() {
+		return nrColors;
 	}
 
-	public void setMaterials(byte[] materials) {
-		this.materials = materials;
+	public void setNrColors(int nrColors) {
+		this.nrColors = nrColors;
 	}
 	
-	public byte[] getMaterialIndices() {
-		return materialIndices;
+	public long getIndicesId() {
+		return indicesId;
 	}
 
-	public void setMaterialIndices(byte[] materialIndices) {
-		this.materialIndices = materialIndices;
+	public void setIndicesId(long indicesId) {
+		this.indicesId = indicesId;
+	}
+	
+	public long getVerticesId() {
+		return verticesId;
+	}
+
+	public void setVerticesId(long verticesId) {
+		this.verticesId = verticesId;
+	}
+	
+	public long getVerticesQuantizedId() {
+		return verticesQuantizedId;
+	}
+
+	public void setVerticesQuantizedId(long verticesQuantizedId) {
+		this.verticesQuantizedId = verticesQuantizedId;
+	}
+	
+	public long getNormalsId() {
+		return normalsId;
+	}
+
+	public void setNormalsId(long normalsId) {
+		this.normalsId = normalsId;
+	}
+	
+	public long getNormalsQuantizedId() {
+		return normalsQuantizedId;
+	}
+
+	public void setNormalsQuantizedId(long normalsQuantizedId) {
+		this.normalsQuantizedId = normalsQuantizedId;
+	}
+	
+	public long getColorsQuantizedId() {
+		return colorsQuantizedId;
+	}
+
+	public void setColorsQuantizedId(long colorsQuantizedId) {
+		this.colorsQuantizedId = colorsQuantizedId;
 	}
 	
 	public SVector4f getColor() {
@@ -279,30 +335,6 @@ public class SGeometryData implements SDataBase
 		this.boundsMm = boundsMm;
 	}
 	
-	
-	public byte[] getNormalsQuantized() {
-		return normalsQuantized;
-	}
-
-	public void setNormalsQuantized(byte[] normalsQuantized) {
-		this.normalsQuantized = normalsQuantized;
-	}
-	
-	public byte[] getVerticesQuantized() {
-		return verticesQuantized;
-	}
-
-	public void setVerticesQuantized(byte[] verticesQuantized) {
-		this.verticesQuantized = verticesQuantized;
-	}
-	
-	public byte[] getColorsQuantized() {
-		return colorsQuantized;
-	}
-
-	public void setColorsQuantized(byte[] colorsQuantized) {
-		this.colorsQuantized = colorsQuantized;
-	}
 	
 	@Override
 	public int hashCode() {

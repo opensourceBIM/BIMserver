@@ -16,10 +16,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="startVertex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="startIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="primitiveCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="transformation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="data" eType="#//GeometryData">
       <eAnnotations source="nolazyload"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="transformation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="area" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="volume" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasTransparency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -55,14 +55,24 @@
       <eAnnotations source="hidden"/>
     </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Buffer">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GeometryData">
-    <eAnnotations source="nolazyload"/>
-    <eAnnotations source="hidden"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="indices" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vertices" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="normals" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="materials" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="materialIndices" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nrIndices" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nrVertices" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nrNormals" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nrColors" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="indices" eType="#//Buffer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="vertices" eType="#//Buffer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="verticesQuantized" eType="#//Buffer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="normals" eType="#//Buffer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="normalsQuantized" eType="#//Buffer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="colorsQuantized" eType="#//Buffer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="color" eType="#//Vector4f">
       <eAnnotations source="dbembed"/>
       <eAnnotations source="embedsreference"/>
@@ -81,9 +91,6 @@
       <eAnnotations source="embedsreference"/>
       <eAnnotations source="hidden"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="normalsQuantized" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="verticesQuantized" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="colorsQuantized" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Vector4f">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>

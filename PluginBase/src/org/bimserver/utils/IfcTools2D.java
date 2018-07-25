@@ -41,7 +41,6 @@ import org.bimserver.models.ifc2x3tc1.IfcCompositeCurveSegment;
 import org.bimserver.models.ifc2x3tc1.IfcCurve;
 import org.bimserver.models.ifc2x3tc1.IfcDirection;
 import org.bimserver.models.ifc2x3tc1.IfcExtrudedAreaSolid;
-import org.bimserver.models.ifc2x3tc1.IfcFacetedBrep;
 import org.bimserver.models.ifc2x3tc1.IfcLocalPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcObjectPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcPolyline;
@@ -92,8 +91,8 @@ public class IfcTools2D {
 		if (geometry != null) {
 			GeometryData geometryData = geometry.getData();
 			if (geometryData != null) {
-				int[] indices = GeometryUtils.toIntegerArray(geometryData.getIndices());
-				float[] vertices = GeometryUtils.toFloatArray(geometryData.getVertices());
+				int[] indices = GeometryUtils.toIntegerArray(geometryData.getIndices().getData());
+				float[] vertices = GeometryUtils.toFloatArray(geometryData.getVertices().getData());
 				float[] matrix = GeometryUtils.toFloatArray(GeometryUtils.toDoubleArray(geometry.getTransformation()));
 				
 				Area area = new Area();

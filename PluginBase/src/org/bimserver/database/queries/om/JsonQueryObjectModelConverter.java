@@ -141,11 +141,20 @@ public class JsonQueryObjectModelConverter {
 		}
 		includeNode.set("types", typesNode);
 		
-		ArrayNode fieldsNode = OBJECT_MAPPER.createArrayNode();
-		for (EReference eReference : include.getFields()) {
-			fieldsNode.add(eReference.getName());
+		if (include.hasFields()) {
+			ArrayNode fieldsNode = OBJECT_MAPPER.createArrayNode();
+			for (EReference eReference : include.getFields()) {
+				fieldsNode.add(eReference.getName());
+			}
+			includeNode.set("fields", fieldsNode);
 		}
-		includeNode.set("fields", fieldsNode);
+		if (include.hasDirectFields()) {
+			ArrayNode fieldsNode = OBJECT_MAPPER.createArrayNode();
+			for (EReference eReference : include.getFieldsDirect()) {
+				fieldsNode.add(eReference.getName());
+			}
+			includeNode.set("fieldsDirect", fieldsNode);
+		}
 		
 		if (include.hasIncludes() || include.hasReferences()) {
 			ArrayNode includes = OBJECT_MAPPER.createArrayNode();
@@ -326,6 +335,22 @@ public class JsonQueryObjectModelConverter {
 				}
 			} else {
 				throw new QueryException("\"fields\" must be of type array");
+			}
+		}
+		if (jsonNode.has("fieldsDirect")) {
+			JsonNode fieldsNode = jsonNode.get("fieldsDirect");
+			if (fieldsNode instanceof ArrayNode) {
+				ArrayNode fields = (ArrayNode)fieldsNode;
+				for (int i=0; i<fields.size(); i++) {
+					JsonNode fieldNode = fields.get(i);
+					if (fieldNode.isTextual()) {
+						include.addFieldDirect(fieldNode.asText());
+					} else {
+						throw new QueryException("\"fieldsDirect\"[" + i + "] must be of type string");
+					}
+				}
+			} else {
+				throw new QueryException("\"fieldsDirect\" must be of type array");
 			}
 		}
 		if (jsonNode.has("include")) {

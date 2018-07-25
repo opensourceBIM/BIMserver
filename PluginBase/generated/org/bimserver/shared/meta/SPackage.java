@@ -191,6 +191,7 @@ public class SPackage {
 		Class.forName("org.bimserver.interfaces.objects.SGeometryInfo");
 		Class.forName("org.bimserver.interfaces.objects.SVector3f");
 		Class.forName("org.bimserver.interfaces.objects.SBounds");
+		Class.forName("org.bimserver.interfaces.objects.SBuffer");
 		Class.forName("org.bimserver.interfaces.objects.SGeometryData");
 		Class.forName("org.bimserver.interfaces.objects.SVector4f");
 		} catch (ClassNotFoundException e) {
