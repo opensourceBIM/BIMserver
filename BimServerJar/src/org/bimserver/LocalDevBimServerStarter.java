@@ -66,7 +66,7 @@ public class LocalDevBimServerStarter {
 	
 	public static void main(String[] args) {
 		OptionsParser optionsParser = new OptionsParser(args);
-		new LocalDevBimServerStarter().start(-1, "localhost", "LocalDev BIMserver (8080)", 8080, 8085, optionsParser.getPluginDirectories(), optionsParser.getHome());
+		new LocalDevBimServerStarter().start(-1, "127.0.0.1", "LocalDev BIMserver (8080)", 8080, 8085, optionsParser.getPluginDirectories(), optionsParser.getHome());
 	}
 
 	public void start(int id, String address, String name, int port, int pbport, Path[] pluginDirectories, Path home) {
@@ -110,7 +110,10 @@ public class LocalDevBimServerStarter {
 						}
 					}
 				});
-			} else if (bimServer.getServerInfo().getServerState() == ServerState.RUNNING || bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
+			} else if (bimServer.getServerInfo().getServerState() == ServerState.RUNNING) {
+				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
+				bimServer.activateServices();
+			} else if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
 				try {
 					AdminInterface adminInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(AdminInterface.class);
