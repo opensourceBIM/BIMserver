@@ -39,6 +39,7 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
+import org.bimserver.utils.Formatters;
 import org.bimserver.utils.GrowingByteBuffer;
 import org.bimserver.webservices.InvalidTokenException;
 import org.bimserver.webservices.ServiceMap;
@@ -108,15 +109,42 @@ public class Streamer implements EndPoint {
 								public void setTitle(String title) {
 								}
 							};
+							int messagesSent = 0;
+//							streamingSocketInterface.enableBatching();
+							int bytes = 0;
+							long start = System.nanoTime();
+
+//							for (int i=0; i<100; i++) {
+//								byteArrayOutputStream.reset();
+//								byteArrayOutputStream.writeLongUnchecked(topicId);
+//								if (i == 99) {
+//									growingByteBuffer.put((byte)6);
+//								}
+//								growingByteBuffer.put(new byte[10000000]);
+//								ByteBuffer newBuffer = ByteBuffer.allocate(growingByteBuffer.usedSize());
+//								newBuffer.put(growingByteBuffer.array(), 0, growingByteBuffer.usedSize());
+//								streamingSocketInterface.send(newBuffer.array(), 0, newBuffer.capacity());
+//								bytes += newBuffer.capacity() + 8;
+//								messagesSent++;
+//							}
+
+							
+							byteArrayOutputStream.writeLongUnchecked(topicId);
 							do {
-								byteArrayOutputStream.reset();
-								byteArrayOutputStream.writeLong(topicId);
 								writeMessage = writer.writeMessage(byteArrayOutputStream, progressReporter);
-								ByteBuffer newBuffer = ByteBuffer.allocate(growingByteBuffer.usedSize());
-								newBuffer.put(growingByteBuffer.array(), 0, growingByteBuffer.usedSize());
-								streamingSocketInterface.send(newBuffer.array(), 0, newBuffer.capacity());
+								messagesSent++;
+								if (messagesSent % 25 == 0 || !writeMessage) {
+									ByteBuffer newBuffer = ByteBuffer.allocate(growingByteBuffer.usedSize());
+									bytes += newBuffer.capacity() + 8;
+									newBuffer.put(growingByteBuffer.array(), 0, growingByteBuffer.usedSize());
+									streamingSocketInterface.send(newBuffer.array(), 0, newBuffer.capacity());
+									byteArrayOutputStream.reset();
+									byteArrayOutputStream.writeLongUnchecked(topicId);
+								}
 							} while (writeMessage);
-//							LOGGER.info(counter + " messages written " + Formatters.bytesToString(bytes) + " in " + ((end - start) / 1000000) + " ms");
+//							streamingSocketInterface.flush();
+							long end = System.nanoTime();
+//							LOGGER.info(messagesSent + " messages written " + Formatters.bytesToString(bytes) + " in " + ((end - start) / 1000000) + " ms");
 						} catch (IOException e) {
 							LOGGER.error("", e);
 							// Probably closed/F5-ed browser

@@ -28,4 +28,6 @@ public interface StreamingSocketInterface {
 	Future<Void> send(byte[] data, int start, int length);
 	void sendBlocking(byte[] data, int start, int length) throws IOException;
 	Future<Void> sendAsText(byte[] data);
+	void flush();
+	void enableBatching();
 }

@@ -163,4 +163,24 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 			websocketSession.getBasicRemote().sendBinary(ByteBuffer.wrap(data, start, length));
 		}
 	}
+
+	@Override
+	public void flush() {
+		try {
+			websocketSession.getAsyncRemote().flushBatch();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void enableBatching() {
+		try {
+			websocketSession.getAsyncRemote().setBatchingAllowed(true);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
