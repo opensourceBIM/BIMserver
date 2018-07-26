@@ -107,7 +107,7 @@ public class GeometryAccellerator {
 			product.addFieldDirect("geometry");
 			Include geometryInfo = product.createInclude();
 			geometryInfo.addType(GeometryPackage.eINSTANCE.getGeometryInfo(), false);
-//			geometryInfo.addFieldDirect("data");
+			geometryInfo.addFieldDirect("data");
 			geometryInfo.addFieldDirect("boundsMm");
 			Include boundsInclude = geometryInfo.createInclude();
 			boundsInclude.addType(GeometryPackage.eINSTANCE.getBounds(), false);
