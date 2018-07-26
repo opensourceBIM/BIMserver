@@ -22,14 +22,18 @@ import java.nio.file.Paths;
 
 import javax.servlet.ServletException;
 import javax.websocket.DeploymentException;
+import javax.websocket.Session;
 
 import org.bimserver.servlets.RootServlet;
+import org.bimserver.servlets.websockets.jsr356.AdditionalWebSocketConfigurator;
 import org.bimserver.servlets.websockets.jsr356.Jsr356Impl;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.webapp.WebAppContext;
+import org.eclipse.jetty.websocket.api.WebSocketPolicy;
+import org.eclipse.jetty.websocket.jsr356.JsrSession;
 import org.eclipse.jetty.websocket.jsr356.server.deploy.WebSocketServerContainerInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,6 +55,18 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 		try {
 			org.eclipse.jetty.websocket.jsr356.server.ServerContainer configureContext = WebSocketServerContainerInitializer.configureContext(context);
 			Jsr356Impl.setServletContext(configureContext, context.getServletContext());
+			Jsr356Impl.setAdditionalWebSocketConfigurator(new AdditionalWebSocketConfigurator() {
+				@Override
+				public void configure(Session websocketSession) {
+					JsrSession jsrSession = (JsrSession)websocketSession;
+					WebSocketPolicy policy = jsrSession.getPolicy();
+					
+					websocketSession.setMaxTextMessageBufferSize(1024 * 1024 * 64);
+					websocketSession.setMaxBinaryMessageBufferSize(1024 * 1024 * 64);
+					
+					policy.setMaxTextMessageSize(1024 * 1024 * 64);
+				}
+			});
 			configureContext.addEndpoint(Jsr356Impl.class);
 		} catch (ServletException e) {
 			e.printStackTrace();
