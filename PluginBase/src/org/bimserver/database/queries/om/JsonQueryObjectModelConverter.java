@@ -87,6 +87,9 @@ public class JsonQueryObjectModelConverter {
 					}
 				}
 			}
+			if (queryPart.getMinimumReuseThreshold() != -1) {
+				queryPartNode.put("reuseLowerThreshold", queryPart.getMinimumReuseThreshold());
+			}
 			if (queryPart.hasOids()) {
 				ArrayNode oidsNode = OBJECT_MAPPER.createArrayNode();
 				queryPartNode.set("oids", oidsNode);
@@ -96,12 +99,24 @@ public class JsonQueryObjectModelConverter {
 			}
 			if (queryPart.hasInBoundingBox()) {
 				ObjectNode inBoundingBoxNode = OBJECT_MAPPER.createObjectNode();
-				inBoundingBoxNode.put("x", queryPart.getInBoundingBox().getX());
-				inBoundingBoxNode.put("y", queryPart.getInBoundingBox().getY());
-				inBoundingBoxNode.put("z", queryPart.getInBoundingBox().getZ());
-				inBoundingBoxNode.put("width", queryPart.getInBoundingBox().getWidth());
-				inBoundingBoxNode.put("height", queryPart.getInBoundingBox().getHeight());
-				inBoundingBoxNode.put("depth", queryPart.getInBoundingBox().getDepth());
+				if (!Double.isNaN(queryPart.getInBoundingBox().getX())) {
+					inBoundingBoxNode.put("x", queryPart.getInBoundingBox().getX());
+				}
+				if (!Double.isNaN(queryPart.getInBoundingBox().getY())) {
+					inBoundingBoxNode.put("y", queryPart.getInBoundingBox().getY());
+				}
+				if (!Double.isNaN(queryPart.getInBoundingBox().getZ())) {
+					inBoundingBoxNode.put("z", queryPart.getInBoundingBox().getZ());
+				}
+				if (!Double.isNaN(queryPart.getInBoundingBox().getWidth())) {
+					inBoundingBoxNode.put("width", queryPart.getInBoundingBox().getWidth());
+				}
+				if (!Double.isNaN(queryPart.getInBoundingBox().getHeight())) {
+					inBoundingBoxNode.put("height", queryPart.getInBoundingBox().getHeight());
+				}
+				if (!Double.isNaN(queryPart.getInBoundingBox().getDepth())) {
+					inBoundingBoxNode.put("depth", queryPart.getInBoundingBox().getDepth());
+				}
 				inBoundingBoxNode.put("partial", queryPart.getInBoundingBox().isPartial());
 				inBoundingBoxNode.put("densityLowerThreshold", queryPart.getInBoundingBox().getDensityLowerThreshold());
 				inBoundingBoxNode.put("densityUpperThreshold", queryPart.getInBoundingBox().getDensityUpperThreshold());

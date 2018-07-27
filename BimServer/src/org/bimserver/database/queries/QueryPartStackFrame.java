@@ -147,6 +147,7 @@ public class QueryPartStackFrame extends StackFrame {
 				List<Long> oids = new ArrayList<>();
 				List<Long> oidsFiltered = new ArrayList<>();
 
+				QueryPart filteredQueryPart = createFilteredQueryPart(partialQuery);
 				Set<Node<GeometryObject>> nodes = (Set<Node<GeometryObject>>) tiles.getNodes();
 				for (Node<GeometryObject> node : nodes) {
 					for (ObjectWrapper<GeometryObject> objectWrapper : node.getValues()) {
@@ -154,7 +155,7 @@ public class QueryPartStackFrame extends StackFrame {
 						if (geometryObject.getRoid() == reusable.getRoid()) {
 							long objectId = geometryObject.getOid();
 							if (eClass.isSuperTypeOf(queryObjectProvider.getDatabaseSession().getEClassForOid(objectId))) {
-								if (tiles.getMinimumReuseThreshold() != -1 && tiles.getMinimumReuseThreshold() < geometryObject.getSaveableTriangles()) {
+								if (tiles.getMinimumReuseThreshold() != -1 && tiles.getMinimumReuseThreshold() <= geometryObject.getSaveableTriangles()) {
 									// We still have to send this object, we just need to somehow make sure the associated GeometryData is not sent
 									oidsFiltered.add(objectId);
 								} else {
@@ -168,7 +169,7 @@ public class QueryPartStackFrame extends StackFrame {
 					queryObjectProvider.push(new QueryOidsAndTypesStackFrame(queryObjectProvider, eClass, partialQuery, reusable, oids));
 				}
 				if (!oidsFiltered.isEmpty()) {
-					queryObjectProvider.push(new QueryOidsAndTypesStackFrame(queryObjectProvider, eClass, createFilteredQueryPart(partialQuery), reusable, oidsFiltered));
+					queryObjectProvider.push(new QueryOidsAndTypesStackFrame(queryObjectProvider, eClass, filteredQueryPart, reusable, oidsFiltered));
 				}
 			} else {
 				queryObjectProvider.push(new QueryTypeStackFrame(queryObjectProvider, eClass, reusable, partialQuery));
@@ -211,7 +212,7 @@ public class QueryPartStackFrame extends StackFrame {
 			for (EReference field : inputInclude.getFields()) {
 				if (field.getName().equals("data")) {
 					// Skip, this is the actual filtering
-					continue;
+					return newInclude;
 				}
 				newInclude.addField(field);
 			}
