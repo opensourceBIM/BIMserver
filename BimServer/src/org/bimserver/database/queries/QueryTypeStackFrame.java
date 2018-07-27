@@ -26,6 +26,7 @@ import org.bimserver.database.Record;
 import org.bimserver.database.SearchingRecordIterator;
 import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;
+import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.shared.QueryContext;
 import org.bimserver.utils.BinUtils;
 import org.eclipse.emf.ecore.EClass;
@@ -86,6 +87,18 @@ public class QueryTypeStackFrame extends DatabaseReadingStackFrame implements Ob
 			record = typeRecordIterator.next(nextKeyStart.array());
 		} else {
 			record = typeRecordIterator.next();
+		}
+		
+		if (currentObject != null) {
+			if (getQueryPart().getMinimumReuseThreshold() != -1) {
+				if (GeometryPackage.eINSTANCE.getGeometryData() == currentObject.eClass()) {
+					int saveableTriangles = (int)currentObject.get("saveableTriangles");
+					if (getQueryPart().getMinimumReuseThreshold() > saveableTriangles) {
+						currentObject = null;
+						return false;
+					}
+				}
+			}
 		}
 
 		processPossibleIncludes(currentObject, eClass, getQueryPart());

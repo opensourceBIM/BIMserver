@@ -553,6 +553,15 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getGeometryData_SaveableTriangles() {
+		return (EAttribute) getGeometryData().getEStructuralFeatures().get(16);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getGeometryData_NormalsQuantized() {
 		return (EReference) getGeometryData().getEStructuralFeatures().get(8);
 	}

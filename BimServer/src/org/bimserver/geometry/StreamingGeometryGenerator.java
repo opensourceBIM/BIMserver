@@ -131,7 +131,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	private boolean reuseGeometry;
 	private boolean optimizeMappedItems;
 	
-	private final Map<Long, Tuple<HashMapVirtualObject, float[]>> geometryDataMap = new HashMap<>();
+	private final Map<Long, Tuple<HashMapVirtualObject, float[]>> geometryDataMap = new ConcurrentHashMap<>();
 
 	private GeometryGenerationDebugger geometryGenerationDebugger = new GeometryGenerationDebugger();
 
@@ -553,8 +553,16 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 //				buffer.setData(quantizeVertices(tuple.getB(), quantizationMatrix, multiplierToMm).array());
 //				databaseSession.store(buffer);
 				buffer.save();
-				tuple.getA().set("verticesQuantized", buffer.getOid());
-				tuple.getA().saveOverwrite();
+				HashMapVirtualObject geometryData = tuple.getA();
+				geometryData.set("verticesQuantized", buffer.getOid());
+				int reused = (int) geometryData.eGet(GeometryPackage.eINSTANCE.getGeometryData_Reused());
+				int nrTriangles = (int) geometryData.eGet(GeometryPackage.eINSTANCE.getGeometryData_NrIndices()) / 3;
+				int saveableTriangles = Math.max(0, (reused - 1)) * nrTriangles;
+				geometryData.set("saveableTriangles", saveableTriangles);
+//				if (saveableTriangles > 0) {
+//					System.out.println("Saveable triangles: " + saveableTriangles);
+//				}
+				geometryData.saveOverwrite();
 			}
 
 			long end = System.nanoTime();

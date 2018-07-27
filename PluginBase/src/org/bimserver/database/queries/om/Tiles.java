@@ -10,6 +10,7 @@ public class Tiles {
 	private float minimumThreshold;
 	private Object nodes;
 	private int maxDepth;
+	private float minimumReuseThreshold = -1;
 	
 	public void add(int tileId) {
 		tileIds.add(tileId);
@@ -49,5 +50,13 @@ public class Tiles {
 	
 	public void setMaxDepth(int maxDepth) {
 		this.maxDepth = maxDepth;
+	}
+
+	public void setMinimumReuseThreshold(float minimumReuseThreshold) {
+		this.minimumReuseThreshold = minimumReuseThreshold;
+	}
+	
+	public float getMinimumReuseThreshold() {
+		return minimumReuseThreshold;
 	}
 }

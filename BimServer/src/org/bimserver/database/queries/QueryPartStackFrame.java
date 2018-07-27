@@ -28,6 +28,7 @@ import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.queries.om.InBoundingBox;
+import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.Include.TypeDef;
 import org.bimserver.database.queries.om.Properties;
 import org.bimserver.database.queries.om.QueryException;
@@ -35,6 +36,7 @@ import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.database.queries.om.Tiles;
 import org.bimserver.shared.QueryContext;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 
 public class QueryPartStackFrame extends StackFrame {
 
@@ -143,6 +145,7 @@ public class QueryPartStackFrame extends StackFrame {
 				queryObjectProvider.push(new QueryBoundingBoxStackFrame(queryObjectProvider, eClass, partialQuery, reusable, inBoundingBox));
 			} else if (tiles != null) {
 				List<Long> oids = new ArrayList<>();
+				List<Long> oidsFiltered = new ArrayList<>();
 
 				Set<Node<GeometryObject>> nodes = (Set<Node<GeometryObject>>) tiles.getNodes();
 				for (Node<GeometryObject> node : nodes) {
@@ -151,7 +154,12 @@ public class QueryPartStackFrame extends StackFrame {
 						if (geometryObject.getRoid() == reusable.getRoid()) {
 							long objectId = geometryObject.getOid();
 							if (eClass.isSuperTypeOf(queryObjectProvider.getDatabaseSession().getEClassForOid(objectId))) {
-								oids.add(objectId);
+								if (tiles.getMinimumReuseThreshold() != -1 && tiles.getMinimumReuseThreshold() < geometryObject.getSaveableTriangles()) {
+									// We still have to send this object, we just need to somehow make sure the associated GeometryData is not sent
+									oidsFiltered.add(objectId);
+								} else {
+									oids.add(objectId);
+								}
 							}
 						}
 					}
@@ -159,11 +167,60 @@ public class QueryPartStackFrame extends StackFrame {
 				if (!oids.isEmpty()) {
 					queryObjectProvider.push(new QueryOidsAndTypesStackFrame(queryObjectProvider, eClass, partialQuery, reusable, oids));
 				}
+				if (!oidsFiltered.isEmpty()) {
+					queryObjectProvider.push(new QueryOidsAndTypesStackFrame(queryObjectProvider, eClass, createFilteredQueryPart(partialQuery), reusable, oidsFiltered));
+				}
 			} else {
 				queryObjectProvider.push(new QueryTypeStackFrame(queryObjectProvider, eClass, reusable, partialQuery));
 			}
 			return false;
 		}
 		return true;
+	}
+	
+	private QueryPart createFilteredQueryPart(QueryPart input) throws QueryException {
+		QueryPart result = new QueryPart(input.getPackageMetaData());
+		for (TypeDef typeDef : input.getTypes()) {
+			result.addType(typeDef);
+		}
+		for (Include include : input.getIncludes()) {
+			createFilteredInclude(result, include);
+		}
+		return result;
+	}
+
+	private void createFilteredInclude(QueryPart result, Include include) throws QueryException {
+		Include newInclude = result.createInclude();
+		for (TypeDef typeDef : include.getTypes()) {
+			newInclude.addType(typeDef);
+		}
+		for (EReference field : include.getFields()) {
+			newInclude.addField(field);
+		}
+		for (Include include2 : include.getIncludes()) {
+			newInclude.addInclude(createFilteredInclude(include2));
+		}
+	}
+
+	private Include createFilteredInclude(Include inputInclude) throws QueryException {
+		Include newInclude = new Include(inputInclude.getPackageMetaData());
+		for (TypeDef typeDef : inputInclude.getTypes()) {
+			newInclude.addType(typeDef);
+		}
+		if (inputInclude.hasFields()) {
+			for (EReference field : inputInclude.getFields()) {
+				if (field.getName().equals("data")) {
+					// Skip, this is the actual filtering
+					continue;
+				}
+				newInclude.addField(field);
+			}
+		}
+		if (inputInclude.hasIncludes()) {
+			for (Include include2 : inputInclude.getIncludes()) {
+				newInclude.addInclude(createFilteredInclude(include2));
+			}
+		}
+		return newInclude;
 	}
 }

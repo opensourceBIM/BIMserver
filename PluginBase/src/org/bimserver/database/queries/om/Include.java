@@ -276,4 +276,19 @@ public class Include extends PartOfQuery implements CanInclude {
 			}
 		}
 	}
+
+	public void addType(TypeDef typeDef) {
+		if (types == null) {
+			types = new HashSet<>();
+		}
+		types.add(typeDef);
+	}
+
+	public void addField(EReference field) throws QueryException {
+		this.addField(field.getName());
+	}
+	
+	public PackageMetaData getPackageMetaData() {
+		return packageMetaData;
+	}
 }

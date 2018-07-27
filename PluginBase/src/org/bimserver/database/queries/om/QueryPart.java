@@ -42,6 +42,7 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 	private boolean includeAllFields;
 	private List<Reference> references;
 	private Tiles tiles;
+	private int minimumReuseThreshold = -1;
 	
 	public QueryPart(PackageMetaData packageMetaData) {
 		this.packageMetaData = packageMetaData;
@@ -62,6 +63,13 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 //		if (includeAllSubTypes) {
 //			types.addAll(packageMetaData.getAllSubClasses(type));
 //		}
+	}
+	
+	public void addType(TypeDef typeDef) {
+		if (types == null) {
+			types = new ArrayList<>();
+		}
+		types.add(typeDef);
 	}
 
 	public void addOid(long oid) {
@@ -257,5 +265,17 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 
 	public void setTiles(Tiles tiles) {
 		this.tiles = tiles;
+	}
+	
+	public PackageMetaData getPackageMetaData() {
+		return packageMetaData;
+	}
+
+	public void setMinimumReuseThreshold(int minimumReuseThreshold) {
+		this.minimumReuseThreshold = minimumReuseThreshold;
+	}
+	
+	public int getMinimumReuseThreshold() {
+		return minimumReuseThreshold;
 	}
 }

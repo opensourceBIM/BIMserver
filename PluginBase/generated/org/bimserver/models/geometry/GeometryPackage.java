@@ -497,13 +497,22 @@ public interface GeometryPackage extends EPackage {
 	int GEOMETRY_DATA__BOUNDS_MM = 15;
 
 	/**
+	 * The feature id for the '<em><b>Saveable Triangles</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_DATA__SAVEABLE_TRIANGLES = 16;
+
+	/**
 	 * The number of structural features of the '<em>Data</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_DATA_FEATURE_COUNT = 16;
+	int GEOMETRY_DATA_FEATURE_COUNT = 17;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.Vector4fImpl <em>Vector4f</em>}' class.
@@ -974,6 +983,17 @@ public interface GeometryPackage extends EPackage {
 	EReference getGeometryData_BoundsMm();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryData#getSaveableTriangles <em>Saveable Triangles</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Saveable Triangles</em>'.
+	 * @see org.bimserver.models.geometry.GeometryData#getSaveableTriangles()
+	 * @see #getGeometryData()
+	 * @generated
+	 */
+	EAttribute getGeometryData_SaveableTriangles();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryData#getNormalsQuantized <em>Normals Quantized</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1395,6 +1415,14 @@ public interface GeometryPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GEOMETRY_DATA__BOUNDS_MM = eINSTANCE.getGeometryData_BoundsMm();
+
+		/**
+		 * The meta object literal for the '<em><b>Saveable Triangles</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GEOMETRY_DATA__SAVEABLE_TRIANGLES = eINSTANCE.getGeometryData_SaveableTriangles();
 
 		/**
 		 * The meta object literal for the '<em><b>Normals Quantized</b></em>' reference feature.

@@ -65,6 +65,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getMostUsedColor <em>Most Used Color</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getBoundsMm <em>Bounds Mm</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getSaveableTriangles <em>Saveable Triangles</em>}</li>
  * </ul>
  *
  * @generated
@@ -331,6 +332,24 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 */
 	public void setBoundsMm(Bounds newBoundsMm) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__BOUNDS_MM, newBoundsMm);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getSaveableTriangles() {
+		return (Integer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__SAVEABLE_TRIANGLES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSaveableTriangles(int newSaveableTriangles) {
+		eSet(GeometryPackage.Literals.GEOMETRY_DATA__SAVEABLE_TRIANGLES, newSaveableTriangles);
 	}
 
 	/**

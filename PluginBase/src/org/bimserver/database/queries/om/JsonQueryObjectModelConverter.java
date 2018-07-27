@@ -481,6 +481,9 @@ public class JsonQueryObjectModelConverter {
 				throw new QueryException("\"types\" must be of type array");
 			}
 		}
+		if (objectNode.has("reuseLowerThreshold")) {
+			queryPart.setMinimumReuseThreshold(objectNode.get("reuseLowerThreshold").asInt());
+		}
 		if (objectNode.has("includeAllFields") && objectNode.get("includeAllFields").asBoolean()) {
 			queryPart.setIncludeAllFields(true);
 		}
@@ -585,13 +588,18 @@ public class JsonQueryObjectModelConverter {
 			JsonNode boundingBoxNode = objectNode.get("inBoundingBox");
 			if (boundingBoxNode instanceof ObjectNode) {
 				ObjectNode boundingBox = (ObjectNode) boundingBoxNode;
-				double x = checkFloat(boundingBox, "x");
-				double y = checkFloat(boundingBox, "y");
-				double z = checkFloat(boundingBox, "z");
-				double width = checkFloat(boundingBox, "width");
-				double height = checkFloat(boundingBox, "height");
-				double depth = checkFloat(boundingBox, "depth");
-				InBoundingBox inBoundingBox = new InBoundingBox(x, y, z, width, height, depth);
+				InBoundingBox inBoundingBox = null;
+				if (boundingBox.has("x") && boundingBox.has("y") && boundingBox.has("z") && boundingBox.has("width") && boundingBox.has("height") && boundingBox.has("depth")) {
+					double x = checkFloat(boundingBox, "x");
+					double y = checkFloat(boundingBox, "y");
+					double z = checkFloat(boundingBox, "z");
+					double width = checkFloat(boundingBox, "width");
+					double height = checkFloat(boundingBox, "height");
+					double depth = checkFloat(boundingBox, "depth");
+					inBoundingBox = new InBoundingBox(x, y, z, width, height, depth);
+				} else {
+					inBoundingBox = new InBoundingBox();
+				}
 				if (boundingBox.has("densityLowerThreshold")) {
 					inBoundingBox.setDensityLowerThreshold((float) boundingBox.get("densityLowerThreshold").asDouble());
 				}
@@ -621,6 +629,9 @@ public class JsonQueryObjectModelConverter {
 			}
 			if (tilesNode.has("densityUpperThreshold")) {
 				tiles.setMinimumThreshold((float) tilesNode.get("densityUpperThreshold").asDouble());
+			}
+			if (tilesNode.has("reuseLowerThreshold")) {
+				tiles.setMinimumReuseThreshold((float) tilesNode.get("reuseLowerThreshold").asInt());
 			}
 			if (tilesNode.has("geometryDataToReuse")) {
 				ArrayNode geometryDataToReuse = (ArrayNode) tilesNode.get("geometryDataToReuse");
@@ -662,7 +673,7 @@ public class JsonQueryObjectModelConverter {
 		Iterator<String> fieldNames = objectNode.fieldNames();
 		while (fieldNames.hasNext()) {
 			String fieldName = fieldNames.next();
-			if (fieldName.equals("includeAllFields") || fieldName.equals("type") || fieldName.equals("types") || fieldName.equals("oid") || fieldName.equals("oids") || fieldName.equals("guid") || fieldName.equals("guids") || fieldName.equals("name") || fieldName.equals("names") || fieldName.equals("properties") || fieldName.equals("inBoundingBox") || fieldName.equals("include") || fieldName.equals("includes") || fieldName.equalsIgnoreCase("includeAllSubtypes") || fieldName.equals("classifications") || fieldName.equals("doublebuffer") || fieldName.equals("version")  || fieldName.equals("loaderSettings") || fieldName.equals("tiles")) {
+			if (fieldName.equals("includeAllFields") || fieldName.equals("type") || fieldName.equals("types") || fieldName.equals("oid") || fieldName.equals("oids") || fieldName.equals("guid") || fieldName.equals("guids") || fieldName.equals("name") || fieldName.equals("names") || fieldName.equals("properties") || fieldName.equals("inBoundingBox") || fieldName.equals("include") || fieldName.equals("includes") || fieldName.equalsIgnoreCase("includeAllSubtypes") || fieldName.equals("classifications") || fieldName.equals("doublebuffer") || fieldName.equals("version")  || fieldName.equals("loaderSettings") || fieldName.equals("tiles") || fieldName.equals("reuseLowerThreshold")) {
 				// fine
 			} else {
 				throw new QueryException("Unknown field: \"" + fieldName + "\"");

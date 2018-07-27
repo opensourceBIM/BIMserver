@@ -60,6 +60,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getType <em>Type</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getMostUsedColor <em>Most Used Color</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getBoundsMm <em>Bounds Mm</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#getSaveableTriangles <em>Saveable Triangles</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData()
@@ -409,6 +410,32 @@ public interface GeometryData extends IdEObject {
 	 * @generated
 	 */
 	void setBoundsMm(Bounds value);
+
+	/**
+	 * Returns the value of the '<em><b>Saveable Triangles</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Saveable Triangles</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Saveable Triangles</em>' attribute.
+	 * @see #setSaveableTriangles(int)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_SaveableTriangles()
+	 * @model
+	 * @generated
+	 */
+	int getSaveableTriangles();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getSaveableTriangles <em>Saveable Triangles</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Saveable Triangles</em>' attribute.
+	 * @see #getSaveableTriangles()
+	 * @generated
+	 */
+	void setSaveableTriangles(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Normals Quantized</b></em>' reference.

@@ -4,10 +4,12 @@ public class GeometryObject {
 
 	private long oid;
 	private long roid;
+	private int saveableTriangles;
 
-	public GeometryObject(long oid, long roid) {
+	public GeometryObject(long oid, long roid, int saveableTriangles) {
 		this.oid = oid;
 		this.roid = roid;
+		this.saveableTriangles = saveableTriangles;
 	}
 	
 	public long getOid() {
@@ -16,5 +18,9 @@ public class GeometryObject {
 	
 	public long getRoid() {
 		return roid;
+	}
+	
+	public int getSaveableTriangles() {
+		return saveableTriangles;
 	}
 }

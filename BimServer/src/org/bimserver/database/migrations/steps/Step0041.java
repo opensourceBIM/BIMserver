@@ -74,6 +74,8 @@ public class Step0041 extends Migration {
 		boundsMmUntransformed.getEAnnotations().add(createDbEmbedReferenceAnnotation());
 		boundsMmUntransformed.getEAnnotations().add(createEmbedsReferenceAnnotation());
 		boundsMmUntransformed.getEAnnotations().add(createHiddenAnnotation());
+		
+		schema.createEAttribute(geometryData, "saveableTriangles", EcorePackage.eINSTANCE.getEInt());
 	}
 
 	@Override

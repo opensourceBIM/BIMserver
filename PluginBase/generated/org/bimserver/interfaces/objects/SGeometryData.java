@@ -45,6 +45,7 @@ public class SGeometryData implements SDataBase
 	private short type;
 	private SVector4f mostUsedColor;
 	private SBounds boundsMm;
+	private int saveableTriangles;
 
 	public long getOid() {
 		return this.oid;
@@ -120,6 +121,9 @@ public class SGeometryData implements SDataBase
 		if (sField.getName().equals("boundsMm")) {
 			return getBoundsMm();
 		}
+		if (sField.getName().equals("saveableTriangles")) {
+			return getSaveableTriangles();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -192,6 +196,10 @@ public class SGeometryData implements SDataBase
 		}
 		if (sField.getName().equals("boundsMm")) {
 			setBoundsMm((SBounds)val);
+			return;
+		}
+		if (sField.getName().equals("saveableTriangles")) {
+			setSaveableTriangles((Integer)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -335,6 +343,14 @@ public class SGeometryData implements SDataBase
 		this.boundsMm = boundsMm;
 	}
 	
+	
+	public int getSaveableTriangles() {
+		return saveableTriangles;
+	}
+
+	public void setSaveableTriangles(int saveableTriangles) {
+		this.saveableTriangles = saveableTriangles;
+	}
 	
 	@Override
 	public int hashCode() {

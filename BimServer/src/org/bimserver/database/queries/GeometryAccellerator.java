@@ -134,16 +134,19 @@ public class GeometryAccellerator {
 							// Special case, we now have to use the complete
 							// bounding box of all reused objects, instead of using
 							// the object's aabb
-							HashMapVirtualObject geometryData = queryObjectProvider.getByOid(geometryDataId);
+							AbstractHashMapVirtualObject geometryData = geometry.getDirectFeature(GeometryPackage.eINSTANCE.getGeometryInfo_Data());
 							boundsMm = geometryData.getDirectFeature(GeometryPackage.eINSTANCE.getGeometryData_BoundsMm());
 						}
 						if (boundsMm != null) {
 							AbstractHashMapVirtualObject min = boundsMm.getDirectFeature(GeometryPackage.eINSTANCE.getBounds_Min());
 							AbstractHashMapVirtualObject max = boundsMm.getDirectFeature(GeometryPackage.eINSTANCE.getBounds_Max());
 	
+							AbstractHashMapVirtualObject geometryData = geometry.getDirectFeature(GeometryPackage.eINSTANCE.getGeometryInfo_Data());
+							int saveableTriangles = (int)geometryData.get("saveableTriangles");
+							
 							org.bimserver.database.queries.Bounds objectBounds = new org.bimserver.database.queries.Bounds((double) min.get("x"), (double) min.get("y"), (double) min.get("z"), (double) max.get("x"), (double) max.get("y"),
 									(double) max.get("z"));
-							octree.add(new GeometryObject(next.getOid(), next.getRoid()), objectBounds);
+							octree.add(new GeometryObject(next.getOid(), next.getRoid(), saveableTriangles), objectBounds);
 						}
 					}
 				}

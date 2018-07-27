@@ -20,12 +20,12 @@ package org.bimserver.database.queries.om;
 import org.bimserver.geometry.AxisAlignedBoundingBox;
 
 public class InBoundingBox extends PartOfQuery {
-	private double x;
-	private double y;
-	private double z;
-	private double width;
-	private double height;
-	private double depth;
+	private double x = Double.NaN;
+	private double y = Double.NaN;
+	private double z = Double.NaN;
+	private double width = Double.NaN;
+	private double height = Double.NaN;
+	private double depth = Double.NaN;
 	private boolean partial;
 	private boolean useCenterPoint;
 	private boolean excludeOctants;
@@ -48,6 +48,9 @@ public class InBoundingBox extends PartOfQuery {
 		this.width = boundingBox.getMax()[0] - boundingBox.getMin()[0];
 		this.height = boundingBox.getMax()[1] - boundingBox.getMin()[1];
 		this.depth = boundingBox.getMax()[2] - boundingBox.getMin()[2];
+	}
+
+	public InBoundingBox() {
 	}
 
 	public double getDepth() {
