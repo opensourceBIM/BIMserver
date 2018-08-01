@@ -183,7 +183,11 @@ service ServiceInterface {
 
 	rpc getModelBounds (GetModelBoundsRequest) returns (GetModelBoundsResponse);
 
+	rpc getModelBoundsForConcreteRevision (GetModelBoundsForConcreteRevisionRequest) returns (GetModelBoundsForConcreteRevisionResponse);
+
 	rpc getModelBoundsUntransformed (GetModelBoundsUntransformedRequest) returns (GetModelBoundsUntransformedResponse);
+
+	rpc getModelBoundsUntransformedForConcreteRevision (GetModelBoundsUntransformedForConcreteRevisionRequest) returns (GetModelBoundsUntransformedForConcreteRevisionResponse);
 
 	rpc getModelCheckerInstance (GetModelCheckerInstanceRequest) returns (GetModelCheckerInstanceResponse);
 
@@ -1550,11 +1554,29 @@ message GetModelBoundsResponse {
 	optional SBounds value = 2;
 }
 
+message GetModelBoundsForConcreteRevisionRequest {
+	optional int64 croid = 1;
+}
+
+message GetModelBoundsForConcreteRevisionResponse {
+	optional string errorMessage = 1;
+	optional SBounds value = 2;
+}
+
 message GetModelBoundsUntransformedRequest {
 	optional int64 roid = 1;
 }
 
 message GetModelBoundsUntransformedResponse {
+	optional string errorMessage = 1;
+	optional SBounds value = 2;
+}
+
+message GetModelBoundsUntransformedForConcreteRevisionRequest {
+	optional int64 croid = 1;
+}
+
+message GetModelBoundsUntransformedForConcreteRevisionResponse {
 	optional string errorMessage = 1;
 	optional SBounds value = 2;
 }
@@ -1846,8 +1868,9 @@ message GetTileCountsRequest {
 	repeated int64 roids = 1;
 	repeated string excludedTypes = 2;
 	repeated int64 geometryIdsToReuse = 3;
-	optional float threshold = 4;
-	optional int32 depth = 5;
+	optional float minimumThreshold = 4;
+	optional float maximumThreshold = 5;
+	optional int32 depth = 6;
 }
 
 message GetTileCountsResponse {

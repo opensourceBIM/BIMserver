@@ -1,15 +1,16 @@
 package org.bimserver.database.queries;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
-public class Node<V> {
+public class Node<V extends Comparable<V>> {
 	private final Node<V>[] nodes = new Node[8];
 	private Bounds bounds;
 	private List<ObjectWrapper<V>> values = new ArrayList<>();
 	private int level;
 	private int id;
-	private static int q;
 	private int deepestLevel;
 	private int maxDepth;
 	private Octree<V> root;
@@ -25,6 +26,17 @@ public class Node<V> {
 		this.maxDepth = maxDepth;
 	}
 	
+	public int size() {
+		int total = 0;
+		for (Node<V> node : nodes) {
+			if (node != null) {
+				total += node.size();
+			}
+		}
+		total += values.size();
+		return total;
+	}
+	
 	protected void setRoot(Octree<V> root) {
 		this.root = root;
 	}
@@ -33,7 +45,7 @@ public class Node<V> {
 		return id;
 	}
 	
-	public List<ObjectWrapper<V>> getValues() {
+	public Collection<ObjectWrapper<V>> getValues() {
 		return values;
 	}
 
@@ -63,7 +75,9 @@ public class Node<V> {
 		}
 		// Did not fit in any of the children
 //		System.out.println(q++ + ", " + this.level);
-		values.add(new ObjectWrapper<>(bounds, v));
+		if (!values.add(new ObjectWrapper<>(bounds, v))) {
+			System.out.println();
+		}
 		return level;
 	}
 	
@@ -109,5 +123,9 @@ public class Node<V> {
 				child.traverseBreathFirst(traverser, level);
 			}
 		}
+	}
+
+	public void sort() {
+		Collections.sort(this.values);
 	}
 }

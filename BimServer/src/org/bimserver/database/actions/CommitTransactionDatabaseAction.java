@@ -203,7 +203,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 				StreamingGeometryGenerator streamingGeometryGenerator = new StreamingGeometryGenerator(bimServer, null, -1L, report);
 				int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(concreteRevision.getProject(), concreteRevision);
 
-				QueryContext queryContext = new QueryContext(getDatabaseSession(), packageMetaData, project.getId(), concreteRevision.getId(), concreteRevision.getRevisions().get(0).getOid(), highestStopId);
+				QueryContext queryContext = new QueryContext(getDatabaseSession(), packageMetaData, project.getId(), concreteRevision.getId(), concreteRevision.getRevisions().get(0).getOid(), concreteRevision.getOid(), highestStopId);
 
 				Map<EClass, Long> startOids = getDatabaseSession().getStartOids();
 				if (startOids == null) {

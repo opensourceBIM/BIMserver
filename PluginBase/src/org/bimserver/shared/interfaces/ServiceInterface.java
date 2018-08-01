@@ -1512,6 +1512,9 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getModelBounds")
 	SBounds getModelBounds(@WebParam(name = "roid", partName = "getModelBounds.roid") Long roid) throws ServerException, UserException;
 	
+	@WebMethod(action = "getModelBoundsForConcreteRevision")
+	SBounds getModelBoundsForConcreteRevision(@WebParam(name = "croid", partName = "getModelBoundsForConcreteRevision.croid") Long croid) throws ServerException, UserException;
+	
 	@WebMethod(action = "regenerateGeometry")
 	Long regenerateGeometry(
 		@WebParam(name = "roid", partName = "regenerateGeometry.roid") Long roid,
@@ -1520,6 +1523,10 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "getModelBoundsUntransformed")
 	SBounds getModelBoundsUntransformed(
 		@WebParam(name = "roid", partName = "getModelBoundsUntransformed.roid") Long roid) throws ServerException, UserException;
+
+	@WebMethod(action = "getModelBoundsUntransformedForConcreteRevision")
+	SBounds getModelBoundsUntransformedForConcreteRevision(
+			@WebParam(name = "croid", partName = "getModelBoundsUntransformedForConcreteRevision.croid") Long croid) throws ServerException, UserException;
 	
 	@WebMethod(action = "getDensityThreshold")
 	SDensity getDensityThreshold(
@@ -1532,7 +1539,8 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "roids", partName = "getTileCounts.roids") Set<Long> roids, 
 		@WebParam(name = "excludedTypes", partName = "getTileCounts.excludedTypes") Set<String> excludedTypes,
 		@WebParam(name = "geometryIdsToReuse", partName = "getTileCounts.geometryIdsToReuse") Set<Long> geometryIdsToReuse,
-		@WebParam(name = "threshold", partName = "getTileCounts.threshold") Float threshold,
+		@WebParam(name = "minimumThreshold", partName = "getTileCounts.minimumThreshold") Float minimumThreshold,
+		@WebParam(name = "maximumThreshold", partName = "getTileCounts.maximumThreshold") Float maximumThreshold,
 		@WebParam(name = "depth", partName = "getTileCounts.depth") Integer depth) throws ServerException, UserException;
 	
 	@WebMethod(action = "getGeometryDataToReuse")

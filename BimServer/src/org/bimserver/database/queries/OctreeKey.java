@@ -12,8 +12,9 @@ public class OctreeKey {
 	private final Set<Long> geometryIdsToReuse;
 	private final int excludedClassesHashCode;
 	private final int geometryIdsToReuseHashCode;
+	private float maximumThreshold;
 
-	public OctreeKey(Set<Long> roids, Set<String> excludedClasses, Set<Long> geometryIdsToReuse, int maxDepth, float minimumThreshold) {
+	public OctreeKey(Set<Long> roids, Set<String> excludedClasses, Set<Long> geometryIdsToReuse, int maxDepth, float minimumThreshold, float maximumThreshold) {
 		this.roids = roids;
 		if (excludedClasses != null) {
 			this.excludedClasses = excludedClasses;
@@ -26,6 +27,7 @@ public class OctreeKey {
 		this.geometryIdsToReuseHashCode = geometryIdsToReuse.hashCode();
 		this.maxDepth = maxDepth;
 		this.minimumThreshold = minimumThreshold;
+		this.maximumThreshold = maximumThreshold;
 	}
 
 	public Set<Long> getRoids() {
@@ -56,6 +58,7 @@ public class OctreeKey {
 		result = prime * result + geometryIdsToReuseHashCode;
 		result = prime * result + maxDepth;
 		result = prime * result + Float.floatToIntBits(minimumThreshold);
+		result = prime * result + Float.floatToIntBits(maximumThreshold);
 		result = prime * result + ((roids == null) ? 0 : roids.hashCode());
 		return result;
 	}
@@ -77,6 +80,8 @@ public class OctreeKey {
 			return false;
 		if (Float.floatToIntBits(minimumThreshold) != Float.floatToIntBits(other.minimumThreshold))
 			return false;
+		if (Float.floatToIntBits(maximumThreshold) != Float.floatToIntBits(other.maximumThreshold))
+			return false;
 		if (roids == null) {
 			if (other.roids != null)
 				return false;
@@ -96,5 +101,9 @@ public class OctreeKey {
 		builder.append(minimumThreshold + "\n");
 		builder.append(roids + "\n");
 		return builder.toString();
+	}
+	
+	public float getMaximumThreshold() {
+		return maximumThreshold;
 	}
 }

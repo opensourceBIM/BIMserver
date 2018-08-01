@@ -50,7 +50,7 @@ public class ConcreteRevisionStackFrame extends StackFrame {
 		packageMetaData = queryObjectProvider.getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 		Revision revision = concreteRevision.getRevisions().get(0);
 
-		queryContext = new QueryContext(queryObjectProvider.getDatabaseSession(), packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), revision.getOid(), highestStopId);
+		queryContext = new QueryContext(queryObjectProvider.getDatabaseSession(), packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), revision.getOid(), concreteRevision.getOid(), highestStopId);
 		if (concreteRevision.getOidCounters() != null) {
 			synchronized (getClass()) {
 				if (reusableQueryContexts.containsKey(concreteRevision.getOid())) {

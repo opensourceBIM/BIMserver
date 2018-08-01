@@ -58,8 +58,8 @@ public class GeometryAccellerator {
 		});
 	}
 
-	public Octree<GeometryObject> getOctree(Set<Long> roids, Set<String> excludedClasses, Set<Long> geometryIdsToReuse, int maxDepth, float minimumThreshold) {
-		OctreeKey key = new OctreeKey(roids, excludedClasses, geometryIdsToReuse, maxDepth, minimumThreshold);
+	public Octree<GeometryObject> getOctree(Set<Long> roids, Set<String> excludedClasses, Set<Long> geometryIdsToReuse, int maxDepth, float minimumThreshold, float maximumThreshold) {
+		OctreeKey key = new OctreeKey(roids, excludedClasses, geometryIdsToReuse, maxDepth, minimumThreshold, maximumThreshold);
 //		return generateOctree(key);
 		try {
 			return octrees.get(key);
@@ -146,13 +146,20 @@ public class GeometryAccellerator {
 							
 							org.bimserver.database.queries.Bounds objectBounds = new org.bimserver.database.queries.Bounds((double) min.get("x"), (double) min.get("y"), (double) min.get("z"), (double) max.get("x"), (double) max.get("y"),
 									(double) max.get("z"));
-							octree.add(new GeometryObject(next.getOid(), next.getRoid(), saveableTriangles), objectBounds);
+							octree.add(new GeometryObject(next.getOid(), next.getRoid(), saveableTriangles, density), objectBounds);
 						}
 					}
 				}
 				next = queryObjectProvider.next();
 			}
-
+			
+			octree.traverseBreathFirst(new Traverser<GeometryObject>() {
+				@Override
+				public void traverse(Node<GeometryObject> t) {
+					t.sort();
+				}
+			});
+			
 			long end = System.nanoTime();
 //			System.out.println("generateOctree " + ((end - start) / 1000000) + " ms");
 //			System.out.println(key.toString());

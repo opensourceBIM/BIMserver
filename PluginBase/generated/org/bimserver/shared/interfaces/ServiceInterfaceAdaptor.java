@@ -333,7 +333,15 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
+	public org.bimserver.interfaces.objects.SBounds getModelBoundsForConcreteRevision(java.lang.Long croid) throws UserException, ServerException {
+		return null;
+	}
+	
 	public org.bimserver.interfaces.objects.SBounds getModelBoundsUntransformed(java.lang.Long roid) throws UserException, ServerException {
+		return null;
+	}
+	
+	public org.bimserver.interfaces.objects.SBounds getModelBoundsUntransformedForConcreteRevision(java.lang.Long croid) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -433,7 +441,7 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
-	public java.util.List<java.lang.Integer> getTileCounts(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> excludedTypes, java.util.Set<java.lang.Long> geometryIdsToReuse, java.lang.Float threshold, java.lang.Integer depth) throws UserException, ServerException {
+	public java.util.List<java.lang.Integer> getTileCounts(java.util.Set<java.lang.Long> roids, java.util.Set<java.lang.String> excludedTypes, java.util.Set<java.lang.Long> geometryIdsToReuse, java.lang.Float minimumThreshold, java.lang.Float maximumThreshold, java.lang.Integer depth) throws UserException, ServerException {
 		return null;
 	}
 	

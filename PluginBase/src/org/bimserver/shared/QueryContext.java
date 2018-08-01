@@ -31,13 +31,15 @@ public class QueryContext {
 	private DatabaseInterface databaseInterface;
 	private int highestStopId;
 	private Map<EClass, Long> oidCounters;
+	private long croid;
 	
-	public QueryContext(DatabaseInterface databaseInterface, PackageMetaData packageMetaData, int pid, int rid, long roid, int highestStopId) {
+	public QueryContext(DatabaseInterface databaseInterface, PackageMetaData packageMetaData, int pid, int rid, long roid, long croid, int highestStopId) {
 		this.databaseInterface = databaseInterface;
 		this.packageMetaData = packageMetaData;
 		this.pid = pid;
 		this.rid = rid;
 		this.roid = roid;
+		this.croid = croid;
 		this.highestStopId = highestStopId;
 	}
 	
@@ -71,5 +73,9 @@ public class QueryContext {
 
 	public void setOidCounters(Map<EClass, Long> oidCounters) {
 		this.oidCounters = oidCounters;
+	}
+	
+	public long getCroid() {
+		return croid;
 	}
 }

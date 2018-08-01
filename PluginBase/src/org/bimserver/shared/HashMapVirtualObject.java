@@ -532,6 +532,10 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 		return reusable.getRoid();
 	}
 
+	public long getCroid() {
+		return reusable.getCroid();
+	}
+
 	public boolean has(String key) {
 		EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(key);
 		return map.containsKey(eStructuralFeature) && map.get(eStructuralFeature) != null;

@@ -8,9 +8,10 @@ public class Tiles {
 	private final Set<Integer> tileIds = new HashSet<>();
 	private final Set<Long> geometryIdsToReuse = new HashSet<>();
 	private float minimumThreshold;
+	private float maximumThreshold;
 	private Object nodes;
 	private int maxDepth;
-	private float minimumReuseThreshold = -1;
+	private int minimumReuseThreshold = -1;
 	
 	public void add(int tileId) {
 		tileIds.add(tileId);
@@ -52,11 +53,19 @@ public class Tiles {
 		this.maxDepth = maxDepth;
 	}
 
-	public void setMinimumReuseThreshold(float minimumReuseThreshold) {
+	public void setMinimumReuseThreshold(int minimumReuseThreshold) {
 		this.minimumReuseThreshold = minimumReuseThreshold;
 	}
 	
-	public float getMinimumReuseThreshold() {
+	public int getMinimumReuseThreshold() {
 		return minimumReuseThreshold;
+	}
+	
+	public float getMaximumThreshold() {
+		return maximumThreshold;
+	}
+	
+	public void setMaximumThreshold(float maximumThreshold) {
+		this.maximumThreshold = maximumThreshold;
 	}
 }

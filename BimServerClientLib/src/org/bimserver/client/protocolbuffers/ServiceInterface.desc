@@ -1,5 +1,5 @@
 
-Ùù
+Ê£
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -835,10 +835,20 @@ SIfcHeader
 roid ("X
 GetModelBoundsResponse
 errorMessage (	(
+value (2.org.bimserver.pb.SBounds"9
+(GetModelBoundsForConcreteRevisionRequest
+croid ("k
+)GetModelBoundsForConcreteRevisionResponse
+errorMessage (	(
 value (2.org.bimserver.pb.SBounds"2
 "GetModelBoundsUntransformedRequest
 roid ("e
 #GetModelBoundsUntransformedResponse
+errorMessage (	(
+value (2.org.bimserver.pb.SBounds"F
+5GetModelBoundsUntransformedForConcreteRevisionRequest
+croid ("x
+6GetModelBoundsUntransformedForConcreteRevisionResponse
 errorMessage (	(
 value (2.org.bimserver.pb.SBounds"0
 GetModelCheckerInstanceRequest
@@ -1020,13 +1030,14 @@ settingsId (
 poid ("á
 ,GetSuggestedDeserializerForExtensionResponse
 errorMessage (	A
-value (22.org.bimserver.pb.SDeserializerPluginConfiguration"z
+value (22.org.bimserver.pb.SDeserializerPluginConfiguration"õ
 GetTileCountsRequest
 roids (
 excludedTypes (	
-geometryIdsToReuse (
-	threshold (
-depth ("<
+geometryIdsToReuse (
+minimumThreshold (
+maximumThreshold (
+depth ("<
 GetTileCountsResponse
 errorMessage (	
 value ("/
@@ -1539,7 +1550,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2¢}
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2áÄ
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
@@ -1622,8 +1633,10 @@ deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserRes
 getGeometryInfo(.org.bimserver.pb.GetGeometryInfoRequest).org.bimserver.pb.GetGeometryInfoResponse]
 getIfcHeader%.org.bimserver.pb.GetIfcHeaderRequest&.org.bimserver.pb.GetIfcHeaderResponse´
 &getLastExtendedDataOfRevisionAndSchema?.org.bimserver.pb.GetLastExtendedDataOfRevisionAndSchemaRequest@.org.bimserver.pb.GetLastExtendedDataOfRevisionAndSchemaResponsec
-getModelBounds'.org.bimserver.pb.GetModelBoundsRequest(.org.bimserver.pb.GetModelBoundsResponseä
-getModelBoundsUntransformed4.org.bimserver.pb.GetModelBoundsUntransformedRequest5.org.bimserver.pb.GetModelBoundsUntransformedResponse~
+getModelBounds'.org.bimserver.pb.GetModelBoundsRequest(.org.bimserver.pb.GetModelBoundsResponseú
+!getModelBoundsForConcreteRevision:.org.bimserver.pb.GetModelBoundsForConcreteRevisionRequest;.org.bimserver.pb.GetModelBoundsForConcreteRevisionResponseä
+getModelBoundsUntransformed4.org.bimserver.pb.GetModelBoundsUntransformedRequest5.org.bimserver.pb.GetModelBoundsUntransformedResponse√
+.getModelBoundsUntransformedForConcreteRevisionG.org.bimserver.pb.GetModelBoundsUntransformedForConcreteRevisionRequestH.org.bimserver.pb.GetModelBoundsUntransformedForConcreteRevisionResponse~
 getModelCheckerInstance0.org.bimserver.pb.GetModelCheckerInstanceRequest1.org.bimserver.pb.GetModelCheckerInstanceResponsel
 getModelMaxBounds*.org.bimserver.pb.GetModelMaxBoundsRequest+.org.bimserver.pb.GetModelMaxBoundsResponsel
 getModelMinBounds*.org.bimserver.pb.GetModelMinBoundsRequest+.org.bimserver.pb.GetModelMinBoundsResponse`

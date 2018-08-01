@@ -53,7 +53,7 @@ public class StartFrame extends StackFrame {
 					}
 				}
 
-				Octree<GeometryObject> octree = queryObjectProvider.getBimServer().getGeometryAccellerator().getOctree(roids, exludeStrings, tiles.getGeometryIdsToReuse(), tiles.getMaxDepth(), tiles.getMinimumThreshold());
+				Octree<GeometryObject> octree = queryObjectProvider.getBimServer().getGeometryAccellerator().getOctree(roids, exludeStrings, tiles.getGeometryIdsToReuse(), tiles.getMaxDepth(), tiles.getMinimumThreshold(), tiles.getMaximumThreshold());
 				Set<Node<GeometryObject>> nodes = new HashSet<>();
 				tiles.setNodes(nodes);
 				for (Integer tileId : tiles.getTileIds()) {

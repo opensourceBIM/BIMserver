@@ -202,7 +202,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 
 			newRevision = result.getRevisions().get(0);
 			long newRoid = newRevision.getOid();
-			QueryContext queryContext = new QueryContext(getDatabaseSession(), packageMetaData, result.getConcreteRevision().getProject().getId(), result.getConcreteRevision().getId(), newRoid, -1); // TODO check
+			QueryContext queryContext = new QueryContext(getDatabaseSession(), packageMetaData, result.getConcreteRevision().getProject().getId(), result.getConcreteRevision().getId(), newRoid, result.getConcreteRevision().getOid(), -1); // TODO check
 			
 			AtomicLong bytesRead = new AtomicLong();
 			

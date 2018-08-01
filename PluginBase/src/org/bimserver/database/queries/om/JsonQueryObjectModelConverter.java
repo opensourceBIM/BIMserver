@@ -645,8 +645,11 @@ public class JsonQueryObjectModelConverter {
 			if (tilesNode.has("densityUpperThreshold")) {
 				tiles.setMinimumThreshold((float) tilesNode.get("densityUpperThreshold").asDouble());
 			}
+			if (tilesNode.has("densityLowerThreshold")) {
+				tiles.setMaximumThreshold((float) tilesNode.get("densityLowerThreshold").asDouble());
+			}
 			if (tilesNode.has("reuseLowerThreshold")) {
-				tiles.setMinimumReuseThreshold((float) tilesNode.get("reuseLowerThreshold").asInt());
+				tiles.setMinimumReuseThreshold(tilesNode.get("reuseLowerThreshold").asInt());
 			}
 			if (tilesNode.has("geometryDataToReuse")) {
 				ArrayNode geometryDataToReuse = (ArrayNode) tilesNode.get("geometryDataToReuse");

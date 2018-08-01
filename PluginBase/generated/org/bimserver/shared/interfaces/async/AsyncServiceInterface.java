@@ -429,7 +429,17 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetModelBoundsForConcreteRevisionCallback {
+		void success(org.bimserver.interfaces.objects.SBounds result);
+		void error(Throwable e);
+	}
+	
 	public interface GetModelBoundsUntransformedCallback {
+		void success(org.bimserver.interfaces.objects.SBounds result);
+		void error(Throwable e);
+	}
+	
+	public interface GetModelBoundsUntransformedForConcreteRevisionCallback {
 		void success(org.bimserver.interfaces.objects.SBounds result);
 		void error(Throwable e);
 	}
@@ -1699,11 +1709,35 @@ public class AsyncServiceInterface {
 		});
 	}
 	
+	public void getModelBoundsForConcreteRevision(final java.lang.Long croid, final GetModelBoundsForConcreteRevisionCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getModelBoundsForConcreteRevision(croid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getModelBoundsUntransformed(final java.lang.Long roid, final GetModelBoundsUntransformedCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
 					callback.success(syncService.getModelBoundsUntransformed(roid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getModelBoundsUntransformedForConcreteRevision(final java.lang.Long croid, final GetModelBoundsUntransformedForConcreteRevisionCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getModelBoundsUntransformedForConcreteRevision(croid));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -1999,11 +2033,11 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void getTileCounts(final java.util.Set<java.lang.Long> roids, final java.util.Set<java.lang.String> excludedTypes, final java.util.Set<java.lang.Long> geometryIdsToReuse, final java.lang.Float threshold, final java.lang.Integer depth, final GetTileCountsCallback callback) {
+	public void getTileCounts(final java.util.Set<java.lang.Long> roids, final java.util.Set<java.lang.String> excludedTypes, final java.util.Set<java.lang.Long> geometryIdsToReuse, final java.lang.Float minimumThreshold, final java.lang.Float maximumThreshold, final java.lang.Integer depth, final GetTileCountsCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.getTileCounts(roids, excludedTypes, geometryIdsToReuse, threshold, depth));
+					callback.success(syncService.getTileCounts(roids, excludedTypes, geometryIdsToReuse, minimumThreshold, maximumThreshold, depth));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Octree<V> extends Node<V> {
+public class Octree<V extends Comparable<V>> extends Node<V> {
 
 	private final Map<Integer, Node<V>> list = new HashMap<>();
 	

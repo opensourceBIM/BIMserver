@@ -50,7 +50,7 @@ public class CreateObjectChange implements Change {
 	public void execute(Transaction transaction) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		PackageMetaData packageMetaData = transaction.getDatabaseSession().getMetaDataManager().getPackageMetaData(transaction.getProject().getSchema());
 
-		QueryContext queryContext = new QueryContext(transaction.getDatabaseSession(), packageMetaData, transaction.getConcreteRevision().getProject().getId(), transaction.getPreviousRevision() == null ? 1 : transaction.getPreviousRevision().getRid() + 1, -1, 0); // TODO
+		QueryContext queryContext = new QueryContext(transaction.getDatabaseSession(), packageMetaData, transaction.getConcreteRevision().getProject().getId(), transaction.getPreviousRevision() == null ? 1 : transaction.getPreviousRevision().getRid() + 1, -1, -1, 0); // TODO
 		
 		if (!ChangeHelper.canBeChanged(eClass)) {
 			throw new UserException("Only objects from the following schemas are allowed to be changed: Ifc2x3tc1 and IFC4, this object (" + eClass.getName() + ") is from the \"" + eClass.getEPackage().getName() + "\" package");

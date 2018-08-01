@@ -150,7 +150,9 @@ public class QueryPartStackFrame extends StackFrame {
 				QueryPart filteredQueryPart = createFilteredQueryPart(partialQuery);
 				Set<Node<GeometryObject>> nodes = (Set<Node<GeometryObject>>) tiles.getNodes();
 				for (Node<GeometryObject> node : nodes) {
+					float last = 0;
 					for (ObjectWrapper<GeometryObject> objectWrapper : node.getValues()) {
+						last = objectWrapper.getV().getDensity();
 						GeometryObject geometryObject = objectWrapper.getV();
 						if (geometryObject.getRoid() == reusable.getRoid()) {
 							long objectId = geometryObject.getOid();
