@@ -1548,4 +1548,8 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "roids", partName = "getGeometryDataToReuse.roids") Set<Long> roids,
 		@WebParam(name = "excludedTypes", partName = "getGeometryDataToReuse.excludedTypes") Set<String> excludedTypes,
 		@WebParam(name = "trianglesToSave", partName = "getGeometryDataToReuse.trianglesToSave") Integer trianglesToSave) throws UserException, ServerException;
+
+	@WebMethod(action = "listBoundingBoxes")
+	List<SBounds> listBoundingBoxes(
+		@WebParam(name = "roids", partName = "getGeometryDataToReuse.roids") Set<Long> roids) throws ServerException, UserException;
 }

@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -221,7 +222,6 @@ import org.bimserver.models.store.CheckinRevision;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.CompareResult;
 import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.Density;
 import org.bimserver.models.store.DeserializerPluginConfiguration;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.ExtendedDataSchema;
@@ -3141,5 +3141,58 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	@Override
 	public Set<Long> getGeometryDataToReuse(Set<Long> roids, Set<String> excludedTypes, Integer trianglesToSave) {
 		return getBimServer().getGeometryAccellerator().getGeometryDataToReuse(roids, excludedTypes, trianglesToSave);
+	}
+	
+	public List<SBounds> listBoundingBoxes(Set<Long> roids) throws ServerException, UserException {
+		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+			List<SBounds> results = new ArrayList<>();
+			Set<Region> regions = new HashSet<>();
+			for (long roid : roids) {
+				Revision revision = session.get(roid, OldQuery.getDefault());
+				for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
+					Bounds bounds = concreteRevision.getBounds();
+					
+					if (bounds.getMin().getX() == Double.MAX_VALUE || bounds.getMin().getY() == Double.MAX_VALUE || bounds.getMin().getZ() == Double.MAX_VALUE ||
+							bounds.getMax().getX() == -Double.MAX_VALUE || bounds.getMax().getY() == -Double.MAX_VALUE || bounds.getMax().getZ() == -Double.MAX_VALUE) {
+						// Probably no objects or weird error, let's skip this one
+						continue;
+					}
+					
+					scaleBounds(bounds, concreteRevision.getMultiplierToMm());
+					dump(bounds);
+					boolean integrated = false;
+					for (Region region : regions) {
+						if (region.canAccept(bounds)) {
+							region.integrate(bounds);
+							integrated = true;
+							break;
+						}
+					}
+					if (!integrated) {
+						Region region = new Region(bounds);
+						regions.add(region);
+					}
+				}
+			}
+			for (Region region : regions) {
+				results.add(region.toSBounds());
+			}
+			return results;
+		} catch (Exception e) {
+			return handleException(e);
+		}
+	}
+
+	private void dump(Bounds bounds) {
+		System.out.println(bounds.getMin().getX() + ", " + bounds.getMin().getY() + ", " + bounds.getMin().getZ() + "   " + bounds.getMax().getX() + ", " + bounds.getMax().getY() + ", " + bounds.getMax().getZ());
+	}
+
+	private void scaleBounds(Bounds bounds, float multiplierToMm) {
+		bounds.getMin().setX(bounds.getMin().getX() * multiplierToMm);
+		bounds.getMin().setY(bounds.getMin().getY() * multiplierToMm);
+		bounds.getMin().setZ(bounds.getMin().getZ() * multiplierToMm);
+		bounds.getMax().setX(bounds.getMax().getX() * multiplierToMm);
+		bounds.getMax().setY(bounds.getMax().getY() * multiplierToMm);
+		bounds.getMax().setZ(bounds.getMax().getZ() * multiplierToMm);
 	}
 }
