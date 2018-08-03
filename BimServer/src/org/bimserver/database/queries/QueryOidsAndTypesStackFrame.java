@@ -51,7 +51,7 @@ public class QueryOidsAndTypesStackFrame extends DatabaseReadingStackFrame imple
 			if (!getReusable().getOidCounters().containsKey(eClass)) {
 				return; // will skip to next one
 			}
-			long startOid = getReusable().getOidCounters().get(eClass) + 1;
+			long startOid = getReusable().getOidCounters().get(eClass);
 			oidIterator = oids.iterator();
 			long firstOid = oidIterator.next();
 			if (firstOid >= startOid) {

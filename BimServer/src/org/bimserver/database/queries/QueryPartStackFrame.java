@@ -130,9 +130,6 @@ public class QueryPartStackFrame extends StackFrame {
 			EClass eClass = typeIterator.next();
 			if (oids != null) {
 				List<Long> oids2 = oids.get(eClass);
-				if (oids2.size() == 1 && oids2.get(0) == 91638728554L) {
-					System.out.println();
-				}
 				if (oids2 != null) {
 					queryObjectProvider.push(new QueryOidsAndTypesStackFrame(queryObjectProvider, eClass, partialQuery, reusable, oids2));
 				}
