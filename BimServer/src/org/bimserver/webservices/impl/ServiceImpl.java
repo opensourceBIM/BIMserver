@@ -3159,7 +3159,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 					}
 					
 					scaleBounds(bounds, concreteRevision.getMultiplierToMm());
-					dump(bounds);
 					boolean integrated = false;
 					for (Region region : regions) {
 						if (region.canAccept(bounds)) {
