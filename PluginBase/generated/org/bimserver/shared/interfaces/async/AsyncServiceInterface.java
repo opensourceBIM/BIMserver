@@ -624,6 +624,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface ListBoundingBoxesCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.SBounds> result);
+		void error(Throwable e);
+	}
+	
 	public interface RegenerateGeometryCallback {
 		void success(java.lang.Long result);
 		void error(Throwable e);
@@ -2171,6 +2176,18 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.initiateCheckin(poid, deserializerOid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void listBoundingBoxes(final java.util.Set<java.lang.Long> roids, final ListBoundingBoxesCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.listBoundingBoxes(roids));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
