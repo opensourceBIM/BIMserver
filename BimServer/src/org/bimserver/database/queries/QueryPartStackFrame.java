@@ -171,9 +171,11 @@ public class QueryPartStackFrame extends StackFrame {
 					}
 				}
 				if (!oids.isEmpty()) {
+					Collections.sort(oids);
 					queryObjectProvider.push(new QueryOidsAndTypesStackFrame(queryObjectProvider, eClass, partialQuery, reusable, oids));
 				}
 				if (!oidsFiltered.isEmpty()) {
+					Collections.sort(oidsFiltered);
 					queryObjectProvider.push(new QueryOidsAndTypesStackFrame(queryObjectProvider, eClass, filteredQueryPart, reusable, oidsFiltered));
 				}
 			} else {

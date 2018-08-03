@@ -30,16 +30,20 @@ public class AsyncServiceGenerator
   protected final String TEXT_12 = ");" + NL + "\t\tvoid error(Throwable e);" + NL + "\t}" + NL + "\t";
   protected final String TEXT_13 = NL + NL;
   protected final String TEXT_14 = NL + "\tpublic void ";
-  protected final String TEXT_15 = "final ";
-  protected final String TEXT_16 = " ";
-  protected final String TEXT_17 = ", ";
-  protected final String TEXT_18 = "Callback callback) {" + NL + "\t\texecutorService.submit(new Runnable(){" + NL + "\t\t\tpublic void run(){" + NL + "\t\t\t\ttry {";
-  protected final String TEXT_19 = NL + "\t\t\t\t\tsyncService.";
-  protected final String TEXT_20 = ");" + NL + "\t\t\t\t\tcallback.success();" + NL + "\t\t\t\t";
-  protected final String TEXT_21 = NL + "\t\t\t\t\tcallback.success(syncService.";
-  protected final String TEXT_22 = "));" + NL + "\t\t\t\t";
-  protected final String TEXT_23 = "} catch (Throwable e) {" + NL + "\t\t\t\t\tcallback.error(e);" + NL + "\t\t\t\t}" + NL + "\t\t\t}" + NL + "\t\t});" + NL + "\t}" + NL + "\t";
-  protected final String TEXT_24 = NL + "}";
+  protected final String TEXT_15 = "(";
+  protected final String TEXT_16 = "final ";
+  protected final String TEXT_17 = " ";
+  protected final String TEXT_18 = ", ";
+  protected final String TEXT_19 = "final ";
+  protected final String TEXT_20 = "Callback callback) {" + NL + "\t\texecutorService.submit(new Runnable(){" + NL + "\t\t\tpublic void run(){" + NL + "\t\t\t\ttry {";
+  protected final String TEXT_21 = NL + "\t\t\t\t\tsyncService.";
+  protected final String TEXT_22 = "(";
+  protected final String TEXT_23 = ");" + NL + "\t\t\t\t\tcallback.success();" + NL + "\t\t\t\t";
+  protected final String TEXT_24 = NL + "\t\t\t\t\tcallback.success(syncService.";
+  protected final String TEXT_25 = "(";
+  protected final String TEXT_26 = "));" + NL + "\t\t\t\t";
+  protected final String TEXT_27 = "} catch (Throwable e) {" + NL + "\t\t\t\t\tcallback.error(e);" + NL + "\t\t\t\t}" + NL + "\t\t\t}" + NL + "\t\t});" + NL + "\t}" + NL + "\t";
+  protected final String TEXT_28 = NL + "}";
 
   public String generate(Object argument)
   {
@@ -97,25 +101,25 @@ for (SMethod method : sService.getMethods()) {
 
     stringBuffer.append(TEXT_14);
     stringBuffer.append(method.getName());
-    stringBuffer.append(TEXT_8);
+    stringBuffer.append(TEXT_15);
     
 	for (SParameter parameter : method.getParameters()) {
 
-    stringBuffer.append(TEXT_15);
-    stringBuffer.append(parameter.getGenericType() != null ? (parameter.getType().toJavaCode() + "<" + parameter.getGenericType() + ">") : parameter.getType().toJavaCode());
     stringBuffer.append(TEXT_16);
-    stringBuffer.append(parameter.getName());
+    stringBuffer.append(parameter.getGenericType() != null ? (parameter.getType().toJavaCode() + "<" + parameter.getGenericType() + ">") : parameter.getType().toJavaCode());
     stringBuffer.append(TEXT_17);
+    stringBuffer.append(parameter.getName());
+    stringBuffer.append(TEXT_18);
     
 	}
 
-    stringBuffer.append(TEXT_15);
-    stringBuffer.append(StringUtils.firstUpperCase(method.getName()));
-    stringBuffer.append(TEXT_18);
-    	if (method.getReturnType().isVoid()) { 
     stringBuffer.append(TEXT_19);
+    stringBuffer.append(StringUtils.firstUpperCase(method.getName()));
+    stringBuffer.append(TEXT_20);
+    	if (method.getReturnType().isVoid()) { 
+    stringBuffer.append(TEXT_21);
     stringBuffer.append(method.getName());
-    stringBuffer.append(TEXT_8);
+    stringBuffer.append(TEXT_22);
     
 						for (SParameter sParameter : method.getParameters()) {
 							
@@ -124,13 +128,13 @@ for (SMethod method : sService.getMethods()) {
     
 						}
 					
-    stringBuffer.append(TEXT_20);
+    stringBuffer.append(TEXT_23);
     
 					} else {
 				
-    stringBuffer.append(TEXT_21);
+    stringBuffer.append(TEXT_24);
     stringBuffer.append(method.getName());
-    stringBuffer.append(TEXT_8);
+    stringBuffer.append(TEXT_25);
     
 						for (SParameter sParameter : method.getParameters()) {
 							
@@ -139,15 +143,15 @@ for (SMethod method : sService.getMethods()) {
     
 						}
 					
-    stringBuffer.append(TEXT_22);
+    stringBuffer.append(TEXT_26);
     
 					}
 				
-    stringBuffer.append(TEXT_23);
+    stringBuffer.append(TEXT_27);
     
 }
 
-    stringBuffer.append(TEXT_24);
+    stringBuffer.append(TEXT_28);
     return stringBuffer.toString();
   }
 }

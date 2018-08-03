@@ -67,11 +67,9 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 	private final LongTransaction longTransaction;
 	private Revision revision;
 	private Authorization authorization;
-	private BimServer bimServer;
 
 	public CommitTransactionDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, LongTransaction longTransaction, String comment) {
-		super(databaseSession, accessMethod);
-		this.bimServer = bimServer;
+		super(bimServer, databaseSession, accessMethod);
 		this.authorization = authorization;
 		this.longTransaction = longTransaction;
 		this.comment = comment;
@@ -118,7 +116,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		newRevisionAdded.setProject(project);
 		newRevisionAdded.setAccessMethod(getAccessMethod());
 		
-		PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(project.getSchema());
+		PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(project.getSchema());
 //		IfcModelInterface ifcModel = new BasicIfcModel(packageMetaData, null);
 		if (oldLastRevision != null) {
 			int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(project, oldLastRevision.getLastConcreteRevision());
@@ -130,9 +128,9 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 			@Override
 			public void execute() throws UserException {
-				bimServer.getNotificationsManager().notify(new SConverter().convertToSObject(newRevisionAdded));
+				getBimServer().getNotificationsManager().notify(new SConverter().convertToSObject(newRevisionAdded));
 				try {
-					bimServer.getLongTransactionManager().remove(longTransaction.getTid());
+					getBimServer().getLongTransactionManager().remove(longTransaction.getTid());
 				} catch (NoTransactionException e) {
 					LOGGER.error("", e);
 				}
@@ -151,12 +149,14 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		
 		// First create all new objects
 		
-		Transaction transaction = new Transaction(bimServer, previousRevision, project, concreteRevision, getDatabaseSession());
+		Transaction transaction = new Transaction(getBimServer(), previousRevision, project, concreteRevision, getDatabaseSession());
 		
 		for (Change change : longTransaction.getChanges()) {
 			if (change instanceof CreateObjectChange) {
 				try {
+					CreateObjectChange createObjectChange = (CreateObjectChange)change;
 					change.execute(transaction);
+					getDatabaseSession().addStartOid(createObjectChange.geteClass(), createObjectChange.getOid());
 				} catch (IOException | QueryException e) {
 					e.printStackTrace();
 				}
@@ -189,9 +189,16 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 			getDatabaseSession().delete(object, concreteRevision.getId());
 		}
 		
-//		ifcModel.fixInverseMismatches();
+		setProgress("Generating inverses/opposites...", -1);
+		Revision newRevision = result.getRevisions().get(0);
+		long newRoid = newRevision.getOid();
+		try {
+			fixInverses(packageMetaData, newRoid, summaryMap.getSummaryMap());
+		} catch (QueryException | IOException e1) {
+			e1.printStackTrace();
+		}
 
-		if (bimServer.getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin() && geometryChanged) {
+		if (getBimServer().getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin() && geometryChanged) {
 			setProgress("Generating Geometry...", -1);
 			try {
 				GeometryGenerationReport report = new GeometryGenerationReport();
@@ -200,7 +207,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 				report.setOriginalIfcFileName("No file, low level call");
 				report.setOriginalIfcFileSize(-1);
 				
-				StreamingGeometryGenerator streamingGeometryGenerator = new StreamingGeometryGenerator(bimServer, null, -1L, report);
+				StreamingGeometryGenerator streamingGeometryGenerator = new StreamingGeometryGenerator(getBimServer(), null, -1L, report);
 				int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(concreteRevision.getProject(), concreteRevision);
 
 				QueryContext queryContext = new QueryContext(getDatabaseSession(), packageMetaData, project.getId(), concreteRevision.getId(), concreteRevision.getRevisions().get(0).getOid(), concreteRevision.getOid(), highestStopId);
@@ -235,6 +242,8 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 				concreteRevision.setMultiplierToMm(generateGeometry.getMultiplierToMm());
 				concreteRevision.setBounds(generateGeometry.getBounds());
 				concreteRevision.setBoundsUntransformed(generateGeometry.getBoundsUntransformed());
+				
+				generateDensityAndBounds(result, generateGeometry, concreteRevision);
 			} catch (GeometryGeneratingException e) {
 				throw new UserException(e);
 			}

@@ -182,14 +182,18 @@ public class GeometryAccellerator {
 			long cumulativeTrianglesBelow = 0;
 			long cumulativeTrianglesAbove = 0;
 			Density densityResult = null;
+			int found = 0;
+			Set<Long> t = new HashSet<>();
 			for (Density density : densities) {
 				if (key.getExcludedTypes().contains(density.getType())) {
 					continue;
 				}
+				t.add(density.getGeometryInfoId());
 				if (cumulativeTrianglesBelow + density.getTrianglesBelow() > key.getNrTriangles()) {
 					cumulativeTrianglesAbove += density.getTrianglesBelow(); // Not a typo
 				} else {
 					cumulativeTrianglesBelow += density.getTrianglesBelow();
+					found++;
 					densityResult = density;
 				}
 			}
@@ -300,11 +304,12 @@ public class GeometryAccellerator {
 
 	public SDensity getDensityThreshold(Long roid, Long nrTriangles, Set<String> excludedTypes) {
 		DensityThresholdKey key = new DensityThresholdKey(roid, nrTriangles, excludedTypes);
-		try {
-			return densityThresholds.get(key).getDensity();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-			return null;
-		}
+		return generateDensityThreshold(key).getDensity();
+//		try {
+//			return densityThresholds.get(key).getDensity();
+//		} catch (ExecutionException e) {
+//			e.printStackTrace();
+//			return null;
+//		}
 	}
 }

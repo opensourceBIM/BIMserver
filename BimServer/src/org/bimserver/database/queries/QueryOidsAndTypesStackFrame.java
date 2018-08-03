@@ -72,7 +72,11 @@ public class QueryOidsAndTypesStackFrame extends DatabaseReadingStackFrame imple
 		} else {
 //			LOGGER.warn("Potential too-many-reads");
 			oidIterator = oids.iterator();
-			typeRecordIterator = queryObjectProvider.getDatabaseSession().getKeyValueStore().getRecordIterator(tableName, BinUtils.intToByteArray(getReusable().getPid()), BinUtils.intToByteArray(getReusable().getPid()), queryObjectProvider.getDatabaseSession());
+			long firstOid = oidIterator.next();
+			ByteBuffer tmp = ByteBuffer.allocate(12);
+			tmp.putInt(getReusable().getPid());
+			tmp.putLong(firstOid);
+			typeRecordIterator = queryObjectProvider.getDatabaseSession().getKeyValueStore().getRecordIterator(tableName, BinUtils.intToByteArray(getReusable().getPid()), tmp.array(), queryObjectProvider.getDatabaseSession());
 			record = typeRecordIterator.next();
 		}
 	}

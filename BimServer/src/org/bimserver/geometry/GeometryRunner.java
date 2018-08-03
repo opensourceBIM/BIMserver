@@ -29,6 +29,7 @@ import java.nio.file.Path;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -92,6 +93,8 @@ public class GeometryRunner implements Runnable {
 	private boolean reuseGeometry;
 	private boolean writeOutputFiles = false;
 	private GeometryGenerationDebugger geometryGenerationDebugger;
+//	volatile static int a = 0;
+	private Query originalQuery;
 
 	public GeometryRunner(StreamingGeometryGenerator streamingGeometryGenerator, EClass eClass, RenderEnginePool renderEnginePool, DatabaseSession databaseSession, RenderEngineSettings renderEngineSettings, ObjectProvider objectProvider,
 			StreamingSerializerPlugin ifcSerializerPlugin, RenderEngineFilter renderEngineFilter, GenerateGeometryResult generateGeometryResult, QueryContext queryContext, Query originalQuery, boolean geometryReused,
@@ -106,6 +109,7 @@ public class GeometryRunner implements Runnable {
 		this.renderEngineFilter = renderEngineFilter;
 		this.generateGeometryResult = generateGeometryResult;
 		this.queryContext = queryContext;
+		this.originalQuery = originalQuery;
 		this.geometryReused = geometryReused;
 		this.map = map;
 		this.job = job;
@@ -132,7 +136,7 @@ public class GeometryRunner implements Runnable {
 			QueryPart queryPart = query.createQueryPart();
 			while (next != null) {
 				queryPart.addOid(next.getOid());
-				if (this.streamingGeometryGenerator.packageMetaData.getEClass("IfcProduct").isSuperTypeOf(next.eClass())) {
+				if (eClass.isSuperTypeOf(next.eClass())) {
 					job.addObject(next.getOid(), next.eClass().getName());
 				}
 				next = objectProvider.next();
@@ -144,7 +148,7 @@ public class GeometryRunner implements Runnable {
 			RenderEngine renderEngine = null;
 			byte[] bytes = null;
 			try {
-				final Set<HashMapVirtualObject> objects = new HashSet<>();
+				final Set<HashMapVirtualObject> objects = new LinkedHashSet<>();
 				ObjectProviderProxy proxy = new ObjectProviderProxy(objectProvider, new ObjectListener() {
 					@Override
 					public void newObject(HashMapVirtualObject next) {
@@ -397,6 +401,9 @@ public class GeometryRunner implements Runnable {
 										float nrTriangles = geometry.getNrIndices() / 3;
 										
 										Density density = new Density(eClass.getName(), volume, getBiggestFaceFromBounds(boundsUntransformedMm), (long) nrTriangles, geometryInfo.getOid());
+//										if (eClass.getName().equals("IfcFurnishingElement")) {
+//											System.out.println((a++) + " , " + geometryInfo.getOid());
+//										}
 										
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Density(), density.getDensityValue());
 										

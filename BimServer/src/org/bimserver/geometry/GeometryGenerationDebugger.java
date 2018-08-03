@@ -26,7 +26,7 @@ public class GeometryGenerationDebugger {
 	public String dump() {
 		StringBuilder sb = new StringBuilder();
 		if (map.isEmpty()) {
-			return "Nothing to dump";
+			return null;
 		}
 		for (String type : map.keySet()) {
 			sb.append(type + "\n");

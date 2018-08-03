@@ -22,7 +22,9 @@ import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.jws.WebMethod;
@@ -50,6 +52,7 @@ public class SMethod {
 	private String returnDoc;
 	private String name;
 	private SService service;
+	private final Map<PublicInterface, Reflector> reflectorCache = new HashMap<>();
 	
 	@SuppressWarnings("rawtypes")
 	public SMethod(SService service, Method method) {
@@ -209,7 +212,13 @@ public class SMethod {
 	}
 
 	public <T extends PublicInterface, K extends PublicInterface> Object invoke(Class<K> clazz, T service, KeyValuePair[] keyValuePairs) throws ServiceException, ReflectorException {
-		Reflector reflector = this.service.getServicesMap().getReflectorFactory().createReflector(clazz, service);
+		Reflector reflector = null;
+		if (reflectorCache.containsKey(service)) {
+			reflector = reflectorCache.get(service);
+		} else {
+			reflector = this.service.getServicesMap().getReflectorFactory().createReflector(clazz, service);
+			reflectorCache.put(service, reflector);
+		}
 		return reflector.callMethod(clazz.getName(), getName(), getReturnType().getInstanceClass(), keyValuePairs);
 	}
 	

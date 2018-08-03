@@ -76,7 +76,6 @@ public class Node<V extends Comparable<V>> {
 		// Did not fit in any of the children
 //		System.out.println(q++ + ", " + this.level);
 		if (!values.add(new ObjectWrapper<>(bounds, v))) {
-			System.out.println();
 		}
 		return level;
 	}

@@ -1,5 +1,8 @@
 package org.bimserver.webservices;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -32,16 +35,21 @@ import org.bimserver.webservices.authorization.Authorization;
 
 public class PublicInterfaceFactory implements ServiceFactory {
 	private final BimServer bimServer;
-	private ServiceMap serviceMap;
+	private final Map<ServiceKey, ServiceMap> cachedServiceMaps = new HashMap<>();
 
 	public PublicInterfaceFactory(BimServer bimServer) {
 		this.bimServer = bimServer;
 	}
 
 	public ServiceMap get(Authorization authorization, AccessMethod accessMethod) {
-		// TODO A lot of these are made, maybe we should cache them somehow...
-		serviceMap = new ServiceMap(bimServer, authorization, accessMethod);
-		return serviceMap;
+		ServiceKey serviceKey = new ServiceKey(authorization, accessMethod);
+		if (cachedServiceMaps.containsKey(serviceKey)) {
+			return cachedServiceMaps.get(serviceKey);
+		} else {
+			ServiceMap serviceMap = new ServiceMap(bimServer, authorization, accessMethod);
+			cachedServiceMaps.put(serviceKey, serviceMap);
+			return serviceMap;
+		}
 	}
 	
 	public synchronized ServiceMap get(AccessMethod accessMethod) throws UserException {

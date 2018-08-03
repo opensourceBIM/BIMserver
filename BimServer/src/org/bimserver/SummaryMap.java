@@ -137,4 +137,8 @@ public class SummaryMap {
 		}
 		return total;
 	}
+	
+	public Map<EClass, Integer> getSummaryMap() {
+		return summaryMap;
+	}
 }

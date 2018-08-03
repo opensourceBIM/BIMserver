@@ -46,6 +46,10 @@ public class CreateObjectChange implements Change {
 		return eClass;
 	}
 	
+	public long getOid() {
+		return oid;
+	}
+	
 	@Override
 	public void execute(Transaction transaction) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		PackageMetaData packageMetaData = transaction.getDatabaseSession().getMetaDataManager().getPackageMetaData(transaction.getProject().getSchema());

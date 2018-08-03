@@ -60,7 +60,6 @@ import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;
 import org.bimserver.models.geometry.Bounds;
-import org.bimserver.models.geometry.Buffer;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.geometry.Vector3f;
 import org.bimserver.models.ifc2x3tc1.IfcSIPrefix;
@@ -88,6 +87,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import jersey.repackaged.com.google.common.base.Joiner;
 
 public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	static final Logger LOGGER = LoggerFactory.getLogger(StreamingGeometryGenerator.class);
@@ -491,6 +492,11 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					
 					queryObjectProvider2 = new QueryObjectProvider(databaseSession, bimServer, query3, Collections.singleton(queryContext.getRoid()), packageMetaData);
 					next = queryObjectProvider2.next();
+					
+					Query query = new Query("Main " + eClass.getName(), packageMetaData);
+					QueryPart queryPart = query.createQueryPart();
+					int written = 0;
+					
 					while (next != null) {
 						if (next.eClass() == eClass && !done.contains(next.getOid()) && !toSkip.contains(next.getOid())) {
 							AbstractHashMapVirtualObject representation = next.getDirectFeature(representationFeature);
@@ -498,39 +504,33 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 								List<HashMapVirtualObject> list = representation.getDirectListFeature(packageMetaData.getEReference("IfcProductRepresentation", "Representations"));
 								boolean goForIt = goForIt(list);
 								if (goForIt) {
-									Query query = new Query("Main " + eClass.getName(), packageMetaData);
-									QueryPart queryPart = query.createQueryPart();
-									queryPart.addType(eClass, false);
-									int x = 1;
-									queryPart.addOid(next.getOid());
-									while (next != null && x < maxObjectsPerFile) {
-										next = queryObjectProvider2.next();
-										if (next != null) {
-											if (next.eClass() == eClass && !done.contains(next.getOid())) {
-												representation = next.getDirectFeature(representationFeature);
-												if (representation != null) {
-													list = representation.getDirectListFeature(packageMetaData.getEReference("IfcProductRepresentation", "Representations"));
-													boolean goForIt2 = goForIt(list);
-													if (goForIt2) {
-														queryPart.addOid(next.getOid());
-														x++;
-													}
+									if (next.eClass() == eClass && !done.contains(next.getOid())) {
+										representation = next.getDirectFeature(representationFeature);
+										if (representation != null) {
+											list = representation.getDirectListFeature(packageMetaData.getEReference("IfcProductRepresentation", "Representations"));
+											boolean goForIt2 = goForIt(list);
+											if (goForIt2) {
+												queryPart.addOid(next.getOid());
+												written++;
+												if (written >= maxObjectsPerFile) {
+													processQuery(databaseSession, queryContext, generateGeometryResult, ifcSerializerPlugin, settings, renderEngineFilter, renderEnginePool, executor, eClass, query, queryPart, false, null, written);
+													query = new Query("Main " + eClass.getName(), packageMetaData);
+													queryPart = query.createQueryPart();
+													written = 0;
 												}
 											}
 										}
 									}
-									processQuery(databaseSession, queryContext, generateGeometryResult, ifcSerializerPlugin, settings, renderEngineFilter, renderEnginePool, executor, eClass, query, queryPart, false, null, x);
 								}
 							}
 						}
 						next = queryObjectProvider2.next();
 					}
+					if (written > 0) {
+						processQuery(databaseSession, queryContext, generateGeometryResult, ifcSerializerPlugin, settings, renderEngineFilter, renderEnginePool, executor, eClass, query, queryPart, false, null, written);
+					}
 				}
 			}
-			
-//			for (Long l : counters.keySet()) {
-//				LOGGER.info(databaseSession.getEClassForOid(l).getName() + "(" + l + "): " + counters.get(l));
-//			}
 			
 			allJobsPushed = true;
 			
@@ -542,7 +542,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 //			ByteBuffer verticesQuantized = quantizeVertices(vertices, quantizationMatrix, generateGeometryResult.getMultiplierToMm());
 //			geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_VerticesQuantized(), verticesQuantized.array());
 
-			LOGGER.info("Generating quantized vertices");
+			LOGGER.debug("Generating quantized vertices");
 			float[] quantizationMatrix = createQuantizationMatrixFromBounds(generateGeometryResult.getBoundsUntransformed(), multiplierToMm);
 			for (Long id : geometryDataMap.keySet()) {
 				Tuple<HashMapVirtualObject, float[]> tuple = geometryDataMap.get(id);
@@ -568,7 +568,10 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			long end = System.nanoTime();
 			long total = totalBytes.get() - (bytesSavedByHash.get() + bytesSavedByTransformation.get() + bytesSavedByMapping.get());
 			LOGGER.info("Rendertime: " + Formatters.nanosToString(end - start) + ", " + "Reused (by hash): " + Formatters.bytesToString(bytesSavedByHash.get()) + ", Reused (by transformation): " + Formatters.bytesToString(bytesSavedByTransformation.get()) + ", Reused (by mapping): " + Formatters.bytesToString(bytesSavedByMapping.get()) + ", Total: " + Formatters.bytesToString(totalBytes.get()) + ", Final: " + Formatters.bytesToString(total));
-			LOGGER.info(geometryGenerationDebugger.dump());
+			String dump = geometryGenerationDebugger.dump();
+			if (dump != null) {
+				LOGGER.info(dump);
+			}
 		} catch (Exception e) {
 			running = false;
 			LOGGER.error("", e);

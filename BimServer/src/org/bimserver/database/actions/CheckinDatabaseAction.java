@@ -76,7 +76,6 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	private final String comment;
 	private final long poid;
 	private final boolean merge;
-	private final BimServer bimServer;
 	private ConcreteRevision concreteRevision;
 	private Project project;
 	private Authorization authorization;
@@ -88,8 +87,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	private long topicId;
 
 	public CheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, IfcModelInterface model, String comment, String fileName, boolean merge, long newServiceId, long topicId) {
-		super(databaseSession, accessMethod);
-		this.bimServer = bimServer;
+		super(bimServer, databaseSession, accessMethod);
 		this.poid = poid;
 		this.authorization = authorization;
 		this.model = model;
@@ -144,7 +142,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			
 			for (ModelCheckerInstance modelCheckerInstance : project.getModelCheckers()) {
 				if (modelCheckerInstance.isValid()) {
-					ModelCheckerPlugin modelCheckerPlugin = bimServer.getPluginManager().getModelCheckerPlugin(modelCheckerInstance.getModelCheckerPluginClassName(), true);
+					ModelCheckerPlugin modelCheckerPlugin = getBimServer().getPluginManager().getModelCheckerPlugin(modelCheckerInstance.getModelCheckerPluginClassName(), true);
 					if (modelCheckerPlugin != null) {
 						ModelChecker modelChecker = modelCheckerPlugin.createModelChecker(null);
 						ModelCheckerResult result = modelChecker.check(getModel(), modelCheckerInstance.getCompiled());
@@ -201,7 +199,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 
 			ifcModel.fixOidsFlat(getDatabaseSession());
 
-			if (bimServer.getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin()) {
+			if (getBimServer().getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin()) {
 				setProgress("Generating Geometry...", -1);
 				
 				UserSettings userSettings = user.getUserSettings();
@@ -210,9 +208,9 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 					throw new UserException("No default render engine has been selected for this user");
 				}
 				
-				RenderEnginePool pool = bimServer.getRenderEnginePools().getRenderEnginePool(model.getPackageMetaData().getSchema(), defaultRenderEngine.getPluginDescriptor().getPluginClassName(), new PluginConfiguration(defaultRenderEngine.getSettings()));
+				RenderEnginePool pool = getBimServer().getRenderEnginePools().getRenderEnginePool(model.getPackageMetaData().getSchema(), defaultRenderEngine.getPluginDescriptor().getPluginClassName(), new PluginConfiguration(defaultRenderEngine.getSettings()));
 
-				GenerateGeometryResult generateGeometry = new GeometryGenerator(bimServer).generateGeometry(pool, bimServer.getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), true, geometryCache);
+				GenerateGeometryResult generateGeometry = new GeometryGenerator(getBimServer()).generateGeometry(pool, getBimServer().getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), true, geometryCache);
 
 				// TODO OUTDATED!!!
 				
@@ -280,7 +278,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 					} catch (BimserverDatabaseException | ServiceException e) {
 						LOGGER.error("", e);
 					}
-					bimServer.getNotificationsManager().notify(new NewRevisionNotification(bimServer, project.getOid(), revision.getOid(), authorization));
+					getBimServer().getNotificationsManager().notify(new NewRevisionNotification(getBimServer(), project.getOid(), revision.getOid(), authorization));
 				}
 			});
 
@@ -305,7 +303,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	}
 	
 	private void clearCheckinInProgress() throws BimserverDatabaseException, ServiceException {
-		try (DatabaseSession tmpSession = bimServer.getDatabase().createSession()) {
+		try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession()) {
 			Project project = tmpSession.get(poid, OldQuery.getDefault());
 			project.setCheckinInProgress(0);
 			tmpSession.store(project);

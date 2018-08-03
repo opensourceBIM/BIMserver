@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="bimserverwar-1.5.102-SNAPSHOT">
+    <wb-module deploy-name="bimserverwar-1.5.103-SNAPSHOT">
         <wb-resource deploy-path="/WEB-INF/web.xml" source-path="/web.xml"/>
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>

@@ -2302,4 +2302,11 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		database.getKeyValueStore().storeNoOverwrite(tableName, keyBuffer.array(), new byte[] { -1 }, this);
 		database.incrementCommittedWrites(1);
 	}
+
+	public void addStartOid(EClass eClass, long oid) {
+		Long currentStart = startOids.get(eClass);
+		if (currentStart == null || oid < currentStart) {
+			startOids.put(eClass, oid);
+		}
+	}
 }

@@ -215,20 +215,21 @@ public class JsonHandler {
 			return bimServer.getServiceFactory().get(AccessMethod.JSON).get(interfaceClass);
 		}
 		
-		if (httpRequest != null) {
-			try {
-				OAuthAccessResourceRequest oauthRequest = new OAuthAccessResourceRequest(httpRequest, ParameterStyle.HEADER);
-				token = oauthRequest.getAccessToken();
-			} catch (OAuthSystemException e) {
-			} catch (OAuthProblemException e) {
-			}
-		}
-		
 		if (token == null) {
 			token = httpRequest == null ? null : (String) httpRequest.getSession().getAttribute("token");
 		}
 		if (token == null) {
 			token = oAuthCode;
+		}
+		if (token == null) {
+			if (httpRequest != null) {
+				try {
+					OAuthAccessResourceRequest oauthRequest = new OAuthAccessResourceRequest(httpRequest, ParameterStyle.HEADER);
+					token = oauthRequest.getAccessToken();
+				} catch (OAuthSystemException e) {
+				} catch (OAuthProblemException e) {
+				}
+			}
 		}
 		if (token == null) {
 			return bimServer.getServiceFactory().get(AccessMethod.JSON).get(interfaceClass);
