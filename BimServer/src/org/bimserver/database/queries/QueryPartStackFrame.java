@@ -73,6 +73,9 @@ public class QueryPartStackFrame extends StackFrame {
 				}
 				list.add(oid);
 			}
+			for (List<Long> list : this.oids.values()) {
+				Collections.sort(list);
+			}
 		} else {
 			oids = null;
 		}

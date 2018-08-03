@@ -44,7 +44,7 @@ public class QueryOidsAndTypesStackFrame extends DatabaseReadingStackFrame imple
 		super(reusable, queryObjectProvider, queryPart);
 		this.eClass = eClass;
 		
-//		Collections.sort(oids);
+		// Assumption: oids are sorted
 		
 		String tableName = eClass.getEPackage().getName() + "_" + eClass.getName();
 		if (getReusable().getOidCounters() != null) {
@@ -54,10 +54,15 @@ public class QueryOidsAndTypesStackFrame extends DatabaseReadingStackFrame imple
 			long startOid = getReusable().getOidCounters().get(eClass);
 			oidIterator = oids.iterator();
 			long firstOid = oidIterator.next();
+			while (firstOid < startOid && oidIterator.hasNext()) {
+				firstOid = oidIterator.next();
+			}
+
 			if (firstOid >= startOid) {
+				// Just an optimization
 				startOid = firstOid;
 			} else {
-//				throw new QueryException("Querying oid " + firstOid + " which cannot be in this revision");
+				return;
 			}
 			ByteBuffer tmp = ByteBuffer.allocate(12);
 			tmp.putInt(getReusable().getPid());
