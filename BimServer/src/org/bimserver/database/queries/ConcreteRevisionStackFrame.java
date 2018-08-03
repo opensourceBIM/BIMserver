@@ -28,7 +28,6 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.actions.AbstractDownloadDatabaseAction;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.Revision;
 import org.bimserver.shared.QueryContext;
 import org.eclipse.emf.ecore.EClass;
 
@@ -44,13 +43,12 @@ public class ConcreteRevisionStackFrame extends StackFrame {
 	// TODO make not static (use factory somewhere), and check concurrency
 	private static final Map<Long, Map<EClass, Long>> reusableQueryContexts = new HashMap<>();
 
-	public ConcreteRevisionStackFrame(QueryObjectProvider queryObjectProvider, ConcreteRevision concreteRevision) {
+	public ConcreteRevisionStackFrame(QueryObjectProvider queryObjectProvider, ConcreteRevision concreteRevision, long roid) {
 		this.queryObjectProvider = queryObjectProvider;
 		int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(concreteRevision.getProject(), concreteRevision);
 		packageMetaData = queryObjectProvider.getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
-		Revision revision = concreteRevision.getRevisions().get(0);
 
-		queryContext = new QueryContext(queryObjectProvider.getDatabaseSession(), packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), revision.getOid(), concreteRevision.getOid(), highestStopId);
+		queryContext = new QueryContext(queryObjectProvider.getDatabaseSession(), packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), roid, concreteRevision.getOid(), highestStopId);
 		if (concreteRevision.getOidCounters() != null) {
 			synchronized (getClass()) {
 				if (reusableQueryContexts.containsKey(concreteRevision.getOid())) {
