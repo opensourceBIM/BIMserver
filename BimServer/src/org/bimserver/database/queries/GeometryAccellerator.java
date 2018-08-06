@@ -182,19 +182,26 @@ public class GeometryAccellerator {
 			long cumulativeTrianglesBelow = 0;
 			long cumulativeTrianglesAbove = 0;
 			Density densityResult = null;
-			int found = 0;
-			Set<Long> t = new HashSet<>();
+			int l = 0;
+			float ld = -1f;
 			for (Density density : densities) {
 				if (key.getExcludedTypes().contains(density.getType())) {
 					continue;
 				}
-				t.add(density.getGeometryInfoId());
-				if (cumulativeTrianglesBelow + density.getTrianglesBelow() > key.getNrTriangles()) {
-					cumulativeTrianglesAbove += density.getTrianglesBelow(); // Not a typo
-				} else {
-					cumulativeTrianglesBelow += density.getTrianglesBelow();
-					found++;
+				if (l == 0) {
+					cumulativeTrianglesBelow += density.getTrianglesBelow(); // Not a typo
 					densityResult = density;
+					if (cumulativeTrianglesBelow > key.getNrTriangles()) {
+						l = 1;
+						ld = density.getDensity();
+					}
+				} else if (l == 1) {
+					if (ld == density.getDensity()) {
+						cumulativeTrianglesBelow += density.getTrianglesBelow();
+						densityResult = density;
+					} else {
+						cumulativeTrianglesAbove += density.getTrianglesBelow(); // Not a typo
+					}
 				}
 			}
 			if (densityResult == null) {
@@ -202,6 +209,7 @@ public class GeometryAccellerator {
 			}
 			// This is useful information, so the client knows exactly how many triangles will be loaded by using this threshold
 			densityResult.setTrianglesBelow(cumulativeTrianglesBelow);
+			System.out.println(densityResult.getDensity());
 			densityResult.setTrianglesAbove(cumulativeTrianglesAbove);
 			densityThreshold.setDensity(bimServer.getSConverter().convertToSObject(densityResult));
 		} catch (BimserverDatabaseException e) {
@@ -304,12 +312,12 @@ public class GeometryAccellerator {
 
 	public SDensity getDensityThreshold(Long roid, Long nrTriangles, Set<String> excludedTypes) {
 		DensityThresholdKey key = new DensityThresholdKey(roid, nrTriangles, excludedTypes);
-		return generateDensityThreshold(key).getDensity();
-//		try {
-//			return densityThresholds.get(key).getDensity();
-//		} catch (ExecutionException e) {
-//			e.printStackTrace();
-//			return null;
-//		}
+//		return generateDensityThreshold(key).getDensity();
+		try {
+			return densityThresholds.get(key).getDensity();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

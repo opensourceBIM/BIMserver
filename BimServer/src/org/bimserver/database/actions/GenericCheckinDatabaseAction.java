@@ -312,6 +312,7 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		concreteRevision.eSet(StorePackage.eINSTANCE.getConcreteRevision_DensityCollection(), densityCollection);
 		
 		List<org.bimserver.models.store.Density> newList = new ArrayList<>();
+		System.out.println("Densities: " + generateGeometry.getDensities().size());
 		for (Density density : generateGeometry.getDensities()) {
 			org.bimserver.models.store.Density dbDensity = StoreFactory.eINSTANCE.createDensity();
 			dbDensity.setType(density.getType());
