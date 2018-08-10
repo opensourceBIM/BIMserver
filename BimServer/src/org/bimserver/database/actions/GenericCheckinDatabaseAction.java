@@ -56,7 +56,6 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
-import org.bimserver.plugins.deserializers.StreamingDeserializer;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
@@ -312,7 +311,6 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		concreteRevision.eSet(StorePackage.eINSTANCE.getConcreteRevision_DensityCollection(), densityCollection);
 		
 		List<org.bimserver.models.store.Density> newList = new ArrayList<>();
-		System.out.println("Densities: " + generateGeometry.getDensities().size());
 		for (Density density : generateGeometry.getDensities()) {
 			org.bimserver.models.store.Density dbDensity = StoreFactory.eINSTANCE.createDensity();
 			dbDensity.setType(density.getType());
