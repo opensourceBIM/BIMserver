@@ -558,6 +558,9 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	
 	@Override
 	public SDeserializerPluginConfiguration getSuggestedDeserializerForExtension(String extension, Long poid) throws ServerException, UserException {
+		if (extension.startsWith(".")) {
+			extension = extension.substring(1);
+		}
 		// Token authenticated users should also be able to call this method
 		try {
 			requireAuthenticationAndRunningServer();
