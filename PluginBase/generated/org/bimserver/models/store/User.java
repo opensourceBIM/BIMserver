@@ -52,7 +52,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.User#getPasswordHash <em>Password Hash</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getPasswordSalt <em>Password Salt</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getHasRightsOn <em>Has Rights On</em>}</li>
- *   <li>{@link org.bimserver.models.store.User#getRevisions <em>Revisions</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getState <em>State</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getCreatedOn <em>Created On</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getCreatedBy <em>Created By</em>}</li>
@@ -172,24 +171,6 @@ public interface User extends IdEObject {
 	 * @generated
 	 */
 	EList<Project> getHasRightsOn();
-
-	/**
-	 * Returns the value of the '<em><b>Revisions</b></em>' reference list.
-	 * The list contents are of type {@link org.bimserver.models.store.Revision}.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.Revision#getUser <em>User</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Revisions</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Revisions</em>' reference list.
-	 * @see org.bimserver.models.store.StorePackage#getUser_Revisions()
-	 * @see org.bimserver.models.store.Revision#getUser
-	 * @model opposite="user"
-	 * @generated
-	 */
-	EList<Revision> getRevisions();
 
 	/**
 	 * Returns the value of the '<em><b>State</b></em>' attribute.

@@ -955,7 +955,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 *
+	 * 
 	 * <p>This method is used to initialize {@link StorePackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -968,20 +968,19 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 			return (StorePackage) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI);
 
 		// Obtain or create and register package
-		Object registeredStorePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
-		StorePackageImpl theStorePackage = registeredStorePackage instanceof StorePackageImpl ? (StorePackageImpl) registeredStorePackage : new StorePackageImpl();
+		StorePackageImpl theStorePackage = (StorePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof StorePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new StorePackageImpl());
 
 		isInited = true;
 
 		// Obtain or create and register interdependencies
-		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI);
-		GeometryPackageImpl theGeometryPackage = (GeometryPackageImpl) (registeredPackage instanceof GeometryPackageImpl ? registeredPackage : GeometryPackage.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(Ifc2x3tc1Package.eNS_URI);
-		Ifc2x3tc1PackageImpl theIfc2x3tc1Package = (Ifc2x3tc1PackageImpl) (registeredPackage instanceof Ifc2x3tc1PackageImpl ? registeredPackage : Ifc2x3tc1Package.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI);
-		Ifc4PackageImpl theIfc4Package = (Ifc4PackageImpl) (registeredPackage instanceof Ifc4PackageImpl ? registeredPackage : Ifc4Package.eINSTANCE);
-		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI);
-		LogPackageImpl theLogPackage = (LogPackageImpl) (registeredPackage instanceof LogPackageImpl ? registeredPackage : LogPackage.eINSTANCE);
+		GeometryPackageImpl theGeometryPackage = (GeometryPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI) instanceof GeometryPackageImpl
+				? EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI) : GeometryPackage.eINSTANCE);
+		Ifc2x3tc1PackageImpl theIfc2x3tc1Package = (Ifc2x3tc1PackageImpl) (EPackage.Registry.INSTANCE.getEPackage(Ifc2x3tc1Package.eNS_URI) instanceof Ifc2x3tc1PackageImpl
+				? EPackage.Registry.INSTANCE.getEPackage(Ifc2x3tc1Package.eNS_URI) : Ifc2x3tc1Package.eINSTANCE);
+		Ifc4PackageImpl theIfc4Package = (Ifc4PackageImpl) (EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI) instanceof Ifc4PackageImpl
+				? EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI) : Ifc4Package.eINSTANCE);
+		LogPackageImpl theLogPackage = (LogPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI) instanceof LogPackageImpl
+				? EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI) : LogPackage.eINSTANCE);
 
 		// Load packages
 		theStorePackage.loadPackage();
@@ -1286,17 +1285,8 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getUser_Revisions() {
-		return (EReference) getUser().getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getUser_State() {
-		return (EAttribute) getUser().getEStructuralFeatures().get(5);
+		return (EAttribute) getUser().getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1305,7 +1295,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EAttribute getUser_CreatedOn() {
-		return (EAttribute) getUser().getEStructuralFeatures().get(6);
+		return (EAttribute) getUser().getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1314,7 +1304,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getUser_CreatedBy() {
-		return (EReference) getUser().getEStructuralFeatures().get(7);
+		return (EReference) getUser().getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -1323,7 +1313,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EAttribute getUser_UserType() {
-		return (EAttribute) getUser().getEStructuralFeatures().get(8);
+		return (EAttribute) getUser().getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -1332,7 +1322,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EAttribute getUser_Username() {
-		return (EAttribute) getUser().getEStructuralFeatures().get(9);
+		return (EAttribute) getUser().getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -1341,7 +1331,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EAttribute getUser_LastSeen() {
-		return (EAttribute) getUser().getEStructuralFeatures().get(10);
+		return (EAttribute) getUser().getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -1350,7 +1340,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EAttribute getUser_Token() {
-		return (EAttribute) getUser().getEStructuralFeatures().get(11);
+		return (EAttribute) getUser().getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -1359,7 +1349,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EAttribute getUser_ValidationToken() {
-		return (EAttribute) getUser().getEStructuralFeatures().get(12);
+		return (EAttribute) getUser().getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -1368,7 +1358,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EAttribute getUser_ValidationTokenCreated() {
-		return (EAttribute) getUser().getEStructuralFeatures().get(13);
+		return (EAttribute) getUser().getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -1377,7 +1367,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getUser_UserSettings() {
-		return (EReference) getUser().getEStructuralFeatures().get(14);
+		return (EReference) getUser().getEStructuralFeatures().get(13);
 	}
 
 	/**
@@ -1386,7 +1376,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getUser_Schemas() {
-		return (EReference) getUser().getEStructuralFeatures().get(15);
+		return (EReference) getUser().getEStructuralFeatures().get(14);
 	}
 
 	/**
@@ -1395,7 +1385,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getUser_ExtendedData() {
-		return (EReference) getUser().getEStructuralFeatures().get(16);
+		return (EReference) getUser().getEStructuralFeatures().get(15);
 	}
 
 	/**
@@ -1404,7 +1394,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getUser_Services() {
-		return (EReference) getUser().getEStructuralFeatures().get(17);
+		return (EReference) getUser().getEStructuralFeatures().get(16);
 	}
 
 	/**
@@ -1413,7 +1403,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getUser_Logs() {
-		return (EReference) getUser().getEStructuralFeatures().get(18);
+		return (EReference) getUser().getEStructuralFeatures().get(17);
 	}
 
 	/**
@@ -1422,7 +1412,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getUser_OAuthAuthorizationCodes() {
-		return (EReference) getUser().getEStructuralFeatures().get(19);
+		return (EReference) getUser().getEStructuralFeatures().get(18);
 	}
 
 	/**
@@ -1431,7 +1421,7 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	public EReference getUser_OAuthIssuedAuthorizationCodes() {
-		return (EReference) getUser().getEStructuralFeatures().get(20);
+		return (EReference) getUser().getEStructuralFeatures().get(19);
 	}
 
 	/**

@@ -108,7 +108,6 @@ public interface Revision extends IdEObject {
 
 	/**
 	 * Returns the value of the '<em><b>User</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.bimserver.models.store.User#getRevisions <em>Revisions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>User</em>' reference isn't clear,
@@ -118,8 +117,7 @@ public interface Revision extends IdEObject {
 	 * @return the value of the '<em>User</em>' reference.
 	 * @see #setUser(User)
 	 * @see org.bimserver.models.store.StorePackage#getRevision_User()
-	 * @see org.bimserver.models.store.User#getRevisions
-	 * @model opposite="revisions"
+	 * @model
 	 * @generated
 	 */
 	User getUser();

@@ -43,8 +43,10 @@ public class GetAllRevisionsByUserDatabaseAction extends BimDatabaseAction<Set<R
 
 	@Override
 	public Set<Revision> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		User user = getUserByUoid(uoid);
-		Condition condition = new HasReferenceToCondition(StorePackage.eINSTANCE.getRevision_User(), user);
-		return CollectionUtils.mapToSet(getDatabaseSession().query(condition, Revision.class, OldQuery.getDefault()));
+		// TODO this functionality needs to be rewritten since the Revision->User link has been removed for performance reasons
+		throw new UserException("This functionality has been disabled for now");
+//		User user = getUserByUoid(uoid);
+//		Condition condition = new HasReferenceToCondition(StorePackage.eINSTANCE.getRevision_User(), user);
+//		return CollectionUtils.mapToSet(getDatabaseSession().query(condition, Revision.class, OldQuery.getDefault()));
 	}
 }

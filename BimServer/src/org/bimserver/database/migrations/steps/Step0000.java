@@ -66,8 +66,6 @@ public class Step0000 extends Migration {
 	private Schema schema;
 	private EClass serverSettings;
 	private EClass userSettings;
-	private EReference revisionUser;
-	private EReference userRevisions;
 
 	@Override
 	public void migrate(Schema schema, DatabaseSession databaseSession) {
@@ -106,9 +104,6 @@ public class Step0000 extends Migration {
 		
 		checkoutRevision.setEOpposite(revisionCheckouts);
 		revisionCheckouts.setEOpposite(checkoutRevision);
-		
-		revisionUser.setEOpposite(userRevisions);
-		userRevisions.setEOpposite(revisionUser);
 		
 		revisionConcreteRevisions.setEOpposite(concreteRevisionRevisions);
 		concreteRevisionRevisions.setEOpposite(revisionConcreteRevisions);
@@ -852,7 +847,7 @@ public class Step0000 extends Migration {
 
 	private void createRevisionClass() {
 		schema.createEAttribute(revisionClass, "id", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
-		revisionUser = schema.createEReference(revisionClass, "user", user, Multiplicity.SINGLE);
+		schema.createEReference(revisionClass, "user", user, Multiplicity.SINGLE);
 		schema.createEAttribute(revisionClass, "date", ecorePackage.getEDate(), Multiplicity.SINGLE);
 		schema.createEAttribute(revisionClass, "comment", ecorePackage.getEString(), Multiplicity.SINGLE);
 		schema.createEAttribute(revisionClass, "size", ecorePackage.getELongObject(), Multiplicity.SINGLE);
@@ -901,7 +896,6 @@ public class Step0000 extends Migration {
 		schema.createEAttribute(user, "passwordHash", ecorePackage.getEByteArray(), Multiplicity.SINGLE);
 		schema.createEAttribute(user, "passwordSalt", ecorePackage.getEByteArray(), Multiplicity.SINGLE);
 		userHasRightsOn = schema.createEReference(user, "hasRightsOn", project, Multiplicity.MANY);
-		userRevisions = schema.createEReference(user, "revisions", revisionClass, Multiplicity.MANY);
 		schema.createEAttribute(user, "state", objectStateEnum, Multiplicity.SINGLE);
 		schema.createEAttribute(user, "createdOn", ecorePackage.getEDate(), Multiplicity.SINGLE);
 		schema.createEReference(user, "createdBy", user, Multiplicity.SINGLE);

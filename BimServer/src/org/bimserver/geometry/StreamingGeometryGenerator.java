@@ -444,7 +444,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 							double[] inverted = Matrix.identity();
 							ProductDef masterProductDef = map.get(masterOid);
 							if (!Matrix.invertM(inverted, 0, masterProductDef.getMappingMatrix(), 0)) {
-								LOGGER.info("No inverse, this mapping will be skipped and processed as normal");
+								LOGGER.debug("No inverse, this mapping will be skipped and processed as normal");
 								// This is probably because of mirroring of something funky
 								
 								// TODO we should however be able to squeeze out a little more reuse by finding another master...

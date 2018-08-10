@@ -63,7 +63,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getPasswordHash <em>Password Hash</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getPasswordSalt <em>Password Salt</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getHasRightsOn <em>Has Rights On</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.UserImpl#getRevisions <em>Revisions</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getState <em>State</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getCreatedOn <em>Created On</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getCreatedBy <em>Created By</em>}</li>
@@ -176,16 +175,6 @@ public class UserImpl extends IdEObjectImpl implements User {
 	@SuppressWarnings("unchecked")
 	public EList<Project> getHasRightsOn() {
 		return (EList<Project>) eGet(StorePackage.Literals.USER__HAS_RIGHTS_ON, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	public EList<Revision> getRevisions() {
-		return (EList<Revision>) eGet(StorePackage.Literals.USER__REVISIONS, true);
 	}
 
 	/**

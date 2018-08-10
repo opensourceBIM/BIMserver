@@ -36,7 +36,6 @@ public class SUser implements SDataBase
 	private byte[] passwordHash;
 	private byte[] passwordSalt;
 	private List<Long> hasRightsOn = new ArrayList<Long>();
-	private List<Long> revisions = new ArrayList<Long>();
 	private SObjectState state;
 	private java.util.Date createdOn;
 	private long createdById = -1;
@@ -91,9 +90,6 @@ public class SUser implements SDataBase
 		}
 		if (sField.getName().equals("hasRightsOn")) {
 			return getHasRightsOn();
-		}
-		if (sField.getName().equals("revisions")) {
-			return getRevisions();
 		}
 		if (sField.getName().equals("state")) {
 			return getState();
@@ -168,10 +164,6 @@ public class SUser implements SDataBase
 		}
 		if (sField.getName().equals("hasRightsOn")) {
 			setHasRightsOn((List<Long>)val);
-			return;
-		}
-		if (sField.getName().equals("revisions")) {
-			setRevisions((List<Long>)val);
 			return;
 		}
 		if (sField.getName().equals("state")) {
@@ -279,14 +271,6 @@ public class SUser implements SDataBase
 
 	public void setHasRightsOn(List<Long> hasRightsOn) {
 		this.hasRightsOn = hasRightsOn;
-	}
-	
-	public List<Long> getRevisions() {
-		return revisions;
-	}
-
-	public void setRevisions(List<Long> revisions) {
-		this.revisions = revisions;
 	}
 	
 	public SObjectState getState() {

@@ -370,22 +370,13 @@ public interface StorePackage extends EPackage {
 	int USER__HAS_RIGHTS_ON = 3;
 
 	/**
-	 * The feature id for the '<em><b>Revisions</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER__REVISIONS = 4;
-
-	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER__STATE = 5;
+	int USER__STATE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Created On</b></em>' attribute.
@@ -394,7 +385,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__CREATED_ON = 6;
+	int USER__CREATED_ON = 5;
 
 	/**
 	 * The feature id for the '<em><b>Created By</b></em>' reference.
@@ -403,7 +394,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__CREATED_BY = 7;
+	int USER__CREATED_BY = 6;
 
 	/**
 	 * The feature id for the '<em><b>User Type</b></em>' attribute.
@@ -412,7 +403,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__USER_TYPE = 8;
+	int USER__USER_TYPE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Username</b></em>' attribute.
@@ -421,7 +412,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__USERNAME = 9;
+	int USER__USERNAME = 8;
 
 	/**
 	 * The feature id for the '<em><b>Last Seen</b></em>' attribute.
@@ -430,7 +421,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__LAST_SEEN = 10;
+	int USER__LAST_SEEN = 9;
 
 	/**
 	 * The feature id for the '<em><b>Token</b></em>' attribute.
@@ -439,7 +430,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__TOKEN = 11;
+	int USER__TOKEN = 10;
 
 	/**
 	 * The feature id for the '<em><b>Validation Token</b></em>' attribute.
@@ -448,7 +439,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__VALIDATION_TOKEN = 12;
+	int USER__VALIDATION_TOKEN = 11;
 
 	/**
 	 * The feature id for the '<em><b>Validation Token Created</b></em>' attribute.
@@ -457,7 +448,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__VALIDATION_TOKEN_CREATED = 13;
+	int USER__VALIDATION_TOKEN_CREATED = 12;
 
 	/**
 	 * The feature id for the '<em><b>User Settings</b></em>' reference.
@@ -466,7 +457,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__USER_SETTINGS = 14;
+	int USER__USER_SETTINGS = 13;
 
 	/**
 	 * The feature id for the '<em><b>Schemas</b></em>' reference list.
@@ -475,7 +466,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__SCHEMAS = 15;
+	int USER__SCHEMAS = 14;
 
 	/**
 	 * The feature id for the '<em><b>Extended Data</b></em>' reference list.
@@ -484,7 +475,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__EXTENDED_DATA = 16;
+	int USER__EXTENDED_DATA = 15;
 
 	/**
 	 * The feature id for the '<em><b>Services</b></em>' reference list.
@@ -493,7 +484,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__SERVICES = 17;
+	int USER__SERVICES = 16;
 
 	/**
 	 * The feature id for the '<em><b>Logs</b></em>' reference list.
@@ -502,7 +493,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__LOGS = 18;
+	int USER__LOGS = 17;
 
 	/**
 	 * The feature id for the '<em><b>OAuth Authorization Codes</b></em>' reference list.
@@ -511,7 +502,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__OAUTH_AUTHORIZATION_CODES = 19;
+	int USER__OAUTH_AUTHORIZATION_CODES = 18;
 
 	/**
 	 * The feature id for the '<em><b>OAuth Issued Authorization Codes</b></em>' reference list.
@@ -520,7 +511,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER__OAUTH_ISSUED_AUTHORIZATION_CODES = 20;
+	int USER__OAUTH_ISSUED_AUTHORIZATION_CODES = 19;
 
 	/**
 	 * The number of structural features of the '<em>User</em>' class.
@@ -529,7 +520,7 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_FEATURE_COUNT = 21;
+	int USER_FEATURE_COUNT = 20;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.RevisionImpl <em>Revision</em>}' class.
@@ -7820,17 +7811,6 @@ public interface StorePackage extends EPackage {
 	EReference getUser_HasRightsOn();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.bimserver.models.store.User#getRevisions <em>Revisions</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Revisions</em>'.
-	 * @see org.bimserver.models.store.User#getRevisions()
-	 * @see #getUser()
-	 * @generated
-	 */
-	EReference getUser_Revisions();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.User#getState <em>State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14675,14 +14655,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference USER__HAS_RIGHTS_ON = eINSTANCE.getUser_HasRightsOn();
-
-		/**
-		 * The meta object literal for the '<em><b>Revisions</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference USER__REVISIONS = eINSTANCE.getUser_Revisions();
 
 		/**
 		 * The meta object literal for the '<em><b>State</b></em>' attribute feature.

@@ -158,7 +158,6 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 		revision.setComment(comment);
 		revision.setDate(date);
 		revision.setUser(user);
-		user.getRevisions().add(revision);
 		revision.setSize(size);
 		revision.setId(project.getRevisions().size() + 1);
 		revision.getConcreteRevisions().add(concreteRevision);
