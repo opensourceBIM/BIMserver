@@ -278,6 +278,10 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		return channel.checkin(baseAddress, token, poid, comment, deserializerOid, merge, flow, fileSize, filename, inputStream);
 	}
 
+	public void bulkCheckin(long poid, Path file, String comment) throws UserException, ServerException {
+		channel.bulkCheckin(baseAddress, token, poid, comment, file);
+	}
+	
 	public long checkin(long poid, String comment, long deserializerOid, boolean merge, Flow flow, URL url) throws UserException, ServerException {
 		try {
 			InputStream openStream = url.openStream();

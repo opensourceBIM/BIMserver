@@ -20,6 +20,8 @@ package org.bimserver.client;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -268,5 +270,54 @@ public abstract class Channel implements ServiceHolder {
 
 	public AuthInterface getBimServerAuthInterface() throws PublicInterfaceNotFoundException {
 		return get(AuthInterface.class);
+	}
+
+	public void bulkCheckin(String baseAddress, String token, long poid, String comment, Path file) throws UserException, ServerException {
+		String address = baseAddress + "/bulkupload";
+		HttpPost httppost = new HttpPost(address);
+		try (InputStream inputStream = Files.newInputStream(file)) {
+			InputStreamBody data = new InputStreamBody(inputStream, file.getFileName().toString());
+			
+			MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
+			
+			multipartEntityBuilder.addPart("token", new StringBody(token, ContentType.DEFAULT_TEXT));
+			multipartEntityBuilder.addPart("poid", new StringBody("" + poid, ContentType.DEFAULT_TEXT));
+			multipartEntityBuilder.addPart("comment", new StringBody("" + comment, ContentType.DEFAULT_TEXT));
+			multipartEntityBuilder.addPart("data", data);
+			
+			httppost.setEntity(multipartEntityBuilder.build());
+			
+			HttpResponse httpResponse = closeableHttpClient.execute(httppost);
+			if (httpResponse.getStatusLine().getStatusCode() == 200) {
+				JsonParser jsonParser = new JsonParser();
+				InputStreamReader in = new InputStreamReader(httpResponse.getEntity().getContent());
+				try {
+					JsonElement result = jsonParser.parse(new JsonReader(in));
+					if (result instanceof JsonObject) {
+						JsonObject jsonObject = (JsonObject)result;
+						if (jsonObject.has("exception")) {
+							JsonObject exceptionJson = jsonObject.get("exception").getAsJsonObject();
+							String exceptionType = exceptionJson.get("__type").getAsString();
+							String message = exceptionJson.has("message") ? exceptionJson.get("message").getAsString() : "unknown";
+							if (exceptionType.equals(UserException.class.getSimpleName())) {
+								throw new UserException(message);
+							} else if (exceptionType.equals(ServerException.class.getSimpleName())) {
+								throw new ServerException(message);
+							}
+						}
+					}
+				} finally {
+					in.close();
+				}
+			}
+		} catch (ClientProtocolException e) {
+			throw new ServerException(e);
+		} catch (IOException e) {
+			throw new ServerException(e);
+		} catch (PublicInterfaceNotFoundException e) {
+			throw new ServerException(e);
+		} finally {
+			httppost.releaseConnection();
+		}
 	}
 }
