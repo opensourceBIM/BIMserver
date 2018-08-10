@@ -25,11 +25,10 @@ public class AdaptorGenerator
   protected final String TEXT_7 = NL + "\tpublic ";
   protected final String TEXT_8 = " ";
   protected final String TEXT_9 = "(";
-  protected final String TEXT_10 = " ";
-  protected final String TEXT_11 = ") throws UserException, ServerException {";
-  protected final String TEXT_12 = NL + "\t\treturn null;";
-  protected final String TEXT_13 = NL + "\t}" + NL + "\t";
-  protected final String TEXT_14 = NL + "}";
+  protected final String TEXT_10 = ") throws UserException, ServerException {";
+  protected final String TEXT_11 = NL + "\t\treturn null;";
+  protected final String TEXT_12 = NL + "\t}" + NL + "\t";
+  protected final String TEXT_13 = NL + "}";
 
   public String generate(Object argument)
   {
@@ -76,25 +75,25 @@ for (SMethod method : sService.getMethods()) {
 	for (SParameter parameter : method.getParameters()) {
 
     stringBuffer.append(parameter.getGenericType() != null ? (parameter.getType().toJavaCode() + "<" + parameter.getGenericType() + ">") : parameter.getType().toJavaCode());
-    stringBuffer.append(TEXT_10);
+    stringBuffer.append(TEXT_8);
     stringBuffer.append(parameter.getName());
     stringBuffer.append(parameter.isLast() ? "" : ", ");
     
 	}
 
-    stringBuffer.append(TEXT_11);
+    stringBuffer.append(TEXT_10);
     
 if (!method.getReturnType().isVoid()) {
+
+    stringBuffer.append(TEXT_11);
+    
+}
 
     stringBuffer.append(TEXT_12);
     
 }
 
     stringBuffer.append(TEXT_13);
-    
-}
-
-    stringBuffer.append(TEXT_14);
     return stringBuffer.toString();
   }
 }
