@@ -145,7 +145,6 @@ public abstract class GenericCheckinDatabaseAction extends BimDatabaseAction<Con
 			parent = parent.getParent();
 		}
 		session.store(project);
-		session.store(user);
 		session.store(concreteRevision);
 		result.setConcreteRevision(concreteRevision);
 		return result;
