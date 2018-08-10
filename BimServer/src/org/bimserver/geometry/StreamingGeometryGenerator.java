@@ -88,8 +88,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import jersey.repackaged.com.google.common.base.Joiner;
-
 public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	static final Logger LOGGER = LoggerFactory.getLogger(StreamingGeometryGenerator.class);
 	
@@ -247,10 +245,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 				queryNameSpace = "ifc4stdlib";
 			}
 			
+			// Al references should already be direct, since this is now done in BimServer on startup, quite the hack...
 			Include objectPlacement = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ObjectPlacement");
-			// TODO these are cached, so f'ing em up by doing this...
-			objectPlacement.makeDirectRecursive(new HashSet<>());
-
+			
 			Set<EClass> classes = null;
 			if (queryContext.getOidCounters() != null) {
 				classes = queryContext.getOidCounters().keySet();
