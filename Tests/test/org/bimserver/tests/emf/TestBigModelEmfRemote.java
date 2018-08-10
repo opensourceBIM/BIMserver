@@ -34,6 +34,7 @@ import org.bimserver.models.ifc2x3tc1.IfcElementCompositionEnum;
 import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3tc1.IfcInternalOrExternalEnum;
 import org.bimserver.models.ifc2x3tc1.IfcLocalPlacement;
+import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcRelAggregates;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentationContext;
 import org.bimserver.models.ifc2x3tc1.IfcSpace;
@@ -45,8 +46,14 @@ import org.bimserver.utils.RichIfcModel;
 import org.junit.Test;
 
 public class TestBigModelEmfRemote extends TestWithEmbeddedServer {
+	
+	private IfcProductRepresentation spaceRep;
+	private IfcProductRepresentation furnishingRep;
+
 	@Test
 	public void test() {
+		boolean doreuse = true;
+		
 		try (BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080")){
 			BimServerClientInterface bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
@@ -74,9 +81,9 @@ public class TestBigModelEmfRemote extends TestWithEmbeddedServer {
 				IfcRelAggregates storeyAggregation = richIfcModel.create(IfcRelAggregates.class);
 				storeyAggregation.setRelatingObject(ifcBuildingStorey);
 				
-				for (int x=1; x<=10; x++) {
-					for (int y=1; y<=10; y++) {
-						createSpace(richIfcModel, richIfcModel.getDefaultRepresentationContext(), storeyPlacement, storeyAggregation, x, y);
+				for (int x=1; x<=20; x++) {
+					for (int y=1; y<=20; y++) {
+						createSpace(richIfcModel, richIfcModel.getDefaultRepresentationContext(), storeyPlacement, storeyAggregation, x, y, doreuse);
 					}
 				}
 			}
@@ -94,7 +101,7 @@ public class TestBigModelEmfRemote extends TestWithEmbeddedServer {
 		}
 	}
 
-	private void createSpace(RichIfcModel richIfcModel, IfcRepresentationContext representationContext, IfcLocalPlacement storeyPlacement, IfcRelAggregates storeyAggregation, int x, int y) throws IfcModelInterfaceException {
+	private void createSpace(RichIfcModel richIfcModel, IfcRepresentationContext representationContext, IfcLocalPlacement storeyPlacement, IfcRelAggregates storeyAggregation, int x, int y, boolean doreuse) throws IfcModelInterfaceException {
 		IfcSpace ifcSpace = richIfcModel.create(IfcSpace.class);
 		ifcSpace.setName("Space " + ((y * 10) + x));
 		ifcSpace.setCompositionType(IfcElementCompositionEnum.ELEMENT);
@@ -107,12 +114,21 @@ public class TestBigModelEmfRemote extends TestWithEmbeddedServer {
 
 		storeyAggregation.getRelatedObjects().add(ifcSpace);
 		
-		ifcSpace.setRepresentation(richIfcModel.createRectangularExtrusionProductRepresentation(5000, 5000, 2000));
+		IfcProductRepresentation rep = null;
+		if (doreuse) {
+			if (this.spaceRep == null) {
+				this.spaceRep = richIfcModel.createRectangularExtrusionProductRepresentation(5000, 5000, 2000);
+			}
+			rep = this.spaceRep;
+		} else {
+			rep = richIfcModel.createRectangularExtrusionProductRepresentation(5000, 5000, 2000);
+		}
+		ifcSpace.setRepresentation(rep);
 		
-		createFurnishing(richIfcModel, representationContext, y, ifcSpace, spacePlacement);
+		createFurnishing(richIfcModel, representationContext, y, ifcSpace, spacePlacement, doreuse);
 	}
 
-	private void createFurnishing(RichIfcModel richIfcModel, IfcRepresentationContext representationContext, int number, IfcSpace ifcSpace, IfcLocalPlacement spacePlacement) throws IfcModelInterfaceException {
+	private void createFurnishing(RichIfcModel richIfcModel, IfcRepresentationContext representationContext, int number, IfcSpace ifcSpace, IfcLocalPlacement spacePlacement, boolean doreuse) throws IfcModelInterfaceException {
 		IfcFurnishingElement furnishing = richIfcModel.create(IfcFurnishingElement.class);
 		furnishing.setName("Furnishing " + number);
 		
@@ -123,7 +139,16 @@ public class TestBigModelEmfRemote extends TestWithEmbeddedServer {
 		furnishingPlacement.setRelativePlacement(furnitureAxisPlacement);
 		
 		furnishing.setObjectPlacement(furnishingPlacement);
-		furnishing.setRepresentation(richIfcModel.createRectangularExtrusionProductRepresentation(4000, 4000, 1200));
+		IfcProductRepresentation rep = null;
+		if (doreuse) {
+			if (this.furnishingRep == null) {
+				this.furnishingRep = richIfcModel.createRectangularExtrusionProductRepresentation(4000, 4000, 1200);
+			}
+			rep = this.furnishingRep;
+		} else {
+			rep = richIfcModel.createRectangularExtrusionProductRepresentation(4000, 4000, 1200);
+		}
+		furnishing.setRepresentation(rep);
 		
 		richIfcModel.addContains(ifcSpace, furnishing);
 	}
