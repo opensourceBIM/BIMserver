@@ -209,7 +209,6 @@ public class GeometryAccellerator {
 			}
 			// This is useful information, so the client knows exactly how many triangles will be loaded by using this threshold
 			densityResult.setTrianglesBelow(cumulativeTrianglesBelow);
-			System.out.println(densityResult.getDensity());
 			densityResult.setTrianglesAbove(cumulativeTrianglesAbove);
 			densityThreshold.setDensity(bimServer.getSConverter().convertToSObject(densityResult));
 		} catch (BimserverDatabaseException e) {
