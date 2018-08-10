@@ -584,23 +584,24 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	
 	public synchronized void incrementReads(long reads) {
 		this.reads += reads;
-		if (this.reads / 100000 != lastPrintedReads) {
+		if (this.reads / 200000 != lastPrintedReads) {
 			LOGGER.info("reads: " + this.reads);
-			lastPrintedReads = this.reads / 100000;
+			lastPrintedReads = this.reads / 200000;
 		}
 	}
 	
 	@Override
 	public synchronized void incrementCommittedWrites(long committedWrites) {
 		this.committedWrites += committedWrites;
-		if (this.committedWrites / 100000 != lastPrintedCommittedWrites) {
-			lastPrintedCommittedWrites = this.committedWrites / 100000;
+		int printThreshold = 200000;
+		if (this.committedWrites / printThreshold != lastPrintedCommittedWrites) {
+			lastPrintedCommittedWrites = this.committedWrites / printThreshold;
 			long start = System.nanoTime();
 			
 			// This is a test, when writing large amount of data (IFC data), this should keep memory usage limited because it'll write the data to disk
 			sync();
 			long end = System.nanoTime();
-			LOGGER.info("writes: " + this.committedWrites + ", " + (((end - start) / 1000000) + " ms sync"));
+			LOGGER.info("writes: " + this.committedWrites + ", " + (((end - start) / printThreshold) + " ms sync"));
 		}
 	}
 
