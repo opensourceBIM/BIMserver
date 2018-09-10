@@ -1607,6 +1607,8 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 			}
 		} else if (classifier == EcorePackage.eINSTANCE.getEInt() || classifier == EcorePackage.eINSTANCE.getEIntegerObject()) {
 			return buffer.getInt();
+		} else if (classifier == EcorePackage.eINSTANCE.getEShort() || classifier == EcorePackage.eINSTANCE.getEShortObject()) {
+			return buffer.getShort();
 		} else if (classifier == EcorePackage.eINSTANCE.getELong() || classifier == EcorePackage.eINSTANCE.getELongObject()) {
 			return buffer.getLong();
 		} else if (classifier == EcorePackage.eINSTANCE.getEFloat() || classifier == EcorePackage.eINSTANCE.getEFloatObject()) {
