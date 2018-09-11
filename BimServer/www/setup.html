@@ -559,7 +559,7 @@ function Setup(cd, address) {
 		Object.keys(requiredPlugins).forEach(function(key, index) {
 			scratchmap[key] = requiredPlugins[key];
 		});
-		Global.api.call("SettingsInterface", "setPluginStrictVersionChecking", {strict: false}, function(){
+		Global.api.call("SettingsInterface", "setPluginStrictVersionChecking", {strict: true}, function(){
 			Global.api.call("PluginInterface", "hasPreBuiltPlugins", {}, function(prebuilt){
 				if (prebuilt) {
 					debugger;
