@@ -22,6 +22,7 @@ import java.util.GregorianCalendar;
 
 import org.apache.maven.artifact.versioning.ArtifactVersion;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
+import org.apache.maven.artifact.versioning.InvalidVersionSpecificationException;
 import org.apache.maven.artifact.versioning.VersionRange;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.interfaces.objects.SPluginBundle;
@@ -67,15 +68,22 @@ public abstract class PluginBundleDatabaseAction<T> extends BimDatabaseAction<T>
 						// as this BIMserver, so if any of them is a dependency
 						// for the plugin, it's version has to be ok
 						if (artifactId.equals("shared") || artifactId.equals("pluginbase")) {
-							VersionRange versionRange = VersionRange.createFromVersion(mavenDependency.getArtifact().getVersion());
-							if (bimserverVersion != null && versionRange.containsVersion(bimserverVersion)) {
-
-							} else {
-								sPluginBundleVersion.setMismatch(true);
-								if (strictVersionChecking) {
-									useful = false;
-									LOGGER.info("Skipping version " + mavenPluginVersion.getArtifact().getVersion() + " or artifact " + mavenPluginVersion.getArtifact().getArtifactId());
+							try {
+								String version = mavenDependency.getArtifact().getVersion();
+								if (!version.contains("[") && !version.contains("(")) {
+									version = "[" + version + "]";
 								}
+								VersionRange versionRange = VersionRange.createFromVersionSpec(version);
+								if (bimserverVersion != null && versionRange.containsVersion(bimserverVersion)) {
+									
+								} else {
+									sPluginBundleVersion.setMismatch(true);
+									if (strictVersionChecking) {
+										useful = false;
+									}
+								}
+							} catch (InvalidVersionSpecificationException e) {
+								e.printStackTrace();
 							}
 						}
 					}
@@ -133,6 +141,11 @@ public abstract class PluginBundleDatabaseAction<T> extends BimDatabaseAction<T>
 			}
 		}
 		if (usefulBundle) {
+//			Collections.sort(pluginBundle.getAvailableVersions(), new Comparator<SPluginBundleVersion>() {
+//				@Override
+//				public int compare(SPluginBundleVersion o1, SPluginBundleVersion o2) {
+//					return o1.getVersion().compareTo(o2.getVersion());
+//				}});
 			return pluginBundle;
 		}
 		return null;

@@ -71,8 +71,8 @@ public class GetInstalledPluginBundles extends PluginBundleDatabaseAction<List<S
 		
 		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(32, 32, 1L, TimeUnit.HOURS, new ArrayBlockingQueue<>(100));
 		
-		for (PluginBundle pluginBundle : bimServer.getPluginManager().getPluginBundles()) {
-			SPluginBundleVersion installedVersion = pluginBundle.getPluginBundleVersion();
+		for (PluginBundle currentlyInstalledPluginBundle : bimServer.getPluginManager().getPluginBundles()) {
+			SPluginBundleVersion installedVersion = currentlyInstalledPluginBundle.getPluginBundleVersion();
 
 			PluginBundleIdentifier pluginBundleIdentifier = new PluginBundleIdentifier(installedVersion.getGroupId(), installedVersion.getArtifactId());
 			PluginLocation<?> pluginLocation = repositoryKnownLocation.get(pluginBundleIdentifier);
@@ -84,19 +84,52 @@ public class GetInstalledPluginBundles extends PluginBundleDatabaseAction<List<S
 					
 					if (sPluginBundle == null) {
 						// No versions found on repository
-						sPluginBundle = pluginBundle.getPluginBundle();
+						sPluginBundle = currentlyInstalledPluginBundle.getPluginBundle();
 					}
 					
 					boolean found = false;
 					for (SPluginBundleVersion sPluginBundleVersion : sPluginBundle.getAvailableVersions()) {
-						if (sPluginBundleVersion.getVersion().equals(pluginBundle.getPluginBundleVersion().getVersion())) {
+						if (sPluginBundleVersion.getVersion().equals(currentlyInstalledPluginBundle.getPluginBundleVersion().getVersion())) {
 							found = true;
 						}
 					}
 					if (!found) {
-						sPluginBundle.getAvailableVersions().add(pluginBundle.getPluginBundleVersion());
+						// Add the currently installed version if it's not in the list of available plugins
+						sPluginBundle.getAvailableVersions().add(currentlyInstalledPluginBundle.getPluginBundleVersion());
 					}
 					sPluginBundle.setInstalledVersion(installedVersion);
+					Collections.sort(sPluginBundle.getAvailableVersions(), new Comparator<SPluginBundleVersion>() {
+						private List<Integer> split(String in) {
+							List<Integer> result = new ArrayList<>();
+							for (String s : in.split("\\.")) {
+								if (s.endsWith("-SNAPSHOT")) {
+									s = s.substring(0, s.length() - 9);
+								}
+								result.add(Integer.parseInt(s));
+							}
+							return result;
+						}
+						@Override
+						public int compare(SPluginBundleVersion o1, SPluginBundleVersion o2) {
+							// Ideally we would not depend on a specific versioning scheme, but alas
+							String v1 = o1.getVersion();
+							String v2 = o2.getVersion();
+							if (v1.contains(".") && v2.contains(".")) {
+								List<Integer> v1s = split(v1);
+								List<Integer> v2s = split(v2);
+								for (int i=0; i<v1s.size(); i++) {
+									if (v1s.get(i) == v2s.get(i)) {
+										// Continue
+									} else {
+										return v2s.get(i) - v1s.get(i);
+									}
+								}
+							} else {
+								// Fall back to string based compare
+								return v1.compareTo(v2);
+							}
+							return 0;
+						}});
 					
 					result.add(sPluginBundle);
 				}});
