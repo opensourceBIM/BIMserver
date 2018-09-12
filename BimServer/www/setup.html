@@ -136,7 +136,7 @@
 					</p>
 					<p>
 						<b>No internet connection</b>
-						You can also <a class="btnUploadPlugins">upload JAR files of plugins</a> to install them, this is not the recommended way.
+						You can also <a class="btnUploadPlugins">upload JAR files of plugins</a> to install them, this is not the recommended way. Make sure you disable the checkboxes for the auto-installed plugin bundles.
 					</p>
 				</div>
 				<div class="list-group">
@@ -164,6 +164,7 @@
 						
 						<br/>
 						<span class="label label-warning">Not installing</span> Access to BIMserver functionality will be limited to the technical interfaces JSON, SOAP and Protocol Buffers and no GUI will be available if this plugin is not installed.
+						<span class="label label-warning">Dependencies</span> This plugin bundle requires both the "BimServerJavaScriptApi" and the "BimSurfer" plugin bundles to be installed as well (BimSurfer will automatically be installed when you select BIMvie.ws).
 					</div>
 				</div>
 				<div class="media list-group-item maven">
@@ -202,7 +203,7 @@
 					</div>
 					<div class="media-body">
 						<h4 class="media-heading">BinarySerializers</h4>
-						Contains binary serializers required for loading geometry ov<br/><br/>
+						Contains binary serializers required for loading geometry in most of the viewers<br/><br/>
 						<span class="label label-warning">Not installing</span> Without this plugin BIMsurfer will not be able to load 3D geometry
 					</div>
 				</div>
@@ -239,7 +240,7 @@
 						<div class="well" style="width: 260px; height: 153px; padding: 10px"><img class="media-object" height="130" style="margin-left: auto; margin-right: auto" src="img/gltf.png"></div>
 					</div>
 					<div class="media-body">
-						<h4 class="media-heading">Console</h4>
+						<h4 class="media-heading">glTF</h4>
 						glTF 1 (with binary extension) and glTF 2 (glb) serializers<br/>
 					</div>
 				</div>
@@ -251,7 +252,7 @@
 						<div class="well" style="width: 260px; height: 153px; padding: 10px"><img class="media-object" height="130" style="margin-left: auto; margin-right: auto" src="img/opensourcebim.png"></div>
 					</div>
 					<div class="media-body">
-						<h4 class="media-heading">Console</h4>
+						<h4 class="media-heading">Default mergers</h4>
 						Default merger plugins, used for combining multiple IFC models into one IFC model<br/>
 					</div>
 				</div>
