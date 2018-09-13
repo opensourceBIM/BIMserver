@@ -60,6 +60,7 @@ public abstract class PluginBundleDatabaseAction<T> extends BimDatabaseAction<T>
 			if (pluginVersion instanceof MavenPluginVersion) {
 				SPluginBundleVersion sPluginBundleVersion = new SPluginBundleVersion();
 				boolean useful = true;
+				boolean hasPluginBaseDependency = false;
 				MavenPluginVersion mavenPluginVersion = (MavenPluginVersion) pluginVersion;
 				for (MavenDependency mavenDependency : mavenPluginVersion.getDependencies()) {
 					if (mavenDependency.getArtifact().getGroupId().equals("org.opensourcebim")) {
@@ -68,6 +69,7 @@ public abstract class PluginBundleDatabaseAction<T> extends BimDatabaseAction<T>
 						// as this BIMserver, so if any of them is a dependency
 						// for the plugin, it's version has to be ok
 						if (artifactId.equals("shared") || artifactId.equals("pluginbase")) {
+							hasPluginBaseDependency = true;
 							try {
 								String version = mavenDependency.getArtifact().getVersion();
 								if (!version.contains("[") && !version.contains("(")) {
@@ -88,7 +90,7 @@ public abstract class PluginBundleDatabaseAction<T> extends BimDatabaseAction<T>
 						}
 					}
 				}
-				if (useful) {
+				if (useful && hasPluginBaseDependency) {
 					usefulBundle = true;
 
 					sPluginBundleVersion.setName(mavenPluginVersion.getModel().getName());
