@@ -36,12 +36,11 @@ public class BimServerBimBotsInput extends BimBotsInput {
 
 	private IfcModelInterface model;
 
-	public BimServerBimBotsInput(BimServer bimServer, long uoid, SchemaName schemaName, byte[] data, IfcModelInterface model) throws BimBotsException {
+	public BimServerBimBotsInput(BimServer bimServer, long uoid, SchemaName schemaName, byte[] data, IfcModelInterface model, boolean generateGeometry) throws BimBotsException {
 		super(schemaName, data);
 		this.model = model;
 		
 		try (DatabaseSession session = bimServer.getDatabase().createSession()) {
-			GeometryGenerator generator = new GeometryGenerator(bimServer);
 			
 			User user = session.get(uoid, OldQuery.getDefault());
 			UserSettings userSettings = user.getUserSettings();
@@ -49,10 +48,12 @@ public class BimServerBimBotsInput extends BimBotsInput {
 			if (defaultRenderEngine == null) {
 				throw new BimBotsException("No default render engine has been selected for this user");
 			}
-			
-			RenderEnginePool pool = bimServer.getRenderEnginePools().getRenderEnginePool(model.getPackageMetaData().getSchema(), defaultRenderEngine.getPluginDescriptor().getPluginClassName(), new PluginConfiguration(defaultRenderEngine.getSettings()));
-			
-			generator.generateGeometry(pool, bimServer.getPluginManager(), null, model, -1, -1, false, null);
+
+			if (generateGeometry) {
+				GeometryGenerator generator = new GeometryGenerator(bimServer);
+				RenderEnginePool pool = bimServer.getRenderEnginePools().getRenderEnginePool(model.getPackageMetaData().getSchema(), defaultRenderEngine.getPluginDescriptor().getPluginClassName(), new PluginConfiguration(defaultRenderEngine.getSettings()));
+				generator.generateGeometry(pool, bimServer.getPluginManager(), null, model, -1, -1, false, null);
+			}
 		} catch (PluginException e) {
 			e.printStackTrace();
 		} catch (BimserverDatabaseException e) {
