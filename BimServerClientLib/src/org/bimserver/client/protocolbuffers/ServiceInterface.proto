@@ -605,17 +605,16 @@ message SUser {
 	optional int64 oid = 10;
 	optional bytes passwordHash = 11;
 	optional bytes passwordSalt = 12;
-	repeated int64 revisions = 13;
-	optional int32 rid = 14;
-	repeated int64 schemas = 15;
-	repeated int64 services = 16;
-	optional SObjectState state = 17;
-	optional string token = 18;
-	optional int64 userSettingsId = 19;
-	optional SUserType userType = 20;
-	optional string username = 21;
-	optional bytes validationToken = 22;
-	optional int64 validationTokenCreated = 23;
+	optional int32 rid = 13;
+	repeated int64 schemas = 14;
+	repeated int64 services = 15;
+	optional SObjectState state = 16;
+	optional string token = 17;
+	optional int64 userSettingsId = 18;
+	optional SUserType userType = 19;
+	optional string username = 20;
+	optional bytes validationToken = 21;
+	optional int64 validationTokenCreated = 22;
 }
 
 message AddUserResponse {

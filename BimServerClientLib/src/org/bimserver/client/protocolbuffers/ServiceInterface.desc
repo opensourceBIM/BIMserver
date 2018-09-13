@@ -1,5 +1,5 @@
 
-Ü¥
+É¥
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -181,7 +181,7 @@ parentPoid (
 name (	)
 type (2.org.bimserver.pb.SUserType
 selfRegistration (
-resetUrl (	"œ
+resetUrl (	"‰
 SUser
 createdById (
 	createdOn (
@@ -195,18 +195,17 @@ parentPoid (
 oid
  (
 passwordHash (
-passwordSalt (
-	revisions (
-rid (
-schemas (
-services (-
-state (2.org.bimserver.pb.SObjectState
-token (	
-userSettingsId (-
-userType (2.org.bimserver.pb.SUserType
-username (	
-validationToken (
-validationTokenCreated ("O
+passwordSalt (
+rid (
+schemas (
+services (-
+state (2.org.bimserver.pb.SObjectState
+token (	
+userSettingsId (-
+userType (2.org.bimserver.pb.SUserType
+username (	
+validationToken (
+validationTokenCreated ("O
 AddUserResponse
 errorMessage (	&
 value (2.org.bimserver.pb.SUser"A

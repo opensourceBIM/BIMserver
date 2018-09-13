@@ -315,13 +315,22 @@ public interface StorePackage extends EPackage {
 	int PROJECT__CHECKIN_IN_PROGRESS = 23;
 
 	/**
+	 * The feature id for the '<em><b>Uuid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT__UUID = 24;
+
+	/**
 	 * The number of structural features of the '<em>Project</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_FEATURE_COUNT = 24;
+	int PROJECT_FEATURE_COUNT = 25;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.UserImpl <em>User</em>}' class.
@@ -514,13 +523,22 @@ public interface StorePackage extends EPackage {
 	int USER__OAUTH_ISSUED_AUTHORIZATION_CODES = 19;
 
 	/**
+	 * The feature id for the '<em><b>Uuid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__UUID = 20;
+
+	/**
 	 * The number of structural features of the '<em>User</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_FEATURE_COUNT = 20;
+	int USER_FEATURE_COUNT = 21;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.RevisionImpl <em>Revision</em>}' class.
@@ -740,13 +758,22 @@ public interface StorePackage extends EPackage {
 	int REVISION__NR_PRIMITIVES = 22;
 
 	/**
+	 * The feature id for the '<em><b>Uuid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REVISION__UUID = 23;
+
+	/**
 	 * The number of structural features of the '<em>Revision</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION_FEATURE_COUNT = 23;
+	int REVISION_FEATURE_COUNT = 24;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ConcreteRevisionImpl <em>Concrete Revision</em>}' class.
@@ -7757,6 +7784,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getProject_CheckinInProgress();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Project#getUuid <em>Uuid</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Uuid</em>'.
+	 * @see org.bimserver.models.store.Project#getUuid()
+	 * @see #getProject()
+	 * @generated
+	 */
+	EAttribute getProject_Uuid();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.User <em>User</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7985,6 +8023,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getUser_OAuthIssuedAuthorizationCodes();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.User#getUuid <em>Uuid</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Uuid</em>'.
+	 * @see org.bimserver.models.store.User#getUuid()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EAttribute getUser_Uuid();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Revision <em>Revision</em>}'.
@@ -8248,6 +8297,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getRevision_NrPrimitives();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Revision#getUuid <em>Uuid</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Uuid</em>'.
+	 * @see org.bimserver.models.store.Revision#getUuid()
+	 * @see #getRevision()
+	 * @generated
+	 */
+	EAttribute getRevision_Uuid();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ConcreteRevision <em>Concrete Revision</em>}'.
@@ -14615,6 +14675,14 @@ public interface StorePackage extends EPackage {
 		EAttribute PROJECT__CHECKIN_IN_PROGRESS = eINSTANCE.getProject_CheckinInProgress();
 
 		/**
+		 * The meta object literal for the '<em><b>Uuid</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROJECT__UUID = eINSTANCE.getProject_Uuid();
+
+		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.UserImpl <em>User</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -14783,6 +14851,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference USER__OAUTH_ISSUED_AUTHORIZATION_CODES = eINSTANCE.getUser_OAuthIssuedAuthorizationCodes();
+
+		/**
+		 * The meta object literal for the '<em><b>Uuid</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USER__UUID = eINSTANCE.getUser_Uuid();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.RevisionImpl <em>Revision</em>}' class.
@@ -14977,6 +15053,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute REVISION__NR_PRIMITIVES = eINSTANCE.getRevision_NrPrimitives();
+
+		/**
+		 * The meta object literal for the '<em><b>Uuid</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REVISION__UUID = eINSTANCE.getRevision_Uuid();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ConcreteRevisionImpl <em>Concrete Revision</em>}' class.

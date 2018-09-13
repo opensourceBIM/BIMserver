@@ -68,6 +68,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.User#getLogs <em>Logs</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getOAuthAuthorizationCodes <em>OAuth Authorization Codes</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getOAuthIssuedAuthorizationCodes <em>OAuth Issued Authorization Codes</em>}</li>
+ *   <li>{@link org.bimserver.models.store.User#getUuid <em>Uuid</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getUser()
@@ -543,5 +544,31 @@ public interface User extends IdEObject {
 	 * @generated
 	 */
 	EList<OAuthAuthorizationCode> getOAuthIssuedAuthorizationCodes();
+
+	/**
+	 * Returns the value of the '<em><b>Uuid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Uuid</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Uuid</em>' attribute.
+	 * @see #setUuid(String)
+	 * @see org.bimserver.models.store.StorePackage#getUser_Uuid()
+	 * @model
+	 * @generated
+	 */
+	String getUuid();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.User#getUuid <em>Uuid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Uuid</em>' attribute.
+	 * @see #getUuid()
+	 * @generated
+	 */
+	void setUuid(String value);
 
 } // User

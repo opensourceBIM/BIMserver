@@ -83,6 +83,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getServicesLinked <em>Services Linked</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getDensityCollection <em>Density Collection</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getNrPrimitives <em>Nr Primitives</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.RevisionImpl#getUuid <em>Uuid</em>}</li>
  * </ul>
  *
  * @generated
@@ -489,6 +490,24 @@ public class RevisionImpl extends IdEObjectImpl implements Revision {
 	 */
 	public void setNrPrimitives(long newNrPrimitives) {
 		eSet(StorePackage.Literals.REVISION__NR_PRIMITIVES, newNrPrimitives);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getUuid() {
+		return (String) eGet(StorePackage.Literals.REVISION__UUID, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUuid(String newUuid) {
+		eSet(StorePackage.Literals.REVISION__UUID, newUuid);
 	}
 
 } //RevisionImpl

@@ -32,6 +32,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.bimserver.BimserverDatabaseException;
@@ -71,7 +72,6 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.BinUtils;
-import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
@@ -85,7 +85,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EEnumImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -2116,6 +2115,10 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	public EObject create(EClass eClass) {
 		// checkOpen();
 		IdEObjectImpl idEObject = createInternal(eClass, null);
+		EStructuralFeature uuidFeature = eClass.getEStructuralFeature("uuid");
+		if (uuidFeature != null) {
+			idEObject.eSet(uuidFeature, UUID.randomUUID().toString());
+		}
 		try {
 			store(idEObject, Database.STORE_PROJECT_ID, Integer.MAX_VALUE);
 		} catch (BimserverDatabaseException e) {

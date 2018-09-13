@@ -11885,13 +11885,13 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Project/sendEmailOnNewRevision"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/Project/newServices"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Project/checkinInProgress"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Project/uuid"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/4/User">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/User/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/User/passwordHash"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/User/passwordSalt"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/User/hasRightsOn"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/User/revisions"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/User/state"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/User/createdOn"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/User/createdBy"/>
@@ -11908,6 +11908,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/User/logs"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/User/oAuthAuthorizationCodes"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/User/oAuthIssuedAuthorizationCodes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/User/uuid"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/4/Revision">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Revision/id"/>
@@ -11933,6 +11934,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/Revision/servicesLinked"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/Revision/densityCollection"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Revision/nrPrimitives"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Revision/uuid"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/4/ConcreteRevision">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ConcreteRevision/id"/>

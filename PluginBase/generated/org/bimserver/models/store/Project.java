@@ -72,6 +72,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Project#isSendEmailOnNewRevision <em>Send Email On New Revision</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#getNewServices <em>New Services</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#getCheckinInProgress <em>Checkin In Progress</em>}</li>
+ *   <li>{@link org.bimserver.models.store.Project#getUuid <em>Uuid</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getProject()
@@ -629,5 +630,31 @@ public interface Project extends IdEObject {
 	 * @generated
 	 */
 	void setCheckinInProgress(long value);
+
+	/**
+	 * Returns the value of the '<em><b>Uuid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Uuid</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Uuid</em>' attribute.
+	 * @see #setUuid(String)
+	 * @see org.bimserver.models.store.StorePackage#getProject_Uuid()
+	 * @model
+	 * @generated
+	 */
+	String getUuid();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.Project#getUuid <em>Uuid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Uuid</em>' attribute.
+	 * @see #getUuid()
+	 * @generated
+	 */
+	void setUuid(String value);
 
 } // Project
