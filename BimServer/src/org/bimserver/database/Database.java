@@ -231,6 +231,7 @@ public class Database implements BimDatabase {
 		settings.setGenerateGeometryOnCheckin(true);
 		settings.setReuseGeometry(true);
 		settings.setStoreLastLogin(false);
+		settings.setStoreServiceRuns(true);
 		settings.setRenderEngineProcesses(Runtime.getRuntime().availableProcessors());
 		settings.setSessionTimeOutSeconds(60 * 60 * 24 * 30); // 1 month
 		settings.getWhitelistedDomains().add("localhost");
