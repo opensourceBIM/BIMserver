@@ -55,7 +55,6 @@ public class SRevision implements SDataBase
 	private List<Long> servicesLinked = new ArrayList<Long>();
 	private long densityCollectionId = -1;
 	private long nrPrimitives;
-	private java.lang.String uuid;
 
 	public long getOid() {
 		return this.oid;
@@ -151,9 +150,6 @@ public class SRevision implements SDataBase
 		}
 		if (sField.getName().equals("nrPrimitives")) {
 			return getNrPrimitives();
-		}
-		if (sField.getName().equals("uuid")) {
-			return getUuid();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -256,10 +252,6 @@ public class SRevision implements SDataBase
 		}
 		if (sField.getName().equals("nrPrimitives")) {
 			setNrPrimitives((Long)val);
-			return;
-		}
-		if (sField.getName().equals("uuid")) {
-			setUuid((String)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -459,14 +451,6 @@ public class SRevision implements SDataBase
 
 	public void setNrPrimitives(long nrPrimitives) {
 		this.nrPrimitives = nrPrimitives;
-	}
-	
-	public java.lang.String getUuid() {
-		return uuid;
-	}
-
-	public void setUuid(java.lang.String uuid) {
-		this.uuid = uuid;
 	}
 	
 	@Override

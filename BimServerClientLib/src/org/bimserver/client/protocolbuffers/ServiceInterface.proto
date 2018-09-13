@@ -205,6 +205,8 @@ service ServiceInterface {
 
 	rpc getProjectByPoid (GetProjectByPoidRequest) returns (GetProjectByPoidResponse);
 
+	rpc getProjectByUuid (GetProjectByUuidRequest) returns (GetProjectByUuidResponse);
+
 	rpc getProjectSmallByPoid (GetProjectSmallByPoidRequest) returns (GetProjectSmallByPoidResponse);
 
 	rpc getProjectsByName (GetProjectsByNameRequest) returns (GetProjectsByNameResponse);
@@ -549,6 +551,7 @@ message SProject {
 	repeated int64 services = 24;
 	optional SObjectState state = 25;
 	repeated int64 subProjects = 26;
+	optional string uuid = 27;
 }
 
 message AddProjectResponse {
@@ -613,8 +616,9 @@ message SUser {
 	optional int64 userSettingsId = 18;
 	optional SUserType userType = 19;
 	optional string username = 20;
-	optional bytes validationToken = 21;
-	optional int64 validationTokenCreated = 22;
+	optional string uuid = 21;
+	optional bytes validationToken = 22;
+	optional int64 validationTokenCreated = 23;
 }
 
 message AddUserResponse {
@@ -966,6 +970,7 @@ message SRevision {
 	optional int64 size = 23;
 	optional string tag = 24;
 	optional int64 userId = 25;
+	optional string uuid = 26;
 }
 
 message SCheckout {
@@ -1651,6 +1656,15 @@ message GetProjectByPoidRequest {
 }
 
 message GetProjectByPoidResponse {
+	optional string errorMessage = 1;
+	optional SProject value = 2;
+}
+
+message GetProjectByUuidRequest {
+	optional string uuid = 1;
+}
+
+message GetProjectByUuidResponse {
 	optional string errorMessage = 1;
 	optional SProject value = 2;
 }

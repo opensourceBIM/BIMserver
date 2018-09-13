@@ -758,22 +758,13 @@ public interface StorePackage extends EPackage {
 	int REVISION__NR_PRIMITIVES = 22;
 
 	/**
-	 * The feature id for the '<em><b>Uuid</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REVISION__UUID = 23;
-
-	/**
 	 * The number of structural features of the '<em>Revision</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REVISION_FEATURE_COUNT = 24;
+	int REVISION_FEATURE_COUNT = 23;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ConcreteRevisionImpl <em>Concrete Revision</em>}' class.
@@ -8299,17 +8290,6 @@ public interface StorePackage extends EPackage {
 	EAttribute getRevision_NrPrimitives();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Revision#getUuid <em>Uuid</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Uuid</em>'.
-	 * @see org.bimserver.models.store.Revision#getUuid()
-	 * @see #getRevision()
-	 * @generated
-	 */
-	EAttribute getRevision_Uuid();
-
-	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ConcreteRevision <em>Concrete Revision</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15053,14 +15033,6 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute REVISION__NR_PRIMITIVES = eINSTANCE.getRevision_NrPrimitives();
-
-		/**
-		 * The meta object literal for the '<em><b>Uuid</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute REVISION__UUID = eINSTANCE.getRevision_Uuid();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ConcreteRevisionImpl <em>Concrete Revision</em>}' class.

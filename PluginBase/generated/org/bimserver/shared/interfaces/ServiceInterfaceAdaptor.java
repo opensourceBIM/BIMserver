@@ -377,6 +377,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
+	public org.bimserver.interfaces.objects.SProject getProjectByUuid(java.lang.String uuid) throws UserException, ServerException {
+		return null;
+	}
+	
 	public org.bimserver.interfaces.objects.SProjectSmall getProjectSmallByPoid(java.lang.Long poid) throws UserException, ServerException {
 		return null;
 	}

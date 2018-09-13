@@ -19991,7 +19991,10 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="newServices" upperBound="-1"
           eType="#/4/NewService"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="checkinInProgress" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="uuid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="uuid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="unique"/>
+        <eAnnotations source="singleindex"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="User">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -20025,7 +20028,10 @@
           upperBound="-1" eType="#/4/OAuthAuthorizationCode"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="oAuthIssuedAuthorizationCodes"
           upperBound="-1" eType="#/4/OAuthAuthorizationCode" eOpposite="#/4/OAuthAuthorizationCode/user"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="uuid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="uuid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="unique"/>
+        <eAnnotations source="singleindex"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Revision">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
@@ -20076,7 +20082,6 @@
           eType="#/4/NewService"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="densityCollection" eType="#/4/DensityCollection"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="nrPrimitives" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="uuid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ConcreteRevision">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>

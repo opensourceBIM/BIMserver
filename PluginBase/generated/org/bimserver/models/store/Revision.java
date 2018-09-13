@@ -72,7 +72,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Revision#getServicesLinked <em>Services Linked</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getDensityCollection <em>Density Collection</em>}</li>
  *   <li>{@link org.bimserver.models.store.Revision#getNrPrimitives <em>Nr Primitives</em>}</li>
- *   <li>{@link org.bimserver.models.store.Revision#getUuid <em>Uuid</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getRevision()
@@ -638,31 +637,5 @@ public interface Revision extends IdEObject {
 	 * @generated
 	 */
 	void setNrPrimitives(long value);
-
-	/**
-	 * Returns the value of the '<em><b>Uuid</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Uuid</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Uuid</em>' attribute.
-	 * @see #setUuid(String)
-	 * @see org.bimserver.models.store.StorePackage#getRevision_Uuid()
-	 * @model
-	 * @generated
-	 */
-	String getUuid();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Revision#getUuid <em>Uuid</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Uuid</em>' attribute.
-	 * @see #getUuid()
-	 * @generated
-	 */
-	void setUuid(String value);
 
 } // Revision

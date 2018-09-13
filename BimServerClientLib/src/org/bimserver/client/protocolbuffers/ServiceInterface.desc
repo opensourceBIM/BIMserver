@@ -1,5 +1,5 @@
 
-…•
+‰ß
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -129,7 +129,7 @@ revisionId (
 value ("8
 AddProjectRequest
 projectName (	
-schema (	"Á
+schema (	"ı
 SProject
 checkinInProgress (
 	checkouts (
@@ -158,7 +158,8 @@ revisionId (
 sendEmailOnNewRevision (
 services (-
 state (2.org.bimserver.pb.SObjectState
-subProjects ("U
+subProjects (
+uuid (	"U
 AddProjectResponse
 errorMessage (	)
 value (2.org.bimserver.pb.SProject"X
@@ -181,7 +182,7 @@ parentPoid (
 name (	)
 type (2.org.bimserver.pb.SUserType
 selfRegistration (
-resetUrl (	"â
+resetUrl (	"ó
 SUser
 createdById (
 	createdOn (
@@ -203,9 +204,10 @@ parentPoid (
 token (	
 userSettingsId (-
 userType (2.org.bimserver.pb.SUserType
-username (	
-validationToken (
-validationTokenCreated ("O
+username (	
+uuid (	
+validationToken (
+validationTokenCreated ("O
 AddUserResponse
 errorMessage (	&
 value (2.org.bimserver.pb.SUser"A
@@ -424,7 +426,7 @@ dataObject (2.org.bimserver.pb.SDataObject
 max (2.org.bimserver.pb.SVector3f(
 min (2.org.bimserver.pb.SVector3f
 oid (
-rid ("›
+rid ("Î
 	SRevision
 bmi ()
 bounds (2.org.bimserver.pb.SBounds+
@@ -452,7 +454,8 @@ dataObject (2.org.bimserver.pb.SDataObject
 servicesLinked (
 size (
 tag (	
-userId ("—
+userId (
+uuid (	"—
 	SCheckout
 active (,
 checkin (2.org.bimserver.pb.SRevision
@@ -889,6 +892,11 @@ SIfcHeader
 GetProjectByPoidRequest
 poid ("[
 GetProjectByPoidResponse
+errorMessage (	)
+value (2.org.bimserver.pb.SProject"'
+GetProjectByUuidRequest
+uuid (	"[
+GetProjectByUuidResponse
 errorMessage (	)
 value (2.org.bimserver.pb.SProject",
 GetProjectSmallByPoidRequest
@@ -1554,7 +1562,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2ıÄ
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2‡Å
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
@@ -1648,7 +1656,8 @@ deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserRes
 getNrPrimitives(.org.bimserver.pb.GetNrPrimitivesRequest).org.bimserver.pb.GetNrPrimitivesResponseu
 getNrPrimitivesTotal-.org.bimserver.pb.GetNrPrimitivesTotalRequest..org.bimserver.pb.GetNrPrimitivesTotalResponse]
 getOidByGuid%.org.bimserver.pb.GetOidByGuidRequest&.org.bimserver.pb.GetOidByGuidResponsei
-getProjectByPoid).org.bimserver.pb.GetProjectByPoidRequest*.org.bimserver.pb.GetProjectByPoidResponsex
+getProjectByPoid).org.bimserver.pb.GetProjectByPoidRequest*.org.bimserver.pb.GetProjectByPoidResponsei
+getProjectByUuid).org.bimserver.pb.GetProjectByUuidRequest*.org.bimserver.pb.GetProjectByUuidResponsex
 getProjectSmallByPoid..org.bimserver.pb.GetProjectSmallByPoidRequest/.org.bimserver.pb.GetProjectSmallByPoidResponsel
 getProjectsByName*.org.bimserver.pb.GetProjectsByNameRequest+.org.bimserver.pb.GetProjectsByNameResponseo
 getQueryEngineById+.org.bimserver.pb.GetQueryEngineByIdRequest,.org.bimserver.pb.GetQueryEngineByIdResponseu

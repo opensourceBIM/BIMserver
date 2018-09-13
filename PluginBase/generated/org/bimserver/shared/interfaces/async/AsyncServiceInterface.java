@@ -484,6 +484,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetProjectByUuidCallback {
+		void success(org.bimserver.interfaces.objects.SProject result);
+		void error(Throwable e);
+	}
+	
 	public interface GetProjectSmallByPoidCallback {
 		void success(org.bimserver.interfaces.objects.SProjectSmall result);
 		void error(Throwable e);
@@ -1839,6 +1844,18 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getProjectByPoid(poid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getProjectByUuid(final java.lang.String uuid, final GetProjectByUuidCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getProjectByUuid(uuid));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

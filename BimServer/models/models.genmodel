@@ -11934,7 +11934,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/Revision/servicesLinked"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/Revision/densityCollection"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Revision/nrPrimitives"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Revision/uuid"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/4/ConcreteRevision">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ConcreteRevision/id"/>
