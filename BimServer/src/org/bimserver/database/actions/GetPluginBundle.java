@@ -58,6 +58,8 @@ public class GetPluginBundle extends PluginBundleDatabaseAction<SPluginBundle> {
 			SPluginBundle sPluginBundle = processPluginLocation(pluginLocation, false, bimserverVersion);
 			if (sPluginBundle != null) {
 				return sPluginBundle;
+			} else {
+				throw new UserException("Plugin bundle not installed successfully: " + groupId + "." + artifactId);
 			}
 		}
 		throw new UserException("Plugin bundle already installed " + groupId + "." + artifactId);
