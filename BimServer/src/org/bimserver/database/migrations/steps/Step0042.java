@@ -20,19 +20,30 @@ package org.bimserver.database.migrations.steps;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EcorePackage;
 
 public class Step0042 extends Migration {
 
 	@Override
 	public void migrate(Schema schema, DatabaseSession databaseSession) {
-		schema.createEAttribute(schema.getEClass("store", "Project"), "uuid", EcorePackage.eINSTANCE.getEString());
-		schema.createEAttribute(schema.getEClass("store", "User"), "uuid", EcorePackage.eINSTANCE.getEString());
-		schema.createEAttribute(schema.getEClass("store", "Revision"), "uuid", EcorePackage.eINSTANCE.getEString());
+		EAttribute projectUuid = schema.createEAttribute(schema.getEClass("store", "Project"), "uuid", EcorePackage.eINSTANCE.getEString());
+		projectUuid.getEAnnotations().add(createUniqueAnnotation());
+		schema.addIndex(projectUuid);
+		
+		EAttribute userUuid = schema.createEAttribute(schema.getEClass("store", "User"), "uuid", EcorePackage.eINSTANCE.getEString());
+		userUuid.getEAnnotations().add(createUniqueAnnotation());
+		schema.addIndex(userUuid);
+		
+		// Disabled for revisions for now, caused weird error
+		
+//		EAttribute revisionUuid = schema.createEAttribute(schema.getEClass("store", "Revision"), "uuid", EcorePackage.eINSTANCE.getEString());
+//		revisionUuid.getEAnnotations().add(createUniqueAnnotation());
+//		schema.addIndex(revisionUuid);
 	}
 
 	@Override
 	public String getDescription() {
-		return "Added UUID fields to a few classes";
+		return "Added indexed UUID fields to a few classes";
 	}
 }
