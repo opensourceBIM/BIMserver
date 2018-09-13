@@ -194,7 +194,11 @@ public class RootServlet extends HttpServlet {
 				
 				InputStream resourceAsStream = getServletContext().getResourceAsStream(requestUri);
 				if (resourceAsStream != null) {
-					IOUtils.copy(resourceAsStream, response.getOutputStream());
+					try {
+						IOUtils.copy(resourceAsStream, response.getOutputStream());
+					} finally {
+						resourceAsStream.close();
+					}
 				} else {
 					response.setStatus(404);
 					try {
