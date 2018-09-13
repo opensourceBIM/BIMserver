@@ -122,9 +122,13 @@ public class OAuthAuthorizationServlet extends SubServlet {
 				String redirectURI = oauthRequest.getParam(OAuth.OAUTH_REDIRECT_URI);
 
 				if (redirectURI != null && !redirectURI.equals("")) {
-					URI uri = makeUrl(redirectURI, oauthCode, builder);
-					LOGGER.info("Redirecting to " + uri);
-					httpServletResponse.sendRedirect(uri.toString());
+					if (redirectURI.equals("SHOW_CODE")) {
+						httpServletResponse.getWriter().write("Service token (copy&paste this into your application): <br/><br/><input type=\"text\" style=\"width: 1000px\" value=\"" + oauthCode.getCode() + "\"/>");
+					} else {
+						URI uri = makeUrl(redirectURI, oauthCode, builder);
+						LOGGER.info("Redirecting to " + uri);
+						httpServletResponse.sendRedirect(uri.toString());
+					}
 				} else {
 					URI uri = makeUrl("http://fakeaddress", oauthCode, builder);
 					httpServletResponse.getWriter().println("No redirectURI provided");
