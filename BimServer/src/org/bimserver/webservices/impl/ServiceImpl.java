@@ -118,6 +118,7 @@ import org.bimserver.database.actions.GetNrPrimitivesDatabaseAction;
 import org.bimserver.database.actions.GetNrPrimitivesTotalDatabaseAction;
 import org.bimserver.database.actions.GetOidByGuidDatabaseAction;
 import org.bimserver.database.actions.GetProjectByPoidDatabaseAction;
+import org.bimserver.database.actions.GetProjectByUuidDatabaseAction;
 import org.bimserver.database.actions.GetProjectsByNameDatabaseAction;
 import org.bimserver.database.actions.GetProjectsOfUserDatabaseAction;
 import org.bimserver.database.actions.GetQueryEngineByIdDatabaseAction;
@@ -729,6 +730,21 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			GetProjectByPoidDatabaseAction action = new GetProjectByPoidDatabaseAction(session, getInternalAccessMethod(), poid, getAuthorization());
+			SProject result = getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(action));
+			return result;
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public SProject getProjectByUuid(String uuid) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			GetProjectByUuidDatabaseAction action = new GetProjectByUuidDatabaseAction(session, getInternalAccessMethod(), uuid, getAuthorization());
 			SProject result = getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(action));
 			return result;
 		} catch (Exception e) {

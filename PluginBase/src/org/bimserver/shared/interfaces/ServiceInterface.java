@@ -258,6 +258,15 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "poid", partName = "getProjectByPoid.poid") Long poid) throws ServerException, UserException;
 
 	/**
+	 * @param uuid UUID of the Project
+	 * @return The Project
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getProjectByUuid")
+	SProject getProjectByUuid(
+		@WebParam(name = "uuid", partName = "getProjectByUuid.uuid") String uuid) throws ServerException, UserException;
+	
+	/**
 	 * @param poid ObjectID of the Project
 	 * @return The Project
 	 * @throws ServerException, UserException
