@@ -2082,6 +2082,12 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	public <T> T create(EClass eClass, int pid, int rid) throws BimserverDatabaseException {
 		checkOpen();
 		IdEObject idEObject = createInternal(eClass, null);
+		EStructuralFeature uuidFeature = eClass.getEStructuralFeature("uuid");
+		if (uuidFeature != null) {
+			if (idEObject.eGet(uuidFeature) == null) {
+				idEObject.eSet(uuidFeature, UUID.randomUUID().toString());
+			}
+		}
 		store(idEObject, pid, rid);
 		return (T) idEObject;
 	}
@@ -2117,7 +2123,9 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		IdEObjectImpl idEObject = createInternal(eClass, null);
 		EStructuralFeature uuidFeature = eClass.getEStructuralFeature("uuid");
 		if (uuidFeature != null) {
-			idEObject.eSet(uuidFeature, UUID.randomUUID().toString());
+			if (idEObject.eGet(uuidFeature) == null) {
+				idEObject.eSet(uuidFeature, UUID.randomUUID().toString());
+			}
 		}
 		try {
 			store(idEObject, Database.STORE_PROJECT_ID, Integer.MAX_VALUE);
@@ -2202,38 +2210,42 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	}
 	
 	public byte[] extractFeatureBytes(DatabaseSession databaseSession, ByteBuffer buffer, EClass eClass, EStructuralFeature eStructuralFeature) throws BimserverDatabaseException {
-		PackageMetaData packageMetaData = getMetaDataManager().getPackageMetaData(eClass.getEPackage().getName());
-		buffer.position(0);
-		
-		int fieldCounter = 0;
-		for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
-			if (packageMetaData.useForDatabaseStorage(eClass, feature)) {
-				fieldCounter++;
-			}
-		}
-		
-		int unsettedLength = (int) Math.ceil(fieldCounter / 8.0);
-		byte[] unsetted = new byte[unsettedLength];
-		buffer.get(unsetted);
-		fieldCounter = 0;
-
-		for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
-			boolean isUnsetted = (unsetted[fieldCounter / 8] & (1 << (fieldCounter % 8))) != 0;
-			if (isUnsetted) {
-			} else {
-				if (eStructuralFeature == feature) {
-					if (feature instanceof EReference) {
-						return BinUtils.longToByteArrayLittleEndian(buffer.getLong());
-					} else {
-						return databaseSession.readPrimitiveBytes(feature.getEType(), buffer, OldQuery.getDefault());
-					}
-				} else {
-					databaseSession.fakeRead(buffer, feature);
+		try {
+			PackageMetaData packageMetaData = getMetaDataManager().getPackageMetaData(eClass.getEPackage().getName());
+			buffer.position(0);
+			
+			int fieldCounter = 0;
+			for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
+				if (packageMetaData.useForDatabaseStorage(eClass, feature)) {
+					fieldCounter++;
 				}
 			}
-			fieldCounter++;
+			
+			int unsettedLength = (int) Math.ceil(fieldCounter / 8.0);
+			byte[] unsetted = new byte[unsettedLength];
+			buffer.get(unsetted);
+			fieldCounter = 0;
+			
+			for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
+				boolean isUnsetted = (unsetted[fieldCounter / 8] & (1 << (fieldCounter % 8))) != 0;
+				if (isUnsetted) {
+				} else {
+					if (eStructuralFeature == feature) {
+						if (feature instanceof EReference) {
+							return BinUtils.longToByteArrayLittleEndian(buffer.getLong());
+						} else {
+							return databaseSession.readPrimitiveBytes(feature.getEType(), buffer, OldQuery.getDefault());
+						}
+					} else {
+						databaseSession.fakeRead(buffer, feature);
+					}
+				}
+				fieldCounter++;
+			}
+			return null;
+		} catch (BufferUnderflowException e) {
+			throw e;
 		}
-		return null;
 	}
 	
 	public SessionState getState() {
