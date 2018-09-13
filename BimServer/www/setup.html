@@ -132,7 +132,7 @@
 						A BIMserver without plugins will be pretty useless, so we have selected a few plugins that you might want to install. You can install more plugins after the setup. Please note that for installing plugins this way, your BIMserver will have to have a working (outgoing) internet connection.
 					</p>
 					<p>
-						For all selected plugins the latest version available will be downloaded and installed. Make sure you are running the latest version of BIMserver as well because otherwise the plugins may not be compatible with your version of BIMserver.
+						For all selected plugins the latest version available for this version of BIMserver will be downloaded and installed. Currently the amount of work to check each plugin against each version of BIMserver is simply too much. For this reason the amount of available plugins can be limited for certain versions of BIMserver.
 					</p>
 					<p>
 						<b>No internet connection</b>
@@ -536,15 +536,15 @@ function Setup(cd, address) {
 						o.installPluginBundle(requiredPlugins, callback);
 					}
 				}, function(message){
-					o.logError(message);
+					o.logError(message + "\n");
 					o.abort();
 				});
 			}, function(message){
-				o.logError(message);
+				o.logError(message + "\n");
 				o.abort();
 			});
 		}, function(message){
-			o.logError(message);
+			o.logError(message + "\n");
 			delete requiredPlugins[next];
 			if (Object.keys(requiredPlugins).length == 0) {
 				callback();
@@ -567,7 +567,7 @@ function Setup(cd, address) {
 					for (var key in requiredPlugins) {
 						artifacts.push(requiredPlugins[key].artifactId);
 					}
-					console.log(artifacts);
+					console.log("Prebuilt artifacts", artifacts);
 					Global.api.call("PluginInterface", "installPreBuiltPlugins", {
 						artifacts: artifacts
 					}, function(){
