@@ -232,7 +232,14 @@ public class Database implements BimDatabase {
 		settings.setReuseGeometry(true);
 		settings.setStoreLastLogin(false);
 		settings.setStoreServiceRuns(true);
-		settings.setRenderEngineProcesses(Runtime.getRuntime().availableProcessors());
+		int coresForGeometryGeneration = Runtime.getRuntime().availableProcessors();
+		if (coresForGeometryGeneration >= 8) {
+			// Machines with > 8 cores will automatically free up one core per 8 (additional) cores for non-geometry generation (BIMserver itself)
+			// For example a 48 core machine will free up 6 cores for BIMserver, an 8 core machine will use 7 cores for geometry generation
+			// Any machine with < 8 cores will use all cores for geometry generation
+			coresForGeometryGeneration = ((coresForGeometryGeneration * 7) / 8);
+		}
+		settings.setRenderEngineProcesses(coresForGeometryGeneration);
 		settings.setSessionTimeOutSeconds(60 * 60 * 24 * 30); // 1 month
 		settings.getWhitelistedDomains().add("localhost");
 		settings.getWhitelistedDomains().add("localhost:8080");
