@@ -1448,21 +1448,23 @@ public class PluginManager implements PluginManagerInterface {
 		}
 
 		if (plugins == null) {
-			try (JarInputStream jarInputStream = new JarInputStream(mavenPluginBundle.getJarInputStream())) {
-				JarEntry nextJarEntry = jarInputStream.getNextJarEntry();
-				while (nextJarEntry != null) {
-					if (nextJarEntry.getName().equals("plugin/plugin.xml")) {
-						// Install all plugins
-						PluginDescriptor pluginDescriptor = getPluginDescriptor(new FakeClosingInputStream(jarInputStream));
-						plugins = new ArrayList<>();
-						processPluginDescriptor(pluginDescriptor, plugins);
-						for (SPluginInformation info : plugins) {
-							info.setInstallForAllUsers(true);
-							info.setInstallForNewUsers(true);
+			try (InputStream inputStream = mavenPluginBundle.getJarInputStream()) {
+				try (JarInputStream jarInputStream = new JarInputStream(inputStream)) {
+					JarEntry nextJarEntry = jarInputStream.getNextJarEntry();
+					while (nextJarEntry != null) {
+						if (nextJarEntry.getName().equals("plugin/plugin.xml")) {
+							// Install all plugins
+							PluginDescriptor pluginDescriptor = getPluginDescriptor(new FakeClosingInputStream(jarInputStream));
+							plugins = new ArrayList<>();
+							processPluginDescriptor(pluginDescriptor, plugins);
+							for (SPluginInformation info : plugins) {
+								info.setInstallForAllUsers(true);
+								info.setInstallForNewUsers(true);
+							}
+							break;
 						}
-						break;
+						nextJarEntry = jarInputStream.getNextJarEntry();
 					}
-					nextJarEntry = jarInputStream.getNextJarEntry();
 				}
 			}
 		}
@@ -1476,7 +1478,11 @@ public class PluginManager implements PluginManagerInterface {
 				PluginBundleIdentifier pluginBundleIdentifier = new PluginBundleIdentifier(dependency.getGroupId(), dependency.getArtifactId());
 				if (pluginBundleIdentifierToPluginBundle.containsKey(pluginBundleIdentifier)) {
 					if (strictDependencyChecking) {
-						VersionRange versionRange = VersionRange.createFromVersion(dependency.getVersion());
+						String version = dependency.getVersion();
+						if (!version.contains("[") && !version.contains("(")) {
+							version = "[" + version + "]";
+						}
+						VersionRange versionRange = VersionRange.createFromVersionSpec(version);
 						// String version =
 						// pluginBundleIdentifierToPluginBundle.get(pluginBundleIdentifier).getPluginBundleVersion().getVersion();
 						ArtifactVersion artifactVersion = new DefaultArtifactVersion(mavenPluginBundle.getVersion());
@@ -1508,7 +1514,12 @@ public class PluginManager implements PluginManagerInterface {
 		if (Files.exists(target)) {
 			throw new PluginException("This plugin has already been installed " + target.getFileName().toString());
 		}
-		Files.copy(mavenPluginBundle.getJarInputStream(), target);
+		InputStream jarInputStream = mavenPluginBundle.getJarInputStream();
+		try {
+			Files.copy(jarInputStream, target);
+		} finally {
+			jarInputStream.close();
+		}
 
 		return loadPlugin(pluginBundleVersionIdentifier, target, mavenPluginBundle.getPluginBundle(), mavenPluginBundle.getPluginBundleVersion(), plugins, delegatingClassLoader);
 	}
