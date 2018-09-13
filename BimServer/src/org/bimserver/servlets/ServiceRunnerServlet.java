@@ -154,7 +154,16 @@ public class ServiceRunnerServlet extends SubServlet {
 						// Trigger service
 						
 						ServiceInterface serviceInterface = getBimServer().getServiceFactory().get(authorization, AccessMethod.INTERNAL).get(ServiceInterface.class);
-						SProject project = serviceInterface.addProject("tmp-" + new Random().nextInt(), "ifc2x3tc1");
+						
+						SProject project = null;
+						String uuid = request.getHeader("Context-Id");
+						if (uuid != null) {
+							project = serviceInterface.getProjectByUuid(uuid);
+						} else {
+							// TODO use inputType to determine schema to make this work for IFC4
+							project = serviceInterface.addProject("tmp-" + new Random().nextInt(), "ifc2x3tc1");							
+						}
+
 						SDeserializerPluginConfiguration deserializer = serviceInterface.getSuggestedDeserializerForExtension("ifc", project.getOid());
 						if (deserializer == null) {
 							throw new BimBotsException("No deserializer found");
@@ -173,7 +182,7 @@ public class ServiceRunnerServlet extends SubServlet {
 						
 						SchemaName schema = SchemaName.valueOf(inputType);
 						
-						BimServerBimBotsInput input = new BimServerBimBotsInput(getBimServer(), authorization.getUoid(), schema, null, model);
+						BimServerBimBotsInput input = new BimServerBimBotsInput(getBimServer(), authorization.getUoid(), schema, null, model, false);
 						BimBotsOutput output = bimBotsServiceInterface.runBimBot(input, getBimServer().getSConverter().convertToSObject(foundService.getSettings()));
 						
 						SExtendedData extendedData = new SExtendedData();
@@ -203,6 +212,7 @@ public class ServiceRunnerServlet extends SubServlet {
 						response.setHeader("Data-Identifier", "" + project.getOid());
 						response.setHeader("Content-Type", output.getContentType());
 						response.setHeader("Content-Disposition", output.getContentDisposition());
+						response.setHeader("Context-Id", project.getUuid());
 						response.getOutputStream().write(output.getData());
 					} else {
 						// When we don't store the service runs, there is no other way than to just use the old deserializer and run the service from the EMF model
@@ -221,7 +231,7 @@ public class ServiceRunnerServlet extends SubServlet {
 						deserializer.init(packageMetaData);
 						IfcModelInterface model = deserializer.read(new ByteArrayInputStream(data), schema.name(), data.length, null);
 						
-						BimServerBimBotsInput input = new BimServerBimBotsInput(getBimServer(), authorization.getUoid(), schema, data, model);
+						BimServerBimBotsInput input = new BimServerBimBotsInput(getBimServer(), authorization.getUoid(), schema, data, model, true);
 						BimBotsOutput output = bimBotsServiceInterface.runBimBot(input, getBimServer().getSConverter().convertToSObject(foundService.getSettings()));
 						response.setContentLength(output.getData().length);
 						response.setHeader("Output-Type", output.getSchemaName());
