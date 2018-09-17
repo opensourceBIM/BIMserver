@@ -250,10 +250,28 @@
             "IfcRepresentationItem"
          ]
       },
+      "IfcSweptDiskSolid": {
+      	 "type": "IfcSweptDiskSolid",
+      	 "field":"Directrix",
+      	 "includes": [
+      	    "IfcCompositeCurve",
+            "IfcPolyline",
+            "IfcTrimmedCurve",
+            "IfcBSplineCurve",
+            "IfcCircle",
+            "IfcEllipse",
+            "IfcLine",
+            "IfcOffsetCurve2D",
+            "IfcOffsetCurve3D"
+      	 ]
+      },
       "IfcRepresentationItem": {
          "type": "IfcRepresentationItem",
          "field": "StyledByItem",
-         "include": "IfcStyledItem"
+         "includes": [
+         	"IfcStyledItem",
+         	"IfcSweptDiskSolid"
+         ]
       },
       "IfcBoundingBox": {
          "type": "IfcBoundingBox",
@@ -478,7 +496,8 @@
             "IfcGeometricCurveSet",
             "IfcTrimmedCurve",
             "IfcFaceBasedSurfaceModel",
-            "IfcRevolvedAreaSolid"
+            "IfcRevolvedAreaSolid",
+            "IfcSweptDiskSolid"
          ]
       },
       "IfcShapeRepresentation": {
@@ -501,7 +520,8 @@
             "IfcGeometricCurveSet",
             "IfcTrimmedCurve",
             "IfcFaceBasedSurfaceModel",
-            "IfcRevolvedAreaSolid"
+            "IfcRevolvedAreaSolid",
+            "IfcSweptDiskSolid"
          ]
       },
       "IfcFaceBasedSurfaceModel": {
