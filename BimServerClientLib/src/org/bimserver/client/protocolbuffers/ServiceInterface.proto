@@ -970,7 +970,6 @@ message SRevision {
 	optional int64 size = 23;
 	optional string tag = 24;
 	optional int64 userId = 25;
-	optional string uuid = 26;
 }
 
 message SCheckout {

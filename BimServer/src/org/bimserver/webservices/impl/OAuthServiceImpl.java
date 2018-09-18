@@ -196,6 +196,7 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
 			OAuthAuthorizationCode oAuthAuthorizationCode = session.create(OAuthAuthorizationCode.class);
 			OAuthServer server = session.get(applicationId, OldQuery.getDefault());
+			oAuthAuthorizationCode.setIssued(new Date());
 			oAuthAuthorizationCode.setOauthServer(server);
 			oAuthAuthorizationCode.setCode(code);
 			User user = session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
@@ -277,6 +278,7 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 				singleProjectAuthorization.setProject(project);
 				
 				OAuthAuthorizationCode code = session.create(OAuthAuthorizationCode.class);
+				code.setIssued(new Date());
 
 				org.bimserver.webservices.authorization.Authorization auth = new org.bimserver.webservices.authorization.SingleProjectAuthorization(getBimServer(), user.getOid(), project.getOid());
 				
@@ -308,6 +310,7 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 				runServiceAuth.setService(conf);
 				
 				OAuthAuthorizationCode code = session.create(OAuthAuthorizationCode.class);
+				code.setIssued(new Date());
 
 				org.bimserver.webservices.authorization.Authorization auth = new org.bimserver.webservices.authorization.RunServiceAuthorization(getBimServer(), user.getOid(), conf.getOid());
 				

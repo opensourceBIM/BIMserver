@@ -33,6 +33,7 @@ package org.bimserver.models.store.impl;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
+import java.util.Date;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.Authorization;
 import org.bimserver.models.store.OAuthAuthorizationCode;
@@ -53,6 +54,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.OAuthAuthorizationCodeImpl#getCode <em>Code</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.OAuthAuthorizationCodeImpl#getAuthorization <em>Authorization</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.OAuthAuthorizationCodeImpl#getUser <em>User</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.OAuthAuthorizationCodeImpl#getIssued <em>Issued</em>}</li>
  * </ul>
  *
  * @generated
@@ -157,6 +159,24 @@ public class OAuthAuthorizationCodeImpl extends IdEObjectImpl implements OAuthAu
 	 */
 	public void setUser(User newUser) {
 		eSet(StorePackage.Literals.OAUTH_AUTHORIZATION_CODE__USER, newUser);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Date getIssued() {
+		return (Date) eGet(StorePackage.Literals.OAUTH_AUTHORIZATION_CODE__ISSUED, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIssued(Date newIssued) {
+		eSet(StorePackage.Literals.OAUTH_AUTHORIZATION_CODE__ISSUED, newIssued);
 	}
 
 } //OAuthAuthorizationCodeImpl

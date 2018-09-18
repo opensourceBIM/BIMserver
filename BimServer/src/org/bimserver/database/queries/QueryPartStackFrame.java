@@ -30,6 +30,8 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.queries.om.InBoundingBox;
 import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.Include.TypeDef;
+import org.bimserver.geometry.accellerator.GeometryObject;
+import org.bimserver.geometry.accellerator.Node;
 import org.bimserver.database.queries.om.Properties;
 import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;

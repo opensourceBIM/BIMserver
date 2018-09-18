@@ -1,9 +1,12 @@
-package org.bimserver.database.queries;
+package org.bimserver.geometry.accellerator;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+
+import org.bimserver.database.queries.Bounds;
+import org.bimserver.database.queries.ObjectWrapper;
 
 public class Node<V extends Comparable<V>> {
 	private final Node<V>[] nodes = new Node[8];

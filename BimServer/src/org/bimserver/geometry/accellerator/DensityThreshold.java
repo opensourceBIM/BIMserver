@@ -1,4 +1,4 @@
-package org.bimserver.database.queries;
+package org.bimserver.geometry.accellerator;
 
 import org.bimserver.interfaces.objects.SDensity;
 

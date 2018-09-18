@@ -39,7 +39,6 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.RemoteServiceInterface;
-import org.bimserver.utils.Formatters;
 import org.bimserver.utils.GrowingByteBuffer;
 import org.bimserver.webservices.InvalidTokenException;
 import org.bimserver.webservices.ServiceMap;

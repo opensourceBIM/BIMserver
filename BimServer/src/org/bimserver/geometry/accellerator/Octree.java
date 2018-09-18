@@ -1,9 +1,11 @@
-package org.bimserver.database.queries;
+package org.bimserver.geometry.accellerator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.bimserver.database.queries.Bounds;
 
 public class Octree<V extends Comparable<V>> extends Node<V> {
 

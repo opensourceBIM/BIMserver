@@ -33,6 +33,7 @@ package org.bimserver.models.store;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
+import java.util.Date;
 import org.bimserver.emf.IdEObject;
 
 /**
@@ -48,6 +49,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.OAuthAuthorizationCode#getCode <em>Code</em>}</li>
  *   <li>{@link org.bimserver.models.store.OAuthAuthorizationCode#getAuthorization <em>Authorization</em>}</li>
  *   <li>{@link org.bimserver.models.store.OAuthAuthorizationCode#getUser <em>User</em>}</li>
+ *   <li>{@link org.bimserver.models.store.OAuthAuthorizationCode#getIssued <em>Issued</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getOAuthAuthorizationCode()
@@ -161,5 +163,31 @@ public interface OAuthAuthorizationCode extends IdEObject {
 	 * @generated
 	 */
 	void setUser(User value);
+
+	/**
+	 * Returns the value of the '<em><b>Issued</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Issued</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Issued</em>' attribute.
+	 * @see #setIssued(Date)
+	 * @see org.bimserver.models.store.StorePackage#getOAuthAuthorizationCode_Issued()
+	 * @model
+	 * @generated
+	 */
+	Date getIssued();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.OAuthAuthorizationCode#getIssued <em>Issued</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Issued</em>' attribute.
+	 * @see #getIssued()
+	 * @generated
+	 */
+	void setIssued(Date value);
 
 } // OAuthAuthorizationCode

@@ -1,5 +1,5 @@
 
-ä§
+Ö§
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -426,7 +426,7 @@ dataObject (2.org.bimserver.pb.SDataObject
 max (2.org.bimserver.pb.SVector3f(
 min (2.org.bimserver.pb.SVector3f
 oid (
-rid ("ë
+rid ("Ý
 	SRevision
 bmi ()
 bounds (2.org.bimserver.pb.SBounds+
@@ -454,8 +454,7 @@ dataObject (2.org.bimserver.pb.SDataObject
 servicesLinked (
 size (
 tag (	
-userId (
-uuid (	"Ñ
+userId ("Ñ
 	SCheckout
 active (,
 checkin (2.org.bimserver.pb.SRevision

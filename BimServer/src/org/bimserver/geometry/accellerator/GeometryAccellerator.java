@@ -1,6 +1,7 @@
-package org.bimserver.database.queries;
+package org.bimserver.geometry.accellerator;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -11,6 +12,7 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.queries.QueryObjectProvider;
 import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.Query;
 import org.bimserver.database.queries.om.QueryException;
@@ -24,19 +26,25 @@ import org.bimserver.shared.AbstractHashMapVirtualObject;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 
 public class GeometryAccellerator {
-	private BimServer bimServer;
-	private LoadingCache<OctreeKey, Octree<GeometryObject>> octrees;
-	private LoadingCache<DensityThresholdKey, DensityThreshold> densityThresholds;
-	private LoadingCache<ReuseKey, ReuseSet> reuseSets;
+	private static final Logger LOGGER = LoggerFactory.getLogger(GeometryAccellerator.class);
+	private final BimServer bimServer;
+	private final LoadingCache<OctreeKey, Octree<GeometryObject>> octrees;
+	private final LoadingCache<DensityThresholdKey, DensityThreshold> densityThresholds;
+	private final LoadingCache<ReuseKey, ReuseSet> reuseSets;
+	private Path geometryCacheFolder;
 
 	public GeometryAccellerator(BimServer bimServer) {
 		this.bimServer = bimServer;
+		
+		geometryCacheFolder = this.bimServer.getHomeDir().resolve("geometrycache");
 
 		octrees = CacheBuilder.newBuilder().maximumSize(10000).build(new CacheLoader<OctreeKey, Octree<GeometryObject>>() {
 			public Octree<GeometryObject> load(OctreeKey key) {
@@ -60,17 +68,15 @@ public class GeometryAccellerator {
 
 	public Octree<GeometryObject> getOctree(Set<Long> roids, Set<String> excludedClasses, Set<Long> geometryIdsToReuse, int maxDepth, float minimumThreshold, float maximumThreshold) {
 		OctreeKey key = new OctreeKey(roids, excludedClasses, geometryIdsToReuse, maxDepth, minimumThreshold, maximumThreshold);
-//		return generateOctree(key);
 		try {
 			return octrees.get(key);
 		} catch (ExecutionException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 			return null;
 		}
 	}
 
 	private Octree<GeometryObject> generateOctree(OctreeKey key) {
-		long start = System.nanoTime();
 		try (DatabaseSession databaseSession = bimServer.getDatabase().createSession()) {
 			org.bimserver.database.queries.Bounds totalBounds = new org.bimserver.database.queries.Bounds();
 
@@ -160,16 +166,13 @@ public class GeometryAccellerator {
 				}
 			});
 			
-			long end = System.nanoTime();
-//			System.out.println("generateOctree " + ((end - start) / 1000000) + " ms");
-//			System.out.println(key.toString());
 			return octree;
 		} catch (BimserverDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (QueryException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return null;
 	}
@@ -212,30 +215,25 @@ public class GeometryAccellerator {
 			densityResult.setTrianglesAbove(cumulativeTrianglesAbove);
 			densityThreshold.setDensity(bimServer.getSConverter().convertToSObject(densityResult));
 		} catch (BimserverDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
 		return densityThreshold;
 	}
 	
 	public Set<Long> getGeometryDataToReuse(Set<Long> roids, Set<String> excludedTypes, Integer trianglesToSave) {
 		ReuseKey key = new ReuseKey(roids, excludedTypes);
-//		return generateReuseSet(key).getListOfGeometryDataIds(trianglesToSave);
 		try {
 			return reuseSets.get(key).getListOfGeometryDataIds(trianglesToSave);
 		} catch (ExecutionException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 			return null;
 		}
 	}
 
 	private ReuseSet generateReuseSet(ReuseKey key) {
-		long start = System.nanoTime();
 		ReuseSet reuseSet = new ReuseSet();
 		try (DatabaseSession databaseSession = bimServer.getDatabase().createSession()) {
-			// Assuming all given roids are of projects that all have the same
-			// schema
-
-//			Map<Long, HashMapVirtualObject> geometryDataMap = listGeometryData(databaseSession, key.getRoids());
+			// Assuming all given roids are of projects that all have the same schema
 
 			Revision revision = databaseSession.get(key.getRoids().iterator().next(), OldQuery.getDefault());
 			PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
@@ -278,44 +276,21 @@ public class GeometryAccellerator {
 				reuseSet.add(map.get(dataId));
 			}
 		} catch (BimserverDatabaseException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (QueryException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 		}
-		long end = System.nanoTime();
-//		System.out.println("generateReuseSet: " + ((end - start) / 1000000) + " ms");
 		return reuseSet;
-	}
-
-	private Map<Long, HashMapVirtualObject> listGeometryData(DatabaseSession databaseSession, Set<Long> roids) throws BimserverDatabaseException, IOException, QueryException {
-		Map<Long, HashMapVirtualObject> map = new HashMap<>();
-
-		Revision revision = databaseSession.get(roids.iterator().next(), OldQuery.getDefault());
-		PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
-
-		Query query = new Query(packageMetaData);
-
-		QueryPart queryPart = query.createQueryPart();
-		queryPart.addType(GeometryPackage.eINSTANCE.getGeometryData(), false);
-
-		QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, roids, packageMetaData);
-		HashMapVirtualObject next = queryObjectProvider.next();
-		while (next != null) {
-			map.put(next.getOid(), next);
-			next = queryObjectProvider.next();
-		}
-		return map;
 	}
 
 	public SDensity getDensityThreshold(Long roid, Long nrTriangles, Set<String> excludedTypes) {
 		DensityThresholdKey key = new DensityThresholdKey(roid, nrTriangles, excludedTypes);
-//		return generateDensityThreshold(key).getDensity();
 		try {
 			return densityThresholds.get(key).getDensity();
 		} catch (ExecutionException e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 			return null;
 		}
 	}

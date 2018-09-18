@@ -12520,6 +12520,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/OAuthAuthorizationCode/code"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/OAuthAuthorizationCode/authorization"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/OAuthAuthorizationCode/user"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/OAuthAuthorizationCode/issued"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/4/Authorization"/>
     <genClasses ecoreClass="models.ecore#/4/SingleProjectAuthorization">

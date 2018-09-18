@@ -1,4 +1,4 @@
-package org.bimserver.database.queries;
+package org.bimserver.geometry.accellerator;
 
 public class GeometryObject implements Comparable<GeometryObject> {
 

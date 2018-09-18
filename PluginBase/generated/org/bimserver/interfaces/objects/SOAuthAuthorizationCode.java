@@ -16,6 +16,7 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
+import java.util.Date;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -33,6 +34,7 @@ public class SOAuthAuthorizationCode implements SDataBase
 	private java.lang.String code;
 	private long authorizationId = -1;
 	private long userId = -1;
+	private java.util.Date issued;
 
 	public long getOid() {
 		return this.oid;
@@ -72,6 +74,9 @@ public class SOAuthAuthorizationCode implements SDataBase
 		if (sField.getName().equals("userId")) {
 			return getUserId();
 		}
+		if (sField.getName().equals("issued")) {
+			return getIssued();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -96,6 +101,10 @@ public class SOAuthAuthorizationCode implements SDataBase
 		}
 		if (sField.getName().equals("userId")) {
 			setUserId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("issued")) {
+			setIssued((Date)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -139,6 +148,14 @@ public class SOAuthAuthorizationCode implements SDataBase
 
 	public void setUserId(long userId) {
 		this.userId = userId;
+	}
+	
+	public java.util.Date getIssued() {
+		return issued;
+	}
+
+	public void setIssued(java.util.Date issued) {
+		this.issued = issued;
 	}
 	
 	@Override

@@ -6780,13 +6780,22 @@ public interface StorePackage extends EPackage {
 	int OAUTH_AUTHORIZATION_CODE__USER = 3;
 
 	/**
+	 * The feature id for the '<em><b>Issued</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OAUTH_AUTHORIZATION_CODE__ISSUED = 4;
+
+	/**
 	 * The number of structural features of the '<em>OAuth Authorization Code</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OAUTH_AUTHORIZATION_CODE_FEATURE_COUNT = 4;
+	int OAUTH_AUTHORIZATION_CODE_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.AuthorizationImpl <em>Authorization</em>}' class.
@@ -13743,6 +13752,17 @@ public interface StorePackage extends EPackage {
 	EReference getOAuthAuthorizationCode_User();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.OAuthAuthorizationCode#getIssued <em>Issued</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Issued</em>'.
+	 * @see org.bimserver.models.store.OAuthAuthorizationCode#getIssued()
+	 * @see #getOAuthAuthorizationCode()
+	 * @generated
+	 */
+	EAttribute getOAuthAuthorizationCode_Issued();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Authorization <em>Authorization</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19247,6 +19267,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference OAUTH_AUTHORIZATION_CODE__USER = eINSTANCE.getOAuthAuthorizationCode_User();
+
+		/**
+		 * The meta object literal for the '<em><b>Issued</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OAUTH_AUTHORIZATION_CODE__ISSUED = eINSTANCE.getOAuthAuthorizationCode_Issued();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.AuthorizationImpl <em>Authorization</em>}' class.

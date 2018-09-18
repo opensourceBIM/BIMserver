@@ -1,4 +1,4 @@
-package org.bimserver.database.queries;
+package org.bimserver.geometry.accellerator;
 
 import java.util.Comparator;
 import java.util.HashSet;

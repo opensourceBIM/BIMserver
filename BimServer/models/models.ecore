@@ -20947,6 +20947,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="authorization" eType="#/4/Authorization"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="user" eType="#/4/User"
           eOpposite="#/4/User/oAuthIssuedAuthorizationCodes"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="issued" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Authorization"/>
     <eClassifiers xsi:type="ecore:EClass" name="SingleProjectAuthorization" eSuperTypes="#/4/Authorization">
