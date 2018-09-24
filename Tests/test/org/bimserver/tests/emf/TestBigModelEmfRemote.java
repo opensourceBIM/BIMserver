@@ -66,7 +66,7 @@ public class TestBigModelEmfRemote extends TestWithEmbeddedServer {
 			
 			IfcRelAggregates buildingAggregation = richIfcModel.create(IfcRelAggregates.class);
 			buildingAggregation.setRelatingObject(ifcBuilding);
-			for (int i=1; i<=20; i++) {
+			for (int i=1; i<=10; i++) {
 				IfcBuildingStorey ifcBuildingStorey = richIfcModel.create(IfcBuildingStorey.class);
 				ifcBuildingStorey.setName("Storey " + i);
 				ifcBuildingStorey.setCompositionType(IfcElementCompositionEnum.ELEMENT);
@@ -81,8 +81,8 @@ public class TestBigModelEmfRemote extends TestWithEmbeddedServer {
 				IfcRelAggregates storeyAggregation = richIfcModel.create(IfcRelAggregates.class);
 				storeyAggregation.setRelatingObject(ifcBuildingStorey);
 				
-				for (int x=1; x<=20; x++) {
-					for (int y=1; y<=20; y++) {
+				for (int x=1; x<=10; x++) {
+					for (int y=1; y<=10; y++) {
 						createSpace(richIfcModel, richIfcModel.getDefaultRepresentationContext(), storeyPlacement, storeyAggregation, x, y, doreuse);
 					}
 				}

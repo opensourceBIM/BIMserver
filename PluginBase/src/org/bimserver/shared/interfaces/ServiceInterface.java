@@ -1544,7 +1544,7 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "excludedTypes", partName = "getDensityThreshold.excludedTypes") Set<String> excludedTypes) throws ServerException, UserException;
 	
 	@WebMethod(action = "getTileCounts")
-	List<Integer> getTileCounts(
+	List<Number> getTileCounts(
 		@WebParam(name = "roids", partName = "getTileCounts.roids") Set<Long> roids, 
 		@WebParam(name = "excludedTypes", partName = "getTileCounts.excludedTypes") Set<String> excludedTypes,
 		@WebParam(name = "geometryIdsToReuse", partName = "getTileCounts.geometryIdsToReuse") Set<Long> geometryIdsToReuse,

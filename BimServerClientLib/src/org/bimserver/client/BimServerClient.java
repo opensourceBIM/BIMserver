@@ -437,7 +437,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 
 	public long getBinaryGeometryMessagingStreamingSerializerOid() throws ServerException, UserException, PublicInterfaceNotFoundException {
 		if (binaryGeometryMessagingStreamingSerializer == -1) {
-			SSerializerPluginConfiguration serializerPluginConfiguration = getPluginInterface().getSerializerByPluginClassName("org.bimserver.serializers.binarygeometry.BinaryGeometryMessagingStreamingSerializerPlugin3NoSplits");
+			SSerializerPluginConfiguration serializerPluginConfiguration = getPluginInterface().getSerializerByPluginClassName("org.bimserver.serializers.binarygeometry.BinaryGeometryMessagingStreamingSerializerPlugin");
 			if (serializerPluginConfiguration != null) {
 				binaryGeometryMessagingStreamingSerializer = serializerPluginConfiguration.getOid();
 			} else {

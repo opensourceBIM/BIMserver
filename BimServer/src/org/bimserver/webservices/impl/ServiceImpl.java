@@ -3140,10 +3140,10 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 
 	@Override
-	public List<Integer> getTileCounts(Set<Long> roids, Set<String> excludedTypes, Set<Long> geometryIdsToReuse, Float minimumThreshold, Float maximumThreshold, Integer depth) throws ServerException, UserException {
+	public List<Number> getTileCounts(Set<Long> roids, Set<String> excludedTypes, Set<Long> geometryIdsToReuse, Float minimumThreshold, Float maximumThreshold, Integer depth) throws ServerException, UserException {
 		Octree<GeometryObject> octree = getBimServer().getGeometryAccellerator().getOctree(roids, excludedTypes, geometryIdsToReuse, depth, minimumThreshold, maximumThreshold);
 
-		List<Integer> result = new ArrayList<>();
+		List<Number> result = new ArrayList<>();
 		// TODO non-breath-first is probably faster, don't think it matters for the client (ATM)
 		octree.traverseBreathFirst(new Traverser<GeometryObject>() {
 			@Override
@@ -3151,6 +3151,13 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				if (node.getNrObjects() > 0) {
 					result.add(node.getId());
 					result.add(node.getNrObjects());
+					org.bimserver.database.queries.Bounds minimumBounds = node.getMinimumBounds();
+					result.add(minimumBounds.getMinX());
+					result.add(minimumBounds.getMinY());
+					result.add(minimumBounds.getMinZ());
+					result.add(minimumBounds.getMaxX());
+					result.add(minimumBounds.getMaxY());
+					result.add(minimumBounds.getMaxZ());
 				}
 			}
 		});

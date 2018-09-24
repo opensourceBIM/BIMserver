@@ -211,6 +211,9 @@ public class JsonQueryObjectModelConverter {
 				throw new QueryException("\"defines\" must be of type object");
 			}
 		}
+		if (fullQuery.has("loaderSettings")) {
+			query.setGeometrySettings((ObjectNode) fullQuery.get("loaderSettings"));
+		}
 		if (fullQuery.has("queries")) {
 			JsonNode queriesNode = fullQuery.get("queries");
 			if (queriesNode instanceof ArrayNode) {

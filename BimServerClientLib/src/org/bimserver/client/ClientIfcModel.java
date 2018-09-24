@@ -74,9 +74,9 @@ import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.base.Joiner;
-import com.google.common.io.LittleEndianDataInputStream;
 
 public class ClientIfcModel extends IfcModel {
 	public enum ModelState {
@@ -320,6 +320,10 @@ public class ClientIfcModel extends IfcModel {
 			getModelMetaData().setMaxBounds(getBimServerClient().getServiceInterface().getModelMaxBounds(roid));
 
 			Query query = new Query("test", getPackageMetaData());
+			ObjectNode settings = new ObjectMapper().createObjectNode();
+			query.setGeometrySettings(settings);
+			query.getGeometrySettings().put("useSmallInts", false);
+			query.getGeometrySettings().put("splitGeometry", false);
 			QueryPart queryPart = query.createQueryPart();
 
 			Map<Long, Long> geometryInfoOidToOid = new HashMap<>();
@@ -344,6 +348,12 @@ public class ClientIfcModel extends IfcModel {
 			Include include = queryPart.createInclude();
 			include.addType(geometryInfoClass, false);
 			include.addField("data");
+			Include geometryData = include.createInclude();
+			geometryData.addType(getPackageMetaData().getEClassIncludingDependencies("GeometryData"), false);
+			geometryData.addFieldDirect("indices");
+			geometryData.addFieldDirect("normals");
+			geometryData.addFieldDirect("vertices");
+			geometryData.addFieldDirect("colorsQuantized");
 
 			long serializerOid = bimServerClient.getBinaryGeometryMessagingStreamingSerializerOid();
 
@@ -388,31 +398,32 @@ public class ClientIfcModel extends IfcModel {
 	}
 
 	private void processGeometryInputStream(InputStream inputStream, Map<Long, Long> geometryInfoOidToOid) throws IOException, GeometryException, IfcModelInterfaceException {
-		try (LittleEndianDataInputStream dataInputStream = new LittleEndianDataInputStream(inputStream)) {
+		try (CountingLittleEndianDataInputStream dataInputStream = new CountingLittleEndianDataInputStream(inputStream)) {
 			boolean done = false;
-			while (!done) {
-				byte type = dataInputStream.readByte();
-				if (type == 0) {
+			while (true) {
+				byte geometryType = dataInputStream.readByte();
+				if (geometryType == 0) {
 					String protocol = dataInputStream.readUTF();
 					if (!protocol.equals("BGS")) {
 						throw new GeometryException("Protocol != BGS (" + protocol + ")");
 					}
 					byte formatVersion = dataInputStream.readByte();
-					if (formatVersion != 12) {
-						throw new GeometryException("Unsupported version " + formatVersion + " / 11");
+					if (formatVersion != 16) {
+						throw new GeometryException("Unsupported version " + formatVersion + " / 16");
 					}
-					int skip = 4 - (7 % 4);
-					if (skip != 0 && skip != 4) {
-						dataInputStream.readFully(new byte[skip]);
-					}
+					
+					float multiplierToMm = dataInputStream.readFloat();
+					dataInputStream.align8();
 					for (int i = 0; i < 6; i++) {
 						dataInputStream.readDouble();
 					}
-				} else if (type == 5) {
-					dataInputStream.readFully(new byte[7]);
-					dataInputStream.readLong(); // roid
+				} else if (geometryType == 5) {
+					long oid = dataInputStream.readLong();
+					String type = dataInputStream.readUTF();
+					dataInputStream.align8();
+					long roid = dataInputStream.readLong(); // roid
 					long geometryInfoOid = dataInputStream.readLong();
-					dataInputStream.readLong(); // transparent
+					boolean hasTransparency = dataInputStream.readLong() == 1; // transparent
 					GeometryInfo geometryInfo = (GeometryInfo) get(geometryInfoOid);
 					if (geometryInfo == null) {
 						geometryInfo = create(GeometryInfo.class);
@@ -459,11 +470,15 @@ public class ClientIfcModel extends IfcModel {
 					}
 					geometryInfo.setData(geometryData);
 					((IdEObjectImpl)geometryData).setLoadingState(State.LOADED);
-				} else if (type == 3) {
+				} else if (geometryType == 3) {
 					throw new GeometryException("Parts not supported");
-				} else if (type == 1) {
-					dataInputStream.readFully(new byte[7]);
-					dataInputStream.readLong(); // transparent
+				} else if (geometryType == 1) {
+					int reused = dataInputStream.readInt();
+					String type = dataInputStream.readUTF();
+					dataInputStream.align8();
+					long roid = dataInputStream.readLong();
+					long croid = dataInputStream.readLong();
+					boolean hasTransparency = dataInputStream.readLong() == 1; // transparent
 					long geometryDataOid = dataInputStream.readLong();
 
 					GeometryData geometryData = (GeometryData) get(geometryDataOid);
@@ -510,14 +525,15 @@ public class ClientIfcModel extends IfcModel {
 					colorsBuffer.setData(materials);
 					geometryData.setColorsQuantized(colorsBuffer);
 					((IdEObjectImpl)geometryData).setLoadingState(State.LOADED);
-				} else if (type == 6) {
+				} else if (geometryType == 6) {
 					done = true;
 				} else {
-					throw new GeometryException("Unimplemented type: " + type);
+					throw new GeometryException("Unimplemented type: " + geometryType);
 				}
+				dataInputStream.align8();
 			}
 		} catch (EOFException e) {
-			//
+			System.out.println("EOS");
 		} catch (ObjectAlreadyExistsException e) {
 			e.printStackTrace();
 		}

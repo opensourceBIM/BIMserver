@@ -570,7 +570,7 @@ public class AsyncServiceInterface {
 	}
 	
 	public interface GetTileCountsCallback {
-		void success(java.util.List<java.lang.Integer> result);
+		void success(java.util.List<java.lang.Number> result);
 		void error(Throwable e);
 	}
 	

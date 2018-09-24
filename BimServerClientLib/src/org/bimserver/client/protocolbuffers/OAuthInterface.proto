@@ -169,10 +169,11 @@ message ListAuthorizationCodesRequest {
 message SOAuthAuthorizationCode {
 	optional int64 authorizationId = 1;
 	optional string code = 2;
-	optional int64 oauthServerId = 3;
-	optional int64 oid = 4;
-	optional int32 rid = 5;
-	optional int64 userId = 6;
+	optional int64 issued = 3;
+	optional int64 oauthServerId = 4;
+	optional int64 oid = 5;
+	optional int32 rid = 6;
+	optional int64 userId = 7;
 }
 
 message ListAuthorizationCodesResponse {

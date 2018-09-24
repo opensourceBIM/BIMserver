@@ -1,5 +1,5 @@
 
-ึง
+๚ง
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -1043,10 +1043,11 @@ settingsId (
 geometryIdsToReuse (
 minimumThreshold (
 maximumThreshold (
-depth ("<
+depth ("
+Number"V
 GetTileCountsResponse
-errorMessage (	
-value ("/
+errorMessage (	'
+value (2.org.bimserver.pb.Number"/
 GetTopLevelProjectByNameRequest
 name (	"c
  GetTopLevelProjectByNameResponse

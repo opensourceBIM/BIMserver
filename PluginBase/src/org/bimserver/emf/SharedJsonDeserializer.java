@@ -32,6 +32,9 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.emf.IdEObjectImpl.State;
+import org.bimserver.models.geometry.GeometryFactory;
+import org.bimserver.models.geometry.GeometryPackage;
+import org.bimserver.models.geometry.Vector3f;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
 import org.bimserver.models.store.IfcHeader;
@@ -434,7 +437,7 @@ public class SharedJsonDeserializer {
 		}
 	}
 
-	private Object readPrimitive(JsonReader jsonReader, EStructuralFeature eStructuralFeature) throws IOException {
+	private Object readPrimitive(JsonReader jsonReader, EStructuralFeature eStructuralFeature) throws IOException, DeserializeException {
 		EClassifier eClassifier = eStructuralFeature.getEType();
 		if (eClassifier == EcorePackage.eINSTANCE.getEString()) {
 			return jsonReader.nextString();
@@ -444,6 +447,8 @@ public class SharedJsonDeserializer {
 			return jsonReader.nextBoolean();
 		} else if (eClassifier == EcorePackage.eINSTANCE.getEInt()) {
 			return jsonReader.nextInt();
+		} else if (eClassifier == EcorePackage.eINSTANCE.getEShort()) {
+			return (short)jsonReader.nextInt();
 		} else if (eClassifier == EcorePackage.eINSTANCE.getELong()) {
 			return jsonReader.nextLong();
 		} else if (eClassifier == EcorePackage.eINSTANCE.getEIntegerObject()) {
@@ -463,8 +468,21 @@ public class SharedJsonDeserializer {
 				IfcGloballyUniqueId ifcGloballyUniqueId = Ifc2x3tc1Factory.eINSTANCE.createIfcGloballyUniqueId();
 				ifcGloballyUniqueId.setWrappedValue(jsonReader.nextString());
 				return ifcGloballyUniqueId;
+			} else if (eStructuralFeature.getEType().getName().equals("Vector3f")) {
+				jsonReader.beginObject();
+				Vector3f vector3f = GeometryFactory.eINSTANCE.createVector3f();
+				jsonReader.nextName();
+				jsonReader.nextString();
+				jsonReader.nextName();
+				vector3f.setX(jsonReader.nextDouble());
+				jsonReader.nextName();
+				vector3f.setY(jsonReader.nextDouble());
+				jsonReader.nextName();
+				vector3f.setZ(jsonReader.nextDouble());
+				jsonReader.endObject();
+				return vector3f;
 			} else {
-				throw new RuntimeException();
+				throw new DeserializeException(eStructuralFeature.getEType().getName() + " not implemented");
 			}
 		} else if (eClassifier instanceof EEnum) {
 			EEnum eEnum = (EEnum) eStructuralFeature.getEType();

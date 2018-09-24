@@ -1,7 +1,5 @@
 package org.bimserver.database.queries;
 
-import org.bimserver.shared.interfaces.async.AsyncServiceInterface.GetModelCheckerInstanceCallback;
-
 public class Bounds {
 	private double minX;
 	private double minY;

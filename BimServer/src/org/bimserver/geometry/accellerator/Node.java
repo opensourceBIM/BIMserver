@@ -11,6 +11,7 @@ import org.bimserver.database.queries.ObjectWrapper;
 public class Node<V extends Comparable<V>> {
 	private final Node<V>[] nodes = new Node[8];
 	private Bounds bounds;
+	private Bounds minimumBounds = new Bounds();
 	private List<ObjectWrapper<V>> values = new ArrayList<>();
 	private int level;
 	private int id;
@@ -48,11 +49,16 @@ public class Node<V extends Comparable<V>> {
 		return id;
 	}
 	
+	public Bounds getMinimumBounds() {
+		return minimumBounds;
+	}
+	
 	public Collection<ObjectWrapper<V>> getValues() {
 		return values;
 	}
 
 	public int add(V v, Bounds bounds) {
+		minimumBounds.integrate(bounds);
 		if (level != maxDepth) {
 			int localId = 1;
 			for (int x=0; x<=1; x++) {
