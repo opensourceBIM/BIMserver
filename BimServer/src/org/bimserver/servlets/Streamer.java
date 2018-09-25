@@ -136,7 +136,7 @@ public class Streamer implements EndPoint {
 									ByteBuffer newBuffer = ByteBuffer.allocate(growingByteBuffer.usedSize());
 									bytes += newBuffer.capacity() + 8;
 									newBuffer.put(growingByteBuffer.array(), 0, growingByteBuffer.usedSize());
-									streamingSocketInterface.send(newBuffer.array(), 0, newBuffer.capacity());
+									streamingSocketInterface.sendBlocking(newBuffer.array(), 0, newBuffer.capacity());
 									byteArrayOutputStream.reset();
 									byteArrayOutputStream.writeLongUnchecked(topicId);
 								}
