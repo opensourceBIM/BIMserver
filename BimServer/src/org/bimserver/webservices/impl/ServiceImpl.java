@@ -3151,13 +3151,13 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				if (node.getNrObjects() > 0) {
 					result.add(node.getId());
 					result.add(node.getNrObjects());
-					org.bimserver.database.queries.Bounds minimumBounds = node.getMinimumBounds();
-					result.add(minimumBounds.getMinX());
-					result.add(minimumBounds.getMinY());
-					result.add(minimumBounds.getMinZ());
-					result.add(minimumBounds.getMaxX());
-					result.add(minimumBounds.getMaxY());
-					result.add(minimumBounds.getMaxZ());
+//					org.bimserver.database.queries.Bounds minimumBounds = node.getMinimumBounds();
+//					result.add(minimumBounds.getMinX());
+//					result.add(minimumBounds.getMinY());
+//					result.add(minimumBounds.getMinZ());
+//					result.add(minimumBounds.getMaxX());
+//					result.add(minimumBounds.getMaxY());
+//					result.add(minimumBounds.getMaxZ());
 				}
 			}
 		});
