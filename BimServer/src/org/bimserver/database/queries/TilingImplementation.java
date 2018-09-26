@@ -7,7 +7,6 @@ import org.bimserver.database.queries.om.TilingInterface;
 import org.bimserver.geometry.accellerator.GeometryObject;
 import org.bimserver.geometry.accellerator.Node;
 import org.bimserver.geometry.accellerator.Octree;
-import org.bimserver.geometry.accellerator.Traverser;
 import org.eclipse.emf.ecore.EClass;
 
 import com.googlecode.cqengine.ConcurrentIndexedCollection;
@@ -54,13 +53,11 @@ public class TilingImplementation implements TilingInterface {
 		objects.addIndex(HashIndex.onAttribute(TILE_ID));
 		objects.addIndex(HashIndex.onAttribute(DENSITY));
 
-		octree.traverseBreathFirst(new Traverser<GeometryObject>() {
-			@Override
-			public void traverse(Node<GeometryObject> t) {
-				for (ObjectWrapper<GeometryObject> objectWrapper : t.getValues()) {
-					objects.add(objectWrapper.getV());
-				}
-			}});
+		for (Node<GeometryObject> node : octree.values()) {
+			for (ObjectWrapper<GeometryObject> objectWrapper : node.getValues()) {
+				objects.add(objectWrapper.getV());
+			}
+		}
 	}
 
 	@Override

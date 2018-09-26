@@ -1,6 +1,7 @@
 package org.bimserver.geometry.accellerator;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,7 +41,6 @@ public class Octree<V extends Comparable<V>> extends Node<V> {
 	}
 
 	public void traverseBreathFirst(Traverser<V> traverser) {
-		traverser.traverse(this);
 		for (int l=0; l<=getDeepestLevel(); l++) {
 			traverseBreathFirst(traverser, l);
 		}
@@ -55,5 +55,9 @@ public class Octree<V extends Comparable<V>> extends Node<V> {
 			this.tilingImplementation = new TilingImplementation((Octree<GeometryObject>) this);
 		}
 		return this.tilingImplementation;
+	}
+	
+	public Collection<Node<V>> values() {
+		return list.values();
 	}
 }
