@@ -13,6 +13,7 @@ public class Octree<V extends Comparable<V>> extends Node<V> {
 
 	private final Map<Integer, Node<V>> list = new HashMap<>();
 	private TilingImplementation tilingImplementation;
+	private int deepestLevel = 0;
 	
 	public Octree(Bounds bounds, int maxDepth) {
 		super(null, bounds, 0, 0, 0, maxDepth);
@@ -22,6 +23,14 @@ public class Octree<V extends Comparable<V>> extends Node<V> {
 
 	protected void addToList(Node<V> node) {
 		list.put(node.getId(), node);
+	}
+	
+	public void setDeepestLevel(int deepestLevel) {
+		this.deepestLevel = deepestLevel;
+	}
+	
+	public int getDeepestLevel() {
+		return deepestLevel;
 	}
 	
 	public List<V> query(Bounds queryBounds) {

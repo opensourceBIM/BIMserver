@@ -15,7 +15,6 @@ public class Node<V extends Comparable<V>> {
 	private List<ObjectWrapper<V>> values = new ArrayList<>();
 	private int level;
 	private int id;
-	private int deepestLevel;
 	private int maxDepth;
 	private Octree<V> root;
 	
@@ -23,10 +22,13 @@ public class Node<V extends Comparable<V>> {
 		this.id = parentId * 8 + localId;
 		if (root != null) {
 			root.addToList(this);
+			if (level > root.getDeepestLevel()) {
+				root.setDeepestLevel(level);
+			}
 		}
+		this.level = level;
 		this.root = root;
 		this.bounds = bounds;
-		this.level = level;
 		this.maxDepth = maxDepth;
 	}
 	
@@ -72,9 +74,6 @@ public class Node<V extends Comparable<V>> {
 								nodes[x * 4 + y * 2 + z] = node;
 							}
 							Node<V> addedNode = node.add(v, bounds);
-							if (addedNode.getDeepestLevel() > deepestLevel) {
-								deepestLevel = addedNode.getDeepestLevel();
-							}
 							return addedNode;
 						}
 						localId++;
@@ -87,10 +86,6 @@ public class Node<V extends Comparable<V>> {
 		if (!values.add(new ObjectWrapper<>(bounds, v))) {
 		}
 		return this;
-	}
-	
-	public int getDeepestLevel() {
-		return deepestLevel;
 	}
 	
 	public void query(List<V> results, Bounds bounds) {
@@ -135,5 +130,9 @@ public class Node<V extends Comparable<V>> {
 
 	public void sort() {
 		Collections.sort(this.values);
+	}
+	
+	public int getLevel() {
+		return level;
 	}
 }
