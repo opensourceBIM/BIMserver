@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<name>BimServer</name>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>bimserver</artifactId>
@@ -78,6 +79,11 @@
 			<groupId>com.sleepycat</groupId>
 			<artifactId>je</artifactId>
 			<version>7.4.5</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.cqengine</groupId>
+			<artifactId>cqengine</artifactId>
+			<version>3.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.rometools</groupId>
