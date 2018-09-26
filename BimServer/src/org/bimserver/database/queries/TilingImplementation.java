@@ -42,10 +42,17 @@ public class TilingImplementation implements TilingInterface {
 		}
 	};
 
+	public static final Attribute<GeometryObject, Float> DENSITY = new SimpleAttribute<GeometryObject, Float>("density") {
+		public Float getValue(GeometryObject object, QueryOptions queryOptions) {
+			return object.getDensity();
+		}
+	};
+
 	public TilingImplementation(Octree<GeometryObject> octree) {
 		objects.addIndex(HashIndex.onAttribute(ROID));
 		objects.addIndex(HashIndex.onAttribute(ECLASS));
 		objects.addIndex(HashIndex.onAttribute(TILE_ID));
+		objects.addIndex(HashIndex.onAttribute(DENSITY));
 
 		octree.traverseBreathFirst(new Traverser<GeometryObject>() {
 			@Override
@@ -59,6 +66,12 @@ public class TilingImplementation implements TilingInterface {
 	@Override
 	public void queryOids(List<Long> oids, List<Long> oidsFiltered, long roid, EClass eClass, Tiles tiles) {
 		Query<GeometryObject> query = QueryFactory.and(QueryFactory.equal(ROID, roid), QueryFactory.equal(ECLASS, eClass), QueryFactory.in(TILE_ID, tiles.getTileIds()));
+		if (tiles.getMaximumThreshold() != -1) {
+			query = QueryFactory.and(query, QueryFactory.lessThanOrEqualTo(DENSITY, tiles.getMaximumThreshold()));
+		}
+		if (tiles.getMinimumThreshold() != -1) {
+			query = QueryFactory.and(query, QueryFactory.greaterThan(DENSITY, tiles.getMinimumThreshold()));
+		}
 		for (GeometryObject geometryObject : objects.retrieve(query)) {
 			if (tiles.getMinimumReuseThreshold() != -1 && tiles.getMinimumReuseThreshold() <= geometryObject.getSaveableTriangles()) {
 				// We still have to send this object, we just need to somehow make sure the associated GeometryData is not sent
