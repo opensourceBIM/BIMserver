@@ -1,17 +1,30 @@
 package org.bimserver.geometry.accellerator;
 
+import org.eclipse.emf.ecore.EClass;
+
 public class GeometryObject implements Comparable<GeometryObject> {
 
 	private long oid;
 	private long roid;
 	private int saveableTriangles;
 	private float density;
+	private EClass eClass;
+	private int tileId;
 
-	public GeometryObject(long oid, long roid, int saveableTriangles, float density) {
+	public GeometryObject(long oid, EClass eClass, long roid, int saveableTriangles, float density) {
 		this.oid = oid;
+		this.eClass = eClass;
 		this.roid = roid;
 		this.saveableTriangles = saveableTriangles;
 		this.density = density;
+	}
+	
+	public void setTileId(int tileId) {
+		this.tileId = tileId;
+	}
+	
+	public EClass geteClass() {
+		return eClass;
 	}
 	
 	public long getOid() {
@@ -55,5 +68,9 @@ public class GeometryObject implements Comparable<GeometryObject> {
 	
 	public float getDensity() {
 		return density;
+	}
+
+	public int getTileId() {
+		return tileId;
 	}
 }

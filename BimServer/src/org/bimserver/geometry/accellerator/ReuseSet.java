@@ -24,7 +24,7 @@ public class ReuseSet {
 					continue;
 				}
 				if (savedPrimitives >= trianglesToSave) {
-					break;
+					return result;
 				}
 				savedPrimitives += reuseObject.getSaveablePrimitives();
 				result.add(reuseObject.getGeometryDataOid());

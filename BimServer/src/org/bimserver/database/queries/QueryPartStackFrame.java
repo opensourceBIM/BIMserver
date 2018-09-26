@@ -153,29 +153,32 @@ public class QueryPartStackFrame extends StackFrame {
 				List<Long> oidsFiltered = new ArrayList<>();
 
 				QueryPart filteredQueryPart = createFilteredQueryPart(partialQuery);
-				Set<Node<GeometryObject>> nodes = (Set<Node<GeometryObject>>) tiles.getNodes();
-				for (Node<GeometryObject> node : nodes) {
-					for (ObjectWrapper<GeometryObject> objectWrapper : node.getValues()) {
-						GeometryObject geometryObject = objectWrapper.getV();
-						if (geometryObject.getRoid() == reusable.getRoid()) {
-							if (tiles.getMaximumThreshold() != -1 && geometryObject.getDensity() > tiles.getMaximumThreshold()) {
-								continue;
-							}
-							if (tiles.getMinimumReuseThreshold() != -1 && geometryObject.getDensity() < tiles.getMinimumThreshold()) {
-								continue;
-							}
-							long objectId = geometryObject.getOid();
-							if (eClass.isSuperTypeOf(queryObjectProvider.getDatabaseSession().getEClassForOid(objectId))) {
-								if (tiles.getMinimumReuseThreshold() != -1 && tiles.getMinimumReuseThreshold() <= geometryObject.getSaveableTriangles()) {
-									// We still have to send this object, we just need to somehow make sure the associated GeometryData is not sent
-									oidsFiltered.add(objectId);
-								} else {
-									oids.add(objectId);
-								}
-							}
-						}
-					}
-				}
+				tiles.getTilingInterface().queryOids(oids, oidsFiltered, reusable.getRoid(), eClass, tiles);
+				
+//				Set<Node<GeometryObject>> nodes = (Set<Node<GeometryObject>>) tiles.getNodes();
+//				
+//				for (Node<GeometryObject> node : nodes) {
+//					for (ObjectWrapper<GeometryObject> objectWrapper : node.getValues()) {
+//						GeometryObject geometryObject = objectWrapper.getV();
+//						if (geometryObject.getRoid() == reusable.getRoid()) {
+//							if (tiles.getMaximumThreshold() != -1 && geometryObject.getDensity() > tiles.getMaximumThreshold()) {
+//								continue;
+//							}
+//							if (tiles.getMinimumReuseThreshold() != -1 && geometryObject.getDensity() < tiles.getMinimumThreshold()) {
+//								continue;
+//							}
+//							long objectId = geometryObject.getOid();
+//							if (eClass.isSuperTypeOf(queryObjectProvider.getDatabaseSession().getEClassForOid(objectId))) {
+//								if (tiles.getMinimumReuseThreshold() != -1 && tiles.getMinimumReuseThreshold() <= geometryObject.getSaveableTriangles()) {
+//									// We still have to send this object, we just need to somehow make sure the associated GeometryData is not sent
+//									oidsFiltered.add(objectId);
+//								} else {
+//									oids.add(objectId);
+//								}
+//							}
+//						}
+//					}
+//				}
 				if (!oids.isEmpty()) {
 					Collections.sort(oids);
 					queryObjectProvider.push(new QueryOidsAndTypesStackFrame(queryObjectProvider, eClass, partialQuery, reusable, oids));

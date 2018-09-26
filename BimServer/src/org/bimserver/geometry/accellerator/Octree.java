@@ -6,10 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.bimserver.database.queries.Bounds;
+import org.bimserver.database.queries.TilingImplementation;
+import org.bimserver.database.queries.om.TilingInterface;
 
 public class Octree<V extends Comparable<V>> extends Node<V> {
 
 	private final Map<Integer, Node<V>> list = new HashMap<>();
+	private TilingImplementation tilingImplementation;
 	
 	public Octree(Bounds bounds, int maxDepth) {
 		super(null, bounds, 0, 0, 0, maxDepth);
@@ -36,5 +39,12 @@ public class Octree<V extends Comparable<V>> extends Node<V> {
 	
 	public Node<V> getById(Integer tileId) {
 		return list.get(tileId);
+	}
+
+	public synchronized TilingInterface getTilingImplementation() {
+		if (tilingImplementation == null) {
+			this.tilingImplementation = new TilingImplementation((Octree<GeometryObject>) this);
+		}
+		return this.tilingImplementation;
 	}
 }

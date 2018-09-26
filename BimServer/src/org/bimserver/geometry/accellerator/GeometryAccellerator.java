@@ -152,7 +152,9 @@ public class GeometryAccellerator {
 							
 							org.bimserver.database.queries.Bounds objectBounds = new org.bimserver.database.queries.Bounds((double) min.get("x"), (double) min.get("y"), (double) min.get("z"), (double) max.get("x"), (double) max.get("y"),
 									(double) max.get("z"));
-							octree.add(new GeometryObject(next.getOid(), next.getRoid(), saveableTriangles, density), objectBounds);
+							GeometryObject geometryObject = new GeometryObject(next.getOid(), next.eClass(), next.getRoid(), saveableTriangles, density);
+							Node<GeometryObject> node = octree.add(geometryObject, objectBounds);
+							geometryObject.setTileId(node.getId());
 						}
 					}
 				}

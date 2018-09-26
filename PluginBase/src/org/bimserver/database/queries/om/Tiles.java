@@ -12,6 +12,7 @@ public class Tiles {
 	private Object nodes;
 	private int maxDepth;
 	private int minimumReuseThreshold = -1;
+	private TilingInterface tilingInterface;
 	
 	public void add(int tileId) {
 		tileIds.add(tileId);
@@ -67,5 +68,13 @@ public class Tiles {
 	
 	public void setMaximumThreshold(float maximumThreshold) {
 		this.maximumThreshold = maximumThreshold;
+	}
+
+	public void setTilingInterface(TilingInterface tilingInterface) {
+		this.tilingInterface = tilingInterface;
+	}
+	
+	public TilingInterface getTilingInterface() {
+		return tilingInterface;
 	}
 }

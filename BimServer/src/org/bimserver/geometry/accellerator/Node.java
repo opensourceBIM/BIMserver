@@ -57,7 +57,7 @@ public class Node<V extends Comparable<V>> {
 		return values;
 	}
 
-	public int add(V v, Bounds bounds) {
+	public Node<V> add(V v, Bounds bounds) {
 		minimumBounds.integrate(bounds);
 		if (level != maxDepth) {
 			int localId = 1;
@@ -71,11 +71,11 @@ public class Node<V extends Comparable<V>> {
 								node = new Node<>(root, offset, this.level + 1, this.id, localId, maxDepth);
 								nodes[x * 4 + y * 2 + z] = node;
 							}
-							int finalLevel = node.add(v, bounds);
-							if (finalLevel > deepestLevel) {
-								deepestLevel = finalLevel;
+							Node<V> addedNode = node.add(v, bounds);
+							if (addedNode.getDeepestLevel() > deepestLevel) {
+								deepestLevel = addedNode.getDeepestLevel();
 							}
-							return finalLevel;
+							return addedNode;
 						}
 						localId++;
 					}
@@ -86,7 +86,7 @@ public class Node<V extends Comparable<V>> {
 //		System.out.println(q++ + ", " + this.level);
 		if (!values.add(new ObjectWrapper<>(bounds, v))) {
 		}
-		return level;
+		return this;
 	}
 	
 	public int getDeepestLevel() {

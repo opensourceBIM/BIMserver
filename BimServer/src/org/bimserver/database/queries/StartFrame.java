@@ -57,12 +57,14 @@ public class StartFrame extends StackFrame {
 				}
 
 				Octree<GeometryObject> octree = queryObjectProvider.getBimServer().getGeometryAccellerator().getOctree(roids, exludeStrings, tiles.getGeometryIdsToReuse(), tiles.getMaxDepth(), tiles.getMinimumThreshold(), tiles.getMaximumThreshold());
-				Set<Node<GeometryObject>> nodes = new HashSet<>();
-				tiles.setNodes(nodes);
-				for (Integer tileId : tiles.getTileIds()) {
-					Node<GeometryObject> node = octree.getById(tileId);
-					nodes.add(node);
-				}
+				tiles.setTilingInterface(octree.getTilingImplementation());
+
+//				Set<Node<GeometryObject>> nodes = new HashSet<>();
+//				tiles.setNodes(nodes);
+//				for (Integer tileId : tiles.getTileIds()) {
+//					Node<GeometryObject> node = octree.getById(tileId);
+//					nodes.add(node);
+//				}
 			}
 		}
 		this.roidsIterator = roids.iterator();
