@@ -62,7 +62,6 @@ import org.bimserver.emf.Schema;
 import org.bimserver.models.geometry.Bounds;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.geometry.Vector3f;
-import org.bimserver.models.ifc2x3tc1.IfcSIPrefix;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
@@ -306,8 +305,14 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 							if (representation != null) {
 								List<HashMapVirtualObject> representations = representation.getDirectListFeature(representationsFeature);
 								if (representations != null) {
+									boolean foundValidContext = false;
 									for (HashMapVirtualObject representationItem : representations) {
-										if (!usableContext(representationItem)) {
+										if (usableContext(representationItem)) {
+											foundValidContext = true;
+										}
+									}
+									for (HashMapVirtualObject representationItem : representations) {
+										if (!usableContext(representationItem) && foundValidContext) {
 											continue;
 										}
 										if (hasValidRepresentationIdentifier(representationItem)) {
@@ -696,8 +701,14 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	private boolean goForIt(List<HashMapVirtualObject> list) {
 		boolean goForIt = false;
 		if (list != null) {
+			boolean foundValidContext = false;
 			for (HashMapVirtualObject representationItem : list) {
 				if (usableContext(representationItem)) {
+					foundValidContext = true;
+				}
+			}
+			for (HashMapVirtualObject representationItem : list) {
+				if (usableContext(representationItem) || !foundValidContext) {
 					Object representationIdentifier = representationItem.get("RepresentationIdentifier");
 					if (representationIdentifier != null && (representationIdentifier.equals("Body") || representationIdentifier.equals("Facetation"))) {
 						goForIt = true;
