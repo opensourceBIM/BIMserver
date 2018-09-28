@@ -14,6 +14,7 @@ import com.googlecode.cqengine.IndexedCollection;
 import com.googlecode.cqengine.attribute.Attribute;
 import com.googlecode.cqengine.attribute.SimpleAttribute;
 import com.googlecode.cqengine.index.hash.HashIndex;
+import com.googlecode.cqengine.index.navigable.NavigableIndex;
 import com.googlecode.cqengine.query.Query;
 import com.googlecode.cqengine.query.QueryFactory;
 import com.googlecode.cqengine.query.option.QueryOptions;
@@ -51,7 +52,7 @@ public class TilingImplementation implements TilingInterface {
 		objects.addIndex(HashIndex.onAttribute(ROID));
 		objects.addIndex(HashIndex.onAttribute(ECLASS));
 		objects.addIndex(HashIndex.onAttribute(TILE_ID));
-		objects.addIndex(HashIndex.onAttribute(DENSITY));
+		objects.addIndex(NavigableIndex.onAttribute(DENSITY));
 
 		for (Node<GeometryObject> node : octree.values()) {
 			for (ObjectWrapper<GeometryObject> objectWrapper : node.getValues()) {
