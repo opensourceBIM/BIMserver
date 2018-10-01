@@ -61,6 +61,7 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 	private ObjectProvider objectProvider;
 
 	private IfcHeader ifcHeader;
+	private EmfJsonSerializer emfJsonSerializer;
 
 	public SharedJsonStreamingSerializer(ObjectProvider objectProvider, IfcHeader ifcHeader, boolean includeHidden) throws SerializerException {
 		if (objectProvider == null) {
@@ -80,10 +81,13 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 		this.outputStream = outputStream;
 		try {
 			if (mode == Mode.HEADER) {
+				if (this.emfJsonSerializer == null) {
+					this.emfJsonSerializer = new EmfJsonSerializer(outputStream, includeHidden, SERIALIZE_EMPTY_LISTS);
+				}
 				print("{");
 				if (ifcHeader != null) {
 					print("\"header\":");
-//					writeObject(ifcHeader);
+					this.emfJsonSerializer.writeObject(ifcHeader);
 					print("\n,");
 				}
 				print("\"objects\":[");

@@ -144,7 +144,7 @@ public class GeometryRunner implements Runnable {
 
 			objectProvider = new QueryObjectProvider(databaseSession, this.streamingGeometryGenerator.bimServer, query, Collections.singleton(queryContext.getRoid()), this.streamingGeometryGenerator.packageMetaData);
 
-			StreamingSerializer ifcSerializer = ifcSerializerPlugin.createSerializer(new PluginConfiguration());
+			StreamingSerializer serializer = ifcSerializerPlugin.createSerializer(new PluginConfiguration());
 			RenderEngine renderEngine = null;
 			byte[] bytes = null;
 			try {
@@ -159,10 +159,10 @@ public class GeometryRunner implements Runnable {
 						}
 					}
 				});
-				ifcSerializer.init(proxy, null, null, this.streamingGeometryGenerator.bimServer.getPluginManager(), this.streamingGeometryGenerator.packageMetaData);
+				serializer.init(proxy, null, null, this.streamingGeometryGenerator.bimServer.getPluginManager(), this.streamingGeometryGenerator.packageMetaData);
 
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
-				IOUtils.copy(ifcSerializer.getInputStream(), baos);
+				IOUtils.copy(serializer.getInputStream(), baos);
 				bytes = baos.toByteArray();
 				InputStream in = new ByteArrayInputStream(bytes);
 				Map<Integer, HashMapVirtualObject> notFoundObjects = new HashMap<>();
@@ -189,7 +189,7 @@ public class GeometryRunner implements Runnable {
 								}
 							}
 
-							OidConvertingSerializer oidConvertingSerializer = (OidConvertingSerializer) ifcSerializer;
+							OidConvertingSerializer oidConvertingSerializer = (OidConvertingSerializer) serializer;
 							Map<Long, Integer> oidToEid = oidConvertingSerializer.getOidToEid();
 							Map<Long, DebuggingInfo> debuggingInfo = new HashMap<>();
 

@@ -25,6 +25,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
@@ -47,6 +49,11 @@ import org.bimserver.models.ifc2x3tc1.IfcLabel;
 import org.bimserver.models.ifc2x3tc1.IfcLengthMeasure;
 import org.bimserver.models.ifc2x3tc1.IfcLocalPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcLogical;
+import org.bimserver.models.ifc2x3tc1.IfcMaterial;
+import org.bimserver.models.ifc2x3tc1.IfcMaterialLayer;
+import org.bimserver.models.ifc2x3tc1.IfcMaterialLayerSet;
+import org.bimserver.models.ifc2x3tc1.IfcMaterialLayerSetUsage;
+import org.bimserver.models.ifc2x3tc1.IfcMaterialSelect;
 import org.bimserver.models.ifc2x3tc1.IfcObject;
 import org.bimserver.models.ifc2x3tc1.IfcObjectDefinition;
 import org.bimserver.models.ifc2x3tc1.IfcObjectPlacement;
@@ -61,7 +68,9 @@ import org.bimserver.models.ifc2x3tc1.IfcPropertySetDefinition;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySingleValue;
 import org.bimserver.models.ifc2x3tc1.IfcQuantityVolume;
 import org.bimserver.models.ifc2x3tc1.IfcReal;
+import org.bimserver.models.ifc2x3tc1.IfcRelAssociates;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssociatesClassification;
+import org.bimserver.models.ifc2x3tc1.IfcRelAssociatesMaterial;
 import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
 import org.bimserver.models.ifc2x3tc1.IfcRelDecomposes;
 import org.bimserver.models.ifc2x3tc1.IfcRelDefines;
@@ -80,6 +89,9 @@ import org.bimserver.models.ifc2x3tc1.Tristate;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+
+import com.google.common.base.Joiner;
+import com.google.common.collect.Iterables;
 
 public class IfcUtils {
 	public static Path getShortestAllPaths(IdEObject start, IdEObject end) {
@@ -515,5 +527,88 @@ public class IfcUtils {
 			break;
 		}
 		return lengthUnitPrefix;
+	}
+
+	public static int getNrOfProperties(IfcProduct ifcProduct) {
+		int nrProperties = 0;
+		for (IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
+			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
+				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
+				IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
+				if (propertySetDefinition instanceof IfcPropertySet) {
+					IfcPropertySet ifcPropertySet = (IfcPropertySet)propertySetDefinition;
+					nrProperties += ifcPropertySet.getHasProperties().size();
+				}
+			}
+		}
+		return nrProperties;
+	}
+
+	public static int getNrOfPropertySets(IfcProduct ifcProduct) {
+		int nrPropertySets = 0;
+		for (IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
+			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
+				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
+				IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
+				if (propertySetDefinition instanceof IfcPropertySet) {
+					nrPropertySets++;
+				}
+			}
+		}
+		return nrPropertySets;
+	}
+
+	public static int getNrOfPSets(IfcProduct ifcProduct) {
+		int nrPSets = 0;
+		for (IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
+			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
+				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
+				IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
+				if (propertySetDefinition instanceof IfcPropertySet) {
+					if (propertySetDefinition.getName().equals("Pset_")) {
+						nrPSets++;
+					}
+				}
+			}
+		}
+		return nrPSets;
+	}
+
+	public static String getMaterial(IfcProduct ifcProduct) {
+		Set<IfcMaterial> materials = new HashSet<>();
+		for (IfcRelAssociates ifcRelAssociates : ifcProduct.getHasAssociations()) {
+			if (ifcRelAssociates instanceof IfcRelAssociatesMaterial) {
+				IfcRelAssociatesMaterial ifcRelAssociatesMaterial = (IfcRelAssociatesMaterial)ifcRelAssociates;
+				IfcMaterialSelect relatingMaterial = ifcRelAssociatesMaterial.getRelatingMaterial();
+				if (relatingMaterial instanceof IfcMaterial) {
+					materials.add((IfcMaterial) relatingMaterial);
+				} else if (relatingMaterial instanceof IfcMaterialLayerSetUsage) {
+					IfcMaterialLayerSetUsage ifcMaterialLayerSetUsage = (IfcMaterialLayerSetUsage)relatingMaterial;
+					IfcMaterialLayerSet forLayerSet = ifcMaterialLayerSetUsage.getForLayerSet();
+					for (IfcMaterialLayer ifcMaterialLayer : forLayerSet.getMaterialLayers()) {
+						IfcMaterial material = ifcMaterialLayer.getMaterial();
+						materials.add(material);
+					}
+				} else {
+					throw new UnsupportedOperationException(relatingMaterial.toString());
+				}
+			}
+		}
+		
+		return Joiner.on(", ").join(materials.stream().map(new Function<IfcMaterial, String>() {
+	          @Override
+	          public String apply(IfcMaterial input) {
+	              return input.getName();
+	          }
+	      }).iterator());
+	}
+
+	public static String getClassification(IfcProduct ifcProduct, IfcModelInterface model) {
+		for (IfcRelAssociatesClassification ifcRelAssociatesClassification : model.getAll(IfcRelAssociatesClassification.class)) {
+			if (ifcRelAssociatesClassification.getRelatedObjects().contains(ifcProduct)) {
+				return ifcRelAssociatesClassification.getName();
+			}
+		}
+		return null;
 	}
 }

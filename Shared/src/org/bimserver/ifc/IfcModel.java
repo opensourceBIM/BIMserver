@@ -32,8 +32,15 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import org.bimserver.emf.*;
+import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IdEObjectImpl.State;
+import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.emf.ModelMetaData;
+import org.bimserver.emf.OidProvider;
+import org.bimserver.emf.PackageMetaData;
+import org.bimserver.emf.Schema;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.plugins.ObjectAlreadyExistsException;
@@ -43,7 +50,12 @@ import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.*;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -53,7 +65,7 @@ import com.google.common.collect.HashBiMap;
 public abstract class IfcModel implements IfcModelInterface {
 
 	private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(IfcModel.class);
-	private final ModelMetaData modelMetaData = new ModelMetaData();
+	protected ModelMetaData modelMetaData = null;
 	private final Set<IfcModelChangeListener> changeListeners = new LinkedHashSet<IfcModelChangeListener>();
 
 	// Object with oid

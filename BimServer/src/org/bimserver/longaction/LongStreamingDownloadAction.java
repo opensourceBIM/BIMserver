@@ -37,11 +37,13 @@ import org.bimserver.database.queries.QueryObjectProvider;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
 import org.bimserver.database.queries.om.QueryPart;
+import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.interfaces.objects.SCheckoutResult;
 import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.models.store.ConcreteRevision;
+import org.bimserver.models.store.IfcHeader;
 import org.bimserver.models.store.PluginConfiguration;
 import org.bimserver.models.store.Revision;
 import org.bimserver.plugins.Plugin;
@@ -92,9 +94,15 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 			
 			List<String> projectNames = new ArrayList<>();
 			
+			IfcHeader ifcHeader = null;
 			for (Long roid : roids) {
 				Revision revision = databaseSession.get(roid, OldQuery.getDefault());
 				ConcreteRevision concreteRevision = revision.getLastConcreteRevision();
+				
+				ifcHeader = concreteRevision.getIfcHeader();
+				if (ifcHeader != null) {
+					ifcHeader.forceLoad();
+				}
 				
 				// TODO this is not correct, the total bounds should be used of all roids (or the common parent should be used)
 				projectInfo.setBounds(getBimServer().getSConverter().convertToSObject(concreteRevision.getBounds()));
@@ -167,7 +175,7 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 						StreamingSerializerPlugin streamingSerializerPlugin = (StreamingSerializerPlugin)plugin;
 						serializer = streamingSerializerPlugin.createSerializer(pluginConfiguration);
 						
-						serializer.init(queryObjectProvider, projectInfo, null, getBimServer().getPluginManager(), packageMetaData);
+						serializer.init(queryObjectProvider, projectInfo, ifcHeader, getBimServer().getPluginManager(), packageMetaData);
 						
 						changeActionState(ActionState.STARTED, "Done preparing", -1);
 					} else {

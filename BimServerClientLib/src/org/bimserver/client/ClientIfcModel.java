@@ -1,5 +1,7 @@
 package org.bimserver.client;
 
+import java.io.ByteArrayOutputStream;
+
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -29,7 +31,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.io.IOUtils;
 import org.bimserver.database.queries.om.Include;
+import org.bimserver.database.queries.om.Include.TypeDef;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
 import org.bimserver.database.queries.om.QueryException;
@@ -38,6 +42,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.emf.IfcModelInterfaceException;
+import org.bimserver.emf.ModelMetaData;
 import org.bimserver.emf.OidProvider;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.SharedJsonDeserializer;
@@ -54,6 +59,7 @@ import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.geometry.GeometryPackage;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.plugins.ObjectAlreadyExistsException;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.serializers.SerializerInputstream;
@@ -94,7 +100,7 @@ public class ClientIfcModel extends IfcModel {
 	private int cachedObjectCount = -1;
 	private boolean recordChanges;
 	private boolean includeGeometry;
-	
+
 	private ClientDebugInfo clientDebugInfo = new ClientDebugInfo();
 
 	public ClientIfcModel(BimServerClient bimServerClient, long poid, long roid, boolean deep, PackageMetaData packageMetaData, boolean recordChanges, boolean includeGeometry)
@@ -118,6 +124,36 @@ public class ClientIfcModel extends IfcModel {
 				LOGGER.error("", e);
 			}
 		}
+	}
+
+	@Override
+	public ModelMetaData getModelMetaData() {
+		if (this.modelMetaData == null) {
+			this.modelMetaData = new ModelMetaData();
+			Query query = new Query(getPackageMetaData());
+			QueryPart queryPart = query.createQueryPart();
+			queryPart.addType(new TypeDef(Ifc2x3tc1Package.eINSTANCE.getIfcProject(), false));
+
+			JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
+			long topicId;
+			try {
+				topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
+				waitForDonePreparing(topicId);
+
+				processDownload(topicId);
+			} catch (ServerException e) {
+				e.printStackTrace();
+			} catch (UserException e) {
+				e.printStackTrace();
+			} catch (PublicInterfaceNotFoundException e) {
+				e.printStackTrace();
+			} catch (IfcModelInterfaceException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return this.modelMetaData;
 	}
 
 	private ClientIfcModel(BimServerClient bimServerClient, PackageMetaData packageMetaData, long poid, boolean recordChanges) {
@@ -363,9 +399,6 @@ public class ClientIfcModel extends IfcModel {
 			InputStream inputStream = bimServerClient.getDownloadData(topicId);
 			clientDebugInfo.incrementGetDownloadData();
 			try {
-				// ByteArrayOutputStream byteArrayOutputStream = new
-				// ByteArrayOutputStream();
-				// IOUtils.copy(inputStream, byteArrayOutputStream);
 				processGeometryInputStream(inputStream, geometryInfoOidToOid);
 			} catch (Throwable e) {
 				e.printStackTrace();
@@ -374,7 +407,7 @@ public class ClientIfcModel extends IfcModel {
 			}
 		}
 	}
-	
+
 	public ClientDebugInfo getClientDebugInfo() {
 		return clientDebugInfo;
 	}
@@ -411,7 +444,7 @@ public class ClientIfcModel extends IfcModel {
 					if (formatVersion != 16) {
 						throw new GeometryException("Unsupported version " + formatVersion + " / 16");
 					}
-					
+
 					float multiplierToMm = dataInputStream.readFloat();
 					dataInputStream.align8();
 					for (int i = 0; i < 6; i++) {
@@ -428,8 +461,8 @@ public class ClientIfcModel extends IfcModel {
 					if (geometryInfo == null) {
 						geometryInfo = create(GeometryInfo.class);
 					}
-					((IdEObjectImpl)geometryInfo).setOid(geometryInfoOid);
-					((IdEObjectImpl)geometryInfo).setLoadingState(State.LOADING);
+					((IdEObjectImpl) geometryInfo).setOid(geometryInfoOid);
+					((IdEObjectImpl) geometryInfo).setLoadingState(State.LOADING);
 					add(geometryInfoOid, geometryInfo);
 
 					Long ifcProductOid = geometryInfoOidToOid.get(geometryInfoOid);
@@ -452,10 +485,10 @@ public class ClientIfcModel extends IfcModel {
 					maxBounds.setZ(dataInputStream.readDouble());
 
 					Bounds bounds = GeometryFactory.eINSTANCE.createBounds();
-					
+
 					bounds.setMin(minBounds);
 					bounds.setMax(maxBounds);
-					
+
 					geometryInfo.setBounds(bounds);
 
 					byte[] transformation = new byte[16 * 8];
@@ -469,7 +502,7 @@ public class ClientIfcModel extends IfcModel {
 						add(geometryDataOid, geometryData);
 					}
 					geometryInfo.setData(geometryData);
-					((IdEObjectImpl)geometryData).setLoadingState(State.LOADED);
+					((IdEObjectImpl) geometryData).setLoadingState(State.LOADED);
 				} else if (geometryType == 3) {
 					throw new GeometryException("Parts not supported");
 				} else if (geometryType == 1) {
@@ -486,8 +519,8 @@ public class ClientIfcModel extends IfcModel {
 						geometryData = GeometryFactory.eINSTANCE.createGeometryData();
 						add(geometryDataOid, geometryData);
 					}
-					((IdEObjectImpl)geometryData).setOid(geometryDataOid);
-					((IdEObjectImpl)geometryData).setLoadingState(State.LOADING);
+					((IdEObjectImpl) geometryData).setOid(geometryDataOid);
+					((IdEObjectImpl) geometryData).setLoadingState(State.LOADING);
 
 					int nrIndices = dataInputStream.readInt();
 					byte[] indices = new byte[nrIndices * 4];
@@ -524,7 +557,7 @@ public class ClientIfcModel extends IfcModel {
 					Buffer colorsBuffer = GeometryFactory.eINSTANCE.createBuffer();
 					colorsBuffer.setData(materials);
 					geometryData.setColorsQuantized(colorsBuffer);
-					((IdEObjectImpl)geometryData).setLoadingState(State.LOADED);
+					((IdEObjectImpl) geometryData).setLoadingState(State.LOADED);
 				} else if (geometryType == 6) {
 					done = true;
 				} else {
@@ -841,7 +874,7 @@ public class ClientIfcModel extends IfcModel {
 			return;
 		}
 		if (!eFeature.isMany()) {
-			if (getModelState() != ModelState.LOADING && ((IdEObjectImpl)idEObject).getLoadingState() != State.LOADING) {
+			if (getModelState() != ModelState.LOADING && ((IdEObjectImpl) idEObject).getLoadingState() != State.LOADING) {
 				try {
 					if (newValue != EStructuralFeature.Internal.DynamicValueHolder.NIL) {
 						LowLevelInterface lowLevelInterface = getBimServerClient().getLowLevelInterface();
@@ -972,7 +1005,7 @@ public class ClientIfcModel extends IfcModel {
 	}
 
 	public void load(IdEObject object) {
-		if (((IdEObjectImpl)object).getLoadingState() == State.LOADING) {
+		if (((IdEObjectImpl) object).getLoadingState() == State.LOADING) {
 			return;
 		}
 		loadExplicit(object.getOid());
