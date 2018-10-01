@@ -117,7 +117,7 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 			this.filename = Joiner.on("-").join(projectNames);
 
 			PluginConfiguration serializerPluginConfiguration = databaseSession.get(serializerOid, OldQuery.getDefault());
-			org.bimserver.plugins.PluginConfiguration pluginConfiguration = new org.bimserver.plugins.PluginConfiguration(serializerPluginConfiguration.getSettings());
+			org.bimserver.plugins.PluginConfiguration pluginConfiguration = bimServer.getPluginSettingsCache().getPluginSettings(serializerOid);
 			if (serializerPluginConfiguration == null) {
 				LOGGER.info("No serializer config found");
 			} else {

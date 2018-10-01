@@ -234,7 +234,6 @@ import org.bimserver.models.store.NewService;
 import org.bimserver.models.store.OAuthAuthorizationCode;
 import org.bimserver.models.store.OAuthServer;
 import org.bimserver.models.store.ObjectState;
-import org.bimserver.models.store.ObjectType;
 import org.bimserver.models.store.PluginBundleVersion;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
@@ -251,7 +250,6 @@ import org.bimserver.notifications.NewExtendedDataOnRevisionNotification;
 import org.bimserver.notifications.NewRevisionNotification;
 import org.bimserver.notifications.ProgressOnProjectTopic;
 import org.bimserver.plugins.Plugin;
-import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
@@ -548,7 +546,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetSerializerByContentTypeDatabaseAction(session, getInternalAccessMethod(), contentType)));
+			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetSerializerByContentTypeDatabaseAction(getBimServer(), session, getInternalAccessMethod(), contentType)));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -1119,8 +1117,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			if (plugin != null) {
 				if (plugin instanceof DeserializerPlugin) {
 					DeserializerPlugin deserializerPlugin = (DeserializerPlugin)plugin;
-					ObjectType settings = deserializerPluginConfiguration.getSettings();
-					Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration(settings));
+					Deserializer deserializer = deserializerPlugin.createDeserializer(getBimServer().getPluginSettingsCache().getPluginSettings(deserializerOid));
 					OutputStream outputStream = Files.newOutputStream(file);
 					InputStream inputStream = new MultiplexingInputStream(originalInputStream, outputStream);
 					deserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData(project.getSchema()));
@@ -1142,8 +1139,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 					return longAction.getProgressTopic().getKey().getId();
 				} else if (plugin instanceof StreamingDeserializerPlugin) {
 					StreamingDeserializerPlugin streaminDeserializerPlugin = (StreamingDeserializerPlugin) plugin;
-					ObjectType settings = deserializerPluginConfiguration.getSettings();
-					StreamingDeserializer streamingDeserializer = streaminDeserializerPlugin.createDeserializer(new PluginConfiguration(settings));
+					StreamingDeserializer streamingDeserializer = streaminDeserializerPlugin.createDeserializer(getBimServer().getPluginSettingsCache().getPluginSettings(deserializerPluginConfiguration.getOid()));
 					streamingDeserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData(project.getSchema()));
 					RestartableInputStream restartableInputStream = new RestartableInputStream(originalInputStream, file);
 					StreamingCheckinDatabaseAction checkinDatabaseAction = new StreamingCheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), comment, fileName, restartableInputStream, streamingDeserializer, fileSize, newServiceId, pluginBundleVersion, topicId);

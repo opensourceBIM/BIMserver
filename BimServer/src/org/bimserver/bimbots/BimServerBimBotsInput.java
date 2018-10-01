@@ -51,7 +51,7 @@ public class BimServerBimBotsInput extends BimBotsInput {
 
 			if (generateGeometry) {
 				GeometryGenerator generator = new GeometryGenerator(bimServer);
-				RenderEnginePool pool = bimServer.getRenderEnginePools().getRenderEnginePool(model.getPackageMetaData().getSchema(), defaultRenderEngine.getPluginDescriptor().getPluginClassName(), new PluginConfiguration(defaultRenderEngine.getSettings()));
+				RenderEnginePool pool = bimServer.getRenderEnginePools().getRenderEnginePool(model.getPackageMetaData().getSchema(), defaultRenderEngine.getPluginDescriptor().getPluginClassName(), bimServer.getPluginSettingsCache().getPluginSettings(defaultRenderEngine.getOid()));
 				generator.generateGeometry(pool, bimServer.getPluginManager(), null, model, -1, -1, false, null);
 			}
 		} catch (PluginException e) {

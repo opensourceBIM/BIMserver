@@ -359,7 +359,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 				throw new BimBotsException("No default render engine has been selected for this user");
 			}
 			
-			RenderEnginePool pool = getBimServer().getRenderEnginePools().getRenderEnginePool(model.getPackageMetaData().getSchema(), defaultRenderEngine.getPluginDescriptor().getPluginClassName(), new PluginConfiguration(defaultRenderEngine.getSettings()));
+			RenderEnginePool pool = getBimServer().getRenderEnginePools().getRenderEnginePool(model.getPackageMetaData().getSchema(), defaultRenderEngine.getPluginDescriptor().getPluginClassName(), getBimServer().getPluginSettingsCache().getPluginSettings(defaultRenderEngine.getOid()));
 			
 			new GeometryGenerator(getBimServer()).generateGeometry(pool, getBimServer().getPluginManager(), session, model, concreteRevision.getProject().getId(), concreteRevision.getId(), true, null);
 			session.commit();

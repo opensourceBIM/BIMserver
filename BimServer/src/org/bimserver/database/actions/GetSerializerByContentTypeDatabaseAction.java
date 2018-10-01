@@ -1,5 +1,7 @@
 package org.bimserver.database.actions;
 
+import org.bimserver.BimServer;
+
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -31,16 +33,18 @@ import org.bimserver.shared.exceptions.UserException;
 public class GetSerializerByContentTypeDatabaseAction extends BimDatabaseAction<SerializerPluginConfiguration> {
 
 	private final String contentType;
+	private BimServer bimServer;
 
-	public GetSerializerByContentTypeDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, String contentType) {
+	public GetSerializerByContentTypeDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, String contentType) {
 		super(databaseSession, accessMethod);
+		this.bimServer = bimServer;
 		this.contentType = contentType;
 	}
 
 	@Override
 	public SerializerPluginConfiguration execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		for (SerializerPluginConfiguration serializerPluginConfiguration : getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), SerializerPluginConfiguration.class, OldQuery.getDefault())) {
-			PluginConfiguration pluginConfiguration = new PluginConfiguration(serializerPluginConfiguration.getSettings());
+			PluginConfiguration pluginConfiguration = bimServer.getPluginSettingsCache().getPluginSettings(serializerPluginConfiguration.getOid());
 			String string = pluginConfiguration.getString(SerializerPlugin.CONTENT_TYPE);
 			if (string != null && string.equals(contentType)) {
 				return serializerPluginConfiguration;

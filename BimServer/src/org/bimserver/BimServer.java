@@ -121,6 +121,7 @@ import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.web.WebModulePlugin;
+import org.bimserver.pluginsettings.PluginSettingsCache;
 import org.bimserver.renderengine.NoPoolingRenderEnginePoolFactory;
 import org.bimserver.renderengine.RenderEnginePoolFactory;
 import org.bimserver.renderengine.RenderEnginePools;
@@ -203,6 +204,7 @@ public class BimServer {
 	private MavenPluginRepository mavenPluginRepository;
 	private AuthCache authCache;
 	private GeometryAccellerator geometryAccellerator;
+	private PluginSettingsCache pluginSettingsCache;
 
 	/**
 	 * Create a new BIMserver
@@ -652,6 +654,8 @@ public class BimServer {
 
 			authCache = new AuthCache(this);
 			
+			
+			pluginSettingsCache = new PluginSettingsCache(this);
 			metricsRegistry = new MetricsRegistry();
 
 			Path mavenPath = config.getHomeDir().resolve("maven");
@@ -1262,7 +1266,7 @@ public class BimServer {
 			
 			try {
 				servicePlugin.unregister(sInternalService);
-				servicePlugin.register(uoid, sInternalService, new org.bimserver.plugins.PluginConfiguration(internalServicePluginConfiguration.getSettings()));
+				servicePlugin.register(uoid, sInternalService, getPluginSettingsCache().getPluginSettings(internalServicePluginConfiguration.getOid()));
 			} catch (Throwable e) {
 				LOGGER.error("", e);
 			}
@@ -1522,5 +1526,9 @@ public class BimServer {
 	
 	public GeometryAccellerator getGeometryAccellerator() {
 		return geometryAccellerator;
+	}
+	
+	public PluginSettingsCache getPluginSettingsCache() {
+		return pluginSettingsCache;
 	}
 }

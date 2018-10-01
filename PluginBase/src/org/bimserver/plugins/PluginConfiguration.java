@@ -128,4 +128,10 @@ public class PluginConfiguration {
 	public boolean has(String fullIdentifier) {
 		return values.containsKey(fullIdentifier);
 	}
+
+	public SObjectType toSObjectType() {
+		SObjectType objectType = new SObjectType();
+		
+		return objectType;
+	}
 }

@@ -834,7 +834,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			ObjectType convertedSettings = getBimServer().getSConverter().convertFromSObject(settings, session);
-			SetPluginSettingsDatabaseAction action = new SetPluginSettingsDatabaseAction(session, getInternalAccessMethod(), poid, convertedSettings);
+			SetPluginSettingsDatabaseAction action = new SetPluginSettingsDatabaseAction(getBimServer(), session, getInternalAccessMethod(), poid, convertedSettings);
 			session.executeAndCommitAction(action);
 		} catch (Exception e) {
 			handleException(e);
@@ -997,6 +997,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	}
 	
 	public SObjectType getPluginSettings(Long poid) throws ServerException, UserException {
+		// TODO possibly use PluginSettingsCache
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			PluginConfiguration pluginConfiguration = session.get(StorePackage.eINSTANCE.getPluginConfiguration(), poid, OldQuery.getDefault());

@@ -228,7 +228,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			
 			final RenderEngineFilter renderEngineFilter = new RenderEngineFilter();
 
-			RenderEnginePool renderEnginePool = bimServer.getRenderEnginePools().getRenderEnginePool(packageMetaData.getSchema(), renderEngine.getPluginDescriptor().getPluginClassName(), new PluginConfiguration(renderEngine.getSettings()));
+			RenderEnginePool renderEnginePool = bimServer.getRenderEnginePools().getRenderEnginePool(packageMetaData.getSchema(), renderEngine.getPluginDescriptor().getPluginClassName(), bimServer.getPluginSettingsCache().getPluginSettings(renderEngine.getOid()));
 			
 			report.setRenderEngineName(renderEngine.getName());
 			report.setRenderEnginePluginVersion(renderEngine.getPluginDescriptor().getPluginBundleVersion().getVersion());

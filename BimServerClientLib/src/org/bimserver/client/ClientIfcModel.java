@@ -1,7 +1,5 @@
 package org.bimserver.client;
 
-import java.io.ByteArrayOutputStream;
-
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -31,7 +29,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.io.IOUtils;
 import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.Include.TypeDef;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
@@ -130,6 +127,17 @@ public class ClientIfcModel extends IfcModel {
 	public ModelMetaData getModelMetaData() {
 		if (this.modelMetaData == null) {
 			this.modelMetaData = new ModelMetaData();
+			try {
+				this.modelMetaData.setMinBounds(getBimServerClient().getServiceInterface().getModelMinBounds(roid));
+				this.modelMetaData.setMaxBounds(getBimServerClient().getServiceInterface().getModelMaxBounds(roid));
+			} catch (ServerException e1) {
+				e1.printStackTrace();
+			} catch (UserException e1) {
+				e1.printStackTrace();
+			} catch (PublicInterfaceNotFoundException e1) {
+				e1.printStackTrace();
+			}
+
 			Query query = new Query(getPackageMetaData());
 			QueryPart queryPart = query.createQueryPart();
 			queryPart.addType(new TypeDef(Ifc2x3tc1Package.eINSTANCE.getIfcProject(), false));
@@ -352,9 +360,6 @@ public class ClientIfcModel extends IfcModel {
 
 	private void loadGeometry() throws QueryException, ServerException, UserException, PublicInterfaceNotFoundException, IOException, GeometryException, IfcModelInterfaceException {
 		if (includeGeometry) {
-			getModelMetaData().setMinBounds(getBimServerClient().getServiceInterface().getModelMinBounds(roid));
-			getModelMetaData().setMaxBounds(getBimServerClient().getServiceInterface().getModelMaxBounds(roid));
-
 			Query query = new Query("test", getPackageMetaData());
 			ObjectNode settings = new ObjectMapper().createObjectNode();
 			query.setGeometrySettings(settings);
@@ -618,30 +623,29 @@ public class ClientIfcModel extends IfcModel {
 				loadedClasses.add(eClass.getName());
 				rebuildIndexPerClass(eClass);
 				modelState = ModelState.NONE;
+				
+				try {
+					loadGeometry();
+				} catch (ServerException e) {
+					e.printStackTrace();
+				} catch (UserException e) {
+					e.printStackTrace();
+				} catch (PublicInterfaceNotFoundException e) {
+					e.printStackTrace();
+				} catch (QueryException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (GeometryException e) {
+					e.printStackTrace();
+				} catch (IfcModelInterfaceException e) {
+					e.printStackTrace();
+				}
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}
 		}
 		List<T> result = super.getAll(eClass);
-		try {
-			if (modelState != ModelState.FULLY_LOADED) {
-				loadGeometry();
-			}
-		} catch (ServerException e) {
-			e.printStackTrace();
-		} catch (UserException e) {
-			e.printStackTrace();
-		} catch (PublicInterfaceNotFoundException e) {
-			e.printStackTrace();
-		} catch (QueryException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (GeometryException e) {
-			e.printStackTrace();
-		} catch (IfcModelInterfaceException e) {
-			e.printStackTrace();
-		}
 		return result;
 	}
 

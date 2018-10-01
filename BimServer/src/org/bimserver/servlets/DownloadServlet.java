@@ -175,7 +175,7 @@ public class DownloadServlet extends SubServlet {
 					LOGGER.error("Invalid topicId: " + topicId);
 				} else {
 					DataSource dataSource = checkoutResult.getFile().getDataSource();
-					PluginConfiguration pluginConfiguration = new PluginConfiguration(serviceMap.getPluginInterface().getPluginSettings(checkoutResult.getSerializerOid()));
+					PluginConfiguration pluginConfiguration = getBimServer().getPluginSettingsCache().getPluginSettings(checkoutResult.getSerializerOid());
 
 					final ProgressTopic progressTopic = getBimServer().getNotificationsManager().getProgressTopic(topicId);
 

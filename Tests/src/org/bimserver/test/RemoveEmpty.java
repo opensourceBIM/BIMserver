@@ -12,7 +12,7 @@ public class RemoveEmpty {
 	}
 
 	private void start() {
-		Path base = Paths.get("C:\\Users\\Ruben de Laat\\Documents\\debug");
+		Path base = Paths.get("C:\\Users\\Ruben de Laat\\Downloads\\debug");
 		try {
 			DirectoryStream<Path> newDirectoryStream = Files.newDirectoryStream(base);
 			for (Path p : newDirectoryStream) {

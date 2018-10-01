@@ -35,7 +35,6 @@ import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.longaction.DownloadParameters;
 import org.bimserver.models.store.GeoTag;
 import org.bimserver.models.store.MessagingSerializerPluginConfiguration;
-import org.bimserver.models.store.ObjectType;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
@@ -87,8 +86,7 @@ public class SerializerFactory {
 			if (serializerPluginConfiguration != null) {
 				SerializerPlugin serializerPlugin = (SerializerPlugin) pluginManager.getPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
 				if (serializerPlugin != null) {
-					ObjectType settings = serializerPluginConfiguration.getSettings();
-					Serializer serializer = serializerPlugin.createSerializer(new PluginConfiguration(settings));
+					Serializer serializer = serializerPlugin.createSerializer(bimServer.getPluginSettingsCache().getPluginSettings(serializerPluginConfiguration.getOid()));
 					if (!serializerPlugin.getSupportedSchemas().contains(model.getPackageMetaData().getSchema())) {
 						SchemaConverterFactory converterFactory = null;
 						for (Schema schema : serializerPlugin.getSupportedSchemas()) {
@@ -150,8 +148,8 @@ public class SerializerFactory {
 			if (serializerPluginConfiguration != null) {
 				MessagingSerializerPlugin serializerPlugin = (MessagingSerializerPlugin) pluginManager.getPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
 				if (serializerPlugin != null) {
-					ObjectType settings = serializerPluginConfiguration.getSettings();
-					MessagingSerializer serializer = serializerPlugin.createSerializer(new PluginConfiguration(settings));
+					PluginConfiguration pluginSettings = bimServer.getPluginSettingsCache().getPluginSettings(serializerPluginConfiguration.getOid());
+					MessagingSerializer serializer = serializerPlugin.createSerializer(pluginSettings);
 					if (serializer != null) {
 						try {
 							serializer.init(model, null, pluginManager, model.getPackageMetaData(), true);
@@ -175,7 +173,7 @@ public class SerializerFactory {
 		try {
 			SerializerPluginConfiguration found = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, OldQuery.getDefault());
 			if (found != null) {
-				return new PluginConfiguration(found.getSettings()).getString(SerializerPlugin.EXTENSION);
+				return bimServer.getPluginSettingsCache().getPluginSettings(found.getOid()).getString(SerializerPlugin.EXTENSION);
 			}
 		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);

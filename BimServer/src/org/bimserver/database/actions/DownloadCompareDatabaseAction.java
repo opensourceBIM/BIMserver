@@ -87,7 +87,7 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 			if (modelCompareObject != null) {
 				ModelComparePlugin modelComparePlugin = getBimServer().getPluginManager().getModelComparePlugin(modelCompareObject.getPluginDescriptor().getPluginClassName(), true);
 				if (modelComparePlugin != null) {
-					org.bimserver.plugins.modelcompare.ModelCompare modelCompare = modelComparePlugin.createModelCompare(new PluginConfiguration(modelCompareObject.getSettings()), packageMetaData);
+					org.bimserver.plugins.modelcompare.ModelCompare modelCompare = modelComparePlugin.createModelCompare(getBimServer().getPluginSettingsCache().getPluginSettings(modelCompareObject.getOid()), packageMetaData);
 					return modelCompare;
 				} else {
 					throw new ModelCompareException("No Model Compare found " + modelCompareObject.getPluginDescriptor().getPluginClassName());

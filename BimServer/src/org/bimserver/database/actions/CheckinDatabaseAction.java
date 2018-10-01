@@ -208,7 +208,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 					throw new UserException("No default render engine has been selected for this user");
 				}
 				
-				RenderEnginePool pool = getBimServer().getRenderEnginePools().getRenderEnginePool(model.getPackageMetaData().getSchema(), defaultRenderEngine.getPluginDescriptor().getPluginClassName(), new PluginConfiguration(defaultRenderEngine.getSettings()));
+				RenderEnginePool pool = getBimServer().getRenderEnginePools().getRenderEnginePool(model.getPackageMetaData().getSchema(), defaultRenderEngine.getPluginDescriptor().getPluginClassName(), getBimServer().getPluginSettingsCache().getPluginSettings(defaultRenderEngine.getOid()));
 
 				GenerateGeometryResult generateGeometry = new GeometryGenerator(getBimServer()).generateGeometry(pool, getBimServer().getPluginManager(), getDatabaseSession(), ifcModel, project.getId(), concreteRevision.getId(), true, geometryCache);
 

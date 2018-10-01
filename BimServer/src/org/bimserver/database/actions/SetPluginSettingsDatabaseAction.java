@@ -1,5 +1,7 @@
 package org.bimserver.database.actions;
 
+import org.bimserver.BimServer;
+
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -31,9 +33,11 @@ public class SetPluginSettingsDatabaseAction extends BimDatabaseAction<Void> {
 
 	private ObjectType convertedSettings;
 	private long poid;
+	private BimServer bimServer;
 
-	public SetPluginSettingsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long poid, ObjectType convertedSettings) {
+	public SetPluginSettingsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, ObjectType convertedSettings) {
 		super(databaseSession, accessMethod);
+		this.bimServer = bimServer;
 		this.poid = poid;
 		this.convertedSettings = convertedSettings;
 	}
@@ -44,6 +48,7 @@ public class SetPluginSettingsDatabaseAction extends BimDatabaseAction<Void> {
 		pluginConfiguration.setSettings(convertedSettings);
 		getDatabaseSession().store(convertedSettings, true);
 		getDatabaseSession().store(pluginConfiguration);
+		bimServer.getPluginSettingsCache().reset(pluginConfiguration.getOid());
 		return null;
 	}
 }
