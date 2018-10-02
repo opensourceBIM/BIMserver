@@ -448,7 +448,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				downloadParameters.setSerializerOid(serializerOid);
 				return download(downloadParameters, sync);
 			} else {
-				throw new UserException("Unimplemented");
+				throw new UserException("Unimplemented type of plugin: " + plugin);
 			}
 		} catch (Exception e) {
 			return handleException(e);

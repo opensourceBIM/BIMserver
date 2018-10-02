@@ -1,5 +1,8 @@
 package org.bimserver.client;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -29,6 +32,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.io.IOUtils;
 import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.Include.TypeDef;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
@@ -231,6 +235,7 @@ public class ClientIfcModel extends IfcModel {
 			}
 		}
 	};
+	private boolean assumeCompletePreload;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ClientIfcModel branch(long poid, boolean recordChanges) {
@@ -402,7 +407,7 @@ public class ClientIfcModel extends IfcModel {
 			// TODO use websocket notifications
 			waitForDonePreparing(topicId);
 			InputStream inputStream = bimServerClient.getDownloadData(topicId);
-			clientDebugInfo.incrementGetDownloadData();
+			clientDebugInfo.incrementGeometryGetDownloadData();
 			try {
 				processGeometryInputStream(inputStream, geometryInfoOidToOid);
 			} catch (Throwable e) {
@@ -436,6 +441,7 @@ public class ClientIfcModel extends IfcModel {
 	}
 
 	private void processGeometryInputStream(InputStream inputStream, Map<Long, Long> geometryInfoOidToOid) throws IOException, GeometryException, IfcModelInterfaceException {
+		int t = 0;
 		try (CountingLittleEndianDataInputStream dataInputStream = new CountingLittleEndianDataInputStream(inputStream)) {
 			boolean done = false;
 			while (true) {
@@ -568,10 +574,14 @@ public class ClientIfcModel extends IfcModel {
 				} else {
 					throw new GeometryException("Unimplemented type: " + geometryType);
 				}
+				t++;
 				dataInputStream.align8();
 			}
 		} catch (EOFException e) {
 			System.out.println("EOS");
+		} catch (IOException e) {
+			System.out.println("T: " + t);
+			e.printStackTrace();
 		} catch (ObjectAlreadyExistsException e) {
 			e.printStackTrace();
 		}
@@ -579,12 +589,14 @@ public class ClientIfcModel extends IfcModel {
 
 	private void processDownload(Long topicId) throws UserException, ServerException, PublicInterfaceNotFoundException, IfcModelInterfaceException, IOException {
 		InputStream downloadData = bimServerClient.getDownloadData(topicId);
-		clientDebugInfo.incrementGetDownloadData();
 		if (downloadData == null) {
 			throw new IfcModelInterfaceException("No InputStream to read from");
 		}
 		try {
-			new SharedJsonDeserializer(false).read(downloadData, this, false);
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			IOUtils.copy(downloadData, baos);
+			System.out.println(baos.size());
+			new SharedJsonDeserializer(false).read(new ByteArrayInputStream(baos.toByteArray()), this, false);
 		} catch (DeserializeException e) {
 			throw new IfcModelInterfaceException(e);
 		} catch (Exception e) {
@@ -598,7 +610,7 @@ public class ClientIfcModel extends IfcModel {
 
 	@Override
 	public <T extends IdEObject> List<T> getAll(EClass eClass) {
-		if (!loadedClasses.contains(eClass.getName()) && modelState != ModelState.FULLY_LOADED) {
+		if (!loadedClasses.contains(eClass.getName()) && modelState != ModelState.FULLY_LOADED && !assumeCompletePreload) {
 			LOGGER.info("Loading all " + eClass.getName());
 			try {
 				modelState = ModelState.LOADING;
@@ -610,12 +622,17 @@ public class ClientIfcModel extends IfcModel {
 					Include include = queryPart.createInclude();
 					include.addType(eClass, false);
 					include.addField("geometry");
+					Include include2 = include.createInclude();
+					include2.addType(new TypeDef(GeometryPackage.eINSTANCE.getGeometryInfo(), false));
+					include2.addField("data");
 				}
 
 				JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
 				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
 
 				waitForDonePreparing(topicId);
+
+				clientDebugInfo.incrementGetAll();
 
 				processDownload(topicId);
 				bimServerClient.getServiceInterface().cleanupLongAction(topicId);
@@ -702,7 +719,8 @@ public class ClientIfcModel extends IfcModel {
 	public void loadExplicit(long oid) {
 		try {
 			IdEObjectImpl idEObjectImpl = (IdEObjectImpl) super.get(oid);
-			if (idEObjectImpl != null && !idEObjectImpl.isLoadedOrLoading()) {
+			if (idEObjectImpl != null && !idEObjectImpl.isLoadedOrLoading() && !assumeCompletePreload) {
+				System.out.println(idEObjectImpl);
 				idEObjectImpl.setLoadingState(State.LOADING);
 				modelState = ModelState.LOADING;
 
@@ -714,6 +732,7 @@ public class ClientIfcModel extends IfcModel {
 
 				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
 				waitForDonePreparing(topicId);
+				clientDebugInfo.incExplicit();
 				processDownload(topicId);
 				bimServerClient.getServiceInterface().cleanupLongAction(topicId);
 				idEObjectImpl.setLoadingState(State.LOADED);
@@ -740,7 +759,7 @@ public class ClientIfcModel extends IfcModel {
 
 	@Override
 	public <T extends IdEObject> List<T> getAllWithSubTypes(EClass eClass) {
-		if (!loadedClasses.contains(eClass.getName()) && modelState != ModelState.FULLY_LOADED) {
+		if (!loadedClasses.contains(eClass.getName()) && modelState != ModelState.FULLY_LOADED && !assumeCompletePreload) {
 			try {
 				modelState = ModelState.LOADING;
 
@@ -752,6 +771,9 @@ public class ClientIfcModel extends IfcModel {
 					Include include = queryPart.createInclude();
 					include.addType(eClass, true);
 					include.addField("geometry");
+					Include include2 = include.createInclude();
+					include2.addType(new TypeDef(GeometryPackage.eINSTANCE.getGeometryInfo(), false));
+					include2.addField("data");
 				}
 
 				JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
@@ -759,6 +781,7 @@ public class ClientIfcModel extends IfcModel {
 
 				waitForDonePreparing(topicId);
 				processDownload(topicId);
+				clientDebugInfo.incrementGetAll();
 				bimServerClient.getServiceInterface().cleanupLongAction(topicId);
 
 				for (EClass subClass : bimServerClient.getMetaDataManager().getPackageMetaData(eClass.getEPackage().getName()).getAllSubClasses(eClass)) {
@@ -801,13 +824,22 @@ public class ClientIfcModel extends IfcModel {
 
 	@Override
 	public int count(EClass eClass) {
+		try {
+			return bimServerClient.getLowLevelInterface().count(roid, eClass.getName());
+		} catch (UserException e) {
+			e.printStackTrace();
+		} catch (ServerException e) {
+			e.printStackTrace();
+		} catch (PublicInterfaceNotFoundException e) {
+			e.printStackTrace();
+		}
 		return super.count(eClass);
 	}
 
 	@Override
 	public IdEObject getByGuid(String guid) {
 		IdEObject idEObject = super.getByGuid(guid);
-		if (idEObject == null) {
+		if (idEObject == null && !assumeCompletePreload) {
 			try {
 				modelState = ModelState.LOADING;
 
@@ -821,6 +853,7 @@ public class ClientIfcModel extends IfcModel {
 
 				waitForDonePreparing(topicId);
 				processDownload(topicId);
+				clientDebugInfo.incGuid();
 				bimServerClient.getServiceInterface().cleanupLongAction(topicId);
 
 				modelState = ModelState.NONE;
@@ -1042,6 +1075,23 @@ public class ClientIfcModel extends IfcModel {
 	// }
 	// }
 
+	@Override
+	public void query(ObjectNode query, boolean assumeCompletePreload) {
+		this.assumeCompletePreload = assumeCompletePreload;
+		try {
+			modelState = ModelState.LOADING;
+			Long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), query.toString(), getJsonSerializerOid(), false);
+			waitForDonePreparing(topicId);
+
+			processDownload(topicId);
+			bimServerClient.getServiceInterface().cleanupLongAction(topicId);
+
+			modelState = ModelState.NONE;
+		} catch (Exception e) {
+			LOGGER.error("", e);
+		}
+	}
+	
 	public void queryNew(Query query, IfcModelChangeListener ifcModelChangeListener) {
 		try {
 			modelState = ModelState.LOADING;

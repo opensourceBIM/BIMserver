@@ -229,7 +229,7 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 
 	Set<EClass> getUsedClasses();
 
-	void query(ObjectNode query);
+	void query(ObjectNode query, boolean assumeCompletePreload);
 
 	<T extends IdEObject> T createAndAdd(EClass eClass, long oid) throws IfcModelInterfaceException, ObjectAlreadyExistsException;
 

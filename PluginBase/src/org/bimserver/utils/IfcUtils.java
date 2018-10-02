@@ -53,6 +53,7 @@ import org.bimserver.models.ifc2x3tc1.IfcMaterial;
 import org.bimserver.models.ifc2x3tc1.IfcMaterialLayer;
 import org.bimserver.models.ifc2x3tc1.IfcMaterialLayerSet;
 import org.bimserver.models.ifc2x3tc1.IfcMaterialLayerSetUsage;
+import org.bimserver.models.ifc2x3tc1.IfcMaterialList;
 import org.bimserver.models.ifc2x3tc1.IfcMaterialSelect;
 import org.bimserver.models.ifc2x3tc1.IfcObject;
 import org.bimserver.models.ifc2x3tc1.IfcObjectDefinition;
@@ -565,7 +566,7 @@ public class IfcUtils {
 				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
 				IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
 				if (propertySetDefinition instanceof IfcPropertySet) {
-					if (propertySetDefinition.getName().equals("Pset_")) {
+					if ("Pset_".equals(propertySetDefinition.getName())) {
 						nrPSets++;
 					}
 				}
@@ -588,6 +589,12 @@ public class IfcUtils {
 					for (IfcMaterialLayer ifcMaterialLayer : forLayerSet.getMaterialLayers()) {
 						IfcMaterial material = ifcMaterialLayer.getMaterial();
 						materials.add(material);
+					}
+				} else if (relatingMaterial instanceof IfcMaterialList) {
+					materials.addAll(((IfcMaterialList) relatingMaterial).getMaterials());
+				} else if (relatingMaterial instanceof IfcMaterialLayerSet) {
+					for (IfcMaterialLayer ifcMaterialLayer : ((IfcMaterialLayerSet) relatingMaterial).getMaterialLayers()) {
+						materials.add(ifcMaterialLayer.getMaterial());
 					}
 				} else {
 					throw new UnsupportedOperationException(relatingMaterial.toString());

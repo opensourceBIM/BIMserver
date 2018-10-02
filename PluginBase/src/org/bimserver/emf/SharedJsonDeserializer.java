@@ -1,5 +1,7 @@
 package org.bimserver.emf;
 
+import java.io.BufferedReader;
+
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -33,7 +35,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.models.geometry.GeometryFactory;
-import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.geometry.Vector3f;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Factory;
 import org.bimserver.models.ifc2x3tc1.IfcGloballyUniqueId;
@@ -91,7 +92,7 @@ public class SharedJsonDeserializer {
 			}
 			in = new ByteArrayInputStream(baos.toByteArray());
 		}
-		JsonReader jsonReader = new JsonReader(new InputStreamReader(in, Charsets.UTF_8));
+		JsonReader jsonReader = new JsonReader(new BufferedReader(new InputStreamReader(in, Charsets.UTF_8)));
 		int nrObjects = 0;
 		try {
 			JsonToken peek = jsonReader.peek();

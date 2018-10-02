@@ -23,16 +23,14 @@ public final class CountingLittleEndianDataInputStream extends FilterInputStream
 	public void align8() throws IOException {
 		int skip = 8 - (this.pos % 8);
 		if(skip > 0 && skip != 8) {
-			this.pos += skip;
-			in.read(new byte[skip]);
+			readFully(new byte[skip]);
 		}
 	}
 
 	public void align4() throws IOException {
 		int skip = 4 - (this.pos % 4);
 		if(skip > 0 && skip != 4) {
-			this.pos += skip;
-			in.read(new byte[skip]);
+			readFully(new byte[skip]);
 		}
 	}
 

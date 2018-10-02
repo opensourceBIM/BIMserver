@@ -1146,8 +1146,9 @@ public abstract class IfcModel implements IfcModelInterface {
 	}
 	
 	@Override
-	public void query(ObjectNode query) {
+	public void query(ObjectNode query, boolean assumeCompletePreload) {
 	}
+	
 	class Mismatch {
 		EReference forward;
 		EReference[] inverse;

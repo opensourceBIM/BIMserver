@@ -1,6 +1,8 @@
 package org.bimserver.database.queries;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.bimserver.database.queries.om.Tiles;
 import org.bimserver.database.queries.om.TilingInterface;
@@ -13,11 +15,14 @@ import com.googlecode.cqengine.ConcurrentIndexedCollection;
 import com.googlecode.cqengine.IndexedCollection;
 import com.googlecode.cqengine.attribute.Attribute;
 import com.googlecode.cqengine.attribute.SimpleAttribute;
+import com.googlecode.cqengine.index.compound.CompoundIndex;
 import com.googlecode.cqengine.index.hash.HashIndex;
 import com.googlecode.cqengine.index.navigable.NavigableIndex;
 import com.googlecode.cqengine.query.Query;
 import com.googlecode.cqengine.query.QueryFactory;
+import com.googlecode.cqengine.query.logical.And;
 import com.googlecode.cqengine.query.option.QueryOptions;
+import com.googlecode.cqengine.resultset.ResultSet;
 
 public class TilingImplementation implements TilingInterface {
 
@@ -49,10 +54,11 @@ public class TilingImplementation implements TilingInterface {
 	};
 
 	public TilingImplementation(Octree<GeometryObject> octree) {
-		objects.addIndex(HashIndex.onAttribute(ROID));
-		objects.addIndex(HashIndex.onAttribute(ECLASS));
-		objects.addIndex(HashIndex.onAttribute(TILE_ID));
+//		objects.addIndex(HashIndex.onAttribute(ROID));
+//		objects.addIndex(HashIndex.onAttribute(ECLASS));
+//		objects.addIndex(HashIndex.onAttribute(TILE_ID));
 		objects.addIndex(NavigableIndex.onAttribute(DENSITY));
+		objects.addIndex(CompoundIndex.onAttributes(ROID, ECLASS, TILE_ID));
 
 		for (Node<GeometryObject> node : octree.values()) {
 			for (ObjectWrapper<GeometryObject> objectWrapper : node.getValues()) {
@@ -63,14 +69,22 @@ public class TilingImplementation implements TilingInterface {
 
 	@Override
 	public void queryOids(List<Long> oids, List<Long> oidsFiltered, long roid, EClass eClass, Tiles tiles) {
-		Query<GeometryObject> query = QueryFactory.and(QueryFactory.equal(ROID, roid), QueryFactory.equal(ECLASS, eClass), QueryFactory.in(TILE_ID, tiles.getTileIds()));
-		if (tiles.getMaximumThreshold() != -1) {
-			query = QueryFactory.and(query, QueryFactory.lessThanOrEqualTo(DENSITY, tiles.getMaximumThreshold()));
+		Set<Query<GeometryObject>> queries = new HashSet<>();
+		queries.add(QueryFactory.equal(ROID, roid));
+		queries.add(QueryFactory.equal(ECLASS, eClass));
+		queries.add(QueryFactory.in(TILE_ID, tiles.getTileIds()));
+		if (tiles.getMaximumThreshold() != -1 && tiles.getMinimumThreshold() != -1) {
+			queries.add(QueryFactory.between(DENSITY, tiles.getMinimumThreshold(), false, tiles.getMaximumThreshold(), true));
+		} else {
+			if (tiles.getMaximumThreshold() != -1) {
+				queries.add(QueryFactory.lessThanOrEqualTo(DENSITY, tiles.getMaximumThreshold()));
+			}
+			if (tiles.getMinimumThreshold() != -1) {
+				queries.add(QueryFactory.greaterThan(DENSITY, tiles.getMinimumThreshold()));
+			}
 		}
-		if (tiles.getMinimumThreshold() != -1) {
-			query = QueryFactory.and(query, QueryFactory.greaterThan(DENSITY, tiles.getMinimumThreshold()));
-		}
-		for (GeometryObject geometryObject : objects.retrieve(query)) {
+		ResultSet<GeometryObject> retrieve = objects.retrieve(new And<>(queries));
+		for (GeometryObject geometryObject : retrieve) {
 			if (tiles.getMinimumReuseThreshold() != -1 && tiles.getMinimumReuseThreshold() <= geometryObject.getSaveableTriangles()) {
 				// We still have to send this object, we just need to somehow make sure the associated GeometryData is not sent
 				oidsFiltered.add(geometryObject.getOid());
