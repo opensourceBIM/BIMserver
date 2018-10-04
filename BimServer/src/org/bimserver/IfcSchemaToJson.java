@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
+import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.shared.IfcDoc;
@@ -39,6 +40,7 @@ import com.google.gson.stream.JsonWriter;
 
 public class IfcSchemaToJson {
 	public static void main(String[] args) {
+		generateGeometry();
 		generateIfc2x3tc1();
 		generateIfc4();
 	}
@@ -83,8 +85,31 @@ public class IfcSchemaToJson {
 		}
 	}
 
+	private static void generateGeometry() {
+		FileOutputStream fos = null;
+		try {
+			fos = new FileOutputStream(new File("www/js/geometry.js"));
+			new IfcSchemaToJson().convert(fos, null, GeometryPackage.eINSTANCE);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (fos != null) {
+				try {
+					fos.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
 	private void convert(OutputStream outputStream, File docs, EPackage ePackage) throws IOException {
-		IfcDoc ifcDoc = new IfcDoc(docs);
+		IfcDoc ifcDoc = null;
+		if (docs != null) {
+			ifcDoc = new IfcDoc(docs);
+		}
 		
 		JsonWriter jsonWriter = new JsonWriter(new OutputStreamWriter(outputStream));
 		jsonWriter.setIndent("  ");
@@ -99,7 +124,10 @@ public class IfcSchemaToJson {
 					
 				} else if (eClassifier instanceof EClass) {
 					EClass eClass = (EClass)eClassifier;
-					String domain = ifcDoc.getDomain(eClass.getName());
+					String domain = "geometry";
+					if (ifcDoc != null) {
+						domain = ifcDoc.getDomain(eClass.getName());
+					}
 					jsonWriter.name("domain");
 					jsonWriter.value(domain);
 					jsonWriter.name("superclasses");
@@ -140,6 +168,8 @@ public class IfcSchemaToJson {
 			return "double";
 		} else if (type == EcorePackage.eINSTANCE.getEInt() || type == EcorePackage.eINSTANCE.getEIntegerObject()) {
 			return "int";
+		} else if (type == EcorePackage.eINSTANCE.getEShort() || type == EcorePackage.eINSTANCE.getEShortObject()) {
+			return "short";
 		} else if (type == EcorePackage.eINSTANCE.getEBoolean() || type == EcorePackage.eINSTANCE.getEBooleanObject()) {
 			return "boolean";
 		} else if (type == EcorePackage.eINSTANCE.getEByteArray()) {

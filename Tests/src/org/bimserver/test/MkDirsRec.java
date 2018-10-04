@@ -8,14 +8,14 @@ import java.nio.file.Paths;
 
 public class MkDirsRec {
 	public static void main(String[] args) {
-		Path base = Paths.get("D:\\Dropbox\\Shared\\Organized IFC Files\\NUC - kvdeursen");
+		Path base = Paths.get(args[0]);
 		try {
 			DirectoryStream<Path> newDirectoryStream = Files.newDirectoryStream(base);
 			for (Path p : newDirectoryStream) {
 				String filename = p.getFileName().toString();
 				filename = filename.replaceAll(" \\_", "\\_");
-				if (filename.endsWith(".ifc") || filename.endsWith(".ifczip")) {
-					filename = filename.replaceAll("\\_", "\\\\");
+				if (filename.toLowerCase().endsWith(".ifc") || filename.toLowerCase().endsWith(".ifczip")) {
+					filename = filename.replaceAll("\\_", "\\\\").trim();
 					filename = filename.substring(0, filename.lastIndexOf("."));
 					Path newPath = base.resolve(filename);
 					Files.createDirectories(newPath);
@@ -24,7 +24,6 @@ public class MkDirsRec {
 				}
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 
 public class MkDirs {
 	public static void main(String[] args) {
-		Path base = Paths.get("D:\\Dropbox\\Shared\\Organized IFC Files\\Pontsteiger Full\\Rest");
+		Path base = Paths.get(args[0]);
 		try {
 			DirectoryStream<Path> newDirectoryStream = Files.newDirectoryStream(base);
 			for (Path p : newDirectoryStream) {

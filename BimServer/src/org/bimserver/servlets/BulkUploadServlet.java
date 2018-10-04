@@ -1,5 +1,7 @@
 package org.bimserver.servlets;
 
+import java.io.BufferedInputStream;
+
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -32,6 +34,7 @@ import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.util.Streams;
+import org.apache.commons.io.IOUtils;
 import org.bimserver.BimServer;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
@@ -101,7 +104,12 @@ public class BulkUploadServlet extends SubServlet {
 							while (nextEntry != null) {
 								String fullfilename = nextEntry.getName();
 								if (fullfilename.toLowerCase().endsWith(".ifc") || fullfilename.toLowerCase().endsWith("ifcxml") || fullfilename.toLowerCase().endsWith(".ifczip")) {
-									InputStreamDataSource inputStreamDataSource = new InputStreamDataSource(new FakeClosingInputStream(zipInputStream));
+									BufferedInputStream bufferedInputStream = new BufferedInputStream(zipInputStream);
+									bufferedInputStream.mark(2048);
+									byte[] initialBytes = new byte[2048];
+									IOUtils.readFully(bufferedInputStream, initialBytes);
+									bufferedInputStream.reset();
+									InputStreamDataSource inputStreamDataSource = new InputStreamDataSource(new FakeClosingInputStream(bufferedInputStream));
 									inputStreamDataSource.setName(name);
 									DataHandler ifcFile = new DataHandler(inputStreamDataSource);
 									if (fullfilename.contains("/")) {
@@ -109,7 +117,8 @@ public class BulkUploadServlet extends SubServlet {
 										String filename = fullfilename.substring(fullfilename.lastIndexOf("/") + 1);
 										String extension = filename.substring(filename.lastIndexOf(".") + 1);
 										
-										SProject project = getOrCreatePath(service, mainProject, mainProject, path);
+										String schema = service.determineIfcVersion(initialBytes, fullfilename.toLowerCase().endsWith(".ifczip"));
+										SProject project = getOrCreatePath(service, mainProject, mainProject, path, schema);
 										SDeserializerPluginConfiguration deserializer = service.getSuggestedDeserializerForExtension(extension, project.getOid());
 										
 										long topicId = -1;
@@ -155,21 +164,21 @@ public class BulkUploadServlet extends SubServlet {
 		response.getWriter().write(result.toString());
 	}
 	
-	private SProject getOrCreatePath(ServiceInterface service, SProject mainProject, SProject currentProject, String path) throws UserException, ServerException {
+	private SProject getOrCreatePath(ServiceInterface service, SProject mainProject, SProject currentProject, String path, String schema) throws UserException, ServerException {
 		String name = path;
 		if (path.contains("/")) {
 			name = path.substring(0, path.indexOf("/"));
 		}
 		SProject newProject = null;
 		try {
-			newProject = service.addProjectAsSubProject(name, currentProject.getOid(), currentProject.getSchema());
+			newProject = service.addProjectAsSubProject(name, currentProject.getOid(), schema);
 		} catch (ServerException e) {
 			e.printStackTrace();
 		} catch (UserException e) {
 			newProject = service.getSubProjectByName(currentProject.getOid(), name);
 		}
 		if (path.contains("/")) {
-			return getOrCreatePath(service, mainProject, newProject, path.substring(path.indexOf("/") + 1));
+			return getOrCreatePath(service, mainProject, newProject, path.substring(path.indexOf("/") + 1), schema);
 		}
 		return newProject;
 	}

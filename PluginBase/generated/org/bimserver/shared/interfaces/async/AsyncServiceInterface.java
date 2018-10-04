@@ -169,6 +169,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface DetermineIfcVersionCallback {
+		void success(java.lang.String result);
+		void error(Throwable e);
+	}
+	
 	public interface DownloadCallback {
 		void success(java.lang.Long result);
 		void error(Throwable e);
@@ -1088,6 +1093,18 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.deleteUser(uoid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void determineIfcVersion(final byte[] head, final java.lang.Boolean zipped, final DetermineIfcVersionCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.determineIfcVersion(head, zipped));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

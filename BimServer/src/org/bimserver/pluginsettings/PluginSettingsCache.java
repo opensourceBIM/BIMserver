@@ -28,8 +28,10 @@ public class PluginSettingsCache {
 		if (pluginConfiguration == null) {
 			try (DatabaseSession databaseSession = bimServer.getDatabase().createSession()) {
 				org.bimserver.models.store.PluginConfiguration serializerPluginConfiguration = databaseSession.get(serializerOid, OldQuery.getDefault());
-				pluginConfiguration = new org.bimserver.plugins.PluginConfiguration(serializerPluginConfiguration.getSettings());
-				pluginConfigurations.put(serializerOid, pluginConfiguration);
+				if (serializerPluginConfiguration != null) {
+					pluginConfiguration = new org.bimserver.plugins.PluginConfiguration(serializerPluginConfiguration.getSettings());
+					pluginConfigurations.put(serializerOid, pluginConfiguration);
+				}
 			}
 		}
 		return pluginConfiguration;
