@@ -79,6 +79,8 @@ service ServiceInterface {
 
 	rpc deleteUser (DeleteUserRequest) returns (DeleteUserResponse);
 
+	rpc determineIfcVersion (DetermineIfcVersionRequest) returns (DetermineIfcVersionResponse);
+
 	rpc download (DownloadRequest) returns (DownloadResponse);
 
 	rpc downloadCompareResults (DownloadCompareResultsRequest) returns (DownloadCompareResultsResponse);
@@ -888,6 +890,16 @@ message DeleteUserRequest {
 message DeleteUserResponse {
 	optional string errorMessage = 1;
 	optional bool value = 2;
+}
+
+message DetermineIfcVersionRequest {
+	optional bytes head = 1;
+	optional bool zipped = 2;
+}
+
+message DetermineIfcVersionResponse {
+	optional string errorMessage = 1;
+	optional string value = 2;
 }
 
 message DownloadRequest {

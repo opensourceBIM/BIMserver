@@ -60,6 +60,7 @@ import org.bimserver.interfaces.objects.SUserSettings;
 import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.interfaces.objects.SVector3f;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 
 @WebService(name = "ServiceInterface", targetNamespace="org.bimserver")
@@ -1561,4 +1562,9 @@ public interface ServiceInterface extends PublicInterface {
 	@WebMethod(action = "listBoundingBoxes")
 	List<SBounds> listBoundingBoxes(
 		@WebParam(name = "roids", partName = "getGeometryDataToReuse.roids") Set<Long> roids) throws ServerException, UserException;
+	
+	@WebMethod(action = "determineIfcVersion")
+	String determineIfcVersion(
+		@WebParam(name = "head", partName = "determineIfcVersion.head") byte[] head, 
+		@WebParam(name = "zipped", partName = "determineIfcVersion.zipped") Boolean zipped) throws UserException, ServiceException;
 }

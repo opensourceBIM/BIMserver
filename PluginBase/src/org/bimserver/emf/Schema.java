@@ -70,4 +70,13 @@ public enum Schema {
 		schemas.add(IFC4);
 		return schemas;
 	}
+
+	public static Schema fromIfcHeader(String schema) {
+		if ("IFC2X3".equals(schema.toUpperCase())) {
+			return Schema.IFC2X3TC1;
+		} else if ("IFC4".equals(schema.toUpperCase())) {
+			return Schema.IFC4;
+		}
+		return null;
+	}
 }

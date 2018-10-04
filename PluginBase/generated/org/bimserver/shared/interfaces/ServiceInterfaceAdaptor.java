@@ -125,6 +125,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
+	public java.lang.String determineIfcVersion(byte[] head, java.lang.Boolean zipped) throws UserException, ServerException {
+		return null;
+	}
+	
 	public java.lang.Long download(java.util.Set<java.lang.Long> roids, java.lang.String query, java.lang.Long serializerOid, java.lang.Boolean sync) throws UserException, ServerException {
 		return null;
 	}

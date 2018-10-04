@@ -253,6 +253,7 @@ import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.deserializers.IfcSchemaDeterminer;
 import org.bimserver.plugins.deserializers.StreamingDeserializer;
 import org.bimserver.plugins.deserializers.StreamingDeserializerPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
@@ -265,6 +266,7 @@ import org.bimserver.plugins.serializers.StreamingSerializerPlugin;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.compare.CompareWriter;
+import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
@@ -3215,5 +3217,24 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		bounds.getMax().setX(bounds.getMax().getX() * multiplierToMm);
 		bounds.getMax().setY(bounds.getMax().getY() * multiplierToMm);
 		bounds.getMax().setZ(bounds.getMax().getZ() * multiplierToMm);
+	}
+	
+	@Override
+	public String determineIfcVersion(byte[] head, Boolean usesZip) throws UserException, ServiceException {
+		try {
+			if (head == null) {
+				throw new UserException("head cannot be null");
+			}
+			DeserializerPlugin firstDeserializer = getBimServer().getPluginManager().getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
+			if (firstDeserializer == null) {
+				throw new UserException("No deserializer found for ifc, cannot determine schema version");
+			}
+			if (!(firstDeserializer instanceof IfcSchemaDeterminer)) {
+				throw new UserException("Deserializer not capable of determining schema");
+			}
+			return ((IfcSchemaDeterminer)firstDeserializer).determineSchema(head, usesZip).name();
+		} catch (PluginException e) {
+			throw new UserException(e);
+		}
 	}
 }

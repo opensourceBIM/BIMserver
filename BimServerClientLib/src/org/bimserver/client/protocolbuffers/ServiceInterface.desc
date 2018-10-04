@@ -1,5 +1,5 @@
 
-˙ß
+Ó©
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -390,7 +390,13 @@ dataObject (2.org.bimserver.pb.SDataObject
 uoid ("9
 DeleteUserResponse
 errorMessage (	
-value ("T
+value (":
+DetermineIfcVersionRequest
+head (
+zipped ("B
+DetermineIfcVersionResponse
+errorMessage (	
+value (	"T
 DownloadRequest
 roids (
 query (	
@@ -1562,7 +1568,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2‡Å
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2‘Ç
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
@@ -1593,7 +1599,8 @@ addProject#.org.bimserver.pb.AddProjectRequest$.org.bimserver.pb.AddProjectRes
 deleteProject&.org.bimserver.pb.DeleteProjectRequest'.org.bimserver.pb.DeleteProjectResponseW
 deleteService&.org.bimserver.pb.DeleteServiceRequest.org.bimserver.pb.VoidResponseW
 
-deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserResponseQ
+deleteUser#.org.bimserver.pb.DeleteUserRequest$.org.bimserver.pb.DeleteUserResponser
+determineIfcVersion,.org.bimserver.pb.DetermineIfcVersionRequest-.org.bimserver.pb.DetermineIfcVersionResponseQ
 download!.org.bimserver.pb.DownloadRequest".org.bimserver.pb.DownloadResponse{
 downloadCompareResults/.org.bimserver.pb.DownloadCompareResultsRequest0.org.bimserver.pb.DownloadCompareResultsResponseì
 getAllAuthorizedUsersOfProject7.org.bimserver.pb.GetAllAuthorizedUsersOfProjectRequest8.org.bimserver.pb.GetAllAuthorizedUsersOfProjectResponsex
