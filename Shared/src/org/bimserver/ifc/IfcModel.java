@@ -1,5 +1,7 @@
 package org.bimserver.ifc;
 
+import java.io.IOException;
+
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -1146,7 +1148,7 @@ public abstract class IfcModel implements IfcModelInterface {
 	}
 	
 	@Override
-	public void query(ObjectNode query, boolean assumeCompletePreload) {
+	public void query(ObjectNode query, boolean assumeCompletePreload) throws ServerException, UserException, PublicInterfaceNotFoundException, IfcModelInterfaceException, IOException {
 	}
 	
 	class Mismatch {

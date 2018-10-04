@@ -1,8 +1,5 @@
 package org.bimserver.client;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -32,7 +29,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.io.IOUtils;
 import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.Include.TypeDef;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
@@ -60,7 +56,6 @@ import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.geometry.GeometryPackage;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.plugins.ObjectAlreadyExistsException;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.serializers.SerializerInputstream;
@@ -143,8 +138,7 @@ public class ClientIfcModel extends IfcModel {
 			}
 
 			Query query = new Query(getPackageMetaData());
-			QueryPart queryPart = query.createQueryPart();
-			queryPart.addType(new TypeDef(Ifc2x3tc1Package.eINSTANCE.getIfcProject(), false));
+			query.createQueryPart();
 
 			JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
 			long topicId;
@@ -578,7 +572,6 @@ public class ClientIfcModel extends IfcModel {
 				dataInputStream.align8();
 			}
 		} catch (EOFException e) {
-			System.out.println("EOS");
 		} catch (IOException e) {
 			System.out.println("T: " + t);
 			e.printStackTrace();
@@ -590,13 +583,10 @@ public class ClientIfcModel extends IfcModel {
 	private void processDownload(Long topicId) throws UserException, ServerException, PublicInterfaceNotFoundException, IfcModelInterfaceException, IOException {
 		InputStream downloadData = bimServerClient.getDownloadData(topicId);
 		if (downloadData == null) {
-			throw new IfcModelInterfaceException("No InputStream to read from");
+			throw new IfcModelInterfaceException("No InputStream to read from for topicId " + topicId);
 		}
 		try {
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			IOUtils.copy(downloadData, baos);
-			System.out.println(baos.size());
-			new SharedJsonDeserializer(false).read(new ByteArrayInputStream(baos.toByteArray()), this, false);
+			new SharedJsonDeserializer(false).read(downloadData, this, false);
 		} catch (DeserializeException e) {
 			throw new IfcModelInterfaceException(e);
 		} catch (Exception e) {
@@ -1076,20 +1066,16 @@ public class ClientIfcModel extends IfcModel {
 	// }
 
 	@Override
-	public void query(ObjectNode query, boolean assumeCompletePreload) {
+	public void query(ObjectNode query, boolean assumeCompletePreload) throws ServerException, UserException, PublicInterfaceNotFoundException, IfcModelInterfaceException, IOException {
 		this.assumeCompletePreload = assumeCompletePreload;
-		try {
-			modelState = ModelState.LOADING;
-			Long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), query.toString(), getJsonSerializerOid(), false);
-			waitForDonePreparing(topicId);
+		modelState = ModelState.LOADING;
+		Long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), query.toString(), getJsonSerializerOid(), false);
+		waitForDonePreparing(topicId);
 
-			processDownload(topicId);
-			bimServerClient.getServiceInterface().cleanupLongAction(topicId);
+		processDownload(topicId);
+		bimServerClient.getServiceInterface().cleanupLongAction(topicId);
 
-			modelState = ModelState.NONE;
-		} catch (Exception e) {
-			LOGGER.error("", e);
-		}
+		modelState = ModelState.NONE;
 	}
 	
 	public void queryNew(Query query, IfcModelChangeListener ifcModelChangeListener) {

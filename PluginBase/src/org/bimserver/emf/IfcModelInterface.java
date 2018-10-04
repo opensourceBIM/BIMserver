@@ -1,5 +1,7 @@
 package org.bimserver.emf;
 
+import java.io.IOException;
+
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -229,7 +231,7 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 
 	Set<EClass> getUsedClasses();
 
-	void query(ObjectNode query, boolean assumeCompletePreload);
+	void query(ObjectNode query, boolean assumeCompletePreload) throws ServerException, UserException, PublicInterfaceNotFoundException, IfcModelInterfaceException, IOException;
 
 	<T extends IdEObject> T createAndAdd(EClass eClass, long oid) throws IfcModelInterfaceException, ObjectAlreadyExistsException;
 
