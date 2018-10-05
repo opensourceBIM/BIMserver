@@ -25,17 +25,22 @@ import com.google.common.base.Charsets;
 import com.google.common.primitives.Longs;
 
 public class LittleEndianSerializerDataOutputStream extends SerializerDataOutputStream {
-	
+
 	private OutputStream outputStream;
 	private int bytesWritten = 0;
 
 	public LittleEndianSerializerDataOutputStream(OutputStream outputStream) {
 		this.outputStream = outputStream;
 	}
-	
+
 	public LittleEndianSerializerDataOutputStream() {
 	}
-	
+
+	@Override
+	public int pos() {
+		return bytesWritten;
+	}
+
 	@Override
 	public void write(byte[] b, int off, int len) throws IOException {
 		outputStream.write(b, off, len);
@@ -147,7 +152,7 @@ public class LittleEndianSerializerDataOutputStream extends SerializerDataOutput
 	@Override
 	public void writeUTF(String str) throws IOException {
 		// TODO redundant things happening here...
-		
+
 		new DataOutputStream(outputStream).writeUTF(str);
 		bytesWritten += str.getBytes(Charsets.UTF_8).length + 2;
 	}
@@ -169,7 +174,7 @@ public class LittleEndianSerializerDataOutputStream extends SerializerDataOutput
 
 	@Override
 	public void writeByte(byte val) throws IOException {
-		outputStream.write((byte)val);
+		outputStream.write((byte) val);
 		bytesWritten += 1;
 	}
 

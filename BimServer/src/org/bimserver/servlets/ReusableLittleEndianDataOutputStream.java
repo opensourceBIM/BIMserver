@@ -56,6 +56,10 @@ public class ReusableLittleEndianDataOutputStream extends LittleEndianSerializer
 		dataOutputStream.write(b, off, len);
 	}
 
+	public int pos() {
+		return growingByteBuffer.position();
+	}
+	
 	@Override
 	public void align4() throws IOException {
 		int extra = 4 - (growingByteBuffer.position() % 4);

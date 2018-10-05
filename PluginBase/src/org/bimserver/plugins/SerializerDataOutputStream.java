@@ -40,4 +40,5 @@ public abstract class SerializerDataOutputStream extends OutputStream {
 	public abstract void writeByteUnchecked(int val) throws IOException;
 	public abstract void align8() throws IOException;
 	public abstract void align4() throws IOException;
+	public abstract int pos();
 }
