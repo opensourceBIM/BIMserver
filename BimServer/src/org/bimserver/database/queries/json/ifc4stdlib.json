@@ -500,9 +500,17 @@
             "IfcSweptDiskSolid"
          ]
       },
+      "IfcSpecificMappingShapeRepresentation": {
+         "type": "IfcShapeRepresentation",
+         "fields": ["ContextOfItems"],
+         "includes": [
+            "IfcGeometricRepresentationContext",
+            "IfcGeometricRepresentationSubContext"
+         ]
+      },
       "IfcShapeRepresentation": {
          "type": "IfcShapeRepresentation",
-         "field": "Items",
+         "fields": ["Items", "ContextOfItems"],
          "includes": [
             "IfcRepresentationItem",
             "IfcStyledItem",
