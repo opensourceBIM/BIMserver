@@ -272,7 +272,10 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			buffer = ByteBuffer.allocate(8 * s);
 			buffer.order(ByteOrder.LITTLE_ENDIAN);
 			for (EClass eClass : eClasses) {
-				long oid = startOids.get(eClass);
+				Long oid = startOids.get(eClass);
+				if (oid == null) {
+					throw new UserException("EClass " + eClass + " not found in startOids, please report");
+				}
 				if (!DatabaseSession.perRecordVersioning(eClass)) {
 					buffer.putLong(oid);
 				}
