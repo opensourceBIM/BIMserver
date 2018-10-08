@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
-import java.util.stream.Stream;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
@@ -87,12 +86,12 @@ import org.bimserver.models.ifc2x3tc1.IfcUnitEnum;
 import org.bimserver.models.ifc2x3tc1.IfcValue;
 import org.bimserver.models.ifc2x3tc1.IfcVolumeMeasure;
 import org.bimserver.models.ifc2x3tc1.Tristate;
+import org.bimserver.models.ifc4.IfcPropertySetDefinitionSelect;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
 import com.google.common.base.Joiner;
-import com.google.common.collect.Iterables;
 
 public class IfcUtils {
 	public static Path getShortestAllPaths(IdEObject start, IdEObject end) {
@@ -530,6 +529,15 @@ public class IfcUtils {
 		return lengthUnitPrefix;
 	}
 
+	public static int getNrOfProperties(IdEObject ifcProduct) {
+		if (ifcProduct instanceof IfcProduct) {
+			return getNrOfProperties((IfcProduct)ifcProduct);
+		} else if (ifcProduct instanceof org.bimserver.models.ifc4.IfcProduct) {
+			return getNrOfProperties((org.bimserver.models.ifc4.IfcProduct)ifcProduct);
+		}
+		return -1;
+	}
+	
 	public static int getNrOfProperties(IfcProduct ifcProduct) {
 		int nrProperties = 0;
 		for (IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
@@ -544,6 +552,30 @@ public class IfcUtils {
 		}
 		return nrProperties;
 	}
+	
+	public static int getNrOfProperties(org.bimserver.models.ifc4.IfcProduct ifcProduct) {
+		int nrProperties = 0;
+		for (org.bimserver.models.ifc4.IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
+			if (ifcRelDefines instanceof org.bimserver.models.ifc4.IfcRelDefinesByProperties) {
+				org.bimserver.models.ifc4.IfcRelDefinesByProperties ifcRelDefinesByProperties = (org.bimserver.models.ifc4.IfcRelDefinesByProperties)ifcRelDefines;
+				org.bimserver.models.ifc4.IfcPropertySetDefinitionSelect propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
+				if (propertySetDefinition instanceof org.bimserver.models.ifc4.IfcPropertySet) {
+					org.bimserver.models.ifc4.IfcPropertySet ifcPropertySet = (org.bimserver.models.ifc4.IfcPropertySet)propertySetDefinition;
+					nrProperties += ifcPropertySet.getHasProperties().size();
+				}
+			}
+		}
+		return nrProperties;
+	}
+	
+	public static int getNrOfPropertySets(IdEObject ifcProduct) {
+		if (ifcProduct instanceof IfcProduct) {
+			return getNrOfPropertySets(((IfcProduct)ifcProduct));
+		} else if (ifcProduct instanceof org.bimserver.models.ifc4.IfcProduct) {
+			return getNrOfPropertySets(((org.bimserver.models.ifc4.IfcProduct)ifcProduct));
+		}
+		return -1;
+	}
 
 	public static int getNrOfPropertySets(IfcProduct ifcProduct) {
 		int nrPropertySets = 0;
@@ -557,6 +589,29 @@ public class IfcUtils {
 			}
 		}
 		return nrPropertySets;
+	}
+
+	public static int getNrOfPropertySets(org.bimserver.models.ifc4.IfcProduct ifcProduct) {
+		int nrPropertySets = 0;
+		for (org.bimserver.models.ifc4.IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
+			if (ifcRelDefines instanceof org.bimserver.models.ifc4.IfcRelDefinesByProperties) {
+				org.bimserver.models.ifc4.IfcRelDefinesByProperties ifcRelDefinesByProperties = (org.bimserver.models.ifc4.IfcRelDefinesByProperties)ifcRelDefines;
+				org.bimserver.models.ifc4.IfcPropertySetDefinitionSelect propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
+				if (propertySetDefinition instanceof org.bimserver.models.ifc4.IfcPropertySetDefinition) {
+					nrPropertySets++;
+				}
+			}
+		}
+		return nrPropertySets;
+	}
+	
+	public static int getNrOfPSets(IdEObject ifcProduct) {
+		if (ifcProduct instanceof IfcProduct) {
+			return getNrOfPSets((IfcProduct)ifcProduct);
+		} else if (ifcProduct instanceof org.bimserver.models.ifc4.IfcProduct) {
+			return getNrOfPSets((org.bimserver.models.ifc4.IfcProduct)ifcProduct);
+		}
+		return -1;
 	}
 
 	public static int getNrOfPSets(IfcProduct ifcProduct) {
@@ -575,6 +630,23 @@ public class IfcUtils {
 		return nrPSets;
 	}
 
+	public static int getNrOfPSets(org.bimserver.models.ifc4.IfcProduct ifcProduct) {
+		int nrPSets = 0;
+		for (org.bimserver.models.ifc4.IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
+			if (ifcRelDefines instanceof org.bimserver.models.ifc4.IfcRelDefinesByProperties) {
+				org.bimserver.models.ifc4.IfcRelDefinesByProperties ifcRelDefinesByProperties = (org.bimserver.models.ifc4.IfcRelDefinesByProperties)ifcRelDefines;
+				org.bimserver.models.ifc4.IfcPropertySetDefinitionSelect propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
+				if (propertySetDefinition instanceof org.bimserver.models.ifc4.IfcPropertySetDefinition) {
+					String name = (String) propertySetDefinition.eGet(propertySetDefinition.eClass().getEStructuralFeature("Name"));
+					if ("Pset_".equals(name)) {
+						nrPSets++;
+					}
+				}
+			}
+		}
+		return nrPSets;
+	}
+	
 	public static String getMaterial(IfcProduct ifcProduct) {
 		Set<IfcMaterial> materials = new HashSet<>();
 		for (IfcRelAssociates ifcRelAssociates : ifcProduct.getHasAssociations()) {
@@ -610,6 +682,50 @@ public class IfcUtils {
 	      }).iterator());
 	}
 
+	public static String getMaterial(IdEObject ifcProduct) {
+		if (ifcProduct instanceof IfcProduct) {
+			return getMaterial((IfcProduct)ifcProduct);
+		} else if (ifcProduct instanceof org.bimserver.models.ifc4.IfcProduct) {
+			return getMaterial((org.bimserver.models.ifc4.IfcProduct)ifcProduct);
+		}
+		return null;
+	}
+	
+	public static String getMaterial(org.bimserver.models.ifc4.IfcProduct ifcProduct) {
+		Set<org.bimserver.models.ifc4.IfcMaterial> materials = new HashSet<>();
+		for (org.bimserver.models.ifc4.IfcRelAssociates ifcRelAssociates : ifcProduct.getHasAssociations()) {
+			if (ifcRelAssociates instanceof org.bimserver.models.ifc4.IfcRelAssociatesMaterial) {
+				org.bimserver.models.ifc4.IfcRelAssociatesMaterial ifcRelAssociatesMaterial = (org.bimserver.models.ifc4.IfcRelAssociatesMaterial)ifcRelAssociates;
+				org.bimserver.models.ifc4.IfcMaterialSelect relatingMaterial = ifcRelAssociatesMaterial.getRelatingMaterial();
+				if (relatingMaterial instanceof org.bimserver.models.ifc4.IfcMaterial) {
+					materials.add((org.bimserver.models.ifc4.IfcMaterial) relatingMaterial);
+				} else if (relatingMaterial instanceof org.bimserver.models.ifc4.IfcMaterialLayerSetUsage) {
+					org.bimserver.models.ifc4.IfcMaterialLayerSetUsage ifcMaterialLayerSetUsage = (org.bimserver.models.ifc4.IfcMaterialLayerSetUsage)relatingMaterial;
+					org.bimserver.models.ifc4.IfcMaterialLayerSet forLayerSet = ifcMaterialLayerSetUsage.getForLayerSet();
+					for (org.bimserver.models.ifc4.IfcMaterialLayer ifcMaterialLayer : forLayerSet.getMaterialLayers()) {
+						org.bimserver.models.ifc4.IfcMaterial material = ifcMaterialLayer.getMaterial();
+						materials.add(material);
+					}
+				} else if (relatingMaterial instanceof org.bimserver.models.ifc4.IfcMaterialList) {
+					materials.addAll(((org.bimserver.models.ifc4.IfcMaterialList) relatingMaterial).getMaterials());
+				} else if (relatingMaterial instanceof org.bimserver.models.ifc4.IfcMaterialLayerSet) {
+					for (org.bimserver.models.ifc4.IfcMaterialLayer ifcMaterialLayer : ((org.bimserver.models.ifc4.IfcMaterialLayerSet) relatingMaterial).getMaterialLayers()) {
+						materials.add(ifcMaterialLayer.getMaterial());
+					}
+				} else {
+					throw new UnsupportedOperationException(relatingMaterial.toString());
+				}
+			}
+		}
+		
+		return Joiner.on(", ").join(materials.stream().map(new Function<org.bimserver.models.ifc4.IfcMaterial, String>() {
+			@Override
+			public String apply(org.bimserver.models.ifc4.IfcMaterial input) {
+				return input.getName();
+			}
+		}).iterator());
+	}
+	
 	public static String getClassification(IfcProduct ifcProduct, IfcModelInterface model) {
 		for (IfcRelAssociatesClassification ifcRelAssociatesClassification : model.getAll(IfcRelAssociatesClassification.class)) {
 			if (ifcRelAssociatesClassification.getRelatedObjects().contains(ifcProduct)) {
