@@ -433,7 +433,8 @@ public class ClientIfcModel extends IfcModel {
 
 	private void processGeometryInputStream(InputStream inputStream, Map<Long, Long> geometryInfoOidToOid) throws IOException, GeometryException, IfcModelInterfaceException {
 		int t = 0;
-		try (CountingLittleEndianDataInputStream dataInputStream = new CountingLittleEndianDataInputStream(inputStream)) {
+		CountingLittleEndianDataInputStream dataInputStream = new CountingLittleEndianDataInputStream(inputStream);
+		try {
 			boolean done = false;
 			while (true) {
 				byte geometryType = dataInputStream.readByte();
@@ -574,14 +575,23 @@ public class ClientIfcModel extends IfcModel {
 			e.printStackTrace();
 		} catch (ObjectAlreadyExistsException e) {
 			e.printStackTrace();
+		} finally {
+			dataInputStream.close();
+			this.clientDebugInfo.incBytesOverTheLine(dataInputStream.getPos());
 		}
 	}
 
 	private void processDownload(Long topicId) throws UserException, ServerException, PublicInterfaceNotFoundException, IfcModelInterfaceException, IOException {
-		InputStream downloadData = bimServerClient.getDownloadData(topicId);
-		if (downloadData == null) {
+		InputStream inputStream = bimServerClient.getDownloadData(topicId);
+		if (inputStream == null) {
 			throw new IfcModelInterfaceException("No InputStream to read from for topicId " + topicId);
 		}
+		InputStream downloadData = new org.bimserver.utils.CountingInputStream(inputStream) {
+			public void close() throws IOException {
+				ClientIfcModel.this.clientDebugInfo.incBytesOverTheLine(getCount());
+				super.close();
+			}
+		};
 		try {
 			new SharedJsonDeserializer(false).read(downloadData, this, false);
 		} catch (DeserializeException e) {
@@ -1122,4 +1132,9 @@ public class ClientIfcModel extends IfcModel {
 	// }
 	// return null;
 	// }
+	
+	@Override
+	public void dumpDebug() {
+		clientDebugInfo.dump();
+	}
 }

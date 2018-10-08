@@ -59,6 +59,10 @@ public class ServerIfcModel extends IfcModel {
 	public <T extends IdEObject> List<T> getAll(EClass eClass) {
 		return super.getAll(eClass);
 	}
+
+	@Override
+	public void dumpDebug() {
+	}
 	
 //	@SuppressWarnings({ "unchecked" })
 //	protected EList<Object> getList(final IdEObject idEObject, EStructuralFeature eStructuralFeature) {

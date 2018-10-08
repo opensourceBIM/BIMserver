@@ -33,6 +33,10 @@ public final class CountingLittleEndianDataInputStream extends FilterInputStream
 			readFully(new byte[skip]);
 		}
 	}
+	
+	public int getPos() {
+		return pos;
+	}
 
 	/**
 	 * This method will throw an {@link UnsupportedOperationException}.

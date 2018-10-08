@@ -1166,4 +1166,8 @@ public abstract class IfcModel implements IfcModelInterface {
 	public <T extends IdEObject> T getFirst(Class<T> class1) {
 		return getAll(class1).iterator().next();
 	}
+	
+	@Override
+	public void dumpDebug() {
+	}
 }

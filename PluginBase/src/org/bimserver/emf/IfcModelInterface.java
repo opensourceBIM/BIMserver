@@ -238,4 +238,6 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 	<T extends IdEObject> T createAndAdd(EClass eClass) throws IfcModelInterfaceException, ObjectAlreadyExistsException;
 
 	<T extends IdEObject> T getFirst(Class<T> class1);
+
+	void dumpDebug();
 }
