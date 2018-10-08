@@ -54,11 +54,10 @@ public class TilingImplementation implements TilingInterface {
 	};
 
 	public TilingImplementation(Octree<GeometryObject> octree) {
-//		objects.addIndex(HashIndex.onAttribute(ROID));
-//		objects.addIndex(HashIndex.onAttribute(ECLASS));
-//		objects.addIndex(HashIndex.onAttribute(TILE_ID));
-		objects.addIndex(NavigableIndex.onAttribute(DENSITY));
-		objects.addIndex(CompoundIndex.onAttributes(ROID, ECLASS, TILE_ID));
+		objects.addIndex(HashIndex.onAttribute(ROID));
+		objects.addIndex(HashIndex.onAttribute(ECLASS));
+		objects.addIndex(HashIndex.onAttribute(TILE_ID));
+		objects.addIndex(HashIndex.onAttribute(DENSITY));
 
 		for (Node<GeometryObject> node : octree.values()) {
 			for (ObjectWrapper<GeometryObject> objectWrapper : node.getValues()) {
