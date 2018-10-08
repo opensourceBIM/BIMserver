@@ -11,7 +11,7 @@ public class InvalidGuidException extends Exception {
 	}
 	
 	public InvalidGuidException(String guidString, String message) {
-		super(message + " (" + guidString + ")");
+		super(message);
 		this.guidString = guidString;
 	}
 }

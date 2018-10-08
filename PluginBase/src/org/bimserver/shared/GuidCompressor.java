@@ -208,7 +208,7 @@ public class GuidCompressor {
 
 	    len = string.length();
 	    if (len != 22)
-	       throw new InvalidGuidException(string, "Length must be 22");
+	       throw new InvalidGuidException(string, "Length must be 22 (is: " + string.length() + ")");
 
 	    j = 0;
 	    m = 2;
