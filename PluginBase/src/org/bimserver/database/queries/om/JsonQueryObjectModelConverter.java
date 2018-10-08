@@ -219,7 +219,6 @@ public class JsonQueryObjectModelConverter {
 			if (queriesNode instanceof ArrayNode) {
 				ArrayNode queries = (ArrayNode) fullQuery.get("queries");
 				if (queries.size() == 0) {
-					throw new QueryException("\"queries\" must contain at least one query");
 				}
 				for (int i=0; i<queries.size(); i++) {
 					parseJsonQuery(query, (ObjectNode)queries.get(i));

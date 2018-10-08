@@ -138,14 +138,11 @@ public class ClientIfcModel extends IfcModel {
 			}
 
 			Query query = new Query(getPackageMetaData());
-			query.createQueryPart();
 
 			JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
-			long topicId;
 			try {
-				topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
+				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
 				waitForDonePreparing(topicId);
-
 				processDownload(topicId);
 			} catch (ServerException e) {
 				e.printStackTrace();

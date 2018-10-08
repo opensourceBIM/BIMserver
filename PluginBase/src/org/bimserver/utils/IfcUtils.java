@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -704,7 +705,9 @@ public class IfcUtils {
 					org.bimserver.models.ifc4.IfcMaterialLayerSet forLayerSet = ifcMaterialLayerSetUsage.getForLayerSet();
 					for (org.bimserver.models.ifc4.IfcMaterialLayer ifcMaterialLayer : forLayerSet.getMaterialLayers()) {
 						org.bimserver.models.ifc4.IfcMaterial material = ifcMaterialLayer.getMaterial();
-						materials.add(material);
+						if (material != null) {
+							materials.add(material);
+						}
 					}
 				} else if (relatingMaterial instanceof org.bimserver.models.ifc4.IfcMaterialList) {
 					materials.addAll(((org.bimserver.models.ifc4.IfcMaterialList) relatingMaterial).getMaterials());
@@ -715,6 +718,14 @@ public class IfcUtils {
 				} else {
 					throw new UnsupportedOperationException(relatingMaterial.toString());
 				}
+			}
+		}
+		
+		Iterator<org.bimserver.models.ifc4.IfcMaterial> iterator = materials.iterator();
+		while (iterator.hasNext()) {
+			org.bimserver.models.ifc4.IfcMaterial next = iterator.next();
+			if (next == null || next.getName() == null) {
+				iterator.remove();
 			}
 		}
 		
