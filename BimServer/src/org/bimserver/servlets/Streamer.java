@@ -110,8 +110,8 @@ public class Streamer implements EndPoint {
 							};
 							int messagesSent = 0;
 //							streamingSocketInterface.enableBatching();
-							int bytes = 0;
-							long start = System.nanoTime();
+//							int bytes = 0;
+//							long start = System.nanoTime();
 
 //							for (int i=0; i<100; i++) {
 //								byteArrayOutputStream.reset();
@@ -134,7 +134,6 @@ public class Streamer implements EndPoint {
 								messagesSent++;
 								if (messagesSent % 25 == 0 || !writeMessage) {
 									ByteBuffer newBuffer = ByteBuffer.allocate(growingByteBuffer.usedSize());
-									bytes += newBuffer.capacity() + 8;
 									newBuffer.put(growingByteBuffer.array(), 0, growingByteBuffer.usedSize());
 									streamingSocketInterface.sendBlocking(newBuffer.array(), 0, newBuffer.capacity());
 									byteArrayOutputStream.reset();
@@ -142,7 +141,7 @@ public class Streamer implements EndPoint {
 								}
 							} while (writeMessage);
 //							streamingSocketInterface.flush();
-							long end = System.nanoTime();
+//							long end = System.nanoTime();
 //							LOGGER.info(messagesSent + " messages written " + Formatters.bytesToString(bytes) + " in " + ((end - start) / 1000000) + " ms");
 						} catch (IOException e) {
 							LOGGER.error("", e);

@@ -852,6 +852,9 @@ public abstract class IfcModel implements IfcModelInterface {
 
 	@Override
 	public ModelMetaData getModelMetaData() {
+		if (modelMetaData == null) {
+			this.modelMetaData = new ModelMetaData();
+		}
 		return modelMetaData;
 	}
 
