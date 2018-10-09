@@ -6,6 +6,7 @@ public interface IfcSchemaDeterminer {
 	/**
 	 * @param head The initial x characters, should contain the full header section of the ifc step file
 	 * @return The schema
+	 * @throws DeserializeException 
 	 */
-	Schema determineSchema(byte[] head, boolean usesZip);
+	Schema determineSchema(byte[] head, boolean usesZip) throws DeserializeException;
 }

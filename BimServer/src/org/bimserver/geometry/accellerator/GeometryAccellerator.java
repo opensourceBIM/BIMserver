@@ -184,6 +184,9 @@ public class GeometryAccellerator {
 		try (DatabaseSession session = bimServer.getDatabase().createSession()) {
 			Revision revision = session.get(key.getRoid(), OldQuery.getDefault());
 			EList<Density> densities = revision.getDensityCollection().getDensities();
+			if (densities.isEmpty()) {
+				return null;
+			}
 			long cumulativeTrianglesBelow = 0;
 			long cumulativeTrianglesAbove = 0;
 			Density densityResult = null;
