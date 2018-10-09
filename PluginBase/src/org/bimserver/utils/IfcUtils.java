@@ -768,6 +768,14 @@ public class IfcUtils {
 			}
 		}
 		
+		Iterator<IfcMaterial> iterator = materials.iterator();
+		while (iterator.hasNext()) {
+			IfcMaterial next = iterator.next();
+			if (next == null || next.getName() == null) {
+				iterator.remove();
+			}
+		}
+		
 		return Joiner.on(", ").join(materials.stream().map(new Function<IfcMaterial, String>() {
 	          @Override
 	          public String apply(IfcMaterial input) {
