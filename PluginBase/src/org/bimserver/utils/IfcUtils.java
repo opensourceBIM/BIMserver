@@ -67,6 +67,7 @@ import org.bimserver.models.ifc2x3tc1.IfcProperty;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySet;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySetDefinition;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySingleValue;
+import org.bimserver.models.ifc2x3tc1.IfcQuantityArea;
 import org.bimserver.models.ifc2x3tc1.IfcQuantityVolume;
 import org.bimserver.models.ifc2x3tc1.IfcReal;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssociates;
@@ -361,24 +362,116 @@ public class IfcUtils {
 		return list;
 	}
 
-	public static Double getIfcQuantityVolume(IfcProduct ifcProduct, String name) {
+	public static Double getIfcQuantityVolume(IfcProduct ifcProduct) {
+		Double volume = null;
 		for (IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
 			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
 				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
 				IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
 				if (propertySetDefinition instanceof IfcElementQuantity) {
-					if (propertySetDefinition.getName().equals("BaseQuantities")) {
-						IfcElementQuantity ifcElementQuantity = (IfcElementQuantity)propertySetDefinition;
-						for (IfcPhysicalQuantity ifcPhysicalQuantity : ifcElementQuantity.getQuantities()) {
-							if (ifcPhysicalQuantity instanceof IfcQuantityVolume) {
-								return ((IfcQuantityVolume)ifcPhysicalQuantity).getVolumeValue();
+					IfcElementQuantity ifcElementQuantity = (IfcElementQuantity)propertySetDefinition;
+					for (IfcPhysicalQuantity ifcPhysicalQuantity : ifcElementQuantity.getQuantities()) {
+						if (ifcPhysicalQuantity instanceof IfcQuantityVolume) {
+							if (volume == null) {
+								volume = 0d;
+							}
+							volume += ((IfcQuantityVolume)ifcPhysicalQuantity).getVolumeValue();
+						}
+					}
+				}
+			}
+		}
+		return volume;
+	}
+
+	public static Double getIfcQuantityArea(IfcProduct ifcProduct) {
+		Double area = null;
+		for (IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
+			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
+				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
+				IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
+				if (propertySetDefinition instanceof IfcElementQuantity) {
+					IfcElementQuantity ifcElementQuantity = (IfcElementQuantity)propertySetDefinition;
+					for (IfcPhysicalQuantity ifcPhysicalQuantity : ifcElementQuantity.getQuantities()) {
+						if (ifcPhysicalQuantity instanceof IfcQuantityArea) {
+							if (area == null) {
+								area = 0d;
+							}
+							area += ((IfcQuantityArea)ifcPhysicalQuantity).getAreaValue();
+						}
+					}
+				}
+			}
+		}
+		return area;
+	}
+	
+	public static Double getIfcQuantityVolume(IdEObject idEObject) {
+		if (idEObject instanceof IfcProduct) {
+			return getIfcQuantityVolume((IfcProduct)idEObject);
+		} else if (idEObject instanceof org.bimserver.models.ifc4.IfcProduct) {
+			return getIfcQuantityVolume((org.bimserver.models.ifc4.IfcProduct)idEObject);
+		}
+		return null;
+	}
+
+	public static Double getIfcQuantityArea(IdEObject idEObject) {
+		if (idEObject instanceof IfcProduct) {
+			return getIfcQuantityArea((IfcProduct)idEObject);
+		} else if (idEObject instanceof org.bimserver.models.ifc4.IfcProduct) {
+			return getIfcQuantityArea((org.bimserver.models.ifc4.IfcProduct)idEObject);
+		}
+		return null;
+	}
+
+	public static Double getIfcQuantityVolume(org.bimserver.models.ifc4.IfcProduct ifcProduct) {
+		Double volume = null;
+		for (org.bimserver.models.ifc4.IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
+			if (ifcRelDefines instanceof org.bimserver.models.ifc4.IfcRelDefinesByProperties) {
+				org.bimserver.models.ifc4.IfcRelDefinesByProperties ifcRelDefinesByProperties = (org.bimserver.models.ifc4.IfcRelDefinesByProperties)ifcRelDefines;
+				IfcPropertySetDefinitionSelect relatingPropertyDefinitionSelect = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
+				if (relatingPropertyDefinitionSelect instanceof org.bimserver.models.ifc4.IfcPropertySetDefinition) {
+					org.bimserver.models.ifc4.IfcPropertySetDefinition propertySetDefinition = (org.bimserver.models.ifc4.IfcPropertySetDefinition) relatingPropertyDefinitionSelect;
+					if (propertySetDefinition instanceof org.bimserver.models.ifc4.IfcElementQuantity) {
+						org.bimserver.models.ifc4.IfcElementQuantity ifcElementQuantity = (org.bimserver.models.ifc4.IfcElementQuantity)propertySetDefinition;
+						for (org.bimserver.models.ifc4.IfcPhysicalQuantity ifcPhysicalQuantity : ifcElementQuantity.getQuantities()) {
+							if (ifcPhysicalQuantity instanceof org.bimserver.models.ifc4.IfcQuantityVolume) {
+								if (volume == null) {
+									volume = 0d;
+								}
+								volume += ((org.bimserver.models.ifc4.IfcQuantityVolume)ifcPhysicalQuantity).getVolumeValue();
 							}
 						}
 					}
 				}
 			}
 		}
-		return null;
+		return volume;
+	}
+	
+	public static Double getIfcQuantityArea(org.bimserver.models.ifc4.IfcProduct ifcProduct) {
+		Double area = null;
+		for (org.bimserver.models.ifc4.IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
+			if (ifcRelDefines instanceof org.bimserver.models.ifc4.IfcRelDefinesByProperties) {
+				org.bimserver.models.ifc4.IfcRelDefinesByProperties ifcRelDefinesByProperties = (org.bimserver.models.ifc4.IfcRelDefinesByProperties)ifcRelDefines;
+				IfcPropertySetDefinitionSelect relatingPropertyDefinitionSelect = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
+				if (relatingPropertyDefinitionSelect instanceof org.bimserver.models.ifc4.IfcPropertySetDefinition) {
+					org.bimserver.models.ifc4.IfcPropertySetDefinition propertySetDefinition = (org.bimserver.models.ifc4.IfcPropertySetDefinition) relatingPropertyDefinitionSelect;
+					if (propertySetDefinition instanceof org.bimserver.models.ifc4.IfcElementQuantity) {
+						org.bimserver.models.ifc4.IfcElementQuantity ifcElementQuantity = (org.bimserver.models.ifc4.IfcElementQuantity)propertySetDefinition;
+						for (org.bimserver.models.ifc4.IfcPhysicalQuantity ifcPhysicalQuantity : ifcElementQuantity.getQuantities()) {
+							if (ifcPhysicalQuantity instanceof org.bimserver.models.ifc4.IfcQuantityArea) {
+								if (area == null) {
+									area = 0d;
+								}
+								area += ((org.bimserver.models.ifc4.IfcQuantityArea)ifcPhysicalQuantity).getAreaValue();
+							}
+						}
+					}
+				}
+			}
+		}
+		return area;
 	}
 	
 	public static List<String> listElementQuantities(IfcProduct ifcProduct) {
