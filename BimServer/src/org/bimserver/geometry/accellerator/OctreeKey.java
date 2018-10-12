@@ -12,7 +12,7 @@ public class OctreeKey {
 	private final Set<Long> geometryIdsToReuse;
 	private final int excludedClassesHashCode;
 	private final int geometryIdsToReuseHashCode;
-	private float maximumThreshold;
+	private final float maximumThreshold;
 
 	public OctreeKey(Set<Long> roids, Set<String> excludedClasses, Set<Long> geometryIdsToReuse, int maxDepth, float minimumThreshold, float maximumThreshold) {
 		this.roids = roids;
@@ -96,10 +96,11 @@ public class OctreeKey {
 		if (excludedClasses != null) {
 			builder.append(Joiner.on(", ").join(this.excludedClasses) + "\n");
 		}
-		builder.append(Joiner.on(", ").join(this.geometryIdsToReuse) + "\n");
-		builder.append(maxDepth + "\n");
-		builder.append(minimumThreshold + "\n");
-		builder.append(roids + "\n");
+		builder.append("Max Depth: " + maxDepth + "\n");
+		builder.append("Minimum threshold: " + minimumThreshold + "\n");
+		builder.append("Maximum threshold: " + maximumThreshold + "\n");
+		builder.append("Roids: " + Joiner.on(", ").join(roids) + "\n");
+		builder.append("Reuse: " + Joiner.on(", ").join(geometryIdsToReuse) + "\n");
 		return builder.toString();
 	}
 	

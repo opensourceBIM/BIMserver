@@ -2,6 +2,8 @@ package org.bimserver.geometry.accellerator;
 
 import java.util.Set;
 
+import com.google.common.base.Joiner;
+
 public class ReuseKey {
 
 	private final Set<Long> roids;
@@ -20,6 +22,11 @@ public class ReuseKey {
 		return excludedClasses;
 	}
 
+	@Override
+	public String toString() {
+		return Joiner.on(", ").join(roids) + ", " + Joiner.on(", ").join(excludedClasses);
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -2,6 +2,8 @@ package org.bimserver.geometry.accellerator;
 
 import java.util.Set;
 
+import jersey.repackaged.com.google.common.base.Joiner;
+
 public class DensityThresholdKey {
 
 	private Long roid;
@@ -24,6 +26,11 @@ public class DensityThresholdKey {
 	
 	public Set<String> getExcludedTypes() {
 		return excludedTypes;
+	}
+	
+	@Override
+	public String toString() {
+		return roid + " " + nrTriangles + " " + Joiner.on(", ").join(excludedTypes);
 	}
 
 	@Override
