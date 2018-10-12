@@ -213,6 +213,7 @@ public class BimServer {
 	 *            Configuration of BIMserver
 	 */
 	public BimServer(BimServerConfig config) {
+		System.setProperty("org.eclipse.emf.common.util.ReferenceClearingQueue", "false");
 		this.config = config;
 		try {
 			if (config.getHomeDir() != null) {
