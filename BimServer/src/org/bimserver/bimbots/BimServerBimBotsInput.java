@@ -27,8 +27,6 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
-import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.SchemaName;
 import org.bimserver.renderengine.RenderEnginePool;
 import org.bimserver.shared.exceptions.PluginException;
 
@@ -36,7 +34,7 @@ public class BimServerBimBotsInput extends BimBotsInput {
 
 	private IfcModelInterface model;
 
-	public BimServerBimBotsInput(BimServer bimServer, long uoid, SchemaName schemaName, byte[] data, IfcModelInterface model, boolean generateGeometry) throws BimBotsException {
+	public BimServerBimBotsInput(BimServer bimServer, long uoid, String schemaName, byte[] data, IfcModelInterface model, boolean generateGeometry) throws BimBotsException {
 		super(schemaName, data);
 		this.model = model;
 		

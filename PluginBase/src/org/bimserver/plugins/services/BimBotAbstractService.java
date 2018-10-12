@@ -103,5 +103,10 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 		return Collections.singleton(input);
 	}
 	
+	@Override
+	public boolean requiresGeometry() {
+		return true;
+	}
+	
 	public abstract String getOutputSchema();
 }

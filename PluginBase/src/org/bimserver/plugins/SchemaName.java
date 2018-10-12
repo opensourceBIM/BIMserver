@@ -20,6 +20,7 @@ package org.bimserver.plugins;
 public enum SchemaName {
 	IFC_STEP_2X3TC1,
 	IFC_STEP_4,
+	IFC_STEP,
 	IFC_XML_2X3TC1,
 	IFC_XML_4,
 	IFC_JSON_2X3TC1,

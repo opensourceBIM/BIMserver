@@ -1,5 +1,6 @@
 package org.bimserver.servlets;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,6 +43,7 @@ import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.shared.StreamingSocketInterface;
 import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.exceptions.ServerException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.NotificationInterfaceAdaptor;
@@ -107,6 +109,8 @@ public class BimBotRunner implements Runnable {
 		};
 
 		try (DatabaseSession session = bimServer.getDatabase().createSession()) {
+			ServiceMap serviceMap = bimServer.getServiceFactory().get(authorization, AccessMethod.INTERNAL);
+			ServiceInterface serviceInterface = serviceMap.get(ServiceInterface.class);
 			if (bimServer.getServerSettingsCache().getServerSettings().isStoreServiceRuns()) {
 				LOGGER.info("Storing intermediate results");
 				// When we store service runs, we can just use the streaming deserializer to stream directly to the database, after that we'll trigger the actual service
@@ -115,16 +119,16 @@ public class BimBotRunner implements Runnable {
 				// Checkin stream into project
 				// Trigger service
 				
-				ServiceMap serviceMap = bimServer.getServiceFactory().get(authorization, AccessMethod.INTERNAL);
-				ServiceInterface serviceInterface = serviceMap.get(ServiceInterface.class);
 				
+				SchemaName schema = SchemaName.valueOf(inputType);
+				String projectSchema = getProjectSchema(serviceInterface, schema);
+
 				SProject project = null;
 				String uuid = contextId;
 				if (uuid != null) {
 					project = serviceInterface.getProjectByUuid(uuid);
 				} else {
-					// TODO use inputType to determine schema to make this work for IFC4
-					project = serviceInterface.addProject("tmp-" + new Random().nextInt(), "ifc2x3tc1");							
+					project = serviceInterface.addProject("tmp-" + new Random().nextInt(), projectSchema);							
 				}
 
 				SDeserializerPluginConfiguration deserializer = serviceInterface.getSuggestedDeserializerForExtension("ifc", project.getOid());
@@ -151,7 +155,6 @@ public class BimBotRunner implements Runnable {
 				} catch (TopicRegisterException e1) {
 					e1.printStackTrace();
 				}
-				serviceMap.get(NotificationRegistryInterface.class).registerProgressHandler(topicId, endPointId);
 				serviceInterface.checkinInitiated(topicId, project.getOid(), "Auto checkin", deserializer.getOid(), -1L, "s", new DataHandler(new InputStreamDataSource(inputStream)), false, true);
 				project = serviceInterface.getProjectByPoid(project.getOid());
 				
@@ -164,9 +167,7 @@ public class BimBotRunner implements Runnable {
 					e.printStackTrace();
 				}
 				
-				SchemaName schema = SchemaName.valueOf(inputType);
-				
-				BimServerBimBotsInput input = new BimServerBimBotsInput(bimServer, authorization.getUoid(), schema, null, model, false);
+				BimServerBimBotsInput input = new BimServerBimBotsInput(bimServer, authorization.getUoid(), inputType, null, model, false);
 				BimBotsOutput output = bimBotsServiceInterface.runBimBot(input, bimBotContext, bimServer.getSConverter().convertToSObject(foundService.getSettings()));
 				
 				SExtendedData extendedData = new SExtendedData();
@@ -205,20 +206,22 @@ public class BimBotRunner implements Runnable {
 				// When we don't store the service runs, there is no other way than to just use the old deserializer and run the service from the EMF model
 				LOGGER.info("NOT Storing intermediate results");
 
-				DeserializerPlugin deserializerPlugin = bimServer.getPluginManager().getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
+				String projectSchema = getProjectSchema(serviceInterface, SchemaName.valueOf(inputType));
+
+				Schema schema = Schema.valueOf(projectSchema.toUpperCase());
+				DeserializerPlugin deserializerPlugin = bimServer.getPluginManager().getFirstDeserializer("ifc", schema, true);
 				if (deserializerPlugin == null) {
 					throw new BimBotsException("No deserializer plugin found");
 				}
 				
 				byte[] data = IOUtils.toByteArray(inputStream);
-				SchemaName schema = SchemaName.valueOf(inputType);
 				
 				Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration());
-				PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData("ifc2x3tc1");
+				PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(schema.name());
 				deserializer.init(packageMetaData);
-				IfcModelInterface model = deserializer.read(new ByteArrayInputStream(data), schema.name(), data.length, null);
+				IfcModelInterface model = deserializer.read(new ByteArrayInputStream(data), inputType, data.length, null);
 				
-				BimServerBimBotsInput input = new BimServerBimBotsInput(bimServer, authorization.getUoid(), schema, data, model, true);
+				BimServerBimBotsInput input = new BimServerBimBotsInput(bimServer, authorization.getUoid(), inputType, data, model, true);
 				BimBotsOutput output = bimBotsServiceInterface.runBimBot(input, bimBotContext, bimServer.getSConverter().convertToSObject(foundService.getSettings()));
 				
 				return output;
@@ -231,6 +234,27 @@ public class BimBotRunner implements Runnable {
 			LOGGER.error("", e);
 		} catch (ServerException e) {
 			LOGGER.error("", e);
+		} catch (ServiceException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	private String getProjectSchema(ServiceInterface serviceInterface, SchemaName schema) throws IOException, UserException, ServiceException {
+		if (schema == SchemaName.IFC_STEP) {
+			// We need to determine the schema used by reading the header
+			BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+			bufferedInputStream.mark(2048);
+			byte[] initialBytes = new byte[2048];
+			IOUtils.readFully(bufferedInputStream, initialBytes);
+			bufferedInputStream.reset();
+			
+			inputStream = bufferedInputStream;
+			return serviceInterface.determineIfcVersion(initialBytes, false);
+		} else if (schema == SchemaName.IFC_STEP_2X3TC1) {
+			return "ifc2x3tc1";
+		} else if (schema == SchemaName.IFC_JSON_4) {
+			return "ifc4";
 		}
 		return null;
 	}
