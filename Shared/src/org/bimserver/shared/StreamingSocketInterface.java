@@ -20,11 +20,11 @@ package org.bimserver.shared;
 import java.io.IOException;
 import java.util.concurrent.Future;
 
-import com.google.gson.JsonObject;
+import com.fasterxml.jackson.databind.JsonNode;
 
 public interface StreamingSocketInterface {
 
-	void send(JsonObject request);
+	void send(JsonNode request);
 	Future<Void> send(byte[] data, int start, int length);
 	void sendBlocking(byte[] data, int start, int length) throws IOException;
 	Future<Void> sendAsText(byte[] data);

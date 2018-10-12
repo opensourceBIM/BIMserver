@@ -39,9 +39,18 @@ import org.bimserver.shared.meta.SField;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.utils.ByteArrayDataSource;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.BooleanNode;
+import com.fasterxml.jackson.databind.node.DoubleNode;
+import com.fasterxml.jackson.databind.node.IntNode;
+import com.fasterxml.jackson.databind.node.LongNode;
+import com.fasterxml.jackson.databind.node.NullNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.node.TextNode;
 import com.google.common.base.Charsets;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
@@ -50,6 +59,7 @@ import com.google.gson.stream.JsonWriter;
 public class JsonConverter {
 
 	private final SServicesMap servicesMap;
+	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
 	public JsonConverter(SServicesMap servicesMap) {
 		this.servicesMap = servicesMap;
@@ -105,47 +115,47 @@ public class JsonConverter {
 		}
 	}
 
-	public JsonElement toJson(Object object) throws IOException {
+	public JsonNode toJson(Object object) throws IOException {
 		if (object instanceof SBase) {
 			SBase base = (SBase) object;
-			JsonObject jsonObject = new JsonObject();
-			jsonObject.add("__type", new JsonPrimitive(base.getSClass().getSimpleName()));
+			ObjectNode jsonObject = OBJECT_MAPPER.createObjectNode();
+			jsonObject.put("__type", base.getSClass().getSimpleName());
 			for (SField field : base.getSClass().getOwnFields()) {
-				jsonObject.add(field.getName(), toJson(base.sGet(field)));
+				jsonObject.set(field.getName(), toJson(base.sGet(field)));
 			}
 			return jsonObject;
 		} else if (object instanceof Collection) {
 			Collection<?> collection = (Collection<?>) object;
-			JsonArray jsonArray = new JsonArray();
+			ArrayNode jsonArray = OBJECT_MAPPER.createArrayNode();
 			for (Object value : collection) {
 				jsonArray.add(toJson(value));
 			}
 			return jsonArray;
 		} else if (object instanceof Date) {
-			return new JsonPrimitive(((Date) object).getTime());
+			return new LongNode(((Date) object).getTime());
 		} else if (object instanceof DataHandler) {
 			DataHandler dataHandler = (DataHandler) object;
 			InputStream inputStream = dataHandler.getInputStream();
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
 			IOUtils.copy(inputStream, out);
-			return new JsonPrimitive(new String(Base64.encodeBase64(out.toByteArray()), Charsets.UTF_8));
+			return new TextNode(new String(Base64.encodeBase64(out.toByteArray()), Charsets.UTF_8));
 		} else if (object instanceof Boolean) {
-			return new JsonPrimitive((Boolean) object);
+			return BooleanNode.valueOf((Boolean) object);
 		} else if (object instanceof String) {
-			return new JsonPrimitive((String) object);
+			return new TextNode((String) object);
 		} else if (object instanceof Long) {
-			return new JsonPrimitive((Long) object);
+			return new LongNode((Long) object);
 		} else if (object instanceof Integer) {
-			return new JsonPrimitive((Integer) object);
+			return new IntNode((Integer) object);
 		} else if (object instanceof Double) {
-			return new JsonPrimitive((Double) object);
+			return new DoubleNode((Double) object);
 		} else if (object instanceof Enum) {
-			return new JsonPrimitive(object.toString());
+			return new TextNode(object.toString());
 		} else if (object == null) {
-			return JsonNull.INSTANCE;
+			return NullNode.getInstance();
 		} else if (object instanceof byte[]) {
 			byte[] data = (byte[]) object;
-			return new JsonPrimitive(new String(Base64.encodeBase64(data), Charsets.UTF_8));
+			return new TextNode(new String(Base64.encodeBase64(data), Charsets.UTF_8));
 		}
 		throw new UnsupportedOperationException(object.getClass().getName());
 	}

@@ -45,9 +45,10 @@ import org.bimserver.webservices.ServiceMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.JsonPrimitive;
 import com.google.gson.stream.JsonReader;
 
 public class Streamer implements EndPoint {
@@ -58,6 +59,8 @@ public class Streamer implements EndPoint {
 	private NotificationInterface notificationInterface;
 	private RemoteServiceInterface remoteServiceInterface;
 	private StreamingSocketInterface streamingSocketInterface;
+	private String token;
+	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
 	public Streamer(StreamingSocketInterface streamingSocketInterface, BimServer bimServer) {
 		this.streamingSocketInterface = streamingSocketInterface;
@@ -67,8 +70,8 @@ public class Streamer implements EndPoint {
 	}
 
 	public void onOpen() {
-		JsonObject welcome = new JsonObject();
-		welcome.add("welcome", new JsonPrimitive(new GregorianCalendar().getTimeInMillis()));
+		ObjectNode welcome = OBJECT_MAPPER.createObjectNode();
+		welcome.put("welcome", new GregorianCalendar().getTimeInMillis());
 		streamingSocketInterface.send(welcome);
 	}
 	
@@ -176,19 +179,26 @@ public class Streamer implements EndPoint {
 				}
 			});
 		} else if (request.has("token")) {
-			String token = request.get("token").getAsString();
+			token = request.get("token").getAsString();
 			try {
 				ServiceMap serviceMap = bimServer.getServiceFactory().get(token, AccessMethod.JSON);
 				uoid = serviceMap.getBimServerAuthInterface().getLoggedInUser().getOid();
 
 				this.endpointid = bimServer.getEndPointManager().register(this);
 				
-				JsonObject enpointMessage = new JsonObject();
-				enpointMessage.add("endpointid", new JsonPrimitive(endpointid));
-				streamingSocketInterface.send(enpointMessage);
+				ObjectNode endpointMessage = OBJECT_MAPPER.createObjectNode();
+
+				// Next 4 lines are redundant, but added to comply with bimbots interface
+				endpointMessage.put("type", "endpoint");
+				ObjectNode payload = OBJECT_MAPPER.createObjectNode();
+				payload.put("endpointid", endpointid);
+				endpointMessage.set("payload", payload);
+
+				endpointMessage.put("endpointid", endpointid);
+				streamingSocketInterface.send(endpointMessage);
 			} catch (InvalidTokenException e) {
-				JsonObject enpointMessage = new JsonObject();
-				enpointMessage.addProperty("error", "Invalid token");
+				ObjectNode enpointMessage = OBJECT_MAPPER.createObjectNode();
+				enpointMessage.put("error", "Invalid token");
 				streamingSocketInterface.send(enpointMessage);
 			} catch (UserException e) {
 				LOGGER.error("", e);
@@ -231,5 +241,13 @@ public class Streamer implements EndPoint {
 	@Override
 	public String toString() {
 		return "Streamer with endpoint " + endpointid;
+	}
+	
+	public String getToken() {
+		return token;
+	}
+	
+	public StreamingSocketInterface getStreamingSocketInterface() {
+		return streamingSocketInterface;
 	}
 }

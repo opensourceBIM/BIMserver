@@ -1,26 +1,7 @@
 package org.bimserver.shared.json;
 
-/******************************************************************************
- * Copyright (C) 2009-2018  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
- *****************************************************************************/
-
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
@@ -36,13 +17,15 @@ import org.bimserver.shared.reflector.ReflectorException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.base.Charsets;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 public class JsonSocketReflector extends JsonReflector {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(JsonSocketReflector.class);
+	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	private final String remoteAddress;
 	private final HttpClient httpclient;
 	private final HttpContext context;
@@ -56,10 +39,10 @@ public class JsonSocketReflector extends JsonReflector {
 		this.context = new BasicHttpContext();
 	}
 	
-	public JsonObject call(JsonObject request) throws ReflectorException {
+	public JsonNode call(ObjectNode request) throws ReflectorException {
 		try {
 			if (tokenHolder.getToken() != null) {
-				request.addProperty("token", tokenHolder.getToken());
+				request.put("token", tokenHolder.getToken());
 			}
 			HttpPost httppost = new HttpPost(remoteAddress);
 			httppost.setHeader("Content-Type", "application/json");
@@ -74,16 +57,15 @@ public class JsonSocketReflector extends JsonReflector {
 				if (response.getStatusLine().getStatusCode() == 200) {
 					HttpEntity resultEntity = response.getEntity();
 					
-					JsonParser parser = new JsonParser();
 					if (LOGGER.isDebugEnabled()) {
 						InputStream inputStream = resultEntity.getContent();
 						ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 						IOUtils.copy(inputStream, byteArrayOutputStream);
 						LOGGER.debug(new String(byteArrayOutputStream.toByteArray(), Charsets.UTF_8));
-						JsonObject resultObject = (JsonObject) parser.parse(new InputStreamReader(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()), Charsets.UTF_8));
+						ObjectNode resultObject = OBJECT_MAPPER.readValue(byteArrayOutputStream.toByteArray(), ObjectNode.class);
 						return resultObject;
 					} else {
-						return (JsonObject) parser.parse(new InputStreamReader(resultEntity.getContent(), Charsets.UTF_8));
+						return OBJECT_MAPPER.readValue(resultEntity.getContent(), ObjectNode.class);
 					}
 				} else {
 					throw new ReflectorException("Call unsuccessful, status code: " + response.getStatusLine().getStatusCode() + " (" + response.getStatusLine().getReasonPhrase() + "), " + remoteAddress);

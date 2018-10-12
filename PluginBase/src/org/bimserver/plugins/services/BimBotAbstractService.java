@@ -20,6 +20,7 @@ package org.bimserver.plugins.services;
 import java.util.Collections;
 import java.util.Set;
 
+import org.bimserver.bimbots.BimBotContext;
 import org.bimserver.bimbots.BimBotsException;
 import org.bimserver.bimbots.BimBotsInput;
 import org.bimserver.bimbots.BimBotsOutput;
@@ -43,7 +44,12 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 			BimBotsInput input = new BimBotsInput(SchemaName.IFC_STEP_2X3TC1, null);
 			SProject project = bimServerClientInterface.getServiceInterface().getProjectByPoid(poid);
 			input.setIfcModel(bimServerClientInterface.getModel(project, roid, false, false, true));
-			BimBotsOutput output = runBimBot(input, settings);
+			BimBotContext bimBotContext = new BimBotContext(){
+				@Override
+				public void updateProgress(String label, int percentage) {
+					
+				}};
+			BimBotsOutput output = runBimBot(input, bimBotContext, settings);
 			SFile file = new SFile();
 			
 			SExtendedData extendedData = new SExtendedData();
@@ -96,6 +102,6 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 		}
 		return Collections.singleton(input);
 	}
-
+	
 	public abstract String getOutputSchema();
 }

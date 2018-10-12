@@ -20,13 +20,19 @@ package org.bimserver.servlets;
 import org.bimserver.shared.StreamingSocketInterface;
 import org.bimserver.shared.json.JsonReflector;
 import org.bimserver.shared.meta.SServicesMap;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.gson.JsonObject;
 
 public class JsonWebsocketReflector extends JsonReflector {
 
 	private StreamingSocketInterface streamingSocket;
+	private static final Logger LOGGER = LoggerFactory.getLogger(StreamingSocketInterface.class);
+	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
 	public JsonWebsocketReflector(SServicesMap servicesMap, StreamingSocketInterface streamingSocket) {
 		super(servicesMap);
@@ -34,10 +40,10 @@ public class JsonWebsocketReflector extends JsonReflector {
 	}
 
 	@Override
-	public JsonObject call(JsonObject request) {
+	public JsonNode call(ObjectNode request) {
 		LoggerFactory.getLogger(JsonWebsocketReflector.class).debug("WS: " + request);
 		streamingSocket.send(request);
-		return new JsonObject();
+		return OBJECT_MAPPER.createObjectNode();
 	}
 
 	@Override

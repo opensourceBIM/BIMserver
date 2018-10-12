@@ -26,11 +26,13 @@ import org.bimserver.shared.reflector.KeyValuePair;
 import org.bimserver.shared.reflector.Reflector;
 import org.bimserver.shared.reflector.ReflectorException;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public abstract class JsonReflector implements Reflector {
 
+	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	private final JsonConverter converter;
 	private final SServicesMap servicesMap;
 
@@ -45,41 +47,41 @@ public abstract class JsonReflector implements Reflector {
 	@Override
 	public Object callMethod(String interfaceName, String methodName, Class<?> definedReturnType, KeyValuePair... args) throws ServerException, UserException, ReflectorException {
 		try {
-			JsonObject request = new JsonObject();
-			request.add("interface", new JsonPrimitive(interfaceName));
-			request.add("method", new JsonPrimitive(methodName));
-			JsonObject parameters = new JsonObject();
+			ObjectNode request = OBJECT_MAPPER.createObjectNode();
+			request.put("interface", interfaceName);
+			request.put("method", methodName);
+			ObjectNode parameters = OBJECT_MAPPER.createObjectNode();
 			for (KeyValuePair arg : args) {
-				parameters.add(arg.getFieldName(), converter.toJson(arg.getValue()));
+				parameters.set(arg.getFieldName(), converter.toJson(arg.getValue()));
 			}
-			request.add("parameters", parameters);
-			JsonObject requestObject = new JsonObject();
-			requestObject.add("request", request);
-			JsonObject jsonResult = call(requestObject);
+			request.set("parameters", parameters);
+			ObjectNode requestObject = OBJECT_MAPPER.createObjectNode();
+			requestObject.set("request", request);
+			JsonNode jsonResult = call(requestObject);
 			if (!isOneWay()) {
 				if (jsonResult == null) {
 					return null;
 				}
-				JsonObject response = jsonResult.getAsJsonObject("response");
+				ObjectNode response = (ObjectNode) jsonResult.get("response");
 				if (response.has("exception")) {
-					JsonObject exceptionJson = response.getAsJsonObject("exception");
-					String exceptionType = exceptionJson.get("__type").getAsString();
-					String message = exceptionJson.has("message") ? exceptionJson.get("message").getAsString() : "unknown";
+					ObjectNode exceptionJson = (ObjectNode) response.get("exception");
+					String exceptionType = exceptionJson.get("__type").asText();
+					String message = exceptionJson.has("message") ? exceptionJson.get("message").asText() : "unknown";
 					if (exceptionType.equals(UserException.class.getSimpleName())) {
 						if (exceptionJson.has("errorCode")) {
-							throw new UserException(message, ErrorCode.parse(exceptionJson.get("errorCode").getAsInt()));
+							throw new UserException(message, ErrorCode.parse(exceptionJson.get("errorCode").asInt()));
 						} else {
 							throw new UserException(message);
 						}
 					} else if (exceptionType.equals(ServerException.class.getSimpleName())) {
 						if (exceptionJson.has("errorCode")) {
-							throw new ServerException(message, ErrorCode.parse(exceptionJson.get("errorCode").getAsInt()));
+							throw new ServerException(message, ErrorCode.parse(exceptionJson.get("errorCode").asInt()));
 						} else {
 							throw new ServerException(message);
 						}
 					} else {
 						if (exceptionJson.has("errorCode")) {
-							throw new ServerException(message, ErrorCode.parse(exceptionJson.get("errorCode").getAsInt()));
+							throw new ServerException(message, ErrorCode.parse(exceptionJson.get("errorCode").asInt()));
 						} else {
 							throw new ServerException(message);
 						}
@@ -109,7 +111,7 @@ public abstract class JsonReflector implements Reflector {
 		return false;
 	}
 
-	public abstract JsonObject call(JsonObject request) throws ReflectorException;
+	public abstract JsonNode call(ObjectNode request) throws ReflectorException;
 
 	public void close() {
 	}

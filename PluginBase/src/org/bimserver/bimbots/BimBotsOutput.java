@@ -19,12 +19,16 @@ package org.bimserver.bimbots;
 
 import org.bimserver.plugins.SchemaName;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 public class BimBotsOutput {
 	private String schemaName;
 	private byte[] data;
 	private String contentDisposition;
 	private String contentType;
 	private String title;
+	private String contextId;
 
 	public BimBotsOutput(SchemaName schemaName, byte[] data) {
 		this.schemaName = schemaName.name();
@@ -74,5 +78,24 @@ public class BimBotsOutput {
 	
 	public void setContentType(String contentType) {
 		this.contentType = contentType;
+	}
+
+	public String getContextId() {
+		return contextId;
+	}
+
+	public void setContextId(String contextId) {
+		this.contextId = contextId;
+	}
+
+	public ObjectNode toJson() {
+		ObjectMapper objectMapper = new ObjectMapper();
+		ObjectNode result = objectMapper.createObjectNode();
+		result.put("schemaName", schemaName);
+		result.put("contentDisposition", contentDisposition);
+		result.put("contentType", contentType);
+		result.put("title", title);
+		result.put("contextId", contextId);
+		return result;
 	}
 }

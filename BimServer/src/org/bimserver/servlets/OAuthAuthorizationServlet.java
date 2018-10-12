@@ -164,8 +164,10 @@ public class OAuthAuthorizationServlet extends SubServlet {
 	}
 
 	private URI makeUrl(String redirectURI, OAuthAuthorizationCode oauthCode, OAuthAuthorizationResponseBuilder builder) throws OAuthSystemException, URISyntaxException {
-		OAuthAuthorizationResponseBuilder build = builder.location(redirectURI).setParam("address", getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/json");
-		build.setParam("serviceaddress", getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress() + "/services");
+		String siteAddress = getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress();
+		OAuthAuthorizationResponseBuilder build = builder.location(redirectURI).setParam("address", siteAddress + "/json");
+		build.setParam("serviceaddress", siteAddress + "/services");
+		build.setParam("websocketUrl", siteAddress.replace("http://", "ws://").replace("https://", "wss://") + "/stream");
 		if (oauthCode.getAuthorization() instanceof SingleProjectAuthorization) {
 			SingleProjectAuthorization singleProjectAuthorization = (SingleProjectAuthorization) oauthCode.getAuthorization();
 			build.setParam("poid", "" + singleProjectAuthorization.getProject().getOid());

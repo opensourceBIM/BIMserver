@@ -44,8 +44,8 @@ import org.bimserver.shared.StreamingSocketInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.base.Charsets;
-import com.google.gson.JsonObject;
 
 @WebListener
 @ServerEndpoint(value = "/stream")
@@ -129,7 +129,7 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 	}
 
 	@Override
-	public void send(JsonObject request) {
+	public void send(JsonNode request) {
 		synchronized (this) {
 			if (websocketSession.isOpen()) {
 				try {

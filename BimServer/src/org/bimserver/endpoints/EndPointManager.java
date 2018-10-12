@@ -1,5 +1,9 @@
 package org.bimserver.endpoints;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -27,16 +31,19 @@ import com.google.common.collect.Maps;
 public class EndPointManager {
 
 	private final BiMap<Long, EndPoint> endPoints = Maps.synchronizedBiMap(HashBiMap.<Long, EndPoint>create());
+	private final Map<String, EndPoint> tokenToEndPoint = Collections.synchronizedMap(new HashMap<>());
 	private final AtomicLong idCounter = new AtomicLong(1);
 	
 	public long register(EndPoint endPoint) {
 		long id = idCounter.incrementAndGet();
 		endPoints.forcePut(id, endPoint);
+		tokenToEndPoint.put(endPoint.getToken(), endPoint);
 		return id;
 	}
 
 	public void unregister(EndPoint endPoint) {
 		endPoints.remove(endPoint.getEndPointId());
+		tokenToEndPoint.remove(endPoint.getToken());
 		endPoint.cleanup();
 	}
 
@@ -46,6 +53,10 @@ public class EndPointManager {
 			endPoints.remove(endPointId);
 			endPoint.cleanup();
 		}
+	}
+	
+	public EndPoint get(String token) {
+		return tokenToEndPoint.get(token);
 	}
 	
 	public EndPoint get(long endPointId) {

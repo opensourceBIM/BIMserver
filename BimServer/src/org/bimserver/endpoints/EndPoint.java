@@ -1,5 +1,7 @@
 package org.bimserver.endpoints;
 
+import org.bimserver.shared.StreamingSocketInterface;
+
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -27,4 +29,6 @@ public interface EndPoint {
 	RemoteServiceInterface getRemoteServiceInterface();
 	void cleanup();
 	long getUoid();
+	String getToken();
+	StreamingSocketInterface getStreamingSocketInterface();
 }
