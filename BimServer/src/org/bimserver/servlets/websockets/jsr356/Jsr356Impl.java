@@ -117,7 +117,6 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 	public void onError(Throwable exception, Session session) {
 		if (exception instanceof IOException) {
 			// Let this one slide, usually indicates a disconnected client
-			LOGGER.error("", exception);
 		} else {
 			LOGGER.error("", exception);
 		}
