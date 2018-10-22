@@ -210,7 +210,6 @@ public class SharedJsonDeserializer {
 								if (eStructuralFeature instanceof EAttribute) {
 									List list = (List) object.eGet(eStructuralFeature);
 									List<String> stringList = null;
-									
 									if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()
 											|| eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
 										EStructuralFeature asStringFeature = eClass.getEStructuralFeature(eStructuralFeature.getName() + "AsString");
@@ -244,7 +243,33 @@ public class SharedJsonDeserializer {
 											if (peek == JsonToken.NUMBER) {
 												long refOid = jsonReader.nextLong();
 												processRef(model, waitingList, object, eStructuralFeature, index, list, refOid);
-											} else { // TODO: another case for two-dimensional arrays
+											} else if(eStructuralFeature.getEAnnotation("twodimensionalarray")!=null) {
+												IdEObjectImpl listObject = model.create(((EReference) eStructuralFeature).getEReferenceType());
+												addToList(eStructuralFeature, index, list, listObject);
+												EStructuralFeature listFeature = listObject.eClass().getEStructuralFeature("List");
+												jsonReader.beginArray();
+												AbstractEList innerList = (AbstractEList) listObject.eGet(listFeature);
+												if(listFeature instanceof EAttribute){
+													while (jsonReader.hasNext()) {
+														innerList.add(readPrimitive(jsonReader, listFeature));
+													}
+												} else {
+													while(jsonReader.hasNext()){
+														jsonReader.beginObject();
+														if(jsonReader.nextName().equals("_t")){
+															String t = jsonReader.nextString();
+															IdEObject wrappedObject = model.create(model.getPackageMetaData().getEClass(t),-1);
+															if(jsonReader.nextName().equals("_v")){
+																EStructuralFeature wv = wrappedObject.eClass().getEStructuralFeature("wrappedValue");
+																wrappedObject.eSet(wv, readPrimitive(jsonReader, wv));
+																innerList.add(wrappedObject);
+															}
+														}
+														jsonReader.endObject();
+													}
+												}
+												jsonReader.endArray();
+											} else {
 												jsonReader.beginObject();
 												String nextName = jsonReader.nextName();
 												if (nextName.equals("_t")) {
