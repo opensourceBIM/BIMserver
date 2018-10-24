@@ -37,7 +37,6 @@ import java.util.Date;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.models.geometry.Bounds;
-import org.bimserver.models.geometry.Vector3f;
 import org.eclipse.emf.common.util.EList;
 
 /**

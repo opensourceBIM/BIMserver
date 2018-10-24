@@ -305,8 +305,7 @@ public enum IfcWasteTerminalTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWasteTerminalTypeEnum[] VALUES_ARRAY = new IfcWasteTerminalTypeEnum[] { NULL, NOTDEFINED, WASTEDISPOSALUNIT, GULLYSUMP, ROOFDRAIN, WASTETRAP, USERDEFINED, FLOORWASTE,
-			FLOORTRAP, GULLYTRAP, };
+	private static final IfcWasteTerminalTypeEnum[] VALUES_ARRAY = new IfcWasteTerminalTypeEnum[] { NULL, NOTDEFINED, WASTEDISPOSALUNIT, GULLYSUMP, ROOFDRAIN, WASTETRAP, USERDEFINED, FLOORWASTE, FLOORTRAP, GULLYTRAP, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Waste Terminal Type Enum</b></em>' enumerators.

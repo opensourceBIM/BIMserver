@@ -69,13 +69,13 @@ public enum IfcExternalSpatialElementTypeEnum implements Enumerator {
 	 */
 	NOTDEFINED(1, "NOTDEFINED", "NOTDEFINED"),
 	/**
-	* The '<em><b>EXTERNAL</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>EXTERNAL</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #EXTERNAL_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #EXTERNAL_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	EXTERNAL(2, "EXTERNAL", "EXTERNAL"),
 
 	/**
@@ -229,8 +229,7 @@ public enum IfcExternalSpatialElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcExternalSpatialElementTypeEnum[] VALUES_ARRAY = new IfcExternalSpatialElementTypeEnum[] { NULL, NOTDEFINED, EXTERNAL, EXTERNAL_FIRE, EXTERNAL_WATER, USERDEFINED,
-			EXTERNAL_EARTH, };
+	private static final IfcExternalSpatialElementTypeEnum[] VALUES_ARRAY = new IfcExternalSpatialElementTypeEnum[] { NULL, NOTDEFINED, EXTERNAL, EXTERNAL_FIRE, EXTERNAL_WATER, USERDEFINED, EXTERNAL_EARTH, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc External Spatial Element Type Enum</b></em>' enumerators.

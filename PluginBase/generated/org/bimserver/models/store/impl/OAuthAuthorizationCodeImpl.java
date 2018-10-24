@@ -34,6 +34,7 @@ package org.bimserver.models.store.impl;
  *****************************************************************************/
 
 import java.util.Date;
+
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.Authorization;
 import org.bimserver.models.store.OAuthAuthorizationCode;

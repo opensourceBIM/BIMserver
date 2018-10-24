@@ -135,7 +135,7 @@ public interface IfcPixelTexture extends IfcSurfaceTexture {
 
 	/**
 	 * Returns the value of the '<em><b>Pixel</b></em>' attribute list.
-	 * The list contents are of type {@link byte}[].
+	 * The list contents are of type {@link byte}<code>[]</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Pixel</em>' attribute list isn't clear,

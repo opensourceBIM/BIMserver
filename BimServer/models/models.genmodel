@@ -11642,6 +11642,7 @@
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/ListOfEDouble">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ListOfEDouble/List"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/ListOfEDouble/ListAsString"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/ListOfIfcParameterValue">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/2/ListOfIfcParameterValue/List"/>

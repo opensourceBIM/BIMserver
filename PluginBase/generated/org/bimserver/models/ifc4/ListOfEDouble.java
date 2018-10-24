@@ -46,6 +46,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.ListOfEDouble#getList <em>List</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.ListOfEDouble#getListAsString <em>List As String</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getListOfEDouble()
@@ -69,5 +70,21 @@ public interface ListOfEDouble extends IdEObject {
 	 * @generated
 	 */
 	EList<Double> getList();
+
+	/**
+	 * Returns the value of the '<em><b>List As String</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>List As String</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>List As String</em>' attribute list.
+	 * @see org.bimserver.models.ifc4.Ifc4Package#getListOfEDouble_ListAsString()
+	 * @model
+	 * @generated
+	 */
+	EList<String> getListAsString();
 
 } // ListOfEDouble

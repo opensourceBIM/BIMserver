@@ -305,8 +305,8 @@ public enum IfcProtectiveDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcProtectiveDeviceTypeEnum[] VALUES_ARRAY = new IfcProtectiveDeviceTypeEnum[] { NULL, EARTHINGSWITCH, RESIDUALCURRENTCIRCUITBREAKER, NOTDEFINED, EARTHLEAKAGECIRCUITBREAKER,
-			CIRCUITBREAKER, VARISTOR, USERDEFINED, RESIDUALCURRENTSWITCH, FUSEDISCONNECTOR, };
+	private static final IfcProtectiveDeviceTypeEnum[] VALUES_ARRAY = new IfcProtectiveDeviceTypeEnum[] { NULL, EARTHINGSWITCH, RESIDUALCURRENTCIRCUITBREAKER, NOTDEFINED, EARTHLEAKAGECIRCUITBREAKER, CIRCUITBREAKER, VARISTOR, USERDEFINED,
+			RESIDUALCURRENTSWITCH, FUSEDISCONNECTOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Protective Device Type Enum</b></em>' enumerators.

@@ -380,8 +380,8 @@ public enum IfcMechanicalFastenerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcMechanicalFastenerTypeEnum[] VALUES_ARRAY = new IfcMechanicalFastenerTypeEnum[] { NULL, DOWEL, SHEARCONNECTOR, STUDSHEARCONNECTOR, NAIL, NOTDEFINED, SCREW, NAILPLATE,
-			RIVET, STAPLE, ANCHORBOLT, BOLT, USERDEFINED, };
+	private static final IfcMechanicalFastenerTypeEnum[] VALUES_ARRAY = new IfcMechanicalFastenerTypeEnum[] { NULL, DOWEL, SHEARCONNECTOR, STUDSHEARCONNECTOR, NAIL, NOTDEFINED, SCREW, NAILPLATE, RIVET, STAPLE, ANCHORBOLT, BOLT,
+			USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Mechanical Fastener Type Enum</b></em>' enumerators.

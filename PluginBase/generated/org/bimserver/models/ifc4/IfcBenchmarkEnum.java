@@ -330,8 +330,7 @@ public enum IfcBenchmarkEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBenchmarkEnum[] VALUES_ARRAY = new IfcBenchmarkEnum[] { NULL, LESSTHANOREQUALTO, NOTINCLUDEDIN, LESSTHAN, NOTEQUALTO, EQUALTO, INCLUDES, INCLUDEDIN, GREATERTHAN,
-			GREATERTHANOREQUALTO, NOTINCLUDES, };
+	private static final IfcBenchmarkEnum[] VALUES_ARRAY = new IfcBenchmarkEnum[] { NULL, LESSTHANOREQUALTO, NOTINCLUDEDIN, LESSTHAN, NOTEQUALTO, EQUALTO, INCLUDES, INCLUDEDIN, GREATERTHAN, GREATERTHANOREQUALTO, NOTINCLUDES, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Benchmark Enum</b></em>' enumerators.

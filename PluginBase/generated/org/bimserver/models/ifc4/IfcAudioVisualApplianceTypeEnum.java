@@ -405,8 +405,8 @@ public enum IfcAudioVisualApplianceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAudioVisualApplianceTypeEnum[] VALUES_ARRAY = new IfcAudioVisualApplianceTypeEnum[] { NULL, TELEPHONE, CAMERA, MICROPHONE, USERDEFINED, SPEAKER, PLAYER, SWITCHER,
-			AMPLIFIER, DISPLAY, NOTDEFINED, TUNER, PROJECTOR, RECEIVER, };
+	private static final IfcAudioVisualApplianceTypeEnum[] VALUES_ARRAY = new IfcAudioVisualApplianceTypeEnum[] { NULL, TELEPHONE, CAMERA, MICROPHONE, USERDEFINED, SPEAKER, PLAYER, SWITCHER, AMPLIFIER, DISPLAY, NOTDEFINED, TUNER, PROJECTOR,
+			RECEIVER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Audio Visual Appliance Type Enum</b></em>' enumerators.

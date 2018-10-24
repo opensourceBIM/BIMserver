@@ -119,13 +119,13 @@ public enum IfcBuildingElementProxyTypeEnum implements Enumerator {
 	 */
 	USERDEFINED(6, "USERDEFINED", "USERDEFINED"),
 	/**
-	* The '<em><b>PROVISIONFORSPACE</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>PROVISIONFORSPACE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #PROVISIONFORSPACE_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #PROVISIONFORSPACE_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	PROVISIONFORSPACE(7, "PROVISIONFORSPACE", "PROVISIONFORSPACE");
 
 	/**
@@ -254,8 +254,7 @@ public enum IfcBuildingElementProxyTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBuildingElementProxyTypeEnum[] VALUES_ARRAY = new IfcBuildingElementProxyTypeEnum[] { NULL, COMPLEX, ELEMENT, PROVISIONFORVOID, NOTDEFINED, PARTIAL, USERDEFINED,
-			PROVISIONFORSPACE, };
+	private static final IfcBuildingElementProxyTypeEnum[] VALUES_ARRAY = new IfcBuildingElementProxyTypeEnum[] { NULL, COMPLEX, ELEMENT, PROVISIONFORVOID, NOTDEFINED, PARTIAL, USERDEFINED, PROVISIONFORSPACE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Building Element Proxy Type Enum</b></em>' enumerators.

@@ -40,7 +40,6 @@ import org.bimserver.models.geometry.Bounds;
 import org.bimserver.models.log.RevisionRelated;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.Density;
 import org.bimserver.models.store.DensityCollection;
 import org.bimserver.models.store.ExtendedData;
 import org.bimserver.models.store.NewService;

@@ -10229,6 +10229,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="List" upperBound="-1">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ListAsString" upperBound="-1">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ListOfIfcParameterValue">
     <eStructuralFeatures xsi:type="ecore:EReference" name="List" upperBound="-1" eType="//IfcParameterValue"/>

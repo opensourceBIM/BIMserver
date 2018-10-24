@@ -305,8 +305,7 @@ public enum IfcCostScheduleTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCostScheduleTypeEnum[] VALUES_ARRAY = new IfcCostScheduleTypeEnum[] { NULL, UNPRICEDBILLOFQUANTITIES, NOTDEFINED, TENDER, COSTPLAN, PRICEDBILLOFQUANTITIES, SCHEDULEOFRATES,
-			BUDGET, USERDEFINED, ESTIMATE, };
+	private static final IfcCostScheduleTypeEnum[] VALUES_ARRAY = new IfcCostScheduleTypeEnum[] { NULL, UNPRICEDBILLOFQUANTITIES, NOTDEFINED, TENDER, COSTPLAN, PRICEDBILLOFQUANTITIES, SCHEDULEOFRATES, BUDGET, USERDEFINED, ESTIMATE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Cost Schedule Type Enum</b></em>' enumerators.

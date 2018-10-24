@@ -36,7 +36,6 @@ package org.bimserver.models.ifc4.impl;
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcColourRgbList;
 import org.bimserver.models.ifc4.IfcIndexedColourMap;
-import org.bimserver.models.ifc4.IfcSurfaceStyleShading;
 import org.bimserver.models.ifc4.IfcTessellatedFaceSet;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;

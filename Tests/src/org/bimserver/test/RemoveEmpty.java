@@ -8,11 +8,11 @@ import java.nio.file.Paths;
 
 public class RemoveEmpty {
 	public static void main(String[] args) {
-		new RemoveEmpty().start();
+		new RemoveEmpty().start(args[0]);
 	}
 
-	private void start() {
-		Path base = Paths.get("C:\\Users\\Ruben de Laat\\Downloads\\debug");
+	private void start(String loc) {
+		Path base = Paths.get(loc);
 		try {
 			DirectoryStream<Path> newDirectoryStream = Files.newDirectoryStream(base);
 			for (Path p : newDirectoryStream) {

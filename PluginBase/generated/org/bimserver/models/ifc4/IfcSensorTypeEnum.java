@@ -129,22 +129,22 @@ public enum IfcSensorTypeEnum implements Enumerator {
 	 */
 	FROSTSENSOR(7, "FROSTSENSOR", "FROSTSENSOR"),
 	/**
-	* The '<em><b>IDENTIFIERSENSOR</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>IDENTIFIERSENSOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #IDENTIFIERSENSOR_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #IDENTIFIERSENSOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	IDENTIFIERSENSOR(8, "IDENTIFIERSENSOR", "IDENTIFIERSENSOR"),
 	/**
-	* The '<em><b>LEVELSENSOR</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>LEVELSENSOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #LEVELSENSOR_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #LEVELSENSOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	LEVELSENSOR(9, "LEVELSENSOR", "LEVELSENSOR"),
 
 	/**
@@ -157,130 +157,130 @@ public enum IfcSensorTypeEnum implements Enumerator {
 	 */
 	FLOWSENSOR(10, "FLOWSENSOR", "FLOWSENSOR"),
 	/**
-	* The '<em><b>HUMIDITYSENSOR</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>HUMIDITYSENSOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #HUMIDITYSENSOR_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #HUMIDITYSENSOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	HUMIDITYSENSOR(11, "HUMIDITYSENSOR", "HUMIDITYSENSOR"),
 	/**
-	* The '<em><b>PRESSURESENSOR</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>PRESSURESENSOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #PRESSURESENSOR_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #PRESSURESENSOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	PRESSURESENSOR(12, "PRESSURESENSOR", "PRESSURESENSOR"),
 	/**
-	* The '<em><b>COSENSOR</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>COSENSOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #COSENSOR_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #COSENSOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	COSENSOR(13, "COSENSOR", "COSENSOR"),
 	/**
-	* The '<em><b>RADIATIONSENSOR</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>RADIATIONSENSOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #RADIATIONSENSOR_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #RADIATIONSENSOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	RADIATIONSENSOR(14, "RADIATIONSENSOR", "RADIATIONSENSOR"),
 	/**
-	* The '<em><b>FIRESENSOR</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>FIRESENSOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #FIRESENSOR_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #FIRESENSOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	FIRESENSOR(15, "FIRESENSOR", "FIRESENSOR"),
 	/**
-	* The '<em><b>CONTACTSENSOR</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>CONTACTSENSOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #CONTACTSENSOR_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #CONTACTSENSOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	CONTACTSENSOR(16, "CONTACTSENSOR", "CONTACTSENSOR"),
 	/**
-	* The '<em><b>GASSENSOR</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>GASSENSOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #GASSENSOR_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #GASSENSOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	GASSENSOR(17, "GASSENSOR", "GASSENSOR"),
 	/**
-	* The '<em><b>IONCONCENTRATIONSENSOR</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>IONCONCENTRATIONSENSOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #IONCONCENTRATIONSENSOR_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #IONCONCENTRATIONSENSOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	IONCONCENTRATIONSENSOR(18, "IONCONCENTRATIONSENSOR", "IONCONCENTRATIONSENSOR"),
 	/**
-	* The '<em><b>CO2SENSOR</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>CO2SENSOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #CO2SENSOR_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #CO2SENSOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	CO2SENSOR(19, "CO2SENSOR", "CO2SENSOR"),
 	/**
-	* The '<em><b>RADIOACTIVITYSENSOR</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>RADIOACTIVITYSENSOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #RADIOACTIVITYSENSOR_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #RADIOACTIVITYSENSOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	RADIOACTIVITYSENSOR(20, "RADIOACTIVITYSENSOR", "RADIOACTIVITYSENSOR"),
 	/**
-	* The '<em><b>LIGHTSENSOR</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>LIGHTSENSOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #LIGHTSENSOR_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #LIGHTSENSOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	LIGHTSENSOR(21, "LIGHTSENSOR", "LIGHTSENSOR"),
 	/**
-	* The '<em><b>SOUNDSENSOR</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>SOUNDSENSOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #SOUNDSENSOR_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #SOUNDSENSOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	SOUNDSENSOR(22, "SOUNDSENSOR", "SOUNDSENSOR"),
 	/**
-	* The '<em><b>TEMPERATURESENSOR</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>TEMPERATURESENSOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #TEMPERATURESENSOR_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #TEMPERATURESENSOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	TEMPERATURESENSOR(23, "TEMPERATURESENSOR", "TEMPERATURESENSOR"),
 	/**
-	* The '<em><b>CONDUCTANCESENSOR</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>CONDUCTANCESENSOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #CONDUCTANCESENSOR_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #CONDUCTANCESENSOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	CONDUCTANCESENSOR(24, "CONDUCTANCESENSOR", "CONDUCTANCESENSOR"),
 
 	/**
@@ -714,9 +714,9 @@ public enum IfcSensorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSensorTypeEnum[] VALUES_ARRAY = new IfcSensorTypeEnum[] { NULL, PHSENSOR, USERDEFINED, WINDSENSOR, HEATSENSOR, MOVEMENTSENSOR, NOTDEFINED, FROSTSENSOR, IDENTIFIERSENSOR,
-			LEVELSENSOR, FLOWSENSOR, HUMIDITYSENSOR, PRESSURESENSOR, COSENSOR, RADIATIONSENSOR, FIRESENSOR, CONTACTSENSOR, GASSENSOR, IONCONCENTRATIONSENSOR, CO2SENSOR, RADIOACTIVITYSENSOR,
-			LIGHTSENSOR, SOUNDSENSOR, TEMPERATURESENSOR, CONDUCTANCESENSOR, MOISTURESENSOR, SMOKESENSOR, };
+	private static final IfcSensorTypeEnum[] VALUES_ARRAY = new IfcSensorTypeEnum[] { NULL, PHSENSOR, USERDEFINED, WINDSENSOR, HEATSENSOR, MOVEMENTSENSOR, NOTDEFINED, FROSTSENSOR, IDENTIFIERSENSOR, LEVELSENSOR, FLOWSENSOR, HUMIDITYSENSOR,
+			PRESSURESENSOR, COSENSOR, RADIATIONSENSOR, FIRESENSOR, CONTACTSENSOR, GASSENSOR, IONCONCENTRATIONSENSOR, CO2SENSOR, RADIOACTIVITYSENSOR, LIGHTSENSOR, SOUNDSENSOR, TEMPERATURESENSOR, CONDUCTANCESENSOR, MOISTURESENSOR,
+			SMOKESENSOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Sensor Type Enum</b></em>' enumerators.

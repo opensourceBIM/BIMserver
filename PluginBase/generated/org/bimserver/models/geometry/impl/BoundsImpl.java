@@ -17,11 +17,9 @@
 package org.bimserver.models.geometry.impl;
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.geometry.Bounds;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.geometry.Vector3f;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

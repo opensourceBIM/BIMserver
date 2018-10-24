@@ -355,8 +355,8 @@ public enum IfcLightEmissionSourceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcLightEmissionSourceEnum[] VALUES_ARRAY = new IfcLightEmissionSourceEnum[] { NULL, LOWPRESSURESODIUM, MAINVOLTAGEHALOGEN, TUNGSTENFILAMENT, FLUORESCENT, NOTDEFINED,
-			HIGHPRESSURESODIUM, LOWVOLTAGEHALOGEN, METALHALIDE, LIGHTEMITTINGDIODE, COMPACTFLUORESCENT, HIGHPRESSUREMERCURY, };
+	private static final IfcLightEmissionSourceEnum[] VALUES_ARRAY = new IfcLightEmissionSourceEnum[] { NULL, LOWPRESSURESODIUM, MAINVOLTAGEHALOGEN, TUNGSTENFILAMENT, FLUORESCENT, NOTDEFINED, HIGHPRESSURESODIUM, LOWVOLTAGEHALOGEN,
+			METALHALIDE, LIGHTEMITTINGDIODE, COMPACTFLUORESCENT, HIGHPRESSUREMERCURY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Light Emission Source Enum</b></em>' enumerators.

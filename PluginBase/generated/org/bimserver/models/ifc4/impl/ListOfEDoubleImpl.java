@@ -48,6 +48,7 @@ import org.eclipse.emf.ecore.EClass;
  * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.ifc4.impl.ListOfEDoubleImpl#getList <em>List</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4.impl.ListOfEDoubleImpl#getListAsString <em>List As String</em>}</li>
  * </ul>
  *
  * @generated
@@ -90,6 +91,16 @@ public class ListOfEDoubleImpl extends IdEObjectImpl implements ListOfEDouble {
 	@SuppressWarnings("unchecked")
 	public EList<Double> getList() {
 		return (EList<Double>) eGet(Ifc4Package.Literals.LIST_OF_EDOUBLE__LIST, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<String> getListAsString() {
+		return (EList<String>) eGet(Ifc4Package.Literals.LIST_OF_EDOUBLE__LIST_AS_STRING, true);
 	}
 
 } //ListOfEDoubleImpl

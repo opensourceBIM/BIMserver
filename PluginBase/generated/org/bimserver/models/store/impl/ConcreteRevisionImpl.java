@@ -37,9 +37,7 @@ import java.util.Date;
 
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.geometry.Bounds;
-import org.bimserver.models.geometry.Vector3f;
 import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.Density;
 import org.bimserver.models.store.DensityCollection;
 import org.bimserver.models.store.IfcHeader;
 import org.bimserver.models.store.Project;

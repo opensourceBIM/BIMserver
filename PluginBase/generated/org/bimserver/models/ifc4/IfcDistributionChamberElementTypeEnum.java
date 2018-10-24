@@ -330,8 +330,8 @@ public enum IfcDistributionChamberElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDistributionChamberElementTypeEnum[] VALUES_ARRAY = new IfcDistributionChamberElementTypeEnum[] { NULL, METERCHAMBER, SUMP, NOTDEFINED, FORMEDDUCT, INSPECTIONCHAMBER,
-			INSPECTIONPIT, TRENCH, USERDEFINED, MANHOLE, VALVECHAMBER, };
+	private static final IfcDistributionChamberElementTypeEnum[] VALUES_ARRAY = new IfcDistributionChamberElementTypeEnum[] { NULL, METERCHAMBER, SUMP, NOTDEFINED, FORMEDDUCT, INSPECTIONCHAMBER, INSPECTIONPIT, TRENCH, USERDEFINED, MANHOLE,
+			VALVECHAMBER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Distribution Chamber Element Type Enum</b></em>' enumerators.

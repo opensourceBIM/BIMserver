@@ -430,8 +430,8 @@ public enum IfcTaskTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTaskTypeEnum[] VALUES_ARRAY = new IfcTaskTypeEnum[] { NULL, DEMOLITION, DISMANTLE, ATTENDANCE, USERDEFINED, RENOVATION, MAINTENANCE, NOTDEFINED, REMOVAL, DISPOSAL, MOVE,
-			OPERATION, INSTALLATION, CONSTRUCTION, LOGISTIC, };
+	private static final IfcTaskTypeEnum[] VALUES_ARRAY = new IfcTaskTypeEnum[] { NULL, DEMOLITION, DISMANTLE, ATTENDANCE, USERDEFINED, RENOVATION, MAINTENANCE, NOTDEFINED, REMOVAL, DISPOSAL, MOVE, OPERATION, INSTALLATION, CONSTRUCTION,
+			LOGISTIC, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Task Type Enum</b></em>' enumerators.

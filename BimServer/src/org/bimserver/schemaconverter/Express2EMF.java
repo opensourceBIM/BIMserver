@@ -679,6 +679,14 @@ public class Express2EMF {
 				finalAttribute.setEType(finalType);
 				finalAttribute.setUpperBound(-1);
 				containerClass.getEAttributes().add(finalAttribute);
+				
+				if (finalType == EcorePackage.eINSTANCE.getEDouble()) {
+					EAttribute stringAttribute = EcoreFactory.eINSTANCE.createEAttribute();
+					stringAttribute.setName("ListAsString");
+					stringAttribute.setEType(EcorePackage.eINSTANCE.getEString());
+					stringAttribute.setUpperBound(-1);
+					containerClass.getEAttributes().add(stringAttribute);
+				}
 			} else {
 				EReference finalReference = EcoreFactory.eINSTANCE.createEReference();
 				finalReference.setName("List");

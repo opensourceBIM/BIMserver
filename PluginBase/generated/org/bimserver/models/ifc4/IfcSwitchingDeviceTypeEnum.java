@@ -355,8 +355,8 @@ public enum IfcSwitchingDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSwitchingDeviceTypeEnum[] VALUES_ARRAY = new IfcSwitchingDeviceTypeEnum[] { NULL, MOMENTARYSWITCH, SELECTORSWITCH, NOTDEFINED, DIMMERSWITCH, TOGGLESWITCH, CONTACTOR,
-			KEYPAD, STARTER, USERDEFINED, EMERGENCYSTOP, SWITCHDISCONNECTOR, };
+	private static final IfcSwitchingDeviceTypeEnum[] VALUES_ARRAY = new IfcSwitchingDeviceTypeEnum[] { NULL, MOMENTARYSWITCH, SELECTORSWITCH, NOTDEFINED, DIMMERSWITCH, TOGGLESWITCH, CONTACTOR, KEYPAD, STARTER, USERDEFINED, EMERGENCYSTOP,
+			SWITCHDISCONNECTOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Switching Device Type Enum</b></em>' enumerators.

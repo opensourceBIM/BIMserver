@@ -38,9 +38,7 @@ import org.bimserver.models.ifc4.IfcCurve;
 import org.bimserver.models.ifc4.IfcPcurve;
 import org.bimserver.models.ifc4.IfcPreferredSurfaceCurveRepresentation;
 import org.bimserver.models.ifc4.IfcSurfaceCurve;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
