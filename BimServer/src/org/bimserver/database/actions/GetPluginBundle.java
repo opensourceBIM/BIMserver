@@ -35,13 +35,15 @@ public class GetPluginBundle extends PluginBundleDatabaseAction<SPluginBundle> {
 	private String repository;
 	private String groupId;
 	private String artifactId;
+	private boolean strictChecking;
 
-	public GetPluginBundle(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, String repository, String groupId, String artifactId) {
+	public GetPluginBundle(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, String repository, String groupId, String artifactId, boolean strictChecking) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.repository = repository;
 		this.groupId = groupId;
 		this.artifactId = artifactId;
+		this.strictChecking = strictChecking;
 	}
 
 	@Override
@@ -55,11 +57,11 @@ public class GetPluginBundle extends PluginBundleDatabaseAction<SPluginBundle> {
 		PluginBundle pluginBundle = bimServer.getPluginManager().getPluginBundle(pluginLocation.getPluginIdentifier());
 		// Skipping all plugin bundles that already have an installed version
 		if (pluginBundle == null) {
-			SPluginBundle sPluginBundle = processPluginLocation(pluginLocation, false, bimserverVersion);
+			SPluginBundle sPluginBundle = processPluginLocation(pluginLocation, strictChecking, bimserverVersion);
 			if (sPluginBundle != null) {
 				return sPluginBundle;
 			} else {
-				throw new UserException("Plugin bundle not installed successfully: " + groupId + "." + artifactId);
+				throw new UserException("No plugin bundle available for your version of BIMserver: " + groupId + "." + artifactId);
 			}
 		}
 		throw new UserException("Plugin bundle already installed " + groupId + "." + artifactId);

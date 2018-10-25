@@ -1579,7 +1579,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			return session.executeAndCommitAction(new GetPluginBundle(session, getInternalAccessMethod(), getBimServer(), repository, groupId, artifactId));
+			return session.executeAndCommitAction(new GetPluginBundle(session, getInternalAccessMethod(), getBimServer(), repository, groupId, artifactId, getBimServer().getServerSettingsCache().getServerSettings().isPluginStrictVersionChecking()));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
