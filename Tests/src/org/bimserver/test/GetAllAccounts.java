@@ -18,26 +18,35 @@ package org.bimserver.test;
  *****************************************************************************/
 
 import org.bimserver.LocalDevSetup;
+import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.shared.BimServerClientFactory;
+import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServiceException;
 
 public class GetAllAccounts {
 	public static void main(String[] args) {
-		new GetAllAccounts().start();
+		new GetAllAccounts().start(args);
 	}
 
-	private void start() {
-		try {
-			BimServerClientInterface client = LocalDevSetup.setupJson("http://localhost:8080");
-			for (SUser user : client.getServiceInterface().getAllUsers()) {
-				System.out.println(user.getUsername());
+	private void start(String[] args) {
+		try (BimServerClientFactory factory = new JsonBimServerClientFactory(args[0])){
+			try (BimServerClientInterface client = factory.create(new UsernamePasswordAuthenticationInfo(args[1], args[2]))) {
+				for (SUser user : client.getServiceInterface().getAllUsers()) {
+					System.out.println(user.getUsername());
+				}
 			}
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
 			e.printStackTrace();
+		} catch (BimServerClientException e1) {
+			e1.printStackTrace();
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 	}
 }
