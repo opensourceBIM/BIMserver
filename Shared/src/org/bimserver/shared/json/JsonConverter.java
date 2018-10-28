@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -49,12 +50,8 @@ import com.fasterxml.jackson.databind.node.LongNode;
 import com.fasterxml.jackson.databind.node.NullNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
+import com.fasterxml.jackson.databind.node.ValueNode;
 import com.google.common.base.Charsets;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonNull;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.stream.JsonWriter;
 
 public class JsonConverter {
 
@@ -65,55 +62,55 @@ public class JsonConverter {
 		this.servicesMap = servicesMap;
 	}
 
-	public void toJson(Object object, JsonWriter out) throws IOException, SerializerException {
-		if (object instanceof SBase) {
-			SBase base = (SBase) object;
-			out.beginObject();
-			out.name("__type");
-			out.value(base.getSClass().getSimpleName());
-			for (SField field : base.getSClass().getAllFields()) {
-				out.name(field.getName());
-				toJson(base.sGet(field), out);
-			}
-			out.endObject();
-		} else if (object instanceof Collection) {
-			Collection<?> collection = (Collection<?>) object;
-			out.beginArray();
-			for (Object value : collection) {
-				toJson(value, out);
-			}
-			out.endArray();
-		} else if (object instanceof Date) {
-			out.value(((Date) object).getTime());
-		} else if (object instanceof DataHandler) {
-			DataHandler dataHandler = (DataHandler) object;
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			if (dataHandler.getDataSource() instanceof CacheStoringEmfSerializerDataSource) {
-				CacheStoringEmfSerializerDataSource cacheStoringEmfSerializerDataSource = (CacheStoringEmfSerializerDataSource) dataHandler.getDataSource();
-				cacheStoringEmfSerializerDataSource.writeToOutputStream(baos, null);
-				out.value(new String(Base64.encodeBase64(baos.toByteArray()), Charsets.UTF_8));
-			} else {
-				InputStream inputStream = dataHandler.getInputStream();
-				IOUtils.copy(inputStream, baos);
-				out.value(new String(Base64.encodeBase64(baos.toByteArray()), Charsets.UTF_8));
-			}
-		} else if (object instanceof byte[]) {
-			byte[] data = (byte[]) object;
-			out.value(new String(Base64.encodeBase64(data), Charsets.UTF_8));
-		} else if (object instanceof String) {
-			out.value((String) object);
-		} else if (object instanceof Number) {
-			out.value((Number) object);
-		} else if (object instanceof Enum) {
-			out.value(object.toString());
-		} else if (object instanceof Boolean) {
-			out.value((Boolean) object);
-		} else if (object == null) {
-			out.nullValue();
-		} else {
-			throw new UnsupportedOperationException(object.toString());
-		}
-	}
+//	public void toJson(Object object, ObjectMapper objectMapper) throws IOException, SerializerException {
+//		if (object instanceof SBase) {
+//			SBase base = (SBase) object;
+//			out.beginObject();
+//			out.name("__type");
+//			out.value(base.getSClass().getSimpleName());
+//			for (SField field : base.getSClass().getAllFields()) {
+//				out.name(field.getName());
+//				toJson(base.sGet(field), out);
+//			}
+//			out.endObject();
+//		} else if (object instanceof Collection) {
+//			Collection<?> collection = (Collection<?>) object;
+//			out.beginArray();
+//			for (Object value : collection) {
+//				toJson(value, out);
+//			}
+//			out.endArray();
+//		} else if (object instanceof Date) {
+//			out.value(((Date) object).getTime());
+//		} else if (object instanceof DataHandler) {
+//			DataHandler dataHandler = (DataHandler) object;
+//			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//			if (dataHandler.getDataSource() instanceof CacheStoringEmfSerializerDataSource) {
+//				CacheStoringEmfSerializerDataSource cacheStoringEmfSerializerDataSource = (CacheStoringEmfSerializerDataSource) dataHandler.getDataSource();
+//				cacheStoringEmfSerializerDataSource.writeToOutputStream(baos, null);
+//				out.value(new String(Base64.encodeBase64(baos.toByteArray()), Charsets.UTF_8));
+//			} else {
+//				InputStream inputStream = dataHandler.getInputStream();
+//				IOUtils.copy(inputStream, baos);
+//				out.value(new String(Base64.encodeBase64(baos.toByteArray()), Charsets.UTF_8));
+//			}
+//		} else if (object instanceof byte[]) {
+//			byte[] data = (byte[]) object;
+//			out.value(new String(Base64.encodeBase64(data), Charsets.UTF_8));
+//		} else if (object instanceof String) {
+//			out.value((String) object);
+//		} else if (object instanceof Number) {
+//			out.value((Number) object);
+//		} else if (object instanceof Enum) {
+//			out.value(object.toString());
+//		} else if (object instanceof Boolean) {
+//			out.value((Boolean) object);
+//		} else if (object == null) {
+//			out.nullValue();
+//		} else {
+//			throw new UnsupportedOperationException(object.toString());
+//		}
+//	}
 
 	public JsonNode toJson(Object object) throws IOException {
 		if (object instanceof SBase) {
@@ -162,10 +159,10 @@ public class JsonConverter {
 	
 	public Object fromJson(SClass definedType, SClass genericType, Object object) throws ConvertException, IOException {
 		try {
-			if (object instanceof JsonObject) {
-				JsonObject jsonObject = (JsonObject) object;
+			if (object instanceof ObjectNode) {
+				ObjectNode jsonObject = (ObjectNode) object;
 				if (jsonObject.has("__type")) {
-					String type = jsonObject.get("__type").getAsString();
+					String type = jsonObject.get("__type").asText();
 					SClass sClass = servicesMap.getType(type);
 					if (sClass == null) {
 						throw new ConvertException("Unknown type: " + type);
@@ -178,14 +175,20 @@ public class JsonConverter {
 					}
 					return newObject;
 				} else {
-					if (jsonObject.entrySet().size() != 0) {
+					Iterator<String> fieldNames = jsonObject.fieldNames();
+					int nrFields = 0;
+					while (fieldNames.hasNext()) {
+						nrFields++;
+						fieldNames.next();
+					}
+					if (nrFields != 0) {
 						throw new ConvertException("Missing __type field in " + jsonObject.toString());
 					} else {
 						return null;
 					}
 				}
-			} else if (object instanceof JsonArray) {
-				JsonArray array = (JsonArray) object;
+			} else if (object instanceof ArrayNode) {
+				ArrayNode array = (ArrayNode) object;
 				if (definedType.isList()) {
 					List<Object> list = new ArrayList<Object>();
 					for (int i = 0; i < array.size(); i++) {
@@ -199,92 +202,92 @@ public class JsonConverter {
 					}
 					return set;
 				}
-			} else if (object instanceof JsonNull) {
+			} else if (object instanceof NullNode) {
 				return null;
 			} else if (definedType.isByteArray()) {
-				if (object instanceof JsonPrimitive) {
-					JsonPrimitive jsonPrimitive = (JsonPrimitive) object;
-					return Base64.decodeBase64(jsonPrimitive.getAsString().getBytes(Charsets.UTF_8));
+				if (object instanceof ValueNode) {
+					ValueNode jsonPrimitive = (ValueNode) object;
+					return Base64.decodeBase64(jsonPrimitive.asText().getBytes(Charsets.UTF_8));
 				}
 			} else if (definedType.isDataHandler()) {
-				if (object instanceof JsonPrimitive) {
-					JsonPrimitive jsonPrimitive = (JsonPrimitive) object;
-					byte[] data = Base64.decodeBase64(jsonPrimitive.getAsString().getBytes(Charsets.UTF_8));
+				if (object instanceof ValueNode) {
+					ValueNode jsonPrimitive = (ValueNode) object;
+					byte[] data = Base64.decodeBase64(jsonPrimitive.asText().getBytes(Charsets.UTF_8));
 					return new DataHandler(new ByteArrayDataSource(null, data));
 				}
 			} else if (definedType.isInteger()) {
-				if (object instanceof JsonPrimitive) {
-					return ((JsonPrimitive) object).getAsInt();
+				if (object instanceof ValueNode) {
+					return ((ValueNode) object).asInt();
 				}
 			} else if (definedType.isLong()) {
-				if (object instanceof JsonPrimitive) {
-					return ((JsonPrimitive) object).getAsLong();
+				if (object instanceof ValueNode) {
+					return ((ValueNode) object).asLong();
 				}
 			} else if (definedType.isShort()) {
-				if (object instanceof JsonPrimitive) {
-					return ((JsonPrimitive) object).getAsShort();
+				if (object instanceof ValueNode) {
+					return (short)((ValueNode) object).asInt();
 				}
 			} else if (definedType.isEnum()) {
-				JsonPrimitive primitive = (JsonPrimitive) object;
+				ValueNode primitive = (ValueNode) object;
 				for (Object enumConstantObject : definedType.getInstanceClass().getEnumConstants()) {
 					Enum<?> enumConstant = (Enum<?>) enumConstantObject;
-					if (enumConstant.name().equals(primitive.getAsString())) {
+					if (enumConstant.name().equals(primitive.asText())) {
 						return enumConstant;
 					}
 				}
 			} else if (definedType.isDate()) {
-				if (object instanceof JsonPrimitive) {
-					return new Date(((JsonPrimitive) object).getAsLong());
+				if (object instanceof ValueNode) {
+					return new Date(((ValueNode) object).asLong());
 				}
 			} else if (definedType.isString()) {
-				if (object instanceof JsonPrimitive) {
-					return ((JsonPrimitive) object).getAsString();
-				} else if (object instanceof JsonNull) {
+				if (object instanceof ValueNode) {
+					return ((ValueNode) object).asText();
+				} else if (object instanceof NullNode) {
 					return null;
 				}
 			} else if (definedType.isBoolean()) {
-				if (object instanceof JsonPrimitive) {
-					return ((JsonPrimitive) object).getAsBoolean();
+				if (object instanceof ValueNode) {
+					return ((ValueNode) object).asBoolean();
 				}
 			} else if (definedType.isList()) {
 				if (genericType.isLong()) {
-					if (object instanceof JsonPrimitive) {
-						return ((JsonPrimitive) object).getAsLong();
+					if (object instanceof ValueNode) {
+						return ((ValueNode) object).asLong();
 					}
 				} else if (genericType.isInteger()) {
-					if (object instanceof JsonPrimitive) {
-						return ((JsonPrimitive) object).getAsInt();
+					if (object instanceof ValueNode) {
+						return ((ValueNode) object).asInt();
 					}
 				} else if (genericType.isString()) {
-					if (object instanceof JsonPrimitive) {
-						return ((JsonPrimitive) object).getAsString();
+					if (object instanceof ValueNode) {
+						return ((ValueNode) object).asText();
 					}
 				} else if (genericType.isDouble()) {
-					if (object instanceof JsonPrimitive) {
-						return ((JsonPrimitive) object).getAsDouble();
+					if (object instanceof ValueNode) {
+						return ((ValueNode) object).asDouble();
 					}
 				}
 			} else if (definedType.isSet()) {
 				if (genericType.isLong()) {
-					if (object instanceof JsonPrimitive) {
-						return ((JsonPrimitive) object).getAsLong();
+					if (object instanceof ValueNode) {
+						return ((ValueNode) object).asLong();
 					}
 				} else if (genericType.isInteger()) {
-					if (object instanceof JsonPrimitive) {
-						return ((JsonPrimitive) object).getAsInt();
+					if (object instanceof ValueNode) {
+						return ((ValueNode) object).asInt();
 					}
 				} else if (genericType.isString()) {
-					if (object instanceof JsonPrimitive) {
-						return ((JsonPrimitive) object).getAsString();
+					if (object instanceof ValueNode) {
+						return ((ValueNode) object).asText();
 					}
 				}
 			} else if (definedType.isDouble()) {
-				if (object instanceof JsonPrimitive) {
-					return ((JsonPrimitive) object).getAsDouble();
+				if (object instanceof ValueNode) {
+					return ((ValueNode) object).asDouble();
 				}
 			} else if (definedType.isFloat()) {
-				if (object instanceof JsonPrimitive) {
-					return ((JsonPrimitive) object).getAsFloat();
+				if (object instanceof ValueNode) {
+					return ((ValueNode) object).asDouble();
 				}
 			} else if (definedType.isVoid()) {
 				return null;
