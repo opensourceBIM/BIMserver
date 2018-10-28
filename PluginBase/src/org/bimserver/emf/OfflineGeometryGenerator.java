@@ -187,6 +187,7 @@ public class OfflineGeometryGenerator {
 					ifcProduct.setGeometry(geometryInfo);
 				}
 			} catch (EntityNotFoundException e) {
+				e.printStackTrace();
 				// As soon as we find a representation that is not Curve2D, then we should show a "INFO" message in the log to indicate there could be something wrong
 				boolean ignoreNotFound = true;
 //				for (Object rep : representations) {
