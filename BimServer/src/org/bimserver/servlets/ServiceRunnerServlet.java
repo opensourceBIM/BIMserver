@@ -64,6 +64,9 @@ public class ServiceRunnerServlet extends SubServlet {
 		}
 		
 		LOGGER.info("Token: " + token);
+		if (token == null) {
+			response.sendError(403, "Token required");
+		}
 		
 		String serviceName = request.getHeader("ServiceName");
 		if (serviceName == null) {
