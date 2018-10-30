@@ -593,7 +593,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	@Override
 	public synchronized void incrementCommittedWrites(long committedWrites) {
 		this.committedWrites += committedWrites;
-		int printThreshold = 200000;
+		int printThreshold = 1000000;
 		if (this.committedWrites / printThreshold != lastPrintedCommittedWrites) {
 			lastPrintedCommittedWrites = this.committedWrites / printThreshold;
 			long start = System.nanoTime();
