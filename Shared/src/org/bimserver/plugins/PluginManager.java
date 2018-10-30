@@ -414,6 +414,9 @@ public class PluginManager implements PluginManagerInterface {
 		};
 
 		SPluginBundle sPluginBundle = new SPluginBundle();
+		if (model.getOrganization() == null) {
+			throw new PluginException("Plugis are required to have an organization in the pom.xml file");
+		}
 		sPluginBundle.setOrganization(model.getOrganization().getName());
 		sPluginBundle.setName(model.getName());
 
