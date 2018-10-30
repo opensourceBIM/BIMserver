@@ -33,14 +33,13 @@ import org.bimserver.models.store.ServerState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.base.Charsets;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
 
 public class JsonApiServlet extends SubServlet {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JsonApiServlet.class);
+	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
 	public JsonApiServlet(BimServer bimServer, ServletContext servletContext) {
 		super(bimServer, servletContext);
@@ -61,11 +60,9 @@ public class JsonApiServlet extends SubServlet {
 			if (LOGGER.isDebugEnabled()) {
 				LOGGER.debug("Incoming JSON " + new String(bytes, Charsets.UTF_8));
 			}
-			JsonReader jsonReader = new JsonReader(new InputStreamReader(new ByteArrayInputStream(bytes), Charsets.UTF_8));
-			JsonParser parser = new JsonParser();
-			JsonElement parse = parser.parse(jsonReader);
-			if (parse instanceof JsonObject) {
-				JsonObject jsonRequest = (JsonObject) parse;
+			ObjectNode parse = OBJECT_MAPPER.readValue(new ByteArrayInputStream(bytes), ObjectNode.class);
+			if (parse instanceof ObjectNode) {
+				ObjectNode jsonRequest = (ObjectNode) parse;
 				response.setHeader("Content-Type", "application/json");
 				getBimServer().getJsonHandler().execute(jsonRequest, request, response.getWriter());
 			} else {

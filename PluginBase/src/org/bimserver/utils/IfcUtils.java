@@ -30,6 +30,7 @@ import java.util.function.Function;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAreaMeasure;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement2D;
@@ -88,6 +89,7 @@ import org.bimserver.models.ifc2x3tc1.IfcUnitEnum;
 import org.bimserver.models.ifc2x3tc1.IfcValue;
 import org.bimserver.models.ifc2x3tc1.IfcVolumeMeasure;
 import org.bimserver.models.ifc2x3tc1.Tristate;
+import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcPropertySetDefinitionSelect;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -222,6 +224,45 @@ public class IfcUtils {
 					return getIfcProject(relatingStructure);
 				} else {
 					if (relatingStructure instanceof IfcSpace) {
+						return getIfcProject(relatingStructure);
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	public static IdEObject getIfcProject(IdEObject ifcProduct) {
+		if (ifcProduct.eClass().getEPackage() == Ifc4Package.eINSTANCE) {
+			return getIfcProject((org.bimserver.models.ifc4.IfcProduct)ifcProduct);
+		} else if (ifcProduct.eClass().getEPackage() == Ifc2x3tc1Package.eINSTANCE) {
+			return getIfcProject((IfcProduct)ifcProduct);
+		}
+		return null;
+	}
+	
+	public static org.bimserver.models.ifc4.IfcProject getIfcProject(org.bimserver.models.ifc4.IfcProduct ifcProduct) {
+		if (ifcProduct instanceof IfcProject) {
+			return (org.bimserver.models.ifc4.IfcProject) ifcProduct;
+		}
+		for (org.bimserver.models.ifc4.IfcRelAggregates ifcRelAggregates : ifcProduct.getDecomposes()) {
+			org.bimserver.models.ifc4.IfcObjectDefinition relatingObject = ifcRelAggregates.getRelatingObject();
+			if (relatingObject instanceof org.bimserver.models.ifc4.IfcProject) {
+				return (org.bimserver.models.ifc4.IfcProject)relatingObject;
+			} else if (relatingObject instanceof org.bimserver.models.ifc4.IfcProduct){
+				return getIfcProject((org.bimserver.models.ifc4.IfcProduct) relatingObject);
+			}
+		}
+		if (ifcProduct instanceof org.bimserver.models.ifc4.IfcElement) {
+			org.bimserver.models.ifc4.IfcElement ifcElement = (org.bimserver.models.ifc4.IfcElement)ifcProduct;
+			for (org.bimserver.models.ifc4.IfcRelContainedInSpatialStructure ifcRelContainedInSpatialStructure : ifcElement.getContainedInStructure()) {
+				org.bimserver.models.ifc4.IfcSpatialElement relatingStructure = ifcRelContainedInSpatialStructure.getRelatingStructure();
+				if (relatingStructure instanceof org.bimserver.models.ifc4.IfcProject) {
+					return (org.bimserver.models.ifc4.IfcProject) relatingStructure;
+				} else if (relatingStructure instanceof org.bimserver.models.ifc4.IfcBuildingStorey) {
+					return getIfcProject(relatingStructure);
+				} else {
+					if (relatingStructure instanceof org.bimserver.models.ifc4.IfcSpace) {
 						return getIfcProject(relatingStructure);
 					}
 				}

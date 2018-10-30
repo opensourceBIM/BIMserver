@@ -46,7 +46,7 @@ import org.eclipse.jetty.websocket.client.WebSocketClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.JsonObject;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class NotificationsManager extends NotificationsClient {
 
@@ -176,10 +176,10 @@ public class NotificationsManager extends NotificationsClient {
 		}
 	}
 
-	public void handleIncoming(JsonObject request) throws UserException, ConvertException, IOException {
+	public void handleIncoming(ObjectNode request) throws UserException, ConvertException, IOException {
 		// TODO copied code from JsonHandler
-		String interfaceName = request.get("interface").getAsString();
-		String methodName = request.get("method").getAsString();
+		String interfaceName = request.get("interface").asText();
+		String methodName = request.get("method").asText();
 		SService sService = servicesMap.getByName(interfaceName);
 		if (sService == null) {
 			sService = servicesMap.getBySimpleName(interfaceName);
@@ -198,7 +198,7 @@ public class NotificationsManager extends NotificationsClient {
 		}
 		KeyValuePair[] parameters = new KeyValuePair[method.getParameters().size()];
 		if (request.has("parameters")) {
-			JsonObject parametersJson = request.getAsJsonObject("parameters");
+			ObjectNode parametersJson = (ObjectNode) request.get("parameters");
 			for (int i = 0; i < method.getParameters().size(); i++) {
 				SParameter parameter = method.getParameter(i);
 				if (parametersJson.has(parameter.getName())) {

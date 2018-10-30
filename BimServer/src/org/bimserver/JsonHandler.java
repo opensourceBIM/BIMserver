@@ -39,79 +39,86 @@ import org.bimserver.shared.reflector.KeyValuePair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.core.JsonEncoding;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class JsonHandler {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JsonHandler.class);
 	private final BimServer bimServer;
 	private final JsonConverter converter;
+	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
 	public JsonHandler(BimServer bimServer) {
 		this.bimServer = bimServer;
 		this.converter = new JsonConverter(bimServer.getServicesMap());
 	}
 
-	public void execute(JsonObject incomingMessage, HttpServletRequest httpRequest, Writer out) {
-		JsonWriter jsonWriter = new JsonWriter(out);
-		jsonWriter.setLenient(true);
+	public void execute(ObjectNode incomingMessage, HttpServletRequest httpRequest, Writer out) {
+		JsonFactory jsonFactory = new JsonFactory();
+		JsonGenerator writer = null;
 		try {
-			jsonWriter.beginObject();
-			String token = incomingMessage.has("token") ? incomingMessage.get("token").getAsString() : null;
-			String oAuthCode = incomingMessage.has("oauthcode") ? incomingMessage.get("oauthcode").getAsString() : null;
-			long messageId = incomingMessage.has("id") ? incomingMessage.get("id").getAsLong() : -1;
+			writer = jsonFactory.createGenerator(out);
+			writer.writeStartObject();
+			String token = incomingMessage.has("token") ? incomingMessage.get("token").asText() : null;
+			String oAuthCode = incomingMessage.has("oauthcode") ? incomingMessage.get("oauthcode").asText() : null;
+			long messageId = incomingMessage.has("id") ? incomingMessage.get("id").asLong() : -1;
 			if (messageId != -1) {
-				jsonWriter.name("id");
-				jsonWriter.value(messageId);
+				writer.writeFieldName("id");
+				writer.writeNumber(messageId);
 			}
 			if (incomingMessage.has("request")) {
-				jsonWriter.name("response");
-				processSingleRequest(incomingMessage.getAsJsonObject("request"), token, oAuthCode, httpRequest, jsonWriter);
+				writer.writeFieldName("response");
+				processSingleRequest((ObjectNode) incomingMessage.get("request"), token, oAuthCode, httpRequest, writer);
 			} else if (incomingMessage.has("requests")) {
-				processMultiRequest(incomingMessage.getAsJsonArray("requests"), token, oAuthCode, httpRequest, jsonWriter);
+				processMultiRequest((ArrayNode) incomingMessage.get("requests"), token, oAuthCode, httpRequest, writer);
 			}
 		} catch (Throwable throwable) {
 			if (throwable instanceof UserException) {
-				
+
 			} else {
 				LOGGER.info(incomingMessage.toString());
 				LOGGER.info("", throwable);
 			}
-//			throwable.printStackTrace();
-			handleThrowable(jsonWriter, throwable);
+			// throwable.printStackTrace();
+			handleThrowable(writer, throwable);
 		} finally {
 			try {
-				jsonWriter.endObject();
+				writer.writeEndObject();
+				writer.close();
 			} catch (Exception e) {
 				LOGGER.error("", e);
 			}
 		}
 	}
 
-	private void processMultiRequest(JsonArray requests, String jsonToken, String oAuthCode, HttpServletRequest httpRequest, JsonWriter out) throws Exception {
-		out.name("responses");
-		out.beginArray();
+	private void processMultiRequest(ArrayNode requests, String jsonToken, String oAuthCode, HttpServletRequest httpRequest, JsonGenerator out) throws Exception {
+		out.writeFieldName("responses");
+		out.writeStartArray();
 		for (int r = 0; r < requests.size(); r++) {
 			try {
-				processSingleRequest((JsonObject) requests.get(r), jsonToken, oAuthCode, httpRequest, out);
+				processSingleRequest((ObjectNode) requests.get(r), jsonToken, oAuthCode, httpRequest, out);
 			} catch (Exception e) {
 				handleThrowable(out, e);
 			}
 		}
-		out.endArray();
+		out.writeEndArray();
 	}
 
-	private void processSingleRequest(JsonObject request, String jsonToken, String oAuthCode, HttpServletRequest httpRequest, JsonWriter writer) throws Exception {
+	private void processSingleRequest(ObjectNode request, String jsonToken, String oAuthCode, HttpServletRequest httpRequest, JsonGenerator writer) throws Exception {
 		long s = System.nanoTime();
 		if (!request.has("interface")) {
 			throw new UserException("No \"interface\" parameter found in request");
 		}
-		String interfaceName = request.get("interface").getAsString();
+		String interfaceName = request.get("interface").asText();
 		if (!request.has("method")) {
 			throw new UserException("No \"method\" parameter found in request");
 		}
-		String methodName = request.get("method").getAsString();
+		String methodName = request.get("method").asText();
 		SService sService = bimServer.getServicesMap().getByName(interfaceName);
 		if (sService == null) {
 			sService = bimServer.getServicesMap().getBySimpleName(interfaceName);
@@ -130,12 +137,11 @@ public class JsonHandler {
 		}
 		KeyValuePair[] parameters = new KeyValuePair[method.getParameters().size()];
 		if (request.has("parameters")) {
-			JsonObject parametersJson = request.getAsJsonObject("parameters");
+			ObjectNode parametersJson = (ObjectNode) request.get("parameters");
 			for (int i = 0; i < method.getParameters().size(); i++) {
 				SParameter parameter = method.getParameter(i);
 				if (parametersJson.has(parameter.getName())) {
-					parameters[i] = new KeyValuePair(parameter.getName(), converter.fromJson(parameter.getType(), parameter.getGenericType(),
-							parametersJson.get(parameter.getName())));
+					parameters[i] = new KeyValuePair(parameter.getName(), converter.fromJson(parameter.getType(), parameter.getGenericType(), parametersJson.get(parameter.getName())));
 				} else {
 					LOGGER.error("Missing parameter: " + method.getName() + " -> " + parameter.getName());
 					throw new UserException("Missing parameter: " + method.getName() + " -> " + parameter.getName());
@@ -152,24 +158,27 @@ public class JsonHandler {
 			Recording recording = bimServer.getMetricsRegistry().startRecording(sService, method);
 
 			Object result = method.invoke(sService.getInterfaceClass(), service, parameters);
-			
+
 			recording.finish();
-			
-			// When we have managed to get here, no exceptions have been thrown. We
-			// can safely assume further serialization to JSON won't fail. So now we
+
+			// When we have managed to get here, no exceptions have been thrown.
+			// We
+			// can safely assume further serialization to JSON won't fail. So
+			// now we
 			// can start streaming
 			if (writer != null) {
 				if (result == null) {
-					writer.beginObject();
-					writer.name("result");
-					writer.beginObject();
-					writer.endObject();
-					writer.endObject();
+					writer.writeStartObject();
+					writer.writeFieldName("result");
+					writer.writeStartObject();
+					writer.writeEndObject();
+					writer.writeEndObject();
 				} else {
-					writer.beginObject();
-					writer.name("result");
-					converter.toJson(result, writer);
-					writer.endObject();
+					writer.writeStartObject();
+					writer.writeFieldName("result");
+					JsonNode jsonResult = converter.toJson(result);
+					OBJECT_MAPPER.writeValue(writer, jsonResult);
+					writer.writeEndObject();
 				}
 			}
 			long e = System.nanoTime();
@@ -179,7 +188,7 @@ public class JsonHandler {
 		}
 	}
 
-	private void handleThrowable(JsonWriter writer, Throwable throwable) {
+	private void handleThrowable(JsonGenerator writer, Throwable throwable) {
 		if (!(throwable instanceof ServiceException)) {
 			LoggerFactory.getLogger(JsonHandler.class).error("", throwable);
 		} else {
@@ -188,33 +197,32 @@ public class JsonHandler {
 			}
 		}
 		try {
-			writer.beginObject();
-			writer.name("exception");
-			writer.beginObject();
-			writer.name("__type");
-			writer.value(throwable.getClass().getSimpleName());
-			writer.name("message");
-			writer.value(throwable.getMessage() == null ? throwable.toString() : throwable.getMessage());
+			writer.writeStartObject();
+			writer.writeFieldName("exception");
+			writer.writeStartObject();
+			writer.writeFieldName("__type");
+			writer.writeString(throwable.getClass().getSimpleName());
+			writer.writeFieldName("message");
+			writer.writeString(throwable.getMessage() == null ? throwable.toString() : throwable.getMessage());
 			if (throwable instanceof ServiceException) {
 				ServiceException serviceException = (ServiceException) throwable;
 				if (serviceException.getErrorCode() != null) {
-					writer.name("errorCode");
-					writer.value(serviceException.getErrorCode().getCode());
+					writer.writeFieldName("errorCode");
+					writer.writeNumber(serviceException.getErrorCode().getCode());
 				}
 			}
-			writer.endObject();
-			writer.endObject();
+			writer.writeEndObject();
+			writer.writeEndObject();
 		} catch (IOException e) {
 			LOGGER.error("", e);
 		}
 	}
 
-	private <T extends PublicInterface> T getServiceInterface(HttpServletRequest httpRequest, BimServer bimServer, Class<T> interfaceClass, String methodName, String token, String oAuthCode)
-			throws UserException, ServerException {
+	private <T extends PublicInterface> T getServiceInterface(HttpServletRequest httpRequest, BimServer bimServer, Class<T> interfaceClass, String methodName, String token, String oAuthCode) throws UserException, ServerException {
 		if (methodName.equals("login") || methodName.equals("autologin")) {
 			return bimServer.getServiceFactory().get(AccessMethod.JSON).get(interfaceClass);
 		}
-		
+
 		if (token == null) {
 			token = httpRequest == null ? null : (String) httpRequest.getSession().getAttribute("token");
 		}

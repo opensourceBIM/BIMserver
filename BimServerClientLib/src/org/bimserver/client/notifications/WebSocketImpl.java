@@ -31,10 +31,8 @@ import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 @WebSocket
 public class WebSocketImpl {
@@ -74,21 +72,18 @@ public class WebSocketImpl {
     @OnWebSocketMessage
     public void onMessage(String msg) {
     	try {
-    		System.out.println(msg);
-			JsonReader jsonReader = new JsonReader(new StringReader(msg));
-			JsonParser parser = new JsonParser();
-			JsonElement parse = parser.parse(jsonReader);
-			if (parse instanceof JsonObject) {
-				JsonObject object = (JsonObject)parse;
+			ObjectNode parse = new ObjectMapper().readValue(msg, ObjectNode.class);
+			if (parse instanceof ObjectNode) {
+				ObjectNode object = (ObjectNode)parse;
 				if (object.has("welcome")) {
 					String token = socketNotificationsClient.getBimServerClient().getToken();
 					session.getRemote().sendString("{\"token\":\"" + token + "\"}");
 				} else if (object.has("endpointid")) {
-					socketNotificationsClient.setEndpointId(object.get("endpointid").getAsLong());
+					socketNotificationsClient.setEndpointId(object.get("endpointid").asLong());
 					countDownLatch.countDown();
 				} else {
 					try {
-						socketNotificationsClient.handleIncoming(object.get("request").getAsJsonObject());
+						socketNotificationsClient.handleIncoming((ObjectNode) object.get("request"));
 					} catch (UserException e) {
 						LOGGER.error("", e);
 					} catch (ConvertException e) {

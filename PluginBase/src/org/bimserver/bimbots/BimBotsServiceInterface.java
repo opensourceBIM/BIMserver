@@ -26,4 +26,5 @@ public interface BimBotsServiceInterface {
 	boolean requiresGeometry();
 	Set<String> getAvailableInputs() throws BimBotsException;
 	Set<String> getAvailableOutputs() throws BimBotsException;
+	boolean needsRawInput();
 }

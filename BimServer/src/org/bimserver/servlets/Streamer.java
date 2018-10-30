@@ -45,11 +45,10 @@ import org.bimserver.webservices.ServiceMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
 
 public class Streamer implements EndPoint {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Streamer.class);
@@ -74,137 +73,150 @@ public class Streamer implements EndPoint {
 		welcome.put("welcome", new GregorianCalendar().getTimeInMillis());
 		streamingSocketInterface.send(welcome);
 	}
-	
+
 	public void onText(Reader reader) {
-		JsonReader jsonreader = new JsonReader(reader);
-		JsonParser parser = new JsonParser();
-		JsonObject request = (JsonObject) parser.parse(jsonreader);
-		if (request.has("hb")) {
-			// Heartbeat, ignore
-		} else if (request.has("action")) {
-			if (request.get("action").getAsString().equals("download")) {
-				final long topicId = request.get("topicId").getAsLong();
-				bimServer.getExecutorService().execute(new Runnable() {
-					public void run() {
-						Writer writer = null;
-						try {
-							LongAction<?> longAction = bimServer.getLongActionManager().getLongAction(topicId);
-							if (longAction instanceof LongStreamingDownloadAction) {
-								LongStreamingDownloadAction longStreamingDownloadAction = (LongStreamingDownloadAction)longAction;
-								writer = longStreamingDownloadAction.getMessagingStreamingSerializer();
-							} else {
-								LongDownloadOrCheckoutAction longDownloadAction = (LongDownloadOrCheckoutAction) longAction;
-								writer = longDownloadAction.getMessagingSerializer();
-							}
-							boolean writeMessage = true;
-							
-							// TODO whenever a large object has been sent, the large buffer stays in memory until websocket closes...
-							ReusableLittleEndianDataOutputStream byteArrayOutputStream = new ReusableLittleEndianDataOutputStream();
-							GrowingByteBuffer growingByteBuffer = byteArrayOutputStream.getGrowingByteBuffer();
-							ProgressReporter progressReporter = new ProgressReporter() {
-								@Override
-								public void update(long progress, long max) {
-									longAction.updateProgress("test", (int) ((progress * 100) / max));
-								}
-								
-								@Override
-								public void setTitle(String title) {
-								}
-							};
-							int messagesSent = 0;
-//							streamingSocketInterface.enableBatching();
-//							int bytes = 0;
-//							long start = System.nanoTime();
-
-//							for (int i=0; i<100; i++) {
-//								byteArrayOutputStream.reset();
-//								byteArrayOutputStream.writeLongUnchecked(topicId);
-//								if (i == 99) {
-//									growingByteBuffer.put((byte)6);
-//								}
-//								growingByteBuffer.put(new byte[10000000]);
-//								ByteBuffer newBuffer = ByteBuffer.allocate(growingByteBuffer.usedSize());
-//								newBuffer.put(growingByteBuffer.array(), 0, growingByteBuffer.usedSize());
-//								streamingSocketInterface.send(newBuffer.array(), 0, newBuffer.capacity());
-//								bytes += newBuffer.capacity() + 8;
-//								messagesSent++;
-//							}
-
-							
-							byteArrayOutputStream.writeLongUnchecked(topicId);
-							do {
-								writeMessage = writer.writeMessage(byteArrayOutputStream, progressReporter);
-								messagesSent++;
-								if (messagesSent % 25 == 0 || !writeMessage) {
-									ByteBuffer newBuffer = ByteBuffer.allocate(growingByteBuffer.usedSize());
-									newBuffer.put(growingByteBuffer.array(), 0, growingByteBuffer.usedSize());
-									streamingSocketInterface.sendBlocking(newBuffer.array(), 0, newBuffer.capacity());
-									byteArrayOutputStream.reset();
-									byteArrayOutputStream.writeLongUnchecked(topicId);
-								}
-							} while (writeMessage);
-//							streamingSocketInterface.flush();
-//							long end = System.nanoTime();
-//							LOGGER.info(messagesSent + " messages written " + Formatters.bytesToString(bytes) + " in " + ((end - start) / 1000000) + " ms");
-						} catch (IOException e) {
-							LOGGER.error("", e);
-							// Probably closed/F5-ed browser
-						} catch (SerializerException e) {
-							LOGGER.error("", e);
-						} finally {
+		try {
+			ObjectNode request = OBJECT_MAPPER.readValue(reader, ObjectNode.class);
+			if (request.has("hb")) {
+				// Heartbeat, ignore
+			} else if (request.has("action")) {
+				if (request.get("action").asText().equals("download")) {
+					final long topicId = request.get("topicId").asLong();
+					bimServer.getExecutorService().execute(new Runnable() {
+						public void run() {
+							Writer writer = null;
 							try {
-								if (writer != null) {
-									writer.close();
+								LongAction<?> longAction = bimServer.getLongActionManager().getLongAction(topicId);
+								if (longAction instanceof LongStreamingDownloadAction) {
+									LongStreamingDownloadAction longStreamingDownloadAction = (LongStreamingDownloadAction) longAction;
+									writer = longStreamingDownloadAction.getMessagingStreamingSerializer();
+								} else {
+									LongDownloadOrCheckoutAction longDownloadAction = (LongDownloadOrCheckoutAction) longAction;
+									writer = longDownloadAction.getMessagingSerializer();
 								}
+								boolean writeMessage = true;
+
+								// TODO whenever a large object has been sent,
+								// the large buffer stays in memory until
+								// websocket closes...
+								ReusableLittleEndianDataOutputStream byteArrayOutputStream = new ReusableLittleEndianDataOutputStream();
+								GrowingByteBuffer growingByteBuffer = byteArrayOutputStream.getGrowingByteBuffer();
+								ProgressReporter progressReporter = new ProgressReporter() {
+									@Override
+									public void update(long progress, long max) {
+										longAction.updateProgress("test", (int) ((progress * 100) / max));
+									}
+
+									@Override
+									public void setTitle(String title) {
+									}
+								};
+								int messagesSent = 0;
+								// streamingSocketInterface.enableBatching();
+								// int bytes = 0;
+								// long start = System.nanoTime();
+
+								// for (int i=0; i<100; i++) {
+								// byteArrayOutputStream.reset();
+								// byteArrayOutputStream.writeLongUnchecked(topicId);
+								// if (i == 99) {
+								// growingByteBuffer.put((byte)6);
+								// }
+								// growingByteBuffer.put(new byte[10000000]);
+								// ByteBuffer newBuffer =
+								// ByteBuffer.allocate(growingByteBuffer.usedSize());
+								// newBuffer.put(growingByteBuffer.array(), 0,
+								// growingByteBuffer.usedSize());
+								// streamingSocketInterface.send(newBuffer.array(),
+								// 0, newBuffer.capacity());
+								// bytes += newBuffer.capacity() + 8;
+								// messagesSent++;
+								// }
+
+								byteArrayOutputStream.writeLongUnchecked(topicId);
+								do {
+									writeMessage = writer.writeMessage(byteArrayOutputStream, progressReporter);
+									messagesSent++;
+									if (messagesSent % 25 == 0 || !writeMessage) {
+										ByteBuffer newBuffer = ByteBuffer.allocate(growingByteBuffer.usedSize());
+										newBuffer.put(growingByteBuffer.array(), 0, growingByteBuffer.usedSize());
+										streamingSocketInterface.sendBlocking(newBuffer.array(), 0, newBuffer.capacity());
+										byteArrayOutputStream.reset();
+										byteArrayOutputStream.writeLongUnchecked(topicId);
+									}
+								} while (writeMessage);
+								// streamingSocketInterface.flush();
+								// long end = System.nanoTime();
+								// LOGGER.info(messagesSent + " messages written
+								// " + Formatters.bytesToString(bytes) + " in "
+								// + ((end - start) / 1000000) + " ms");
 							} catch (IOException e) {
 								LOGGER.error("", e);
+								// Probably closed/F5-ed browser
+							} catch (SerializerException e) {
+								LOGGER.error("", e);
+							} finally {
+								try {
+									if (writer != null) {
+										writer.close();
+									}
+								} catch (IOException e) {
+									LOGGER.error("", e);
+								}
 							}
 						}
+					});
+				}
+			} else if (request.has("request")) {
+				bimServer.getExecutorService().execute(new Runnable() {
+					@Override
+					public void run() {
+						ByteArrayOutputStream baos = new ByteArrayOutputStream();
+						OutputStreamWriter outputStreamWriter = new OutputStreamWriter(baos);
+						bimServer.getJsonHandler().execute(request, null, outputStreamWriter);
+						try {
+							outputStreamWriter.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						streamingSocketInterface.sendAsText(baos.toByteArray());
 					}
 				});
-			}
-		} else if (request.has("request")) {
-			bimServer.getExecutorService().execute(new Runnable() {
-				@Override
-				public void run() {
-					ByteArrayOutputStream baos = new ByteArrayOutputStream();
-					OutputStreamWriter outputStreamWriter = new OutputStreamWriter(baos);
-					bimServer.getJsonHandler().execute(request, null, outputStreamWriter);
-					try {
-						outputStreamWriter.close();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					streamingSocketInterface.sendAsText(baos.toByteArray());
+			} else if (request.has("token")) {
+				token = request.get("token").asText();
+				try {
+					ServiceMap serviceMap = bimServer.getServiceFactory().get(token, AccessMethod.JSON);
+					uoid = serviceMap.getBimServerAuthInterface().getLoggedInUser().getOid();
+
+					this.endpointid = bimServer.getEndPointManager().register(this);
+
+					ObjectNode endpointMessage = OBJECT_MAPPER.createObjectNode();
+
+					// Next 4 lines are redundant, but added to comply with
+					// bimbots interface
+					endpointMessage.put("type", "endpoint");
+					ObjectNode payload = OBJECT_MAPPER.createObjectNode();
+					payload.put("endpointid", endpointid);
+					endpointMessage.set("payload", payload);
+
+					endpointMessage.put("endpointid", endpointid);
+					streamingSocketInterface.send(endpointMessage);
+				} catch (InvalidTokenException e) {
+					ObjectNode enpointMessage = OBJECT_MAPPER.createObjectNode();
+					enpointMessage.put("error", "Invalid token");
+					streamingSocketInterface.send(enpointMessage);
+				} catch (UserException e) {
+					LOGGER.error("", e);
+				} catch (ServerException e) {
+					LOGGER.error("", e);
 				}
-			});
-		} else if (request.has("token")) {
-			token = request.get("token").getAsString();
-			try {
-				ServiceMap serviceMap = bimServer.getServiceFactory().get(token, AccessMethod.JSON);
-				uoid = serviceMap.getBimServerAuthInterface().getLoggedInUser().getOid();
-
-				this.endpointid = bimServer.getEndPointManager().register(this);
-				
-				ObjectNode endpointMessage = OBJECT_MAPPER.createObjectNode();
-
-				// Next 4 lines are redundant, but added to comply with bimbots interface
-				endpointMessage.put("type", "endpoint");
-				ObjectNode payload = OBJECT_MAPPER.createObjectNode();
-				payload.put("endpointid", endpointid);
-				endpointMessage.set("payload", payload);
-
-				endpointMessage.put("endpointid", endpointid);
-				streamingSocketInterface.send(endpointMessage);
-			} catch (InvalidTokenException e) {
-				ObjectNode enpointMessage = OBJECT_MAPPER.createObjectNode();
-				enpointMessage.put("error", "Invalid token");
-				streamingSocketInterface.send(enpointMessage);
-			} catch (UserException e) {
-				LOGGER.error("", e);
-			} catch (ServerException e) {
-				LOGGER.error("", e);
 			}
+		} catch (JsonParseException e1) {
+			LOGGER.error("", e1);
+		} catch (JsonMappingException e1) {
+			LOGGER.error("", e1);
+		} catch (IOException e1) {
+			LOGGER.error("", e1);
 		}
 	}
 
@@ -237,16 +249,16 @@ public class Streamer implements EndPoint {
 	public long getUoid() {
 		return uoid;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Streamer with endpoint " + endpointid;
 	}
-	
+
 	public String getToken() {
 		return token;
 	}
-	
+
 	public StreamingSocketInterface getStreamingSocketInterface() {
 		return streamingSocketInterface;
 	}

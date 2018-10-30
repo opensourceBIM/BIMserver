@@ -45,6 +45,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.BooleanNode;
 import com.fasterxml.jackson.databind.node.DoubleNode;
+import com.fasterxml.jackson.databind.node.FloatNode;
 import com.fasterxml.jackson.databind.node.IntNode;
 import com.fasterxml.jackson.databind.node.LongNode;
 import com.fasterxml.jackson.databind.node.NullNode;
@@ -117,7 +118,7 @@ public class JsonConverter {
 			SBase base = (SBase) object;
 			ObjectNode jsonObject = OBJECT_MAPPER.createObjectNode();
 			jsonObject.put("__type", base.getSClass().getSimpleName());
-			for (SField field : base.getSClass().getOwnFields()) {
+			for (SField field : base.getSClass().getAllFields()) {
 				jsonObject.set(field.getName(), toJson(base.sGet(field)));
 			}
 			return jsonObject;
@@ -146,6 +147,8 @@ public class JsonConverter {
 			return new IntNode((Integer) object);
 		} else if (object instanceof Double) {
 			return new DoubleNode((Double) object);
+		} else if (object instanceof Float) {
+			return new FloatNode((Float) object);
 		} else if (object instanceof Enum) {
 			return new TextNode(object.toString());
 		} else if (object == null) {
@@ -287,7 +290,7 @@ public class JsonConverter {
 				}
 			} else if (definedType.isFloat()) {
 				if (object instanceof ValueNode) {
-					return ((ValueNode) object).asDouble();
+					return (float)((ValueNode) object).asDouble();
 				}
 			} else if (definedType.isVoid()) {
 				return null;

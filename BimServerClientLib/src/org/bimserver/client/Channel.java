@@ -59,10 +59,8 @@ import org.bimserver.shared.reflector.ReflectorFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public abstract class Channel implements ServiceHolder {
 	private final Map<String, PublicInterface> serviceInterfaces = new HashMap<String, PublicInterface>();
@@ -78,25 +76,25 @@ public abstract class Channel implements ServiceHolder {
 	public <T extends PublicInterface> T get(String interfaceClass) {
 		return (T) serviceInterfaces.get(interfaceClass);
 	}
-	
+
 	public void add(String interfaceClass, PublicInterface service) {
 		serviceInterfaces.put(interfaceClass, service);
 	}
-	
+
 	public Map<String, PublicInterface> getServiceInterfaces() {
 		return serviceInterfaces;
 	}
-	
+
 	public void registerConnectDisconnectListener(ConnectDisconnectListener connectDisconnectListener) {
 		connectDisconnectListeners.add(connectDisconnectListener);
 	}
-	
+
 	public void notifyOfConnect() {
 		for (ConnectDisconnectListener connectDisconnectListener : connectDisconnectListeners) {
 			connectDisconnectListener.connected();
 		}
 	}
-	
+
 	public void notifyOfDisconnect() {
 		for (ConnectDisconnectListener connectDisconnectListener : connectDisconnectListeners) {
 			connectDisconnectListener.disconnected();
@@ -105,7 +103,7 @@ public abstract class Channel implements ServiceHolder {
 
 	protected void finish(Reflector reflector, ReflectorFactory reflectorFactory) {
 	}
-	
+
 	public abstract void disconnect();
 
 	public abstract void connect(TokenHolder tokenHolder) throws ChannelConnectionException;
@@ -115,11 +113,12 @@ public abstract class Channel implements ServiceHolder {
 		HttpPost httppost = new HttpPost(address);
 		try {
 			Long topicId = getServiceInterface().initiateCheckin(poid, deserializerOid);
-			// TODO find some GzipInputStream variant that _compresses_ instead of _decompresses_ using deflate for now
+			// TODO find some GzipInputStream variant that _compresses_ instead
+			// of _decompresses_ using deflate for now
 			InputStreamBody data = new InputStreamBody(new DeflaterInputStream(inputStream), filename);
-			
+
 			MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
-			
+
 			multipartEntityBuilder.addPart("topicId", new StringBody("" + topicId, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("token", new StringBody(token, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("deserializerOid", new StringBody("" + deserializerOid, ContentType.DEFAULT_TEXT));
@@ -129,32 +128,29 @@ public abstract class Channel implements ServiceHolder {
 			multipartEntityBuilder.addPart("sync", new StringBody("" + (flow == Flow.SYNC), ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("compression", new StringBody("deflate", ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("data", data);
-			
+
 			httppost.setEntity(multipartEntityBuilder.build());
-			
+
 			HttpResponse httpResponse = closeableHttpClient.execute(httppost);
 			if (httpResponse.getStatusLine().getStatusCode() == 200) {
-				JsonParser jsonParser = new JsonParser();
+				ObjectMapper objectMapper = new ObjectMapper();
 				InputStreamReader in = new InputStreamReader(httpResponse.getEntity().getContent());
 				try {
-					JsonElement result = jsonParser.parse(new JsonReader(in));
-					if (result instanceof JsonObject) {
-						JsonObject jsonObject = (JsonObject)result;
-						if (jsonObject.has("exception")) {
-							JsonObject exceptionJson = jsonObject.get("exception").getAsJsonObject();
-							String exceptionType = exceptionJson.get("__type").getAsString();
-							String message = exceptionJson.has("message") ? exceptionJson.get("message").getAsString() : "unknown";
-							if (exceptionType.equals(UserException.class.getSimpleName())) {
-								throw new UserException(message);
-							} else if (exceptionType.equals(ServerException.class.getSimpleName())) {
-								throw new ServerException(message);
-							}
+					ObjectNode result = objectMapper.readValue(in, ObjectNode.class);
+					if (result.has("exception")) {
+						ObjectNode exceptionJson = (ObjectNode) result.get("exception");
+						String exceptionType = exceptionJson.get("__type").asText();
+						String message = exceptionJson.has("message") ? exceptionJson.get("message").asText() : "unknown";
+						if (exceptionType.equals(UserException.class.getSimpleName())) {
+							throw new UserException(message);
+						} else if (exceptionType.equals(ServerException.class.getSimpleName())) {
+							throw new ServerException(message);
+						}
+					} else {
+						if (result.has("topicId")) {
+							return result.get("topicId").asLong();
 						} else {
-							if (jsonObject.has("topicId")) {
-								return jsonObject.get("topicId").getAsLong();
-							} else {
-								throw new ServerException("No topicId found in response: " + jsonObject.toString());
-							}
+							throw new ServerException("No topicId found in response: " + result.toString());
 						}
 					}
 				} finally {
@@ -210,7 +206,7 @@ public abstract class Channel implements ServiceHolder {
 		}
 		return null;
 	}
-	
+
 	public <T extends PublicInterface> T get(Class<T> class1) throws PublicInterfaceNotFoundException {
 		T t = get(class1.getName());
 		if (t == null) {
@@ -218,47 +214,47 @@ public abstract class Channel implements ServiceHolder {
 		}
 		return t;
 	}
-	
+
 	@Override
 	public AdminInterface getAdminInterface() throws PublicInterfaceNotFoundException {
 		return get(AdminInterface.class);
 	}
-	
+
 	@Override
 	public AuthInterface getAuthInterface() throws PublicInterfaceNotFoundException {
 		return get(AuthInterface.class);
 	}
-	
+
 	@Override
 	public LowLevelInterface getLowLevelInterface() throws PublicInterfaceNotFoundException {
 		return get(LowLevelInterface.class);
 	}
-	
+
 	@Override
 	public MetaInterface getMeta() throws PublicInterfaceNotFoundException {
 		return get(MetaInterface.class);
 	}
-	
+
 	@Override
 	public PluginInterface getPluginInterface() throws PublicInterfaceNotFoundException {
 		return get(PluginInterface.class);
 	}
-	
+
 	@Override
 	public NotificationRegistryInterface getRegistry() throws PublicInterfaceNotFoundException {
 		return get(NotificationRegistryInterface.class);
 	}
-	
+
 	@Override
 	public SettingsInterface getSettingsInterface() throws PublicInterfaceNotFoundException {
 		return get(SettingsInterface.class);
 	}
-	
+
 	@Override
 	public ServiceInterface getServiceInterface() throws PublicInterfaceNotFoundException {
 		return get(ServiceInterface.class);
 	}
-	
+
 	@Override
 	public NewServicesInterface getNewServicesInterface() throws PublicInterfaceNotFoundException {
 		return get(NewServicesInterface.class);
@@ -277,33 +273,30 @@ public abstract class Channel implements ServiceHolder {
 		HttpPost httppost = new HttpPost(address);
 		try (InputStream inputStream = Files.newInputStream(file)) {
 			InputStreamBody data = new InputStreamBody(inputStream, file.getFileName().toString());
-			
+
 			MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
-			
+
 			multipartEntityBuilder.addPart("token", new StringBody(token, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("poid", new StringBody("" + poid, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("comment", new StringBody("" + comment, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("data", data);
-			
+
 			httppost.setEntity(multipartEntityBuilder.build());
-			
+
 			HttpResponse httpResponse = closeableHttpClient.execute(httppost);
 			if (httpResponse.getStatusLine().getStatusCode() == 200) {
-				JsonParser jsonParser = new JsonParser();
+				ObjectMapper objectMapper = new ObjectMapper();
 				InputStreamReader in = new InputStreamReader(httpResponse.getEntity().getContent());
 				try {
-					JsonElement result = jsonParser.parse(new JsonReader(in));
-					if (result instanceof JsonObject) {
-						JsonObject jsonObject = (JsonObject)result;
-						if (jsonObject.has("exception")) {
-							JsonObject exceptionJson = jsonObject.get("exception").getAsJsonObject();
-							String exceptionType = exceptionJson.get("__type").getAsString();
-							String message = exceptionJson.has("message") ? exceptionJson.get("message").getAsString() : "unknown";
-							if (exceptionType.equals(UserException.class.getSimpleName())) {
-								throw new UserException(message);
-							} else if (exceptionType.equals(ServerException.class.getSimpleName())) {
-								throw new ServerException(message);
-							}
+					ObjectNode result = objectMapper.readValue(in, ObjectNode.class);
+					if (result.has("exception")) {
+						ObjectNode exceptionJson = (ObjectNode) result.get("exception");
+						String exceptionType = exceptionJson.get("__type").asText();
+						String message = exceptionJson.has("message") ? exceptionJson.get("message").asText() : "unknown";
+						if (exceptionType.equals(UserException.class.getSimpleName())) {
+							throw new UserException(message);
+						} else if (exceptionType.equals(ServerException.class.getSimpleName())) {
+							throw new ServerException(message);
 						}
 					}
 				} finally {

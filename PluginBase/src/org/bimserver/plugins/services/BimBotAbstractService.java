@@ -20,6 +20,7 @@ package org.bimserver.plugins.services;
 import java.util.Collections;
 import java.util.Set;
 
+import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.bimserver.bimbots.BimBotContext;
 import org.bimserver.bimbots.BimBotsException;
 import org.bimserver.bimbots.BimBotsInput;
@@ -30,6 +31,7 @@ import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.SchemaName;
 import org.slf4j.Logger;
@@ -41,17 +43,26 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 	@Override
 	public void newRevision(RunningService runningService, BimServerClientInterface bimServerClientInterface, long poid, long roid, String userToken, long soid, SObjectType settings) throws Exception {
 		try {
-			BimBotsInput input = new BimBotsInput(SchemaName.IFC_STEP_2X3TC1, null);
+			byte[] data = null;
+			if (needsRawInput()) {
+				// We need to generate some, by serializing the current model
+				SSerializerPluginConfiguration serializerByContentType = bimServerClientInterface.getServiceInterface().getSerializerByContentType("application/ifc");
+				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+				bimServerClientInterface.download(roid, serializerByContentType.getOid(), outputStream);
+				data = outputStream.toByteArray();
+			}
+			BimBotsInput input = new BimBotsInput(SchemaName.IFC_STEP_2X3TC1, data);
 			SProject project = bimServerClientInterface.getServiceInterface().getProjectByPoid(poid);
 			input.setIfcModel(bimServerClientInterface.getModel(project, roid, false, false, true));
-			BimBotContext bimBotContext = new BimBotContext(){
+			BimBotContext bimBotContext = new BimBotContext() {
 				@Override
 				public void updateProgress(String label, int percentage) {
-					
-				}};
+
+				}
+			};
 			BimBotsOutput output = runBimBot(input, bimBotContext, settings);
 			SFile file = new SFile();
-			
+
 			SExtendedData extendedData = new SExtendedData();
 			extendedData.setTitle(output.getTitle());
 			extendedData.setSize(output.getData().length);
@@ -65,7 +76,7 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 				extendedDataSchemaByName.setName(output.getSchemaName());
 				bimServerClientInterface.getServiceInterface().addExtendedDataSchema(extendedDataSchemaByName);
 			}
-			
+
 			extendedData.setSchemaId(extendedDataSchemaByName.getOid());
 			file.setData(output.getData());
 			file.setSize(output.getData().length);
@@ -93,7 +104,7 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 		}
 		return Collections.singleton(outputSchema);
 	}
-	
+
 	@Override
 	public Set<String> getAvailableInputs() throws BimBotsException {
 		String input = SchemaName.IFC_STEP_2X3TC1.name();
@@ -102,11 +113,16 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 		}
 		return Collections.singleton(input);
 	}
-	
+
 	@Override
 	public boolean requiresGeometry() {
 		return true;
 	}
-	
+
+	@Override
+	public boolean needsRawInput() {
+		return false;
+	}
+
 	public abstract String getOutputSchema();
 }

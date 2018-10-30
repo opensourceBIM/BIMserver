@@ -36,8 +36,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 
-import com.google.gson.stream.JsonWriter;
-
 public class IfcSchemaToJson {
 	public static void main(String[] args) {
 		generateGeometry();
@@ -111,56 +109,56 @@ public class IfcSchemaToJson {
 			ifcDoc = new IfcDoc(docs);
 		}
 		
-		JsonWriter jsonWriter = new JsonWriter(new OutputStreamWriter(outputStream));
-		jsonWriter.setIndent("  ");
-		try {
-			jsonWriter.beginObject();
-			jsonWriter.name("classes");
-			jsonWriter.beginObject();
-			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
-				jsonWriter.name(eClassifier.getName());
-				jsonWriter.beginObject();
-				if (eClassifier instanceof EEnum) {
-					
-				} else if (eClassifier instanceof EClass) {
-					EClass eClass = (EClass)eClassifier;
-					String domain = "geometry";
-					if (ifcDoc != null) {
-						domain = ifcDoc.getDomain(eClass.getName());
-					}
-					jsonWriter.name("domain");
-					jsonWriter.value(domain);
-					jsonWriter.name("superclasses");
-					jsonWriter.beginArray();
-					for (EClass superClass : eClass.getESuperTypes()) {
-						jsonWriter.value(superClass.getName());
-					}
-					jsonWriter.endArray();
-					
-					jsonWriter.name("fields");
-					jsonWriter.beginObject();
-					for (EStructuralFeature eStructuralFeature : eClass.getEStructuralFeatures()) {
-						jsonWriter.name(eStructuralFeature.getName());
-						jsonWriter.beginObject();
-						jsonWriter.name("type");
-						jsonWriter.value(convertType(eStructuralFeature.getEType()));
-						jsonWriter.name("reference");
-						jsonWriter.value(eStructuralFeature instanceof EReference);
-						jsonWriter.name("many");
-						jsonWriter.value(eStructuralFeature.isMany());
-						jsonWriter.name("inverse");
-						jsonWriter.value(eStructuralFeature.getEAnnotation("inverse") != null);
-						jsonWriter.endObject();
-					}
-					jsonWriter.endObject();
-				}
-				jsonWriter.endObject();
-			}
-			jsonWriter.endObject();
-			jsonWriter.endObject();
-		} finally {
-			jsonWriter.close();
-		}
+//		JsonWriter jsonWriter = new JsonWriter(new OutputStreamWriter(outputStream));
+//		jsonWriter.setIndent("  ");
+//		try {
+//			jsonWriter.beginObject();
+//			jsonWriter.name("classes");
+//			jsonWriter.beginObject();
+//			for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+//				jsonWriter.name(eClassifier.getName());
+//				jsonWriter.beginObject();
+//				if (eClassifier instanceof EEnum) {
+//					
+//				} else if (eClassifier instanceof EClass) {
+//					EClass eClass = (EClass)eClassifier;
+//					String domain = "geometry";
+//					if (ifcDoc != null) {
+//						domain = ifcDoc.getDomain(eClass.getName());
+//					}
+//					jsonWriter.name("domain");
+//					jsonWriter.value(domain);
+//					jsonWriter.name("superclasses");
+//					jsonWriter.beginArray();
+//					for (EClass superClass : eClass.getESuperTypes()) {
+//						jsonWriter.value(superClass.getName());
+//					}
+//					jsonWriter.endArray();
+//					
+//					jsonWriter.name("fields");
+//					jsonWriter.beginObject();
+//					for (EStructuralFeature eStructuralFeature : eClass.getEStructuralFeatures()) {
+//						jsonWriter.name(eStructuralFeature.getName());
+//						jsonWriter.beginObject();
+//						jsonWriter.name("type");
+//						jsonWriter.value(convertType(eStructuralFeature.getEType()));
+//						jsonWriter.name("reference");
+//						jsonWriter.value(eStructuralFeature instanceof EReference);
+//						jsonWriter.name("many");
+//						jsonWriter.value(eStructuralFeature.isMany());
+//						jsonWriter.name("inverse");
+//						jsonWriter.value(eStructuralFeature.getEAnnotation("inverse") != null);
+//						jsonWriter.endObject();
+//					}
+//					jsonWriter.endObject();
+//				}
+//				jsonWriter.endObject();
+//			}
+//			jsonWriter.endObject();
+//			jsonWriter.endObject();
+//		} finally {
+//			jsonWriter.close();
+//		}
 	}
 
 	private String convertType(EClassifier type) {
