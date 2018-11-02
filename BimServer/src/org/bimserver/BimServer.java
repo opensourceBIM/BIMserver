@@ -110,6 +110,8 @@ import org.bimserver.models.store.WebModulePluginConfiguration;
 import org.bimserver.notifications.InternalServicesManager;
 import org.bimserver.notifications.NotificationsManager;
 import org.bimserver.pb.server.ProtocolBuffersServer;
+import org.bimserver.plugins.BasicServerInfo;
+import org.bimserver.plugins.BasicServerInfoProvider;
 import org.bimserver.plugins.MavenPluginRepository;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginBundle;
@@ -156,7 +158,7 @@ import org.slf4j.LoggerFactory;
 /*
  * Main class to start a BIMserver
  */
-public class BimServer {
+public class BimServer implements BasicServerInfoProvider {
 	private static final String ENCRYPTIONKEY = "encryptionkey";
 
 	private Logger LOGGER;
@@ -273,7 +275,7 @@ public class BimServer {
 			}
 
 			MavenPluginRepository mavenPluginRepository = new MavenPluginRepository(config.getHomeDir().resolve("maven"));
-			pluginManager = new PluginManager(tmp, config.getHomeDir().resolve("plugins"), mavenPluginRepository, config.getClassPath(), serviceFactory, internalServicesManager, servicesMap);
+			pluginManager = new PluginManager(tmp, config.getHomeDir().resolve("plugins"), mavenPluginRepository, config.getClassPath(), serviceFactory, internalServicesManager, servicesMap, this);
 			metaDataManager = new MetaDataManager(tmp);
 			pluginManager.setMetaDataManager(metaDataManager);
 			LOGGER.debug("PluginManager created");
@@ -1531,5 +1533,11 @@ public class BimServer {
 	
 	public PluginSettingsCache getPluginSettingsCache() {
 		return pluginSettingsCache;
+	}
+
+	@Override
+	public BasicServerInfo getBasicServerInfo() {
+		BasicServerInfo basicServerInfo = new BasicServerInfo(getServerSettingsCache().getServerSettings().getSiteAddress());
+		return basicServerInfo;
 	}
 }

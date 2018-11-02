@@ -85,4 +85,6 @@ public interface PluginManagerInterface {
 	DeserializerPlugin getFirstDeserializer(String extension, Schema schema, boolean onlyEnabled) throws PluginException;
 
 	SerializerPlugin getSerializerPlugin(String string);
+	
+	BasicServerInfo getBasicServerInfo();
 }

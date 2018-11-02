@@ -112,7 +112,7 @@ public class IfcUtils {
 		});
 		return pathList.get(0);
 	}
-	
+
 	public static int getAllPaths(Path basePath, IdEObject otherObject, Set<Path> paths, Set<EObject> noConnectionPaths) {
 		int connectionsFound = 0;
 		if (noConnectionPaths.contains(basePath.getLastObject())) {
@@ -123,10 +123,10 @@ public class IfcUtils {
 			if (reference != null) {
 				if (eReference.isMany()) {
 					@SuppressWarnings("rawtypes")
-					List list = (List)reference;
-					for (int index=0; index<list.size(); index++) {
+					List list = (List) reference;
+					for (int index = 0; index < list.size(); index++) {
 						Object refObject = list.get(index);
-						IdEObject refIdEObject = (IdEObject)refObject;
+						IdEObject refIdEObject = (IdEObject) refObject;
 						if (basePath.contains(refIdEObject)) {
 							// do nothing
 						} else if (refIdEObject == otherObject) {
@@ -153,7 +153,7 @@ public class IfcUtils {
 		}
 		return connectionsFound;
 	}
-	
+
 	public static IfcBuildingStorey getIfcBuildingStorey(IfcProduct ifcProduct) {
 		if (ifcProduct instanceof IfcBuildingStorey) {
 			return (IfcBuildingStorey) ifcProduct;
@@ -161,11 +161,11 @@ public class IfcUtils {
 		for (IfcRelDecomposes ifcRelDecomposes : ifcProduct.getDecomposes()) {
 			IfcObjectDefinition relatingObject = ifcRelDecomposes.getRelatingObject();
 			if (relatingObject instanceof IfcBuildingStorey) {
-				return (IfcBuildingStorey)relatingObject;
+				return (IfcBuildingStorey) relatingObject;
 			}
 		}
 		if (ifcProduct instanceof IfcElement) {
-			IfcElement ifcElement = (IfcElement)ifcProduct;
+			IfcElement ifcElement = (IfcElement) ifcProduct;
 			for (IfcRelContainedInSpatialStructure ifcRelContainedInSpatialStructure : ifcElement.getContainedInStructure()) {
 				IfcSpatialStructureElement relatingStructure = ifcRelContainedInSpatialStructure.getRelatingStructure();
 				if (relatingStructure instanceof IfcBuildingStorey) {
@@ -201,7 +201,7 @@ public class IfcUtils {
 		}
 		return list;
 	}
-	
+
 	public static IfcProject getIfcProject(IfcProduct ifcProduct) {
 		if (ifcProduct instanceof IfcProject) {
 			return (IfcProject) ifcProduct;
@@ -209,13 +209,13 @@ public class IfcUtils {
 		for (IfcRelDecomposes ifcRelDecomposes : ifcProduct.getDecomposes()) {
 			IfcObjectDefinition relatingObject = ifcRelDecomposes.getRelatingObject();
 			if (relatingObject instanceof IfcProject) {
-				return (IfcProject)relatingObject;
-			} else if (relatingObject instanceof IfcProduct){
+				return (IfcProject) relatingObject;
+			} else if (relatingObject instanceof IfcProduct) {
 				return getIfcProject((IfcProduct) relatingObject);
 			}
 		}
 		if (ifcProduct instanceof IfcElement) {
-			IfcElement ifcElement = (IfcElement)ifcProduct;
+			IfcElement ifcElement = (IfcElement) ifcProduct;
 			for (IfcRelContainedInSpatialStructure ifcRelContainedInSpatialStructure : ifcElement.getContainedInStructure()) {
 				IfcSpatialStructureElement relatingStructure = ifcRelContainedInSpatialStructure.getRelatingStructure();
 				if (relatingStructure instanceof IfcProject) {
@@ -234,13 +234,13 @@ public class IfcUtils {
 
 	public static IdEObject getIfcProject(IdEObject ifcProduct) {
 		if (ifcProduct.eClass().getEPackage() == Ifc4Package.eINSTANCE) {
-			return getIfcProject((org.bimserver.models.ifc4.IfcProduct)ifcProduct);
+			return getIfcProject((org.bimserver.models.ifc4.IfcProduct) ifcProduct);
 		} else if (ifcProduct.eClass().getEPackage() == Ifc2x3tc1Package.eINSTANCE) {
-			return getIfcProject((IfcProduct)ifcProduct);
+			return getIfcProject((IfcProduct) ifcProduct);
 		}
 		return null;
 	}
-	
+
 	public static org.bimserver.models.ifc4.IfcProject getIfcProject(org.bimserver.models.ifc4.IfcProduct ifcProduct) {
 		if (ifcProduct instanceof IfcProject) {
 			return (org.bimserver.models.ifc4.IfcProject) ifcProduct;
@@ -248,13 +248,13 @@ public class IfcUtils {
 		for (org.bimserver.models.ifc4.IfcRelAggregates ifcRelAggregates : ifcProduct.getDecomposes()) {
 			org.bimserver.models.ifc4.IfcObjectDefinition relatingObject = ifcRelAggregates.getRelatingObject();
 			if (relatingObject instanceof org.bimserver.models.ifc4.IfcProject) {
-				return (org.bimserver.models.ifc4.IfcProject)relatingObject;
-			} else if (relatingObject instanceof org.bimserver.models.ifc4.IfcProduct){
+				return (org.bimserver.models.ifc4.IfcProject) relatingObject;
+			} else if (relatingObject instanceof org.bimserver.models.ifc4.IfcProduct) {
 				return getIfcProject((org.bimserver.models.ifc4.IfcProduct) relatingObject);
 			}
 		}
 		if (ifcProduct instanceof org.bimserver.models.ifc4.IfcElement) {
-			org.bimserver.models.ifc4.IfcElement ifcElement = (org.bimserver.models.ifc4.IfcElement)ifcProduct;
+			org.bimserver.models.ifc4.IfcElement ifcElement = (org.bimserver.models.ifc4.IfcElement) ifcProduct;
 			for (org.bimserver.models.ifc4.IfcRelContainedInSpatialStructure ifcRelContainedInSpatialStructure : ifcElement.getContainedInStructure()) {
 				org.bimserver.models.ifc4.IfcSpatialElement relatingStructure = ifcRelContainedInSpatialStructure.getRelatingStructure();
 				if (relatingStructure instanceof org.bimserver.models.ifc4.IfcProject) {
@@ -270,19 +270,19 @@ public class IfcUtils {
 		}
 		return null;
 	}
-	
+
 	public static Tristate getBooleanProperty(IfcObject ifcObject, String propertyName) {
 		for (IfcRelDefines ifcRelDefines : ifcObject.getIsDefinedBy()) {
 			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
-				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
+				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties) ifcRelDefines;
 				IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
 				if (propertySetDefinition instanceof IfcPropertySet) {
-					IfcPropertySet ifcPropertySet = (IfcPropertySet)propertySetDefinition;
+					IfcPropertySet ifcPropertySet = (IfcPropertySet) propertySetDefinition;
 					for (IfcProperty ifcProperty : ifcPropertySet.getHasProperties()) {
 						if (ifcProperty instanceof IfcPropertySingleValue) {
-							IfcPropertySingleValue propertyValue = (IfcPropertySingleValue)ifcProperty;
+							IfcPropertySingleValue propertyValue = (IfcPropertySingleValue) ifcProperty;
 							if (ifcProperty.getName().equals(propertyName)) {
-								IfcBoolean label = (IfcBoolean)propertyValue.getNominalValue();
+								IfcBoolean label = (IfcBoolean) propertyValue.getNominalValue();
 								return label.getWrappedValue();
 							}
 						}
@@ -294,7 +294,9 @@ public class IfcUtils {
 	}
 
 	/**
-	 * Lists all properties of a given IfcPopertySet that are of type IfcPropertySingleValue, all values are converted to the appropriate Java type
+	 * Lists all properties of a given IfcPopertySet that are of type
+	 * IfcPropertySingleValue, all values are converted to the appropriate Java
+	 * type
 	 * 
 	 * @param ifcObject
 	 * @param propertySetName
@@ -304,14 +306,14 @@ public class IfcUtils {
 		Map<String, Object> result = new HashMap<>();
 		for (IfcRelDefines ifcRelDefines : ifcObject.getIsDefinedBy()) {
 			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
-				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
+				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties) ifcRelDefines;
 				IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
 				if (propertySetDefinition instanceof IfcPropertySet) {
-					IfcPropertySet ifcPropertySet = (IfcPropertySet)propertySetDefinition;
+					IfcPropertySet ifcPropertySet = (IfcPropertySet) propertySetDefinition;
 					if (ifcPropertySet.getName() != null && ifcPropertySet.getName().equalsIgnoreCase(propertySetName)) {
 						for (IfcProperty ifcProperty : ifcPropertySet.getHasProperties()) {
 							if (ifcProperty instanceof IfcPropertySingleValue) {
-								IfcPropertySingleValue propertyValue = (IfcPropertySingleValue)ifcProperty;
+								IfcPropertySingleValue propertyValue = (IfcPropertySingleValue) ifcProperty;
 								result.put(propertyValue.getName(), nominalValueToObject(propertyValue.getNominalValue()));
 							}
 						}
@@ -324,38 +326,38 @@ public class IfcUtils {
 
 	private static Object nominalValueToObject(IfcValue nominalValue) {
 		if (nominalValue instanceof IfcLabel) {
-			return ((IfcLabel)nominalValue).getWrappedValue();
+			return ((IfcLabel) nominalValue).getWrappedValue();
 		} else if (nominalValue instanceof IfcIdentifier) {
-			return ((IfcIdentifier)nominalValue).getWrappedValue();
+			return ((IfcIdentifier) nominalValue).getWrappedValue();
 		} else if (nominalValue instanceof IfcBoolean) {
-			return ((IfcBoolean)nominalValue).getWrappedValue();
+			return ((IfcBoolean) nominalValue).getWrappedValue();
 		} else if (nominalValue instanceof IfcText) {
-			return ((IfcText)nominalValue).getWrappedValue();
+			return ((IfcText) nominalValue).getWrappedValue();
 		} else if (nominalValue instanceof IfcLengthMeasure) {
-			return ((IfcLengthMeasure)nominalValue).getWrappedValue();
+			return ((IfcLengthMeasure) nominalValue).getWrappedValue();
 		} else if (nominalValue instanceof IfcPlaneAngleMeasure) {
-			return ((IfcPlaneAngleMeasure)nominalValue).getWrappedValue();
+			return ((IfcPlaneAngleMeasure) nominalValue).getWrappedValue();
 		} else if (nominalValue instanceof IfcAreaMeasure) {
-			return ((IfcAreaMeasure)nominalValue).getWrappedValue();
+			return ((IfcAreaMeasure) nominalValue).getWrappedValue();
 		} else if (nominalValue instanceof IfcVolumeMeasure) {
-			return ((IfcVolumeMeasure)nominalValue).getWrappedValue();
+			return ((IfcVolumeMeasure) nominalValue).getWrappedValue();
 		} else if (nominalValue instanceof IfcReal) {
-			return ((IfcReal)nominalValue).getWrappedValue();
+			return ((IfcReal) nominalValue).getWrappedValue();
 		} else if (nominalValue instanceof IfcPowerMeasure) {
-			return ((IfcPowerMeasure)nominalValue).getWrappedValue();
+			return ((IfcPowerMeasure) nominalValue).getWrappedValue();
 		} else if (nominalValue instanceof IfcInteger) {
-			return ((IfcInteger)nominalValue).getWrappedValue();
+			return ((IfcInteger) nominalValue).getWrappedValue();
 		} else if (nominalValue instanceof IfcElectricCurrentMeasure) {
-			return ((IfcElectricCurrentMeasure)nominalValue).getWrappedValue();
+			return ((IfcElectricCurrentMeasure) nominalValue).getWrappedValue();
 		} else if (nominalValue instanceof IfcLogical) {
-			return ((IfcLogical)nominalValue).getWrappedValue();
+			return ((IfcLogical) nominalValue).getWrappedValue();
 		} else if (nominalValue instanceof IfcCountMeasure) {
-			return ((IfcCountMeasure)nominalValue).getWrappedValue();
+			return ((IfcCountMeasure) nominalValue).getWrappedValue();
 		} else {
 			throw new RuntimeException("Not implemented: " + nominalValue.eClass().getName());
 		}
 	}
-	
+
 	private static String nominalValueToString(IfcValue nominalValue) {
 		Object object = nominalValueToObject(nominalValue);
 		if (object == null) {
@@ -367,13 +369,13 @@ public class IfcUtils {
 	public static String getStringProperty(IfcObject ifcObject, String propertyName) {
 		for (IfcRelDefines ifcRelDefines : ifcObject.getIsDefinedBy()) {
 			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
-				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
+				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties) ifcRelDefines;
 				IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
 				if (propertySetDefinition instanceof IfcPropertySet) {
-					IfcPropertySet ifcPropertySet = (IfcPropertySet)propertySetDefinition;
+					IfcPropertySet ifcPropertySet = (IfcPropertySet) propertySetDefinition;
 					for (IfcProperty ifcProperty : ifcPropertySet.getHasProperties()) {
 						if (ifcProperty instanceof IfcPropertySingleValue) {
-							IfcPropertySingleValue propertyValue = (IfcPropertySingleValue)ifcProperty;
+							IfcPropertySingleValue propertyValue = (IfcPropertySingleValue) ifcProperty;
 							if (ifcProperty.getName().equals(propertyName)) {
 								IfcValue nominalValue = propertyValue.getNominalValue();
 								return nominalValueToString(nominalValue);
@@ -390,10 +392,10 @@ public class IfcUtils {
 		Set<String> list = new HashSet<>();
 		for (IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
 			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
-				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
+				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties) ifcRelDefines;
 				IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
 				if (propertySetDefinition instanceof IfcPropertySet) {
-					IfcPropertySet ifcPropertySet = (IfcPropertySet)propertySetDefinition;
+					IfcPropertySet ifcPropertySet = (IfcPropertySet) propertySetDefinition;
 					for (IfcProperty ifcProperty : ifcPropertySet.getHasProperties()) {
 						list.add(ifcProperty.getName());
 					}
@@ -407,16 +409,16 @@ public class IfcUtils {
 		Double volume = null;
 		for (IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
 			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
-				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
+				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties) ifcRelDefines;
 				IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
 				if (propertySetDefinition instanceof IfcElementQuantity) {
-					IfcElementQuantity ifcElementQuantity = (IfcElementQuantity)propertySetDefinition;
+					IfcElementQuantity ifcElementQuantity = (IfcElementQuantity) propertySetDefinition;
 					for (IfcPhysicalQuantity ifcPhysicalQuantity : ifcElementQuantity.getQuantities()) {
 						if (ifcPhysicalQuantity instanceof IfcQuantityVolume) {
 							if (volume == null) {
 								volume = 0d;
 							}
-							volume += ((IfcQuantityVolume)ifcPhysicalQuantity).getVolumeValue();
+							volume += ((IfcQuantityVolume) ifcPhysicalQuantity).getVolumeValue();
 						}
 					}
 				}
@@ -429,16 +431,16 @@ public class IfcUtils {
 		Double area = null;
 		for (IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
 			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
-				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
+				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties) ifcRelDefines;
 				IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
 				if (propertySetDefinition instanceof IfcElementQuantity) {
-					IfcElementQuantity ifcElementQuantity = (IfcElementQuantity)propertySetDefinition;
+					IfcElementQuantity ifcElementQuantity = (IfcElementQuantity) propertySetDefinition;
 					for (IfcPhysicalQuantity ifcPhysicalQuantity : ifcElementQuantity.getQuantities()) {
 						if (ifcPhysicalQuantity instanceof IfcQuantityArea) {
 							if (area == null) {
 								area = 0d;
 							}
-							area += ((IfcQuantityArea)ifcPhysicalQuantity).getAreaValue();
+							area += ((IfcQuantityArea) ifcPhysicalQuantity).getAreaValue();
 						}
 					}
 				}
@@ -446,21 +448,21 @@ public class IfcUtils {
 		}
 		return area;
 	}
-	
+
 	public static Double getIfcQuantityVolume(IdEObject idEObject) {
 		if (idEObject instanceof IfcProduct) {
-			return getIfcQuantityVolume((IfcProduct)idEObject);
+			return getIfcQuantityVolume((IfcProduct) idEObject);
 		} else if (idEObject instanceof org.bimserver.models.ifc4.IfcProduct) {
-			return getIfcQuantityVolume((org.bimserver.models.ifc4.IfcProduct)idEObject);
+			return getIfcQuantityVolume((org.bimserver.models.ifc4.IfcProduct) idEObject);
 		}
 		return null;
 	}
 
 	public static Double getIfcQuantityArea(IdEObject idEObject) {
 		if (idEObject instanceof IfcProduct) {
-			return getIfcQuantityArea((IfcProduct)idEObject);
+			return getIfcQuantityArea((IfcProduct) idEObject);
 		} else if (idEObject instanceof org.bimserver.models.ifc4.IfcProduct) {
-			return getIfcQuantityArea((org.bimserver.models.ifc4.IfcProduct)idEObject);
+			return getIfcQuantityArea((org.bimserver.models.ifc4.IfcProduct) idEObject);
 		}
 		return null;
 	}
@@ -469,18 +471,18 @@ public class IfcUtils {
 		Double volume = null;
 		for (org.bimserver.models.ifc4.IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
 			if (ifcRelDefines instanceof org.bimserver.models.ifc4.IfcRelDefinesByProperties) {
-				org.bimserver.models.ifc4.IfcRelDefinesByProperties ifcRelDefinesByProperties = (org.bimserver.models.ifc4.IfcRelDefinesByProperties)ifcRelDefines;
+				org.bimserver.models.ifc4.IfcRelDefinesByProperties ifcRelDefinesByProperties = (org.bimserver.models.ifc4.IfcRelDefinesByProperties) ifcRelDefines;
 				IfcPropertySetDefinitionSelect relatingPropertyDefinitionSelect = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
 				if (relatingPropertyDefinitionSelect instanceof org.bimserver.models.ifc4.IfcPropertySetDefinition) {
 					org.bimserver.models.ifc4.IfcPropertySetDefinition propertySetDefinition = (org.bimserver.models.ifc4.IfcPropertySetDefinition) relatingPropertyDefinitionSelect;
 					if (propertySetDefinition instanceof org.bimserver.models.ifc4.IfcElementQuantity) {
-						org.bimserver.models.ifc4.IfcElementQuantity ifcElementQuantity = (org.bimserver.models.ifc4.IfcElementQuantity)propertySetDefinition;
+						org.bimserver.models.ifc4.IfcElementQuantity ifcElementQuantity = (org.bimserver.models.ifc4.IfcElementQuantity) propertySetDefinition;
 						for (org.bimserver.models.ifc4.IfcPhysicalQuantity ifcPhysicalQuantity : ifcElementQuantity.getQuantities()) {
 							if (ifcPhysicalQuantity instanceof org.bimserver.models.ifc4.IfcQuantityVolume) {
 								if (volume == null) {
 									volume = 0d;
 								}
-								volume += ((org.bimserver.models.ifc4.IfcQuantityVolume)ifcPhysicalQuantity).getVolumeValue();
+								volume += ((org.bimserver.models.ifc4.IfcQuantityVolume) ifcPhysicalQuantity).getVolumeValue();
 							}
 						}
 					}
@@ -489,23 +491,23 @@ public class IfcUtils {
 		}
 		return volume;
 	}
-	
+
 	public static Double getIfcQuantityArea(org.bimserver.models.ifc4.IfcProduct ifcProduct) {
 		Double area = null;
 		for (org.bimserver.models.ifc4.IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
 			if (ifcRelDefines instanceof org.bimserver.models.ifc4.IfcRelDefinesByProperties) {
-				org.bimserver.models.ifc4.IfcRelDefinesByProperties ifcRelDefinesByProperties = (org.bimserver.models.ifc4.IfcRelDefinesByProperties)ifcRelDefines;
+				org.bimserver.models.ifc4.IfcRelDefinesByProperties ifcRelDefinesByProperties = (org.bimserver.models.ifc4.IfcRelDefinesByProperties) ifcRelDefines;
 				IfcPropertySetDefinitionSelect relatingPropertyDefinitionSelect = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
 				if (relatingPropertyDefinitionSelect instanceof org.bimserver.models.ifc4.IfcPropertySetDefinition) {
 					org.bimserver.models.ifc4.IfcPropertySetDefinition propertySetDefinition = (org.bimserver.models.ifc4.IfcPropertySetDefinition) relatingPropertyDefinitionSelect;
 					if (propertySetDefinition instanceof org.bimserver.models.ifc4.IfcElementQuantity) {
-						org.bimserver.models.ifc4.IfcElementQuantity ifcElementQuantity = (org.bimserver.models.ifc4.IfcElementQuantity)propertySetDefinition;
+						org.bimserver.models.ifc4.IfcElementQuantity ifcElementQuantity = (org.bimserver.models.ifc4.IfcElementQuantity) propertySetDefinition;
 						for (org.bimserver.models.ifc4.IfcPhysicalQuantity ifcPhysicalQuantity : ifcElementQuantity.getQuantities()) {
 							if (ifcPhysicalQuantity instanceof org.bimserver.models.ifc4.IfcQuantityArea) {
 								if (area == null) {
 									area = 0d;
 								}
-								area += ((org.bimserver.models.ifc4.IfcQuantityArea)ifcPhysicalQuantity).getAreaValue();
+								area += ((org.bimserver.models.ifc4.IfcQuantityArea) ifcPhysicalQuantity).getAreaValue();
 							}
 						}
 					}
@@ -514,15 +516,15 @@ public class IfcUtils {
 		}
 		return area;
 	}
-	
+
 	public static List<String> listElementQuantities(IfcProduct ifcProduct) {
 		List<String> list = new ArrayList<>();
 		for (IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
 			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
-				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
+				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties) ifcRelDefines;
 				IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
 				if (propertySetDefinition instanceof IfcElementQuantity) {
-					IfcElementQuantity ifcElementQuantity = (IfcElementQuantity)propertySetDefinition;
+					IfcElementQuantity ifcElementQuantity = (IfcElementQuantity) propertySetDefinition;
 					list.add(ifcElementQuantity.getName());
 				}
 			}
@@ -533,7 +535,7 @@ public class IfcUtils {
 	public static double[] getAbsolutePosition(IfcProduct ifcProduct) throws PlacementNotImplementedException {
 		return getAbsolutePosition(ifcProduct.getObjectPlacement());
 	}
-	
+
 	/**
 	 * Not finished, does not take into account the directions
 	 * 
@@ -545,24 +547,24 @@ public class IfcUtils {
 		if (ifcObjectPlacement instanceof IfcGridPlacement) {
 			throw new PlacementNotImplementedException("IfcGridPlacement has not been implemented");
 		} else if (ifcObjectPlacement instanceof IfcLocalPlacement) {
-			IfcLocalPlacement ifcLocalPlacement = (IfcLocalPlacement)ifcObjectPlacement;
+			IfcLocalPlacement ifcLocalPlacement = (IfcLocalPlacement) ifcObjectPlacement;
 			IfcAxis2Placement relativePlacement = ifcLocalPlacement.getRelativePlacement();
 			if (relativePlacement instanceof IfcAxis2Placement2D) {
 				throw new PlacementNotImplementedException("IfcAxis2Placement2D has not been implemented");
 			} else if (relativePlacement instanceof IfcAxis2Placement3D) {
-				IfcAxis2Placement3D ifcAxis2Placement3D = (IfcAxis2Placement3D)relativePlacement;
+				IfcAxis2Placement3D ifcAxis2Placement3D = (IfcAxis2Placement3D) relativePlacement;
 				IfcObjectPlacement placementRelativeTo = ifcLocalPlacement.getPlacementRelTo();
 				if (placementRelativeTo == null) {
 					IfcCartesianPoint ifcCartesianPoint = ifcAxis2Placement3D.getLocation();
-					return new double[]{ifcCartesianPoint.getCoordinates().get(0), ifcCartesianPoint.getCoordinates().get(1), ifcCartesianPoint.getCoordinates().get(2)};
+					return new double[] { ifcCartesianPoint.getCoordinates().get(0), ifcCartesianPoint.getCoordinates().get(1), ifcCartesianPoint.getCoordinates().get(2) };
 				} else {
 					double[] relative = getAbsolutePosition(placementRelativeTo);
 					IfcCartesianPoint ifcCartesianPoint = ifcAxis2Placement3D.getLocation();
-					return new double[]{relative[0] + ifcCartesianPoint.getCoordinates().get(0), relative[1] + ifcCartesianPoint.getCoordinates().get(1), relative[2] + ifcCartesianPoint.getCoordinates().get(2)};
+					return new double[] { relative[0] + ifcCartesianPoint.getCoordinates().get(0), relative[1] + ifcCartesianPoint.getCoordinates().get(1), relative[2] + ifcCartesianPoint.getCoordinates().get(2) };
 				}
 			}
 		}
-		return new double[]{0d, 0d, 0d};
+		return new double[] { 0d, 0d, 0d };
 	}
 
 	public static List<IfcClassificationNotationSelect> getClassifications(IfcSpace ifcSpace, IfcModelInterface model) {
@@ -666,48 +668,48 @@ public class IfcUtils {
 
 	public static int getNrOfProperties(IdEObject ifcProduct) {
 		if (ifcProduct instanceof IfcProduct) {
-			return getNrOfProperties((IfcProduct)ifcProduct);
+			return getNrOfProperties((IfcProduct) ifcProduct);
 		} else if (ifcProduct instanceof org.bimserver.models.ifc4.IfcProduct) {
-			return getNrOfProperties((org.bimserver.models.ifc4.IfcProduct)ifcProduct);
+			return getNrOfProperties((org.bimserver.models.ifc4.IfcProduct) ifcProduct);
 		}
 		return -1;
 	}
-	
+
 	public static int getNrOfProperties(IfcProduct ifcProduct) {
 		int nrProperties = 0;
 		for (IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
 			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
-				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
+				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties) ifcRelDefines;
 				IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
 				if (propertySetDefinition instanceof IfcPropertySet) {
-					IfcPropertySet ifcPropertySet = (IfcPropertySet)propertySetDefinition;
+					IfcPropertySet ifcPropertySet = (IfcPropertySet) propertySetDefinition;
 					nrProperties += ifcPropertySet.getHasProperties().size();
 				}
 			}
 		}
 		return nrProperties;
 	}
-	
+
 	public static int getNrOfProperties(org.bimserver.models.ifc4.IfcProduct ifcProduct) {
 		int nrProperties = 0;
 		for (org.bimserver.models.ifc4.IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
 			if (ifcRelDefines instanceof org.bimserver.models.ifc4.IfcRelDefinesByProperties) {
-				org.bimserver.models.ifc4.IfcRelDefinesByProperties ifcRelDefinesByProperties = (org.bimserver.models.ifc4.IfcRelDefinesByProperties)ifcRelDefines;
+				org.bimserver.models.ifc4.IfcRelDefinesByProperties ifcRelDefinesByProperties = (org.bimserver.models.ifc4.IfcRelDefinesByProperties) ifcRelDefines;
 				org.bimserver.models.ifc4.IfcPropertySetDefinitionSelect propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
 				if (propertySetDefinition instanceof org.bimserver.models.ifc4.IfcPropertySet) {
-					org.bimserver.models.ifc4.IfcPropertySet ifcPropertySet = (org.bimserver.models.ifc4.IfcPropertySet)propertySetDefinition;
+					org.bimserver.models.ifc4.IfcPropertySet ifcPropertySet = (org.bimserver.models.ifc4.IfcPropertySet) propertySetDefinition;
 					nrProperties += ifcPropertySet.getHasProperties().size();
 				}
 			}
 		}
 		return nrProperties;
 	}
-	
+
 	public static int getNrOfPropertySets(IdEObject ifcProduct) {
 		if (ifcProduct instanceof IfcProduct) {
-			return getNrOfPropertySets(((IfcProduct)ifcProduct));
+			return getNrOfPropertySets(((IfcProduct) ifcProduct));
 		} else if (ifcProduct instanceof org.bimserver.models.ifc4.IfcProduct) {
-			return getNrOfPropertySets(((org.bimserver.models.ifc4.IfcProduct)ifcProduct));
+			return getNrOfPropertySets(((org.bimserver.models.ifc4.IfcProduct) ifcProduct));
 		}
 		return -1;
 	}
@@ -716,7 +718,7 @@ public class IfcUtils {
 		int nrPropertySets = 0;
 		for (IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
 			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
-				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
+				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties) ifcRelDefines;
 				IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
 				if (propertySetDefinition instanceof IfcPropertySet) {
 					nrPropertySets++;
@@ -730,7 +732,7 @@ public class IfcUtils {
 		int nrPropertySets = 0;
 		for (org.bimserver.models.ifc4.IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
 			if (ifcRelDefines instanceof org.bimserver.models.ifc4.IfcRelDefinesByProperties) {
-				org.bimserver.models.ifc4.IfcRelDefinesByProperties ifcRelDefinesByProperties = (org.bimserver.models.ifc4.IfcRelDefinesByProperties)ifcRelDefines;
+				org.bimserver.models.ifc4.IfcRelDefinesByProperties ifcRelDefinesByProperties = (org.bimserver.models.ifc4.IfcRelDefinesByProperties) ifcRelDefines;
 				org.bimserver.models.ifc4.IfcPropertySetDefinitionSelect propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
 				if (propertySetDefinition instanceof org.bimserver.models.ifc4.IfcPropertySetDefinition) {
 					nrPropertySets++;
@@ -739,12 +741,12 @@ public class IfcUtils {
 		}
 		return nrPropertySets;
 	}
-	
+
 	public static int getNrOfPSets(IdEObject ifcProduct) {
 		if (ifcProduct instanceof IfcProduct) {
-			return getNrOfPSets((IfcProduct)ifcProduct);
+			return getNrOfPSets((IfcProduct) ifcProduct);
 		} else if (ifcProduct instanceof org.bimserver.models.ifc4.IfcProduct) {
-			return getNrOfPSets((org.bimserver.models.ifc4.IfcProduct)ifcProduct);
+			return getNrOfPSets((org.bimserver.models.ifc4.IfcProduct) ifcProduct);
 		}
 		return -1;
 	}
@@ -753,7 +755,7 @@ public class IfcUtils {
 		int nrPSets = 0;
 		for (IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
 			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
-				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties)ifcRelDefines;
+				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties) ifcRelDefines;
 				IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
 				if (propertySetDefinition instanceof IfcPropertySet) {
 					if ("Pset_".equals(propertySetDefinition.getName())) {
@@ -769,7 +771,7 @@ public class IfcUtils {
 		int nrPSets = 0;
 		for (org.bimserver.models.ifc4.IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
 			if (ifcRelDefines instanceof org.bimserver.models.ifc4.IfcRelDefinesByProperties) {
-				org.bimserver.models.ifc4.IfcRelDefinesByProperties ifcRelDefinesByProperties = (org.bimserver.models.ifc4.IfcRelDefinesByProperties)ifcRelDefines;
+				org.bimserver.models.ifc4.IfcRelDefinesByProperties ifcRelDefinesByProperties = (org.bimserver.models.ifc4.IfcRelDefinesByProperties) ifcRelDefines;
 				org.bimserver.models.ifc4.IfcPropertySetDefinitionSelect propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
 				if (propertySetDefinition instanceof org.bimserver.models.ifc4.IfcPropertySetDefinition) {
 					String name = (String) propertySetDefinition.eGet(propertySetDefinition.eClass().getEStructuralFeature("Name"));
@@ -781,17 +783,17 @@ public class IfcUtils {
 		}
 		return nrPSets;
 	}
-	
+
 	public static String getMaterial(IfcProduct ifcProduct) {
 		Set<IfcMaterial> materials = new HashSet<>();
 		for (IfcRelAssociates ifcRelAssociates : ifcProduct.getHasAssociations()) {
 			if (ifcRelAssociates instanceof IfcRelAssociatesMaterial) {
-				IfcRelAssociatesMaterial ifcRelAssociatesMaterial = (IfcRelAssociatesMaterial)ifcRelAssociates;
+				IfcRelAssociatesMaterial ifcRelAssociatesMaterial = (IfcRelAssociatesMaterial) ifcRelAssociates;
 				IfcMaterialSelect relatingMaterial = ifcRelAssociatesMaterial.getRelatingMaterial();
 				if (relatingMaterial instanceof IfcMaterial) {
 					materials.add((IfcMaterial) relatingMaterial);
 				} else if (relatingMaterial instanceof IfcMaterialLayerSetUsage) {
-					IfcMaterialLayerSetUsage ifcMaterialLayerSetUsage = (IfcMaterialLayerSetUsage)relatingMaterial;
+					IfcMaterialLayerSetUsage ifcMaterialLayerSetUsage = (IfcMaterialLayerSetUsage) relatingMaterial;
 					IfcMaterialLayerSet forLayerSet = ifcMaterialLayerSetUsage.getForLayerSet();
 					for (IfcMaterialLayer ifcMaterialLayer : forLayerSet.getMaterialLayers()) {
 						IfcMaterial material = ifcMaterialLayer.getMaterial();
@@ -808,7 +810,7 @@ public class IfcUtils {
 				}
 			}
 		}
-		
+
 		Iterator<IfcMaterial> iterator = materials.iterator();
 		while (iterator.hasNext()) {
 			IfcMaterial next = iterator.next();
@@ -816,34 +818,34 @@ public class IfcUtils {
 				iterator.remove();
 			}
 		}
-		
+
 		return Joiner.on(", ").join(materials.stream().map(new Function<IfcMaterial, String>() {
-	          @Override
-	          public String apply(IfcMaterial input) {
-	              return input.getName();
-	          }
-	      }).iterator());
+			@Override
+			public String apply(IfcMaterial input) {
+				return input.getName();
+			}
+		}).iterator());
 	}
 
 	public static String getMaterial(IdEObject ifcProduct) {
 		if (ifcProduct instanceof IfcProduct) {
-			return getMaterial((IfcProduct)ifcProduct);
+			return getMaterial((IfcProduct) ifcProduct);
 		} else if (ifcProduct instanceof org.bimserver.models.ifc4.IfcProduct) {
-			return getMaterial((org.bimserver.models.ifc4.IfcProduct)ifcProduct);
+			return getMaterial((org.bimserver.models.ifc4.IfcProduct) ifcProduct);
 		}
 		return null;
 	}
-	
+
 	public static String getMaterial(org.bimserver.models.ifc4.IfcProduct ifcProduct) {
 		Set<org.bimserver.models.ifc4.IfcMaterial> materials = new HashSet<>();
 		for (org.bimserver.models.ifc4.IfcRelAssociates ifcRelAssociates : ifcProduct.getHasAssociations()) {
 			if (ifcRelAssociates instanceof org.bimserver.models.ifc4.IfcRelAssociatesMaterial) {
-				org.bimserver.models.ifc4.IfcRelAssociatesMaterial ifcRelAssociatesMaterial = (org.bimserver.models.ifc4.IfcRelAssociatesMaterial)ifcRelAssociates;
+				org.bimserver.models.ifc4.IfcRelAssociatesMaterial ifcRelAssociatesMaterial = (org.bimserver.models.ifc4.IfcRelAssociatesMaterial) ifcRelAssociates;
 				org.bimserver.models.ifc4.IfcMaterialSelect relatingMaterial = ifcRelAssociatesMaterial.getRelatingMaterial();
 				if (relatingMaterial instanceof org.bimserver.models.ifc4.IfcMaterial) {
 					materials.add((org.bimserver.models.ifc4.IfcMaterial) relatingMaterial);
 				} else if (relatingMaterial instanceof org.bimserver.models.ifc4.IfcMaterialLayerSetUsage) {
-					org.bimserver.models.ifc4.IfcMaterialLayerSetUsage ifcMaterialLayerSetUsage = (org.bimserver.models.ifc4.IfcMaterialLayerSetUsage)relatingMaterial;
+					org.bimserver.models.ifc4.IfcMaterialLayerSetUsage ifcMaterialLayerSetUsage = (org.bimserver.models.ifc4.IfcMaterialLayerSetUsage) relatingMaterial;
 					org.bimserver.models.ifc4.IfcMaterialLayerSet forLayerSet = ifcMaterialLayerSetUsage.getForLayerSet();
 					for (org.bimserver.models.ifc4.IfcMaterialLayer ifcMaterialLayer : forLayerSet.getMaterialLayers()) {
 						org.bimserver.models.ifc4.IfcMaterial material = ifcMaterialLayer.getMaterial();
@@ -862,7 +864,7 @@ public class IfcUtils {
 				}
 			}
 		}
-		
+
 		Iterator<org.bimserver.models.ifc4.IfcMaterial> iterator = materials.iterator();
 		while (iterator.hasNext()) {
 			org.bimserver.models.ifc4.IfcMaterial next = iterator.next();
@@ -870,7 +872,7 @@ public class IfcUtils {
 				iterator.remove();
 			}
 		}
-		
+
 		return Joiner.on(", ").join(materials.stream().map(new Function<org.bimserver.models.ifc4.IfcMaterial, String>() {
 			@Override
 			public String apply(org.bimserver.models.ifc4.IfcMaterial input) {
@@ -878,7 +880,7 @@ public class IfcUtils {
 			}
 		}).iterator());
 	}
-	
+
 	public static String getClassification(IfcProduct ifcProduct, IfcModelInterface model) {
 		for (IfcRelAssociatesClassification ifcRelAssociatesClassification : model.getAll(IfcRelAssociatesClassification.class)) {
 			if (ifcRelAssociatesClassification.getRelatedObjects().contains(ifcProduct)) {
@@ -886,5 +888,33 @@ public class IfcUtils {
 			}
 		}
 		return null;
+	}
+
+	public static int getNrOfRelations(IfcProduct product) {
+		return product.getDecomposes().size() + product.getHasAssignments().size() + product.getHasAssociations().size() + product.getIsDecomposedBy().size() + product.getReferencedBy().size() + product.getIsDefinedBy().size();
+	}
+
+	public static int getNrOfRelations(org.bimserver.models.ifc4.IfcProduct product) {
+		return product.getDeclares().size() + product.getDecomposes().size() + product.getHasAssignments().size() + product.getHasAssociations().size() + product.getHasContext().size() + product.getIsDeclaredBy().size() + product.getIsDecomposedBy().size() + product.getIsDefinedBy().size() + product.getIsNestedBy().size() + product.getIsTypedBy().size() + product.getNests().size() + product.getReferencedBy().size();
+	}
+
+	public static int getNrOfRelations(IdEObject product) {
+		if (product instanceof IfcProduct) {
+			return getNrOfRelations((IfcProduct)product);
+		} else if (product instanceof org.bimserver.models.ifc4.IfcProduct) {
+			return getNrOfRelations((org.bimserver.models.ifc4.IfcProduct)product);
+		}
+		return 0;
+	}
+
+	public static int countDecomposed(IfcObjectDefinition object) {
+		int total = 0;
+		for (IfcRelDecomposes ifcRelDecomposes : object.getIsDecomposedBy()) {
+			for (IfcObjectDefinition ifcObjectDefinition : ifcRelDecomposes.getRelatedObjects()) {
+				total += 1;
+				total += countDecomposed(ifcObjectDefinition);
+			}
+		}
+		return total;
 	}
 }

@@ -608,7 +608,6 @@ public class ClientIfcModel extends IfcModel {
 	@Override
 	public <T extends IdEObject> List<T> getAll(EClass eClass) {
 		if (!loadedClasses.contains(eClass.getName()) && modelState != ModelState.FULLY_LOADED && !assumeCompletePreload) {
-			LOGGER.info("Loading all " + eClass.getName());
 			try {
 				modelState = ModelState.LOADING;
 
@@ -717,7 +716,6 @@ public class ClientIfcModel extends IfcModel {
 		try {
 			IdEObjectImpl idEObjectImpl = (IdEObjectImpl) super.get(oid);
 			if (idEObjectImpl != null && !idEObjectImpl.isLoadedOrLoading() && !assumeCompletePreload) {
-				System.out.println(idEObjectImpl);
 				idEObjectImpl.setLoadingState(State.LOADING);
 				modelState = ModelState.LOADING;
 

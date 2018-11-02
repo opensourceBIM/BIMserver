@@ -83,7 +83,7 @@ public class JsonValidationReport implements IssueContainerSerializer {
 	}
 	
 	@Override
-	public byte[] getBytes(IssueContainer issueContainer) {
+	public byte[] getBytes(RootIssueContainer issueContainer) {
 		return toJson(issueContainer).toString().getBytes(Charsets.UTF_8);
 	}
 }

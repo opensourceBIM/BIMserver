@@ -55,7 +55,7 @@ public class LocalDevPluginLoader {
 			}
 		}
 		MavenPluginRepository mavenPluginRepository = new MavenPluginRepository(home.resolve("maven"));
-		PluginManager pluginManager = new PluginManager(home.resolve("tmp"), home.resolve("plugins"), mavenPluginRepository, System.getProperty("java.class.path"), null, null, null);
+		PluginManager pluginManager = new PluginManager(home.resolve("tmp"), home.resolve("plugins"), mavenPluginRepository, System.getProperty("java.class.path"), null, null, null, null);
 		loadPlugins(pluginManager, pluginDirectories);
 		pluginManager.initAllLoadedPlugins();
 		return pluginManager;

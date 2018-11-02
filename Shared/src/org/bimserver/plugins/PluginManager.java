@@ -142,10 +142,12 @@ public class PluginManager implements PluginManagerInterface {
 	private MetaDataManager metaDataManager;
 	private MavenPluginRepository mavenPluginRepository;
 	private final List<FileJarClassLoader> jarClassLoaders = new ArrayList<>();
+	private BasicServerInfoProvider basicServerInfoProvider;
 
 	public PluginManager(Path tempDir, Path pluginsDir, MavenPluginRepository mavenPluginRepository, String baseClassPath, ServiceFactory serviceFactory, NotificationsManagerInterface notificationsManagerInterface,
-			SServicesMap servicesMap) {
+			SServicesMap servicesMap, BasicServerInfoProvider basicServerInfoProvider) {
 		this.mavenPluginRepository = mavenPluginRepository;
+		this.basicServerInfoProvider = basicServerInfoProvider;
 		LOGGER.debug("Creating new PluginManager");
 		this.pluginsDir = pluginsDir;
 		this.tempDir = tempDir;
@@ -1795,5 +1797,10 @@ public class PluginManager implements PluginManagerInterface {
 				LOGGER.error("", e);
 			}
 		}
+	}
+	
+	@Override
+	public BasicServerInfo getBasicServerInfo() {
+		return basicServerInfoProvider.getBasicServerInfo();
 	}
 }

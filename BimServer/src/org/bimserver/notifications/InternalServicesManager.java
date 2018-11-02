@@ -72,7 +72,10 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 	}
 	
 	@Override
-	public void register(long uoid, ServiceDescriptor serviceDescriptor, RemoteServiceInterface remoteServiceInterface) {
+	public synchronized void register(long uoid, ServiceDescriptor serviceDescriptor, RemoteServiceInterface remoteServiceInterface) {
+		if (serviceDescriptor.getName().equals("BCF Aggregation Service")) {
+			System.out.println();
+		}
 		serviceDescriptor.setUrl(url);
 		Map<String, ServiceDescriptor> map = uoidToInternalServices.get(uoid);
 		if (map == null) {

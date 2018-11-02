@@ -87,6 +87,9 @@ public class Issue {
 	public IdEObject getObject() {
 		return object;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Issue\n" + object + " " + message;
+	}
 }

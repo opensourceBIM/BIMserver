@@ -90,6 +90,10 @@ public class PluginContext {
 		}
 	}
 	
+	public BasicServerInfo getBasicServerInfo() {
+		return pluginManager.getBasicServerInfo();
+	}
+	
 	public PluginSourceType getPluginType() {
 		return pluginType;
 	}
