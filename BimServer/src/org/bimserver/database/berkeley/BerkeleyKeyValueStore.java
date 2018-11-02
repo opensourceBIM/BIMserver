@@ -584,9 +584,9 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	
 	public synchronized void incrementReads(long reads) {
 		this.reads += reads;
-		if (this.reads / 200000 != lastPrintedReads) {
+		if (this.reads / 1000000 != lastPrintedReads) {
 			LOGGER.info("reads: " + this.reads);
-			lastPrintedReads = this.reads / 200000;
+			lastPrintedReads = this.reads / 1000000;
 		}
 	}
 	
