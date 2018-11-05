@@ -123,7 +123,12 @@ public class OAuthAuthorizationServlet extends SubServlet {
 
 				if (redirectURI != null && !redirectURI.equals("")) {
 					if (redirectURI.equals("SHOW_CODE")) {
-						httpServletResponse.getWriter().write("Service token (copy&paste this into your application): <br/><br/><input type=\"text\" style=\"width: 1000px\" value=\"" + oauthCode.getCode() + "\"/>");
+						httpServletResponse.getWriter().write("Service token (copy&paste this into your application): <br/><br/><input type=\"text\" style=\"width: 1000px\" value=\"" + oauthCode.getCode() + "\"/><br/><br/>");
+						
+						RunServiceAuthorization auth = (RunServiceAuthorization) oauthCode.getAuthorization();
+						String siteAddress = getBimServer().getServerSettingsCache().getServerSettings().getSiteAddress();
+						
+						httpServletResponse.getWriter().write("Service address: <br/><br/><input type=\"text\" style=\"width: 1000px\" value=\"" + siteAddress + "/services/" + auth.getService().getOid()  + "\"/><br/><br/>");
 					} else {
 						URI uri = makeUrl(redirectURI, oauthCode, builder);
 						LOGGER.info("Redirecting to " + uri);
