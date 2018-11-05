@@ -26,6 +26,8 @@ import org.bimserver.bimbots.BimBotsException;
 import org.bimserver.bimbots.BimBotsInput;
 import org.bimserver.bimbots.BimBotsOutput;
 import org.bimserver.bimbots.BimBotsServiceInterface;
+import org.bimserver.database.queries.om.Query;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SFile;
@@ -53,7 +55,7 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 			}
 			BimBotsInput input = new BimBotsInput(SchemaName.IFC_STEP_2X3TC1, data);
 			SProject project = bimServerClientInterface.getServiceInterface().getProjectByPoid(poid);
-			input.setIfcModel(bimServerClientInterface.getModel(project, roid, false, false, true));
+			input.setIfcModel(bimServerClientInterface.getModel(project, roid, preloadCompleteModel(), false, requiresGeometry()));
 			BimBotContext bimBotContext = new BimBotContext() {
 				@Override
 				public void updateProgress(String label, int percentage) {
@@ -125,4 +127,14 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 	}
 
 	public abstract String getOutputSchema();
+	
+	@Override
+	public Query getPreloadQuery(PackageMetaData packageMetaData) {
+		return null;
+	}
+	
+	@Override
+	public boolean preloadCompleteModel() {
+		return false;
+	}
 }

@@ -262,6 +262,7 @@ public class BimBotRunner implements Runnable {
 	@Override
 	public void run() {
 		try {
+			Thread.currentThread().setName("BIMbot [" + foundService.getName() + "]");
 			BimBotsOutput bimBotsOutput = runBimBot();
 			ObjectNode message = objectMapper.createObjectNode();
 			message.put("topicId", topicId);

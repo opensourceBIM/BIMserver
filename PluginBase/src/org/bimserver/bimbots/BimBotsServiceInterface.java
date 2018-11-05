@@ -19,6 +19,8 @@ package org.bimserver.bimbots;
 
 import java.util.Set;
 
+import org.bimserver.database.queries.om.Query;
+import org.bimserver.emf.PackageMetaData;
 import org.bimserver.interfaces.objects.SObjectType;
 
 public interface BimBotsServiceInterface {
@@ -27,4 +29,6 @@ public interface BimBotsServiceInterface {
 	Set<String> getAvailableInputs() throws BimBotsException;
 	Set<String> getAvailableOutputs() throws BimBotsException;
 	boolean needsRawInput();
+	boolean preloadCompleteModel();
+	Query getPreloadQuery(PackageMetaData packageMetaData);
 }
