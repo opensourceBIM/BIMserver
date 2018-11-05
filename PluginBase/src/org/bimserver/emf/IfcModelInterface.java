@@ -239,5 +239,7 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
 
 	<T extends IdEObject> T getFirst(Class<T> class1);
 
+	<T extends IdEObject> T getFirst(EClass eClass);
+
 	void dumpDebug();
 }
