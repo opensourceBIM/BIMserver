@@ -581,6 +581,50 @@ public class IfcUtils {
 		return listPropertyNames(ifcProduct).contains(propertyName);
 	}
 
+	public static LengthUnit getLengthUnit(IfcModelInterface model) {
+		IfcSIPrefix prefix = getUnitPrefix(model, IfcUnitEnum.LENGTHUNIT);
+		if (prefix != null) {
+			return LengthUnit.fromPrefix(prefix);
+		}
+		return null;
+	}
+
+	public static AreaUnit getAreaUnit(IfcModelInterface model) {
+		IfcSIPrefix prefix = getUnitPrefix(model, IfcUnitEnum.AREAUNIT);
+		if (prefix != null) {
+			return AreaUnit.fromPrefix(prefix);
+		}
+		return null;
+	}
+
+	public static VolumeUnit getVolumeUnit(IfcModelInterface model) {
+		IfcSIPrefix prefix = getUnitPrefix(model, IfcUnitEnum.VOLUMEUNIT);
+		if (prefix != null) {
+			return VolumeUnit.fromPrefix(prefix);
+		}
+		return null;
+	}
+	
+	public static IfcSIPrefix getUnitPrefix(IfcModelInterface model, IfcUnitEnum unitToFind) {
+		for (IfcProject ifcProject : model.getAll(IfcProject.class)) {
+			IfcUnitAssignment unitsInContext = ifcProject.getUnitsInContext();
+			if (unitsInContext != null) {
+				EList<IfcUnit> units = unitsInContext.getUnits();
+				for (IfcUnit unit : units) {
+					if (unit instanceof IfcSIUnit) {
+						IfcSIUnit ifcSIUnit = (IfcSIUnit) unit;
+						IfcUnitEnum unitType = ifcSIUnit.getUnitType();
+						if (unitType == unitToFind) {
+							IfcSIPrefix prefix = ifcSIUnit.getPrefix();
+							return prefix;
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
 	public static float getLengthUnitPrefix(IfcModelInterface model) {
 		float lengthUnitPrefix = 1.0f;
 		boolean prefixFound = false;
@@ -742,24 +786,32 @@ public class IfcUtils {
 		return nrPropertySets;
 	}
 
-	public static int getNrOfPSets(IdEObject ifcProduct) {
+	public static int getNrOfPSets(IdEObject ifcProduct, boolean onlyOfficial) {
 		if (ifcProduct instanceof IfcProduct) {
-			return getNrOfPSets((IfcProduct) ifcProduct);
+			return getNrOfPSets((IfcProduct) ifcProduct, onlyOfficial);
 		} else if (ifcProduct instanceof org.bimserver.models.ifc4.IfcProduct) {
-			return getNrOfPSets((org.bimserver.models.ifc4.IfcProduct) ifcProduct);
+			return getNrOfPSets((org.bimserver.models.ifc4.IfcProduct) ifcProduct, onlyOfficial);
 		}
 		return -1;
 	}
 
-	public static int getNrOfPSets(IfcProduct ifcProduct) {
+	public static int getNrOfPSets(IfcProduct ifcProduct, boolean onlyOfficial) {
 		int nrPSets = 0;
 		for (IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
 			if (ifcRelDefines instanceof IfcRelDefinesByProperties) {
 				IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties) ifcRelDefines;
 				IfcPropertySetDefinition propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
 				if (propertySetDefinition instanceof IfcPropertySet) {
-					if ("Pset_".equals(propertySetDefinition.getName())) {
-						nrPSets++;
+					if (onlyOfficial) {
+						try {
+							Ifc2x3tc1OfficialPsets.valueOf(propertySetDefinition.getName());
+							nrPSets++;
+						} catch (Exception e) {
+						}
+					} else {
+						if (propertySetDefinition.getName().startsWith("Pset_")) {
+							nrPSets++;
+						}
 					}
 				}
 			}
@@ -767,7 +819,7 @@ public class IfcUtils {
 		return nrPSets;
 	}
 
-	public static int getNrOfPSets(org.bimserver.models.ifc4.IfcProduct ifcProduct) {
+	public static int getNrOfPSets(org.bimserver.models.ifc4.IfcProduct ifcProduct, boolean onlyOfficial) {
 		int nrPSets = 0;
 		for (org.bimserver.models.ifc4.IfcRelDefines ifcRelDefines : ifcProduct.getIsDefinedBy()) {
 			if (ifcRelDefines instanceof org.bimserver.models.ifc4.IfcRelDefinesByProperties) {
@@ -775,8 +827,16 @@ public class IfcUtils {
 				org.bimserver.models.ifc4.IfcPropertySetDefinitionSelect propertySetDefinition = ifcRelDefinesByProperties.getRelatingPropertyDefinition();
 				if (propertySetDefinition instanceof org.bimserver.models.ifc4.IfcPropertySetDefinition) {
 					String name = (String) propertySetDefinition.eGet(propertySetDefinition.eClass().getEStructuralFeature("Name"));
-					if ("Pset_".equals(name)) {
-						nrPSets++;
+					if (onlyOfficial) {
+						try {
+							Ifc4OfficialPsets.valueOf(name);
+							nrPSets++;
+						} catch (Exception e) {
+						}
+					} else {
+						if (name.startsWith("Pset_")) {
+							nrPSets++;
+						}
 					}
 				}
 			}
