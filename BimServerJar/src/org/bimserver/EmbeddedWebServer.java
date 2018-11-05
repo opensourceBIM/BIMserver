@@ -31,6 +31,7 @@ import org.bimserver.servlets.websockets.jsr356.Jsr356Impl;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.servlet.ServletHolder;
+import org.eclipse.jetty.util.thread.QueuedThreadPool;
 import org.eclipse.jetty.webapp.WebAppContext;
 import org.eclipse.jetty.websocket.api.WebSocketPolicy;
 import org.eclipse.jetty.websocket.jsr356.JsrSession;
@@ -44,7 +45,7 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 	private Server server;
 
 	public EmbeddedWebServer(BimServer bimServer, Path developmentBaseDir, boolean localDev) {
-		server = new Server();
+		server = new Server(new QueuedThreadPool(200, 20));
 
 		ServerConnector socketConnector = new ServerConnector(server);
 		socketConnector.setPort(bimServer.getConfig().getPort());
