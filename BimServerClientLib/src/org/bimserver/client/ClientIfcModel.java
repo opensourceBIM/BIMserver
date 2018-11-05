@@ -341,6 +341,7 @@ public class ClientIfcModel extends IfcModel {
 				processDownload(topicId);
 				bimServerClient.getServiceInterface().cleanupLongAction(topicId);
 				modelState = ModelState.FULLY_LOADED;
+				buildIndex();
 				loadGeometry();
 			} catch (IfcModelInterfaceException | IOException e) {
 				LOGGER.error("", e);

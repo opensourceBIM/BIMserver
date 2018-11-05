@@ -100,7 +100,7 @@ public abstract class IfcModel implements IfcModelInterface {
 	}
 
 	@SuppressWarnings("unchecked")
-	private void buildIndex() {
+	protected void buildIndex() {
 		indexPerClass = new HashMap<EClass, List<? extends IdEObject>>();
 		for (Long key : objects.keySet()) {
 			IdEObject value = objects.get((Long) key);
@@ -123,7 +123,7 @@ public abstract class IfcModel implements IfcModelInterface {
 		indexPerClass.put((EClass) eClass, list);
 		for (Long key : objects.keySet()) {
 			IdEObject value = objects.get((Long) key);
-			if (eClass.isInstance(value)) {
+			if (eClass == value.eClass()) {
 				list.add(value);
 			}
 		}
