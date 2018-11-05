@@ -63,7 +63,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 		this.actionState = ActionState.STARTED;
 	}
 
-	public void init(Thread thread) {
+	public void init() {
 	}
 
 	public void setProgressTopic(ProgressTopic progressTopic) {

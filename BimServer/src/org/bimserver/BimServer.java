@@ -635,7 +635,7 @@ public class BimServer implements BasicServerInfoProvider {
 			}
 			serverStartTime = new GregorianCalendar();
 
-			longActionManager = new LongActionManager();
+			longActionManager = new LongActionManager(this);
 
 			Set<EPackage> packages = new LinkedHashSet<>();
 			packages.add(Ifc2x3tc1Package.eINSTANCE);

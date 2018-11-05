@@ -20,6 +20,7 @@ package org.bimserver.longaction;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 
+import org.bimserver.BimServer;
 import org.bimserver.models.store.ActionState;
 import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
@@ -34,20 +35,22 @@ public class LongActionManager {
 	private static final int FIVE_MINUTES_IN_MS = 5000 * 60; // 5 minutes
 	private final BiMap<Long, LongAction<?>> actions = HashBiMap.create();
 	private volatile boolean running = true;
+	private BimServer bimServer;
 
+	public LongActionManager(BimServer bimServer) {
+		this.bimServer = bimServer;
+	}
+	
 	public synchronized void start(final LongAction<?> longAction) throws CannotBeScheduledException {
 		if (running) {
-			Thread thread = new Thread(new Runnable() {
+			bimServer.getExecutorService().submit(new Runnable() {
 				@Override
 				public void run() {
+					longAction.init();
+					actions.put(longAction.getProgressTopic().getKey().getId(), longAction);
 					longAction.execute();
 				}
 			}, "LongAction Runner");
-			longAction.init(thread);
-			thread.setDaemon(true);
-			thread.setName(longAction.getDescription());
-			actions.put(longAction.getProgressTopic().getKey().getId(), longAction);
-			thread.start();
 		} else {
 			throw new CannotBeScheduledException();
 		}

@@ -61,8 +61,8 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 	}
 	
 	@Override
-	public void init(Thread thread) {
-		super.init(thread);
+	public void init() {
+		super.init();
 		session = getBimServer().getDatabase().createSession();
 		action = new CheckoutDatabaseAction(getBimServer(), session, accessMethod, getAuthorization(), downloadParameters.getRoid(), downloadParameters.getSerializerOid());
 		action.addProgressListener(this);

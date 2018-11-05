@@ -70,8 +70,8 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 		}
 	}
 
-	public void init(Thread thread) {
-		super.init(thread);
+	public void init() {
+		super.init();
 		if (getBimServer().getServerSettingsCache().getServerSettings().getCacheOutputFiles() && getBimServer().getDiskCacheManager().contains(downloadParameters)) {
 			return;
 		}
