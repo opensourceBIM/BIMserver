@@ -163,6 +163,7 @@ public class BimBotRunner implements Runnable {
 				try {
 					Revision revision = session.get(project.getLastRevisionId(), OldQuery.getDefault());
 					session.getMap(model, new OldQuery(packageMetaData, project.getId(), revision.getId(), revision.getOid(), null, Deep.NO));
+					model.getModelMetaData().setIfcHeader(revision.getLastConcreteRevision().getIfcHeader());
 				} catch (BimserverDatabaseException e) {
 					e.printStackTrace();
 				}
@@ -271,7 +272,7 @@ public class BimBotRunner implements Runnable {
 			streamingSocketInterface.send(message);
 			byte[] data = bimBotsOutput.getData();
 			streamingSocketInterface.send(data, 0, data.length);
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			LOGGER.error("", e);
 		}
 	}
