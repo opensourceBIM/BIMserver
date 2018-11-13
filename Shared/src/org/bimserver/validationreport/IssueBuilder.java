@@ -22,6 +22,7 @@ import java.awt.image.BufferedImage;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
+import org.bimserver.models.store.Authorization;
 
 public class IssueBuilder {
 
@@ -33,6 +34,8 @@ public class IssueBuilder {
 	private IdEObject object;
 	private Object is;
 	private Object shouldBe;
+	private String originatingCheck;
+	private String author;
 
 	public IssueBuilder(IssueContainer issueContainer) {
 		this.issueContainer = issueContainer;
@@ -90,7 +93,18 @@ public class IssueBuilder {
 		if (image != null) {
 			issue.setImage(image);
 		}
+		if (originatingCheck != null) {
+			issue.setOriginatigModelCheckName(originatingCheck);
+		}
+		if (author != null) {
+			issue.setAuthor(author);
+		}
 		return issue;
+	}
+	
+	public IssueBuilder author(String author) {
+		this.author = author;
+		return this;
 	}
 
 	public IssueBuilder message(String message) {
@@ -115,6 +129,11 @@ public class IssueBuilder {
 
 	public IssueBuilder shouldBe(Object object) {
 		this.shouldBe = object;
+		return this;
+	}
+
+	public IssueBuilder originatingCheck(String originatingCheck) {
+		this.originatingCheck = originatingCheck;
 		return this;
 	}
 }

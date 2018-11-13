@@ -24,6 +24,7 @@ import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
 
 public class Issue {
 
+	private String originatigModelCheckName;
 	private BufferedImage image;
 	private Type type;
 	private String message;
@@ -31,6 +32,7 @@ public class Issue {
 	private Object is;
 	private Object shouldBe;
 	private IdEObject object;
+	private String author;
 
 	public BufferedImage getImage() {
 		return image;
@@ -91,5 +93,21 @@ public class Issue {
 	@Override
 	public String toString() {
 		return "Issue\n" + object + " " + message;
+	}
+
+	public String getOriginatigModelCheckName() {
+		return originatigModelCheckName;
+	}
+
+	public void setOriginatigModelCheckName(String originatigModelCheckName) {
+		this.originatigModelCheckName = originatigModelCheckName;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+	
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 }
