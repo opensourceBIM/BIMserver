@@ -19,9 +19,16 @@ package org.bimserver.validationreport;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class IssueContainer extends Issue {
+	private static final Logger LOGGER = LoggerFactory.getLogger(IssueContainer.class);
 	private final List<Issue> issues = new ArrayList<>();
 
 	public IssueBuilder builder() {
@@ -34,5 +41,28 @@ public class IssueContainer extends Issue {
 
 	public Collection<Issue> list() {
 		return issues;
+	}
+
+	public void dumpSummary() {
+		LOGGER.info("Dumping IssueContainer");
+		HashMap<String, AtomicInteger> map = new HashMap<>();
+		dumpSummary(map, 0);
+		for (String key : map.keySet()) {
+			LOGGER.info(key + ": " + map.get(key).get());
+		}
+	}
+	
+	public void dumpSummary(Map<String, AtomicInteger> map, int indentation) {
+		for (Issue issue : issues) {
+			AtomicInteger ai = map.get(issue.getOriginatigModelCheckName());
+			if (ai == null) {
+				ai = new AtomicInteger(0);
+				map.put(issue.getOriginatigModelCheckName(), ai);
+			}
+			ai.incrementAndGet();
+			if (issue instanceof IssueContainer) {
+				((IssueContainer)issue).dumpSummary(map, indentation + 1);
+			}
+		}
 	}
 }
