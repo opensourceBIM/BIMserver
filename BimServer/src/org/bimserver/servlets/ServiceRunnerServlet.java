@@ -4,6 +4,9 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -81,6 +84,17 @@ public class ServiceRunnerServlet extends SubServlet {
 		String inputType = request.getHeader("Input-Type");
 		LOGGER.info("Input-Type: " + inputType);
 		
+		Set<String> acceptedFlows = new LinkedHashSet<>();
+		if (request.getHeader("Accept-Flow") == null) {
+			// Default
+			acceptedFlows.add("SYNC");
+		} else {
+			String[] flows = request.getHeader("Accept-Flow").split(",");
+			for (String flow : flows) {
+				acceptedFlows.add(flow);
+			}
+		}
+		
 		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
 			Authorization authorization = Authorization.fromToken(getBimServer().getEncryptionKey(), token);
 			User user = session.get(authorization.getUoid(), OldQuery.getDefault());
@@ -112,7 +126,7 @@ public class ServiceRunnerServlet extends SubServlet {
 				EndPoint endPoint = getBimServer().getEndPointManager().get(token);
 				InputStream inputStream = request.getInputStream();
 				String contextId = request.getHeader("Context-Id");
-				if (endPoint == null) {
+				if (endPoint == null || !acceptedFlows.contains("ASYNC_WS")) {
 					// Don't use a websocket, so synchronously process bimbot
 					BimBotsOutput bimBotsOutput = new BimBotRunner(getBimServer(), inputStream, contextId, inputType, authorization, foundService, bimBotsServiceInterface).runBimBot();
 
