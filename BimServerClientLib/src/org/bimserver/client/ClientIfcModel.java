@@ -379,6 +379,7 @@ public class ClientIfcModel extends IfcModel {
 				}
 			}
 
+			LOGGER.info("Loading geometry for " + queryPart.getOids().size() + " objects");
 			if (queryPart.getOids() == null) {
 				return;
 			}

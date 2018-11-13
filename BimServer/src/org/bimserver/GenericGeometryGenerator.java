@@ -175,9 +175,6 @@ public class GenericGeometryGenerator {
 		}
 		double result = Math.acos(a);
 
-		if (Double.isNaN(result)) {
-			System.out.println();
-		}
 		return result;
 	}
 
