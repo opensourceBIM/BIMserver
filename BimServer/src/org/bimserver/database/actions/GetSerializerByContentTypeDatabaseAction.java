@@ -1,5 +1,7 @@
 package org.bimserver.database.actions;
 
+import java.util.List;
+
 import org.bimserver.BimServer;
 
 /******************************************************************************
@@ -28,6 +30,7 @@ import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.serializers.SerializerPlugin;
+import org.bimserver.plugins.serializers.StreamingSerializerPlugin;
 import org.bimserver.shared.exceptions.UserException;
 
 public class GetSerializerByContentTypeDatabaseAction extends BimDatabaseAction<SerializerPluginConfiguration> {
@@ -43,7 +46,17 @@ public class GetSerializerByContentTypeDatabaseAction extends BimDatabaseAction<
 
 	@Override
 	public SerializerPluginConfiguration execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		for (SerializerPluginConfiguration serializerPluginConfiguration : getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), SerializerPluginConfiguration.class, OldQuery.getDefault())) {
+		List<SerializerPluginConfiguration> allOfType = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), SerializerPluginConfiguration.class, OldQuery.getDefault());
+		// One loop to try and find the streaming version
+		for (SerializerPluginConfiguration serializerPluginConfiguration : allOfType) {
+			PluginConfiguration pluginConfiguration = bimServer.getPluginSettingsCache().getPluginSettings(serializerPluginConfiguration.getOid());
+			String string = pluginConfiguration.getString(SerializerPlugin.CONTENT_TYPE);
+			if (string != null && string.equals(contentType) && serializerPluginConfiguration.getPluginDescriptor() instanceof StreamingSerializerPlugin) {
+				return serializerPluginConfiguration;
+			}
+		}
+		// None found, there try again and also allow non-streaming
+		for (SerializerPluginConfiguration serializerPluginConfiguration : allOfType) {
 			PluginConfiguration pluginConfiguration = bimServer.getPluginSettingsCache().getPluginSettings(serializerPluginConfiguration.getOid());
 			String string = pluginConfiguration.getString(SerializerPlugin.CONTENT_TYPE);
 			if (string != null && string.equals(contentType)) {
