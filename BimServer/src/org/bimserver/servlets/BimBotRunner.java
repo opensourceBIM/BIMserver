@@ -47,7 +47,6 @@ import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.NotificationInterfaceAdaptor;
-import org.bimserver.shared.interfaces.NotificationRegistryInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.utils.InputStreamDataSource;
 import org.bimserver.webservices.ServiceMap;
@@ -57,6 +56,7 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.google.common.io.ByteStreams;
 
 public class BimBotRunner implements Runnable {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BimBotRunner.class);
@@ -71,6 +71,7 @@ public class BimBotRunner implements Runnable {
 	private Long topicId;
 	private final ObjectMapper objectMapper = new ObjectMapper();
 	private Long endPointId;
+	private PluginConfiguration settings;
 
 	public BimBotRunner(BimServer bimServer, InputStream inputStream, String contextId, String inputType, Authorization authorization,
 			InternalServicePluginConfiguration foundService, BimBotsServiceInterface bimBotsServiceInterface) {
@@ -89,6 +90,7 @@ public class BimBotRunner implements Runnable {
 		this.streamingSocketInterface = streamingSocketInterface;
 		this.topicId = topicId;
 		this.endPointId = endPointId;
+		this.settings = new PluginConfiguration(foundService.getSettings());
 	}
 	
 	public BimBotsOutput runBimBot() throws UserException, IOException {
@@ -106,6 +108,10 @@ public class BimBotRunner implements Runnable {
 					streamingSocketInterface.send(message);
 				}
 			}
+			
+			public String getCurrentUser() {
+				return authorization.getUsername();
+			}
 		};
 
 		try (DatabaseSession session = bimServer.getDatabase().createSession()) {
@@ -119,6 +125,13 @@ public class BimBotRunner implements Runnable {
 				// Checkin stream into project
 				// Trigger service
 				
+				byte[] data = null;
+				if (bimBotsServiceInterface.needsRawInput()) {
+					// We need the raw input later on, lets just get it now
+					data = ByteStreams.toByteArray(inputStream);
+					// Make a clean inputstream that uses the data as the original won't be available after this
+					inputStream = new ByteArrayInputStream(data);
+				}
 				
 				SchemaName schema = SchemaName.valueOf(inputType);
 				String projectSchema = getProjectSchema(serviceInterface, schema);
@@ -168,8 +181,8 @@ public class BimBotRunner implements Runnable {
 					e.printStackTrace();
 				}
 				
-				BimServerBimBotsInput input = new BimServerBimBotsInput(bimServer, authorization.getUoid(), inputType, null, model, false);
-				BimBotsOutput output = bimBotsServiceInterface.runBimBot(input, bimBotContext, bimServer.getSConverter().convertToSObject(foundService.getSettings()));
+				BimServerBimBotsInput input = new BimServerBimBotsInput(bimServer, authorization.getUoid(), inputType, data, model, false);
+				BimBotsOutput output = bimBotsServiceInterface.runBimBot(input, bimBotContext, settings);
 				
 				SExtendedData extendedData = new SExtendedData();
 				SFile file = new SFile();
@@ -223,7 +236,7 @@ public class BimBotRunner implements Runnable {
 				IfcModelInterface model = deserializer.read(new ByteArrayInputStream(data), inputType, data.length, null);
 				
 				BimServerBimBotsInput input = new BimServerBimBotsInput(bimServer, authorization.getUoid(), inputType, data, model, true);
-				BimBotsOutput output = bimBotsServiceInterface.runBimBot(input, bimBotContext, bimServer.getSConverter().convertToSObject(foundService.getSettings()));
+				BimBotsOutput output = bimBotsServiceInterface.runBimBot(input, bimBotContext, new PluginConfiguration(foundService.getSettings()));
 				
 				return output;
 			}

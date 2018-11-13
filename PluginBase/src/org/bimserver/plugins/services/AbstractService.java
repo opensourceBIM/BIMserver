@@ -94,9 +94,11 @@ public abstract class AbstractService extends ServicePlugin {
 		private BimServerClientInterface bimServerClientInterface;
 		private Date startDate;
 		private PluginConfiguration pluginConfiguration;
+		private String currentUser;
 
-		public RunningService(long topicId, BimServerClientInterface bimServerClientInterface, PluginConfiguration pluginConfiguration) {
+		public RunningService(long topicId, BimServerClientInterface bimServerClientInterface, PluginConfiguration pluginConfiguration, String currentUser) {
 			this.pluginConfiguration = pluginConfiguration;
+			this.currentUser = currentUser;
 			this.startDate = new Date();
 			this.topicId = topicId;
 			this.bimServerClientInterface = bimServerClientInterface;
@@ -131,6 +133,10 @@ public abstract class AbstractService extends ServicePlugin {
 				LOGGER.error("", e);
 			}
 		}
+
+		public String getCurrentUser() {
+			return currentUser;
+		}
 	}
 	
 	public abstract void addRequiredRights(ServiceDescriptor serviceDescriptor);
@@ -152,7 +158,7 @@ public abstract class AbstractService extends ServicePlugin {
 			public void newRevision(BimServerClientInterface bimServerClientInterface, long poid, long roid, String userToken, long soid, SObjectType settings) throws ServerException, UserException {
 				try {
 					Long topicId = bimServerClientInterface.getRegistry().registerProgressOnRevisionTopic(SProgressTopicType.RUNNING_SERVICE, poid, roid, "Running " + name);
-					RunningService runningService = new RunningService(topicId, bimServerClientInterface, pluginConfiguration);
+					RunningService runningService = new RunningService(topicId, bimServerClientInterface, pluginConfiguration, bimServerClientInterface.getAuthInterface().getLoggedInUser().getUsername());
 					try {
 						SLongActionState state = new SLongActionState();
 						state.setProgress(getProgressType() == ProgressType.KNOWN ? 0 : -1);
