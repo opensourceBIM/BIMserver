@@ -35,6 +35,7 @@ import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.store.ServiceDescriptor;
+import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.SchemaName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,8 +62,13 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 				public void updateProgress(String label, int percentage) {
 
 				}
+
+				@Override
+				public String getCurrentUser() {
+					return runningService.getCurrentUser();
+				}
 			};
-			BimBotsOutput output = runBimBot(input, bimBotContext, settings);
+			BimBotsOutput output = runBimBot(input, bimBotContext, new PluginConfiguration(settings));
 			SFile file = new SFile();
 
 			SExtendedData extendedData = new SExtendedData();
@@ -135,6 +141,6 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 	
 	@Override
 	public boolean preloadCompleteModel() {
-		return false;
+		return true;
 	}
 }
