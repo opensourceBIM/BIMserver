@@ -124,6 +124,7 @@ import org.slf4j.LoggerFactory;
 
 public class PluginManager implements PluginManagerInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(PluginManager.class);
+	private static Unmarshaller PLUGIN_DESCRIPTOR_UNMARSHALLER;
 	private final Map<Class<? extends Plugin>, Set<PluginContext>> implementations = new LinkedHashMap<>();
 	private final Map<Plugin, PluginContext> pluginToPluginContext = new HashMap<>();
 
@@ -144,6 +145,15 @@ public class PluginManager implements PluginManagerInterface {
 	private final List<FileJarClassLoader> jarClassLoaders = new ArrayList<>();
 	private BasicServerInfoProvider basicServerInfoProvider;
 
+	static {
+		try {
+			JAXBContext jaxbContext = JAXBContext.newInstance(PluginDescriptor.class);
+			PLUGIN_DESCRIPTOR_UNMARSHALLER = jaxbContext.createUnmarshaller();
+		} catch (JAXBException e) {
+			LOGGER.error("", e);
+		}
+	}
+	
 	public PluginManager(Path tempDir, Path pluginsDir, MavenPluginRepository mavenPluginRepository, String baseClassPath, ServiceFactory serviceFactory, NotificationsManagerInterface notificationsManagerInterface,
 			SServicesMap servicesMap, BasicServerInfoProvider basicServerInfoProvider) {
 		this.mavenPluginRepository = mavenPluginRepository;
@@ -640,9 +650,7 @@ public class PluginManager implements PluginManagerInterface {
 
 	public PluginDescriptor getPluginDescriptor(InputStream inputStream) throws JAXBException, IOException {
 		try {
-			JAXBContext jaxbContext = JAXBContext.newInstance(PluginDescriptor.class);
-			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-			PluginDescriptor pluginDescriptor = (PluginDescriptor) unmarshaller.unmarshal(inputStream);
+			PluginDescriptor pluginDescriptor = (PluginDescriptor) PLUGIN_DESCRIPTOR_UNMARSHALLER.unmarshal(inputStream);
 			return pluginDescriptor;
 		} finally {
 			inputStream.close();
