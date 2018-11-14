@@ -515,8 +515,26 @@
             "IfcTrimmedCurve",
             "IfcFaceBasedSurfaceModel",
             "IfcSweptDiskSolid",
-            "IfcRevolvedAreaSolid"
+            "IfcRevolvedAreaSolid",
+            "IfcSurfaceCurveSweptAreaSolid"
          ]
+      },
+      "IfcSurfaceCurveSweptAreaSolid": {
+        "type": "IfcSurfaceCurveSweptAreaSolid",
+        "fields": ["SweptArea", "Position", "Directrix", "ReferenceSurface"],
+        "includes": [
+            "IfcArbitraryClosedProfileDef",
+            "IfcArbitraryProfileDefWithVoids",
+            "IfcParameterizedProfileDef",
+            "IfcDerivedProfileDef",
+            "IfcArbitraryOpenProfileDef",
+            "IfcCenterLineProfileDef",
+            "IfcAxis2Placement2D",
+            "IfcAxis2Placement3D",
+            "IfcBoundedCurve",
+      		"IfcPolyline",
+      		"IfcPlane"
+        ]
       },
       "IfcSpecificMappingShapeRepresentation": {
          "type": "IfcShapeRepresentation",
@@ -592,6 +610,23 @@
          	"IfcStyledItem"
          ]
       },
+      "IfcCartesianTransformationOperator": {
+      	"type": "IfcCartesianTransformationOperator",
+      	"fields": [
+          "Axis1",
+          "Axis2",
+          "LocalOrigin"
+      	]
+      },
+      "IfcCartesianTransformationOperator3D": {
+      	"type": "IfcCartesianTransformationOperator3D",
+         "fields": [
+          "Axis1",
+          "Axis2",
+          "LocalOrigin",
+          "Axis3"
+         ]
+      },
       "IfcMappedItem": {
          "type": "IfcMappedItem",
          "fields": [
@@ -599,15 +634,7 @@
             "MappingTarget"
          ],
          "includes": [
-            {
-               "type": "IfcCartesianTransformationOperator3D",
-               "fields": [
-                  "Axis1",
-                  "Axis2",
-                  "LocalOrigin",
-                  "Axis3"
-               ]
-            },
+         "IfcCartesianTransformationOperator3D",
             {
                "type": "IfcRepresentationMap",
                "fields": [
@@ -678,6 +705,42 @@
          "field": "Position",
          "include": "IfcAxis2Placement2D"
       },
+      "IfcLShapeProfileDef": {
+      	"type": "IfcLShapeProfileDef",
+      	"fields": [
+      		"Position"
+      	],
+      	"includes": [
+      		"IfcAxis2Placement2D"
+      	]
+      },
+      "IfcDerivedProfileDef": {
+      	"type": "IfcDerivedProfileDef",
+      	"fields": [
+      		"ParentProfile",
+      		"Operator"
+      	],
+      	"includes": [
+      		"IfcDerivedProfileDef",
+      		"IfcParameterizedProfileDef",
+            "IfcArbitraryOpenProfileDef",
+            "IfcLShapeProfileDef",
+            "IfcCartesianTransformationOperator"
+      	]
+      },
+      "IfcCenterLineProfileDef": {
+        "type": "IfcCenterLineProfileDef",
+        "fields": ["Curve"],
+        "includes": ["IfcBoundedCurve", "IfcPolyline"]
+      },
+      "IfcArbitraryOpenProfileDef": {
+      	"type": "IfcArbitraryOpenProfileDef",
+      	"fields": ["Curve"],
+      	"includes": [
+      		"IfcBoundedCurve",
+      		"IfcPolyline"
+      	]
+      },
       "IfcExtrudedAreaSolid": {
          "type": "IfcExtrudedAreaSolid",
          "fields": [
@@ -689,7 +752,10 @@
             "IfcAxis2Placement3D",
             "IfcArbitraryClosedProfileDef",
             "IfcArbitraryProfileDefWithVoids",
-            "IfcParameterizedProfileDef"
+            "IfcParameterizedProfileDef",
+            "IfcDerivedProfileDef",
+            "IfcArbitraryOpenProfileDef",
+            "IfcCenterLineProfileDef"
          ]
       },
       "IfcAxis2Placement3D": {
