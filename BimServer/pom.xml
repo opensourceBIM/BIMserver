@@ -172,7 +172,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>bcf</artifactId>
-			<version>0.0.34-SNAPSHOT</version>
+			<version>0.0.34</version>
 		</dependency>
 	</dependencies>
 	<licenses>
