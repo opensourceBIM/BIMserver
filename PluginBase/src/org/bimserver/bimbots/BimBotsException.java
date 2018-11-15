@@ -1,5 +1,7 @@
 package org.bimserver.bimbots;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -20,12 +22,28 @@ package org.bimserver.bimbots;
 public class BimBotsException extends Exception {
 
 	private static final long serialVersionUID = -2477117682144897692L;
+	private int errorCode;
 
-	public BimBotsException(String message) {
+	public BimBotsException(String message, int errorCode) {
 		super(message);
+		this.errorCode = errorCode;
 	}
 
-	public BimBotsException(Exception e) {
+	public BimBotsException(Exception e, int errorCode) {
 		super(e);
+		this.errorCode = errorCode;
+	}
+
+	public BimBotsException(Exception e, BimBotErrorCode errorCode) {
+		super(e);
+		this.errorCode = errorCode.getErrorCode();
+	}
+
+	public BimBotsException(String message, BimBotErrorCode errorCode) {
+		this.errorCode = errorCode.getErrorCode();
+	}
+
+	public int getErrorCode() {
+		return errorCode;
 	}
 }
