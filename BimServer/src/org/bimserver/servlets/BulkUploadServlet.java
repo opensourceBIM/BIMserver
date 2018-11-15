@@ -42,8 +42,8 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.utils.FakeClosingInputStream;
 import org.bimserver.utils.InputStreamDataSource;
-import org.opensourcebim.bcf.utils.FakeClosingInputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
