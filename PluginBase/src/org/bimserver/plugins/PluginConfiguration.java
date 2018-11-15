@@ -63,6 +63,7 @@ public class PluginConfiguration {
 				values.put(parameter.getIdentifier(), ((SArrayType)value).getValues());
 			} else if (value instanceof SByteArrayType) {
 				values.put(parameter.getIdentifier(), ((SByteArrayType)value).getValue());
+			} else if (value == null) {
 			} else if (value instanceof SObjectType) {
 				// TODO
 			} else {
