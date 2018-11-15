@@ -21,21 +21,17 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.function.Consumer;
-
-import javax.activation.DataHandler;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.GeometryGenerator;
+import org.bimserver.bimbots.BimBotDefaultErrorCode;
 import org.bimserver.bimbots.BimBotsException;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.database.DatabaseSession;
@@ -68,13 +64,11 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.UserType;
-import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.renderengine.RenderEnginePool;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.AdminInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
-import org.bimserver.utils.ByteArrayDataSource;
 import org.bimserver.webservices.SLogComparator;
 import org.bimserver.webservices.SMigrationComparator;
 import org.bimserver.webservices.SPluginDescriptorComparator;
@@ -356,7 +350,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 			UserSettings userSettings = user.getUserSettings();
 			RenderEnginePluginConfiguration defaultRenderEngine = userSettings.getDefaultRenderEngine();
 			if (defaultRenderEngine == null) {
-				throw new BimBotsException("No default render engine has been selected for this user");
+				throw new BimBotsException("No default render engine has been selected for this user", BimBotDefaultErrorCode.NO_RENDER_ENGINE);
 			}
 			
 			RenderEnginePool pool = getBimServer().getRenderEnginePools().getRenderEnginePool(model.getPackageMetaData().getSchema(), defaultRenderEngine.getPluginDescriptor().getPluginClassName(), getBimServer().getPluginSettingsCache().getPluginSettings(defaultRenderEngine.getOid()));
