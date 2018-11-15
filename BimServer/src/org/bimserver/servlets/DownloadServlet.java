@@ -134,7 +134,7 @@ public class DownloadServlet extends SubServlet {
 					}
 				} else if (action.equals("getBcfImage")) {
 					long extendedDataId = Long.parseLong(request.getParameter("extendedDataId"));
-					String topicGuid = request.getParameter("topicGuid");
+					String topicUuid = request.getParameter("topicUuid");
 					String name = request.getParameter("name");
 					BcfFile bcfFile = BcfCache.INSTANCE.get(extendedDataId);
 					if (bcfFile == null) {
@@ -148,9 +148,9 @@ public class DownloadServlet extends SubServlet {
 							e.printStackTrace();
 						}
 					}
-					TopicFolder topicFolder = bcfFile.getTopicFolder(topicGuid);
+					TopicFolder topicFolder = bcfFile.getTopicFolder(topicUuid);
 					if (topicFolder != null) {
-						byte[] data = topicFolder.getSnapshot(topicGuid + "/" + name);
+						byte[] data = topicFolder.getSnapshot(topicUuid + "/" + name);
 						if (data != null) {
 							response.setContentType("image/png");
 							IOUtils.write(data, outputStream);
