@@ -22,6 +22,7 @@ import java.util.Set;
 
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.bimserver.bimbots.BimBotContext;
+import org.bimserver.bimbots.BimBotDefaultErrorCode;
 import org.bimserver.bimbots.BimBotsException;
 import org.bimserver.bimbots.BimBotsInput;
 import org.bimserver.bimbots.BimBotsOutput;
@@ -94,7 +95,9 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 			extendedData.setFileId(fileId);
 
 			bimServerClientInterface.getServiceInterface().addExtendedDataToRevision(roid, extendedData);
-		} catch (Exception e) {
+		} catch (BimBotsException e) {
+			LOGGER.error("", e);
+		} catch (Throwable e) {
 			LOGGER.error("", e);
 		}
 	}
@@ -108,7 +111,7 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 	public Set<String> getAvailableOutputs() throws BimBotsException {
 		String outputSchema = getOutputSchema();
 		if (outputSchema == null) {
-			throw new BimBotsException("No output schema provided");
+			throw new BimBotsException("No output schema provided", BimBotDefaultErrorCode.NO_OUTPUT_SCHEMA);
 		}
 		return Collections.singleton(outputSchema);
 	}
@@ -117,7 +120,7 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 	public Set<String> getAvailableInputs() throws BimBotsException {
 		String input = SchemaName.IFC_STEP_2X3TC1.name();
 		if (input == null) {
-			throw new BimBotsException("No input schema provided");
+			throw new BimBotsException("No input schema provided", BimBotDefaultErrorCode.NO_INPUT_SCHEMA);
 		}
 		return Collections.singleton(input);
 	}

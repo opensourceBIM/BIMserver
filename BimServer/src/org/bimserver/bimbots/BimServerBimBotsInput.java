@@ -44,7 +44,7 @@ public class BimServerBimBotsInput extends BimBotsInput {
 			UserSettings userSettings = user.getUserSettings();
 			RenderEnginePluginConfiguration defaultRenderEngine = userSettings.getDefaultRenderEngine();
 			if (defaultRenderEngine == null) {
-				throw new BimBotsException("No default render engine has been selected for this user");
+				throw new BimBotsException("No default render engine has been selected for this user", BimBotDefaultErrorCode.NO_RENDER_ENGINE);
 			}
 
 			if (generateGeometry) {

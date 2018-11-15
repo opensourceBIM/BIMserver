@@ -12,6 +12,7 @@ import org.apache.commons.io.IOUtils;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.bimbots.BimBotContext;
+import org.bimserver.bimbots.BimBotDefaultErrorCode;
 import org.bimserver.bimbots.BimBotsException;
 import org.bimserver.bimbots.BimBotsOutput;
 import org.bimserver.bimbots.BimBotsServiceInterface;
@@ -37,11 +38,9 @@ import org.bimserver.notifications.ProgressTopic;
 import org.bimserver.notifications.TopicRegisterException;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.SchemaName;
-import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.shared.StreamingSocketInterface;
-import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
@@ -56,10 +55,12 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.google.common.base.Charsets;
 import com.google.common.io.ByteStreams;
 
 public class BimBotRunner implements Runnable {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BimBotRunner.class);
+	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	private BimServer bimServer;
 	private InputStream inputStream;
 	private String inputType;
@@ -146,7 +147,7 @@ public class BimBotRunner implements Runnable {
 
 				SDeserializerPluginConfiguration deserializer = serviceInterface.getSuggestedDeserializerForExtension("ifc", project.getOid());
 				if (deserializer == null) {
-					throw new BimBotsException("No deserializer found");
+					throw new BimBotsException("No deserializer found", BimBotDefaultErrorCode.NO_DESERIALIZER);
 				}
 				Long topicId = serviceInterface.initiateCheckin(project.getOid(), deserializer.getOid());
 				ProgressTopic progressTopic = null;
@@ -225,7 +226,7 @@ public class BimBotRunner implements Runnable {
 				Schema schema = Schema.valueOf(projectSchema.toUpperCase());
 				DeserializerPlugin deserializerPlugin = bimServer.getPluginManager().getFirstDeserializer("ifc", schema, true);
 				if (deserializerPlugin == null) {
-					throw new BimBotsException("No deserializer plugin found");
+					throw new BimBotsException("No deserializer plugin found", BimBotDefaultErrorCode.NO_DESERIALIZER);
 				}
 				
 				byte[] data = IOUtils.toByteArray(inputStream);
@@ -241,17 +242,21 @@ public class BimBotRunner implements Runnable {
 				return output;
 			}
 		} catch (BimBotsException e) {
+			ObjectNode errorNode = OBJECT_MAPPER.createObjectNode();
+			errorNode.put("code", e.getErrorCode());
+			errorNode.put("message", e.getMessage());
+			BimBotsOutput bimBotsOutput = new BimBotsOutput("ERROR", errorNode.toString().getBytes(Charsets.UTF_8));
+			return bimBotsOutput;
+		} catch (Throwable e) {
 			LOGGER.error("", e);
-		} catch (DeserializeException e) {
-			LOGGER.error("", e);
-		} catch (PluginException e) {
-			LOGGER.error("", e);
-		} catch (ServerException e) {
-			LOGGER.error("", e);
-		} catch (ServiceException e) {
-			e.printStackTrace();
+			ObjectNode errorNode = OBJECT_MAPPER.createObjectNode();
+			errorNode.put("code", 500);
+
+			// TODO should not leak this much info to called, but for now this is useful debugging info
+			errorNode.put("message", "Unknown error: " + e.getMessage());
+			BimBotsOutput bimBotsOutput = new BimBotsOutput("ERROR", errorNode.toString().getBytes(Charsets.UTF_8));
+			return bimBotsOutput;
 		}
-		return null;
 	}
 
 	private String getProjectSchema(ServiceInterface serviceInterface, SchemaName schema) throws IOException, UserException, ServiceException {
