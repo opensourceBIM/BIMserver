@@ -51,7 +51,7 @@ public class GetSerializerByContentTypeDatabaseAction extends BimDatabaseAction<
 		for (SerializerPluginConfiguration serializerPluginConfiguration : allOfType) {
 			PluginConfiguration pluginConfiguration = bimServer.getPluginSettingsCache().getPluginSettings(serializerPluginConfiguration.getOid());
 			String string = pluginConfiguration.getString(SerializerPlugin.CONTENT_TYPE);
-			if (string != null && string.equals(contentType) && serializerPluginConfiguration.getPluginDescriptor() instanceof StreamingSerializerPlugin) {
+			if (string != null && string.equals(contentType) && serializerPluginConfiguration.getPluginDescriptor().getPluginInterfaceClassName().equals(StreamingSerializerPlugin.class.getName())) {
 				return serializerPluginConfiguration;
 			}
 		}
