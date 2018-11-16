@@ -124,4 +124,9 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 			}
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return "QueryIncludeStackFrame " + currentObject;
+	}
 }
