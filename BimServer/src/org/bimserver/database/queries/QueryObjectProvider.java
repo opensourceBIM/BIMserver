@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.BimServer;
@@ -36,7 +35,6 @@ import org.bimserver.emf.MetaDataManager;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.plugins.serializers.ObjectProvider;
 import org.bimserver.shared.HashMapVirtualObject;
-import org.bimserver.shared.QueryContext;
 import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -195,7 +193,7 @@ public class QueryObjectProvider implements ObjectProvider {
 		int i=0;
 		if (poll != null) {
 			LOGGER.info("Query dump");
-			while (poll != null && i < 20) {
+			while (poll != null && i < 50) {
 				i++;
 				LOGGER.info("\t" + poll.toString());
 				poll = stack.poll();
