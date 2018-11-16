@@ -108,6 +108,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	private final ObjectCache objectCache = new ObjectCache();
 	private Map<EClass, Long> startOids;
 	private final Map<Long, HashMapVirtualObject> voCache = new ConcurrentHashMap<>();
+	private CleanupListener cleanupListener;
 	private long reads;
 
 	public enum SessionState {
@@ -786,6 +787,10 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 				objectsToCommit = null;
 				bimTransaction = database.getKeyValueStore().startTransaction();
 			} catch (BimserverDatabaseException e) {
+				bimTransaction.rollback();
+				if (cleanupListener != null) {
+					cleanupListener.cleanup();
+				}
 				throw e;
 			} catch (ServiceException e) {
 				if (e instanceof UserException) {
@@ -1434,6 +1439,8 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 			return 1;
 		} else if (eDataType == EcorePackage.eINSTANCE.getEDate()) {
 			return 8;
+		} else if (eDataType == EcorePackage.eINSTANCE.getEShort()) {
+			return 2;
 		} else if (eDataType == EcorePackage.eINSTANCE.getELong() || eDataType == EcorePackage.eINSTANCE.getELongObject()) {
 			return 8;
 		} else if (eDataType == EcorePackage.eINSTANCE.getEDouble() || eDataType == EcorePackage.eINSTANCE.getEDoubleObject()) {
@@ -1959,6 +1966,12 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 			} else {
 				buffer.putLong((Long) value);
 			}
+		} else if (type == EcorePackage.eINSTANCE.getEShort() || type == EcorePackage.eINSTANCE.getEShortObject()) {
+			if (value == null) {
+				buffer.putShort((short)0);
+			} else {
+				buffer.putShort((short) value);
+			}
 		} else if (type == EcorePackage.eINSTANCE.getEBoolean() || type == EcorePackage.eINSTANCE.getEBooleanObject()) {
 			if (value == null) {
 				buffer.put((byte) 0);
@@ -2325,5 +2338,9 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		if (currentStart == null || oid < currentStart) {
 			startOids.put(eClass, oid);
 		}
+	}
+	
+	public void setCleanupListener(CleanupListener cleanupListener) {
+		this.cleanupListener = cleanupListener;
 	}
 }

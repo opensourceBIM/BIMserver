@@ -18,12 +18,18 @@ package org.bimserver.longaction;
  *****************************************************************************/
 
 import org.bimserver.BimServer;
+import org.bimserver.BimserverDatabaseException;
+import org.bimserver.database.CleanupListener;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.ProgressHandler;
+import org.bimserver.database.RollbackListener;
 import org.bimserver.database.actions.CheckinDatabaseAction;
 import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
 import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.models.store.ActionState;
+import org.bimserver.models.store.Project;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 import org.slf4j.Logger;
@@ -52,6 +58,23 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			checkinDatabaseAction.setDatabaseSession(session);
+			session.setCleanupListener(new CleanupListener() {
+				@Override
+				public void cleanup() {
+					try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession()) {
+						Project project = tmpSession.get(checkinDatabaseAction.getPoid(), OldQuery.getDefault());
+						project.setCheckinInProgress(0);
+						tmpSession.store(project);
+						try {
+							tmpSession.commit();
+						} catch (ServiceException e2) {
+							LOGGER.error("", e2);
+						}
+					} catch (BimserverDatabaseException e1) {
+						LOGGER.error("", e1);
+					}
+				}
+			});
 			session.executeAndCommitAction(checkinDatabaseAction, new ProgressHandler() {
 				private int count;
 

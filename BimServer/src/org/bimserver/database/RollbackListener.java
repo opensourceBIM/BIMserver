@@ -18,5 +18,6 @@ package org.bimserver.database;
  *****************************************************************************/
 
 public interface RollbackListener {
+	// Rollback is called when a concurrent modification has happened, the implementation should cleanup whatever needs to be cleaned up in that context
 	void rollback();
 }
