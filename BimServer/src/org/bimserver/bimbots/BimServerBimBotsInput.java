@@ -24,9 +24,11 @@ import org.bimserver.GeometryGenerator;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
+import org.bimserver.plugins.ObjectAlreadyExistsException;
 import org.bimserver.renderengine.RenderEnginePool;
 import org.bimserver.shared.exceptions.PluginException;
 
@@ -57,6 +59,10 @@ public class BimServerBimBotsInput extends BimBotsInput {
 		} catch (BimserverDatabaseException e) {
 			e.printStackTrace();
 		} catch (GeometryGeneratingException e) {
+			e.printStackTrace();
+		} catch (ObjectAlreadyExistsException e) {
+			e.printStackTrace();
+		} catch (IfcModelInterfaceException e) {
 			e.printStackTrace();
 		}
 	}
