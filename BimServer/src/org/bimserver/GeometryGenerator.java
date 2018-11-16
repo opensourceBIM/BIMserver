@@ -82,6 +82,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.primitives.UnsignedBytes;
+
 public class GeometryGenerator extends GenericGeometryGenerator {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GeometryGenerator.class);
 	
@@ -197,6 +199,8 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 									} else {
 										geometryInfo = GeometryFactory.eINSTANCE.createGeometryInfo();
 									}
+									
+									geometryInfo.setIfcProductOid(ifcProduct.getOid());
 
 									Bounds bounds = GeometryFactory.eINSTANCE.createBounds();
 									
@@ -233,16 +237,17 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 										geometryData = GeometryFactory.eINSTANCE.createGeometryData();
 									}
 
-									geometryData.setIndices(createBuffer(GeometryUtils.intArrayToByteArray(geometry.getIndices())));
-									geometryData.setVertices(createBuffer(GeometryUtils.floatArrayToByteArray(geometry.getVertices())));
+									geometryData.setType(databaseSession.getCid(ifcProduct.eClass()));
+									geometryData.setIndices(createBuffer(model, databaseSession, GeometryUtils.intArrayToByteArray(geometry.getIndices()), store, pid, rid));
+									geometryData.setVertices(createBuffer(model, databaseSession, GeometryUtils.floatArrayToByteArray(geometry.getVertices()), store, pid, rid));
 //									geometryData.setMaterialIndices(intArrayToByteArray(geometry.getMaterialIndices()));
-									geometryData.setNormals(createBuffer(GeometryUtils.floatArrayToByteArray(geometry.getNormals())));
+									geometryData.setNormals(createBuffer(model, databaseSession, GeometryUtils.floatArrayToByteArray(geometry.getNormals()), store, pid, rid));
 									
 									geometryInfo.setPrimitiveCount(geometry.getIndices().length / 3);
 
 									if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
 										boolean hasMaterial = false;
-										float[] vertex_colors = new float[geometry.getVertices().length / 3 * 4];
+										byte[] vertexColors = new byte[geometry.getVertices().length / 3 * 4];
 										for (int i = 0; i < geometry.getMaterialIndices().length; ++i) {
 											int c = geometry.getMaterialIndices()[i];
 											for (int j = 0; j < 3; ++j) {
@@ -250,13 +255,14 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 												if (c > -1) {
 													hasMaterial = true;
 													for (int l = 0; l < 4; ++l) {
-														vertex_colors[4 * k + l] = geometry.getMaterials()[4 * c + l];
+														float f = geometry.getMaterials()[4 * c + l];
+														vertexColors[4 * k + l] = UnsignedBytes.checkedCast((int)(f * 255));
 													}
 												}
 											}
 										}
 										if (hasMaterial) {
-											geometryData.setColorsQuantized(createBuffer(GeometryUtils.floatArrayToByteArray(vertex_colors)));
+											geometryData.setColorsQuantized(createBuffer(model, databaseSession, vertexColors, store, pid, rid));
 										}
 									}
 
@@ -416,9 +422,9 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 				0, 0, 0
 			};
 			
-			geometryData.setIndices(createBuffer(GeometryUtils.intArrayToByteArray(indices)));
-			geometryData.setVertices(createBuffer(GeometryUtils.floatArrayToByteArray(vertices)));
-			geometryData.setNormals(createBuffer(GeometryUtils.floatArrayToByteArray(normals)));
+			geometryData.setIndices(createBuffer(model, databaseSession, GeometryUtils.intArrayToByteArray(indices), store, pid, rid));
+			geometryData.setVertices(createBuffer(model, databaseSession, GeometryUtils.floatArrayToByteArray(vertices), store, pid, rid));
+			geometryData.setNormals(createBuffer(model, databaseSession, GeometryUtils.floatArrayToByteArray(normals), store, pid, rid));
 			
 			geometryInfo.setPrimitiveCount(12);
 			geometryInfo.setData(geometryData);
@@ -450,7 +456,7 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 	
 	@SuppressWarnings("unchecked")
 	public GenerateGeometryResult generateGeometry(RenderEnginePool renderEnginePool, final PluginManager pluginManager, final DatabaseSession databaseSession, final IfcModelInterface model, final int pid, final int rid,
-			final boolean store, GeometryCache geometryCache) throws BimserverDatabaseException, GeometryGeneratingException {
+			final boolean store, GeometryCache geometryCache) throws BimserverDatabaseException, GeometryGeneratingException, ObjectAlreadyExistsException, IfcModelInterfaceException {
 		GenerateGeometryResult generateGeometryResult = new GenerateGeometryResult();
 		packageMetaData = model.getPackageMetaData();
 		productClass = packageMetaData.getEClass("IfcProduct");
@@ -460,7 +466,7 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 		representationsFeature = productRepresentationClass.getEStructuralFeature("Representations");
 
 		if (geometryCache != null && !geometryCache.isEmpty()) {
-			returnCachedData(model, geometryCache, databaseSession, pid, rid);
+			returnCachedData(model, geometryCache, databaseSession, pid, rid, store);
 			return null;
 		}
 		long start = System.nanoTime();
@@ -635,15 +641,15 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 		geometryInfo.setTransformation(byteBuffer.array());
 	}
 
-	private void returnCachedData(IfcModelInterface model, GeometryCache geometryCache, DatabaseSession databaseSession, int pid, int rid) throws BimserverDatabaseException {
+	private void returnCachedData(IfcModelInterface model, GeometryCache geometryCache, DatabaseSession databaseSession, int pid, int rid, boolean store) throws BimserverDatabaseException, ObjectAlreadyExistsException, IfcModelInterfaceException {
 		EClass productClass = model.getPackageMetaData().getEClass("IfcProduct");
 		List<IdEObject> products = model.getAllWithSubTypes(productClass);
 		for (IdEObject ifcProduct : products) {
 			GeometryCacheEntry geometryCacheEntry = geometryCache.get(ifcProduct.getExpressId());
 			if (geometryCacheEntry != null) {
 				GeometryData geometryData = databaseSession.create(GeometryPackage.eINSTANCE.getGeometryData(), pid, rid);
-				geometryData.setVertices(createBuffer(geometryCacheEntry.getVertices().array()));
-				geometryData.setNormals(createBuffer(geometryCacheEntry.getNormals().array()));
+				geometryData.setVertices(createBuffer(model, databaseSession, geometryCacheEntry.getVertices().array(), store, pid, rid));
+				geometryData.setNormals(createBuffer(model, databaseSession, geometryCacheEntry.getNormals().array(), store, pid, rid));
 				GeometryInfo geometryInfo = databaseSession.create(GeometryPackage.eINSTANCE.getGeometryInfo(), pid, rid);
 				Vector3f min = databaseSession.create(GeometryPackage.eINSTANCE.getVector3f(), pid, rid);
 				min.setX(geometryCacheEntry.getGeometryInfo().getBounds().getMin().getX());
@@ -680,8 +686,14 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 		return vector3f;
 	}
 	
-	private Buffer createBuffer(byte[] data) {
-		Buffer buffer = GeometryFactory.eINSTANCE.createBuffer();
+	private Buffer createBuffer(IfcModelInterface model, DatabaseSession databaseSession, byte[] data, boolean store, int pid, int rid) throws ObjectAlreadyExistsException, IfcModelInterfaceException, BimserverDatabaseException {
+		Buffer buffer = null;
+		if (store) {
+			buffer = model.createAndAdd(GeometryPackage.eINSTANCE.getBuffer(), databaseSession.newOid(GeometryPackage.eINSTANCE.getBuffer()));
+			databaseSession.store(buffer, pid, rid);
+		} else {
+			buffer = GeometryFactory.eINSTANCE.createBuffer();
+		}
 		buffer.setData(data);
 		return buffer;
 	}
