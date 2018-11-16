@@ -76,7 +76,7 @@ public abstract class PluginBundleDatabaseAction<T> extends BimDatabaseAction<T>
 									version = "[" + version + "]";
 								}
 								VersionRange versionRange = VersionRange.createFromVersionSpec(version);
-								if (bimserverVersion != null && !bimserverVersion.getQualifier().equals("SNAPSHOT") && versionRange.containsVersion(bimserverVersion)) {
+								if (bimserverVersion.getQualifier().equals("SNAPSHOT") || (bimserverVersion != null && versionRange.containsVersion(bimserverVersion))) {
 									// OK
 								} else {
 									sPluginBundleVersion.setMismatch(true);
