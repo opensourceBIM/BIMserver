@@ -1175,4 +1175,8 @@ public abstract class IfcModel implements IfcModelInterface {
 	@Override
 	public void dumpDebug() {
 	}
+	
+	@Override
+	public void close() throws Exception {
+	}
 }

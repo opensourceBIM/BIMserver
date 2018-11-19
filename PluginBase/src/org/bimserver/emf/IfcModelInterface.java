@@ -40,7 +40,7 @@ import com.google.common.collect.BiMap;
  *
  * 
  */
-public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory {
+public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory, AutoCloseable {
 
 	/**
 	 * Retrieve an object by its GUID
