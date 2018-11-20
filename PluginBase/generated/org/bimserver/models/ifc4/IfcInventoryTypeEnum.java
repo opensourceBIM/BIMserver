@@ -205,7 +205,8 @@ public enum IfcInventoryTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcInventoryTypeEnum[] VALUES_ARRAY = new IfcInventoryTypeEnum[] { NULL, FURNITUREINVENTORY, NOTDEFINED, ASSETINVENTORY, SPACEINVENTORY, USERDEFINED, };
+	private static final IfcInventoryTypeEnum[] VALUES_ARRAY = new IfcInventoryTypeEnum[] { NULL, FURNITUREINVENTORY,
+			NOTDEFINED, ASSETINVENTORY, SPACEINVENTORY, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Inventory Type Enum</b></em>' enumerators.

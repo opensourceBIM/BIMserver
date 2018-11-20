@@ -172,7 +172,8 @@ public class IfcPropertyImpl extends IfcPropertyAbstractionImpl implements IfcPr
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertyDependencyRelationship> getPropertyForDependance() {
-		return (EList<IfcPropertyDependencyRelationship>) eGet(Ifc4Package.Literals.IFC_PROPERTY__PROPERTY_FOR_DEPENDANCE, true);
+		return (EList<IfcPropertyDependencyRelationship>) eGet(
+				Ifc4Package.Literals.IFC_PROPERTY__PROPERTY_FOR_DEPENDANCE, true);
 	}
 
 	/**
@@ -200,7 +201,8 @@ public class IfcPropertyImpl extends IfcPropertyAbstractionImpl implements IfcPr
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertyDependencyRelationship> getPropertyDependsOn() {
-		return (EList<IfcPropertyDependencyRelationship>) eGet(Ifc4Package.Literals.IFC_PROPERTY__PROPERTY_DEPENDS_ON, true);
+		return (EList<IfcPropertyDependencyRelationship>) eGet(Ifc4Package.Literals.IFC_PROPERTY__PROPERTY_DEPENDS_ON,
+				true);
 	}
 
 	/**
@@ -256,7 +258,8 @@ public class IfcPropertyImpl extends IfcPropertyAbstractionImpl implements IfcPr
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcResourceConstraintRelationship> getHasConstraints() {
-		return (EList<IfcResourceConstraintRelationship>) eGet(Ifc4Package.Literals.IFC_PROPERTY__HAS_CONSTRAINTS, true);
+		return (EList<IfcResourceConstraintRelationship>) eGet(Ifc4Package.Literals.IFC_PROPERTY__HAS_CONSTRAINTS,
+				true);
 	}
 
 	/**

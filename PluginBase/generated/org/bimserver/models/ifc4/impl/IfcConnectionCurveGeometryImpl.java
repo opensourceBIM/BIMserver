@@ -78,7 +78,8 @@ public class IfcConnectionCurveGeometryImpl extends IfcConnectionGeometryImpl im
 	 * @generated
 	 */
 	public IfcCurveOrEdgeCurve getCurveOnRelatingElement() {
-		return (IfcCurveOrEdgeCurve) eGet(Ifc4Package.Literals.IFC_CONNECTION_CURVE_GEOMETRY__CURVE_ON_RELATING_ELEMENT, true);
+		return (IfcCurveOrEdgeCurve) eGet(Ifc4Package.Literals.IFC_CONNECTION_CURVE_GEOMETRY__CURVE_ON_RELATING_ELEMENT,
+				true);
 	}
 
 	/**
@@ -96,7 +97,8 @@ public class IfcConnectionCurveGeometryImpl extends IfcConnectionGeometryImpl im
 	 * @generated
 	 */
 	public IfcCurveOrEdgeCurve getCurveOnRelatedElement() {
-		return (IfcCurveOrEdgeCurve) eGet(Ifc4Package.Literals.IFC_CONNECTION_CURVE_GEOMETRY__CURVE_ON_RELATED_ELEMENT, true);
+		return (IfcCurveOrEdgeCurve) eGet(Ifc4Package.Literals.IFC_CONNECTION_CURVE_GEOMETRY__CURVE_ON_RELATED_ELEMENT,
+				true);
 	}
 
 	/**

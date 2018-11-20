@@ -180,7 +180,8 @@ public enum IfcCrewResourceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCrewResourceTypeEnum[] VALUES_ARRAY = new IfcCrewResourceTypeEnum[] { NULL, SITE, NOTDEFINED, OFFICE, USERDEFINED, };
+	private static final IfcCrewResourceTypeEnum[] VALUES_ARRAY = new IfcCrewResourceTypeEnum[] { NULL, SITE,
+			NOTDEFINED, OFFICE, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Crew Resource Type Enum</b></em>' enumerators.
@@ -188,7 +189,8 @@ public enum IfcCrewResourceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcCrewResourceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcCrewResourceTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Crew Resource Type Enum</b></em>' literal with the specified literal value.

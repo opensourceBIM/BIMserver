@@ -98,7 +98,8 @@ public class IfcContextDependentUnitImpl extends IfcNamedUnitImpl implements Ifc
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcExternalReferenceRelationship> getHasExternalReference() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_CONTEXT_DEPENDENT_UNIT__HAS_EXTERNAL_REFERENCE, true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(
+				Ifc4Package.Literals.IFC_CONTEXT_DEPENDENT_UNIT__HAS_EXTERNAL_REFERENCE, true);
 	}
 
 	/**

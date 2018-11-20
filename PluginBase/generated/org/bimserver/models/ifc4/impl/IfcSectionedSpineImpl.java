@@ -112,7 +112,8 @@ public class IfcSectionedSpineImpl extends IfcGeometricRepresentationItemImpl im
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcAxis2Placement3D> getCrossSectionPositions() {
-		return (EList<IfcAxis2Placement3D>) eGet(Ifc4Package.Literals.IFC_SECTIONED_SPINE__CROSS_SECTION_POSITIONS, true);
+		return (EList<IfcAxis2Placement3D>) eGet(Ifc4Package.Literals.IFC_SECTIONED_SPINE__CROSS_SECTION_POSITIONS,
+				true);
 	}
 
 	/**

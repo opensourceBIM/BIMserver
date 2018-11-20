@@ -44,7 +44,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcDraughtingPreDefinedColourImpl extends IfcPreDefinedColourImpl implements IfcDraughtingPreDefinedColour {
+public class IfcDraughtingPreDefinedColourImpl extends IfcPreDefinedColourImpl
+		implements IfcDraughtingPreDefinedColour {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

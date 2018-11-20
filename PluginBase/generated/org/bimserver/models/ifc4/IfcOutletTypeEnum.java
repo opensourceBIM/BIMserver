@@ -255,7 +255,8 @@ public enum IfcOutletTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcOutletTypeEnum[] VALUES_ARRAY = new IfcOutletTypeEnum[] { NULL, NOTDEFINED, POWEROUTLET, TELEPHONEOUTLET, DATAOUTLET, USERDEFINED, COMMUNICATIONSOUTLET, AUDIOVISUALOUTLET, };
+	private static final IfcOutletTypeEnum[] VALUES_ARRAY = new IfcOutletTypeEnum[] { NULL, NOTDEFINED, POWEROUTLET,
+			TELEPHONEOUTLET, DATAOUTLET, USERDEFINED, COMMUNICATIONSOUTLET, AUDIOVISUALOUTLET, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Outlet Type Enum</b></em>' enumerators.

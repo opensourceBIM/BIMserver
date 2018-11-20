@@ -280,7 +280,9 @@ public enum IfcRecurrenceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRecurrenceTypeEnum[] VALUES_ARRAY = new IfcRecurrenceTypeEnum[] { NULL, BY_DAY_COUNT, WEEKLY, YEARLY_BY_POSITION, DAILY, YEARLY_BY_DAY_OF_MONTH, MONTHLY_BY_DAY_OF_MONTH, BY_WEEKDAY_COUNT, MONTHLY_BY_POSITION, };
+	private static final IfcRecurrenceTypeEnum[] VALUES_ARRAY = new IfcRecurrenceTypeEnum[] { NULL, BY_DAY_COUNT,
+			WEEKLY, YEARLY_BY_POSITION, DAILY, YEARLY_BY_DAY_OF_MONTH, MONTHLY_BY_DAY_OF_MONTH, BY_WEEKDAY_COUNT,
+			MONTHLY_BY_POSITION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Recurrence Type Enum</b></em>' enumerators.

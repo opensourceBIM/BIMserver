@@ -658,7 +658,7 @@ public class Express2EMF {
 		} else if (entityName.equals("IfcTriangulatedFaceSet") && attribName.equals("CoordIndex")) {
 			finalType = EcorePackage.eINSTANCE.getELong();
 		} else if (entityName.equals("IfcCartesianPointList2D") && attribName.equals("CoordList")) {
-			finalType = schemaPack.getEClassifier("IfcCartesianPoint");
+			finalType = schemaPack.getEClassifier("IfcLengthMeasure");
 		} else if (entityName.equals("IfcIndexedPolygonalFaceWithVoids") && attribName.equals("InnerCoordIndices")) {
 			finalType = EcorePackage.eINSTANCE.getELong();
 		} else if (entityName.equals("IfcTriangulatedFaceSet") && attribName.equals("Normals")) {

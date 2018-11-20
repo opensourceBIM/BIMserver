@@ -153,7 +153,8 @@ public class IfcMaterialConstituentSetImpl extends IfcMaterialDefinitionImpl imp
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcMaterialConstituent> getMaterialConstituents() {
-		return (EList<IfcMaterialConstituent>) eGet(Ifc4Package.Literals.IFC_MATERIAL_CONSTITUENT_SET__MATERIAL_CONSTITUENTS, true);
+		return (EList<IfcMaterialConstituent>) eGet(
+				Ifc4Package.Literals.IFC_MATERIAL_CONSTITUENT_SET__MATERIAL_CONSTITUENTS, true);
 	}
 
 	/**

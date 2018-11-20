@@ -230,7 +230,8 @@ public enum IfcGridTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcGridTypeEnum[] VALUES_ARRAY = new IfcGridTypeEnum[] { NULL, IRREGULAR, NOTDEFINED, RECTANGULAR, USERDEFINED, RADIAL, TRIANGULAR, };
+	private static final IfcGridTypeEnum[] VALUES_ARRAY = new IfcGridTypeEnum[] { NULL, IRREGULAR, NOTDEFINED,
+			RECTANGULAR, USERDEFINED, RADIAL, TRIANGULAR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Grid Type Enum</b></em>' enumerators.

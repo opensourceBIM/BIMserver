@@ -455,8 +455,9 @@ public enum IfcRoofTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRoofTypeEnum[] VALUES_ARRAY = new IfcRoofTypeEnum[] { NULL, SHED_ROOF, HIP_ROOF, FLAT_ROOF, BUTTERFLY_ROOF, RAINBOW_ROOF, BARREL_ROOF, USERDEFINED, FREEFORM, HIPPED_GABLE_ROOF, NOTDEFINED, PAVILION_ROOF,
-			GABLE_ROOF, GAMBREL_ROOF, DOME_ROOF, MANSARD_ROOF, };
+	private static final IfcRoofTypeEnum[] VALUES_ARRAY = new IfcRoofTypeEnum[] { NULL, SHED_ROOF, HIP_ROOF, FLAT_ROOF,
+			BUTTERFLY_ROOF, RAINBOW_ROOF, BARREL_ROOF, USERDEFINED, FREEFORM, HIPPED_GABLE_ROOF, NOTDEFINED,
+			PAVILION_ROOF, GABLE_ROOF, GAMBREL_ROOF, DOME_ROOF, MANSARD_ROOF, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Roof Type Enum</b></em>' enumerators.

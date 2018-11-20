@@ -53,7 +53,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelConnectsWithRealizingElementsImpl extends IfcRelConnectsElementsImpl implements IfcRelConnectsWithRealizingElements {
+public class IfcRelConnectsWithRealizingElementsImpl extends IfcRelConnectsElementsImpl
+		implements IfcRelConnectsWithRealizingElements {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +81,8 @@ public class IfcRelConnectsWithRealizingElementsImpl extends IfcRelConnectsEleme
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcElement> getRealizingElements() {
-		return (EList<IfcElement>) eGet(Ifc4Package.Literals.IFC_REL_CONNECTS_WITH_REALIZING_ELEMENTS__REALIZING_ELEMENTS, true);
+		return (EList<IfcElement>) eGet(
+				Ifc4Package.Literals.IFC_REL_CONNECTS_WITH_REALIZING_ELEMENTS__REALIZING_ELEMENTS, true);
 	}
 
 	/**

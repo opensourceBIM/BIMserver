@@ -255,7 +255,8 @@ public enum IfcSpaceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSpaceTypeEnum[] VALUES_ARRAY = new IfcSpaceTypeEnum[] { NULL, SPACE, NOTDEFINED, GFA, EXTERNAL, INTERNAL, USERDEFINED, PARKING, };
+	private static final IfcSpaceTypeEnum[] VALUES_ARRAY = new IfcSpaceTypeEnum[] { NULL, SPACE, NOTDEFINED, GFA,
+			EXTERNAL, INTERNAL, USERDEFINED, PARKING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Space Type Enum</b></em>' enumerators.

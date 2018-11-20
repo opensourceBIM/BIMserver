@@ -430,8 +430,9 @@ public enum IfcCommunicationsApplianceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCommunicationsApplianceTypeEnum[] VALUES_ARRAY = new IfcCommunicationsApplianceTypeEnum[] { NULL, GATEWAY, NETWORKAPPLIANCE, ROUTER, MODEM, USERDEFINED, ANTENNA, SCANNER, NETWORKHUB, NETWORKBRIDGE, NOTDEFINED,
-			PRINTER, COMPUTER, REPEATER, FAX, };
+	private static final IfcCommunicationsApplianceTypeEnum[] VALUES_ARRAY = new IfcCommunicationsApplianceTypeEnum[] {
+			NULL, GATEWAY, NETWORKAPPLIANCE, ROUTER, MODEM, USERDEFINED, ANTENNA, SCANNER, NETWORKHUB, NETWORKBRIDGE,
+			NOTDEFINED, PRINTER, COMPUTER, REPEATER, FAX, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Communications Appliance Type Enum</b></em>' enumerators.
@@ -439,7 +440,8 @@ public enum IfcCommunicationsApplianceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcCommunicationsApplianceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcCommunicationsApplianceTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Communications Appliance Type Enum</b></em>' literal with the specified literal value.

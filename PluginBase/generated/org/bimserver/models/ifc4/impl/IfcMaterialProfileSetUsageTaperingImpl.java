@@ -52,7 +52,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMaterialProfileSetUsageTaperingImpl extends IfcMaterialProfileSetUsageImpl implements IfcMaterialProfileSetUsageTapering {
+public class IfcMaterialProfileSetUsageTaperingImpl extends IfcMaterialProfileSetUsageImpl
+		implements IfcMaterialProfileSetUsageTapering {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,7 +79,8 @@ public class IfcMaterialProfileSetUsageTaperingImpl extends IfcMaterialProfileSe
 	 * @generated
 	 */
 	public IfcMaterialProfileSet getForProfileEndSet() {
-		return (IfcMaterialProfileSet) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE_TAPERING__FOR_PROFILE_END_SET, true);
+		return (IfcMaterialProfileSet) eGet(
+				Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE_TAPERING__FOR_PROFILE_END_SET, true);
 	}
 
 	/**

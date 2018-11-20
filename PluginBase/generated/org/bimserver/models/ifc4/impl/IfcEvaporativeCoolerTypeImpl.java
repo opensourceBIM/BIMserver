@@ -51,7 +51,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcEvaporativeCoolerTypeImpl extends IfcEnergyConversionDeviceTypeImpl implements IfcEvaporativeCoolerType {
+public class IfcEvaporativeCoolerTypeImpl extends IfcEnergyConversionDeviceTypeImpl
+		implements IfcEvaporativeCoolerType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,7 +78,8 @@ public class IfcEvaporativeCoolerTypeImpl extends IfcEnergyConversionDeviceTypeI
 	 * @generated
 	 */
 	public IfcEvaporativeCoolerTypeEnum getPredefinedType() {
-		return (IfcEvaporativeCoolerTypeEnum) eGet(Ifc4Package.Literals.IFC_EVAPORATIVE_COOLER_TYPE__PREDEFINED_TYPE, true);
+		return (IfcEvaporativeCoolerTypeEnum) eGet(Ifc4Package.Literals.IFC_EVAPORATIVE_COOLER_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**

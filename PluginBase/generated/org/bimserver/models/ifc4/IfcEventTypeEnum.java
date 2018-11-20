@@ -205,7 +205,8 @@ public enum IfcEventTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcEventTypeEnum[] VALUES_ARRAY = new IfcEventTypeEnum[] { NULL, INTERMEDIATEEVENT, NOTDEFINED, STARTEVENT, ENDEVENT, USERDEFINED, };
+	private static final IfcEventTypeEnum[] VALUES_ARRAY = new IfcEventTypeEnum[] { NULL, INTERMEDIATEEVENT, NOTDEFINED,
+			STARTEVENT, ENDEVENT, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Event Type Enum</b></em>' enumerators.

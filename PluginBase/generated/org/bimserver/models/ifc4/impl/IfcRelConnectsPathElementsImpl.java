@@ -101,7 +101,8 @@ public class IfcRelConnectsPathElementsImpl extends IfcRelConnectsElementsImpl i
 	 * @generated
 	 */
 	public IfcConnectionTypeEnum getRelatedConnectionType() {
-		return (IfcConnectionTypeEnum) eGet(Ifc4Package.Literals.IFC_REL_CONNECTS_PATH_ELEMENTS__RELATED_CONNECTION_TYPE, true);
+		return (IfcConnectionTypeEnum) eGet(
+				Ifc4Package.Literals.IFC_REL_CONNECTS_PATH_ELEMENTS__RELATED_CONNECTION_TYPE, true);
 	}
 
 	/**
@@ -119,7 +120,8 @@ public class IfcRelConnectsPathElementsImpl extends IfcRelConnectsElementsImpl i
 	 * @generated
 	 */
 	public IfcConnectionTypeEnum getRelatingConnectionType() {
-		return (IfcConnectionTypeEnum) eGet(Ifc4Package.Literals.IFC_REL_CONNECTS_PATH_ELEMENTS__RELATING_CONNECTION_TYPE, true);
+		return (IfcConnectionTypeEnum) eGet(
+				Ifc4Package.Literals.IFC_REL_CONNECTS_PATH_ELEMENTS__RELATING_CONNECTION_TYPE, true);
 	}
 
 	/**

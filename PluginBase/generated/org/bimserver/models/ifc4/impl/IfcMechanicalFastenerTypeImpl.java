@@ -81,7 +81,8 @@ public class IfcMechanicalFastenerTypeImpl extends IfcElementComponentTypeImpl i
 	 * @generated
 	 */
 	public IfcMechanicalFastenerTypeEnum getPredefinedType() {
-		return (IfcMechanicalFastenerTypeEnum) eGet(Ifc4Package.Literals.IFC_MECHANICAL_FASTENER_TYPE__PREDEFINED_TYPE, true);
+		return (IfcMechanicalFastenerTypeEnum) eGet(Ifc4Package.Literals.IFC_MECHANICAL_FASTENER_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**

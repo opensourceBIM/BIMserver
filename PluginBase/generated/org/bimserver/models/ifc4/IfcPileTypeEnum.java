@@ -280,7 +280,8 @@ public enum IfcPileTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPileTypeEnum[] VALUES_ARRAY = new IfcPileTypeEnum[] { NULL, FRICTION, SUPPORT, NOTDEFINED, BORED, COHESION, JETGROUTING, USERDEFINED, DRIVEN, };
+	private static final IfcPileTypeEnum[] VALUES_ARRAY = new IfcPileTypeEnum[] { NULL, FRICTION, SUPPORT, NOTDEFINED,
+			BORED, COHESION, JETGROUTING, USERDEFINED, DRIVEN, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Pile Type Enum</b></em>' enumerators.

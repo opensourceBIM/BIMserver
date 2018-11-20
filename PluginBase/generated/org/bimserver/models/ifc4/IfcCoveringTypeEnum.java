@@ -380,7 +380,9 @@ public enum IfcCoveringTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCoveringTypeEnum[] VALUES_ARRAY = new IfcCoveringTypeEnum[] { NULL, WRAPPING, NOTDEFINED, SKIRTINGBOARD, CEILING, MOLDING, ROOFING, MEMBRANE, INSULATION, USERDEFINED, CLADDING, SLEEVING, FLOORING, };
+	private static final IfcCoveringTypeEnum[] VALUES_ARRAY = new IfcCoveringTypeEnum[] { NULL, WRAPPING, NOTDEFINED,
+			SKIRTINGBOARD, CEILING, MOLDING, ROOFING, MEMBRANE, INSULATION, USERDEFINED, CLADDING, SLEEVING,
+			FLOORING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Covering Type Enum</b></em>' enumerators.

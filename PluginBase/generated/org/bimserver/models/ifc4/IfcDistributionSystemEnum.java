@@ -1180,9 +1180,13 @@ public enum IfcDistributionSystemEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDistributionSystemEnum[] VALUES_ARRAY = new IfcDistributionSystemEnum[] { NULL, VACUUM, TV, ELECTRICAL, STORMWATER, FIREPROTECTION, EXHAUST, LIGHTNINGPROTECTION, LIGHTING, USERDEFINED, AIRCONDITIONING, EARTHING,
-			DOMESTICHOTWATER, NOTDEFINED, VENTILATION, DISPOSAL, FUEL, CHILLEDWATER, CONVEYING, REFRIGERATION, VENT, WATERSUPPLY, CHEMICAL, SIGNAL, RAINWATER, TELEPHONE, COMPRESSEDAIR, DRAINAGE, ELECTROACOUSTIC, MUNICIPALSOLIDWASTE,
-			CONDENSERWATER, HEATING, SEWAGE, HAZARDOUS, POWERGENERATION, OIL, WASTEWATER, DATA, GAS, SECURITY, AUDIOVISUAL, DOMESTICCOLDWATER, OPERATIONAL, COMMUNICATION, CONTROL, };
+	private static final IfcDistributionSystemEnum[] VALUES_ARRAY = new IfcDistributionSystemEnum[] { NULL, VACUUM, TV,
+			ELECTRICAL, STORMWATER, FIREPROTECTION, EXHAUST, LIGHTNINGPROTECTION, LIGHTING, USERDEFINED,
+			AIRCONDITIONING, EARTHING, DOMESTICHOTWATER, NOTDEFINED, VENTILATION, DISPOSAL, FUEL, CHILLEDWATER,
+			CONVEYING, REFRIGERATION, VENT, WATERSUPPLY, CHEMICAL, SIGNAL, RAINWATER, TELEPHONE, COMPRESSEDAIR,
+			DRAINAGE, ELECTROACOUSTIC, MUNICIPALSOLIDWASTE, CONDENSERWATER, HEATING, SEWAGE, HAZARDOUS, POWERGENERATION,
+			OIL, WASTEWATER, DATA, GAS, SECURITY, AUDIOVISUAL, DOMESTICCOLDWATER, OPERATIONAL, COMMUNICATION,
+			CONTROL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Distribution System Enum</b></em>' enumerators.
@@ -1190,7 +1194,8 @@ public enum IfcDistributionSystemEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcDistributionSystemEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcDistributionSystemEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Distribution System Enum</b></em>' literal with the specified literal value.

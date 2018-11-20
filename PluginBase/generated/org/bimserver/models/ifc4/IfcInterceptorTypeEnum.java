@@ -230,7 +230,8 @@ public enum IfcInterceptorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcInterceptorTypeEnum[] VALUES_ARRAY = new IfcInterceptorTypeEnum[] { NULL, GREASE, NOTDEFINED, OIL, PETROL, CYCLONIC, USERDEFINED, };
+	private static final IfcInterceptorTypeEnum[] VALUES_ARRAY = new IfcInterceptorTypeEnum[] { NULL, GREASE,
+			NOTDEFINED, OIL, PETROL, CYCLONIC, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Interceptor Type Enum</b></em>' enumerators.

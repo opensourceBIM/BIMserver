@@ -51,7 +51,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCommunicationsApplianceTypeImpl extends IfcFlowTerminalTypeImpl implements IfcCommunicationsApplianceType {
+public class IfcCommunicationsApplianceTypeImpl extends IfcFlowTerminalTypeImpl
+		implements IfcCommunicationsApplianceType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,7 +78,8 @@ public class IfcCommunicationsApplianceTypeImpl extends IfcFlowTerminalTypeImpl 
 	 * @generated
 	 */
 	public IfcCommunicationsApplianceTypeEnum getPredefinedType() {
-		return (IfcCommunicationsApplianceTypeEnum) eGet(Ifc4Package.Literals.IFC_COMMUNICATIONS_APPLIANCE_TYPE__PREDEFINED_TYPE, true);
+		return (IfcCommunicationsApplianceTypeEnum) eGet(
+				Ifc4Package.Literals.IFC_COMMUNICATIONS_APPLIANCE_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**

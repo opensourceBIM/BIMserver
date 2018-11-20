@@ -36,6 +36,7 @@ package org.bimserver.models.ifc4.impl;
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.IfcCartesianPointList2D;
 import org.bimserver.models.ifc4.ListOfIfcCartesianPoint;
+import org.bimserver.models.ifc4.ListOfIfcLengthMeasure;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
@@ -78,8 +79,8 @@ public class IfcCartesianPointList2DImpl extends IfcCartesianPointListImpl imple
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EList<ListOfIfcCartesianPoint> getCoordList() {
-		return (EList<ListOfIfcCartesianPoint>) eGet(Ifc4Package.Literals.IFC_CARTESIAN_POINT_LIST2_D__COORD_LIST, true);
+	public EList<ListOfIfcLengthMeasure> getCoordList() {
+		return (EList<ListOfIfcLengthMeasure>) eGet(Ifc4Package.Literals.IFC_CARTESIAN_POINT_LIST2_D__COORD_LIST, true);
 	}
 
 } //IfcCartesianPointList2DImpl

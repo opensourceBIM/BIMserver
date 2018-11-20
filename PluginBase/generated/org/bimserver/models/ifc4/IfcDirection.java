@@ -53,7 +53,8 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcDirection extends IfcGeometricRepresentationItem, IfcGridPlacementDirectionSelect, IfcVectorOrDirection {
+public interface IfcDirection
+		extends IfcGeometricRepresentationItem, IfcGridPlacementDirectionSelect, IfcVectorOrDirection {
 	/**
 	 * Returns the value of the '<em><b>Direction Ratios</b></em>' attribute list.
 	 * The list contents are of type {@link java.lang.Double}.

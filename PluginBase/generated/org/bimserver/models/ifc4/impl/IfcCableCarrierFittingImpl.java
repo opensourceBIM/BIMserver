@@ -77,7 +77,8 @@ public class IfcCableCarrierFittingImpl extends IfcFlowFittingImpl implements If
 	 * @generated
 	 */
 	public IfcCableCarrierFittingTypeEnum getPredefinedType() {
-		return (IfcCableCarrierFittingTypeEnum) eGet(Ifc4Package.Literals.IFC_CABLE_CARRIER_FITTING__PREDEFINED_TYPE, true);
+		return (IfcCableCarrierFittingTypeEnum) eGet(Ifc4Package.Literals.IFC_CABLE_CARRIER_FITTING__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**

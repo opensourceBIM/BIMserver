@@ -52,7 +52,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcModulusOfRotationalSubgradeReactionMeasureImpl extends IdEObjectImpl implements IfcModulusOfRotationalSubgradeReactionMeasure {
+public class IfcModulusOfRotationalSubgradeReactionMeasureImpl extends IdEObjectImpl
+		implements IfcModulusOfRotationalSubgradeReactionMeasure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -88,7 +89,8 @@ public class IfcModulusOfRotationalSubgradeReactionMeasureImpl extends IdEObject
 	 * @generated
 	 */
 	public double getWrappedValue() {
-		return (Double) eGet(Ifc4Package.Literals.IFC_MODULUS_OF_ROTATIONAL_SUBGRADE_REACTION_MEASURE__WRAPPED_VALUE, true);
+		return (Double) eGet(Ifc4Package.Literals.IFC_MODULUS_OF_ROTATIONAL_SUBGRADE_REACTION_MEASURE__WRAPPED_VALUE,
+				true);
 	}
 
 	/**
@@ -124,7 +126,9 @@ public class IfcModulusOfRotationalSubgradeReactionMeasureImpl extends IdEObject
 	 * @generated
 	 */
 	public String getWrappedValueAsString() {
-		return (String) eGet(Ifc4Package.Literals.IFC_MODULUS_OF_ROTATIONAL_SUBGRADE_REACTION_MEASURE__WRAPPED_VALUE_AS_STRING, true);
+		return (String) eGet(
+				Ifc4Package.Literals.IFC_MODULUS_OF_ROTATIONAL_SUBGRADE_REACTION_MEASURE__WRAPPED_VALUE_AS_STRING,
+				true);
 	}
 
 	/**
@@ -133,7 +137,8 @@ public class IfcModulusOfRotationalSubgradeReactionMeasureImpl extends IdEObject
 	 * @generated
 	 */
 	public void setWrappedValueAsString(String newWrappedValueAsString) {
-		eSet(Ifc4Package.Literals.IFC_MODULUS_OF_ROTATIONAL_SUBGRADE_REACTION_MEASURE__WRAPPED_VALUE_AS_STRING, newWrappedValueAsString);
+		eSet(Ifc4Package.Literals.IFC_MODULUS_OF_ROTATIONAL_SUBGRADE_REACTION_MEASURE__WRAPPED_VALUE_AS_STRING,
+				newWrappedValueAsString);
 	}
 
 	/**
@@ -151,7 +156,8 @@ public class IfcModulusOfRotationalSubgradeReactionMeasureImpl extends IdEObject
 	 * @generated
 	 */
 	public boolean isSetWrappedValueAsString() {
-		return eIsSet(Ifc4Package.Literals.IFC_MODULUS_OF_ROTATIONAL_SUBGRADE_REACTION_MEASURE__WRAPPED_VALUE_AS_STRING);
+		return eIsSet(
+				Ifc4Package.Literals.IFC_MODULUS_OF_ROTATIONAL_SUBGRADE_REACTION_MEASURE__WRAPPED_VALUE_AS_STRING);
 	}
 
 } //IfcModulusOfRotationalSubgradeReactionMeasureImpl

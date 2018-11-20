@@ -44,7 +44,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcExternalSpatialStructureElementImpl extends IfcSpatialElementImpl implements IfcExternalSpatialStructureElement {
+public class IfcExternalSpatialStructureElementImpl extends IfcSpatialElementImpl
+		implements IfcExternalSpatialStructureElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

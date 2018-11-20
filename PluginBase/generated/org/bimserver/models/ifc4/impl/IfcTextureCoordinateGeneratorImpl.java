@@ -53,7 +53,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTextureCoordinateGeneratorImpl extends IfcTextureCoordinateImpl implements IfcTextureCoordinateGenerator {
+public class IfcTextureCoordinateGeneratorImpl extends IfcTextureCoordinateImpl
+		implements IfcTextureCoordinateGenerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

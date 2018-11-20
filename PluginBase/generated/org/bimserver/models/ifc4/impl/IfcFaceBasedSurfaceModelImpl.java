@@ -53,7 +53,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFaceBasedSurfaceModelImpl extends IfcGeometricRepresentationItemImpl implements IfcFaceBasedSurfaceModel {
+public class IfcFaceBasedSurfaceModelImpl extends IfcGeometricRepresentationItemImpl
+		implements IfcFaceBasedSurfaceModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

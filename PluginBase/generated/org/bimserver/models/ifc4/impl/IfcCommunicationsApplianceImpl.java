@@ -77,7 +77,8 @@ public class IfcCommunicationsApplianceImpl extends IfcFlowTerminalImpl implemen
 	 * @generated
 	 */
 	public IfcCommunicationsApplianceTypeEnum getPredefinedType() {
-		return (IfcCommunicationsApplianceTypeEnum) eGet(Ifc4Package.Literals.IFC_COMMUNICATIONS_APPLIANCE__PREDEFINED_TYPE, true);
+		return (IfcCommunicationsApplianceTypeEnum) eGet(
+				Ifc4Package.Literals.IFC_COMMUNICATIONS_APPLIANCE__PREDEFINED_TYPE, true);
 	}
 
 	/**

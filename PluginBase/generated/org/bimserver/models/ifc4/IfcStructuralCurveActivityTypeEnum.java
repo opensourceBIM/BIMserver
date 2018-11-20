@@ -305,7 +305,8 @@ public enum IfcStructuralCurveActivityTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcStructuralCurveActivityTypeEnum[] VALUES_ARRAY = new IfcStructuralCurveActivityTypeEnum[] { NULL, EQUIDISTANT, PARABOLA, NOTDEFINED, POLYGONAL, SINUS, CONST, DISCRETE, USERDEFINED, LINEAR, };
+	private static final IfcStructuralCurveActivityTypeEnum[] VALUES_ARRAY = new IfcStructuralCurveActivityTypeEnum[] {
+			NULL, EQUIDISTANT, PARABOLA, NOTDEFINED, POLYGONAL, SINUS, CONST, DISCRETE, USERDEFINED, LINEAR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Structural Curve Activity Type Enum</b></em>' enumerators.
@@ -313,7 +314,8 @@ public enum IfcStructuralCurveActivityTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcStructuralCurveActivityTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcStructuralCurveActivityTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Structural Curve Activity Type Enum</b></em>' literal with the specified literal value.

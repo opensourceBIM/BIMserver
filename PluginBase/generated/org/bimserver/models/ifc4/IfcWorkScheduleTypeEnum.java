@@ -205,7 +205,8 @@ public enum IfcWorkScheduleTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWorkScheduleTypeEnum[] VALUES_ARRAY = new IfcWorkScheduleTypeEnum[] { NULL, BASELINE, NOTDEFINED, USERDEFINED, ACTUAL, PLANNED, };
+	private static final IfcWorkScheduleTypeEnum[] VALUES_ARRAY = new IfcWorkScheduleTypeEnum[] { NULL, BASELINE,
+			NOTDEFINED, USERDEFINED, ACTUAL, PLANNED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Work Schedule Type Enum</b></em>' enumerators.
@@ -213,7 +214,8 @@ public enum IfcWorkScheduleTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcWorkScheduleTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcWorkScheduleTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Work Schedule Type Enum</b></em>' literal with the specified literal value.

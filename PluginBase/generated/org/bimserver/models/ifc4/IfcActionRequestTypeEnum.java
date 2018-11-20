@@ -255,7 +255,8 @@ public enum IfcActionRequestTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcActionRequestTypeEnum[] VALUES_ARRAY = new IfcActionRequestTypeEnum[] { NULL, NOTDEFINED, POST, PHONE, VERBAL, USERDEFINED, EMAIL, FAX, };
+	private static final IfcActionRequestTypeEnum[] VALUES_ARRAY = new IfcActionRequestTypeEnum[] { NULL, NOTDEFINED,
+			POST, PHONE, VERBAL, USERDEFINED, EMAIL, FAX, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Action Request Type Enum</b></em>' enumerators.
@@ -263,7 +264,8 @@ public enum IfcActionRequestTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcActionRequestTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcActionRequestTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Action Request Type Enum</b></em>' literal with the specified literal value.

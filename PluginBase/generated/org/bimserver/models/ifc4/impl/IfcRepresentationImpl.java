@@ -228,7 +228,8 @@ public class IfcRepresentationImpl extends IdEObjectImpl implements IfcRepresent
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPresentationLayerAssignment> getLayerAssignments() {
-		return (EList<IfcPresentationLayerAssignment>) eGet(Ifc4Package.Literals.IFC_REPRESENTATION__LAYER_ASSIGNMENTS, true);
+		return (EList<IfcPresentationLayerAssignment>) eGet(Ifc4Package.Literals.IFC_REPRESENTATION__LAYER_ASSIGNMENTS,
+				true);
 	}
 
 	/**
@@ -256,7 +257,8 @@ public class IfcRepresentationImpl extends IdEObjectImpl implements IfcRepresent
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProductRepresentation> getOfProductRepresentation() {
-		return (EList<IfcProductRepresentation>) eGet(Ifc4Package.Literals.IFC_REPRESENTATION__OF_PRODUCT_REPRESENTATION, true);
+		return (EList<IfcProductRepresentation>) eGet(
+				Ifc4Package.Literals.IFC_REPRESENTATION__OF_PRODUCT_REPRESENTATION, true);
 	}
 
 	/**

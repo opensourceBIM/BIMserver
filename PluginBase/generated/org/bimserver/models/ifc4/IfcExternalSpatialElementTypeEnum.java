@@ -229,7 +229,8 @@ public enum IfcExternalSpatialElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcExternalSpatialElementTypeEnum[] VALUES_ARRAY = new IfcExternalSpatialElementTypeEnum[] { NULL, NOTDEFINED, EXTERNAL, EXTERNAL_FIRE, EXTERNAL_WATER, USERDEFINED, EXTERNAL_EARTH, };
+	private static final IfcExternalSpatialElementTypeEnum[] VALUES_ARRAY = new IfcExternalSpatialElementTypeEnum[] {
+			NULL, NOTDEFINED, EXTERNAL, EXTERNAL_FIRE, EXTERNAL_WATER, USERDEFINED, EXTERNAL_EARTH, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc External Spatial Element Type Enum</b></em>' enumerators.
@@ -237,7 +238,8 @@ public enum IfcExternalSpatialElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcExternalSpatialElementTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcExternalSpatialElementTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc External Spatial Element Type Enum</b></em>' literal with the specified literal value.

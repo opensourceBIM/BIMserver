@@ -230,7 +230,8 @@ public enum IfcDistributionPortTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDistributionPortTypeEnum[] VALUES_ARRAY = new IfcDistributionPortTypeEnum[] { NULL, DUCT, NOTDEFINED, CABLE, USERDEFINED, PIPE, CABLECARRIER, };
+	private static final IfcDistributionPortTypeEnum[] VALUES_ARRAY = new IfcDistributionPortTypeEnum[] { NULL, DUCT,
+			NOTDEFINED, CABLE, USERDEFINED, PIPE, CABLECARRIER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Distribution Port Type Enum</b></em>' enumerators.
@@ -238,7 +239,8 @@ public enum IfcDistributionPortTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcDistributionPortTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcDistributionPortTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Distribution Port Type Enum</b></em>' literal with the specified literal value.

@@ -205,7 +205,8 @@ public enum IfcChillerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcChillerTypeEnum[] VALUES_ARRAY = new IfcChillerTypeEnum[] { NULL, NOTDEFINED, AIRCOOLED, WATERCOOLED, USERDEFINED, HEATRECOVERY, };
+	private static final IfcChillerTypeEnum[] VALUES_ARRAY = new IfcChillerTypeEnum[] { NULL, NOTDEFINED, AIRCOOLED,
+			WATERCOOLED, USERDEFINED, HEATRECOVERY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Chiller Type Enum</b></em>' enumerators.

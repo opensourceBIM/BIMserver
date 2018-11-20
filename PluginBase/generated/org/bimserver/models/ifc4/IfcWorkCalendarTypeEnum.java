@@ -205,7 +205,8 @@ public enum IfcWorkCalendarTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWorkCalendarTypeEnum[] VALUES_ARRAY = new IfcWorkCalendarTypeEnum[] { NULL, THIRDSHIFT, NOTDEFINED, SECONDSHIFT, FIRSTSHIFT, USERDEFINED, };
+	private static final IfcWorkCalendarTypeEnum[] VALUES_ARRAY = new IfcWorkCalendarTypeEnum[] { NULL, THIRDSHIFT,
+			NOTDEFINED, SECONDSHIFT, FIRSTSHIFT, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Work Calendar Type Enum</b></em>' enumerators.
@@ -213,7 +214,8 @@ public enum IfcWorkCalendarTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcWorkCalendarTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcWorkCalendarTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Work Calendar Type Enum</b></em>' literal with the specified literal value.

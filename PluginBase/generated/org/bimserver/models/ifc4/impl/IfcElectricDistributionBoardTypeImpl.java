@@ -51,7 +51,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcElectricDistributionBoardTypeImpl extends IfcFlowControllerTypeImpl implements IfcElectricDistributionBoardType {
+public class IfcElectricDistributionBoardTypeImpl extends IfcFlowControllerTypeImpl
+		implements IfcElectricDistributionBoardType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,7 +78,8 @@ public class IfcElectricDistributionBoardTypeImpl extends IfcFlowControllerTypeI
 	 * @generated
 	 */
 	public IfcElectricDistributionBoardTypeEnum getPredefinedType() {
-		return (IfcElectricDistributionBoardTypeEnum) eGet(Ifc4Package.Literals.IFC_ELECTRIC_DISTRIBUTION_BOARD_TYPE__PREDEFINED_TYPE, true);
+		return (IfcElectricDistributionBoardTypeEnum) eGet(
+				Ifc4Package.Literals.IFC_ELECTRIC_DISTRIBUTION_BOARD_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**

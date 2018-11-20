@@ -180,7 +180,8 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSpaceHeaterTypeEnum[] VALUES_ARRAY = new IfcSpaceHeaterTypeEnum[] { NULL, NOTDEFINED, RADIATOR, USERDEFINED, CONVECTOR, };
+	private static final IfcSpaceHeaterTypeEnum[] VALUES_ARRAY = new IfcSpaceHeaterTypeEnum[] { NULL, NOTDEFINED,
+			RADIATOR, USERDEFINED, CONVECTOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Space Heater Type Enum</b></em>' enumerators.

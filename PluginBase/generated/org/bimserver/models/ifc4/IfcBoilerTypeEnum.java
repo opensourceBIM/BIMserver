@@ -180,7 +180,8 @@ public enum IfcBoilerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBoilerTypeEnum[] VALUES_ARRAY = new IfcBoilerTypeEnum[] { NULL, NOTDEFINED, STEAM, USERDEFINED, WATER, };
+	private static final IfcBoilerTypeEnum[] VALUES_ARRAY = new IfcBoilerTypeEnum[] { NULL, NOTDEFINED, STEAM,
+			USERDEFINED, WATER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Boiler Type Enum</b></em>' enumerators.

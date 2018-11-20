@@ -205,7 +205,8 @@ public enum IfcMotorConnectionTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcMotorConnectionTypeEnum[] VALUES_ARRAY = new IfcMotorConnectionTypeEnum[] { NULL, NOTDEFINED, BELTDRIVE, USERDEFINED, DIRECTDRIVE, COUPLING, };
+	private static final IfcMotorConnectionTypeEnum[] VALUES_ARRAY = new IfcMotorConnectionTypeEnum[] { NULL,
+			NOTDEFINED, BELTDRIVE, USERDEFINED, DIRECTDRIVE, COUPLING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Motor Connection Type Enum</b></em>' enumerators.
@@ -213,7 +214,8 @@ public enum IfcMotorConnectionTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcMotorConnectionTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcMotorConnectionTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Motor Connection Type Enum</b></em>' literal with the specified literal value.

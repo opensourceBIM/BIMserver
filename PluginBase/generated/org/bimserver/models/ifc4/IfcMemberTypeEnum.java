@@ -430,7 +430,8 @@ public enum IfcMemberTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcMemberTypeEnum[] VALUES_ARRAY = new IfcMemberTypeEnum[] { NULL, POST, RAFTER, STRUT, USERDEFINED, COLLAR, CHORD, MEMBER, NOTDEFINED, PURLIN, STUD, BRACE, PLATE, STRINGER, MULLION, };
+	private static final IfcMemberTypeEnum[] VALUES_ARRAY = new IfcMemberTypeEnum[] { NULL, POST, RAFTER, STRUT,
+			USERDEFINED, COLLAR, CHORD, MEMBER, NOTDEFINED, PURLIN, STUD, BRACE, PLATE, STRINGER, MULLION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Member Type Enum</b></em>' enumerators.

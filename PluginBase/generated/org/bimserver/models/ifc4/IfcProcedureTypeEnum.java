@@ -305,7 +305,8 @@ public enum IfcProcedureTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcProcedureTypeEnum[] VALUES_ARRAY = new IfcProcedureTypeEnum[] { NULL, CALIBRATION, DIAGNOSTIC, NOTDEFINED, ADVICE_WARNING, ADVICE_CAUTION, USERDEFINED, SHUTDOWN, STARTUP, ADVICE_NOTE, };
+	private static final IfcProcedureTypeEnum[] VALUES_ARRAY = new IfcProcedureTypeEnum[] { NULL, CALIBRATION,
+			DIAGNOSTIC, NOTDEFINED, ADVICE_WARNING, ADVICE_CAUTION, USERDEFINED, SHUTDOWN, STARTUP, ADVICE_NOTE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Procedure Type Enum</b></em>' enumerators.

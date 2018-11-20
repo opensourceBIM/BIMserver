@@ -79,7 +79,8 @@ public class IfcStructuralCurveActionImpl extends IfcStructuralActionImpl implem
 	 * @generated
 	 */
 	public IfcProjectedOrTrueLengthEnum getProjectedOrTrue() {
-		return (IfcProjectedOrTrueLengthEnum) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_ACTION__PROJECTED_OR_TRUE, true);
+		return (IfcProjectedOrTrueLengthEnum) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_ACTION__PROJECTED_OR_TRUE,
+				true);
 	}
 
 	/**
@@ -115,7 +116,8 @@ public class IfcStructuralCurveActionImpl extends IfcStructuralActionImpl implem
 	 * @generated
 	 */
 	public IfcStructuralCurveActivityTypeEnum getPredefinedType() {
-		return (IfcStructuralCurveActivityTypeEnum) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_ACTION__PREDEFINED_TYPE, true);
+		return (IfcStructuralCurveActivityTypeEnum) eGet(
+				Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_ACTION__PREDEFINED_TYPE, true);
 	}
 
 	/**

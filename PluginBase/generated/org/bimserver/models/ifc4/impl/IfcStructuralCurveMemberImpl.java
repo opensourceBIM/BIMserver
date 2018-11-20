@@ -79,7 +79,8 @@ public class IfcStructuralCurveMemberImpl extends IfcStructuralMemberImpl implem
 	 * @generated
 	 */
 	public IfcStructuralCurveMemberTypeEnum getPredefinedType() {
-		return (IfcStructuralCurveMemberTypeEnum) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_MEMBER__PREDEFINED_TYPE, true);
+		return (IfcStructuralCurveMemberTypeEnum) eGet(
+				Ifc4Package.Literals.IFC_STRUCTURAL_CURVE_MEMBER__PREDEFINED_TYPE, true);
 	}
 
 	/**

@@ -51,7 +51,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcReparametrisedCompositeCurveSegmentImpl extends IfcCompositeCurveSegmentImpl implements IfcReparametrisedCompositeCurveSegment {
+public class IfcReparametrisedCompositeCurveSegmentImpl extends IfcCompositeCurveSegmentImpl
+		implements IfcReparametrisedCompositeCurveSegment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -95,7 +96,8 @@ public class IfcReparametrisedCompositeCurveSegmentImpl extends IfcCompositeCurv
 	 * @generated
 	 */
 	public String getParamLengthAsString() {
-		return (String) eGet(Ifc4Package.Literals.IFC_REPARAMETRISED_COMPOSITE_CURVE_SEGMENT__PARAM_LENGTH_AS_STRING, true);
+		return (String) eGet(Ifc4Package.Literals.IFC_REPARAMETRISED_COMPOSITE_CURVE_SEGMENT__PARAM_LENGTH_AS_STRING,
+				true);
 	}
 
 	/**
@@ -104,7 +106,8 @@ public class IfcReparametrisedCompositeCurveSegmentImpl extends IfcCompositeCurv
 	 * @generated
 	 */
 	public void setParamLengthAsString(String newParamLengthAsString) {
-		eSet(Ifc4Package.Literals.IFC_REPARAMETRISED_COMPOSITE_CURVE_SEGMENT__PARAM_LENGTH_AS_STRING, newParamLengthAsString);
+		eSet(Ifc4Package.Literals.IFC_REPARAMETRISED_COMPOSITE_CURVE_SEGMENT__PARAM_LENGTH_AS_STRING,
+				newParamLengthAsString);
 	}
 
 } //IfcReparametrisedCompositeCurveSegmentImpl

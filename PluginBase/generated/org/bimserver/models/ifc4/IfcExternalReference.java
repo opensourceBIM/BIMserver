@@ -54,7 +54,8 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcExternalReference extends IfcLightDistributionDataSourceSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect {
+public interface IfcExternalReference
+		extends IfcLightDistributionDataSourceSelect, IfcObjectReferenceSelect, IfcResourceObjectSelect {
 	/**
 	 * Returns the value of the '<em><b>Location</b></em>' attribute.
 	 * <!-- begin-user-doc -->

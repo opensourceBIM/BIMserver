@@ -255,7 +255,8 @@ public enum IfcPipeSegmentTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPipeSegmentTypeEnum[] VALUES_ARRAY = new IfcPipeSegmentTypeEnum[] { NULL, NOTDEFINED, GUTTER, FLEXIBLESEGMENT, RIGIDSEGMENT, SPOOL, USERDEFINED, CULVERT, };
+	private static final IfcPipeSegmentTypeEnum[] VALUES_ARRAY = new IfcPipeSegmentTypeEnum[] { NULL, NOTDEFINED,
+			GUTTER, FLEXIBLESEGMENT, RIGIDSEGMENT, SPOOL, USERDEFINED, CULVERT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Pipe Segment Type Enum</b></em>' enumerators.

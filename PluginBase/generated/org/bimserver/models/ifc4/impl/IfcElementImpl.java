@@ -192,7 +192,8 @@ public class IfcElementImpl extends IfcProductImpl implements IfcElement {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelInterferesElements> getIsInterferedByElements() {
-		return (EList<IfcRelInterferesElements>) eGet(Ifc4Package.Literals.IFC_ELEMENT__IS_INTERFERED_BY_ELEMENTS, true);
+		return (EList<IfcRelInterferesElements>) eGet(Ifc4Package.Literals.IFC_ELEMENT__IS_INTERFERED_BY_ELEMENTS,
+				true);
 	}
 
 	/**
@@ -276,7 +277,8 @@ public class IfcElementImpl extends IfcProductImpl implements IfcElement {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelReferencedInSpatialStructure> getReferencedInStructures() {
-		return (EList<IfcRelReferencedInSpatialStructure>) eGet(Ifc4Package.Literals.IFC_ELEMENT__REFERENCED_IN_STRUCTURES, true);
+		return (EList<IfcRelReferencedInSpatialStructure>) eGet(
+				Ifc4Package.Literals.IFC_ELEMENT__REFERENCED_IN_STRUCTURES, true);
 	}
 
 	/**
@@ -332,7 +334,8 @@ public class IfcElementImpl extends IfcProductImpl implements IfcElement {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsWithRealizingElements> getIsConnectionRealization() {
-		return (EList<IfcRelConnectsWithRealizingElements>) eGet(Ifc4Package.Literals.IFC_ELEMENT__IS_CONNECTION_REALIZATION, true);
+		return (EList<IfcRelConnectsWithRealizingElements>) eGet(
+				Ifc4Package.Literals.IFC_ELEMENT__IS_CONNECTION_REALIZATION, true);
 	}
 
 	/**
@@ -416,7 +419,8 @@ public class IfcElementImpl extends IfcProductImpl implements IfcElement {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelContainedInSpatialStructure> getContainedInStructure() {
-		return (EList<IfcRelContainedInSpatialStructure>) eGet(Ifc4Package.Literals.IFC_ELEMENT__CONTAINED_IN_STRUCTURE, true);
+		return (EList<IfcRelContainedInSpatialStructure>) eGet(Ifc4Package.Literals.IFC_ELEMENT__CONTAINED_IN_STRUCTURE,
+				true);
 	}
 
 	/**

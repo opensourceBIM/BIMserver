@@ -97,7 +97,8 @@ public class IfcRelProjectsElementImpl extends IfcRelDecomposesImpl implements I
 	 * @generated
 	 */
 	public IfcFeatureElementAddition getRelatedFeatureElement() {
-		return (IfcFeatureElementAddition) eGet(Ifc4Package.Literals.IFC_REL_PROJECTS_ELEMENT__RELATED_FEATURE_ELEMENT, true);
+		return (IfcFeatureElementAddition) eGet(Ifc4Package.Literals.IFC_REL_PROJECTS_ELEMENT__RELATED_FEATURE_ELEMENT,
+				true);
 	}
 
 	/**

@@ -154,7 +154,8 @@ public class IfcDocumentReferenceImpl extends IfcExternalReferenceImpl implement
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssociatesDocument> getDocumentRefForObjects() {
-		return (EList<IfcRelAssociatesDocument>) eGet(Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__DOCUMENT_REF_FOR_OBJECTS, true);
+		return (EList<IfcRelAssociatesDocument>) eGet(
+				Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__DOCUMENT_REF_FOR_OBJECTS, true);
 	}
 
 	/**

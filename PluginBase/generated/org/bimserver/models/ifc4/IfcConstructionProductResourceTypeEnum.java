@@ -180,7 +180,8 @@ public enum IfcConstructionProductResourceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcConstructionProductResourceTypeEnum[] VALUES_ARRAY = new IfcConstructionProductResourceTypeEnum[] { NULL, ASSEMBLY, NOTDEFINED, FORMWORK, USERDEFINED, };
+	private static final IfcConstructionProductResourceTypeEnum[] VALUES_ARRAY = new IfcConstructionProductResourceTypeEnum[] {
+			NULL, ASSEMBLY, NOTDEFINED, FORMWORK, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Construction Product Resource Type Enum</b></em>' enumerators.
@@ -188,7 +189,8 @@ public enum IfcConstructionProductResourceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcConstructionProductResourceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcConstructionProductResourceTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Construction Product Resource Type Enum</b></em>' literal with the specified literal value.

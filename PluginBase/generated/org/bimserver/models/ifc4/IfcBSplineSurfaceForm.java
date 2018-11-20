@@ -355,8 +355,9 @@ public enum IfcBSplineSurfaceForm implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBSplineSurfaceForm[] VALUES_ARRAY = new IfcBSplineSurfaceForm[] { NULL, SURF_OF_REVOLUTION, UNSPECIFIED, TOROIDAL_SURF, CONICAL_SURF, QUADRIC_SURF, SURF_OF_LINEAR_EXTRUSION, GENERALISED_CONE, SPHERICAL_SURF,
-			RULED_SURF, CYLINDRICAL_SURF, PLANE_SURF, };
+	private static final IfcBSplineSurfaceForm[] VALUES_ARRAY = new IfcBSplineSurfaceForm[] { NULL, SURF_OF_REVOLUTION,
+			UNSPECIFIED, TOROIDAL_SURF, CONICAL_SURF, QUADRIC_SURF, SURF_OF_LINEAR_EXTRUSION, GENERALISED_CONE,
+			SPHERICAL_SURF, RULED_SURF, CYLINDRICAL_SURF, PLANE_SURF, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc BSpline Surface Form</b></em>' enumerators.

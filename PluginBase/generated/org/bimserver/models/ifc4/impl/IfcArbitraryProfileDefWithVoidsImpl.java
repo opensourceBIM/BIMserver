@@ -52,7 +52,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcArbitraryProfileDefWithVoidsImpl extends IfcArbitraryClosedProfileDefImpl implements IfcArbitraryProfileDefWithVoids {
+public class IfcArbitraryProfileDefWithVoidsImpl extends IfcArbitraryClosedProfileDefImpl
+		implements IfcArbitraryProfileDefWithVoids {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

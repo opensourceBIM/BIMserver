@@ -81,7 +81,8 @@ public class IfcRelDefinesByTemplateImpl extends IfcRelDefinesImpl implements If
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertySetDefinition> getRelatedPropertySets() {
-		return (EList<IfcPropertySetDefinition>) eGet(Ifc4Package.Literals.IFC_REL_DEFINES_BY_TEMPLATE__RELATED_PROPERTY_SETS, true);
+		return (EList<IfcPropertySetDefinition>) eGet(
+				Ifc4Package.Literals.IFC_REL_DEFINES_BY_TEMPLATE__RELATED_PROPERTY_SETS, true);
 	}
 
 	/**

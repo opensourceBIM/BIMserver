@@ -110,7 +110,8 @@ public class IfcSurfaceCurveImpl extends IfcCurveImpl implements IfcSurfaceCurve
 	 * @generated
 	 */
 	public IfcPreferredSurfaceCurveRepresentation getMasterRepresentation() {
-		return (IfcPreferredSurfaceCurveRepresentation) eGet(Ifc4Package.Literals.IFC_SURFACE_CURVE__MASTER_REPRESENTATION, true);
+		return (IfcPreferredSurfaceCurveRepresentation) eGet(
+				Ifc4Package.Literals.IFC_SURFACE_CURVE__MASTER_REPRESENTATION, true);
 	}
 
 	/**

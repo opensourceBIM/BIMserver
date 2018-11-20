@@ -112,7 +112,8 @@ public class IfcVirtualGridIntersectionImpl extends IdEObjectImpl implements Ifc
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getOffsetDistancesAsString() {
-		return (EList<String>) eGet(Ifc4Package.Literals.IFC_VIRTUAL_GRID_INTERSECTION__OFFSET_DISTANCES_AS_STRING, true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_VIRTUAL_GRID_INTERSECTION__OFFSET_DISTANCES_AS_STRING,
+				true);
 	}
 
 } //IfcVirtualGridIntersectionImpl

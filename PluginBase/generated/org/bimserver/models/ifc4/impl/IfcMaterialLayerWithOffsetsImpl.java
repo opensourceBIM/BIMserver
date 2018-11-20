@@ -80,7 +80,8 @@ public class IfcMaterialLayerWithOffsetsImpl extends IfcMaterialLayerImpl implem
 	 * @generated
 	 */
 	public IfcLayerSetDirectionEnum getOffsetDirection() {
-		return (IfcLayerSetDirectionEnum) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_WITH_OFFSETS__OFFSET_DIRECTION, true);
+		return (IfcLayerSetDirectionEnum) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_WITH_OFFSETS__OFFSET_DIRECTION,
+				true);
 	}
 
 	/**
@@ -109,7 +110,8 @@ public class IfcMaterialLayerWithOffsetsImpl extends IfcMaterialLayerImpl implem
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getOffsetValuesAsString() {
-		return (EList<String>) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_WITH_OFFSETS__OFFSET_VALUES_AS_STRING, true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_WITH_OFFSETS__OFFSET_VALUES_AS_STRING,
+				true);
 	}
 
 } //IfcMaterialLayerWithOffsetsImpl

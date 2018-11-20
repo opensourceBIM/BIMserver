@@ -184,7 +184,8 @@ public class IfcActorRoleImpl extends IdEObjectImpl implements IfcActorRole {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcExternalReferenceRelationship> getHasExternalReference() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_ACTOR_ROLE__HAS_EXTERNAL_REFERENCE, true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(
+				Ifc4Package.Literals.IFC_ACTOR_ROLE__HAS_EXTERNAL_REFERENCE, true);
 	}
 
 	/**

@@ -480,7 +480,8 @@ public enum IfcSIPrefix implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSIPrefix[] VALUES_ARRAY = new IfcSIPrefix[] { NULL, DECA, PICO, KILO, PETA, TERA, EXA, NANO, ATTO, CENTI, MILLI, FEMTO, MEGA, HECTO, DECI, MICRO, GIGA, };
+	private static final IfcSIPrefix[] VALUES_ARRAY = new IfcSIPrefix[] { NULL, DECA, PICO, KILO, PETA, TERA, EXA, NANO,
+			ATTO, CENTI, MILLI, FEMTO, MEGA, HECTO, DECI, MICRO, GIGA, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc SI Prefix</b></em>' enumerators.

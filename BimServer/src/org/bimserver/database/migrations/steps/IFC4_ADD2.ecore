@@ -658,7 +658,7 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcCartesianPointList2D" eSuperTypes="//IfcCartesianPointList">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="CoordList" upperBound="-1" eType="//ListOfIfcCartesianPoint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="CoordList" upperBound="-1" eType="//ListOfIfcLengthMeasure">
       <eAnnotations source="twodimensionalarray"/>
     </eStructuralFeatures>
   </eClassifiers>

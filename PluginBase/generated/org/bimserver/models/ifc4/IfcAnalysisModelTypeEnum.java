@@ -205,7 +205,8 @@ public enum IfcAnalysisModelTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAnalysisModelTypeEnum[] VALUES_ARRAY = new IfcAnalysisModelTypeEnum[] { NULL, NOTDEFINED, IN_PLANE_LOADING_2D, OUT_PLANE_LOADING_2D, LOADING_3D, USERDEFINED, };
+	private static final IfcAnalysisModelTypeEnum[] VALUES_ARRAY = new IfcAnalysisModelTypeEnum[] { NULL, NOTDEFINED,
+			IN_PLANE_LOADING_2D, OUT_PLANE_LOADING_2D, LOADING_3D, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Analysis Model Type Enum</b></em>' enumerators.
@@ -213,7 +214,8 @@ public enum IfcAnalysisModelTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcAnalysisModelTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcAnalysisModelTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Analysis Model Type Enum</b></em>' literal with the specified literal value.

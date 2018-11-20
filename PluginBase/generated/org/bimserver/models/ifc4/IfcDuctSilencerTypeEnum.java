@@ -205,7 +205,8 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDuctSilencerTypeEnum[] VALUES_ARRAY = new IfcDuctSilencerTypeEnum[] { NULL, FLATOVAL, NOTDEFINED, ROUND, RECTANGULAR, USERDEFINED, };
+	private static final IfcDuctSilencerTypeEnum[] VALUES_ARRAY = new IfcDuctSilencerTypeEnum[] { NULL, FLATOVAL,
+			NOTDEFINED, ROUND, RECTANGULAR, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Duct Silencer Type Enum</b></em>' enumerators.
@@ -213,7 +214,8 @@ public enum IfcDuctSilencerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcDuctSilencerTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcDuctSilencerTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Duct Silencer Type Enum</b></em>' literal with the specified literal value.

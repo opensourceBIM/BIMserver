@@ -51,7 +51,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRelConnectsWithEccentricityImpl extends IfcRelConnectsStructuralMemberImpl implements IfcRelConnectsWithEccentricity {
+public class IfcRelConnectsWithEccentricityImpl extends IfcRelConnectsStructuralMemberImpl
+		implements IfcRelConnectsWithEccentricity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -77,7 +78,8 @@ public class IfcRelConnectsWithEccentricityImpl extends IfcRelConnectsStructural
 	 * @generated
 	 */
 	public IfcConnectionGeometry getConnectionConstraint() {
-		return (IfcConnectionGeometry) eGet(Ifc4Package.Literals.IFC_REL_CONNECTS_WITH_ECCENTRICITY__CONNECTION_CONSTRAINT, true);
+		return (IfcConnectionGeometry) eGet(
+				Ifc4Package.Literals.IFC_REL_CONNECTS_WITH_ECCENTRICITY__CONNECTION_CONSTRAINT, true);
 	}
 
 	/**

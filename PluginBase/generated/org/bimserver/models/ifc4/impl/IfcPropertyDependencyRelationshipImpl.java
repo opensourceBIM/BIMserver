@@ -53,7 +53,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPropertyDependencyRelationshipImpl extends IfcResourceLevelRelationshipImpl implements IfcPropertyDependencyRelationship {
+public class IfcPropertyDependencyRelationshipImpl extends IfcResourceLevelRelationshipImpl
+		implements IfcPropertyDependencyRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

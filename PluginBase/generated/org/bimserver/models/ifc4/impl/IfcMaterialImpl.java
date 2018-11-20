@@ -175,7 +175,8 @@ public class IfcMaterialImpl extends IfcMaterialDefinitionImpl implements IfcMat
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcMaterialDefinitionRepresentation> getHasRepresentation() {
-		return (EList<IfcMaterialDefinitionRepresentation>) eGet(Ifc4Package.Literals.IFC_MATERIAL__HAS_REPRESENTATION, true);
+		return (EList<IfcMaterialDefinitionRepresentation>) eGet(Ifc4Package.Literals.IFC_MATERIAL__HAS_REPRESENTATION,
+				true);
 	}
 
 	/**

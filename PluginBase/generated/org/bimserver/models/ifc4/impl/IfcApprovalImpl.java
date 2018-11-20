@@ -431,7 +431,8 @@ public class IfcApprovalImpl extends IdEObjectImpl implements IfcApproval {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcExternalReferenceRelationship> getHasExternalReferences() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_APPROVAL__HAS_EXTERNAL_REFERENCES, true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(
+				Ifc4Package.Literals.IFC_APPROVAL__HAS_EXTERNAL_REFERENCES, true);
 	}
 
 	/**
@@ -487,7 +488,8 @@ public class IfcApprovalImpl extends IdEObjectImpl implements IfcApproval {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcResourceApprovalRelationship> getApprovedResources() {
-		return (EList<IfcResourceApprovalRelationship>) eGet(Ifc4Package.Literals.IFC_APPROVAL__APPROVED_RESOURCES, true);
+		return (EList<IfcResourceApprovalRelationship>) eGet(Ifc4Package.Literals.IFC_APPROVAL__APPROVED_RESOURCES,
+				true);
 	}
 
 	/**

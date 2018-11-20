@@ -55,7 +55,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcSlippageConnectionConditionImpl extends IfcStructuralConnectionConditionImpl implements IfcSlippageConnectionCondition {
+public class IfcSlippageConnectionConditionImpl extends IfcStructuralConnectionConditionImpl
+		implements IfcSlippageConnectionCondition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

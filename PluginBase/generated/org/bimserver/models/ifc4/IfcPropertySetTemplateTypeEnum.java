@@ -280,8 +280,9 @@ public enum IfcPropertySetTemplateTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPropertySetTemplateTypeEnum[] VALUES_ARRAY = new IfcPropertySetTemplateTypeEnum[] { NULL, PSET_OCCURRENCEDRIVEN, NOTDEFINED, PSET_TYPEDRIVENONLY, QTO_TYPEDRIVENONLY, PSET_TYPEDRIVENOVERRIDE, QTO_OCCURRENCEDRIVEN,
-			QTO_TYPEDRIVENOVERRIDE, PSET_PERFORMANCEDRIVEN, };
+	private static final IfcPropertySetTemplateTypeEnum[] VALUES_ARRAY = new IfcPropertySetTemplateTypeEnum[] { NULL,
+			PSET_OCCURRENCEDRIVEN, NOTDEFINED, PSET_TYPEDRIVENONLY, QTO_TYPEDRIVENONLY, PSET_TYPEDRIVENOVERRIDE,
+			QTO_OCCURRENCEDRIVEN, QTO_TYPEDRIVENOVERRIDE, PSET_PERFORMANCEDRIVEN, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Property Set Template Type Enum</b></em>' enumerators.
@@ -289,7 +290,8 @@ public enum IfcPropertySetTemplateTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcPropertySetTemplateTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcPropertySetTemplateTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Property Set Template Type Enum</b></em>' literal with the specified literal value.

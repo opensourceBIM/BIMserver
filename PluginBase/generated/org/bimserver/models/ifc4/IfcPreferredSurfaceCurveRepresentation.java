@@ -155,7 +155,8 @@ public enum IfcPreferredSurfaceCurveRepresentation implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPreferredSurfaceCurveRepresentation[] VALUES_ARRAY = new IfcPreferredSurfaceCurveRepresentation[] { NULL, PCURVE_S2, PCURVE_S1, CURVE3D, };
+	private static final IfcPreferredSurfaceCurveRepresentation[] VALUES_ARRAY = new IfcPreferredSurfaceCurveRepresentation[] {
+			NULL, PCURVE_S2, PCURVE_S1, CURVE3D, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Preferred Surface Curve Representation</b></em>' enumerators.
@@ -163,7 +164,8 @@ public enum IfcPreferredSurfaceCurveRepresentation implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcPreferredSurfaceCurveRepresentation> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcPreferredSurfaceCurveRepresentation> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Preferred Surface Curve Representation</b></em>' literal with the specified literal value.

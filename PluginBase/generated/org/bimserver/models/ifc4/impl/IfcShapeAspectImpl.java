@@ -195,7 +195,8 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect 
 	 * @generated
 	 */
 	public IfcProductRepresentationSelect getPartOfProductDefinitionShape() {
-		return (IfcProductRepresentationSelect) eGet(Ifc4Package.Literals.IFC_SHAPE_ASPECT__PART_OF_PRODUCT_DEFINITION_SHAPE, true);
+		return (IfcProductRepresentationSelect) eGet(
+				Ifc4Package.Literals.IFC_SHAPE_ASPECT__PART_OF_PRODUCT_DEFINITION_SHAPE, true);
 	}
 
 	/**

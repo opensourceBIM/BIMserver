@@ -79,7 +79,8 @@ public class IfcStructuralSurfaceActionImpl extends IfcStructuralActionImpl impl
 	 * @generated
 	 */
 	public IfcProjectedOrTrueLengthEnum getProjectedOrTrue() {
-		return (IfcProjectedOrTrueLengthEnum) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_SURFACE_ACTION__PROJECTED_OR_TRUE, true);
+		return (IfcProjectedOrTrueLengthEnum) eGet(
+				Ifc4Package.Literals.IFC_STRUCTURAL_SURFACE_ACTION__PROJECTED_OR_TRUE, true);
 	}
 
 	/**
@@ -115,7 +116,8 @@ public class IfcStructuralSurfaceActionImpl extends IfcStructuralActionImpl impl
 	 * @generated
 	 */
 	public IfcStructuralSurfaceActivityTypeEnum getPredefinedType() {
-		return (IfcStructuralSurfaceActivityTypeEnum) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_SURFACE_ACTION__PREDEFINED_TYPE, true);
+		return (IfcStructuralSurfaceActivityTypeEnum) eGet(
+				Ifc4Package.Literals.IFC_STRUCTURAL_SURFACE_ACTION__PREDEFINED_TYPE, true);
 	}
 
 	/**

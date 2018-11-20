@@ -280,7 +280,8 @@ public enum IfcBuildingSystemTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBuildingSystemTypeEnum[] VALUES_ARRAY = new IfcBuildingSystemTypeEnum[] { NULL, OUTERSHELL, FOUNDATION, TRANSPORT, NOTDEFINED, FENESTRATION, USERDEFINED, LOADBEARING, SHADING, };
+	private static final IfcBuildingSystemTypeEnum[] VALUES_ARRAY = new IfcBuildingSystemTypeEnum[] { NULL, OUTERSHELL,
+			FOUNDATION, TRANSPORT, NOTDEFINED, FENESTRATION, USERDEFINED, LOADBEARING, SHADING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Building System Type Enum</b></em>' enumerators.
@@ -288,7 +289,8 @@ public enum IfcBuildingSystemTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcBuildingSystemTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcBuildingSystemTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Building System Type Enum</b></em>' literal with the specified literal value.

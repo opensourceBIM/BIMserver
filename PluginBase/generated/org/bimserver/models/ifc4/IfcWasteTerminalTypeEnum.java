@@ -305,7 +305,8 @@ public enum IfcWasteTerminalTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWasteTerminalTypeEnum[] VALUES_ARRAY = new IfcWasteTerminalTypeEnum[] { NULL, NOTDEFINED, WASTEDISPOSALUNIT, GULLYSUMP, ROOFDRAIN, WASTETRAP, USERDEFINED, FLOORWASTE, FLOORTRAP, GULLYTRAP, };
+	private static final IfcWasteTerminalTypeEnum[] VALUES_ARRAY = new IfcWasteTerminalTypeEnum[] { NULL, NOTDEFINED,
+			WASTEDISPOSALUNIT, GULLYSUMP, ROOFDRAIN, WASTETRAP, USERDEFINED, FLOORWASTE, FLOORTRAP, GULLYTRAP, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Waste Terminal Type Enum</b></em>' enumerators.
@@ -313,7 +314,8 @@ public enum IfcWasteTerminalTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcWasteTerminalTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcWasteTerminalTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Waste Terminal Type Enum</b></em>' literal with the specified literal value.

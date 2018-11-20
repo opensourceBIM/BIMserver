@@ -79,7 +79,8 @@ public class IfcTextureVertexListImpl extends IfcPresentationItemImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ListOfIfcParameterValue> getTexCoordsList() {
-		return (EList<ListOfIfcParameterValue>) eGet(Ifc4Package.Literals.IFC_TEXTURE_VERTEX_LIST__TEX_COORDS_LIST, true);
+		return (EList<ListOfIfcParameterValue>) eGet(Ifc4Package.Literals.IFC_TEXTURE_VERTEX_LIST__TEX_COORDS_LIST,
+				true);
 	}
 
 } //IfcTextureVertexListImpl

@@ -205,7 +205,8 @@ public enum IfcWorkPlanTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWorkPlanTypeEnum[] VALUES_ARRAY = new IfcWorkPlanTypeEnum[] { NULL, BASELINE, NOTDEFINED, USERDEFINED, ACTUAL, PLANNED, };
+	private static final IfcWorkPlanTypeEnum[] VALUES_ARRAY = new IfcWorkPlanTypeEnum[] { NULL, BASELINE, NOTDEFINED,
+			USERDEFINED, ACTUAL, PLANNED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Work Plan Type Enum</b></em>' enumerators.

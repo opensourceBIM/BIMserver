@@ -146,7 +146,8 @@ public class IfcLightSourceSpotImpl extends IfcLightSourcePositionalImpl impleme
 	 * @generated
 	 */
 	public void setConcentrationExponentAsString(String newConcentrationExponentAsString) {
-		eSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE_SPOT__CONCENTRATION_EXPONENT_AS_STRING, newConcentrationExponentAsString);
+		eSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE_SPOT__CONCENTRATION_EXPONENT_AS_STRING,
+				newConcentrationExponentAsString);
 	}
 
 	/**

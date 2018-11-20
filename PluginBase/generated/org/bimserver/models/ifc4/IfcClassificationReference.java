@@ -55,7 +55,8 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcClassificationReference extends IfcExternalReference, IfcClassificationReferenceSelect, IfcClassificationSelect {
+public interface IfcClassificationReference
+		extends IfcExternalReference, IfcClassificationReferenceSelect, IfcClassificationSelect {
 	/**
 	 * Returns the value of the '<em><b>Referenced Source</b></em>' reference.
 	 * <!-- begin-user-doc -->

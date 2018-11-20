@@ -54,7 +54,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcRationalBSplineSurfaceWithKnotsImpl extends IfcBSplineSurfaceWithKnotsImpl implements IfcRationalBSplineSurfaceWithKnots {
+public class IfcRationalBSplineSurfaceWithKnotsImpl extends IfcBSplineSurfaceWithKnotsImpl
+		implements IfcRationalBSplineSurfaceWithKnots {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -81,7 +82,8 @@ public class IfcRationalBSplineSurfaceWithKnotsImpl extends IfcBSplineSurfaceWit
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<ListOfEDouble> getWeightsData() {
-		return (EList<ListOfEDouble>) eGet(Ifc4Package.Literals.IFC_RATIONAL_BSPLINE_SURFACE_WITH_KNOTS__WEIGHTS_DATA, true);
+		return (EList<ListOfEDouble>) eGet(Ifc4Package.Literals.IFC_RATIONAL_BSPLINE_SURFACE_WITH_KNOTS__WEIGHTS_DATA,
+				true);
 	}
 
 	/**

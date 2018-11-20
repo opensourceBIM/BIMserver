@@ -180,7 +180,8 @@ public enum IfcKnotType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcKnotType[] VALUES_ARRAY = new IfcKnotType[] { NULL, UNSPECIFIED, QUASI_UNIFORM_KNOTS, UNIFORM_KNOTS, PIECEWISE_BEZIER_KNOTS, };
+	private static final IfcKnotType[] VALUES_ARRAY = new IfcKnotType[] { NULL, UNSPECIFIED, QUASI_UNIFORM_KNOTS,
+			UNIFORM_KNOTS, PIECEWISE_BEZIER_KNOTS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Knot Type</b></em>' enumerators.

@@ -205,7 +205,8 @@ public enum IfcChangeActionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcChangeActionEnum[] VALUES_ARRAY = new IfcChangeActionEnum[] { NULL, NOCHANGE, NOTDEFINED, ADDED, MODIFIED, DELETED, };
+	private static final IfcChangeActionEnum[] VALUES_ARRAY = new IfcChangeActionEnum[] { NULL, NOCHANGE, NOTDEFINED,
+			ADDED, MODIFIED, DELETED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Change Action Enum</b></em>' enumerators.

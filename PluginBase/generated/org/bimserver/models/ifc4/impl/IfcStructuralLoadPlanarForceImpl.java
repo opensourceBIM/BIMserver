@@ -55,7 +55,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralLoadPlanarForceImpl extends IfcStructuralLoadStaticImpl implements IfcStructuralLoadPlanarForce {
+public class IfcStructuralLoadPlanarForceImpl extends IfcStructuralLoadStaticImpl
+		implements IfcStructuralLoadPlanarForce {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

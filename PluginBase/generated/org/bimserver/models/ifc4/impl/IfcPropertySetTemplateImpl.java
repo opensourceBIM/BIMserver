@@ -83,7 +83,8 @@ public class IfcPropertySetTemplateImpl extends IfcPropertyTemplateDefinitionImp
 	 * @generated
 	 */
 	public IfcPropertySetTemplateTypeEnum getTemplateType() {
-		return (IfcPropertySetTemplateTypeEnum) eGet(Ifc4Package.Literals.IFC_PROPERTY_SET_TEMPLATE__TEMPLATE_TYPE, true);
+		return (IfcPropertySetTemplateTypeEnum) eGet(Ifc4Package.Literals.IFC_PROPERTY_SET_TEMPLATE__TEMPLATE_TYPE,
+				true);
 	}
 
 	/**
@@ -156,7 +157,8 @@ public class IfcPropertySetTemplateImpl extends IfcPropertyTemplateDefinitionImp
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertyTemplate> getHasPropertyTemplates() {
-		return (EList<IfcPropertyTemplate>) eGet(Ifc4Package.Literals.IFC_PROPERTY_SET_TEMPLATE__HAS_PROPERTY_TEMPLATES, true);
+		return (EList<IfcPropertyTemplate>) eGet(Ifc4Package.Literals.IFC_PROPERTY_SET_TEMPLATE__HAS_PROPERTY_TEMPLATES,
+				true);
 	}
 
 	/**
