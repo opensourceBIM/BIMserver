@@ -231,7 +231,7 @@ public class PluginManager implements PluginManagerInterface {
 		while (it.hasNext()) {
 			org.apache.maven.model.Dependency depend = it.next();
 			try {
-				if (depend.getGroupId().equals("org.opensourcebim") && (depend.getArtifactId().equals("shared") || depend.getArtifactId().equals("pluginbase"))) {
+				if (depend.getGroupId().equals("org.opensourcebim") && (depend.getArtifactId().equals("shared") || depend.getArtifactId().equals("pluginbase") || depend.getArtifactId().equals("ifcplugins"))) {
 					// Skip this one, because we have already
 					// TODO we might want to check the version though
 					continue;
@@ -448,6 +448,7 @@ public class PluginManager implements PluginManagerInterface {
 
 	public PluginBundle loadPluginsFromEclipseProject(Path projectRoot) throws PluginException {
 		try {
+			LOGGER.info(projectRoot.toString());
 			if (!Files.isDirectory(projectRoot)) {
 				throw new PluginException("No directory: " + projectRoot.toString());
 			}
