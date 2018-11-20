@@ -1088,6 +1088,7 @@ public class BimServer implements BasicServerInfoProvider {
 	}
 
 	private void initDatabaseDependantItems() throws BimserverDatabaseException {
+		LOGGER.info("Initializing database dependant logic...");
 		notificationsManager.init();
 
 		getSerializerFactory().init(pluginManager, bimDatabase, this);

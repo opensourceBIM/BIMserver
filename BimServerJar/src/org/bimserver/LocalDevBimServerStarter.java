@@ -111,8 +111,12 @@ public class LocalDevBimServerStarter {
 					}
 				});
 			} else if (bimServer.getServerInfo().getServerState() == ServerState.RUNNING) {
+				long start = System.nanoTime();
+				LOGGER.info("Loading plugins...");
 				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
 				bimServer.activateServices();
+				long end = System.nanoTime();
+				LOGGER.info("All plugins loaded (" + ((end - start) / 1000000) + " ms)");
 			} else if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
 				try {
