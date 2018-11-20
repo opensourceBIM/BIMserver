@@ -100,6 +100,7 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 			ObjectNode queryObject;
 			try {
 				queryObject = OBJECT_MAPPER.readValue(json, ObjectNode.class);
+				converter.setCopyExternalDefines(true);
 				Query query = converter.parseJson("query", (ObjectNode) queryObject);
 				
 				// We now have the original user query, we'll amend it a little bit to include geometry, but only if the serializer requires certain fields

@@ -248,7 +248,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			}
 			
 			// Al references should already be direct, since this is now done in BimServer on startup, quite the hack...
-			Include objectPlacement = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ObjectPlacement");
+			Include objectPlacement = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ObjectPlacement", true);
 			
 			Set<EClass> classes = null;
 			if (queryContext.getOidCounters() != null) {
@@ -814,18 +814,18 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		
 		if (eClass.getName().equals("IfcAnnotation")) {
 			// IfcAnnotation also has the field ContainedInStructure, but that is it's own field (looks like a hack on the IFC-spec side)
-			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":IfcAnnotationContainedInStructure"));
+			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":IfcAnnotationContainedInStructure", true));
 		} else {
-			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ContainedInStructure"));
+			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ContainedInStructure", true));
 		}
 		if (packageMetaData.getSchema() == Schema.IFC4) {
-			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":IsTypedBy"));
+			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":IsTypedBy", true));
 		}
-		queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Decomposes"));
-		queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":OwnerHistory"));
-		Include representationInclude = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Representation");
+		queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Decomposes", true));
+		queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":OwnerHistory", true));
+		Include representationInclude = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Representation", true);
 		queryPart.addInclude(representationInclude);
-		Include objectPlacement = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ObjectPlacement");
+		Include objectPlacement = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ObjectPlacement", true);
 		
 		if (eClass.getName().equals("IfcOpeningElement")) {
 			// In this case, we need to use the FillsVoids reference to get to an object on which we can add the decomposes include as well, otherwise we'll never get to the IfcProject level
@@ -836,9 +836,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			fillsInclude.addType(packageMetaData.getEClass("IfcRelVoidsElement"), false);
 			fillsInclude.addField("RelatingBuildingElement");
 
-			fillsInclude.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Decomposes"));
-			fillsInclude.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":OwnerHistory"));
-			fillsInclude.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ContainedInStructure"));
+			fillsInclude.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Decomposes", true));
+			fillsInclude.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":OwnerHistory", true));
+			fillsInclude.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ContainedInStructure", true));
 		}
 		
 		queryPart.addInclude(objectPlacement);
@@ -877,18 +877,18 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		
 		if (eClass.getName().equals("IfcAnnotation")) {
 			// IfcAnnotation also has the field ContainedInStructure, but that is it's own field (looks like a hack on the IFC-spec side)
-			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":IfcAnnotationContainedInStructure"));
+			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":IfcAnnotationContainedInStructure", true));
 		} else {
-			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ContainedInStructure"));
+			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ContainedInStructure", true));
 		}
 		if (packageMetaData.getSchema() == Schema.IFC4) {
-			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":IsTypedBy"));
+			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":IsTypedBy", true));
 		}
-		queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Decomposes"));
-		queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":OwnerHistory"));
-		Include representationInclude = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":RepresentationSpecificMapping");
+		queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Decomposes", true));
+		queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":OwnerHistory", true));
+		Include representationInclude = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":RepresentationSpecificMapping", true);
 		queryPart.addInclude(representationInclude);
-		Include objectPlacement = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ObjectPlacement");
+		Include objectPlacement = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ObjectPlacement", true);
 		queryPart.addInclude(objectPlacement);
 		if (packageMetaData.getEClass("IfcElement").isSuperTypeOf(eClass)) {
 			Include openingsInclude = queryPart.createInclude();

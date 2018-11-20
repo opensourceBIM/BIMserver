@@ -724,7 +724,7 @@ public class BimServer implements BasicServerInfoProvider {
 				if (packageMetaData.getSchema() == Schema.IFC4) {
 					queryNameSpace = "ifc4stdlib";
 				}
-				Include objectPlacement = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ObjectPlacement");
+				Include objectPlacement = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ObjectPlacement", true);
 				
 				// The sole reason is to make sure this is done once, and then cached
 				objectPlacement.makeDirectRecursive(new HashSet<>());

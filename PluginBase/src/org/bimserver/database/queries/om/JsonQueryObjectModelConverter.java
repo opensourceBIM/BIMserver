@@ -46,6 +46,7 @@ public class JsonQueryObjectModelConverter {
 	private static final Map<String, Include> CACHED_DEFINES = new HashMap<>();
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	private static final int LATEST_VERSION = 2;
+	private boolean copyExternalDefines = false;
 	private PackageMetaData packageMetaData;
 
 	public JsonQueryObjectModelConverter(PackageMetaData packageMetaData) {
@@ -399,8 +400,11 @@ public class JsonQueryObjectModelConverter {
 	}
 
 	// TODO thread safety and cache invalidation on file updates
-	public Include getDefineFromFile(String includeName) throws QueryException {
-		Include include = null;//CACHED_DEFINES.get(includeName);
+	public Include getDefineFromFile(String includeName, boolean useCaching) throws QueryException {
+		Include include = null;
+		if (useCaching) {
+			include = CACHED_DEFINES.get(includeName);
+		}
 		if (include != null) {
 			return include;
 		}
@@ -418,13 +422,17 @@ public class JsonQueryObjectModelConverter {
 		OBJECT_MAPPER.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
 		try {
 			ObjectNode predefinedQuery = OBJECT_MAPPER.readValue(resource, ObjectNode.class);
-			JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(packageMetaData);
-			Query query = converter.parseJson(namespaceString, predefinedQuery);
+			Query query = parseJson(namespaceString, predefinedQuery);
 			Include define = query.getDefine(singleIncludeName);
+			if (copyExternalDefines) {
+				define = define.copy();
+			}
 			if (define == null) {
 				throw new QueryException("Could not find '" + singleIncludeName + "' in defines in namespace " + query.getName());
 			}
-//			CACHED_DEFINES.put(includeName, define);
+			if (useCaching) {
+				CACHED_DEFINES.put(includeName, define);
+			}
 			return define;
 		} catch (JsonParseException e) {
 			throw new QueryException(e);
@@ -442,7 +450,7 @@ public class JsonQueryObjectModelConverter {
 		} else if (includeNode.isTextual()) {
 			String includeName = includeNode.asText();
 			if (includeName.contains(":")) {
-				parentInclude.addIncludeReference(getDefineFromFile(includeName), includeName);
+				parentInclude.addIncludeReference(getDefineFromFile(includeName, true), includeName);
 			} else {
 				Include otherInclude = query.getDefine(includeName);
 				if (otherInclude == null) {
@@ -775,5 +783,9 @@ public class JsonQueryObjectModelConverter {
 			}
 		}
 		queryPart.addType(eClass, includeAllSubTypes, excludedEClasses);
+	}
+	
+	public void setCopyExternalDefines(boolean copyExternalDefines) {
+		this.copyExternalDefines = copyExternalDefines;
 	}
 }

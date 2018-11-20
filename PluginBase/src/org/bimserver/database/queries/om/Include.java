@@ -292,7 +292,32 @@ public class Include extends PartOfQuery implements CanInclude {
 		return packageMetaData;
 	}
 
-	public boolean hasField(String fieldName) {
+	public boolean hasField(EReference fieldName) {
 		return fields.contains(fieldName);
+	}
+
+	public Include copy() throws QueryException {
+		Include newInclude = new Include(getPackageMetaData());
+		if (hasDirectFields()) {
+			for (EReference eReference : getFieldsDirect()) {
+				newInclude.addFieldDirect(eReference.getName());
+			}
+		}
+		if (hasTypes()) {
+			for (TypeDef typeDef : getTypes()) {
+				newInclude.addType(typeDef);
+			}
+		}
+		if (hasFields()) {
+			for (EReference eReference : getFields()) {
+				newInclude.addField(eReference);
+			}
+		}
+		if (hasReferences()) {
+			for (Reference reference : getReferences()) {
+				newInclude.addIncludeReference(reference.getInclude(), reference.getName());
+			}
+		}
+		return newInclude;
 	}
 }
