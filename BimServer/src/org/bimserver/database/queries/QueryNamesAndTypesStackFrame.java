@@ -92,7 +92,7 @@ public class QueryNamesAndTypesStackFrame extends DatabaseReadingStackFrame {
 				return new ObjectIdentifier(oid, (short)oid);
 			}
 		} else {
-			throw new UnsupportedOperationException();
+			throw new BimserverDatabaseException("Name queries are not implemented yet");
 		}
 		return null;
 	}
