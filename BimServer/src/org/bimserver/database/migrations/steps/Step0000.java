@@ -23,6 +23,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
 import org.bimserver.database.migrations.Schema.Multiplicity;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
@@ -926,7 +927,8 @@ public class Step0000 extends Migration {
 	
 	private void createProjectClass() {
 		schema.createEAttribute(project, "id", ecorePackage.getEIntegerObject(), Multiplicity.SINGLE);
-		schema.createEAttribute(project, "name", ecorePackage.getEString(), Multiplicity.SINGLE).getEAnnotations().add(createIndexAnnotation());
+		EAttribute projectName = schema.createEAttribute(project, "name", ecorePackage.getEString(), Multiplicity.SINGLE);
+		schema.addIndex(projectName);
 		projectHasAuthorizedUsers = schema.createEReference(project, "hasAuthorizedUsers", user, Multiplicity.MANY);
 		projectConcreteRevisions = schema.createEReference(project, "concreteRevisions", concreteRevisionClass, Multiplicity.MANY);
 		projectRevisions = schema.createEReference(project, "revisions", revisionClass, Multiplicity.MANY);

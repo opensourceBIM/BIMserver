@@ -21,6 +21,9 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 
 /*
  * This step creates the Ifc2x3tc1 model
@@ -30,9 +33,20 @@ public class Step0001 extends Migration {
 	@Override
 	public void migrate(Schema schema, DatabaseSession databaseSession) {
 		schema.loadEcore("ifc2x3_tc1.ecore", getClass().getResourceAsStream("IFC2X3_TC1.ecore"));
-		EClass ifcRoot = schema.getEClass("ifc2x3tc1", "IfcRoot");
-		ifcRoot.getEStructuralFeature("GlobalId").getEAnnotations().add(createIndexAnnotation());
-		ifcRoot.getEStructuralFeature("Name").getEAnnotations().add(createIndexAnnotation());
+		for (EClassifier eClassifier : schema.getEPackage("ifc2x3tc1").getEClassifiers()) {
+			if (eClassifier instanceof EClass) {
+				EClass eClass = (EClass)eClassifier;
+				for (EStructuralFeature eStructuralFeature : eClass.getEStructuralFeatures()) {
+					if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
+						// A hack because unfortunately not every "Name" field inherits from IfcRoot.Name, same could be true for GlobalId
+						if (eStructuralFeature.getName().equals("Name") || eStructuralFeature.getName().equals("GlobalId")) {
+//							System.out.println(eClass.getName() + "." + eStructuralFeature.getName());
+							schema.addIndex(eStructuralFeature);
+						}
+					}
+				}
+			}
+		}
 	}
 
 	@Override

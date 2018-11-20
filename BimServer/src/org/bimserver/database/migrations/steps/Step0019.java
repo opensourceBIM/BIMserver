@@ -32,7 +32,6 @@ public class Step0019 extends Migration {
 		
 		EClass projectClass = schema.getEClass("store", "Project");
 		schema.addIndex(projectClass.getEStructuralFeature("id"));
-		schema.addIndex(projectClass.getEStructuralFeature("name"));
 
 		EClass pluginDescriptor = schema.getEClass("store", "PluginDescriptor");
 		schema.createEAttribute(pluginDescriptor, "identifier", EcorePackage.eINSTANCE.getEString());

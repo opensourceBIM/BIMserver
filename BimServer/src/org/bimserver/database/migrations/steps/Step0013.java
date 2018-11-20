@@ -22,7 +22,9 @@ import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
 import org.bimserver.database.migrations.Schema.Multiplicity;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 
 public class Step0013 extends Migration {
@@ -30,6 +32,21 @@ public class Step0013 extends Migration {
 	@Override
 	public void migrate(Schema schema, DatabaseSession databaseSession) {
 		schema.loadEcore("ifc4.ecore", getClass().getResourceAsStream("IFC4_ADD2.ecore"));
+		
+		for (EClassifier eClassifier : schema.getEPackage("ifc4").getEClassifiers()) {
+			if (eClassifier instanceof EClass) {
+				EClass eClass = (EClass)eClassifier;
+				for (EStructuralFeature eStructuralFeature : eClass.getEStructuralFeatures()) {
+					// A hack because unfortunately not every "Name" field inherits from IfcRoot.Name, same could be true for GlobalId
+					if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
+						if (eStructuralFeature.getName().equals("Name") || eStructuralFeature.getName().equals("GlobalId")) {
+							schema.addIndex(eStructuralFeature);
+						}
+					}
+				}
+			}
+		}
+		
 		EClass project = schema.getEClass("store", "Project");
 		schema.createEAttribute(project, "schema", EcorePackage.eINSTANCE.getEString());
 		EClass revisionSummaryType = schema.getEClass("store", "RevisionSummaryType");

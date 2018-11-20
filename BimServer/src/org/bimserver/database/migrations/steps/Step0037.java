@@ -26,9 +26,9 @@ public class Step0037 extends Migration {
 
 	@Override
 	public void migrate(Schema schema, DatabaseSession databaseSession) {
-		EClass ifcRootClass = schema.getEClass("ifc4", "IfcRoot");
-		schema.addIndex(ifcRootClass.getEStructuralFeature("GlobalId"));
-		schema.addIndex(ifcRootClass.getEStructuralFeature("Name"));
+//		EClass ifcRootClass = schema.getEClass("ifc4", "IfcRoot");
+//		schema.addIndex(ifcRootClass.getEStructuralFeature("GlobalId"));
+//		schema.addIndex(ifcRootClass.getEStructuralFeature("Name"));
 		
 		EClass ifcClassificationReference = schema.getEClass("ifc4", "IfcClassificationReference");
 		EClass ifcRelAssociatesClassification = schema.getEClass("ifc4", "IfcRelAssociatesClassification");
