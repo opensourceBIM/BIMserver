@@ -338,10 +338,14 @@ public class Schema {
 	}
 
 	public void addIndex(EStructuralFeature eStructuralFeature) {
+		for (EAnnotation eAnnotation : eStructuralFeature.getEAnnotations()) {
+			if (eAnnotation.getSource().equals("singleindex")) {
+				throw new RuntimeException(eStructuralFeature + " already has an index");
+			}
+		}
 		changes.add(new AddIndexChange(this, eStructuralFeature));
 		EAnnotation index = EcoreFactory.eINSTANCE.createEAnnotation();
 		index.setSource("singleindex");
-
 		eStructuralFeature.getEAnnotations().add(index);
 	}
 
