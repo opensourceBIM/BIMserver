@@ -128,6 +128,7 @@ public class GeometryRunner implements Runnable {
 
 	@Override
 	public void run() {
+		Thread.currentThread().setName("GeometryRunner");
 		long start = System.nanoTime();
 		job.setStartNanos(start);
 		try {
