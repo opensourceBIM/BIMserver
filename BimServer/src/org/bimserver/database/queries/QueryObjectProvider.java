@@ -177,6 +177,9 @@ public class QueryObjectProvider implements ObjectProvider {
 				}
 			}
 		} catch (Exception e) {
+			if (e instanceof BimserverDatabaseException) {
+				throw (BimserverDatabaseException)e;
+			}
 			throw new BimserverDatabaseException(e);
 		}
 
