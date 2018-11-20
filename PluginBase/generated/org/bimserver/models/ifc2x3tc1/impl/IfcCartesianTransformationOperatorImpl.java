@@ -57,7 +57,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCartesianTransformationOperatorImpl extends IfcGeometricRepresentationItemImpl implements IfcCartesianTransformationOperator {
+public class IfcCartesianTransformationOperatorImpl extends IfcGeometricRepresentationItemImpl
+		implements IfcCartesianTransformationOperator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -155,7 +156,8 @@ public class IfcCartesianTransformationOperatorImpl extends IfcGeometricRepresen
 	 * @generated
 	 */
 	public IfcCartesianPoint getLocalOrigin() {
-		return (IfcCartesianPoint) eGet(Ifc2x3tc1Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR__LOCAL_ORIGIN, true);
+		return (IfcCartesianPoint) eGet(Ifc2x3tc1Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR__LOCAL_ORIGIN,
+				true);
 	}
 
 	/**

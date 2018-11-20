@@ -77,7 +77,8 @@ public class IfcBuildingElementProxyImpl extends IfcBuildingElementImpl implemen
 	 * @generated
 	 */
 	public IfcElementCompositionEnum getCompositionType() {
-		return (IfcElementCompositionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_BUILDING_ELEMENT_PROXY__COMPOSITION_TYPE, true);
+		return (IfcElementCompositionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_BUILDING_ELEMENT_PROXY__COMPOSITION_TYPE,
+				true);
 	}
 
 	/**

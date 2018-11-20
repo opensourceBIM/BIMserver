@@ -51,7 +51,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTwoDirectionRepeatFactorImpl extends IfcOneDirectionRepeatFactorImpl implements IfcTwoDirectionRepeatFactor {
+public class IfcTwoDirectionRepeatFactorImpl extends IfcOneDirectionRepeatFactorImpl
+		implements IfcTwoDirectionRepeatFactor {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

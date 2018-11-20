@@ -126,7 +126,8 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * @generated
 	 */
 	public void setElevationOfRefHeightAsString(String newElevationOfRefHeightAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT_AS_STRING, newElevationOfRefHeightAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT_AS_STRING,
+				newElevationOfRefHeightAsString);
 	}
 
 	/**

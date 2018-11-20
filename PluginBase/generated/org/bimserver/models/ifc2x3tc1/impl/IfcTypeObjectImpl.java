@@ -118,7 +118,8 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements IfcTyp
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertySetDefinition> getHasPropertySets() {
-		return (EList<IfcPropertySetDefinition>) eGet(Ifc2x3tc1Package.Literals.IFC_TYPE_OBJECT__HAS_PROPERTY_SETS, true);
+		return (EList<IfcPropertySetDefinition>) eGet(Ifc2x3tc1Package.Literals.IFC_TYPE_OBJECT__HAS_PROPERTY_SETS,
+				true);
 	}
 
 	/**

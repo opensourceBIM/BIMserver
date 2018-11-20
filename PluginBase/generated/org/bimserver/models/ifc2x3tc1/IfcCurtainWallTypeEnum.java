@@ -130,7 +130,8 @@ public enum IfcCurtainWallTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCurtainWallTypeEnum[] VALUES_ARRAY = new IfcCurtainWallTypeEnum[] { NULL, NOTDEFINED, USERDEFINED, };
+	private static final IfcCurtainWallTypeEnum[] VALUES_ARRAY = new IfcCurtainWallTypeEnum[] { NULL, NOTDEFINED,
+			USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Curtain Wall Type Enum</b></em>' enumerators.

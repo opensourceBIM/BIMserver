@@ -84,7 +84,8 @@ public class IfcStructuralResultGroupImpl extends IfcGroupImpl implements IfcStr
 	 * @generated
 	 */
 	public IfcAnalysisTheoryTypeEnum getTheoryType() {
-		return (IfcAnalysisTheoryTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_RESULT_GROUP__THEORY_TYPE, true);
+		return (IfcAnalysisTheoryTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_RESULT_GROUP__THEORY_TYPE,
+				true);
 	}
 
 	/**
@@ -102,7 +103,8 @@ public class IfcStructuralResultGroupImpl extends IfcGroupImpl implements IfcStr
 	 * @generated
 	 */
 	public IfcStructuralLoadGroup getResultForLoadGroup() {
-		return (IfcStructuralLoadGroup) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_RESULT_GROUP__RESULT_FOR_LOAD_GROUP, true);
+		return (IfcStructuralLoadGroup) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_RESULT_GROUP__RESULT_FOR_LOAD_GROUP, true);
 	}
 
 	/**
@@ -157,7 +159,8 @@ public class IfcStructuralResultGroupImpl extends IfcGroupImpl implements IfcStr
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcStructuralAnalysisModel> getResultGroupFor() {
-		return (EList<IfcStructuralAnalysisModel>) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_RESULT_GROUP__RESULT_GROUP_FOR, true);
+		return (EList<IfcStructuralAnalysisModel>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_RESULT_GROUP__RESULT_GROUP_FOR, true);
 	}
 
 	/**

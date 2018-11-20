@@ -85,7 +85,8 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 * @generated
 	 */
 	public IfcWindowPanelOperationEnum getOperationType() {
-		return (IfcWindowPanelOperationEnum) eGet(Ifc2x3tc1Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__OPERATION_TYPE, true);
+		return (IfcWindowPanelOperationEnum) eGet(Ifc2x3tc1Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__OPERATION_TYPE,
+				true);
 	}
 
 	/**
@@ -103,7 +104,8 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 * @generated
 	 */
 	public IfcWindowPanelPositionEnum getPanelPosition() {
-		return (IfcWindowPanelPositionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__PANEL_POSITION, true);
+		return (IfcWindowPanelPositionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__PANEL_POSITION,
+				true);
 	}
 
 	/**
@@ -238,7 +240,8 @@ public class IfcWindowPanelPropertiesImpl extends IfcPropertySetDefinitionImpl i
 	 * @generated
 	 */
 	public void setFrameThicknessAsString(String newFrameThicknessAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__FRAME_THICKNESS_AS_STRING, newFrameThicknessAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_WINDOW_PANEL_PROPERTIES__FRAME_THICKNESS_AS_STRING,
+				newFrameThicknessAsString);
 	}
 
 	/**

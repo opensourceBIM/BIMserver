@@ -53,7 +53,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFaceBasedSurfaceModelImpl extends IfcGeometricRepresentationItemImpl implements IfcFaceBasedSurfaceModel {
+public class IfcFaceBasedSurfaceModelImpl extends IfcGeometricRepresentationItemImpl
+		implements IfcFaceBasedSurfaceModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -80,7 +81,8 @@ public class IfcFaceBasedSurfaceModelImpl extends IfcGeometricRepresentationItem
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcConnectedFaceSet> getFbsmFaces() {
-		return (EList<IfcConnectedFaceSet>) eGet(Ifc2x3tc1Package.Literals.IFC_FACE_BASED_SURFACE_MODEL__FBSM_FACES, true);
+		return (EList<IfcConnectedFaceSet>) eGet(Ifc2x3tc1Package.Literals.IFC_FACE_BASED_SURFACE_MODEL__FBSM_FACES,
+				true);
 	}
 
 	/**

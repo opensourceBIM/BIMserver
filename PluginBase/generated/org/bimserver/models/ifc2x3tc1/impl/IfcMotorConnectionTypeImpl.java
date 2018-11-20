@@ -77,7 +77,8 @@ public class IfcMotorConnectionTypeImpl extends IfcEnergyConversionDeviceTypeImp
 	 * @generated
 	 */
 	public IfcMotorConnectionTypeEnum getPredefinedType() {
-		return (IfcMotorConnectionTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_MOTOR_CONNECTION_TYPE__PREDEFINED_TYPE, true);
+		return (IfcMotorConnectionTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_MOTOR_CONNECTION_TYPE__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**

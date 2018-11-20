@@ -93,7 +93,8 @@ public class IfcPropertyConstraintRelationshipImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public IfcConstraint getRelatingConstraint() {
-		return (IfcConstraint) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__RELATING_CONSTRAINT, true);
+		return (IfcConstraint) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__RELATING_CONSTRAINT,
+				true);
 	}
 
 	/**
@@ -102,7 +103,8 @@ public class IfcPropertyConstraintRelationshipImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public void setRelatingConstraint(IfcConstraint newRelatingConstraint) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__RELATING_CONSTRAINT, newRelatingConstraint);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__RELATING_CONSTRAINT,
+				newRelatingConstraint);
 	}
 
 	/**
@@ -112,7 +114,8 @@ public class IfcPropertyConstraintRelationshipImpl extends IdEObjectImpl impleme
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcProperty> getRelatedProperties() {
-		return (EList<IfcProperty>) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__RELATED_PROPERTIES, true);
+		return (EList<IfcProperty>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY_CONSTRAINT_RELATIONSHIP__RELATED_PROPERTIES, true);
 	}
 
 	/**

@@ -52,7 +52,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcModulusOfSubgradeReactionMeasureImpl extends IdEObjectImpl implements IfcModulusOfSubgradeReactionMeasure {
+public class IfcModulusOfSubgradeReactionMeasureImpl extends IdEObjectImpl
+		implements IfcModulusOfSubgradeReactionMeasure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -124,7 +125,8 @@ public class IfcModulusOfSubgradeReactionMeasureImpl extends IdEObjectImpl imple
 	 * @generated
 	 */
 	public String getWrappedValueAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_MODULUS_OF_SUBGRADE_REACTION_MEASURE__WRAPPED_VALUE_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_MODULUS_OF_SUBGRADE_REACTION_MEASURE__WRAPPED_VALUE_AS_STRING, true);
 	}
 
 	/**
@@ -133,7 +135,8 @@ public class IfcModulusOfSubgradeReactionMeasureImpl extends IdEObjectImpl imple
 	 * @generated
 	 */
 	public void setWrappedValueAsString(String newWrappedValueAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_MODULUS_OF_SUBGRADE_REACTION_MEASURE__WRAPPED_VALUE_AS_STRING, newWrappedValueAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_MODULUS_OF_SUBGRADE_REACTION_MEASURE__WRAPPED_VALUE_AS_STRING,
+				newWrappedValueAsString);
 	}
 
 	/**

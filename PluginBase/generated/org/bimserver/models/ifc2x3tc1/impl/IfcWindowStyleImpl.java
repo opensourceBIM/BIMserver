@@ -82,7 +82,8 @@ public class IfcWindowStyleImpl extends IfcTypeProductImpl implements IfcWindowS
 	 * @generated
 	 */
 	public IfcWindowStyleConstructionEnum getConstructionType() {
-		return (IfcWindowStyleConstructionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_WINDOW_STYLE__CONSTRUCTION_TYPE, true);
+		return (IfcWindowStyleConstructionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_WINDOW_STYLE__CONSTRUCTION_TYPE,
+				true);
 	}
 
 	/**

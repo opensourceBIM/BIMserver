@@ -305,7 +305,8 @@ public enum IfcReinforcingBarRoleEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcReinforcingBarRoleEnum[] VALUES_ARRAY = new IfcReinforcingBarRoleEnum[] { NULL, SHEAR, NOTDEFINED, RING, STUD, LIGATURE, MAIN, USERDEFINED, EDGE, PUNCHING, };
+	private static final IfcReinforcingBarRoleEnum[] VALUES_ARRAY = new IfcReinforcingBarRoleEnum[] { NULL, SHEAR,
+			NOTDEFINED, RING, STUD, LIGATURE, MAIN, USERDEFINED, EDGE, PUNCHING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Reinforcing Bar Role Enum</b></em>' enumerators.
@@ -313,7 +314,8 @@ public enum IfcReinforcingBarRoleEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcReinforcingBarRoleEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcReinforcingBarRoleEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Reinforcing Bar Role Enum</b></em>' literal with the specified literal value.

@@ -77,7 +77,8 @@ public class IfcRelAssociatesAppliedValueImpl extends IfcRelAssociatesImpl imple
 	 * @generated
 	 */
 	public IfcAppliedValue getRelatingAppliedValue() {
-		return (IfcAppliedValue) eGet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_APPLIED_VALUE__RELATING_APPLIED_VALUE, true);
+		return (IfcAppliedValue) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_APPLIED_VALUE__RELATING_APPLIED_VALUE, true);
 	}
 
 	/**
@@ -86,7 +87,8 @@ public class IfcRelAssociatesAppliedValueImpl extends IfcRelAssociatesImpl imple
 	 * @generated
 	 */
 	public void setRelatingAppliedValue(IfcAppliedValue newRelatingAppliedValue) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_APPLIED_VALUE__RELATING_APPLIED_VALUE, newRelatingAppliedValue);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_ASSOCIATES_APPLIED_VALUE__RELATING_APPLIED_VALUE,
+				newRelatingAppliedValue);
 	}
 
 } //IfcRelAssociatesAppliedValueImpl

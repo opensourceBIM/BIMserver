@@ -305,7 +305,9 @@ public enum IfcGeometricProjectionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcGeometricProjectionEnum[] VALUES_ARRAY = new IfcGeometricProjectionEnum[] { NULL, NOTDEFINED, PLAN_VIEW, SECTION_VIEW, SKETCH_VIEW, USERDEFINED, REFLECTED_PLAN_VIEW, ELEVATION_VIEW, MODEL_VIEW, GRAPH_VIEW, };
+	private static final IfcGeometricProjectionEnum[] VALUES_ARRAY = new IfcGeometricProjectionEnum[] { NULL,
+			NOTDEFINED, PLAN_VIEW, SECTION_VIEW, SKETCH_VIEW, USERDEFINED, REFLECTED_PLAN_VIEW, ELEVATION_VIEW,
+			MODEL_VIEW, GRAPH_VIEW, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Geometric Projection Enum</b></em>' enumerators.
@@ -313,7 +315,8 @@ public enum IfcGeometricProjectionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcGeometricProjectionEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcGeometricProjectionEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Geometric Projection Enum</b></em>' literal with the specified literal value.

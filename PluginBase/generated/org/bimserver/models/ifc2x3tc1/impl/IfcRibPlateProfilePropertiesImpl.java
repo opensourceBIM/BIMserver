@@ -373,7 +373,8 @@ public class IfcRibPlateProfilePropertiesImpl extends IfcProfilePropertiesImpl i
 	 * @generated
 	 */
 	public IfcRibPlateDirectionEnum getDirection() {
-		return (IfcRibPlateDirectionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_RIB_PLATE_PROFILE_PROPERTIES__DIRECTION, true);
+		return (IfcRibPlateDirectionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_RIB_PLATE_PROFILE_PROPERTIES__DIRECTION,
+				true);
 	}
 
 	/**

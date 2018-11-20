@@ -194,7 +194,8 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect 
 	 * @generated
 	 */
 	public IfcProductDefinitionShape getPartOfProductDefinitionShape() {
-		return (IfcProductDefinitionShape) eGet(Ifc2x3tc1Package.Literals.IFC_SHAPE_ASPECT__PART_OF_PRODUCT_DEFINITION_SHAPE, true);
+		return (IfcProductDefinitionShape) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SHAPE_ASPECT__PART_OF_PRODUCT_DEFINITION_SHAPE, true);
 	}
 
 	/**
@@ -203,7 +204,8 @@ public class IfcShapeAspectImpl extends IdEObjectImpl implements IfcShapeAspect 
 	 * @generated
 	 */
 	public void setPartOfProductDefinitionShape(IfcProductDefinitionShape newPartOfProductDefinitionShape) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SHAPE_ASPECT__PART_OF_PRODUCT_DEFINITION_SHAPE, newPartOfProductDefinitionShape);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SHAPE_ASPECT__PART_OF_PRODUCT_DEFINITION_SHAPE,
+				newPartOfProductDefinitionShape);
 	}
 
 } //IfcShapeAspectImpl

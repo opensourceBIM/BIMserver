@@ -255,7 +255,8 @@ public enum IfcPumpTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPumpTypeEnum[] VALUES_ARRAY = new IfcPumpTypeEnum[] { NULL, SPLITCASE, NOTDEFINED, CIRCULATOR, ENDSUCTION, USERDEFINED, VERTICALINLINE, VERTICALTURBINE, };
+	private static final IfcPumpTypeEnum[] VALUES_ARRAY = new IfcPumpTypeEnum[] { NULL, SPLITCASE, NOTDEFINED,
+			CIRCULATOR, ENDSUCTION, USERDEFINED, VERTICALINLINE, VERTICALTURBINE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Pump Type Enum</b></em>' enumerators.

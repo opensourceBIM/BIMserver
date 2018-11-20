@@ -55,7 +55,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcTimeSeriesReferenceRelationshipImpl extends IdEObjectImpl implements IfcTimeSeriesReferenceRelationship {
+public class IfcTimeSeriesReferenceRelationshipImpl extends IdEObjectImpl
+		implements IfcTimeSeriesReferenceRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -91,7 +92,8 @@ public class IfcTimeSeriesReferenceRelationshipImpl extends IdEObjectImpl implem
 	 * @generated
 	 */
 	public IfcTimeSeries getReferencedTimeSeries() {
-		return (IfcTimeSeries) eGet(Ifc2x3tc1Package.Literals.IFC_TIME_SERIES_REFERENCE_RELATIONSHIP__REFERENCED_TIME_SERIES, true);
+		return (IfcTimeSeries) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TIME_SERIES_REFERENCE_RELATIONSHIP__REFERENCED_TIME_SERIES, true);
 	}
 
 	/**
@@ -100,7 +102,8 @@ public class IfcTimeSeriesReferenceRelationshipImpl extends IdEObjectImpl implem
 	 * @generated
 	 */
 	public void setReferencedTimeSeries(IfcTimeSeries newReferencedTimeSeries) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TIME_SERIES_REFERENCE_RELATIONSHIP__REFERENCED_TIME_SERIES, newReferencedTimeSeries);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TIME_SERIES_REFERENCE_RELATIONSHIP__REFERENCED_TIME_SERIES,
+				newReferencedTimeSeries);
 	}
 
 	/**
@@ -110,7 +113,8 @@ public class IfcTimeSeriesReferenceRelationshipImpl extends IdEObjectImpl implem
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcDocumentSelect> getTimeSeriesReferences() {
-		return (EList<IfcDocumentSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_TIME_SERIES_REFERENCE_RELATIONSHIP__TIME_SERIES_REFERENCES, true);
+		return (EList<IfcDocumentSelect>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TIME_SERIES_REFERENCE_RELATIONSHIP__TIME_SERIES_REFERENCES, true);
 	}
 
 } //IfcTimeSeriesReferenceRelationshipImpl

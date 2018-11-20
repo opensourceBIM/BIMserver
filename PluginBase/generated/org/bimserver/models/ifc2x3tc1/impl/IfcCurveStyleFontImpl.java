@@ -127,7 +127,8 @@ public class IfcCurveStyleFontImpl extends IdEObjectImpl implements IfcCurveStyl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcCurveStyleFontPattern> getPatternList() {
-		return (EList<IfcCurveStyleFontPattern>) eGet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT__PATTERN_LIST, true);
+		return (EList<IfcCurveStyleFontPattern>) eGet(Ifc2x3tc1Package.Literals.IFC_CURVE_STYLE_FONT__PATTERN_LIST,
+				true);
 	}
 
 } //IfcCurveStyleFontImpl

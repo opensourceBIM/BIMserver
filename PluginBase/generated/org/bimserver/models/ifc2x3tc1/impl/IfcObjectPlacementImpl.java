@@ -120,7 +120,8 @@ public class IfcObjectPlacementImpl extends IdEObjectImpl implements IfcObjectPl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcLocalPlacement> getReferencedByPlacements() {
-		return (EList<IfcLocalPlacement>) eGet(Ifc2x3tc1Package.Literals.IFC_OBJECT_PLACEMENT__REFERENCED_BY_PLACEMENTS, true);
+		return (EList<IfcLocalPlacement>) eGet(Ifc2x3tc1Package.Literals.IFC_OBJECT_PLACEMENT__REFERENCED_BY_PLACEMENTS,
+				true);
 	}
 
 	/**

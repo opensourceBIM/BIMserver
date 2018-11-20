@@ -97,7 +97,8 @@ public class IfcPolygonalBoundedHalfSpaceImpl extends IfcHalfSpaceSolidImpl impl
 	 * @generated
 	 */
 	public IfcBoundedCurve getPolygonalBoundary() {
-		return (IfcBoundedCurve) eGet(Ifc2x3tc1Package.Literals.IFC_POLYGONAL_BOUNDED_HALF_SPACE__POLYGONAL_BOUNDARY, true);
+		return (IfcBoundedCurve) eGet(Ifc2x3tc1Package.Literals.IFC_POLYGONAL_BOUNDED_HALF_SPACE__POLYGONAL_BOUNDARY,
+				true);
 	}
 
 	/**

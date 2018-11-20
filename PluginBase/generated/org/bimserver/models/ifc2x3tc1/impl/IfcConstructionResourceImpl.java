@@ -153,7 +153,8 @@ public class IfcConstructionResourceImpl extends IfcResourceImpl implements IfcC
 	 * @generated
 	 */
 	public IfcResourceConsumptionEnum getResourceConsumption() {
-		return (IfcResourceConsumptionEnum) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_RESOURCE__RESOURCE_CONSUMPTION, true);
+		return (IfcResourceConsumptionEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONSTRUCTION_RESOURCE__RESOURCE_CONSUMPTION, true);
 	}
 
 	/**

@@ -79,7 +79,8 @@ public class IfcRelFillsElementImpl extends IfcRelConnectsImpl implements IfcRel
 	 * @generated
 	 */
 	public IfcOpeningElement getRelatingOpeningElement() {
-		return (IfcOpeningElement) eGet(Ifc2x3tc1Package.Literals.IFC_REL_FILLS_ELEMENT__RELATING_OPENING_ELEMENT, true);
+		return (IfcOpeningElement) eGet(Ifc2x3tc1Package.Literals.IFC_REL_FILLS_ELEMENT__RELATING_OPENING_ELEMENT,
+				true);
 	}
 
 	/**

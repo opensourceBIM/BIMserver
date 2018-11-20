@@ -155,7 +155,8 @@ public enum IfcTrimmingPreference implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTrimmingPreference[] VALUES_ARRAY = new IfcTrimmingPreference[] { NULL, UNSPECIFIED, CARTESIAN, PARAMETER, };
+	private static final IfcTrimmingPreference[] VALUES_ARRAY = new IfcTrimmingPreference[] { NULL, UNSPECIFIED,
+			CARTESIAN, PARAMETER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Trimming Preference</b></em>' enumerators.

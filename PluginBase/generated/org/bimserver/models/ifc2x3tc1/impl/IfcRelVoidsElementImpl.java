@@ -97,7 +97,8 @@ public class IfcRelVoidsElementImpl extends IfcRelConnectsImpl implements IfcRel
 	 * @generated
 	 */
 	public IfcFeatureElementSubtraction getRelatedOpeningElement() {
-		return (IfcFeatureElementSubtraction) eGet(Ifc2x3tc1Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATED_OPENING_ELEMENT, true);
+		return (IfcFeatureElementSubtraction) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATED_OPENING_ELEMENT, true);
 	}
 
 	/**

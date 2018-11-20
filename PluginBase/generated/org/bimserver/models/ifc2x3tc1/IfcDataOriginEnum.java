@@ -205,7 +205,8 @@ public enum IfcDataOriginEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDataOriginEnum[] VALUES_ARRAY = new IfcDataOriginEnum[] { NULL, NOTDEFINED, PREDICTED, MEASURED, USERDEFINED, SIMULATED, };
+	private static final IfcDataOriginEnum[] VALUES_ARRAY = new IfcDataOriginEnum[] { NULL, NOTDEFINED, PREDICTED,
+			MEASURED, USERDEFINED, SIMULATED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Data Origin Enum</b></em>' enumerators.

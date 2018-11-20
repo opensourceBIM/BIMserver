@@ -149,7 +149,8 @@ public class IfcPropertyImpl extends IdEObjectImpl implements IfcProperty {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertyDependencyRelationship> getPropertyForDependance() {
-		return (EList<IfcPropertyDependencyRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY__PROPERTY_FOR_DEPENDANCE, true);
+		return (EList<IfcPropertyDependencyRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY__PROPERTY_FOR_DEPENDANCE, true);
 	}
 
 	/**
@@ -177,7 +178,8 @@ public class IfcPropertyImpl extends IdEObjectImpl implements IfcProperty {
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcPropertyDependencyRelationship> getPropertyDependsOn() {
-		return (EList<IfcPropertyDependencyRelationship>) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY__PROPERTY_DEPENDS_ON, true);
+		return (EList<IfcPropertyDependencyRelationship>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PROPERTY__PROPERTY_DEPENDS_ON, true);
 	}
 
 	/**

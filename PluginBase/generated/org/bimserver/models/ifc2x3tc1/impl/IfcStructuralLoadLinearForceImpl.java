@@ -61,7 +61,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralLoadLinearForceImpl extends IfcStructuralLoadStaticImpl implements IfcStructuralLoadLinearForce {
+public class IfcStructuralLoadLinearForceImpl extends IfcStructuralLoadStaticImpl
+		implements IfcStructuralLoadLinearForce {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -132,7 +133,8 @@ public class IfcStructuralLoadLinearForceImpl extends IfcStructuralLoadStaticImp
 	 * @generated
 	 */
 	public void setLinearForceXAsString(String newLinearForceXAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_LINEAR_FORCE__LINEAR_FORCE_XAS_STRING, newLinearForceXAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_LINEAR_FORCE__LINEAR_FORCE_XAS_STRING,
+				newLinearForceXAsString);
 	}
 
 	/**
@@ -204,7 +206,8 @@ public class IfcStructuralLoadLinearForceImpl extends IfcStructuralLoadStaticImp
 	 * @generated
 	 */
 	public void setLinearForceYAsString(String newLinearForceYAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_LINEAR_FORCE__LINEAR_FORCE_YAS_STRING, newLinearForceYAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_LINEAR_FORCE__LINEAR_FORCE_YAS_STRING,
+				newLinearForceYAsString);
 	}
 
 	/**
@@ -276,7 +279,8 @@ public class IfcStructuralLoadLinearForceImpl extends IfcStructuralLoadStaticImp
 	 * @generated
 	 */
 	public void setLinearForceZAsString(String newLinearForceZAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_LINEAR_FORCE__LINEAR_FORCE_ZAS_STRING, newLinearForceZAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_LINEAR_FORCE__LINEAR_FORCE_ZAS_STRING,
+				newLinearForceZAsString);
 	}
 
 	/**
@@ -339,7 +343,8 @@ public class IfcStructuralLoadLinearForceImpl extends IfcStructuralLoadStaticImp
 	 * @generated
 	 */
 	public String getLinearMomentXAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_LINEAR_FORCE__LINEAR_MOMENT_XAS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_LINEAR_FORCE__LINEAR_MOMENT_XAS_STRING,
+				true);
 	}
 
 	/**
@@ -348,7 +353,8 @@ public class IfcStructuralLoadLinearForceImpl extends IfcStructuralLoadStaticImp
 	 * @generated
 	 */
 	public void setLinearMomentXAsString(String newLinearMomentXAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_LINEAR_FORCE__LINEAR_MOMENT_XAS_STRING, newLinearMomentXAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_LINEAR_FORCE__LINEAR_MOMENT_XAS_STRING,
+				newLinearMomentXAsString);
 	}
 
 	/**
@@ -411,7 +417,8 @@ public class IfcStructuralLoadLinearForceImpl extends IfcStructuralLoadStaticImp
 	 * @generated
 	 */
 	public String getLinearMomentYAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_LINEAR_FORCE__LINEAR_MOMENT_YAS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_LINEAR_FORCE__LINEAR_MOMENT_YAS_STRING,
+				true);
 	}
 
 	/**
@@ -420,7 +427,8 @@ public class IfcStructuralLoadLinearForceImpl extends IfcStructuralLoadStaticImp
 	 * @generated
 	 */
 	public void setLinearMomentYAsString(String newLinearMomentYAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_LINEAR_FORCE__LINEAR_MOMENT_YAS_STRING, newLinearMomentYAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_LINEAR_FORCE__LINEAR_MOMENT_YAS_STRING,
+				newLinearMomentYAsString);
 	}
 
 	/**
@@ -483,7 +491,8 @@ public class IfcStructuralLoadLinearForceImpl extends IfcStructuralLoadStaticImp
 	 * @generated
 	 */
 	public String getLinearMomentZAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_LINEAR_FORCE__LINEAR_MOMENT_ZAS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_LINEAR_FORCE__LINEAR_MOMENT_ZAS_STRING,
+				true);
 	}
 
 	/**
@@ -492,7 +501,8 @@ public class IfcStructuralLoadLinearForceImpl extends IfcStructuralLoadStaticImp
 	 * @generated
 	 */
 	public void setLinearMomentZAsString(String newLinearMomentZAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_LINEAR_FORCE__LINEAR_MOMENT_ZAS_STRING, newLinearMomentZAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_LINEAR_FORCE__LINEAR_MOMENT_ZAS_STRING,
+				newLinearMomentZAsString);
 	}
 
 	/**

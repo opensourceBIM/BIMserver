@@ -77,7 +77,8 @@ public class IfcFeatureElementSubtractionImpl extends IfcFeatureElementImpl impl
 	 * @generated
 	 */
 	public IfcRelVoidsElement getVoidsElements() {
-		return (IfcRelVoidsElement) eGet(Ifc2x3tc1Package.Literals.IFC_FEATURE_ELEMENT_SUBTRACTION__VOIDS_ELEMENTS, true);
+		return (IfcRelVoidsElement) eGet(Ifc2x3tc1Package.Literals.IFC_FEATURE_ELEMENT_SUBTRACTION__VOIDS_ELEMENTS,
+				true);
 	}
 
 	/**

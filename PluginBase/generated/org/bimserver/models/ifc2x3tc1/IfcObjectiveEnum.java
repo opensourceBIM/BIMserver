@@ -280,7 +280,8 @@ public enum IfcObjectiveEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcObjectiveEnum[] VALUES_ARRAY = new IfcObjectiveEnum[] { NULL, HEALTHANDSAFETY, NOTDEFINED, TRIGGERCONDITION, USERDEFINED, SPECIFICATION, CODECOMPLIANCE, DESIGNINTENT, REQUIREMENT, };
+	private static final IfcObjectiveEnum[] VALUES_ARRAY = new IfcObjectiveEnum[] { NULL, HEALTHANDSAFETY, NOTDEFINED,
+			TRIGGERCONDITION, USERDEFINED, SPECIFICATION, CODECOMPLIANCE, DESIGNINTENT, REQUIREMENT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Objective Enum</b></em>' enumerators.

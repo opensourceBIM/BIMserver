@@ -58,7 +58,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcConstraintAggregationRelationshipImpl extends IdEObjectImpl implements IfcConstraintAggregationRelationship {
+public class IfcConstraintAggregationRelationshipImpl extends IdEObjectImpl
+		implements IfcConstraintAggregationRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -166,7 +167,8 @@ public class IfcConstraintAggregationRelationshipImpl extends IdEObjectImpl impl
 	 * @generated
 	 */
 	public IfcConstraint getRelatingConstraint() {
-		return (IfcConstraint) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT_AGGREGATION_RELATIONSHIP__RELATING_CONSTRAINT, true);
+		return (IfcConstraint) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONSTRAINT_AGGREGATION_RELATIONSHIP__RELATING_CONSTRAINT, true);
 	}
 
 	/**
@@ -175,7 +177,8 @@ public class IfcConstraintAggregationRelationshipImpl extends IdEObjectImpl impl
 	 * @generated
 	 */
 	public void setRelatingConstraint(IfcConstraint newRelatingConstraint) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT_AGGREGATION_RELATIONSHIP__RELATING_CONSTRAINT, newRelatingConstraint);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT_AGGREGATION_RELATIONSHIP__RELATING_CONSTRAINT,
+				newRelatingConstraint);
 	}
 
 	/**
@@ -185,7 +188,8 @@ public class IfcConstraintAggregationRelationshipImpl extends IdEObjectImpl impl
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcConstraint> getRelatedConstraints() {
-		return (EList<IfcConstraint>) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT_AGGREGATION_RELATIONSHIP__RELATED_CONSTRAINTS, true);
+		return (EList<IfcConstraint>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONSTRAINT_AGGREGATION_RELATIONSHIP__RELATED_CONSTRAINTS, true);
 	}
 
 	/**
@@ -194,7 +198,8 @@ public class IfcConstraintAggregationRelationshipImpl extends IdEObjectImpl impl
 	 * @generated
 	 */
 	public IfcLogicalOperatorEnum getLogicalAggregator() {
-		return (IfcLogicalOperatorEnum) eGet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT_AGGREGATION_RELATIONSHIP__LOGICAL_AGGREGATOR, true);
+		return (IfcLogicalOperatorEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_CONSTRAINT_AGGREGATION_RELATIONSHIP__LOGICAL_AGGREGATOR, true);
 	}
 
 	/**
@@ -203,7 +208,8 @@ public class IfcConstraintAggregationRelationshipImpl extends IdEObjectImpl impl
 	 * @generated
 	 */
 	public void setLogicalAggregator(IfcLogicalOperatorEnum newLogicalAggregator) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT_AGGREGATION_RELATIONSHIP__LOGICAL_AGGREGATOR, newLogicalAggregator);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CONSTRAINT_AGGREGATION_RELATIONSHIP__LOGICAL_AGGREGATOR,
+				newLogicalAggregator);
 	}
 
 } //IfcConstraintAggregationRelationshipImpl

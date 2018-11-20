@@ -124,7 +124,8 @@ public class IfcServiceLifeImpl extends IfcControlImpl implements IfcServiceLife
 	 * @generated
 	 */
 	public void setServiceLifeDurationAsString(String newServiceLifeDurationAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SERVICE_LIFE__SERVICE_LIFE_DURATION_AS_STRING, newServiceLifeDurationAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SERVICE_LIFE__SERVICE_LIFE_DURATION_AS_STRING,
+				newServiceLifeDurationAsString);
 	}
 
 } //IfcServiceLifeImpl

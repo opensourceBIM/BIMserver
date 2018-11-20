@@ -276,7 +276,8 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * @generated
 	 */
 	public void setInternalFilletRadiusAsString(String newInternalFilletRadiusAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CSHAPE_PROFILE_DEF__INTERNAL_FILLET_RADIUS_AS_STRING, newInternalFilletRadiusAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CSHAPE_PROFILE_DEF__INTERNAL_FILLET_RADIUS_AS_STRING,
+				newInternalFilletRadiusAsString);
 	}
 
 	/**
@@ -348,7 +349,8 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * @generated
 	 */
 	public void setCentreOfGravityInXAsString(String newCentreOfGravityInXAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_CSHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_XAS_STRING, newCentreOfGravityInXAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_CSHAPE_PROFILE_DEF__CENTRE_OF_GRAVITY_IN_XAS_STRING,
+				newCentreOfGravityInXAsString);
 	}
 
 	/**

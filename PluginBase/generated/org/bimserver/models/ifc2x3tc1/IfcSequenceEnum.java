@@ -205,7 +205,8 @@ public enum IfcSequenceEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSequenceEnum[] VALUES_ARRAY = new IfcSequenceEnum[] { NULL, NOTDEFINED, START_FINISH, FINISH_START, FINISH_FINISH, START_START, };
+	private static final IfcSequenceEnum[] VALUES_ARRAY = new IfcSequenceEnum[] { NULL, NOTDEFINED, START_FINISH,
+			FINISH_START, FINISH_FINISH, START_START, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Sequence Enum</b></em>' enumerators.

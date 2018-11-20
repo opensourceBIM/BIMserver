@@ -99,7 +99,8 @@ public class IfcSectionReinforcementPropertiesImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public double getLongitudinalStartPosition() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_START_POSITION, true);
+		return (Double) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_START_POSITION, true);
 	}
 
 	/**
@@ -108,7 +109,8 @@ public class IfcSectionReinforcementPropertiesImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public void setLongitudinalStartPosition(double newLongitudinalStartPosition) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_START_POSITION, newLongitudinalStartPosition);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_START_POSITION,
+				newLongitudinalStartPosition);
 	}
 
 	/**
@@ -117,7 +119,9 @@ public class IfcSectionReinforcementPropertiesImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public String getLongitudinalStartPositionAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_START_POSITION_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_START_POSITION_AS_STRING,
+				true);
 	}
 
 	/**
@@ -126,7 +130,8 @@ public class IfcSectionReinforcementPropertiesImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public void setLongitudinalStartPositionAsString(String newLongitudinalStartPositionAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_START_POSITION_AS_STRING, newLongitudinalStartPositionAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_START_POSITION_AS_STRING,
+				newLongitudinalStartPositionAsString);
 	}
 
 	/**
@@ -135,7 +140,8 @@ public class IfcSectionReinforcementPropertiesImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public double getLongitudinalEndPosition() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_END_POSITION, true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_END_POSITION,
+				true);
 	}
 
 	/**
@@ -144,7 +150,8 @@ public class IfcSectionReinforcementPropertiesImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public void setLongitudinalEndPosition(double newLongitudinalEndPosition) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_END_POSITION, newLongitudinalEndPosition);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_END_POSITION,
+				newLongitudinalEndPosition);
 	}
 
 	/**
@@ -153,7 +160,9 @@ public class IfcSectionReinforcementPropertiesImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public String getLongitudinalEndPositionAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_END_POSITION_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_END_POSITION_AS_STRING,
+				true);
 	}
 
 	/**
@@ -162,7 +171,8 @@ public class IfcSectionReinforcementPropertiesImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public void setLongitudinalEndPositionAsString(String newLongitudinalEndPositionAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_END_POSITION_AS_STRING, newLongitudinalEndPositionAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_END_POSITION_AS_STRING,
+				newLongitudinalEndPositionAsString);
 	}
 
 	/**
@@ -180,7 +190,8 @@ public class IfcSectionReinforcementPropertiesImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public void setTransversePosition(double newTransversePosition) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__TRANSVERSE_POSITION, newTransversePosition);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__TRANSVERSE_POSITION,
+				newTransversePosition);
 	}
 
 	/**
@@ -207,7 +218,8 @@ public class IfcSectionReinforcementPropertiesImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public String getTransversePositionAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__TRANSVERSE_POSITION_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__TRANSVERSE_POSITION_AS_STRING, true);
 	}
 
 	/**
@@ -216,7 +228,8 @@ public class IfcSectionReinforcementPropertiesImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public void setTransversePositionAsString(String newTransversePositionAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__TRANSVERSE_POSITION_AS_STRING, newTransversePositionAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__TRANSVERSE_POSITION_AS_STRING,
+				newTransversePositionAsString);
 	}
 
 	/**
@@ -243,7 +256,8 @@ public class IfcSectionReinforcementPropertiesImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public IfcReinforcingBarRoleEnum getReinforcementRole() {
-		return (IfcReinforcingBarRoleEnum) eGet(Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__REINFORCEMENT_ROLE, true);
+		return (IfcReinforcingBarRoleEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__REINFORCEMENT_ROLE, true);
 	}
 
 	/**
@@ -261,7 +275,8 @@ public class IfcSectionReinforcementPropertiesImpl extends IdEObjectImpl impleme
 	 * @generated
 	 */
 	public IfcSectionProperties getSectionDefinition() {
-		return (IfcSectionProperties) eGet(Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__SECTION_DEFINITION, true);
+		return (IfcSectionProperties) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__SECTION_DEFINITION, true);
 	}
 
 	/**
@@ -280,7 +295,9 @@ public class IfcSectionReinforcementPropertiesImpl extends IdEObjectImpl impleme
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcReinforcementBarProperties> getCrossSectionReinforcementDefinitions() {
-		return (EList<IfcReinforcementBarProperties>) eGet(Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__CROSS_SECTION_REINFORCEMENT_DEFINITIONS, true);
+		return (EList<IfcReinforcementBarProperties>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__CROSS_SECTION_REINFORCEMENT_DEFINITIONS,
+				true);
 	}
 
 } //IfcSectionReinforcementPropertiesImpl

@@ -82,7 +82,8 @@ public class IfcFillAreaStyleTilesImpl extends IfcGeometricRepresentationItemImp
 	 * @generated
 	 */
 	public IfcOneDirectionRepeatFactor getTilingPattern() {
-		return (IfcOneDirectionRepeatFactor) eGet(Ifc2x3tc1Package.Literals.IFC_FILL_AREA_STYLE_TILES__TILING_PATTERN, true);
+		return (IfcOneDirectionRepeatFactor) eGet(Ifc2x3tc1Package.Literals.IFC_FILL_AREA_STYLE_TILES__TILING_PATTERN,
+				true);
 	}
 
 	/**
@@ -101,7 +102,8 @@ public class IfcFillAreaStyleTilesImpl extends IfcGeometricRepresentationItemImp
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcFillAreaStyleTileShapeSelect> getTiles() {
-		return (EList<IfcFillAreaStyleTileShapeSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_FILL_AREA_STYLE_TILES__TILES, true);
+		return (EList<IfcFillAreaStyleTileShapeSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_FILL_AREA_STYLE_TILES__TILES,
+				true);
 	}
 
 	/**

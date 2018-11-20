@@ -280,7 +280,9 @@ public enum IfcResourceConsumptionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcResourceConsumptionEnum[] VALUES_ARRAY = new IfcResourceConsumptionEnum[] { NULL, NOTCONSUMED, NOTOCCUPIED, NOTDEFINED, PARTIALLYOCCUPIED, CONSUMED, PARTIALLYCONSUMED, OCCUPIED, USERDEFINED, };
+	private static final IfcResourceConsumptionEnum[] VALUES_ARRAY = new IfcResourceConsumptionEnum[] { NULL,
+			NOTCONSUMED, NOTOCCUPIED, NOTDEFINED, PARTIALLYOCCUPIED, CONSUMED, PARTIALLYCONSUMED, OCCUPIED,
+			USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Resource Consumption Enum</b></em>' enumerators.
@@ -288,7 +290,8 @@ public enum IfcResourceConsumptionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcResourceConsumptionEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcResourceConsumptionEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Resource Consumption Enum</b></em>' literal with the specified literal value.

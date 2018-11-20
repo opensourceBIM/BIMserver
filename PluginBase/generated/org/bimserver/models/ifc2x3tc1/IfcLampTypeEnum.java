@@ -280,7 +280,8 @@ public enum IfcLampTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcLampTypeEnum[] VALUES_ARRAY = new IfcLampTypeEnum[] { NULL, TUNGSTENFILAMENT, FLUORESCENT, NOTDEFINED, HIGHPRESSURESODIUM, METALHALIDE, USERDEFINED, COMPACTFLUORESCENT, HIGHPRESSUREMERCURY, };
+	private static final IfcLampTypeEnum[] VALUES_ARRAY = new IfcLampTypeEnum[] { NULL, TUNGSTENFILAMENT, FLUORESCENT,
+			NOTDEFINED, HIGHPRESSURESODIUM, METALHALIDE, USERDEFINED, COMPACTFLUORESCENT, HIGHPRESSUREMERCURY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Lamp Type Enum</b></em>' enumerators.

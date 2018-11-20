@@ -77,7 +77,8 @@ public class IfcVibrationIsolatorTypeImpl extends IfcDiscreteAccessoryTypeImpl i
 	 * @generated
 	 */
 	public IfcVibrationIsolatorTypeEnum getPredefinedType() {
-		return (IfcVibrationIsolatorTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_VIBRATION_ISOLATOR_TYPE__PREDEFINED_TYPE, true);
+		return (IfcVibrationIsolatorTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_VIBRATION_ISOLATOR_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**

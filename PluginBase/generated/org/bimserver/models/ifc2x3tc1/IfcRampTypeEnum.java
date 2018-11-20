@@ -280,7 +280,9 @@ public enum IfcRampTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcRampTypeEnum[] VALUES_ARRAY = new IfcRampTypeEnum[] { NULL, NOTDEFINED, QUARTER_TURN_RAMP, SPIRAL_RAMP, TWO_QUARTER_TURN_RAMP, TWO_STRAIGHT_RUN_RAMP, HALF_TURN_RAMP, USERDEFINED, STRAIGHT_RUN_RAMP, };
+	private static final IfcRampTypeEnum[] VALUES_ARRAY = new IfcRampTypeEnum[] { NULL, NOTDEFINED, QUARTER_TURN_RAMP,
+			SPIRAL_RAMP, TWO_QUARTER_TURN_RAMP, TWO_STRAIGHT_RUN_RAMP, HALF_TURN_RAMP, USERDEFINED,
+			STRAIGHT_RUN_RAMP, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Ramp Type Enum</b></em>' enumerators.

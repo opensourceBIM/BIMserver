@@ -79,7 +79,8 @@ public class IfcPropertyDefinitionImpl extends IfcRootImpl implements IfcPropert
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelAssociates> getHasAssociations() {
-		return (EList<IfcRelAssociates>) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_DEFINITION__HAS_ASSOCIATIONS, true);
+		return (EList<IfcRelAssociates>) eGet(Ifc2x3tc1Package.Literals.IFC_PROPERTY_DEFINITION__HAS_ASSOCIATIONS,
+				true);
 	}
 
 	/**

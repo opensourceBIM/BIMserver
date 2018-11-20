@@ -120,7 +120,8 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * @generated
 	 */
 	public String getDailyInteractionAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__DAILY_INTERACTION_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__DAILY_INTERACTION_AS_STRING,
+				true);
 	}
 
 	/**
@@ -129,7 +130,8 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * @generated
 	 */
 	public void setDailyInteractionAsString(String newDailyInteractionAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__DAILY_INTERACTION_AS_STRING, newDailyInteractionAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__DAILY_INTERACTION_AS_STRING,
+				newDailyInteractionAsString);
 	}
 
 	/**
@@ -192,7 +194,8 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * @generated
 	 */
 	public String getImportanceRatingAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__IMPORTANCE_RATING_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__IMPORTANCE_RATING_AS_STRING,
+				true);
 	}
 
 	/**
@@ -201,7 +204,8 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * @generated
 	 */
 	public void setImportanceRatingAsString(String newImportanceRatingAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__IMPORTANCE_RATING_AS_STRING, newImportanceRatingAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__IMPORTANCE_RATING_AS_STRING,
+				newImportanceRatingAsString);
 	}
 
 	/**
@@ -228,7 +232,8 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * @generated
 	 */
 	public IfcSpatialStructureElement getLocationOfInteraction() {
-		return (IfcSpatialStructureElement) eGet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__LOCATION_OF_INTERACTION, true);
+		return (IfcSpatialStructureElement) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__LOCATION_OF_INTERACTION, true);
 	}
 
 	/**
@@ -237,7 +242,8 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * @generated
 	 */
 	public void setLocationOfInteraction(IfcSpatialStructureElement newLocationOfInteraction) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__LOCATION_OF_INTERACTION, newLocationOfInteraction);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__LOCATION_OF_INTERACTION,
+				newLocationOfInteraction);
 	}
 
 	/**
@@ -264,7 +270,8 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * @generated
 	 */
 	public IfcSpaceProgram getRelatedSpaceProgram() {
-		return (IfcSpaceProgram) eGet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__RELATED_SPACE_PROGRAM, true);
+		return (IfcSpaceProgram) eGet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__RELATED_SPACE_PROGRAM,
+				true);
 	}
 
 	/**
@@ -282,7 +289,8 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * @generated
 	 */
 	public IfcSpaceProgram getRelatingSpaceProgram() {
-		return (IfcSpaceProgram) eGet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__RELATING_SPACE_PROGRAM, true);
+		return (IfcSpaceProgram) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__RELATING_SPACE_PROGRAM, true);
 	}
 
 	/**
@@ -291,7 +299,8 @@ public class IfcRelInteractionRequirementsImpl extends IfcRelConnectsImpl implem
 	 * @generated
 	 */
 	public void setRelatingSpaceProgram(IfcSpaceProgram newRelatingSpaceProgram) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__RELATING_SPACE_PROGRAM, newRelatingSpaceProgram);
+		eSet(Ifc2x3tc1Package.Literals.IFC_REL_INTERACTION_REQUIREMENTS__RELATING_SPACE_PROGRAM,
+				newRelatingSpaceProgram);
 	}
 
 } //IfcRelInteractionRequirementsImpl

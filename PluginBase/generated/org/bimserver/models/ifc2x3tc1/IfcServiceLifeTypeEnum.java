@@ -205,7 +205,9 @@ public enum IfcServiceLifeTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcServiceLifeTypeEnum[] VALUES_ARRAY = new IfcServiceLifeTypeEnum[] { NULL, EXPECTEDSERVICELIFE, ACTUALSERVICELIFE, PESSIMISTICREFERENCESERVICELIFE, OPTIMISTICREFERENCESERVICELIFE, REFERENCESERVICELIFE, };
+	private static final IfcServiceLifeTypeEnum[] VALUES_ARRAY = new IfcServiceLifeTypeEnum[] { NULL,
+			EXPECTEDSERVICELIFE, ACTUALSERVICELIFE, PESSIMISTICREFERENCESERVICELIFE, OPTIMISTICREFERENCESERVICELIFE,
+			REFERENCESERVICELIFE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Service Life Type Enum</b></em>' enumerators.

@@ -830,8 +830,10 @@ public enum IfcSIUnitName implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSIUnitName[] VALUES_ARRAY = new IfcSIUnitName[] { NULL, RADIAN, GRAY, BECQUEREL, DEGREE_CELSIUS, CUBIC_METRE, SIEVERT, WEBER, PASCAL, OHM, AMPERE, LUMEN, JOULE, COULOMB, KELVIN, WATT, FARAD, STERADIAN, VOLT,
-			SIEMENS, HERTZ, SQUARE_METRE, LUX, HENRY, CANDELA, METRE, GRAM, TESLA, SECOND, NEWTON, MOLE, };
+	private static final IfcSIUnitName[] VALUES_ARRAY = new IfcSIUnitName[] { NULL, RADIAN, GRAY, BECQUEREL,
+			DEGREE_CELSIUS, CUBIC_METRE, SIEVERT, WEBER, PASCAL, OHM, AMPERE, LUMEN, JOULE, COULOMB, KELVIN, WATT,
+			FARAD, STERADIAN, VOLT, SIEMENS, HERTZ, SQUARE_METRE, LUX, HENRY, CANDELA, METRE, GRAM, TESLA, SECOND,
+			NEWTON, MOLE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc SI Unit Name</b></em>' enumerators.

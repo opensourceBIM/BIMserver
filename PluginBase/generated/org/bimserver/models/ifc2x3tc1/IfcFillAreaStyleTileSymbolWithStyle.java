@@ -33,7 +33,8 @@ package org.bimserver.models.ifc2x3tc1;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-public interface IfcFillAreaStyleTileSymbolWithStyle extends IfcGeometricRepresentationItem, IfcFillAreaStyleTileShapeSelect {
+public interface IfcFillAreaStyleTileSymbolWithStyle
+		extends IfcGeometricRepresentationItem, IfcFillAreaStyleTileShapeSelect {
 	/**
 	 * Returns the value of the '<em><b>Symbol</b></em>' reference.
 	 * <!-- begin-user-doc -->

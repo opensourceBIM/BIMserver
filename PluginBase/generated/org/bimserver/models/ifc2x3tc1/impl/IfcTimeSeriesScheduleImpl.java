@@ -83,7 +83,8 @@ public class IfcTimeSeriesScheduleImpl extends IfcControlImpl implements IfcTime
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcDateTimeSelect> getApplicableDates() {
-		return (EList<IfcDateTimeSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_TIME_SERIES_SCHEDULE__APPLICABLE_DATES, true);
+		return (EList<IfcDateTimeSelect>) eGet(Ifc2x3tc1Package.Literals.IFC_TIME_SERIES_SCHEDULE__APPLICABLE_DATES,
+				true);
 	}
 
 	/**
@@ -110,7 +111,8 @@ public class IfcTimeSeriesScheduleImpl extends IfcControlImpl implements IfcTime
 	 * @generated
 	 */
 	public IfcTimeSeriesScheduleTypeEnum getTimeSeriesScheduleType() {
-		return (IfcTimeSeriesScheduleTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_TIME_SERIES_SCHEDULE__TIME_SERIES_SCHEDULE_TYPE, true);
+		return (IfcTimeSeriesScheduleTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_TIME_SERIES_SCHEDULE__TIME_SERIES_SCHEDULE_TYPE, true);
 	}
 
 	/**

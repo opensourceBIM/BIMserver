@@ -80,7 +80,8 @@ public class IfcStructuralConnectionImpl extends IfcStructuralItemImpl implement
 	 * @generated
 	 */
 	public IfcBoundaryCondition getAppliedCondition() {
-		return (IfcBoundaryCondition) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_CONNECTION__APPLIED_CONDITION, true);
+		return (IfcBoundaryCondition) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_CONNECTION__APPLIED_CONDITION,
+				true);
 	}
 
 	/**
@@ -117,7 +118,8 @@ public class IfcStructuralConnectionImpl extends IfcStructuralItemImpl implement
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcRelConnectsStructuralMember> getConnectsStructuralMembers() {
-		return (EList<IfcRelConnectsStructuralMember>) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_CONNECTION__CONNECTS_STRUCTURAL_MEMBERS, true);
+		return (EList<IfcRelConnectsStructuralMember>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_CONNECTION__CONNECTS_STRUCTURAL_MEMBERS, true);
 	}
 
 	/**

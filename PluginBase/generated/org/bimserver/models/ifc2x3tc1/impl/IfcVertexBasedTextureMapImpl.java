@@ -92,7 +92,8 @@ public class IfcVertexBasedTextureMapImpl extends IdEObjectImpl implements IfcVe
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcTextureVertex> getTextureVertices() {
-		return (EList<IfcTextureVertex>) eGet(Ifc2x3tc1Package.Literals.IFC_VERTEX_BASED_TEXTURE_MAP__TEXTURE_VERTICES, true);
+		return (EList<IfcTextureVertex>) eGet(Ifc2x3tc1Package.Literals.IFC_VERTEX_BASED_TEXTURE_MAP__TEXTURE_VERTICES,
+				true);
 	}
 
 	/**
@@ -102,7 +103,8 @@ public class IfcVertexBasedTextureMapImpl extends IdEObjectImpl implements IfcVe
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcCartesianPoint> getTexturePoints() {
-		return (EList<IfcCartesianPoint>) eGet(Ifc2x3tc1Package.Literals.IFC_VERTEX_BASED_TEXTURE_MAP__TEXTURE_POINTS, true);
+		return (EList<IfcCartesianPoint>) eGet(Ifc2x3tc1Package.Literals.IFC_VERTEX_BASED_TEXTURE_MAP__TEXTURE_POINTS,
+				true);
 	}
 
 } //IfcVertexBasedTextureMapImpl

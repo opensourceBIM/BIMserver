@@ -79,7 +79,8 @@ public class IfcStructuralSurfaceMemberImpl extends IfcStructuralMemberImpl impl
 	 * @generated
 	 */
 	public IfcStructuralSurfaceTypeEnum getPredefinedType() {
-		return (IfcStructuralSurfaceTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER__PREDEFINED_TYPE, true);
+		return (IfcStructuralSurfaceTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_SURFACE_MEMBER__PREDEFINED_TYPE, true);
 	}
 
 	/**

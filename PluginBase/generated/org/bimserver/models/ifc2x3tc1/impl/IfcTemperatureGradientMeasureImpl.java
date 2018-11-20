@@ -133,7 +133,8 @@ public class IfcTemperatureGradientMeasureImpl extends IdEObjectImpl implements 
 	 * @generated
 	 */
 	public void setWrappedValueAsString(String newWrappedValueAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_TEMPERATURE_GRADIENT_MEASURE__WRAPPED_VALUE_AS_STRING, newWrappedValueAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_TEMPERATURE_GRADIENT_MEASURE__WRAPPED_VALUE_AS_STRING,
+				newWrappedValueAsString);
 	}
 
 	/**

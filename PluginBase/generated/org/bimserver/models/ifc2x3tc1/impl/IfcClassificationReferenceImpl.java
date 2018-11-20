@@ -77,7 +77,8 @@ public class IfcClassificationReferenceImpl extends IfcExternalReferenceImpl imp
 	 * @generated
 	 */
 	public IfcClassification getReferencedSource() {
-		return (IfcClassification) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_REFERENCE__REFERENCED_SOURCE, true);
+		return (IfcClassification) eGet(Ifc2x3tc1Package.Literals.IFC_CLASSIFICATION_REFERENCE__REFERENCED_SOURCE,
+				true);
 	}
 
 	/**

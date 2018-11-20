@@ -84,7 +84,8 @@ public class IfcStructuralAnalysisModelImpl extends IfcSystemImpl implements Ifc
 	 * @generated
 	 */
 	public IfcAnalysisModelTypeEnum getPredefinedType() {
-		return (IfcAnalysisModelTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__PREDEFINED_TYPE, true);
+		return (IfcAnalysisModelTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__PREDEFINED_TYPE,
+				true);
 	}
 
 	/**
@@ -102,7 +103,8 @@ public class IfcStructuralAnalysisModelImpl extends IfcSystemImpl implements Ifc
 	 * @generated
 	 */
 	public IfcAxis2Placement3D getOrientationOf2DPlane() {
-		return (IfcAxis2Placement3D) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__ORIENTATION_OF2_DPLANE, true);
+		return (IfcAxis2Placement3D) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__ORIENTATION_OF2_DPLANE, true);
 	}
 
 	/**
@@ -139,7 +141,8 @@ public class IfcStructuralAnalysisModelImpl extends IfcSystemImpl implements Ifc
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcStructuralLoadGroup> getLoadedBy() {
-		return (EList<IfcStructuralLoadGroup>) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__LOADED_BY, true);
+		return (EList<IfcStructuralLoadGroup>) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__LOADED_BY,
+				true);
 	}
 
 	/**
@@ -167,7 +170,8 @@ public class IfcStructuralAnalysisModelImpl extends IfcSystemImpl implements Ifc
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<IfcStructuralResultGroup> getHasResults() {
-		return (EList<IfcStructuralResultGroup>) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__HAS_RESULTS, true);
+		return (EList<IfcStructuralResultGroup>) eGet(
+				Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__HAS_RESULTS, true);
 	}
 
 	/**

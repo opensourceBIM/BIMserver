@@ -80,7 +80,8 @@ public class IfcRelConnectsElementsImpl extends IfcRelConnectsImpl implements If
 	 * @generated
 	 */
 	public IfcConnectionGeometry getConnectionGeometry() {
-		return (IfcConnectionGeometry) eGet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_ELEMENTS__CONNECTION_GEOMETRY, true);
+		return (IfcConnectionGeometry) eGet(Ifc2x3tc1Package.Literals.IFC_REL_CONNECTS_ELEMENTS__CONNECTION_GEOMETRY,
+				true);
 	}
 
 	/**

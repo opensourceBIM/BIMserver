@@ -255,7 +255,8 @@ public enum IfcProjectOrderRecordTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcProjectOrderRecordTypeEnum[] VALUES_ARRAY = new IfcProjectOrderRecordTypeEnum[] { NULL, MAINTENANCE, NOTDEFINED, MOVE, WORK, CHANGE, USERDEFINED, PURCHASE, };
+	private static final IfcProjectOrderRecordTypeEnum[] VALUES_ARRAY = new IfcProjectOrderRecordTypeEnum[] { NULL,
+			MAINTENANCE, NOTDEFINED, MOVE, WORK, CHANGE, USERDEFINED, PURCHASE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Project Order Record Type Enum</b></em>' enumerators.
@@ -263,7 +264,8 @@ public enum IfcProjectOrderRecordTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcProjectOrderRecordTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcProjectOrderRecordTypeEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Project Order Record Type Enum</b></em>' literal with the specified literal value.

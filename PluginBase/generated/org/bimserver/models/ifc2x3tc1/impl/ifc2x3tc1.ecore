@@ -94,7 +94,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcAppliedValue" eSuperTypes="#//IfcObjectReferenceSelect">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        unsettable="true"/>
+        unsettable="true">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="AppliedValue" eType="#//IfcAppliedValueSelect"
@@ -129,7 +131,9 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ArithmeticOperator" eType="#//IfcArithmeticOperatorEnum"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        unsettable="true"/>
+        unsettable="true">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
   </eClassifiers>
@@ -143,7 +147,9 @@
         unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ApprovalQualifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Actors" upperBound="-1"
         eType="#//IfcApprovalActorRelationship" unsettable="true" eOpposite="#//IfcApprovalActorRelationship/Approval">
@@ -182,7 +188,9 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcArbitraryClosedProfileDef" eSuperTypes="#//IfcProfileDef">
     <eStructuralFeatures xsi:type="ecore:EReference" name="OuterCurve" eType="#//IfcCurve"/>
@@ -295,7 +303,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcBoundaryCondition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        unsettable="true"/>
+        unsettable="true">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcBoundaryEdgeCondition" eSuperTypes="#//IfcBoundaryCondition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="LinearStiffnessByLengthX"
@@ -646,7 +656,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Edition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="EditionDate" eType="#//IfcCalendarDate"
         unsettable="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Contains" upperBound="-1"
         eType="#//IfcClassificationItem" unsettable="true" eOpposite="#//IfcClassificationItem/ItemOf">
       <eAnnotations source="inverse"/>
@@ -712,7 +724,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcColourSpecification" eSuperTypes="#//IfcColour">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        unsettable="true"/>
+        unsettable="true">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcColumn" eSuperTypes="#//IfcBuildingElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="IfcColumnType" eSuperTypes="#//IfcBuildingElementType">
@@ -817,7 +831,9 @@
         eType="#//IfcSurfaceOrFaceSurface" unsettable="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcConstraint">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ConstraintGrade" eType="#//IfcConstraintEnum"/>
@@ -857,7 +873,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcConstraintAggregationRelationship">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        unsettable="true"/>
+        unsettable="true">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingConstraint" eType="#//IfcConstraint"
@@ -880,7 +898,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcConstraintRelationship">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        unsettable="true"/>
+        unsettable="true">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingConstraint" eType="#//IfcConstraint"
@@ -916,7 +936,9 @@
         unsettable="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcContextDependentUnit" eSuperTypes="#//IfcNamedUnit">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcControl" eSuperTypes="#//IfcObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Controls" upperBound="-1"
@@ -928,7 +950,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="PredefinedType" eType="#//IfcControllerTypeEnum"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcConversionBasedUnit" eSuperTypes="#//IfcNamedUnit">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ConversionFactor" eType="#//IfcMeasureWithUnit"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcCooledBeamType" eSuperTypes="#//IfcEnergyConversionDeviceType">
@@ -1146,13 +1170,17 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcCurveStyleFont" eSuperTypes="#//IfcCurveStyleFontSelect">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        unsettable="true"/>
+        unsettable="true">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="PatternList" unique="false"
         upperBound="-1" eType="#//IfcCurveStyleFontPattern"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcCurveStyleFontAndScaling" eSuperTypes="#//IfcCurveFontOrScaledCurveFontSelect">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        unsettable="true"/>
+        unsettable="true">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="CurveFont" eType="#//IfcCurveStyleFontSelect"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="CurveFontScaling" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="CurveFontScalingAsString"
@@ -1279,7 +1307,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcDocumentInformation" eSuperTypes="#//IfcDocumentSelect">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="DocumentId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="DocumentReferences" upperBound="-1"
@@ -1470,7 +1500,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcDraughtingCalloutRelationship">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        unsettable="true"/>
+        unsettable="true">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingDraughtingCallout"
@@ -1711,7 +1743,9 @@
         upperBound="-1" eType="#//IfcProperty"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcExternalReference" eSuperTypes="#//IfcLightDistributionDataSourceSelect #//IfcObjectReferenceSelect">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Location" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -1721,7 +1755,9 @@
       <eAnnotations source="singleindex"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        unsettable="true"/>
+        unsettable="true">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcExternallyDefinedHatchStyle" eSuperTypes="#//IfcExternalReference #//IfcFillStyleSelect"/>
   <eClassifiers xsi:type="ecore:EClass" name="IfcExternallyDefinedSurfaceStyle" eSuperTypes="#//IfcExternalReference #//IfcSurfaceStyleElementSelect"/>
@@ -2298,7 +2334,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="PredefinedType" eType="#//IfcLampTypeEnum"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcLibraryInformation" eSuperTypes="#//IfcLibrarySelect">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Version" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Publisher" eType="#//IfcOrganization"
@@ -2349,7 +2387,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcLightSource" eSuperTypes="#//IfcGeometricRepresentationItem">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        unsettable="true"/>
+        unsettable="true">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="LightColour" eType="#//IfcColourRgb"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="AmbientIntensity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
         unsettable="true"/>
@@ -2476,7 +2516,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="MappingTarget" eType="#//IfcCartesianTransformationOperator"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcMaterial" eSuperTypes="#//IfcMaterialSelect #//IfcObjectReferenceSelect">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="HasRepresentation" upperBound="2"
         eType="#//IfcMaterialDefinitionRepresentation" unsettable="true" eOpposite="#//IfcMaterialDefinitionRepresentation/RepresentedMaterial">
       <eAnnotations source="inverse"/>
@@ -2861,7 +2903,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="IfcOrganization" eSuperTypes="#//IfcActorSelect #//IfcObjectReferenceSelect">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Roles" unique="false" upperBound="-1"
@@ -2884,7 +2928,9 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcOrganizationRelationship">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="RelatingOrganization" eType="#//IfcOrganization"
@@ -3001,7 +3047,9 @@
         unsettable="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcPhysicalQuantity">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="PartOfComplex" upperBound="2"
@@ -3132,14 +3180,18 @@
   <eClassifiers xsi:type="ecore:EClass" name="IfcPreDefinedCurveFont" eSuperTypes="#//IfcPreDefinedItem #//IfcCurveStyleFontSelect"/>
   <eClassifiers xsi:type="ecore:EClass" name="IfcPreDefinedDimensionSymbol" eSuperTypes="#//IfcPreDefinedSymbol"/>
   <eClassifiers xsi:type="ecore:EClass" name="IfcPreDefinedItem">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcPreDefinedPointMarkerSymbol" eSuperTypes="#//IfcPreDefinedSymbol"/>
   <eClassifiers xsi:type="ecore:EClass" name="IfcPreDefinedSymbol" eSuperTypes="#//IfcPreDefinedItem #//IfcDefinedSymbolSelect"/>
   <eClassifiers xsi:type="ecore:EClass" name="IfcPreDefinedTerminatorSymbol" eSuperTypes="#//IfcPreDefinedSymbol"/>
   <eClassifiers xsi:type="ecore:EClass" name="IfcPreDefinedTextFont" eSuperTypes="#//IfcPreDefinedItem #//IfcTextFontSelect"/>
   <eClassifiers xsi:type="ecore:EClass" name="IfcPresentationLayerAssignment">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="AssignedItems" unique="false"
@@ -3159,7 +3211,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcPresentationStyle">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        unsettable="true"/>
+        unsettable="true">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcPresentationStyleAssignment">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Styles" unique="false"
@@ -3215,7 +3269,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcProductRepresentation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        unsettable="true"/>
+        unsettable="true">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Representations" upperBound="-1"
@@ -3287,7 +3343,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="IfcProjectionCurve" eSuperTypes="#//IfcAnnotationCurveOccurrence"/>
   <eClassifiers xsi:type="ecore:EClass" name="IfcProjectionElement" eSuperTypes="#//IfcFeatureElementAddition"/>
   <eClassifiers xsi:type="ecore:EClass" name="IfcProperty">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="PropertyForDependance"
@@ -3320,7 +3378,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="RelatedProperties" unique="false"
         upperBound="-1" eType="#//IfcProperty"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        unsettable="true"/>
+        unsettable="true">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
   </eClassifiers>
@@ -3340,7 +3400,9 @@
       <eAnnotations source="inverse"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        unsettable="true"/>
+        unsettable="true">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Expression" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -3353,7 +3415,9 @@
         unsettable="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcPropertyEnumeration">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="EnumerationValues" unique="false"
         upperBound="-1" eType="#//IfcValue"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Unit" eType="#//IfcUnit"
@@ -3564,7 +3628,9 @@
       <eAnnotations source="inverse"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        unsettable="true"/>
+        unsettable="true">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
   </eClassifiers>
@@ -4227,13 +4293,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcRoot">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="GlobalId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-      <eAnnotations source="index"/>
       <eAnnotations source="singleindex"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="OwnerHistory" eType="#//IfcOwnerHistory"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true">
-      <eAnnotations source="index"/>
       <eAnnotations source="singleindex"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -4414,7 +4478,9 @@
       <eAnnotations source="inverse"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        unsettable="true"/>
+        unsettable="true">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ProductDefinitional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -4693,7 +4759,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcStructuralConnectionCondition">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        unsettable="true"/>
+        unsettable="true">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcStructuralCurveConnection" eSuperTypes="#//IfcStructuralConnection"/>
   <eClassifiers xsi:type="ecore:EClass" name="IfcStructuralCurveMember" eSuperTypes="#//IfcStructuralMember">
@@ -4717,7 +4785,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcStructuralLoad">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        unsettable="true"/>
+        unsettable="true">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcStructuralLoadGroup" eSuperTypes="#//IfcGroup">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="PredefinedType" eType="#//IfcLoadGroupTypeEnum"/>
@@ -5165,7 +5235,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="Styles" unique="false"
         upperBound="-1" eType="#//IfcPresentationStyleAssignment"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        unsettable="true"/>
+        unsettable="true">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcStyledRepresentation" eSuperTypes="#//IfcStyleModel"/>
   <eClassifiers xsi:type="ecore:EClass" name="IfcSubContractResource" eSuperTypes="#//IfcConstructionResource">
@@ -5382,7 +5454,9 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcTable" eSuperTypes="#//IfcMetricValueSelect">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Rows" upperBound="-1" eType="#//IfcTableRow"
         eOpposite="#//IfcTableRow/OfTable">
       <eAnnotations source="inverse"/>
@@ -5618,7 +5692,9 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfcTimeSeries" eSuperTypes="#//IfcMetricValueSelect #//IfcObjectReferenceSelect">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="singleindex"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="StartTime" eType="#//IfcDateTimeSelect"/>

@@ -97,7 +97,8 @@ public class IfcRelProjectsElementImpl extends IfcRelConnectsImpl implements Ifc
 	 * @generated
 	 */
 	public IfcFeatureElementAddition getRelatedFeatureElement() {
-		return (IfcFeatureElementAddition) eGet(Ifc2x3tc1Package.Literals.IFC_REL_PROJECTS_ELEMENT__RELATED_FEATURE_ELEMENT, true);
+		return (IfcFeatureElementAddition) eGet(
+				Ifc2x3tc1Package.Literals.IFC_REL_PROJECTS_ELEMENT__RELATED_FEATURE_ELEMENT, true);
 	}
 
 	/**

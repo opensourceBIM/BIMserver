@@ -78,7 +78,8 @@ public class IfcGridPlacementImpl extends IfcObjectPlacementImpl implements IfcG
 	 * @generated
 	 */
 	public IfcVirtualGridIntersection getPlacementLocation() {
-		return (IfcVirtualGridIntersection) eGet(Ifc2x3tc1Package.Literals.IFC_GRID_PLACEMENT__PLACEMENT_LOCATION, true);
+		return (IfcVirtualGridIntersection) eGet(Ifc2x3tc1Package.Literals.IFC_GRID_PLACEMENT__PLACEMENT_LOCATION,
+				true);
 	}
 
 	/**
@@ -96,7 +97,8 @@ public class IfcGridPlacementImpl extends IfcObjectPlacementImpl implements IfcG
 	 * @generated
 	 */
 	public IfcVirtualGridIntersection getPlacementRefDirection() {
-		return (IfcVirtualGridIntersection) eGet(Ifc2x3tc1Package.Literals.IFC_GRID_PLACEMENT__PLACEMENT_REF_DIRECTION, true);
+		return (IfcVirtualGridIntersection) eGet(Ifc2x3tc1Package.Literals.IFC_GRID_PLACEMENT__PLACEMENT_REF_DIRECTION,
+				true);
 	}
 
 	/**

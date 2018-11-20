@@ -77,7 +77,8 @@ public class IfcBuildingElementProxyTypeImpl extends IfcBuildingElementTypeImpl 
 	 * @generated
 	 */
 	public IfcBuildingElementProxyTypeEnum getPredefinedType() {
-		return (IfcBuildingElementProxyTypeEnum) eGet(Ifc2x3tc1Package.Literals.IFC_BUILDING_ELEMENT_PROXY_TYPE__PREDEFINED_TYPE, true);
+		return (IfcBuildingElementProxyTypeEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_BUILDING_ELEMENT_PROXY_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**

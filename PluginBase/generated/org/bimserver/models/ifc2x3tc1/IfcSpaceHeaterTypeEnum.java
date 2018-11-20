@@ -305,7 +305,9 @@ public enum IfcSpaceHeaterTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSpaceHeaterTypeEnum[] VALUES_ARRAY = new IfcSpaceHeaterTypeEnum[] { NULL, NOTDEFINED, PANELRADIATOR, UNITHEATER, SECTIONALRADIATOR, FINNEDTUBEUNIT, USERDEFINED, TUBULARRADIATOR, BASEBOARDHEATER, CONVECTOR, };
+	private static final IfcSpaceHeaterTypeEnum[] VALUES_ARRAY = new IfcSpaceHeaterTypeEnum[] { NULL, NOTDEFINED,
+			PANELRADIATOR, UNITHEATER, SECTIONALRADIATOR, FINNEDTUBEUNIT, USERDEFINED, TUBULARRADIATOR, BASEBOARDHEATER,
+			CONVECTOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Space Heater Type Enum</b></em>' enumerators.

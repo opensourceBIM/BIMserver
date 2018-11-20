@@ -280,7 +280,9 @@ public enum IfcEnvironmentalImpactCategoryEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcEnvironmentalImpactCategoryEnum[] VALUES_ARRAY = new IfcEnvironmentalImpactCategoryEnum[] { NULL, EXTRACTION, NOTDEFINED, DISPOSAL, TRANSPORTATION, MANUFACTURE, INSTALLATION, USERDEFINED, COMBINEDVALUE, };
+	private static final IfcEnvironmentalImpactCategoryEnum[] VALUES_ARRAY = new IfcEnvironmentalImpactCategoryEnum[] {
+			NULL, EXTRACTION, NOTDEFINED, DISPOSAL, TRANSPORTATION, MANUFACTURE, INSTALLATION, USERDEFINED,
+			COMBINEDVALUE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Environmental Impact Category Enum</b></em>' enumerators.
@@ -288,7 +290,8 @@ public enum IfcEnvironmentalImpactCategoryEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcEnvironmentalImpactCategoryEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcEnvironmentalImpactCategoryEnum> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Environmental Impact Category Enum</b></em>' literal with the specified literal value.

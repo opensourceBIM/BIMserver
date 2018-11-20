@@ -133,7 +133,8 @@ public class IfcVolumetricFlowRateMeasureImpl extends IdEObjectImpl implements I
 	 * @generated
 	 */
 	public void setWrappedValueAsString(String newWrappedValueAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_VOLUMETRIC_FLOW_RATE_MEASURE__WRAPPED_VALUE_AS_STRING, newWrappedValueAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_VOLUMETRIC_FLOW_RATE_MEASURE__WRAPPED_VALUE_AS_STRING,
+				newWrappedValueAsString);
 	}
 
 	/**

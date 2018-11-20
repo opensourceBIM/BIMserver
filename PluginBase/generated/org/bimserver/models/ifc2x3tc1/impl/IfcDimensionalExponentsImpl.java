@@ -156,7 +156,8 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * @generated
 	 */
 	public void setElectricCurrentExponent(long newElectricCurrentExponent) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DIMENSIONAL_EXPONENTS__ELECTRIC_CURRENT_EXPONENT, newElectricCurrentExponent);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DIMENSIONAL_EXPONENTS__ELECTRIC_CURRENT_EXPONENT,
+				newElectricCurrentExponent);
 	}
 
 	/**
@@ -165,7 +166,8 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * @generated
 	 */
 	public long getThermodynamicTemperatureExponent() {
-		return (Long) eGet(Ifc2x3tc1Package.Literals.IFC_DIMENSIONAL_EXPONENTS__THERMODYNAMIC_TEMPERATURE_EXPONENT, true);
+		return (Long) eGet(Ifc2x3tc1Package.Literals.IFC_DIMENSIONAL_EXPONENTS__THERMODYNAMIC_TEMPERATURE_EXPONENT,
+				true);
 	}
 
 	/**
@@ -174,7 +176,8 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * @generated
 	 */
 	public void setThermodynamicTemperatureExponent(long newThermodynamicTemperatureExponent) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DIMENSIONAL_EXPONENTS__THERMODYNAMIC_TEMPERATURE_EXPONENT, newThermodynamicTemperatureExponent);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DIMENSIONAL_EXPONENTS__THERMODYNAMIC_TEMPERATURE_EXPONENT,
+				newThermodynamicTemperatureExponent);
 	}
 
 	/**
@@ -192,7 +195,8 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * @generated
 	 */
 	public void setAmountOfSubstanceExponent(long newAmountOfSubstanceExponent) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DIMENSIONAL_EXPONENTS__AMOUNT_OF_SUBSTANCE_EXPONENT, newAmountOfSubstanceExponent);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DIMENSIONAL_EXPONENTS__AMOUNT_OF_SUBSTANCE_EXPONENT,
+				newAmountOfSubstanceExponent);
 	}
 
 	/**
@@ -210,7 +214,8 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 * @generated
 	 */
 	public void setLuminousIntensityExponent(long newLuminousIntensityExponent) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_DIMENSIONAL_EXPONENTS__LUMINOUS_INTENSITY_EXPONENT, newLuminousIntensityExponent);
+		eSet(Ifc2x3tc1Package.Literals.IFC_DIMENSIONAL_EXPONENTS__LUMINOUS_INTENSITY_EXPONENT,
+				newLuminousIntensityExponent);
 	}
 
 } //IfcDimensionalExponentsImpl

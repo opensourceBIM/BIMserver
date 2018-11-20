@@ -55,7 +55,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralLoadTemperatureImpl extends IfcStructuralLoadStaticImpl implements IfcStructuralLoadTemperature {
+public class IfcStructuralLoadTemperatureImpl extends IfcStructuralLoadStaticImpl
+		implements IfcStructuralLoadTemperature {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -117,7 +118,8 @@ public class IfcStructuralLoadTemperatureImpl extends IfcStructuralLoadStaticImp
 	 * @generated
 	 */
 	public String getDeltaT_ConstantAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_TEMPERATURE__DELTA_TCONSTANT_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_TEMPERATURE__DELTA_TCONSTANT_AS_STRING,
+				true);
 	}
 
 	/**
@@ -126,7 +128,8 @@ public class IfcStructuralLoadTemperatureImpl extends IfcStructuralLoadStaticImp
 	 * @generated
 	 */
 	public void setDeltaT_ConstantAsString(String newDeltaT_ConstantAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_TEMPERATURE__DELTA_TCONSTANT_AS_STRING, newDeltaT_ConstantAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_STRUCTURAL_LOAD_TEMPERATURE__DELTA_TCONSTANT_AS_STRING,
+				newDeltaT_ConstantAsString);
 	}
 
 	/**

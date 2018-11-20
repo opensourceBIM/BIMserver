@@ -44,7 +44,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPreDefinedTerminatorSymbolImpl extends IfcPreDefinedSymbolImpl implements IfcPreDefinedTerminatorSymbol {
+public class IfcPreDefinedTerminatorSymbolImpl extends IfcPreDefinedSymbolImpl
+		implements IfcPreDefinedTerminatorSymbol {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

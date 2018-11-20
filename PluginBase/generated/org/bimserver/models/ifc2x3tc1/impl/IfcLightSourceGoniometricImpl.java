@@ -159,7 +159,8 @@ public class IfcLightSourceGoniometricImpl extends IfcLightSourceImpl implements
 	 * @generated
 	 */
 	public String getColourTemperatureAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_LIGHT_SOURCE_GONIOMETRIC__COLOUR_TEMPERATURE_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_LIGHT_SOURCE_GONIOMETRIC__COLOUR_TEMPERATURE_AS_STRING,
+				true);
 	}
 
 	/**
@@ -168,7 +169,8 @@ public class IfcLightSourceGoniometricImpl extends IfcLightSourceImpl implements
 	 * @generated
 	 */
 	public void setColourTemperatureAsString(String newColourTemperatureAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_LIGHT_SOURCE_GONIOMETRIC__COLOUR_TEMPERATURE_AS_STRING, newColourTemperatureAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_LIGHT_SOURCE_GONIOMETRIC__COLOUR_TEMPERATURE_AS_STRING,
+				newColourTemperatureAsString);
 	}
 
 	/**
@@ -213,7 +215,8 @@ public class IfcLightSourceGoniometricImpl extends IfcLightSourceImpl implements
 	 * @generated
 	 */
 	public IfcLightEmissionSourceEnum getLightEmissionSource() {
-		return (IfcLightEmissionSourceEnum) eGet(Ifc2x3tc1Package.Literals.IFC_LIGHT_SOURCE_GONIOMETRIC__LIGHT_EMISSION_SOURCE, true);
+		return (IfcLightEmissionSourceEnum) eGet(
+				Ifc2x3tc1Package.Literals.IFC_LIGHT_SOURCE_GONIOMETRIC__LIGHT_EMISSION_SOURCE, true);
 	}
 
 	/**
@@ -231,7 +234,8 @@ public class IfcLightSourceGoniometricImpl extends IfcLightSourceImpl implements
 	 * @generated
 	 */
 	public IfcLightDistributionDataSourceSelect getLightDistributionDataSource() {
-		return (IfcLightDistributionDataSourceSelect) eGet(Ifc2x3tc1Package.Literals.IFC_LIGHT_SOURCE_GONIOMETRIC__LIGHT_DISTRIBUTION_DATA_SOURCE, true);
+		return (IfcLightDistributionDataSourceSelect) eGet(
+				Ifc2x3tc1Package.Literals.IFC_LIGHT_SOURCE_GONIOMETRIC__LIGHT_DISTRIBUTION_DATA_SOURCE, true);
 	}
 
 	/**
@@ -240,7 +244,8 @@ public class IfcLightSourceGoniometricImpl extends IfcLightSourceImpl implements
 	 * @generated
 	 */
 	public void setLightDistributionDataSource(IfcLightDistributionDataSourceSelect newLightDistributionDataSource) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_LIGHT_SOURCE_GONIOMETRIC__LIGHT_DISTRIBUTION_DATA_SOURCE, newLightDistributionDataSource);
+		eSet(Ifc2x3tc1Package.Literals.IFC_LIGHT_SOURCE_GONIOMETRIC__LIGHT_DISTRIBUTION_DATA_SOURCE,
+				newLightDistributionDataSource);
 	}
 
 } //IfcLightSourceGoniometricImpl

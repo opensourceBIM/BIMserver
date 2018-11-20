@@ -440,7 +440,8 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcCartesianTransformationOperator2DnonUniform(IfcCartesianTransformationOperator2DnonUniform object) {
+		public Adapter caseIfcCartesianTransformationOperator2DnonUniform(
+				IfcCartesianTransformationOperator2DnonUniform object) {
 			return createIfcCartesianTransformationOperator2DnonUniformAdapter();
 		}
 
@@ -450,7 +451,8 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcCartesianTransformationOperator3DnonUniform(IfcCartesianTransformationOperator3DnonUniform object) {
+		public Adapter caseIfcCartesianTransformationOperator3DnonUniform(
+				IfcCartesianTransformationOperator3DnonUniform object) {
 			return createIfcCartesianTransformationOperator3DnonUniformAdapter();
 		}
 
@@ -2840,7 +2842,8 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcStructuralLoadSingleDisplacementDistortion(IfcStructuralLoadSingleDisplacementDistortion object) {
+		public Adapter caseIfcStructuralLoadSingleDisplacementDistortion(
+				IfcStructuralLoadSingleDisplacementDistortion object) {
 			return createIfcStructuralLoadSingleDisplacementDistortionAdapter();
 		}
 
@@ -3650,7 +3653,8 @@ public class Ifc2x3tc1AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcModulusOfRotationalSubgradeReactionMeasure(IfcModulusOfRotationalSubgradeReactionMeasure object) {
+		public Adapter caseIfcModulusOfRotationalSubgradeReactionMeasure(
+				IfcModulusOfRotationalSubgradeReactionMeasure object) {
 			return createIfcModulusOfRotationalSubgradeReactionMeasureAdapter();
 		}
 

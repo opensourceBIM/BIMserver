@@ -57,7 +57,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcProductsOfCombustionPropertiesImpl extends IfcMaterialPropertiesImpl implements IfcProductsOfCombustionProperties {
+public class IfcProductsOfCombustionPropertiesImpl extends IfcMaterialPropertiesImpl
+		implements IfcProductsOfCombustionProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -83,7 +84,8 @@ public class IfcProductsOfCombustionPropertiesImpl extends IfcMaterialProperties
 	 * @generated
 	 */
 	public double getSpecificHeatCapacity() {
-		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCTS_OF_COMBUSTION_PROPERTIES__SPECIFIC_HEAT_CAPACITY, true);
+		return (Double) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCTS_OF_COMBUSTION_PROPERTIES__SPECIFIC_HEAT_CAPACITY,
+				true);
 	}
 
 	/**
@@ -92,7 +94,8 @@ public class IfcProductsOfCombustionPropertiesImpl extends IfcMaterialProperties
 	 * @generated
 	 */
 	public void setSpecificHeatCapacity(double newSpecificHeatCapacity) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PRODUCTS_OF_COMBUSTION_PROPERTIES__SPECIFIC_HEAT_CAPACITY, newSpecificHeatCapacity);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PRODUCTS_OF_COMBUSTION_PROPERTIES__SPECIFIC_HEAT_CAPACITY,
+				newSpecificHeatCapacity);
 	}
 
 	/**
@@ -119,7 +122,9 @@ public class IfcProductsOfCombustionPropertiesImpl extends IfcMaterialProperties
 	 * @generated
 	 */
 	public String getSpecificHeatCapacityAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCTS_OF_COMBUSTION_PROPERTIES__SPECIFIC_HEAT_CAPACITY_AS_STRING, true);
+		return (String) eGet(
+				Ifc2x3tc1Package.Literals.IFC_PRODUCTS_OF_COMBUSTION_PROPERTIES__SPECIFIC_HEAT_CAPACITY_AS_STRING,
+				true);
 	}
 
 	/**
@@ -128,7 +133,8 @@ public class IfcProductsOfCombustionPropertiesImpl extends IfcMaterialProperties
 	 * @generated
 	 */
 	public void setSpecificHeatCapacityAsString(String newSpecificHeatCapacityAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PRODUCTS_OF_COMBUSTION_PROPERTIES__SPECIFIC_HEAT_CAPACITY_AS_STRING, newSpecificHeatCapacityAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PRODUCTS_OF_COMBUSTION_PROPERTIES__SPECIFIC_HEAT_CAPACITY_AS_STRING,
+				newSpecificHeatCapacityAsString);
 	}
 
 	/**
@@ -146,7 +152,8 @@ public class IfcProductsOfCombustionPropertiesImpl extends IfcMaterialProperties
 	 * @generated
 	 */
 	public boolean isSetSpecificHeatCapacityAsString() {
-		return eIsSet(Ifc2x3tc1Package.Literals.IFC_PRODUCTS_OF_COMBUSTION_PROPERTIES__SPECIFIC_HEAT_CAPACITY_AS_STRING);
+		return eIsSet(
+				Ifc2x3tc1Package.Literals.IFC_PRODUCTS_OF_COMBUSTION_PROPERTIES__SPECIFIC_HEAT_CAPACITY_AS_STRING);
 	}
 
 	/**
@@ -191,7 +198,8 @@ public class IfcProductsOfCombustionPropertiesImpl extends IfcMaterialProperties
 	 * @generated
 	 */
 	public String getN20ContentAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCTS_OF_COMBUSTION_PROPERTIES__N20_CONTENT_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCTS_OF_COMBUSTION_PROPERTIES__N20_CONTENT_AS_STRING,
+				true);
 	}
 
 	/**
@@ -200,7 +208,8 @@ public class IfcProductsOfCombustionPropertiesImpl extends IfcMaterialProperties
 	 * @generated
 	 */
 	public void setN20ContentAsString(String newN20ContentAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PRODUCTS_OF_COMBUSTION_PROPERTIES__N20_CONTENT_AS_STRING, newN20ContentAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PRODUCTS_OF_COMBUSTION_PROPERTIES__N20_CONTENT_AS_STRING,
+				newN20ContentAsString);
 	}
 
 	/**
@@ -263,7 +272,8 @@ public class IfcProductsOfCombustionPropertiesImpl extends IfcMaterialProperties
 	 * @generated
 	 */
 	public String getCOContentAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCTS_OF_COMBUSTION_PROPERTIES__CO_CONTENT_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCTS_OF_COMBUSTION_PROPERTIES__CO_CONTENT_AS_STRING,
+				true);
 	}
 
 	/**
@@ -272,7 +282,8 @@ public class IfcProductsOfCombustionPropertiesImpl extends IfcMaterialProperties
 	 * @generated
 	 */
 	public void setCOContentAsString(String newCOContentAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PRODUCTS_OF_COMBUSTION_PROPERTIES__CO_CONTENT_AS_STRING, newCOContentAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PRODUCTS_OF_COMBUSTION_PROPERTIES__CO_CONTENT_AS_STRING,
+				newCOContentAsString);
 	}
 
 	/**
@@ -335,7 +346,8 @@ public class IfcProductsOfCombustionPropertiesImpl extends IfcMaterialProperties
 	 * @generated
 	 */
 	public String getCO2ContentAsString() {
-		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCTS_OF_COMBUSTION_PROPERTIES__CO2_CONTENT_AS_STRING, true);
+		return (String) eGet(Ifc2x3tc1Package.Literals.IFC_PRODUCTS_OF_COMBUSTION_PROPERTIES__CO2_CONTENT_AS_STRING,
+				true);
 	}
 
 	/**
@@ -344,7 +356,8 @@ public class IfcProductsOfCombustionPropertiesImpl extends IfcMaterialProperties
 	 * @generated
 	 */
 	public void setCO2ContentAsString(String newCO2ContentAsString) {
-		eSet(Ifc2x3tc1Package.Literals.IFC_PRODUCTS_OF_COMBUSTION_PROPERTIES__CO2_CONTENT_AS_STRING, newCO2ContentAsString);
+		eSet(Ifc2x3tc1Package.Literals.IFC_PRODUCTS_OF_COMBUSTION_PROPERTIES__CO2_CONTENT_AS_STRING,
+				newCO2ContentAsString);
 	}
 
 	/**
