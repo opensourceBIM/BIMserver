@@ -30,7 +30,7 @@ import org.bimserver.emf.PackageMetaData;
 import org.eclipse.emf.ecore.EClass;
 
 public class QueryPart extends PartOfQuery implements CanInclude {
-	private List<TypeDef> types;
+	private Set<TypeDef> types;
 	private Set<Long> oids;
 	private Set<String> guids;
 	private Set<String> names;
@@ -50,14 +50,14 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 
 	public void addType(EClass type, boolean includeAllSubTypes) {
 		if (types == null) {
-			types = new ArrayList<>();
+			types = new LinkedHashSet<>();
 		}
 		types.add(new TypeDef(type, includeAllSubTypes));
 	}
 	
 	public void addType(EClass type, boolean includeAllSubTypes, Set<EClass> excludedEClasses) {
 		if (types == null) {
-			types = new ArrayList<>();
+			types = new LinkedHashSet<>();
 		}
 		types.add(new TypeDef(type, includeAllSubTypes, excludedEClasses));
 //		if (includeAllSubTypes) {
@@ -67,7 +67,7 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 	
 	public void addType(TypeDef typeDef) {
 		if (types == null) {
-			types = new ArrayList<>();
+			types = new LinkedHashSet<>();
 		}
 		types.add(typeDef);
 	}
@@ -86,7 +86,7 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 		guids.add(guid);
 	}
 	
-	public List<TypeDef> getTypes() {
+	public Set<TypeDef> getTypes() {
 		return types;
 	}
 	

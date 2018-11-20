@@ -291,4 +291,8 @@ public class Include extends PartOfQuery implements CanInclude {
 	public PackageMetaData getPackageMetaData() {
 		return packageMetaData;
 	}
+
+	public boolean hasField(String fieldName) {
+		return fields.contains(fieldName);
+	}
 }

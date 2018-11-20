@@ -18,6 +18,9 @@ package org.bimserver.database.queries.om;
  *****************************************************************************/
 
 import java.util.List;
+import java.util.Set;
+
+import org.bimserver.database.queries.om.Include.TypeDef;
 
 public interface CanInclude {
 	void addInclude(Include include);
@@ -27,4 +30,6 @@ public interface CanInclude {
 	void addIncludeReference(Include down, String name);
 	boolean hasReferences();
 	List<Reference> getReferences();
+	Set<TypeDef> getTypes();
+	Include createInclude();
 }

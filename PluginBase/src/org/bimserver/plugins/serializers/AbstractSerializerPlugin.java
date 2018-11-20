@@ -1,5 +1,7 @@
 package org.bimserver.plugins.serializers;
 
+import java.util.Set;
+
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -58,7 +60,7 @@ public abstract class AbstractSerializerPlugin implements SerializerPlugin {
 	public abstract String getDefaultContentType();
 	
 	@Override
-	public boolean needsGeometry() {
-		return false;
+	public Set<String> getRequiredGeometryFields() {
+		return null;
 	}
 }

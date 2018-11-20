@@ -152,7 +152,17 @@ public class JsonQueryObjectModelConverter {
 		
 		ArrayNode typesNode = OBJECT_MAPPER.createArrayNode();
 		for (TypeDef type : include.getTypes()) {
-			typesNode.add(type.geteClass().getName());
+			ObjectNode typeDefNode = OBJECT_MAPPER.createObjectNode();
+			typeDefNode.put("name", type.geteClass().getName());
+			typeDefNode.put("includeAllSubTypes", type.isIncludeSubTypes());
+			if (type.getExcluded() != null) {
+				ArrayNode excludesNode = OBJECT_MAPPER.createArrayNode();
+				for (EClass eClass : type.getExcluded()) {
+					excludesNode.add(eClass.getName());
+				}
+				typeDefNode.set("exlude", excludesNode);
+			}
+			typesNode.add(typeDefNode);
 		}
 		includeNode.set("types", typesNode);
 		
@@ -390,7 +400,7 @@ public class JsonQueryObjectModelConverter {
 
 	// TODO thread safety and cache invalidation on file updates
 	public Include getDefineFromFile(String includeName) throws QueryException {
-		Include include = CACHED_DEFINES.get(includeName);
+		Include include = null;//CACHED_DEFINES.get(includeName);
 		if (include != null) {
 			return include;
 		}
@@ -414,7 +424,7 @@ public class JsonQueryObjectModelConverter {
 			if (define == null) {
 				throw new QueryException("Could not find '" + singleIncludeName + "' in defines in namespace " + query.getName());
 			}
-			CACHED_DEFINES.put(includeName, define);
+//			CACHED_DEFINES.put(includeName, define);
 			return define;
 		} catch (JsonParseException e) {
 			throw new QueryException(e);

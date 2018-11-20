@@ -19,6 +19,7 @@ package org.bimserver.database.actions;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
@@ -50,12 +51,12 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 	}
 	
 	protected void checkGeometry(PluginConfiguration serializerPluginConfiguration, PluginManager pluginManager, IfcModelInterface model, Project project, ConcreteRevision concreteRevision, Revision revision) throws BimserverDatabaseException, GeometryGeneratingException {
-		boolean needsGeometry = false;
+		Set<String> needsGeometry = null;
 		Plugin plugin = pluginManager.getPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
 		if (plugin instanceof SerializerPlugin) {
-			needsGeometry = ((SerializerPlugin)plugin).needsGeometry();
+			needsGeometry = ((SerializerPlugin)plugin).getRequiredGeometryFields();
 		}
-		if (needsGeometry) {
+		if (needsGeometry != null) {
 			if (!revision.isHasGeometry()) {
 //				setProgress("Generating geometry...", -1);
 				// TODO When generating geometry for a partial model download (by types for example), this will fail (for example walls have no openings)
@@ -69,6 +70,25 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 					if (geometryInfo != null) {
 						geometryInfo.forceLoad();
 						geometryInfo.getData().forceLoad();
+						if (needsGeometry.contains("colorsQuantized")) {
+							geometryInfo.getData().getColorsQuantized().forceLoad();
+						}
+						if (needsGeometry.contains("indices")) {
+							geometryInfo.getData().getIndices().forceLoad();
+						}
+						if (needsGeometry.contains("normals")) {
+							geometryInfo.getData().getNormals().forceLoad();
+						}
+						if (needsGeometry.contains("normalsQuantized")) {
+							geometryInfo.getData().getNormalsQuantized().forceLoad();
+						}
+						if (needsGeometry.contains("vertices")) {
+							geometryInfo.getData().getVertices().forceLoad();
+						}
+						if (needsGeometry.contains("verticesQuantized")) {
+							geometryInfo.getData().getVerticesQuantized().forceLoad();
+						}
+						geometryInfo.getData().getColor().forceLoad();
 						geometryInfo.getTransformation();
 						geometryInfo.getBounds().forceLoad();
 						geometryInfo.getBounds().getMin().forceLoad();

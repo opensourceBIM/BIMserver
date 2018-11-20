@@ -52,5 +52,5 @@ public interface SerializerPlugin extends Plugin {
 	/**
 	 * @return Whether this plugin will be needing geometry
 	 */
-	boolean needsGeometry();
+	Set<String> getRequiredGeometryFields();
 }

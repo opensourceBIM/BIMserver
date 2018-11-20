@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import org.bimserver.BimServer;
@@ -179,8 +180,6 @@ public class QueryObjectProvider implements ObjectProvider {
 			throw new BimserverDatabaseException(e);
 		}
 
-		dumpEndQuery();
-		
 		return null;
 	}
 	
@@ -189,8 +188,17 @@ public class QueryObjectProvider implements ObjectProvider {
 	}
 	
 	private void dumpEndQuery() {
+		Iterator<StackFrame> iterator = stack.iterator();
+		int a = 0;
+		LOGGER.info("Top 20 stack frames");
+		while (iterator.hasNext() && a < 20) {
+			StackFrame next = iterator.next();
+			LOGGER.info("\t" + next.toString());
+			a++;
+		}
 		StackFrame poll = stack.poll();
 		int i=0;
+		LOGGER.info("Last 50 frames");
 		if (poll != null) {
 			LOGGER.info("Query dump");
 			while (poll != null && i < 50) {
