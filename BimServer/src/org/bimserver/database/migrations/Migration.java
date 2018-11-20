@@ -69,12 +69,6 @@ public abstract class Migration {
 		return unique;
 	}
 	
-	protected EAnnotation createIndexAnnotation() {
-		EAnnotation eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-		eAnnotation.setSource("index");
-		return eAnnotation;
-	}
-	
 	protected void link(EReference eReference1, EReference eReference2) {
 		eReference1.setEOpposite(eReference2);
 		eReference2.setEOpposite(eReference1);
