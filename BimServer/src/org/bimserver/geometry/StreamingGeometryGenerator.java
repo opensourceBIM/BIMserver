@@ -237,6 +237,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 				report.setRenderEngineVersion(engine.getVersion());
 			}
 			
+			// TODO reuse, pool the pools :) Or something smarter
+			// TODO reuse queue, or try to determine a realistic size, or don't use a fixed-size queue
 			ThreadPoolExecutor executor = new ThreadPoolExecutor(maxSimultanousThreads, maxSimultanousThreads, 24, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(10000000));
 
 			JsonQueryObjectModelConverter jsonQueryObjectModelConverter = new JsonQueryObjectModelConverter(packageMetaData);
