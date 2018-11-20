@@ -448,7 +448,6 @@ public class PluginManager implements PluginManagerInterface {
 
 	public PluginBundle loadPluginsFromEclipseProject(Path projectRoot) throws PluginException {
 		try {
-			LOGGER.info(projectRoot.toString());
 			if (!Files.isDirectory(projectRoot)) {
 				throw new PluginException("No directory: " + projectRoot.toString());
 			}
