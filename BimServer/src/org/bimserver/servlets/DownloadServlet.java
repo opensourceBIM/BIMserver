@@ -258,7 +258,7 @@ public class DownloadServlet extends SubServlet {
 						LongActionState ds = StoreFactory.eINSTANCE.createLongActionState();
 						ds.setStart(new Date());
 						ds.setState(ActionState.AS_ERROR);
-						ds.setTitle("Serialization Error");
+						ds.setTitle(s.getMessage());
 						ds.setProgress(-1);
 						ds.setStage(3);
 						ds.getErrors().add(s.getMessage());
