@@ -222,6 +222,10 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 			ByteBuffer otherBuffer = ((ByteBufferList)value).write();
 			ensureCapacity(buffer.position(), otherBuffer.position());
 			buffer.put(otherBuffer.array(), 0, otherBuffer.position());
+		} else if (value instanceof PrimitiveByteBufferList) {
+			ByteBuffer otherBuffer = ((PrimitiveByteBufferList)value).write();
+			ensureCapacity(buffer.position(), otherBuffer.position());
+			buffer.put(otherBuffer.array(), 0, otherBuffer.position());
 		} else {
 			writePrimitiveValue(feature, value);
 		}
