@@ -1237,6 +1237,7 @@ public class BimServer implements BasicServerInfoProvider {
 //		} catch (PluginException e) {
 //			throw new BimserverDatabaseException(e);
 		}
+		LOGGER.info("Done initializing database dependant logic");
 	}
 
 	/**
