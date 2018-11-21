@@ -107,7 +107,12 @@ public class BulkUploadServlet extends SubServlet {
 									BufferedInputStream bufferedInputStream = new BufferedInputStream(zipInputStream);
 									bufferedInputStream.mark(2048);
 									byte[] initialBytes = new byte[2048];
-									IOUtils.readFully(bufferedInputStream, initialBytes);
+									int read = IOUtils.read(bufferedInputStream, initialBytes);
+									if (read != 2048) {
+										byte[] trimmed = new byte[read];
+										System.arraycopy(initialBytes, 0, trimmed, 0, read);
+										initialBytes = trimmed;
+									}
 									bufferedInputStream.reset();
 									InputStreamDataSource inputStreamDataSource = new InputStreamDataSource(new FakeClosingInputStream(bufferedInputStream));
 									inputStreamDataSource.setName(name);
