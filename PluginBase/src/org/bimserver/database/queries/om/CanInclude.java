@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.bimserver.database.queries.om.Include.TypeDef;
+import org.eclipse.emf.ecore.EClass;
 
 public interface CanInclude {
 	void addInclude(Include include);
@@ -32,4 +33,7 @@ public interface CanInclude {
 	List<Reference> getReferences();
 	Set<TypeDef> getTypes();
 	Include createInclude();
+	boolean hasTypes();
+	void addType(EClass eClass, boolean includeAllSubTypes, Set<EClass> excludedEClasses);
+	void addType(EClass eClass, boolean b);
 }
