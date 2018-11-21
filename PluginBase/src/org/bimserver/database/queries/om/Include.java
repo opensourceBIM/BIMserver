@@ -144,6 +144,17 @@ public class Include extends PartOfQuery implements CanInclude {
 		return fieldsDirect;
 	}
 	
+	@Override
+	public void addType(EClass eClass, boolean includeAllSubTypes, Set<EClass> excludedEClasses) {
+		if (eClass == null) {
+			throw new IllegalArgumentException("eClass cannot be null");
+		}
+		if (types == null) {
+			types = new HashSet<>();
+		}
+		types.add(new TypeDef(eClass, includeAllSubTypes, excludedEClasses));
+	}
+	
 	public void addType(EClass eClass, boolean includeAllSubTypes) {
 		if (eClass == null) {
 			throw new IllegalArgumentException("eClass cannot be null");
@@ -211,6 +222,12 @@ public class Include extends PartOfQuery implements CanInclude {
 		if (hasFields()) {
 			sb.append(indent(indent) + "fields\n");
 			for (EReference field : getFields()) {
+				sb.append(indent(indent + 1) + field.getName() + "\n");
+			}
+		}
+		if (hasDirectFields()) {
+			sb.append(indent(indent) + "directfields\n");
+			for (EReference field : getFieldsDirect()) {
 				sb.append(indent(indent + 1) + field.getName() + "\n");
 			}
 		}
