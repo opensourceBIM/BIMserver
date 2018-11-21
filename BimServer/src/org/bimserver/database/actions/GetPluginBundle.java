@@ -54,16 +54,11 @@ public class GetPluginBundle extends PluginBundleDatabaseAction<SPluginBundle> {
 
 		MavenPluginLocation pluginLocation = bimServer.getMavenPluginRepository().getPluginLocation(repository, groupId, artifactId);
 		
-		PluginBundle pluginBundle = bimServer.getPluginManager().getPluginBundle(pluginLocation.getPluginIdentifier());
-		// Skipping all plugin bundles that already have an installed version
-		if (pluginBundle == null) {
-			SPluginBundle sPluginBundle = processPluginLocation(pluginLocation, strictChecking, bimserverVersion);
-			if (sPluginBundle != null) {
-				return sPluginBundle;
-			} else {
-				throw new UserException("No plugin bundle available for your version of BIMserver: " + groupId + "." + artifactId);
-			}
+		SPluginBundle sPluginBundle = processPluginLocation(pluginLocation, strictChecking, bimserverVersion);
+		if (sPluginBundle != null) {
+			return sPluginBundle;
+		} else {
+			throw new UserException("No plugin bundle available for your version of BIMserver: " + groupId + "." + artifactId);
 		}
-		throw new UserException("Plugin bundle already installed " + groupId + "." + artifactId);
 	}
 }
