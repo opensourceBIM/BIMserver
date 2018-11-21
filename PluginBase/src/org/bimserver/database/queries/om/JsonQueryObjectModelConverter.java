@@ -729,10 +729,6 @@ public class JsonQueryObjectModelConverter {
 			query.setGeometrySettings((ObjectNode)objectNode.get("loaderSettings"));
 		}
 		
-		if (objectNode.has("fields")) {
-			objectNode.get("fields"); // fields node
-		}
-
 		Iterator<String> fieldNames = objectNode.fieldNames();
 		while (fieldNames.hasNext()) {
 			String fieldName = fieldNames.next();
