@@ -102,6 +102,11 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 					Include include = new Include(reusable.getPackageMetaData());
 					include.addType(object.eClass(), false);
 					include.addField(eReference.getName());
+					if (canInclude.hasIncludes()) {
+						for (Include include2 : canInclude.getIncludes()) {
+							include.addInclude(include2);
+						}
+					}
 					processPossibleInclude(object, canInclude, include);
 				}
 			}
@@ -129,13 +134,15 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 					if (ref instanceof List) {
 						for (Long r : (List<Long>)ref) {
 							HashMapVirtualObject byOid = getByOid(r, true);
-							object.addDirectListReference(eReference, byOid);
+							int index = object.addDirectListReference(eReference, byOid);
+							object.addUseForSerialization(eReference, index);
 							processPossibleIncludes(byOid, byOid.eClass(), include);
 						}
 					} else {
 						if (ref instanceof Long) {
 							HashMapVirtualObject byOid = getByOid((Long)ref, true);
 							object.setDirectReference(eReference, byOid);
+							object.addUseForSerialization(eReference);
 							processPossibleIncludes(byOid, byOid.eClass(), include);
 						} else {
 							object.setDirectReference(eReference, (HashMapWrappedVirtualObject)ref);
