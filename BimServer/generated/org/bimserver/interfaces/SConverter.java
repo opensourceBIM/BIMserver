@@ -7163,6 +7163,7 @@ public class SConverter {
 		result.setSize(input.getSize());
 		result.setTitle(input.getTitle());
 		result.setAdded(input.getAdded());
+		result.setTimeToGenerate(input.getTimeToGenerate());
 		File fileVal = input.getFile();
 		result.setFileId(fileVal == null ? -1 : fileVal.getOid());
 		User userVal = input.getUser();
@@ -7202,6 +7203,7 @@ public class SConverter {
 		result.setSize(input.getSize());
 		result.setTitle(input.getTitle());
 		result.setAdded(input.getAdded());
+		result.setTimeToGenerate(input.getTimeToGenerate());
 		result.setFile((File)session.get(StorePackage.eINSTANCE.getFile(), input.getFileId(), OldQuery.getDefault()));
 		result.setUser((User)session.get(StorePackage.eINSTANCE.getUser(), input.getUserId(), OldQuery.getDefault()));
 		result.setSchema((ExtendedDataSchema)session.get(StorePackage.eINSTANCE.getExtendedDataSchema(), input.getSchemaId(), OldQuery.getDefault()));

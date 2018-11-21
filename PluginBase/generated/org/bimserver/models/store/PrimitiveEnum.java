@@ -180,7 +180,8 @@ public enum PrimitiveEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final PrimitiveEnum[] VALUES_ARRAY = new PrimitiveEnum[] { LONG, DOUBLE, BOOLEAN, STRING, BYTE_ARRAY, };
+	private static final PrimitiveEnum[] VALUES_ARRAY = new PrimitiveEnum[] { LONG, DOUBLE, BOOLEAN, STRING,
+			BYTE_ARRAY, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Primitive Enum</b></em>' enumerators.

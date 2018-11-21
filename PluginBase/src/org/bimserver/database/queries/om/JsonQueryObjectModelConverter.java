@@ -19,10 +19,10 @@ package org.bimserver.database.queries.om;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -282,15 +282,7 @@ public class JsonQueryObjectModelConverter {
 		}
 		if (jsonNode.has("type")) {
 			JsonNode typeNode = jsonNode.get("type");
-			if (typeNode.isTextual()) {
-				EClass eClass = packageMetaData.getEClassIncludingDependencies(typeNode.asText());
-				if (eClass == null) {
-					throw new QueryException("Cannot find type \"" + typeNode.asText() + "\"");
-				}
-				include.addType(eClass, false);
-			} else {
-				throw new QueryException("\"type\" field mst be of type string");
-			}
+			parseTypeNode(include, -1, typeNode);
 		}
 		if (jsonNode.has("types")) {
 			JsonNode typesNode = jsonNode.get("types");
@@ -301,12 +293,7 @@ public class JsonQueryObjectModelConverter {
 				}
 				for (int i=0; i<types.size(); i++) {
 					JsonNode typeNode = types.get(i);
-					if (typeNode.isTextual()) {
-						EClass eClass = packageMetaData.getEClassIncludingDependencies(typeNode.asText());
-						include.addType(eClass, false);
-					} else {
-						throw new QueryException("\"types\"[" + i + "] field mst be of type string");
-					}
+					parseTypeNode(include, i, typeNode);
 				}
 			} else {
 				throw new QueryException("\"types\" must be of type array");
@@ -399,6 +386,42 @@ public class JsonQueryObjectModelConverter {
 		return include;
 	}
 
+	private void parseTypeNode(CanInclude include, int i, JsonNode typeNode) throws QueryException {
+		String identifier = i == -1 ? "type" : "\\types\"[" + i + "]";
+		if (typeNode.isTextual()) {
+			EClass eClass = packageMetaData.getEClassIncludingDependencies(typeNode.asText());
+			include.addType(eClass, false);
+		} else if (typeNode.isObject()) {
+			if (!typeNode.has("name")) {
+				throw new QueryException(identifier + " object must have a \"name\" property");
+			}
+			EClass eClass = packageMetaData.getEClassIncludingDependencies(typeNode.get("name").asText());
+			
+			Set<EClass> excludes = null;
+			if (typeNode.has("exclude")) {
+				if (!typeNode.get("exclude").isArray()) {
+					throw new QueryException("\"exclude\" must be an array");
+				}
+				excludes = new LinkedHashSet<>();
+				ArrayNode excludeNodes = (ArrayNode) typeNode.get("exclude");
+				for (JsonNode excludeNode : excludeNodes) {
+					excludes.add(packageMetaData.getEClassIncludingDependencies(excludeNode.asText()));
+				}
+			}
+			
+			include.addType(eClass, typeNode.has("includeAllSubTypes") ? typeNode.get("includeAllSubTypes").asBoolean() : false, excludes);
+			Iterator<String> fieldNames = typeNode.fieldNames();
+			while (fieldNames.hasNext()) {
+				String fieldName = fieldNames.next();
+				if (!fieldName.equals("name") && !fieldName.equals("includeAllSubTypes") && !fieldName.equals("exclude")) {
+					throw new QueryException(identifier + " object cannot contain \"" + fieldName + "\" field");
+				}
+			}
+		} else {
+			throw new QueryException(identifier + " field must be of type string or of type object, is " + typeNode.toString());
+		}
+	}
+
 	// TODO thread safety and cache invalidation on file updates
 	public Include getDefineFromFile(String includeName, boolean useCaching) throws QueryException {
 		Include include = null;
@@ -467,26 +490,27 @@ public class JsonQueryObjectModelConverter {
 		QueryPart queryPart = new QueryPart(packageMetaData);
 		if (objectNode.has("type")) {
 			JsonNode typeNode = objectNode.get("type");
-			if (typeNode.isTextual()) {
-				String type = typeNode.asText();
-				addType(objectNode, queryPart, type, false, null);
-			} else if (typeNode.isObject()) {
-				ObjectNode typeDef = (ObjectNode) typeNode;
-				if (!typeDef.has("name")) {
-					throw new QueryException("Missing name");
-				}
-				List<String> stringList = null;
-				if (typeDef.has("exclude")) {
-					stringList = new ArrayList<>();
-					ArrayNode excludeNodes = (ArrayNode) typeDef.get("exclude");
-					for (JsonNode excludeNode : excludeNodes) {
-						stringList.add(excludeNode.asText());
-					}
-				}
-				addType(objectNode, queryPart, typeDef.get("name").asText(), typeDef.has("includeAllSubTypes") && typeDef.get("includeAllSubTypes").asBoolean(), stringList);
-			} else {
-				throw new QueryException("\"type\" must be of type string");
-			}
+			parseTypeNode(queryPart, -1, typeNode);
+//			if (typeNode.isTextual()) {
+//				String type = typeNode.asText();
+//				addType(objectNode, queryPart, type, false, null);
+//			} else if (typeNode.isObject()) {
+//				ObjectNode typeDef = (ObjectNode) typeNode;
+//				if (!typeDef.has("name")) {
+//					throw new QueryException("Missing name");
+//				}
+//				List<String> stringList = null;
+//				if (typeDef.has("exclude")) {
+//					stringList = new ArrayList<>();
+//					ArrayNode excludeNodes = (ArrayNode) typeDef.get("exclude");
+//					for (JsonNode excludeNode : excludeNodes) {
+//						stringList.add(excludeNode.asText());
+//					}
+//				}
+//				addType(objectNode, queryPart, typeDef.get("name").asText(), typeDef.has("includeAllSubTypes") && typeDef.get("includeAllSubTypes").asBoolean(), stringList);
+//			} else {
+//				throw new QueryException("\"type\" must be of type string");
+//			}
 		}
 		if (objectNode.has("types")) {
 			JsonNode typesNode = objectNode.get("types");
@@ -494,23 +518,24 @@ public class JsonQueryObjectModelConverter {
 				ArrayNode types = (ArrayNode)typesNode;
 				for (int i=0; i<types.size(); i++) {
 					JsonNode typeNode = types.get(i);
-					if (typeNode.isTextual()) {
-						String type = typeNode.asText();
-						addType(objectNode, queryPart, type, false, null);
-					} else if (typeNode.isObject()) {
-						ObjectNode typeDef = (ObjectNode) typeNode;
-						List<String> stringList = null;
-						if (typeDef.has("exlude")) {
-							stringList = new ArrayList<>();
-							ArrayNode excludeNodes = (ArrayNode) typeDef.get("exclude");
-							for (JsonNode excludeNode : excludeNodes) {
-								stringList.add(excludeNode.asText());
-							}
-						}
-						addType(objectNode, queryPart, typeDef.get("name").asText(), typeDef.has("includeAllSubTypes") && typeDef.get("includeAllSubTypes").asBoolean(), stringList);
-					} else {
-						throw new QueryException("\"types\"[" + i + "] must be of type string");
-					}
+					parseTypeNode(queryPart, i, typeNode);
+//					if (typeNode.isTextual()) {
+//						String type = typeNode.asText();
+//						addType(objectNode, queryPart, type, false, null);
+//					} else if (typeNode.isObject()) {
+//						ObjectNode typeDef = (ObjectNode) typeNode;
+//						List<String> stringList = null;
+//						if (typeDef.has("exlude")) {
+//							stringList = new ArrayList<>();
+//							ArrayNode excludeNodes = (ArrayNode) typeDef.get("exclude");
+//							for (JsonNode excludeNode : excludeNodes) {
+//								stringList.add(excludeNode.asText());
+//							}
+//						}
+//						addType(objectNode, queryPart, typeDef.get("name").asText(), typeDef.has("includeAllSubTypes") && typeDef.get("includeAllSubTypes").asBoolean(), stringList);
+//					} else {
+//						throw new QueryException("\"types\"[" + i + "] must be of type string");
+//					}
 				}
 			} else {
 				throw new QueryException("\"types\" must be of type array");
@@ -766,7 +791,7 @@ public class JsonQueryObjectModelConverter {
 		}
 	}
 
-	private void addType(ObjectNode objectNode, QueryPart queryPart, String type, boolean includeAllSubTypes, List<String> excluded) throws QueryException {
+	private void addType(ObjectNode objectNode, CanInclude queryPart, String type, boolean includeAllSubTypes, List<String> excluded) throws QueryException {
 		if (type.equals("Object")) {
 			// no type filter
 			return;

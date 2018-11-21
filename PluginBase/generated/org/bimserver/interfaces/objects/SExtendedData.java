@@ -39,6 +39,7 @@ public class SExtendedData implements SDataBase
 	private long schemaId = -1;
 	private long revisionId = -1;
 	private long projectId = -1;
+	private long timeToGenerate;
 
 	public long getOid() {
 		return this.oid;
@@ -93,6 +94,9 @@ public class SExtendedData implements SDataBase
 		if (sField.getName().equals("projectId")) {
 			return getProjectId();
 		}
+		if (sField.getName().equals("timeToGenerate")) {
+			return getTimeToGenerate();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -137,6 +141,10 @@ public class SExtendedData implements SDataBase
 		}
 		if (sField.getName().equals("projectId")) {
 			setProjectId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("timeToGenerate")) {
+			setTimeToGenerate((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -220,6 +228,14 @@ public class SExtendedData implements SDataBase
 
 	public void setProjectId(long projectId) {
 		this.projectId = projectId;
+	}
+	
+	public long getTimeToGenerate() {
+		return timeToGenerate;
+	}
+
+	public void setTimeToGenerate(long timeToGenerate) {
+		this.timeToGenerate = timeToGenerate;
 	}
 	
 	@Override

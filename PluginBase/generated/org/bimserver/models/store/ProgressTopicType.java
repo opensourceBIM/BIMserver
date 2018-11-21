@@ -155,7 +155,8 @@ public enum ProgressTopicType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ProgressTopicType[] VALUES_ARRAY = new ProgressTopicType[] { DOWNLOAD, UPLOAD, RUNNING_SERVICE, BRANCH, };
+	private static final ProgressTopicType[] VALUES_ARRAY = new ProgressTopicType[] { DOWNLOAD, UPLOAD, RUNNING_SERVICE,
+			BRANCH, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Progress Topic Type</b></em>' enumerators.
