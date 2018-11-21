@@ -620,7 +620,7 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 		directReferences.put(feature2, byOid);
 	}
 
-	public void addDirectListReference(EReference feature2, HashMapVirtualObject byOid) {
+	public int addDirectListReference(EReference feature2, HashMapVirtualObject byOid) {
 		if (directListReferences == null) {
 			directListReferences = new HashMap<>();
 		}
@@ -630,6 +630,7 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 			directListReferences.put(feature2, list);
 		}
 		list.add(byOid);
+		return list.size() - 1;
 	}
 
 	public AbstractHashMapVirtualObject getDirectFeature(EStructuralFeature representationFeature) {
