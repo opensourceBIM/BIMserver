@@ -123,6 +123,10 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 								}
 							}
 						}
+						if (queryPart.isIncludeAllFields()) {
+							Include newInclude = queryPart.createInclude();
+							applyFields(geometryFields, new TypeDef(packageMetaData.getEClass("IfcProduct"), true), newInclude);
+						}
 					}
 				}
 				
@@ -348,10 +352,12 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 				}
 			}
 		}
-		for (TypeDef typeDef : canInclude.getTypes()) {
-			if (ifcProduct.isSuperTypeOf(typeDef.geteClass()) || ((EClass)typeDef.geteClass()).isSuperTypeOf(ifcProduct)) {
-				Include include = canInclude.createInclude();
-				applyFields(geometryFields, new TypeDef(ifcProduct, true), include);
+		if (canInclude.hasTypes()) {
+			for (TypeDef typeDef : canInclude.getTypes()) {
+				if (ifcProduct.isSuperTypeOf(typeDef.geteClass()) || ((EClass)typeDef.geteClass()).isSuperTypeOf(ifcProduct)) {
+					Include include = canInclude.createInclude();
+					applyFields(geometryFields, new TypeDef(ifcProduct, true), include);
+				}
 			}
 		}
 	}
