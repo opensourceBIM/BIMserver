@@ -57,6 +57,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.ExtendedData;
+import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.File;
 import org.bimserver.models.store.IfcHeader;
 import org.bimserver.models.store.NewService;
@@ -242,7 +243,9 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			StreamingGeometryGenerator geometryGenerator = new StreamingGeometryGenerator(getBimServer(), progressListener, -1L, report);
 			setProgress("Generating geometry...", 0);
 
+			long start = System.nanoTime();
 			GenerateGeometryResult generateGeometry = geometryGenerator.generateGeometry(getActingUid(), getDatabaseSession(), queryContext);
+			long end = System.nanoTime();
 			
 			for (Revision other : concreteRevision.getRevisions()) {
 				other.setHasGeometry(true);
@@ -357,8 +360,28 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			byte[] htmlBytes = report.toHtml().getBytes(Charsets.UTF_8);
 			byte[] jsonBytes = report.toJson().toString().getBytes(Charsets.UTF_8);
 
-			storeExtendedData(htmlBytes, "text/html", "html", revision);
-			storeExtendedData(jsonBytes, "application/json", "json", revision);
+			long timeToGenerateMs = (end - start) / 1000000;
+			
+			ExtendedDataSchema htmlSchema = null;
+			ExtendedDataSchema jsonSchema = null;
+			
+			for (ExtendedDataSchema extendedDataSchema : getDatabaseSession().getAll(ExtendedDataSchema.class)) {
+				if (extendedDataSchema.getName().equals("GEOMETRY_GENERATION_REPORT_HTML_1_1")) {
+					htmlSchema = extendedDataSchema;
+				} else if (extendedDataSchema.getName().equals("GEOMETRY_GENERATION_REPORT_JSON_1_1")) {
+					jsonSchema = extendedDataSchema;
+				}
+			}
+			
+			if (htmlSchema == null) {
+				htmlSchema = createExtendedDataSchema("GEOMETRY_GENERATION_REPORT_HTML_1_1");
+			}
+			if (jsonSchema == null) {
+				jsonSchema = createExtendedDataSchema("GEOMETRY_GENERATION_REPORT_JSON_1_1");
+			}
+			
+			storeExtendedData(htmlSchema, htmlBytes, "text/html", "html", revision, timeToGenerateMs);
+			storeExtendedData(jsonSchema, jsonBytes, "application/json", "json", revision, timeToGenerateMs);
 			
 			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 				@Override
@@ -403,6 +426,12 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			throw new UserException(e);
 		}
 		return concreteRevision;
+	}
+
+	private ExtendedDataSchema createExtendedDataSchema(String string) throws BimserverDatabaseException {
+		ExtendedDataSchema extendedDataSchema = getDatabaseSession().create(ExtendedDataSchema.class);
+		extendedDataSchema.setName(string);
+		return extendedDataSchema;
 	}
 
 	private void generateQuantizedVertices(DatabaseSession databaseSession, Revision revision, float[] quantizationMatrix, float multiplierToMm) {
@@ -484,7 +513,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 		return matrix;
 	}
 
-	private void storeExtendedData(byte[] bytes, String mime, String extension, final Revision revision) throws BimserverDatabaseException {
+	private void storeExtendedData(ExtendedDataSchema extendedDataSchema, byte[] bytes, String mime, String extension, final Revision revision, long timeToGenerateMs) throws BimserverDatabaseException {
 		ExtendedData extendedData = getDatabaseSession().create(ExtendedData.class);
 		File file = getDatabaseSession().create(File.class);
 		file.setData(bytes);
@@ -493,7 +522,9 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 		file.setSize(bytes.length);
 		User actingUser = getUserByUoid(authorization.getUoid());
 		extendedData.setUser(actingUser);
+		extendedData.setSchema(extendedDataSchema);
 		extendedData.setTitle("Geometry generation report (" + mime + ")");
+		extendedData.setTimeToGenerate(timeToGenerateMs);
 		extendedData.setAdded(new Date());
 		extendedData.setSize(file.getData().length);
 		extendedData.setFile(file);
