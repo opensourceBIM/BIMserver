@@ -12211,6 +12211,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/ExtendedData/schema"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/ExtendedData/revision"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/ExtendedData/project"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ExtendedData/timeToGenerate"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/4/QueryEnginePluginConfiguration">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/QueryEnginePluginConfiguration/userSettings"/>

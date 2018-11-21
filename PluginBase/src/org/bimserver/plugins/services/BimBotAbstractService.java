@@ -47,6 +47,7 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 	@Override
 	public void newRevision(RunningService runningService, BimServerClientInterface bimServerClientInterface, long poid, long roid, String userToken, long soid, SObjectType settings) throws Exception {
 		try {
+			long start = System.nanoTime();
 			byte[] data = null;
 			if (needsRawInput()) {
 				// We need to generate some, by serializing the current model
@@ -70,9 +71,11 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 				}
 			};
 			BimBotsOutput output = runBimBot(input, bimBotContext, new PluginConfiguration(settings));
+			long end = System.nanoTime();
 			SFile file = new SFile();
 
 			SExtendedData extendedData = new SExtendedData();
+			extendedData.setTimeToGenerate((end - start) / 1000000);
 			extendedData.setTitle(output.getTitle());
 			extendedData.setSize(output.getData().length);
 			file.setFilename(output.getContentDisposition());

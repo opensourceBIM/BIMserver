@@ -120,6 +120,7 @@ public class BimBotRunner implements Runnable {
 			ServiceInterface serviceInterface = serviceMap.get(ServiceInterface.class);
 			if (bimServer.getServerSettingsCache().getServerSettings().isStoreServiceRuns()) {
 				LOGGER.info("Storing intermediate results");
+				long start = System.nanoTime();
 				// When we store service runs, we can just use the streaming deserializer to stream directly to the database, after that we'll trigger the actual service
 				
 				// Create or find project and link user and service to project
@@ -184,6 +185,7 @@ public class BimBotRunner implements Runnable {
 				
 				BimServerBimBotsInput input = new BimServerBimBotsInput(bimServer, authorization.getUoid(), inputType, data, model, false);
 				BimBotsOutput output = bimBotsServiceInterface.runBimBot(input, bimBotContext, settings);
+				long end = System.nanoTime();
 				
 				SExtendedData extendedData = new SExtendedData();
 				SFile file = new SFile();
@@ -192,6 +194,7 @@ public class BimBotRunner implements Runnable {
 				file.setMime(output.getContentType());
 				file.setSize(output.getData().length);
 				Long fileId = serviceInterface.uploadFile(file);
+				extendedData.setTimeToGenerate((end - start) / 1000000);
 				extendedData.setFileId(fileId);
 				extendedData.setTitle(output.getTitle());
 				SExtendedDataSchema extendedDataSchema = null;

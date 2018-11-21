@@ -62,6 +62,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getSchema <em>Schema</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getRevision <em>Revision</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getProject <em>Project</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ExtendedDataImpl#getTimeToGenerate <em>Time To Generate</em>}</li>
  * </ul>
  *
  * @generated
@@ -256,6 +257,24 @@ public class ExtendedDataImpl extends IdEObjectImpl implements ExtendedData {
 	 */
 	public void setProject(Project newProject) {
 		eSet(StorePackage.Literals.EXTENDED_DATA__PROJECT, newProject);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getTimeToGenerate() {
+		return (Long) eGet(StorePackage.Literals.EXTENDED_DATA__TIME_TO_GENERATE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTimeToGenerate(long newTimeToGenerate) {
+		eSet(StorePackage.Literals.EXTENDED_DATA__TIME_TO_GENERATE, newTimeToGenerate);
 	}
 
 } //ExtendedDataImpl

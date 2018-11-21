@@ -55,6 +55,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.ExtendedData#getSchema <em>Schema</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedData#getRevision <em>Revision</em>}</li>
  *   <li>{@link org.bimserver.models.store.ExtendedData#getProject <em>Project</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ExtendedData#getTimeToGenerate <em>Time To Generate</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getExtendedData()
@@ -304,5 +305,31 @@ public interface ExtendedData extends IdEObject {
 	 * @generated
 	 */
 	void setProject(Project value);
+
+	/**
+	 * Returns the value of the '<em><b>Time To Generate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Time To Generate</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Time To Generate</em>' attribute.
+	 * @see #setTimeToGenerate(long)
+	 * @see org.bimserver.models.store.StorePackage#getExtendedData_TimeToGenerate()
+	 * @model
+	 * @generated
+	 */
+	long getTimeToGenerate();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ExtendedData#getTimeToGenerate <em>Time To Generate</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Time To Generate</em>' attribute.
+	 * @see #getTimeToGenerate()
+	 * @generated
+	 */
+	void setTimeToGenerate(long value);
 
 } // ExtendedData

@@ -20637,6 +20637,7 @@
           eOpposite="#/4/Revision/extendedData"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/4/Project"
           eOpposite="#/4/Project/extendedData"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeToGenerate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="QueryEnginePluginConfiguration" eSuperTypes="#/4/PluginConfiguration">
       <eStructuralFeatures xsi:type="ecore:EReference" name="userSettings" eType="#/4/UserSettings"
