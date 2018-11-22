@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.opensourcebim</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.5.116-SNAPSHOT</version>
+		<version>1.5.116</version>
 	</parent>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
