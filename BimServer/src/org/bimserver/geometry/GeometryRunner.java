@@ -324,6 +324,8 @@ public class GeometryRunner implements Runnable {
 												color.set("z", firstColor.getB());
 												color.set("w", firstColor.getA());
 												geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Color(), color);
+												
+												// This tells the code further on to not store this geometry, as it can be easily generated
 												hasMaterial = false;
 											} else {
 												Color4f mostUsed = null;
