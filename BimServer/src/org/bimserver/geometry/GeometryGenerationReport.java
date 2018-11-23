@@ -23,10 +23,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.bimserver.emf.Schema;
@@ -59,7 +59,7 @@ public class GeometryGenerationReport {
 	private int numberOfTriangles;
 	private int numberOfTrianglesIncludingReuse;
 	private boolean reuseGeometry;
-	private Map<String, Integer> debugFiles = new LinkedHashMap<>();
+	private Map<Integer, String> debugFiles = new TreeMap<>();
 	
 	public synchronized void incrementTriangles(int triangles) {
 		this.numberOfTriangles += triangles;
@@ -152,6 +152,7 @@ public class GeometryGenerationReport {
 		result.set("jobs", jobsArray);
 		for (ReportJob job : jobs) {
 			ObjectNode jobNode = objectMapper.createObjectNode();
+			jobNode.put("id", job.getId());
 			jobNode.put("mainType", job.getMainType());
 			jobNode.put("nrObjects", job.getNrObjects());
 			jobNode.put("usesMapping", job.isUsesMapping());
@@ -162,9 +163,6 @@ public class GeometryGenerationReport {
 				StringWriter writer = new StringWriter();
 				job.getException().printStackTrace(new PrintWriter(writer));
 				jobNode.put("exception", writer.toString());
-			}
-			if (job.getDebugId() != -1) {
-				jobNode.put("debugId", job.getDebugId());
 			}
 			
 			jobsArray.add(jobNode);
@@ -187,11 +185,11 @@ public class GeometryGenerationReport {
 
 		ArrayNode debugFiles = objectMapper.createArrayNode();
 		result.set("debugFiles", debugFiles);
-		for (String debugFile : this.debugFiles.keySet()) {
-			int i = this.debugFiles.get(debugFile);
+		for (int jobId : this.debugFiles.keySet()) {
+			String filename = this.debugFiles.get(jobId);
 			ObjectNode debugNode = objectMapper.createObjectNode();
-			debugNode.put("id", i);
-			debugNode.put("debugFile", debugFile);
+			debugNode.put("id", jobId);
+			debugNode.put("debugFile", filename);
 			debugFiles.add(debugNode);
 		}
 		
@@ -269,8 +267,8 @@ public class GeometryGenerationReport {
 			} else {
 				builder.append("<td>None</td>");
 			}
-			if (job.getDebugId() != -1) {
-				builder.append("<td><a href=\"#debug" + job.getDebugId() + "\">" + job.getDebugId() + "</a></td>");
+			if (debugFiles.containsKey(job.getId())) {
+				builder.append("<td><a href=\"#debug" + job.getId() + "\">" + job.getId() + "</a></td>");
 			} else {
 				builder.append("<td></td>");
 			}
@@ -301,12 +299,11 @@ public class GeometryGenerationReport {
 		builder.append("<table>");
 		builder.append("<thead><tr><th>ID</th><th>Filename</th></tr></thead>");
 		builder.append("<tbody>");
-		for (String debugFile : debugFiles.keySet()) {
+		for (int jobId : debugFiles.keySet()) {
 			builder.append("<tr>");
 			// NPE has happened here 23-11-2018
-			int i = debugFiles.get(debugFile);
-			builder.append("<td><a name=\"debug" + i + "\">" + i + "</a></td>");
-			builder.append("<td>" + debugFile + "</td>");
+			builder.append("<td><a name=\"debug" + jobId + "\">" + jobId + "</a></td>");
+			builder.append("<td>" + debugFiles.get(jobId) + "</td>");
 			builder.append("</tr>");
 		}
 		builder.append("</tbody></table>");
@@ -345,6 +342,7 @@ public class GeometryGenerationReport {
 	public ReportJob newJob(String mainType, int nrObjects) {
 		ReportJob job = new ReportJob(this, mainType, nrObjects);
 		jobs.add(job);
+		job.setId(jobs.size());
 		return job;
 	}
 
@@ -364,12 +362,9 @@ public class GeometryGenerationReport {
 		this.reuseGeometry = reuseGeometry;
 	}
 	
-	public int addDebugFile(String filename) {
-		if (!debugFiles.containsKey(filename)) {
-			debugFiles.put(filename, debugFiles.size() + 1);
-			return debugFiles.size();
-		} else {
-			return debugFiles.get(filename);
+	public void addDebugFile(String filename, int id) {
+		if (!debugFiles.containsKey(id)) {
+			debugFiles.put(id, filename);
 		}
 	}
 	

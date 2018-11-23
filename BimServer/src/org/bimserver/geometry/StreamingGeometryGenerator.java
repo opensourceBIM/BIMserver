@@ -65,7 +65,6 @@ import org.bimserver.models.geometry.Vector3f;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
-import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.renderengine.IndexFormat;
 import org.bimserver.plugins.renderengine.Precision;
 import org.bimserver.plugins.renderengine.RenderEngine;
@@ -862,7 +861,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
 		
 		ReportJob job = report.newJob(eClass.getName(), nrObjects);
-		GeometryRunner runner = new GeometryRunner(this, eClass, renderEnginePool, databaseSession, settings, queryObjectProvider, ifcSerializerPlugin, renderEngineFilter, generateGeometryResult, queryContext, query, geometryReused, map, job, reuseGeometry, geometryGenerationDebugger );
+		GeometryRunner runner = new GeometryRunner(this, eClass, renderEnginePool, databaseSession, settings, queryObjectProvider, ifcSerializerPlugin, renderEngineFilter, generateGeometryResult, queryContext, geometryReused, map, job, reuseGeometry, geometryGenerationDebugger );
 		executor.submit(runner);
 		jobsTotal.incrementAndGet();
 	}
@@ -910,7 +909,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
 		
 		ReportJob job = report.newJob(eClass.getName(), nrObjects);
-		GeometryRunner runner = new GeometryRunner(this, eClass, renderEnginePool, databaseSession, settings, queryObjectProvider, ifcSerializerPlugin, renderEngineFilter, generateGeometryResult, queryContext, query, geometryReused, map, job, reuseGeometry, geometryGenerationDebugger );
+		GeometryRunner runner = new GeometryRunner(this, eClass, renderEnginePool, databaseSession, settings, queryObjectProvider, ifcSerializerPlugin, renderEngineFilter, generateGeometryResult, queryContext, geometryReused, map, job, reuseGeometry, geometryGenerationDebugger );
 		executor.submit(runner);
 		jobsTotal.incrementAndGet();
 	}

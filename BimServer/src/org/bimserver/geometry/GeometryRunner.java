@@ -93,11 +93,9 @@ public class GeometryRunner implements Runnable {
 	private boolean reuseGeometry;
 	private boolean writeOutputFiles = false;
 	private GeometryGenerationDebugger geometryGenerationDebugger;
-//	volatile static int a = 0;
-	private Query originalQuery;
 
 	public GeometryRunner(StreamingGeometryGenerator streamingGeometryGenerator, EClass eClass, RenderEnginePool renderEnginePool, DatabaseSession databaseSession, RenderEngineSettings renderEngineSettings, ObjectProvider objectProvider,
-			StreamingSerializerPlugin ifcSerializerPlugin, RenderEngineFilter renderEngineFilter, GenerateGeometryResult generateGeometryResult, QueryContext queryContext, Query originalQuery, boolean geometryReused,
+			StreamingSerializerPlugin ifcSerializerPlugin, RenderEngineFilter renderEngineFilter, GenerateGeometryResult generateGeometryResult, QueryContext queryContext	, boolean geometryReused,
 			Map<Long, ProductDef> map, ReportJob job, boolean reuseGeometry, GeometryGenerationDebugger geometryGenerationDebugger) {
 		this.streamingGeometryGenerator = streamingGeometryGenerator;
 		this.eClass = eClass;
@@ -109,7 +107,6 @@ public class GeometryRunner implements Runnable {
 		this.renderEngineFilter = renderEngineFilter;
 		this.generateGeometryResult = generateGeometryResult;
 		this.queryContext = queryContext;
-		this.originalQuery = originalQuery;
 		this.geometryReused = geometryReused;
 		this.map = map;
 		this.job = job;
@@ -746,17 +743,16 @@ public class GeometryRunner implements Runnable {
 					}
 					try {
 						if (!notFoundObjects.isEmpty()) {
-							int debugId = writeDebugFile(bytes, false, notFoundObjects);
+							writeDebugFile(bytes, false, notFoundObjects);
 							StringBuilder sb = new StringBuilder();
 							for (Integer key : notFoundObjects.keySet()) {
 								sb.append(key + " (" + notFoundObjects.get(key).getOid() + ")");
 								sb.append(", ");
 							}
 							sb.delete(sb.length() - 2, sb.length());
-							job.setException(new Exception("Missing objects in model (" + sb.toString() + ")"), debugId);
+							job.setException(new Exception("Missing objects in model (" + sb.toString() + ")"));
 						} else if (writeOutputFiles) {
-							int debugId = writeDebugFile(bytes, false, null);
-							job.setDebugFile(debugId);
+							writeDebugFile(bytes, false, null);
 						}
 						in.close();
 					} catch (Throwable e) {
@@ -769,8 +765,8 @@ public class GeometryRunner implements Runnable {
 				}
 			} catch (Exception e) {
 				StreamingGeometryGenerator.LOGGER.error("", e);
-				int debugId = writeDebugFile(bytes, true, null);
-				job.setException(e, debugId);
+				writeDebugFile(bytes, true, null);
+				job.setException(e);
 				// LOGGER.error("Original query: " + originalQuery, e);
 			}
 		} catch (Exception e) {
@@ -987,7 +983,7 @@ public class GeometryRunner implements Runnable {
 		return true;
 	}
 	
-	private synchronized int writeDebugFile(byte[] bytes, boolean error, Map<Integer, HashMapVirtualObject> notFoundObjects) throws FileNotFoundException, IOException {
+	private synchronized void writeDebugFile(byte[] bytes, boolean error, Map<Integer, HashMapVirtualObject> notFoundObjects) throws FileNotFoundException, IOException {
 		boolean debug = true;
 		if (debug) {
 			Path debugPath = this.streamingGeometryGenerator.bimServer.getHomeDir().resolve("debug");
@@ -1008,13 +1004,8 @@ public class GeometryRunner implements Runnable {
 				basefilenamename += "-error";
 			}
 
-			Path file = folder.resolve(basefilenamename + ".ifc");
-			int i = 0;
-			while (Files.exists((file))) {
-				file = folder.resolve(basefilenamename + "-" + i + ".ifc");
-				i++;
-			}
-			int debugFileId = job.getReport().addDebugFile(file.toString());
+			Path file = folder.resolve(basefilenamename + "-" + job.getId() + ".ifc");
+			job.getReport().addDebugFile(file.toString(), job.getId());
 
 //			if (notFoundObjects != null) {
 //				StringBuilder sb = new StringBuilder();
@@ -1026,9 +1017,7 @@ public class GeometryRunner implements Runnable {
 
 			StreamingGeometryGenerator.LOGGER.info("Writing debug file to " + file.toAbsolutePath().toString());
 			FileUtils.writeByteArrayToFile(file.toFile(), bytes);
-			return debugFileId;
 		}
-		return -1;
 	}
 
 	private void calculateObb(VirtualObject geometryInfo, double[] tranformationMatrix, int[] indices, float[] vertices, GenerateGeometryResult generateGeometryResult2) {

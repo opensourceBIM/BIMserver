@@ -31,7 +31,7 @@ public class ReportJob {
 	private boolean usesMapping;
 	private int trianglesGenerated;
 	private GeometryGenerationReport report;
-	private int debugId = -1;
+	private int id;
 	
 	public ReportJob(GeometryGenerationReport report, String mainType, int nrObjects) {
 		this.report = report;
@@ -47,13 +47,8 @@ public class ReportJob {
 		objects.put(oid, name);
 	}
 
-	public void setException(Exception exception, int debugId) {
+	public void setException(Exception exception) {
 		this.exception = exception;
-		this.debugId = debugId;
-	}
-	
-	public int getDebugId() {
-		return debugId;
 	}
 
 	public void setEndNanos(long end) {
@@ -100,7 +95,11 @@ public class ReportJob {
 		return report;
 	}
 
-	public void setDebugFile(int debugId) {
-		this.debugId = debugId;
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public int getId() {
+		return id;
 	}
 }
