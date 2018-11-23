@@ -47,6 +47,7 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationInterface;
 import org.bimserver.shared.interfaces.NotificationInterfaceAdaptor;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.utils.ByteUtils;
 import org.bimserver.utils.InputStreamDataSource;
 import org.bimserver.webservices.ServiceMap;
 import org.bimserver.webservices.authorization.Authorization;
@@ -266,15 +267,7 @@ public class BimBotRunner implements Runnable {
 		if (schema == SchemaName.IFC_STEP) {
 			// We need to determine the schema used by reading the header
 			BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
-			bufferedInputStream.mark(2048);
-			byte[] initialBytes = new byte[2048];
-			int read = IOUtils.read(bufferedInputStream, initialBytes);
-			if (read != 2048) {
-				byte[] trimmed = new byte[read];
-				System.arraycopy(initialBytes, 0, trimmed, 0, read);
-				initialBytes = trimmed;
-			}
-			bufferedInputStream.reset();
+			byte[] initialBytes = ByteUtils.extractHead(bufferedInputStream, 4096);
 			
 			inputStream = bufferedInputStream;
 			return serviceInterface.determineIfcVersion(initialBytes, false);
