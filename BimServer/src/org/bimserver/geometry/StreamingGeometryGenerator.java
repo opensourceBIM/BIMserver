@@ -339,6 +339,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 												if (!hasValidRepresentationIdentifier(mappedRepresentation)) {
 													// Skip this mapping, we should store somewhere that this object should also be skipped in the normal way
+													// TODO too many log statements, should log only 1 line for the complete model
 													LOGGER.info("Skipping because of invalid RepresentationIdentifier in mapped item (" + (String) mappedRepresentation.get("RepresentationIdentifier") + ")");
 													toSkip.add(next.getOid());
 													continue;

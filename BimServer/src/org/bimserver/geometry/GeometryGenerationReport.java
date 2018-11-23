@@ -303,6 +303,7 @@ public class GeometryGenerationReport {
 		builder.append("<tbody>");
 		for (String debugFile : debugFiles.keySet()) {
 			builder.append("<tr>");
+			// NPE has happened here 23-11-2018
 			int i = debugFiles.get(debugFile);
 			builder.append("<td><a name=\"debug" + i + "\">" + i + "</a></td>");
 			builder.append("<td>" + debugFile + "</td>");
