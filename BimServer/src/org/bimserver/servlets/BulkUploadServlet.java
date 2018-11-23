@@ -34,7 +34,6 @@ import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.util.Streams;
-import org.apache.commons.io.IOUtils;
 import org.bimserver.BimServer;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
@@ -42,6 +41,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.ServiceInterface;
+import org.bimserver.utils.ByteUtils;
 import org.bimserver.utils.FakeClosingInputStream;
 import org.bimserver.utils.InputStreamDataSource;
 import org.slf4j.Logger;
@@ -105,15 +105,7 @@ public class BulkUploadServlet extends SubServlet {
 								String fullfilename = nextEntry.getName();
 								if (fullfilename.toLowerCase().endsWith(".ifc") || fullfilename.toLowerCase().endsWith("ifcxml") || fullfilename.toLowerCase().endsWith(".ifczip")) {
 									BufferedInputStream bufferedInputStream = new BufferedInputStream(zipInputStream);
-									bufferedInputStream.mark(2048);
-									byte[] initialBytes = new byte[2048];
-									int read = IOUtils.read(bufferedInputStream, initialBytes);
-									if (read != 2048) {
-										byte[] trimmed = new byte[read];
-										System.arraycopy(initialBytes, 0, trimmed, 0, read);
-										initialBytes = trimmed;
-									}
-									bufferedInputStream.reset();
+									byte[] initialBytes = ByteUtils.extractHead(bufferedInputStream, 4096);
 									InputStreamDataSource inputStreamDataSource = new InputStreamDataSource(new FakeClosingInputStream(bufferedInputStream));
 									inputStreamDataSource.setName(name);
 									DataHandler ifcFile = new DataHandler(inputStreamDataSource);
