@@ -49,22 +49,24 @@ public class MemoryJarClassLoader extends JarClassLoader {
 	public MemoryJarClassLoader(ClassLoader parentClassLoader, File jarFile) throws FileNotFoundException, IOException {
 		super(parentClassLoader);
 		this.jarFile = jarFile;
-		JarInputStream jarInputStream = new JarInputStream(new FileInputStream(jarFile));
-		JarEntry entry = jarInputStream.getNextJarEntry();
-		while (entry != null) {
-			if (entry.getName().endsWith(".jar")) {
-				ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-				IOUtils.copy(jarInputStream, byteArrayOutputStream);
-
-				// Not storing the original JAR, so future code will be unable to read the original
-				loadSubJars(byteArrayOutputStream.toByteArray());
-			} else {
-				// Files are being stored deflated in memory because most of the time a lot of files are not being used (or the complete plugin is not being used)
-				addDataToMap(jarInputStream, entry);
+		try (FileInputStream fileInputStream = new FileInputStream(jarFile)) {
+			try (JarInputStream jarInputStream = new JarInputStream(fileInputStream)) {
+				JarEntry entry = jarInputStream.getNextJarEntry();
+				while (entry != null) {
+					if (entry.getName().endsWith(".jar")) {
+						ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+						IOUtils.copy(jarInputStream, byteArrayOutputStream);
+						
+						// Not storing the original JAR, so future code will be unable to read the original
+						loadSubJars(byteArrayOutputStream.toByteArray());
+					} else {
+						// Files are being stored deflated in memory because most of the time a lot of files are not being used (or the complete plugin is not being used)
+						addDataToMap(jarInputStream, entry);
+					}
+					entry = jarInputStream.getNextJarEntry();
+				}
 			}
-			entry = jarInputStream.getNextJarEntry();
 		}
-		jarInputStream.close();
 	}
 
 	private void addDataToMap(JarInputStream jarInputStream, JarEntry entry) throws IOException {

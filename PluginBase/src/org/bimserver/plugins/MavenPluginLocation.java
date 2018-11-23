@@ -301,18 +301,18 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 		}
 	}
 
-	private byte[] getJarContent(String version, String filename) throws IOException, ArtifactResolutionException {
-		try (JarInputStream jarInputStream = new JarInputStream(Files.newInputStream(getVersionJar(version)))) {
-			JarEntry nextJarEntry = jarInputStream.getNextJarEntry();
-			while (nextJarEntry != null) {
-				if (nextJarEntry.getName().equals(filename)) {
-					return ByteStreams.toByteArray(jarInputStream);
-				}
-				nextJarEntry = jarInputStream.getNextJarEntry();
-			}
-		}
-		return null;
-	}
+//	private byte[] getJarContent(String version, String filename) throws IOException, ArtifactResolutionException {
+//		try (JarInputStream jarInputStream = new JarInputStream(Files.newInputStream(getVersionJar(version)))) {
+//			JarEntry nextJarEntry = jarInputStream.getNextJarEntry();
+//			while (nextJarEntry != null) {
+//				if (nextJarEntry.getName().equals(filename)) {
+//					return ByteStreams.toByteArray(jarInputStream);
+//				}
+//				nextJarEntry = jarInputStream.getNextJarEntry();
+//			}
+//		}
+//		return null;
+//	}
 	
 	public byte[] getVersionPluginXml(String version) throws ArtifactResolutionException, IOException {
 //		return getJarContent(version, "plugin/plugin.xml");

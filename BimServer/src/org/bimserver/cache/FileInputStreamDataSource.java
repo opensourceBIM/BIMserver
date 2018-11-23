@@ -51,7 +51,7 @@ public class FileInputStreamDataSource extends ExtendedDataSource {
 		inputStream = Files.newInputStream(file);
 		return inputStream;
 	}
-
+	
 	@Override
 	public String getName() {
 		return name;

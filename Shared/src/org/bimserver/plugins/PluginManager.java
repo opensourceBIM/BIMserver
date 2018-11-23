@@ -460,7 +460,10 @@ public class PluginManager implements PluginManagerInterface {
 				throw new PluginException("No 'plugin.xml' found in " + pluginFolder.toString());
 			}
 
-			PluginDescriptor pluginDescriptor = getPluginDescriptor(Files.newInputStream(pluginFile));
+			PluginDescriptor pluginDescriptor = null;
+			try (InputStream newInputStream = Files.newInputStream(pluginFile)) {
+				pluginDescriptor = getPluginDescriptor(newInputStream);
+			}
 
 			Path pomFile = projectRoot.resolve("pom.xml");
 			if (!Files.exists(pomFile)) {

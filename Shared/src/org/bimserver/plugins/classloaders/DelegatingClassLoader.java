@@ -43,9 +43,6 @@ public class DelegatingClassLoader extends PublicFindClassClassLoader {
 			}
 		} catch (ClassNotFoundException e) {
 		}
-		if (name.equals("com.logiclabs.node.common.NodeClientException")) {
-			System.out.println();
-		}
 		for (PublicFindClassClassLoader jarClassLoader : jarClassLoaders) {
 			if (jarClassLoader instanceof JarClassLoader) {
 				Class<?> findClass = jarClassLoader.findClass(name);

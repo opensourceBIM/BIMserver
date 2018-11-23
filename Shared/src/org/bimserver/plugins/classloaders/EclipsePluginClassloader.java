@@ -19,6 +19,7 @@ package org.bimserver.plugins.classloaders;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -76,7 +77,10 @@ public class EclipsePluginClassloader extends PublicFindClassClassLoader {
 		Path classFile = classFolder.resolve(filename);
 		if (Files.exists(classFile)) {
 			try {
-				byte[] bytes = IOUtils.toByteArray(Files.newInputStream(classFile));
+				byte[] bytes = null;
+				try (InputStream newInputStream = Files.newInputStream(classFile)) {
+					bytes = IOUtils.toByteArray(newInputStream);
+				}
 				Class<?> definedClass = defineClass(name, bytes, 0, bytes.length);
 				if (definedClass != null) {
 					loadedClasses.put(filename, definedClass);

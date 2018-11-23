@@ -86,15 +86,14 @@ public class FileJarClassLoader extends JarClassLoader implements Closeable {
 				// - Don't allow plugins to have embedded JAR's, could force them to extract all dependencies...
 				//
 				if (path.getFileName().toString().toLowerCase().endsWith(".jar")) {
-					JarInputStream jarInputStream = new JarInputStream(Files.newInputStream(path));
-					try {
-						JarEntry jarEntry = jarInputStream.getNextJarEntry();
-						while (jarEntry != null) {
-							jarContent.put(jarEntry.getName(), IOUtils.toByteArray(jarInputStream));
-							jarEntry = jarInputStream.getNextJarEntry();
+					try (InputStream newInputStream = Files.newInputStream(path)) {
+						try (JarInputStream jarInputStream = new JarInputStream(newInputStream)) {
+							JarEntry jarEntry = jarInputStream.getNextJarEntry();
+							while (jarEntry != null) {
+								jarContent.put(jarEntry.getName(), IOUtils.toByteArray(jarInputStream));
+								jarEntry = jarInputStream.getNextJarEntry();
+							}
 						}
-					} finally {
-						jarInputStream.close();
 					}
 				}
 			}
