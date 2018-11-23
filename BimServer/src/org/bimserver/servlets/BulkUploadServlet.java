@@ -136,7 +136,7 @@ public class BulkUploadServlet extends SubServlet {
 												}
 											}
 										} catch (Exception e) {
-											LOGGER.error("", e.getMessage());
+											LOGGER.error(e.getMessage());
 										}
 									}
 								} else {
