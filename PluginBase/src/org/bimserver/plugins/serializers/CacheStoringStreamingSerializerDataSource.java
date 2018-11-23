@@ -28,11 +28,13 @@ public class CacheStoringStreamingSerializerDataSource extends ExtendedDataSourc
 	private RemovableFileOutputStream diskCacheOutputStream;
 	private StreamingSerializer serializer;
 	private DoneListener doneListener;
+	private String name;
 
-	public CacheStoringStreamingSerializerDataSource(StreamingSerializer serializer, RemovableFileOutputStream diskCacheOutputStream, DoneListener doneListener) {
+	public CacheStoringStreamingSerializerDataSource(StreamingSerializer serializer, RemovableFileOutputStream diskCacheOutputStream, DoneListener doneListener, String name) {
 		this.serializer = serializer;
 		this.diskCacheOutputStream = diskCacheOutputStream;
 		this.doneListener = doneListener;
+		this.name = name;
 	}
 	
 	public void writeToOutputStream(OutputStream outputStream, ProgressReporter progressReporter) throws Exception {
@@ -69,7 +71,7 @@ public class CacheStoringStreamingSerializerDataSource extends ExtendedDataSourc
 
 	@Override
 	public String getName() {
-		return null;
+		return name;
 	}
 
 	@Override

@@ -37,7 +37,6 @@ import org.bimserver.database.queries.QueryObjectProvider;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
 import org.bimserver.database.queries.om.QueryPart;
-import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.interfaces.objects.SCheckoutResult;
 import org.bimserver.interfaces.objects.SProgressTopicType;
@@ -226,7 +225,7 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 							public void done() {
 								changeActionState(ActionState.FINISHED, "Done", 100);
 							}
-						}); 
+						}, downloadDescriptor.getFileNameWithoutExtension()); 
 						checkoutResult.setFile(new DataHandler(cacheStoringEmfSerializerDataSource));
 					} catch (Exception e) {
 						LOGGER.error("", e);
