@@ -124,18 +124,33 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
-	public interface CheckinCallback {
+	public interface CheckinAsyncCallback {
 		void success(java.lang.Long result);
 		void error(Throwable e);
 	}
 	
-	public interface CheckinFromUrlCallback {
+	public interface CheckinFromUrlAsyncCallback {
 		void success(java.lang.Long result);
 		void error(Throwable e);
 	}
 	
-	public interface CheckinInitiatedCallback {
+	public interface CheckinFromUrlSyncCallback {
+		void success(org.bimserver.interfaces.objects.SLongCheckinActionState result);
+		void error(Throwable e);
+	}
+	
+	public interface CheckinInitiatedAsyncCallback {
 		void success(java.lang.Long result);
+		void error(Throwable e);
+	}
+	
+	public interface CheckinInitiatedSyncCallback {
+		void success(org.bimserver.interfaces.objects.SLongCheckinActionState result);
+		void error(Throwable e);
+	}
+	
+	public interface CheckinSyncCallback {
+		void success(org.bimserver.interfaces.objects.SLongCheckinActionState result);
 		void error(Throwable e);
 	}
 	
@@ -990,11 +1005,11 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void checkin(final java.lang.Long poid, final java.lang.String comment, final java.lang.Long deserializerOid, final java.lang.Long fileSize, final java.lang.String fileName, final javax.activation.DataHandler data, final java.lang.Boolean merge, final java.lang.Boolean sync, final CheckinCallback callback) {
+	public void checkinAsync(final java.lang.Long poid, final java.lang.String comment, final java.lang.Long deserializerOid, final java.lang.Long fileSize, final java.lang.String fileName, final javax.activation.DataHandler data, final java.lang.Boolean merge, final CheckinAsyncCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.checkin(poid, comment, deserializerOid, fileSize, fileName, data, merge, sync));
+					callback.success(syncService.checkinAsync(poid, comment, deserializerOid, fileSize, fileName, data, merge));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -1002,11 +1017,11 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void checkinFromUrl(final java.lang.Long poid, final java.lang.String comment, final java.lang.Long deserializerOid, final java.lang.String fileName, final java.lang.String url, final java.lang.Boolean merge, final java.lang.Boolean sync, final CheckinFromUrlCallback callback) {
+	public void checkinFromUrlAsync(final java.lang.Long poid, final java.lang.String comment, final java.lang.Long deserializerOid, final java.lang.String fileName, final java.lang.String url, final java.lang.Boolean merge, final CheckinFromUrlAsyncCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.checkinFromUrl(poid, comment, deserializerOid, fileName, url, merge, sync));
+					callback.success(syncService.checkinFromUrlAsync(poid, comment, deserializerOid, fileName, url, merge));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -1014,11 +1029,47 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void checkinInitiated(final java.lang.Long topicId, final java.lang.Long poid, final java.lang.String comment, final java.lang.Long deserializerOid, final java.lang.Long fileSize, final java.lang.String fileName, final javax.activation.DataHandler data, final java.lang.Boolean merge, final java.lang.Boolean sync, final CheckinInitiatedCallback callback) {
+	public void checkinFromUrlSync(final java.lang.Long poid, final java.lang.String comment, final java.lang.Long deserializerOid, final java.lang.String fileName, final java.lang.String url, final java.lang.Boolean merge, final CheckinFromUrlSyncCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.checkinInitiated(topicId, poid, comment, deserializerOid, fileSize, fileName, data, merge, sync));
+					callback.success(syncService.checkinFromUrlSync(poid, comment, deserializerOid, fileName, url, merge));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void checkinInitiatedAsync(final java.lang.Long topicId, final java.lang.Long poid, final java.lang.String comment, final java.lang.Long deserializerOid, final java.lang.Long fileSize, final java.lang.String fileName, final javax.activation.DataHandler data, final java.lang.Boolean merge, final CheckinInitiatedAsyncCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.checkinInitiatedAsync(topicId, poid, comment, deserializerOid, fileSize, fileName, data, merge));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void checkinInitiatedSync(final java.lang.Long topicId, final java.lang.Long poid, final java.lang.String comment, final java.lang.Long deserializerOid, final java.lang.Long fileSize, final java.lang.String fileName, final javax.activation.DataHandler data, final java.lang.Boolean merge, final CheckinInitiatedSyncCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.checkinInitiatedSync(topicId, poid, comment, deserializerOid, fileSize, fileName, data, merge));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void checkinSync(final java.lang.Long poid, final java.lang.String comment, final java.lang.Long deserializerOid, final java.lang.Long fileSize, final java.lang.String fileName, final javax.activation.DataHandler data, final java.lang.Boolean merge, final CheckinSyncCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.checkinSync(poid, comment, deserializerOid, fileSize, fileName, data, merge));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

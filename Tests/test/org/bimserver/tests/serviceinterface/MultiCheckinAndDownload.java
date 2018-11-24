@@ -55,10 +55,8 @@ public class MultiCheckinAndDownload extends TestWithEmbeddedServer {
 				SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
 				
 				// Checkin
-				Long progressId = bimServerClient.getServiceInterface().checkin(newProject.getOid(), "test", deserializer.getOid(), ifcFile.length(), ifcFile.getName(), new DataHandler(new FileDataSource(ifcFile)), false, true);
+				SLongActionState longActionState = bimServerClient.getServiceInterface().checkinSync(newProject.getOid(), "test", deserializer.getOid(), ifcFile.length(), ifcFile.getName(), new DataHandler(new FileDataSource(ifcFile)), false);
 				
-				// Get the status
-				SLongActionState longActionState = bimServerClient.getRegistry().getProgress(progressId);
 				if (longActionState.getState() == SActionState.FINISHED) {
 					// Find a serializer
 					SSerializerPluginConfiguration serializer = bimServerClient.getServiceInterface().getSerializerByContentType("application/ifc");

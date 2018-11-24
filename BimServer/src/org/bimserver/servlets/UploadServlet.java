@@ -36,6 +36,7 @@ import org.apache.commons.fileupload.util.Streams;
 import org.apache.commons.io.IOUtils;
 import org.bimserver.BimServer;
 import org.bimserver.interfaces.objects.SFile;
+import org.bimserver.interfaces.objects.SLongCheckinActionState;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.utils.InputStreamDataSource;
@@ -132,14 +133,25 @@ public class UploadServlet extends SubServlet {
 							
 							if (token != null) {
 								try {
+									ServiceInterface service = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
+									// For now it's always sync
+									sync = true;
 									if (topicId == -1) {
-										ServiceInterface service = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
-										long newTopicId = service.checkin(poid, comment, deserializerOid, -1L, name, ifcFile, merge, sync);
-										result.put("topicId", newTopicId);
+										if (sync) {
+											SLongCheckinActionState checkinSync = service.checkinSync(poid, comment, deserializerOid, -1L, name, ifcFile, merge);
+											result = (ObjectNode) getBimServer().getJsonHandler().getJsonConverter().toJson(checkinSync);
+										} else {
+											long newTopicId = service.checkinAsync(poid, comment, deserializerOid, -1L, name, ifcFile, merge);
+											result.put("topicId", newTopicId);
+										}
 									} else {
-										ServiceInterface service = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
-										long newTopicId = service.checkinInitiated(topicId, poid, comment, deserializerOid, -1L, name, ifcFile, merge, true);
-										result.put("topicId", newTopicId);
+										if (sync) {
+											SLongCheckinActionState checkinSync = service.checkinInitiatedSync(topicId, poid, comment, deserializerOid, -1L, name, ifcFile, merge);
+											result = (ObjectNode) getBimServer().getJsonHandler().getJsonConverter().toJson(checkinSync);
+										} else {
+											service.checkinInitiatedAsync(topicId, poid, comment, deserializerOid, -1L, name, ifcFile, merge);
+											result.put("topicId", topicId);
+										}
 									}
 								} catch (Exception e) {
 									// First handle the remaining stream, so we can send the exception

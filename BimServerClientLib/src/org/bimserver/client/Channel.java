@@ -36,7 +36,7 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.InputStreamBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.bimserver.plugins.services.Flow;
+import org.bimserver.interfaces.objects.SLongCheckinActionState;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ConnectDisconnectListener;
 import org.bimserver.shared.ServiceHolder;
@@ -54,6 +54,9 @@ import org.bimserver.shared.interfaces.PluginInterface;
 import org.bimserver.shared.interfaces.PublicInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.shared.interfaces.SettingsInterface;
+import org.bimserver.shared.json.ConvertException;
+import org.bimserver.shared.json.JsonConverter;
+import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.reflector.Reflector;
 import org.bimserver.shared.reflector.ReflectorFactory;
 import org.slf4j.Logger;
@@ -108,7 +111,7 @@ public abstract class Channel implements ServiceHolder {
 
 	public abstract void connect(TokenHolder tokenHolder) throws ChannelConnectionException;
 
-	public long checkin(String baseAddress, String token, long poid, String comment, long deserializerOid, boolean merge, Flow flow, long fileSize, String filename, InputStream inputStream) throws ServerException, UserException {
+	public SLongCheckinActionState checkinSync(String baseAddress, String token, long poid, String comment, long deserializerOid, boolean merge, long fileSize, String filename, InputStream inputStream) throws ServerException, UserException {
 		String address = baseAddress + "/upload";
 		HttpPost httppost = new HttpPost(address);
 		try {
@@ -125,12 +128,82 @@ public abstract class Channel implements ServiceHolder {
 			multipartEntityBuilder.addPart("merge", new StringBody("" + merge, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("poid", new StringBody("" + poid, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("comment", new StringBody("" + comment, ContentType.DEFAULT_TEXT));
-			multipartEntityBuilder.addPart("sync", new StringBody("" + (flow == Flow.SYNC), ContentType.DEFAULT_TEXT));
+			multipartEntityBuilder.addPart("sync", new StringBody("" + true, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("compression", new StringBody("deflate", ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("data", data);
 
 			httppost.setEntity(multipartEntityBuilder.build());
 
+			HttpResponse httpResponse = closeableHttpClient.execute(httppost);
+			if (httpResponse.getStatusLine().getStatusCode() == 200) {
+				ObjectMapper objectMapper = new ObjectMapper();
+				InputStreamReader in = new InputStreamReader(httpResponse.getEntity().getContent());
+				try {
+					ObjectNode result = objectMapper.readValue(in, ObjectNode.class);
+					if (result.has("exception")) {
+						ObjectNode exceptionJson = (ObjectNode) result.get("exception");
+						String exceptionType = exceptionJson.get("__type").asText();
+						String message = exceptionJson.has("message") ? exceptionJson.get("message").asText() : "unknown";
+						if (exceptionType.equals(UserException.class.getSimpleName())) {
+							throw new UserException(message);
+						} else if (exceptionType.equals(ServerException.class.getSimpleName())) {
+							throw new ServerException(message);
+						}
+					} else {
+						SServicesMap sServicesMap = getSServicesMap();
+						try {
+							return (SLongCheckinActionState) getJsonConverter().fromJson(sServicesMap.getSType("SLongCheckinState"), null, result);
+						} catch (ConvertException e) {
+							e.printStackTrace();
+						}
+					}
+				} finally {
+					in.close();
+				}
+			}
+		} catch (ClientProtocolException e) {
+			throw new ServerException(e);
+		} catch (IOException e) {
+			throw new ServerException(e);
+		} catch (PublicInterfaceNotFoundException e) {
+			throw new ServerException(e);
+		} finally {
+			httppost.releaseConnection();
+		}
+		return null;
+	}
+
+	protected JsonConverter getJsonConverter() {
+		return null;
+	}
+
+	protected SServicesMap getSServicesMap() {
+		return null;
+	}
+
+	public long checkinAsync(String baseAddress, String token, long poid, String comment, long deserializerOid, boolean merge, long fileSize, String filename, InputStream inputStream) throws ServerException, UserException {
+		String address = baseAddress + "/upload";
+		HttpPost httppost = new HttpPost(address);
+		try {
+//			Long topicId = getServiceInterface().initiateCheckin(poid, deserializerOid);
+			// TODO find some GzipInputStream variant that _compresses_ instead
+			// of _decompresses_ using deflate for now
+			InputStreamBody data = new InputStreamBody(new DeflaterInputStream(inputStream), filename);
+			
+			MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
+			
+//			multipartEntityBuilder.addPart("topicId", new StringBody("" + topicId, ContentType.DEFAULT_TEXT));
+			multipartEntityBuilder.addPart("token", new StringBody(token, ContentType.DEFAULT_TEXT));
+			multipartEntityBuilder.addPart("deserializerOid", new StringBody("" + deserializerOid, ContentType.DEFAULT_TEXT));
+			multipartEntityBuilder.addPart("merge", new StringBody("" + merge, ContentType.DEFAULT_TEXT));
+			multipartEntityBuilder.addPart("poid", new StringBody("" + poid, ContentType.DEFAULT_TEXT));
+			multipartEntityBuilder.addPart("comment", new StringBody("" + comment, ContentType.DEFAULT_TEXT));
+			multipartEntityBuilder.addPart("sync", new StringBody("" + false, ContentType.DEFAULT_TEXT));
+			multipartEntityBuilder.addPart("compression", new StringBody("deflate", ContentType.DEFAULT_TEXT));
+			multipartEntityBuilder.addPart("data", data);
+			
+			httppost.setEntity(multipartEntityBuilder.build());
+			
 			HttpResponse httpResponse = closeableHttpClient.execute(httppost);
 			if (httpResponse.getStatusLine().getStatusCode() == 200) {
 				ObjectMapper objectMapper = new ObjectMapper();

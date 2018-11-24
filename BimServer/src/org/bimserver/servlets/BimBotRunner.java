@@ -171,7 +171,7 @@ public class BimBotRunner implements Runnable {
 				} catch (TopicRegisterException e1) {
 					e1.printStackTrace();
 				}
-				serviceInterface.checkinInitiated(topicId, project.getOid(), "Auto checkin", deserializer.getOid(), -1L, "s", new DataHandler(new InputStreamDataSource(inputStream)), false, true);
+				serviceInterface.checkinInitiatedSync(topicId, project.getOid(), "Auto checkin", deserializer.getOid(), -1L, "s", new DataHandler(new InputStreamDataSource(inputStream)), false);
 				project = serviceInterface.getProjectByPoid(project.getOid());
 				
 				PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(project.getSchema());

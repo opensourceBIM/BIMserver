@@ -115,4 +115,8 @@ public abstract class JsonReflector implements Reflector {
 
 	public void close() {
 	}
+	
+	public JsonConverter getConverter() {
+		return converter;
+	}
 }

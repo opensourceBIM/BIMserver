@@ -132,7 +132,7 @@ public class LoadFullDirectory {
 				if (filename.endsWith(".ifc") || filename.endsWith(".xml") || filename.endsWith(".zip") || filename.endsWith(".ifczip")) {
 					try {
 						SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension(extension, project.getOid());
-						client.getServiceInterface().checkin(project.getOid(), filename, deserializer.getOid(), Files.size(p), filename, new DataHandler(new FileDataSource(p.toFile())), false, true);
+						client.getServiceInterface().checkinSync(project.getOid(), filename, deserializer.getOid(), Files.size(p), filename, new DataHandler(new FileDataSource(p.toFile())), false);
 					} catch (ServerException e) {
 						e.printStackTrace();
 					} catch (UserException e) {

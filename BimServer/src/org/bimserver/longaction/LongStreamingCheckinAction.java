@@ -29,7 +29,10 @@ import org.bimserver.database.actions.StreamingCheckinDatabaseAction;
 import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
 import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.models.store.ActionState;
+import org.bimserver.models.store.LongActionState;
+import org.bimserver.models.store.LongCheckinActionState;
 import org.bimserver.models.store.Project;
+import org.bimserver.models.store.StoreFactory;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
@@ -41,6 +44,7 @@ public class LongStreamingCheckinAction extends LongAction<LongCheckinActionKey>
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongStreamingCheckinAction.class);
 	private StreamingCheckinDatabaseAction checkinDatabaseAction;
 	private String fileName;
+	private long roid;
 
 	public LongStreamingCheckinAction(Long topicId, BimServer bimServer, String username, String userUsername, Authorization authorization, StreamingCheckinDatabaseAction checkinDatabaseAction) {
 		super(bimServer, username, userUsername, authorization);
@@ -89,6 +93,7 @@ public class LongStreamingCheckinAction extends LongAction<LongCheckinActionKey>
 					}
 				}
 			});
+			this.roid = checkinDatabaseAction.getRevision().getOid();
 		} catch (Exception e) {
 			try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession()) {
 				Project project = tmpSession.get(checkinDatabaseAction.getPoid(), OldQuery.getDefault());
@@ -135,5 +140,13 @@ public class LongStreamingCheckinAction extends LongAction<LongCheckinActionKey>
 	@Override
 	public String getDescription() {
 		return getClass().getSimpleName();
+	}
+	
+	@Override
+	public synchronized LongActionState getState() {
+		LongCheckinActionState ds = StoreFactory.eINSTANCE.createLongCheckinActionState();
+		ds.setRoid(roid);
+		super.fillState(ds);
+		return ds;
 	}
 }

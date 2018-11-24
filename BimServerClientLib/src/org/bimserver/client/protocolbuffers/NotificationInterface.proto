@@ -108,25 +108,21 @@ message NewUserRequest {
 	optional int64 uoid = 1;
 }
 
-enum SActionState{
-	SActionState_UNKNOWN = 0;
-	SActionState_STARTED = 1;
-	SActionState_AS_ERROR = 2;
-	SActionState_FINISHED = 3;
-}
-
 message SLongActionState {
-	optional int64 end = 1;
-	repeated string errors = 2;
-	repeated string infos = 3;
-	optional int64 oid = 4;
-	optional int32 progress = 5;
-	optional int32 rid = 6;
-	optional int32 stage = 7;
-	optional int64 start = 8;
-	optional SActionState state = 9;
-	optional string title = 10;
-	repeated string warnings = 11;
+	required string __actual_type = 1;
+	optional SLongCheckinActionState __SLongCheckinActionState = 2;
+	optional int64 end = 3;
+	repeated string errors = 4;
+	repeated string infos = 5;
+	optional int64 oid = 6;
+	optional int32 progress = 7;
+	optional int32 rid = 8;
+	optional int32 stage = 9;
+	optional int64 start = 10;
+	optional SActionState state = 11;
+	optional string title = 12;
+	optional int64 topicId = 13;
+	repeated string warnings = 14;
 }
 
 message ProgressRequest {

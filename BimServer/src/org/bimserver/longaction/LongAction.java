@@ -159,8 +159,7 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 		return progress.get();
 	}
 
-	public synchronized LongActionState getState() {
-		LongActionState ds = StoreFactory.eINSTANCE.createLongActionState();
+	public void fillState(LongActionState ds) {
 		ds.setStart(getStart().getTime());
 		ds.setEnd(getStop() != null ? getStop().getTime() : null);
 		ds.setProgress(getProgress());
@@ -170,9 +169,15 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 		ds.getErrors().addAll(errors);
 		ds.getInfos().addAll(infos);
 		ds.getWarnings().addAll(warnings);
+		ds.setTopicId(progressTopic.getKey().getId());
 		if (getActionState() == ActionState.FINISHED) {
 			ds.setProgress(100);
 		}
+	}
+	
+	public synchronized LongActionState getState() {
+		LongActionState ds = StoreFactory.eINSTANCE.createLongActionState();
+		fillState(ds);
 		return ds;
 	}
 	

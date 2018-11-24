@@ -46,7 +46,6 @@ import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.User;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
@@ -196,7 +195,7 @@ public class BimServerImporter {
 						Project sProject = projects.get(key.poid);
 						try {
 							SDeserializerPluginConfiguration desserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", sProject.getOid());
-							client.checkin(sProject.getOid(), key.comment, desserializer.getOid(), false, Flow.SYNC, key.file);
+							client.checkinSync(sProject.getOid(), key.comment, desserializer.getOid(), false, key.file);
 							SProject updatedProject = client.getServiceInterface().getProjectByPoid(sProject.getOid());
 							DatabaseSession databaseSession = database.createSession();
 							try {

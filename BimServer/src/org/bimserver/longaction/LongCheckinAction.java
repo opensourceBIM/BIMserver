@@ -23,7 +23,6 @@ import org.bimserver.database.CleanupListener;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.database.ProgressHandler;
-import org.bimserver.database.RollbackListener;
 import org.bimserver.database.actions.CheckinDatabaseAction;
 import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
 import org.bimserver.interfaces.objects.SProgressTopicType;

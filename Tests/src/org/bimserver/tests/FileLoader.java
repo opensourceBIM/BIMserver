@@ -29,7 +29,6 @@ import org.bimserver.LocalDevSetup;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -54,7 +53,7 @@ public class FileLoader {
 						try {
 							project = client.getServiceInterface().addProject(file.getFileName().toString(), "ifc2x3tc1");
 							SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
-							client.checkin(project.getOid(), file.getFileName().toString(), deserializer.getOid(), false, Flow.SYNC, file);
+							client.checkinSync(project.getOid(), file.getFileName().toString(), deserializer.getOid(), false, file);
 						} catch (ServerException e) {
 							e.printStackTrace();
 						} catch (UserException e) {

@@ -22,6 +22,7 @@ import org.bimserver.client.Channel;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.interfaces.PublicInterface;
+import org.bimserver.shared.json.JsonConverter;
 import org.bimserver.shared.json.JsonReflector;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.reflector.ReflectorFactory;
@@ -55,4 +56,14 @@ public class JsonChannel extends Channel {
 		}
 		finish(reflector, reflectorFactory);
 	}
+
+	@Override
+	protected JsonConverter getJsonConverter() {
+		return reflector.getConverter();
+	}
+	
+	@Override
+		protected SServicesMap getSServicesMap() {
+			return sServicesMap;
+		}
 }

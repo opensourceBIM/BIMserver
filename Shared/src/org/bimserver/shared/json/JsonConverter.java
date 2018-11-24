@@ -32,8 +32,6 @@ import javax.activation.DataHandler;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
-import org.bimserver.plugins.serializers.CacheStoringEmfSerializerDataSource;
-import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.shared.meta.SBase;
 import org.bimserver.shared.meta.SClass;
 import org.bimserver.shared.meta.SField;

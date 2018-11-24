@@ -119,14 +119,7 @@ public class BulkUploadServlet extends SubServlet {
 											SProject project = getOrCreatePath(service, mainProject, mainProject, path, schema);
 											SDeserializerPluginConfiguration deserializer = service.getSuggestedDeserializerForExtension(extension, project.getOid());
 											
-											long topicId = -1;
-											try {
-												topicId = service.checkin(project.getOid(), comment, deserializer.getOid(), -1L, filename, ifcFile, false, true);
-											} finally {
-												if (topicId != -1) {
-													service.cleanupLongAction(topicId);
-												}
-											}
+											service.checkinSync(project.getOid(), comment, deserializer.getOid(), -1L, filename, ifcFile, false);
 										} catch (Exception e) {
 											LOGGER.error(e.getMessage());
 										}

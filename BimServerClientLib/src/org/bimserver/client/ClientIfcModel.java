@@ -1035,7 +1035,7 @@ public class ClientIfcModel extends IfcModel {
 		});
 		SharedJsonSerializer sharedJsonSerializer = new SharedJsonSerializer(this, false);
 		SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("json", poid);
-		bimServerClient.checkin(poid, comment, deserializer.getOid(), false, Flow.SYNC, -1, "test", new SerializerInputstream(sharedJsonSerializer));
+		bimServerClient.checkinSync(poid, comment, deserializer.getOid(), false, -1, "test", new SerializerInputstream(sharedJsonSerializer));
 	}
 
 	public void load(IdEObject object) {

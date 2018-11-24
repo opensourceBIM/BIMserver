@@ -56,6 +56,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.LongActionState#getErrors <em>Errors</em>}</li>
  *   <li>{@link org.bimserver.models.store.LongActionState#getWarnings <em>Warnings</em>}</li>
  *   <li>{@link org.bimserver.models.store.LongActionState#getInfos <em>Infos</em>}</li>
+ *   <li>{@link org.bimserver.models.store.LongActionState#getTopicId <em>Topic Id</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getLongActionState()
@@ -270,5 +271,31 @@ public interface LongActionState extends IdEObject {
 	 * @generated
 	 */
 	EList<String> getInfos();
+
+	/**
+	 * Returns the value of the '<em><b>Topic Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Topic Id</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Topic Id</em>' attribute.
+	 * @see #setTopicId(long)
+	 * @see org.bimserver.models.store.StorePackage#getLongActionState_TopicId()
+	 * @model
+	 * @generated
+	 */
+	long getTopicId();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.LongActionState#getTopicId <em>Topic Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Topic Id</em>' attribute.
+	 * @see #getTopicId()
+	 * @generated
+	 */
+	void setTopicId(long value);
 
 } // LongActionState

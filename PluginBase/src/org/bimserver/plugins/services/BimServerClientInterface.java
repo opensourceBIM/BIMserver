@@ -24,10 +24,11 @@ import java.net.URL;
 import java.nio.file.Path;
 
 import org.bimserver.database.queries.om.Query;
+import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.MetaDataManager;
+import org.bimserver.interfaces.objects.SLongCheckinActionState;
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.emf.IdEObject;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ServiceHolder;
@@ -52,7 +53,10 @@ public interface BimServerClientInterface extends ServiceHolder, AutoCloseable {
 	void download(long roid, long serializerOid, Path file) throws IOException, BimServerClientException;
 	void download(long roid, Query query, long serializerOid, Path file) throws IOException, BimServerClientException;
 	
-	long checkin(long poid, String string, long deserializerOid, boolean merge, Flow flow, Path file) throws IOException, UserException, ServerException;
+	SLongCheckinActionState checkinSync(long poid, String string, long deserializerOid, boolean merge, Path file) throws IOException, UserException, ServerException;
+	long checkinAsync(long poid, String string, long deserializerOid, boolean merge, Path file) throws IOException, UserException, ServerException;
+	SLongCheckinActionState checkinSync(long poid, String comment, long deserializerOid, boolean merge, URL url) throws UserException, ServerException;
+	long checkinAsync(long poid, String comment, long deserializerOid, boolean merge, long fileSize, String filename, InputStream inputStream) throws UserException, ServerException;
 	
 	/**
 	 * Convenience method that given you the InputStream belonging to an already started download
@@ -86,8 +90,6 @@ public interface BimServerClientInterface extends ServiceHolder, AutoCloseable {
 	void disconnect();
 	
 	MetaDataManager getMetaDataManager();
-	long checkin(long poid, String comment, long deserializerOid, boolean merge, Flow flow, URL url) throws UserException, ServerException;
 	void download(long roid, String query, long oid, Path file) throws ServerException, UserException, PublicInterfaceNotFoundException, IOException;
-	long checkin(long poid, String comment, long deserializerOid, boolean merge, Flow flow, long fileSize, String filename, InputStream inputStream) throws UserException, ServerException;
 	void authenticate() throws ServerException, UserException;
 }

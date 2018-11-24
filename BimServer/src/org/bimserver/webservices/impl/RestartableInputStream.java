@@ -43,7 +43,6 @@ public class RestartableInputStream extends InputStream {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override
