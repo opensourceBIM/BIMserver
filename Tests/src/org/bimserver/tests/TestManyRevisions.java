@@ -55,7 +55,7 @@ public class TestManyRevisions {
 					int fn = 0;
 					for (int i=0; i<20; i++) {
 						System.out.println(i + ": " + files[fn].getFileName().toString());
-						client.checkin(project.getOid(), "comment" + i, deserializer.getOid(), false, Flow.SYNC, files[fn]);
+						client.checkinSync(project.getOid(), "comment" + i, deserializer.getOid(), false, files[fn]);
 						fn = 1 - fn;
 					}
 				} catch (ServerException | UserException | PublicInterfaceNotFoundException e) {

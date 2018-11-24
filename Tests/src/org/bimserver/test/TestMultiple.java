@@ -28,7 +28,6 @@ import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
@@ -51,7 +50,7 @@ public class TestMultiple {
 						try {
 							SProject project = client.getServiceInterface().addProject("P" + new Random().nextInt(), "ifc2x3tc1");
 							SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
-							client.checkin(project.getOid(), "Test", deserializer.getOid(), false, Flow.ASYNC, Paths.get("C:\\Git\\TestFiles\\TestData\\data\\HITOS_070308.ifc"));
+							client.checkinAsync(project.getOid(), "Test", deserializer.getOid(), false, Paths.get("C:\\Git\\TestFiles\\TestData\\data\\HITOS_070308.ifc"));
 						} catch (ServerException e) {
 							e.printStackTrace();
 						} catch (UserException e) {

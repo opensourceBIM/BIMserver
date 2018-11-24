@@ -38,7 +38,6 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.plugins.OptionsParser;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.PluginException;
@@ -87,7 +86,7 @@ public class TestInOut {
 			SProject project = client.getServiceInterface().addProject("test", "ifc2x3tc1");
 			SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 			Path inputFile = Paths.get("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
-			client.checkin(project.getOid(), "test", deserializer.getOid(), false, Flow.SYNC, inputFile);
+			client.checkinSync(project.getOid(), "test", deserializer.getOid(), false, inputFile);
 			project = client.getServiceInterface().getProjectByPoid(project.getOid());
 			SSerializerPluginConfiguration serializer = client.getServiceInterface().getSerializerByContentType("application/ifc");
 			Path outputFile = Paths.get("output.ifc");

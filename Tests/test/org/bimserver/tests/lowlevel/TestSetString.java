@@ -46,7 +46,7 @@ public class TestSetString extends TestWithEmbeddedServer {
 			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
 			SDeserializerPluginConfiguration suggestedDeserializerForExtension = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
-			bimServerClient.checkin(newProject.getOid(), "initial", suggestedDeserializerForExtension.getOid(), false, Flow.SYNC, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/WallOnly.ifc"));
+			bimServerClient.checkinSync(newProject.getOid(), "initial", suggestedDeserializerForExtension.getOid(), false, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/WallOnly.ifc"));
 			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
 			
 			SSerializerPluginConfiguration serializer = bimServerClient.getServiceInterface().getSerializerByName("Ifc2x3tc1 (Streaming)");

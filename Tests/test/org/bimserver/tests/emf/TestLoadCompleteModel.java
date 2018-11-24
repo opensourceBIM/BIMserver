@@ -49,7 +49,7 @@ public class TestLoadCompleteModel extends TestWithEmbeddedServer {
 			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 			
 			// Checkin file
-			bimServerClient.checkin(project.getOid(), "test", deserializer.getOid(), false, Flow.SYNC, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/AC11-Institute-Var-2-IFC.ifc"));
+			bimServerClient.checkinSync(project.getOid(), "test", deserializer.getOid(), false, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/AC11-Institute-Var-2-IFC.ifc"));
 			
 			// Refresh project
 			project = bimServerClient.getServiceInterface().getProjectByPoid(project.getOid());

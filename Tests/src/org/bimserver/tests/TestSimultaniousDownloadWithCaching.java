@@ -111,7 +111,7 @@ public class TestSimultaniousDownloadWithCaching {
 			final SProject project = serviceMap.getServiceInterface().addProject("test", "ifc2x3tc1");
 			SDeserializerPluginConfiguration deserializerByName = serviceMap.getServiceInterface().getDeserializerByName("IfcStepDeserializer");
 			Path file = Paths.get("../TestData/data/AC11-Institute-Var-2-IFC.ifc");
-			serviceInterface.checkin(project.getOid(), "test", deserializerByName.getOid(), file.toFile().length(), file.getFileName().toString(), new DataHandler(new FileDataSource(file.toFile())), false, true);
+			serviceInterface.checkinSync(project.getOid(), "test", deserializerByName.getOid(), file.toFile().length(), file.getFileName().toString(), new DataHandler(new FileDataSource(file.toFile())), false);
 			final SProject projectUpdate = serviceMap.getServiceInterface().getProjectByPoid(project.getOid());
 			ThreadPoolExecutor executor = new ThreadPoolExecutor(20, 20, 1, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(1000));
 			for (int i=0; i<20; i++) {

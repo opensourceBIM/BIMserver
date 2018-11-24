@@ -76,7 +76,7 @@ public class TestUploadDir {
 				SDeserializerPluginConfiguration deserializerForExtension = client.getServiceInterface().getSuggestedDeserializerForExtension(directory.getFileName().toString().substring(directory.getFileName().toString().lastIndexOf(".") + 1), parentProject.getOid());
 				System.out.println("Checking in " + directory.toString() + " - " + Formatters.bytesToString(directory.toFile().length()));
 				try {
-					client.checkin(parentProject.getOid(), "", deserializerForExtension.getOid(), false, Flow.SYNC, directory);
+					client.checkinSync(parentProject.getOid(), "", deserializerForExtension.getOid(), false, directory);
 				} catch (UserException e) {
 					e.printStackTrace();
 				}

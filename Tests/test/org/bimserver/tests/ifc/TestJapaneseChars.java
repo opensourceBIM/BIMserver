@@ -64,7 +64,7 @@ public class TestJapaneseChars extends TestWithEmbeddedServer {
 			// Find a deserializer to use
 			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
 			
-			bimServerClient.checkin(newProject.getOid(), "initial", deserializer.getOid(), false, Flow.SYNC, url);
+			bimServerClient.checkinSync(newProject.getOid(), "initial", deserializer.getOid(), false, url);
 			
 			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
 			SSerializerPluginConfiguration serializer = bimServerClient.getServiceInterface().getSerializerByContentType("application/ifc");

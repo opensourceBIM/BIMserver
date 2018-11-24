@@ -30,7 +30,6 @@ import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcWall;
-import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.BimServerClientException;
@@ -51,7 +50,7 @@ public class TestNewQueryViaClient {
 			
 			SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 			
-			client.checkin(project.getOid(), "Test Model", deserializer.getOid(), false, Flow.SYNC, Paths.get("C:/Git/TestFiles/TestData/data/AC11-FZK-Haus-IFC.ifc"));
+			client.checkinSync(project.getOid(), "Test Model", deserializer.getOid(), false, Paths.get("C:/Git/TestFiles/TestData/data/AC11-FZK-Haus-IFC.ifc"));
 			
 			project = client.getServiceInterface().getProjectByPoid(project.getOid());
 			

@@ -25,9 +25,9 @@ import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SFile;
+import org.bimserver.interfaces.objects.SLongCheckinActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServiceException;
 
@@ -47,22 +47,18 @@ public class TestAddExtendedData {
 			file.setFilename("test.txt");
 			long fileId = client.getServiceInterface().uploadFile(file);
 			
-			System.out.println(client.getServiceInterface().getFile(fileId));
-			
-			SProject project = client.getServiceInterface().addProject("test23", "ifc2x3tc1");
+			SProject project = client.getServiceInterface().addProject("t2es035442t23", "ifc2x3tc1");
 			SDeserializerPluginConfiguration deserializerForExtension = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
-			client.checkin(project.getOid(), "initial", deserializerForExtension.getOid(), false, Flow.SYNC, Paths.get("../TestData/data/AC11-FZK-Haus-IFC.ifc"));
+			SLongCheckinActionState checkinSync = client.checkinSync(project.getOid(), "initial", deserializerForExtension.getOid(), false, Paths.get("C:\\Git\\TestFiles\\TestData\\data\\AC11-FZK-Haus-IFC.ifc"));
 			
-			project = client.getServiceInterface().getProjectByPoid(project.getOid());
-			
-			SExtendedDataSchema extendedDataSchemaByNamespace = client.getServiceInterface().getExtendedDataSchemaByName("http://extend.bimserver.org/validationreport");
+			SExtendedDataSchema extendedDataSchemaByNamespace = client.getServiceInterface().getExtendedDataSchemaByName("GEOMETRY_GENERATION_REPORT_JSON_1_1");
 			
 			SExtendedData extendedData = new SExtendedData();
 			extendedData.setFileId(fileId);
 			extendedData.setTitle("test3");
 			extendedData.setSchemaId(extendedDataSchemaByNamespace.getOid());
 			
-			client.getServiceInterface().addExtendedDataToRevision(project.getLastRevisionId(), extendedData);
+			client.getServiceInterface().addExtendedDataToRevision(checkinSync.getRoid(), extendedData);
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {

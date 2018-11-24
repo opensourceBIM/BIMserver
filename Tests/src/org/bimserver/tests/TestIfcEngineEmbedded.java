@@ -32,7 +32,6 @@ import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.store.ServerState;
 import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.LocalDevelopmentResourceFetcher;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.utils.PathUtils;
@@ -93,7 +92,7 @@ public class TestIfcEngineEmbedded {
 				Path testIfcFile = Paths.get("../TestData/data/" + filename);
 				
 				// Checkin the file
-				client.checkin(project.getOid(), "testing ifc engine", deserializer.getOid(), false, Flow.SYNC, testIfcFile);
+				client.checkinSync(project.getOid(), "testing ifc engine", deserializer.getOid(), false, testIfcFile);
 
 				// Update local project
 				project = client.getServiceInterface().getProjectByPoid(project.getOid());

@@ -85,7 +85,7 @@ public class TestBigFilesRemote {
 				System.out.println("Used: " + Formatters.bytesToString(javaInfo.getHeapUsed()) + ", Free: " + Formatters.bytesToString(javaInfo.getHeapFree()) + ", Max: " + Formatters.bytesToString(javaInfo.getHeapMax()) + ", Total: " + Formatters.bytesToString(javaInfo.getHeapTotal()));
 				String downloadUrl = basepath + UrlEscapers.urlPathSegmentEscaper().escape(fileName);
 				System.out.println("Download URL: " + downloadUrl);
-				client.getServiceInterface().checkinFromUrl(project.getOid(), fileName, deserializer.getOid(), fileName, downloadUrl, false, true);
+				client.getServiceInterface().checkinFromUrlSync(project.getOid(), fileName, deserializer.getOid(), fileName, downloadUrl, false);
 				System.out.println("Done checking in " + fileName);
 			}
 		} catch (ServiceException e) {

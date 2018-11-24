@@ -28,7 +28,6 @@ import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.test.TestWithEmbeddedServer;
 import org.junit.Test;
@@ -50,8 +49,8 @@ public class TestCompare extends TestWithEmbeddedServer {
 			SSerializerPluginConfiguration serializer = bimServerClient.getServiceInterface().getSerializerByName("Ifc2x3tc1");
 
 			// Checkin the file
-			bimServerClient.checkin(newProject1.getOid(), "test", deserializer.getOid(), false, Flow.SYNC, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/compare_by_guid_rev_1.ifc"));
-			bimServerClient.checkin(newProject2.getOid(), "test", deserializer.getOid(), false, Flow.SYNC, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/compare_by_guid_rev_2.ifc"));
+			bimServerClient.checkinSync(newProject1.getOid(), "test", deserializer.getOid(), false, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/compare_by_guid_rev_1.ifc"));
+			bimServerClient.checkinSync(newProject2.getOid(), "test", deserializer.getOid(), false, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/compare_by_guid_rev_2.ifc"));
 			
 			newProject1 = bimServerClient.getServiceInterface().getProjectByPoid(newProject1.getOid());
 			newProject2 = bimServerClient.getServiceInterface().getProjectByPoid(newProject2.getOid());
@@ -86,8 +85,8 @@ public class TestCompare extends TestWithEmbeddedServer {
 			SSerializerPluginConfiguration serializer = bimServerClient.getServiceInterface().getSerializerByName("Ifc2x3tc1");
 
 			// Checkin the file
-			bimServerClient.checkin(newProject1.getOid(), "test", deserializer.getOid(), false, Flow.SYNC, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/compare_by_guid_rev_1.ifc"));
-			bimServerClient.checkin(newProject2.getOid(), "test", deserializer.getOid(), false, Flow.SYNC, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/compare_by_guid_rev_2.ifc"));
+			bimServerClient.checkinSync(newProject1.getOid(), "test", deserializer.getOid(), false, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/compare_by_guid_rev_1.ifc"));
+			bimServerClient.checkinSync(newProject2.getOid(), "test", deserializer.getOid(), false, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/compare_by_guid_rev_2.ifc"));
 			
 			newProject1 = bimServerClient.getServiceInterface().getProjectByPoid(newProject1.getOid());
 			newProject2 = bimServerClient.getServiceInterface().getProjectByPoid(newProject2.getOid());
@@ -121,8 +120,8 @@ public class TestCompare extends TestWithEmbeddedServer {
 			SSerializerPluginConfiguration serializer = bimServerClient.getServiceInterface().getSerializerByName("Ifc4");
 			
 			// Checkin the file
-			bimServerClient.checkin(newProject1.getOid(), "test", deserializer.getOid(), false, Flow.SYNC, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/compare_by_name_rev_1.ifc"));
-			bimServerClient.checkin(newProject2.getOid(), "test", deserializer.getOid(), false, Flow.SYNC, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/compare_by_name_rev_2.ifc"));
+			bimServerClient.checkinSync(newProject1.getOid(), "test", deserializer.getOid(), false, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/compare_by_name_rev_1.ifc"));
+			bimServerClient.checkinSync(newProject2.getOid(), "test", deserializer.getOid(), false, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/compare_by_name_rev_2.ifc"));
 			
 			newProject1 = bimServerClient.getServiceInterface().getProjectByPoid(newProject1.getOid());
 			newProject2 = bimServerClient.getServiceInterface().getProjectByPoid(newProject2.getOid());
@@ -156,8 +155,8 @@ public class TestCompare extends TestWithEmbeddedServer {
 			SSerializerPluginConfiguration serializer = bimServerClient.getServiceInterface().getSerializerByName("Ifc4");
 			
 			// Checkin the file
-			bimServerClient.checkin(newProject1.getOid(), "test", deserializer.getOid(), false, Flow.SYNC, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/compare_by_name_rev_1.ifc"));
-			bimServerClient.checkin(newProject2.getOid(), "test", deserializer.getOid(), false, Flow.SYNC, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/compare_by_name_rev_2.ifc"));
+			bimServerClient.checkinSync(newProject1.getOid(), "test", deserializer.getOid(), false, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/compare_by_name_rev_1.ifc"));
+			bimServerClient.checkinSync(newProject2.getOid(), "test", deserializer.getOid(), false, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/compare_by_name_rev_2.ifc"));
 			
 			newProject1 = bimServerClient.getServiceInterface().getProjectByPoid(newProject1.getOid());
 			newProject2 = bimServerClient.getServiceInterface().getProjectByPoid(newProject2.getOid());

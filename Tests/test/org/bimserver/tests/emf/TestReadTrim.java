@@ -28,7 +28,6 @@ import org.bimserver.models.ifc2x3tc1.IfcParameterValue;
 import org.bimserver.models.ifc2x3tc1.IfcTrimmedCurve;
 import org.bimserver.models.ifc2x3tc1.IfcTrimmingSelect;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.test.TestWithEmbeddedServer;
 import org.junit.Test;
@@ -48,7 +47,7 @@ public class TestReadTrim extends TestWithEmbeddedServer {
 			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
 			
 			// Checkin the file
-			bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, Flow.SYNC, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/TST.ifc"));
+			bimServerClient.checkinSync(newProject.getOid(), "test", deserializer.getOid(), false, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/TST.ifc"));
 			
 			// Refresh project info
 			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());

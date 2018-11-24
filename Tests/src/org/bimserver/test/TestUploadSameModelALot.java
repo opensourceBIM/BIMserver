@@ -42,7 +42,7 @@ public class TestUploadSameModelALot {
 				SProject project = client.getServiceInterface().addProject("P" + i, "ifc2x3tc1");
 				SDeserializerPluginConfiguration deserializerForExtension = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 				System.out.println(i);
-				client.checkin(project.getOid(), "C" + i, deserializerForExtension.getOid(), false, Flow.SYNC, Paths.get("../TestData/data/AC11-FZK-Haus-IFC.ifc"));
+				client.checkinSync(project.getOid(), "C" + i, deserializerForExtension.getOid(), false, Paths.get("../TestData/data/AC11-FZK-Haus-IFC.ifc"));
 			}
 		} catch (ServiceException e) {
 			e.printStackTrace();
