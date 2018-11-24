@@ -296,6 +296,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createDensityCollection();
 		case StorePackage.DENSITY:
 			return (EObject) createDensity();
+		case StorePackage.LONG_CHECKIN_ACTION_STATE:
+			return (EObject) createLongCheckinActionState();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -1443,6 +1445,16 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public Density createDensity() {
 		DensityImpl density = new DensityImpl();
 		return density;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LongCheckinActionState createLongCheckinActionState() {
+		LongCheckinActionStateImpl longCheckinActionState = new LongCheckinActionStateImpl();
+		return longCheckinActionState;
 	}
 
 	/**

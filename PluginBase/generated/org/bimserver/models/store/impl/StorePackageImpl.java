@@ -813,6 +813,13 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass longCheckinActionStateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum userTypeEEnum = null;
 
 	/**
@@ -3629,6 +3636,15 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EAttribute getLongActionState_Infos() {
 		return (EAttribute) getLongActionState().getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLongActionState_TopicId() {
+		return (EAttribute) getLongActionState().getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -7065,6 +7081,28 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 */
 	public EAttribute getDensity_Density() {
 		return (EAttribute) getDensity().getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLongCheckinActionState() {
+		if (longCheckinActionStateEClass == null) {
+			longCheckinActionStateEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI)
+					.getEClassifiers().get(122);
+		}
+		return longCheckinActionStateEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLongCheckinActionState_Roid() {
+		return (EAttribute) getLongCheckinActionState().getEStructuralFeatures().get(0);
 	}
 
 	/**

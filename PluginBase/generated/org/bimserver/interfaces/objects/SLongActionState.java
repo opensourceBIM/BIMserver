@@ -19,12 +19,14 @@ package org.bimserver.interfaces.objects;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
+@XmlSeeAlso(value={SLongCheckinActionState.class})
 public class SLongActionState implements SDataBase
 {
 	private long oid = -1;
@@ -41,6 +43,7 @@ public class SLongActionState implements SDataBase
 	private List<java.lang.String> errors = new ArrayList<java.lang.String>();
 	private List<java.lang.String> warnings = new ArrayList<java.lang.String>();
 	private List<java.lang.String> infos = new ArrayList<java.lang.String>();
+	private long topicId;
 
 	public long getOid() {
 		return this.oid;
@@ -95,6 +98,9 @@ public class SLongActionState implements SDataBase
 		if (sField.getName().equals("infos")) {
 			return getInfos();
 		}
+		if (sField.getName().equals("topicId")) {
+			return getTopicId();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -140,6 +146,10 @@ public class SLongActionState implements SDataBase
 		}
 		if (sField.getName().equals("infos")) {
 			setInfos((List<String>)val);
+			return;
+		}
+		if (sField.getName().equals("topicId")) {
+			setTopicId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -226,6 +236,14 @@ public class SLongActionState implements SDataBase
 
 	public void setInfos(List<java.lang.String> infos) {
 		this.infos = infos;
+	}
+	
+	public long getTopicId() {
+		return topicId;
+	}
+
+	public void setTopicId(long topicId) {
+		this.topicId = topicId;
 	}
 	
 	@Override

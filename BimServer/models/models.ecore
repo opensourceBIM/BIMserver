@@ -20578,6 +20578,7 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="infos" upperBound="-1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="topicId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="ServerState">
       <eLiterals name="UNDEFINED"/>
@@ -21177,6 +21178,9 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="trianglesAbove" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="volume" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="density" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="LongCheckinActionState" eSuperTypes="#/4/LongActionState">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="roid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     </eClassifiers>
   </ecore:EPackage>
 </xmi:XMI>

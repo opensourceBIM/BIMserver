@@ -3196,13 +3196,22 @@ public interface StorePackage extends EPackage {
 	int LONG_ACTION_STATE__INFOS = 8;
 
 	/**
+	 * The feature id for the '<em><b>Topic Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_ACTION_STATE__TOPIC_ID = 9;
+
+	/**
 	 * The number of structural features of the '<em>Long Action State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LONG_ACTION_STATE_FEATURE_COUNT = 9;
+	int LONG_ACTION_STATE_FEATURE_COUNT = 10;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.ServerInfoImpl <em>Server Info</em>}' class.
@@ -7349,6 +7358,124 @@ public interface StorePackage extends EPackage {
 	int DENSITY_FEATURE_COUNT = 6;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.LongCheckinActionStateImpl <em>Long Checkin Action State</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.LongCheckinActionStateImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getLongCheckinActionState()
+	 * @generated
+	 */
+	int LONG_CHECKIN_ACTION_STATE = 105;
+
+	/**
+	 * The feature id for the '<em><b>Start</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_CHECKIN_ACTION_STATE__START = LONG_ACTION_STATE__START;
+
+	/**
+	 * The feature id for the '<em><b>End</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_CHECKIN_ACTION_STATE__END = LONG_ACTION_STATE__END;
+
+	/**
+	 * The feature id for the '<em><b>Progress</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_CHECKIN_ACTION_STATE__PROGRESS = LONG_ACTION_STATE__PROGRESS;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_CHECKIN_ACTION_STATE__STATE = LONG_ACTION_STATE__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Title</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_CHECKIN_ACTION_STATE__TITLE = LONG_ACTION_STATE__TITLE;
+
+	/**
+	 * The feature id for the '<em><b>Stage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_CHECKIN_ACTION_STATE__STAGE = LONG_ACTION_STATE__STAGE;
+
+	/**
+	 * The feature id for the '<em><b>Errors</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_CHECKIN_ACTION_STATE__ERRORS = LONG_ACTION_STATE__ERRORS;
+
+	/**
+	 * The feature id for the '<em><b>Warnings</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_CHECKIN_ACTION_STATE__WARNINGS = LONG_ACTION_STATE__WARNINGS;
+
+	/**
+	 * The feature id for the '<em><b>Infos</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_CHECKIN_ACTION_STATE__INFOS = LONG_ACTION_STATE__INFOS;
+
+	/**
+	 * The feature id for the '<em><b>Topic Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_CHECKIN_ACTION_STATE__TOPIC_ID = LONG_ACTION_STATE__TOPIC_ID;
+
+	/**
+	 * The feature id for the '<em><b>Roid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_CHECKIN_ACTION_STATE__ROID = LONG_ACTION_STATE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Long Checkin Action State</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_CHECKIN_ACTION_STATE_FEATURE_COUNT = LONG_ACTION_STATE_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7356,7 +7483,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 105;
+	int USER_TYPE = 106;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -7366,7 +7493,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 106;
+	int SI_PREFIX = 107;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -7376,7 +7503,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 107;
+	int OBJECT_STATE = 108;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -7386,7 +7513,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 108;
+	int COMPARE_TYPE = 109;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -7396,7 +7523,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 109;
+	int ACTION_STATE = 110;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -7406,7 +7533,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 110;
+	int SERVER_STATE = 111;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}' enum.
@@ -7416,7 +7543,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getTrigger()
 	 * @generated
 	 */
-	int TRIGGER = 111;
+	int TRIGGER = 112;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServiceSimpleType <em>Service Simple Type</em>}' enum.
@@ -7426,7 +7553,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceSimpleType()
 	 * @generated
 	 */
-	int SERVICE_SIMPLE_TYPE = 112;
+	int SERVICE_SIMPLE_TYPE = 113;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PrimitiveEnum <em>Primitive Enum</em>}' enum.
@@ -7436,7 +7563,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPrimitiveEnum()
 	 * @generated
 	 */
-	int PRIMITIVE_ENUM = 113;
+	int PRIMITIVE_ENUM = 114;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.NotifictionResultEnum <em>Notifiction Result Enum</em>}' enum.
@@ -7446,7 +7573,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNotifictionResultEnum()
 	 * @generated
 	 */
-	int NOTIFICTION_RESULT_ENUM = 114;
+	int NOTIFICTION_RESULT_ENUM = 115;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ProgressTopicType <em>Progress Topic Type</em>}' enum.
@@ -7456,7 +7583,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getProgressTopicType()
 	 * @generated
 	 */
-	int PROGRESS_TOPIC_TYPE = 115;
+	int PROGRESS_TOPIC_TYPE = 116;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ModelCheckerResultType <em>Model Checker Result Type</em>}' enum.
@@ -7466,7 +7593,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelCheckerResultType()
 	 * @generated
 	 */
-	int MODEL_CHECKER_RESULT_TYPE = 116;
+	int MODEL_CHECKER_RESULT_TYPE = 117;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SmtpProtocol <em>Smtp Protocol</em>}' enum.
@@ -7476,7 +7603,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSmtpProtocol()
 	 * @generated
 	 */
-	int SMTP_PROTOCOL = 117;
+	int SMTP_PROTOCOL = 118;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PluginBundleType <em>Plugin Bundle Type</em>}' enum.
@@ -7486,7 +7613,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginBundleType()
 	 * @generated
 	 */
-	int PLUGIN_BUNDLE_TYPE = 118;
+	int PLUGIN_BUNDLE_TYPE = 119;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PluginType <em>Plugin Type</em>}' enum.
@@ -7496,7 +7623,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginType()
 	 * @generated
 	 */
-	int PLUGIN_TYPE = 119;
+	int PLUGIN_TYPE = 120;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServiceStatus <em>Service Status</em>}' enum.
@@ -7506,7 +7633,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceStatus()
 	 * @generated
 	 */
-	int SERVICE_STATUS = 120;
+	int SERVICE_STATUS = 121;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -7516,7 +7643,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 121;
+	int DATA_HANDLER = 122;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -10493,6 +10620,17 @@ public interface StorePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getLongActionState_Infos();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.LongActionState#getTopicId <em>Topic Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Topic Id</em>'.
+	 * @see org.bimserver.models.store.LongActionState#getTopicId()
+	 * @see #getLongActionState()
+	 * @generated
+	 */
+	EAttribute getLongActionState_TopicId();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.ServerInfo <em>Server Info</em>}'.
@@ -14300,6 +14438,27 @@ public interface StorePackage extends EPackage {
 	EAttribute getDensity_Density();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.LongCheckinActionState <em>Long Checkin Action State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Long Checkin Action State</em>'.
+	 * @see org.bimserver.models.store.LongCheckinActionState
+	 * @generated
+	 */
+	EClass getLongCheckinActionState();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.LongCheckinActionState#getRoid <em>Roid</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Roid</em>'.
+	 * @see org.bimserver.models.store.LongCheckinActionState#getRoid()
+	 * @see #getLongCheckinActionState()
+	 * @generated
+	 */
+	EAttribute getLongCheckinActionState_Roid();
+
+	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.UserType <em>User Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16774,6 +16933,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LONG_ACTION_STATE__INFOS = eINSTANCE.getLongActionState_Infos();
+
+		/**
+		 * The meta object literal for the '<em><b>Topic Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LONG_ACTION_STATE__TOPIC_ID = eINSTANCE.getLongActionState_TopicId();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.ServerInfoImpl <em>Server Info</em>}' class.
@@ -19732,6 +19899,24 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DENSITY__DENSITY = eINSTANCE.getDensity_Density();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.LongCheckinActionStateImpl <em>Long Checkin Action State</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.LongCheckinActionStateImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getLongCheckinActionState()
+		 * @generated
+		 */
+		EClass LONG_CHECKIN_ACTION_STATE = eINSTANCE.getLongCheckinActionState();
+
+		/**
+		 * The meta object literal for the '<em><b>Roid</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LONG_CHECKIN_ACTION_STATE__ROID = eINSTANCE.getLongCheckinActionState_Roid();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.

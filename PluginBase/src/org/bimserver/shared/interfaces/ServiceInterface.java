@@ -44,6 +44,7 @@ import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SGeometryInfo;
 import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.interfaces.objects.SLogAction;
+import org.bimserver.interfaces.objects.SLongCheckinActionState;
 import org.bimserver.interfaces.objects.SModelCheckerInstance;
 import org.bimserver.interfaces.objects.SNewService;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
@@ -441,19 +442,28 @@ public interface ServiceInterface extends PublicInterface {
 	 * @return An id, which you can use for the getCheckinState method
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "checkin")
-	Long checkin(
+	@WebMethod(action = "checkinSync")
+	SLongCheckinActionState checkinSync(
 		@WebParam(name = "poid", partName = "checkin.poid") Long poid,
 		@WebParam(name = "comment", partName = "checkin.comment") String comment,
 		@WebParam(name = "deserializerOid", partName = "checkin.deserializerOid") Long deserializerOid,
 		@WebParam(name = "fileSize", partName = "checkin.fileSize") Long fileSize,
 		@WebParam(name = "fileName", partName = "checkin.fileName") String fileName,
 		@WebParam(name = "data", partName = "checkin.data") @XmlMimeType("application/octet-stream") DataHandler data,
-		@WebParam(name = "merge", partName = "checkin.merge") Boolean merge,
-		@WebParam(name = "sync", partName = "checkin.sync") Boolean sync) throws ServerException, UserException;
+		@WebParam(name = "merge", partName = "checkin.merge") Boolean merge) throws ServerException, UserException;
 
-	@WebMethod(action = "checkinInitiated")
-	Long checkinInitiated(
+	@WebMethod(action = "checkinAsync")
+	Long checkinAsync(
+		@WebParam(name = "poid", partName = "checkin.poid") Long poid,
+		@WebParam(name = "comment", partName = "checkin.comment") String comment,
+		@WebParam(name = "deserializerOid", partName = "checkin.deserializerOid") Long deserializerOid,
+		@WebParam(name = "fileSize", partName = "checkin.fileSize") Long fileSize,
+		@WebParam(name = "fileName", partName = "checkin.fileName") String fileName,
+		@WebParam(name = "data", partName = "checkin.data") @XmlMimeType("application/octet-stream") DataHandler data,
+		@WebParam(name = "merge", partName = "checkin.merge") Boolean merge) throws ServerException, UserException;
+
+	@WebMethod(action = "checkinInitiatedSync")
+	SLongCheckinActionState checkinInitiatedSync(
 		@WebParam(name = "topicId", partName = "checkinInitiated.topicId") Long topicId,
 		@WebParam(name = "poid", partName = "checkinInitiated.poid") Long poid,
 		@WebParam(name = "comment", partName = "checkinInitiated.comment") String comment,
@@ -461,9 +471,18 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "fileSize", partName = "checkinInitiated.fileSize") Long fileSize,
 		@WebParam(name = "fileName", partName = "checkinInitiated.fileName") String fileName,
 		@WebParam(name = "data", partName = "checkinInitiated.data") @XmlMimeType("application/octet-stream") DataHandler data,
-		@WebParam(name = "merge", partName = "checkinInitiated.merge") Boolean merge,
-		@WebParam(name = "sync", partName = "checkinInitiated.sync") Boolean sync) throws ServerException, UserException;
+		@WebParam(name = "merge", partName = "checkinInitiated.merge") Boolean merge) throws ServerException, UserException;
 
+	@WebMethod(action = "checkinInitiatedAsync")
+	Long checkinInitiatedAsync(
+		@WebParam(name = "topicId", partName = "checkinInitiated.topicId") Long topicId,
+		@WebParam(name = "poid", partName = "checkinInitiated.poid") Long poid,
+		@WebParam(name = "comment", partName = "checkinInitiated.comment") String comment,
+		@WebParam(name = "deserializerOid", partName = "checkinInitiated.deserializerOid") Long deserializerOid,
+		@WebParam(name = "fileSize", partName = "checkinInitiated.fileSize") Long fileSize,
+		@WebParam(name = "fileName", partName = "checkinInitiated.fileName") String fileName,
+		@WebParam(name = "data", partName = "checkinInitiated.data") @XmlMimeType("application/octet-stream") DataHandler data,
+		@WebParam(name = "merge", partName = "checkinInitiated.merge") Boolean merge) throws ServerException, UserException;
 	
 	/**
 	 * Checkin a new model by sending a serialized form
@@ -478,15 +497,23 @@ public interface ServiceInterface extends PublicInterface {
 	 * @return An id, which you can use for the getCheckinState method
 	 * @throws ServerException, UserException
 	 */
-	@WebMethod(action = "checkinFromUrl")
-	Long checkinFromUrl(
+	@WebMethod(action = "checkinFromUrlSync")
+	SLongCheckinActionState checkinFromUrlSync(
 		@WebParam(name = "poid", partName = "checkinFromUrl.poid") Long poid,
 		@WebParam(name = "comment", partName = "checkinFromUrl.comment") String comment,
 		@WebParam(name = "deserializerOid", partName = "checkinFromUrl.deserializerOid") Long deserializerOid,
 		@WebParam(name = "fileName", partName = "checkinFromUrl.fileName") String fileName,
 		@WebParam(name = "url", partName = "checkinFromUrl.url") String url,
-		@WebParam(name = "merge", partName = "checkinFromUrl.merge") Boolean merge,
-		@WebParam(name = "sync", partName = "checkinFromUrl.sync") Boolean sync) throws ServerException, UserException;
+		@WebParam(name = "merge", partName = "checkinFromUrl.merge") Boolean merge) throws ServerException, UserException;
+
+	@WebMethod(action = "checkinFromUrlAsync")
+	Long checkinFromUrlAsync(
+		@WebParam(name = "poid", partName = "checkinFromUrl.poid") Long poid,
+		@WebParam(name = "comment", partName = "checkinFromUrl.comment") String comment,
+		@WebParam(name = "deserializerOid", partName = "checkinFromUrl.deserializerOid") Long deserializerOid,
+		@WebParam(name = "fileName", partName = "checkinFromUrl.fileName") String fileName,
+		@WebParam(name = "url", partName = "checkinFromUrl.url") String url,
+		@WebParam(name = "merge", partName = "checkinFromUrl.merge") Boolean merge) throws ServerException, UserException;
 
 	/**
 	 * Download a compare of a model

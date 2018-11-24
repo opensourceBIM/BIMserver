@@ -22,12 +22,7 @@ import static org.junit.Assert.fail;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Collections;
-
-import javax.activation.DataHandler;
-import javax.activation.FileDataSource;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.database.queries.om.DefaultQueries;
@@ -37,7 +32,6 @@ import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.test.TestWithEmbeddedServer;
 import org.junit.Test;
@@ -61,15 +55,12 @@ public class SingleCheckinAndDownload extends TestWithEmbeddedServer {
 			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
 			
 			// Checkin
-			Long progressId = -1L;
 //			if (useChannel) {
 //				progressId = bimServerClient.getServiceInterface().checkin(newProject.getOid(), "test", deserializer.getOid(), ifcFile.toFile().length(), ifcFile.getFileName().toString(), new DataHandler(new FileDataSource(ifcFile.toFile())), true, true);
 //			} else {
-				progressId = bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, Flow.SYNC, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/AC11-Institute-Var-2-IFC.ifc"));
+			SLongActionState longActionState = bimServerClient.checkinSync(newProject.getOid(), "test", deserializer.getOid(), false, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/AC11-Institute-Var-2-IFC.ifc"));
 //			}
 			
-			// Get the status
-			SLongActionState longActionState = bimServerClient.getRegistry().getProgress(progressId);
 			if (longActionState.getState() == SActionState.FINISHED) {
 				// Find a serializer
 				SSerializerPluginConfiguration serializer = bimServerClient.getServiceInterface().getSerializerByContentType("application/ifc");

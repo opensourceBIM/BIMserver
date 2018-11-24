@@ -1,5 +1,5 @@
 
-Ó©
+Èµ
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -20,7 +20,7 @@
 extendedDataSchema (2%.org.bimserver.pb.SExtendedDataSchema"D
 AddExtendedDataSchemaResponse
 errorMessage (	
-value ("ª
+value ("”
 SExtendedData
 added (
 fileId (
@@ -30,11 +30,12 @@
 revisionId (
 rid (
 schemaId (
-size (
-title	 (	
-url
- (	
-userId ("f
+size (
+timeToGenerate	 (
+title
+ (	
+url (	
+userId ("f
 AddExtendedDataToProjectRequest
 poid (5
 extendedData (2.org.bimserver.pb.SExtendedData"g
@@ -257,31 +258,54 @@ parentPoid (
 CheckInternetConnectionRequest"F
 CheckInternetConnectionResponse
 errorMessage (	
-value ("ó
-CheckinRequest
+value ("é
+CheckinAsyncRequest
 poid (
 comment (	
 deserializerOid (
 fileSize (
 fileName (	
 data (
-merge (
-sync ("6
-CheckinResponse
+merge (";
+CheckinAsyncResponse
 errorMessage (	
-value ("ã
-CheckinFromUrlRequest
+value ("Ç
+CheckinFromUrlAsyncRequest
 poid (
 comment (	
 deserializerOid (
 fileName (	
 url (	
-merge (
-sync ("=
-CheckinFromUrlResponse
+merge ("B
+CheckinFromUrlAsyncResponse
 errorMessage (	
-value ("±
-CheckinInitiatedRequest
+value ("Å
+CheckinFromUrlSyncRequest
+poid (
+comment (	
+deserializerOid (
+fileName (	
+url (	
+merge ("˛
+SLongCheckinActionState
+end (
+errors (	
+infos (	
+oid (
+progress (
+rid (
+roid (
+stage (
+start	 (-
+state
+ (2.org.bimserver.pb.SActionState
+title (	
+topicId (
+warnings (	"l
+CheckinFromUrlSyncResponse
+errorMessage (	8
+value (2).org.bimserver.pb.SLongCheckinActionState"®
+CheckinInitiatedAsyncRequest
 topicId (
 poid (
 comment (	
@@ -289,11 +313,33 @@ parentPoid (
 fileSize (
 fileName (	
 data (
-merge (
-sync	 ("?
-CheckinInitiatedResponse
+merge ("D
+CheckinInitiatedAsyncResponse
 errorMessage (	
-value ("D
+value ("ß
+CheckinInitiatedSyncRequest
+topicId (
+poid (
+comment (	
+deserializerOid (
+fileSize (
+fileName (	
+data (
+merge ("n
+CheckinInitiatedSyncResponse
+errorMessage (	8
+value (2).org.bimserver.pb.SLongCheckinActionState"ç
+CheckinSyncRequest
+poid (
+comment (	
+deserializerOid (
+fileSize (
+fileName (	
+data (
+merge ("e
+CheckinSyncResponse
+errorMessage (	8
+value (2).org.bimserver.pb.SLongCheckinActionState"D
 CheckoutRequest
 roid (
 serializerOid (
@@ -1558,7 +1604,12 @@ serviceOid ("F
 SUserType_SYSTEM 
 SUserType_ADMIN
 SUserType_USER
-SUserType_READ_ONLY*l
+SUserType_READ_ONLY*x
+SActionState
+SActionState_UNKNOWN 
+SActionState_STARTED
+SActionState_AS_ERROR
+SActionState_FINISHED*l
 SCompareType
 SCompareType_ALL 
 SCompareType_ADD
@@ -1568,7 +1619,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2‘Ç
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2≈Ö
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
@@ -1589,10 +1640,13 @@ addProject#.org.bimserver.pb.AddProjectRequest$.org.bimserver.pb.AddProjectRes
 branchToExistingProject0.org.bimserver.pb.BranchToExistingProjectRequest1.org.bimserver.pb.BranchToExistingProjectResponseo
 branchToNewProject+.org.bimserver.pb.BranchToNewProjectRequest,.org.bimserver.pb.BranchToNewProjectResponseY
 changeUserType'.org.bimserver.pb.ChangeUserTypeRequest.org.bimserver.pb.VoidResponse~
-checkInternetConnection0.org.bimserver.pb.CheckInternetConnectionRequest1.org.bimserver.pb.CheckInternetConnectionResponseN
-checkin .org.bimserver.pb.CheckinRequest!.org.bimserver.pb.CheckinResponsec
-checkinFromUrl'.org.bimserver.pb.CheckinFromUrlRequest(.org.bimserver.pb.CheckinFromUrlResponsei
-checkinInitiated).org.bimserver.pb.CheckinInitiatedRequest*.org.bimserver.pb.CheckinInitiatedResponseQ
+checkInternetConnection0.org.bimserver.pb.CheckInternetConnectionRequest1.org.bimserver.pb.CheckInternetConnectionResponse]
+checkinAsync%.org.bimserver.pb.CheckinAsyncRequest&.org.bimserver.pb.CheckinAsyncResponser
+checkinFromUrlAsync,.org.bimserver.pb.CheckinFromUrlAsyncRequest-.org.bimserver.pb.CheckinFromUrlAsyncResponseo
+checkinFromUrlSync+.org.bimserver.pb.CheckinFromUrlSyncRequest,.org.bimserver.pb.CheckinFromUrlSyncResponsex
+checkinInitiatedAsync..org.bimserver.pb.CheckinInitiatedAsyncRequest/.org.bimserver.pb.CheckinInitiatedAsyncResponseu
+checkinInitiatedSync-.org.bimserver.pb.CheckinInitiatedSyncRequest..org.bimserver.pb.CheckinInitiatedSyncResponseZ
+checkinSync$.org.bimserver.pb.CheckinSyncRequest%.org.bimserver.pb.CheckinSyncResponseQ
 checkout!.org.bimserver.pb.CheckoutRequest".org.bimserver.pb.CheckoutResponse_
 cleanupLongAction*.org.bimserver.pb.CleanupLongActionRequest.org.bimserver.pb.VoidResponseN
 compare .org.bimserver.pb.CompareRequest!.org.bimserver.pb.CompareResponse`

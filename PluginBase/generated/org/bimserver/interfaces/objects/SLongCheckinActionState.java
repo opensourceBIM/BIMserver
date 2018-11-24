@@ -16,21 +16,22 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-import javax.xml.bind.annotation.XmlSeeAlso;
+import java.util.Date;
+import java.util.List;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SStringType.class, SDoubleType.class, SBooleanType.class, SByteArrayType.class, SLongType.class})
-public class SPrimitiveType extends SType implements SDataBase
+public class SLongCheckinActionState extends SLongActionState implements SDataBase
 {
 	private long oid = -1;
 	private int rid = 0;
 
 	@XmlTransient
 	private static SClass sClass;
+	private long roid;
 
 	public long getOid() {
 		return this.oid;
@@ -54,10 +55,43 @@ public class SPrimitiveType extends SType implements SDataBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SPrimitiveType.sClass = sClass;
+		SLongCheckinActionState.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
+		if (sField.getName().equals("start")) {
+			return getStart();
+		}
+		if (sField.getName().equals("end")) {
+			return getEnd();
+		}
+		if (sField.getName().equals("progress")) {
+			return getProgress();
+		}
+		if (sField.getName().equals("state")) {
+			return getState();
+		}
+		if (sField.getName().equals("title")) {
+			return getTitle();
+		}
+		if (sField.getName().equals("stage")) {
+			return getStage();
+		}
+		if (sField.getName().equals("errors")) {
+			return getErrors();
+		}
+		if (sField.getName().equals("warnings")) {
+			return getWarnings();
+		}
+		if (sField.getName().equals("infos")) {
+			return getInfos();
+		}
+		if (sField.getName().equals("topicId")) {
+			return getTopicId();
+		}
+		if (sField.getName().equals("roid")) {
+			return getRoid();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -66,8 +100,53 @@ public class SPrimitiveType extends SType implements SDataBase
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
+	@SuppressWarnings("unchecked")
 
 	public void sSet(SField sField, Object val) {
+		if (sField.getName().equals("start")) {
+			setStart((Date)val);
+			return;
+		}
+		if (sField.getName().equals("end")) {
+			setEnd((Date)val);
+			return;
+		}
+		if (sField.getName().equals("progress")) {
+			setProgress((Integer)val);
+			return;
+		}
+		if (sField.getName().equals("state")) {
+			setState((SActionState)val);
+			return;
+		}
+		if (sField.getName().equals("title")) {
+			setTitle((String)val);
+			return;
+		}
+		if (sField.getName().equals("stage")) {
+			setStage((Integer)val);
+			return;
+		}
+		if (sField.getName().equals("errors")) {
+			setErrors((List<String>)val);
+			return;
+		}
+		if (sField.getName().equals("warnings")) {
+			setWarnings((List<String>)val);
+			return;
+		}
+		if (sField.getName().equals("infos")) {
+			setInfos((List<String>)val);
+			return;
+		}
+		if (sField.getName().equals("topicId")) {
+			setTopicId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("roid")) {
+			setRoid((Long)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -77,6 +156,14 @@ public class SPrimitiveType extends SType implements SDataBase
 			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
+	}
+	
+	public long getRoid() {
+		return roid;
+	}
+
+	public void setRoid(long roid) {
+		this.roid = roid;
 	}
 	
 	@Override
@@ -95,7 +182,7 @@ public class SPrimitiveType extends SType implements SDataBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SPrimitiveType other = (SPrimitiveType) obj;
+		SLongCheckinActionState other = (SLongCheckinActionState) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

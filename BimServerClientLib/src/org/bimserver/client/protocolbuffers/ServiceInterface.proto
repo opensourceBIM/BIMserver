@@ -61,11 +61,17 @@ service ServiceInterface {
 
 	rpc checkInternetConnection (CheckInternetConnectionRequest) returns (CheckInternetConnectionResponse);
 
-	rpc checkin (CheckinRequest) returns (CheckinResponse);
+	rpc checkinAsync (CheckinAsyncRequest) returns (CheckinAsyncResponse);
 
-	rpc checkinFromUrl (CheckinFromUrlRequest) returns (CheckinFromUrlResponse);
+	rpc checkinFromUrlAsync (CheckinFromUrlAsyncRequest) returns (CheckinFromUrlAsyncResponse);
 
-	rpc checkinInitiated (CheckinInitiatedRequest) returns (CheckinInitiatedResponse);
+	rpc checkinFromUrlSync (CheckinFromUrlSyncRequest) returns (CheckinFromUrlSyncResponse);
+
+	rpc checkinInitiatedAsync (CheckinInitiatedAsyncRequest) returns (CheckinInitiatedAsyncResponse);
+
+	rpc checkinInitiatedSync (CheckinInitiatedSyncRequest) returns (CheckinInitiatedSyncResponse);
+
+	rpc checkinSync (CheckinSyncRequest) returns (CheckinSyncResponse);
 
 	rpc checkout (CheckoutRequest) returns (CheckoutResponse);
 
@@ -351,9 +357,10 @@ message SExtendedData {
 	optional int32 rid = 6;
 	optional int64 schemaId = 7;
 	optional int64 size = 8;
-	optional string title = 9;
-	optional string url = 10;
-	optional int64 userId = 11;
+	optional int64 timeToGenerate = 9;
+	optional string title = 10;
+	optional string url = 11;
+	optional int64 userId = 12;
 }
 
 message AddExtendedDataToProjectRequest {
@@ -703,7 +710,7 @@ message CheckInternetConnectionResponse {
 	optional bool value = 2;
 }
 
-message CheckinRequest {
+message CheckinAsyncRequest {
 	optional int64 poid = 1;
 	optional string comment = 2;
 	optional int64 deserializerOid = 3;
@@ -711,30 +718,65 @@ message CheckinRequest {
 	optional string fileName = 5;
 	optional bytes data = 6;
 	optional bool merge = 7;
-	optional bool sync = 8;
 }
 
-message CheckinResponse {
+message CheckinAsyncResponse {
 	optional string errorMessage = 1;
 	optional int64 value = 2;
 }
 
-message CheckinFromUrlRequest {
+message CheckinFromUrlAsyncRequest {
 	optional int64 poid = 1;
 	optional string comment = 2;
 	optional int64 deserializerOid = 3;
 	optional string fileName = 4;
 	optional string url = 5;
 	optional bool merge = 6;
-	optional bool sync = 7;
 }
 
-message CheckinFromUrlResponse {
+message CheckinFromUrlAsyncResponse {
 	optional string errorMessage = 1;
 	optional int64 value = 2;
 }
 
-message CheckinInitiatedRequest {
+message CheckinFromUrlSyncRequest {
+	optional int64 poid = 1;
+	optional string comment = 2;
+	optional int64 deserializerOid = 3;
+	optional string fileName = 4;
+	optional string url = 5;
+	optional bool merge = 6;
+}
+
+enum SActionState{
+	SActionState_UNKNOWN = 0;
+	SActionState_STARTED = 1;
+	SActionState_AS_ERROR = 2;
+	SActionState_FINISHED = 3;
+}
+
+message SLongCheckinActionState {
+	optional int64 end = 1;
+	repeated string errors = 2;
+	repeated string infos = 3;
+	optional int64 oid = 4;
+	optional int32 progress = 5;
+	optional int32 rid = 6;
+	optional int64 roid = 7;
+	optional int32 stage = 8;
+	optional int64 start = 9;
+	optional SActionState state = 10;
+	optional string title = 11;
+	optional int64 topicId = 12;
+	repeated string warnings = 13;
+}
+
+message CheckinFromUrlSyncResponse {
+	optional string errorMessage = 1;
+	optional SLongCheckinActionState value = 2;
+}
+
+message CheckinInitiatedAsyncRequest {
 	optional int64 topicId = 1;
 	optional int64 poid = 2;
 	optional string comment = 3;
@@ -743,12 +785,42 @@ message CheckinInitiatedRequest {
 	optional string fileName = 6;
 	optional bytes data = 7;
 	optional bool merge = 8;
-	optional bool sync = 9;
 }
 
-message CheckinInitiatedResponse {
+message CheckinInitiatedAsyncResponse {
 	optional string errorMessage = 1;
 	optional int64 value = 2;
+}
+
+message CheckinInitiatedSyncRequest {
+	optional int64 topicId = 1;
+	optional int64 poid = 2;
+	optional string comment = 3;
+	optional int64 deserializerOid = 4;
+	optional int64 fileSize = 5;
+	optional string fileName = 6;
+	optional bytes data = 7;
+	optional bool merge = 8;
+}
+
+message CheckinInitiatedSyncResponse {
+	optional string errorMessage = 1;
+	optional SLongCheckinActionState value = 2;
+}
+
+message CheckinSyncRequest {
+	optional int64 poid = 1;
+	optional string comment = 2;
+	optional int64 deserializerOid = 3;
+	optional int64 fileSize = 4;
+	optional string fileName = 5;
+	optional bytes data = 6;
+	optional bool merge = 7;
+}
+
+message CheckinSyncResponse {
+	optional string errorMessage = 1;
+	optional SLongCheckinActionState value = 2;
 }
 
 message CheckoutRequest {

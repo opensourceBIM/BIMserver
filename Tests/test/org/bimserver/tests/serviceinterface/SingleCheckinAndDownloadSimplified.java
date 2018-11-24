@@ -54,7 +54,7 @@ public class SingleCheckinAndDownloadSimplified extends TestWithEmbeddedServer {
 			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
 			
 			// Checkin
-			bimServerClient.checkin(newProject.getOid(), "test", deserializer.getOid(), false, Flow.SYNC, ifcFile);
+			bimServerClient.checkinSync(newProject.getOid(), "test", deserializer.getOid(), false, ifcFile);
 			
 			// Find a serializer
 			SSerializerPluginConfiguration colladaSerializer = bimServerClient.getServiceInterface().getSerializerByContentType("application/collada");

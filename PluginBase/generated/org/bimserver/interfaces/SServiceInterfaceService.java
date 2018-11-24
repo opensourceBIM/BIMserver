@@ -574,6 +574,11 @@ public class SServiceInterfaceService extends org.bimserver.shared.meta.SService
 						return new org.bimserver.interfaces.objects.SDensity();
 					}
 				}));
+				getServicesMap().addType(new SClass(getServicesMap(), Class.forName("org.bimserver.interfaces.objects.SLongCheckinActionState"), new SConstructor(){
+					public Object newInstance() {
+						return new org.bimserver.interfaces.objects.SLongCheckinActionState();
+					}
+				}));
 			super.init();
 		} catch (ClassNotFoundException e) {
 			LOGGER.error("", e);

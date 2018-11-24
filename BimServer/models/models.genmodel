@@ -12169,6 +12169,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/LongActionState/errors"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/LongActionState/warnings"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/LongActionState/infos"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/LongActionState/topicId"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/4/ServerInfo">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ServerInfo/serverState"/>
@@ -12579,6 +12580,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Density/trianglesAbove"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Density/volume"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Density/density"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/4/LongCheckinActionState">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/LongCheckinActionState/roid"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -91,15 +91,27 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
-	public java.lang.Long checkin(java.lang.Long poid, java.lang.String comment, java.lang.Long deserializerOid, java.lang.Long fileSize, java.lang.String fileName, javax.activation.DataHandler data, java.lang.Boolean merge, java.lang.Boolean sync) throws UserException, ServerException {
+	public java.lang.Long checkinAsync(java.lang.Long poid, java.lang.String comment, java.lang.Long deserializerOid, java.lang.Long fileSize, java.lang.String fileName, javax.activation.DataHandler data, java.lang.Boolean merge) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.lang.Long checkinFromUrl(java.lang.Long poid, java.lang.String comment, java.lang.Long deserializerOid, java.lang.String fileName, java.lang.String url, java.lang.Boolean merge, java.lang.Boolean sync) throws UserException, ServerException {
+	public java.lang.Long checkinFromUrlAsync(java.lang.Long poid, java.lang.String comment, java.lang.Long deserializerOid, java.lang.String fileName, java.lang.String url, java.lang.Boolean merge) throws UserException, ServerException {
 		return null;
 	}
 	
-	public java.lang.Long checkinInitiated(java.lang.Long topicId, java.lang.Long poid, java.lang.String comment, java.lang.Long deserializerOid, java.lang.Long fileSize, java.lang.String fileName, javax.activation.DataHandler data, java.lang.Boolean merge, java.lang.Boolean sync) throws UserException, ServerException {
+	public org.bimserver.interfaces.objects.SLongCheckinActionState checkinFromUrlSync(java.lang.Long poid, java.lang.String comment, java.lang.Long deserializerOid, java.lang.String fileName, java.lang.String url, java.lang.Boolean merge) throws UserException, ServerException {
+		return null;
+	}
+	
+	public java.lang.Long checkinInitiatedAsync(java.lang.Long topicId, java.lang.Long poid, java.lang.String comment, java.lang.Long deserializerOid, java.lang.Long fileSize, java.lang.String fileName, javax.activation.DataHandler data, java.lang.Boolean merge) throws UserException, ServerException {
+		return null;
+	}
+	
+	public org.bimserver.interfaces.objects.SLongCheckinActionState checkinInitiatedSync(java.lang.Long topicId, java.lang.Long poid, java.lang.String comment, java.lang.Long deserializerOid, java.lang.Long fileSize, java.lang.String fileName, javax.activation.DataHandler data, java.lang.Boolean merge) throws UserException, ServerException {
+		return null;
+	}
+	
+	public org.bimserver.interfaces.objects.SLongCheckinActionState checkinSync(java.lang.Long poid, java.lang.String comment, java.lang.Long deserializerOid, java.lang.Long fileSize, java.lang.String fileName, javax.activation.DataHandler data, java.lang.Boolean merge) throws UserException, ServerException {
 		return null;
 	}
 	

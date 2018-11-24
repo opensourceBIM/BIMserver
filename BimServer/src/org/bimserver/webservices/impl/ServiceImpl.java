@@ -184,6 +184,8 @@ import org.bimserver.interfaces.objects.SGeoTag;
 import org.bimserver.interfaces.objects.SGeometryInfo;
 import org.bimserver.interfaces.objects.SIfcHeader;
 import org.bimserver.interfaces.objects.SLogAction;
+import org.bimserver.interfaces.objects.SLongActionState;
+import org.bimserver.interfaces.objects.SLongCheckinActionState;
 import org.bimserver.interfaces.objects.SModelCheckerInstance;
 import org.bimserver.interfaces.objects.SNewService;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
@@ -249,6 +251,7 @@ import org.bimserver.models.store.UserType;
 import org.bimserver.notifications.NewExtendedDataOnRevisionNotification;
 import org.bimserver.notifications.NewRevisionNotification;
 import org.bimserver.notifications.ProgressOnProjectTopic;
+import org.bimserver.notifications.ProgressTopic;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
@@ -1042,7 +1045,56 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		}
 	}
 
-	public Long checkinInitiatedInternal(Long topicId, final Long poid, final String comment, Long deserializerOid, Long fileSize, String fileName, DataHandler dataHandler, Boolean merge, Boolean sync, long newServiceId) throws ServerException, UserException {
+	public SLongCheckinActionState checkinInitiatedInternal(Long topicId, final Long poid, final String comment, Long deserializerOid, Long fileSize, String fileName, DataHandler dataHandler, Boolean merge, Boolean sync, long newServiceId) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		final DatabaseSession session = getBimServer().getDatabase().createSession();
+		String username = "Unknown";
+		String userUsername = "Unknown";
+		try {
+			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
+			Project project = session.get(poid, OldQuery.getDefault());
+			if (project == null) {
+				throw new UserException("No project found with poid " + poid);
+			}
+			username = user.getName();
+			userUsername = user.getUsername();
+			Path homeDirIncoming = getBimServer().getHomeDir().resolve("incoming");
+			Path userDirIncoming = homeDirIncoming.resolve(userUsername);
+			if (!Files.exists(userDirIncoming)) {
+				Files.createDirectories(userDirIncoming);
+			}
+			if (fileName.contains("/")) {
+				fileName = fileName.substring(fileName.lastIndexOf("/") + 1);
+			}
+			if (fileName.contains("\\")) {
+				fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
+			}
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+			String cacheFileName = dateFormat.format(new Date()) + "-" + fileName;
+			Path file = userDirIncoming.resolve(cacheFileName);
+			return checkinInternal(topicId, poid, comment, deserializerOid, fileSize, fileName, dataHandler.getInputStream(), merge,
+					sync, session, username, userUsername, project, file, newServiceId);
+		} catch (UserException e) {
+			try {
+				clearCheckinInProgress(poid);
+			} catch (BimserverDatabaseException | ServiceException e1) {
+				LOGGER.error("", e1);
+			}
+			throw e;
+		} catch (Throwable e) {
+			try {
+				clearCheckinInProgress(poid);
+			} catch (BimserverDatabaseException | ServiceException e1) {
+				LOGGER.error("", e1);
+			}
+			LOGGER.error("", e);
+			throw new ServerException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
+	public SLongActionState checkinInitiatedInternalSync(Long topicId, final Long poid, final String comment, Long deserializerOid, Long fileSize, String fileName, DataHandler dataHandler, Boolean merge, Boolean sync, long newServiceId) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		final DatabaseSession session = getBimServer().getDatabase().createSession();
 		String username = "Unknown";
@@ -1100,11 +1152,17 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 	
 	@Override
-	public Long checkinInitiated(Long topicId, final Long poid, final String comment, Long deserializerOid, Long fileSize, String fileName, DataHandler dataHandler, Boolean merge, Boolean sync) throws ServerException, UserException {
-		return checkinInitiatedInternal(topicId, poid, comment, deserializerOid, fileSize, fileName, dataHandler, merge, sync, -1);
+	public SLongCheckinActionState checkinInitiatedSync(Long topicId, final Long poid, final String comment, Long deserializerOid, Long fileSize, String fileName, DataHandler dataHandler, Boolean merge) throws ServerException, UserException {
+		return checkinInitiatedInternal(topicId, poid, comment, deserializerOid, fileSize, fileName, dataHandler, merge, true, -1);
 	}
 
-	private Long checkinInternal(Long topicId, final Long poid, final String comment, Long deserializerOid,
+	@Override
+	public Long checkinInitiatedAsync(Long topicId, final Long poid, final String comment, Long deserializerOid, Long fileSize, String fileName, DataHandler dataHandler, Boolean merge) throws ServerException, UserException {
+		SLongActionState checkinInitiatedInternal = checkinInitiatedInternal(topicId, poid, comment, deserializerOid, fileSize, fileName, dataHandler, merge, false, -1);
+		return checkinInitiatedInternal.getTopicId();
+	}
+
+	private SLongCheckinActionState checkinInternal(Long topicId, final Long poid, final String comment, Long deserializerOid,
 			Long fileSize, String fileName, InputStream originalInputStream, Boolean merge, Boolean sync,
 			final DatabaseSession session, String username, String userUsername, Project project, Path file, long newServiceId)
 					throws BimserverDatabaseException, IOException, DeserializeException,
@@ -1138,7 +1196,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 						longAction.waitForCompletion();
 						clearCheckinInProgress(poid);
 					}
-					return longAction.getProgressTopic().getKey().getId();
+					ProgressTopic progressTopic = getBimServer().getNotificationsManager().getProgressTopic(topicId);
+					return (SLongCheckinActionState) getBimServer().getSConverter().convertToSObject(progressTopic.getLastProgress());
 				} else if (plugin instanceof StreamingDeserializerPlugin) {
 					StreamingDeserializerPlugin streaminDeserializerPlugin = (StreamingDeserializerPlugin) plugin;
 					StreamingDeserializer streamingDeserializer = streaminDeserializerPlugin.createDeserializer(getBimServer().getPluginSettingsCache().getPluginSettings(deserializerPluginConfiguration.getOid()));
@@ -1147,11 +1206,15 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 					StreamingCheckinDatabaseAction checkinDatabaseAction = new StreamingCheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), comment, fileName, restartableInputStream, streamingDeserializer, fileSize, newServiceId, pluginBundleVersion, topicId);
 					LongStreamingCheckinAction longAction = new LongStreamingCheckinAction(topicId, getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
 					getBimServer().getLongActionManager().start(longAction);
+					ProgressTopic progressTopic = null;
 					if (sync) {
 						longAction.waitForCompletion();
+						progressTopic = longAction.getProgressTopic();
 						clearCheckinInProgress(poid);
+						return (SLongCheckinActionState) getBimServer().getSConverter().convertToSObject(progressTopic.getLastProgress());
+					} else {
+						return (SLongCheckinActionState) getBimServer().getSConverter().convertToSObject(longAction.getState());
 					}
-					return longAction.getProgressTopic().getKey().getId();
 				} else {
 					throw new UserException("No (enabled) (streaming) deserializer found with oid " + deserializerOid);
 				}
@@ -1162,14 +1225,20 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 	
 	@Override
-	public Long checkin(final Long poid, final String comment, Long deserializerOid, Long fileSize, String fileName, DataHandler dataHandler, Boolean merge, Boolean sync) throws ServerException, UserException {
+	public SLongCheckinActionState checkinSync(final Long poid, final String comment, Long deserializerOid, Long fileSize, String fileName, DataHandler dataHandler, Boolean merge) throws ServerException, UserException {
 		Long topicId = initiateCheckin(poid, deserializerOid);
-		checkinInitiated(topicId, poid, comment, deserializerOid, fileSize, fileName, dataHandler, merge, sync);
+		return checkinInitiatedSync(topicId, poid, comment, deserializerOid, fileSize, fileName, dataHandler, merge);
+	}
+
+	@Override
+	public Long checkinAsync(final Long poid, final String comment, Long deserializerOid, Long fileSize, String fileName, DataHandler dataHandler, Boolean merge) throws ServerException, UserException {
+		Long topicId = initiateCheckin(poid, deserializerOid);
+		checkinInitiatedAsync(topicId, poid, comment, deserializerOid, fileSize, fileName, dataHandler, merge);
 		return topicId;
 	}
 	
 	@Override
-	public Long checkinFromUrl(Long poid, String comment, Long deserializerOid, String fileName, String urlString, Boolean merge, Boolean sync) throws ServerException, UserException {
+	public SLongCheckinActionState checkinFromUrlSync(Long poid, String comment, Long deserializerOid, String fileName, String urlString, Boolean merge) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
 		final DatabaseSession session = getBimServer().getDatabase().createSession();
 		String username = "Unknown";
@@ -1217,9 +1286,90 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				fileName = fileName.replace(" ", "_");
 			}
 			
-			return checkinInternal(topicId, poid, comment, deserializerOid, (long)openConnection.getContentLength(), fileName, input, merge,
-					sync, session, username, userUsername, project, file, -1);
+			return checkinInternal(topicId, poid, comment, deserializerOid, (long)openConnection.getContentLength(), fileName, input, merge, true, session, username, userUsername, project, file, -1);
 			
+//			DeserializerPluginConfiguration deserializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, OldQuery.getDefault());
+//			if (deserializerPluginConfiguration == null) {
+//				throw new UserException("Deserializer with oid " + deserializerOid + " not found");
+//			}
+//			OutputStream outputStream = Files.newOutputStream(file);
+//			InputStream inputStream = new MultiplexingInputStream(input, outputStream);
+//			DeserializerPlugin deserializerPlugin = (DeserializerPlugin) getBimServer().getPluginManager().getPlugin(deserializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
+//			ObjectType settings = deserializerPluginConfiguration.getSettings();
+//
+//			Deserializer deserializer = deserializerPlugin.createDeserializer(new PluginConfiguration(settings));
+//			deserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
+//
+//			IfcModelInterface model = deserializer.read(inputStream, fileName, 0, null);
+//			
+//			CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, fileName, merge);
+//			LongCheckinAction longAction = new LongCheckinAction(-1L, getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
+//			getBimServer().getLongActionManager().start(longAction);
+//			if (sync) {
+//				longAction.waitForCompletion();
+//			}
+//			return longAction.getProgressTopic().getKey().getId();
+		} catch (UserException e) {
+			throw e;
+		} catch (Throwable e) {
+			LOGGER.error("", e);
+			throw new ServerException(e);
+		} finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public Long checkinFromUrlAsync(Long poid, String comment, Long deserializerOid, String fileName, String urlString, Boolean merge) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		final DatabaseSession session = getBimServer().getDatabase().createSession();
+		String username = "Unknown";
+		String userUsername = "Unknown";
+		try {
+			Long topicId = initiateCheckin(poid, deserializerOid);
+			
+			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
+			username = user.getName();
+			userUsername = user.getUsername();
+			Path homeDirIncoming = getBimServer().getHomeDir().resolve("incoming");
+			if (!Files.isDirectory(homeDirIncoming)) {
+				Files.createDirectory(homeDirIncoming);
+			}
+			Path userDirIncoming = homeDirIncoming.resolve(userUsername);
+			if (!Files.exists(userDirIncoming)) {
+				Files.createDirectory(userDirIncoming);
+			}
+			
+			Project project = session.get(poid, OldQuery.getDefault());
+			if (project == null) {
+				throw new UserException("No project found with poid " + poid);
+			}
+			
+			URL url = new URL(urlString);
+			URLConnection openConnection = url.openConnection();
+			InputStream input = openConnection.getInputStream();
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+			if (fileName == null) {
+				if (urlString.contains("/")) {
+					fileName = urlString.substring(urlString.lastIndexOf("/") + 1);
+				} else {
+					fileName = urlString;
+				}
+				if (fileName.contains("?")) {
+					fileName = fileName.substring(0, fileName.indexOf("?"));
+				}
+				fileName = URLDecoder.decode(fileName, Charsets.UTF_8.name());
+			} else {
+				fileName = dateFormat.format(new Date()) + "-" + fileName;
+			}
+			Path file = userDirIncoming.resolve(fileName);
+			
+			if (fileName.contains(" ")) {
+				fileName = fileName.replace(" ", "_");
+			}
+			
+			SLongCheckinActionState checkinInternal = checkinInternal(topicId, poid, comment, deserializerOid, (long)openConnection.getContentLength(), fileName, input, merge, false, session, username, userUsername, project, file, -1);
+			return checkinInternal.getTopicId();
 //			DeserializerPluginConfiguration deserializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, OldQuery.getDefault());
 //			if (deserializerPluginConfiguration == null) {
 //				throw new UserException("Deserializer with oid " + deserializerOid + " not found");
@@ -3204,10 +3354,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		} catch (Exception e) {
 			return handleException(e);
 		}
-	}
-
-	private void dump(Bounds bounds) {
-		System.out.println(bounds.getMin().getX() + ", " + bounds.getMin().getY() + ", " + bounds.getMin().getZ() + "   " + bounds.getMax().getX() + ", " + bounds.getMax().getY() + ", " + bounds.getMax().getZ());
 	}
 
 	private void scaleBounds(Bounds bounds, float multiplierToMm) {
