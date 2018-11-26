@@ -384,10 +384,10 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 						}
 						
 						if (htmlSchema == null) {
-							htmlSchema = createExtendedDataSchema("GEOMETRY_GENERATION_REPORT_HTML_1_1", "text/html");
+							htmlSchema = createExtendedDataSchema(tmpSession, "GEOMETRY_GENERATION_REPORT_HTML_1_1", "text/html");
 						}
 						if (jsonSchema == null) {
-							jsonSchema = createExtendedDataSchema("GEOMETRY_GENERATION_REPORT_JSON_1_1", "application/json");
+							jsonSchema = createExtendedDataSchema(tmpSession, "GEOMETRY_GENERATION_REPORT_JSON_1_1", "application/json");
 						}
 						
 						storeExtendedData(tmpSession, htmlSchema, htmlBytes, "text/html", "html", revision, timeToGenerateMs);
@@ -430,8 +430,8 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 		return concreteRevision;
 	}
 
-	private ExtendedDataSchema createExtendedDataSchema(String name, String contentType) throws BimserverDatabaseException {
-		ExtendedDataSchema extendedDataSchema = getDatabaseSession().create(ExtendedDataSchema.class);
+	private ExtendedDataSchema createExtendedDataSchema(DatabaseSession databaseSession, String name, String contentType) throws BimserverDatabaseException {
+		ExtendedDataSchema extendedDataSchema = databaseSession.create(ExtendedDataSchema.class);
 		extendedDataSchema.setName(name);
 		extendedDataSchema.setContentType(contentType);
 		return extendedDataSchema;
