@@ -1,5 +1,7 @@
 package org.bimserver.database.queries;
 
+import org.bimserver.interfaces.objects.SBounds;
+
 public class Bounds {
 	private double minX;
 	private double minY;
@@ -35,6 +37,15 @@ public class Bounds {
 		this.maxZ = bounds.getMax().getZ();
 	}
 	
+	public Bounds(SBounds bounds) {
+		this.minX = bounds.getMin().getX();
+		this.minY = bounds.getMin().getY();
+		this.minZ = bounds.getMin().getZ();
+		this.maxX = bounds.getMax().getX();
+		this.maxY = bounds.getMax().getY();
+		this.maxZ = bounds.getMax().getZ();
+	}
+
 	public double getMinX() {
 		return minX;
 	}
@@ -142,5 +153,10 @@ public class Bounds {
 		if (bounds.getMaxZ() > maxZ) {
 			maxZ = bounds.getMaxZ();
 		}
+	}
+
+	public Bounds scale(Bounds from, Bounds to) {
+		
+		return null;
 	}
 }
