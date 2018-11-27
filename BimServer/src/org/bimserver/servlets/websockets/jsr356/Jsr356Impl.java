@@ -159,7 +159,11 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 	@Override
 	public void sendBlocking(byte[] data, int start, int length) throws IOException {
 		synchronized (this) {
-			websocketSession.getBasicRemote().sendBinary(ByteBuffer.wrap(data, start, length));
+			try {
+				websocketSession.getBasicRemote().sendBinary(ByteBuffer.wrap(data, start, length));
+			} catch (IOException e) {
+				// Ignore
+			}
 		}
 	}
 
