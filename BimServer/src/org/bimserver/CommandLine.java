@@ -117,6 +117,7 @@ public class CommandLine extends Thread {
 						LOGGER.info("");
 						Thread.sleep(10000);
 					} else if (line.equals("migrate")) {
+						LOGGER.info("Starting migration...");
 						try {
 							bimServer.getDatabase().getMigrator().migrate();
 							bimServer.getServerInfoManager().update();
