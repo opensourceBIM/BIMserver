@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
+import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.bimserver.emf.Schema;
@@ -59,7 +59,7 @@ public class GeometryGenerationReport {
 	private int numberOfTriangles;
 	private int numberOfTrianglesIncludingReuse;
 	private boolean reuseGeometry;
-	private Map<Integer, String> debugFiles = new TreeMap<>();
+	private final Map<Integer, String> debugFiles = new ConcurrentSkipListMap<>();
 	
 	public synchronized void incrementTriangles(int triangles) {
 		this.numberOfTriangles += triangles;
