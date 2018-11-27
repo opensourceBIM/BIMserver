@@ -1015,7 +1015,7 @@ public class GeometryRunner implements Runnable {
 //				FileUtils.writeStringToFile(Paths.get(file.toAbsolutePath().toString() + ".txt").toFile(), sb.toString());
 //			}
 
-			StreamingGeometryGenerator.LOGGER.info("Writing debug file to " + file.toAbsolutePath().toString());
+//			StreamingGeometryGenerator.LOGGER.info("Writing debug file to " + file.toAbsolutePath().toString());
 			FileUtils.writeByteArrayToFile(file.toFile(), bytes);
 		}
 	}

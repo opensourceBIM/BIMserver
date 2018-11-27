@@ -339,7 +339,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 												if (!hasValidRepresentationIdentifier(mappedRepresentation)) {
 													// Skip this mapping, we should store somewhere that this object should also be skipped in the normal way
 													// TODO too many log statements, should log only 1 line for the complete model
-													LOGGER.info("Skipping because of invalid RepresentationIdentifier in mapped item (" + (String) mappedRepresentation.get("RepresentationIdentifier") + ")");
+//													LOGGER.info("Skipping because of invalid RepresentationIdentifier in mapped item (" + (String) mappedRepresentation.get("RepresentationIdentifier") + ")");
+													report.addSkippedBecauseOfInvalidRepresentationIdentifier((String) mappedRepresentation.get("RepresentationIdentifier"));
 													toSkip.add(next.getOid());
 													continue;
 												}
@@ -573,6 +574,16 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			long end = System.nanoTime();
 			long total = totalBytes.get() - (bytesSavedByHash.get() + bytesSavedByTransformation.get() + bytesSavedByMapping.get());
 			LOGGER.info("Rendertime: " + Formatters.nanosToString(end - start) + ", " + "Reused (by hash): " + Formatters.bytesToString(bytesSavedByHash.get()) + ", Reused (by transformation): " + Formatters.bytesToString(bytesSavedByTransformation.get()) + ", Reused (by mapping): " + Formatters.bytesToString(bytesSavedByMapping.get()) + ", Total: " + Formatters.bytesToString(totalBytes.get()) + ", Final: " + Formatters.bytesToString(total));
+			if (report.getNumberOfDebugFiles() > 0) {
+				LOGGER.error("Number of erroneous files: " + report.getNumberOfDebugFiles());
+			}
+			Map<String, Integer> skipped = report.getSkippedBecauseOfInvalidRepresentationIdentifier();
+			if (skipped.size() > 0) {
+				LOGGER.error("Number of representations skipped:");
+				for (String identifier : skipped.keySet()) {
+					LOGGER.error("\t" + identifier + ": " + skipped.get(identifier));
+				}
+			}
 			String dump = geometryGenerationDebugger.dump();
 			if (dump != null) {
 				LOGGER.info(dump);
@@ -585,7 +596,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		}
 		report.setEnd(new GregorianCalendar());
 		try {
-			writeDebugFile();
+			if (report.getNumberOfDebugFiles() > 0) {
+				writeDebugFile();
+			}
 		} catch (IOException e) {
 			LOGGER.debug("", e);
 		}
