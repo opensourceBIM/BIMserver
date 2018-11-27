@@ -43,11 +43,13 @@ public class LongActionManager {
 	
 	public synchronized void start(final LongAction<?> longAction) throws CannotBeScheduledException {
 		if (running) {
+			synchronized (LongActionManager.class) {
+				actions.put(longAction.getProgressTopic().getKey().getId(), longAction);
+			}
 			bimServer.getExecutorService().submit(new Runnable() {
 				@Override
 				public void run() {
 					longAction.init();
-					actions.put(longAction.getProgressTopic().getKey().getId(), longAction);
 					longAction.execute();
 				}
 			}, "LongAction Runner");
