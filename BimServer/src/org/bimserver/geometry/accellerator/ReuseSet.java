@@ -15,19 +15,20 @@ public class ReuseSet {
 		}});
 	
 	public Set<Long> getListOfGeometryDataIds(int trianglesToSave) {
-		int savedPrimitives = 0;
+		// TODO since this is fixed now, it can be precomputed
 		Set<Long> result = new HashSet<>();
 		for (Integer key : map.keySet()) {
 			Set<ReuseObject> set = map.get(key);
 			for (ReuseObject reuseObject : set) {
 				if (reuseObject.getSaveablePrimitives() == 0) {
-					continue;
-				}
-				if (savedPrimitives >= trianglesToSave) {
+					// Since it's ordered, we can return right away since we're at the end
 					return result;
 				}
-				savedPrimitives += reuseObject.getSaveablePrimitives();
-				result.add(reuseObject.getGeometryDataOid());
+				if (reuseObject.getSaveablePrimitives() > 25000) {
+					result.add(reuseObject.getGeometryDataOid());
+				} else {
+					return result;
+				}
 			}
 		}
 		return result;
