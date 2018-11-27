@@ -56,22 +56,19 @@ import org.bimserver.models.geometry.Vector3f;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.ExtendedData;
-import org.bimserver.models.store.ExtendedDataSchema;
-import org.bimserver.models.store.File;
 import org.bimserver.models.store.IfcHeader;
 import org.bimserver.models.store.NewService;
 import org.bimserver.models.store.PluginBundleVersion;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.Service;
-import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.notifications.NewRevisionNotification;
 import org.bimserver.plugins.deserializers.ByteProgressReporter;
 import org.bimserver.plugins.deserializers.StreamingDeserializer;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.QueryContext;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
@@ -371,32 +368,15 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 						Project project = tmpSession.get(poid, OldQuery.getDefault());
 						project.setCheckinInProgress(0);
 						tmpSession.store(project);
-						
-						ExtendedDataSchema htmlSchema = null;
-						ExtendedDataSchema jsonSchema = null;
-						
-						for (ExtendedDataSchema extendedDataSchema : tmpSession.getAll(ExtendedDataSchema.class)) {
-							if (extendedDataSchema.getName().equals("GEOMETRY_GENERATION_REPORT_HTML_1_1")) {
-								htmlSchema = extendedDataSchema;
-							} else if (extendedDataSchema.getName().equals("GEOMETRY_GENERATION_REPORT_JSON_1_1")) {
-								jsonSchema = extendedDataSchema;
-							}
-						}
-						
-						if (htmlSchema == null) {
-							htmlSchema = createExtendedDataSchema(tmpSession, "GEOMETRY_GENERATION_REPORT_HTML_1_1", "text/html");
-						}
-						if (jsonSchema == null) {
-							jsonSchema = createExtendedDataSchema(tmpSession, "GEOMETRY_GENERATION_REPORT_JSON_1_1", "application/json");
-						}
-						
-						storeExtendedData(tmpSession, htmlSchema, htmlBytes, "text/html", "html", revision, timeToGenerateMs);
-						storeExtendedData(tmpSession, jsonSchema, jsonBytes, "application/json", "json", revision, timeToGenerateMs);
-						
+					} catch (BimserverDatabaseException e) {
+						LOGGER.error("", e);
+					}
+					try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession()) {
+						AddGeometryReports addGeometryReports = new AddGeometryReports(tmpSession, AccessMethod.INTERNAL, htmlBytes, jsonBytes, timeToGenerateMs, authorization.getUoid(), revision.getOid());
 						try {
-							tmpSession.commit();
-						} catch (ServiceException e) {
-							LOGGER.error("", e);
+							tmpSession.executeAndCommitAction(addGeometryReports);
+						} catch (ServerException e1) {
+							LOGGER.error("", e1);
 						}
 					} catch (BimserverDatabaseException e1) {
 						LOGGER.error("", e1);
@@ -428,13 +408,6 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			throw new UserException(e);
 		}
 		return concreteRevision;
-	}
-
-	private ExtendedDataSchema createExtendedDataSchema(DatabaseSession databaseSession, String name, String contentType) throws BimserverDatabaseException {
-		ExtendedDataSchema extendedDataSchema = databaseSession.create(ExtendedDataSchema.class);
-		extendedDataSchema.setName(name);
-		extendedDataSchema.setContentType(contentType);
-		return extendedDataSchema;
 	}
 
 	private void generateQuantizedVertices(DatabaseSession databaseSession, Revision revision, float[] quantizationMatrix, float multiplierToMm) {
@@ -514,35 +487,6 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 		Matrix.scaleM(matrix, 0, (float)(scale / ((double)max.getX() - (double)min.getX())), (float)(scale / ((double)max.getY() - (double)min.getY())), (float)(scale / ((double)max.getZ() - (double)min.getZ())));
 
 		return matrix;
-	}
-
-	private void storeExtendedData(DatabaseSession databaseSession, ExtendedDataSchema extendedDataSchema, byte[] bytes, String mime, String extension, final Revision revision, long timeToGenerateMs) throws BimserverDatabaseException {
-		ExtendedData extendedData = databaseSession.create(ExtendedData.class);
-		File file = databaseSession.create(File.class);
-		file.setData(bytes);
-		file.setFilename("geometrygenerationreport." + extension);
-		file.setMime(mime);
-		file.setSize(bytes.length);
-		User actingUser = databaseSession.get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), OldQuery.getDefault());
-		extendedData.setUser(actingUser);
-		extendedData.setSchema(extendedDataSchema);
-		extendedData.setTitle("Geometry generation report (" + mime + ")");
-		extendedData.setTimeToGenerate(timeToGenerateMs);
-		extendedData.setAdded(new Date());
-		extendedData.setSize(file.getData().length);
-		extendedData.setFile(file);
-		revision.getExtendedData().add(extendedData);
-		extendedData.setProject(revision.getProject());
-		extendedData.setRevision(revision);
-		
-		databaseSession.store(file);
-		databaseSession.store(extendedData);
-		databaseSession.store(revision);
-		databaseSession.store(revision.getProject());
-		
-		if (extendedData.getSchema() != null) {
-			databaseSession.store(extendedData.getSchema());
-		}
 	}
 
 	public String getFileName() {
