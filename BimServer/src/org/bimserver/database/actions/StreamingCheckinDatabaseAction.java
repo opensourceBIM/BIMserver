@@ -368,7 +368,10 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 						Project project = tmpSession.get(poid, OldQuery.getDefault());
 						project.setCheckinInProgress(0);
 						tmpSession.store(project);
+						tmpSession.commit();
 					} catch (BimserverDatabaseException e) {
+						LOGGER.error("", e);
+					} catch (ServiceException e) {
 						LOGGER.error("", e);
 					}
 					try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession()) {
