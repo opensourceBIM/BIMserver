@@ -60,6 +60,7 @@ public class GeometryGenerationReport {
 	private int numberOfTrianglesIncludingReuse;
 	private boolean reuseGeometry;
 	private final Map<Integer, String> debugFiles = new ConcurrentSkipListMap<>();
+	private Map<String, Integer> skippedBecauseOfInvalidRepresentationIdentifier = new HashMap<>();
 	
 	public synchronized void incrementTriangles(int triangles) {
 		this.numberOfTriangles += triangles;
@@ -183,6 +184,15 @@ public class GeometryGenerationReport {
 			geometry.add(geometryNode);
 		}
 
+		ArrayNode skippedNodes = objectMapper.createArrayNode();
+		for (String identifier : this.skippedBecauseOfInvalidRepresentationIdentifier.keySet()) {
+			ObjectNode skippedNode = objectMapper.createObjectNode();
+			skippedNode.put("identifier", identifier);
+			skippedNode.put("skipped", this.skippedBecauseOfInvalidRepresentationIdentifier.get(identifier));
+			skippedNodes.add(skippedNode);
+		}
+		result.set("skippedBecauseOfInvalidRepresentationIdentifier", skippedNodes);
+		
 		ArrayNode debugFiles = objectMapper.createArrayNode();
 		result.set("debugFiles", debugFiles);
 		for (int jobId : this.debugFiles.keySet()) {
@@ -240,6 +250,15 @@ public class GeometryGenerationReport {
 		builder.append("<h3>System</h3>");
 		builder.append("<table><tbody>");
 		builder.append("<tr><td>Available (virtual) cores</td><td>" + availableProcessors + "</td></tr>");
+		builder.append("</tbody></table>");
+		
+		builder.append("<h3>Skipped representatios</h3>");
+		builder.append("<table>");
+		builder.append("<thead><tr><th>Identifier</th><th>Skipped</th></tr></thead>");
+		builder.append("<tbody>");
+		for (String identifier : this.skippedBecauseOfInvalidRepresentationIdentifier.keySet()) {
+			builder.append("<tr><td>" + identifier + "</td><td>" + this.skippedBecauseOfInvalidRepresentationIdentifier.get(identifier));
+		}
 		builder.append("</tbody></table>");
 		
 		builder.append("<h3>Jobs</h3>");
@@ -370,5 +389,17 @@ public class GeometryGenerationReport {
 	
 	public int getNumberOfTrianglesIncludingReuse() {
 		return numberOfTrianglesIncludingReuse;
+	}
+
+	public int getNumberOfDebugFiles() {
+		return debugFiles.size();
+	}
+
+	public Map<String, Integer> getSkippedBecauseOfInvalidRepresentationIdentifier() {
+		return skippedBecauseOfInvalidRepresentationIdentifier;
+	}
+	
+	public void addSkippedBecauseOfInvalidRepresentationIdentifier(String identifier) {
+		skippedBecauseOfInvalidRepresentationIdentifier.merge(identifier, 1, Integer::sum);
 	}
 }
