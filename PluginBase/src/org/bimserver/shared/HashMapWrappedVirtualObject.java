@@ -21,11 +21,11 @@ import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class HashMapWrappedVirtualObject extends AbstractHashMapVirtualObject implements WrappedVirtualObject {
@@ -119,7 +119,7 @@ public class HashMapWrappedVirtualObject extends AbstractHashMapVirtualObject im
 	}
 
 	@Override
-	public List<HashMapVirtualObject> getDirectListFeature(EStructuralFeature representationsFeature) {
-		return (List<HashMapVirtualObject>) eGet(representationsFeature.getName());
+	public Set<HashMapVirtualObject> getDirectListFeature(EStructuralFeature representationsFeature) {
+		return (Set<HashMapVirtualObject>) eGet(representationsFeature.getName());
 	}
 }
