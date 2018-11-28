@@ -496,7 +496,7 @@ public class GeometryRunner implements Runnable {
 
 													geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), indices.length / 3);
 
-//													productToData.put(ifcProduct.getOid(), new TemporaryGeometryData(geometryData.getOid(), renderEngineInstance.getArea(), renderEngineInstance.getVolume(), indices.length / 3, size, mibu, mabu, indices, vertices));
+													productToData.put(ifcProduct.getOid(), new TemporaryGeometryData(geometryData.getOid(), additionalData, indices.length / 3, size, mibu, mabu, indices, vertices));
 													geometryData.save();
 													databaseSession.cache((HashMapVirtualObject) geometryData);
 												}
@@ -588,6 +588,9 @@ public class GeometryRunner implements Runnable {
 								// We pick the first product and use that product to try and get the original data
 								long firstKey = map.keySet().iterator().next();
 								ProductDef masterProductDef = map.get(firstKey);
+								if (eClass.getName().equals("IfcWindow")) {
+									System.out.println();
+								}
 								for (long key : map.keySet()) {
 									if (key != firstKey) {
 										ProductDef productDef = map.get(key);
@@ -635,8 +638,19 @@ public class GeometryRunner implements Runnable {
 											boundsUntransformed.setAttribute(GeometryPackage.eINSTANCE.getBounds_Max(), maxBoundsUntransformed);
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_BoundsUntransformed(), boundsUntransformed);
 
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), masterGeometryData.getArea());
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), masterGeometryData.getVolume());
+											ObjectNode additionalData = masterGeometryData.getAdditionalData();
+											double volume = 0;
+											if (additionalData != null) {
+												geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_AdditionalData(), additionalData.toString());
+												if (additionalData.has("SURFACE_AREA_ALONG_Z")) {
+													geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), additionalData.get("SURFACE_AREA_ALONG_Z").asDouble());
+												}
+												if (additionalData.has("TOTAL_SHAPE_VOLUME")) {
+													volume = additionalData.get("TOTAL_SHAPE_VOLUME").asDouble();
+													geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), volume);
+												}
+											}
+
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), masterGeometryData.getNrPrimitives());
 
 											job.getReport().incrementTriangles(masterGeometryData.getNrPrimitives());
@@ -697,15 +711,9 @@ public class GeometryRunner implements Runnable {
 											HashMapWrappedVirtualObject boundsMm = createMmBounds(geometryInfo, bounds, generateGeometryResult.getMultiplierToMm());
 											geometryInfo.set("boundsMm", boundsMm);
 											
-											float volume = (float)masterGeometryData.getVolume();
-											
-											// Overwrite temporarely until IOS volume is OK
-											volume = getVolumeFromBounds(boundsUntransformed);
-
 											float nrTriangles = masterGeometryData.getNrPrimitives();
 
-											// Temporarely until IOS volume is OK
-											Density density = new Density(eClass.getName(), volume, getBiggestFaceFromBounds(boundsUntransformedMm), (long) nrTriangles, geometryInfo.getOid());
+											Density density = new Density(eClass.getName(), (float) volume, getBiggestFaceFromBounds(boundsUntransformedMm), (long) nrTriangles, geometryInfo.getOid());
 
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Density(), density.getDensityValue());
 											

@@ -1,5 +1,7 @@
 package org.bimserver;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -20,19 +22,17 @@ package org.bimserver;
 public class TemporaryGeometryData {
 
 	private long oid;
-	private double area;
-	private double volume;
 	private int nrPrimitives;
 	private long size;
 	private double[] mibu;
 	private double[] mabu;
 	private int[] indices;
 	private float[] vertices;
+	private ObjectNode additionalData;
 
-	public TemporaryGeometryData(long oid, double area, double volume, int nrPrimitives, long size, double[] mibu, double[] mabu, int[] indices, float[] vertices) {
+	public TemporaryGeometryData(long oid, ObjectNode additionalData, int nrPrimitives, long size, double[] mibu, double[] mabu, int[] indices, float[] vertices) {
 		this.oid = oid;
-		this.area = area;
-		this.volume = volume;
+		this.additionalData = additionalData;
 		this.nrPrimitives = nrPrimitives;
 		this.size = size;
 		this.mibu = mibu;
@@ -61,8 +61,8 @@ public class TemporaryGeometryData {
 		return size;
 	}
 	
-	public double getArea() {
-		return area;
+	public ObjectNode getAdditionalData() {
+		return additionalData;
 	}
 	
 	public int getNrPrimitives() {
@@ -71,9 +71,5 @@ public class TemporaryGeometryData {
 	
 	public long getOid() {
 		return oid;
-	}
-	
-	public double getVolume() {
-		return volume;
 	}
 }
