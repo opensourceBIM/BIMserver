@@ -36,6 +36,7 @@
       <eAnnotations source="embedsreference"/>
       <eAnnotations source="hidden"/>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="additionalData" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Vector3f">
     <eAnnotations source="hidden"/>

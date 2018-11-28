@@ -62,6 +62,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getDensity <em>Density</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getBoundsMm <em>Bounds Mm</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getBoundsUntransformedMm <em>Bounds Untransformed Mm</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getAdditionalData <em>Additional Data</em>}</li>
  * </ul>
  *
  * @generated
@@ -346,6 +347,24 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 */
 	public void setBoundsUntransformedMm(Bounds newBoundsUntransformedMm) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__BOUNDS_UNTRANSFORMED_MM, newBoundsUntransformedMm);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getAdditionalData() {
+		return (String) eGet(GeometryPackage.Literals.GEOMETRY_INFO__ADDITIONAL_DATA, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAdditionalData(String newAdditionalData) {
+		eSet(GeometryPackage.Literals.GEOMETRY_INFO__ADDITIONAL_DATA, newAdditionalData);
 	}
 
 } //GeometryInfoImpl

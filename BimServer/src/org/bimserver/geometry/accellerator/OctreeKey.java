@@ -24,7 +24,7 @@ public class OctreeKey {
 			this.excludedClassesHashCode = 0;
 		}
 		this.geometryIdsToReuse = geometryIdsToReuse;
-		this.geometryIdsToReuseHashCode = geometryIdsToReuse.hashCode();
+		this.geometryIdsToReuseHashCode = geometryIdsToReuse == null ? 0 : geometryIdsToReuse.hashCode();
 		this.maxDepth = maxDepth;
 		this.minimumThreshold = minimumThreshold;
 		this.maximumThreshold = maximumThreshold;
@@ -100,7 +100,9 @@ public class OctreeKey {
 		builder.append("Minimum threshold: " + minimumThreshold + "\n");
 		builder.append("Maximum threshold: " + maximumThreshold + "\n");
 		builder.append("Roids: " + Joiner.on(", ").join(roids) + "\n");
-		builder.append("Reuse: " + Joiner.on(", ").join(geometryIdsToReuse) + "\n");
+		if (geometryIdsToReuse != null) {
+			builder.append("Reuse: " + Joiner.on(", ").join(geometryIdsToReuse) + "\n");
+		}
 		return builder.toString();
 	}
 	

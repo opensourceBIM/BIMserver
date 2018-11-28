@@ -9271,6 +9271,7 @@ public class SConverter {
 		result.setHasTransparency(input.isHasTransparency());
 		result.setIfcProductOid(input.getIfcProductOid());
 		result.setDensity(input.getDensity());
+		result.setAdditionalData(input.getAdditionalData());
 		Bounds boundsVal = input.getBounds();
 		result.setBounds(convertToSObject(boundsVal));
 		Bounds boundsUntransformedVal = input.getBoundsUntransformed();
@@ -9315,6 +9316,7 @@ public class SConverter {
 		result.setHasTransparency(input.isHasTransparency());
 		result.setIfcProductOid(input.getIfcProductOid());
 		result.setDensity(input.getDensity());
+		result.setAdditionalData(input.getAdditionalData());
 		result.setBounds(convertFromSObject(input.getBounds(), session));
 		result.setBoundsUntransformed(convertFromSObject(input.getBoundsUntransformed(), session));
 		result.setData((GeometryData)session.get(GeometryPackage.eINSTANCE.getGeometryData(), input.getDataId(), OldQuery.getDefault()));

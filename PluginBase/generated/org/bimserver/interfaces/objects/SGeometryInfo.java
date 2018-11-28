@@ -43,6 +43,7 @@ public class SGeometryInfo implements SDataBase
 	private float density;
 	private SBounds boundsMm;
 	private SBounds boundsUntransformedMm;
+	private java.lang.String additionalData;
 
 	public long getOid() {
 		return this.oid;
@@ -112,6 +113,9 @@ public class SGeometryInfo implements SDataBase
 		if (sField.getName().equals("boundsUntransformedMm")) {
 			return getBoundsUntransformedMm();
 		}
+		if (sField.getName().equals("additionalData")) {
+			return getAdditionalData();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -176,6 +180,10 @@ public class SGeometryInfo implements SDataBase
 		}
 		if (sField.getName().equals("boundsUntransformedMm")) {
 			setBoundsUntransformedMm((SBounds)val);
+			return;
+		}
+		if (sField.getName().equals("additionalData")) {
+			setAdditionalData((String)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -304,6 +312,14 @@ public class SGeometryInfo implements SDataBase
 		this.boundsUntransformedMm = boundsUntransformedMm;
 	}
 	
+	
+	public java.lang.String getAdditionalData() {
+		return additionalData;
+	}
+
+	public void setAdditionalData(java.lang.String additionalData) {
+		this.additionalData = additionalData;
+	}
 	
 	@Override
 	public int hashCode() {

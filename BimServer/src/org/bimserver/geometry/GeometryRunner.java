@@ -72,6 +72,7 @@ import org.bimserver.utils.GeometryUtils;
 import org.eclipse.emf.ecore.EClass;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.primitives.UnsignedBytes;
 
 public class GeometryRunner implements Runnable {
@@ -249,8 +250,18 @@ public class GeometryRunner implements Runnable {
 										
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_BoundsUntransformed(), boundsUntransformed);
 
-										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), renderEngineInstance.getArea());
-										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), renderEngineInstance.getVolume());
+										double volume = 0;
+										ObjectNode additionalData = renderEngineInstance.getAdditionalData();
+										if (additionalData != null) {
+											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_AdditionalData(), additionalData.toString());
+											if (additionalData.has("SURFACE_AREA_ALONG_Z")) {
+												geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), additionalData.get("SURFACE_AREA_ALONG_Z").asDouble());
+											}
+											if (additionalData.has("TOTAL_SHAPE_VOLUME")) {
+												volume = additionalData.get("TOTAL_SHAPE_VOLUME").asDouble();
+												geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), volume);
+											}
+										}
 
 										HashMapVirtualObject geometryData = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getGeometryData());
 										
@@ -393,14 +404,13 @@ public class GeometryRunner implements Runnable {
 										geometryDataBounds.setAttribute(GeometryPackage.eINSTANCE.getBounds_Min(), geometryDataBoundsMin);
 										geometryDataBounds.setAttribute(GeometryPackage.eINSTANCE.getBounds_Max(), geometryDataBoundsMax);
 										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_BoundsMm(), geometryDataBounds);
-										
-										float volume = (float)renderEngineInstance.getVolume();
-										
-										// Overwrite temporarely until IOS volume is OK
-										volume = getVolumeFromBounds(boundsUntransformed);
+
+										if (volume == 0) {
+											volume = getVolumeFromBounds(boundsUntransformed);
+										}
 										float nrTriangles = geometry.getNrIndices() / 3;
 										
-										Density density = new Density(eClass.getName(), volume, getBiggestFaceFromBounds(boundsUntransformedMm), (long) nrTriangles, geometryInfo.getOid());
+										Density density = new Density(eClass.getName(), (float) volume, getBiggestFaceFromBounds(boundsUntransformedMm), (long) nrTriangles, geometryInfo.getOid());
 //										if (eClass.getName().equals("IfcFurnishingElement")) {
 //											System.out.println((a++) + " , " + geometryInfo.getOid());
 //										}
@@ -474,11 +484,19 @@ public class GeometryRunner implements Runnable {
 													range.setGeometryDataOid(geometryData.getOid());
 													reusableGeometryData.add(range);
 
-													geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), renderEngineInstance.getArea());
-													geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), renderEngineInstance.getVolume());
+													if (additionalData != null) {
+														geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_AdditionalData(), additionalData.toString());
+														if (additionalData.has("SURFACE_AREA_ALONG_Z")) {
+															geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), additionalData.get("SURFACE_AREA_ALONG_Z").asDouble());
+														}
+														if (additionalData.has("TOTAL_SHAPE_VOLUME")) {
+															geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), additionalData.get("TOTAL_SHAPE_VOLUME").asDouble());
+														}
+													}
+
 													geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), indices.length / 3);
 
-													productToData.put(ifcProduct.getOid(), new TemporaryGeometryData(geometryData.getOid(), renderEngineInstance.getArea(), renderEngineInstance.getVolume(), indices.length / 3, size, mibu, mabu, indices, vertices));
+//													productToData.put(ifcProduct.getOid(), new TemporaryGeometryData(geometryData.getOid(), renderEngineInstance.getArea(), renderEngineInstance.getVolume(), indices.length / 3, size, mibu, mabu, indices, vertices));
 													geometryData.save();
 													databaseSession.cache((HashMapVirtualObject) geometryData);
 												}

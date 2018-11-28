@@ -34,6 +34,7 @@ import org.bimserver.models.geometry.Buffer;
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.GeometryInfo;
+import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.geometry.Vector3f;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.plugins.renderengine.EntityNotFoundException;
@@ -51,6 +52,8 @@ import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerInputstream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class OfflineGeometryGenerator {
 	private static final Logger LOGGER = LoggerFactory.getLogger(OfflineGeometryGenerator.class);
@@ -114,13 +117,16 @@ public class OfflineGeometryGenerator {
 					geometryInfo.setBounds(bounds);
 
 					try {
-						double area = renderEngineInstance.getArea();
-						geometryInfo.setArea(area);
-						double volume = renderEngineInstance.getVolume();
-						if (volume < 0d) {
-							volume = -volume;
+						ObjectNode additionalData = renderEngineInstance.getAdditionalData();
+						if (additionalData != null) {
+							geometryInfo.setAdditionalData(additionalData.toString());
+							if (additionalData.has("SURFACE_AREA_ALONG_Z")) {
+								geometryInfo.setArea(additionalData.get("SURFACE_AREA_ALONG_Z").asDouble());
+							}
+							if (additionalData.has("TOTAL_SHAPE_VOLUME")) {
+								geometryInfo.setVolume(additionalData.get("TOTAL_SHAPE_VOLUME").asDouble());
+							}
 						}
-						geometryInfo.setVolume(volume);
 						
 //						EStructuralFeature guidFeature = ifcProduct.eClass().getEStructuralFeature("GlobalId");
 //						String guid = (String) ifcProduct.eGet(guidFeature);

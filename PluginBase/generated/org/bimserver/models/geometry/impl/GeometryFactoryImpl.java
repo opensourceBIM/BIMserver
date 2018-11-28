@@ -32,6 +32,7 @@ package org.bimserver.models.geometry.impl;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
+import org.bimserver.models.geometry.*;
 import org.bimserver.models.geometry.Bounds;
 import org.bimserver.models.geometry.Buffer;
 import org.bimserver.models.geometry.GeometryData;
@@ -61,7 +62,8 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 	 */
 	public static GeometryFactory init() {
 		try {
-			GeometryFactory theGeometryFactory = (GeometryFactory) EPackage.Registry.INSTANCE.getEFactory(GeometryPackage.eNS_URI);
+			GeometryFactory theGeometryFactory = (GeometryFactory) EPackage.Registry.INSTANCE
+					.getEFactory(GeometryPackage.eNS_URI);
 			if (theGeometryFactory != null) {
 				return theGeometryFactory;
 			}

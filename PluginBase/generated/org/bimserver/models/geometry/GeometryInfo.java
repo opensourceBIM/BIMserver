@@ -58,6 +58,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getDensity <em>Density</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getBoundsMm <em>Bounds Mm</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getBoundsUntransformedMm <em>Bounds Untransformed Mm</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getAdditionalData <em>Additional Data</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo()
@@ -429,5 +430,31 @@ public interface GeometryInfo extends IdEObject {
 	 * @generated
 	 */
 	void setBoundsUntransformedMm(Bounds value);
+
+	/**
+	 * Returns the value of the '<em><b>Additional Data</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Additional Data</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Additional Data</em>' attribute.
+	 * @see #setAdditionalData(String)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_AdditionalData()
+	 * @model
+	 * @generated
+	 */
+	String getAdditionalData();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getAdditionalData <em>Additional Data</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Additional Data</em>' attribute.
+	 * @see #getAdditionalData()
+	 * @generated
+	 */
+	void setAdditionalData(String value);
 
 } // GeometryInfo

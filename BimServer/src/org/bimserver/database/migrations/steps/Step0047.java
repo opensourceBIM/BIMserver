@@ -1,6 +1,4 @@
-package org.bimserver.plugins.renderengine;
-
-import com.fasterxml.jackson.databind.node.ObjectNode;
+package org.bimserver.database.migrations.steps;
 
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
@@ -19,8 +17,22 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-public interface RenderEngineInstance {
-	double[] getTransformationMatrix() throws RenderEngineException;
-	RenderEngineGeometry generateGeometry() throws RenderEngineException;
-	ObjectNode getAdditionalData() throws RenderEngineException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.migrations.Migration;
+import org.bimserver.database.migrations.Schema;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EcorePackage;
+
+public class Step0047 extends Migration {
+
+	@Override
+	public void migrate(Schema schema, DatabaseSession databaseSession) {
+		EClass geometryInfo = schema.getEClass("geometry", "GeometryInfo");
+		schema.createEAttribute(geometryInfo, "additionalData", EcorePackage.eINSTANCE.getEString());
+	}
+
+	@Override
+	public String getDescription() {
+		return "Added additional data to GeometryInfo (json)";
+	}
 }

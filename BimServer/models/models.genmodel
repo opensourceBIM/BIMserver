@@ -25,6 +25,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/density"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryInfo/boundsMm"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryInfo/boundsUntransformedMm"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/additionalData"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/Vector3f">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector3f/x"/>

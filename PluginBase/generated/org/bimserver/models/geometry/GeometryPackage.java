@@ -223,13 +223,22 @@ public interface GeometryPackage extends EPackage {
 	int GEOMETRY_INFO__BOUNDS_UNTRANSFORMED_MM = 13;
 
 	/**
+	 * The feature id for the '<em><b>Additional Data</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_INFO__ADDITIONAL_DATA = 14;
+
+	/**
 	 * The number of structural features of the '<em>Info</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO_FEATURE_COUNT = 14;
+	int GEOMETRY_INFO_FEATURE_COUNT = 15;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.Vector3fImpl <em>Vector3f</em>}' class.
@@ -734,6 +743,17 @@ public interface GeometryPackage extends EPackage {
 	EReference getGeometryInfo_BoundsUntransformedMm();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryInfo#getAdditionalData <em>Additional Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Additional Data</em>'.
+	 * @see org.bimserver.models.geometry.GeometryInfo#getAdditionalData()
+	 * @see #getGeometryInfo()
+	 * @generated
+	 */
+	EAttribute getGeometryInfo_AdditionalData();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.geometry.Vector3f <em>Vector3f</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1223,6 +1243,14 @@ public interface GeometryPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GEOMETRY_INFO__BOUNDS_UNTRANSFORMED_MM = eINSTANCE.getGeometryInfo_BoundsUntransformedMm();
+
+		/**
+		 * The meta object literal for the '<em><b>Additional Data</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GEOMETRY_INFO__ADDITIONAL_DATA = eINSTANCE.getGeometryInfo_AdditionalData();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.geometry.impl.Vector3fImpl <em>Vector3f</em>}' class.

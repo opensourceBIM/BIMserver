@@ -82,6 +82,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.primitives.UnsignedBytes;
 
 public class GeometryGenerator extends GenericGeometryGenerator {
@@ -215,13 +216,15 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 									geometryInfo.setBoundsUntransformed(boundsUntranslated);
 
 									try {
-										double area = renderEngineInstance.getArea();
-										geometryInfo.setArea(area);
-										double volume = renderEngineInstance.getVolume();
-										if (volume < 0d) {
-											volume = -volume;
+										ObjectNode additionalData = renderEngineInstance.getAdditionalData();
+										if (additionalData != null) {
+											if (additionalData.has("x")) {
+												geometryInfo.setArea(additionalData.get("x").asDouble());
+											}
+											if (additionalData.has("y")) {
+												geometryInfo.setVolume(additionalData.get("y").asDouble());
+											}
 										}
-										geometryInfo.setVolume(volume);
 										
 //										EStructuralFeature guidFeature = ifcProduct.eClass().getEStructuralFeature("GlobalId");
 //										String guid = (String) ifcProduct.eGet(guidFeature);
