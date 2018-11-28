@@ -61,9 +61,11 @@ public class RichIfcModel {
 	private IfcModelInterface model;
 	private IfcOwnerHistory defaultOwnerHistory;
 	private IfcRepresentationContext defaultRepresentationContext;
+	private boolean addOnCreate;
 
-	public RichIfcModel(IfcModelInterface model) {
+	public RichIfcModel(IfcModelInterface model, boolean addOnCreate) {
 		this.model = model;
+		this.addOnCreate = addOnCreate;
 	}
 
 	/**
@@ -96,6 +98,9 @@ public class RichIfcModel {
 			if (defaultOwnerHistory != null) {
 				((IfcRoot)object).setOwnerHistory(defaultOwnerHistory);
 			}
+		}
+		if (addOnCreate) {
+			model.add(object.getOid(), object);
 		}
 		return object;
 	}
