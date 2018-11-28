@@ -1,6 +1,6 @@
 package org.bimserver.shared;
 
-import java.util.List;
+import java.util.Set;
 
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
@@ -22,7 +22,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 
@@ -67,5 +66,5 @@ public abstract class AbstractHashMapVirtualObject {
 
 	public abstract Object get(String string);
 
-	public abstract List<HashMapVirtualObject> getDirectListFeature(EStructuralFeature representationsFeature);
+	public abstract Set<HashMapVirtualObject> getDirectListFeature(EStructuralFeature representationsFeature);
 }
