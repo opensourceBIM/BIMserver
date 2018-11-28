@@ -197,13 +197,15 @@ public class GeometryAccellerator {
 					continue;
 				}
 				if (l == 0) {
-					cumulativeTrianglesBelow += density.getTrianglesBelow(); // Not a typo
-					densityResult = density;
-					if (cumulativeTrianglesBelow > key.getNrTriangles()) {
+					if (cumulativeTrianglesBelow + density.getTrianglesBelow() > key.getNrTriangles()) {
 						l = 1;
+					} else {
+						densityResult = density;
+						cumulativeTrianglesBelow += density.getTrianglesBelow(); // Not a typo
 						ld = density.getDensity();
 					}
-				} else if (l == 1) {
+				} 
+				if (l == 1) {
 					if (ld == density.getDensity()) {
 						cumulativeTrianglesBelow += density.getTrianglesBelow();
 						densityResult = density;
@@ -214,6 +216,7 @@ public class GeometryAccellerator {
 			}
 			if (densityResult == null) {
 				densityResult = densities.get(0);
+				densityResult.setDensity(-1);
 			}
 			// This is useful information, so the client knows exactly how many triangles will be loaded by using this threshold
 			densityResult.setTrianglesBelow(cumulativeTrianglesBelow);
