@@ -435,8 +435,10 @@ public class GeometryRunner implements Runnable {
 												if (referencedData == null) {
 													LOGGER.error("Object not found in cache: " + referenceOid + " (hash: " + hash + ")");
 												}
-												Integer currentValue = (Integer) referencedData.get("reused");
-												referencedData.set("reused", currentValue + 1);
+												synchronized (referencedData) {
+													Integer currentValue = (Integer) referencedData.get("reused");
+													referencedData.set("reused", currentValue + 1);
+												}
 												HashMapWrappedVirtualObject dataBounds = (HashMapWrappedVirtualObject) referencedData.get("boundsMm");
 												extendBounds(boundsMm, dataBounds);
 												referencedData.saveOverwrite();
@@ -588,9 +590,6 @@ public class GeometryRunner implements Runnable {
 								// We pick the first product and use that product to try and get the original data
 								long firstKey = map.keySet().iterator().next();
 								ProductDef masterProductDef = map.get(firstKey);
-								if (eClass.getName().equals("IfcWindow")) {
-									System.out.println();
-								}
 								for (long key : map.keySet()) {
 									if (key != firstKey) {
 										ProductDef productDef = map.get(key);
