@@ -53,9 +53,11 @@ public interface BimServerClientInterface extends ServiceHolder, AutoCloseable {
 	void download(long roid, long serializerOid, Path file) throws IOException, BimServerClientException;
 	void download(long roid, Query query, long serializerOid, Path file) throws IOException, BimServerClientException;
 	
-	SLongCheckinActionState checkinSync(long poid, String string, long deserializerOid, boolean merge, Path file) throws IOException, UserException, ServerException;
-	long checkinAsync(long poid, String string, long deserializerOid, boolean merge, Path file) throws IOException, UserException, ServerException;
+	SLongCheckinActionState checkinSync(long poid, String comment, long deserializerOid, boolean merge, Path file) throws IOException, UserException, ServerException;
+	long checkinAsync(long poid, String comment, long deserializerOid, boolean merge, Path file) throws IOException, UserException, ServerException;
 	SLongCheckinActionState checkinSync(long poid, String comment, long deserializerOid, boolean merge, URL url) throws UserException, ServerException;
+	long checkinAsync(long poid, String comment, long deserializerOid, boolean merge, URL url) throws UserException, ServerException;
+	SLongCheckinActionState checkinSync(long poid, String comment, long deserializerOid, boolean merge, long fileSize, String filename, InputStream inputStream) throws UserException, ServerException;
 	long checkinAsync(long poid, String comment, long deserializerOid, boolean merge, long fileSize, String filename, InputStream inputStream) throws UserException, ServerException;
 	
 	/**
