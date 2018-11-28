@@ -110,7 +110,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 	private volatile boolean allJobsPushed;
 
-	private int maxObjectsPerFile = 10;
+	private int maxObjectsPerFile = 20;
 	volatile boolean running = true;
 
 	String debugIdentifier;
@@ -304,7 +304,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 						if (next.eClass() == eClass) {
 							AbstractHashMapVirtualObject representation = next.getDirectFeature(representationFeature);
 							if (representation != null) {
-								List<HashMapVirtualObject> representations = representation.getDirectListFeature(representationsFeature);
+								Set<HashMapVirtualObject> representations = representation.getDirectListFeature(representationsFeature);
 								if (representations != null) {
 									boolean foundValidContext = false;
 									for (HashMapVirtualObject representationItem : representations) {
@@ -317,7 +317,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 											continue;
 										}
 										if (hasValidRepresentationIdentifier(representationItem)) {
-											List<HashMapVirtualObject> items = representationItem.getDirectListFeature(itemsFeature);
+											Set<HashMapVirtualObject> items = representationItem.getDirectListFeature(itemsFeature);
 											if (items == null || items.size() > 1) {
 												// Only if there is just one item, we'll store this for reuse
 												continue;
@@ -507,7 +507,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 						if (next.eClass() == eClass && !done.contains(next.getOid()) && !toSkip.contains(next.getOid())) {
 							AbstractHashMapVirtualObject representation = next.getDirectFeature(representationFeature);
 							if (representation != null) {
-								List<HashMapVirtualObject> list = representation.getDirectListFeature(packageMetaData.getEReference("IfcProductRepresentation", "Representations"));
+								Set<HashMapVirtualObject> list = representation.getDirectListFeature(packageMetaData.getEReference("IfcProductRepresentation", "Representations"));
 								boolean goForIt = goForIt(list);
 								if (goForIt) {
 									if (next.eClass() == eClass && !done.contains(next.getOid())) {
@@ -713,7 +713,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		return 1000f;
 	}
 
-	private boolean goForIt(List<HashMapVirtualObject> list) {
+	private boolean goForIt(Set<HashMapVirtualObject> list) {
 		boolean goForIt = false;
 		if (list != null) {
 			boolean foundValidContext = false;
