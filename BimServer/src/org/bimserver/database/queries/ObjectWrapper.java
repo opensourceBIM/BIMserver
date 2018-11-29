@@ -15,13 +15,13 @@ public class ObjectWrapper implements Comparable<ObjectWrapper> {
 		return bounds;
 	}
 	
-	public GeometryObject getV() {
+	public GeometryObject getGeometry() {
 		return v;
 	}
 
 	@Override
 	public int compareTo(ObjectWrapper o) {
-		return v.compareTo(o.getV());
+		return v.compareTo(o.getGeometry());
 	}
 	
 	@Override

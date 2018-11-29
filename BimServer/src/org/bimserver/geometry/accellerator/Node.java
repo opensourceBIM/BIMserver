@@ -17,8 +17,12 @@ public class Node {
 	private int id;
 	private int maxDepth;
 	private Octree root;
+	private int parentId;
+	private int localId;
 	
 	public Node(Octree root, Bounds bounds, int level, int parentId, int localId, int maxDepth) {
+		this.parentId = parentId;
+		this.localId = localId - 1;
 		this.id = parentId * 8 + localId;
 		if (root != null) {
 			root.addToList(this);
@@ -62,7 +66,7 @@ public class Node {
 	public int valuesSize(Float minimumThreshold, Float maximumThreshold) {
 		int count = 0;
 		for (ObjectWrapper objectWrapper : values) {
-			GeometryObject geometryObject = objectWrapper.getV();
+			GeometryObject geometryObject = objectWrapper.getGeometry();
 			// TODO lookup exact compare operators
 			if ((minimumThreshold == -1 || geometryObject.getDensity() > minimumThreshold) && 
 					(maximumThreshold == -1 || geometryObject.getDensity() <= maximumThreshold)) {
@@ -77,8 +81,13 @@ public class Node {
 	}
 
 	public Node add(GeometryObject v, Bounds bounds) {
+		return add(v, bounds, false);
+	}
+	
+	public Node add(GeometryObject v, Bounds bounds, boolean forcedLevel) {
+		// TODO do we really have to do this here? What if one of our children takes this one?	
 		minimumBounds.integrate(bounds);
-		if (level != maxDepth) {
+		if (level != maxDepth && !forcedLevel) {
 			int localId = 1;
 			for (int x=0; x<=1; x++) {
 				for (int y=0; y<=1; y++) {
@@ -98,7 +107,7 @@ public class Node {
 				}
 			}
 		}
-		// Did not fit in any of the children
+		// Did not fit in any of the children, or forced
 //		System.out.println(q++ + ", " + this.level);
 		if (!values.add(new ObjectWrapper(bounds, v))) {
 		}
@@ -174,5 +183,25 @@ public class Node {
 	
 	public int getLevel() {
 		return level;
+	}
+
+	public Node getParent() {
+		return root.getById(parentId);
+	}
+	
+	public void moveUp() {
+		Node parent = getParent();
+		for (ObjectWrapper objectWrapper : getValues()) {
+			objectWrapper.getGeometry().setTileId(parent.getId());
+			objectWrapper.getGeometry().setTileLevel(parent.getLevel());
+			parent.add(objectWrapper.getGeometry(), objectWrapper.getBounds(), true);
+		}
+		// If we don't do this, it doesn't result in the correct amount of objects, which implies duplication somewhere in the tree
+		this.values.clear();
+		parent.remove(localId);
+	}
+
+	private void remove(int localId) {
+		nodes[localId] = null;
 	}
 }

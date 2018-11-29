@@ -51,7 +51,7 @@ public class TestBigModelEmf extends TestWithEmbeddedServer {
 			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
 			IfcModelInterface model = bimServerClient.newModel(newProject, true);
-			RichIfcModel richIfcModel = new RichIfcModel(model);
+			RichIfcModel richIfcModel = new RichIfcModel(model, false);
 			
 			IfcBuilding ifcBuilding = richIfcModel.createDefaultProjectStructure();
 			

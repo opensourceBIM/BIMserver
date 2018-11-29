@@ -1,5 +1,5 @@
 package org.bimserver.geometry.accellerator;
 
 public interface Traverser {
-	void traverse(Node t);
+	void traverse(Node node);
 }

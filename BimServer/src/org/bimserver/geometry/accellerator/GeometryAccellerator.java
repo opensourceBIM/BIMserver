@@ -159,10 +159,18 @@ public class GeometryAccellerator {
 				next = queryObjectProvider.next();
 			}
 			
-			octree.traverseBreathFirst(new Traverser() {
+//			octree.traverseBreathFirst(new Traverser() {
+//				@Override
+//				public void traverse(Node t) {
+//					t.sort();
+//				}
+//			});
+			
+			octree.moveUp(new MoveUpDecider() {
 				@Override
-				public void traverse(Node t) {
-					t.sort();
+				public boolean moveUp(Node node) {
+					// TODO use more heuristics
+					return node.valuesSize() < 10;
 				}
 			});
 			

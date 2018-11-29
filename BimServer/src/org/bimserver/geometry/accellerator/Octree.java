@@ -3,8 +3,10 @@ package org.bimserver.geometry.accellerator;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.bimserver.database.queries.Bounds;
@@ -62,6 +64,23 @@ public class Octree extends Node {
 			this.tilingImplementation = new TilingImplementation((Octree) this);
 		}
 		return this.tilingImplementation;
+	}
+	
+	public void moveUp(MoveUpDecider moveUpDecider) {
+		for (int level=getDeepestLevel(); level > 0; level--) {
+			Set<Node> toMoveUp = new HashSet<>();
+			traverseBreathFirst(new Traverser() {
+				@Override
+				public void traverse(Node node) {
+					if (moveUpDecider.moveUp(node)) {
+						toMoveUp.add(node);
+					}
+				}
+			}, level);
+			for (Node node : toMoveUp) {
+				node.moveUp();
+			}
+		}
 	}
 	
 	public static void main(String[] args) {

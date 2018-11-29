@@ -3294,7 +3294,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		Octree octree = getBimServer().getGeometryAccellerator().getOctree(roids, excludedTypes, geometryIdsToReuse, maxDepth, minimumThreshold, maximumThreshold);
 
 		List<Number> result = new ArrayList<>();
-		AtomicInteger total = new AtomicInteger(0);
+		AtomicInteger totalObjects = new AtomicInteger(0);
 		// TODO non-breath-first is probably faster, don't think it matters for the client (ATM)
 		octree.breathFirstCounts(minimumThreshold, maximumThreshold, new NodeCounter() {
 			@Override
@@ -3302,12 +3302,10 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				if (count > 0) {
 					result.add(nodeId);
 					result.add(count);
-					total.addAndGet(count);
-//					System.out.println(nodeId + ", " + count);
+					totalObjects.addAndGet(count);
 				}				
 			}
 		}, maxDepth);
-		LOGGER.info("Total: " + total);
 		return result;
 	}
 	

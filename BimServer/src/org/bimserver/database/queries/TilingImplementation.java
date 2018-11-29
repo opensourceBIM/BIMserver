@@ -82,7 +82,7 @@ public class TilingImplementation implements TilingInterface {
 
 		for (Node node : octree.values()) {
 			for (ObjectWrapper objectWrapper : node.getValues()) {
-				objects.add(objectWrapper.getV());
+				objects.add(objectWrapper.getGeometry());
 			}
 		}
 	}
