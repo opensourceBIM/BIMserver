@@ -1,5 +1,5 @@
 
-éµ
+ñµ
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -835,14 +835,14 @@ revisionNr (
 value ("3
 GetGeometryInfoRequest
 roid (
-oid ("»
-SGeometryInfo
-area ()
-bounds (2.org.bimserver.pb.SBounds+
-boundsMm (2.org.bimserver.pb.SBounds6
-boundsUntransformed (2.org.bimserver.pb.SBounds8
-boundsUntransformedMm (2.org.bimserver.pb.SBounds
-dataId (
+oid ("Ã
+SGeometryInfo
+additionalData (	
+area ()
+bounds (2.org.bimserver.pb.SBounds+
+boundsMm (2.org.bimserver.pb.SBounds6
+boundsUntransformed (2.org.bimserver.pb.SBounds8
+boundsUntransformedMm (2.org.bimserver.pb.SBounds
 density (
 hasTransparency (
 ifcProductOid	 (

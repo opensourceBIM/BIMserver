@@ -263,8 +263,8 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGeometryInfo_Data() {
-		return (EReference) getGeometryInfo().getEStructuralFeatures().get(6);
+	public EAttribute getGeometryInfo_Transformation() {
+		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -272,8 +272,8 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGeometryInfo_Transformation() {
-		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(5);
+	public EReference getGeometryInfo_Data() {
+		return (EReference) getGeometryInfo().getEStructuralFeatures().get(6);
 	}
 
 	/**

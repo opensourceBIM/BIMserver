@@ -644,17 +644,6 @@ public interface GeometryPackage extends EPackage {
 	EAttribute getGeometryInfo_PrimitiveCount();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryInfo#getData <em>Data</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Data</em>'.
-	 * @see org.bimserver.models.geometry.GeometryInfo#getData()
-	 * @see #getGeometryInfo()
-	 * @generated
-	 */
-	EReference getGeometryInfo_Data();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryInfo#getTransformation <em>Transformation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -664,6 +653,17 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getGeometryInfo_Transformation();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryInfo#getData <em>Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Data</em>'.
+	 * @see org.bimserver.models.geometry.GeometryInfo#getData()
+	 * @see #getGeometryInfo()
+	 * @generated
+	 */
+	EReference getGeometryInfo_Data();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryInfo#getArea <em>Area</em>}'.
@@ -1173,20 +1173,20 @@ public interface GeometryPackage extends EPackage {
 		EAttribute GEOMETRY_INFO__PRIMITIVE_COUNT = eINSTANCE.getGeometryInfo_PrimitiveCount();
 
 		/**
-		 * The meta object literal for the '<em><b>Data</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference GEOMETRY_INFO__DATA = eINSTANCE.getGeometryInfo_Data();
-
-		/**
 		 * The meta object literal for the '<em><b>Transformation</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute GEOMETRY_INFO__TRANSFORMATION = eINSTANCE.getGeometryInfo_Transformation();
+
+		/**
+		 * The meta object literal for the '<em><b>Data</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GEOMETRY_INFO__DATA = eINSTANCE.getGeometryInfo_Data();
 
 		/**
 		 * The meta object literal for the '<em><b>Area</b></em>' attribute feature.

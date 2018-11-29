@@ -192,24 +192,6 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GeometryData getData() {
-		return (GeometryData) eGet(GeometryPackage.Literals.GEOMETRY_INFO__DATA, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setData(GeometryData newData) {
-		eSet(GeometryPackage.Literals.GEOMETRY_INFO__DATA, newData);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public byte[] getTransformation() {
 		return (byte[]) eGet(GeometryPackage.Literals.GEOMETRY_INFO__TRANSFORMATION, true);
 	}
@@ -221,6 +203,24 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 */
 	public void setTransformation(byte[] newTransformation) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__TRANSFORMATION, newTransformation);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GeometryData getData() {
+		return (GeometryData) eGet(GeometryPackage.Literals.GEOMETRY_INFO__DATA, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setData(GeometryData newData) {
+		eSet(GeometryPackage.Literals.GEOMETRY_INFO__DATA, newData);
 	}
 
 	/**

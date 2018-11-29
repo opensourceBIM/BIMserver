@@ -1577,12 +1577,12 @@ message GetGeometryInfoRequest {
 }
 
 message SGeometryInfo {
-	optional double area = 1;
-	optional SBounds bounds = 2;
-	optional SBounds boundsMm = 3;
-	optional SBounds boundsUntransformed = 4;
-	optional SBounds boundsUntransformedMm = 5;
-	optional int64 dataId = 6;
+	optional string additionalData = 1;
+	optional double area = 2;
+	optional SBounds bounds = 3;
+	optional SBounds boundsMm = 4;
+	optional SBounds boundsUntransformed = 5;
+	optional SBounds boundsUntransformedMm = 6;
 	optional float density = 7;
 	optional bool hasTransparency = 8;
 	optional int64 ifcProductOid = 9;

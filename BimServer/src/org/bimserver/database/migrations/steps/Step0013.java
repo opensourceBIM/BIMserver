@@ -140,7 +140,7 @@ public class Step0013 extends Migration {
 		schema.createEReference(geometryData, "colorsQuantized", buffer);
 		schema.createEAttribute(geometryInfo, "transformation", EcorePackage.eINSTANCE.getEByteArray());
 
-		schema.createEReference(geometryInfo, "data", geometryData).getEAnnotations().add(createNoLazyLoadAnnotation());
+		schema.createEReference(geometryInfo, "data", geometryData).getEAnnotations();
 
 		EClass ifcProductIfc2x3tc1 = schema.getEClass("ifc2x3tc1", "IfcProduct");
 		EClass ifcProductIfc4 = schema.getEClass("ifc4", "IfcProduct");
