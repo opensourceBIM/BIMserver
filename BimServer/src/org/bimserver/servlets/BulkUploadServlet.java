@@ -121,7 +121,7 @@ public class BulkUploadServlet extends SubServlet {
 											
 											service.checkinSync(project.getOid(), comment, deserializer.getOid(), -1L, filename, ifcFile, false);
 										} catch (Exception e) {
-											LOGGER.error(e.getMessage());
+											LOGGER.error(e.getMessage() + " (" + fullfilename + ")");
 										}
 									}
 								} else {
