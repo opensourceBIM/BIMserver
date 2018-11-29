@@ -144,6 +144,7 @@ public class ClientIfcModel extends IfcModel {
 				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
 				waitForDonePreparing(topicId);
 				processDownload(topicId);
+				bimServerClient.getServiceInterface().cleanupLongAction(topicId);
 			} catch (ServerException e) {
 				e.printStackTrace();
 			} catch (UserException e) {
