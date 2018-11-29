@@ -1,5 +1,5 @@
 package org.bimserver.geometry.accellerator;
 
-public interface Traverser<T extends Comparable<T>> {
-	void traverse(Node<T> t);
+public interface Traverser {
+	void traverse(Node t);
 }

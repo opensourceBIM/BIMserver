@@ -57,6 +57,7 @@ public abstract class Migration {
 		return hidden;
 	}
 
+	@Deprecated
 	protected EAnnotation createNoLazyLoadAnnotation() {
 		EAnnotation hidden = EcoreFactory.eINSTANCE.createEAnnotation();
 		hidden.setSource("nolazyload");

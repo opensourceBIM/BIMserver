@@ -8,17 +8,17 @@ import java.util.List;
 import org.bimserver.database.queries.Bounds;
 import org.bimserver.database.queries.ObjectWrapper;
 
-public class Node<V extends Comparable<V>> {
-	private final Node<V>[] nodes = new Node[8];
+public class Node {
+	private final Node[] nodes = new Node[8];
 	private Bounds bounds;
 	private Bounds minimumBounds = new Bounds();
-	private List<ObjectWrapper<V>> values = new ArrayList<>();
+	private List<ObjectWrapper> values = new ArrayList<>();
 	private int level;
 	private int id;
 	private int maxDepth;
-	private Octree<V> root;
+	private Octree root;
 	
-	public Node(Octree<V> root, Bounds bounds, int level, int parentId, int localId, int maxDepth) {
+	public Node(Octree root, Bounds bounds, int level, int parentId, int localId, int maxDepth) {
 		this.id = parentId * 8 + localId;
 		if (root != null) {
 			root.addToList(this);
@@ -34,7 +34,7 @@ public class Node<V extends Comparable<V>> {
 	
 	public int size() {
 		int total = 0;
-		for (Node<V> node : nodes) {
+		for (Node node : nodes) {
 			if (node != null) {
 				total += node.size();
 			}
@@ -43,7 +43,7 @@ public class Node<V extends Comparable<V>> {
 		return total;
 	}
 	
-	protected void setRoot(Octree<V> root) {
+	protected void setRoot(Octree root) {
 		this.root = root;
 	}
 	
@@ -55,11 +55,28 @@ public class Node<V extends Comparable<V>> {
 		return minimumBounds;
 	}
 	
-	public Collection<ObjectWrapper<V>> getValues() {
+	public Collection<ObjectWrapper> getValues() {
 		return values;
 	}
+	
+	public int valuesSize(Float minimumThreshold, Float maximumThreshold) {
+		int count = 0;
+		for (ObjectWrapper objectWrapper : values) {
+			GeometryObject geometryObject = objectWrapper.getV();
+			// TODO lookup exact compare operators
+			if ((minimumThreshold == -1 || geometryObject.getDensity() > minimumThreshold) && 
+					(maximumThreshold == -1 || geometryObject.getDensity() <= maximumThreshold)) {
+				count++;
+			}
+		}
+		return count;
+	}
 
-	public Node<V> add(V v, Bounds bounds) {
+	public int valuesSize() {
+		return values.size();
+	}
+
+	public Node add(GeometryObject v, Bounds bounds) {
 		minimumBounds.integrate(bounds);
 		if (level != maxDepth) {
 			int localId = 1;
@@ -68,12 +85,12 @@ public class Node<V extends Comparable<V>> {
 					for (int z=0; z<=1; z++) {
 						Bounds offset = this.bounds.offset(x, y, z);
 						if (bounds.within(offset)) {
-							Node<V> node = nodes[x * 4 + y * 2 + z];
+							Node node = nodes[x * 4 + y * 2 + z];
 							if (node == null) {
-								node = new Node<>(root, offset, this.level + 1, this.id, localId, maxDepth);
+								node = new Node(root, offset, this.level + 1, this.id, localId, maxDepth);
 								nodes[x * 4 + y * 2 + z] = node;
 							}
-							Node<V> addedNode = node.add(v, bounds);
+							Node addedNode = node.add(v, bounds);
 							return addedNode;
 						}
 						localId++;
@@ -83,13 +100,13 @@ public class Node<V extends Comparable<V>> {
 		}
 		// Did not fit in any of the children
 //		System.out.println(q++ + ", " + this.level);
-		if (!values.add(new ObjectWrapper<>(bounds, v))) {
+		if (!values.add(new ObjectWrapper(bounds, v))) {
 		}
 		return this;
 	}
 	
-	public void query(List<V> results, Bounds bounds) {
-		for (Node<V> node : nodes) {
+	public void query(List<GeometryObject> results, Bounds bounds) {
+		for (Node node : nodes) {
 			if (node != null) {
 				if (bounds.getMinX() > node.getBounds().getMaxX() || bounds.getMinY() > node.getBounds().getMaxY() || bounds.getMinZ() > node.getBounds().getMaxZ()) {
 					continue;
@@ -110,18 +127,41 @@ public class Node<V extends Comparable<V>> {
 		return values.size();
 	}
 	
-	public Node<V>[] getNodes() {
+	public Node[] getNodes() {
 		return nodes;
 	}
 	
-	public void traverseBreathFirst(Traverser<V> traverser, int level) {
+	public void traverseBreathFirst(Traverser traverser, int level) {
 		if (this.level == level) {
 			traverser.traverse(this);
 		}
 		if (level < this.level) {
 			return;
 		}
-		for (Node<V> child : nodes) {
+		for (Node child : nodes) {
+			if (child != null) {
+				child.traverseBreathFirst(traverser, level);
+			}
+		}
+	}
+
+	public void traverseBreathFirst(Traverser traverser) {
+		traverser.traverse(this);
+		for (Node child : nodes) {
+			if (child != null) {
+				child.traverseBreathFirst(traverser);
+			}
+		}
+	}
+
+	public void traverseBreathFirst(Traverser traverser, int level, int maxLevel) {
+		if (this.level == level || level > maxLevel) {
+			traverser.traverse(this);
+		}
+		if (level < this.level) {
+			return;
+		}
+		for (Node child : nodes) {
 			if (child != null) {
 				child.traverseBreathFirst(traverser, level);
 			}

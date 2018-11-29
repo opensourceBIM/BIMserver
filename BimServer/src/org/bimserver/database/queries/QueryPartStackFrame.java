@@ -131,6 +131,21 @@ public class QueryPartStackFrame extends StackFrame {
 		if (typeIterator == null) {
 			return true;
 		}
+		if (tiles != null) {
+			List<Long> oids = new ArrayList<>();
+			List<Long> oidsFiltered = new ArrayList<>();
+
+			tiles.getTilingInterface().queryOids(oids, oidsFiltered, reusable.getCroid(), null, tiles);
+
+			if (!oids.isEmpty()) {
+				queryObjectProvider.push(new QueryOidsStackFrame(queryObjectProvider, partialQuery, reusable, oids));
+			}
+			if (!oidsFiltered.isEmpty()) {
+				QueryPart filteredQueryPart = createFilteredQueryPart(partialQuery);
+				queryObjectProvider.push(new QueryOidsStackFrame(queryObjectProvider, filteredQueryPart, reusable, oidsFiltered));
+			}
+			return true;
+		}
 		if (typeIterator.hasNext()) {
 			EClass eClass = typeIterator.next();
 			if (oids != null) {
@@ -148,45 +163,6 @@ public class QueryPartStackFrame extends StackFrame {
 				queryObjectProvider.push(new QueryClassificationsAndTypesStackFrame(queryObjectProvider, eClass, partialQuery, reusable, classifications));
 			} else if (inBoundingBox != null) {
 				queryObjectProvider.push(new QueryBoundingBoxStackFrame(queryObjectProvider, eClass, partialQuery, reusable, inBoundingBox));
-			} else if (tiles != null) {
-				List<Long> oids = new ArrayList<>();
-				List<Long> oidsFiltered = new ArrayList<>();
-
-				QueryPart filteredQueryPart = createFilteredQueryPart(partialQuery);
-				tiles.getTilingInterface().queryOids(oids, oidsFiltered, reusable.getRoid(), eClass, tiles);
-				
-//				Set<Node<GeometryObject>> nodes = (Set<Node<GeometryObject>>) tiles.getNodes();
-//				
-//				for (Node<GeometryObject> node : nodes) {
-//					for (ObjectWrapper<GeometryObject> objectWrapper : node.getValues()) {
-//						GeometryObject geometryObject = objectWrapper.getV();
-//						if (geometryObject.getRoid() == reusable.getRoid()) {
-//							if (tiles.getMaximumThreshold() != -1 && geometryObject.getDensity() > tiles.getMaximumThreshold()) {
-//								continue;
-//							}
-//							if (tiles.getMinimumReuseThreshold() != -1 && geometryObject.getDensity() < tiles.getMinimumThreshold()) {
-//								continue;
-//							}
-//							long objectId = geometryObject.getOid();
-//							if (eClass.isSuperTypeOf(queryObjectProvider.getDatabaseSession().getEClassForOid(objectId))) {
-//								if (tiles.getMinimumReuseThreshold() != -1 && tiles.getMinimumReuseThreshold() <= geometryObject.getSaveableTriangles()) {
-//									// We still have to send this object, we just need to somehow make sure the associated GeometryData is not sent
-//									oidsFiltered.add(objectId);
-//								} else {
-//									oids.add(objectId);
-//								}
-//							}
-//						}
-//					}
-//				}
-				if (!oids.isEmpty()) {
-					Collections.sort(oids);
-					queryObjectProvider.push(new QueryOidsAndTypesStackFrame(queryObjectProvider, eClass, partialQuery, reusable, oids));
-				}
-				if (!oidsFiltered.isEmpty()) {
-					Collections.sort(oidsFiltered);
-					queryObjectProvider.push(new QueryOidsAndTypesStackFrame(queryObjectProvider, eClass, filteredQueryPart, reusable, oidsFiltered));
-				}
 			} else {
 				queryObjectProvider.push(new QueryTypeStackFrame(queryObjectProvider, eClass, reusable, partialQuery));
 			}

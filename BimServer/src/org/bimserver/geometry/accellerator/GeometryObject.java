@@ -4,23 +4,33 @@ import org.eclipse.emf.ecore.EClass;
 
 public class GeometryObject implements Comparable<GeometryObject> {
 
-	private long oid;
-	private long roid;
-	private int saveableTriangles;
-	private float density;
-	private EClass eClass;
-	private int tileId;
+	private final long oid;
+	private final long croid;
+	private final int saveableTriangles;
+	private final float density;
+	private final EClass eClass;
+	private final int triangles;
+	private final float biggestFace;
 
-	public GeometryObject(long oid, EClass eClass, long roid, int saveableTriangles, float density) {
+	private int tileId;
+	private int tileLevel;
+
+	public GeometryObject(long oid, EClass eClass, long croid, int saveableTriangles, int triangles, float density) {
 		this.oid = oid;
 		this.eClass = eClass;
-		this.roid = roid;
+		this.croid = croid;
 		this.saveableTriangles = saveableTriangles;
+		this.triangles = triangles;
 		this.density = density;
+		this.biggestFace = triangles / density;
 	}
 	
 	public void setTileId(int tileId) {
 		this.tileId = tileId;
+	}
+	
+	public int getTriangles() {
+		return triangles;
 	}
 	
 	public EClass geteClass() {
@@ -31,8 +41,8 @@ public class GeometryObject implements Comparable<GeometryObject> {
 		return oid;
 	}
 	
-	public long getRoid() {
-		return roid;
+	public long getCroid() {
+		return croid;
 	}
 	
 	public int getSaveableTriangles() {
@@ -41,7 +51,7 @@ public class GeometryObject implements Comparable<GeometryObject> {
 
 	@Override
 	public int compareTo(GeometryObject o) {
-		return Float.compare(density, o.density);
+		return Float.compare(o.biggestFace, biggestFace);
 	}
 
 	@Override
@@ -72,5 +82,18 @@ public class GeometryObject implements Comparable<GeometryObject> {
 
 	public int getTileId() {
 		return tileId;
+	}
+
+	public float getOrder() {
+		// The idea is that later on the determinator for ordering can be changed to something else
+		return biggestFace;
+	}
+
+	public int getTileLevel() {
+		return tileLevel;
+	}
+	
+	public void setTileLevel(int tileLevel) {
+		this.tileLevel = tileLevel;
 	}
 }

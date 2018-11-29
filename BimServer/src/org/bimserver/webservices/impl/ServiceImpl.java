@@ -40,6 +40,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -164,6 +165,7 @@ import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;
 import org.bimserver.geometry.accellerator.GeometryObject;
 import org.bimserver.geometry.accellerator.Node;
+import org.bimserver.geometry.accellerator.NodeCounter;
 import org.bimserver.geometry.accellerator.Octree;
 import org.bimserver.geometry.accellerator.Traverser;
 import org.bimserver.interfaces.objects.SAccessMethod;
@@ -3288,27 +3290,24 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 
 	@Override
-	public List<Number> getTileCounts(Set<Long> roids, Set<String> excludedTypes, Set<Long> geometryIdsToReuse, Float minimumThreshold, Float maximumThreshold, Integer depth) throws ServerException, UserException {
-		Octree<GeometryObject> octree = getBimServer().getGeometryAccellerator().getOctree(roids, excludedTypes, geometryIdsToReuse, depth, minimumThreshold, maximumThreshold);
+	public List<Number> getTileCounts(Set<Long> roids, Set<String> excludedTypes, Set<Long> geometryIdsToReuse, Float minimumThreshold, Float maximumThreshold, Integer maxDepth) throws ServerException, UserException {
+		Octree octree = getBimServer().getGeometryAccellerator().getOctree(roids, excludedTypes, geometryIdsToReuse, maxDepth, minimumThreshold, maximumThreshold);
 
 		List<Number> result = new ArrayList<>();
+		AtomicInteger total = new AtomicInteger(0);
 		// TODO non-breath-first is probably faster, don't think it matters for the client (ATM)
-		octree.traverseBreathFirst(new Traverser<GeometryObject>() {
+		octree.breathFirstCounts(minimumThreshold, maximumThreshold, new NodeCounter() {
 			@Override
-			public void traverse(Node<GeometryObject> node) {
-				if (node.getNrObjects() > 0) {
-					result.add(node.getId());
-					result.add(node.getNrObjects());
-//					org.bimserver.database.queries.Bounds minimumBounds = node.getMinimumBounds();
-//					result.add(minimumBounds.getMinX());
-//					result.add(minimumBounds.getMinY());
-//					result.add(minimumBounds.getMinZ());
-//					result.add(minimumBounds.getMaxX());
-//					result.add(minimumBounds.getMaxY());
-//					result.add(minimumBounds.getMaxZ());
-				}
+			public void counted(int nodeId, int count) {
+				if (count > 0) {
+					result.add(nodeId);
+					result.add(count);
+					total.addAndGet(count);
+//					System.out.println(nodeId + ", " + count);
+				}				
 			}
-		});
+		}, maxDepth);
+		LOGGER.info("Total: " + total);
 		return result;
 	}
 	

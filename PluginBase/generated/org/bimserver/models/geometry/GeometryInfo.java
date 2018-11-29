@@ -198,32 +198,6 @@ public interface GeometryInfo extends IdEObject {
 	void setPrimitiveCount(Integer value);
 
 	/**
-	 * Returns the value of the '<em><b>Data</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Data</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Data</em>' reference.
-	 * @see #setData(GeometryData)
-	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_Data()
-	 * @model
-	 * @generated
-	 */
-	GeometryData getData();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getData <em>Data</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Data</em>' reference.
-	 * @see #getData()
-	 * @generated
-	 */
-	void setData(GeometryData value);
-
-	/**
 	 * Returns the value of the '<em><b>Transformation</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -248,6 +222,32 @@ public interface GeometryInfo extends IdEObject {
 	 * @generated
 	 */
 	void setTransformation(byte[] value);
+
+	/**
+	 * Returns the value of the '<em><b>Data</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Data</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Data</em>' reference.
+	 * @see #setData(GeometryData)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_Data()
+	 * @model
+	 * @generated
+	 */
+	GeometryData getData();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getData <em>Data</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Data</em>' reference.
+	 * @see #getData()
+	 * @generated
+	 */
+	void setData(GeometryData value);
 
 	/**
 	 * Returns the value of the '<em><b>Area</b></em>' attribute.

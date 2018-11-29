@@ -1,7 +1,6 @@
 package org.bimserver.geometry.accellerator;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -12,6 +11,7 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.queries.Bounds;
 import org.bimserver.database.queries.QueryObjectProvider;
 import org.bimserver.database.queries.om.Include;
 import org.bimserver.database.queries.om.Query;
@@ -36,18 +36,15 @@ import com.google.common.cache.LoadingCache;
 public class GeometryAccellerator {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GeometryAccellerator.class);
 	private final BimServer bimServer;
-	private final LoadingCache<OctreeKey, Octree<GeometryObject>> octrees;
+	private final LoadingCache<OctreeKey, Octree> octrees;
 	private final LoadingCache<DensityThresholdKey, DensityThreshold> densityThresholds;
 	private final LoadingCache<ReuseKey, ReuseSet> reuseSets;
-	private Path geometryCacheFolder;
 
 	public GeometryAccellerator(BimServer bimServer) {
 		this.bimServer = bimServer;
 		
-		geometryCacheFolder = this.bimServer.getHomeDir().resolve("geometrycache");
-
-		octrees = CacheBuilder.newBuilder().maximumSize(10000).build(new CacheLoader<OctreeKey, Octree<GeometryObject>>() {
-			public Octree<GeometryObject> load(OctreeKey key) {
+		octrees = CacheBuilder.newBuilder().maximumSize(10000).build(new CacheLoader<OctreeKey, Octree>() {
+			public Octree load(OctreeKey key) {
 				return generateOctree(key);
 			}
 		});
@@ -66,8 +63,8 @@ public class GeometryAccellerator {
 		});
 	}
 
-	public Octree<GeometryObject> getOctree(Set<Long> roids, Set<String> excludedClasses, Set<Long> geometryIdsToReuse, int maxDepth, float minimumThreshold, float maximumThreshold) {
-		OctreeKey key = new OctreeKey(roids, excludedClasses, geometryIdsToReuse, maxDepth, minimumThreshold, maximumThreshold);
+	public Octree getOctree(Set<Long> roids, Set<String> excludedClasses, Set<Long> geometryIdsToReuse, int maxDepth, float minimumThreshold, float maximumThreshold) {
+		OctreeKey key = new OctreeKey(roids, excludedClasses, geometryIdsToReuse);
 		try {
 			return octrees.get(key);
 		} catch (ExecutionException e) {
@@ -76,9 +73,10 @@ public class GeometryAccellerator {
 		}
 	}
 
-	private Octree<GeometryObject> generateOctree(OctreeKey key) {
+	private Octree generateOctree(OctreeKey key) {
+		LOGGER.info("Generating octree: " + key);
 		try (DatabaseSession databaseSession = bimServer.getDatabase().createSession()) {
-			org.bimserver.database.queries.Bounds totalBounds = new org.bimserver.database.queries.Bounds();
+			Bounds totalBounds = new Bounds();
 
 			// TODO not taking into account a density here, so potentially, this
 			// will come back with too many tiles with > 0 object, not really a
@@ -89,7 +87,7 @@ public class GeometryAccellerator {
 				totalBounds.integrate(revision.getBoundsMm());
 			}
 
-			Octree<GeometryObject> octree = new Octree<>(totalBounds, key.getMaxDepth());
+			Octree octree = new Octree(totalBounds, 9);
 
 			// Assuming all given roids are of projects that all have the same
 			// schema
@@ -133,37 +131,37 @@ public class GeometryAccellerator {
 				AbstractHashMapVirtualObject geometry = next.getDirectFeature(packageMetaData.getEReference("IfcProduct", "geometry"));
 				if (geometry != null) {
 					float density = (float) geometry.get("density");
-					if (density >= key.getMinimumThreshold()) {
-						long geometryDataId = (long) geometry.get("data");
-						AbstractHashMapVirtualObject boundsMm = geometry.getDirectFeature(GeometryPackage.eINSTANCE.getGeometryInfo_BoundsMm());
-						if (key.getGeometryIdsToReuse().contains(geometryDataId)) {
-							// Special case, we now have to use the complete
-							// bounding box of all reused objects, instead of using
-							// the object's aabb
-							AbstractHashMapVirtualObject geometryData = geometry.getDirectFeature(GeometryPackage.eINSTANCE.getGeometryInfo_Data());
-							boundsMm = geometryData.getDirectFeature(GeometryPackage.eINSTANCE.getGeometryData_BoundsMm());
-						}
-						if (boundsMm != null) {
-							AbstractHashMapVirtualObject min = boundsMm.getDirectFeature(GeometryPackage.eINSTANCE.getBounds_Min());
-							AbstractHashMapVirtualObject max = boundsMm.getDirectFeature(GeometryPackage.eINSTANCE.getBounds_Max());
-	
-							AbstractHashMapVirtualObject geometryData = geometry.getDirectFeature(GeometryPackage.eINSTANCE.getGeometryInfo_Data());
-							int saveableTriangles = (int)geometryData.get("saveableTriangles");
-							
-							org.bimserver.database.queries.Bounds objectBounds = new org.bimserver.database.queries.Bounds((double) min.get("x"), (double) min.get("y"), (double) min.get("z"), (double) max.get("x"), (double) max.get("y"),
-									(double) max.get("z"));
-							GeometryObject geometryObject = new GeometryObject(next.getOid(), next.eClass(), next.getRoid(), saveableTriangles, density);
-							Node<GeometryObject> node = octree.add(geometryObject, objectBounds);
-							geometryObject.setTileId(node.getId());
-						}
+					long geometryDataId = (long) geometry.get("data");
+					AbstractHashMapVirtualObject boundsMm = geometry.getDirectFeature(GeometryPackage.eINSTANCE.getGeometryInfo_BoundsMm());
+					if (key.getGeometryIdsToReuse().contains(geometryDataId)) {
+						// Special case, we now have to use the complete
+						// bounding box of all reused objects, instead of using
+						// the object's aabb
+						AbstractHashMapVirtualObject geometryData = geometry.getDirectFeature(GeometryPackage.eINSTANCE.getGeometryInfo_Data());
+						boundsMm = geometryData.getDirectFeature(GeometryPackage.eINSTANCE.getGeometryData_BoundsMm());
+					}
+					if (boundsMm != null) {
+						AbstractHashMapVirtualObject min = boundsMm.getDirectFeature(GeometryPackage.eINSTANCE.getBounds_Min());
+						AbstractHashMapVirtualObject max = boundsMm.getDirectFeature(GeometryPackage.eINSTANCE.getBounds_Max());
+
+						AbstractHashMapVirtualObject geometryData = geometry.getDirectFeature(GeometryPackage.eINSTANCE.getGeometryInfo_Data());
+						int saveableTriangles = (int)geometryData.get("saveableTriangles");
+						int triangles = (int)geometryData.get("nrIndices") / 3;
+						
+						org.bimserver.database.queries.Bounds objectBounds = new org.bimserver.database.queries.Bounds((double) min.get("x"), (double) min.get("y"), (double) min.get("z"), (double) max.get("x"), (double) max.get("y"),
+								(double) max.get("z"));
+						GeometryObject geometryObject = new GeometryObject(next.getOid(), next.eClass(), next.getCroid(), saveableTriangles, triangles, density);
+						Node node = octree.add(geometryObject, objectBounds);
+						geometryObject.setTileId(node.getId());
+						geometryObject.setTileLevel(node.getLevel());
 					}
 				}
 				next = queryObjectProvider.next();
 			}
 			
-			octree.traverseBreathFirst(new Traverser<GeometryObject>() {
+			octree.traverseBreathFirst(new Traverser() {
 				@Override
-				public void traverse(Node<GeometryObject> t) {
+				public void traverse(Node t) {
 					t.sort();
 				}
 			});

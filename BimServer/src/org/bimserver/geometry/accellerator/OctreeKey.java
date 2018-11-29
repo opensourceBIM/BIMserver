@@ -7,14 +7,12 @@ import com.google.common.base.Joiner;
 public class OctreeKey {
 	private final Set<Long> roids;
 	private final Set<String> excludedClasses;
-	private final int maxDepth;
-	private final float minimumThreshold;
 	private final Set<Long> geometryIdsToReuse;
 	private final int excludedClassesHashCode;
 	private final int geometryIdsToReuseHashCode;
-	private final float maximumThreshold;
+	private final int roidsHashCode;
 
-	public OctreeKey(Set<Long> roids, Set<String> excludedClasses, Set<Long> geometryIdsToReuse, int maxDepth, float minimumThreshold, float maximumThreshold) {
+	public OctreeKey(Set<Long> roids, Set<String> excludedClasses, Set<Long> geometryIdsToReuse) {
 		this.roids = roids;
 		if (excludedClasses != null) {
 			this.excludedClasses = excludedClasses;
@@ -25,9 +23,7 @@ public class OctreeKey {
 		}
 		this.geometryIdsToReuse = geometryIdsToReuse;
 		this.geometryIdsToReuseHashCode = geometryIdsToReuse == null ? 0 : geometryIdsToReuse.hashCode();
-		this.maxDepth = maxDepth;
-		this.minimumThreshold = minimumThreshold;
-		this.maximumThreshold = maximumThreshold;
+		this.roidsHashCode = roids == null ? 0 : roids.hashCode();
 	}
 
 	public Set<Long> getRoids() {
@@ -42,24 +38,13 @@ public class OctreeKey {
 		return geometryIdsToReuse;
 	}
 
-	public int getMaxDepth() {
-		return maxDepth;
-	}
-
-	public float getMinimumThreshold() {
-		return minimumThreshold;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + excludedClassesHashCode;
 		result = prime * result + geometryIdsToReuseHashCode;
-		result = prime * result + maxDepth;
-		result = prime * result + Float.floatToIntBits(minimumThreshold);
-		result = prime * result + Float.floatToIntBits(maximumThreshold);
-		result = prime * result + ((roids == null) ? 0 : roids.hashCode());
+		result = prime * result + roidsHashCode;
 		return result;
 	}
 
@@ -76,16 +61,7 @@ public class OctreeKey {
 			return false;
 		if (geometryIdsToReuseHashCode != other.geometryIdsToReuseHashCode)
 			return false;
-		if (maxDepth != other.maxDepth)
-			return false;
-		if (Float.floatToIntBits(minimumThreshold) != Float.floatToIntBits(other.minimumThreshold))
-			return false;
-		if (Float.floatToIntBits(maximumThreshold) != Float.floatToIntBits(other.maximumThreshold))
-			return false;
-		if (roids == null) {
-			if (other.roids != null)
-				return false;
-		} else if (!roids.equals(other.roids))
+		if (roidsHashCode != other.roidsHashCode)
 			return false;
 		return true;
 	}
@@ -96,17 +72,10 @@ public class OctreeKey {
 		if (excludedClasses != null) {
 			builder.append(Joiner.on(", ").join(this.excludedClasses) + "\n");
 		}
-		builder.append("Max Depth: " + maxDepth + "\n");
-		builder.append("Minimum threshold: " + minimumThreshold + "\n");
-		builder.append("Maximum threshold: " + maximumThreshold + "\n");
 		builder.append("Roids: " + Joiner.on(", ").join(roids) + "\n");
 		if (geometryIdsToReuse != null) {
 			builder.append("Reuse: " + Joiner.on(", ").join(geometryIdsToReuse) + "\n");
 		}
 		return builder.toString();
-	}
-	
-	public float getMaximumThreshold() {
-		return maximumThreshold;
 	}
 }

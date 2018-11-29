@@ -1,10 +1,12 @@
 package org.bimserver.database.queries;
 
-public class ObjectWrapper<V extends Comparable<V>> implements Comparable<ObjectWrapper<V>> {
-	private Bounds bounds;
-	private V v;
+import org.bimserver.geometry.accellerator.GeometryObject;
 
-	public ObjectWrapper(Bounds bounds, V v) {
+public class ObjectWrapper implements Comparable<ObjectWrapper> {
+	private Bounds bounds;
+	private GeometryObject v;
+
+	public ObjectWrapper(Bounds bounds, GeometryObject v) {
 		this.bounds = bounds;
 		this.v = v;
 	}
@@ -13,12 +15,12 @@ public class ObjectWrapper<V extends Comparable<V>> implements Comparable<Object
 		return bounds;
 	}
 	
-	public V getV() {
+	public GeometryObject getV() {
 		return v;
 	}
 
 	@Override
-	public int compareTo(ObjectWrapper<V> o) {
+	public int compareTo(ObjectWrapper o) {
 		return v.compareTo(o.getV());
 	}
 	
@@ -30,7 +32,7 @@ public class ObjectWrapper<V extends Comparable<V>> implements Comparable<Object
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean equals(Object obj) {
-		ObjectWrapper<V> other = (ObjectWrapper<V>)obj;
+		ObjectWrapper other = (ObjectWrapper)obj;
 		return v.equals(other.v);
 	}
 }
