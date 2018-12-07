@@ -557,10 +557,38 @@
       "IfcStyledRepresentation": {
          "type": "IfcStyledRepresentation"
       },
+      "IfcMaterial": {
+        "type": "IfcMaterial"
+      },
+      "IfcMaterialList": {
+      	"type": "IfcMaterialList",
+      	"field": "Materials",
+      	"include": "IfcMaterial"
+      },
+      "IfcMaterialLayerSetUsage": {
+        "type": "IfcMaterialLayerSetUsage",
+        "field": "ForLayerSet",
+        "include": "IfcMaterialLayerSet"
+      },
+      "IfcMaterialLayerSet": {
+      	"type": "IfcMaterialLayerSet",
+      	"field": "MaterialLayers",
+      	"include": "IfcMaterialLayer"
+      },
+      "IfcMaterialLayer": {
+      	"type": "IfcMaterialLayer",
+      	"field": "Material",
+      	"include": "IfcMaterial"
+      },
+      "IfcRelAssociatesMaterial": {
+      	"type": "IfcRelAssociatesMaterial",
+      	"field": "RelatingMaterial",
+      	"includes": ["IfcMaterial", "IfcMaterialList", "IfcMaterialLayerSetUsage", "IfcMaterialLayerSet", "IfcMaterialLayer"]
+      },
       "Representation": {
          "type": "IfcProduct",
-         "field": "Representation",
-         "include": {
+         "fields": ["Representation", "HasAssociations"],
+         "includes": ["IfcRelAssociatesMaterial", {
             "type": "IfcProductRepresentation",
             "field": "Representations",
             "includes": [
@@ -570,7 +598,7 @@
                "IfcTopologyRepresentation",
                "IfcStyledRepresentation"
             ]
-         }
+         }]
       },
       "RepresentationSpecificMapping": {
          "type": "IfcProduct",
