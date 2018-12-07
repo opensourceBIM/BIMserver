@@ -116,14 +116,6 @@ public class GeometryRunner implements Runnable {
 		this.job.setUsesMapping(map != null);
 	}
 
-	public float area(float[] triangle) {
-		return (float) (0.5f * 
-			Math.sqrt(
-				Math.pow(((triangle[3] * triangle[7]) - (triangle[6] * triangle[4])), 2) +
-				Math.pow(((triangle[6] * triangle[1]) - (triangle[0] * triangle[7])), 2) +
-				Math.pow(((triangle[0] * triangle[4]) - (triangle[3] * triangle[1])), 2)));
-	}
-
 	@Override
 	public void run() {
 		Thread.currentThread().setName("GeometryRunner");
@@ -284,16 +276,14 @@ public class GeometryRunner implements Runnable {
 										
 										streamingGeometryGenerator.cacheGeometryData(geometryData, vertices);
 
-										Map<Color4f, Float> usedColors = new HashMap<>();
-
-										boolean hasTransparency = false;
+										ColorMap colorMap = new ColorMap();
 										
 										byte[] colors = new byte[0];
 										if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
 											float[] materials = geometry.getMaterials();
 											boolean hasMaterial = false;
 											colors = new byte[(vertices.length / 3) * 4];
-											float[] vertex = new float[9];
+											float[] triangle = new float[9];
 											for (int i = 0; i < geometry.getMaterialIndices().length; ++i) {
 												int c = geometry.getMaterialIndices()[i];
 												if (c > -1) {
@@ -304,29 +294,36 @@ public class GeometryRunner implements Runnable {
 													}
 													for (int j = 0; j < 3; ++j) {
 														int k = indices[i * 3 + j];
-														vertex[j * 3 + 0] = vertices[3 * k];
-														vertex[j * 3 + 1] = vertices[3 * k + 1];
-														vertex[j * 3 + 2] = vertices[3 * k + 2];
+														triangle[j * 3 + 0] = vertices[3 * k];
+														triangle[j * 3 + 1] = vertices[3 * k + 1];
+														triangle[j * 3 + 2] = vertices[3 * k + 2];
 														hasMaterial = true;
 														for (int l = 0; l < 4; ++l) {
 															float val = materials[4 * c + l];
 															colors[4 * k + l] = UnsignedBytes.checkedCast((int)(val * 255));
 														}
 													}
-													if (usedColors.containsKey(color)) {
-														usedColors.put(color, usedColors.get(color) + area(vertex));
-													} else {
-														usedColors.put(color, area(vertex));
-													}
-													if (color.getA() < 1) {
-														hasTransparency = true;
-													}
+													colorMap.addTriangle(triangle, color);
 												}
 											}
-											if (usedColors.size() == 0) {
-											} else if (usedColors.size() == 1) {
+											if (hasMaterial) {
+												ColorMap2 colorMap2 = new ColorMap2();
+												ByteBuffer cb = ByteBuffer.wrap(colors);
+												byte[] colorB = new byte[4];
+												for (int i=0; i<colors.length; i+=4) {
+													cb.get(colorB);
+													colorMap2.addColor(colorB);
+												}
+												
+												HashMapVirtualObject colorPack = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getColorPack());
+												colorPack.set(GeometryPackage.eINSTANCE.getColorPack_Data(), colorMap2.toByteArray());
+												colorPack.save();
+												geometryData.setReference(GeometryPackage.eINSTANCE.getGeometryData_ColorPack(), colorPack.getOid(), 0);
+											}
+											if (colorMap.usedColors() == 0) {
+											} else if (colorMap.usedColors() == 1) {
 												WrappedVirtualObject color = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector4f());
-												Color4f firstColor = usedColors.keySet().iterator().next();
+												Color4f firstColor = colorMap.getFirstColor();
 												color.set("x", firstColor.getR());
 												color.set("y", firstColor.getG());
 												color.set("z", firstColor.getB());
@@ -336,15 +333,7 @@ public class GeometryRunner implements Runnable {
 												// This tells the code further on to not store this geometry, as it can be easily generated
 												hasMaterial = false;
 											} else {
-												Color4f mostUsed = null;
-												float totalArea = 0;
-												for (Color4f color : usedColors.keySet()) {
-													float area = usedColors.get(color);
-													if (mostUsed == null || area > totalArea) {
-														mostUsed = color;
-														totalArea = area;
-													}
-												}
+												Color4f mostUsed = colorMap.getMostUsedColor();
 
 												WrappedVirtualObject color = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector4f());
 												color.set("x", mostUsed.getR());
@@ -363,6 +352,8 @@ public class GeometryRunner implements Runnable {
 											geometryData.set("nrColors", 0);
 										}
 										
+										boolean hasTransparency = colorMap.hasTransparency();
+										
 										double[] productTranformationMatrix = new double[16];
 										if (translate && renderEngineInstance.getTransformationMatrix() != null) {
 											productTranformationMatrix = renderEngineInstance.getTransformationMatrix();
@@ -370,6 +361,8 @@ public class GeometryRunner implements Runnable {
 											Matrix.setIdentityM(productTranformationMatrix, 0);
 										}
 
+										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_NrColors(), colors.length);
+										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_NrVertices(), vertices.length);
 										geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), geometryData.getOid(), 0);
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_HasTransparency(), hasTransparency);
 										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_HasTransparency(), hasTransparency);
@@ -411,9 +404,6 @@ public class GeometryRunner implements Runnable {
 										float nrTriangles = geometry.getNrIndices() / 3;
 										
 										Density density = new Density(eClass.getName(), (float) volume, getBiggestFaceFromBounds(boundsUntransformedMm), (long) nrTriangles, geometryInfo.getOid());
-//										if (eClass.getName().equals("IfcFurnishingElement")) {
-//											System.out.println((a++) + " , " + geometryInfo.getOid());
-//										}
 										
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Density(), density.getDensityValue());
 										
@@ -425,6 +415,9 @@ public class GeometryRunner implements Runnable {
 												(double) maxBoundsUntranslated.eGet(GeometryPackage.eINSTANCE.getVector3f_Z()), 1d };
 
 										if (reuseGeometry) {
+											/* TODO It still happens that geometry that should be reused is not reused, one of the reasons is still concurrency:
+											 * 	- When the same geometry is processed concurrently they could both do the hash check at a time when there is no cached version, then they both think it's non-reused geometry
+											*/
 											int hash = this.streamingGeometryGenerator.hash(indices, vertices, normals, colors);
 											float[] firstVertex = new float[] { vertices[indices[0]], vertices[indices[0] + 1], vertices[indices[0] + 2] };
 											float[] lastVertex = new float[] { vertices[indices[indices.length - 1] * 3], vertices[indices[indices.length - 1] * 3 + 1], vertices[indices[indices.length - 1] * 3 + 2] };
@@ -498,7 +491,7 @@ public class GeometryRunner implements Runnable {
 
 													geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), indices.length / 3);
 
-													productToData.put(ifcProduct.getOid(), new TemporaryGeometryData(geometryData.getOid(), additionalData, indices.length / 3, size, mibu, mabu, indices, vertices));
+													productToData.put(ifcProduct.getOid(), new TemporaryGeometryData(geometryData.getOid(), additionalData, indices.length / 3, size, mibu, mabu, indices, vertices, hasTransparency, colors.length));
 													geometryData.save();
 													databaseSession.cache((HashMapVirtualObject) geometryData);
 												}
@@ -604,6 +597,10 @@ public class GeometryRunner implements Runnable {
 											HashMapWrappedVirtualObject maxBounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
 											
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Bounds(), bounds);
+											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_HasTransparency(), masterGeometryData.hasTransparancy());
+											
+											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_NrColors(), masterGeometryData.getNrColors());
+											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_NrVertices(), masterGeometryData.getNrVertices());
 											
 											bounds.set("min", minBounds);
 											bounds.set("max", maxBounds);
