@@ -68,7 +68,24 @@ public class Vector {
     public static final int X = 0;
     public static final int Y = 1;
     public static final int Z = 2;
-	public static void normalize(float[] rayDir) {
+
+    public static void normalize4(float[] vector) {
+    	float a = vector[0];
+    	float b = vector[1];
+    	float c = vector[2];
+    	float d = vector[3];
+    	float len = a*a + b*b + c*c + d*d;
+    	if (len > 0) {
+    		len = (float) (1 / Math.sqrt(len));
+    	}
+    	vector[0] = a * len;
+    	vector[0] = b * len;
+    	vector[0] = c * len;
+    	vector[0] = d * len;
+    	
+    }
+    
+    public static void normalize(float[] rayDir) {
 		float l = length(rayDir);
 		rayDir[0] = rayDir[0] / l;
 		rayDir[1] = rayDir[1] / l;
