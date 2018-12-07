@@ -61,6 +61,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getMostUsedColor <em>Most Used Color</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getBoundsMm <em>Bounds Mm</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getSaveableTriangles <em>Saveable Triangles</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#getColorPack <em>Color Pack</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData()
@@ -436,6 +437,32 @@ public interface GeometryData extends IdEObject {
 	 * @generated
 	 */
 	void setSaveableTriangles(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Color Pack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Color Pack</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Color Pack</em>' reference.
+	 * @see #setColorPack(ColorPack)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_ColorPack()
+	 * @model
+	 * @generated
+	 */
+	ColorPack getColorPack();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getColorPack <em>Color Pack</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Color Pack</em>' reference.
+	 * @see #getColorPack()
+	 * @generated
+	 */
+	void setColorPack(ColorPack value);
 
 	/**
 	 * Returns the value of the '<em><b>Normals Quantized</b></em>' reference.

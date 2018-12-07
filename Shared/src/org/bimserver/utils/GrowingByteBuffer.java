@@ -114,4 +114,8 @@ public class GrowingByteBuffer {
 	public void putNoCheck(byte b) {
 		byteBuffer.put(b);
 	}
+	
+	public ByteBuffer getByteBuffer() {
+		return byteBuffer;
+	}
 }

@@ -13,7 +13,7 @@ public class ReuseSet {
 		public int compare(Integer o1, Integer o2) {
 			return o2 - o1;
 		}});
-	
+
 	public Set<Long> getListOfGeometryDataIds(int trianglesToSave) {
 		// TODO since this is fixed now, it can be precomputed
 		Set<Long> result = new HashSet<>();

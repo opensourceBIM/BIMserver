@@ -18,6 +18,8 @@ package org.bimserver.shared;
  *****************************************************************************/
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.ByteBuffer;
 import java.util.concurrent.Future;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -27,7 +29,9 @@ public interface StreamingSocketInterface {
 	void send(JsonNode request);
 	Future<Void> send(byte[] data, int start, int length);
 	void sendBlocking(byte[] data, int start, int length) throws IOException;
+	void sendBlocking(ByteBuffer buffer) throws IOException;
 	Future<Void> sendAsText(byte[] data);
 	void flush();
 	void enableBatching();
+	OutputStream getSendStream() throws IOException;
 }

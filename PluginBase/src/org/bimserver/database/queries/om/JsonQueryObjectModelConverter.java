@@ -205,6 +205,7 @@ public class JsonQueryObjectModelConverter {
 	
 	public Query parseJson(String queryName, ObjectNode fullQuery) throws QueryException {
 		Query query = new Query(queryName, packageMetaData);
+		query.setOriginalJson(fullQuery);
 		int version = LATEST_VERSION;
 		if (fullQuery.has("version")) {
 			version = fullQuery.get("version").asInt();

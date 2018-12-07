@@ -20,6 +20,7 @@ package org.bimserver;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletException;
 import javax.websocket.DeploymentException;
 import javax.websocket.Session;
@@ -27,7 +28,6 @@ import javax.websocket.Session;
 import org.bimserver.servlets.RootServlet;
 import org.bimserver.servlets.websockets.jsr356.AdditionalWebSocketConfigurator;
 import org.bimserver.servlets.websockets.jsr356.Jsr356Impl;
-
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -55,6 +55,10 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 
 		try {
 			org.eclipse.jetty.websocket.jsr356.server.ServerContainer configureContext = WebSocketServerContainerInitializer.configureContext(context);
+			
+			// TODO this speeds up local loading, but for remote loading it's probably faster to enable permessage-deflate
+			configureContext.getWebSocketServerFactory().getExtensionFactory().unregister("permessage-deflate");
+			
 			Jsr356Impl.setServletContext(configureContext, context.getServletContext());
 			Jsr356Impl.setAdditionalWebSocketConfigurator(new AdditionalWebSocketConfigurator() {
 				@Override
@@ -63,7 +67,7 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 					WebSocketPolicy policy = jsrSession.getPolicy();
 					
 					websocketSession.setMaxTextMessageBufferSize(1024 * 1024 * 64);
-					websocketSession.setMaxBinaryMessageBufferSize(1024 * 1024 * 64);
+					websocketSession.setMaxBinaryMessageBufferSize(1024 * 1024 * 512);
 					
 					policy.setMaxTextMessageSize(1024 * 1024 * 64);
 				}

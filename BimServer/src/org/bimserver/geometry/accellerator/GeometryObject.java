@@ -1,5 +1,6 @@
 package org.bimserver.geometry.accellerator;
 
+import org.bimserver.database.queries.Bounds;
 import org.eclipse.emf.ecore.EClass;
 
 public class GeometryObject implements Comparable<GeometryObject> {
@@ -11,17 +12,20 @@ public class GeometryObject implements Comparable<GeometryObject> {
 	private final EClass eClass;
 	private final int triangles;
 	private final float biggestFace;
+	private Bounds bounds;
+
 
 	private int tileId;
 	private int tileLevel;
 
-	public GeometryObject(long oid, EClass eClass, long croid, int saveableTriangles, int triangles, float density) {
+	public GeometryObject(long oid, EClass eClass, long croid, int saveableTriangles, int triangles, float density, Bounds objectBounds) {
 		this.oid = oid;
 		this.eClass = eClass;
 		this.croid = croid;
 		this.saveableTriangles = saveableTriangles;
 		this.triangles = triangles;
 		this.density = density;
+		bounds = objectBounds;
 		this.biggestFace = triangles / density;
 	}
 	
@@ -95,5 +99,9 @@ public class GeometryObject implements Comparable<GeometryObject> {
 	
 	public void setTileLevel(int tileLevel) {
 		this.tileLevel = tileLevel;
+	}
+
+	public Bounds getBounds() {
+		return bounds;
 	}
 }

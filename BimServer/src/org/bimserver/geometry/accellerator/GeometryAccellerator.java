@@ -150,8 +150,8 @@ public class GeometryAccellerator {
 						
 						org.bimserver.database.queries.Bounds objectBounds = new org.bimserver.database.queries.Bounds((double) min.get("x"), (double) min.get("y"), (double) min.get("z"), (double) max.get("x"), (double) max.get("y"),
 								(double) max.get("z"));
-						GeometryObject geometryObject = new GeometryObject(next.getOid(), next.eClass(), next.getCroid(), saveableTriangles, triangles, density);
-						Node node = octree.add(geometryObject, objectBounds);
+						GeometryObject geometryObject = new GeometryObject(next.getOid(), next.eClass(), next.getCroid(), saveableTriangles, triangles, density, objectBounds);
+						Node node = octree.add(geometryObject);
 						geometryObject.setTileId(node.getId());
 						geometryObject.setTileLevel(node.getLevel());
 					}
@@ -170,7 +170,11 @@ public class GeometryAccellerator {
 				@Override
 				public boolean moveUp(Node node) {
 					// TODO use more heuristics
-					return node.valuesSize() < 10;
+					int totalTriangles = 0;
+					for (GeometryObject geometryObject : node.getValues()) {
+						totalTriangles += geometryObject.getTriangles();
+					}
+					return totalTriangles < 120;
 				}
 			});
 			

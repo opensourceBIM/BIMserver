@@ -29,7 +29,7 @@ import com.google.common.primitives.Longs;
 
 public class ReusableLittleEndianDataOutputStream extends LittleEndianSerializerDataOutputStream {
 
-	private final GrowingByteBuffer growingByteBuffer = new GrowingByteBuffer(100000);
+	private final GrowingByteBuffer growingByteBuffer = new GrowingByteBuffer(1024 * 1024);
 	private final DataOutputStream dataOutputStream;
 
 	public ReusableLittleEndianDataOutputStream() {

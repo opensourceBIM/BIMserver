@@ -51,6 +51,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class Streamer implements EndPoint {
+	private static final int ONE_MB = 1024 * 1024;
 	private static final Logger LOGGER = LoggerFactory.getLogger(Streamer.class);
 	private long uoid;
 	private long endpointid;
@@ -101,6 +102,8 @@ public class Streamer implements EndPoint {
 									}
 								}
 								boolean writeMessage = true;
+								
+								// TODO pool the buffers
 
 								// TODO whenever a large object has been sent,
 								// the large buffer stays in memory until
@@ -119,7 +122,7 @@ public class Streamer implements EndPoint {
 								};
 								int messagesSent = 0;
 								// streamingSocketInterface.enableBatching();
-								// int bytes = 0;
+								int bytesInThisBuffer = 0;
 								// long start = System.nanoTime();
 
 								// for (int i=0; i<100; i++) {
@@ -143,10 +146,10 @@ public class Streamer implements EndPoint {
 								do {
 									writeMessage = writer.writeMessage(byteArrayOutputStream, progressReporter);
 									messagesSent++;
-									if (messagesSent % 25 == 0 || !writeMessage) {
-										ByteBuffer newBuffer = ByteBuffer.allocate(growingByteBuffer.usedSize());
-										newBuffer.put(growingByteBuffer.array(), 0, growingByteBuffer.usedSize());
-										streamingSocketInterface.sendBlocking(newBuffer.array(), 0, newBuffer.capacity());
+									// TODO we can just keep track of time, and for example always flush when nothing was sent in a second. Need to keep in mind that there could 63 other threads writing...
+									if (growingByteBuffer.usedSize() >= ONE_MB || !writeMessage) {
+										ByteBuffer newBuffer = ByteBuffer.wrap(growingByteBuffer.array(), 0, growingByteBuffer.usedSize());
+										streamingSocketInterface.sendBlocking(newBuffer);
 										byteArrayOutputStream.reset();
 										byteArrayOutputStream.writeLongUnchecked(topicId);
 									}

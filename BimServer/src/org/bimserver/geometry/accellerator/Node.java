@@ -6,13 +6,12 @@ import java.util.Collections;
 import java.util.List;
 
 import org.bimserver.database.queries.Bounds;
-import org.bimserver.database.queries.ObjectWrapper;
 
 public class Node {
 	private final Node[] nodes = new Node[8];
 	private Bounds bounds;
 	private Bounds minimumBounds = new Bounds();
-	private List<ObjectWrapper> values = new ArrayList<>();
+	private List<GeometryObject> values = new ArrayList<>();
 	private int level;
 	private int id;
 	private int maxDepth;
@@ -59,14 +58,13 @@ public class Node {
 		return minimumBounds;
 	}
 	
-	public Collection<ObjectWrapper> getValues() {
+	public Collection<GeometryObject> getValues() {
 		return values;
 	}
 	
 	public int valuesSize(Float minimumThreshold, Float maximumThreshold) {
 		int count = 0;
-		for (ObjectWrapper objectWrapper : values) {
-			GeometryObject geometryObject = objectWrapper.getGeometry();
+		for (GeometryObject geometryObject : values) {
 			// TODO lookup exact compare operators
 			if ((minimumThreshold == -1 || geometryObject.getDensity() > minimumThreshold) && 
 					(maximumThreshold == -1 || geometryObject.getDensity() <= maximumThreshold)) {
@@ -80,26 +78,26 @@ public class Node {
 		return values.size();
 	}
 
-	public Node add(GeometryObject v, Bounds bounds) {
-		return add(v, bounds, false);
+	public Node add(GeometryObject v) {
+		return add(v, false);
 	}
 	
-	public Node add(GeometryObject v, Bounds bounds, boolean forcedLevel) {
+	public Node add(GeometryObject v, boolean forcedLevel) {
 		// TODO do we really have to do this here? What if one of our children takes this one?	
-		minimumBounds.integrate(bounds);
+		minimumBounds.integrate(v.getBounds());
 		if (level != maxDepth && !forcedLevel) {
 			int localId = 1;
 			for (int x=0; x<=1; x++) {
 				for (int y=0; y<=1; y++) {
 					for (int z=0; z<=1; z++) {
 						Bounds offset = this.bounds.offset(x, y, z);
-						if (bounds.within(offset)) {
+						if (v.getBounds().within(offset)) {
 							Node node = nodes[x * 4 + y * 2 + z];
 							if (node == null) {
 								node = new Node(root, offset, this.level + 1, this.id, localId, maxDepth);
 								nodes[x * 4 + y * 2 + z] = node;
 							}
-							Node addedNode = node.add(v, bounds);
+							Node addedNode = node.add(v);
 							return addedNode;
 						}
 						localId++;
@@ -109,7 +107,7 @@ public class Node {
 		}
 		// Did not fit in any of the children, or forced
 //		System.out.println(q++ + ", " + this.level);
-		if (!values.add(new ObjectWrapper(bounds, v))) {
+		if (!values.add(v)) {
 		}
 		return this;
 	}
@@ -191,10 +189,10 @@ public class Node {
 	
 	public void moveUp() {
 		Node parent = getParent();
-		for (ObjectWrapper objectWrapper : getValues()) {
-			objectWrapper.getGeometry().setTileId(parent.getId());
-			objectWrapper.getGeometry().setTileLevel(parent.getLevel());
-			parent.add(objectWrapper.getGeometry(), objectWrapper.getBounds(), true);
+		for (GeometryObject geometryObject : getValues()) {
+			geometryObject.setTileId(parent.getId());
+			geometryObject.setTileLevel(parent.getLevel());
+			parent.add(geometryObject, true);
 		}
 		// If we don't do this, it doesn't result in the correct amount of objects, which implies duplication somewhere in the tree
 		this.values.clear();

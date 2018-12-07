@@ -18,6 +18,7 @@ package org.bimserver.servlets.websockets.jsr356;
  *****************************************************************************/
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.StringReader;
 import java.nio.ByteBuffer;
 import java.util.HashMap;
@@ -142,6 +143,10 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 		}
 	}
 
+	public OutputStream getSendStream() throws IOException {
+		return websocketSession.getBasicRemote().getSendStream();
+	}
+	
 	@Override
 	public Future<Void> send(byte[] data, int start, int length) {
 		synchronized (this) {
@@ -167,6 +172,17 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 		}
 	}
 
+	@Override
+	public void sendBlocking(ByteBuffer data) throws IOException {
+		synchronized (this) {
+			try {
+				websocketSession.getBasicRemote().sendBinary(data);
+			} catch (IOException e) {
+				// Ignore
+			}
+		}
+	}
+	
 	@Override
 	public void flush() {
 		try {
