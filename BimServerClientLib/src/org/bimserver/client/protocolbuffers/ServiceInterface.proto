@@ -1583,16 +1583,19 @@ message SGeometryInfo {
 	optional SBounds boundsMm = 4;
 	optional SBounds boundsUntransformed = 5;
 	optional SBounds boundsUntransformedMm = 6;
-	optional float density = 7;
-	optional bool hasTransparency = 8;
-	optional int64 ifcProductOid = 9;
-	optional int64 oid = 10;
-	optional int32 primitiveCount = 11;
-	optional int32 rid = 12;
-	optional int32 startIndex = 13;
-	optional int32 startVertex = 14;
-	optional bytes transformation = 15;
-	optional double volume = 16;
+	optional int64 dataId = 7;
+	optional float density = 8;
+	optional bool hasTransparency = 9;
+	optional int64 ifcProductOid = 10;
+	optional int32 nrColors = 11;
+	optional int32 nrVertices = 12;
+	optional int64 oid = 13;
+	optional int32 primitiveCount = 14;
+	optional int32 rid = 15;
+	optional int32 startIndex = 16;
+	optional int32 startVertex = 17;
+	optional bytes transformation = 18;
+	optional double volume = 19;
 }
 
 message GetGeometryInfoResponse {

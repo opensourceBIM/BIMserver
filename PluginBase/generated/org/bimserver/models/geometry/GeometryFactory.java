@@ -107,6 +107,15 @@ public interface GeometryFactory extends EFactory {
 	Vector4f createVector4f();
 
 	/**
+	 * Returns a new object of class '<em>Color Pack</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Color Pack</em>'.
+	 * @generated
+	 */
+	ColorPack createColorPack();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

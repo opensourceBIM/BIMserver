@@ -63,6 +63,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getBoundsMm <em>Bounds Mm</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getBoundsUntransformedMm <em>Bounds Untransformed Mm</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getAdditionalData <em>Additional Data</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getNrColors <em>Nr Colors</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getNrVertices <em>Nr Vertices</em>}</li>
  * </ul>
  *
  * @generated
@@ -365,6 +367,42 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 */
 	public void setAdditionalData(String newAdditionalData) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__ADDITIONAL_DATA, newAdditionalData);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getNrColors() {
+		return (Integer) eGet(GeometryPackage.Literals.GEOMETRY_INFO__NR_COLORS, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNrColors(int newNrColors) {
+		eSet(GeometryPackage.Literals.GEOMETRY_INFO__NR_COLORS, newNrColors);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getNrVertices() {
+		return (Integer) eGet(GeometryPackage.Literals.GEOMETRY_INFO__NR_VERTICES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNrVertices(int newNrVertices) {
+		eSet(GeometryPackage.Literals.GEOMETRY_INFO__NR_VERTICES, newNrVertices);
 	}
 
 } //GeometryInfoImpl

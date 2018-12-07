@@ -62,8 +62,7 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 	 */
 	public static GeometryFactory init() {
 		try {
-			GeometryFactory theGeometryFactory = (GeometryFactory) EPackage.Registry.INSTANCE
-					.getEFactory(GeometryPackage.eNS_URI);
+			GeometryFactory theGeometryFactory = (GeometryFactory) EPackage.Registry.INSTANCE.getEFactory(GeometryPackage.eNS_URI);
 			if (theGeometryFactory != null) {
 				return theGeometryFactory;
 			}
@@ -103,6 +102,8 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 			return (EObject) createGeometryData();
 		case GeometryPackage.VECTOR4F:
 			return (EObject) createVector4f();
+		case GeometryPackage.COLOR_PACK:
+			return (EObject) createColorPack();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -166,6 +167,16 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 	public Vector4f createVector4f() {
 		Vector4fImpl vector4f = new Vector4fImpl();
 		return vector4f;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ColorPack createColorPack() {
+		ColorPackImpl colorPack = new ColorPackImpl();
+		return colorPack;
 	}
 
 	/**

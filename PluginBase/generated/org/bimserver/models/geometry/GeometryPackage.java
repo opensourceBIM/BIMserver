@@ -232,13 +232,31 @@ public interface GeometryPackage extends EPackage {
 	int GEOMETRY_INFO__ADDITIONAL_DATA = 14;
 
 	/**
+	 * The feature id for the '<em><b>Nr Colors</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_INFO__NR_COLORS = 15;
+
+	/**
+	 * The feature id for the '<em><b>Nr Vertices</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_INFO__NR_VERTICES = 16;
+
+	/**
 	 * The number of structural features of the '<em>Info</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO_FEATURE_COUNT = 15;
+	int GEOMETRY_INFO_FEATURE_COUNT = 17;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.Vector3fImpl <em>Vector3f</em>}' class.
@@ -515,13 +533,22 @@ public interface GeometryPackage extends EPackage {
 	int GEOMETRY_DATA__SAVEABLE_TRIANGLES = 16;
 
 	/**
+	 * The feature id for the '<em><b>Color Pack</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_DATA__COLOR_PACK = 17;
+
+	/**
 	 * The number of structural features of the '<em>Data</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_DATA_FEATURE_COUNT = 17;
+	int GEOMETRY_DATA_FEATURE_COUNT = 18;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.Vector4fImpl <em>Vector4f</em>}' class.
@@ -577,6 +604,34 @@ public interface GeometryPackage extends EPackage {
 	 * @ordered
 	 */
 	int VECTOR4F_FEATURE_COUNT = 4;
+
+	/**
+	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.ColorPackImpl <em>Color Pack</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.geometry.impl.ColorPackImpl
+	 * @see org.bimserver.models.geometry.impl.GeometryPackageImpl#getColorPack()
+	 * @generated
+	 */
+	int COLOR_PACK = 6;
+
+	/**
+	 * The feature id for the '<em><b>Data</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_PACK__DATA = 0;
+
+	/**
+	 * The number of structural features of the '<em>Color Pack</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLOR_PACK_FEATURE_COUNT = 1;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.geometry.GeometryInfo <em>Info</em>}'.
@@ -752,6 +807,28 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getGeometryInfo_AdditionalData();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryInfo#getNrColors <em>Nr Colors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Nr Colors</em>'.
+	 * @see org.bimserver.models.geometry.GeometryInfo#getNrColors()
+	 * @see #getGeometryInfo()
+	 * @generated
+	 */
+	EAttribute getGeometryInfo_NrColors();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryInfo#getNrVertices <em>Nr Vertices</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Nr Vertices</em>'.
+	 * @see org.bimserver.models.geometry.GeometryInfo#getNrVertices()
+	 * @see #getGeometryInfo()
+	 * @generated
+	 */
+	EAttribute getGeometryInfo_NrVertices();
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.geometry.Vector3f <em>Vector3f</em>}'.
@@ -1014,6 +1091,17 @@ public interface GeometryPackage extends EPackage {
 	EAttribute getGeometryData_SaveableTriangles();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryData#getColorPack <em>Color Pack</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Color Pack</em>'.
+	 * @see org.bimserver.models.geometry.GeometryData#getColorPack()
+	 * @see #getGeometryData()
+	 * @generated
+	 */
+	EReference getGeometryData_ColorPack();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryData#getNormalsQuantized <em>Normals Quantized</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1099,6 +1187,27 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getVector4f_W();
+
+	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.geometry.ColorPack <em>Color Pack</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Color Pack</em>'.
+	 * @see org.bimserver.models.geometry.ColorPack
+	 * @generated
+	 */
+	EClass getColorPack();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.ColorPack#getData <em>Data</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Data</em>'.
+	 * @see org.bimserver.models.geometry.ColorPack#getData()
+	 * @see #getColorPack()
+	 * @generated
+	 */
+	EAttribute getColorPack_Data();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1251,6 +1360,22 @@ public interface GeometryPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute GEOMETRY_INFO__ADDITIONAL_DATA = eINSTANCE.getGeometryInfo_AdditionalData();
+
+		/**
+		 * The meta object literal for the '<em><b>Nr Colors</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GEOMETRY_INFO__NR_COLORS = eINSTANCE.getGeometryInfo_NrColors();
+
+		/**
+		 * The meta object literal for the '<em><b>Nr Vertices</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GEOMETRY_INFO__NR_VERTICES = eINSTANCE.getGeometryInfo_NrVertices();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.geometry.impl.Vector3fImpl <em>Vector3f</em>}' class.
@@ -1453,6 +1578,14 @@ public interface GeometryPackage extends EPackage {
 		EAttribute GEOMETRY_DATA__SAVEABLE_TRIANGLES = eINSTANCE.getGeometryData_SaveableTriangles();
 
 		/**
+		 * The meta object literal for the '<em><b>Color Pack</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GEOMETRY_DATA__COLOR_PACK = eINSTANCE.getGeometryData_ColorPack();
+
+		/**
 		 * The meta object literal for the '<em><b>Normals Quantized</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1517,6 +1650,24 @@ public interface GeometryPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute VECTOR4F__W = eINSTANCE.getVector4f_W();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.geometry.impl.ColorPackImpl <em>Color Pack</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.geometry.impl.ColorPackImpl
+		 * @see org.bimserver.models.geometry.impl.GeometryPackageImpl#getColorPack()
+		 * @generated
+		 */
+		EClass COLOR_PACK = eINSTANCE.getColorPack();
+
+		/**
+		 * The meta object literal for the '<em><b>Data</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLOR_PACK__DATA = eINSTANCE.getColorPack_Data();
 
 	}
 
