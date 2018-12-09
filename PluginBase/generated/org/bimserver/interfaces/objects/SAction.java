@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SCheckinRevision.class, SStoreExtendedData.class})
+@XmlSeeAlso(value={SStoreExtendedData.class, SCheckinRevision.class})
 public class SAction implements SDataBase
 {
 	private long oid = -1;

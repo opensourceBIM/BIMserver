@@ -110,7 +110,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 	private volatile boolean allJobsPushed;
 
-	private int maxObjectsPerFile = 20;
+	private int maxObjectsPerFile = 1;
 	volatile boolean running = true;
 
 	String debugIdentifier;

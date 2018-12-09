@@ -12126,6 +12126,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginDescriptor/identifier"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/PluginDescriptor/installForNewUsers"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/PluginDescriptor/pluginBundleVersion"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/PluginDescriptor/settings"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/4/RevisionSummaryType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/RevisionSummaryType/name"/>

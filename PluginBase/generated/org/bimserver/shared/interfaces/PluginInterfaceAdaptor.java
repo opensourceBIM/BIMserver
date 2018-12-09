@@ -270,6 +270,14 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
+	public org.bimserver.interfaces.objects.SObjectDefinition getPluginSystemObjectDefinition(java.lang.Long oid) throws UserException, ServerException {
+		return null;
+	}
+	
+	public org.bimserver.interfaces.objects.SObjectType getPluginSystemSettings(java.lang.Long poid) throws UserException, ServerException {
+		return null;
+	}
+	
 	public org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration getRenderEngineById(java.lang.Long oid) throws UserException, ServerException {
 		return null;
 	}
@@ -340,6 +348,9 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	}
 	
 	public void setPluginSettings(java.lang.Long poid, org.bimserver.interfaces.objects.SObjectType settings) throws UserException, ServerException {
+	}
+	
+	public void setPluginSystemSettings(java.lang.Long poid, org.bimserver.interfaces.objects.SObjectType settings) throws UserException, ServerException {
 	}
 	
 	public void uninstallPluginBundle(java.lang.String repository, java.lang.String groupId, java.lang.String artifactId, java.lang.String version) throws UserException, ServerException {

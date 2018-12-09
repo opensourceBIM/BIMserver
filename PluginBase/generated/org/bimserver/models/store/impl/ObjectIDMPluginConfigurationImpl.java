@@ -81,8 +81,7 @@ public class ObjectIDMPluginConfigurationImpl extends PluginConfigurationImpl im
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<SerializerPluginConfiguration> getSerializers() {
-		return (EList<SerializerPluginConfiguration>) eGet(
-				StorePackage.Literals.OBJECT_IDM_PLUGIN_CONFIGURATION__SERIALIZERS, true);
+		return (EList<SerializerPluginConfiguration>) eGet(StorePackage.Literals.OBJECT_IDM_PLUGIN_CONFIGURATION__SERIALIZERS, true);
 	}
 
 	/**

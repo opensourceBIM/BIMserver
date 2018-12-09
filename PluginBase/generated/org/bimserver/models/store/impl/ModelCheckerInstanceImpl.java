@@ -191,8 +191,7 @@ public class ModelCheckerInstanceImpl extends IdEObjectImpl implements ModelChec
 	 * @generated
 	 */
 	public void setModelCheckerPluginClassName(String newModelCheckerPluginClassName) {
-		eSet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__MODEL_CHECKER_PLUGIN_CLASS_NAME,
-				newModelCheckerPluginClassName);
+		eSet(StorePackage.Literals.MODEL_CHECKER_INSTANCE__MODEL_CHECKER_PLUGIN_CLASS_NAME, newModelCheckerPluginClassName);
 	}
 
 } //ModelCheckerInstanceImpl

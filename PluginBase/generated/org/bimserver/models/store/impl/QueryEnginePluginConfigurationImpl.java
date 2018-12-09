@@ -51,8 +51,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class QueryEnginePluginConfigurationImpl extends PluginConfigurationImpl
-		implements QueryEnginePluginConfiguration {
+public class QueryEnginePluginConfigurationImpl extends PluginConfigurationImpl implements QueryEnginePluginConfiguration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

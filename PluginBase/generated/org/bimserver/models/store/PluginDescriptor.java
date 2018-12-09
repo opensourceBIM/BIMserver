@@ -55,6 +55,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.PluginDescriptor#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginDescriptor#isInstallForNewUsers <em>Install For New Users</em>}</li>
  *   <li>{@link org.bimserver.models.store.PluginDescriptor#getPluginBundleVersion <em>Plugin Bundle Version</em>}</li>
+ *   <li>{@link org.bimserver.models.store.PluginDescriptor#getSettings <em>Settings</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getPluginDescriptor()
@@ -314,5 +315,31 @@ public interface PluginDescriptor extends IdEObject {
 	 * @generated
 	 */
 	void setPluginBundleVersion(PluginBundleVersion value);
+
+	/**
+	 * Returns the value of the '<em><b>Settings</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Settings</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Settings</em>' reference.
+	 * @see #setSettings(ObjectType)
+	 * @see org.bimserver.models.store.StorePackage#getPluginDescriptor_Settings()
+	 * @model
+	 * @generated
+	 */
+	ObjectType getSettings();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.PluginDescriptor#getSettings <em>Settings</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Settings</em>' reference.
+	 * @see #getSettings()
+	 * @generated
+	 */
+	void setSettings(ObjectType value);
 
 } // PluginDescriptor

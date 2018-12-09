@@ -415,6 +415,7 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="installForNewUsers" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="pluginBundleVersion" eType="#//PluginBundleVersion"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#//ObjectType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RevisionSummaryType">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

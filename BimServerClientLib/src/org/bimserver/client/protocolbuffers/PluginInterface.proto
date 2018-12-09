@@ -159,6 +159,10 @@ service PluginInterface {
 
 	rpc getPluginSettings (GetPluginSettingsRequest) returns (GetPluginSettingsResponse);
 
+	rpc getPluginSystemObjectDefinition (GetPluginSystemObjectDefinitionRequest) returns (GetPluginSystemObjectDefinitionResponse);
+
+	rpc getPluginSystemSettings (GetPluginSystemSettingsRequest) returns (GetPluginSystemSettingsResponse);
+
 	rpc getRenderEngineById (GetRenderEngineByIdRequest) returns (GetRenderEngineByIdResponse);
 
 	rpc getRenderEngineByName (GetRenderEngineByNameRequest) returns (GetRenderEngineByNameResponse);
@@ -200,6 +204,8 @@ service PluginInterface {
 	rpc setDefaultWebModule (SetDefaultWebModuleRequest) returns (VoidResponse);
 
 	rpc setPluginSettings (SetPluginSettingsRequest) returns (VoidResponse);
+
+	rpc setPluginSystemSettings (SetPluginSystemSettingsRequest) returns (VoidResponse);
 
 	rpc uninstallPluginBundle (UninstallPluginBundleRequest) returns (VoidResponse);
 
@@ -984,6 +990,24 @@ message GetPluginSettingsResponse {
 	optional SObjectType value = 2;
 }
 
+message GetPluginSystemObjectDefinitionRequest {
+	optional int64 oid = 1;
+}
+
+message GetPluginSystemObjectDefinitionResponse {
+	optional string errorMessage = 1;
+	optional SObjectDefinition value = 2;
+}
+
+message GetPluginSystemSettingsRequest {
+	optional int64 poid = 1;
+}
+
+message GetPluginSystemSettingsResponse {
+	optional string errorMessage = 1;
+	optional SObjectType value = 2;
+}
+
 message GetRenderEngineByIdRequest {
 	optional int64 oid = 1;
 }
@@ -1116,6 +1140,11 @@ message SetDefaultWebModuleRequest {
 }
 
 message SetPluginSettingsRequest {
+	optional int64 poid = 1;
+	optional SObjectType settings = 2;
+}
+
+message SetPluginSystemSettingsRequest {
 	optional int64 poid = 1;
 	optional SObjectType settings = 2;
 }

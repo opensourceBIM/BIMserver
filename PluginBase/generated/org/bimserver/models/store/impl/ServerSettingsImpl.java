@@ -131,8 +131,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public void setSendConfirmationEmailAfterRegistration(boolean newSendConfirmationEmailAfterRegistration) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION,
-				newSendConfirmationEmailAfterRegistration);
+		eSet(StorePackage.Literals.SERVER_SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION, newSendConfirmationEmailAfterRegistration);
 	}
 
 	/**
@@ -168,8 +167,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	public void setAllowUsersToCreateTopLevelProjects(boolean newAllowUsersToCreateTopLevelProjects) {
-		eSet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS,
-				newAllowUsersToCreateTopLevelProjects);
+		eSet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS, newAllowUsersToCreateTopLevelProjects);
 	}
 
 	/**

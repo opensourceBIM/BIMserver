@@ -20504,6 +20504,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="installForNewUsers" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="pluginBundleVersion"
           eType="#/4/PluginBundleVersion"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="settings" eType="#/4/ObjectType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RevisionSummaryType">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

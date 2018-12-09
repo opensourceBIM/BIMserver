@@ -41,6 +41,7 @@ public class SPluginDescriptor implements SDataBase
 	private java.lang.String identifier;
 	private boolean installForNewUsers;
 	private long pluginBundleVersionId = -1;
+	private long settingsId = -1;
 
 	public long getOid() {
 		return this.oid;
@@ -98,6 +99,9 @@ public class SPluginDescriptor implements SDataBase
 		if (sField.getName().equals("pluginBundleVersionId")) {
 			return getPluginBundleVersionId();
 		}
+		if (sField.getName().equals("settingsId")) {
+			return getSettingsId();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -147,6 +151,10 @@ public class SPluginDescriptor implements SDataBase
 		}
 		if (sField.getName().equals("pluginBundleVersionId")) {
 			setPluginBundleVersionId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("settingsId")) {
+			setSettingsId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -238,6 +246,14 @@ public class SPluginDescriptor implements SDataBase
 
 	public void setPluginBundleVersionId(long pluginBundleVersionId) {
 		this.pluginBundleVersionId = pluginBundleVersionId;
+	}
+	
+	public long getSettingsId() {
+		return settingsId;
+	}
+
+	public void setSettingsId(long settingsId) {
+		this.settingsId = settingsId;
 	}
 	
 	@Override

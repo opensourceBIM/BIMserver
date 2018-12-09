@@ -354,6 +354,16 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetPluginSystemObjectDefinitionCallback {
+		void success(org.bimserver.interfaces.objects.SObjectDefinition result);
+		void error(Throwable e);
+	}
+	
+	public interface GetPluginSystemSettingsCallback {
+		void success(org.bimserver.interfaces.objects.SObjectType result);
+		void error(Throwable e);
+	}
+	
 	public interface GetRenderEngineByIdCallback {
 		void success(org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration result);
 		void error(Throwable e);
@@ -455,6 +465,11 @@ public class AsyncPluginInterface {
 	}
 	
 	public interface SetPluginSettingsCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
+	public interface SetPluginSystemSettingsCallback {
 		void success();
 		void error(Throwable e);
 	}
@@ -1302,6 +1317,30 @@ public class AsyncPluginInterface {
 		});
 	}
 	
+	public void getPluginSystemObjectDefinition(final java.lang.Long oid, final GetPluginSystemObjectDefinitionCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getPluginSystemObjectDefinition(oid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getPluginSystemSettings(final java.lang.Long poid, final GetPluginSystemSettingsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getPluginSystemSettings(poid));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
 	public void getRenderEngineById(final java.lang.Long oid, final GetRenderEngineByIdCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1558,6 +1597,19 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					syncService.setPluginSettings(poid, settings);
+					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void setPluginSystemSettings(final java.lang.Long poid, final org.bimserver.interfaces.objects.SObjectType settings, final SetPluginSystemSettingsCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.setPluginSystemSettings(poid, settings);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);
