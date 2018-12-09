@@ -29,8 +29,11 @@ public class TemporaryGeometryData {
 	private int[] indices;
 	private float[] vertices;
 	private ObjectNode additionalData;
+	private boolean hasTransparancy;
+	private int nrVertices;
+	private int nrColors;
 
-	public TemporaryGeometryData(long oid, ObjectNode additionalData, int nrPrimitives, long size, double[] mibu, double[] mabu, int[] indices, float[] vertices) {
+	public TemporaryGeometryData(long oid, ObjectNode additionalData, int nrPrimitives, long size, double[] mibu, double[] mabu, int[] indices, float[] vertices, boolean hasTransparancy, int nrColors) {
 		this.oid = oid;
 		this.additionalData = additionalData;
 		this.nrPrimitives = nrPrimitives;
@@ -39,6 +42,9 @@ public class TemporaryGeometryData {
 		this.mabu = mabu;
 		this.indices = indices;
 		this.vertices = vertices;
+		this.hasTransparancy = hasTransparancy;
+		this.nrVertices = vertices.length;
+		this.nrColors = nrColors;
 	}
 	
 	public int[] getIndices() {
@@ -71,5 +77,17 @@ public class TemporaryGeometryData {
 	
 	public long getOid() {
 		return oid;
+	}
+
+	public boolean hasTransparancy() {
+		return hasTransparancy;
+	}
+
+	public int getNrVertices() {
+		return nrVertices;
+	}
+
+	public int getNrColors() {
+		return nrColors;
 	}
 }

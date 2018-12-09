@@ -289,6 +289,9 @@ public class QueryObjectProvider implements ObjectProvider {
 
 	@Override
 	public ObjectNode getQueryNode() {
+		if (query.getOriginalJson() != null) {
+			return query.getOriginalJson();
+		}
 		return new JsonQueryObjectModelConverter(packageMetaData).toJson(query);
 	}
 

@@ -211,6 +211,17 @@ public class Matrix {
         }
     }
 
+    public static void transposeM(double[] mTrans, int mTransOffset, double[] m,
+    		int mOffset) {
+    	for (int i = 0; i < 4; i++) {
+    		int mBase = i * 4 + mOffset;
+    		mTrans[i + mTransOffset] = m[mBase];
+    		mTrans[i + 4 + mTransOffset] = m[mBase + 1];
+    		mTrans[i + 8 + mTransOffset] = m[mBase + 2];
+    		mTrans[i + 12 + mTransOffset] = m[mBase + 3];
+    	}
+    }
+
     /**
      * Inverts a 4 x 4 matrix.
      *
@@ -1068,6 +1079,7 @@ public class Matrix {
 			}
 			System.out.println();
 		}
+		System.out.println();
 	}
 
 	public static void copy(float[] mModelMatrix, float[] mModelMatrix2) {

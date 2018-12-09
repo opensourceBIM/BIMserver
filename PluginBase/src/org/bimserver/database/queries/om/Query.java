@@ -35,6 +35,7 @@ public class Query {
 	private boolean doubleBuffer;
 	private int version;
 	private ObjectNode geometrySettings;
+	private ObjectNode originalJson;
 	
 	public Query(String name, PackageMetaData packageMetaData) {
 		this.name = name;
@@ -124,5 +125,13 @@ public class Query {
 	
 	public ObjectNode getGeometrySettings() {
 		return geometrySettings;
+	}
+	
+	public ObjectNode getOriginalJson() {
+		return originalJson;
+	}
+	
+	public void setOriginalJson(ObjectNode originalJson) {
+		this.originalJson = originalJson;
 	}
 }

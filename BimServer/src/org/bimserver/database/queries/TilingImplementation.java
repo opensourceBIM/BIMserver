@@ -81,8 +81,8 @@ public class TilingImplementation implements TilingInterface {
 		objects.addIndex(HashIndex.onAttribute(ORDER));
 
 		for (Node node : octree.values()) {
-			for (ObjectWrapper objectWrapper : node.getValues()) {
-				objects.add(objectWrapper.getGeometry());
+			for (GeometryObject geometryObject : node.getValues()) {
+				objects.add(geometryObject);
 			}
 		}
 	}
