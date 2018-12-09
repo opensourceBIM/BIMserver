@@ -36,6 +36,7 @@ package org.bimserver.models.geometry.impl;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.geometry.Bounds;
 import org.bimserver.models.geometry.Buffer;
+import org.bimserver.models.geometry.ColorPack;
 import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.geometry.Vector4f;
@@ -66,6 +67,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getMostUsedColor <em>Most Used Color</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getBoundsMm <em>Bounds Mm</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getSaveableTriangles <em>Saveable Triangles</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getColorPack <em>Color Pack</em>}</li>
  * </ul>
  *
  * @generated
@@ -350,6 +352,24 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 */
 	public void setSaveableTriangles(int newSaveableTriangles) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__SAVEABLE_TRIANGLES, newSaveableTriangles);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ColorPack getColorPack() {
+		return (ColorPack) eGet(GeometryPackage.Literals.GEOMETRY_DATA__COLOR_PACK, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setColorPack(ColorPack newColorPack) {
+		eSet(GeometryPackage.Literals.GEOMETRY_DATA__COLOR_PACK, newColorPack);
 	}
 
 	/**

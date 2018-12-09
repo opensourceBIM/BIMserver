@@ -20,6 +20,7 @@ package org.bimserver.plugins.services;
 import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SPluginType;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginConfiguration;
@@ -52,7 +53,7 @@ public abstract class ServicePlugin implements Plugin {
 	}
 	
 	@Override
-	public void init(PluginContext pluginContext) throws PluginException {
+	public void init(PluginContext pluginContext, PluginConfiguration systemSettings) throws PluginException {
 		this.pluginContext = pluginContext;
 	}
 	
@@ -79,5 +80,10 @@ public abstract class ServicePlugin implements Plugin {
 	@Override
 	public final SPluginType getPluginType() {
 		return SPluginType.SERVICE;
+	}
+	
+	@Override
+	public ObjectDefinition getSystemSettingsDefinition() {
+		return null;
 	}
 }

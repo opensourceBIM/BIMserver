@@ -26,20 +26,20 @@ import org.bimserver.plugins.ResourceFetcher;
 
 public class JarResourceFetcher extends ResourceFetcher {
 	
-	public JarResourceFetcher() {
-		addPath(Paths.get("home"));
-		addPath(Paths.get("config"));
-		addPath(Paths.get("."));
-	}
-	
-	@Override
-	public Path getFile(String name) throws IOException {
-		if (name.startsWith("lib")) {
-			Path file = Paths.get(name);
-			if (Files.exists(file)) {
-				return file;
-			}
+	public JarResourceFetcher(Path...paths) {
+		for (Path path : paths) {
+			addPath(path);
 		}
-		return super.getFile(name);
 	}
+//	
+//	@Override
+//	public Path getFile(String name) throws IOException {
+//		if (name.startsWith("lib")) {
+//			Path file = Paths.get(name);
+//			if (Files.exists(file)) {
+//				return file;
+//			}
+//		}
+//		return super.getFile(name);
+//	}
 }

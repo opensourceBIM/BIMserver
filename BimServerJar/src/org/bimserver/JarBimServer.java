@@ -138,7 +138,8 @@ public class JarBimServer {
 		System.setProperty("org.apache.cxf.Logger", "org.apache.cxf.common.logging.Log4jLogger");
 		BimServerConfig bimServerConfig = new BimServerConfig();
 		bimServerConfig.setHomeDir(Paths.get(homedir));
-		bimServerConfig.setResourceFetcher(new JarResourceFetcher());
+
+		bimServerConfig.setResourceFetcher(new JarResourceFetcher(Paths.get("home"), Paths.get("config"), Paths.get(".")));
 		bimServerConfig.setStartEmbeddedWebServer(true);
 		bimServerConfig.setEnvironment(Environment.JAR);
 		bimServerConfig.setPort(port);

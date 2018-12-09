@@ -20,6 +20,7 @@ package org.bimserver.plugins;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.NotImplementedException;
 import org.bimserver.interfaces.objects.SArrayType;
 import org.bimserver.interfaces.objects.SBooleanType;
 import org.bimserver.interfaces.objects.SByteArrayType;
@@ -34,8 +35,11 @@ import org.bimserver.models.store.BooleanType;
 import org.bimserver.models.store.ByteArrayType;
 import org.bimserver.models.store.DoubleType;
 import org.bimserver.models.store.LongType;
+import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.models.store.ObjectType;
 import org.bimserver.models.store.Parameter;
+import org.bimserver.models.store.ParameterDefinition;
+import org.bimserver.models.store.PrimitiveType;
 import org.bimserver.models.store.StringType;
 import org.bimserver.models.store.Type;
 import org.eclipse.emf.common.util.EList;
@@ -134,5 +138,37 @@ public class PluginConfiguration {
 		SObjectType objectType = new SObjectType();
 		
 		return objectType;
+	}
+
+	public static PluginConfiguration fromDefaults(ObjectDefinition settingsDefinition) {
+		if (settingsDefinition == null) {
+			return null;
+		}
+		PluginConfiguration pluginConfiguration = new PluginConfiguration();
+		for (ParameterDefinition parameterDefinition : settingsDefinition.getParameters()) {
+			if (parameterDefinition.getDefaultValue() != null) {
+				Type value = parameterDefinition.getDefaultValue();
+				Object newValue = null;
+				if (value instanceof PrimitiveType) {
+					if (value instanceof BooleanType) {
+						newValue = ((BooleanType)value).isValue();
+					} else if (value instanceof StringType) {
+						newValue = ((StringType)value).getValue();
+					} else if (value instanceof DoubleType) {
+						newValue = ((DoubleType)value).getValue();
+					} else if (value instanceof LongType) {
+						newValue = ((LongType)value).getValue();
+					} else if (value instanceof ByteArrayType) {
+						newValue = ((ByteArrayType)value).getValue();
+					}
+				} else if (value instanceof ArrayType) {
+					throw new NotImplementedException("ArrayType not implemented");
+				} else if (value instanceof ObjectType) {
+					throw new NotImplementedException("ObjectType not implemented");
+				}
+				pluginConfiguration.values.put(parameterDefinition.getIdentifier(), newValue);
+			}
+		}
+		return pluginConfiguration;
 	}
 }

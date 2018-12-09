@@ -48,9 +48,9 @@ public abstract class AbstractService extends ServicePlugin {
 	}
 	
 	@Override
-	public void init(PluginContext pluginContext) throws PluginException {
+	public void init(PluginContext pluginContext, PluginConfiguration systemSettings) throws PluginException {
 		this.pluginContext = pluginContext;
-		super.init(pluginContext);
+		super.init(pluginContext, systemSettings);
 	}
 
 	public PluginContext getPluginContext() {
@@ -58,7 +58,7 @@ public abstract class AbstractService extends ServicePlugin {
 	}
 	
 	@Override
-	public ObjectDefinition getSettingsDefinition() {
+	public ObjectDefinition getUserSettingsDefinition() {
 		return null;
 	}
 

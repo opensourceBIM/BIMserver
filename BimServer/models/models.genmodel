@@ -26,6 +26,8 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryInfo/boundsMm"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryInfo/boundsUntransformedMm"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/additionalData"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/nrColors"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/nrVertices"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/Vector3f">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector3f/x"/>
@@ -57,12 +59,16 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryData/mostUsedColor"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryData/boundsMm"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/saveableTriangles"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryData/colorPack"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/Vector4f">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector4f/x"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector4f/y"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector4f/z"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector4f/w"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/0/ColorPack">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/ColorPack/data"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Ifc2x3tc1" basePackage="org.bimserver.models" disposableProviderFactory="true"

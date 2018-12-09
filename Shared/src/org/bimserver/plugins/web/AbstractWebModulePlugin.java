@@ -39,6 +39,7 @@ import org.bimserver.models.store.PrimitiveDefinition;
 import org.bimserver.models.store.PrimitiveEnum;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StringType;
+import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginSourceType;
 import org.bimserver.shared.exceptions.PluginException;
@@ -63,7 +64,7 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 	}
 	
 	@Override
-	public void init(PluginContext pluginContext) throws PluginException {
+	public void init(PluginContext pluginContext, PluginConfiguration systemSettings) throws PluginException {
 		this.pluginContext = pluginContext;
 	}
 	
@@ -151,7 +152,7 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 	public abstract String getDefaultContextPath();
 
 	@Override
-	public ObjectDefinition getSettingsDefinition() {
+	public ObjectDefinition getUserSettingsDefinition() {
 		ObjectDefinition objectDefinition = StoreFactory.eINSTANCE.createObjectDefinition();
 
 		PrimitiveDefinition stringDefinition = StoreFactory.eINSTANCE.createPrimitiveDefinition();
@@ -168,6 +169,11 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 		objectDefinition.getParameters().add(contextPathParameter);
 		
 		return objectDefinition;
+	}
+	
+	@Override
+	public ObjectDefinition getSystemSettingsDefinition() {
+		return null;
 	}
 	
 	public PluginContext getPluginContext() {

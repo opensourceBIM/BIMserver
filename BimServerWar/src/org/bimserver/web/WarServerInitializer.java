@@ -100,7 +100,8 @@ public class WarServerInitializer implements ServletContextListener {
 		setupLogging(homeDir);
 		try {
 			fixLogging(config);
-			config.setClassPath(makeClassPath(resourceFetcher.getFile("lib")));
+			// TODO
+//			config.setClassPath(makeClassPath(resourceFetcher.getFile("lib")));
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}

@@ -494,7 +494,6 @@ public class PluginManager implements PluginManagerInterface {
 					if (pluginContext == null) {
 						throw new PluginException("No plugin context found for " + sPluginInformation.getIdentifier());
 					}
-					pluginContext.getPlugin().init(pluginContext);
 				}
 			}
 
@@ -503,6 +502,8 @@ public class PluginManager implements PluginManagerInterface {
 				for (SPluginInformation sPluginInformation : plugins) {
 					if (sPluginInformation.isEnabled()) {
 						PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getIdentifier());
+						PluginConfiguration pluginConfiguration = PluginConfiguration.fromDefaults(pluginContext.getPlugin().getSystemSettingsDefinition());
+						pluginContext.initialize(pluginConfiguration);
 						pluginChangeListener.pluginInstalled(pluginBundleVersionId, pluginContext, sPluginInformation);
 					}
 				}
@@ -966,7 +967,7 @@ public class PluginManager implements PluginManagerInterface {
 			Set<PluginContext> set = implementations.get(pluginClass);
 			for (PluginContext pluginContext : set) {
 				try {
-					pluginContext.initialize();
+					pluginContext.initialize(pluginContext.getSystemSettings());
 				} catch (Throwable e) {
 					LOGGER.error("", e);
 					pluginContext.setEnabled(false, false);
@@ -1417,12 +1418,13 @@ public class PluginManager implements PluginManagerInterface {
 					if (pluginContext == null) {
 						LOGGER.info("No plugin context found for " + sPluginInformation.getIdentifier());
 					} else {
-						pluginContext.getPlugin().init(pluginContext);
+						PluginConfiguration pluginConfiguration = PluginConfiguration.fromDefaults(pluginContext.getPlugin().getSystemSettingsDefinition());
+						pluginContext.initialize(pluginConfiguration);
 					}
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.error("", e);
 			if (pluginBundle != null) {
 				pluginBundle.close();
 			}
@@ -1688,6 +1690,8 @@ public class PluginManager implements PluginManagerInterface {
 				set.remove(pluginContext);
 			}
 
+			// TODO in case the update fails (new plugin does not load successfully), we need to be able to replace the removed file... So we should not remove it here but rename it and then remove it later on
+			
 			if (existingPluginBundle.getPluginBundle().getInstalledVersion().getType() == SPluginBundleType.MAVEN) {
 				Path target = pluginsDir.resolve(currentVersion.getFileName());
 				Files.delete(target);
@@ -1767,7 +1771,9 @@ public class PluginManager implements PluginManagerInterface {
 			for (SPluginInformation sPluginInformation : plugins) {
 				if (sPluginInformation.isEnabled()) {
 					PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getIdentifier());
-					pluginContext.getPlugin().init(pluginContext);
+					PluginContext previousContext = existingPluginBundle.getPluginContext(pluginContext.getIdentifier());
+					// TODO when there was no previous plugin (new plugin in bundle for example), we should use the default system settings of the particular plugin... not null
+					pluginContext.getPlugin().init(pluginContext, previousContext == null ? null : previousContext.getSystemSettings());
 				}
 			}
 		} catch (Exception e) {

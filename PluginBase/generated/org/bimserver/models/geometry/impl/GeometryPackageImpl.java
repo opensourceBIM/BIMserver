@@ -114,6 +114,13 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	private EClass vector4fEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass colorPackEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -155,28 +162,19 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 
 		// Obtain or create and register package
 		Object registeredGeometryPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
-		GeometryPackageImpl theGeometryPackage = registeredGeometryPackage instanceof GeometryPackageImpl
-				? (GeometryPackageImpl) registeredGeometryPackage
-				: new GeometryPackageImpl();
+		GeometryPackageImpl theGeometryPackage = registeredGeometryPackage instanceof GeometryPackageImpl ? (GeometryPackageImpl) registeredGeometryPackage : new GeometryPackageImpl();
 
 		isInited = true;
 
 		// Obtain or create and register interdependencies
 		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(Ifc2x3tc1Package.eNS_URI);
-		Ifc2x3tc1PackageImpl theIfc2x3tc1Package = (Ifc2x3tc1PackageImpl) (registeredPackage instanceof Ifc2x3tc1PackageImpl
-				? registeredPackage
-				: Ifc2x3tc1Package.eINSTANCE);
+		Ifc2x3tc1PackageImpl theIfc2x3tc1Package = (Ifc2x3tc1PackageImpl) (registeredPackage instanceof Ifc2x3tc1PackageImpl ? registeredPackage : Ifc2x3tc1Package.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI);
-		Ifc4PackageImpl theIfc4Package = (Ifc4PackageImpl) (registeredPackage instanceof Ifc4PackageImpl
-				? registeredPackage
-				: Ifc4Package.eINSTANCE);
+		Ifc4PackageImpl theIfc4Package = (Ifc4PackageImpl) (registeredPackage instanceof Ifc4PackageImpl ? registeredPackage : Ifc4Package.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI);
-		LogPackageImpl theLogPackage = (LogPackageImpl) (registeredPackage instanceof LogPackageImpl ? registeredPackage
-				: LogPackage.eINSTANCE);
+		LogPackageImpl theLogPackage = (LogPackageImpl) (registeredPackage instanceof LogPackageImpl ? registeredPackage : LogPackage.eINSTANCE);
 		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI);
-		StorePackageImpl theStorePackage = (StorePackageImpl) (registeredPackage instanceof StorePackageImpl
-				? registeredPackage
-				: StorePackage.eINSTANCE);
+		StorePackageImpl theStorePackage = (StorePackageImpl) (registeredPackage instanceof StorePackageImpl ? registeredPackage : StorePackage.eINSTANCE);
 
 		// Load packages
 		theGeometryPackage.loadPackage();
@@ -207,8 +205,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 */
 	public EClass getGeometryInfo() {
 		if (geometryInfoEClass == null) {
-			geometryInfoEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI)
-					.getEClassifiers().get(0);
+			geometryInfoEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers().get(0);
 		}
 		return geometryInfoEClass;
 	}
@@ -353,10 +350,27 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getGeometryInfo_NrColors() {
+		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(15);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGeometryInfo_NrVertices() {
+		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(16);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getVector3f() {
 		if (vector3fEClass == null) {
-			vector3fEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers()
-					.get(1);
+			vector3fEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers().get(1);
 		}
 		return vector3fEClass;
 	}
@@ -395,8 +409,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 */
 	public EClass getBounds() {
 		if (boundsEClass == null) {
-			boundsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers()
-					.get(2);
+			boundsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers().get(2);
 		}
 		return boundsEClass;
 	}
@@ -426,8 +439,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 */
 	public EClass getBuffer() {
 		if (bufferEClass == null) {
-			bufferEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers()
-					.get(3);
+			bufferEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers().get(3);
 		}
 		return bufferEClass;
 	}
@@ -448,8 +460,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 */
 	public EClass getGeometryData() {
 		if (geometryDataEClass == null) {
-			geometryDataEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI)
-					.getEClassifiers().get(4);
+			geometryDataEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers().get(4);
 		}
 		return geometryDataEClass;
 	}
@@ -585,6 +596,15 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getGeometryData_ColorPack() {
+		return (EReference) getGeometryData().getEStructuralFeatures().get(17);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getGeometryData_NormalsQuantized() {
 		return (EReference) getGeometryData().getEStructuralFeatures().get(8);
 	}
@@ -614,8 +634,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 */
 	public EClass getVector4f() {
 		if (vector4fEClass == null) {
-			vector4fEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers()
-					.get(5);
+			vector4fEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers().get(5);
 		}
 		return vector4fEClass;
 	}
@@ -654,6 +673,27 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 */
 	public EAttribute getVector4f_W() {
 		return (EAttribute) getVector4f().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getColorPack() {
+		if (colorPackEClass == null) {
+			colorPackEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers().get(6);
+		}
+		return colorPackEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getColorPack_Data() {
+		return (EAttribute) getColorPack().getEStructuralFeatures().get(0);
 	}
 
 	/**

@@ -32,7 +32,7 @@ public class SchemaFieldObjectIDMPlugin implements ObjectIDMPlugin {
 	private SchemaFieldIgnoreMap objectIDM;
 
 	@Override
-	public void init(PluginContext pluginContext) throws PluginException {
+	public void init(PluginContext pluginContext, PluginConfiguration systemSettings) throws PluginException {
 		PackageMetaData packageMetaData = pluginContext.getMetaDataManager().getPackageMetaData("ifc2x3tc1");
 		objectIDM = new SchemaFieldIgnoreMap(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), packageMetaData);
 	}
@@ -43,7 +43,12 @@ public class SchemaFieldObjectIDMPlugin implements ObjectIDMPlugin {
 	}
 
 	@Override
-	public ObjectDefinition getSettingsDefinition() {
+	public ObjectDefinition getUserSettingsDefinition() {
+		return null;
+	}
+	
+	@Override
+	public ObjectDefinition getSystemSettingsDefinition() {
 		return null;
 	}
 }

@@ -44,6 +44,8 @@ public class SGeometryInfo implements SDataBase
 	private SBounds boundsMm;
 	private SBounds boundsUntransformedMm;
 	private java.lang.String additionalData;
+	private int nrColors;
+	private int nrVertices;
 
 	public long getOid() {
 		return this.oid;
@@ -116,6 +118,12 @@ public class SGeometryInfo implements SDataBase
 		if (sField.getName().equals("additionalData")) {
 			return getAdditionalData();
 		}
+		if (sField.getName().equals("nrColors")) {
+			return getNrColors();
+		}
+		if (sField.getName().equals("nrVertices")) {
+			return getNrVertices();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -184,6 +192,14 @@ public class SGeometryInfo implements SDataBase
 		}
 		if (sField.getName().equals("additionalData")) {
 			setAdditionalData((String)val);
+			return;
+		}
+		if (sField.getName().equals("nrColors")) {
+			setNrColors((Integer)val);
+			return;
+		}
+		if (sField.getName().equals("nrVertices")) {
+			setNrVertices((Integer)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -319,6 +335,22 @@ public class SGeometryInfo implements SDataBase
 
 	public void setAdditionalData(java.lang.String additionalData) {
 		this.additionalData = additionalData;
+	}
+	
+	public int getNrColors() {
+		return nrColors;
+	}
+
+	public void setNrColors(int nrColors) {
+		this.nrColors = nrColors;
+	}
+	
+	public int getNrVertices() {
+		return nrVertices;
+	}
+
+	public void setNrVertices(int nrVertices) {
+		this.nrVertices = nrVertices;
 	}
 	
 	@Override

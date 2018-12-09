@@ -20,8 +20,6 @@ package org.bimserver.webservices.impl;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -30,7 +28,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Consumer;
 
 import javax.activation.DataHandler;
 
@@ -80,6 +77,7 @@ import org.bimserver.database.actions.InstallPluginBundleFromBytes;
 import org.bimserver.database.actions.ListPluginsInBundle;
 import org.bimserver.database.actions.ListWebModulesDatabaseAction;
 import org.bimserver.database.actions.SetPluginSettingsDatabaseAction;
+import org.bimserver.database.actions.SetPluginSystemSettingsDatabaseAction;
 import org.bimserver.database.actions.SetUserSettingDatabaseAction;
 import org.bimserver.database.actions.UninstallPluginBundle;
 import org.bimserver.database.actions.UpdateDatabaseAction;
@@ -128,6 +126,7 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.WebModulePluginConfiguration;
 import org.bimserver.plugins.Plugin;
+import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.StreamingDeserializerPlugin;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
@@ -221,7 +220,8 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			return session.executeAndCommitAction(new AddObjectIDMDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), getBimServer().getSConverter().convertFromSObject(objectIDM, session)));
+			return session.executeAndCommitAction(
+					new AddObjectIDMDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), getBimServer().getSConverter().convertFromSObject(objectIDM, session)));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -234,7 +234,8 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			session.executeAndCommitAction(new UpdateObjectIDMDatabaseAction(session, getInternalAccessMethod(), getBimServer().getSConverter().convertFromSObject(objectIDM, session.get(objectIDM.getOid(), OldQuery.getDefault()), session)));
+			session.executeAndCommitAction(new UpdateObjectIDMDatabaseAction(session, getInternalAccessMethod(),
+					getBimServer().getSConverter().convertFromSObject(objectIDM, session.get(objectIDM.getOid(), OldQuery.getDefault()), session)));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
@@ -281,7 +282,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			session.close();
 		}
 	}
-	
+
 	@Override
 	public void deleteObjectIDM(Long ifid) throws ServerException, UserException {
 		requireRealUserAuthentication();
@@ -323,7 +324,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			session.close();
 		}
 	}
-	
+
 	@Override
 	public void deleteDeserializer(Long sid) throws ServerException, UserException {
 		requireRealUserAuthentication();
@@ -357,12 +358,14 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			List<SWebModulePluginConfiguration> list = getBimServer().getSConverter().convertToSListWebModulePluginConfiguration(session.executeAndCommitAction(new ListWebModulesDatabaseAction(session, getInternalAccessMethod())));
-			Collections.sort(list, new Comparator<SWebModulePluginConfiguration>(){
+			List<SWebModulePluginConfiguration> list = getBimServer().getSConverter()
+					.convertToSListWebModulePluginConfiguration(session.executeAndCommitAction(new ListWebModulesDatabaseAction(session, getInternalAccessMethod())));
+			Collections.sort(list, new Comparator<SWebModulePluginConfiguration>() {
 				@Override
 				public int compare(SWebModulePluginConfiguration o1, SWebModulePluginConfiguration o2) {
 					return o1.getName().compareTo(o2.getName());
-				}});
+				}
+			});
 			return list;
 		} catch (Exception e) {
 			return handleException(e);
@@ -370,7 +373,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			session.close();
 		}
 	}
-	
+
 	@Override
 	public SObjectIDMPluginConfiguration getObjectIDMByName(String ObjectIDMName) throws ServerException, UserException {
 		requireRealUserAuthentication();
@@ -384,7 +387,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		}
 		return null;
 	}
-	
+
 	@Override
 	public List<SPluginDescriptor> getAllDeserializerPluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
@@ -397,7 +400,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			session.close();
 		}
 	}
-	
+
 	@Override
 	public List<SPluginDescriptor> getAllRenderEnginePluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
@@ -585,7 +588,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			session.close();
 		}
 	}
-	
+
 	@Override
 	public void updateModelMerger(SModelMergerPluginConfiguration modelMerger) throws ServerException, UserException {
 		requireRealUserAuthentication();
@@ -628,7 +631,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			session.close();
 		}
 	}
-	
+
 	@Override
 	public void deleteModelCompare(Long iid) throws ServerException, UserException {
 		requireRealUserAuthentication();
@@ -804,14 +807,13 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			session.close();
 		}
 	}
-	
+
 	@Override
 	public SObjectDefinition getPluginObjectDefinition(Long oid) throws ServerException, UserException {
 		if (oid == -1) {
 			return null;
 		}
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
+		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
 			PluginDescriptor pluginDescriptor = session.get(oid, OldQuery.getDefault());
 			if (pluginDescriptor == null) {
 				throw new UserException("No PluginDescriptor found with oid " + oid);
@@ -820,43 +822,81 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			if (plugin == null) {
 				throw new UserException("No plugin with class name " + pluginDescriptor.getPluginClassName() + " found");
 			}
-			ObjectDefinition settingsDefinition = plugin.getSettingsDefinition();
+			ObjectDefinition settingsDefinition = plugin.getUserSettingsDefinition();
 			return getBimServer().getSConverter().convertToSObject(settingsDefinition);
 		} catch (Exception e) {
 			return handleException(e);
-		} finally {
-			session.close();
 		}
 	}
-	
+
+	@Override
+	public SObjectDefinition getPluginSystemObjectDefinition(Long oid) throws ServerException, UserException {
+		if (oid == -1) {
+			return null;
+		}
+		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+			PluginDescriptor pluginDescriptor = session.get(oid, OldQuery.getDefault());
+			if (pluginDescriptor == null) {
+				throw new UserException("No PluginDescriptor found with oid " + oid);
+			}
+			Plugin plugin = getBimServer().getPluginManager().getPlugin(pluginDescriptor.getPluginClassName(), false);
+			if (plugin == null) {
+				throw new UserException("No plugin with class name " + pluginDescriptor.getPluginClassName() + " found");
+			}
+			ObjectDefinition settingsDefinition = plugin.getSystemSettingsDefinition();
+			return getBimServer().getSConverter().convertToSObject(settingsDefinition);
+		} catch (Exception e) {
+			return handleException(e);
+		}
+	}
+
 	@Override
 	public void setPluginSettings(Long poid, SObjectType settings) throws ServerException, UserException {
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
+		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
 			ObjectType convertedSettings = getBimServer().getSConverter().convertFromSObject(settings, session);
 			SetPluginSettingsDatabaseAction action = new SetPluginSettingsDatabaseAction(getBimServer(), session, getInternalAccessMethod(), poid, convertedSettings);
 			session.executeAndCommitAction(action);
 		} catch (Exception e) {
 			handleException(e);
-		} finally {
-			session.close();
 		}
 
-		session = getBimServer().getDatabase().createSession();
-		try {
+		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
 			PluginConfiguration pluginConfiguration = session.get(StorePackage.eINSTANCE.getPluginConfiguration(), poid, OldQuery.getDefault());
 			if (pluginConfiguration instanceof InternalServicePluginConfiguration) {
 				ServicePlugin servicePlugin = getBimServer().getPluginManager().getServicePlugin(pluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
 				SInternalServicePluginConfiguration sInternalService = (SInternalServicePluginConfiguration) getBimServer().getSConverter().convertToSObject(pluginConfiguration);
-				
+
 				servicePlugin.unregister(sInternalService);
 				servicePlugin.register(getAuthorization().getUoid(), sInternalService, new org.bimserver.plugins.PluginConfiguration(settings));
 			}
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
-		} finally {
-			session.close();
 		}
+	}
+
+	@Override
+	public void setPluginSystemSettings(Long poid, SObjectType settings) throws ServerException, UserException {
+		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+			ObjectType convertedSettings = getBimServer().getSConverter().convertFromSObject(settings, session);
+			SetPluginSystemSettingsDatabaseAction action = new SetPluginSystemSettingsDatabaseAction(getBimServer(), session, getInternalAccessMethod(), poid, convertedSettings);
+			session.executeAndCommitAction(action);
+		} catch (Exception e) {
+			handleException(e);
+		}
+
+		// TODO maybe also restart some things...
+//		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+//			PluginConfiguration pluginConfiguration = session.get(StorePackage.eINSTANCE.getPluginConfiguration(), poid, OldQuery.getDefault());
+//			if (pluginConfiguration instanceof InternalServicePluginConfiguration) {
+//				ServicePlugin servicePlugin = getBimServer().getPluginManager().getServicePlugin(pluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
+//				SInternalServicePluginConfiguration sInternalService = (SInternalServicePluginConfiguration) getBimServer().getSConverter().convertToSObject(pluginConfiguration);
+//				
+//				servicePlugin.unregister(sInternalService);
+//				servicePlugin.register(getAuthorization().getUoid(), sInternalService, new org.bimserver.plugins.PluginConfiguration(settings));
+//			}
+//		} catch (BimserverDatabaseException e) {
+//			handleException(e);
+//		}
 	}
 
 	@Override
@@ -880,7 +920,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		}
 		return null;
 	}
-	
+
 	@Override
 	public List<SWebModulePluginConfiguration> getAllWebModules(Boolean onlyEnabled) throws ServerException, UserException {
 		requireRealUserAuthentication();
@@ -897,7 +937,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		}
 		return null;
 	}
-	
+
 	@Override
 	public Long addSerializer(SSerializerPluginConfiguration serializer) throws ServerException, UserException {
 		requireRealUserAuthentication();
@@ -911,7 +951,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			session.close();
 		}
 	}
-	
+
 	public SRenderEnginePluginConfiguration getDefaultRenderEngine() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -995,7 +1035,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			session.close();
 		}
 	}
-	
+
 	public SObjectType getPluginSettings(Long poid) throws ServerException, UserException {
 		// TODO possibly use PluginSettingsCache
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -1009,7 +1049,18 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			session.close();
 		}
 	}
-	
+
+	public SObjectType getPluginSystemSettings(Long poid) throws ServerException, UserException {
+		// TODO possibly use PluginSettingsCache
+		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+			PluginDescriptor pluginDescriptor = session.get(StorePackage.eINSTANCE.getPluginDescriptor(), poid, OldQuery.getDefault());
+			ObjectType settings = pluginDescriptor.getSettings();
+			return getBimServer().getSConverter().convertToSObject(settings);
+		} catch (Exception e) {
+			return handleException(e);
+		}
+	}
+
 	public void setDefaultRenderEngine(final Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -1018,7 +1069,8 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 				@Override
 				public void set(UserSettings userSettings) {
 					userSettings.setDefaultRenderEngine(find(userSettings.getRenderEngines(), oid));
-				}});
+				}
+			});
 			session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
@@ -1035,7 +1087,8 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 				@Override
 				public void set(UserSettings userSettings) {
 					userSettings.setDefaultQueryEngine(find(userSettings.getQueryEngines(), oid));
-				}});
+				}
+			});
 			session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
@@ -1065,11 +1118,12 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			}
 
 			Set<Schema> schemaOr = new HashSet<>();
-			
+
 			if (uniqueSchemas.size() == 0) {
 				// Weird, no schemas
 			} else if (uniqueSchemas.size() == 1) {
-				// Easy, just add it, and see if there are converter targets and add those too
+				// Easy, just add it, and see if there are converter targets and
+				// add those too
 				Schema schema = uniqueSchemas.iterator().next();
 				schemaOr.add(schema);
 				// TODO make recursive
@@ -1077,7 +1131,9 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 					schemaOr.add(target);
 				}
 			} else if (uniqueSchemas.size() == 2) {
-				// This is harder, if we have 2 schema, we must figure out a way to convert to 1 schema, and then filter the allowed source schemas
+				// This is harder, if we have 2 schema, we must figure out a way
+				// to convert to 1 schema, and then filter the allowed source
+				// schemas
 				Iterator<Schema> iterator = uniqueSchemas.iterator();
 				Schema schema1 = iterator.next();
 				Schema schema2 = iterator.next();
@@ -1092,7 +1148,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			} else {
 				throw new ServerException("Unimplemented, no support for > 2 schemas");
 			}
-			
+
 			UserSettings userSettings = getUserSettings(session);
 			List<SSerializerPluginConfiguration> sSerializers = new ArrayList<SSerializerPluginConfiguration>();
 			for (SerializerPluginConfiguration serializerPluginConfiguration : userSettings.getSerializers()) {
@@ -1108,7 +1164,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 						}
 					}
 				} else if (plugin instanceof StreamingSerializerPlugin) {
-					StreamingSerializerPlugin streamingSerializerPlugin = (StreamingSerializerPlugin)plugin;
+					StreamingSerializerPlugin streamingSerializerPlugin = (StreamingSerializerPlugin) plugin;
 					for (Schema schema : streamingSerializerPlugin.getSupportedSchemas()) {
 						if (schemaOr.contains(schema)) {
 							if (!onlyEnabled || (serializerPluginConfiguration.getEnabled() && serializerPluginConfiguration.getPluginDescriptor().getEnabled())) {
@@ -1128,7 +1184,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		}
 		return null;
 	}
-	
+
 	@Override
 	public List<SSerializerPluginConfiguration> getAllSerializersForRoids(Boolean onlyEnabled, Set<Long> roids) throws ServerException, UserException {
 		requireRealUserAuthentication();
@@ -1149,7 +1205,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		}
 		return null;
 	}
-	
+
 	public void setDefaultModelCompare(final Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -1158,7 +1214,8 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 				@Override
 				public void set(UserSettings userSettings) {
 					userSettings.setDefaultModelCompare(find(userSettings.getModelCompares(), oid));
-				}});
+				}
+			});
 			session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
@@ -1175,7 +1232,8 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 				@Override
 				public void set(UserSettings userSettings) {
 					userSettings.setDefaultModelMerger(find(userSettings.getModelMergers(), oid));
-				}});
+				}
+			});
 			session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
@@ -1201,7 +1259,8 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 				@Override
 				public void set(UserSettings userSettings) {
 					userSettings.setDefaultSerializer(find(userSettings.getSerializers(), oid));
-				}});
+				}
+			});
 			session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
@@ -1218,7 +1277,8 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 				@Override
 				public void set(UserSettings userSettings) {
 					userSettings.setDefaultObjectIDM(find(userSettings.getObjectIDMs(), oid));
-				}});
+				}
+			});
 			session.executeAndCommitAction(action);
 		} catch (BimserverDatabaseException e) {
 			handleException(e);
@@ -1226,7 +1286,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			session.close();
 		}
 	}
-	
+
 	@Override
 	public List<SDeserializerPluginConfiguration> getAllDeserializers(Boolean onlyEnabled) throws ServerException, UserException {
 		requireRealUserAuthentication();
@@ -1265,18 +1325,20 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	@Override
 	public SSerializerPluginConfiguration getSerializerByPluginClassName(String pluginClassName) throws ServerException, UserException {
-		// Not checking for real authentication here because a remote service should be able to use a serializer for download call
+		// Not checking for real authentication here because a remote service
+		// should be able to use a serializer for download call
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetSerializerByPluginClassNameDatabaseAction(session, getAuthorization(), getInternalAccessMethod(), pluginClassName)));
+			return getBimServer().getSConverter()
+					.convertToSObject(session.executeAndCommitAction(new GetSerializerByPluginClassNameDatabaseAction(session, getAuthorization(), getInternalAccessMethod(), pluginClassName)));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
 			session.close();
 		}
 	}
-	
+
 	@Override
 	public Boolean hasActiveSerializer(String contentType) throws ServerException, UserException {
 		requireRealUserAuthentication();
@@ -1300,7 +1362,8 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			InternalServicePluginConfiguration internalPlugin = session.executeAndCommitAction(new GetByIdDatabaseAction<InternalServicePluginConfiguration>(session, getInternalAccessMethod(), oid, StorePackage.eINSTANCE.getInternalServicePluginConfiguration()));
+			InternalServicePluginConfiguration internalPlugin = session.executeAndCommitAction(
+					new GetByIdDatabaseAction<InternalServicePluginConfiguration>(session, getInternalAccessMethod(), oid, StorePackage.eINSTANCE.getInternalServicePluginConfiguration()));
 			if (internalPlugin == null) {
 				throw new UserException("No InternalServicePluginConfiguration found for id " + oid);
 			}
@@ -1333,7 +1396,8 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			return session.executeAndCommitAction(new AddInternalServiceDatabaseAction(getBimServer(), session, getInternalAccessMethod(), getAuthorization(), getBimServer().getSConverter().convertFromSObject(internalService, session)));
+			return session.executeAndCommitAction(new AddInternalServiceDatabaseAction(getBimServer(), session, getInternalAccessMethod(), getAuthorization(),
+					getBimServer().getSConverter().convertFromSObject(internalService, session)));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -1383,7 +1447,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		}
 		return descriptors;
 	}
-	
+
 	@Override
 	public SPluginDescriptor getPluginDescriptor(Long oid) throws ServerException, UserException {
 		if (oid == -1) {
@@ -1399,7 +1463,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			session.close();
 		}
 	}
-	
+
 	@Override
 	public SPluginDescriptor getPluginDescriptorByName(String name) throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -1417,7 +1481,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			session.close();
 		}
 	}
-	
+
 	@Override
 	public List<SDeserializerPluginConfiguration> getAllDeserializersForProject(Boolean onlyEnabled, Long poid) throws ServerException, UserException {
 		requireRealUserAuthentication();
@@ -1431,7 +1495,8 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			for (DeserializerPluginConfiguration deserializerPluginConfiguration : deserializers) {
 				DeserializerPlugin plugin = getBimServer().getPluginManager().getDeserializerPlugin(deserializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
 				if (plugin == null) {
-					StreamingDeserializerPlugin streamingPlugin = getBimServer().getPluginManager().getStreamingDeserializerPlugin(deserializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
+					StreamingDeserializerPlugin streamingPlugin = getBimServer().getPluginManager()
+							.getStreamingDeserializerPlugin(deserializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
 					if (streamingPlugin != null) {
 						if (streamingPlugin.getSupportedSchemas().contains(Schema.valueOf(project.getSchema().toUpperCase()))) {
 							if (!onlyEnabled || (deserializerPluginConfiguration.getEnabled() && deserializerPluginConfiguration.getPluginDescriptor().getEnabled())) {
@@ -1462,14 +1527,15 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			return session.executeAndCommitAction(new GetAvailablePluginBundles(session, getInternalAccessMethod(), getBimServer(), getBimServer().getServerSettingsCache().getServerSettings().isPluginStrictVersionChecking()));
+			return session.executeAndCommitAction(
+					new GetAvailablePluginBundles(session, getInternalAccessMethod(), getBimServer(), getBimServer().getServerSettingsCache().getServerSettings().isPluginStrictVersionChecking()));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
 			session.close();
 		}
 	}
-	
+
 	public void installPluginBundle(String repository, String groupId, String artifactId, String version, List<SPluginInformation> plugins) throws UserException, ServerException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -1488,14 +1554,15 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		try {
 			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 			IOUtils.copy(file.getInputStream(), byteArrayOutputStream);
-			session.executeAndCommitAction(new InstallPluginBundleFromBytes(session, getInternalAccessMethod(), getBimServer(), byteArrayOutputStream.toByteArray(), installAllPluginsForAllUsers, installAllPluginsForNewUsers));
+			session.executeAndCommitAction(new InstallPluginBundleFromBytes(session, getInternalAccessMethod(), getBimServer(), byteArrayOutputStream.toByteArray(), installAllPluginsForAllUsers,
+					installAllPluginsForNewUsers));
 		} catch (Exception e) {
 			handleException(e);
 		} finally {
 			session.close();
 		}
 	}
-	
+
 	public void installPluginBundleFromUrl(String url, Boolean installAllPluginsForAllUsers, Boolean installAllPluginsForNewUsers) throws UserException, ServerException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -1508,7 +1575,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			session.close();
 		}
 	}
-	
+
 	public void updatePluginBundle(String repository, String groupId, String artifactId, String version) throws UserException, ServerException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -1520,14 +1587,15 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			session.close();
 		}
 	}
-	
+
 	@Override
 	public List<SPluginBundle> getInstalledPluginBundles() throws UserException, ServerException {
 		// TODO make sure the database oid's are also coming in with this
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			return session.executeAndCommitAction(new GetInstalledPluginBundles(session, getInternalAccessMethod(), getBimServer(), getBimServer().getServerSettingsCache().getServerSettings().isPluginStrictVersionChecking()));
+			return session.executeAndCommitAction(
+					new GetInstalledPluginBundles(session, getInternalAccessMethod(), getBimServer(), getBimServer().getServerSettingsCache().getServerSettings().isPluginStrictVersionChecking()));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -1579,7 +1647,8 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			return session.executeAndCommitAction(new GetPluginBundle(session, getInternalAccessMethod(), getBimServer(), repository, groupId, artifactId, getBimServer().getServerSettingsCache().getServerSettings().isPluginStrictVersionChecking()));
+			return session.executeAndCommitAction(new GetPluginBundle(session, getInternalAccessMethod(), getBimServer(), repository, groupId, artifactId,
+					getBimServer().getServerSettingsCache().getServerSettings().isPluginStrictVersionChecking()));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -1600,7 +1669,8 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	public List<SPluginDescriptor> listPluginsInBundle(Long pluginBundleVersionOid) throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			return getBimServer().getSConverter().convertToSListPluginDescriptor(session.executeAndCommitAction(new ListPluginsInBundle(session, getInternalAccessMethod(), getBimServer(), pluginBundleVersionOid)));
+			return getBimServer().getSConverter()
+					.convertToSListPluginDescriptor(session.executeAndCommitAction(new ListPluginsInBundle(session, getInternalAccessMethod(), getBimServer(), pluginBundleVersionOid)));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -1609,60 +1679,46 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	}
 
 	@Override
-	public List<SInternalServicePluginConfiguration> getAllInternalServicesOfService(String name, Boolean onlyEnabled)
-			throws UserException, ServerException {
+	public List<SInternalServicePluginConfiguration> getAllInternalServicesOfService(String name, Boolean onlyEnabled) throws UserException, ServerException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			return getBimServer().getSConverter().convertToSListInternalServicePluginConfiguration(session.executeAndCommitAction(new GetAllInternalServicesOfService(session, getInternalAccessMethod(), getBimServer(), getCurrentUser(), name)));
+			return getBimServer().getSConverter().convertToSListInternalServicePluginConfiguration(
+					session.executeAndCommitAction(new GetAllInternalServicesOfService(session, getInternalAccessMethod(), getBimServer(), getCurrentUser(), name)));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
 			session.close();
 		}
 	}
-	
 
 	@Override
 	public Boolean hasPreBuiltPlugins() throws UserException {
-		try {
-			Path file = getBimServer().getResourceFetcher().getFile("pre");
-			if (file != null) {
-				return Files.isDirectory(file);
-			} else {
-				return false;
-			}
-		} catch (IOException e) {
-			throw new UserException(e);
-		}
+		return getBimServer().getResourceFetcher().isDirectory("pre");
 	}
 
 	@Override
-	public void installPreBuiltPlugins(List<String> artifacts) {
+	public void installPreBuiltPlugins(List<String> artifacts) throws UserException {
 		Set<String> set = new HashSet<>(artifacts);
+		ResourceFetcher resourceFetcher = getBimServer().getResourceFetcher();
+		Set<String> listKeys = resourceFetcher.listKeys("pre");
 		try {
-			Path prePath = getBimServer().getResourceFetcher().getFile("pre");
-			if (Files.isDirectory(prePath)) {
-				Files.list(prePath).forEach(new Consumer<Path>() {
-					@Override
-					public void accept(Path t) {
-						String filename = t.getFileName().toString();
-						if (filename.endsWith(".jar")) {
-							if (filename.contains("-")) {
-								if (set.contains(filename.substring(0, filename.indexOf("-")))) {
-									try {
-										DataHandler dataHandler = new DataHandler(new ByteArrayDataSource(filename, Files.readAllBytes(t)));
-										getServiceMap().getPluginInterface().installPluginBundleFromFile(dataHandler, true, true);
-									} catch (IOException | UserException | ServerException e1) {
-										e1.printStackTrace();
-									}
-								}
-							}
+			for (String filename : listKeys) {
+				if (filename.endsWith(".jar")) {
+					if (filename.contains("-")) {
+						if (set.contains(filename.substring(0, filename.indexOf("-")))) {
+							DataHandler dataHandler;
+							dataHandler = new DataHandler(new ByteArrayDataSource(filename, resourceFetcher.getData("pre/" + filename)));
+							getServiceMap().getPluginInterface().installPluginBundleFromFile(dataHandler, true, true);
 						}
 					}
-				});
+				}
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new UserException(e);
+		} catch (UserException e) {
+			throw new UserException(e);
+		} catch (ServerException e) {
+			throw new UserException(e);
 		}
 	}
 }

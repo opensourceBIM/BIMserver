@@ -20,18 +20,27 @@ package org.bimserver.database.migrations.steps;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EcorePackage;
 
-public class Step0022 extends Migration {
+public class Step0048 extends Migration {
 
 	@Override
 	public void migrate(Schema schema, DatabaseSession databaseSession) {
-//		EClass ifcRootClass = schema.getEClass("ifc2x3tc1", "IfcRoot");
-//		schema.addIndex(ifcRootClass.getEStructuralFeature("GlobalId"));
-//		schema.addIndex(ifcRootClass.getEStructuralFeature("Name"));
+		EClass geometryInfo = schema.getEClass("geometry", "GeometryInfo");
+		schema.createEAttribute(geometryInfo, "nrColors", EcorePackage.eINSTANCE.getEInt());
+		schema.createEAttribute(geometryInfo, "nrVertices", EcorePackage.eINSTANCE.getEInt());
+		
+		EClass colorPack = schema.createEClass("geometry", "ColorPack");
+		
+		schema.createEAttribute(colorPack, "data", EcorePackage.eINSTANCE.getEByteArray());
+		
+		EClass geometryData = schema.getEClass("geometry", "GeometryData");
+		schema.createEReference(geometryData, "colorPack", colorPack);
 	}
 
 	@Override
 	public String getDescription() {
-		return "More indices";
+		return "Added additional data to GeometryInfo (json)";
 	}
 }

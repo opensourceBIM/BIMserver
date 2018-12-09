@@ -131,6 +131,11 @@ public class GeometryAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseColorPack(ColorPack object) {
+			return createColorPackAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -230,6 +235,20 @@ public class GeometryAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createVector4fAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.geometry.ColorPack <em>Color Pack</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.geometry.ColorPack
+	 * @generated
+	 */
+	public Adapter createColorPackAdapter() {
 		return null;
 	}
 

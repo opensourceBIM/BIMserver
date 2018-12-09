@@ -531,14 +531,27 @@ public interface PluginInterface extends PublicInterface {
 	SObjectDefinition getPluginObjectDefinition(
 		@WebParam(name = "oid", partName = "getPluginObjectDefinition.oid") Long oid) throws ServerException, UserException;
 
+	@WebMethod(action = "getPluginSystemObjectDefinition")
+	SObjectDefinition getPluginSystemObjectDefinition(
+		@WebParam(name = "oid", partName = "getPluginSystemObjectDefinition.oid") Long oid) throws ServerException, UserException;
+
 	@WebMethod(action = "setPluginSettings")
 	void setPluginSettings(
 		@WebParam(name = "poid", partName = "setPluginSettings.poid") Long poid, 
 		@WebParam(name = "settings", partName = "setPluginSettings.settings") SObjectType settings) throws ServerException, UserException;
 
+	@WebMethod(action = "setPluginSystemSettings")
+	void setPluginSystemSettings(
+			@WebParam(name = "poid", partName = "setPluginSystemSettings.poid") Long poid, 
+			@WebParam(name = "settings", partName = "setPluginSystemSettings.settings") SObjectType settings) throws ServerException, UserException;
+
 	@WebMethod(action = "getPluginSettings")
 	SObjectType getPluginSettings(
 		@WebParam(name = "poid", partName = "getPluginSettings.poid") Long poid) throws ServerException, UserException;
+
+	@WebMethod(action = "getPluginSystemSettings")
+	SObjectType getPluginSystemSettings(
+		@WebParam(name = "poid", partName = "getPluginSystemSettings.poid") Long poid) throws ServerException, UserException;
 
 	/**
 	 * @param onlyEnabled Whether to only include enabled deserializers
@@ -667,7 +680,7 @@ public interface PluginInterface extends PublicInterface {
 		@WebParam(name = "version", partName = "getPluginInformation.version") String version) throws UserException, ServerException;
 	
 	/**
-	 * Removes the maven cache, can be usefull if you don't want to wait the default update period (which is 1 day) for new plugins
+	 * Removes the maven cache, can be useful if you don't want to wait the default update period (which is 1 day) for new plugins
 	 * 
 	 * @throws UserException
 	 * @throws ServerException

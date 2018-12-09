@@ -25,14 +25,22 @@ public interface Plugin {
 	/**
 	 * Initialize this plugin
 	 * @param pluginContext The context of the plugin, you can store this object as a field and use it later
+	 * @param systemSettings TODO
 	 * @throws PluginException When the init method throws a PluginException, this will always disable the plugin
 	 */
-	void init(PluginContext pluginContext) throws PluginException;
+	void init(PluginContext pluginContext, PluginConfiguration systemSettings) throws PluginException;
 	
 	/**
 	 * @return An object with the definition of a set of properties that can be set by the user of a plugin, the plugin can later use the actual values a user has set
+	 * These are settings specific to a specific user of the plugin
 	 */
-	ObjectDefinition getSettingsDefinition();
+	ObjectDefinition getUserSettingsDefinition();
+
+	/**
+	 * @return An object with the definition of a set of properties that can be set by the (system) user of a plugin, the plugin can later use the actual values a user has set
+	 * These are settings specific to the plugin
+	 */
+	ObjectDefinition getSystemSettingsDefinition();
 	
 	/**
 	 * @return Returns the type of plugin, should be implemented by all underlying interfaces, and not by the actual plugins

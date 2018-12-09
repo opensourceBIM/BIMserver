@@ -35,6 +35,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.interfaces.objects.SPluginBundle;
 import org.bimserver.interfaces.objects.SPluginBundleVersion;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.PluginBundleVersion;
 import org.bimserver.plugins.GitHubPluginRepository;
 import org.bimserver.plugins.PluginBundle;
 import org.bimserver.plugins.PluginBundleIdentifier;
@@ -58,7 +59,7 @@ public class GetInstalledPluginBundles extends PluginBundleDatabaseAction<List<S
 
 	@Override
 	public List<SPluginBundle> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException {
-		List<SPluginBundle> result = new ArrayList<>();
+		List<SPluginBundle> result = Collections.synchronizedList(new ArrayList<>());
 
 		bimserverVersion = new DefaultArtifactVersion(bimServer.getVersionChecker().getLocalVersion().getFullString());
 
@@ -69,10 +70,15 @@ public class GetInstalledPluginBundles extends PluginBundleDatabaseAction<List<S
 			repositoryKnownLocation.put(pluginLocation.getPluginIdentifier(), pluginLocation);
 		}
 		
-		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(32, 32, 1L, TimeUnit.HOURS, new ArrayBlockingQueue<>(100));
+		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(4, 32, 1L, TimeUnit.HOURS, new ArrayBlockingQueue<>(100));
 		
 		for (PluginBundle currentlyInstalledPluginBundle : bimServer.getPluginManager().getPluginBundles()) {
 			SPluginBundleVersion installedVersion = currentlyInstalledPluginBundle.getPluginBundleVersion();
+			for (PluginBundleVersion pluginBundleVersion : getDatabaseSession().getAll(PluginBundleVersion.class)) {
+				if (pluginBundleVersion.getArtifactId().equals(installedVersion.getArtifactId()) && pluginBundleVersion.getGroupId().equals(installedVersion.getGroupId()) && pluginBundleVersion.getVersion().equals(installedVersion.getVersion())) {
+					installedVersion.setOid(pluginBundleVersion.getOid());
+				}
+			}
 
 			PluginBundleIdentifier pluginBundleIdentifier = new PluginBundleIdentifier(installedVersion.getGroupId(), installedVersion.getArtifactId());
 			PluginLocation<?> pluginLocation = repositoryKnownLocation.get(pluginBundleIdentifier);

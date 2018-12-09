@@ -1,5 +1,7 @@
 package org.bimserver.version;
 
+import java.io.ByteArrayInputStream;
+
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -18,11 +20,8 @@ package org.bimserver.version;
  *****************************************************************************/
 
 import java.io.File;
-import java.io.FileReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -68,43 +67,35 @@ public class VersionChecker {
 
 	public VersionChecker(ResourceFetcher resourceFetcher) throws VersionCheckException {
 		try {
-			Path pom = resourceFetcher.getFile("pom.xml");
-			if (pom == null) {
+			byte[] data = resourceFetcher.getData("pom.xml");
+			if (data == null) {
 				throw new VersionCheckException("No pom.xml found");
 			}
 
-			if (Files.exists(pom)) {
-				String version = null;
-				MavenXpp3Reader mavenreader = new MavenXpp3Reader();
-				if (pom != null) {
-					try (FileReader fileReader = new FileReader(pom.toFile())) {
-						Model model = mavenreader.read(fileReader);
-						version = model.getVersion();
-					}
-				}					
+			String version = null;
+			MavenXpp3Reader mavenreader = new MavenXpp3Reader();
+			if (data != null) {
+				Model model = mavenreader.read(new ByteArrayInputStream(data));
+				version = model.getVersion();
+			}					
 
-				if (version == null) {
-					// Only on development environments we have to get the version from the parent pom file
-					Path parentPom = resourceFetcher.getFile("../pom.xml");
-					if (parentPom != null) {
-						try (FileReader fileReader = new FileReader(parentPom.toFile())) {
-							Model parentModel = mavenreader.read(fileReader);
-							version = parentModel.getVersion();
-						}
-					} else {
-						LOGGER.error("No parent pom.xml found");
-					}
+			if (version == null) {
+				// Only on development environments we have to get the version from the parent pom file
+				byte[] parentData = resourceFetcher.getData("../pom.xml");
+				if (parentData != null) {
+					Model parentModel = mavenreader.read(new ByteArrayInputStream(parentData));
+					version = parentModel.getVersion();
+				} else {
+					LOGGER.error("No parent pom.xml found");
 				}
-				
-				DefaultArtifactVersion defaultArtifactVersion = new DefaultArtifactVersion(version);
-				localVersion = new SVersion();
-				localVersion.setMajor(defaultArtifactVersion.getMajorVersion());
-				localVersion.setMinor(defaultArtifactVersion.getMinorVersion());
-				localVersion.setRevision(defaultArtifactVersion.getIncrementalVersion());
-				localVersion.setFullString(defaultArtifactVersion.toString());
-			} else {
-				LOGGER.warn("No version info");
 			}
+			
+			DefaultArtifactVersion defaultArtifactVersion = new DefaultArtifactVersion(version);
+			localVersion = new SVersion();
+			localVersion.setMajor(defaultArtifactVersion.getMajorVersion());
+			localVersion.setMinor(defaultArtifactVersion.getMinorVersion());
+			localVersion.setRevision(defaultArtifactVersion.getIncrementalVersion());
+			localVersion.setFullString(defaultArtifactVersion.toString());
 		} catch (Exception e) {
 			throw new VersionCheckException(e);
 		}

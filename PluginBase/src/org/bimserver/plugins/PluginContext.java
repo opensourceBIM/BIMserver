@@ -60,6 +60,7 @@ public class PluginContext {
 	private boolean initialized;
 	private Class<?> pluginInterface;
 	private String identifier;
+	private PluginConfiguration systemSettings;
 
 	public PluginContext(PluginManagerInterface pluginManager, PluginBundle pluginBundle, Class<?> pluginInterface, ClassLoader classLoader, PluginSourceType pluginType, String description, URI location, Plugin plugin, String classLocation, Set<Dependency> dependencies, String identifier) throws IOException {
 		this.pluginManager = pluginManager;
@@ -162,9 +163,9 @@ public class PluginContext {
 		return pluginInterface;
 	}
 
-	public void initialize() throws PluginException {
+	public void initialize(PluginConfiguration systemSettings) throws PluginException {
 		if (!isInitialized()) {
-			plugin.init(this);
+			plugin.init(this, systemSettings);
 			setInitialized(true);
 		}
 	}
@@ -219,5 +220,9 @@ public class PluginContext {
 
 	public SerializerPlugin getSerializerPlugin(String string) {
 		return pluginManager.getSerializerPlugin(string);
+	}
+	
+	public PluginConfiguration getSystemSettings() {
+		return systemSettings;
 	}
 }

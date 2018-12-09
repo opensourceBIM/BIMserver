@@ -59,6 +59,8 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getBoundsMm <em>Bounds Mm</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getBoundsUntransformedMm <em>Bounds Untransformed Mm</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getAdditionalData <em>Additional Data</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getNrColors <em>Nr Colors</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getNrVertices <em>Nr Vertices</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo()
@@ -456,5 +458,57 @@ public interface GeometryInfo extends IdEObject {
 	 * @generated
 	 */
 	void setAdditionalData(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Nr Colors</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Nr Colors</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nr Colors</em>' attribute.
+	 * @see #setNrColors(int)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_NrColors()
+	 * @model
+	 * @generated
+	 */
+	int getNrColors();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getNrColors <em>Nr Colors</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Nr Colors</em>' attribute.
+	 * @see #getNrColors()
+	 * @generated
+	 */
+	void setNrColors(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Nr Vertices</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Nr Vertices</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nr Vertices</em>' attribute.
+	 * @see #setNrVertices(int)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_NrVertices()
+	 * @model
+	 * @generated
+	 */
+	int getNrVertices();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getNrVertices <em>Nr Vertices</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Nr Vertices</em>' attribute.
+	 * @see #getNrVertices()
+	 * @generated
+	 */
+	void setNrVertices(int value);
 
 } // GeometryInfo

@@ -28,7 +28,7 @@ import org.bimserver.models.store.StringType;
 
 public abstract class AbstractSerializerPlugin implements SerializerPlugin {
 	@Override
-	public ObjectDefinition getSettingsDefinition() {
+	public ObjectDefinition getUserSettingsDefinition() {
 		ObjectDefinition objectDefinition = StoreFactory.eINSTANCE.createObjectDefinition();
 
 		ParameterDefinition extensionParameter = StoreFactory.eINSTANCE.createParameterDefinition();
@@ -53,6 +53,11 @@ public abstract class AbstractSerializerPlugin implements SerializerPlugin {
 		contentTypeParameter.setDefaultValue(defaultContentTypeValue);
 		objectDefinition.getParameters().add(contentTypeParameter);
 		return objectDefinition;
+	}
+	
+	@Override
+	public ObjectDefinition getSystemSettingsDefinition() {
+		return null;
 	}
 	
 	public abstract String getDefaultExtension();

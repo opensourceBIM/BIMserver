@@ -29,8 +29,8 @@ public class JsonWebModule extends AbstractWebModulePlugin {
 	}
 
 	@Override
-	public void init(PluginContext pluginContext) throws PluginException {
-		super.init(pluginContext);
+	public void init(PluginContext pluginContext, PluginConfiguration systemSettings) throws PluginException {
+		super.init(pluginContext, systemSettings);
 	}
 
 	@Override

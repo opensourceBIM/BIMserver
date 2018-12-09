@@ -163,11 +163,8 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;
-import org.bimserver.geometry.accellerator.GeometryObject;
-import org.bimserver.geometry.accellerator.Node;
 import org.bimserver.geometry.accellerator.NodeCounter;
 import org.bimserver.geometry.accellerator.Octree;
-import org.bimserver.geometry.accellerator.Traverser;
 import org.bimserver.interfaces.objects.SAccessMethod;
 import org.bimserver.interfaces.objects.SAction;
 import org.bimserver.interfaces.objects.SBounds;
@@ -2226,9 +2223,9 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		String content = null;
 		if (usePre) {
 			try {
-				Path file = getBimServer().getResourceFetcher().getFile("pre/extendeddataschemas.json");
-				if (file != null && Files.exists(file)) {
-					content = new String(Files.readAllBytes(file), Charsets.UTF_8);
+				byte[] data = getBimServer().getResourceFetcher().getData("pre/extendeddataschemas.json");
+				if (data != null) {
+					content = new String(data, Charsets.UTF_8);
 				}
 			} catch (IOException e) {
 			}

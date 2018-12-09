@@ -22,11 +22,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,11 +38,13 @@ public abstract class ResourceFetcher {
 		paths.add(path);
 	}
 	
-	public URL getResource(String name) throws IOException {
-		Path file = getFile(name);
-		if (file != null && Files.exists(file)) {
+	public byte[] getData(String key) throws IOException {
+		Path path = getPath(key);
+		if (path != null) {
 			try {
-				return file.toUri().toURL();
+				if (Files.exists(path)) {
+					return FileUtils.readFileToByteArray(path.toFile());
+				}
 			} catch (MalformedURLException e) {
 				LOGGER.error("", e);
 			}
@@ -50,24 +52,61 @@ public abstract class ResourceFetcher {
 		return null;
 	}
 
-	public Path getFile(String name) throws IOException {
+	public Set<String> listKeys(String key) {
+		Path path = getPath(key);
+		Set<String> result = new HashSet<>();
+		if (path != null) {
+			try {
+				for (Path path2 : Files.newDirectoryStream(path)) {
+					result.add(path2.getFileName().toString());
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	
+	public boolean isDirectory(String key) {
+		Path path = getPath(key);
+		if (path != null) {
+			return Files.isDirectory(path);
+		}
+		return false;
+	}
+	
+	protected Path getPath(String key) {
 		for (Path path : paths) {
-			Path file = path.resolve(name);
-			if (Files.exists(file)) {
-				return file;
-			}			
+			Path resolved = path.resolve(key);
+			if (Files.exists(resolved)) {
+				return resolved;
+			}
 		}
 		return null;
 	}
 
-	public List<Path> getFiles(String name) {
-		List<Path> result = new ArrayList<>();
-		for (Path path : paths) {
-			Path file = path.resolve(name);
-			if (Files.exists(file)) {
-				result.add(file);
-			}			
-		}
-		return result;
+	public URL getURL(String key) throws MalformedURLException {
+		return getPath(key).toUri().toURL();
 	}
+
+//	public Path getFile(String name) throws IOException {
+//		for (Path path : paths) {
+//			Path file = path.resolve(name);
+//			if (Files.exists(file)) {
+//				return file;
+//			}			
+//		}
+//		return null;
+//	}
+
+//	public List<Path> getFiles(String name) {
+//		List<Path> result = new ArrayList<>();
+//		for (Path path : paths) {
+//			Path file = path.resolve(name);
+//			if (Files.exists(file)) {
+//				result.add(file);
+//			}			
+//		}
+//		return result;
+//	}
 }

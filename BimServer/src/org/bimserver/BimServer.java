@@ -19,7 +19,6 @@ package org.bimserver;
 
 import java.io.IOException;
 import java.lang.Thread.UncaughtExceptionHandler;
-import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -143,7 +142,6 @@ import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.reflector.RealtimeReflectorFactoryBuilder;
 import org.bimserver.shared.reflector.ReflectorFactory;
 import org.bimserver.templating.TemplateEngine;
-import org.bimserver.utils.PathUtils;
 import org.bimserver.utils.StringUtils;
 import org.bimserver.version.VersionChecker;
 import org.bimserver.webservices.LongTransactionManager;
@@ -528,6 +526,12 @@ public class BimServer implements BasicServerInfoProvider {
 							} catch (ServiceException e) {
 								LOGGER.error("", e);
 							}
+
+							try {
+								pluginContext.initialize(pluginDescriptor.getSettings() == null ? null : new org.bimserver.plugins.PluginConfiguration(pluginDescriptor.getSettings()));
+							} catch (PluginException e) {
+								LOGGER.error("", e);
+							}
 						}
 					}
 
@@ -641,9 +645,9 @@ public class BimServer implements BasicServerInfoProvider {
 			packages.add(Ifc2x3tc1Package.eINSTANCE);
 			packages.add(Ifc4Package.eINSTANCE);
 			templateEngine = new TemplateEngine();
-			URL emailTemplates = config.getResourceFetcher().getResource("emailtemplates/");
-			if (emailTemplates != null) {
-				templateEngine.init(emailTemplates);
+			ResourceFetcher resourceFetcher = config.getResourceFetcher();
+			if (resourceFetcher.isDirectory("emailtemplates")) {
+				templateEngine.init(resourceFetcher.getURL("emailtemplates"));
 			} else {
 				LOGGER.info("No email templates found");
 			}
@@ -1030,8 +1034,8 @@ public class BimServer implements BasicServerInfoProvider {
 
 	public ObjectType convertSettings(DatabaseSession session, Plugin plugin) throws BimserverDatabaseException {
 		ObjectType settings = session.create(ObjectType.class);
-		ObjectDefinition settingsDefinition = plugin.getSettingsDefinition();
-		if (plugin.getSettingsDefinition() != null) {
+		ObjectDefinition settingsDefinition = plugin.getUserSettingsDefinition();
+		if (plugin.getUserSettingsDefinition() != null) {
 			for (ParameterDefinition parameterDefinition : settingsDefinition.getParameters()) {
 				Parameter parameter = session.create(Parameter.class);
 				parameter.setName(parameterDefinition.getName());
@@ -1326,30 +1330,38 @@ public class BimServer implements BasicServerInfoProvider {
 	}
 	
 	public static void initHomeDir(BimServerConfig config) throws IOException {
-		String[] filesToCheck = new String[] { "logs", "tmp", "logback.xml", "emailtemplates" };
+		String[] filesToCheck = new String[] { "logback.xml" };
+		String[] directoriesToCheck = new String[] { "emailtemplates" };
 		if (!Files.exists(config.getHomeDir())) {
 			Files.createDirectories(config.getHomeDir());
 		}
 		if (Files.exists(config.getHomeDir()) && Files.isDirectory(config.getHomeDir())) {
+			ResourceFetcher resourceFetcher = config.getResourceFetcher();
 			for (String fileToCheck : filesToCheck) {
-				Path sourceFile = config.getResourceFetcher().getFile(fileToCheck);
-				if (sourceFile != null && Files.exists(sourceFile)) {
+				byte[] data = resourceFetcher.getData(fileToCheck);
+				if (data != null) {
 					Path destFile = config.getHomeDir().resolve(fileToCheck);
 					if (!Files.exists(destFile)) {
-						if (Files.isDirectory(sourceFile)) {
-							Files.createDirectories(destFile);
-							for (Path f : PathUtils.list(sourceFile)) {
-								if (Files.isDirectory(f)) {
-									Path destDir2 = destFile.resolve(f.getFileName().toString());
-									for (Path x : PathUtils.list(f)) {
-										FileUtils.copyFile(x.toFile(), destDir2.resolve(x.getFileName().toString()).toFile());
-									}
-								} else {
-									FileUtils.copyFile(f.toFile(), destFile.resolve(f.getFileName().toString()).toFile());
-								}
+						FileUtils.writeByteArrayToFile(destFile.toFile(), data);
+					}
+				}
+			}
+			for (String directoryToCheck : directoriesToCheck) {
+				Path destFile = config.getHomeDir().resolve(directoryToCheck);
+				Files.createDirectories(destFile);
+				for (String key : resourceFetcher.listKeys(directoryToCheck)) {
+					if (resourceFetcher.isDirectory(directoryToCheck + "/" + key)) {
+						Path destDir2 = destFile.resolve(key);
+						for (String key2 : resourceFetcher.listKeys(directoryToCheck + "/" + key)) {
+							byte[] data = resourceFetcher.getData(directoryToCheck + "/" + key + "/" + key2);
+							if (data != null) {
+								FileUtils.writeByteArrayToFile(destDir2.resolve(key2).toFile(), data);
 							}
-						} else {
-							FileUtils.copyFile(sourceFile.toFile(), destFile.toFile());
+						}
+					} else {
+						byte[] data = resourceFetcher.getData(directoryToCheck + "/" + key);
+						if (data != null) {
+							FileUtils.writeByteArrayToFile(destFile.resolve(key).toFile(), data);
 						}
 					}
 				}

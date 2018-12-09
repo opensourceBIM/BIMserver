@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SModelCheckerResultLine.class, SModelCheckerResultHeader.class})
+@XmlSeeAlso(value={SModelCheckerResultHeader.class, SModelCheckerResultLine.class})
 public class SModelCheckerResultItem implements SDataBase
 {
 	private long oid = -1;
