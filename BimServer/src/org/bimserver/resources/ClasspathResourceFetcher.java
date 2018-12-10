@@ -21,7 +21,12 @@ public class ClasspathResourceFetcher extends ResourceFetcher {
 
 	@Override
 	public boolean isDirectory(String key) {
-		return true;
+		try {
+			return getURL(key) != null;
+		} catch (MalformedURLException e) {
+			LOGGER.error("", e);
+		}
+		return false;
 	}
 	
 	@Override

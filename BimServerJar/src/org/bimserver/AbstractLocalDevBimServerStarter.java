@@ -28,7 +28,7 @@ import ch.qos.logback.core.FileAppender;
 public class AbstractLocalDevBimServerStarter {
 	private BimServer bimServer;
 
-	public void start(int id, String address, String name, int port, int pbport, Path[] pluginDirectories, Path home, ResourceFetcher resourceFetcher, String resourceBase) {
+	public void start(int id, String address, String name, int port, int pbport, Path[] pluginDirectories, Path home, ResourceFetcher resourceFetcher, String resourceBase, boolean autoSetup) {
 		BimServerConfig config = new BimServerConfig();
 		if (home != null) {
 			config.setHomeDir(home);
@@ -78,14 +78,16 @@ public class AbstractLocalDevBimServerStarter {
 				LOGGER.info("All plugins loaded (" + ((end - start) / 1000000) + " ms)");
 			} else if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
-				try {
-					AdminInterface adminInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(AdminInterface.class);
-					adminInterface.setup("http://localhost:" + port, name, "My Description", "http://localhost:" + port + "/img/bimserver.png", "Administrator", "admin@bimserver.org", "admin");
-					SettingsInterface settingsInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(SettingsInterface.class);
-					settingsInterface.setCacheOutputFiles(false);
-					settingsInterface.setPluginStrictVersionChecking(false);
-				} catch (Exception e) {
-					// Ignore
+				if (autoSetup) {
+					try {
+						AdminInterface adminInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(AdminInterface.class);
+						adminInterface.setup("http://localhost:" + port, name, "My Description", "http://localhost:" + port + "/img/bimserver.png", "Administrator", "admin@bimserver.org", "admin");
+						SettingsInterface settingsInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(SettingsInterface.class);
+						settingsInterface.setCacheOutputFiles(false);
+						settingsInterface.setPluginStrictVersionChecking(false);
+					} catch (Exception e) {
+						// Ignore
+					}
 				}
 				bimServer.activateServices();
 			} else {

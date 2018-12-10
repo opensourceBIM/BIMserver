@@ -20,7 +20,8 @@ public class LocalDevBimServerStarterJar extends AbstractLocalDevBimServerStarte
 		
 		try {
 			String resourceBase = resourceFetcher.getURL("www").toExternalForm();
-			new LocalDevBimServerStarterJar().start(-1, "127.0.0.1", "LocalDev BIMserver (8080)", 8080, 8085, optionsParser.getPluginDirectories(), optionsParser.getHome(), resourceFetcher, resourceBase);
+			System.out.println("Resource base" + resourceBase);
+			new LocalDevBimServerStarterJar().start(-1, "127.0.0.1", "LocalDev BIMserver (8080)", 8080, 8085, optionsParser.getPluginDirectories(), optionsParser.getHome(), resourceFetcher, resourceBase, false);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}

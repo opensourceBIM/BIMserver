@@ -17,6 +17,6 @@ public class LocalDevBimServerStarter extends AbstractLocalDevBimServerStarter {
 	public static void main(String[] args) {
 		OptionsParser optionsParser = new OptionsParser(args);
 		ResourceFetcher resourceFetcher = new LocalDevelopmentResourceFetcher(Paths.get("../"));
-		new LocalDevBimServerStarter().start(-1, "127.0.0.1", "LocalDev BIMserver (8080)", 8080, 8085, optionsParser.getPluginDirectories(), optionsParser.getHome(), resourceFetcher, Paths.get("../BimServer").resolve("www").toAbsolutePath().toString());
+		new LocalDevBimServerStarter().start(-1, "127.0.0.1", "LocalDev BIMserver (8080)", 8080, 8085, optionsParser.getPluginDirectories(), optionsParser.getHome(), resourceFetcher, Paths.get("../BimServer").resolve("www").toAbsolutePath().toString(), true);
 	}
 }
