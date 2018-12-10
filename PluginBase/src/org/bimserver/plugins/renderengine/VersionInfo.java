@@ -12,12 +12,14 @@ public class VersionInfo {
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	private GregorianCalendar datetime;
 	private String protocolVersion;
+	private String platform;
 	
-	public VersionInfo(String branch, String commitsha, String protocolVersion, GregorianCalendar datetime) {
+	public VersionInfo(String branch, String commitsha, String protocolVersion, GregorianCalendar datetime, String platform) {
 		this.branch = branch;
 		this.commitsha = commitsha;
 		this.protocolVersion = protocolVersion;
 		this.datetime = datetime;
+		this.platform = platform;
 	}
 
 	public JsonNode toJson() {
@@ -26,6 +28,7 @@ public class VersionInfo {
 		result.put("commitsha", commitsha);
 		result.put("datetime", datetime.getTimeInMillis());
 		result.put("protocolVersion", protocolVersion);
+		result.put("platform", platform);
 		return result;
 	}
 
@@ -43,5 +46,13 @@ public class VersionInfo {
 	
 	public String getProtocolVersion() {
 		return protocolVersion;
+	}
+
+	public String getPlatform() {
+		return platform;
+	}
+
+	public void setPlatform(String platform) {
+		this.platform = platform;
 	}
 }
