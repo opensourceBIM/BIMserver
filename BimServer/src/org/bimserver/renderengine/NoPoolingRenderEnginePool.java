@@ -39,4 +39,9 @@ public class NoPoolingRenderEnginePool implements RenderEnginePool {
 	public void returnObject(RenderEngine renderEngine) throws RenderEngineException {
 		renderEngine.close();
 	}
+
+	@Override
+	public RenderEngineFactory getRenderEngineFactory() {
+		return renderEngineFactory;
+	}
 }

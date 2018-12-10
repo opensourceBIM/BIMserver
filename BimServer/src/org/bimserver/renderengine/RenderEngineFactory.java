@@ -19,9 +19,11 @@ package org.bimserver.renderengine;
 
 import org.bimserver.plugins.renderengine.RenderEngine;
 import org.bimserver.plugins.renderengine.RenderEngineException;
+import org.bimserver.plugins.renderengine.VersionInfo;
 
 public interface RenderEngineFactory {
 
 	RenderEngine createRenderEngine() throws RenderEngineException;
-
+	
+	VersionInfo getVersionInfo();
 }

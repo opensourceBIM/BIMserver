@@ -22,6 +22,8 @@ import org.bimserver.plugins.renderengine.RenderEngineException;
 
 public interface RenderEnginePool  {
 
+	RenderEngineFactory getRenderEngineFactory();
+	
 	RenderEngine borrowObject() throws RenderEngineException;
 
 	void returnObject(RenderEngine renderEngine) throws RenderEngineException;

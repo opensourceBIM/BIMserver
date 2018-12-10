@@ -50,6 +50,4 @@ public interface RenderEngine extends AutoCloseable {
 	 * @see java.lang.AutoCloseable#close()
 	 */
 	void close() throws RenderEngineException;
-
-	String getVersion();
 }

@@ -70,6 +70,7 @@ import org.bimserver.plugins.renderengine.Precision;
 import org.bimserver.plugins.renderengine.RenderEngine;
 import org.bimserver.plugins.renderengine.RenderEngineFilter;
 import org.bimserver.plugins.renderengine.RenderEngineSettings;
+import org.bimserver.plugins.renderengine.VersionInfo;
 import org.bimserver.plugins.serializers.StreamingSerializerPlugin;
 import org.bimserver.renderengine.RenderEnginePool;
 import org.bimserver.shared.AbstractHashMapVirtualObject;
@@ -233,7 +234,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			report.setRenderEnginePluginVersion(renderEngine.getPluginDescriptor().getPluginBundleVersion().getVersion());
 			
 			try (RenderEngine engine = renderEnginePool.borrowObject()) {
-				report.setRenderEngineVersion(engine.getVersion());
+				VersionInfo versionInfo = renderEnginePool.getRenderEngineFactory().getVersionInfo();
+				report.setRenderEngineVersion(versionInfo);
 			}
 			
 			// TODO reuse, pool the pools :) Or something smarter

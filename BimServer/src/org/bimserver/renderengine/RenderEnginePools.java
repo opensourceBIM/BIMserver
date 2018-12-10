@@ -26,6 +26,7 @@ import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.renderengine.RenderEngine;
 import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
+import org.bimserver.plugins.renderengine.VersionInfo;
 import org.bimserver.shared.exceptions.PluginException;
 
 public class RenderEnginePools {
@@ -68,6 +69,11 @@ public class RenderEnginePools {
 						@Override
 						public RenderEngine createRenderEngine() throws RenderEngineException {
 							return renderEnginePlugin.createRenderEngine(pluginConfiguration, schema.name());
+						}
+
+						@Override
+						public VersionInfo getVersionInfo() {
+							return renderEnginePlugin.getVersionInfo();
 						}});
 					map.put(className, renderEnginePool);
 					return renderEnginePool;

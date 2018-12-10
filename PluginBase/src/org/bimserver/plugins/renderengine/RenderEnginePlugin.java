@@ -29,6 +29,11 @@ public interface RenderEnginePlugin extends Plugin {
 	 */
 	RenderEngine createRenderEngine(PluginConfiguration pluginConfiguration, String schema) throws RenderEngineException;
 	
+	/**
+	 * @return Some information about the version used
+	 */
+	VersionInfo getVersionInfo();
+	
 	@Override
 	default SPluginType getPluginType() {
 		return SPluginType.RENDER_ENGINE;

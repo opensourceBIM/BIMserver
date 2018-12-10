@@ -30,6 +30,7 @@ import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.bimserver.emf.Schema;
+import org.bimserver.plugins.renderengine.VersionInfo;
 import org.bimserver.utils.Formatters;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -40,7 +41,7 @@ public class GeometryGenerationReport {
 
 	private static final String REPORT_VERSION = "1.1";
 	private String renderEngineName;
-	private String renderEngineVersion;
+	private VersionInfo renderEngineVersion;
 	private String renderEnginePluginVersion;
 	private Map<String, AtomicInteger> representationItems = new HashMap<>();
 	private GregorianCalendar start = new GregorianCalendar();
@@ -86,7 +87,7 @@ public class GeometryGenerationReport {
 		this.renderEnginePluginVersion = renderEnginePluginVersion;
 	}
 
-	public void setRenderEngineVersion(String renderEngineVersion) {
+	public void setRenderEngineVersion(VersionInfo renderEngineVersion) {
 		this.renderEngineVersion = renderEngineVersion;
 	}
 
@@ -118,7 +119,7 @@ public class GeometryGenerationReport {
 		ObjectNode renderEngine = objectMapper.createObjectNode();
 		result.set("renderEngine", renderEngine);
 		renderEngine.put("name", renderEngineName);
-		renderEngine.put("version", renderEngineVersion);
+		renderEngine.set("version", renderEngineVersion.toJson());
 		renderEngine.put("pluginVersion", renderEnginePluginVersion);
 		
 		ObjectNode ifcModel = objectMapper.createObjectNode();
@@ -215,7 +216,9 @@ public class GeometryGenerationReport {
 		builder.append("<h3>Render engine</h3>");
 		builder.append("<table><tbody>");
 		builder.append("<tr><td>Render engine name</td><td>" + renderEngineName + "</td></tr>");
-		builder.append("<tr><td>Render engine version</td><td>" + renderEngineVersion + "</td></tr>");
+		builder.append("<tr><td>Render engine version branch</td><td>" + renderEngineVersion.getBranch() + "</td></tr>");
+		builder.append("<tr><td>Render engine version commitsha</td><td>" + renderEngineVersion.getCommitsha() + "</td></tr>");
+		builder.append("<tr><td>Render engine version date/time</td><td>" + dateFormat.format(renderEngineVersion.getDateTime().getTime()) + "</td></tr>");
 		builder.append("<tr><td>Render engine plugin version</td><td>" + renderEnginePluginVersion + "</td></tr>");
 		builder.append("</tbody></table>");
 		
