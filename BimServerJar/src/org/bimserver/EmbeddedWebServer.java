@@ -1,26 +1,7 @@
 package org.bimserver;
 
-/******************************************************************************
- * Copyright (C) 2009-2018  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
- *****************************************************************************/
-
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletException;
 import javax.websocket.DeploymentException;
 import javax.websocket.Session;
@@ -44,7 +25,7 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 	private WebAppContext context;
 	private Server server;
 
-	public EmbeddedWebServer(BimServer bimServer, Path developmentBaseDir, boolean localDev) {
+	public EmbeddedWebServer(BimServer bimServer, String resourceBase, boolean localDev) {
 		server = new Server(new QueuedThreadPool(200, 20));
 
 		ServerConnector socketConnector = new ServerConnector(server);
@@ -89,10 +70,10 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 		
 		context.getServletContext().setAttribute("bimserver", bimServer);
 		if (context.getResourceBase() == null) {
-			if (developmentBaseDir == null) {
+			if (resourceBase == null) {
 				context.setResourceBase(Paths.get("www").toAbsolutePath().toString());
 			} else {
-				context.setResourceBase(developmentBaseDir.resolve("www").toAbsolutePath().toString());
+				context.setResourceBase(resourceBase);
 			}
 		}
 	}

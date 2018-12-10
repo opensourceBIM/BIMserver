@@ -1,5 +1,7 @@
 package org.bimserver;
 
+import java.net.MalformedURLException;
+
 import org.bimserver.plugins.OptionsParser;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.resources.ClasspathResourceFetcher;
@@ -15,6 +17,12 @@ public class LocalDevBimServerStarterJar extends AbstractLocalDevBimServerStarte
 	public static void main(String[] args) {
 		OptionsParser optionsParser = new OptionsParser(args);
 		ResourceFetcher resourceFetcher = new ClasspathResourceFetcher();
-		new LocalDevBimServerStarter().start(-1, "127.0.0.1", "LocalDev BIMserver (8080)", 8080, 8085, optionsParser.getPluginDirectories(), optionsParser.getHome(), resourceFetcher);
+		
+		try {
+			String resourceBase = resourceFetcher.getURL("www").toExternalForm();
+			new LocalDevBimServerStarterJar().start(-1, "127.0.0.1", "LocalDev BIMserver (8080)", 8080, 8085, optionsParser.getPluginDirectories(), optionsParser.getHome(), resourceFetcher, resourceBase);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
 	}
 }

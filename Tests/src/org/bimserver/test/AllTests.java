@@ -73,7 +73,7 @@ public class AllTests {
 		
 		bimServer = new BimServer(config);
 		try {
-			bimServer.setEmbeddedWebServer(new EmbeddedWebServer(bimServer, Paths.get("."), false));
+			bimServer.setEmbeddedWebServer(new EmbeddedWebServer(bimServer, null, false));
 			
 			// CHANGE THESE TO MATCH YOUR CONFIGURATION
 //			Path[] pluginDirectories = new Path[]{Paths.get("C:\\Git\\IfcPlugins\\IfcPlugins"), Paths.get("C:\\Git\\IfcOpenShell-BIMserver-plugin")};

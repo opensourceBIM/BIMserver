@@ -2,6 +2,8 @@ package org.bimserver.resources;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Set;
 
 import org.bimserver.plugins.ResourceFetcher;
@@ -12,6 +14,7 @@ import com.google.common.io.ByteStreams;
 
 public class ClasspathResourceFetcher extends ResourceFetcher {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ClasspathResourceFetcher.class);
+	
 	public ClasspathResourceFetcher() {
 		
 	}
@@ -27,11 +30,14 @@ public class ClasspathResourceFetcher extends ResourceFetcher {
 	}
 	
 	@Override
+	public URL getURL(String key) throws MalformedURLException {
+		return getClass().getClassLoader().getResource(key);
+	}
+	
+	@Override
 	public byte[] getData(String key) throws IOException {
-		if (!key.startsWith("/")) {
-			key = "/" + key;
-		}
 		LOGGER.info(key + " " + getClass().getClassLoader());
+		LOGGER.info("Count: " + getClass().getClassLoader().getResources(key));
 		try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(key)) {
 			if (inputStream != null) {
 				return ByteStreams.toByteArray(inputStream);

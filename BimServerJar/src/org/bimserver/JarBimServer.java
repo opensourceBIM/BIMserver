@@ -154,7 +154,7 @@ public class JarBimServer {
 
 	 	try {
 	 		LOGGER.debug("Setting resourcebase to www");
-	 		EmbeddedWebServer embeddedWebServer = new EmbeddedWebServer(bimServer, bimServerConfig.getDevelopmentBaseDir(), bimServerConfig.isLocalDev());
+	 		EmbeddedWebServer embeddedWebServer = new EmbeddedWebServer(bimServer, bimServerConfig.getResourcebase(), bimServerConfig.isLocalDev());
 	 		embeddedWebServer.setResourceBase("www");
 	 		bimServer.setEmbeddedWebServer(embeddedWebServer);
 			bimServer.start();

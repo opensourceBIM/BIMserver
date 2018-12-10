@@ -28,7 +28,7 @@ import ch.qos.logback.core.FileAppender;
 public class AbstractLocalDevBimServerStarter {
 	private BimServer bimServer;
 
-	public void start(int id, String address, String name, int port, int pbport, Path[] pluginDirectories, Path home, ResourceFetcher resourceFetcher) {
+	public void start(int id, String address, String name, int port, int pbport, Path[] pluginDirectories, Path home, ResourceFetcher resourceFetcher, String resourceBase) {
 		BimServerConfig config = new BimServerConfig();
 		if (home != null) {
 			config.setHomeDir(home);
@@ -42,7 +42,7 @@ public class AbstractLocalDevBimServerStarter {
 		config.setEnvironment(Environment.LOCAL_DEV);
 		config.setPort(port);
 		config.setStartCommandLine(true);
-		config.setDevelopmentBaseDir(Paths.get("../BimServer"));
+		config.setResourceBase(resourceBase);
 
 		try {
 			fixLogging(config);
@@ -52,7 +52,7 @@ public class AbstractLocalDevBimServerStarter {
 		
 		bimServer = new BimServer(config);
 		bimServer.getVersionChecker().getLocalVersion().setDate(new Date());
-		bimServer.setEmbeddedWebServer(new EmbeddedWebServer(bimServer, config.getDevelopmentBaseDir(), config.isLocalDev()));
+		bimServer.setEmbeddedWebServer(new EmbeddedWebServer(bimServer, config.getResourcebase(), config.isLocalDev()));
 		Logger LOGGER = LoggerFactory.getLogger(LocalDevBimServerStarter.class);
 		try {
 			bimServer.start();

@@ -30,8 +30,8 @@ public class BimServerConfig {
 	private boolean startCommandLine = false;
 	private boolean localDev;
 	private boolean autoMigrate = false;
-	private Path developmentBaseDir;
 	private Environment environment;
+	private String resourceBase;
 	
 	public boolean isStartEmbeddedWebServer() {
 		return startEmbeddedWebServer;
@@ -129,11 +129,11 @@ public class BimServerConfig {
 		this.autoMigrate = autoMigrate;
 	}
 
-	public void setDevelopmentBaseDir(Path developmentBaseDir) {
-		this.developmentBaseDir = developmentBaseDir;
+	public void setResourceBase(String resourceBase) {
+		this.resourceBase = resourceBase;
 	}
 	
-	public Path getDevelopmentBaseDir() {
-		return developmentBaseDir;
+	public String getResourcebase() {
+		return resourceBase;
 	}
 }

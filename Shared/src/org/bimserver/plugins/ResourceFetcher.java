@@ -86,7 +86,9 @@ public abstract class ResourceFetcher {
 	}
 
 	public URL getURL(String key) throws MalformedURLException {
-		return getPath(key).toUri().toURL();
+		URL url = getPath(key).toUri().toURL();
+		LOGGER.info("getURL, " + key + ", " + url.toExternalForm());
+		return url;
 	}
 
 //	public Path getFile(String name) throws IOException {
