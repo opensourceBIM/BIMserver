@@ -569,11 +569,20 @@
       "IfcTopologyRepresentation": {
          "type": "IfcTopologyRepresentation"
       },
+      "IfcMaterialDefinitionRepresentation": {
+      	"type": "IfcMaterialDefinitionRepresentation",
+      	"fields": ["Representations"],
+      	"includes": ["IfcRepresentation"]
+      },
       "IfcStyledRepresentation": {
-         "type": "IfcStyledRepresentation"
+         "type": "IfcStyledRepresentation",
+         "fields": ["OfProductRepresentation"],
+         "includes": ["IfcMaterialDefinitionRepresentation"]
       },
       "IfcMaterial": {
-        "type": "IfcMaterial"
+        "type": "IfcMaterial",
+        "fields": ["HasRepresentation"],
+        "includes": ["IfcMaterialDefinitionRepresentation"]
       },
       "IfcMaterialList": {
       	"type": "IfcMaterialList",
