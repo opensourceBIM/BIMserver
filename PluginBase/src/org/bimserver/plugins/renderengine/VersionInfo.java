@@ -11,10 +11,12 @@ public class VersionInfo {
 	private String commitsha;
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	private GregorianCalendar datetime;
+	private String protocolVersion;
 	
-	public VersionInfo(String branch, String commitsha, GregorianCalendar datetime) {
+	public VersionInfo(String branch, String commitsha, String protocolVersion, GregorianCalendar datetime) {
 		this.branch = branch;
 		this.commitsha = commitsha;
+		this.protocolVersion = protocolVersion;
 		this.datetime = datetime;
 	}
 
@@ -22,6 +24,8 @@ public class VersionInfo {
 		ObjectNode result = OBJECT_MAPPER.createObjectNode();
 		result.put("branch", branch);
 		result.put("commitsha", commitsha);
+		result.put("datetime", datetime.getTimeInMillis());
+		result.put("protocolVersion", protocolVersion);
 		return result;
 	}
 
@@ -35,5 +39,9 @@ public class VersionInfo {
 
 	public GregorianCalendar getDateTime() {
 		return datetime;
+	}
+	
+	public String getProtocolVersion() {
+		return protocolVersion;
 	}
 }
