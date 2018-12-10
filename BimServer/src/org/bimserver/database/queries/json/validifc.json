@@ -205,12 +205,27 @@
             "TextCharacterAppearance"
          ]
       },
+      "IfcCurveStyleFont": {
+      	"type": "IfcCurveStyleFont",
+      	"field": "PatternList"
+      },
+      "IfcCurveStyleFontAndScaling": {
+      	"type": "IfcCurveStyleFontAndScaling",
+      	"fields": ["CurveFont"],
+      	"include": "IfcCurveStyleFont"
+      },
+      "IfcCurveStyle": {
+      	"type": "IfcCurveStyle",
+      	"fields": ["CurveFont", "CurveColour"],
+      	"includes": ["IfcCurveStyleFont", "IfcCurveStyleFontAndScaling"]
+      },
       "IfcPresentationStyleAssignment": {
          "type": "IfcPresentationStyleAssignment",
          "field": "Styles",
          "includes": [
             "IfcFillAreaStyle",
             "IfcSurfaceStyle",
+            "IfcCurveStyle",
             "IfcTextStyle"
          ]
       },
