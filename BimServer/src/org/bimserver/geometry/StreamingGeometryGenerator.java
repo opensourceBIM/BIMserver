@@ -728,7 +728,13 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 				if (usableContext(representationItem) || !foundValidContext) {
 					Object representationIdentifier = representationItem.get("RepresentationIdentifier");
 					if (representationIdentifier != null && (representationIdentifier.equals("Body") || representationIdentifier.equals("Facetation"))) {
-						goForIt = true;
+						Set<HashMapVirtualObject> directListFeature = representationItem.getDirectListFeature(itemsFeature);
+						if (directListFeature != null) {
+							int nrItems = directListFeature.size();
+							if (nrItems != 0) {
+								goForIt = true;
+							}
+						}
 					}
 				}
 			}
