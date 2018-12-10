@@ -28,8 +28,10 @@ import org.bimserver.renderengine.RenderEnginePool;
 
 public class CommonsRenderEnginePool implements RenderEnginePool {
 	private GenericObjectPool<RenderEngine> genericObjectPool;
+	private RenderEngineFactory renderEngineFactory;
 	
 	public CommonsRenderEnginePool(int poolSize, RenderEngineFactory renderEngineFactory) throws RenderEngineException {
+		this.renderEngineFactory = renderEngineFactory;
 		PooledObjectFactory<RenderEngine> pooledObjectFactory = new PooledObjectFactory<RenderEngine>() {
 			@Override
 			public void activateObject(PooledObject<RenderEngine> arg0) throws Exception {
@@ -74,5 +76,10 @@ public class CommonsRenderEnginePool implements RenderEnginePool {
 	@Override
 	public void returnObject(RenderEngine renderEngine) throws RenderEngineException {
 		genericObjectPool.returnObject(renderEngine);
+	}
+
+	@Override
+	public RenderEngineFactory getRenderEngineFactory() {
+		return renderEngineFactory;
 	}
 }
