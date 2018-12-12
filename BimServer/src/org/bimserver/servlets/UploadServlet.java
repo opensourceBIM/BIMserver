@@ -140,6 +140,7 @@ public class UploadServlet extends SubServlet {
 										if (sync) {
 											SLongCheckinActionState checkinSync = service.checkinSync(poid, comment, deserializerOid, -1L, name, ifcFile, merge);
 											result = (ObjectNode) getBimServer().getJsonHandler().getJsonConverter().toJson(checkinSync);
+											service.cleanupLongAction(checkinSync.getTopicId());
 										} else {
 											long newTopicId = service.checkinAsync(poid, comment, deserializerOid, -1L, name, ifcFile, merge);
 											result.put("topicId", newTopicId);
@@ -148,6 +149,7 @@ public class UploadServlet extends SubServlet {
 										if (sync) {
 											SLongCheckinActionState checkinSync = service.checkinInitiatedSync(topicId, poid, comment, deserializerOid, -1L, name, ifcFile, merge);
 											result = (ObjectNode) getBimServer().getJsonHandler().getJsonConverter().toJson(checkinSync);
+											service.cleanupLongAction(checkinSync.getTopicId());
 										} else {
 											service.checkinInitiatedAsync(topicId, poid, comment, deserializerOid, -1L, name, ifcFile, merge);
 											result.put("topicId", topicId);

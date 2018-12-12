@@ -75,12 +75,9 @@ public class GeometryAccellerator {
 
 	private Octree generateOctree(OctreeKey key) {
 		LOGGER.info("Generating octree: " + key);
+		Long start = System.nanoTime();
 		try (DatabaseSession databaseSession = bimServer.getDatabase().createSession()) {
 			Bounds totalBounds = new Bounds();
-
-			// TODO not taking into account a density here, so potentially, this
-			// will come back with too many tiles with > 0 object, not really a
-			// problem though
 
 			for (long roid : key.getRoids()) {
 				Revision revision = databaseSession.get(roid, OldQuery.getDefault());
@@ -178,6 +175,9 @@ public class GeometryAccellerator {
 				}
 			});
 			
+			long end = System.nanoTime();
+			LOGGER.info("Octree generated in " + ((end - start) / 1000000) + " ms");
+			
 			return octree;
 		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
@@ -190,6 +190,7 @@ public class GeometryAccellerator {
 	}
 
 	private DensityThreshold generateDensityThreshold(DensityThresholdKey key) {
+		long start = System.nanoTime();
 		DensityThreshold densityThreshold = new DensityThreshold();
 		try (DatabaseSession session = bimServer.getDatabase().createSession()) {
 			Revision revision = session.get(key.getRoid(), OldQuery.getDefault());
@@ -235,6 +236,8 @@ public class GeometryAccellerator {
 		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
 		}
+		long end = System.nanoTime();
+		LOGGER.info("Density thresholds generated in " + ((end - start) / 1000000) + "ms");
 		return densityThreshold;
 	}
 	
@@ -249,6 +252,7 @@ public class GeometryAccellerator {
 	}
 
 	private ReuseSet generateReuseSet(ReuseKey key) {
+		long start = System.nanoTime();
 		ReuseSet reuseSet = new ReuseSet();
 		try (DatabaseSession databaseSession = bimServer.getDatabase().createSession()) {
 			// Assuming all given roids are of projects that all have the same schema
@@ -293,6 +297,8 @@ public class GeometryAccellerator {
 			for (long dataId : map.keySet()) {
 				reuseSet.add(map.get(dataId));
 			}
+			long end = System.nanoTime();
+			LOGGER.info("ReuseSets generated in " + ((end - start) / 1000000) + " ms");
 		} catch (BimserverDatabaseException e) {
 			LOGGER.error("", e);
 		} catch (QueryException e) {

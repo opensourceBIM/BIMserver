@@ -16,7 +16,7 @@ public class ColorMap2 {
 		}
 	}
 	
-	private byte[] lastColor = new byte[4];
+	private byte[] lastColor;
 	private final List<A> list = new ArrayList<>();
 	
 	private A lastA;
@@ -37,6 +37,9 @@ public class ColorMap2 {
 		if (lastColor == null || !arrayEquals(lastColor, color)) {
 			lastA = new A(color);
 			list.add(lastA);
+			if (lastColor == null) {
+				lastColor = new byte[4];
+			}
 			System.arraycopy(color, 0, lastColor, 0, color.length);
 		} else {
 			lastA.count += 4;
