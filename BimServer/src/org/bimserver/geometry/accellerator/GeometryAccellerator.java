@@ -171,7 +171,7 @@ public class GeometryAccellerator {
 					for (GeometryObject geometryObject : node.getValues()) {
 						totalTriangles += geometryObject.getTriangles();
 					}
-					return totalTriangles < 120;
+					return totalTriangles < 1200;
 				}
 			});
 			
