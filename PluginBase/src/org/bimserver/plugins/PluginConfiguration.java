@@ -118,6 +118,14 @@ public class PluginConfiguration {
 		return (Boolean)get(name);
 	}
 
+	public Boolean getBoolean(String name, boolean defaultValue) {
+		Boolean value = (Boolean)get(name);
+		if (value == null) {
+			return defaultValue;
+		}
+		return value;
+	}
+
 	public byte[] getByteArray(String name) {
 		return (byte[])get(name);
 	}

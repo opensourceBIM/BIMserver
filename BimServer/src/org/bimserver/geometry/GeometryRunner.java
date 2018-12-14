@@ -94,10 +94,11 @@ public class GeometryRunner implements Runnable {
 	private boolean reuseGeometry;
 	private boolean writeOutputFiles = false;
 	private GeometryGenerationDebugger geometryGenerationDebugger;
+	private Query originalQuery;
 
 	public GeometryRunner(StreamingGeometryGenerator streamingGeometryGenerator, EClass eClass, RenderEnginePool renderEnginePool, DatabaseSession databaseSession, RenderEngineSettings renderEngineSettings, ObjectProvider objectProvider,
-			StreamingSerializerPlugin ifcSerializerPlugin, RenderEngineFilter renderEngineFilter, GenerateGeometryResult generateGeometryResult, QueryContext queryContext	, boolean geometryReused,
-			Map<Long, ProductDef> map, ReportJob job, boolean reuseGeometry, GeometryGenerationDebugger geometryGenerationDebugger) {
+			StreamingSerializerPlugin ifcSerializerPlugin, RenderEngineFilter renderEngineFilter, GenerateGeometryResult generateGeometryResult, QueryContext queryContext, boolean geometryReused,
+			Map<Long, ProductDef> map, ReportJob job, boolean reuseGeometry, GeometryGenerationDebugger geometryGenerationDebugger, Query query) {
 		this.streamingGeometryGenerator = streamingGeometryGenerator;
 		this.eClass = eClass;
 		this.renderEnginePool = renderEnginePool;
@@ -114,6 +115,7 @@ public class GeometryRunner implements Runnable {
 		this.reuseGeometry = reuseGeometry;
 		this.geometryGenerationDebugger = geometryGenerationDebugger;
 		this.job.setUsesMapping(map != null);
+		this.originalQuery = query;
 	}
 
 	@Override
@@ -126,9 +128,12 @@ public class GeometryRunner implements Runnable {
 			Query query = new Query("Double buffer query " + eClass.getName(), this.streamingGeometryGenerator.packageMetaData);
 			QueryPart queryPart = query.createQueryPart();
 			while (next != null) {
-				queryPart.addOid(next.getOid());
+				long oid = next.getOid();
+				queryPart.addOid(oid);
 				if (eClass.isSuperTypeOf(next.eClass())) {
-					job.addObject(next.getOid(), next.eClass().getName());
+					if (originalQuery.getQueryParts().get(0).getOids().contains(oid)) {
+						job.addObject(next.getOid(), next.eClass().getName());
+					}
 				}
 				next = objectProvider.next();
 			}
@@ -145,7 +150,9 @@ public class GeometryRunner implements Runnable {
 					public void newObject(HashMapVirtualObject next) {
 						if (eClass.isSuperTypeOf(next.eClass())) {
 							if (next.eGet(GeometryRunner.this.streamingGeometryGenerator.representationFeature) != null) {
-								objects.add(next);
+								if (originalQuery.getQueryParts().get(0).getOids().contains(next.getOid())) {
+									objects.add(next);
+								}
 							}
 						}
 					}

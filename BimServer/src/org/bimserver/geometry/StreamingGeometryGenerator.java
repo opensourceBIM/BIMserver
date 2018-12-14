@@ -134,6 +134,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 	private GeometryGenerationDebugger geometryGenerationDebugger = new GeometryGenerationDebugger();
 
+	// TODO get this from a setting
+	private boolean generateLayerSets = true;
+
 	public StreamingGeometryGenerator(final BimServer bimServer, ProgressListener progressListener, Long eoid, GeometryGenerationReport report) {
 		this.bimServer = bimServer;
 		this.progressListener = progressListener;
@@ -842,11 +845,47 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		if (packageMetaData.getSchema() == Schema.IFC4) {
 			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":IsTypedBy", true));
 		}
-		queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Decomposes", true));
-		queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":OwnerHistory", true));
+		
 		Include representationInclude = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Representation", true);
-		queryPart.addInclude(representationInclude);
 		Include objectPlacement = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ObjectPlacement", true);
+		Include decomposes = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Decomposes", true);
+		Include ownerHistory = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":OwnerHistory", true);
+
+		if (generateLayerSets ) {
+			if (packageMetaData.getEClass("IfcElement").isSuperTypeOf(eClass)) {
+				Include connected = queryPart.createInclude();
+				connected.addType(eClass, false);
+				connected.addField("ConnectedTo");
+				connected.addField("ConnectedFrom");
+				Include connectedTo = connected.createInclude();
+				connectedTo.addType(packageMetaData.getEClass("IfcRelConnectsPathElements"), false);
+				connectedTo.addField("RelatedElement");
+				connectedTo.addField("RelatingElement");
+				
+				// TODO According to Thomas we only need the "Axis" representation types, too much work for now, so sending all representations for now
+				
+				connectedTo.addInclude(representationInclude);
+				connectedTo.addInclude(objectPlacement);
+				connectedTo.addInclude(ownerHistory);
+				connectedTo.addInclude(decomposes);
+				
+				// Also doing opening to make this query complete, otherwise we could end up not having openings in the referenced walls
+				
+				Include openingsInclude = connectedTo.createInclude();
+				openingsInclude.addType(packageMetaData.getEClass(eClass.getName()), false);
+				openingsInclude.addField("HasOpenings");
+				Include hasOpenings = openingsInclude.createInclude();
+				hasOpenings.addType(packageMetaData.getEClass("IfcRelVoidsElement"), false);
+				hasOpenings.addField("RelatedOpeningElement");
+				hasOpenings.addInclude(representationInclude);
+				hasOpenings.addInclude(objectPlacement);
+			}
+		}
+		
+		queryPart.addInclude(decomposes);
+		queryPart.addInclude(ownerHistory);
+		queryPart.addInclude(representationInclude);
+		queryPart.addInclude(objectPlacement);
 		
 		if (eClass.getName().equals("IfcOpeningElement")) {
 			// In this case, we need to use the FillsVoids reference to get to an object on which we can add the decomposes include as well, otherwise we'll never get to the IfcProject level
@@ -857,12 +896,11 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			fillsInclude.addType(packageMetaData.getEClass("IfcRelVoidsElement"), false);
 			fillsInclude.addField("RelatingBuildingElement");
 
-			fillsInclude.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Decomposes", true));
-			fillsInclude.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":OwnerHistory", true));
+			fillsInclude.addInclude(decomposes);
+			fillsInclude.addInclude(ownerHistory);
 			fillsInclude.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ContainedInStructure", true));
 		}
 		
-		queryPart.addInclude(objectPlacement);
 		if (packageMetaData.getEClass("IfcElement").isSuperTypeOf(eClass)) {
 			Include openingsInclude = queryPart.createInclude();
 			openingsInclude.addType(packageMetaData.getEClass(eClass.getName()), false);
@@ -882,7 +920,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
 		
 		ReportJob job = report.newJob(eClass.getName(), nrObjects);
-		GeometryRunner runner = new GeometryRunner(this, eClass, renderEnginePool, databaseSession, settings, queryObjectProvider, ifcSerializerPlugin, renderEngineFilter, generateGeometryResult, queryContext, geometryReused, map, job, reuseGeometry, geometryGenerationDebugger );
+		GeometryRunner runner = new GeometryRunner(this, eClass, renderEnginePool, databaseSession, settings, queryObjectProvider, ifcSerializerPlugin, renderEngineFilter, generateGeometryResult, queryContext, geometryReused, map, job, reuseGeometry, geometryGenerationDebugger, query);
 		executor.submit(runner);
 		jobsTotal.incrementAndGet();
 	}
@@ -930,7 +968,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
 		
 		ReportJob job = report.newJob(eClass.getName(), nrObjects);
-		GeometryRunner runner = new GeometryRunner(this, eClass, renderEnginePool, databaseSession, settings, queryObjectProvider, ifcSerializerPlugin, renderEngineFilter, generateGeometryResult, queryContext, geometryReused, map, job, reuseGeometry, geometryGenerationDebugger );
+		GeometryRunner runner = new GeometryRunner(this, eClass, renderEnginePool, databaseSession, settings, queryObjectProvider, ifcSerializerPlugin, renderEngineFilter, generateGeometryResult, queryContext, geometryReused, map, job, reuseGeometry, geometryGenerationDebugger, query);
 		executor.submit(runner);
 		jobsTotal.incrementAndGet();
 	}
