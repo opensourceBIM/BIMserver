@@ -296,7 +296,7 @@ public class GeometryRunner implements Runnable {
 												if (c > -1) {
 													Color4f color = new Color4f();
 													for (int l = 0; l < 4; ++l) {
-														float val = materials[4 * c + l];
+														float val = fixColor(materials[4 * c + l]);
 														color.set(l, val);
 													}
 													for (int j = 0; j < 3; ++j) {
@@ -306,7 +306,7 @@ public class GeometryRunner implements Runnable {
 														triangle[j * 3 + 2] = vertices[3 * k + 2];
 														hasMaterial = true;
 														for (int l = 0; l < 4; ++l) {
-															float val = materials[4 * c + l];
+															float val = fixColor(materials[4 * c + l]);
 															colors[4 * k + l] = UnsignedBytes.checkedCast((int)(val * 255));
 														}
 													}
@@ -804,6 +804,13 @@ public class GeometryRunner implements Runnable {
 		}
 		long end = System.nanoTime();
 		job.setEndNanos(end);
+	}
+	
+	private float fixColor(float input) {
+		if (input >= 0 && input <=1) {
+			return input;
+		}
+		return 0.5f;
 	}
 	
 	private long createBuffer(QueryContext queryContext, byte[] data) throws BimserverDatabaseException {
