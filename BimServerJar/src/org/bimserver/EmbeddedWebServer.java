@@ -30,6 +30,8 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 
 		ServerConnector socketConnector = new ServerConnector(server);
 		socketConnector.setPort(bimServer.getConfig().getPort());
+		socketConnector.setIdleTimeout(10800000); // 3 hours for bulkcheckin
+		socketConnector.setStopTimeout(10800000); // 3 hours for bulkcheckin
 		server.addConnector(socketConnector);
 		context = new WebAppContext(server, "", "/");
 		context.setTempDirectory(bimServer.getHomeDir().resolve("jettytmp").toFile());
