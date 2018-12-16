@@ -1210,7 +1210,9 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 						longAction.waitForCompletion();
 						progressTopic = longAction.getProgressTopic();
 						clearCheckinInProgress(poid);
-						return (SLongCheckinActionState) getBimServer().getSConverter().convertToSObject(progressTopic.getLastProgress());
+						SLongCheckinActionState convertToSObject = (SLongCheckinActionState) getBimServer().getSConverter().convertToSObject(progressTopic.getLastProgress());
+						getBimServer().getLongActionManager().remove(progressTopic.getKey().getId());
+						return convertToSObject;
 					} else {
 						return (SLongCheckinActionState) getBimServer().getSConverter().convertToSObject(longAction.getState());
 					}
