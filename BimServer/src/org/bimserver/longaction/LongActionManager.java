@@ -101,7 +101,7 @@ public class LongActionManager {
 			longAction.stop();
 			actions.remove(topicId);
 		} else {
-			throw new UserException("No Topic with TopicId " + topicId + " found");
+//			throw new UserException("No Topic with TopicId " + topicId + " found");
 		}
 	}
 
