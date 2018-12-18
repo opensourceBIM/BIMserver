@@ -10,20 +10,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	<profiles>
-		<profile>
-			<id>ci</id>
-			<modules>
-				<module>BimServer</module>
-				<module>BimServerClientLib</module>
-				<module>PluginBase</module>
-				<module>Shared</module>
-				<module>BimServerWar</module>
-				<module>BimServerJar</module>
-				<module>Tests</module>
-			</modules>
-		</profile>
-	</profiles>
 	<repositories>
 		<repository>
 			<id>central</id>
