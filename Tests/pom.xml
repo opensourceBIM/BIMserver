@@ -55,7 +55,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>ifcplugins</artifactId>
-			<version>0.0.47-SNAPSHOT</version>
+			<version>0.0.46</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
