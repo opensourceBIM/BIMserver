@@ -1,4 +1,4 @@
-package org.bimserver.test;
+package org.bimserver.tests.ifc;
 
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
