@@ -1,4 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.opensourcebim</groupId>
 	<artifactId>parent</artifactId>
@@ -8,6 +10,20 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	<profiles>
+		<profile>
+			<id>ci</id>
+			<modules>
+				<module>BimServer</module>
+				<module>BimServerClientLib</module>
+				<module>PluginBase</module>
+				<module>Shared</module>
+				<module>BimServerWar</module>
+				<module>BimServerJar</module>
+				<module>Tests</module>
+			</modules>
+		</profile>
+	</profiles>
 	<repositories>
 		<repository>
 			<id>central</id>
@@ -56,7 +72,6 @@
 		<module>Shared</module>
 		<module>BimServerWar</module>
 		<module>BimServerJar</module>
-		<module>Tests</module>
 	</modules>
 	<build>
 		<pluginManagement>
