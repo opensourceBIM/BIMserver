@@ -385,6 +385,10 @@
       "IfcOffsetCurve3D": {
          "type": "IfcOffsetCurve3D"
       },
+      "IfcIndexedPolyCurve":{
+         "type": "IfcIndexedPolyCurve",
+         "fields": ["Points", "Segments"]
+      },
       "IfcElementarySurface": {
          "type": "IfcElementarySurface"
       },
@@ -490,6 +494,8 @@
             "IfcPolygonalBoundedHalfSpace",
             "IfcBooleanResult",
             "IfcExtrudedAreaSolid",
+            "IfcTriangulatedFaceSet",
+            "IfcPolygonalFaceSet",
             "IfcBoundingBox",
             "IfcShellBasedSurfaceModel",
             "IfcTextLiteralWithExtent",
@@ -522,6 +528,8 @@
             "IfcPolygonalBoundedHalfSpace",
             "IfcBooleanResult",
             "IfcExtrudedAreaSolid",
+            "IfcTriangulatedFaceSet",
+            "IfcPolygonalFaceSet",
             "IfcBoundingBox",
             "IfcShellBasedSurfaceModel",
             "IfcTextLiteralWithExtent",
@@ -616,7 +624,8 @@
             "IfcEllipse",
             "IfcLine",
             "IfcOffsetCurve2D",
-            "IfcOffsetCurve3D"
+            "IfcOffsetCurve3D",
+            "IfcIndexedPolyCurve"
          ]
       },
       "IfcArbitraryProfileDefWithVoids": {
@@ -685,6 +694,14 @@
             "IfcArbitraryProfileDefWithVoids",
             "IfcParameterizedProfileDef"
          ]
+      },
+     "IfcTriangulatedFaceSet":{
+        "type": "IfcTriangulatedFaceSet",
+        "field": "Coordinates"
+     },
+      "IfcPolygonalFaceSet":{
+         "type": "IfcPolygonalFaceSet",
+         "fields": ["Coordinates","Faces"]
       },
       "IfcAxis2Placement3D": {
          "type": "IfcAxis2Placement3D",
