@@ -22,18 +22,17 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
-import java.util.jar.JarEntry;
-import java.util.jar.JarInputStream;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
@@ -59,7 +58,9 @@ import org.eclipse.aether.version.Version;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.io.ByteStreams;
+import com.google.common.base.Function;
+import com.google.common.collect.Iterators;
+import com.google.common.collect.Lists;
 
 public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 
@@ -98,10 +99,73 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 		return groupId + "." + artifactId;
 	}
 	
+	public Iterator<MavenPluginVersion> iterateAllVersions() {
+		Artifact artifact = new DefaultArtifact(groupId, artifactId, null, "[0,)");
+
+		VersionRangeRequest rangeRequest = new VersionRangeRequest();
+		rangeRequest.setArtifact(artifact);
+		rangeRequest.setRepositories(mavenPluginRepository.getRepositories());
+
+		try {
+			VersionRangeResult rangeResult = mavenPluginRepository.getSystem().resolveVersionRange(mavenPluginRepository.getSession(), rangeRequest);
+			List<Version> versions = rangeResult.getVersions();
+			if (!versions.isEmpty()) {
+				Iterator<Version> versionIterator = Lists.reverse(versions).iterator();
+				return Iterators.transform(versionIterator, new Function<Version, MavenPluginVersion>() {
+					   @Override
+					   public MavenPluginVersion apply(Version version) {
+							try {
+								MavenPluginVersion mavenPluginVersion = createMavenVersion(version);
+								return mavenPluginVersion;
+							} catch (ArtifactDescriptorException | ArtifactResolutionException | IOException
+									| XmlPullParserException e) {
+								LOGGER.error("", e);
+							}
+							return null;
+					   }
+					});
+			}
+		} catch (VersionRangeResolutionException e) {
+			LOGGER.error("", e);
+		}
+
+		return Collections.emptyIterator();
+	}
+
+	private MavenPluginVersion createMavenVersion(Version version) throws ArtifactDescriptorException, FileNotFoundException, IOException, ArtifactResolutionException, XmlPullParserException {
+		ArtifactDescriptorRequest descriptorRequest = new ArtifactDescriptorRequest();
+		
+		Artifact versionArtifact = new DefaultArtifact(groupId, artifactId, "pom", version.toString());
+		
+		descriptorRequest.setArtifact(versionArtifact);
+		descriptorRequest.setRepositories(mavenPluginRepository.getRepositories());
+		
+		MavenPluginVersion mavenPluginVersion = new MavenPluginVersion(versionArtifact, version);
+		ArtifactDescriptorResult descriptorResult;
+		descriptorResult = mavenPluginRepository.getSystem().readArtifactDescriptor(mavenPluginRepository.getSession(), descriptorRequest);
+		ArtifactRequest request = new ArtifactRequest();
+		request.setArtifact(descriptorResult.getArtifact());
+		request.setRepositories(mavenPluginRepository.getRepositories());
+		ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
+		
+		File pomFile = resolveArtifact.getArtifact().getFile();
+		MavenXpp3Reader mavenreader = new MavenXpp3Reader();
+		
+		try (FileReader fileReader = new FileReader(pomFile)) {
+			Model model = mavenreader.read(fileReader);
+			mavenPluginVersion.setModel(model);
+		}
+		
+		for (org.eclipse.aether.graph.Dependency dependency : descriptorResult.getDependencies()) {
+			DefaultArtifactVersion artifactVersion = new DefaultArtifactVersion(dependency.getArtifact().getVersion());
+			mavenPluginVersion.addDependency(new MavenDependency(dependency.getArtifact(), artifactVersion));
+		}
+		return mavenPluginVersion;
+	}
+	
 	@Override
 	public List<MavenPluginVersion> getAllVersions() {
 		List<MavenPluginVersion> pluginVersions = new ArrayList<>();
-
 		
 		Artifact artifact = new DefaultArtifact(groupId, artifactId, null, "[0,)");
 
