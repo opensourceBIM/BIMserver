@@ -72,9 +72,6 @@ public class ByteBufferWrappedVirtualObject extends AbstractByteBufferVirtualObj
 
 	@Override
 	public boolean useFeatureForSerialization(EStructuralFeature feature, int index) {
-		// TODO Auto-generated method stub
 		return false;
 	}
-
-
 }
