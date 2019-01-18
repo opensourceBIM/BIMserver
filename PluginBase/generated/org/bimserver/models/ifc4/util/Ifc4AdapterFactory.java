@@ -4614,8 +4614,18 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseIfcArcIndex(IfcArcIndex object) {
+			return createIfcArcIndexAdapter();
+		}
+
+		@Override
 		public Adapter caseIfcComplexNumber(IfcComplexNumber object) {
 			return createIfcComplexNumberAdapter();
+		}
+
+		@Override
+		public Adapter caseIfcLineIndex(IfcLineIndex object) {
+			return createIfcLineIndexAdapter();
 		}
 
 		@Override
@@ -17617,6 +17627,20 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.IfcArcIndex <em>Ifc Arc Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc4.IfcArcIndex
+	 * @generated
+	 */
+	public Adapter createIfcArcIndexAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.IfcComplexNumber <em>Ifc Complex Number</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -17627,6 +17651,20 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIfcComplexNumberAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.bimserver.models.ifc4.IfcLineIndex <em>Ifc Line Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.bimserver.models.ifc4.IfcLineIndex
+	 * @generated
+	 */
+	public Adapter createIfcLineIndexAdapter() {
 		return null;
 	}
 

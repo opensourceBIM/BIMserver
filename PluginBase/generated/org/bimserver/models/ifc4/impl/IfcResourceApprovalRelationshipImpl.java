@@ -81,6 +81,7 @@ public class IfcResourceApprovalRelationshipImpl extends IfcResourceLevelRelatio
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcResourceObjectSelect> getRelatedResourceObjects() {
 		return (EList<IfcResourceObjectSelect>) eGet(
 				Ifc4Package.Literals.IFC_RESOURCE_APPROVAL_RELATIONSHIP__RELATED_RESOURCE_OBJECTS, true);
@@ -91,6 +92,7 @@ public class IfcResourceApprovalRelationshipImpl extends IfcResourceLevelRelatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcApproval getRelatingApproval() {
 		return (IfcApproval) eGet(Ifc4Package.Literals.IFC_RESOURCE_APPROVAL_RELATIONSHIP__RELATING_APPROVAL, true);
 	}
@@ -100,6 +102,7 @@ public class IfcResourceApprovalRelationshipImpl extends IfcResourceLevelRelatio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRelatingApproval(IfcApproval newRelatingApproval) {
 		eSet(Ifc4Package.Literals.IFC_RESOURCE_APPROVAL_RELATIONSHIP__RELATING_APPROVAL, newRelatingApproval);
 	}

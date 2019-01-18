@@ -48,6 +48,7 @@ public interface IfcColourSpecification extends IfcPresentationItem, IfcColour {
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcColourSpecification_Name()
 	 * @model unsettable="true"
+	 *        annotation="singleindex"
 	 * @generated
 	 */
 	String getName();

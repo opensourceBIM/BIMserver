@@ -81,6 +81,7 @@ public class IfcPortImpl extends IfcProductImpl implements IfcPort {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelConnectsPortToElement> getContainedIn() {
 		return (EList<IfcRelConnectsPortToElement>) eGet(Ifc4Package.Literals.IFC_PORT__CONTAINED_IN, true);
 	}
@@ -90,6 +91,7 @@ public class IfcPortImpl extends IfcProductImpl implements IfcPort {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetContainedIn() {
 		eUnset(Ifc4Package.Literals.IFC_PORT__CONTAINED_IN);
 	}
@@ -99,6 +101,7 @@ public class IfcPortImpl extends IfcProductImpl implements IfcPort {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetContainedIn() {
 		return eIsSet(Ifc4Package.Literals.IFC_PORT__CONTAINED_IN);
 	}
@@ -109,6 +112,7 @@ public class IfcPortImpl extends IfcProductImpl implements IfcPort {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelConnectsPorts> getConnectedFrom() {
 		return (EList<IfcRelConnectsPorts>) eGet(Ifc4Package.Literals.IFC_PORT__CONNECTED_FROM, true);
 	}
@@ -118,6 +122,7 @@ public class IfcPortImpl extends IfcProductImpl implements IfcPort {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetConnectedFrom() {
 		eUnset(Ifc4Package.Literals.IFC_PORT__CONNECTED_FROM);
 	}
@@ -127,6 +132,7 @@ public class IfcPortImpl extends IfcProductImpl implements IfcPort {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetConnectedFrom() {
 		return eIsSet(Ifc4Package.Literals.IFC_PORT__CONNECTED_FROM);
 	}
@@ -137,6 +143,7 @@ public class IfcPortImpl extends IfcProductImpl implements IfcPort {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelConnectsPorts> getConnectedTo() {
 		return (EList<IfcRelConnectsPorts>) eGet(Ifc4Package.Literals.IFC_PORT__CONNECTED_TO, true);
 	}
@@ -146,6 +153,7 @@ public class IfcPortImpl extends IfcProductImpl implements IfcPort {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetConnectedTo() {
 		eUnset(Ifc4Package.Literals.IFC_PORT__CONNECTED_TO);
 	}
@@ -155,6 +163,7 @@ public class IfcPortImpl extends IfcProductImpl implements IfcPort {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetConnectedTo() {
 		return eIsSet(Ifc4Package.Literals.IFC_PORT__CONNECTED_TO);
 	}

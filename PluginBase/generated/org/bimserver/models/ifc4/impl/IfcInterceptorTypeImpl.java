@@ -76,6 +76,7 @@ public class IfcInterceptorTypeImpl extends IfcFlowTreatmentDeviceTypeImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcInterceptorTypeEnum getPredefinedType() {
 		return (IfcInterceptorTypeEnum) eGet(Ifc4Package.Literals.IFC_INTERCEPTOR_TYPE__PREDEFINED_TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcInterceptorTypeImpl extends IfcFlowTreatmentDeviceTypeImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcInterceptorTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_INTERCEPTOR_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

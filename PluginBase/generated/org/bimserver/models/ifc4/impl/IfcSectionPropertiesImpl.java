@@ -79,6 +79,7 @@ public class IfcSectionPropertiesImpl extends IfcPreDefinedPropertiesImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSectionTypeEnum getSectionType() {
 		return (IfcSectionTypeEnum) eGet(Ifc4Package.Literals.IFC_SECTION_PROPERTIES__SECTION_TYPE, true);
 	}
@@ -88,6 +89,7 @@ public class IfcSectionPropertiesImpl extends IfcPreDefinedPropertiesImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSectionType(IfcSectionTypeEnum newSectionType) {
 		eSet(Ifc4Package.Literals.IFC_SECTION_PROPERTIES__SECTION_TYPE, newSectionType);
 	}
@@ -97,6 +99,7 @@ public class IfcSectionPropertiesImpl extends IfcPreDefinedPropertiesImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProfileDef getStartProfile() {
 		return (IfcProfileDef) eGet(Ifc4Package.Literals.IFC_SECTION_PROPERTIES__START_PROFILE, true);
 	}
@@ -106,6 +109,7 @@ public class IfcSectionPropertiesImpl extends IfcPreDefinedPropertiesImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStartProfile(IfcProfileDef newStartProfile) {
 		eSet(Ifc4Package.Literals.IFC_SECTION_PROPERTIES__START_PROFILE, newStartProfile);
 	}
@@ -115,6 +119,7 @@ public class IfcSectionPropertiesImpl extends IfcPreDefinedPropertiesImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProfileDef getEndProfile() {
 		return (IfcProfileDef) eGet(Ifc4Package.Literals.IFC_SECTION_PROPERTIES__END_PROFILE, true);
 	}
@@ -124,6 +129,7 @@ public class IfcSectionPropertiesImpl extends IfcPreDefinedPropertiesImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEndProfile(IfcProfileDef newEndProfile) {
 		eSet(Ifc4Package.Literals.IFC_SECTION_PROPERTIES__END_PROFILE, newEndProfile);
 	}
@@ -133,6 +139,7 @@ public class IfcSectionPropertiesImpl extends IfcPreDefinedPropertiesImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetEndProfile() {
 		eUnset(Ifc4Package.Literals.IFC_SECTION_PROPERTIES__END_PROFILE);
 	}
@@ -142,6 +149,7 @@ public class IfcSectionPropertiesImpl extends IfcPreDefinedPropertiesImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetEndProfile() {
 		return eIsSet(Ifc4Package.Literals.IFC_SECTION_PROPERTIES__END_PROFILE);
 	}

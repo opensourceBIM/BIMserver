@@ -179,6 +179,8 @@ public interface IfcSpace extends IfcSpatialStructureElement, IfcSpaceBoundarySe
 	 * @see #setElevationWithFlooringAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSpace_ElevationWithFlooringAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getElevationWithFlooringAsString();
@@ -234,6 +236,7 @@ public interface IfcSpace extends IfcSpatialStructureElement, IfcSpaceBoundarySe
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSpace_HasCoverings()
 	 * @see org.bimserver.models.ifc4.IfcRelCoversSpaces#getRelatingSpace
 	 * @model opposite="RelatingSpace" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelCoversSpaces> getHasCoverings();
@@ -273,6 +276,7 @@ public interface IfcSpace extends IfcSpatialStructureElement, IfcSpaceBoundarySe
 	 * @see #unsetBoundedBy()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSpace_BoundedBy()
 	 * @model unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelSpaceBoundary> getBoundedBy();

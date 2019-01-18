@@ -76,6 +76,7 @@ public class IfcElementAssemblyTypeImpl extends IfcElementTypeImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElementAssemblyTypeEnum getPredefinedType() {
 		return (IfcElementAssemblyTypeEnum) eGet(Ifc4Package.Literals.IFC_ELEMENT_ASSEMBLY_TYPE__PREDEFINED_TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcElementAssemblyTypeImpl extends IfcElementTypeImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcElementAssemblyTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_ELEMENT_ASSEMBLY_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

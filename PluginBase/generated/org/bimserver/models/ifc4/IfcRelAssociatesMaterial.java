@@ -45,7 +45,8 @@ public interface IfcRelAssociatesMaterial extends IfcRelAssociates {
 	 * @return the value of the '<em>Relating Material</em>' reference.
 	 * @see #setRelatingMaterial(IfcMaterialSelect)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelAssociatesMaterial_RelatingMaterial()
-	 * @model
+	 * @model annotation="inverse"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcMaterialSelect getRelatingMaterial();

@@ -71,7 +71,8 @@ public interface IfcRightCircularCone extends IfcCsgPrimitive3D {
 	 * @return the value of the '<em>Height As String</em>' attribute.
 	 * @see #setHeightAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRightCircularCone_HeightAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getHeightAsString();
@@ -123,7 +124,8 @@ public interface IfcRightCircularCone extends IfcCsgPrimitive3D {
 	 * @return the value of the '<em>Bottom Radius As String</em>' attribute.
 	 * @see #setBottomRadiusAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRightCircularCone_BottomRadiusAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getBottomRadiusAsString();

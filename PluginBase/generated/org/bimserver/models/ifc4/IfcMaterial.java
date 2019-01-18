@@ -68,7 +68,7 @@ public interface IfcMaterial extends IfcMaterialDefinition {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterial_Name()
-	 * @model
+	 * @model annotation="singleindex"
 	 * @generated
 	 */
 	String getName();
@@ -205,6 +205,7 @@ public interface IfcMaterial extends IfcMaterialDefinition {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterial_HasRepresentation()
 	 * @see org.bimserver.models.ifc4.IfcMaterialDefinitionRepresentation#getRepresentedMaterial
 	 * @model opposite="RepresentedMaterial" unsettable="true" upper="2"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcMaterialDefinitionRepresentation> getHasRepresentation();
@@ -246,6 +247,7 @@ public interface IfcMaterial extends IfcMaterialDefinition {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterial_IsRelatedWith()
 	 * @see org.bimserver.models.ifc4.IfcMaterialRelationship#getRelatedMaterials
 	 * @model opposite="RelatedMaterials" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcMaterialRelationship> getIsRelatedWith();
@@ -287,6 +289,7 @@ public interface IfcMaterial extends IfcMaterialDefinition {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterial_RelatesTo()
 	 * @see org.bimserver.models.ifc4.IfcMaterialRelationship#getRelatingMaterial
 	 * @model opposite="RelatingMaterial" unsettable="true" upper="2"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcMaterialRelationship> getRelatesTo();

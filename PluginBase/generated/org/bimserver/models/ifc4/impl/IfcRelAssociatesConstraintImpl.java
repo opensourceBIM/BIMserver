@@ -77,6 +77,7 @@ public class IfcRelAssociatesConstraintImpl extends IfcRelAssociatesImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIntent() {
 		return (String) eGet(Ifc4Package.Literals.IFC_REL_ASSOCIATES_CONSTRAINT__INTENT, true);
 	}
@@ -86,6 +87,7 @@ public class IfcRelAssociatesConstraintImpl extends IfcRelAssociatesImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIntent(String newIntent) {
 		eSet(Ifc4Package.Literals.IFC_REL_ASSOCIATES_CONSTRAINT__INTENT, newIntent);
 	}
@@ -95,6 +97,7 @@ public class IfcRelAssociatesConstraintImpl extends IfcRelAssociatesImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetIntent() {
 		eUnset(Ifc4Package.Literals.IFC_REL_ASSOCIATES_CONSTRAINT__INTENT);
 	}
@@ -104,6 +107,7 @@ public class IfcRelAssociatesConstraintImpl extends IfcRelAssociatesImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetIntent() {
 		return eIsSet(Ifc4Package.Literals.IFC_REL_ASSOCIATES_CONSTRAINT__INTENT);
 	}
@@ -113,6 +117,7 @@ public class IfcRelAssociatesConstraintImpl extends IfcRelAssociatesImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcConstraint getRelatingConstraint() {
 		return (IfcConstraint) eGet(Ifc4Package.Literals.IFC_REL_ASSOCIATES_CONSTRAINT__RELATING_CONSTRAINT, true);
 	}
@@ -122,6 +127,7 @@ public class IfcRelAssociatesConstraintImpl extends IfcRelAssociatesImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRelatingConstraint(IfcConstraint newRelatingConstraint) {
 		eSet(Ifc4Package.Literals.IFC_REL_ASSOCIATES_CONSTRAINT__RELATING_CONSTRAINT, newRelatingConstraint);
 	}

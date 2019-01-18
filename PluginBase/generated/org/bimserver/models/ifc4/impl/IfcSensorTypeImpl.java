@@ -76,6 +76,7 @@ public class IfcSensorTypeImpl extends IfcDistributionControlElementTypeImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSensorTypeEnum getPredefinedType() {
 		return (IfcSensorTypeEnum) eGet(Ifc4Package.Literals.IFC_SENSOR_TYPE__PREDEFINED_TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcSensorTypeImpl extends IfcDistributionControlElementTypeImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcSensorTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_SENSOR_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

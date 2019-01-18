@@ -81,6 +81,7 @@ public class IfcWindowStyleImpl extends IfcTypeProductImpl implements IfcWindowS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcWindowStyleConstructionEnum getConstructionType() {
 		return (IfcWindowStyleConstructionEnum) eGet(Ifc4Package.Literals.IFC_WINDOW_STYLE__CONSTRUCTION_TYPE, true);
 	}
@@ -90,6 +91,7 @@ public class IfcWindowStyleImpl extends IfcTypeProductImpl implements IfcWindowS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setConstructionType(IfcWindowStyleConstructionEnum newConstructionType) {
 		eSet(Ifc4Package.Literals.IFC_WINDOW_STYLE__CONSTRUCTION_TYPE, newConstructionType);
 	}
@@ -99,6 +101,7 @@ public class IfcWindowStyleImpl extends IfcTypeProductImpl implements IfcWindowS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcWindowStyleOperationEnum getOperationType() {
 		return (IfcWindowStyleOperationEnum) eGet(Ifc4Package.Literals.IFC_WINDOW_STYLE__OPERATION_TYPE, true);
 	}
@@ -108,6 +111,7 @@ public class IfcWindowStyleImpl extends IfcTypeProductImpl implements IfcWindowS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOperationType(IfcWindowStyleOperationEnum newOperationType) {
 		eSet(Ifc4Package.Literals.IFC_WINDOW_STYLE__OPERATION_TYPE, newOperationType);
 	}
@@ -117,6 +121,7 @@ public class IfcWindowStyleImpl extends IfcTypeProductImpl implements IfcWindowS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Tristate getParameterTakesPrecedence() {
 		return (Tristate) eGet(Ifc4Package.Literals.IFC_WINDOW_STYLE__PARAMETER_TAKES_PRECEDENCE, true);
 	}
@@ -126,6 +131,7 @@ public class IfcWindowStyleImpl extends IfcTypeProductImpl implements IfcWindowS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParameterTakesPrecedence(Tristate newParameterTakesPrecedence) {
 		eSet(Ifc4Package.Literals.IFC_WINDOW_STYLE__PARAMETER_TAKES_PRECEDENCE, newParameterTakesPrecedence);
 	}
@@ -135,6 +141,7 @@ public class IfcWindowStyleImpl extends IfcTypeProductImpl implements IfcWindowS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Tristate getSizeable() {
 		return (Tristate) eGet(Ifc4Package.Literals.IFC_WINDOW_STYLE__SIZEABLE, true);
 	}
@@ -144,6 +151,7 @@ public class IfcWindowStyleImpl extends IfcTypeProductImpl implements IfcWindowS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSizeable(Tristate newSizeable) {
 		eSet(Ifc4Package.Literals.IFC_WINDOW_STYLE__SIZEABLE, newSizeable);
 	}

@@ -67,7 +67,7 @@ public interface IfcCoordinateReferenceSystem extends IfcCoordinateReferenceSyst
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCoordinateReferenceSystem_Name()
-	 * @model
+	 * @model annotation="singleindex"
 	 * @generated
 	 */
 	String getName();
@@ -255,6 +255,7 @@ public interface IfcCoordinateReferenceSystem extends IfcCoordinateReferenceSyst
 	 * @see #unsetHasCoordinateOperation()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCoordinateReferenceSystem_HasCoordinateOperation()
 	 * @model unsettable="true" upper="2"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcCoordinateOperation> getHasCoordinateOperation();

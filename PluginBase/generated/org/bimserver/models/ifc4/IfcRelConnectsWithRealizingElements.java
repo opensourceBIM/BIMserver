@@ -67,6 +67,7 @@ public interface IfcRelConnectsWithRealizingElements extends IfcRelConnectsEleme
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelConnectsWithRealizingElements_RealizingElements()
 	 * @see org.bimserver.models.ifc4.IfcElement#getIsConnectionRealization
 	 * @model opposite="IsConnectionRealization"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcElement> getRealizingElements();

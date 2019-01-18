@@ -82,6 +82,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTendonTypeEnum getPredefinedType() {
 		return (IfcTendonTypeEnum) eGet(Ifc4Package.Literals.IFC_TENDON_TYPE__PREDEFINED_TYPE, true);
 	}
@@ -91,6 +92,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcTendonTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_TENDON_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
@@ -100,6 +102,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getNominalDiameter() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_TENDON_TYPE__NOMINAL_DIAMETER, true);
 	}
@@ -109,6 +112,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNominalDiameter(double newNominalDiameter) {
 		eSet(Ifc4Package.Literals.IFC_TENDON_TYPE__NOMINAL_DIAMETER, newNominalDiameter);
 	}
@@ -118,6 +122,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetNominalDiameter() {
 		eUnset(Ifc4Package.Literals.IFC_TENDON_TYPE__NOMINAL_DIAMETER);
 	}
@@ -127,6 +132,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetNominalDiameter() {
 		return eIsSet(Ifc4Package.Literals.IFC_TENDON_TYPE__NOMINAL_DIAMETER);
 	}
@@ -136,6 +142,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getNominalDiameterAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_TENDON_TYPE__NOMINAL_DIAMETER_AS_STRING, true);
 	}
@@ -145,6 +152,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNominalDiameterAsString(String newNominalDiameterAsString) {
 		eSet(Ifc4Package.Literals.IFC_TENDON_TYPE__NOMINAL_DIAMETER_AS_STRING, newNominalDiameterAsString);
 	}
@@ -154,6 +162,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetNominalDiameterAsString() {
 		eUnset(Ifc4Package.Literals.IFC_TENDON_TYPE__NOMINAL_DIAMETER_AS_STRING);
 	}
@@ -163,6 +172,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetNominalDiameterAsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_TENDON_TYPE__NOMINAL_DIAMETER_AS_STRING);
 	}
@@ -172,6 +182,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getCrossSectionArea() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_TENDON_TYPE__CROSS_SECTION_AREA, true);
 	}
@@ -181,6 +192,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCrossSectionArea(double newCrossSectionArea) {
 		eSet(Ifc4Package.Literals.IFC_TENDON_TYPE__CROSS_SECTION_AREA, newCrossSectionArea);
 	}
@@ -190,6 +202,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetCrossSectionArea() {
 		eUnset(Ifc4Package.Literals.IFC_TENDON_TYPE__CROSS_SECTION_AREA);
 	}
@@ -199,6 +212,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetCrossSectionArea() {
 		return eIsSet(Ifc4Package.Literals.IFC_TENDON_TYPE__CROSS_SECTION_AREA);
 	}
@@ -208,6 +222,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCrossSectionAreaAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_TENDON_TYPE__CROSS_SECTION_AREA_AS_STRING, true);
 	}
@@ -217,6 +232,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCrossSectionAreaAsString(String newCrossSectionAreaAsString) {
 		eSet(Ifc4Package.Literals.IFC_TENDON_TYPE__CROSS_SECTION_AREA_AS_STRING, newCrossSectionAreaAsString);
 	}
@@ -226,6 +242,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetCrossSectionAreaAsString() {
 		eUnset(Ifc4Package.Literals.IFC_TENDON_TYPE__CROSS_SECTION_AREA_AS_STRING);
 	}
@@ -235,6 +252,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetCrossSectionAreaAsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_TENDON_TYPE__CROSS_SECTION_AREA_AS_STRING);
 	}
@@ -244,6 +262,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getSheathDiameter() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_TENDON_TYPE__SHEATH_DIAMETER, true);
 	}
@@ -253,6 +272,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSheathDiameter(double newSheathDiameter) {
 		eSet(Ifc4Package.Literals.IFC_TENDON_TYPE__SHEATH_DIAMETER, newSheathDiameter);
 	}
@@ -262,6 +282,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetSheathDiameter() {
 		eUnset(Ifc4Package.Literals.IFC_TENDON_TYPE__SHEATH_DIAMETER);
 	}
@@ -271,6 +292,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetSheathDiameter() {
 		return eIsSet(Ifc4Package.Literals.IFC_TENDON_TYPE__SHEATH_DIAMETER);
 	}
@@ -280,6 +302,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSheathDiameterAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_TENDON_TYPE__SHEATH_DIAMETER_AS_STRING, true);
 	}
@@ -289,6 +312,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSheathDiameterAsString(String newSheathDiameterAsString) {
 		eSet(Ifc4Package.Literals.IFC_TENDON_TYPE__SHEATH_DIAMETER_AS_STRING, newSheathDiameterAsString);
 	}
@@ -298,6 +322,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetSheathDiameterAsString() {
 		eUnset(Ifc4Package.Literals.IFC_TENDON_TYPE__SHEATH_DIAMETER_AS_STRING);
 	}
@@ -307,6 +332,7 @@ public class IfcTendonTypeImpl extends IfcReinforcingElementTypeImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetSheathDiameterAsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_TENDON_TYPE__SHEATH_DIAMETER_AS_STRING);
 	}

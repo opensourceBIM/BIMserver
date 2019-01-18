@@ -71,7 +71,8 @@ public interface IfcPlanarExtent extends IfcGeometricRepresentationItem {
 	 * @return the value of the '<em>Size In XAs String</em>' attribute.
 	 * @see #setSizeInXAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPlanarExtent_SizeInXAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getSizeInXAsString();
@@ -123,7 +124,8 @@ public interface IfcPlanarExtent extends IfcGeometricRepresentationItem {
 	 * @return the value of the '<em>Size In YAs String</em>' attribute.
 	 * @see #setSizeInYAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPlanarExtent_SizeInYAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getSizeInYAsString();

@@ -77,6 +77,7 @@ public class IfcMaterialDefinitionRepresentationImpl extends IfcProductRepresent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMaterial getRepresentedMaterial() {
 		return (IfcMaterial) eGet(Ifc4Package.Literals.IFC_MATERIAL_DEFINITION_REPRESENTATION__REPRESENTED_MATERIAL,
 				true);
@@ -87,6 +88,7 @@ public class IfcMaterialDefinitionRepresentationImpl extends IfcProductRepresent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRepresentedMaterial(IfcMaterial newRepresentedMaterial) {
 		eSet(Ifc4Package.Literals.IFC_MATERIAL_DEFINITION_REPRESENTATION__REPRESENTED_MATERIAL, newRepresentedMaterial);
 	}

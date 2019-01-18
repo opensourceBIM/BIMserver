@@ -71,7 +71,8 @@ public interface IfcQuantityWeight extends IfcPhysicalSimpleQuantity {
 	 * @return the value of the '<em>Weight Value As String</em>' attribute.
 	 * @see #setWeightValueAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcQuantityWeight_WeightValueAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getWeightValueAsString();

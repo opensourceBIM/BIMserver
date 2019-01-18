@@ -76,6 +76,7 @@ public class IfcDuctSilencerImpl extends IfcFlowTreatmentDeviceImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDuctSilencerTypeEnum getPredefinedType() {
 		return (IfcDuctSilencerTypeEnum) eGet(Ifc4Package.Literals.IFC_DUCT_SILENCER__PREDEFINED_TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcDuctSilencerImpl extends IfcFlowTreatmentDeviceImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcDuctSilencerTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_DUCT_SILENCER__PREDEFINED_TYPE, newPredefinedType);
 	}
@@ -94,6 +96,7 @@ public class IfcDuctSilencerImpl extends IfcFlowTreatmentDeviceImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPredefinedType() {
 		eUnset(Ifc4Package.Literals.IFC_DUCT_SILENCER__PREDEFINED_TYPE);
 	}
@@ -103,6 +106,7 @@ public class IfcDuctSilencerImpl extends IfcFlowTreatmentDeviceImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPredefinedType() {
 		return eIsSet(Ifc4Package.Literals.IFC_DUCT_SILENCER__PREDEFINED_TYPE);
 	}

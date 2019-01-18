@@ -101,6 +101,8 @@ public interface IfcDoorLiningProperties extends IfcPreDefinedPropertySet {
 	 * @see #setLiningDepthAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDoorLiningProperties_LiningDepthAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getLiningDepthAsString();
@@ -207,6 +209,8 @@ public interface IfcDoorLiningProperties extends IfcPreDefinedPropertySet {
 	 * @see #setLiningThicknessAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDoorLiningProperties_LiningThicknessAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getLiningThicknessAsString();
@@ -313,6 +317,8 @@ public interface IfcDoorLiningProperties extends IfcPreDefinedPropertySet {
 	 * @see #setThresholdDepthAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDoorLiningProperties_ThresholdDepthAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getThresholdDepthAsString();
@@ -419,6 +425,8 @@ public interface IfcDoorLiningProperties extends IfcPreDefinedPropertySet {
 	 * @see #setThresholdThicknessAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDoorLiningProperties_ThresholdThicknessAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getThresholdThicknessAsString();
@@ -525,6 +533,8 @@ public interface IfcDoorLiningProperties extends IfcPreDefinedPropertySet {
 	 * @see #setTransomThicknessAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDoorLiningProperties_TransomThicknessAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getTransomThicknessAsString();
@@ -631,6 +641,8 @@ public interface IfcDoorLiningProperties extends IfcPreDefinedPropertySet {
 	 * @see #setTransomOffsetAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDoorLiningProperties_TransomOffsetAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getTransomOffsetAsString();
@@ -737,6 +749,8 @@ public interface IfcDoorLiningProperties extends IfcPreDefinedPropertySet {
 	 * @see #setLiningOffsetAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDoorLiningProperties_LiningOffsetAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getLiningOffsetAsString();
@@ -843,6 +857,8 @@ public interface IfcDoorLiningProperties extends IfcPreDefinedPropertySet {
 	 * @see #setThresholdOffsetAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDoorLiningProperties_ThresholdOffsetAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getThresholdOffsetAsString();
@@ -949,6 +965,8 @@ public interface IfcDoorLiningProperties extends IfcPreDefinedPropertySet {
 	 * @see #setCasingThicknessAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDoorLiningProperties_CasingThicknessAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getCasingThicknessAsString();
@@ -1055,6 +1073,8 @@ public interface IfcDoorLiningProperties extends IfcPreDefinedPropertySet {
 	 * @see #setCasingDepthAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDoorLiningProperties_CasingDepthAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getCasingDepthAsString();
@@ -1214,6 +1234,8 @@ public interface IfcDoorLiningProperties extends IfcPreDefinedPropertySet {
 	 * @see #setLiningToPanelOffsetXAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDoorLiningProperties_LiningToPanelOffsetXAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getLiningToPanelOffsetXAsString();
@@ -1320,6 +1342,8 @@ public interface IfcDoorLiningProperties extends IfcPreDefinedPropertySet {
 	 * @see #setLiningToPanelOffsetYAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDoorLiningProperties_LiningToPanelOffsetYAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getLiningToPanelOffsetYAsString();

@@ -101,6 +101,8 @@ public interface IfcCartesianTransformationOperator3DnonUniform extends IfcCarte
 	 * @see #setScale2AsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCartesianTransformationOperator3DnonUniform_Scale2AsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getScale2AsString();
@@ -207,6 +209,8 @@ public interface IfcCartesianTransformationOperator3DnonUniform extends IfcCarte
 	 * @see #setScale3AsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCartesianTransformationOperator3DnonUniform_Scale3AsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getScale3AsString();
@@ -313,6 +317,8 @@ public interface IfcCartesianTransformationOperator3DnonUniform extends IfcCarte
 	 * @see #setScl3AsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCartesianTransformationOperator3DnonUniform_Scl3AsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getScl3AsString();
@@ -419,6 +425,8 @@ public interface IfcCartesianTransformationOperator3DnonUniform extends IfcCarte
 	 * @see #setScl2AsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCartesianTransformationOperator3DnonUniform_Scl2AsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getScl2AsString();

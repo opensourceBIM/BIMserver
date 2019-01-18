@@ -68,6 +68,7 @@ public interface IfcVirtualGridIntersection extends IfcGridPlacementDirectionSel
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcVirtualGridIntersection_IntersectingAxes()
 	 * @see org.bimserver.models.ifc4.IfcGridAxis#getHasIntersections
 	 * @model opposite="HasIntersections"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcGridAxis> getIntersectingAxes();
@@ -100,6 +101,8 @@ public interface IfcVirtualGridIntersection extends IfcGridPlacementDirectionSel
 	 * @return the value of the '<em>Offset Distances As String</em>' attribute list.
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcVirtualGridIntersection_OffsetDistancesAsString()
 	 * @model unique="false"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	EList<String> getOffsetDistancesAsString();

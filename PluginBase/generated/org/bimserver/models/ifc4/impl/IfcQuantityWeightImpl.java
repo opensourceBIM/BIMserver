@@ -77,6 +77,7 @@ public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getWeightValue() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE, true);
 	}
@@ -86,6 +87,7 @@ public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWeightValue(double newWeightValue) {
 		eSet(Ifc4Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE, newWeightValue);
 	}
@@ -95,6 +97,7 @@ public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getWeightValueAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE_AS_STRING, true);
 	}
@@ -104,6 +107,7 @@ public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWeightValueAsString(String newWeightValueAsString) {
 		eSet(Ifc4Package.Literals.IFC_QUANTITY_WEIGHT__WEIGHT_VALUE_AS_STRING, newWeightValueAsString);
 	}
@@ -113,6 +117,7 @@ public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFormula() {
 		return (String) eGet(Ifc4Package.Literals.IFC_QUANTITY_WEIGHT__FORMULA, true);
 	}
@@ -122,6 +127,7 @@ public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFormula(String newFormula) {
 		eSet(Ifc4Package.Literals.IFC_QUANTITY_WEIGHT__FORMULA, newFormula);
 	}
@@ -131,6 +137,7 @@ public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetFormula() {
 		eUnset(Ifc4Package.Literals.IFC_QUANTITY_WEIGHT__FORMULA);
 	}
@@ -140,6 +147,7 @@ public class IfcQuantityWeightImpl extends IfcPhysicalSimpleQuantityImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetFormula() {
 		return eIsSet(Ifc4Package.Literals.IFC_QUANTITY_WEIGHT__FORMULA);
 	}

@@ -78,6 +78,7 @@ public class IfcFacetedBrepWithVoidsImpl extends IfcFacetedBrepImpl implements I
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcClosedShell> getVoids() {
 		return (EList<IfcClosedShell>) eGet(Ifc4Package.Literals.IFC_FACETED_BREP_WITH_VOIDS__VOIDS, true);
 	}

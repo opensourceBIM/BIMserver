@@ -80,6 +80,7 @@ public class IfcFillAreaStyleImpl extends IfcPresentationStyleImpl implements If
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcFillStyleSelect> getFillStyles() {
 		return (EList<IfcFillStyleSelect>) eGet(Ifc4Package.Literals.IFC_FILL_AREA_STYLE__FILL_STYLES, true);
 	}
@@ -89,6 +90,7 @@ public class IfcFillAreaStyleImpl extends IfcPresentationStyleImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Tristate getModelorDraughting() {
 		return (Tristate) eGet(Ifc4Package.Literals.IFC_FILL_AREA_STYLE__MODELOR_DRAUGHTING, true);
 	}
@@ -98,6 +100,7 @@ public class IfcFillAreaStyleImpl extends IfcPresentationStyleImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setModelorDraughting(Tristate newModelorDraughting) {
 		eSet(Ifc4Package.Literals.IFC_FILL_AREA_STYLE__MODELOR_DRAUGHTING, newModelorDraughting);
 	}
@@ -107,6 +110,7 @@ public class IfcFillAreaStyleImpl extends IfcPresentationStyleImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetModelorDraughting() {
 		eUnset(Ifc4Package.Literals.IFC_FILL_AREA_STYLE__MODELOR_DRAUGHTING);
 	}
@@ -116,6 +120,7 @@ public class IfcFillAreaStyleImpl extends IfcPresentationStyleImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetModelorDraughting() {
 		return eIsSet(Ifc4Package.Literals.IFC_FILL_AREA_STYLE__MODELOR_DRAUGHTING);
 	}

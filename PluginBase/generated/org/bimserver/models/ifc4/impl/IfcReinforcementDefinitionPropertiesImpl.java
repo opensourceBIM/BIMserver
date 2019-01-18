@@ -79,6 +79,7 @@ public class IfcReinforcementDefinitionPropertiesImpl extends IfcPreDefinedPrope
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDefinitionType() {
 		return (String) eGet(Ifc4Package.Literals.IFC_REINFORCEMENT_DEFINITION_PROPERTIES__DEFINITION_TYPE, true);
 	}
@@ -88,6 +89,7 @@ public class IfcReinforcementDefinitionPropertiesImpl extends IfcPreDefinedPrope
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefinitionType(String newDefinitionType) {
 		eSet(Ifc4Package.Literals.IFC_REINFORCEMENT_DEFINITION_PROPERTIES__DEFINITION_TYPE, newDefinitionType);
 	}
@@ -97,6 +99,7 @@ public class IfcReinforcementDefinitionPropertiesImpl extends IfcPreDefinedPrope
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetDefinitionType() {
 		eUnset(Ifc4Package.Literals.IFC_REINFORCEMENT_DEFINITION_PROPERTIES__DEFINITION_TYPE);
 	}
@@ -106,6 +109,7 @@ public class IfcReinforcementDefinitionPropertiesImpl extends IfcPreDefinedPrope
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetDefinitionType() {
 		return eIsSet(Ifc4Package.Literals.IFC_REINFORCEMENT_DEFINITION_PROPERTIES__DEFINITION_TYPE);
 	}
@@ -116,6 +120,7 @@ public class IfcReinforcementDefinitionPropertiesImpl extends IfcPreDefinedPrope
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcSectionReinforcementProperties> getReinforcementSectionDefinitions() {
 		return (EList<IfcSectionReinforcementProperties>) eGet(
 				Ifc4Package.Literals.IFC_REINFORCEMENT_DEFINITION_PROPERTIES__REINFORCEMENT_SECTION_DEFINITIONS, true);

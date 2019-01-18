@@ -81,6 +81,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__NAME, true);
 	}
@@ -90,6 +91,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__NAME, newName);
 	}
@@ -99,6 +101,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetName() {
 		eUnset(Ifc4Package.Literals.IFC_LIGHT_SOURCE__NAME);
 	}
@@ -108,6 +111,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetName() {
 		return eIsSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__NAME);
 	}
@@ -117,6 +121,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcColourRgb getLightColour() {
 		return (IfcColourRgb) eGet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__LIGHT_COLOUR, true);
 	}
@@ -126,6 +131,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLightColour(IfcColourRgb newLightColour) {
 		eSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__LIGHT_COLOUR, newLightColour);
 	}
@@ -135,6 +141,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getAmbientIntensity() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__AMBIENT_INTENSITY, true);
 	}
@@ -144,6 +151,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAmbientIntensity(double newAmbientIntensity) {
 		eSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__AMBIENT_INTENSITY, newAmbientIntensity);
 	}
@@ -153,6 +161,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetAmbientIntensity() {
 		eUnset(Ifc4Package.Literals.IFC_LIGHT_SOURCE__AMBIENT_INTENSITY);
 	}
@@ -162,6 +171,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetAmbientIntensity() {
 		return eIsSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__AMBIENT_INTENSITY);
 	}
@@ -171,6 +181,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getAmbientIntensityAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__AMBIENT_INTENSITY_AS_STRING, true);
 	}
@@ -180,6 +191,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAmbientIntensityAsString(String newAmbientIntensityAsString) {
 		eSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__AMBIENT_INTENSITY_AS_STRING, newAmbientIntensityAsString);
 	}
@@ -189,6 +201,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetAmbientIntensityAsString() {
 		eUnset(Ifc4Package.Literals.IFC_LIGHT_SOURCE__AMBIENT_INTENSITY_AS_STRING);
 	}
@@ -198,6 +211,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetAmbientIntensityAsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__AMBIENT_INTENSITY_AS_STRING);
 	}
@@ -207,6 +221,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getIntensity() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__INTENSITY, true);
 	}
@@ -216,6 +231,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIntensity(double newIntensity) {
 		eSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__INTENSITY, newIntensity);
 	}
@@ -225,6 +241,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetIntensity() {
 		eUnset(Ifc4Package.Literals.IFC_LIGHT_SOURCE__INTENSITY);
 	}
@@ -234,6 +251,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetIntensity() {
 		return eIsSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__INTENSITY);
 	}
@@ -243,6 +261,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIntensityAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__INTENSITY_AS_STRING, true);
 	}
@@ -252,6 +271,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIntensityAsString(String newIntensityAsString) {
 		eSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__INTENSITY_AS_STRING, newIntensityAsString);
 	}
@@ -261,6 +281,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetIntensityAsString() {
 		eUnset(Ifc4Package.Literals.IFC_LIGHT_SOURCE__INTENSITY_AS_STRING);
 	}
@@ -270,6 +291,7 @@ public class IfcLightSourceImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetIntensityAsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE__INTENSITY_AS_STRING);
 	}

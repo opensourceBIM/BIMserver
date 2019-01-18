@@ -48,6 +48,7 @@ public interface IfcMappedItem extends IfcRepresentationItem {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMappedItem_MappingSource()
 	 * @see org.bimserver.models.ifc4.IfcRepresentationMap#getMapUsage
 	 * @model opposite="MapUsage"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcRepresentationMap getMappingSource();

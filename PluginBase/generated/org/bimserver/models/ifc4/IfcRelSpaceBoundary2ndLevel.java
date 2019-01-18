@@ -69,6 +69,7 @@ public interface IfcRelSpaceBoundary2ndLevel extends IfcRelSpaceBoundary1stLevel
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelSpaceBoundary2ndLevel_CorrespondingBoundary()
 	 * @see org.bimserver.models.ifc4.IfcRelSpaceBoundary2ndLevel#getCorresponds
 	 * @model opposite="Corresponds" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcRelSpaceBoundary2ndLevel getCorrespondingBoundary();
@@ -124,6 +125,7 @@ public interface IfcRelSpaceBoundary2ndLevel extends IfcRelSpaceBoundary1stLevel
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelSpaceBoundary2ndLevel_Corresponds()
 	 * @see org.bimserver.models.ifc4.IfcRelSpaceBoundary2ndLevel#getCorrespondingBoundary
 	 * @model opposite="CorrespondingBoundary" unsettable="true" upper="2"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelSpaceBoundary2ndLevel> getCorresponds();

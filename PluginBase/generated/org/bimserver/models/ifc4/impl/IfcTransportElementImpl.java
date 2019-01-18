@@ -76,6 +76,7 @@ public class IfcTransportElementImpl extends IfcElementImpl implements IfcTransp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTransportElementTypeEnum getPredefinedType() {
 		return (IfcTransportElementTypeEnum) eGet(Ifc4Package.Literals.IFC_TRANSPORT_ELEMENT__PREDEFINED_TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcTransportElementImpl extends IfcElementImpl implements IfcTransp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcTransportElementTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_TRANSPORT_ELEMENT__PREDEFINED_TYPE, newPredefinedType);
 	}
@@ -94,6 +96,7 @@ public class IfcTransportElementImpl extends IfcElementImpl implements IfcTransp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPredefinedType() {
 		eUnset(Ifc4Package.Literals.IFC_TRANSPORT_ELEMENT__PREDEFINED_TYPE);
 	}
@@ -103,6 +106,7 @@ public class IfcTransportElementImpl extends IfcElementImpl implements IfcTransp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPredefinedType() {
 		return eIsSet(Ifc4Package.Literals.IFC_TRANSPORT_ELEMENT__PREDEFINED_TYPE);
 	}

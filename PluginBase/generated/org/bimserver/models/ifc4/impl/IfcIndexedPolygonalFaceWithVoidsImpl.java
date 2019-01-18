@@ -79,6 +79,7 @@ public class IfcIndexedPolygonalFaceWithVoidsImpl extends IfcIndexedPolygonalFac
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<ListOfELong> getInnerCoordIndices() {
 		return (EList<ListOfELong>) eGet(
 				Ifc4Package.Literals.IFC_INDEXED_POLYGONAL_FACE_WITH_VOIDS__INNER_COORD_INDICES, true);

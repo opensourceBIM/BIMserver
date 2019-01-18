@@ -76,6 +76,7 @@ public class IfcBuildingElementPartTypeImpl extends IfcElementComponentTypeImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBuildingElementPartTypeEnum getPredefinedType() {
 		return (IfcBuildingElementPartTypeEnum) eGet(
 				Ifc4Package.Literals.IFC_BUILDING_ELEMENT_PART_TYPE__PREDEFINED_TYPE, true);
@@ -86,6 +87,7 @@ public class IfcBuildingElementPartTypeImpl extends IfcElementComponentTypeImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcBuildingElementPartTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_BUILDING_ELEMENT_PART_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

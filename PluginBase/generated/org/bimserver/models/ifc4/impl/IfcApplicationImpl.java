@@ -90,6 +90,7 @@ public class IfcApplicationImpl extends IdEObjectImpl implements IfcApplication 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcOrganization getApplicationDeveloper() {
 		return (IfcOrganization) eGet(Ifc4Package.Literals.IFC_APPLICATION__APPLICATION_DEVELOPER, true);
 	}
@@ -99,6 +100,7 @@ public class IfcApplicationImpl extends IdEObjectImpl implements IfcApplication 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setApplicationDeveloper(IfcOrganization newApplicationDeveloper) {
 		eSet(Ifc4Package.Literals.IFC_APPLICATION__APPLICATION_DEVELOPER, newApplicationDeveloper);
 	}
@@ -108,6 +110,7 @@ public class IfcApplicationImpl extends IdEObjectImpl implements IfcApplication 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getVersion() {
 		return (String) eGet(Ifc4Package.Literals.IFC_APPLICATION__VERSION, true);
 	}
@@ -117,6 +120,7 @@ public class IfcApplicationImpl extends IdEObjectImpl implements IfcApplication 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVersion(String newVersion) {
 		eSet(Ifc4Package.Literals.IFC_APPLICATION__VERSION, newVersion);
 	}
@@ -126,6 +130,7 @@ public class IfcApplicationImpl extends IdEObjectImpl implements IfcApplication 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getApplicationFullName() {
 		return (String) eGet(Ifc4Package.Literals.IFC_APPLICATION__APPLICATION_FULL_NAME, true);
 	}
@@ -135,6 +140,7 @@ public class IfcApplicationImpl extends IdEObjectImpl implements IfcApplication 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setApplicationFullName(String newApplicationFullName) {
 		eSet(Ifc4Package.Literals.IFC_APPLICATION__APPLICATION_FULL_NAME, newApplicationFullName);
 	}
@@ -144,6 +150,7 @@ public class IfcApplicationImpl extends IdEObjectImpl implements IfcApplication 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getApplicationIdentifier() {
 		return (String) eGet(Ifc4Package.Literals.IFC_APPLICATION__APPLICATION_IDENTIFIER, true);
 	}
@@ -153,6 +160,7 @@ public class IfcApplicationImpl extends IdEObjectImpl implements IfcApplication 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setApplicationIdentifier(String newApplicationIdentifier) {
 		eSet(Ifc4Package.Literals.IFC_APPLICATION__APPLICATION_IDENTIFIER, newApplicationIdentifier);
 	}

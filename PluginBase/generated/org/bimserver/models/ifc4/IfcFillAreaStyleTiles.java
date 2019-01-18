@@ -124,7 +124,8 @@ public interface IfcFillAreaStyleTiles extends IfcGeometricRepresentationItem, I
 	 * @return the value of the '<em>Tiling Scale As String</em>' attribute.
 	 * @see #setTilingScaleAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcFillAreaStyleTiles_TilingScaleAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getTilingScaleAsString();

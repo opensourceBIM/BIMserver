@@ -79,6 +79,7 @@ public class IfcExtendedPropertiesImpl extends IfcPropertyAbstractionImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(Ifc4Package.Literals.IFC_EXTENDED_PROPERTIES__NAME, true);
 	}
@@ -88,6 +89,7 @@ public class IfcExtendedPropertiesImpl extends IfcPropertyAbstractionImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(Ifc4Package.Literals.IFC_EXTENDED_PROPERTIES__NAME, newName);
 	}
@@ -97,6 +99,7 @@ public class IfcExtendedPropertiesImpl extends IfcPropertyAbstractionImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetName() {
 		eUnset(Ifc4Package.Literals.IFC_EXTENDED_PROPERTIES__NAME);
 	}
@@ -106,6 +109,7 @@ public class IfcExtendedPropertiesImpl extends IfcPropertyAbstractionImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetName() {
 		return eIsSet(Ifc4Package.Literals.IFC_EXTENDED_PROPERTIES__NAME);
 	}
@@ -115,6 +119,7 @@ public class IfcExtendedPropertiesImpl extends IfcPropertyAbstractionImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return (String) eGet(Ifc4Package.Literals.IFC_EXTENDED_PROPERTIES__DESCRIPTION, true);
 	}
@@ -124,6 +129,7 @@ public class IfcExtendedPropertiesImpl extends IfcPropertyAbstractionImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		eSet(Ifc4Package.Literals.IFC_EXTENDED_PROPERTIES__DESCRIPTION, newDescription);
 	}
@@ -133,6 +139,7 @@ public class IfcExtendedPropertiesImpl extends IfcPropertyAbstractionImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetDescription() {
 		eUnset(Ifc4Package.Literals.IFC_EXTENDED_PROPERTIES__DESCRIPTION);
 	}
@@ -142,6 +149,7 @@ public class IfcExtendedPropertiesImpl extends IfcPropertyAbstractionImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetDescription() {
 		return eIsSet(Ifc4Package.Literals.IFC_EXTENDED_PROPERTIES__DESCRIPTION);
 	}
@@ -152,6 +160,7 @@ public class IfcExtendedPropertiesImpl extends IfcPropertyAbstractionImpl implem
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcProperty> getProperties() {
 		return (EList<IfcProperty>) eGet(Ifc4Package.Literals.IFC_EXTENDED_PROPERTIES__PROPERTIES, true);
 	}

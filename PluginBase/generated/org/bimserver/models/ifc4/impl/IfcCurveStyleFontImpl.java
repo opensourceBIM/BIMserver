@@ -78,6 +78,7 @@ public class IfcCurveStyleFontImpl extends IfcPresentationItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT__NAME, true);
 	}
@@ -87,6 +88,7 @@ public class IfcCurveStyleFontImpl extends IfcPresentationItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT__NAME, newName);
 	}
@@ -96,6 +98,7 @@ public class IfcCurveStyleFontImpl extends IfcPresentationItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetName() {
 		eUnset(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT__NAME);
 	}
@@ -105,6 +108,7 @@ public class IfcCurveStyleFontImpl extends IfcPresentationItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetName() {
 		return eIsSet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT__NAME);
 	}
@@ -115,6 +119,7 @@ public class IfcCurveStyleFontImpl extends IfcPresentationItemImpl implements If
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcCurveStyleFontPattern> getPatternList() {
 		return (EList<IfcCurveStyleFontPattern>) eGet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT__PATTERN_LIST, true);
 	}

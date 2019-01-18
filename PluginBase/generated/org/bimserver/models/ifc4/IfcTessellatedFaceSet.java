@@ -97,6 +97,7 @@ public interface IfcTessellatedFaceSet extends IfcTessellatedItem, IfcBooleanOpe
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTessellatedFaceSet_HasColours()
 	 * @see org.bimserver.models.ifc4.IfcIndexedColourMap#getMappedTo
 	 * @model opposite="MappedTo" unsettable="true" upper="2"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcIndexedColourMap> getHasColours();
@@ -138,6 +139,7 @@ public interface IfcTessellatedFaceSet extends IfcTessellatedItem, IfcBooleanOpe
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTessellatedFaceSet_HasTextures()
 	 * @see org.bimserver.models.ifc4.IfcIndexedTextureMap#getMappedTo
 	 * @model opposite="MappedTo" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcIndexedTextureMap> getHasTextures();

@@ -71,7 +71,8 @@ public interface IfcColourRgb extends IfcColourSpecification, IfcColourOrFactor 
 	 * @return the value of the '<em>Red As String</em>' attribute.
 	 * @see #setRedAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcColourRgb_RedAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getRedAsString();
@@ -123,7 +124,8 @@ public interface IfcColourRgb extends IfcColourSpecification, IfcColourOrFactor 
 	 * @return the value of the '<em>Green As String</em>' attribute.
 	 * @see #setGreenAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcColourRgb_GreenAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getGreenAsString();
@@ -175,7 +177,8 @@ public interface IfcColourRgb extends IfcColourSpecification, IfcColourOrFactor 
 	 * @return the value of the '<em>Blue As String</em>' attribute.
 	 * @see #setBlueAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcColourRgb_BlueAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getBlueAsString();

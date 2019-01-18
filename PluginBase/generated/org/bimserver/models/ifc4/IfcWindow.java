@@ -101,6 +101,8 @@ public interface IfcWindow extends IfcBuildingElement {
 	 * @see #setOverallHeightAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcWindow_OverallHeightAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getOverallHeightAsString();
@@ -207,6 +209,8 @@ public interface IfcWindow extends IfcBuildingElement {
 	 * @see #setOverallWidthAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcWindow_OverallWidthAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getOverallWidthAsString();

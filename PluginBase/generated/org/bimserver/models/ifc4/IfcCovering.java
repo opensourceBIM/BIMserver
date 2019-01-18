@@ -126,6 +126,7 @@ public interface IfcCovering extends IfcBuildingElement {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCovering_CoversSpaces()
 	 * @see org.bimserver.models.ifc4.IfcRelCoversSpaces#getRelatedCoverings
 	 * @model opposite="RelatedCoverings" unsettable="true" upper="2"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelCoversSpaces> getCoversSpaces();
@@ -167,6 +168,7 @@ public interface IfcCovering extends IfcBuildingElement {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCovering_CoversElements()
 	 * @see org.bimserver.models.ifc4.IfcRelCoversBldgElements#getRelatedCoverings
 	 * @model opposite="RelatedCoverings" unsettable="true" upper="2"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelCoversBldgElements> getCoversElements();

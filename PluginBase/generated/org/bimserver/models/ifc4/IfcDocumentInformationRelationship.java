@@ -68,6 +68,7 @@ public interface IfcDocumentInformationRelationship extends IfcResourceLevelRela
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDocumentInformationRelationship_RelatingDocument()
 	 * @see org.bimserver.models.ifc4.IfcDocumentInformation#getIsPointer
 	 * @model opposite="IsPointer"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcDocumentInformation getRelatingDocument();
@@ -96,6 +97,7 @@ public interface IfcDocumentInformationRelationship extends IfcResourceLevelRela
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDocumentInformationRelationship_RelatedDocuments()
 	 * @see org.bimserver.models.ifc4.IfcDocumentInformation#getIsPointedTo
 	 * @model opposite="IsPointedTo"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcDocumentInformation> getRelatedDocuments();

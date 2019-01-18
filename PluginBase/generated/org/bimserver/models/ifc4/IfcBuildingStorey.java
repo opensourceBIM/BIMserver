@@ -101,6 +101,8 @@ public interface IfcBuildingStorey extends IfcSpatialStructureElement {
 	 * @see #setElevationAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBuildingStorey_ElevationAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getElevationAsString();

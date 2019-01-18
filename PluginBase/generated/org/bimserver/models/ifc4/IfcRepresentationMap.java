@@ -95,6 +95,7 @@ public interface IfcRepresentationMap extends IfcProductRepresentationSelect {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRepresentationMap_MappedRepresentation()
 	 * @see org.bimserver.models.ifc4.IfcRepresentation#getRepresentationMap
 	 * @model opposite="RepresentationMap"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcRepresentation getMappedRepresentation();
@@ -123,6 +124,7 @@ public interface IfcRepresentationMap extends IfcProductRepresentationSelect {
 	 * @see #unsetHasShapeAspects()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRepresentationMap_HasShapeAspects()
 	 * @model unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcShapeAspect> getHasShapeAspects();
@@ -164,6 +166,7 @@ public interface IfcRepresentationMap extends IfcProductRepresentationSelect {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRepresentationMap_MapUsage()
 	 * @see org.bimserver.models.ifc4.IfcMappedItem#getMappingSource
 	 * @model opposite="MappingSource" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcMappedItem> getMapUsage();

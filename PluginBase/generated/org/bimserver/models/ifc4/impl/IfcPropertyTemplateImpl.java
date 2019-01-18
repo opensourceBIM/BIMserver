@@ -80,6 +80,7 @@ public class IfcPropertyTemplateImpl extends IfcPropertyTemplateDefinitionImpl i
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcComplexPropertyTemplate> getPartOfComplexTemplate() {
 		return (EList<IfcComplexPropertyTemplate>) eGet(
 				Ifc4Package.Literals.IFC_PROPERTY_TEMPLATE__PART_OF_COMPLEX_TEMPLATE, true);
@@ -90,6 +91,7 @@ public class IfcPropertyTemplateImpl extends IfcPropertyTemplateDefinitionImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPartOfComplexTemplate() {
 		eUnset(Ifc4Package.Literals.IFC_PROPERTY_TEMPLATE__PART_OF_COMPLEX_TEMPLATE);
 	}
@@ -99,6 +101,7 @@ public class IfcPropertyTemplateImpl extends IfcPropertyTemplateDefinitionImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPartOfComplexTemplate() {
 		return eIsSet(Ifc4Package.Literals.IFC_PROPERTY_TEMPLATE__PART_OF_COMPLEX_TEMPLATE);
 	}
@@ -109,6 +112,7 @@ public class IfcPropertyTemplateImpl extends IfcPropertyTemplateDefinitionImpl i
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcPropertySetTemplate> getPartOfPsetTemplate() {
 		return (EList<IfcPropertySetTemplate>) eGet(Ifc4Package.Literals.IFC_PROPERTY_TEMPLATE__PART_OF_PSET_TEMPLATE,
 				true);
@@ -119,6 +123,7 @@ public class IfcPropertyTemplateImpl extends IfcPropertyTemplateDefinitionImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPartOfPsetTemplate() {
 		eUnset(Ifc4Package.Literals.IFC_PROPERTY_TEMPLATE__PART_OF_PSET_TEMPLATE);
 	}
@@ -128,6 +133,7 @@ public class IfcPropertyTemplateImpl extends IfcPropertyTemplateDefinitionImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPartOfPsetTemplate() {
 		return eIsSet(Ifc4Package.Literals.IFC_PROPERTY_TEMPLATE__PART_OF_PSET_TEMPLATE);
 	}

@@ -78,6 +78,7 @@ public class IfcConnectedFaceSetImpl extends IfcTopologicalRepresentationItemImp
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcFace> getCfsFaces() {
 		return (EList<IfcFace>) eGet(Ifc4Package.Literals.IFC_CONNECTED_FACE_SET__CFS_FACES, true);
 	}

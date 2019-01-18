@@ -76,6 +76,7 @@ public class IfcElementarySurfaceImpl extends IfcSurfaceImpl implements IfcEleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAxis2Placement3D getPosition() {
 		return (IfcAxis2Placement3D) eGet(Ifc4Package.Literals.IFC_ELEMENTARY_SURFACE__POSITION, true);
 	}
@@ -85,6 +86,7 @@ public class IfcElementarySurfaceImpl extends IfcSurfaceImpl implements IfcEleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPosition(IfcAxis2Placement3D newPosition) {
 		eSet(Ifc4Package.Literals.IFC_ELEMENTARY_SURFACE__POSITION, newPosition);
 	}

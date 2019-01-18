@@ -77,6 +77,7 @@ public class IfcConstructionProductResourceTypeImpl extends IfcConstructionResou
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcConstructionProductResourceTypeEnum getPredefinedType() {
 		return (IfcConstructionProductResourceTypeEnum) eGet(
 				Ifc4Package.Literals.IFC_CONSTRUCTION_PRODUCT_RESOURCE_TYPE__PREDEFINED_TYPE, true);
@@ -87,6 +88,7 @@ public class IfcConstructionProductResourceTypeImpl extends IfcConstructionResou
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcConstructionProductResourceTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_CONSTRUCTION_PRODUCT_RESOURCE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

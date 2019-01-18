@@ -77,6 +77,7 @@ public class IfcStructuralLoadSingleForceWarpingImpl extends IfcStructuralLoadSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getWarpingMoment() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE_WARPING__WARPING_MOMENT, true);
 	}
@@ -86,6 +87,7 @@ public class IfcStructuralLoadSingleForceWarpingImpl extends IfcStructuralLoadSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWarpingMoment(double newWarpingMoment) {
 		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE_WARPING__WARPING_MOMENT, newWarpingMoment);
 	}
@@ -95,6 +97,7 @@ public class IfcStructuralLoadSingleForceWarpingImpl extends IfcStructuralLoadSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetWarpingMoment() {
 		eUnset(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE_WARPING__WARPING_MOMENT);
 	}
@@ -104,6 +107,7 @@ public class IfcStructuralLoadSingleForceWarpingImpl extends IfcStructuralLoadSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetWarpingMoment() {
 		return eIsSet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE_WARPING__WARPING_MOMENT);
 	}
@@ -113,6 +117,7 @@ public class IfcStructuralLoadSingleForceWarpingImpl extends IfcStructuralLoadSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getWarpingMomentAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE_WARPING__WARPING_MOMENT_AS_STRING,
 				true);
@@ -123,6 +128,7 @@ public class IfcStructuralLoadSingleForceWarpingImpl extends IfcStructuralLoadSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWarpingMomentAsString(String newWarpingMomentAsString) {
 		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE_WARPING__WARPING_MOMENT_AS_STRING,
 				newWarpingMomentAsString);
@@ -133,6 +139,7 @@ public class IfcStructuralLoadSingleForceWarpingImpl extends IfcStructuralLoadSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetWarpingMomentAsString() {
 		eUnset(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE_WARPING__WARPING_MOMENT_AS_STRING);
 	}
@@ -142,6 +149,7 @@ public class IfcStructuralLoadSingleForceWarpingImpl extends IfcStructuralLoadSi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetWarpingMomentAsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_SINGLE_FORCE_WARPING__WARPING_MOMENT_AS_STRING);
 	}

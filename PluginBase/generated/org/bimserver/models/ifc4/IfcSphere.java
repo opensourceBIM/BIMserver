@@ -71,7 +71,8 @@ public interface IfcSphere extends IfcCsgPrimitive3D {
 	 * @return the value of the '<em>Radius As String</em>' attribute.
 	 * @see #setRadiusAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSphere_RadiusAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getRadiusAsString();

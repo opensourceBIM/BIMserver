@@ -86,6 +86,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIdentification() {
 		return (String) eGet(Ifc4Package.Literals.IFC_ASSET__IDENTIFICATION, true);
 	}
@@ -95,6 +96,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentification(String newIdentification) {
 		eSet(Ifc4Package.Literals.IFC_ASSET__IDENTIFICATION, newIdentification);
 	}
@@ -104,6 +106,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetIdentification() {
 		eUnset(Ifc4Package.Literals.IFC_ASSET__IDENTIFICATION);
 	}
@@ -113,6 +116,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetIdentification() {
 		return eIsSet(Ifc4Package.Literals.IFC_ASSET__IDENTIFICATION);
 	}
@@ -122,6 +126,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCostValue getOriginalValue() {
 		return (IfcCostValue) eGet(Ifc4Package.Literals.IFC_ASSET__ORIGINAL_VALUE, true);
 	}
@@ -131,6 +136,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOriginalValue(IfcCostValue newOriginalValue) {
 		eSet(Ifc4Package.Literals.IFC_ASSET__ORIGINAL_VALUE, newOriginalValue);
 	}
@@ -140,6 +146,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetOriginalValue() {
 		eUnset(Ifc4Package.Literals.IFC_ASSET__ORIGINAL_VALUE);
 	}
@@ -149,6 +156,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetOriginalValue() {
 		return eIsSet(Ifc4Package.Literals.IFC_ASSET__ORIGINAL_VALUE);
 	}
@@ -158,6 +166,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCostValue getCurrentValue() {
 		return (IfcCostValue) eGet(Ifc4Package.Literals.IFC_ASSET__CURRENT_VALUE, true);
 	}
@@ -167,6 +176,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCurrentValue(IfcCostValue newCurrentValue) {
 		eSet(Ifc4Package.Literals.IFC_ASSET__CURRENT_VALUE, newCurrentValue);
 	}
@@ -176,6 +186,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetCurrentValue() {
 		eUnset(Ifc4Package.Literals.IFC_ASSET__CURRENT_VALUE);
 	}
@@ -185,6 +196,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetCurrentValue() {
 		return eIsSet(Ifc4Package.Literals.IFC_ASSET__CURRENT_VALUE);
 	}
@@ -194,6 +206,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCostValue getTotalReplacementCost() {
 		return (IfcCostValue) eGet(Ifc4Package.Literals.IFC_ASSET__TOTAL_REPLACEMENT_COST, true);
 	}
@@ -203,6 +216,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTotalReplacementCost(IfcCostValue newTotalReplacementCost) {
 		eSet(Ifc4Package.Literals.IFC_ASSET__TOTAL_REPLACEMENT_COST, newTotalReplacementCost);
 	}
@@ -212,6 +226,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetTotalReplacementCost() {
 		eUnset(Ifc4Package.Literals.IFC_ASSET__TOTAL_REPLACEMENT_COST);
 	}
@@ -221,6 +236,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetTotalReplacementCost() {
 		return eIsSet(Ifc4Package.Literals.IFC_ASSET__TOTAL_REPLACEMENT_COST);
 	}
@@ -230,6 +246,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcActorSelect getOwner() {
 		return (IfcActorSelect) eGet(Ifc4Package.Literals.IFC_ASSET__OWNER, true);
 	}
@@ -239,6 +256,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwner(IfcActorSelect newOwner) {
 		eSet(Ifc4Package.Literals.IFC_ASSET__OWNER, newOwner);
 	}
@@ -248,6 +266,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetOwner() {
 		eUnset(Ifc4Package.Literals.IFC_ASSET__OWNER);
 	}
@@ -257,6 +276,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetOwner() {
 		return eIsSet(Ifc4Package.Literals.IFC_ASSET__OWNER);
 	}
@@ -266,6 +286,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcActorSelect getUser() {
 		return (IfcActorSelect) eGet(Ifc4Package.Literals.IFC_ASSET__USER, true);
 	}
@@ -275,6 +296,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUser(IfcActorSelect newUser) {
 		eSet(Ifc4Package.Literals.IFC_ASSET__USER, newUser);
 	}
@@ -284,6 +306,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetUser() {
 		eUnset(Ifc4Package.Literals.IFC_ASSET__USER);
 	}
@@ -293,6 +316,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetUser() {
 		return eIsSet(Ifc4Package.Literals.IFC_ASSET__USER);
 	}
@@ -302,6 +326,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPerson getResponsiblePerson() {
 		return (IfcPerson) eGet(Ifc4Package.Literals.IFC_ASSET__RESPONSIBLE_PERSON, true);
 	}
@@ -311,6 +336,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setResponsiblePerson(IfcPerson newResponsiblePerson) {
 		eSet(Ifc4Package.Literals.IFC_ASSET__RESPONSIBLE_PERSON, newResponsiblePerson);
 	}
@@ -320,6 +346,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetResponsiblePerson() {
 		eUnset(Ifc4Package.Literals.IFC_ASSET__RESPONSIBLE_PERSON);
 	}
@@ -329,6 +356,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetResponsiblePerson() {
 		return eIsSet(Ifc4Package.Literals.IFC_ASSET__RESPONSIBLE_PERSON);
 	}
@@ -338,6 +366,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIncorporationDate() {
 		return (String) eGet(Ifc4Package.Literals.IFC_ASSET__INCORPORATION_DATE, true);
 	}
@@ -347,6 +376,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIncorporationDate(String newIncorporationDate) {
 		eSet(Ifc4Package.Literals.IFC_ASSET__INCORPORATION_DATE, newIncorporationDate);
 	}
@@ -356,6 +386,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetIncorporationDate() {
 		eUnset(Ifc4Package.Literals.IFC_ASSET__INCORPORATION_DATE);
 	}
@@ -365,6 +396,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetIncorporationDate() {
 		return eIsSet(Ifc4Package.Literals.IFC_ASSET__INCORPORATION_DATE);
 	}
@@ -374,6 +406,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCostValue getDepreciatedValue() {
 		return (IfcCostValue) eGet(Ifc4Package.Literals.IFC_ASSET__DEPRECIATED_VALUE, true);
 	}
@@ -383,6 +416,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDepreciatedValue(IfcCostValue newDepreciatedValue) {
 		eSet(Ifc4Package.Literals.IFC_ASSET__DEPRECIATED_VALUE, newDepreciatedValue);
 	}
@@ -392,6 +426,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetDepreciatedValue() {
 		eUnset(Ifc4Package.Literals.IFC_ASSET__DEPRECIATED_VALUE);
 	}
@@ -401,6 +436,7 @@ public class IfcAssetImpl extends IfcGroupImpl implements IfcAsset {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetDepreciatedValue() {
 		return eIsSet(Ifc4Package.Literals.IFC_ASSET__DEPRECIATED_VALUE);
 	}

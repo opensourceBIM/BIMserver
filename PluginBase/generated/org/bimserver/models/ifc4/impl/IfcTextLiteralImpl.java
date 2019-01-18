@@ -79,6 +79,7 @@ public class IfcTextLiteralImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLiteral() {
 		return (String) eGet(Ifc4Package.Literals.IFC_TEXT_LITERAL__LITERAL, true);
 	}
@@ -88,6 +89,7 @@ public class IfcTextLiteralImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLiteral(String newLiteral) {
 		eSet(Ifc4Package.Literals.IFC_TEXT_LITERAL__LITERAL, newLiteral);
 	}
@@ -97,6 +99,7 @@ public class IfcTextLiteralImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAxis2Placement getPlacement() {
 		return (IfcAxis2Placement) eGet(Ifc4Package.Literals.IFC_TEXT_LITERAL__PLACEMENT, true);
 	}
@@ -106,6 +109,7 @@ public class IfcTextLiteralImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPlacement(IfcAxis2Placement newPlacement) {
 		eSet(Ifc4Package.Literals.IFC_TEXT_LITERAL__PLACEMENT, newPlacement);
 	}
@@ -115,6 +119,7 @@ public class IfcTextLiteralImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTextPath getPath() {
 		return (IfcTextPath) eGet(Ifc4Package.Literals.IFC_TEXT_LITERAL__PATH, true);
 	}
@@ -124,6 +129,7 @@ public class IfcTextLiteralImpl extends IfcGeometricRepresentationItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPath(IfcTextPath newPath) {
 		eSet(Ifc4Package.Literals.IFC_TEXT_LITERAL__PATH, newPath);
 	}

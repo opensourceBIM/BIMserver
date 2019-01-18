@@ -67,6 +67,7 @@ public interface IfcRelServicesBuildings extends IfcRelConnects {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelServicesBuildings_RelatingSystem()
 	 * @see org.bimserver.models.ifc4.IfcSystem#getServicesBuildings
 	 * @model opposite="ServicesBuildings"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcSystem getRelatingSystem();
@@ -95,6 +96,7 @@ public interface IfcRelServicesBuildings extends IfcRelConnects {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelServicesBuildings_RelatedBuildings()
 	 * @see org.bimserver.models.ifc4.IfcSpatialElement#getServicedBySystems
 	 * @model opposite="ServicedBySystems"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcSpatialElement> getRelatedBuildings();

@@ -101,6 +101,8 @@ public interface IfcVolumeMeasure extends IfcMeasureValue {
 	 * @see #setWrappedValueAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcVolumeMeasure_WrappedValueAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getWrappedValueAsString();

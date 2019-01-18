@@ -77,6 +77,7 @@ public class IfcProtectiveDeviceTrippingUnitTypeImpl extends IfcDistributionCont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProtectiveDeviceTrippingUnitTypeEnum getPredefinedType() {
 		return (IfcProtectiveDeviceTrippingUnitTypeEnum) eGet(
 				Ifc4Package.Literals.IFC_PROTECTIVE_DEVICE_TRIPPING_UNIT_TYPE__PREDEFINED_TYPE, true);
@@ -87,6 +88,7 @@ public class IfcProtectiveDeviceTrippingUnitTypeImpl extends IfcDistributionCont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcProtectiveDeviceTrippingUnitTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_PROTECTIVE_DEVICE_TRIPPING_UNIT_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

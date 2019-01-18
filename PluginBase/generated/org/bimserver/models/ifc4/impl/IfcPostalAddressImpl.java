@@ -82,6 +82,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getInternalLocation() {
 		return (String) eGet(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__INTERNAL_LOCATION, true);
 	}
@@ -91,6 +92,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInternalLocation(String newInternalLocation) {
 		eSet(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__INTERNAL_LOCATION, newInternalLocation);
 	}
@@ -100,6 +102,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetInternalLocation() {
 		eUnset(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__INTERNAL_LOCATION);
 	}
@@ -109,6 +112,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetInternalLocation() {
 		return eIsSet(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__INTERNAL_LOCATION);
 	}
@@ -119,6 +123,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<String> getAddressLines() {
 		return (EList<String>) eGet(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__ADDRESS_LINES, true);
 	}
@@ -128,6 +133,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetAddressLines() {
 		eUnset(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__ADDRESS_LINES);
 	}
@@ -137,6 +143,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetAddressLines() {
 		return eIsSet(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__ADDRESS_LINES);
 	}
@@ -146,6 +153,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getPostalBox() {
 		return (String) eGet(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__POSTAL_BOX, true);
 	}
@@ -155,6 +163,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPostalBox(String newPostalBox) {
 		eSet(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__POSTAL_BOX, newPostalBox);
 	}
@@ -164,6 +173,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPostalBox() {
 		eUnset(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__POSTAL_BOX);
 	}
@@ -173,6 +183,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPostalBox() {
 		return eIsSet(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__POSTAL_BOX);
 	}
@@ -182,6 +193,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTown() {
 		return (String) eGet(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__TOWN, true);
 	}
@@ -191,6 +203,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTown(String newTown) {
 		eSet(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__TOWN, newTown);
 	}
@@ -200,6 +213,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetTown() {
 		eUnset(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__TOWN);
 	}
@@ -209,6 +223,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetTown() {
 		return eIsSet(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__TOWN);
 	}
@@ -218,6 +233,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRegion() {
 		return (String) eGet(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__REGION, true);
 	}
@@ -227,6 +243,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRegion(String newRegion) {
 		eSet(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__REGION, newRegion);
 	}
@@ -236,6 +253,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetRegion() {
 		eUnset(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__REGION);
 	}
@@ -245,6 +263,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetRegion() {
 		return eIsSet(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__REGION);
 	}
@@ -254,6 +273,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getPostalCode() {
 		return (String) eGet(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__POSTAL_CODE, true);
 	}
@@ -263,6 +283,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPostalCode(String newPostalCode) {
 		eSet(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__POSTAL_CODE, newPostalCode);
 	}
@@ -272,6 +293,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPostalCode() {
 		eUnset(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__POSTAL_CODE);
 	}
@@ -281,6 +303,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPostalCode() {
 		return eIsSet(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__POSTAL_CODE);
 	}
@@ -290,6 +313,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCountry() {
 		return (String) eGet(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__COUNTRY, true);
 	}
@@ -299,6 +323,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCountry(String newCountry) {
 		eSet(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__COUNTRY, newCountry);
 	}
@@ -308,6 +333,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetCountry() {
 		eUnset(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__COUNTRY);
 	}
@@ -317,6 +343,7 @@ public class IfcPostalAddressImpl extends IfcAddressImpl implements IfcPostalAdd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetCountry() {
 		return eIsSet(Ifc4Package.Literals.IFC_POSTAL_ADDRESS__COUNTRY);
 	}

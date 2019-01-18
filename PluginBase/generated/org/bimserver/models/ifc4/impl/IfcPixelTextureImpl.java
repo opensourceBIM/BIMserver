@@ -79,6 +79,7 @@ public class IfcPixelTextureImpl extends IfcSurfaceTextureImpl implements IfcPix
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getWidth() {
 		return (Long) eGet(Ifc4Package.Literals.IFC_PIXEL_TEXTURE__WIDTH, true);
 	}
@@ -88,6 +89,7 @@ public class IfcPixelTextureImpl extends IfcSurfaceTextureImpl implements IfcPix
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWidth(long newWidth) {
 		eSet(Ifc4Package.Literals.IFC_PIXEL_TEXTURE__WIDTH, newWidth);
 	}
@@ -97,6 +99,7 @@ public class IfcPixelTextureImpl extends IfcSurfaceTextureImpl implements IfcPix
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getHeight() {
 		return (Long) eGet(Ifc4Package.Literals.IFC_PIXEL_TEXTURE__HEIGHT, true);
 	}
@@ -106,6 +109,7 @@ public class IfcPixelTextureImpl extends IfcSurfaceTextureImpl implements IfcPix
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHeight(long newHeight) {
 		eSet(Ifc4Package.Literals.IFC_PIXEL_TEXTURE__HEIGHT, newHeight);
 	}
@@ -115,6 +119,7 @@ public class IfcPixelTextureImpl extends IfcSurfaceTextureImpl implements IfcPix
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getColourComponents() {
 		return (Long) eGet(Ifc4Package.Literals.IFC_PIXEL_TEXTURE__COLOUR_COMPONENTS, true);
 	}
@@ -124,6 +129,7 @@ public class IfcPixelTextureImpl extends IfcSurfaceTextureImpl implements IfcPix
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setColourComponents(long newColourComponents) {
 		eSet(Ifc4Package.Literals.IFC_PIXEL_TEXTURE__COLOUR_COMPONENTS, newColourComponents);
 	}
@@ -134,6 +140,7 @@ public class IfcPixelTextureImpl extends IfcSurfaceTextureImpl implements IfcPix
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<byte[]> getPixel() {
 		return (EList<byte[]>) eGet(Ifc4Package.Literals.IFC_PIXEL_TEXTURE__PIXEL, true);
 	}

@@ -45,7 +45,8 @@ public interface IfcRelAssociatesDocument extends IfcRelAssociates {
 	 * @return the value of the '<em>Relating Document</em>' reference.
 	 * @see #setRelatingDocument(IfcDocumentSelect)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelAssociatesDocument_RelatingDocument()
-	 * @model
+	 * @model annotation="inverse"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcDocumentSelect getRelatingDocument();

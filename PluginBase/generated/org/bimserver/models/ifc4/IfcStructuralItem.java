@@ -66,6 +66,7 @@ public interface IfcStructuralItem extends IfcProduct, IfcStructuralActivityAssi
 	 * @see #unsetAssignedStructuralActivity()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralItem_AssignedStructuralActivity()
 	 * @model unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelConnectsStructuralActivity> getAssignedStructuralActivity();

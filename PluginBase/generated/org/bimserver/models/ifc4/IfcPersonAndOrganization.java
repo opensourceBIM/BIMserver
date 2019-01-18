@@ -68,6 +68,7 @@ public interface IfcPersonAndOrganization extends IfcActorSelect, IfcObjectRefer
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPersonAndOrganization_ThePerson()
 	 * @see org.bimserver.models.ifc4.IfcPerson#getEngagedIn
 	 * @model opposite="EngagedIn"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcPerson getThePerson();
@@ -96,6 +97,7 @@ public interface IfcPersonAndOrganization extends IfcActorSelect, IfcObjectRefer
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPersonAndOrganization_TheOrganization()
 	 * @see org.bimserver.models.ifc4.IfcOrganization#getEngages
 	 * @model opposite="Engages"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcOrganization getTheOrganization();

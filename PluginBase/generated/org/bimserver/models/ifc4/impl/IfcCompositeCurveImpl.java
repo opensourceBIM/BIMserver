@@ -82,6 +82,7 @@ public class IfcCompositeCurveImpl extends IfcBoundedCurveImpl implements IfcCom
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcCompositeCurveSegment> getSegments() {
 		return (EList<IfcCompositeCurveSegment>) eGet(Ifc4Package.Literals.IFC_COMPOSITE_CURVE__SEGMENTS, true);
 	}
@@ -91,6 +92,7 @@ public class IfcCompositeCurveImpl extends IfcBoundedCurveImpl implements IfcCom
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Tristate getSelfIntersect() {
 		return (Tristate) eGet(Ifc4Package.Literals.IFC_COMPOSITE_CURVE__SELF_INTERSECT, true);
 	}
@@ -100,6 +102,7 @@ public class IfcCompositeCurveImpl extends IfcBoundedCurveImpl implements IfcCom
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSelfIntersect(Tristate newSelfIntersect) {
 		eSet(Ifc4Package.Literals.IFC_COMPOSITE_CURVE__SELF_INTERSECT, newSelfIntersect);
 	}
@@ -109,6 +112,7 @@ public class IfcCompositeCurveImpl extends IfcBoundedCurveImpl implements IfcCom
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Tristate getClosedCurve() {
 		return (Tristate) eGet(Ifc4Package.Literals.IFC_COMPOSITE_CURVE__CLOSED_CURVE, true);
 	}
@@ -118,6 +122,7 @@ public class IfcCompositeCurveImpl extends IfcBoundedCurveImpl implements IfcCom
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClosedCurve(Tristate newClosedCurve) {
 		eSet(Ifc4Package.Literals.IFC_COMPOSITE_CURVE__CLOSED_CURVE, newClosedCurve);
 	}
@@ -127,6 +132,7 @@ public class IfcCompositeCurveImpl extends IfcBoundedCurveImpl implements IfcCom
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetClosedCurve() {
 		eUnset(Ifc4Package.Literals.IFC_COMPOSITE_CURVE__CLOSED_CURVE);
 	}
@@ -136,6 +142,7 @@ public class IfcCompositeCurveImpl extends IfcBoundedCurveImpl implements IfcCom
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetClosedCurve() {
 		return eIsSet(Ifc4Package.Literals.IFC_COMPOSITE_CURVE__CLOSED_CURVE);
 	}
@@ -145,6 +152,7 @@ public class IfcCompositeCurveImpl extends IfcBoundedCurveImpl implements IfcCom
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getNSegments() {
 		return (Long) eGet(Ifc4Package.Literals.IFC_COMPOSITE_CURVE__NSEGMENTS, true);
 	}
@@ -154,6 +162,7 @@ public class IfcCompositeCurveImpl extends IfcBoundedCurveImpl implements IfcCom
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNSegments(long newNSegments) {
 		eSet(Ifc4Package.Literals.IFC_COMPOSITE_CURVE__NSEGMENTS, newNSegments);
 	}
@@ -163,6 +172,7 @@ public class IfcCompositeCurveImpl extends IfcBoundedCurveImpl implements IfcCom
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetNSegments() {
 		eUnset(Ifc4Package.Literals.IFC_COMPOSITE_CURVE__NSEGMENTS);
 	}
@@ -172,6 +182,7 @@ public class IfcCompositeCurveImpl extends IfcBoundedCurveImpl implements IfcCom
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetNSegments() {
 		return eIsSet(Ifc4Package.Literals.IFC_COMPOSITE_CURVE__NSEGMENTS);
 	}

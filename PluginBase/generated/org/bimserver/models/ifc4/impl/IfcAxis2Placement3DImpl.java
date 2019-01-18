@@ -77,6 +77,7 @@ public class IfcAxis2Placement3DImpl extends IfcPlacementImpl implements IfcAxis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDirection getAxis() {
 		return (IfcDirection) eGet(Ifc4Package.Literals.IFC_AXIS2_PLACEMENT3_D__AXIS, true);
 	}
@@ -86,6 +87,7 @@ public class IfcAxis2Placement3DImpl extends IfcPlacementImpl implements IfcAxis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAxis(IfcDirection newAxis) {
 		eSet(Ifc4Package.Literals.IFC_AXIS2_PLACEMENT3_D__AXIS, newAxis);
 	}
@@ -95,6 +97,7 @@ public class IfcAxis2Placement3DImpl extends IfcPlacementImpl implements IfcAxis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetAxis() {
 		eUnset(Ifc4Package.Literals.IFC_AXIS2_PLACEMENT3_D__AXIS);
 	}
@@ -104,6 +107,7 @@ public class IfcAxis2Placement3DImpl extends IfcPlacementImpl implements IfcAxis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetAxis() {
 		return eIsSet(Ifc4Package.Literals.IFC_AXIS2_PLACEMENT3_D__AXIS);
 	}
@@ -113,6 +117,7 @@ public class IfcAxis2Placement3DImpl extends IfcPlacementImpl implements IfcAxis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDirection getRefDirection() {
 		return (IfcDirection) eGet(Ifc4Package.Literals.IFC_AXIS2_PLACEMENT3_D__REF_DIRECTION, true);
 	}
@@ -122,6 +127,7 @@ public class IfcAxis2Placement3DImpl extends IfcPlacementImpl implements IfcAxis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRefDirection(IfcDirection newRefDirection) {
 		eSet(Ifc4Package.Literals.IFC_AXIS2_PLACEMENT3_D__REF_DIRECTION, newRefDirection);
 	}
@@ -131,6 +137,7 @@ public class IfcAxis2Placement3DImpl extends IfcPlacementImpl implements IfcAxis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetRefDirection() {
 		eUnset(Ifc4Package.Literals.IFC_AXIS2_PLACEMENT3_D__REF_DIRECTION);
 	}
@@ -140,6 +147,7 @@ public class IfcAxis2Placement3DImpl extends IfcPlacementImpl implements IfcAxis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetRefDirection() {
 		return eIsSet(Ifc4Package.Literals.IFC_AXIS2_PLACEMENT3_D__REF_DIRECTION);
 	}

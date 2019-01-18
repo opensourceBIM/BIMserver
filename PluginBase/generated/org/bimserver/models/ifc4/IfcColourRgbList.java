@@ -63,7 +63,7 @@ public interface IfcColourRgbList extends IfcPresentationItem {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Colour List</em>' reference list.
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcColourRgbList_ColourList()
-	 * @model
+	 * @model annotation="twodimensionalarray"
 	 * @generated
 	 */
 	EList<ListOfIfcNormalisedRatioMeasure> getColourList();

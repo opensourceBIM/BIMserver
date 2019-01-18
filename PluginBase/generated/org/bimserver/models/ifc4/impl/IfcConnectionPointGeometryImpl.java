@@ -77,6 +77,7 @@ public class IfcConnectionPointGeometryImpl extends IfcConnectionGeometryImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPointOrVertexPoint getPointOnRelatingElement() {
 		return (IfcPointOrVertexPoint) eGet(
 				Ifc4Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATING_ELEMENT, true);
@@ -87,6 +88,7 @@ public class IfcConnectionPointGeometryImpl extends IfcConnectionGeometryImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPointOnRelatingElement(IfcPointOrVertexPoint newPointOnRelatingElement) {
 		eSet(Ifc4Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATING_ELEMENT, newPointOnRelatingElement);
 	}
@@ -96,6 +98,7 @@ public class IfcConnectionPointGeometryImpl extends IfcConnectionGeometryImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPointOrVertexPoint getPointOnRelatedElement() {
 		return (IfcPointOrVertexPoint) eGet(
 				Ifc4Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATED_ELEMENT, true);
@@ -106,6 +109,7 @@ public class IfcConnectionPointGeometryImpl extends IfcConnectionGeometryImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPointOnRelatedElement(IfcPointOrVertexPoint newPointOnRelatedElement) {
 		eSet(Ifc4Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATED_ELEMENT, newPointOnRelatedElement);
 	}
@@ -115,6 +119,7 @@ public class IfcConnectionPointGeometryImpl extends IfcConnectionGeometryImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPointOnRelatedElement() {
 		eUnset(Ifc4Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATED_ELEMENT);
 	}
@@ -124,6 +129,7 @@ public class IfcConnectionPointGeometryImpl extends IfcConnectionGeometryImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPointOnRelatedElement() {
 		return eIsSet(Ifc4Package.Literals.IFC_CONNECTION_POINT_GEOMETRY__POINT_ON_RELATED_ELEMENT);
 	}

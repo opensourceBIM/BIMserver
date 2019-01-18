@@ -68,6 +68,7 @@ public interface IfcMaterialRelationship extends IfcResourceLevelRelationship {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialRelationship_RelatingMaterial()
 	 * @see org.bimserver.models.ifc4.IfcMaterial#getRelatesTo
 	 * @model opposite="RelatesTo"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcMaterial getRelatingMaterial();
@@ -96,6 +97,7 @@ public interface IfcMaterialRelationship extends IfcResourceLevelRelationship {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialRelationship_RelatedMaterials()
 	 * @see org.bimserver.models.ifc4.IfcMaterial#getIsRelatedWith
 	 * @model opposite="IsRelatedWith"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcMaterial> getRelatedMaterials();

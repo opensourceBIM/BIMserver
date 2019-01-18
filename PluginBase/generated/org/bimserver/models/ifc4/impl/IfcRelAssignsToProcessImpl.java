@@ -78,6 +78,7 @@ public class IfcRelAssignsToProcessImpl extends IfcRelAssignsImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProcessSelect getRelatingProcess() {
 		return (IfcProcessSelect) eGet(Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__RELATING_PROCESS, true);
 	}
@@ -87,6 +88,7 @@ public class IfcRelAssignsToProcessImpl extends IfcRelAssignsImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRelatingProcess(IfcProcessSelect newRelatingProcess) {
 		eSet(Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__RELATING_PROCESS, newRelatingProcess);
 	}
@@ -96,6 +98,7 @@ public class IfcRelAssignsToProcessImpl extends IfcRelAssignsImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMeasureWithUnit getQuantityInProcess() {
 		return (IfcMeasureWithUnit) eGet(Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__QUANTITY_IN_PROCESS, true);
 	}
@@ -105,6 +108,7 @@ public class IfcRelAssignsToProcessImpl extends IfcRelAssignsImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setQuantityInProcess(IfcMeasureWithUnit newQuantityInProcess) {
 		eSet(Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__QUANTITY_IN_PROCESS, newQuantityInProcess);
 	}
@@ -114,6 +118,7 @@ public class IfcRelAssignsToProcessImpl extends IfcRelAssignsImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetQuantityInProcess() {
 		eUnset(Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__QUANTITY_IN_PROCESS);
 	}
@@ -123,6 +128,7 @@ public class IfcRelAssignsToProcessImpl extends IfcRelAssignsImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetQuantityInProcess() {
 		return eIsSet(Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_PROCESS__QUANTITY_IN_PROCESS);
 	}

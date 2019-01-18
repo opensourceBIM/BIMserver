@@ -84,6 +84,7 @@ public class IfcTriangulatedFaceSetImpl extends IfcTessellatedFaceSetImpl implem
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<ListOfIfcParameterValue> getNormals() {
 		return (EList<ListOfIfcParameterValue>) eGet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__NORMALS, true);
 	}
@@ -93,6 +94,7 @@ public class IfcTriangulatedFaceSetImpl extends IfcTessellatedFaceSetImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Tristate getClosed() {
 		return (Tristate) eGet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__CLOSED, true);
 	}
@@ -102,6 +104,7 @@ public class IfcTriangulatedFaceSetImpl extends IfcTessellatedFaceSetImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClosed(Tristate newClosed) {
 		eSet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__CLOSED, newClosed);
 	}
@@ -111,6 +114,7 @@ public class IfcTriangulatedFaceSetImpl extends IfcTessellatedFaceSetImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetClosed() {
 		eUnset(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__CLOSED);
 	}
@@ -120,6 +124,7 @@ public class IfcTriangulatedFaceSetImpl extends IfcTessellatedFaceSetImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetClosed() {
 		return eIsSet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__CLOSED);
 	}
@@ -130,6 +135,7 @@ public class IfcTriangulatedFaceSetImpl extends IfcTessellatedFaceSetImpl implem
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<ListOfELong> getCoordIndex() {
 		return (EList<ListOfELong>) eGet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__COORD_INDEX, true);
 	}
@@ -140,6 +146,7 @@ public class IfcTriangulatedFaceSetImpl extends IfcTessellatedFaceSetImpl implem
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Long> getPnIndex() {
 		return (EList<Long>) eGet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__PN_INDEX, true);
 	}
@@ -149,6 +156,7 @@ public class IfcTriangulatedFaceSetImpl extends IfcTessellatedFaceSetImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPnIndex() {
 		eUnset(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__PN_INDEX);
 	}
@@ -158,6 +166,7 @@ public class IfcTriangulatedFaceSetImpl extends IfcTessellatedFaceSetImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPnIndex() {
 		return eIsSet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__PN_INDEX);
 	}
@@ -167,6 +176,7 @@ public class IfcTriangulatedFaceSetImpl extends IfcTessellatedFaceSetImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getNumberOfTriangles() {
 		return (Long) eGet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__NUMBER_OF_TRIANGLES, true);
 	}
@@ -176,6 +186,7 @@ public class IfcTriangulatedFaceSetImpl extends IfcTessellatedFaceSetImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNumberOfTriangles(long newNumberOfTriangles) {
 		eSet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__NUMBER_OF_TRIANGLES, newNumberOfTriangles);
 	}
@@ -185,6 +196,7 @@ public class IfcTriangulatedFaceSetImpl extends IfcTessellatedFaceSetImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetNumberOfTriangles() {
 		eUnset(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__NUMBER_OF_TRIANGLES);
 	}
@@ -194,6 +206,7 @@ public class IfcTriangulatedFaceSetImpl extends IfcTessellatedFaceSetImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetNumberOfTriangles() {
 		return eIsSet(Ifc4Package.Literals.IFC_TRIANGULATED_FACE_SET__NUMBER_OF_TRIANGLES);
 	}

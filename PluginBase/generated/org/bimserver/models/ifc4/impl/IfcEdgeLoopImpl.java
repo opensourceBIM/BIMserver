@@ -79,6 +79,7 @@ public class IfcEdgeLoopImpl extends IfcLoopImpl implements IfcEdgeLoop {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcOrientedEdge> getEdgeList() {
 		return (EList<IfcOrientedEdge>) eGet(Ifc4Package.Literals.IFC_EDGE_LOOP__EDGE_LIST, true);
 	}
@@ -88,6 +89,7 @@ public class IfcEdgeLoopImpl extends IfcLoopImpl implements IfcEdgeLoop {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getNe() {
 		return (Long) eGet(Ifc4Package.Literals.IFC_EDGE_LOOP__NE, true);
 	}
@@ -97,6 +99,7 @@ public class IfcEdgeLoopImpl extends IfcLoopImpl implements IfcEdgeLoop {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNe(long newNe) {
 		eSet(Ifc4Package.Literals.IFC_EDGE_LOOP__NE, newNe);
 	}
@@ -106,6 +109,7 @@ public class IfcEdgeLoopImpl extends IfcLoopImpl implements IfcEdgeLoop {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetNe() {
 		eUnset(Ifc4Package.Literals.IFC_EDGE_LOOP__NE);
 	}
@@ -115,6 +119,7 @@ public class IfcEdgeLoopImpl extends IfcLoopImpl implements IfcEdgeLoop {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetNe() {
 		return eIsSet(Ifc4Package.Literals.IFC_EDGE_LOOP__NE);
 	}

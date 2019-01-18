@@ -228,6 +228,7 @@ public interface IfcTypeResource extends IfcTypeObject, IfcResourceSelect {
 	 * @see #unsetResourceOf()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTypeResource_ResourceOf()
 	 * @model unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelAssignsToResource> getResourceOf();

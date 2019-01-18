@@ -79,6 +79,7 @@ public class IfcCompositeProfileDefImpl extends IfcProfileDefImpl implements Ifc
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcProfileDef> getProfiles() {
 		return (EList<IfcProfileDef>) eGet(Ifc4Package.Literals.IFC_COMPOSITE_PROFILE_DEF__PROFILES, true);
 	}
@@ -88,6 +89,7 @@ public class IfcCompositeProfileDefImpl extends IfcProfileDefImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLabel() {
 		return (String) eGet(Ifc4Package.Literals.IFC_COMPOSITE_PROFILE_DEF__LABEL, true);
 	}
@@ -97,6 +99,7 @@ public class IfcCompositeProfileDefImpl extends IfcProfileDefImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLabel(String newLabel) {
 		eSet(Ifc4Package.Literals.IFC_COMPOSITE_PROFILE_DEF__LABEL, newLabel);
 	}
@@ -106,6 +109,7 @@ public class IfcCompositeProfileDefImpl extends IfcProfileDefImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetLabel() {
 		eUnset(Ifc4Package.Literals.IFC_COMPOSITE_PROFILE_DEF__LABEL);
 	}
@@ -115,6 +119,7 @@ public class IfcCompositeProfileDefImpl extends IfcProfileDefImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetLabel() {
 		return eIsSet(Ifc4Package.Literals.IFC_COMPOSITE_PROFILE_DEF__LABEL);
 	}

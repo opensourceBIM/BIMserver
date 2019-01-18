@@ -89,6 +89,7 @@ public class IfcUnitAssignmentImpl extends IdEObjectImpl implements IfcUnitAssig
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcUnit> getUnits() {
 		return (EList<IfcUnit>) eGet(Ifc4Package.Literals.IFC_UNIT_ASSIGNMENT__UNITS, true);
 	}

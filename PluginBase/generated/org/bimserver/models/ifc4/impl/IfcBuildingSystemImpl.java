@@ -77,6 +77,7 @@ public class IfcBuildingSystemImpl extends IfcSystemImpl implements IfcBuildingS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBuildingSystemTypeEnum getPredefinedType() {
 		return (IfcBuildingSystemTypeEnum) eGet(Ifc4Package.Literals.IFC_BUILDING_SYSTEM__PREDEFINED_TYPE, true);
 	}
@@ -86,6 +87,7 @@ public class IfcBuildingSystemImpl extends IfcSystemImpl implements IfcBuildingS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcBuildingSystemTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_BUILDING_SYSTEM__PREDEFINED_TYPE, newPredefinedType);
 	}
@@ -95,6 +97,7 @@ public class IfcBuildingSystemImpl extends IfcSystemImpl implements IfcBuildingS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPredefinedType() {
 		eUnset(Ifc4Package.Literals.IFC_BUILDING_SYSTEM__PREDEFINED_TYPE);
 	}
@@ -104,6 +107,7 @@ public class IfcBuildingSystemImpl extends IfcSystemImpl implements IfcBuildingS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPredefinedType() {
 		return eIsSet(Ifc4Package.Literals.IFC_BUILDING_SYSTEM__PREDEFINED_TYPE);
 	}
@@ -113,6 +117,7 @@ public class IfcBuildingSystemImpl extends IfcSystemImpl implements IfcBuildingS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLongName() {
 		return (String) eGet(Ifc4Package.Literals.IFC_BUILDING_SYSTEM__LONG_NAME, true);
 	}
@@ -122,6 +127,7 @@ public class IfcBuildingSystemImpl extends IfcSystemImpl implements IfcBuildingS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLongName(String newLongName) {
 		eSet(Ifc4Package.Literals.IFC_BUILDING_SYSTEM__LONG_NAME, newLongName);
 	}
@@ -131,6 +137,7 @@ public class IfcBuildingSystemImpl extends IfcSystemImpl implements IfcBuildingS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetLongName() {
 		eUnset(Ifc4Package.Literals.IFC_BUILDING_SYSTEM__LONG_NAME);
 	}
@@ -140,6 +147,7 @@ public class IfcBuildingSystemImpl extends IfcSystemImpl implements IfcBuildingS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetLongName() {
 		return eIsSet(Ifc4Package.Literals.IFC_BUILDING_SYSTEM__LONG_NAME);
 	}

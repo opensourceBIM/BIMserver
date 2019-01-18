@@ -71,7 +71,8 @@ public interface IfcRelAssignsToGroupByFactor extends IfcRelAssignsToGroup {
 	 * @return the value of the '<em>Factor As String</em>' attribute.
 	 * @see #setFactorAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelAssignsToGroupByFactor_FactorAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getFactorAsString();

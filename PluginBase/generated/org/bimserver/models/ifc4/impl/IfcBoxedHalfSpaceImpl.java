@@ -76,6 +76,7 @@ public class IfcBoxedHalfSpaceImpl extends IfcHalfSpaceSolidImpl implements IfcB
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBoundingBox getEnclosure() {
 		return (IfcBoundingBox) eGet(Ifc4Package.Literals.IFC_BOXED_HALF_SPACE__ENCLOSURE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcBoxedHalfSpaceImpl extends IfcHalfSpaceSolidImpl implements IfcB
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEnclosure(IfcBoundingBox newEnclosure) {
 		eSet(Ifc4Package.Literals.IFC_BOXED_HALF_SPACE__ENCLOSURE, newEnclosure);
 	}

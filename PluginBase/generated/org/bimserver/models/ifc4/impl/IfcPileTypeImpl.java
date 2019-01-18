@@ -76,6 +76,7 @@ public class IfcPileTypeImpl extends IfcBuildingElementTypeImpl implements IfcPi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPileTypeEnum getPredefinedType() {
 		return (IfcPileTypeEnum) eGet(Ifc4Package.Literals.IFC_PILE_TYPE__PREDEFINED_TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcPileTypeImpl extends IfcBuildingElementTypeImpl implements IfcPi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcPileTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_PILE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

@@ -48,6 +48,7 @@ public interface IfcRelFillsElement extends IfcRelConnects {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelFillsElement_RelatingOpeningElement()
 	 * @see org.bimserver.models.ifc4.IfcOpeningElement#getHasFillings
 	 * @model opposite="HasFillings"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcOpeningElement getRelatingOpeningElement();
@@ -76,6 +77,7 @@ public interface IfcRelFillsElement extends IfcRelConnects {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelFillsElement_RelatedBuildingElement()
 	 * @see org.bimserver.models.ifc4.IfcElement#getFillsVoids
 	 * @model opposite="FillsVoids"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcElement getRelatedBuildingElement();

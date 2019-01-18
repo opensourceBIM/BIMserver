@@ -82,6 +82,7 @@ public class IfcSpatialElementImpl extends IfcProductImpl implements IfcSpatialE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLongName() {
 		return (String) eGet(Ifc4Package.Literals.IFC_SPATIAL_ELEMENT__LONG_NAME, true);
 	}
@@ -91,6 +92,7 @@ public class IfcSpatialElementImpl extends IfcProductImpl implements IfcSpatialE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLongName(String newLongName) {
 		eSet(Ifc4Package.Literals.IFC_SPATIAL_ELEMENT__LONG_NAME, newLongName);
 	}
@@ -100,6 +102,7 @@ public class IfcSpatialElementImpl extends IfcProductImpl implements IfcSpatialE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetLongName() {
 		eUnset(Ifc4Package.Literals.IFC_SPATIAL_ELEMENT__LONG_NAME);
 	}
@@ -109,6 +112,7 @@ public class IfcSpatialElementImpl extends IfcProductImpl implements IfcSpatialE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetLongName() {
 		return eIsSet(Ifc4Package.Literals.IFC_SPATIAL_ELEMENT__LONG_NAME);
 	}
@@ -119,6 +123,7 @@ public class IfcSpatialElementImpl extends IfcProductImpl implements IfcSpatialE
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelContainedInSpatialStructure> getContainsElements() {
 		return (EList<IfcRelContainedInSpatialStructure>) eGet(
 				Ifc4Package.Literals.IFC_SPATIAL_ELEMENT__CONTAINS_ELEMENTS, true);
@@ -129,6 +134,7 @@ public class IfcSpatialElementImpl extends IfcProductImpl implements IfcSpatialE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetContainsElements() {
 		eUnset(Ifc4Package.Literals.IFC_SPATIAL_ELEMENT__CONTAINS_ELEMENTS);
 	}
@@ -138,6 +144,7 @@ public class IfcSpatialElementImpl extends IfcProductImpl implements IfcSpatialE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetContainsElements() {
 		return eIsSet(Ifc4Package.Literals.IFC_SPATIAL_ELEMENT__CONTAINS_ELEMENTS);
 	}
@@ -148,6 +155,7 @@ public class IfcSpatialElementImpl extends IfcProductImpl implements IfcSpatialE
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelServicesBuildings> getServicedBySystems() {
 		return (EList<IfcRelServicesBuildings>) eGet(Ifc4Package.Literals.IFC_SPATIAL_ELEMENT__SERVICED_BY_SYSTEMS,
 				true);
@@ -158,6 +166,7 @@ public class IfcSpatialElementImpl extends IfcProductImpl implements IfcSpatialE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetServicedBySystems() {
 		eUnset(Ifc4Package.Literals.IFC_SPATIAL_ELEMENT__SERVICED_BY_SYSTEMS);
 	}
@@ -167,6 +176,7 @@ public class IfcSpatialElementImpl extends IfcProductImpl implements IfcSpatialE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetServicedBySystems() {
 		return eIsSet(Ifc4Package.Literals.IFC_SPATIAL_ELEMENT__SERVICED_BY_SYSTEMS);
 	}
@@ -177,6 +187,7 @@ public class IfcSpatialElementImpl extends IfcProductImpl implements IfcSpatialE
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelReferencedInSpatialStructure> getReferencesElements() {
 		return (EList<IfcRelReferencedInSpatialStructure>) eGet(
 				Ifc4Package.Literals.IFC_SPATIAL_ELEMENT__REFERENCES_ELEMENTS, true);
@@ -187,6 +198,7 @@ public class IfcSpatialElementImpl extends IfcProductImpl implements IfcSpatialE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetReferencesElements() {
 		eUnset(Ifc4Package.Literals.IFC_SPATIAL_ELEMENT__REFERENCES_ELEMENTS);
 	}
@@ -196,6 +208,7 @@ public class IfcSpatialElementImpl extends IfcProductImpl implements IfcSpatialE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetReferencesElements() {
 		return eIsSet(Ifc4Package.Literals.IFC_SPATIAL_ELEMENT__REFERENCES_ELEMENTS);
 	}

@@ -80,6 +80,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getRed() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_COLOUR_RGB__RED, true);
 	}
@@ -89,6 +90,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRed(double newRed) {
 		eSet(Ifc4Package.Literals.IFC_COLOUR_RGB__RED, newRed);
 	}
@@ -98,6 +100,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRedAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_COLOUR_RGB__RED_AS_STRING, true);
 	}
@@ -107,6 +110,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRedAsString(String newRedAsString) {
 		eSet(Ifc4Package.Literals.IFC_COLOUR_RGB__RED_AS_STRING, newRedAsString);
 	}
@@ -116,6 +120,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getGreen() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_COLOUR_RGB__GREEN, true);
 	}
@@ -125,6 +130,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGreen(double newGreen) {
 		eSet(Ifc4Package.Literals.IFC_COLOUR_RGB__GREEN, newGreen);
 	}
@@ -134,6 +140,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getGreenAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_COLOUR_RGB__GREEN_AS_STRING, true);
 	}
@@ -143,6 +150,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGreenAsString(String newGreenAsString) {
 		eSet(Ifc4Package.Literals.IFC_COLOUR_RGB__GREEN_AS_STRING, newGreenAsString);
 	}
@@ -152,6 +160,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getBlue() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_COLOUR_RGB__BLUE, true);
 	}
@@ -161,6 +170,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBlue(double newBlue) {
 		eSet(Ifc4Package.Literals.IFC_COLOUR_RGB__BLUE, newBlue);
 	}
@@ -170,6 +180,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getBlueAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_COLOUR_RGB__BLUE_AS_STRING, true);
 	}
@@ -179,6 +190,7 @@ public class IfcColourRgbImpl extends IfcColourSpecificationImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBlueAsString(String newBlueAsString) {
 		eSet(Ifc4Package.Literals.IFC_COLOUR_RGB__BLUE_AS_STRING, newBlueAsString);
 	}

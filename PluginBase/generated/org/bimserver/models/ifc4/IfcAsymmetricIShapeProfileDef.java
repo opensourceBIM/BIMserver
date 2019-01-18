@@ -71,7 +71,8 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcParameterizedProfileDe
 	 * @return the value of the '<em>Bottom Flange Width As String</em>' attribute.
 	 * @see #setBottomFlangeWidthAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcAsymmetricIShapeProfileDef_BottomFlangeWidthAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getBottomFlangeWidthAsString();
@@ -123,7 +124,8 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcParameterizedProfileDe
 	 * @return the value of the '<em>Overall Depth As String</em>' attribute.
 	 * @see #setOverallDepthAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcAsymmetricIShapeProfileDef_OverallDepthAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getOverallDepthAsString();
@@ -175,7 +177,8 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcParameterizedProfileDe
 	 * @return the value of the '<em>Web Thickness As String</em>' attribute.
 	 * @see #setWebThicknessAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcAsymmetricIShapeProfileDef_WebThicknessAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getWebThicknessAsString();
@@ -227,7 +230,8 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcParameterizedProfileDe
 	 * @return the value of the '<em>Bottom Flange Thickness As String</em>' attribute.
 	 * @see #setBottomFlangeThicknessAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcAsymmetricIShapeProfileDef_BottomFlangeThicknessAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getBottomFlangeThicknessAsString();
@@ -309,6 +313,8 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcParameterizedProfileDe
 	 * @see #setBottomFlangeFilletRadiusAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcAsymmetricIShapeProfileDef_BottomFlangeFilletRadiusAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getBottomFlangeFilletRadiusAsString();
@@ -385,7 +391,8 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcParameterizedProfileDe
 	 * @return the value of the '<em>Top Flange Width As String</em>' attribute.
 	 * @see #setTopFlangeWidthAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcAsymmetricIShapeProfileDef_TopFlangeWidthAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getTopFlangeWidthAsString();
@@ -467,6 +474,8 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcParameterizedProfileDe
 	 * @see #setTopFlangeThicknessAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcAsymmetricIShapeProfileDef_TopFlangeThicknessAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getTopFlangeThicknessAsString();
@@ -573,6 +582,8 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcParameterizedProfileDe
 	 * @see #setTopFlangeFilletRadiusAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcAsymmetricIShapeProfileDef_TopFlangeFilletRadiusAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getTopFlangeFilletRadiusAsString();
@@ -679,6 +690,8 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcParameterizedProfileDe
 	 * @see #setBottomFlangeEdgeRadiusAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcAsymmetricIShapeProfileDef_BottomFlangeEdgeRadiusAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getBottomFlangeEdgeRadiusAsString();
@@ -785,6 +798,8 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcParameterizedProfileDe
 	 * @see #setBottomFlangeSlopeAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcAsymmetricIShapeProfileDef_BottomFlangeSlopeAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getBottomFlangeSlopeAsString();
@@ -891,6 +906,8 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcParameterizedProfileDe
 	 * @see #setTopFlangeEdgeRadiusAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcAsymmetricIShapeProfileDef_TopFlangeEdgeRadiusAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getTopFlangeEdgeRadiusAsString();
@@ -997,6 +1014,8 @@ public interface IfcAsymmetricIShapeProfileDef extends IfcParameterizedProfileDe
 	 * @see #setTopFlangeSlopeAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcAsymmetricIShapeProfileDef_TopFlangeSlopeAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getTopFlangeSlopeAsString();

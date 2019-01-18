@@ -81,6 +81,7 @@ public class IfcStructuralLoadConfigurationImpl extends IfcStructuralLoadImpl
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcStructuralLoadOrResult> getValues() {
 		return (EList<IfcStructuralLoadOrResult>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_CONFIGURATION__VALUES,
 				true);
@@ -92,6 +93,7 @@ public class IfcStructuralLoadConfigurationImpl extends IfcStructuralLoadImpl
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<ListOfIfcLengthMeasure> getLocations() {
 		return (EList<ListOfIfcLengthMeasure>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_CONFIGURATION__LOCATIONS,
 				true);

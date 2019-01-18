@@ -77,6 +77,7 @@ public class IfcPlacementImpl extends IfcGeometricRepresentationItemImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCartesianPoint getLocation() {
 		return (IfcCartesianPoint) eGet(Ifc4Package.Literals.IFC_PLACEMENT__LOCATION, true);
 	}
@@ -86,6 +87,7 @@ public class IfcPlacementImpl extends IfcGeometricRepresentationItemImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLocation(IfcCartesianPoint newLocation) {
 		eSet(Ifc4Package.Literals.IFC_PLACEMENT__LOCATION, newLocation);
 	}
@@ -95,6 +97,7 @@ public class IfcPlacementImpl extends IfcGeometricRepresentationItemImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getDim() {
 		return (Long) eGet(Ifc4Package.Literals.IFC_PLACEMENT__DIM, true);
 	}
@@ -104,6 +107,7 @@ public class IfcPlacementImpl extends IfcGeometricRepresentationItemImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDim(long newDim) {
 		eSet(Ifc4Package.Literals.IFC_PLACEMENT__DIM, newDim);
 	}
@@ -113,6 +117,7 @@ public class IfcPlacementImpl extends IfcGeometricRepresentationItemImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetDim() {
 		eUnset(Ifc4Package.Literals.IFC_PLACEMENT__DIM);
 	}
@@ -122,6 +127,7 @@ public class IfcPlacementImpl extends IfcGeometricRepresentationItemImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetDim() {
 		return eIsSet(Ifc4Package.Literals.IFC_PLACEMENT__DIM);
 	}

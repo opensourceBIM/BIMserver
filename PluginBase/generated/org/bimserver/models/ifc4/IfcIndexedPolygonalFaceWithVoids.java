@@ -63,7 +63,7 @@ public interface IfcIndexedPolygonalFaceWithVoids extends IfcIndexedPolygonalFac
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Inner Coord Indices</em>' reference list.
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcIndexedPolygonalFaceWithVoids_InnerCoordIndices()
-	 * @model
+	 * @model annotation="twodimensionalarray"
 	 * @generated
 	 */
 	EList<ListOfELong> getInnerCoordIndices();

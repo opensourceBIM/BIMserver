@@ -111,6 +111,8 @@ public interface IfcMaterialLayerWithOffsets extends IfcMaterialLayer {
 	 * @return the value of the '<em>Offset Values As String</em>' attribute list.
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialLayerWithOffsets_OffsetValuesAsString()
 	 * @model unique="false"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	EList<String> getOffsetValuesAsString();

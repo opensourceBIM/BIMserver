@@ -78,6 +78,7 @@ public class IfcPropertySetImpl extends IfcPropertySetDefinitionImpl implements 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcProperty> getHasProperties() {
 		return (EList<IfcProperty>) eGet(Ifc4Package.Literals.IFC_PROPERTY_SET__HAS_PROPERTIES, true);
 	}

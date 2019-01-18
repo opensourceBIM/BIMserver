@@ -68,6 +68,7 @@ public interface IfcDistributionElement extends IfcElement {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDistributionElement_HasPorts()
 	 * @see org.bimserver.models.ifc4.IfcRelConnectsPortToElement#getRelatedElement
 	 * @model opposite="RelatedElement" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelConnectsPortToElement> getHasPorts();

@@ -76,6 +76,7 @@ public class IfcTubeBundleTypeImpl extends IfcEnergyConversionDeviceTypeImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTubeBundleTypeEnum getPredefinedType() {
 		return (IfcTubeBundleTypeEnum) eGet(Ifc4Package.Literals.IFC_TUBE_BUNDLE_TYPE__PREDEFINED_TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcTubeBundleTypeImpl extends IfcEnergyConversionDeviceTypeImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcTubeBundleTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_TUBE_BUNDLE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

@@ -79,6 +79,7 @@ public class IfcPropertyDependencyRelationshipImpl extends IfcResourceLevelRelat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProperty getDependingProperty() {
 		return (IfcProperty) eGet(Ifc4Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__DEPENDING_PROPERTY, true);
 	}
@@ -88,6 +89,7 @@ public class IfcPropertyDependencyRelationshipImpl extends IfcResourceLevelRelat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDependingProperty(IfcProperty newDependingProperty) {
 		eSet(Ifc4Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__DEPENDING_PROPERTY, newDependingProperty);
 	}
@@ -97,6 +99,7 @@ public class IfcPropertyDependencyRelationshipImpl extends IfcResourceLevelRelat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProperty getDependantProperty() {
 		return (IfcProperty) eGet(Ifc4Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__DEPENDANT_PROPERTY, true);
 	}
@@ -106,6 +109,7 @@ public class IfcPropertyDependencyRelationshipImpl extends IfcResourceLevelRelat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDependantProperty(IfcProperty newDependantProperty) {
 		eSet(Ifc4Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__DEPENDANT_PROPERTY, newDependantProperty);
 	}
@@ -115,6 +119,7 @@ public class IfcPropertyDependencyRelationshipImpl extends IfcResourceLevelRelat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getExpression() {
 		return (String) eGet(Ifc4Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__EXPRESSION, true);
 	}
@@ -124,6 +129,7 @@ public class IfcPropertyDependencyRelationshipImpl extends IfcResourceLevelRelat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExpression(String newExpression) {
 		eSet(Ifc4Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__EXPRESSION, newExpression);
 	}
@@ -133,6 +139,7 @@ public class IfcPropertyDependencyRelationshipImpl extends IfcResourceLevelRelat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetExpression() {
 		eUnset(Ifc4Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__EXPRESSION);
 	}
@@ -142,6 +149,7 @@ public class IfcPropertyDependencyRelationshipImpl extends IfcResourceLevelRelat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetExpression() {
 		return eIsSet(Ifc4Package.Literals.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP__EXPRESSION);
 	}

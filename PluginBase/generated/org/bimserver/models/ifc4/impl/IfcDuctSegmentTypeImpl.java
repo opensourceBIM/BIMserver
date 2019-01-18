@@ -76,6 +76,7 @@ public class IfcDuctSegmentTypeImpl extends IfcFlowSegmentTypeImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDuctSegmentTypeEnum getPredefinedType() {
 		return (IfcDuctSegmentTypeEnum) eGet(Ifc4Package.Literals.IFC_DUCT_SEGMENT_TYPE__PREDEFINED_TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcDuctSegmentTypeImpl extends IfcFlowSegmentTypeImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcDuctSegmentTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_DUCT_SEGMENT_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

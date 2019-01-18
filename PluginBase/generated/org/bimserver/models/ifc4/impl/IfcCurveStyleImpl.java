@@ -82,6 +82,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCurveFontOrScaledCurveFontSelect getCurveFont() {
 		return (IfcCurveFontOrScaledCurveFontSelect) eGet(Ifc4Package.Literals.IFC_CURVE_STYLE__CURVE_FONT, true);
 	}
@@ -91,6 +92,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCurveFont(IfcCurveFontOrScaledCurveFontSelect newCurveFont) {
 		eSet(Ifc4Package.Literals.IFC_CURVE_STYLE__CURVE_FONT, newCurveFont);
 	}
@@ -100,6 +102,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetCurveFont() {
 		eUnset(Ifc4Package.Literals.IFC_CURVE_STYLE__CURVE_FONT);
 	}
@@ -109,6 +112,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetCurveFont() {
 		return eIsSet(Ifc4Package.Literals.IFC_CURVE_STYLE__CURVE_FONT);
 	}
@@ -118,6 +122,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSizeSelect getCurveWidth() {
 		return (IfcSizeSelect) eGet(Ifc4Package.Literals.IFC_CURVE_STYLE__CURVE_WIDTH, true);
 	}
@@ -127,6 +132,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCurveWidth(IfcSizeSelect newCurveWidth) {
 		eSet(Ifc4Package.Literals.IFC_CURVE_STYLE__CURVE_WIDTH, newCurveWidth);
 	}
@@ -136,6 +142,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetCurveWidth() {
 		eUnset(Ifc4Package.Literals.IFC_CURVE_STYLE__CURVE_WIDTH);
 	}
@@ -145,6 +152,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetCurveWidth() {
 		return eIsSet(Ifc4Package.Literals.IFC_CURVE_STYLE__CURVE_WIDTH);
 	}
@@ -154,6 +162,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcColour getCurveColour() {
 		return (IfcColour) eGet(Ifc4Package.Literals.IFC_CURVE_STYLE__CURVE_COLOUR, true);
 	}
@@ -163,6 +172,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCurveColour(IfcColour newCurveColour) {
 		eSet(Ifc4Package.Literals.IFC_CURVE_STYLE__CURVE_COLOUR, newCurveColour);
 	}
@@ -172,6 +182,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetCurveColour() {
 		eUnset(Ifc4Package.Literals.IFC_CURVE_STYLE__CURVE_COLOUR);
 	}
@@ -181,6 +192,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetCurveColour() {
 		return eIsSet(Ifc4Package.Literals.IFC_CURVE_STYLE__CURVE_COLOUR);
 	}
@@ -190,6 +202,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Tristate getModelOrDraughting() {
 		return (Tristate) eGet(Ifc4Package.Literals.IFC_CURVE_STYLE__MODEL_OR_DRAUGHTING, true);
 	}
@@ -199,6 +212,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setModelOrDraughting(Tristate newModelOrDraughting) {
 		eSet(Ifc4Package.Literals.IFC_CURVE_STYLE__MODEL_OR_DRAUGHTING, newModelOrDraughting);
 	}
@@ -208,6 +222,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetModelOrDraughting() {
 		eUnset(Ifc4Package.Literals.IFC_CURVE_STYLE__MODEL_OR_DRAUGHTING);
 	}
@@ -217,6 +232,7 @@ public class IfcCurveStyleImpl extends IfcPresentationStyleImpl implements IfcCu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetModelOrDraughting() {
 		return eIsSet(Ifc4Package.Literals.IFC_CURVE_STYLE__MODEL_OR_DRAUGHTING);
 	}

@@ -71,7 +71,7 @@ public interface IfcTimeSeries extends IfcMetricValueSelect, IfcObjectReferenceS
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTimeSeries_Name()
-	 * @model
+	 * @model annotation="singleindex"
 	 * @generated
 	 */
 	String getName();
@@ -369,6 +369,7 @@ public interface IfcTimeSeries extends IfcMetricValueSelect, IfcObjectReferenceS
 	 * @see #unsetHasExternalReference()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTimeSeries_HasExternalReference()
 	 * @model unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcExternalReferenceRelationship> getHasExternalReference();

@@ -77,6 +77,7 @@ public class IfcCartesianTransformationOperator3DImpl extends IfcCartesianTransf
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDirection getAxis3() {
 		return (IfcDirection) eGet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_D__AXIS3, true);
 	}
@@ -86,6 +87,7 @@ public class IfcCartesianTransformationOperator3DImpl extends IfcCartesianTransf
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAxis3(IfcDirection newAxis3) {
 		eSet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_D__AXIS3, newAxis3);
 	}
@@ -95,6 +97,7 @@ public class IfcCartesianTransformationOperator3DImpl extends IfcCartesianTransf
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetAxis3() {
 		eUnset(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_D__AXIS3);
 	}
@@ -104,6 +107,7 @@ public class IfcCartesianTransformationOperator3DImpl extends IfcCartesianTransf
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetAxis3() {
 		return eIsSet(Ifc4Package.Literals.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_D__AXIS3);
 	}

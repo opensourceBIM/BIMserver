@@ -79,6 +79,7 @@ public class IfcRelCoversSpacesImpl extends IfcRelConnectsImpl implements IfcRel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSpace getRelatingSpace() {
 		return (IfcSpace) eGet(Ifc4Package.Literals.IFC_REL_COVERS_SPACES__RELATING_SPACE, true);
 	}
@@ -88,6 +89,7 @@ public class IfcRelCoversSpacesImpl extends IfcRelConnectsImpl implements IfcRel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRelatingSpace(IfcSpace newRelatingSpace) {
 		eSet(Ifc4Package.Literals.IFC_REL_COVERS_SPACES__RELATING_SPACE, newRelatingSpace);
 	}
@@ -98,6 +100,7 @@ public class IfcRelCoversSpacesImpl extends IfcRelConnectsImpl implements IfcRel
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcCovering> getRelatedCoverings() {
 		return (EList<IfcCovering>) eGet(Ifc4Package.Literals.IFC_REL_COVERS_SPACES__RELATED_COVERINGS, true);
 	}

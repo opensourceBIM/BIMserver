@@ -67,6 +67,7 @@ public interface IfcResourceConstraintRelationship extends IfcResourceLevelRelat
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcResourceConstraintRelationship_RelatingConstraint()
 	 * @see org.bimserver.models.ifc4.IfcConstraint#getPropertiesForConstraint
 	 * @model opposite="PropertiesForConstraint"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcConstraint getRelatingConstraint();
@@ -92,7 +93,7 @@ public interface IfcResourceConstraintRelationship extends IfcResourceLevelRelat
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Resource Objects</em>' reference list.
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcResourceConstraintRelationship_RelatedResourceObjects()
-	 * @model
+	 * @model annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcResourceObjectSelect> getRelatedResourceObjects();

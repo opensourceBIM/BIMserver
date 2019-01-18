@@ -71,7 +71,8 @@ public interface IfcCurveStyleFontPattern extends IfcPresentationItem {
 	 * @return the value of the '<em>Visible Segment Length As String</em>' attribute.
 	 * @see #setVisibleSegmentLengthAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCurveStyleFontPattern_VisibleSegmentLengthAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getVisibleSegmentLengthAsString();
@@ -123,7 +124,8 @@ public interface IfcCurveStyleFontPattern extends IfcPresentationItem {
 	 * @return the value of the '<em>Invisible Segment Length As String</em>' attribute.
 	 * @see #setInvisibleSegmentLengthAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCurveStyleFontPattern_InvisibleSegmentLengthAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getInvisibleSegmentLengthAsString();

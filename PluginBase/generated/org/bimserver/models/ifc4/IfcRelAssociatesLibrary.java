@@ -45,7 +45,8 @@ public interface IfcRelAssociatesLibrary extends IfcRelAssociates {
 	 * @return the value of the '<em>Relating Library</em>' reference.
 	 * @see #setRelatingLibrary(IfcLibrarySelect)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelAssociatesLibrary_RelatingLibrary()
-	 * @model
+	 * @model annotation="inverse"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcLibrarySelect getRelatingLibrary();

@@ -76,6 +76,7 @@ public class IfcSpaceHeaterTypeImpl extends IfcFlowTerminalTypeImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSpaceHeaterTypeEnum getPredefinedType() {
 		return (IfcSpaceHeaterTypeEnum) eGet(Ifc4Package.Literals.IFC_SPACE_HEATER_TYPE__PREDEFINED_TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcSpaceHeaterTypeImpl extends IfcFlowTerminalTypeImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcSpaceHeaterTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_SPACE_HEATER_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

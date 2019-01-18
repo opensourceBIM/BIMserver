@@ -77,6 +77,7 @@ public class IfcTaskTypeImpl extends IfcTypeProcessImpl implements IfcTaskType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTaskTypeEnum getPredefinedType() {
 		return (IfcTaskTypeEnum) eGet(Ifc4Package.Literals.IFC_TASK_TYPE__PREDEFINED_TYPE, true);
 	}
@@ -86,6 +87,7 @@ public class IfcTaskTypeImpl extends IfcTypeProcessImpl implements IfcTaskType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcTaskTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_TASK_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
@@ -95,6 +97,7 @@ public class IfcTaskTypeImpl extends IfcTypeProcessImpl implements IfcTaskType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getWorkMethod() {
 		return (String) eGet(Ifc4Package.Literals.IFC_TASK_TYPE__WORK_METHOD, true);
 	}
@@ -104,6 +107,7 @@ public class IfcTaskTypeImpl extends IfcTypeProcessImpl implements IfcTaskType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWorkMethod(String newWorkMethod) {
 		eSet(Ifc4Package.Literals.IFC_TASK_TYPE__WORK_METHOD, newWorkMethod);
 	}
@@ -113,6 +117,7 @@ public class IfcTaskTypeImpl extends IfcTypeProcessImpl implements IfcTaskType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetWorkMethod() {
 		eUnset(Ifc4Package.Literals.IFC_TASK_TYPE__WORK_METHOD);
 	}
@@ -122,6 +127,7 @@ public class IfcTaskTypeImpl extends IfcTypeProcessImpl implements IfcTaskType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetWorkMethod() {
 		return eIsSet(Ifc4Package.Literals.IFC_TASK_TYPE__WORK_METHOD);
 	}

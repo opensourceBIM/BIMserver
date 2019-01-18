@@ -85,6 +85,7 @@ public interface IfcFace extends IfcTopologicalRepresentationItem {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcFace_HasTextureMaps()
 	 * @see org.bimserver.models.ifc4.IfcTextureMap#getMappedTo
 	 * @model opposite="MappedTo" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcTextureMap> getHasTextureMaps();

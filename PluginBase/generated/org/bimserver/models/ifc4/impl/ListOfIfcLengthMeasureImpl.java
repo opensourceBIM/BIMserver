@@ -89,6 +89,7 @@ public class ListOfIfcLengthMeasureImpl extends IdEObjectImpl implements ListOfI
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcLengthMeasure> getList() {
 		return (EList<IfcLengthMeasure>) eGet(Ifc4Package.Literals.LIST_OF_IFC_LENGTH_MEASURE__LIST, true);
 	}

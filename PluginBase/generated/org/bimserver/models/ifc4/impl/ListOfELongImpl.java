@@ -88,6 +88,7 @@ public class ListOfELongImpl extends IdEObjectImpl implements ListOfELong {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Long> getList() {
 		return (EList<Long>) eGet(Ifc4Package.Literals.LIST_OF_ELONG__LIST, true);
 	}

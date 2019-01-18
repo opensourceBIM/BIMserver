@@ -49,7 +49,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcComplexNumber()
- * @model
+ * @model annotation="wrapped"
  * @generated
  */
 public interface IfcComplexNumber extends IfcMeasureValue {
@@ -106,6 +106,8 @@ public interface IfcComplexNumber extends IfcMeasureValue {
 	 * @see #unsetWrappedValueAsString()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcComplexNumber_WrappedValueAsString()
 	 * @model unsettable="true" upper="2"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	EList<String> getWrappedValueAsString();

@@ -65,7 +65,8 @@ public interface IfcCoordinateOperation extends IdEObject {
 	 * @return the value of the '<em>Source CRS</em>' reference.
 	 * @see #setSourceCRS(IfcCoordinateReferenceSystemSelect)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCoordinateOperation_SourceCRS()
-	 * @model
+	 * @model annotation="inverse"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcCoordinateReferenceSystemSelect getSourceCRS();

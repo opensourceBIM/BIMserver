@@ -63,7 +63,7 @@ public interface IfcIndexedTriangleTextureMap extends IfcIndexedTextureMap {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Tex Coord Index</em>' reference list.
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcIndexedTriangleTextureMap_TexCoordIndex()
-	 * @model
+	 * @model annotation="twodimensionalarray"
 	 * @generated
 	 */
 	EList<ListOfELong> getTexCoordIndex();

@@ -68,6 +68,7 @@ public interface IfcGroup extends IfcObject {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcGroup_IsGroupedBy()
 	 * @see org.bimserver.models.ifc4.IfcRelAssignsToGroup#getRelatingGroup
 	 * @model opposite="RelatingGroup" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelAssignsToGroup> getIsGroupedBy();

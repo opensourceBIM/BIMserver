@@ -48,6 +48,7 @@ public interface IfcProfileProperties extends IfcExtendedProperties {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcProfileProperties_ProfileDefinition()
 	 * @see org.bimserver.models.ifc4.IfcProfileDef#getHasProperties
 	 * @model opposite="HasProperties"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcProfileDef getProfileDefinition();

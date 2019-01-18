@@ -80,6 +80,7 @@ public class IfcExternalReferenceRelationshipImpl extends IfcResourceLevelRelati
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcExternalReference getRelatingReference() {
 		return (IfcExternalReference) eGet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE_RELATIONSHIP__RELATING_REFERENCE,
 				true);
@@ -90,6 +91,7 @@ public class IfcExternalReferenceRelationshipImpl extends IfcResourceLevelRelati
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRelatingReference(IfcExternalReference newRelatingReference) {
 		eSet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE_RELATIONSHIP__RELATING_REFERENCE, newRelatingReference);
 	}
@@ -100,6 +102,7 @@ public class IfcExternalReferenceRelationshipImpl extends IfcResourceLevelRelati
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcResourceObjectSelect> getRelatedResourceObjects() {
 		return (EList<IfcResourceObjectSelect>) eGet(
 				Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE_RELATIONSHIP__RELATED_RESOURCE_OBJECTS, true);

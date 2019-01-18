@@ -76,6 +76,7 @@ public class IfcTendonAnchorTypeImpl extends IfcReinforcingElementTypeImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTendonAnchorTypeEnum getPredefinedType() {
 		return (IfcTendonAnchorTypeEnum) eGet(Ifc4Package.Literals.IFC_TENDON_ANCHOR_TYPE__PREDEFINED_TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcTendonAnchorTypeImpl extends IfcReinforcingElementTypeImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcTendonAnchorTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_TENDON_ANCHOR_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

@@ -71,7 +71,8 @@ public interface IfcQuantityTime extends IfcPhysicalSimpleQuantity {
 	 * @return the value of the '<em>Time Value As String</em>' attribute.
 	 * @see #setTimeValueAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcQuantityTime_TimeValueAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getTimeValueAsString();

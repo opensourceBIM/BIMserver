@@ -101,6 +101,8 @@ public interface IfcThermodynamicTemperatureMeasure extends IfcMeasureValue {
 	 * @see #setWrappedValueAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcThermodynamicTemperatureMeasure_WrappedValueAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getWrappedValueAsString();

@@ -78,6 +78,7 @@ public class IfcTextureCoordinateImpl extends IfcPresentationItemImpl implements
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcSurfaceTexture> getMaps() {
 		return (EList<IfcSurfaceTexture>) eGet(Ifc4Package.Literals.IFC_TEXTURE_COORDINATE__MAPS, true);
 	}

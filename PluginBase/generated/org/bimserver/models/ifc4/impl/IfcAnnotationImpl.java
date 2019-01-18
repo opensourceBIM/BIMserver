@@ -78,6 +78,7 @@ public class IfcAnnotationImpl extends IfcProductImpl implements IfcAnnotation {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelContainedInSpatialStructure> getContainedInStructure() {
 		return (EList<IfcRelContainedInSpatialStructure>) eGet(
 				Ifc4Package.Literals.IFC_ANNOTATION__CONTAINED_IN_STRUCTURE, true);
@@ -88,6 +89,7 @@ public class IfcAnnotationImpl extends IfcProductImpl implements IfcAnnotation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetContainedInStructure() {
 		eUnset(Ifc4Package.Literals.IFC_ANNOTATION__CONTAINED_IN_STRUCTURE);
 	}
@@ -97,6 +99,7 @@ public class IfcAnnotationImpl extends IfcProductImpl implements IfcAnnotation {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetContainedInStructure() {
 		return eIsSet(Ifc4Package.Literals.IFC_ANNOTATION__CONTAINED_IN_STRUCTURE);
 	}

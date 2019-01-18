@@ -101,6 +101,8 @@ public interface IfcTimeMeasure extends IfcMeasureValue {
 	 * @see #setWrappedValueAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTimeMeasure_WrappedValueAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getWrappedValueAsString();

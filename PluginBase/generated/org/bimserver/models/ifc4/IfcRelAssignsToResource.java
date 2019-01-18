@@ -45,7 +45,8 @@ public interface IfcRelAssignsToResource extends IfcRelAssigns {
 	 * @return the value of the '<em>Relating Resource</em>' reference.
 	 * @see #setRelatingResource(IfcResourceSelect)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelAssignsToResource_RelatingResource()
-	 * @model
+	 * @model annotation="inverse"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcResourceSelect getRelatingResource();

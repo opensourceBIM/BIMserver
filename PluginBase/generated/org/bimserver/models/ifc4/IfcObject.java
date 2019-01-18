@@ -125,6 +125,7 @@ public interface IfcObject extends IfcObjectDefinition {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcObject_IsDeclaredBy()
 	 * @see org.bimserver.models.ifc4.IfcRelDefinesByObject#getRelatedObjects
 	 * @model opposite="RelatedObjects" unsettable="true" upper="2"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelDefinesByObject> getIsDeclaredBy();
@@ -166,6 +167,7 @@ public interface IfcObject extends IfcObjectDefinition {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcObject_Declares()
 	 * @see org.bimserver.models.ifc4.IfcRelDefinesByObject#getRelatingObject
 	 * @model opposite="RelatingObject" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelDefinesByObject> getDeclares();
@@ -207,6 +209,7 @@ public interface IfcObject extends IfcObjectDefinition {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcObject_IsTypedBy()
 	 * @see org.bimserver.models.ifc4.IfcRelDefinesByType#getRelatedObjects
 	 * @model opposite="RelatedObjects" unsettable="true" upper="2"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelDefinesByType> getIsTypedBy();
@@ -246,6 +249,7 @@ public interface IfcObject extends IfcObjectDefinition {
 	 * @see #unsetIsDefinedBy()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcObject_IsDefinedBy()
 	 * @model unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelDefinesByProperties> getIsDefinedBy();

@@ -101,6 +101,8 @@ public interface IfcDoorPanelProperties extends IfcPreDefinedPropertySet {
 	 * @see #setPanelDepthAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDoorPanelProperties_PanelDepthAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getPanelDepthAsString();
@@ -236,6 +238,8 @@ public interface IfcDoorPanelProperties extends IfcPreDefinedPropertySet {
 	 * @see #setPanelWidthAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDoorPanelProperties_PanelWidthAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getPanelWidthAsString();

@@ -82,6 +82,7 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIdentification() {
 		return (String) eGet(Ifc4Package.Literals.IFC_PROCESS__IDENTIFICATION, true);
 	}
@@ -91,6 +92,7 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentification(String newIdentification) {
 		eSet(Ifc4Package.Literals.IFC_PROCESS__IDENTIFICATION, newIdentification);
 	}
@@ -100,6 +102,7 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetIdentification() {
 		eUnset(Ifc4Package.Literals.IFC_PROCESS__IDENTIFICATION);
 	}
@@ -109,6 +112,7 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetIdentification() {
 		return eIsSet(Ifc4Package.Literals.IFC_PROCESS__IDENTIFICATION);
 	}
@@ -118,6 +122,7 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLongDescription() {
 		return (String) eGet(Ifc4Package.Literals.IFC_PROCESS__LONG_DESCRIPTION, true);
 	}
@@ -127,6 +132,7 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLongDescription(String newLongDescription) {
 		eSet(Ifc4Package.Literals.IFC_PROCESS__LONG_DESCRIPTION, newLongDescription);
 	}
@@ -136,6 +142,7 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetLongDescription() {
 		eUnset(Ifc4Package.Literals.IFC_PROCESS__LONG_DESCRIPTION);
 	}
@@ -145,6 +152,7 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetLongDescription() {
 		return eIsSet(Ifc4Package.Literals.IFC_PROCESS__LONG_DESCRIPTION);
 	}
@@ -155,6 +163,7 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelSequence> getIsPredecessorTo() {
 		return (EList<IfcRelSequence>) eGet(Ifc4Package.Literals.IFC_PROCESS__IS_PREDECESSOR_TO, true);
 	}
@@ -164,6 +173,7 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetIsPredecessorTo() {
 		eUnset(Ifc4Package.Literals.IFC_PROCESS__IS_PREDECESSOR_TO);
 	}
@@ -173,6 +183,7 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetIsPredecessorTo() {
 		return eIsSet(Ifc4Package.Literals.IFC_PROCESS__IS_PREDECESSOR_TO);
 	}
@@ -183,6 +194,7 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelSequence> getIsSuccessorFrom() {
 		return (EList<IfcRelSequence>) eGet(Ifc4Package.Literals.IFC_PROCESS__IS_SUCCESSOR_FROM, true);
 	}
@@ -192,6 +204,7 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetIsSuccessorFrom() {
 		eUnset(Ifc4Package.Literals.IFC_PROCESS__IS_SUCCESSOR_FROM);
 	}
@@ -201,6 +214,7 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetIsSuccessorFrom() {
 		return eIsSet(Ifc4Package.Literals.IFC_PROCESS__IS_SUCCESSOR_FROM);
 	}
@@ -211,6 +225,7 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelAssignsToProcess> getOperatesOn() {
 		return (EList<IfcRelAssignsToProcess>) eGet(Ifc4Package.Literals.IFC_PROCESS__OPERATES_ON, true);
 	}
@@ -220,6 +235,7 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetOperatesOn() {
 		eUnset(Ifc4Package.Literals.IFC_PROCESS__OPERATES_ON);
 	}
@@ -229,6 +245,7 @@ public class IfcProcessImpl extends IfcObjectImpl implements IfcProcess {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetOperatesOn() {
 		return eIsSet(Ifc4Package.Literals.IFC_PROCESS__OPERATES_ON);
 	}

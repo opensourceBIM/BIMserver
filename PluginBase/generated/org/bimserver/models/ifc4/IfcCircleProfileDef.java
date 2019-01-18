@@ -71,7 +71,8 @@ public interface IfcCircleProfileDef extends IfcParameterizedProfileDef {
 	 * @return the value of the '<em>Radius As String</em>' attribute.
 	 * @see #setRadiusAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCircleProfileDef_RadiusAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getRadiusAsString();

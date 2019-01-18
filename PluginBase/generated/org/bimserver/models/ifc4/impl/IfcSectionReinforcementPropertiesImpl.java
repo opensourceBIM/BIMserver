@@ -88,6 +88,7 @@ public class IfcSectionReinforcementPropertiesImpl extends IfcPreDefinedProperti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getLongitudinalStartPosition() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_START_POSITION,
 				true);
@@ -98,6 +99,7 @@ public class IfcSectionReinforcementPropertiesImpl extends IfcPreDefinedProperti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLongitudinalStartPosition(double newLongitudinalStartPosition) {
 		eSet(Ifc4Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_START_POSITION,
 				newLongitudinalStartPosition);
@@ -108,6 +110,7 @@ public class IfcSectionReinforcementPropertiesImpl extends IfcPreDefinedProperti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLongitudinalStartPositionAsString() {
 		return (String) eGet(
 				Ifc4Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_START_POSITION_AS_STRING, true);
@@ -118,6 +121,7 @@ public class IfcSectionReinforcementPropertiesImpl extends IfcPreDefinedProperti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLongitudinalStartPositionAsString(String newLongitudinalStartPositionAsString) {
 		eSet(Ifc4Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_START_POSITION_AS_STRING,
 				newLongitudinalStartPositionAsString);
@@ -128,6 +132,7 @@ public class IfcSectionReinforcementPropertiesImpl extends IfcPreDefinedProperti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getLongitudinalEndPosition() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_END_POSITION,
 				true);
@@ -138,6 +143,7 @@ public class IfcSectionReinforcementPropertiesImpl extends IfcPreDefinedProperti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLongitudinalEndPosition(double newLongitudinalEndPosition) {
 		eSet(Ifc4Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_END_POSITION,
 				newLongitudinalEndPosition);
@@ -148,6 +154,7 @@ public class IfcSectionReinforcementPropertiesImpl extends IfcPreDefinedProperti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLongitudinalEndPositionAsString() {
 		return (String) eGet(
 				Ifc4Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_END_POSITION_AS_STRING, true);
@@ -158,6 +165,7 @@ public class IfcSectionReinforcementPropertiesImpl extends IfcPreDefinedProperti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLongitudinalEndPositionAsString(String newLongitudinalEndPositionAsString) {
 		eSet(Ifc4Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__LONGITUDINAL_END_POSITION_AS_STRING,
 				newLongitudinalEndPositionAsString);
@@ -168,6 +176,7 @@ public class IfcSectionReinforcementPropertiesImpl extends IfcPreDefinedProperti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getTransversePosition() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__TRANSVERSE_POSITION, true);
 	}
@@ -177,6 +186,7 @@ public class IfcSectionReinforcementPropertiesImpl extends IfcPreDefinedProperti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTransversePosition(double newTransversePosition) {
 		eSet(Ifc4Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__TRANSVERSE_POSITION, newTransversePosition);
 	}
@@ -186,6 +196,7 @@ public class IfcSectionReinforcementPropertiesImpl extends IfcPreDefinedProperti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetTransversePosition() {
 		eUnset(Ifc4Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__TRANSVERSE_POSITION);
 	}
@@ -195,6 +206,7 @@ public class IfcSectionReinforcementPropertiesImpl extends IfcPreDefinedProperti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetTransversePosition() {
 		return eIsSet(Ifc4Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__TRANSVERSE_POSITION);
 	}
@@ -204,6 +216,7 @@ public class IfcSectionReinforcementPropertiesImpl extends IfcPreDefinedProperti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTransversePositionAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__TRANSVERSE_POSITION_AS_STRING,
 				true);
@@ -214,6 +227,7 @@ public class IfcSectionReinforcementPropertiesImpl extends IfcPreDefinedProperti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTransversePositionAsString(String newTransversePositionAsString) {
 		eSet(Ifc4Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__TRANSVERSE_POSITION_AS_STRING,
 				newTransversePositionAsString);
@@ -224,6 +238,7 @@ public class IfcSectionReinforcementPropertiesImpl extends IfcPreDefinedProperti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetTransversePositionAsString() {
 		eUnset(Ifc4Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__TRANSVERSE_POSITION_AS_STRING);
 	}
@@ -233,6 +248,7 @@ public class IfcSectionReinforcementPropertiesImpl extends IfcPreDefinedProperti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetTransversePositionAsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__TRANSVERSE_POSITION_AS_STRING);
 	}
@@ -242,6 +258,7 @@ public class IfcSectionReinforcementPropertiesImpl extends IfcPreDefinedProperti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcReinforcingBarRoleEnum getReinforcementRole() {
 		return (IfcReinforcingBarRoleEnum) eGet(
 				Ifc4Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__REINFORCEMENT_ROLE, true);
@@ -252,6 +269,7 @@ public class IfcSectionReinforcementPropertiesImpl extends IfcPreDefinedProperti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReinforcementRole(IfcReinforcingBarRoleEnum newReinforcementRole) {
 		eSet(Ifc4Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__REINFORCEMENT_ROLE, newReinforcementRole);
 	}
@@ -261,6 +279,7 @@ public class IfcSectionReinforcementPropertiesImpl extends IfcPreDefinedProperti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSectionProperties getSectionDefinition() {
 		return (IfcSectionProperties) eGet(
 				Ifc4Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__SECTION_DEFINITION, true);
@@ -271,6 +290,7 @@ public class IfcSectionReinforcementPropertiesImpl extends IfcPreDefinedProperti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSectionDefinition(IfcSectionProperties newSectionDefinition) {
 		eSet(Ifc4Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__SECTION_DEFINITION, newSectionDefinition);
 	}
@@ -281,6 +301,7 @@ public class IfcSectionReinforcementPropertiesImpl extends IfcPreDefinedProperti
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcReinforcementBarProperties> getCrossSectionReinforcementDefinitions() {
 		return (EList<IfcReinforcementBarProperties>) eGet(
 				Ifc4Package.Literals.IFC_SECTION_REINFORCEMENT_PROPERTIES__CROSS_SECTION_REINFORCEMENT_DEFINITIONS,

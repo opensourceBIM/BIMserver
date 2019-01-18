@@ -70,7 +70,7 @@ public interface IfcLibraryInformation extends IfcExternalInformation, IfcLibrar
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcLibraryInformation_Name()
-	 * @model
+	 * @model annotation="singleindex"
 	 * @generated
 	 */
 	String getName();
@@ -364,6 +364,7 @@ public interface IfcLibraryInformation extends IfcExternalInformation, IfcLibrar
 	 * @see #unsetLibraryInfoForObjects()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcLibraryInformation_LibraryInfoForObjects()
 	 * @model unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelAssociatesLibrary> getLibraryInfoForObjects();
@@ -405,6 +406,7 @@ public interface IfcLibraryInformation extends IfcExternalInformation, IfcLibrar
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcLibraryInformation_HasLibraryReferences()
 	 * @see org.bimserver.models.ifc4.IfcLibraryReference#getReferencedLibrary
 	 * @model opposite="ReferencedLibrary" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcLibraryReference> getHasLibraryReferences();

@@ -78,6 +78,7 @@ public class IfcIndexedTriangleTextureMapImpl extends IfcIndexedTextureMapImpl i
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<ListOfELong> getTexCoordIndex() {
 		return (EList<ListOfELong>) eGet(Ifc4Package.Literals.IFC_INDEXED_TRIANGLE_TEXTURE_MAP__TEX_COORD_INDEX, true);
 	}

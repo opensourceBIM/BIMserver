@@ -81,6 +81,7 @@ public class IfcEventImpl extends IfcProcessImpl implements IfcEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcEventTypeEnum getPredefinedType() {
 		return (IfcEventTypeEnum) eGet(Ifc4Package.Literals.IFC_EVENT__PREDEFINED_TYPE, true);
 	}
@@ -90,6 +91,7 @@ public class IfcEventImpl extends IfcProcessImpl implements IfcEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcEventTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_EVENT__PREDEFINED_TYPE, newPredefinedType);
 	}
@@ -99,6 +101,7 @@ public class IfcEventImpl extends IfcProcessImpl implements IfcEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPredefinedType() {
 		eUnset(Ifc4Package.Literals.IFC_EVENT__PREDEFINED_TYPE);
 	}
@@ -108,6 +111,7 @@ public class IfcEventImpl extends IfcProcessImpl implements IfcEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPredefinedType() {
 		return eIsSet(Ifc4Package.Literals.IFC_EVENT__PREDEFINED_TYPE);
 	}
@@ -117,6 +121,7 @@ public class IfcEventImpl extends IfcProcessImpl implements IfcEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcEventTriggerTypeEnum getEventTriggerType() {
 		return (IfcEventTriggerTypeEnum) eGet(Ifc4Package.Literals.IFC_EVENT__EVENT_TRIGGER_TYPE, true);
 	}
@@ -126,6 +131,7 @@ public class IfcEventImpl extends IfcProcessImpl implements IfcEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEventTriggerType(IfcEventTriggerTypeEnum newEventTriggerType) {
 		eSet(Ifc4Package.Literals.IFC_EVENT__EVENT_TRIGGER_TYPE, newEventTriggerType);
 	}
@@ -135,6 +141,7 @@ public class IfcEventImpl extends IfcProcessImpl implements IfcEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetEventTriggerType() {
 		eUnset(Ifc4Package.Literals.IFC_EVENT__EVENT_TRIGGER_TYPE);
 	}
@@ -144,6 +151,7 @@ public class IfcEventImpl extends IfcProcessImpl implements IfcEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetEventTriggerType() {
 		return eIsSet(Ifc4Package.Literals.IFC_EVENT__EVENT_TRIGGER_TYPE);
 	}
@@ -153,6 +161,7 @@ public class IfcEventImpl extends IfcProcessImpl implements IfcEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getUserDefinedEventTriggerType() {
 		return (String) eGet(Ifc4Package.Literals.IFC_EVENT__USER_DEFINED_EVENT_TRIGGER_TYPE, true);
 	}
@@ -162,6 +171,7 @@ public class IfcEventImpl extends IfcProcessImpl implements IfcEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUserDefinedEventTriggerType(String newUserDefinedEventTriggerType) {
 		eSet(Ifc4Package.Literals.IFC_EVENT__USER_DEFINED_EVENT_TRIGGER_TYPE, newUserDefinedEventTriggerType);
 	}
@@ -171,6 +181,7 @@ public class IfcEventImpl extends IfcProcessImpl implements IfcEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetUserDefinedEventTriggerType() {
 		eUnset(Ifc4Package.Literals.IFC_EVENT__USER_DEFINED_EVENT_TRIGGER_TYPE);
 	}
@@ -180,6 +191,7 @@ public class IfcEventImpl extends IfcProcessImpl implements IfcEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetUserDefinedEventTriggerType() {
 		return eIsSet(Ifc4Package.Literals.IFC_EVENT__USER_DEFINED_EVENT_TRIGGER_TYPE);
 	}
@@ -189,6 +201,7 @@ public class IfcEventImpl extends IfcProcessImpl implements IfcEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcEventTime getEventOccurenceTime() {
 		return (IfcEventTime) eGet(Ifc4Package.Literals.IFC_EVENT__EVENT_OCCURENCE_TIME, true);
 	}
@@ -198,6 +211,7 @@ public class IfcEventImpl extends IfcProcessImpl implements IfcEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEventOccurenceTime(IfcEventTime newEventOccurenceTime) {
 		eSet(Ifc4Package.Literals.IFC_EVENT__EVENT_OCCURENCE_TIME, newEventOccurenceTime);
 	}
@@ -207,6 +221,7 @@ public class IfcEventImpl extends IfcProcessImpl implements IfcEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetEventOccurenceTime() {
 		eUnset(Ifc4Package.Literals.IFC_EVENT__EVENT_OCCURENCE_TIME);
 	}
@@ -216,6 +231,7 @@ public class IfcEventImpl extends IfcProcessImpl implements IfcEvent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetEventOccurenceTime() {
 		return eIsSet(Ifc4Package.Literals.IFC_EVENT__EVENT_OCCURENCE_TIME);
 	}

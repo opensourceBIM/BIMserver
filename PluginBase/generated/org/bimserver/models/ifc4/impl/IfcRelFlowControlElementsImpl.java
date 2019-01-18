@@ -80,6 +80,7 @@ public class IfcRelFlowControlElementsImpl extends IfcRelConnectsImpl implements
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcDistributionControlElement> getRelatedControlElements() {
 		return (EList<IfcDistributionControlElement>) eGet(
 				Ifc4Package.Literals.IFC_REL_FLOW_CONTROL_ELEMENTS__RELATED_CONTROL_ELEMENTS, true);
@@ -90,6 +91,7 @@ public class IfcRelFlowControlElementsImpl extends IfcRelConnectsImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDistributionFlowElement getRelatingFlowElement() {
 		return (IfcDistributionFlowElement) eGet(
 				Ifc4Package.Literals.IFC_REL_FLOW_CONTROL_ELEMENTS__RELATING_FLOW_ELEMENT, true);
@@ -100,6 +102,7 @@ public class IfcRelFlowControlElementsImpl extends IfcRelConnectsImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRelatingFlowElement(IfcDistributionFlowElement newRelatingFlowElement) {
 		eSet(Ifc4Package.Literals.IFC_REL_FLOW_CONTROL_ELEMENTS__RELATING_FLOW_ELEMENT, newRelatingFlowElement);
 	}

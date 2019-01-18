@@ -66,6 +66,7 @@ public interface IfcPropertySet extends IfcPropertySetDefinition {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPropertySet_HasProperties()
 	 * @see org.bimserver.models.ifc4.IfcProperty#getPartOfPset
 	 * @model opposite="PartOfPset"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcProperty> getHasProperties();

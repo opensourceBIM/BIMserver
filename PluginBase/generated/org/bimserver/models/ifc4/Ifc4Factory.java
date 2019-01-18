@@ -8180,6 +8180,15 @@ public interface Ifc4Factory extends EFactory {
 	IfcPositiveRatioMeasure createIfcPositiveRatioMeasure();
 
 	/**
+	 * Returns a new object of class '<em>Ifc Arc Index</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Arc Index</em>'.
+	 * @generated
+	 */
+	IfcArcIndex createIfcArcIndex();
+
+	/**
 	 * Returns a new object of class '<em>Ifc Complex Number</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8187,6 +8196,15 @@ public interface Ifc4Factory extends EFactory {
 	 * @generated
 	 */
 	IfcComplexNumber createIfcComplexNumber();
+
+	/**
+	 * Returns a new object of class '<em>Ifc Line Index</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ifc Line Index</em>'.
+	 * @generated
+	 */
+	IfcLineIndex createIfcLineIndex();
 
 	/**
 	 * Returns a new object of class '<em>Ifc Null Style</em>'.

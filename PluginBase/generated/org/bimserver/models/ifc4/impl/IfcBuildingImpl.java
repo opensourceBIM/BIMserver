@@ -80,6 +80,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getElevationOfRefHeight() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT, true);
 	}
@@ -89,6 +90,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElevationOfRefHeight(double newElevationOfRefHeight) {
 		eSet(Ifc4Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT, newElevationOfRefHeight);
 	}
@@ -98,6 +100,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetElevationOfRefHeight() {
 		eUnset(Ifc4Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT);
 	}
@@ -107,6 +110,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetElevationOfRefHeight() {
 		return eIsSet(Ifc4Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT);
 	}
@@ -116,6 +120,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getElevationOfRefHeightAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT_AS_STRING, true);
 	}
@@ -125,6 +130,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElevationOfRefHeightAsString(String newElevationOfRefHeightAsString) {
 		eSet(Ifc4Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT_AS_STRING, newElevationOfRefHeightAsString);
 	}
@@ -134,6 +140,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetElevationOfRefHeightAsString() {
 		eUnset(Ifc4Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT_AS_STRING);
 	}
@@ -143,6 +150,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetElevationOfRefHeightAsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_BUILDING__ELEVATION_OF_REF_HEIGHT_AS_STRING);
 	}
@@ -152,6 +160,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getElevationOfTerrain() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN, true);
 	}
@@ -161,6 +170,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElevationOfTerrain(double newElevationOfTerrain) {
 		eSet(Ifc4Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN, newElevationOfTerrain);
 	}
@@ -170,6 +180,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetElevationOfTerrain() {
 		eUnset(Ifc4Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN);
 	}
@@ -179,6 +190,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetElevationOfTerrain() {
 		return eIsSet(Ifc4Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN);
 	}
@@ -188,6 +200,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getElevationOfTerrainAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN_AS_STRING, true);
 	}
@@ -197,6 +210,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElevationOfTerrainAsString(String newElevationOfTerrainAsString) {
 		eSet(Ifc4Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN_AS_STRING, newElevationOfTerrainAsString);
 	}
@@ -206,6 +220,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetElevationOfTerrainAsString() {
 		eUnset(Ifc4Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN_AS_STRING);
 	}
@@ -215,6 +230,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetElevationOfTerrainAsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_BUILDING__ELEVATION_OF_TERRAIN_AS_STRING);
 	}
@@ -224,6 +240,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPostalAddress getBuildingAddress() {
 		return (IfcPostalAddress) eGet(Ifc4Package.Literals.IFC_BUILDING__BUILDING_ADDRESS, true);
 	}
@@ -233,6 +250,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBuildingAddress(IfcPostalAddress newBuildingAddress) {
 		eSet(Ifc4Package.Literals.IFC_BUILDING__BUILDING_ADDRESS, newBuildingAddress);
 	}
@@ -242,6 +260,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetBuildingAddress() {
 		eUnset(Ifc4Package.Literals.IFC_BUILDING__BUILDING_ADDRESS);
 	}
@@ -251,6 +270,7 @@ public class IfcBuildingImpl extends IfcSpatialStructureElementImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetBuildingAddress() {
 		return eIsSet(Ifc4Package.Literals.IFC_BUILDING__BUILDING_ADDRESS);
 	}

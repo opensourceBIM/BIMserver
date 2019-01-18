@@ -160,6 +160,7 @@ public interface IfcTypeProduct extends IfcTypeObject, IfcProductSelect {
 	 * @see #unsetReferencedBy()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTypeProduct_ReferencedBy()
 	 * @model unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelAssignsToProduct> getReferencedBy();

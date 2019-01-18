@@ -80,6 +80,7 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements IfcTyp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getApplicableOccurrence() {
 		return (String) eGet(Ifc4Package.Literals.IFC_TYPE_OBJECT__APPLICABLE_OCCURRENCE, true);
 	}
@@ -89,6 +90,7 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements IfcTyp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setApplicableOccurrence(String newApplicableOccurrence) {
 		eSet(Ifc4Package.Literals.IFC_TYPE_OBJECT__APPLICABLE_OCCURRENCE, newApplicableOccurrence);
 	}
@@ -98,6 +100,7 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements IfcTyp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetApplicableOccurrence() {
 		eUnset(Ifc4Package.Literals.IFC_TYPE_OBJECT__APPLICABLE_OCCURRENCE);
 	}
@@ -107,6 +110,7 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements IfcTyp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetApplicableOccurrence() {
 		return eIsSet(Ifc4Package.Literals.IFC_TYPE_OBJECT__APPLICABLE_OCCURRENCE);
 	}
@@ -117,6 +121,7 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements IfcTyp
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcPropertySetDefinition> getHasPropertySets() {
 		return (EList<IfcPropertySetDefinition>) eGet(Ifc4Package.Literals.IFC_TYPE_OBJECT__HAS_PROPERTY_SETS, true);
 	}
@@ -126,6 +131,7 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements IfcTyp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetHasPropertySets() {
 		eUnset(Ifc4Package.Literals.IFC_TYPE_OBJECT__HAS_PROPERTY_SETS);
 	}
@@ -135,6 +141,7 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements IfcTyp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetHasPropertySets() {
 		return eIsSet(Ifc4Package.Literals.IFC_TYPE_OBJECT__HAS_PROPERTY_SETS);
 	}
@@ -145,6 +152,7 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements IfcTyp
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelDefinesByType> getTypes() {
 		return (EList<IfcRelDefinesByType>) eGet(Ifc4Package.Literals.IFC_TYPE_OBJECT__TYPES, true);
 	}
@@ -154,6 +162,7 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements IfcTyp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetTypes() {
 		eUnset(Ifc4Package.Literals.IFC_TYPE_OBJECT__TYPES);
 	}
@@ -163,6 +172,7 @@ public class IfcTypeObjectImpl extends IfcObjectDefinitionImpl implements IfcTyp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetTypes() {
 		return eIsSet(Ifc4Package.Literals.IFC_TYPE_OBJECT__TYPES);
 	}

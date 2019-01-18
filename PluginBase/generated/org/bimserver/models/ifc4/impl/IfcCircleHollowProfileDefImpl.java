@@ -76,6 +76,7 @@ public class IfcCircleHollowProfileDefImpl extends IfcCircleProfileDefImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getWallThickness() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_CIRCLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS, true);
 	}
@@ -85,6 +86,7 @@ public class IfcCircleHollowProfileDefImpl extends IfcCircleProfileDefImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWallThickness(double newWallThickness) {
 		eSet(Ifc4Package.Literals.IFC_CIRCLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS, newWallThickness);
 	}
@@ -94,6 +96,7 @@ public class IfcCircleHollowProfileDefImpl extends IfcCircleProfileDefImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getWallThicknessAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_CIRCLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS_AS_STRING, true);
 	}
@@ -103,6 +106,7 @@ public class IfcCircleHollowProfileDefImpl extends IfcCircleProfileDefImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWallThicknessAsString(String newWallThicknessAsString) {
 		eSet(Ifc4Package.Literals.IFC_CIRCLE_HOLLOW_PROFILE_DEF__WALL_THICKNESS_AS_STRING, newWallThicknessAsString);
 	}

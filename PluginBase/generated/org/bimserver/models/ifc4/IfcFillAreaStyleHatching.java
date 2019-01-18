@@ -229,7 +229,8 @@ public interface IfcFillAreaStyleHatching extends IfcGeometricRepresentationItem
 	 * @return the value of the '<em>Hatch Line Angle As String</em>' attribute.
 	 * @see #setHatchLineAngleAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcFillAreaStyleHatching_HatchLineAngleAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getHatchLineAngleAsString();

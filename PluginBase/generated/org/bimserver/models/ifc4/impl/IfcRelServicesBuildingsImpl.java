@@ -79,6 +79,7 @@ public class IfcRelServicesBuildingsImpl extends IfcRelConnectsImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSystem getRelatingSystem() {
 		return (IfcSystem) eGet(Ifc4Package.Literals.IFC_REL_SERVICES_BUILDINGS__RELATING_SYSTEM, true);
 	}
@@ -88,6 +89,7 @@ public class IfcRelServicesBuildingsImpl extends IfcRelConnectsImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRelatingSystem(IfcSystem newRelatingSystem) {
 		eSet(Ifc4Package.Literals.IFC_REL_SERVICES_BUILDINGS__RELATING_SYSTEM, newRelatingSystem);
 	}
@@ -98,6 +100,7 @@ public class IfcRelServicesBuildingsImpl extends IfcRelConnectsImpl implements I
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcSpatialElement> getRelatedBuildings() {
 		return (EList<IfcSpatialElement>) eGet(Ifc4Package.Literals.IFC_REL_SERVICES_BUILDINGS__RELATED_BUILDINGS,
 				true);

@@ -75,6 +75,7 @@ public class IfcColourSpecificationImpl extends IfcPresentationItemImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(Ifc4Package.Literals.IFC_COLOUR_SPECIFICATION__NAME, true);
 	}
@@ -84,6 +85,7 @@ public class IfcColourSpecificationImpl extends IfcPresentationItemImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(Ifc4Package.Literals.IFC_COLOUR_SPECIFICATION__NAME, newName);
 	}
@@ -93,6 +95,7 @@ public class IfcColourSpecificationImpl extends IfcPresentationItemImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetName() {
 		eUnset(Ifc4Package.Literals.IFC_COLOUR_SPECIFICATION__NAME);
 	}
@@ -102,6 +105,7 @@ public class IfcColourSpecificationImpl extends IfcPresentationItemImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetName() {
 		return eIsSet(Ifc4Package.Literals.IFC_COLOUR_SPECIFICATION__NAME);
 	}

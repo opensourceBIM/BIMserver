@@ -86,6 +86,7 @@ public class IfcDayInWeekNumberImpl extends IdEObjectImpl implements IfcDayInWee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getWrappedValue() {
 		return (Long) eGet(Ifc4Package.Literals.IFC_DAY_IN_WEEK_NUMBER__WRAPPED_VALUE, true);
 	}
@@ -95,6 +96,7 @@ public class IfcDayInWeekNumberImpl extends IdEObjectImpl implements IfcDayInWee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWrappedValue(long newWrappedValue) {
 		eSet(Ifc4Package.Literals.IFC_DAY_IN_WEEK_NUMBER__WRAPPED_VALUE, newWrappedValue);
 	}
@@ -104,6 +106,7 @@ public class IfcDayInWeekNumberImpl extends IdEObjectImpl implements IfcDayInWee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetWrappedValue() {
 		eUnset(Ifc4Package.Literals.IFC_DAY_IN_WEEK_NUMBER__WRAPPED_VALUE);
 	}
@@ -113,6 +116,7 @@ public class IfcDayInWeekNumberImpl extends IdEObjectImpl implements IfcDayInWee
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetWrappedValue() {
 		return eIsSet(Ifc4Package.Literals.IFC_DAY_IN_WEEK_NUMBER__WRAPPED_VALUE);
 	}

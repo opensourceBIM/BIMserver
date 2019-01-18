@@ -79,6 +79,7 @@ public class IfcRelDeclaresImpl extends IfcRelationshipImpl implements IfcRelDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcContext getRelatingContext() {
 		return (IfcContext) eGet(Ifc4Package.Literals.IFC_REL_DECLARES__RELATING_CONTEXT, true);
 	}
@@ -88,6 +89,7 @@ public class IfcRelDeclaresImpl extends IfcRelationshipImpl implements IfcRelDec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRelatingContext(IfcContext newRelatingContext) {
 		eSet(Ifc4Package.Literals.IFC_REL_DECLARES__RELATING_CONTEXT, newRelatingContext);
 	}
@@ -98,6 +100,7 @@ public class IfcRelDeclaresImpl extends IfcRelationshipImpl implements IfcRelDec
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcDefinitionSelect> getRelatedDefinitions() {
 		return (EList<IfcDefinitionSelect>) eGet(Ifc4Package.Literals.IFC_REL_DECLARES__RELATED_DEFINITIONS, true);
 	}

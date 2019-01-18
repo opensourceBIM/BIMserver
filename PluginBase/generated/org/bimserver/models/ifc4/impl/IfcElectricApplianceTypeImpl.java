@@ -76,6 +76,7 @@ public class IfcElectricApplianceTypeImpl extends IfcFlowTerminalTypeImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElectricApplianceTypeEnum getPredefinedType() {
 		return (IfcElectricApplianceTypeEnum) eGet(Ifc4Package.Literals.IFC_ELECTRIC_APPLIANCE_TYPE__PREDEFINED_TYPE,
 				true);
@@ -86,6 +87,7 @@ public class IfcElectricApplianceTypeImpl extends IfcFlowTerminalTypeImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcElectricApplianceTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_ELECTRIC_APPLIANCE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

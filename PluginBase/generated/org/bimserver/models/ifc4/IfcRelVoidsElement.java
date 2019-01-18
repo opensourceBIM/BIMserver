@@ -48,6 +48,7 @@ public interface IfcRelVoidsElement extends IfcRelDecomposes {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelVoidsElement_RelatingBuildingElement()
 	 * @see org.bimserver.models.ifc4.IfcElement#getHasOpenings
 	 * @model opposite="HasOpenings"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcElement getRelatingBuildingElement();
@@ -76,6 +77,7 @@ public interface IfcRelVoidsElement extends IfcRelDecomposes {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelVoidsElement_RelatedOpeningElement()
 	 * @see org.bimserver.models.ifc4.IfcFeatureElementSubtraction#getVoidsElements
 	 * @model opposite="VoidsElements"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcFeatureElementSubtraction getRelatedOpeningElement();

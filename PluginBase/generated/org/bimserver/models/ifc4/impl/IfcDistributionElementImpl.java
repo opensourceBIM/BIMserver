@@ -78,6 +78,7 @@ public class IfcDistributionElementImpl extends IfcElementImpl implements IfcDis
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelConnectsPortToElement> getHasPorts() {
 		return (EList<IfcRelConnectsPortToElement>) eGet(Ifc4Package.Literals.IFC_DISTRIBUTION_ELEMENT__HAS_PORTS,
 				true);
@@ -88,6 +89,7 @@ public class IfcDistributionElementImpl extends IfcElementImpl implements IfcDis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetHasPorts() {
 		eUnset(Ifc4Package.Literals.IFC_DISTRIBUTION_ELEMENT__HAS_PORTS);
 	}
@@ -97,6 +99,7 @@ public class IfcDistributionElementImpl extends IfcElementImpl implements IfcDis
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetHasPorts() {
 		return eIsSet(Ifc4Package.Literals.IFC_DISTRIBUTION_ELEMENT__HAS_PORTS);
 	}

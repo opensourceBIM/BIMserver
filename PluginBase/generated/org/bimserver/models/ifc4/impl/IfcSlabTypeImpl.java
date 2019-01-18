@@ -76,6 +76,7 @@ public class IfcSlabTypeImpl extends IfcBuildingElementTypeImpl implements IfcSl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSlabTypeEnum getPredefinedType() {
 		return (IfcSlabTypeEnum) eGet(Ifc4Package.Literals.IFC_SLAB_TYPE__PREDEFINED_TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcSlabTypeImpl extends IfcBuildingElementTypeImpl implements IfcSl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcSlabTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_SLAB_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

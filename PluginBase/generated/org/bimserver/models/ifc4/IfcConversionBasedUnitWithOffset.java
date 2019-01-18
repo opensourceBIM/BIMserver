@@ -71,7 +71,8 @@ public interface IfcConversionBasedUnitWithOffset extends IfcConversionBasedUnit
 	 * @return the value of the '<em>Conversion Offset As String</em>' attribute.
 	 * @see #setConversionOffsetAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcConversionBasedUnitWithOffset_ConversionOffsetAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getConversionOffsetAsString();

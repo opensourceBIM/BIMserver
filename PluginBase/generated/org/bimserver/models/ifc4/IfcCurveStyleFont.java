@@ -67,6 +67,7 @@ public interface IfcCurveStyleFont extends IfcPresentationItem, IfcCurveStyleFon
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCurveStyleFont_Name()
 	 * @model unsettable="true"
+	 *        annotation="singleindex"
 	 * @generated
 	 */
 	String getName();

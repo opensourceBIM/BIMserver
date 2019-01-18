@@ -71,7 +71,8 @@ public interface IfcQuantityCount extends IfcPhysicalSimpleQuantity {
 	 * @return the value of the '<em>Count Value As String</em>' attribute.
 	 * @see #setCountValueAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcQuantityCount_CountValueAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getCountValueAsString();

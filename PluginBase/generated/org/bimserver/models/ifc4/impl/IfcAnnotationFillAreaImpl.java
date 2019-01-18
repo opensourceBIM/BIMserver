@@ -78,6 +78,7 @@ public class IfcAnnotationFillAreaImpl extends IfcGeometricRepresentationItemImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCurve getOuterBoundary() {
 		return (IfcCurve) eGet(Ifc4Package.Literals.IFC_ANNOTATION_FILL_AREA__OUTER_BOUNDARY, true);
 	}
@@ -87,6 +88,7 @@ public class IfcAnnotationFillAreaImpl extends IfcGeometricRepresentationItemImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOuterBoundary(IfcCurve newOuterBoundary) {
 		eSet(Ifc4Package.Literals.IFC_ANNOTATION_FILL_AREA__OUTER_BOUNDARY, newOuterBoundary);
 	}
@@ -97,6 +99,7 @@ public class IfcAnnotationFillAreaImpl extends IfcGeometricRepresentationItemImp
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcCurve> getInnerBoundaries() {
 		return (EList<IfcCurve>) eGet(Ifc4Package.Literals.IFC_ANNOTATION_FILL_AREA__INNER_BOUNDARIES, true);
 	}
@@ -106,6 +109,7 @@ public class IfcAnnotationFillAreaImpl extends IfcGeometricRepresentationItemImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetInnerBoundaries() {
 		eUnset(Ifc4Package.Literals.IFC_ANNOTATION_FILL_AREA__INNER_BOUNDARIES);
 	}
@@ -115,6 +119,7 @@ public class IfcAnnotationFillAreaImpl extends IfcGeometricRepresentationItemImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetInnerBoundaries() {
 		return eIsSet(Ifc4Package.Literals.IFC_ANNOTATION_FILL_AREA__INNER_BOUNDARIES);
 	}

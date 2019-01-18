@@ -77,6 +77,7 @@ public class IfcQuantityAreaImpl extends IfcPhysicalSimpleQuantityImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getAreaValue() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_QUANTITY_AREA__AREA_VALUE, true);
 	}
@@ -86,6 +87,7 @@ public class IfcQuantityAreaImpl extends IfcPhysicalSimpleQuantityImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAreaValue(double newAreaValue) {
 		eSet(Ifc4Package.Literals.IFC_QUANTITY_AREA__AREA_VALUE, newAreaValue);
 	}
@@ -95,6 +97,7 @@ public class IfcQuantityAreaImpl extends IfcPhysicalSimpleQuantityImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getAreaValueAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_QUANTITY_AREA__AREA_VALUE_AS_STRING, true);
 	}
@@ -104,6 +107,7 @@ public class IfcQuantityAreaImpl extends IfcPhysicalSimpleQuantityImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAreaValueAsString(String newAreaValueAsString) {
 		eSet(Ifc4Package.Literals.IFC_QUANTITY_AREA__AREA_VALUE_AS_STRING, newAreaValueAsString);
 	}
@@ -113,6 +117,7 @@ public class IfcQuantityAreaImpl extends IfcPhysicalSimpleQuantityImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFormula() {
 		return (String) eGet(Ifc4Package.Literals.IFC_QUANTITY_AREA__FORMULA, true);
 	}
@@ -122,6 +127,7 @@ public class IfcQuantityAreaImpl extends IfcPhysicalSimpleQuantityImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFormula(String newFormula) {
 		eSet(Ifc4Package.Literals.IFC_QUANTITY_AREA__FORMULA, newFormula);
 	}
@@ -131,6 +137,7 @@ public class IfcQuantityAreaImpl extends IfcPhysicalSimpleQuantityImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetFormula() {
 		eUnset(Ifc4Package.Literals.IFC_QUANTITY_AREA__FORMULA);
 	}
@@ -140,6 +147,7 @@ public class IfcQuantityAreaImpl extends IfcPhysicalSimpleQuantityImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetFormula() {
 		return eIsSet(Ifc4Package.Literals.IFC_QUANTITY_AREA__FORMULA);
 	}

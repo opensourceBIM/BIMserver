@@ -45,7 +45,8 @@ public interface IfcRelAssignsToProduct extends IfcRelAssigns {
 	 * @return the value of the '<em>Relating Product</em>' reference.
 	 * @see #setRelatingProduct(IfcProductSelect)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelAssignsToProduct_RelatingProduct()
-	 * @model
+	 * @model annotation="inverse"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcProductSelect getRelatingProduct();

@@ -101,6 +101,8 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * @see #setTensionFailureXAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcFailureConnectionCondition_TensionFailureXAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getTensionFailureXAsString();
@@ -207,6 +209,8 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * @see #setTensionFailureYAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcFailureConnectionCondition_TensionFailureYAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getTensionFailureYAsString();
@@ -313,6 +317,8 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * @see #setTensionFailureZAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcFailureConnectionCondition_TensionFailureZAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getTensionFailureZAsString();
@@ -419,6 +425,8 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * @see #setCompressionFailureXAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcFailureConnectionCondition_CompressionFailureXAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getCompressionFailureXAsString();
@@ -525,6 +533,8 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * @see #setCompressionFailureYAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcFailureConnectionCondition_CompressionFailureYAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getCompressionFailureYAsString();
@@ -631,6 +641,8 @@ public interface IfcFailureConnectionCondition extends IfcStructuralConnectionCo
 	 * @see #setCompressionFailureZAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcFailureConnectionCondition_CompressionFailureZAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getCompressionFailureZAsString();

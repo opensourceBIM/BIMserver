@@ -77,6 +77,7 @@ public class IfcSystemFurnitureElementTypeImpl extends IfcFurnishingElementTypeI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSystemFurnitureElementTypeEnum getPredefinedType() {
 		return (IfcSystemFurnitureElementTypeEnum) eGet(
 				Ifc4Package.Literals.IFC_SYSTEM_FURNITURE_ELEMENT_TYPE__PREDEFINED_TYPE, true);
@@ -87,6 +88,7 @@ public class IfcSystemFurnitureElementTypeImpl extends IfcFurnishingElementTypeI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcSystemFurnitureElementTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_SYSTEM_FURNITURE_ELEMENT_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
@@ -96,6 +98,7 @@ public class IfcSystemFurnitureElementTypeImpl extends IfcFurnishingElementTypeI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPredefinedType() {
 		eUnset(Ifc4Package.Literals.IFC_SYSTEM_FURNITURE_ELEMENT_TYPE__PREDEFINED_TYPE);
 	}
@@ -105,6 +108,7 @@ public class IfcSystemFurnitureElementTypeImpl extends IfcFurnishingElementTypeI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPredefinedType() {
 		return eIsSet(Ifc4Package.Literals.IFC_SYSTEM_FURNITURE_ELEMENT_TYPE__PREDEFINED_TYPE);
 	}

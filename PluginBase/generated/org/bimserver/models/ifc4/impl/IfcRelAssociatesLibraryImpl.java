@@ -76,6 +76,7 @@ public class IfcRelAssociatesLibraryImpl extends IfcRelAssociatesImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLibrarySelect getRelatingLibrary() {
 		return (IfcLibrarySelect) eGet(Ifc4Package.Literals.IFC_REL_ASSOCIATES_LIBRARY__RELATING_LIBRARY, true);
 	}
@@ -85,6 +86,7 @@ public class IfcRelAssociatesLibraryImpl extends IfcRelAssociatesImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRelatingLibrary(IfcLibrarySelect newRelatingLibrary) {
 		eSet(Ifc4Package.Literals.IFC_REL_ASSOCIATES_LIBRARY__RELATING_LIBRARY, newRelatingLibrary);
 	}

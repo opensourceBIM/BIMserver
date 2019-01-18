@@ -67,6 +67,7 @@ public interface IfcRelDeclares extends IfcRelationship {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelDeclares_RelatingContext()
 	 * @see org.bimserver.models.ifc4.IfcContext#getDeclares
 	 * @model opposite="Declares"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcContext getRelatingContext();
@@ -92,7 +93,8 @@ public interface IfcRelDeclares extends IfcRelationship {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Definitions</em>' reference list.
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelDeclares_RelatedDefinitions()
-	 * @model
+	 * @model annotation="inverse"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcDefinitionSelect> getRelatedDefinitions();

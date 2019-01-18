@@ -76,6 +76,7 @@ public class IfcRelAssignsToGroupImpl extends IfcRelAssignsImpl implements IfcRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcGroup getRelatingGroup() {
 		return (IfcGroup) eGet(Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_GROUP__RELATING_GROUP, true);
 	}
@@ -85,6 +86,7 @@ public class IfcRelAssignsToGroupImpl extends IfcRelAssignsImpl implements IfcRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRelatingGroup(IfcGroup newRelatingGroup) {
 		eSet(Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_GROUP__RELATING_GROUP, newRelatingGroup);
 	}

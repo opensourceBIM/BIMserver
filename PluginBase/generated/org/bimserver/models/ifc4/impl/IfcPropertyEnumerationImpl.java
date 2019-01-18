@@ -80,6 +80,7 @@ public class IfcPropertyEnumerationImpl extends IfcPropertyAbstractionImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(Ifc4Package.Literals.IFC_PROPERTY_ENUMERATION__NAME, true);
 	}
@@ -89,6 +90,7 @@ public class IfcPropertyEnumerationImpl extends IfcPropertyAbstractionImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(Ifc4Package.Literals.IFC_PROPERTY_ENUMERATION__NAME, newName);
 	}
@@ -99,6 +101,7 @@ public class IfcPropertyEnumerationImpl extends IfcPropertyAbstractionImpl imple
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcValue> getEnumerationValues() {
 		return (EList<IfcValue>) eGet(Ifc4Package.Literals.IFC_PROPERTY_ENUMERATION__ENUMERATION_VALUES, true);
 	}
@@ -108,6 +111,7 @@ public class IfcPropertyEnumerationImpl extends IfcPropertyAbstractionImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcUnit getUnit() {
 		return (IfcUnit) eGet(Ifc4Package.Literals.IFC_PROPERTY_ENUMERATION__UNIT, true);
 	}
@@ -117,6 +121,7 @@ public class IfcPropertyEnumerationImpl extends IfcPropertyAbstractionImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUnit(IfcUnit newUnit) {
 		eSet(Ifc4Package.Literals.IFC_PROPERTY_ENUMERATION__UNIT, newUnit);
 	}
@@ -126,6 +131,7 @@ public class IfcPropertyEnumerationImpl extends IfcPropertyAbstractionImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetUnit() {
 		eUnset(Ifc4Package.Literals.IFC_PROPERTY_ENUMERATION__UNIT);
 	}
@@ -135,6 +141,7 @@ public class IfcPropertyEnumerationImpl extends IfcPropertyAbstractionImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetUnit() {
 		return eIsSet(Ifc4Package.Literals.IFC_PROPERTY_ENUMERATION__UNIT);
 	}

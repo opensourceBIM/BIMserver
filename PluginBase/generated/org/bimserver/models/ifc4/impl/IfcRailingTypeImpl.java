@@ -76,6 +76,7 @@ public class IfcRailingTypeImpl extends IfcBuildingElementTypeImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRailingTypeEnum getPredefinedType() {
 		return (IfcRailingTypeEnum) eGet(Ifc4Package.Literals.IFC_RAILING_TYPE__PREDEFINED_TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcRailingTypeImpl extends IfcBuildingElementTypeImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcRailingTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_RAILING_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

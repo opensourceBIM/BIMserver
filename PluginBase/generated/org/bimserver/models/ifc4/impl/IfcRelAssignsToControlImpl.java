@@ -76,6 +76,7 @@ public class IfcRelAssignsToControlImpl extends IfcRelAssignsImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcControl getRelatingControl() {
 		return (IfcControl) eGet(Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_CONTROL__RELATING_CONTROL, true);
 	}
@@ -85,6 +86,7 @@ public class IfcRelAssignsToControlImpl extends IfcRelAssignsImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRelatingControl(IfcControl newRelatingControl) {
 		eSet(Ifc4Package.Literals.IFC_REL_ASSIGNS_TO_CONTROL__RELATING_CONTROL, newRelatingControl);
 	}

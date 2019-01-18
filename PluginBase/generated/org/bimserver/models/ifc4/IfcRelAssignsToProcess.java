@@ -45,7 +45,8 @@ public interface IfcRelAssignsToProcess extends IfcRelAssigns {
 	 * @return the value of the '<em>Relating Process</em>' reference.
 	 * @see #setRelatingProcess(IfcProcessSelect)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelAssignsToProcess_RelatingProcess()
-	 * @model
+	 * @model annotation="inverse"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcProcessSelect getRelatingProcess();

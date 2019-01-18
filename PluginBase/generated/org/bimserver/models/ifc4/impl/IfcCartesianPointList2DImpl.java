@@ -79,6 +79,7 @@ public class IfcCartesianPointList2DImpl extends IfcCartesianPointListImpl imple
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<ListOfIfcLengthMeasure> getCoordList() {
 		return (EList<ListOfIfcLengthMeasure>) eGet(Ifc4Package.Literals.IFC_CARTESIAN_POINT_LIST2_D__COORD_LIST, true);
 	}

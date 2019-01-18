@@ -48,6 +48,7 @@ public interface IfcIndexedTextureMap extends IfcTextureCoordinate {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcIndexedTextureMap_MappedTo()
 	 * @see org.bimserver.models.ifc4.IfcTessellatedFaceSet#getHasTextures
 	 * @model opposite="HasTextures"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcTessellatedFaceSet getMappedTo();

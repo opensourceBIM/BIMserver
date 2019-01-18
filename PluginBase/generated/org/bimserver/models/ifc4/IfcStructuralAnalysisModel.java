@@ -154,6 +154,7 @@ public interface IfcStructuralAnalysisModel extends IfcSystem {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralAnalysisModel_LoadedBy()
 	 * @see org.bimserver.models.ifc4.IfcStructuralLoadGroup#getLoadGroupFor
 	 * @model opposite="LoadGroupFor" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcStructuralLoadGroup> getLoadedBy();
@@ -195,6 +196,7 @@ public interface IfcStructuralAnalysisModel extends IfcSystem {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralAnalysisModel_HasResults()
 	 * @see org.bimserver.models.ifc4.IfcStructuralResultGroup#getResultGroupFor
 	 * @model opposite="ResultGroupFor" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcStructuralResultGroup> getHasResults();

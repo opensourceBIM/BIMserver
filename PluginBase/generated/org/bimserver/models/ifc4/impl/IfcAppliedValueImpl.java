@@ -101,6 +101,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(Ifc4Package.Literals.IFC_APPLIED_VALUE__NAME, true);
 	}
@@ -110,6 +111,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__NAME, newName);
 	}
@@ -119,6 +121,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetName() {
 		eUnset(Ifc4Package.Literals.IFC_APPLIED_VALUE__NAME);
 	}
@@ -128,6 +131,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetName() {
 		return eIsSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__NAME);
 	}
@@ -137,6 +141,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return (String) eGet(Ifc4Package.Literals.IFC_APPLIED_VALUE__DESCRIPTION, true);
 	}
@@ -146,6 +151,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		eSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__DESCRIPTION, newDescription);
 	}
@@ -155,6 +161,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetDescription() {
 		eUnset(Ifc4Package.Literals.IFC_APPLIED_VALUE__DESCRIPTION);
 	}
@@ -164,6 +171,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetDescription() {
 		return eIsSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__DESCRIPTION);
 	}
@@ -173,6 +181,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAppliedValueSelect getAppliedValue() {
 		return (IfcAppliedValueSelect) eGet(Ifc4Package.Literals.IFC_APPLIED_VALUE__APPLIED_VALUE, true);
 	}
@@ -182,6 +191,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAppliedValue(IfcAppliedValueSelect newAppliedValue) {
 		eSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__APPLIED_VALUE, newAppliedValue);
 	}
@@ -191,6 +201,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetAppliedValue() {
 		eUnset(Ifc4Package.Literals.IFC_APPLIED_VALUE__APPLIED_VALUE);
 	}
@@ -200,6 +211,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetAppliedValue() {
 		return eIsSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__APPLIED_VALUE);
 	}
@@ -209,6 +221,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMeasureWithUnit getUnitBasis() {
 		return (IfcMeasureWithUnit) eGet(Ifc4Package.Literals.IFC_APPLIED_VALUE__UNIT_BASIS, true);
 	}
@@ -218,6 +231,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUnitBasis(IfcMeasureWithUnit newUnitBasis) {
 		eSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__UNIT_BASIS, newUnitBasis);
 	}
@@ -227,6 +241,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetUnitBasis() {
 		eUnset(Ifc4Package.Literals.IFC_APPLIED_VALUE__UNIT_BASIS);
 	}
@@ -236,6 +251,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetUnitBasis() {
 		return eIsSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__UNIT_BASIS);
 	}
@@ -245,6 +261,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getApplicableDate() {
 		return (String) eGet(Ifc4Package.Literals.IFC_APPLIED_VALUE__APPLICABLE_DATE, true);
 	}
@@ -254,6 +271,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setApplicableDate(String newApplicableDate) {
 		eSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__APPLICABLE_DATE, newApplicableDate);
 	}
@@ -263,6 +281,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetApplicableDate() {
 		eUnset(Ifc4Package.Literals.IFC_APPLIED_VALUE__APPLICABLE_DATE);
 	}
@@ -272,6 +291,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetApplicableDate() {
 		return eIsSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__APPLICABLE_DATE);
 	}
@@ -281,6 +301,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFixedUntilDate() {
 		return (String) eGet(Ifc4Package.Literals.IFC_APPLIED_VALUE__FIXED_UNTIL_DATE, true);
 	}
@@ -290,6 +311,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFixedUntilDate(String newFixedUntilDate) {
 		eSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__FIXED_UNTIL_DATE, newFixedUntilDate);
 	}
@@ -299,6 +321,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetFixedUntilDate() {
 		eUnset(Ifc4Package.Literals.IFC_APPLIED_VALUE__FIXED_UNTIL_DATE);
 	}
@@ -308,6 +331,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetFixedUntilDate() {
 		return eIsSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__FIXED_UNTIL_DATE);
 	}
@@ -317,6 +341,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCategory() {
 		return (String) eGet(Ifc4Package.Literals.IFC_APPLIED_VALUE__CATEGORY, true);
 	}
@@ -326,6 +351,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCategory(String newCategory) {
 		eSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__CATEGORY, newCategory);
 	}
@@ -335,6 +361,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetCategory() {
 		eUnset(Ifc4Package.Literals.IFC_APPLIED_VALUE__CATEGORY);
 	}
@@ -344,6 +371,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetCategory() {
 		return eIsSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__CATEGORY);
 	}
@@ -353,6 +381,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCondition() {
 		return (String) eGet(Ifc4Package.Literals.IFC_APPLIED_VALUE__CONDITION, true);
 	}
@@ -362,6 +391,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCondition(String newCondition) {
 		eSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__CONDITION, newCondition);
 	}
@@ -371,6 +401,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetCondition() {
 		eUnset(Ifc4Package.Literals.IFC_APPLIED_VALUE__CONDITION);
 	}
@@ -380,6 +411,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetCondition() {
 		return eIsSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__CONDITION);
 	}
@@ -389,6 +421,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcArithmeticOperatorEnum getArithmeticOperator() {
 		return (IfcArithmeticOperatorEnum) eGet(Ifc4Package.Literals.IFC_APPLIED_VALUE__ARITHMETIC_OPERATOR, true);
 	}
@@ -398,6 +431,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setArithmeticOperator(IfcArithmeticOperatorEnum newArithmeticOperator) {
 		eSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__ARITHMETIC_OPERATOR, newArithmeticOperator);
 	}
@@ -407,6 +441,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetArithmeticOperator() {
 		eUnset(Ifc4Package.Literals.IFC_APPLIED_VALUE__ARITHMETIC_OPERATOR);
 	}
@@ -416,6 +451,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetArithmeticOperator() {
 		return eIsSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__ARITHMETIC_OPERATOR);
 	}
@@ -426,6 +462,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcAppliedValue> getComponents() {
 		return (EList<IfcAppliedValue>) eGet(Ifc4Package.Literals.IFC_APPLIED_VALUE__COMPONENTS, true);
 	}
@@ -435,6 +472,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetComponents() {
 		eUnset(Ifc4Package.Literals.IFC_APPLIED_VALUE__COMPONENTS);
 	}
@@ -444,6 +482,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetComponents() {
 		return eIsSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__COMPONENTS);
 	}
@@ -454,6 +493,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcExternalReferenceRelationship> getHasExternalReference() {
 		return (EList<IfcExternalReferenceRelationship>) eGet(
 				Ifc4Package.Literals.IFC_APPLIED_VALUE__HAS_EXTERNAL_REFERENCE, true);
@@ -464,6 +504,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetHasExternalReference() {
 		eUnset(Ifc4Package.Literals.IFC_APPLIED_VALUE__HAS_EXTERNAL_REFERENCE);
 	}
@@ -473,6 +514,7 @@ public class IfcAppliedValueImpl extends IdEObjectImpl implements IfcAppliedValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetHasExternalReference() {
 		return eIsSet(Ifc4Package.Literals.IFC_APPLIED_VALUE__HAS_EXTERNAL_REFERENCE);
 	}

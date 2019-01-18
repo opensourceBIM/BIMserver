@@ -78,6 +78,7 @@ public class IfcLineImpl extends IfcCurveImpl implements IfcLine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCartesianPoint getPnt() {
 		return (IfcCartesianPoint) eGet(Ifc4Package.Literals.IFC_LINE__PNT, true);
 	}
@@ -87,6 +88,7 @@ public class IfcLineImpl extends IfcCurveImpl implements IfcLine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPnt(IfcCartesianPoint newPnt) {
 		eSet(Ifc4Package.Literals.IFC_LINE__PNT, newPnt);
 	}
@@ -96,6 +98,7 @@ public class IfcLineImpl extends IfcCurveImpl implements IfcLine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcVector getDir() {
 		return (IfcVector) eGet(Ifc4Package.Literals.IFC_LINE__DIR, true);
 	}
@@ -105,6 +108,7 @@ public class IfcLineImpl extends IfcCurveImpl implements IfcLine {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDir(IfcVector newDir) {
 		eSet(Ifc4Package.Literals.IFC_LINE__DIR, newDir);
 	}

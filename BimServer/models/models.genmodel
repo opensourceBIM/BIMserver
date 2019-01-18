@@ -11568,9 +11568,15 @@
     <genClasses ecoreClass="models.ecore#/2/IfcPositiveLengthMeasure"/>
     <genClasses ecoreClass="models.ecore#/2/IfcPositivePlaneAngleMeasure"/>
     <genClasses ecoreClass="models.ecore#/2/IfcPositiveRatioMeasure"/>
+    <genClasses ecoreClass="models.ecore#/2/IfcArcIndex">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcArcIndex/wrappedValue"/>
+    </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcComplexNumber">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcComplexNumber/wrappedValue"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcComplexNumber/wrappedValueAsString"/>
+    </genClasses>
+    <genClasses ecoreClass="models.ecore#/2/IfcLineIndex">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcLineIndex/wrappedValue"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/2/IfcNullStyle">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/2/IfcNullStyle/wrappedValue"/>

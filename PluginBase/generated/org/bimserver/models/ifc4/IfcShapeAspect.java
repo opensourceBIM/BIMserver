@@ -72,6 +72,7 @@ public interface IfcShapeAspect extends IdEObject {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcShapeAspect_ShapeRepresentations()
 	 * @see org.bimserver.models.ifc4.IfcShapeModel#getOfShapeAspect
 	 * @model opposite="OfShapeAspect"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcShapeModel> getShapeRepresentations();
@@ -90,6 +91,7 @@ public interface IfcShapeAspect extends IdEObject {
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcShapeAspect_Name()
 	 * @model unsettable="true"
+	 *        annotation="singleindex"
 	 * @generated
 	 */
 	String getName();
@@ -225,6 +227,8 @@ public interface IfcShapeAspect extends IdEObject {
 	 * @see #setPartOfProductDefinitionShape(IfcProductRepresentationSelect)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcShapeAspect_PartOfProductDefinitionShape()
 	 * @model unsettable="true"
+	 *        annotation="inverse"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcProductRepresentationSelect getPartOfProductDefinitionShape();

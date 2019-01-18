@@ -67,6 +67,7 @@ public interface IfcRelDefinesByType extends IfcRelDefines {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelDefinesByType_RelatedObjects()
 	 * @see org.bimserver.models.ifc4.IfcObject#getIsTypedBy
 	 * @model opposite="IsTypedBy"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcObject> getRelatedObjects();
@@ -85,6 +86,7 @@ public interface IfcRelDefinesByType extends IfcRelDefines {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelDefinesByType_RelatingType()
 	 * @see org.bimserver.models.ifc4.IfcTypeObject#getTypes
 	 * @model opposite="Types"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcTypeObject getRelatingType();

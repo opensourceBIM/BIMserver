@@ -101,6 +101,8 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * @see #setLinearForceXAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadLinearForce_LinearForceXAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getLinearForceXAsString();
@@ -207,6 +209,8 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * @see #setLinearForceYAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadLinearForce_LinearForceYAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getLinearForceYAsString();
@@ -313,6 +317,8 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * @see #setLinearForceZAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadLinearForce_LinearForceZAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getLinearForceZAsString();
@@ -419,6 +425,8 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * @see #setLinearMomentXAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadLinearForce_LinearMomentXAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getLinearMomentXAsString();
@@ -525,6 +533,8 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * @see #setLinearMomentYAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadLinearForce_LinearMomentYAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getLinearMomentYAsString();
@@ -631,6 +641,8 @@ public interface IfcStructuralLoadLinearForce extends IfcStructuralLoadStatic {
 	 * @see #setLinearMomentZAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadLinearForce_LinearMomentZAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getLinearMomentZAsString();

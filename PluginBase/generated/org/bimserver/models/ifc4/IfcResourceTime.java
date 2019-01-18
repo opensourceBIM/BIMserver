@@ -154,6 +154,8 @@ public interface IfcResourceTime extends IfcSchedulingTime {
 	 * @see #setScheduleUsageAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcResourceTime_ScheduleUsageAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getScheduleUsageAsString();
@@ -634,6 +636,8 @@ public interface IfcResourceTime extends IfcSchedulingTime {
 	 * @see #setActualUsageAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcResourceTime_ActualUsageAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getActualUsageAsString();
@@ -899,6 +903,8 @@ public interface IfcResourceTime extends IfcSchedulingTime {
 	 * @see #setRemainingUsageAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcResourceTime_RemainingUsageAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getRemainingUsageAsString();
@@ -1005,6 +1011,8 @@ public interface IfcResourceTime extends IfcSchedulingTime {
 	 * @see #setCompletionAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcResourceTime_CompletionAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getCompletionAsString();

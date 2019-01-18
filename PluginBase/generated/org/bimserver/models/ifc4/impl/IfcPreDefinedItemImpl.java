@@ -75,6 +75,7 @@ public class IfcPreDefinedItemImpl extends IfcPresentationItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(Ifc4Package.Literals.IFC_PRE_DEFINED_ITEM__NAME, true);
 	}
@@ -84,6 +85,7 @@ public class IfcPreDefinedItemImpl extends IfcPresentationItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(Ifc4Package.Literals.IFC_PRE_DEFINED_ITEM__NAME, newName);
 	}

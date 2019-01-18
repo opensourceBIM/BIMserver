@@ -79,6 +79,7 @@ public class IfcOrganizationRelationshipImpl extends IfcResourceLevelRelationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcOrganization getRelatingOrganization() {
 		return (IfcOrganization) eGet(Ifc4Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATING_ORGANIZATION, true);
 	}
@@ -88,6 +89,7 @@ public class IfcOrganizationRelationshipImpl extends IfcResourceLevelRelationshi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRelatingOrganization(IfcOrganization newRelatingOrganization) {
 		eSet(Ifc4Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATING_ORGANIZATION, newRelatingOrganization);
 	}
@@ -98,6 +100,7 @@ public class IfcOrganizationRelationshipImpl extends IfcResourceLevelRelationshi
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcOrganization> getRelatedOrganizations() {
 		return (EList<IfcOrganization>) eGet(Ifc4Package.Literals.IFC_ORGANIZATION_RELATIONSHIP__RELATED_ORGANIZATIONS,
 				true);

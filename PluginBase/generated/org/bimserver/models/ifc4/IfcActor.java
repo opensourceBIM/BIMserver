@@ -95,6 +95,7 @@ public interface IfcActor extends IfcObject {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcActor_IsActingUpon()
 	 * @see org.bimserver.models.ifc4.IfcRelAssignsToActor#getRelatingActor
 	 * @model opposite="RelatingActor" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelAssignsToActor> getIsActingUpon();

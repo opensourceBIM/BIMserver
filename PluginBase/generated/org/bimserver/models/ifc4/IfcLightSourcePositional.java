@@ -97,7 +97,8 @@ public interface IfcLightSourcePositional extends IfcLightSource {
 	 * @return the value of the '<em>Radius As String</em>' attribute.
 	 * @see #setRadiusAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcLightSourcePositional_RadiusAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getRadiusAsString();
@@ -149,7 +150,8 @@ public interface IfcLightSourcePositional extends IfcLightSource {
 	 * @return the value of the '<em>Constant Attenuation As String</em>' attribute.
 	 * @see #setConstantAttenuationAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcLightSourcePositional_ConstantAttenuationAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getConstantAttenuationAsString();
@@ -201,7 +203,8 @@ public interface IfcLightSourcePositional extends IfcLightSource {
 	 * @return the value of the '<em>Distance Attenuation As String</em>' attribute.
 	 * @see #setDistanceAttenuationAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcLightSourcePositional_DistanceAttenuationAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getDistanceAttenuationAsString();
@@ -253,7 +256,8 @@ public interface IfcLightSourcePositional extends IfcLightSource {
 	 * @return the value of the '<em>Quadric Attenuation As String</em>' attribute.
 	 * @see #setQuadricAttenuationAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcLightSourcePositional_QuadricAttenuationAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getQuadricAttenuationAsString();

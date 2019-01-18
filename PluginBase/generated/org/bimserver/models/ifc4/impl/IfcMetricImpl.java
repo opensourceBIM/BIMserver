@@ -81,6 +81,7 @@ public class IfcMetricImpl extends IfcConstraintImpl implements IfcMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBenchmarkEnum getBenchmark() {
 		return (IfcBenchmarkEnum) eGet(Ifc4Package.Literals.IFC_METRIC__BENCHMARK, true);
 	}
@@ -90,6 +91,7 @@ public class IfcMetricImpl extends IfcConstraintImpl implements IfcMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBenchmark(IfcBenchmarkEnum newBenchmark) {
 		eSet(Ifc4Package.Literals.IFC_METRIC__BENCHMARK, newBenchmark);
 	}
@@ -99,6 +101,7 @@ public class IfcMetricImpl extends IfcConstraintImpl implements IfcMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getValueSource() {
 		return (String) eGet(Ifc4Package.Literals.IFC_METRIC__VALUE_SOURCE, true);
 	}
@@ -108,6 +111,7 @@ public class IfcMetricImpl extends IfcConstraintImpl implements IfcMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValueSource(String newValueSource) {
 		eSet(Ifc4Package.Literals.IFC_METRIC__VALUE_SOURCE, newValueSource);
 	}
@@ -117,6 +121,7 @@ public class IfcMetricImpl extends IfcConstraintImpl implements IfcMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetValueSource() {
 		eUnset(Ifc4Package.Literals.IFC_METRIC__VALUE_SOURCE);
 	}
@@ -126,6 +131,7 @@ public class IfcMetricImpl extends IfcConstraintImpl implements IfcMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetValueSource() {
 		return eIsSet(Ifc4Package.Literals.IFC_METRIC__VALUE_SOURCE);
 	}
@@ -135,6 +141,7 @@ public class IfcMetricImpl extends IfcConstraintImpl implements IfcMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMetricValueSelect getDataValue() {
 		return (IfcMetricValueSelect) eGet(Ifc4Package.Literals.IFC_METRIC__DATA_VALUE, true);
 	}
@@ -144,6 +151,7 @@ public class IfcMetricImpl extends IfcConstraintImpl implements IfcMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDataValue(IfcMetricValueSelect newDataValue) {
 		eSet(Ifc4Package.Literals.IFC_METRIC__DATA_VALUE, newDataValue);
 	}
@@ -153,6 +161,7 @@ public class IfcMetricImpl extends IfcConstraintImpl implements IfcMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetDataValue() {
 		eUnset(Ifc4Package.Literals.IFC_METRIC__DATA_VALUE);
 	}
@@ -162,6 +171,7 @@ public class IfcMetricImpl extends IfcConstraintImpl implements IfcMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetDataValue() {
 		return eIsSet(Ifc4Package.Literals.IFC_METRIC__DATA_VALUE);
 	}
@@ -171,6 +181,7 @@ public class IfcMetricImpl extends IfcConstraintImpl implements IfcMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcReference getReferencePath() {
 		return (IfcReference) eGet(Ifc4Package.Literals.IFC_METRIC__REFERENCE_PATH, true);
 	}
@@ -180,6 +191,7 @@ public class IfcMetricImpl extends IfcConstraintImpl implements IfcMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferencePath(IfcReference newReferencePath) {
 		eSet(Ifc4Package.Literals.IFC_METRIC__REFERENCE_PATH, newReferencePath);
 	}
@@ -189,6 +201,7 @@ public class IfcMetricImpl extends IfcConstraintImpl implements IfcMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetReferencePath() {
 		eUnset(Ifc4Package.Literals.IFC_METRIC__REFERENCE_PATH);
 	}
@@ -198,6 +211,7 @@ public class IfcMetricImpl extends IfcConstraintImpl implements IfcMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetReferencePath() {
 		return eIsSet(Ifc4Package.Literals.IFC_METRIC__REFERENCE_PATH);
 	}

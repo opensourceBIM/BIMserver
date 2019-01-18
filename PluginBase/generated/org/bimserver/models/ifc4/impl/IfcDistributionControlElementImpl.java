@@ -79,6 +79,7 @@ public class IfcDistributionControlElementImpl extends IfcDistributionElementImp
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelFlowControlElements> getAssignedToFlowElement() {
 		return (EList<IfcRelFlowControlElements>) eGet(
 				Ifc4Package.Literals.IFC_DISTRIBUTION_CONTROL_ELEMENT__ASSIGNED_TO_FLOW_ELEMENT, true);
@@ -89,6 +90,7 @@ public class IfcDistributionControlElementImpl extends IfcDistributionElementImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetAssignedToFlowElement() {
 		eUnset(Ifc4Package.Literals.IFC_DISTRIBUTION_CONTROL_ELEMENT__ASSIGNED_TO_FLOW_ELEMENT);
 	}
@@ -98,6 +100,7 @@ public class IfcDistributionControlElementImpl extends IfcDistributionElementImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetAssignedToFlowElement() {
 		return eIsSet(Ifc4Package.Literals.IFC_DISTRIBUTION_CONTROL_ELEMENT__ASSIGNED_TO_FLOW_ELEMENT);
 	}

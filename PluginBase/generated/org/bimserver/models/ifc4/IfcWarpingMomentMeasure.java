@@ -101,6 +101,8 @@ public interface IfcWarpingMomentMeasure extends IfcDerivedMeasureValue, IfcWarp
 	 * @see #setWrappedValueAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcWarpingMomentMeasure_WrappedValueAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getWrappedValueAsString();

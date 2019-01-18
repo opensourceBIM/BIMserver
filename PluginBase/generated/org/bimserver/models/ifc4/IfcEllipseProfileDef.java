@@ -71,7 +71,8 @@ public interface IfcEllipseProfileDef extends IfcParameterizedProfileDef {
 	 * @return the value of the '<em>Semi Axis1 As String</em>' attribute.
 	 * @see #setSemiAxis1AsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcEllipseProfileDef_SemiAxis1AsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getSemiAxis1AsString();
@@ -123,7 +124,8 @@ public interface IfcEllipseProfileDef extends IfcParameterizedProfileDef {
 	 * @return the value of the '<em>Semi Axis2 As String</em>' attribute.
 	 * @see #setSemiAxis2AsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcEllipseProfileDef_SemiAxis2AsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getSemiAxis2AsString();

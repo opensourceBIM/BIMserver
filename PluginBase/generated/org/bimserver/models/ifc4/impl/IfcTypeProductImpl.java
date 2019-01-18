@@ -81,6 +81,7 @@ public class IfcTypeProductImpl extends IfcTypeObjectImpl implements IfcTypeProd
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRepresentationMap> getRepresentationMaps() {
 		return (EList<IfcRepresentationMap>) eGet(Ifc4Package.Literals.IFC_TYPE_PRODUCT__REPRESENTATION_MAPS, true);
 	}
@@ -90,6 +91,7 @@ public class IfcTypeProductImpl extends IfcTypeObjectImpl implements IfcTypeProd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetRepresentationMaps() {
 		eUnset(Ifc4Package.Literals.IFC_TYPE_PRODUCT__REPRESENTATION_MAPS);
 	}
@@ -99,6 +101,7 @@ public class IfcTypeProductImpl extends IfcTypeObjectImpl implements IfcTypeProd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetRepresentationMaps() {
 		return eIsSet(Ifc4Package.Literals.IFC_TYPE_PRODUCT__REPRESENTATION_MAPS);
 	}
@@ -108,6 +111,7 @@ public class IfcTypeProductImpl extends IfcTypeObjectImpl implements IfcTypeProd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTag() {
 		return (String) eGet(Ifc4Package.Literals.IFC_TYPE_PRODUCT__TAG, true);
 	}
@@ -117,6 +121,7 @@ public class IfcTypeProductImpl extends IfcTypeObjectImpl implements IfcTypeProd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTag(String newTag) {
 		eSet(Ifc4Package.Literals.IFC_TYPE_PRODUCT__TAG, newTag);
 	}
@@ -126,6 +131,7 @@ public class IfcTypeProductImpl extends IfcTypeObjectImpl implements IfcTypeProd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetTag() {
 		eUnset(Ifc4Package.Literals.IFC_TYPE_PRODUCT__TAG);
 	}
@@ -135,6 +141,7 @@ public class IfcTypeProductImpl extends IfcTypeObjectImpl implements IfcTypeProd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetTag() {
 		return eIsSet(Ifc4Package.Literals.IFC_TYPE_PRODUCT__TAG);
 	}
@@ -145,6 +152,7 @@ public class IfcTypeProductImpl extends IfcTypeObjectImpl implements IfcTypeProd
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelAssignsToProduct> getReferencedBy() {
 		return (EList<IfcRelAssignsToProduct>) eGet(Ifc4Package.Literals.IFC_TYPE_PRODUCT__REFERENCED_BY, true);
 	}
@@ -154,6 +162,7 @@ public class IfcTypeProductImpl extends IfcTypeObjectImpl implements IfcTypeProd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetReferencedBy() {
 		eUnset(Ifc4Package.Literals.IFC_TYPE_PRODUCT__REFERENCED_BY);
 	}
@@ -163,6 +172,7 @@ public class IfcTypeProductImpl extends IfcTypeObjectImpl implements IfcTypeProd
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetReferencedBy() {
 		return eIsSet(Ifc4Package.Literals.IFC_TYPE_PRODUCT__REFERENCED_BY);
 	}

@@ -78,6 +78,7 @@ public class IfcCurveStyleFontPatternImpl extends IfcPresentationItemImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getVisibleSegmentLength() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__VISIBLE_SEGMENT_LENGTH, true);
 	}
@@ -87,6 +88,7 @@ public class IfcCurveStyleFontPatternImpl extends IfcPresentationItemImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVisibleSegmentLength(double newVisibleSegmentLength) {
 		eSet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__VISIBLE_SEGMENT_LENGTH, newVisibleSegmentLength);
 	}
@@ -96,6 +98,7 @@ public class IfcCurveStyleFontPatternImpl extends IfcPresentationItemImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getVisibleSegmentLengthAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__VISIBLE_SEGMENT_LENGTH_AS_STRING, true);
 	}
@@ -105,6 +108,7 @@ public class IfcCurveStyleFontPatternImpl extends IfcPresentationItemImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVisibleSegmentLengthAsString(String newVisibleSegmentLengthAsString) {
 		eSet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__VISIBLE_SEGMENT_LENGTH_AS_STRING,
 				newVisibleSegmentLengthAsString);
@@ -115,6 +119,7 @@ public class IfcCurveStyleFontPatternImpl extends IfcPresentationItemImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getInvisibleSegmentLength() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__INVISIBLE_SEGMENT_LENGTH, true);
 	}
@@ -124,6 +129,7 @@ public class IfcCurveStyleFontPatternImpl extends IfcPresentationItemImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInvisibleSegmentLength(double newInvisibleSegmentLength) {
 		eSet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__INVISIBLE_SEGMENT_LENGTH, newInvisibleSegmentLength);
 	}
@@ -133,6 +139,7 @@ public class IfcCurveStyleFontPatternImpl extends IfcPresentationItemImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getInvisibleSegmentLengthAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__INVISIBLE_SEGMENT_LENGTH_AS_STRING,
 				true);
@@ -143,6 +150,7 @@ public class IfcCurveStyleFontPatternImpl extends IfcPresentationItemImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInvisibleSegmentLengthAsString(String newInvisibleSegmentLengthAsString) {
 		eSet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT_PATTERN__INVISIBLE_SEGMENT_LENGTH_AS_STRING,
 				newInvisibleSegmentLengthAsString);

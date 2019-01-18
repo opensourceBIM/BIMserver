@@ -67,6 +67,7 @@ public interface IfcBoundaryCondition extends IdEObject {
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBoundaryCondition_Name()
 	 * @model unsettable="true"
+	 *        annotation="singleindex"
 	 * @generated
 	 */
 	String getName();

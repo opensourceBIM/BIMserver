@@ -86,6 +86,7 @@ public class IfcMonetaryUnitImpl extends IdEObjectImpl implements IfcMonetaryUni
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCurrency() {
 		return (String) eGet(Ifc4Package.Literals.IFC_MONETARY_UNIT__CURRENCY, true);
 	}
@@ -95,6 +96,7 @@ public class IfcMonetaryUnitImpl extends IdEObjectImpl implements IfcMonetaryUni
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCurrency(String newCurrency) {
 		eSet(Ifc4Package.Literals.IFC_MONETARY_UNIT__CURRENCY, newCurrency);
 	}

@@ -80,6 +80,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getXLength() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_BLOCK__XLENGTH, true);
 	}
@@ -89,6 +90,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setXLength(double newXLength) {
 		eSet(Ifc4Package.Literals.IFC_BLOCK__XLENGTH, newXLength);
 	}
@@ -98,6 +100,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getXLengthAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_BLOCK__XLENGTH_AS_STRING, true);
 	}
@@ -107,6 +110,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setXLengthAsString(String newXLengthAsString) {
 		eSet(Ifc4Package.Literals.IFC_BLOCK__XLENGTH_AS_STRING, newXLengthAsString);
 	}
@@ -116,6 +120,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getYLength() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_BLOCK__YLENGTH, true);
 	}
@@ -125,6 +130,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setYLength(double newYLength) {
 		eSet(Ifc4Package.Literals.IFC_BLOCK__YLENGTH, newYLength);
 	}
@@ -134,6 +140,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getYLengthAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_BLOCK__YLENGTH_AS_STRING, true);
 	}
@@ -143,6 +150,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setYLengthAsString(String newYLengthAsString) {
 		eSet(Ifc4Package.Literals.IFC_BLOCK__YLENGTH_AS_STRING, newYLengthAsString);
 	}
@@ -152,6 +160,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getZLength() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_BLOCK__ZLENGTH, true);
 	}
@@ -161,6 +170,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setZLength(double newZLength) {
 		eSet(Ifc4Package.Literals.IFC_BLOCK__ZLENGTH, newZLength);
 	}
@@ -170,6 +180,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getZLengthAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_BLOCK__ZLENGTH_AS_STRING, true);
 	}
@@ -179,6 +190,7 @@ public class IfcBlockImpl extends IfcCsgPrimitive3DImpl implements IfcBlock {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setZLengthAsString(String newZLengthAsString) {
 		eSet(Ifc4Package.Literals.IFC_BLOCK__ZLENGTH_AS_STRING, newZLengthAsString);
 	}

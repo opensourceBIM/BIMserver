@@ -323,6 +323,7 @@ public interface IfcContext extends IfcObjectDefinition {
 	 * @see #unsetIsDefinedBy()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcContext_IsDefinedBy()
 	 * @model unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelDefinesByProperties> getIsDefinedBy();
@@ -364,6 +365,7 @@ public interface IfcContext extends IfcObjectDefinition {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcContext_Declares()
 	 * @see org.bimserver.models.ifc4.IfcRelDeclares#getRelatingContext
 	 * @model opposite="RelatingContext" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelDeclares> getDeclares();

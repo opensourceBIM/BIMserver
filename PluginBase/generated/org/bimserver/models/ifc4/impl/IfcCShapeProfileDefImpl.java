@@ -84,6 +84,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getDepth() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__DEPTH, true);
 	}
@@ -93,6 +94,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDepth(double newDepth) {
 		eSet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__DEPTH, newDepth);
 	}
@@ -102,6 +104,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDepthAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__DEPTH_AS_STRING, true);
 	}
@@ -111,6 +114,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDepthAsString(String newDepthAsString) {
 		eSet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__DEPTH_AS_STRING, newDepthAsString);
 	}
@@ -120,6 +124,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getWidth() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__WIDTH, true);
 	}
@@ -129,6 +134,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWidth(double newWidth) {
 		eSet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__WIDTH, newWidth);
 	}
@@ -138,6 +144,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getWidthAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__WIDTH_AS_STRING, true);
 	}
@@ -147,6 +154,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWidthAsString(String newWidthAsString) {
 		eSet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__WIDTH_AS_STRING, newWidthAsString);
 	}
@@ -156,6 +164,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getWallThickness() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__WALL_THICKNESS, true);
 	}
@@ -165,6 +174,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWallThickness(double newWallThickness) {
 		eSet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__WALL_THICKNESS, newWallThickness);
 	}
@@ -174,6 +184,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getWallThicknessAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__WALL_THICKNESS_AS_STRING, true);
 	}
@@ -183,6 +194,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWallThicknessAsString(String newWallThicknessAsString) {
 		eSet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__WALL_THICKNESS_AS_STRING, newWallThicknessAsString);
 	}
@@ -192,6 +204,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getGirth() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__GIRTH, true);
 	}
@@ -201,6 +214,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGirth(double newGirth) {
 		eSet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__GIRTH, newGirth);
 	}
@@ -210,6 +224,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getGirthAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__GIRTH_AS_STRING, true);
 	}
@@ -219,6 +234,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGirthAsString(String newGirthAsString) {
 		eSet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__GIRTH_AS_STRING, newGirthAsString);
 	}
@@ -228,6 +244,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getInternalFilletRadius() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__INTERNAL_FILLET_RADIUS, true);
 	}
@@ -237,6 +254,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInternalFilletRadius(double newInternalFilletRadius) {
 		eSet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__INTERNAL_FILLET_RADIUS, newInternalFilletRadius);
 	}
@@ -246,6 +264,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetInternalFilletRadius() {
 		eUnset(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__INTERNAL_FILLET_RADIUS);
 	}
@@ -255,6 +274,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetInternalFilletRadius() {
 		return eIsSet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__INTERNAL_FILLET_RADIUS);
 	}
@@ -264,6 +284,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getInternalFilletRadiusAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__INTERNAL_FILLET_RADIUS_AS_STRING, true);
 	}
@@ -273,6 +294,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInternalFilletRadiusAsString(String newInternalFilletRadiusAsString) {
 		eSet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__INTERNAL_FILLET_RADIUS_AS_STRING,
 				newInternalFilletRadiusAsString);
@@ -283,6 +305,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetInternalFilletRadiusAsString() {
 		eUnset(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__INTERNAL_FILLET_RADIUS_AS_STRING);
 	}
@@ -292,6 +315,7 @@ public class IfcCShapeProfileDefImpl extends IfcParameterizedProfileDefImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetInternalFilletRadiusAsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_CSHAPE_PROFILE_DEF__INTERNAL_FILLET_RADIUS_AS_STRING);
 	}

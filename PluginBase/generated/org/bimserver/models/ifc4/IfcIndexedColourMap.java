@@ -70,6 +70,7 @@ public interface IfcIndexedColourMap extends IfcPresentationItem {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcIndexedColourMap_MappedTo()
 	 * @see org.bimserver.models.ifc4.IfcTessellatedFaceSet#getHasColours
 	 * @model opposite="HasColours"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcTessellatedFaceSet getMappedTo();
@@ -151,6 +152,8 @@ public interface IfcIndexedColourMap extends IfcPresentationItem {
 	 * @see #setOpacityAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcIndexedColourMap_OpacityAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getOpacityAsString();

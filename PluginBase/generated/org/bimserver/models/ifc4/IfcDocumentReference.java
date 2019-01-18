@@ -123,6 +123,7 @@ public interface IfcDocumentReference extends IfcExternalReference, IfcDocumentS
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDocumentReference_ReferencedDocument()
 	 * @see org.bimserver.models.ifc4.IfcDocumentInformation#getHasDocumentReferences
 	 * @model opposite="HasDocumentReferences" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcDocumentInformation getReferencedDocument();
@@ -176,6 +177,7 @@ public interface IfcDocumentReference extends IfcExternalReference, IfcDocumentS
 	 * @see #unsetDocumentRefForObjects()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDocumentReference_DocumentRefForObjects()
 	 * @model unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelAssociatesDocument> getDocumentRefForObjects();

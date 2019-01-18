@@ -64,7 +64,9 @@ public interface IfcRelContainedInSpatialStructure extends IfcRelConnects {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Elements</em>' reference list.
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelContainedInSpatialStructure_RelatedElements()
-	 * @model
+	 * @model annotation="inverse"
+	 *        annotation="inverse"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcProduct> getRelatedElements();
@@ -83,6 +85,7 @@ public interface IfcRelContainedInSpatialStructure extends IfcRelConnects {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelContainedInSpatialStructure_RelatingStructure()
 	 * @see org.bimserver.models.ifc4.IfcSpatialElement#getContainsElements
 	 * @model opposite="ContainsElements"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcSpatialElement getRelatingStructure();

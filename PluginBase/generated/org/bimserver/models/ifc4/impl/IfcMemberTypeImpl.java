@@ -76,6 +76,7 @@ public class IfcMemberTypeImpl extends IfcBuildingElementTypeImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMemberTypeEnum getPredefinedType() {
 		return (IfcMemberTypeEnum) eGet(Ifc4Package.Literals.IFC_MEMBER_TYPE__PREDEFINED_TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcMemberTypeImpl extends IfcBuildingElementTypeImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcMemberTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_MEMBER_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

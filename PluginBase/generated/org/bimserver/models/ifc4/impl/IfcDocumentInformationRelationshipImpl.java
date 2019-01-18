@@ -80,6 +80,7 @@ public class IfcDocumentInformationRelationshipImpl extends IfcResourceLevelRela
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDocumentInformation getRelatingDocument() {
 		return (IfcDocumentInformation) eGet(
 				Ifc4Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATING_DOCUMENT, true);
@@ -90,6 +91,7 @@ public class IfcDocumentInformationRelationshipImpl extends IfcResourceLevelRela
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRelatingDocument(IfcDocumentInformation newRelatingDocument) {
 		eSet(Ifc4Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATING_DOCUMENT, newRelatingDocument);
 	}
@@ -100,6 +102,7 @@ public class IfcDocumentInformationRelationshipImpl extends IfcResourceLevelRela
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcDocumentInformation> getRelatedDocuments() {
 		return (EList<IfcDocumentInformation>) eGet(
 				Ifc4Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATED_DOCUMENTS, true);
@@ -110,6 +113,7 @@ public class IfcDocumentInformationRelationshipImpl extends IfcResourceLevelRela
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRelationshipType() {
 		return (String) eGet(Ifc4Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATIONSHIP_TYPE, true);
 	}
@@ -119,6 +123,7 @@ public class IfcDocumentInformationRelationshipImpl extends IfcResourceLevelRela
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRelationshipType(String newRelationshipType) {
 		eSet(Ifc4Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATIONSHIP_TYPE, newRelationshipType);
 	}
@@ -128,6 +133,7 @@ public class IfcDocumentInformationRelationshipImpl extends IfcResourceLevelRela
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetRelationshipType() {
 		eUnset(Ifc4Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATIONSHIP_TYPE);
 	}
@@ -137,6 +143,7 @@ public class IfcDocumentInformationRelationshipImpl extends IfcResourceLevelRela
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetRelationshipType() {
 		return eIsSet(Ifc4Package.Literals.IFC_DOCUMENT_INFORMATION_RELATIONSHIP__RELATIONSHIP_TYPE);
 	}

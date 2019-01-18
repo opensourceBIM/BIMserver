@@ -82,6 +82,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl implement
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcMaterialLayer> getMaterialLayers() {
 		return (EList<IfcMaterialLayer>) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__MATERIAL_LAYERS, true);
 	}
@@ -91,6 +92,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLayerSetName() {
 		return (String) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__LAYER_SET_NAME, true);
 	}
@@ -100,6 +102,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLayerSetName(String newLayerSetName) {
 		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__LAYER_SET_NAME, newLayerSetName);
 	}
@@ -109,6 +112,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetLayerSetName() {
 		eUnset(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__LAYER_SET_NAME);
 	}
@@ -118,6 +122,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetLayerSetName() {
 		return eIsSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__LAYER_SET_NAME);
 	}
@@ -127,6 +132,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return (String) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__DESCRIPTION, true);
 	}
@@ -136,6 +142,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__DESCRIPTION, newDescription);
 	}
@@ -145,6 +152,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetDescription() {
 		eUnset(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__DESCRIPTION);
 	}
@@ -154,6 +162,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetDescription() {
 		return eIsSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__DESCRIPTION);
 	}
@@ -163,6 +172,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getTotalThickness() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__TOTAL_THICKNESS, true);
 	}
@@ -172,6 +182,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTotalThickness(double newTotalThickness) {
 		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__TOTAL_THICKNESS, newTotalThickness);
 	}
@@ -181,6 +192,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetTotalThickness() {
 		eUnset(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__TOTAL_THICKNESS);
 	}
@@ -190,6 +202,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetTotalThickness() {
 		return eIsSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__TOTAL_THICKNESS);
 	}
@@ -199,6 +212,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTotalThicknessAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__TOTAL_THICKNESS_AS_STRING, true);
 	}
@@ -208,6 +222,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTotalThicknessAsString(String newTotalThicknessAsString) {
 		eSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__TOTAL_THICKNESS_AS_STRING, newTotalThicknessAsString);
 	}
@@ -217,6 +232,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetTotalThicknessAsString() {
 		eUnset(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__TOTAL_THICKNESS_AS_STRING);
 	}
@@ -226,6 +242,7 @@ public class IfcMaterialLayerSetImpl extends IfcMaterialDefinitionImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetTotalThicknessAsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_MATERIAL_LAYER_SET__TOTAL_THICKNESS_AS_STRING);
 	}

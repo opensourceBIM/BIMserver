@@ -76,6 +76,7 @@ public class IfcRelAssociatesMaterialImpl extends IfcRelAssociatesImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMaterialSelect getRelatingMaterial() {
 		return (IfcMaterialSelect) eGet(Ifc4Package.Literals.IFC_REL_ASSOCIATES_MATERIAL__RELATING_MATERIAL, true);
 	}
@@ -85,6 +86,7 @@ public class IfcRelAssociatesMaterialImpl extends IfcRelAssociatesImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRelatingMaterial(IfcMaterialSelect newRelatingMaterial) {
 		eSet(Ifc4Package.Literals.IFC_REL_ASSOCIATES_MATERIAL__RELATING_MATERIAL, newRelatingMaterial);
 	}

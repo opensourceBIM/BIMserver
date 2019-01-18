@@ -124,6 +124,7 @@ public interface IfcTableColumn extends IdEObject {
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTableColumn_Name()
 	 * @model unsettable="true"
+	 *        annotation="singleindex"
 	 * @generated
 	 */
 	String getName();

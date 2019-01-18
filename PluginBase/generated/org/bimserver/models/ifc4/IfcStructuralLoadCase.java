@@ -106,6 +106,8 @@ public interface IfcStructuralLoadCase extends IfcStructuralLoadGroup {
 	 * @see #unsetSelfWeightCoefficientsAsString()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadCase_SelfWeightCoefficientsAsString()
 	 * @model unique="false" unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	EList<String> getSelfWeightCoefficientsAsString();

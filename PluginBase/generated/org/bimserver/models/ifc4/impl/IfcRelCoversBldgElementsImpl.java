@@ -79,6 +79,7 @@ public class IfcRelCoversBldgElementsImpl extends IfcRelConnectsImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElement getRelatingBuildingElement() {
 		return (IfcElement) eGet(Ifc4Package.Literals.IFC_REL_COVERS_BLDG_ELEMENTS__RELATING_BUILDING_ELEMENT, true);
 	}
@@ -88,6 +89,7 @@ public class IfcRelCoversBldgElementsImpl extends IfcRelConnectsImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRelatingBuildingElement(IfcElement newRelatingBuildingElement) {
 		eSet(Ifc4Package.Literals.IFC_REL_COVERS_BLDG_ELEMENTS__RELATING_BUILDING_ELEMENT, newRelatingBuildingElement);
 	}
@@ -98,6 +100,7 @@ public class IfcRelCoversBldgElementsImpl extends IfcRelConnectsImpl implements 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcCovering> getRelatedCoverings() {
 		return (EList<IfcCovering>) eGet(Ifc4Package.Literals.IFC_REL_COVERS_BLDG_ELEMENTS__RELATED_COVERINGS, true);
 	}

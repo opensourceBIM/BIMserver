@@ -71,7 +71,8 @@ public interface IfcToroidalSurface extends IfcElementarySurface {
 	 * @return the value of the '<em>Major Radius As String</em>' attribute.
 	 * @see #setMajorRadiusAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcToroidalSurface_MajorRadiusAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getMajorRadiusAsString();
@@ -123,7 +124,8 @@ public interface IfcToroidalSurface extends IfcElementarySurface {
 	 * @return the value of the '<em>Minor Radius As String</em>' attribute.
 	 * @see #setMinorRadiusAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcToroidalSurface_MinorRadiusAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getMinorRadiusAsString();

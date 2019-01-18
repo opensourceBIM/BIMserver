@@ -84,6 +84,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getPanelDepth() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_DEPTH, true);
 	}
@@ -93,6 +94,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPanelDepth(double newPanelDepth) {
 		eSet(Ifc4Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_DEPTH, newPanelDepth);
 	}
@@ -102,6 +104,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPanelDepth() {
 		eUnset(Ifc4Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_DEPTH);
 	}
@@ -111,6 +114,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPanelDepth() {
 		return eIsSet(Ifc4Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_DEPTH);
 	}
@@ -120,6 +124,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getPanelDepthAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_DEPTH_AS_STRING, true);
 	}
@@ -129,6 +134,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPanelDepthAsString(String newPanelDepthAsString) {
 		eSet(Ifc4Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_DEPTH_AS_STRING, newPanelDepthAsString);
 	}
@@ -138,6 +144,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPanelDepthAsString() {
 		eUnset(Ifc4Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_DEPTH_AS_STRING);
 	}
@@ -147,6 +154,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPanelDepthAsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_DEPTH_AS_STRING);
 	}
@@ -156,6 +164,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDoorPanelOperationEnum getPanelOperation() {
 		return (IfcDoorPanelOperationEnum) eGet(Ifc4Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_OPERATION, true);
 	}
@@ -165,6 +174,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPanelOperation(IfcDoorPanelOperationEnum newPanelOperation) {
 		eSet(Ifc4Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_OPERATION, newPanelOperation);
 	}
@@ -174,6 +184,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getPanelWidth() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_WIDTH, true);
 	}
@@ -183,6 +194,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPanelWidth(double newPanelWidth) {
 		eSet(Ifc4Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_WIDTH, newPanelWidth);
 	}
@@ -192,6 +204,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPanelWidth() {
 		eUnset(Ifc4Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_WIDTH);
 	}
@@ -201,6 +214,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPanelWidth() {
 		return eIsSet(Ifc4Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_WIDTH);
 	}
@@ -210,6 +224,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getPanelWidthAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_WIDTH_AS_STRING, true);
 	}
@@ -219,6 +234,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPanelWidthAsString(String newPanelWidthAsString) {
 		eSet(Ifc4Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_WIDTH_AS_STRING, newPanelWidthAsString);
 	}
@@ -228,6 +244,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPanelWidthAsString() {
 		eUnset(Ifc4Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_WIDTH_AS_STRING);
 	}
@@ -237,6 +254,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPanelWidthAsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_WIDTH_AS_STRING);
 	}
@@ -246,6 +264,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDoorPanelPositionEnum getPanelPosition() {
 		return (IfcDoorPanelPositionEnum) eGet(Ifc4Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_POSITION, true);
 	}
@@ -255,6 +274,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPanelPosition(IfcDoorPanelPositionEnum newPanelPosition) {
 		eSet(Ifc4Package.Literals.IFC_DOOR_PANEL_PROPERTIES__PANEL_POSITION, newPanelPosition);
 	}
@@ -264,6 +284,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcShapeAspect getShapeAspectStyle() {
 		return (IfcShapeAspect) eGet(Ifc4Package.Literals.IFC_DOOR_PANEL_PROPERTIES__SHAPE_ASPECT_STYLE, true);
 	}
@@ -273,6 +294,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setShapeAspectStyle(IfcShapeAspect newShapeAspectStyle) {
 		eSet(Ifc4Package.Literals.IFC_DOOR_PANEL_PROPERTIES__SHAPE_ASPECT_STYLE, newShapeAspectStyle);
 	}
@@ -282,6 +304,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetShapeAspectStyle() {
 		eUnset(Ifc4Package.Literals.IFC_DOOR_PANEL_PROPERTIES__SHAPE_ASPECT_STYLE);
 	}
@@ -291,6 +314,7 @@ public class IfcDoorPanelPropertiesImpl extends IfcPreDefinedPropertySetImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetShapeAspectStyle() {
 		return eIsSet(Ifc4Package.Literals.IFC_DOOR_PANEL_PROPERTIES__SHAPE_ASPECT_STYLE);
 	}

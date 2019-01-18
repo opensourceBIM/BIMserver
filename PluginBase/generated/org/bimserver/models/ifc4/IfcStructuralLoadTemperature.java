@@ -101,6 +101,8 @@ public interface IfcStructuralLoadTemperature extends IfcStructuralLoadStatic {
 	 * @see #setDeltaTConstantAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadTemperature_DeltaTConstantAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getDeltaTConstantAsString();
@@ -207,6 +209,8 @@ public interface IfcStructuralLoadTemperature extends IfcStructuralLoadStatic {
 	 * @see #setDeltaTYAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadTemperature_DeltaTYAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getDeltaTYAsString();
@@ -313,6 +317,8 @@ public interface IfcStructuralLoadTemperature extends IfcStructuralLoadStatic {
 	 * @see #setDeltaTZAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadTemperature_DeltaTZAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getDeltaTZAsString();

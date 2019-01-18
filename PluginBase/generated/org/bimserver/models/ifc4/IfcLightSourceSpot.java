@@ -127,6 +127,8 @@ public interface IfcLightSourceSpot extends IfcLightSourcePositional {
 	 * @see #setConcentrationExponentAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcLightSourceSpot_ConcentrationExponentAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getConcentrationExponentAsString();
@@ -203,7 +205,8 @@ public interface IfcLightSourceSpot extends IfcLightSourcePositional {
 	 * @return the value of the '<em>Spread Angle As String</em>' attribute.
 	 * @see #setSpreadAngleAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcLightSourceSpot_SpreadAngleAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getSpreadAngleAsString();
@@ -255,7 +258,8 @@ public interface IfcLightSourceSpot extends IfcLightSourcePositional {
 	 * @return the value of the '<em>Beam Width Angle As String</em>' attribute.
 	 * @see #setBeamWidthAngleAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcLightSourceSpot_BeamWidthAngleAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getBeamWidthAngleAsString();

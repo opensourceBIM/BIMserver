@@ -48,6 +48,7 @@ public interface IfcRelSequence extends IfcRelConnects {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelSequence_RelatingProcess()
 	 * @see org.bimserver.models.ifc4.IfcProcess#getIsPredecessorTo
 	 * @model opposite="IsPredecessorTo"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcProcess getRelatingProcess();
@@ -76,6 +77,7 @@ public interface IfcRelSequence extends IfcRelConnects {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelSequence_RelatedProcess()
 	 * @see org.bimserver.models.ifc4.IfcProcess#getIsSuccessorFrom
 	 * @model opposite="IsSuccessorFrom"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcProcess getRelatedProcess();

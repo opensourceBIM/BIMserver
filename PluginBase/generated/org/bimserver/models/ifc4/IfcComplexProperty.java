@@ -93,6 +93,7 @@ public interface IfcComplexProperty extends IfcProperty {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcComplexProperty_HasProperties()
 	 * @see org.bimserver.models.ifc4.IfcProperty#getPartOfComplex
 	 * @model opposite="PartOfComplex"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcProperty> getHasProperties();

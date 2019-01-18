@@ -132,6 +132,7 @@ public interface IfcApproval extends IfcResourceObjectSelect {
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcApproval_Name()
 	 * @model unsettable="true"
+	 *        annotation="singleindex"
 	 * @generated
 	 */
 	String getName();
@@ -556,6 +557,7 @@ public interface IfcApproval extends IfcResourceObjectSelect {
 	 * @see #unsetHasExternalReferences()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcApproval_HasExternalReferences()
 	 * @model unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcExternalReferenceRelationship> getHasExternalReferences();
@@ -597,6 +599,7 @@ public interface IfcApproval extends IfcResourceObjectSelect {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcApproval_ApprovedObjects()
 	 * @see org.bimserver.models.ifc4.IfcRelAssociatesApproval#getRelatingApproval
 	 * @model opposite="RelatingApproval" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelAssociatesApproval> getApprovedObjects();
@@ -638,6 +641,7 @@ public interface IfcApproval extends IfcResourceObjectSelect {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcApproval_ApprovedResources()
 	 * @see org.bimserver.models.ifc4.IfcResourceApprovalRelationship#getRelatingApproval
 	 * @model opposite="RelatingApproval" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcResourceApprovalRelationship> getApprovedResources();
@@ -679,6 +683,7 @@ public interface IfcApproval extends IfcResourceObjectSelect {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcApproval_IsRelatedWith()
 	 * @see org.bimserver.models.ifc4.IfcApprovalRelationship#getRelatedApprovals
 	 * @model opposite="RelatedApprovals" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcApprovalRelationship> getIsRelatedWith();
@@ -720,6 +725,7 @@ public interface IfcApproval extends IfcResourceObjectSelect {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcApproval_Relates()
 	 * @see org.bimserver.models.ifc4.IfcApprovalRelationship#getRelatingApproval
 	 * @model opposite="RelatingApproval" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcApprovalRelationship> getRelates();

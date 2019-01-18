@@ -76,6 +76,7 @@ public interface IfcAppliedValue extends IfcMetricValueSelect, IfcObjectReferenc
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcAppliedValue_Name()
 	 * @model unsettable="true"
+	 *        annotation="singleindex"
 	 * @generated
 	 */
 	String getName();
@@ -595,6 +596,7 @@ public interface IfcAppliedValue extends IfcMetricValueSelect, IfcObjectReferenc
 	 * @see #unsetHasExternalReference()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcAppliedValue_HasExternalReference()
 	 * @model unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcExternalReferenceRelationship> getHasExternalReference();

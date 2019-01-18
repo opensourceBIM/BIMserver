@@ -81,6 +81,7 @@ public class IfcStructuralActivityImpl extends IfcProductImpl implements IfcStru
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralLoad getAppliedLoad() {
 		return (IfcStructuralLoad) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_ACTIVITY__APPLIED_LOAD, true);
 	}
@@ -90,6 +91,7 @@ public class IfcStructuralActivityImpl extends IfcProductImpl implements IfcStru
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAppliedLoad(IfcStructuralLoad newAppliedLoad) {
 		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_ACTIVITY__APPLIED_LOAD, newAppliedLoad);
 	}
@@ -99,6 +101,7 @@ public class IfcStructuralActivityImpl extends IfcProductImpl implements IfcStru
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcGlobalOrLocalEnum getGlobalOrLocal() {
 		return (IfcGlobalOrLocalEnum) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_ACTIVITY__GLOBAL_OR_LOCAL, true);
 	}
@@ -108,6 +111,7 @@ public class IfcStructuralActivityImpl extends IfcProductImpl implements IfcStru
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGlobalOrLocal(IfcGlobalOrLocalEnum newGlobalOrLocal) {
 		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_ACTIVITY__GLOBAL_OR_LOCAL, newGlobalOrLocal);
 	}
@@ -118,6 +122,7 @@ public class IfcStructuralActivityImpl extends IfcProductImpl implements IfcStru
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelConnectsStructuralActivity> getAssignedToStructuralItem() {
 		return (EList<IfcRelConnectsStructuralActivity>) eGet(
 				Ifc4Package.Literals.IFC_STRUCTURAL_ACTIVITY__ASSIGNED_TO_STRUCTURAL_ITEM, true);
@@ -128,6 +133,7 @@ public class IfcStructuralActivityImpl extends IfcProductImpl implements IfcStru
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetAssignedToStructuralItem() {
 		eUnset(Ifc4Package.Literals.IFC_STRUCTURAL_ACTIVITY__ASSIGNED_TO_STRUCTURAL_ITEM);
 	}
@@ -137,6 +143,7 @@ public class IfcStructuralActivityImpl extends IfcProductImpl implements IfcStru
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetAssignedToStructuralItem() {
 		return eIsSet(Ifc4Package.Literals.IFC_STRUCTURAL_ACTIVITY__ASSIGNED_TO_STRUCTURAL_ITEM);
 	}

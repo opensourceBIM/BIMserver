@@ -80,6 +80,7 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRepresentationItem getItem() {
 		return (IfcRepresentationItem) eGet(Ifc4Package.Literals.IFC_STYLED_ITEM__ITEM, true);
 	}
@@ -89,6 +90,7 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setItem(IfcRepresentationItem newItem) {
 		eSet(Ifc4Package.Literals.IFC_STYLED_ITEM__ITEM, newItem);
 	}
@@ -98,6 +100,7 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetItem() {
 		eUnset(Ifc4Package.Literals.IFC_STYLED_ITEM__ITEM);
 	}
@@ -107,6 +110,7 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetItem() {
 		return eIsSet(Ifc4Package.Literals.IFC_STYLED_ITEM__ITEM);
 	}
@@ -117,6 +121,7 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcS
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcStyleAssignmentSelect> getStyles() {
 		return (EList<IfcStyleAssignmentSelect>) eGet(Ifc4Package.Literals.IFC_STYLED_ITEM__STYLES, true);
 	}
@@ -126,6 +131,7 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(Ifc4Package.Literals.IFC_STYLED_ITEM__NAME, true);
 	}
@@ -135,6 +141,7 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(Ifc4Package.Literals.IFC_STYLED_ITEM__NAME, newName);
 	}
@@ -144,6 +151,7 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetName() {
 		eUnset(Ifc4Package.Literals.IFC_STYLED_ITEM__NAME);
 	}
@@ -153,6 +161,7 @@ public class IfcStyledItemImpl extends IfcRepresentationItemImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetName() {
 		return eIsSet(Ifc4Package.Literals.IFC_STYLED_ITEM__NAME);
 	}

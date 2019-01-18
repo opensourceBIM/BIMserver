@@ -48,6 +48,7 @@ public interface IfcMaterialDefinitionRepresentation extends IfcProductRepresent
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialDefinitionRepresentation_RepresentedMaterial()
 	 * @see org.bimserver.models.ifc4.IfcMaterial#getHasRepresentation
 	 * @model opposite="HasRepresentation"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcMaterial getRepresentedMaterial();

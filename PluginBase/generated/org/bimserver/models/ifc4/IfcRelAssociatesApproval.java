@@ -48,6 +48,7 @@ public interface IfcRelAssociatesApproval extends IfcRelAssociates {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelAssociatesApproval_RelatingApproval()
 	 * @see org.bimserver.models.ifc4.IfcApproval#getApprovedObjects
 	 * @model opposite="ApprovedObjects"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcApproval getRelatingApproval();

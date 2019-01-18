@@ -76,6 +76,7 @@ public class IfcVibrationIsolatorTypeImpl extends IfcElementComponentTypeImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcVibrationIsolatorTypeEnum getPredefinedType() {
 		return (IfcVibrationIsolatorTypeEnum) eGet(Ifc4Package.Literals.IFC_VIBRATION_ISOLATOR_TYPE__PREDEFINED_TYPE,
 				true);
@@ -86,6 +87,7 @@ public class IfcVibrationIsolatorTypeImpl extends IfcElementComponentTypeImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcVibrationIsolatorTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_VIBRATION_ISOLATOR_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

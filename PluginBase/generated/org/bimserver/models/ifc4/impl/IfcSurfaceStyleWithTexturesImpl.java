@@ -78,6 +78,7 @@ public class IfcSurfaceStyleWithTexturesImpl extends IfcPresentationItemImpl imp
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcSurfaceTexture> getTextures() {
 		return (EList<IfcSurfaceTexture>) eGet(Ifc4Package.Literals.IFC_SURFACE_STYLE_WITH_TEXTURES__TEXTURES, true);
 	}

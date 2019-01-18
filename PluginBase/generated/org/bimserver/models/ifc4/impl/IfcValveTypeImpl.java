@@ -76,6 +76,7 @@ public class IfcValveTypeImpl extends IfcFlowControllerTypeImpl implements IfcVa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcValveTypeEnum getPredefinedType() {
 		return (IfcValveTypeEnum) eGet(Ifc4Package.Literals.IFC_VALVE_TYPE__PREDEFINED_TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcValveTypeImpl extends IfcFlowControllerTypeImpl implements IfcVa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcValveTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_VALVE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

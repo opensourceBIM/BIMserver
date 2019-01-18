@@ -79,6 +79,7 @@ public class IfcTextureCoordinateGeneratorImpl extends IfcTextureCoordinateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getMode() {
 		return (String) eGet(Ifc4Package.Literals.IFC_TEXTURE_COORDINATE_GENERATOR__MODE, true);
 	}
@@ -88,6 +89,7 @@ public class IfcTextureCoordinateGeneratorImpl extends IfcTextureCoordinateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMode(String newMode) {
 		eSet(Ifc4Package.Literals.IFC_TEXTURE_COORDINATE_GENERATOR__MODE, newMode);
 	}
@@ -98,6 +100,7 @@ public class IfcTextureCoordinateGeneratorImpl extends IfcTextureCoordinateImpl
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Double> getParameter() {
 		return (EList<Double>) eGet(Ifc4Package.Literals.IFC_TEXTURE_COORDINATE_GENERATOR__PARAMETER, true);
 	}
@@ -107,6 +110,7 @@ public class IfcTextureCoordinateGeneratorImpl extends IfcTextureCoordinateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetParameter() {
 		eUnset(Ifc4Package.Literals.IFC_TEXTURE_COORDINATE_GENERATOR__PARAMETER);
 	}
@@ -116,6 +120,7 @@ public class IfcTextureCoordinateGeneratorImpl extends IfcTextureCoordinateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetParameter() {
 		return eIsSet(Ifc4Package.Literals.IFC_TEXTURE_COORDINATE_GENERATOR__PARAMETER);
 	}
@@ -126,6 +131,7 @@ public class IfcTextureCoordinateGeneratorImpl extends IfcTextureCoordinateImpl
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<String> getParameterAsString() {
 		return (EList<String>) eGet(Ifc4Package.Literals.IFC_TEXTURE_COORDINATE_GENERATOR__PARAMETER_AS_STRING, true);
 	}
@@ -135,6 +141,7 @@ public class IfcTextureCoordinateGeneratorImpl extends IfcTextureCoordinateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetParameterAsString() {
 		eUnset(Ifc4Package.Literals.IFC_TEXTURE_COORDINATE_GENERATOR__PARAMETER_AS_STRING);
 	}
@@ -144,6 +151,7 @@ public class IfcTextureCoordinateGeneratorImpl extends IfcTextureCoordinateImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetParameterAsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_TEXTURE_COORDINATE_GENERATOR__PARAMETER_AS_STRING);
 	}

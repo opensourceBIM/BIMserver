@@ -83,6 +83,7 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSpaceTypeEnum getPredefinedType() {
 		return (IfcSpaceTypeEnum) eGet(Ifc4Package.Literals.IFC_SPACE__PREDEFINED_TYPE, true);
 	}
@@ -92,6 +93,7 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcSpaceTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_SPACE__PREDEFINED_TYPE, newPredefinedType);
 	}
@@ -101,6 +103,7 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPredefinedType() {
 		eUnset(Ifc4Package.Literals.IFC_SPACE__PREDEFINED_TYPE);
 	}
@@ -110,6 +113,7 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPredefinedType() {
 		return eIsSet(Ifc4Package.Literals.IFC_SPACE__PREDEFINED_TYPE);
 	}
@@ -119,6 +123,7 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getElevationWithFlooring() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_SPACE__ELEVATION_WITH_FLOORING, true);
 	}
@@ -128,6 +133,7 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElevationWithFlooring(double newElevationWithFlooring) {
 		eSet(Ifc4Package.Literals.IFC_SPACE__ELEVATION_WITH_FLOORING, newElevationWithFlooring);
 	}
@@ -137,6 +143,7 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetElevationWithFlooring() {
 		eUnset(Ifc4Package.Literals.IFC_SPACE__ELEVATION_WITH_FLOORING);
 	}
@@ -146,6 +153,7 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetElevationWithFlooring() {
 		return eIsSet(Ifc4Package.Literals.IFC_SPACE__ELEVATION_WITH_FLOORING);
 	}
@@ -155,6 +163,7 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getElevationWithFlooringAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_SPACE__ELEVATION_WITH_FLOORING_AS_STRING, true);
 	}
@@ -164,6 +173,7 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElevationWithFlooringAsString(String newElevationWithFlooringAsString) {
 		eSet(Ifc4Package.Literals.IFC_SPACE__ELEVATION_WITH_FLOORING_AS_STRING, newElevationWithFlooringAsString);
 	}
@@ -173,6 +183,7 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetElevationWithFlooringAsString() {
 		eUnset(Ifc4Package.Literals.IFC_SPACE__ELEVATION_WITH_FLOORING_AS_STRING);
 	}
@@ -182,6 +193,7 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetElevationWithFlooringAsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_SPACE__ELEVATION_WITH_FLOORING_AS_STRING);
 	}
@@ -192,6 +204,7 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelCoversSpaces> getHasCoverings() {
 		return (EList<IfcRelCoversSpaces>) eGet(Ifc4Package.Literals.IFC_SPACE__HAS_COVERINGS, true);
 	}
@@ -201,6 +214,7 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetHasCoverings() {
 		eUnset(Ifc4Package.Literals.IFC_SPACE__HAS_COVERINGS);
 	}
@@ -210,6 +224,7 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetHasCoverings() {
 		return eIsSet(Ifc4Package.Literals.IFC_SPACE__HAS_COVERINGS);
 	}
@@ -220,6 +235,7 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelSpaceBoundary> getBoundedBy() {
 		return (EList<IfcRelSpaceBoundary>) eGet(Ifc4Package.Literals.IFC_SPACE__BOUNDED_BY, true);
 	}
@@ -229,6 +245,7 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetBoundedBy() {
 		eUnset(Ifc4Package.Literals.IFC_SPACE__BOUNDED_BY);
 	}
@@ -238,6 +255,7 @@ public class IfcSpaceImpl extends IfcSpatialStructureElementImpl implements IfcS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetBoundedBy() {
 		return eIsSet(Ifc4Package.Literals.IFC_SPACE__BOUNDED_BY);
 	}

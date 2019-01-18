@@ -78,6 +78,7 @@ public class IfcRelSpaceBoundary2ndLevelImpl extends IfcRelSpaceBoundary1stLevel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelSpaceBoundary2ndLevel getCorrespondingBoundary() {
 		return (IfcRelSpaceBoundary2ndLevel) eGet(
 				Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY2ND_LEVEL__CORRESPONDING_BOUNDARY, true);
@@ -88,6 +89,7 @@ public class IfcRelSpaceBoundary2ndLevelImpl extends IfcRelSpaceBoundary1stLevel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCorrespondingBoundary(IfcRelSpaceBoundary2ndLevel newCorrespondingBoundary) {
 		eSet(Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY2ND_LEVEL__CORRESPONDING_BOUNDARY, newCorrespondingBoundary);
 	}
@@ -97,6 +99,7 @@ public class IfcRelSpaceBoundary2ndLevelImpl extends IfcRelSpaceBoundary1stLevel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetCorrespondingBoundary() {
 		eUnset(Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY2ND_LEVEL__CORRESPONDING_BOUNDARY);
 	}
@@ -106,6 +109,7 @@ public class IfcRelSpaceBoundary2ndLevelImpl extends IfcRelSpaceBoundary1stLevel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetCorrespondingBoundary() {
 		return eIsSet(Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY2ND_LEVEL__CORRESPONDING_BOUNDARY);
 	}
@@ -116,6 +120,7 @@ public class IfcRelSpaceBoundary2ndLevelImpl extends IfcRelSpaceBoundary1stLevel
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelSpaceBoundary2ndLevel> getCorresponds() {
 		return (EList<IfcRelSpaceBoundary2ndLevel>) eGet(
 				Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY2ND_LEVEL__CORRESPONDS, true);
@@ -126,6 +131,7 @@ public class IfcRelSpaceBoundary2ndLevelImpl extends IfcRelSpaceBoundary1stLevel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetCorresponds() {
 		eUnset(Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY2ND_LEVEL__CORRESPONDS);
 	}
@@ -135,6 +141,7 @@ public class IfcRelSpaceBoundary2ndLevelImpl extends IfcRelSpaceBoundary1stLevel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetCorresponds() {
 		return eIsSet(Ifc4Package.Literals.IFC_REL_SPACE_BOUNDARY2ND_LEVEL__CORRESPONDS);
 	}

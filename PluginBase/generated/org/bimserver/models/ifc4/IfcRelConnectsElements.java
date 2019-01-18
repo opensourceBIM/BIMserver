@@ -101,6 +101,7 @@ public interface IfcRelConnectsElements extends IfcRelConnects {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelConnectsElements_RelatingElement()
 	 * @see org.bimserver.models.ifc4.IfcElement#getConnectedTo
 	 * @model opposite="ConnectedTo"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcElement getRelatingElement();
@@ -129,6 +130,7 @@ public interface IfcRelConnectsElements extends IfcRelConnects {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelConnectsElements_RelatedElement()
 	 * @see org.bimserver.models.ifc4.IfcElement#getConnectedFrom
 	 * @model opposite="ConnectedFrom"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcElement getRelatedElement();

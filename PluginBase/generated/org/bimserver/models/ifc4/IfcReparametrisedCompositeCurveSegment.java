@@ -71,7 +71,8 @@ public interface IfcReparametrisedCompositeCurveSegment extends IfcCompositeCurv
 	 * @return the value of the '<em>Param Length As String</em>' attribute.
 	 * @see #setParamLengthAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcReparametrisedCompositeCurveSegment_ParamLengthAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getParamLengthAsString();

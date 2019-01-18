@@ -178,6 +178,7 @@ public interface IfcRepresentationContext extends IdEObject {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRepresentationContext_RepresentationsInContext()
 	 * @see org.bimserver.models.ifc4.IfcRepresentation#getContextOfItems
 	 * @model opposite="ContextOfItems" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRepresentation> getRepresentationsInContext();

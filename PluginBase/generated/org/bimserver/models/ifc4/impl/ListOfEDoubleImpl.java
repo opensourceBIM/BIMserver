@@ -89,6 +89,7 @@ public class ListOfEDoubleImpl extends IdEObjectImpl implements ListOfEDouble {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Double> getList() {
 		return (EList<Double>) eGet(Ifc4Package.Literals.LIST_OF_EDOUBLE__LIST, true);
 	}
@@ -99,6 +100,7 @@ public class ListOfEDoubleImpl extends IdEObjectImpl implements ListOfEDouble {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<String> getListAsString() {
 		return (EList<String>) eGet(Ifc4Package.Literals.LIST_OF_EDOUBLE__LIST_AS_STRING, true);
 	}

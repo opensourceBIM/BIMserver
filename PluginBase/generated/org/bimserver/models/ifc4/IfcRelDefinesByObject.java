@@ -67,6 +67,7 @@ public interface IfcRelDefinesByObject extends IfcRelDefines {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelDefinesByObject_RelatedObjects()
 	 * @see org.bimserver.models.ifc4.IfcObject#getIsDeclaredBy
 	 * @model opposite="IsDeclaredBy"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcObject> getRelatedObjects();
@@ -85,6 +86,7 @@ public interface IfcRelDefinesByObject extends IfcRelDefines {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelDefinesByObject_RelatingObject()
 	 * @see org.bimserver.models.ifc4.IfcObject#getDeclares
 	 * @model opposite="Declares"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcObject getRelatingObject();

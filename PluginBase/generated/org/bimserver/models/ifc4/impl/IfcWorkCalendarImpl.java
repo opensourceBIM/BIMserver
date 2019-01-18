@@ -81,6 +81,7 @@ public class IfcWorkCalendarImpl extends IfcControlImpl implements IfcWorkCalend
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcWorkTime> getWorkingTimes() {
 		return (EList<IfcWorkTime>) eGet(Ifc4Package.Literals.IFC_WORK_CALENDAR__WORKING_TIMES, true);
 	}
@@ -90,6 +91,7 @@ public class IfcWorkCalendarImpl extends IfcControlImpl implements IfcWorkCalend
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetWorkingTimes() {
 		eUnset(Ifc4Package.Literals.IFC_WORK_CALENDAR__WORKING_TIMES);
 	}
@@ -99,6 +101,7 @@ public class IfcWorkCalendarImpl extends IfcControlImpl implements IfcWorkCalend
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetWorkingTimes() {
 		return eIsSet(Ifc4Package.Literals.IFC_WORK_CALENDAR__WORKING_TIMES);
 	}
@@ -109,6 +112,7 @@ public class IfcWorkCalendarImpl extends IfcControlImpl implements IfcWorkCalend
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcWorkTime> getExceptionTimes() {
 		return (EList<IfcWorkTime>) eGet(Ifc4Package.Literals.IFC_WORK_CALENDAR__EXCEPTION_TIMES, true);
 	}
@@ -118,6 +122,7 @@ public class IfcWorkCalendarImpl extends IfcControlImpl implements IfcWorkCalend
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetExceptionTimes() {
 		eUnset(Ifc4Package.Literals.IFC_WORK_CALENDAR__EXCEPTION_TIMES);
 	}
@@ -127,6 +132,7 @@ public class IfcWorkCalendarImpl extends IfcControlImpl implements IfcWorkCalend
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetExceptionTimes() {
 		return eIsSet(Ifc4Package.Literals.IFC_WORK_CALENDAR__EXCEPTION_TIMES);
 	}
@@ -136,6 +142,7 @@ public class IfcWorkCalendarImpl extends IfcControlImpl implements IfcWorkCalend
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcWorkCalendarTypeEnum getPredefinedType() {
 		return (IfcWorkCalendarTypeEnum) eGet(Ifc4Package.Literals.IFC_WORK_CALENDAR__PREDEFINED_TYPE, true);
 	}
@@ -145,6 +152,7 @@ public class IfcWorkCalendarImpl extends IfcControlImpl implements IfcWorkCalend
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcWorkCalendarTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_WORK_CALENDAR__PREDEFINED_TYPE, newPredefinedType);
 	}
@@ -154,6 +162,7 @@ public class IfcWorkCalendarImpl extends IfcControlImpl implements IfcWorkCalend
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPredefinedType() {
 		eUnset(Ifc4Package.Literals.IFC_WORK_CALENDAR__PREDEFINED_TYPE);
 	}
@@ -163,6 +172,7 @@ public class IfcWorkCalendarImpl extends IfcControlImpl implements IfcWorkCalend
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPredefinedType() {
 		return eIsSet(Ifc4Package.Literals.IFC_WORK_CALENDAR__PREDEFINED_TYPE);
 	}

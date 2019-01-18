@@ -76,6 +76,7 @@ public class IfcSweptDiskSolidPolygonalImpl extends IfcSweptDiskSolidImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getFilletRadius() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID_POLYGONAL__FILLET_RADIUS, true);
 	}
@@ -85,6 +86,7 @@ public class IfcSweptDiskSolidPolygonalImpl extends IfcSweptDiskSolidImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFilletRadius(double newFilletRadius) {
 		eSet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID_POLYGONAL__FILLET_RADIUS, newFilletRadius);
 	}
@@ -94,6 +96,7 @@ public class IfcSweptDiskSolidPolygonalImpl extends IfcSweptDiskSolidImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetFilletRadius() {
 		eUnset(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID_POLYGONAL__FILLET_RADIUS);
 	}
@@ -103,6 +106,7 @@ public class IfcSweptDiskSolidPolygonalImpl extends IfcSweptDiskSolidImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetFilletRadius() {
 		return eIsSet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID_POLYGONAL__FILLET_RADIUS);
 	}
@@ -112,6 +116,7 @@ public class IfcSweptDiskSolidPolygonalImpl extends IfcSweptDiskSolidImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFilletRadiusAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID_POLYGONAL__FILLET_RADIUS_AS_STRING, true);
 	}
@@ -121,6 +126,7 @@ public class IfcSweptDiskSolidPolygonalImpl extends IfcSweptDiskSolidImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFilletRadiusAsString(String newFilletRadiusAsString) {
 		eSet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID_POLYGONAL__FILLET_RADIUS_AS_STRING, newFilletRadiusAsString);
 	}
@@ -130,6 +136,7 @@ public class IfcSweptDiskSolidPolygonalImpl extends IfcSweptDiskSolidImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetFilletRadiusAsString() {
 		eUnset(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID_POLYGONAL__FILLET_RADIUS_AS_STRING);
 	}
@@ -139,6 +146,7 @@ public class IfcSweptDiskSolidPolygonalImpl extends IfcSweptDiskSolidImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetFilletRadiusAsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_SWEPT_DISK_SOLID_POLYGONAL__FILLET_RADIUS_AS_STRING);
 	}

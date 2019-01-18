@@ -124,6 +124,7 @@ public interface IfcPolygonalFaceSet extends IfcTessellatedFaceSet {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPolygonalFaceSet_Faces()
 	 * @see org.bimserver.models.ifc4.IfcIndexedPolygonalFace#getToFaceSet
 	 * @model opposite="ToFaceSet"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcIndexedPolygonalFace> getFaces();

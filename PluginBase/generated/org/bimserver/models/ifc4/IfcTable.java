@@ -71,6 +71,7 @@ public interface IfcTable extends IfcMetricValueSelect, IfcObjectReferenceSelect
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTable_Name()
 	 * @model unsettable="true"
+	 *        annotation="singleindex"
 	 * @generated
 	 */
 	String getName();

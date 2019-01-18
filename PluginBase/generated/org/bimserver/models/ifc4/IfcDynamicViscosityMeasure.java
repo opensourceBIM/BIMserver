@@ -101,6 +101,8 @@ public interface IfcDynamicViscosityMeasure extends IfcDerivedMeasureValue {
 	 * @see #setWrappedValueAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDynamicViscosityMeasure_WrappedValueAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getWrappedValueAsString();

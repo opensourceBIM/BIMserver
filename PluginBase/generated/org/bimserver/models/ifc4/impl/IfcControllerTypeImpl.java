@@ -76,6 +76,7 @@ public class IfcControllerTypeImpl extends IfcDistributionControlElementTypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcControllerTypeEnum getPredefinedType() {
 		return (IfcControllerTypeEnum) eGet(Ifc4Package.Literals.IFC_CONTROLLER_TYPE__PREDEFINED_TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcControllerTypeImpl extends IfcDistributionControlElementTypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcControllerTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_CONTROLLER_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

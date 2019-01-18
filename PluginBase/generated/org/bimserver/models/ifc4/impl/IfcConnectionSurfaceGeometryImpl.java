@@ -78,6 +78,7 @@ public class IfcConnectionSurfaceGeometryImpl extends IfcConnectionGeometryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSurfaceOrFaceSurface getSurfaceOnRelatingElement() {
 		return (IfcSurfaceOrFaceSurface) eGet(
 				Ifc4Package.Literals.IFC_CONNECTION_SURFACE_GEOMETRY__SURFACE_ON_RELATING_ELEMENT, true);
@@ -88,6 +89,7 @@ public class IfcConnectionSurfaceGeometryImpl extends IfcConnectionGeometryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSurfaceOnRelatingElement(IfcSurfaceOrFaceSurface newSurfaceOnRelatingElement) {
 		eSet(Ifc4Package.Literals.IFC_CONNECTION_SURFACE_GEOMETRY__SURFACE_ON_RELATING_ELEMENT,
 				newSurfaceOnRelatingElement);
@@ -98,6 +100,7 @@ public class IfcConnectionSurfaceGeometryImpl extends IfcConnectionGeometryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSurfaceOrFaceSurface getSurfaceOnRelatedElement() {
 		return (IfcSurfaceOrFaceSurface) eGet(
 				Ifc4Package.Literals.IFC_CONNECTION_SURFACE_GEOMETRY__SURFACE_ON_RELATED_ELEMENT, true);
@@ -108,6 +111,7 @@ public class IfcConnectionSurfaceGeometryImpl extends IfcConnectionGeometryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSurfaceOnRelatedElement(IfcSurfaceOrFaceSurface newSurfaceOnRelatedElement) {
 		eSet(Ifc4Package.Literals.IFC_CONNECTION_SURFACE_GEOMETRY__SURFACE_ON_RELATED_ELEMENT,
 				newSurfaceOnRelatedElement);
@@ -118,6 +122,7 @@ public class IfcConnectionSurfaceGeometryImpl extends IfcConnectionGeometryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetSurfaceOnRelatedElement() {
 		eUnset(Ifc4Package.Literals.IFC_CONNECTION_SURFACE_GEOMETRY__SURFACE_ON_RELATED_ELEMENT);
 	}
@@ -127,6 +132,7 @@ public class IfcConnectionSurfaceGeometryImpl extends IfcConnectionGeometryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetSurfaceOnRelatedElement() {
 		return eIsSet(Ifc4Package.Literals.IFC_CONNECTION_SURFACE_GEOMETRY__SURFACE_ON_RELATED_ELEMENT);
 	}

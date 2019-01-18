@@ -88,6 +88,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelAssigns> getHasAssignments() {
 		return (EList<IfcRelAssigns>) eGet(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__HAS_ASSIGNMENTS, true);
 	}
@@ -97,6 +98,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetHasAssignments() {
 		eUnset(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__HAS_ASSIGNMENTS);
 	}
@@ -106,6 +108,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetHasAssignments() {
 		return eIsSet(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__HAS_ASSIGNMENTS);
 	}
@@ -116,6 +119,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelNests> getNests() {
 		return (EList<IfcRelNests>) eGet(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__NESTS, true);
 	}
@@ -125,6 +129,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetNests() {
 		eUnset(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__NESTS);
 	}
@@ -134,6 +139,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetNests() {
 		return eIsSet(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__NESTS);
 	}
@@ -144,6 +150,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelNests> getIsNestedBy() {
 		return (EList<IfcRelNests>) eGet(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__IS_NESTED_BY, true);
 	}
@@ -153,6 +160,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetIsNestedBy() {
 		eUnset(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__IS_NESTED_BY);
 	}
@@ -162,6 +170,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetIsNestedBy() {
 		return eIsSet(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__IS_NESTED_BY);
 	}
@@ -172,6 +181,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelDeclares> getHasContext() {
 		return (EList<IfcRelDeclares>) eGet(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__HAS_CONTEXT, true);
 	}
@@ -181,6 +191,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetHasContext() {
 		eUnset(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__HAS_CONTEXT);
 	}
@@ -190,6 +201,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetHasContext() {
 		return eIsSet(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__HAS_CONTEXT);
 	}
@@ -200,6 +212,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelAggregates> getIsDecomposedBy() {
 		return (EList<IfcRelAggregates>) eGet(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__IS_DECOMPOSED_BY, true);
 	}
@@ -209,6 +222,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetIsDecomposedBy() {
 		eUnset(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__IS_DECOMPOSED_BY);
 	}
@@ -218,6 +232,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetIsDecomposedBy() {
 		return eIsSet(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__IS_DECOMPOSED_BY);
 	}
@@ -228,6 +243,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelAggregates> getDecomposes() {
 		return (EList<IfcRelAggregates>) eGet(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__DECOMPOSES, true);
 	}
@@ -237,6 +253,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetDecomposes() {
 		eUnset(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__DECOMPOSES);
 	}
@@ -246,6 +263,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetDecomposes() {
 		return eIsSet(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__DECOMPOSES);
 	}
@@ -256,6 +274,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelAssociates> getHasAssociations() {
 		return (EList<IfcRelAssociates>) eGet(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__HAS_ASSOCIATIONS, true);
 	}
@@ -265,6 +284,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetHasAssociations() {
 		eUnset(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__HAS_ASSOCIATIONS);
 	}
@@ -274,6 +294,7 @@ public class IfcObjectDefinitionImpl extends IfcRootImpl implements IfcObjectDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetHasAssociations() {
 		return eIsSet(Ifc4Package.Literals.IFC_OBJECT_DEFINITION__HAS_ASSOCIATIONS);
 	}

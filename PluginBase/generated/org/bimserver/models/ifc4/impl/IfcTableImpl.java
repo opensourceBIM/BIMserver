@@ -94,6 +94,7 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(Ifc4Package.Literals.IFC_TABLE__NAME, true);
 	}
@@ -103,6 +104,7 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(Ifc4Package.Literals.IFC_TABLE__NAME, newName);
 	}
@@ -112,6 +114,7 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetName() {
 		eUnset(Ifc4Package.Literals.IFC_TABLE__NAME);
 	}
@@ -121,6 +124,7 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetName() {
 		return eIsSet(Ifc4Package.Literals.IFC_TABLE__NAME);
 	}
@@ -131,6 +135,7 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcTableRow> getRows() {
 		return (EList<IfcTableRow>) eGet(Ifc4Package.Literals.IFC_TABLE__ROWS, true);
 	}
@@ -140,6 +145,7 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetRows() {
 		eUnset(Ifc4Package.Literals.IFC_TABLE__ROWS);
 	}
@@ -149,6 +155,7 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetRows() {
 		return eIsSet(Ifc4Package.Literals.IFC_TABLE__ROWS);
 	}
@@ -159,6 +166,7 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcTableColumn> getColumns() {
 		return (EList<IfcTableColumn>) eGet(Ifc4Package.Literals.IFC_TABLE__COLUMNS, true);
 	}
@@ -168,6 +176,7 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetColumns() {
 		eUnset(Ifc4Package.Literals.IFC_TABLE__COLUMNS);
 	}
@@ -177,6 +186,7 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetColumns() {
 		return eIsSet(Ifc4Package.Literals.IFC_TABLE__COLUMNS);
 	}
@@ -186,6 +196,7 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getNumberOfCellsInRow() {
 		return (Long) eGet(Ifc4Package.Literals.IFC_TABLE__NUMBER_OF_CELLS_IN_ROW, true);
 	}
@@ -195,6 +206,7 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNumberOfCellsInRow(long newNumberOfCellsInRow) {
 		eSet(Ifc4Package.Literals.IFC_TABLE__NUMBER_OF_CELLS_IN_ROW, newNumberOfCellsInRow);
 	}
@@ -204,6 +216,7 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetNumberOfCellsInRow() {
 		eUnset(Ifc4Package.Literals.IFC_TABLE__NUMBER_OF_CELLS_IN_ROW);
 	}
@@ -213,6 +226,7 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetNumberOfCellsInRow() {
 		return eIsSet(Ifc4Package.Literals.IFC_TABLE__NUMBER_OF_CELLS_IN_ROW);
 	}
@@ -222,6 +236,7 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getNumberOfDataRows() {
 		return (Long) eGet(Ifc4Package.Literals.IFC_TABLE__NUMBER_OF_DATA_ROWS, true);
 	}
@@ -231,6 +246,7 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNumberOfDataRows(long newNumberOfDataRows) {
 		eSet(Ifc4Package.Literals.IFC_TABLE__NUMBER_OF_DATA_ROWS, newNumberOfDataRows);
 	}
@@ -240,6 +256,7 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetNumberOfDataRows() {
 		eUnset(Ifc4Package.Literals.IFC_TABLE__NUMBER_OF_DATA_ROWS);
 	}
@@ -249,6 +266,7 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetNumberOfDataRows() {
 		return eIsSet(Ifc4Package.Literals.IFC_TABLE__NUMBER_OF_DATA_ROWS);
 	}
@@ -258,6 +276,7 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getNumberOfHeadings() {
 		return (Long) eGet(Ifc4Package.Literals.IFC_TABLE__NUMBER_OF_HEADINGS, true);
 	}
@@ -267,6 +286,7 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNumberOfHeadings(long newNumberOfHeadings) {
 		eSet(Ifc4Package.Literals.IFC_TABLE__NUMBER_OF_HEADINGS, newNumberOfHeadings);
 	}
@@ -276,6 +296,7 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetNumberOfHeadings() {
 		eUnset(Ifc4Package.Literals.IFC_TABLE__NUMBER_OF_HEADINGS);
 	}
@@ -285,6 +306,7 @@ public class IfcTableImpl extends IdEObjectImpl implements IfcTable {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetNumberOfHeadings() {
 		return eIsSet(Ifc4Package.Literals.IFC_TABLE__NUMBER_OF_HEADINGS);
 	}

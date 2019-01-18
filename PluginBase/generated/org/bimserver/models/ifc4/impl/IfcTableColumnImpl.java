@@ -92,6 +92,7 @@ public class IfcTableColumnImpl extends IdEObjectImpl implements IfcTableColumn 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIdentifier() {
 		return (String) eGet(Ifc4Package.Literals.IFC_TABLE_COLUMN__IDENTIFIER, true);
 	}
@@ -101,6 +102,7 @@ public class IfcTableColumnImpl extends IdEObjectImpl implements IfcTableColumn 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentifier(String newIdentifier) {
 		eSet(Ifc4Package.Literals.IFC_TABLE_COLUMN__IDENTIFIER, newIdentifier);
 	}
@@ -110,6 +112,7 @@ public class IfcTableColumnImpl extends IdEObjectImpl implements IfcTableColumn 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetIdentifier() {
 		eUnset(Ifc4Package.Literals.IFC_TABLE_COLUMN__IDENTIFIER);
 	}
@@ -119,6 +122,7 @@ public class IfcTableColumnImpl extends IdEObjectImpl implements IfcTableColumn 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetIdentifier() {
 		return eIsSet(Ifc4Package.Literals.IFC_TABLE_COLUMN__IDENTIFIER);
 	}
@@ -128,6 +132,7 @@ public class IfcTableColumnImpl extends IdEObjectImpl implements IfcTableColumn 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(Ifc4Package.Literals.IFC_TABLE_COLUMN__NAME, true);
 	}
@@ -137,6 +142,7 @@ public class IfcTableColumnImpl extends IdEObjectImpl implements IfcTableColumn 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(Ifc4Package.Literals.IFC_TABLE_COLUMN__NAME, newName);
 	}
@@ -146,6 +152,7 @@ public class IfcTableColumnImpl extends IdEObjectImpl implements IfcTableColumn 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetName() {
 		eUnset(Ifc4Package.Literals.IFC_TABLE_COLUMN__NAME);
 	}
@@ -155,6 +162,7 @@ public class IfcTableColumnImpl extends IdEObjectImpl implements IfcTableColumn 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetName() {
 		return eIsSet(Ifc4Package.Literals.IFC_TABLE_COLUMN__NAME);
 	}
@@ -164,6 +172,7 @@ public class IfcTableColumnImpl extends IdEObjectImpl implements IfcTableColumn 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return (String) eGet(Ifc4Package.Literals.IFC_TABLE_COLUMN__DESCRIPTION, true);
 	}
@@ -173,6 +182,7 @@ public class IfcTableColumnImpl extends IdEObjectImpl implements IfcTableColumn 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		eSet(Ifc4Package.Literals.IFC_TABLE_COLUMN__DESCRIPTION, newDescription);
 	}
@@ -182,6 +192,7 @@ public class IfcTableColumnImpl extends IdEObjectImpl implements IfcTableColumn 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetDescription() {
 		eUnset(Ifc4Package.Literals.IFC_TABLE_COLUMN__DESCRIPTION);
 	}
@@ -191,6 +202,7 @@ public class IfcTableColumnImpl extends IdEObjectImpl implements IfcTableColumn 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetDescription() {
 		return eIsSet(Ifc4Package.Literals.IFC_TABLE_COLUMN__DESCRIPTION);
 	}
@@ -200,6 +212,7 @@ public class IfcTableColumnImpl extends IdEObjectImpl implements IfcTableColumn 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcUnit getUnit() {
 		return (IfcUnit) eGet(Ifc4Package.Literals.IFC_TABLE_COLUMN__UNIT, true);
 	}
@@ -209,6 +222,7 @@ public class IfcTableColumnImpl extends IdEObjectImpl implements IfcTableColumn 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUnit(IfcUnit newUnit) {
 		eSet(Ifc4Package.Literals.IFC_TABLE_COLUMN__UNIT, newUnit);
 	}
@@ -218,6 +232,7 @@ public class IfcTableColumnImpl extends IdEObjectImpl implements IfcTableColumn 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetUnit() {
 		eUnset(Ifc4Package.Literals.IFC_TABLE_COLUMN__UNIT);
 	}
@@ -227,6 +242,7 @@ public class IfcTableColumnImpl extends IdEObjectImpl implements IfcTableColumn 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetUnit() {
 		return eIsSet(Ifc4Package.Literals.IFC_TABLE_COLUMN__UNIT);
 	}
@@ -236,6 +252,7 @@ public class IfcTableColumnImpl extends IdEObjectImpl implements IfcTableColumn 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcReference getReferencePath() {
 		return (IfcReference) eGet(Ifc4Package.Literals.IFC_TABLE_COLUMN__REFERENCE_PATH, true);
 	}
@@ -245,6 +262,7 @@ public class IfcTableColumnImpl extends IdEObjectImpl implements IfcTableColumn 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferencePath(IfcReference newReferencePath) {
 		eSet(Ifc4Package.Literals.IFC_TABLE_COLUMN__REFERENCE_PATH, newReferencePath);
 	}
@@ -254,6 +272,7 @@ public class IfcTableColumnImpl extends IdEObjectImpl implements IfcTableColumn 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetReferencePath() {
 		eUnset(Ifc4Package.Literals.IFC_TABLE_COLUMN__REFERENCE_PATH);
 	}
@@ -263,6 +282,7 @@ public class IfcTableColumnImpl extends IdEObjectImpl implements IfcTableColumn 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetReferencePath() {
 		return eIsSet(Ifc4Package.Literals.IFC_TABLE_COLUMN__REFERENCE_PATH);
 	}

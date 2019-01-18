@@ -87,6 +87,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getTensionFailureX() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_X, true);
 	}
@@ -96,6 +97,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTensionFailureX(double newTensionFailureX) {
 		eSet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_X, newTensionFailureX);
 	}
@@ -105,6 +107,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetTensionFailureX() {
 		eUnset(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_X);
 	}
@@ -114,6 +117,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetTensionFailureX() {
 		return eIsSet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_X);
 	}
@@ -123,6 +127,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTensionFailureXAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_XAS_STRING, true);
 	}
@@ -132,6 +137,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTensionFailureXAsString(String newTensionFailureXAsString) {
 		eSet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_XAS_STRING,
 				newTensionFailureXAsString);
@@ -142,6 +148,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetTensionFailureXAsString() {
 		eUnset(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_XAS_STRING);
 	}
@@ -151,6 +158,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetTensionFailureXAsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_XAS_STRING);
 	}
@@ -160,6 +168,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getTensionFailureY() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_Y, true);
 	}
@@ -169,6 +178,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTensionFailureY(double newTensionFailureY) {
 		eSet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_Y, newTensionFailureY);
 	}
@@ -178,6 +188,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetTensionFailureY() {
 		eUnset(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_Y);
 	}
@@ -187,6 +198,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetTensionFailureY() {
 		return eIsSet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_Y);
 	}
@@ -196,6 +208,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTensionFailureYAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_YAS_STRING, true);
 	}
@@ -205,6 +218,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTensionFailureYAsString(String newTensionFailureYAsString) {
 		eSet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_YAS_STRING,
 				newTensionFailureYAsString);
@@ -215,6 +229,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetTensionFailureYAsString() {
 		eUnset(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_YAS_STRING);
 	}
@@ -224,6 +239,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetTensionFailureYAsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_YAS_STRING);
 	}
@@ -233,6 +249,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getTensionFailureZ() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_Z, true);
 	}
@@ -242,6 +259,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTensionFailureZ(double newTensionFailureZ) {
 		eSet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_Z, newTensionFailureZ);
 	}
@@ -251,6 +269,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetTensionFailureZ() {
 		eUnset(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_Z);
 	}
@@ -260,6 +279,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetTensionFailureZ() {
 		return eIsSet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_Z);
 	}
@@ -269,6 +289,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTensionFailureZAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_ZAS_STRING, true);
 	}
@@ -278,6 +299,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTensionFailureZAsString(String newTensionFailureZAsString) {
 		eSet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_ZAS_STRING,
 				newTensionFailureZAsString);
@@ -288,6 +310,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetTensionFailureZAsString() {
 		eUnset(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_ZAS_STRING);
 	}
@@ -297,6 +320,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetTensionFailureZAsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__TENSION_FAILURE_ZAS_STRING);
 	}
@@ -306,6 +330,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getCompressionFailureX() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_X, true);
 	}
@@ -315,6 +340,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCompressionFailureX(double newCompressionFailureX) {
 		eSet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_X, newCompressionFailureX);
 	}
@@ -324,6 +350,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetCompressionFailureX() {
 		eUnset(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_X);
 	}
@@ -333,6 +360,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetCompressionFailureX() {
 		return eIsSet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_X);
 	}
@@ -342,6 +370,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCompressionFailureXAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_XAS_STRING,
 				true);
@@ -352,6 +381,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCompressionFailureXAsString(String newCompressionFailureXAsString) {
 		eSet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_XAS_STRING,
 				newCompressionFailureXAsString);
@@ -362,6 +392,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetCompressionFailureXAsString() {
 		eUnset(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_XAS_STRING);
 	}
@@ -371,6 +402,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetCompressionFailureXAsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_XAS_STRING);
 	}
@@ -380,6 +412,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getCompressionFailureY() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_Y, true);
 	}
@@ -389,6 +422,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCompressionFailureY(double newCompressionFailureY) {
 		eSet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_Y, newCompressionFailureY);
 	}
@@ -398,6 +432,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetCompressionFailureY() {
 		eUnset(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_Y);
 	}
@@ -407,6 +442,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetCompressionFailureY() {
 		return eIsSet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_Y);
 	}
@@ -416,6 +452,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCompressionFailureYAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_YAS_STRING,
 				true);
@@ -426,6 +463,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCompressionFailureYAsString(String newCompressionFailureYAsString) {
 		eSet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_YAS_STRING,
 				newCompressionFailureYAsString);
@@ -436,6 +474,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetCompressionFailureYAsString() {
 		eUnset(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_YAS_STRING);
 	}
@@ -445,6 +484,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetCompressionFailureYAsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_YAS_STRING);
 	}
@@ -454,6 +494,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getCompressionFailureZ() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_Z, true);
 	}
@@ -463,6 +504,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCompressionFailureZ(double newCompressionFailureZ) {
 		eSet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_Z, newCompressionFailureZ);
 	}
@@ -472,6 +514,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetCompressionFailureZ() {
 		eUnset(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_Z);
 	}
@@ -481,6 +524,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetCompressionFailureZ() {
 		return eIsSet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_Z);
 	}
@@ -490,6 +534,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCompressionFailureZAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_ZAS_STRING,
 				true);
@@ -500,6 +545,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCompressionFailureZAsString(String newCompressionFailureZAsString) {
 		eSet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_ZAS_STRING,
 				newCompressionFailureZAsString);
@@ -510,6 +556,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetCompressionFailureZAsString() {
 		eUnset(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_ZAS_STRING);
 	}
@@ -519,6 +566,7 @@ public class IfcFailureConnectionConditionImpl extends IfcStructuralConnectionCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetCompressionFailureZAsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_FAILURE_CONNECTION_CONDITION__COMPRESSION_FAILURE_ZAS_STRING);
 	}

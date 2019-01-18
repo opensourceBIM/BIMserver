@@ -71,7 +71,8 @@ public interface IfcQuantityArea extends IfcPhysicalSimpleQuantity {
 	 * @return the value of the '<em>Area Value As String</em>' attribute.
 	 * @see #setAreaValueAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcQuantityArea_AreaValueAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getAreaValueAsString();

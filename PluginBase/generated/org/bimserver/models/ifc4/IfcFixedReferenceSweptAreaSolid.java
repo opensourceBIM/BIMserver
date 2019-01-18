@@ -127,6 +127,8 @@ public interface IfcFixedReferenceSweptAreaSolid extends IfcSweptAreaSolid {
 	 * @see #setStartParamAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcFixedReferenceSweptAreaSolid_StartParamAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getStartParamAsString();
@@ -233,6 +235,8 @@ public interface IfcFixedReferenceSweptAreaSolid extends IfcSweptAreaSolid {
 	 * @see #setEndParamAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcFixedReferenceSweptAreaSolid_EndParamAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getEndParamAsString();

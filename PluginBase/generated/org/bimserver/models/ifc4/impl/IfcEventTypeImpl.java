@@ -79,6 +79,7 @@ public class IfcEventTypeImpl extends IfcTypeProcessImpl implements IfcEventType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcEventTypeEnum getPredefinedType() {
 		return (IfcEventTypeEnum) eGet(Ifc4Package.Literals.IFC_EVENT_TYPE__PREDEFINED_TYPE, true);
 	}
@@ -88,6 +89,7 @@ public class IfcEventTypeImpl extends IfcTypeProcessImpl implements IfcEventType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcEventTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_EVENT_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
@@ -97,6 +99,7 @@ public class IfcEventTypeImpl extends IfcTypeProcessImpl implements IfcEventType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcEventTriggerTypeEnum getEventTriggerType() {
 		return (IfcEventTriggerTypeEnum) eGet(Ifc4Package.Literals.IFC_EVENT_TYPE__EVENT_TRIGGER_TYPE, true);
 	}
@@ -106,6 +109,7 @@ public class IfcEventTypeImpl extends IfcTypeProcessImpl implements IfcEventType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEventTriggerType(IfcEventTriggerTypeEnum newEventTriggerType) {
 		eSet(Ifc4Package.Literals.IFC_EVENT_TYPE__EVENT_TRIGGER_TYPE, newEventTriggerType);
 	}
@@ -115,6 +119,7 @@ public class IfcEventTypeImpl extends IfcTypeProcessImpl implements IfcEventType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getUserDefinedEventTriggerType() {
 		return (String) eGet(Ifc4Package.Literals.IFC_EVENT_TYPE__USER_DEFINED_EVENT_TRIGGER_TYPE, true);
 	}
@@ -124,6 +129,7 @@ public class IfcEventTypeImpl extends IfcTypeProcessImpl implements IfcEventType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUserDefinedEventTriggerType(String newUserDefinedEventTriggerType) {
 		eSet(Ifc4Package.Literals.IFC_EVENT_TYPE__USER_DEFINED_EVENT_TRIGGER_TYPE, newUserDefinedEventTriggerType);
 	}
@@ -133,6 +139,7 @@ public class IfcEventTypeImpl extends IfcTypeProcessImpl implements IfcEventType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetUserDefinedEventTriggerType() {
 		eUnset(Ifc4Package.Literals.IFC_EVENT_TYPE__USER_DEFINED_EVENT_TRIGGER_TYPE);
 	}
@@ -142,6 +149,7 @@ public class IfcEventTypeImpl extends IfcTypeProcessImpl implements IfcEventType
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetUserDefinedEventTriggerType() {
 		return eIsSet(Ifc4Package.Literals.IFC_EVENT_TYPE__USER_DEFINED_EVENT_TRIGGER_TYPE);
 	}

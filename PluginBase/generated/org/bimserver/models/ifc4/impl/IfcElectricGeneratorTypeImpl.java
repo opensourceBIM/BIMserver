@@ -77,6 +77,7 @@ public class IfcElectricGeneratorTypeImpl extends IfcEnergyConversionDeviceTypeI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElectricGeneratorTypeEnum getPredefinedType() {
 		return (IfcElectricGeneratorTypeEnum) eGet(Ifc4Package.Literals.IFC_ELECTRIC_GENERATOR_TYPE__PREDEFINED_TYPE,
 				true);
@@ -87,6 +88,7 @@ public class IfcElectricGeneratorTypeImpl extends IfcEnergyConversionDeviceTypeI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcElectricGeneratorTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_ELECTRIC_GENERATOR_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

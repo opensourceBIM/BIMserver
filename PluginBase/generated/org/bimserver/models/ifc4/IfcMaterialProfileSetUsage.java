@@ -180,6 +180,8 @@ public interface IfcMaterialProfileSetUsage extends IfcMaterialUsageDefinition {
 	 * @see #setReferenceExtentAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialProfileSetUsage_ReferenceExtentAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getReferenceExtentAsString();

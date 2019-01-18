@@ -76,6 +76,7 @@ public class IfcLightSourceDirectionalImpl extends IfcLightSourceImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDirection getOrientation() {
 		return (IfcDirection) eGet(Ifc4Package.Literals.IFC_LIGHT_SOURCE_DIRECTIONAL__ORIENTATION, true);
 	}
@@ -85,6 +86,7 @@ public class IfcLightSourceDirectionalImpl extends IfcLightSourceImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOrientation(IfcDirection newOrientation) {
 		eSet(Ifc4Package.Literals.IFC_LIGHT_SOURCE_DIRECTIONAL__ORIENTATION, newOrientation);
 	}

@@ -48,6 +48,7 @@ public interface IfcLightSource extends IfcGeometricRepresentationItem {
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcLightSource_Name()
 	 * @model unsettable="true"
+	 *        annotation="singleindex"
 	 * @generated
 	 */
 	String getName();
@@ -180,6 +181,8 @@ public interface IfcLightSource extends IfcGeometricRepresentationItem {
 	 * @see #setAmbientIntensityAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcLightSource_AmbientIntensityAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getAmbientIntensityAsString();
@@ -286,6 +289,8 @@ public interface IfcLightSource extends IfcGeometricRepresentationItem {
 	 * @see #setIntensityAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcLightSource_IntensityAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getIntensityAsString();

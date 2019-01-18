@@ -48,6 +48,7 @@ public interface IfcMaterialProperties extends IfcExtendedProperties {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialProperties_Material()
 	 * @see org.bimserver.models.ifc4.IfcMaterialDefinition#getHasProperties
 	 * @model opposite="HasProperties"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcMaterialDefinition getMaterial();

@@ -82,6 +82,7 @@ public class IfcTessellatedFaceSetImpl extends IfcTessellatedItemImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCartesianPointList3D getCoordinates() {
 		return (IfcCartesianPointList3D) eGet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__COORDINATES, true);
 	}
@@ -91,6 +92,7 @@ public class IfcTessellatedFaceSetImpl extends IfcTessellatedItemImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCoordinates(IfcCartesianPointList3D newCoordinates) {
 		eSet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__COORDINATES, newCoordinates);
 	}
@@ -101,6 +103,7 @@ public class IfcTessellatedFaceSetImpl extends IfcTessellatedItemImpl implements
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcIndexedColourMap> getHasColours() {
 		return (EList<IfcIndexedColourMap>) eGet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__HAS_COLOURS, true);
 	}
@@ -110,6 +113,7 @@ public class IfcTessellatedFaceSetImpl extends IfcTessellatedItemImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetHasColours() {
 		eUnset(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__HAS_COLOURS);
 	}
@@ -119,6 +123,7 @@ public class IfcTessellatedFaceSetImpl extends IfcTessellatedItemImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetHasColours() {
 		return eIsSet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__HAS_COLOURS);
 	}
@@ -129,6 +134,7 @@ public class IfcTessellatedFaceSetImpl extends IfcTessellatedItemImpl implements
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcIndexedTextureMap> getHasTextures() {
 		return (EList<IfcIndexedTextureMap>) eGet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__HAS_TEXTURES, true);
 	}
@@ -138,6 +144,7 @@ public class IfcTessellatedFaceSetImpl extends IfcTessellatedItemImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetHasTextures() {
 		eUnset(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__HAS_TEXTURES);
 	}
@@ -147,6 +154,7 @@ public class IfcTessellatedFaceSetImpl extends IfcTessellatedItemImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetHasTextures() {
 		return eIsSet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__HAS_TEXTURES);
 	}
@@ -156,6 +164,7 @@ public class IfcTessellatedFaceSetImpl extends IfcTessellatedItemImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getDim() {
 		return (Long) eGet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__DIM, true);
 	}
@@ -165,6 +174,7 @@ public class IfcTessellatedFaceSetImpl extends IfcTessellatedItemImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDim(long newDim) {
 		eSet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__DIM, newDim);
 	}
@@ -174,6 +184,7 @@ public class IfcTessellatedFaceSetImpl extends IfcTessellatedItemImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetDim() {
 		eUnset(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__DIM);
 	}
@@ -183,6 +194,7 @@ public class IfcTessellatedFaceSetImpl extends IfcTessellatedItemImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetDim() {
 		return eIsSet(Ifc4Package.Literals.IFC_TESSELLATED_FACE_SET__DIM);
 	}

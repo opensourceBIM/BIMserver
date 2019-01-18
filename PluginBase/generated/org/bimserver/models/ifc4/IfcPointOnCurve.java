@@ -97,7 +97,8 @@ public interface IfcPointOnCurve extends IfcPoint {
 	 * @return the value of the '<em>Point Parameter As String</em>' attribute.
 	 * @see #setPointParameterAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPointOnCurve_PointParameterAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getPointParameterAsString();

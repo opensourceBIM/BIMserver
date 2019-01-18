@@ -76,6 +76,7 @@ public class IfcHumidifierTypeImpl extends IfcEnergyConversionDeviceTypeImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcHumidifierTypeEnum getPredefinedType() {
 		return (IfcHumidifierTypeEnum) eGet(Ifc4Package.Literals.IFC_HUMIDIFIER_TYPE__PREDEFINED_TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcHumidifierTypeImpl extends IfcEnergyConversionDeviceTypeImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcHumidifierTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_HUMIDIFIER_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

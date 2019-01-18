@@ -80,6 +80,7 @@ public class IfcConversionBasedUnitImpl extends IfcNamedUnitImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(Ifc4Package.Literals.IFC_CONVERSION_BASED_UNIT__NAME, true);
 	}
@@ -89,6 +90,7 @@ public class IfcConversionBasedUnitImpl extends IfcNamedUnitImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(Ifc4Package.Literals.IFC_CONVERSION_BASED_UNIT__NAME, newName);
 	}
@@ -98,6 +100,7 @@ public class IfcConversionBasedUnitImpl extends IfcNamedUnitImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMeasureWithUnit getConversionFactor() {
 		return (IfcMeasureWithUnit) eGet(Ifc4Package.Literals.IFC_CONVERSION_BASED_UNIT__CONVERSION_FACTOR, true);
 	}
@@ -107,6 +110,7 @@ public class IfcConversionBasedUnitImpl extends IfcNamedUnitImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setConversionFactor(IfcMeasureWithUnit newConversionFactor) {
 		eSet(Ifc4Package.Literals.IFC_CONVERSION_BASED_UNIT__CONVERSION_FACTOR, newConversionFactor);
 	}
@@ -117,6 +121,7 @@ public class IfcConversionBasedUnitImpl extends IfcNamedUnitImpl implements IfcC
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcExternalReferenceRelationship> getHasExternalReference() {
 		return (EList<IfcExternalReferenceRelationship>) eGet(
 				Ifc4Package.Literals.IFC_CONVERSION_BASED_UNIT__HAS_EXTERNAL_REFERENCE, true);
@@ -127,6 +132,7 @@ public class IfcConversionBasedUnitImpl extends IfcNamedUnitImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetHasExternalReference() {
 		eUnset(Ifc4Package.Literals.IFC_CONVERSION_BASED_UNIT__HAS_EXTERNAL_REFERENCE);
 	}
@@ -136,6 +142,7 @@ public class IfcConversionBasedUnitImpl extends IfcNamedUnitImpl implements IfcC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetHasExternalReference() {
 		return eIsSet(Ifc4Package.Literals.IFC_CONVERSION_BASED_UNIT__HAS_EXTERNAL_REFERENCE);
 	}

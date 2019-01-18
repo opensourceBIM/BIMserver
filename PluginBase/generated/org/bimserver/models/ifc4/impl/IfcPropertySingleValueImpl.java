@@ -78,6 +78,7 @@ public class IfcPropertySingleValueImpl extends IfcSimplePropertyImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcValue getNominalValue() {
 		return (IfcValue) eGet(Ifc4Package.Literals.IFC_PROPERTY_SINGLE_VALUE__NOMINAL_VALUE, true);
 	}
@@ -87,6 +88,7 @@ public class IfcPropertySingleValueImpl extends IfcSimplePropertyImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNominalValue(IfcValue newNominalValue) {
 		eSet(Ifc4Package.Literals.IFC_PROPERTY_SINGLE_VALUE__NOMINAL_VALUE, newNominalValue);
 	}
@@ -96,6 +98,7 @@ public class IfcPropertySingleValueImpl extends IfcSimplePropertyImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetNominalValue() {
 		eUnset(Ifc4Package.Literals.IFC_PROPERTY_SINGLE_VALUE__NOMINAL_VALUE);
 	}
@@ -105,6 +108,7 @@ public class IfcPropertySingleValueImpl extends IfcSimplePropertyImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetNominalValue() {
 		return eIsSet(Ifc4Package.Literals.IFC_PROPERTY_SINGLE_VALUE__NOMINAL_VALUE);
 	}
@@ -114,6 +118,7 @@ public class IfcPropertySingleValueImpl extends IfcSimplePropertyImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcUnit getUnit() {
 		return (IfcUnit) eGet(Ifc4Package.Literals.IFC_PROPERTY_SINGLE_VALUE__UNIT, true);
 	}
@@ -123,6 +128,7 @@ public class IfcPropertySingleValueImpl extends IfcSimplePropertyImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUnit(IfcUnit newUnit) {
 		eSet(Ifc4Package.Literals.IFC_PROPERTY_SINGLE_VALUE__UNIT, newUnit);
 	}
@@ -132,6 +138,7 @@ public class IfcPropertySingleValueImpl extends IfcSimplePropertyImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetUnit() {
 		eUnset(Ifc4Package.Literals.IFC_PROPERTY_SINGLE_VALUE__UNIT);
 	}
@@ -141,6 +148,7 @@ public class IfcPropertySingleValueImpl extends IfcSimplePropertyImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetUnit() {
 		return eIsSet(Ifc4Package.Literals.IFC_PROPERTY_SINGLE_VALUE__UNIT);
 	}

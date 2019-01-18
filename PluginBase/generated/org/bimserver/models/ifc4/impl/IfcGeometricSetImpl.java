@@ -79,6 +79,7 @@ public class IfcGeometricSetImpl extends IfcGeometricRepresentationItemImpl impl
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcGeometricSetSelect> getElements() {
 		return (EList<IfcGeometricSetSelect>) eGet(Ifc4Package.Literals.IFC_GEOMETRIC_SET__ELEMENTS, true);
 	}
@@ -88,6 +89,7 @@ public class IfcGeometricSetImpl extends IfcGeometricRepresentationItemImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getDim() {
 		return (Long) eGet(Ifc4Package.Literals.IFC_GEOMETRIC_SET__DIM, true);
 	}
@@ -97,6 +99,7 @@ public class IfcGeometricSetImpl extends IfcGeometricRepresentationItemImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDim(long newDim) {
 		eSet(Ifc4Package.Literals.IFC_GEOMETRIC_SET__DIM, newDim);
 	}
@@ -106,6 +109,7 @@ public class IfcGeometricSetImpl extends IfcGeometricRepresentationItemImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetDim() {
 		eUnset(Ifc4Package.Literals.IFC_GEOMETRIC_SET__DIM);
 	}
@@ -115,6 +119,7 @@ public class IfcGeometricSetImpl extends IfcGeometricRepresentationItemImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetDim() {
 		return eIsSet(Ifc4Package.Literals.IFC_GEOMETRIC_SET__DIM);
 	}

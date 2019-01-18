@@ -101,6 +101,8 @@ public interface IfcMoistureDiffusivityMeasure extends IfcDerivedMeasureValue {
 	 * @see #setWrappedValueAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMoistureDiffusivityMeasure_WrappedValueAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getWrappedValueAsString();

@@ -152,6 +152,8 @@ public interface IfcGeometricRepresentationContext
 	 * @see #setPrecisionAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcGeometricRepresentationContext_PrecisionAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getPrecisionAsString();
@@ -286,6 +288,7 @@ public interface IfcGeometricRepresentationContext
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcGeometricRepresentationContext_HasSubContexts()
 	 * @see org.bimserver.models.ifc4.IfcGeometricRepresentationSubContext#getParentContext
 	 * @model opposite="ParentContext" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcGeometricRepresentationSubContext> getHasSubContexts();
@@ -325,6 +328,7 @@ public interface IfcGeometricRepresentationContext
 	 * @see #unsetHasCoordinateOperation()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcGeometricRepresentationContext_HasCoordinateOperation()
 	 * @model unsettable="true" upper="2"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcCoordinateOperation> getHasCoordinateOperation();

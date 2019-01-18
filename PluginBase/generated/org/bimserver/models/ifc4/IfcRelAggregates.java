@@ -67,6 +67,7 @@ public interface IfcRelAggregates extends IfcRelDecomposes {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelAggregates_RelatingObject()
 	 * @see org.bimserver.models.ifc4.IfcObjectDefinition#getIsDecomposedBy
 	 * @model opposite="IsDecomposedBy"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcObjectDefinition getRelatingObject();
@@ -95,6 +96,7 @@ public interface IfcRelAggregates extends IfcRelDecomposes {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelAggregates_RelatedObjects()
 	 * @see org.bimserver.models.ifc4.IfcObjectDefinition#getDecomposes
 	 * @model opposite="Decomposes"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcObjectDefinition> getRelatedObjects();

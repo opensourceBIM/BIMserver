@@ -78,6 +78,7 @@ public class IfcRelFillsElementImpl extends IfcRelConnectsImpl implements IfcRel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcOpeningElement getRelatingOpeningElement() {
 		return (IfcOpeningElement) eGet(Ifc4Package.Literals.IFC_REL_FILLS_ELEMENT__RELATING_OPENING_ELEMENT, true);
 	}
@@ -87,6 +88,7 @@ public class IfcRelFillsElementImpl extends IfcRelConnectsImpl implements IfcRel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRelatingOpeningElement(IfcOpeningElement newRelatingOpeningElement) {
 		eSet(Ifc4Package.Literals.IFC_REL_FILLS_ELEMENT__RELATING_OPENING_ELEMENT, newRelatingOpeningElement);
 	}
@@ -96,6 +98,7 @@ public class IfcRelFillsElementImpl extends IfcRelConnectsImpl implements IfcRel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElement getRelatedBuildingElement() {
 		return (IfcElement) eGet(Ifc4Package.Literals.IFC_REL_FILLS_ELEMENT__RELATED_BUILDING_ELEMENT, true);
 	}
@@ -105,6 +108,7 @@ public class IfcRelFillsElementImpl extends IfcRelConnectsImpl implements IfcRel
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRelatedBuildingElement(IfcElement newRelatedBuildingElement) {
 		eSet(Ifc4Package.Literals.IFC_REL_FILLS_ELEMENT__RELATED_BUILDING_ELEMENT, newRelatedBuildingElement);
 	}

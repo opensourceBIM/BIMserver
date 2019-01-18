@@ -124,7 +124,8 @@ public interface IfcMaterialLayer extends IfcMaterialDefinition {
 	 * @return the value of the '<em>Layer Thickness As String</em>' attribute.
 	 * @see #setLayerThicknessAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialLayer_LayerThicknessAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getLayerThicknessAsString();
@@ -209,6 +210,7 @@ public interface IfcMaterialLayer extends IfcMaterialDefinition {
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialLayer_Name()
 	 * @model unsettable="true"
+	 *        annotation="singleindex"
 	 * @generated
 	 */
 	String getName();
@@ -423,6 +425,7 @@ public interface IfcMaterialLayer extends IfcMaterialDefinition {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialLayer_ToMaterialLayerSet()
 	 * @see org.bimserver.models.ifc4.IfcMaterialLayerSet#getMaterialLayers
 	 * @model opposite="MaterialLayers" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcMaterialLayerSet getToMaterialLayerSet();

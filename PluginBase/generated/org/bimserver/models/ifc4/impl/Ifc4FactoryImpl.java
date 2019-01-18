@@ -1890,8 +1890,12 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 			return (EObject) createIfcPositivePlaneAngleMeasure();
 		case Ifc4Package.IFC_POSITIVE_RATIO_MEASURE:
 			return (EObject) createIfcPositiveRatioMeasure();
+		case Ifc4Package.IFC_ARC_INDEX:
+			return (EObject) createIfcArcIndex();
 		case Ifc4Package.IFC_COMPLEX_NUMBER:
 			return (EObject) createIfcComplexNumber();
+		case Ifc4Package.IFC_LINE_INDEX:
+			return (EObject) createIfcLineIndex();
 		case Ifc4Package.IFC_NULL_STYLE:
 			return (EObject) createIfcNullStyle();
 		case Ifc4Package.LIST_OF_IFC_CARTESIAN_POINT:
@@ -2774,6 +2778,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcActionRequest createIfcActionRequest() {
 		IfcActionRequestImpl ifcActionRequest = new IfcActionRequestImpl();
 		return ifcActionRequest;
@@ -2784,6 +2789,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcActor createIfcActor() {
 		IfcActorImpl ifcActor = new IfcActorImpl();
 		return ifcActor;
@@ -2794,6 +2800,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcActorRole createIfcActorRole() {
 		IfcActorRoleImpl ifcActorRole = new IfcActorRoleImpl();
 		return ifcActorRole;
@@ -2804,6 +2811,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcActuator createIfcActuator() {
 		IfcActuatorImpl ifcActuator = new IfcActuatorImpl();
 		return ifcActuator;
@@ -2814,6 +2822,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcActuatorType createIfcActuatorType() {
 		IfcActuatorTypeImpl ifcActuatorType = new IfcActuatorTypeImpl();
 		return ifcActuatorType;
@@ -2824,6 +2833,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAddress createIfcAddress() {
 		IfcAddressImpl ifcAddress = new IfcAddressImpl();
 		return ifcAddress;
@@ -2834,6 +2844,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAdvancedBrep createIfcAdvancedBrep() {
 		IfcAdvancedBrepImpl ifcAdvancedBrep = new IfcAdvancedBrepImpl();
 		return ifcAdvancedBrep;
@@ -2844,6 +2855,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAdvancedBrepWithVoids createIfcAdvancedBrepWithVoids() {
 		IfcAdvancedBrepWithVoidsImpl ifcAdvancedBrepWithVoids = new IfcAdvancedBrepWithVoidsImpl();
 		return ifcAdvancedBrepWithVoids;
@@ -2854,6 +2866,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAdvancedFace createIfcAdvancedFace() {
 		IfcAdvancedFaceImpl ifcAdvancedFace = new IfcAdvancedFaceImpl();
 		return ifcAdvancedFace;
@@ -2864,6 +2877,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAirTerminal createIfcAirTerminal() {
 		IfcAirTerminalImpl ifcAirTerminal = new IfcAirTerminalImpl();
 		return ifcAirTerminal;
@@ -2874,6 +2888,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAirTerminalBox createIfcAirTerminalBox() {
 		IfcAirTerminalBoxImpl ifcAirTerminalBox = new IfcAirTerminalBoxImpl();
 		return ifcAirTerminalBox;
@@ -2884,6 +2899,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAirTerminalBoxType createIfcAirTerminalBoxType() {
 		IfcAirTerminalBoxTypeImpl ifcAirTerminalBoxType = new IfcAirTerminalBoxTypeImpl();
 		return ifcAirTerminalBoxType;
@@ -2894,6 +2910,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAirTerminalType createIfcAirTerminalType() {
 		IfcAirTerminalTypeImpl ifcAirTerminalType = new IfcAirTerminalTypeImpl();
 		return ifcAirTerminalType;
@@ -2904,6 +2921,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAirToAirHeatRecovery createIfcAirToAirHeatRecovery() {
 		IfcAirToAirHeatRecoveryImpl ifcAirToAirHeatRecovery = new IfcAirToAirHeatRecoveryImpl();
 		return ifcAirToAirHeatRecovery;
@@ -2914,6 +2932,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAirToAirHeatRecoveryType createIfcAirToAirHeatRecoveryType() {
 		IfcAirToAirHeatRecoveryTypeImpl ifcAirToAirHeatRecoveryType = new IfcAirToAirHeatRecoveryTypeImpl();
 		return ifcAirToAirHeatRecoveryType;
@@ -2924,6 +2943,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAlarm createIfcAlarm() {
 		IfcAlarmImpl ifcAlarm = new IfcAlarmImpl();
 		return ifcAlarm;
@@ -2934,6 +2954,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAlarmType createIfcAlarmType() {
 		IfcAlarmTypeImpl ifcAlarmType = new IfcAlarmTypeImpl();
 		return ifcAlarmType;
@@ -2944,6 +2965,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAnnotation createIfcAnnotation() {
 		IfcAnnotationImpl ifcAnnotation = new IfcAnnotationImpl();
 		return ifcAnnotation;
@@ -2954,6 +2976,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAnnotationFillArea createIfcAnnotationFillArea() {
 		IfcAnnotationFillAreaImpl ifcAnnotationFillArea = new IfcAnnotationFillAreaImpl();
 		return ifcAnnotationFillArea;
@@ -2964,6 +2987,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcApplication createIfcApplication() {
 		IfcApplicationImpl ifcApplication = new IfcApplicationImpl();
 		return ifcApplication;
@@ -2974,6 +2998,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAppliedValue createIfcAppliedValue() {
 		IfcAppliedValueImpl ifcAppliedValue = new IfcAppliedValueImpl();
 		return ifcAppliedValue;
@@ -2984,6 +3009,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcApproval createIfcApproval() {
 		IfcApprovalImpl ifcApproval = new IfcApprovalImpl();
 		return ifcApproval;
@@ -2994,6 +3020,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcApprovalRelationship createIfcApprovalRelationship() {
 		IfcApprovalRelationshipImpl ifcApprovalRelationship = new IfcApprovalRelationshipImpl();
 		return ifcApprovalRelationship;
@@ -3004,6 +3031,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcArbitraryClosedProfileDef createIfcArbitraryClosedProfileDef() {
 		IfcArbitraryClosedProfileDefImpl ifcArbitraryClosedProfileDef = new IfcArbitraryClosedProfileDefImpl();
 		return ifcArbitraryClosedProfileDef;
@@ -3014,6 +3042,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcArbitraryOpenProfileDef createIfcArbitraryOpenProfileDef() {
 		IfcArbitraryOpenProfileDefImpl ifcArbitraryOpenProfileDef = new IfcArbitraryOpenProfileDefImpl();
 		return ifcArbitraryOpenProfileDef;
@@ -3024,6 +3053,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcArbitraryProfileDefWithVoids createIfcArbitraryProfileDefWithVoids() {
 		IfcArbitraryProfileDefWithVoidsImpl ifcArbitraryProfileDefWithVoids = new IfcArbitraryProfileDefWithVoidsImpl();
 		return ifcArbitraryProfileDefWithVoids;
@@ -3034,6 +3064,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAsset createIfcAsset() {
 		IfcAssetImpl ifcAsset = new IfcAssetImpl();
 		return ifcAsset;
@@ -3044,6 +3075,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAsymmetricIShapeProfileDef createIfcAsymmetricIShapeProfileDef() {
 		IfcAsymmetricIShapeProfileDefImpl ifcAsymmetricIShapeProfileDef = new IfcAsymmetricIShapeProfileDefImpl();
 		return ifcAsymmetricIShapeProfileDef;
@@ -3054,6 +3086,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAudioVisualAppliance createIfcAudioVisualAppliance() {
 		IfcAudioVisualApplianceImpl ifcAudioVisualAppliance = new IfcAudioVisualApplianceImpl();
 		return ifcAudioVisualAppliance;
@@ -3064,6 +3097,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAudioVisualApplianceType createIfcAudioVisualApplianceType() {
 		IfcAudioVisualApplianceTypeImpl ifcAudioVisualApplianceType = new IfcAudioVisualApplianceTypeImpl();
 		return ifcAudioVisualApplianceType;
@@ -3074,6 +3108,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAxis1Placement createIfcAxis1Placement() {
 		IfcAxis1PlacementImpl ifcAxis1Placement = new IfcAxis1PlacementImpl();
 		return ifcAxis1Placement;
@@ -3084,6 +3119,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAxis2Placement2D createIfcAxis2Placement2D() {
 		IfcAxis2Placement2DImpl ifcAxis2Placement2D = new IfcAxis2Placement2DImpl();
 		return ifcAxis2Placement2D;
@@ -3094,6 +3130,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAxis2Placement3D createIfcAxis2Placement3D() {
 		IfcAxis2Placement3DImpl ifcAxis2Placement3D = new IfcAxis2Placement3DImpl();
 		return ifcAxis2Placement3D;
@@ -3104,6 +3141,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBSplineCurve createIfcBSplineCurve() {
 		IfcBSplineCurveImpl ifcBSplineCurve = new IfcBSplineCurveImpl();
 		return ifcBSplineCurve;
@@ -3114,6 +3152,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBSplineCurveWithKnots createIfcBSplineCurveWithKnots() {
 		IfcBSplineCurveWithKnotsImpl ifcBSplineCurveWithKnots = new IfcBSplineCurveWithKnotsImpl();
 		return ifcBSplineCurveWithKnots;
@@ -3124,6 +3163,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBSplineSurface createIfcBSplineSurface() {
 		IfcBSplineSurfaceImpl ifcBSplineSurface = new IfcBSplineSurfaceImpl();
 		return ifcBSplineSurface;
@@ -3134,6 +3174,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBSplineSurfaceWithKnots createIfcBSplineSurfaceWithKnots() {
 		IfcBSplineSurfaceWithKnotsImpl ifcBSplineSurfaceWithKnots = new IfcBSplineSurfaceWithKnotsImpl();
 		return ifcBSplineSurfaceWithKnots;
@@ -3144,6 +3185,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBeam createIfcBeam() {
 		IfcBeamImpl ifcBeam = new IfcBeamImpl();
 		return ifcBeam;
@@ -3154,6 +3196,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBeamStandardCase createIfcBeamStandardCase() {
 		IfcBeamStandardCaseImpl ifcBeamStandardCase = new IfcBeamStandardCaseImpl();
 		return ifcBeamStandardCase;
@@ -3164,6 +3207,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBeamType createIfcBeamType() {
 		IfcBeamTypeImpl ifcBeamType = new IfcBeamTypeImpl();
 		return ifcBeamType;
@@ -3174,6 +3218,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBlobTexture createIfcBlobTexture() {
 		IfcBlobTextureImpl ifcBlobTexture = new IfcBlobTextureImpl();
 		return ifcBlobTexture;
@@ -3184,6 +3229,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBlock createIfcBlock() {
 		IfcBlockImpl ifcBlock = new IfcBlockImpl();
 		return ifcBlock;
@@ -3194,6 +3240,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBoiler createIfcBoiler() {
 		IfcBoilerImpl ifcBoiler = new IfcBoilerImpl();
 		return ifcBoiler;
@@ -3204,6 +3251,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBoilerType createIfcBoilerType() {
 		IfcBoilerTypeImpl ifcBoilerType = new IfcBoilerTypeImpl();
 		return ifcBoilerType;
@@ -3214,6 +3262,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBooleanClippingResult createIfcBooleanClippingResult() {
 		IfcBooleanClippingResultImpl ifcBooleanClippingResult = new IfcBooleanClippingResultImpl();
 		return ifcBooleanClippingResult;
@@ -3224,6 +3273,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBooleanResult createIfcBooleanResult() {
 		IfcBooleanResultImpl ifcBooleanResult = new IfcBooleanResultImpl();
 		return ifcBooleanResult;
@@ -3234,6 +3284,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBoundaryCondition createIfcBoundaryCondition() {
 		IfcBoundaryConditionImpl ifcBoundaryCondition = new IfcBoundaryConditionImpl();
 		return ifcBoundaryCondition;
@@ -3244,6 +3295,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBoundaryCurve createIfcBoundaryCurve() {
 		IfcBoundaryCurveImpl ifcBoundaryCurve = new IfcBoundaryCurveImpl();
 		return ifcBoundaryCurve;
@@ -3254,6 +3306,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBoundaryEdgeCondition createIfcBoundaryEdgeCondition() {
 		IfcBoundaryEdgeConditionImpl ifcBoundaryEdgeCondition = new IfcBoundaryEdgeConditionImpl();
 		return ifcBoundaryEdgeCondition;
@@ -3264,6 +3317,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBoundaryFaceCondition createIfcBoundaryFaceCondition() {
 		IfcBoundaryFaceConditionImpl ifcBoundaryFaceCondition = new IfcBoundaryFaceConditionImpl();
 		return ifcBoundaryFaceCondition;
@@ -3274,6 +3328,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBoundaryNodeCondition createIfcBoundaryNodeCondition() {
 		IfcBoundaryNodeConditionImpl ifcBoundaryNodeCondition = new IfcBoundaryNodeConditionImpl();
 		return ifcBoundaryNodeCondition;
@@ -3284,6 +3339,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBoundaryNodeConditionWarping createIfcBoundaryNodeConditionWarping() {
 		IfcBoundaryNodeConditionWarpingImpl ifcBoundaryNodeConditionWarping = new IfcBoundaryNodeConditionWarpingImpl();
 		return ifcBoundaryNodeConditionWarping;
@@ -3294,6 +3350,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBoundedCurve createIfcBoundedCurve() {
 		IfcBoundedCurveImpl ifcBoundedCurve = new IfcBoundedCurveImpl();
 		return ifcBoundedCurve;
@@ -3304,6 +3361,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBoundedSurface createIfcBoundedSurface() {
 		IfcBoundedSurfaceImpl ifcBoundedSurface = new IfcBoundedSurfaceImpl();
 		return ifcBoundedSurface;
@@ -3314,6 +3372,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBoundingBox createIfcBoundingBox() {
 		IfcBoundingBoxImpl ifcBoundingBox = new IfcBoundingBoxImpl();
 		return ifcBoundingBox;
@@ -3324,6 +3383,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBoxedHalfSpace createIfcBoxedHalfSpace() {
 		IfcBoxedHalfSpaceImpl ifcBoxedHalfSpace = new IfcBoxedHalfSpaceImpl();
 		return ifcBoxedHalfSpace;
@@ -3334,6 +3394,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBuilding createIfcBuilding() {
 		IfcBuildingImpl ifcBuilding = new IfcBuildingImpl();
 		return ifcBuilding;
@@ -3344,6 +3405,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBuildingElement createIfcBuildingElement() {
 		IfcBuildingElementImpl ifcBuildingElement = new IfcBuildingElementImpl();
 		return ifcBuildingElement;
@@ -3354,6 +3416,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBuildingElementPart createIfcBuildingElementPart() {
 		IfcBuildingElementPartImpl ifcBuildingElementPart = new IfcBuildingElementPartImpl();
 		return ifcBuildingElementPart;
@@ -3364,6 +3427,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBuildingElementPartType createIfcBuildingElementPartType() {
 		IfcBuildingElementPartTypeImpl ifcBuildingElementPartType = new IfcBuildingElementPartTypeImpl();
 		return ifcBuildingElementPartType;
@@ -3374,6 +3438,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBuildingElementProxy createIfcBuildingElementProxy() {
 		IfcBuildingElementProxyImpl ifcBuildingElementProxy = new IfcBuildingElementProxyImpl();
 		return ifcBuildingElementProxy;
@@ -3384,6 +3449,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBuildingElementProxyType createIfcBuildingElementProxyType() {
 		IfcBuildingElementProxyTypeImpl ifcBuildingElementProxyType = new IfcBuildingElementProxyTypeImpl();
 		return ifcBuildingElementProxyType;
@@ -3394,6 +3460,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBuildingElementType createIfcBuildingElementType() {
 		IfcBuildingElementTypeImpl ifcBuildingElementType = new IfcBuildingElementTypeImpl();
 		return ifcBuildingElementType;
@@ -3404,6 +3471,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBuildingStorey createIfcBuildingStorey() {
 		IfcBuildingStoreyImpl ifcBuildingStorey = new IfcBuildingStoreyImpl();
 		return ifcBuildingStorey;
@@ -3414,6 +3482,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBuildingSystem createIfcBuildingSystem() {
 		IfcBuildingSystemImpl ifcBuildingSystem = new IfcBuildingSystemImpl();
 		return ifcBuildingSystem;
@@ -3424,6 +3493,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBurner createIfcBurner() {
 		IfcBurnerImpl ifcBurner = new IfcBurnerImpl();
 		return ifcBurner;
@@ -3434,6 +3504,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBurnerType createIfcBurnerType() {
 		IfcBurnerTypeImpl ifcBurnerType = new IfcBurnerTypeImpl();
 		return ifcBurnerType;
@@ -3444,6 +3515,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCShapeProfileDef createIfcCShapeProfileDef() {
 		IfcCShapeProfileDefImpl ifcCShapeProfileDef = new IfcCShapeProfileDefImpl();
 		return ifcCShapeProfileDef;
@@ -3454,6 +3526,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCableCarrierFitting createIfcCableCarrierFitting() {
 		IfcCableCarrierFittingImpl ifcCableCarrierFitting = new IfcCableCarrierFittingImpl();
 		return ifcCableCarrierFitting;
@@ -3464,6 +3537,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCableCarrierFittingType createIfcCableCarrierFittingType() {
 		IfcCableCarrierFittingTypeImpl ifcCableCarrierFittingType = new IfcCableCarrierFittingTypeImpl();
 		return ifcCableCarrierFittingType;
@@ -3474,6 +3548,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCableCarrierSegment createIfcCableCarrierSegment() {
 		IfcCableCarrierSegmentImpl ifcCableCarrierSegment = new IfcCableCarrierSegmentImpl();
 		return ifcCableCarrierSegment;
@@ -3484,6 +3559,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCableCarrierSegmentType createIfcCableCarrierSegmentType() {
 		IfcCableCarrierSegmentTypeImpl ifcCableCarrierSegmentType = new IfcCableCarrierSegmentTypeImpl();
 		return ifcCableCarrierSegmentType;
@@ -3494,6 +3570,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCableFitting createIfcCableFitting() {
 		IfcCableFittingImpl ifcCableFitting = new IfcCableFittingImpl();
 		return ifcCableFitting;
@@ -3504,6 +3581,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCableFittingType createIfcCableFittingType() {
 		IfcCableFittingTypeImpl ifcCableFittingType = new IfcCableFittingTypeImpl();
 		return ifcCableFittingType;
@@ -3514,6 +3592,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCableSegment createIfcCableSegment() {
 		IfcCableSegmentImpl ifcCableSegment = new IfcCableSegmentImpl();
 		return ifcCableSegment;
@@ -3524,6 +3603,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCableSegmentType createIfcCableSegmentType() {
 		IfcCableSegmentTypeImpl ifcCableSegmentType = new IfcCableSegmentTypeImpl();
 		return ifcCableSegmentType;
@@ -3534,6 +3614,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCartesianPoint createIfcCartesianPoint() {
 		IfcCartesianPointImpl ifcCartesianPoint = new IfcCartesianPointImpl();
 		return ifcCartesianPoint;
@@ -3544,6 +3625,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCartesianPointList createIfcCartesianPointList() {
 		IfcCartesianPointListImpl ifcCartesianPointList = new IfcCartesianPointListImpl();
 		return ifcCartesianPointList;
@@ -3554,6 +3636,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCartesianPointList2D createIfcCartesianPointList2D() {
 		IfcCartesianPointList2DImpl ifcCartesianPointList2D = new IfcCartesianPointList2DImpl();
 		return ifcCartesianPointList2D;
@@ -3564,6 +3647,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCartesianPointList3D createIfcCartesianPointList3D() {
 		IfcCartesianPointList3DImpl ifcCartesianPointList3D = new IfcCartesianPointList3DImpl();
 		return ifcCartesianPointList3D;
@@ -3574,6 +3658,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCartesianTransformationOperator createIfcCartesianTransformationOperator() {
 		IfcCartesianTransformationOperatorImpl ifcCartesianTransformationOperator = new IfcCartesianTransformationOperatorImpl();
 		return ifcCartesianTransformationOperator;
@@ -3584,6 +3669,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCartesianTransformationOperator2D createIfcCartesianTransformationOperator2D() {
 		IfcCartesianTransformationOperator2DImpl ifcCartesianTransformationOperator2D = new IfcCartesianTransformationOperator2DImpl();
 		return ifcCartesianTransformationOperator2D;
@@ -3594,6 +3680,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCartesianTransformationOperator2DnonUniform createIfcCartesianTransformationOperator2DnonUniform() {
 		IfcCartesianTransformationOperator2DnonUniformImpl ifcCartesianTransformationOperator2DnonUniform = new IfcCartesianTransformationOperator2DnonUniformImpl();
 		return ifcCartesianTransformationOperator2DnonUniform;
@@ -3604,6 +3691,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCartesianTransformationOperator3D createIfcCartesianTransformationOperator3D() {
 		IfcCartesianTransformationOperator3DImpl ifcCartesianTransformationOperator3D = new IfcCartesianTransformationOperator3DImpl();
 		return ifcCartesianTransformationOperator3D;
@@ -3614,6 +3702,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCartesianTransformationOperator3DnonUniform createIfcCartesianTransformationOperator3DnonUniform() {
 		IfcCartesianTransformationOperator3DnonUniformImpl ifcCartesianTransformationOperator3DnonUniform = new IfcCartesianTransformationOperator3DnonUniformImpl();
 		return ifcCartesianTransformationOperator3DnonUniform;
@@ -3624,6 +3713,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCenterLineProfileDef createIfcCenterLineProfileDef() {
 		IfcCenterLineProfileDefImpl ifcCenterLineProfileDef = new IfcCenterLineProfileDefImpl();
 		return ifcCenterLineProfileDef;
@@ -3634,6 +3724,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcChiller createIfcChiller() {
 		IfcChillerImpl ifcChiller = new IfcChillerImpl();
 		return ifcChiller;
@@ -3644,6 +3735,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcChillerType createIfcChillerType() {
 		IfcChillerTypeImpl ifcChillerType = new IfcChillerTypeImpl();
 		return ifcChillerType;
@@ -3654,6 +3746,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcChimney createIfcChimney() {
 		IfcChimneyImpl ifcChimney = new IfcChimneyImpl();
 		return ifcChimney;
@@ -3664,6 +3757,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcChimneyType createIfcChimneyType() {
 		IfcChimneyTypeImpl ifcChimneyType = new IfcChimneyTypeImpl();
 		return ifcChimneyType;
@@ -3674,6 +3768,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCircle createIfcCircle() {
 		IfcCircleImpl ifcCircle = new IfcCircleImpl();
 		return ifcCircle;
@@ -3684,6 +3779,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCircleHollowProfileDef createIfcCircleHollowProfileDef() {
 		IfcCircleHollowProfileDefImpl ifcCircleHollowProfileDef = new IfcCircleHollowProfileDefImpl();
 		return ifcCircleHollowProfileDef;
@@ -3694,6 +3790,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCircleProfileDef createIfcCircleProfileDef() {
 		IfcCircleProfileDefImpl ifcCircleProfileDef = new IfcCircleProfileDefImpl();
 		return ifcCircleProfileDef;
@@ -3704,6 +3801,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCivilElement createIfcCivilElement() {
 		IfcCivilElementImpl ifcCivilElement = new IfcCivilElementImpl();
 		return ifcCivilElement;
@@ -3714,6 +3812,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCivilElementType createIfcCivilElementType() {
 		IfcCivilElementTypeImpl ifcCivilElementType = new IfcCivilElementTypeImpl();
 		return ifcCivilElementType;
@@ -3724,6 +3823,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcClassification createIfcClassification() {
 		IfcClassificationImpl ifcClassification = new IfcClassificationImpl();
 		return ifcClassification;
@@ -3734,6 +3834,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcClassificationReference createIfcClassificationReference() {
 		IfcClassificationReferenceImpl ifcClassificationReference = new IfcClassificationReferenceImpl();
 		return ifcClassificationReference;
@@ -3744,6 +3845,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcClosedShell createIfcClosedShell() {
 		IfcClosedShellImpl ifcClosedShell = new IfcClosedShellImpl();
 		return ifcClosedShell;
@@ -3754,6 +3856,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCoil createIfcCoil() {
 		IfcCoilImpl ifcCoil = new IfcCoilImpl();
 		return ifcCoil;
@@ -3764,6 +3867,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCoilType createIfcCoilType() {
 		IfcCoilTypeImpl ifcCoilType = new IfcCoilTypeImpl();
 		return ifcCoilType;
@@ -3774,6 +3878,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcColourRgb createIfcColourRgb() {
 		IfcColourRgbImpl ifcColourRgb = new IfcColourRgbImpl();
 		return ifcColourRgb;
@@ -3784,6 +3889,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcColourRgbList createIfcColourRgbList() {
 		IfcColourRgbListImpl ifcColourRgbList = new IfcColourRgbListImpl();
 		return ifcColourRgbList;
@@ -3794,6 +3900,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcColourSpecification createIfcColourSpecification() {
 		IfcColourSpecificationImpl ifcColourSpecification = new IfcColourSpecificationImpl();
 		return ifcColourSpecification;
@@ -3804,6 +3911,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcColumn createIfcColumn() {
 		IfcColumnImpl ifcColumn = new IfcColumnImpl();
 		return ifcColumn;
@@ -3814,6 +3922,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcColumnStandardCase createIfcColumnStandardCase() {
 		IfcColumnStandardCaseImpl ifcColumnStandardCase = new IfcColumnStandardCaseImpl();
 		return ifcColumnStandardCase;
@@ -3824,6 +3933,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcColumnType createIfcColumnType() {
 		IfcColumnTypeImpl ifcColumnType = new IfcColumnTypeImpl();
 		return ifcColumnType;
@@ -3834,6 +3944,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCommunicationsAppliance createIfcCommunicationsAppliance() {
 		IfcCommunicationsApplianceImpl ifcCommunicationsAppliance = new IfcCommunicationsApplianceImpl();
 		return ifcCommunicationsAppliance;
@@ -3844,6 +3955,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCommunicationsApplianceType createIfcCommunicationsApplianceType() {
 		IfcCommunicationsApplianceTypeImpl ifcCommunicationsApplianceType = new IfcCommunicationsApplianceTypeImpl();
 		return ifcCommunicationsApplianceType;
@@ -3854,6 +3966,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcComplexProperty createIfcComplexProperty() {
 		IfcComplexPropertyImpl ifcComplexProperty = new IfcComplexPropertyImpl();
 		return ifcComplexProperty;
@@ -3864,6 +3977,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcComplexPropertyTemplate createIfcComplexPropertyTemplate() {
 		IfcComplexPropertyTemplateImpl ifcComplexPropertyTemplate = new IfcComplexPropertyTemplateImpl();
 		return ifcComplexPropertyTemplate;
@@ -3874,6 +3988,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCompositeCurve createIfcCompositeCurve() {
 		IfcCompositeCurveImpl ifcCompositeCurve = new IfcCompositeCurveImpl();
 		return ifcCompositeCurve;
@@ -3884,6 +3999,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCompositeCurveOnSurface createIfcCompositeCurveOnSurface() {
 		IfcCompositeCurveOnSurfaceImpl ifcCompositeCurveOnSurface = new IfcCompositeCurveOnSurfaceImpl();
 		return ifcCompositeCurveOnSurface;
@@ -3894,6 +4010,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCompositeCurveSegment createIfcCompositeCurveSegment() {
 		IfcCompositeCurveSegmentImpl ifcCompositeCurveSegment = new IfcCompositeCurveSegmentImpl();
 		return ifcCompositeCurveSegment;
@@ -3904,6 +4021,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCompositeProfileDef createIfcCompositeProfileDef() {
 		IfcCompositeProfileDefImpl ifcCompositeProfileDef = new IfcCompositeProfileDefImpl();
 		return ifcCompositeProfileDef;
@@ -3914,6 +4032,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCompressor createIfcCompressor() {
 		IfcCompressorImpl ifcCompressor = new IfcCompressorImpl();
 		return ifcCompressor;
@@ -3924,6 +4043,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCompressorType createIfcCompressorType() {
 		IfcCompressorTypeImpl ifcCompressorType = new IfcCompressorTypeImpl();
 		return ifcCompressorType;
@@ -3934,6 +4054,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCondenser createIfcCondenser() {
 		IfcCondenserImpl ifcCondenser = new IfcCondenserImpl();
 		return ifcCondenser;
@@ -3944,6 +4065,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCondenserType createIfcCondenserType() {
 		IfcCondenserTypeImpl ifcCondenserType = new IfcCondenserTypeImpl();
 		return ifcCondenserType;
@@ -3954,6 +4076,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcConic createIfcConic() {
 		IfcConicImpl ifcConic = new IfcConicImpl();
 		return ifcConic;
@@ -3964,6 +4087,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcConnectedFaceSet createIfcConnectedFaceSet() {
 		IfcConnectedFaceSetImpl ifcConnectedFaceSet = new IfcConnectedFaceSetImpl();
 		return ifcConnectedFaceSet;
@@ -3974,6 +4098,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcConnectionCurveGeometry createIfcConnectionCurveGeometry() {
 		IfcConnectionCurveGeometryImpl ifcConnectionCurveGeometry = new IfcConnectionCurveGeometryImpl();
 		return ifcConnectionCurveGeometry;
@@ -3984,6 +4109,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcConnectionGeometry createIfcConnectionGeometry() {
 		IfcConnectionGeometryImpl ifcConnectionGeometry = new IfcConnectionGeometryImpl();
 		return ifcConnectionGeometry;
@@ -3994,6 +4120,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcConnectionPointEccentricity createIfcConnectionPointEccentricity() {
 		IfcConnectionPointEccentricityImpl ifcConnectionPointEccentricity = new IfcConnectionPointEccentricityImpl();
 		return ifcConnectionPointEccentricity;
@@ -4004,6 +4131,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcConnectionPointGeometry createIfcConnectionPointGeometry() {
 		IfcConnectionPointGeometryImpl ifcConnectionPointGeometry = new IfcConnectionPointGeometryImpl();
 		return ifcConnectionPointGeometry;
@@ -4014,6 +4142,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcConnectionSurfaceGeometry createIfcConnectionSurfaceGeometry() {
 		IfcConnectionSurfaceGeometryImpl ifcConnectionSurfaceGeometry = new IfcConnectionSurfaceGeometryImpl();
 		return ifcConnectionSurfaceGeometry;
@@ -4024,6 +4153,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcConnectionVolumeGeometry createIfcConnectionVolumeGeometry() {
 		IfcConnectionVolumeGeometryImpl ifcConnectionVolumeGeometry = new IfcConnectionVolumeGeometryImpl();
 		return ifcConnectionVolumeGeometry;
@@ -4034,6 +4164,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcConstraint createIfcConstraint() {
 		IfcConstraintImpl ifcConstraint = new IfcConstraintImpl();
 		return ifcConstraint;
@@ -4044,6 +4175,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcConstructionEquipmentResource createIfcConstructionEquipmentResource() {
 		IfcConstructionEquipmentResourceImpl ifcConstructionEquipmentResource = new IfcConstructionEquipmentResourceImpl();
 		return ifcConstructionEquipmentResource;
@@ -4054,6 +4186,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcConstructionEquipmentResourceType createIfcConstructionEquipmentResourceType() {
 		IfcConstructionEquipmentResourceTypeImpl ifcConstructionEquipmentResourceType = new IfcConstructionEquipmentResourceTypeImpl();
 		return ifcConstructionEquipmentResourceType;
@@ -4064,6 +4197,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcConstructionMaterialResource createIfcConstructionMaterialResource() {
 		IfcConstructionMaterialResourceImpl ifcConstructionMaterialResource = new IfcConstructionMaterialResourceImpl();
 		return ifcConstructionMaterialResource;
@@ -4074,6 +4208,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcConstructionMaterialResourceType createIfcConstructionMaterialResourceType() {
 		IfcConstructionMaterialResourceTypeImpl ifcConstructionMaterialResourceType = new IfcConstructionMaterialResourceTypeImpl();
 		return ifcConstructionMaterialResourceType;
@@ -4084,6 +4219,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcConstructionProductResource createIfcConstructionProductResource() {
 		IfcConstructionProductResourceImpl ifcConstructionProductResource = new IfcConstructionProductResourceImpl();
 		return ifcConstructionProductResource;
@@ -4094,6 +4230,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcConstructionProductResourceType createIfcConstructionProductResourceType() {
 		IfcConstructionProductResourceTypeImpl ifcConstructionProductResourceType = new IfcConstructionProductResourceTypeImpl();
 		return ifcConstructionProductResourceType;
@@ -4104,6 +4241,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcConstructionResource createIfcConstructionResource() {
 		IfcConstructionResourceImpl ifcConstructionResource = new IfcConstructionResourceImpl();
 		return ifcConstructionResource;
@@ -4114,6 +4252,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcConstructionResourceType createIfcConstructionResourceType() {
 		IfcConstructionResourceTypeImpl ifcConstructionResourceType = new IfcConstructionResourceTypeImpl();
 		return ifcConstructionResourceType;
@@ -4124,6 +4263,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcContext createIfcContext() {
 		IfcContextImpl ifcContext = new IfcContextImpl();
 		return ifcContext;
@@ -4134,6 +4274,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcContextDependentUnit createIfcContextDependentUnit() {
 		IfcContextDependentUnitImpl ifcContextDependentUnit = new IfcContextDependentUnitImpl();
 		return ifcContextDependentUnit;
@@ -4144,6 +4285,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcControl createIfcControl() {
 		IfcControlImpl ifcControl = new IfcControlImpl();
 		return ifcControl;
@@ -4154,6 +4296,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcController createIfcController() {
 		IfcControllerImpl ifcController = new IfcControllerImpl();
 		return ifcController;
@@ -4164,6 +4307,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcControllerType createIfcControllerType() {
 		IfcControllerTypeImpl ifcControllerType = new IfcControllerTypeImpl();
 		return ifcControllerType;
@@ -4174,6 +4318,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcConversionBasedUnit createIfcConversionBasedUnit() {
 		IfcConversionBasedUnitImpl ifcConversionBasedUnit = new IfcConversionBasedUnitImpl();
 		return ifcConversionBasedUnit;
@@ -4184,6 +4329,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcConversionBasedUnitWithOffset createIfcConversionBasedUnitWithOffset() {
 		IfcConversionBasedUnitWithOffsetImpl ifcConversionBasedUnitWithOffset = new IfcConversionBasedUnitWithOffsetImpl();
 		return ifcConversionBasedUnitWithOffset;
@@ -4194,6 +4340,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCooledBeam createIfcCooledBeam() {
 		IfcCooledBeamImpl ifcCooledBeam = new IfcCooledBeamImpl();
 		return ifcCooledBeam;
@@ -4204,6 +4351,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCooledBeamType createIfcCooledBeamType() {
 		IfcCooledBeamTypeImpl ifcCooledBeamType = new IfcCooledBeamTypeImpl();
 		return ifcCooledBeamType;
@@ -4214,6 +4362,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCoolingTower createIfcCoolingTower() {
 		IfcCoolingTowerImpl ifcCoolingTower = new IfcCoolingTowerImpl();
 		return ifcCoolingTower;
@@ -4224,6 +4373,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCoolingTowerType createIfcCoolingTowerType() {
 		IfcCoolingTowerTypeImpl ifcCoolingTowerType = new IfcCoolingTowerTypeImpl();
 		return ifcCoolingTowerType;
@@ -4234,6 +4384,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCoordinateOperation createIfcCoordinateOperation() {
 		IfcCoordinateOperationImpl ifcCoordinateOperation = new IfcCoordinateOperationImpl();
 		return ifcCoordinateOperation;
@@ -4244,6 +4395,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCoordinateReferenceSystem createIfcCoordinateReferenceSystem() {
 		IfcCoordinateReferenceSystemImpl ifcCoordinateReferenceSystem = new IfcCoordinateReferenceSystemImpl();
 		return ifcCoordinateReferenceSystem;
@@ -4254,6 +4406,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCostItem createIfcCostItem() {
 		IfcCostItemImpl ifcCostItem = new IfcCostItemImpl();
 		return ifcCostItem;
@@ -4264,6 +4417,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCostSchedule createIfcCostSchedule() {
 		IfcCostScheduleImpl ifcCostSchedule = new IfcCostScheduleImpl();
 		return ifcCostSchedule;
@@ -4274,6 +4428,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCostValue createIfcCostValue() {
 		IfcCostValueImpl ifcCostValue = new IfcCostValueImpl();
 		return ifcCostValue;
@@ -4284,6 +4439,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCovering createIfcCovering() {
 		IfcCoveringImpl ifcCovering = new IfcCoveringImpl();
 		return ifcCovering;
@@ -4294,6 +4450,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCoveringType createIfcCoveringType() {
 		IfcCoveringTypeImpl ifcCoveringType = new IfcCoveringTypeImpl();
 		return ifcCoveringType;
@@ -4304,6 +4461,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCrewResource createIfcCrewResource() {
 		IfcCrewResourceImpl ifcCrewResource = new IfcCrewResourceImpl();
 		return ifcCrewResource;
@@ -4314,6 +4472,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCrewResourceType createIfcCrewResourceType() {
 		IfcCrewResourceTypeImpl ifcCrewResourceType = new IfcCrewResourceTypeImpl();
 		return ifcCrewResourceType;
@@ -4324,6 +4483,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCsgPrimitive3D createIfcCsgPrimitive3D() {
 		IfcCsgPrimitive3DImpl ifcCsgPrimitive3D = new IfcCsgPrimitive3DImpl();
 		return ifcCsgPrimitive3D;
@@ -4334,6 +4494,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCsgSolid createIfcCsgSolid() {
 		IfcCsgSolidImpl ifcCsgSolid = new IfcCsgSolidImpl();
 		return ifcCsgSolid;
@@ -4344,6 +4505,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCurrencyRelationship createIfcCurrencyRelationship() {
 		IfcCurrencyRelationshipImpl ifcCurrencyRelationship = new IfcCurrencyRelationshipImpl();
 		return ifcCurrencyRelationship;
@@ -4354,6 +4516,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCurtainWall createIfcCurtainWall() {
 		IfcCurtainWallImpl ifcCurtainWall = new IfcCurtainWallImpl();
 		return ifcCurtainWall;
@@ -4364,6 +4527,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCurtainWallType createIfcCurtainWallType() {
 		IfcCurtainWallTypeImpl ifcCurtainWallType = new IfcCurtainWallTypeImpl();
 		return ifcCurtainWallType;
@@ -4374,6 +4538,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCurve createIfcCurve() {
 		IfcCurveImpl ifcCurve = new IfcCurveImpl();
 		return ifcCurve;
@@ -4384,6 +4549,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCurveBoundedPlane createIfcCurveBoundedPlane() {
 		IfcCurveBoundedPlaneImpl ifcCurveBoundedPlane = new IfcCurveBoundedPlaneImpl();
 		return ifcCurveBoundedPlane;
@@ -4394,6 +4560,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCurveBoundedSurface createIfcCurveBoundedSurface() {
 		IfcCurveBoundedSurfaceImpl ifcCurveBoundedSurface = new IfcCurveBoundedSurfaceImpl();
 		return ifcCurveBoundedSurface;
@@ -4404,6 +4571,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCurveStyle createIfcCurveStyle() {
 		IfcCurveStyleImpl ifcCurveStyle = new IfcCurveStyleImpl();
 		return ifcCurveStyle;
@@ -4414,6 +4582,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCurveStyleFont createIfcCurveStyleFont() {
 		IfcCurveStyleFontImpl ifcCurveStyleFont = new IfcCurveStyleFontImpl();
 		return ifcCurveStyleFont;
@@ -4424,6 +4593,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCurveStyleFontAndScaling createIfcCurveStyleFontAndScaling() {
 		IfcCurveStyleFontAndScalingImpl ifcCurveStyleFontAndScaling = new IfcCurveStyleFontAndScalingImpl();
 		return ifcCurveStyleFontAndScaling;
@@ -4434,6 +4604,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCurveStyleFontPattern createIfcCurveStyleFontPattern() {
 		IfcCurveStyleFontPatternImpl ifcCurveStyleFontPattern = new IfcCurveStyleFontPatternImpl();
 		return ifcCurveStyleFontPattern;
@@ -4444,6 +4615,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCylindricalSurface createIfcCylindricalSurface() {
 		IfcCylindricalSurfaceImpl ifcCylindricalSurface = new IfcCylindricalSurfaceImpl();
 		return ifcCylindricalSurface;
@@ -4454,6 +4626,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDamper createIfcDamper() {
 		IfcDamperImpl ifcDamper = new IfcDamperImpl();
 		return ifcDamper;
@@ -4464,6 +4637,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDamperType createIfcDamperType() {
 		IfcDamperTypeImpl ifcDamperType = new IfcDamperTypeImpl();
 		return ifcDamperType;
@@ -4474,6 +4648,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDerivedProfileDef createIfcDerivedProfileDef() {
 		IfcDerivedProfileDefImpl ifcDerivedProfileDef = new IfcDerivedProfileDefImpl();
 		return ifcDerivedProfileDef;
@@ -4484,6 +4659,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDerivedUnit createIfcDerivedUnit() {
 		IfcDerivedUnitImpl ifcDerivedUnit = new IfcDerivedUnitImpl();
 		return ifcDerivedUnit;
@@ -4494,6 +4670,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDerivedUnitElement createIfcDerivedUnitElement() {
 		IfcDerivedUnitElementImpl ifcDerivedUnitElement = new IfcDerivedUnitElementImpl();
 		return ifcDerivedUnitElement;
@@ -4504,6 +4681,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDimensionalExponents createIfcDimensionalExponents() {
 		IfcDimensionalExponentsImpl ifcDimensionalExponents = new IfcDimensionalExponentsImpl();
 		return ifcDimensionalExponents;
@@ -4514,6 +4692,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDirection createIfcDirection() {
 		IfcDirectionImpl ifcDirection = new IfcDirectionImpl();
 		return ifcDirection;
@@ -4524,6 +4703,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDiscreteAccessory createIfcDiscreteAccessory() {
 		IfcDiscreteAccessoryImpl ifcDiscreteAccessory = new IfcDiscreteAccessoryImpl();
 		return ifcDiscreteAccessory;
@@ -4534,6 +4714,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDiscreteAccessoryType createIfcDiscreteAccessoryType() {
 		IfcDiscreteAccessoryTypeImpl ifcDiscreteAccessoryType = new IfcDiscreteAccessoryTypeImpl();
 		return ifcDiscreteAccessoryType;
@@ -4544,6 +4725,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDistributionChamberElement createIfcDistributionChamberElement() {
 		IfcDistributionChamberElementImpl ifcDistributionChamberElement = new IfcDistributionChamberElementImpl();
 		return ifcDistributionChamberElement;
@@ -4554,6 +4736,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDistributionChamberElementType createIfcDistributionChamberElementType() {
 		IfcDistributionChamberElementTypeImpl ifcDistributionChamberElementType = new IfcDistributionChamberElementTypeImpl();
 		return ifcDistributionChamberElementType;
@@ -4564,6 +4747,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDistributionCircuit createIfcDistributionCircuit() {
 		IfcDistributionCircuitImpl ifcDistributionCircuit = new IfcDistributionCircuitImpl();
 		return ifcDistributionCircuit;
@@ -4574,6 +4758,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDistributionControlElement createIfcDistributionControlElement() {
 		IfcDistributionControlElementImpl ifcDistributionControlElement = new IfcDistributionControlElementImpl();
 		return ifcDistributionControlElement;
@@ -4584,6 +4769,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDistributionControlElementType createIfcDistributionControlElementType() {
 		IfcDistributionControlElementTypeImpl ifcDistributionControlElementType = new IfcDistributionControlElementTypeImpl();
 		return ifcDistributionControlElementType;
@@ -4594,6 +4780,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDistributionElement createIfcDistributionElement() {
 		IfcDistributionElementImpl ifcDistributionElement = new IfcDistributionElementImpl();
 		return ifcDistributionElement;
@@ -4604,6 +4791,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDistributionElementType createIfcDistributionElementType() {
 		IfcDistributionElementTypeImpl ifcDistributionElementType = new IfcDistributionElementTypeImpl();
 		return ifcDistributionElementType;
@@ -4614,6 +4802,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDistributionFlowElement createIfcDistributionFlowElement() {
 		IfcDistributionFlowElementImpl ifcDistributionFlowElement = new IfcDistributionFlowElementImpl();
 		return ifcDistributionFlowElement;
@@ -4624,6 +4813,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDistributionFlowElementType createIfcDistributionFlowElementType() {
 		IfcDistributionFlowElementTypeImpl ifcDistributionFlowElementType = new IfcDistributionFlowElementTypeImpl();
 		return ifcDistributionFlowElementType;
@@ -4634,6 +4824,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDistributionPort createIfcDistributionPort() {
 		IfcDistributionPortImpl ifcDistributionPort = new IfcDistributionPortImpl();
 		return ifcDistributionPort;
@@ -4644,6 +4835,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDistributionSystem createIfcDistributionSystem() {
 		IfcDistributionSystemImpl ifcDistributionSystem = new IfcDistributionSystemImpl();
 		return ifcDistributionSystem;
@@ -4654,6 +4846,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDocumentInformation createIfcDocumentInformation() {
 		IfcDocumentInformationImpl ifcDocumentInformation = new IfcDocumentInformationImpl();
 		return ifcDocumentInformation;
@@ -4664,6 +4857,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDocumentInformationRelationship createIfcDocumentInformationRelationship() {
 		IfcDocumentInformationRelationshipImpl ifcDocumentInformationRelationship = new IfcDocumentInformationRelationshipImpl();
 		return ifcDocumentInformationRelationship;
@@ -4674,6 +4868,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDocumentReference createIfcDocumentReference() {
 		IfcDocumentReferenceImpl ifcDocumentReference = new IfcDocumentReferenceImpl();
 		return ifcDocumentReference;
@@ -4684,6 +4879,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDoor createIfcDoor() {
 		IfcDoorImpl ifcDoor = new IfcDoorImpl();
 		return ifcDoor;
@@ -4694,6 +4890,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDoorLiningProperties createIfcDoorLiningProperties() {
 		IfcDoorLiningPropertiesImpl ifcDoorLiningProperties = new IfcDoorLiningPropertiesImpl();
 		return ifcDoorLiningProperties;
@@ -4704,6 +4901,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDoorPanelProperties createIfcDoorPanelProperties() {
 		IfcDoorPanelPropertiesImpl ifcDoorPanelProperties = new IfcDoorPanelPropertiesImpl();
 		return ifcDoorPanelProperties;
@@ -4714,6 +4912,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDoorStandardCase createIfcDoorStandardCase() {
 		IfcDoorStandardCaseImpl ifcDoorStandardCase = new IfcDoorStandardCaseImpl();
 		return ifcDoorStandardCase;
@@ -4724,6 +4923,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDoorStyle createIfcDoorStyle() {
 		IfcDoorStyleImpl ifcDoorStyle = new IfcDoorStyleImpl();
 		return ifcDoorStyle;
@@ -4734,6 +4934,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDoorType createIfcDoorType() {
 		IfcDoorTypeImpl ifcDoorType = new IfcDoorTypeImpl();
 		return ifcDoorType;
@@ -4744,6 +4945,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDraughtingPreDefinedColour createIfcDraughtingPreDefinedColour() {
 		IfcDraughtingPreDefinedColourImpl ifcDraughtingPreDefinedColour = new IfcDraughtingPreDefinedColourImpl();
 		return ifcDraughtingPreDefinedColour;
@@ -4754,6 +4956,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDraughtingPreDefinedCurveFont createIfcDraughtingPreDefinedCurveFont() {
 		IfcDraughtingPreDefinedCurveFontImpl ifcDraughtingPreDefinedCurveFont = new IfcDraughtingPreDefinedCurveFontImpl();
 		return ifcDraughtingPreDefinedCurveFont;
@@ -4764,6 +4967,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDuctFitting createIfcDuctFitting() {
 		IfcDuctFittingImpl ifcDuctFitting = new IfcDuctFittingImpl();
 		return ifcDuctFitting;
@@ -4774,6 +4978,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDuctFittingType createIfcDuctFittingType() {
 		IfcDuctFittingTypeImpl ifcDuctFittingType = new IfcDuctFittingTypeImpl();
 		return ifcDuctFittingType;
@@ -4784,6 +4989,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDuctSegment createIfcDuctSegment() {
 		IfcDuctSegmentImpl ifcDuctSegment = new IfcDuctSegmentImpl();
 		return ifcDuctSegment;
@@ -4794,6 +5000,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDuctSegmentType createIfcDuctSegmentType() {
 		IfcDuctSegmentTypeImpl ifcDuctSegmentType = new IfcDuctSegmentTypeImpl();
 		return ifcDuctSegmentType;
@@ -4804,6 +5011,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDuctSilencer createIfcDuctSilencer() {
 		IfcDuctSilencerImpl ifcDuctSilencer = new IfcDuctSilencerImpl();
 		return ifcDuctSilencer;
@@ -4814,6 +5022,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDuctSilencerType createIfcDuctSilencerType() {
 		IfcDuctSilencerTypeImpl ifcDuctSilencerType = new IfcDuctSilencerTypeImpl();
 		return ifcDuctSilencerType;
@@ -4824,6 +5033,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcEdge createIfcEdge() {
 		IfcEdgeImpl ifcEdge = new IfcEdgeImpl();
 		return ifcEdge;
@@ -4834,6 +5044,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcEdgeCurve createIfcEdgeCurve() {
 		IfcEdgeCurveImpl ifcEdgeCurve = new IfcEdgeCurveImpl();
 		return ifcEdgeCurve;
@@ -4844,6 +5055,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcEdgeLoop createIfcEdgeLoop() {
 		IfcEdgeLoopImpl ifcEdgeLoop = new IfcEdgeLoopImpl();
 		return ifcEdgeLoop;
@@ -4854,6 +5066,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElectricAppliance createIfcElectricAppliance() {
 		IfcElectricApplianceImpl ifcElectricAppliance = new IfcElectricApplianceImpl();
 		return ifcElectricAppliance;
@@ -4864,6 +5077,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElectricApplianceType createIfcElectricApplianceType() {
 		IfcElectricApplianceTypeImpl ifcElectricApplianceType = new IfcElectricApplianceTypeImpl();
 		return ifcElectricApplianceType;
@@ -4874,6 +5088,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElectricDistributionBoard createIfcElectricDistributionBoard() {
 		IfcElectricDistributionBoardImpl ifcElectricDistributionBoard = new IfcElectricDistributionBoardImpl();
 		return ifcElectricDistributionBoard;
@@ -4884,6 +5099,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElectricDistributionBoardType createIfcElectricDistributionBoardType() {
 		IfcElectricDistributionBoardTypeImpl ifcElectricDistributionBoardType = new IfcElectricDistributionBoardTypeImpl();
 		return ifcElectricDistributionBoardType;
@@ -4894,6 +5110,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElectricFlowStorageDevice createIfcElectricFlowStorageDevice() {
 		IfcElectricFlowStorageDeviceImpl ifcElectricFlowStorageDevice = new IfcElectricFlowStorageDeviceImpl();
 		return ifcElectricFlowStorageDevice;
@@ -4904,6 +5121,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElectricFlowStorageDeviceType createIfcElectricFlowStorageDeviceType() {
 		IfcElectricFlowStorageDeviceTypeImpl ifcElectricFlowStorageDeviceType = new IfcElectricFlowStorageDeviceTypeImpl();
 		return ifcElectricFlowStorageDeviceType;
@@ -4914,6 +5132,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElectricGenerator createIfcElectricGenerator() {
 		IfcElectricGeneratorImpl ifcElectricGenerator = new IfcElectricGeneratorImpl();
 		return ifcElectricGenerator;
@@ -4924,6 +5143,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElectricGeneratorType createIfcElectricGeneratorType() {
 		IfcElectricGeneratorTypeImpl ifcElectricGeneratorType = new IfcElectricGeneratorTypeImpl();
 		return ifcElectricGeneratorType;
@@ -4934,6 +5154,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElectricMotor createIfcElectricMotor() {
 		IfcElectricMotorImpl ifcElectricMotor = new IfcElectricMotorImpl();
 		return ifcElectricMotor;
@@ -4944,6 +5165,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElectricMotorType createIfcElectricMotorType() {
 		IfcElectricMotorTypeImpl ifcElectricMotorType = new IfcElectricMotorTypeImpl();
 		return ifcElectricMotorType;
@@ -4954,6 +5176,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElectricTimeControl createIfcElectricTimeControl() {
 		IfcElectricTimeControlImpl ifcElectricTimeControl = new IfcElectricTimeControlImpl();
 		return ifcElectricTimeControl;
@@ -4964,6 +5187,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElectricTimeControlType createIfcElectricTimeControlType() {
 		IfcElectricTimeControlTypeImpl ifcElectricTimeControlType = new IfcElectricTimeControlTypeImpl();
 		return ifcElectricTimeControlType;
@@ -4974,6 +5198,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElement createIfcElement() {
 		IfcElementImpl ifcElement = new IfcElementImpl();
 		return ifcElement;
@@ -4984,6 +5209,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElementAssembly createIfcElementAssembly() {
 		IfcElementAssemblyImpl ifcElementAssembly = new IfcElementAssemblyImpl();
 		return ifcElementAssembly;
@@ -4994,6 +5220,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElementAssemblyType createIfcElementAssemblyType() {
 		IfcElementAssemblyTypeImpl ifcElementAssemblyType = new IfcElementAssemblyTypeImpl();
 		return ifcElementAssemblyType;
@@ -5004,6 +5231,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElementComponent createIfcElementComponent() {
 		IfcElementComponentImpl ifcElementComponent = new IfcElementComponentImpl();
 		return ifcElementComponent;
@@ -5014,6 +5242,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElementComponentType createIfcElementComponentType() {
 		IfcElementComponentTypeImpl ifcElementComponentType = new IfcElementComponentTypeImpl();
 		return ifcElementComponentType;
@@ -5024,6 +5253,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElementQuantity createIfcElementQuantity() {
 		IfcElementQuantityImpl ifcElementQuantity = new IfcElementQuantityImpl();
 		return ifcElementQuantity;
@@ -5034,6 +5264,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElementType createIfcElementType() {
 		IfcElementTypeImpl ifcElementType = new IfcElementTypeImpl();
 		return ifcElementType;
@@ -5044,6 +5275,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElementarySurface createIfcElementarySurface() {
 		IfcElementarySurfaceImpl ifcElementarySurface = new IfcElementarySurfaceImpl();
 		return ifcElementarySurface;
@@ -5054,6 +5286,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcEllipse createIfcEllipse() {
 		IfcEllipseImpl ifcEllipse = new IfcEllipseImpl();
 		return ifcEllipse;
@@ -5064,6 +5297,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcEllipseProfileDef createIfcEllipseProfileDef() {
 		IfcEllipseProfileDefImpl ifcEllipseProfileDef = new IfcEllipseProfileDefImpl();
 		return ifcEllipseProfileDef;
@@ -5074,6 +5308,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcEnergyConversionDevice createIfcEnergyConversionDevice() {
 		IfcEnergyConversionDeviceImpl ifcEnergyConversionDevice = new IfcEnergyConversionDeviceImpl();
 		return ifcEnergyConversionDevice;
@@ -5084,6 +5319,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcEnergyConversionDeviceType createIfcEnergyConversionDeviceType() {
 		IfcEnergyConversionDeviceTypeImpl ifcEnergyConversionDeviceType = new IfcEnergyConversionDeviceTypeImpl();
 		return ifcEnergyConversionDeviceType;
@@ -5094,6 +5330,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcEngine createIfcEngine() {
 		IfcEngineImpl ifcEngine = new IfcEngineImpl();
 		return ifcEngine;
@@ -5104,6 +5341,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcEngineType createIfcEngineType() {
 		IfcEngineTypeImpl ifcEngineType = new IfcEngineTypeImpl();
 		return ifcEngineType;
@@ -5114,6 +5352,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcEvaporativeCooler createIfcEvaporativeCooler() {
 		IfcEvaporativeCoolerImpl ifcEvaporativeCooler = new IfcEvaporativeCoolerImpl();
 		return ifcEvaporativeCooler;
@@ -5124,6 +5363,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcEvaporativeCoolerType createIfcEvaporativeCoolerType() {
 		IfcEvaporativeCoolerTypeImpl ifcEvaporativeCoolerType = new IfcEvaporativeCoolerTypeImpl();
 		return ifcEvaporativeCoolerType;
@@ -5134,6 +5374,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcEvaporator createIfcEvaporator() {
 		IfcEvaporatorImpl ifcEvaporator = new IfcEvaporatorImpl();
 		return ifcEvaporator;
@@ -5144,6 +5385,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcEvaporatorType createIfcEvaporatorType() {
 		IfcEvaporatorTypeImpl ifcEvaporatorType = new IfcEvaporatorTypeImpl();
 		return ifcEvaporatorType;
@@ -5154,6 +5396,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcEvent createIfcEvent() {
 		IfcEventImpl ifcEvent = new IfcEventImpl();
 		return ifcEvent;
@@ -5164,6 +5407,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcEventTime createIfcEventTime() {
 		IfcEventTimeImpl ifcEventTime = new IfcEventTimeImpl();
 		return ifcEventTime;
@@ -5174,6 +5418,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcEventType createIfcEventType() {
 		IfcEventTypeImpl ifcEventType = new IfcEventTypeImpl();
 		return ifcEventType;
@@ -5184,6 +5429,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcExtendedProperties createIfcExtendedProperties() {
 		IfcExtendedPropertiesImpl ifcExtendedProperties = new IfcExtendedPropertiesImpl();
 		return ifcExtendedProperties;
@@ -5194,6 +5440,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcExternalInformation createIfcExternalInformation() {
 		IfcExternalInformationImpl ifcExternalInformation = new IfcExternalInformationImpl();
 		return ifcExternalInformation;
@@ -5204,6 +5451,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcExternalReference createIfcExternalReference() {
 		IfcExternalReferenceImpl ifcExternalReference = new IfcExternalReferenceImpl();
 		return ifcExternalReference;
@@ -5214,6 +5462,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcExternalReferenceRelationship createIfcExternalReferenceRelationship() {
 		IfcExternalReferenceRelationshipImpl ifcExternalReferenceRelationship = new IfcExternalReferenceRelationshipImpl();
 		return ifcExternalReferenceRelationship;
@@ -5224,6 +5473,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcExternalSpatialElement createIfcExternalSpatialElement() {
 		IfcExternalSpatialElementImpl ifcExternalSpatialElement = new IfcExternalSpatialElementImpl();
 		return ifcExternalSpatialElement;
@@ -5234,6 +5484,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcExternalSpatialStructureElement createIfcExternalSpatialStructureElement() {
 		IfcExternalSpatialStructureElementImpl ifcExternalSpatialStructureElement = new IfcExternalSpatialStructureElementImpl();
 		return ifcExternalSpatialStructureElement;
@@ -5244,6 +5495,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcExternallyDefinedHatchStyle createIfcExternallyDefinedHatchStyle() {
 		IfcExternallyDefinedHatchStyleImpl ifcExternallyDefinedHatchStyle = new IfcExternallyDefinedHatchStyleImpl();
 		return ifcExternallyDefinedHatchStyle;
@@ -5254,6 +5506,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcExternallyDefinedSurfaceStyle createIfcExternallyDefinedSurfaceStyle() {
 		IfcExternallyDefinedSurfaceStyleImpl ifcExternallyDefinedSurfaceStyle = new IfcExternallyDefinedSurfaceStyleImpl();
 		return ifcExternallyDefinedSurfaceStyle;
@@ -5264,6 +5517,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcExternallyDefinedTextFont createIfcExternallyDefinedTextFont() {
 		IfcExternallyDefinedTextFontImpl ifcExternallyDefinedTextFont = new IfcExternallyDefinedTextFontImpl();
 		return ifcExternallyDefinedTextFont;
@@ -5274,6 +5528,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcExtrudedAreaSolid createIfcExtrudedAreaSolid() {
 		IfcExtrudedAreaSolidImpl ifcExtrudedAreaSolid = new IfcExtrudedAreaSolidImpl();
 		return ifcExtrudedAreaSolid;
@@ -5284,6 +5539,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcExtrudedAreaSolidTapered createIfcExtrudedAreaSolidTapered() {
 		IfcExtrudedAreaSolidTaperedImpl ifcExtrudedAreaSolidTapered = new IfcExtrudedAreaSolidTaperedImpl();
 		return ifcExtrudedAreaSolidTapered;
@@ -5294,6 +5550,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFace createIfcFace() {
 		IfcFaceImpl ifcFace = new IfcFaceImpl();
 		return ifcFace;
@@ -5304,6 +5561,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFaceBasedSurfaceModel createIfcFaceBasedSurfaceModel() {
 		IfcFaceBasedSurfaceModelImpl ifcFaceBasedSurfaceModel = new IfcFaceBasedSurfaceModelImpl();
 		return ifcFaceBasedSurfaceModel;
@@ -5314,6 +5572,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFaceBound createIfcFaceBound() {
 		IfcFaceBoundImpl ifcFaceBound = new IfcFaceBoundImpl();
 		return ifcFaceBound;
@@ -5324,6 +5583,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFaceOuterBound createIfcFaceOuterBound() {
 		IfcFaceOuterBoundImpl ifcFaceOuterBound = new IfcFaceOuterBoundImpl();
 		return ifcFaceOuterBound;
@@ -5334,6 +5594,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFaceSurface createIfcFaceSurface() {
 		IfcFaceSurfaceImpl ifcFaceSurface = new IfcFaceSurfaceImpl();
 		return ifcFaceSurface;
@@ -5344,6 +5605,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFacetedBrep createIfcFacetedBrep() {
 		IfcFacetedBrepImpl ifcFacetedBrep = new IfcFacetedBrepImpl();
 		return ifcFacetedBrep;
@@ -5354,6 +5616,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFacetedBrepWithVoids createIfcFacetedBrepWithVoids() {
 		IfcFacetedBrepWithVoidsImpl ifcFacetedBrepWithVoids = new IfcFacetedBrepWithVoidsImpl();
 		return ifcFacetedBrepWithVoids;
@@ -5364,6 +5627,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFailureConnectionCondition createIfcFailureConnectionCondition() {
 		IfcFailureConnectionConditionImpl ifcFailureConnectionCondition = new IfcFailureConnectionConditionImpl();
 		return ifcFailureConnectionCondition;
@@ -5374,6 +5638,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFan createIfcFan() {
 		IfcFanImpl ifcFan = new IfcFanImpl();
 		return ifcFan;
@@ -5384,6 +5649,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFanType createIfcFanType() {
 		IfcFanTypeImpl ifcFanType = new IfcFanTypeImpl();
 		return ifcFanType;
@@ -5394,6 +5660,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFastener createIfcFastener() {
 		IfcFastenerImpl ifcFastener = new IfcFastenerImpl();
 		return ifcFastener;
@@ -5404,6 +5671,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFastenerType createIfcFastenerType() {
 		IfcFastenerTypeImpl ifcFastenerType = new IfcFastenerTypeImpl();
 		return ifcFastenerType;
@@ -5414,6 +5682,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFeatureElement createIfcFeatureElement() {
 		IfcFeatureElementImpl ifcFeatureElement = new IfcFeatureElementImpl();
 		return ifcFeatureElement;
@@ -5424,6 +5693,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFeatureElementAddition createIfcFeatureElementAddition() {
 		IfcFeatureElementAdditionImpl ifcFeatureElementAddition = new IfcFeatureElementAdditionImpl();
 		return ifcFeatureElementAddition;
@@ -5434,6 +5704,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFeatureElementSubtraction createIfcFeatureElementSubtraction() {
 		IfcFeatureElementSubtractionImpl ifcFeatureElementSubtraction = new IfcFeatureElementSubtractionImpl();
 		return ifcFeatureElementSubtraction;
@@ -5444,6 +5715,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFillAreaStyle createIfcFillAreaStyle() {
 		IfcFillAreaStyleImpl ifcFillAreaStyle = new IfcFillAreaStyleImpl();
 		return ifcFillAreaStyle;
@@ -5454,6 +5726,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFillAreaStyleHatching createIfcFillAreaStyleHatching() {
 		IfcFillAreaStyleHatchingImpl ifcFillAreaStyleHatching = new IfcFillAreaStyleHatchingImpl();
 		return ifcFillAreaStyleHatching;
@@ -5464,6 +5737,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFillAreaStyleTiles createIfcFillAreaStyleTiles() {
 		IfcFillAreaStyleTilesImpl ifcFillAreaStyleTiles = new IfcFillAreaStyleTilesImpl();
 		return ifcFillAreaStyleTiles;
@@ -5474,6 +5748,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFilter createIfcFilter() {
 		IfcFilterImpl ifcFilter = new IfcFilterImpl();
 		return ifcFilter;
@@ -5484,6 +5759,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFilterType createIfcFilterType() {
 		IfcFilterTypeImpl ifcFilterType = new IfcFilterTypeImpl();
 		return ifcFilterType;
@@ -5494,6 +5770,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFireSuppressionTerminal createIfcFireSuppressionTerminal() {
 		IfcFireSuppressionTerminalImpl ifcFireSuppressionTerminal = new IfcFireSuppressionTerminalImpl();
 		return ifcFireSuppressionTerminal;
@@ -5504,6 +5781,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFireSuppressionTerminalType createIfcFireSuppressionTerminalType() {
 		IfcFireSuppressionTerminalTypeImpl ifcFireSuppressionTerminalType = new IfcFireSuppressionTerminalTypeImpl();
 		return ifcFireSuppressionTerminalType;
@@ -5514,6 +5792,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFixedReferenceSweptAreaSolid createIfcFixedReferenceSweptAreaSolid() {
 		IfcFixedReferenceSweptAreaSolidImpl ifcFixedReferenceSweptAreaSolid = new IfcFixedReferenceSweptAreaSolidImpl();
 		return ifcFixedReferenceSweptAreaSolid;
@@ -5524,6 +5803,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFlowController createIfcFlowController() {
 		IfcFlowControllerImpl ifcFlowController = new IfcFlowControllerImpl();
 		return ifcFlowController;
@@ -5534,6 +5814,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFlowControllerType createIfcFlowControllerType() {
 		IfcFlowControllerTypeImpl ifcFlowControllerType = new IfcFlowControllerTypeImpl();
 		return ifcFlowControllerType;
@@ -5544,6 +5825,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFlowFitting createIfcFlowFitting() {
 		IfcFlowFittingImpl ifcFlowFitting = new IfcFlowFittingImpl();
 		return ifcFlowFitting;
@@ -5554,6 +5836,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFlowFittingType createIfcFlowFittingType() {
 		IfcFlowFittingTypeImpl ifcFlowFittingType = new IfcFlowFittingTypeImpl();
 		return ifcFlowFittingType;
@@ -5564,6 +5847,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFlowInstrument createIfcFlowInstrument() {
 		IfcFlowInstrumentImpl ifcFlowInstrument = new IfcFlowInstrumentImpl();
 		return ifcFlowInstrument;
@@ -5574,6 +5858,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFlowInstrumentType createIfcFlowInstrumentType() {
 		IfcFlowInstrumentTypeImpl ifcFlowInstrumentType = new IfcFlowInstrumentTypeImpl();
 		return ifcFlowInstrumentType;
@@ -5584,6 +5869,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFlowMeter createIfcFlowMeter() {
 		IfcFlowMeterImpl ifcFlowMeter = new IfcFlowMeterImpl();
 		return ifcFlowMeter;
@@ -5594,6 +5880,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFlowMeterType createIfcFlowMeterType() {
 		IfcFlowMeterTypeImpl ifcFlowMeterType = new IfcFlowMeterTypeImpl();
 		return ifcFlowMeterType;
@@ -5604,6 +5891,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFlowMovingDevice createIfcFlowMovingDevice() {
 		IfcFlowMovingDeviceImpl ifcFlowMovingDevice = new IfcFlowMovingDeviceImpl();
 		return ifcFlowMovingDevice;
@@ -5614,6 +5902,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFlowMovingDeviceType createIfcFlowMovingDeviceType() {
 		IfcFlowMovingDeviceTypeImpl ifcFlowMovingDeviceType = new IfcFlowMovingDeviceTypeImpl();
 		return ifcFlowMovingDeviceType;
@@ -5624,6 +5913,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFlowSegment createIfcFlowSegment() {
 		IfcFlowSegmentImpl ifcFlowSegment = new IfcFlowSegmentImpl();
 		return ifcFlowSegment;
@@ -5634,6 +5924,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFlowSegmentType createIfcFlowSegmentType() {
 		IfcFlowSegmentTypeImpl ifcFlowSegmentType = new IfcFlowSegmentTypeImpl();
 		return ifcFlowSegmentType;
@@ -5644,6 +5935,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFlowStorageDevice createIfcFlowStorageDevice() {
 		IfcFlowStorageDeviceImpl ifcFlowStorageDevice = new IfcFlowStorageDeviceImpl();
 		return ifcFlowStorageDevice;
@@ -5654,6 +5946,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFlowStorageDeviceType createIfcFlowStorageDeviceType() {
 		IfcFlowStorageDeviceTypeImpl ifcFlowStorageDeviceType = new IfcFlowStorageDeviceTypeImpl();
 		return ifcFlowStorageDeviceType;
@@ -5664,6 +5957,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFlowTerminal createIfcFlowTerminal() {
 		IfcFlowTerminalImpl ifcFlowTerminal = new IfcFlowTerminalImpl();
 		return ifcFlowTerminal;
@@ -5674,6 +5968,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFlowTerminalType createIfcFlowTerminalType() {
 		IfcFlowTerminalTypeImpl ifcFlowTerminalType = new IfcFlowTerminalTypeImpl();
 		return ifcFlowTerminalType;
@@ -5684,6 +5979,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFlowTreatmentDevice createIfcFlowTreatmentDevice() {
 		IfcFlowTreatmentDeviceImpl ifcFlowTreatmentDevice = new IfcFlowTreatmentDeviceImpl();
 		return ifcFlowTreatmentDevice;
@@ -5694,6 +5990,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFlowTreatmentDeviceType createIfcFlowTreatmentDeviceType() {
 		IfcFlowTreatmentDeviceTypeImpl ifcFlowTreatmentDeviceType = new IfcFlowTreatmentDeviceTypeImpl();
 		return ifcFlowTreatmentDeviceType;
@@ -5704,6 +6001,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFooting createIfcFooting() {
 		IfcFootingImpl ifcFooting = new IfcFootingImpl();
 		return ifcFooting;
@@ -5714,6 +6012,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFootingType createIfcFootingType() {
 		IfcFootingTypeImpl ifcFootingType = new IfcFootingTypeImpl();
 		return ifcFootingType;
@@ -5724,6 +6023,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFurnishingElement createIfcFurnishingElement() {
 		IfcFurnishingElementImpl ifcFurnishingElement = new IfcFurnishingElementImpl();
 		return ifcFurnishingElement;
@@ -5734,6 +6034,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFurnishingElementType createIfcFurnishingElementType() {
 		IfcFurnishingElementTypeImpl ifcFurnishingElementType = new IfcFurnishingElementTypeImpl();
 		return ifcFurnishingElementType;
@@ -5744,6 +6045,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFurniture createIfcFurniture() {
 		IfcFurnitureImpl ifcFurniture = new IfcFurnitureImpl();
 		return ifcFurniture;
@@ -5754,6 +6056,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFurnitureType createIfcFurnitureType() {
 		IfcFurnitureTypeImpl ifcFurnitureType = new IfcFurnitureTypeImpl();
 		return ifcFurnitureType;
@@ -5764,6 +6067,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcGeographicElement createIfcGeographicElement() {
 		IfcGeographicElementImpl ifcGeographicElement = new IfcGeographicElementImpl();
 		return ifcGeographicElement;
@@ -5774,6 +6078,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcGeographicElementType createIfcGeographicElementType() {
 		IfcGeographicElementTypeImpl ifcGeographicElementType = new IfcGeographicElementTypeImpl();
 		return ifcGeographicElementType;
@@ -5784,6 +6089,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcGeometricCurveSet createIfcGeometricCurveSet() {
 		IfcGeometricCurveSetImpl ifcGeometricCurveSet = new IfcGeometricCurveSetImpl();
 		return ifcGeometricCurveSet;
@@ -5794,6 +6100,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcGeometricRepresentationContext createIfcGeometricRepresentationContext() {
 		IfcGeometricRepresentationContextImpl ifcGeometricRepresentationContext = new IfcGeometricRepresentationContextImpl();
 		return ifcGeometricRepresentationContext;
@@ -5804,6 +6111,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcGeometricRepresentationItem createIfcGeometricRepresentationItem() {
 		IfcGeometricRepresentationItemImpl ifcGeometricRepresentationItem = new IfcGeometricRepresentationItemImpl();
 		return ifcGeometricRepresentationItem;
@@ -5814,6 +6122,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcGeometricRepresentationSubContext createIfcGeometricRepresentationSubContext() {
 		IfcGeometricRepresentationSubContextImpl ifcGeometricRepresentationSubContext = new IfcGeometricRepresentationSubContextImpl();
 		return ifcGeometricRepresentationSubContext;
@@ -5824,6 +6133,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcGeometricSet createIfcGeometricSet() {
 		IfcGeometricSetImpl ifcGeometricSet = new IfcGeometricSetImpl();
 		return ifcGeometricSet;
@@ -5834,6 +6144,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcGrid createIfcGrid() {
 		IfcGridImpl ifcGrid = new IfcGridImpl();
 		return ifcGrid;
@@ -5844,6 +6155,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcGridAxis createIfcGridAxis() {
 		IfcGridAxisImpl ifcGridAxis = new IfcGridAxisImpl();
 		return ifcGridAxis;
@@ -5854,6 +6166,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcGridPlacement createIfcGridPlacement() {
 		IfcGridPlacementImpl ifcGridPlacement = new IfcGridPlacementImpl();
 		return ifcGridPlacement;
@@ -5864,6 +6177,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcGroup createIfcGroup() {
 		IfcGroupImpl ifcGroup = new IfcGroupImpl();
 		return ifcGroup;
@@ -5874,6 +6188,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcHalfSpaceSolid createIfcHalfSpaceSolid() {
 		IfcHalfSpaceSolidImpl ifcHalfSpaceSolid = new IfcHalfSpaceSolidImpl();
 		return ifcHalfSpaceSolid;
@@ -5884,6 +6199,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcHeatExchanger createIfcHeatExchanger() {
 		IfcHeatExchangerImpl ifcHeatExchanger = new IfcHeatExchangerImpl();
 		return ifcHeatExchanger;
@@ -5894,6 +6210,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcHeatExchangerType createIfcHeatExchangerType() {
 		IfcHeatExchangerTypeImpl ifcHeatExchangerType = new IfcHeatExchangerTypeImpl();
 		return ifcHeatExchangerType;
@@ -5904,6 +6221,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcHumidifier createIfcHumidifier() {
 		IfcHumidifierImpl ifcHumidifier = new IfcHumidifierImpl();
 		return ifcHumidifier;
@@ -5914,6 +6232,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcHumidifierType createIfcHumidifierType() {
 		IfcHumidifierTypeImpl ifcHumidifierType = new IfcHumidifierTypeImpl();
 		return ifcHumidifierType;
@@ -5924,6 +6243,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcIShapeProfileDef createIfcIShapeProfileDef() {
 		IfcIShapeProfileDefImpl ifcIShapeProfileDef = new IfcIShapeProfileDefImpl();
 		return ifcIShapeProfileDef;
@@ -5934,6 +6254,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcImageTexture createIfcImageTexture() {
 		IfcImageTextureImpl ifcImageTexture = new IfcImageTextureImpl();
 		return ifcImageTexture;
@@ -5944,6 +6265,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcIndexedColourMap createIfcIndexedColourMap() {
 		IfcIndexedColourMapImpl ifcIndexedColourMap = new IfcIndexedColourMapImpl();
 		return ifcIndexedColourMap;
@@ -5954,6 +6276,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcIndexedPolyCurve createIfcIndexedPolyCurve() {
 		IfcIndexedPolyCurveImpl ifcIndexedPolyCurve = new IfcIndexedPolyCurveImpl();
 		return ifcIndexedPolyCurve;
@@ -5964,6 +6287,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcIndexedPolygonalFace createIfcIndexedPolygonalFace() {
 		IfcIndexedPolygonalFaceImpl ifcIndexedPolygonalFace = new IfcIndexedPolygonalFaceImpl();
 		return ifcIndexedPolygonalFace;
@@ -5974,6 +6298,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcIndexedPolygonalFaceWithVoids createIfcIndexedPolygonalFaceWithVoids() {
 		IfcIndexedPolygonalFaceWithVoidsImpl ifcIndexedPolygonalFaceWithVoids = new IfcIndexedPolygonalFaceWithVoidsImpl();
 		return ifcIndexedPolygonalFaceWithVoids;
@@ -5984,6 +6309,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcIndexedTextureMap createIfcIndexedTextureMap() {
 		IfcIndexedTextureMapImpl ifcIndexedTextureMap = new IfcIndexedTextureMapImpl();
 		return ifcIndexedTextureMap;
@@ -5994,6 +6320,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcIndexedTriangleTextureMap createIfcIndexedTriangleTextureMap() {
 		IfcIndexedTriangleTextureMapImpl ifcIndexedTriangleTextureMap = new IfcIndexedTriangleTextureMapImpl();
 		return ifcIndexedTriangleTextureMap;
@@ -6004,6 +6331,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcInterceptor createIfcInterceptor() {
 		IfcInterceptorImpl ifcInterceptor = new IfcInterceptorImpl();
 		return ifcInterceptor;
@@ -6014,6 +6342,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcInterceptorType createIfcInterceptorType() {
 		IfcInterceptorTypeImpl ifcInterceptorType = new IfcInterceptorTypeImpl();
 		return ifcInterceptorType;
@@ -6024,6 +6353,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcIntersectionCurve createIfcIntersectionCurve() {
 		IfcIntersectionCurveImpl ifcIntersectionCurve = new IfcIntersectionCurveImpl();
 		return ifcIntersectionCurve;
@@ -6034,6 +6364,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcInventory createIfcInventory() {
 		IfcInventoryImpl ifcInventory = new IfcInventoryImpl();
 		return ifcInventory;
@@ -6044,6 +6375,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcIrregularTimeSeries createIfcIrregularTimeSeries() {
 		IfcIrregularTimeSeriesImpl ifcIrregularTimeSeries = new IfcIrregularTimeSeriesImpl();
 		return ifcIrregularTimeSeries;
@@ -6054,6 +6386,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcIrregularTimeSeriesValue createIfcIrregularTimeSeriesValue() {
 		IfcIrregularTimeSeriesValueImpl ifcIrregularTimeSeriesValue = new IfcIrregularTimeSeriesValueImpl();
 		return ifcIrregularTimeSeriesValue;
@@ -6064,6 +6397,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcJunctionBox createIfcJunctionBox() {
 		IfcJunctionBoxImpl ifcJunctionBox = new IfcJunctionBoxImpl();
 		return ifcJunctionBox;
@@ -6074,6 +6408,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcJunctionBoxType createIfcJunctionBoxType() {
 		IfcJunctionBoxTypeImpl ifcJunctionBoxType = new IfcJunctionBoxTypeImpl();
 		return ifcJunctionBoxType;
@@ -6084,6 +6419,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLShapeProfileDef createIfcLShapeProfileDef() {
 		IfcLShapeProfileDefImpl ifcLShapeProfileDef = new IfcLShapeProfileDefImpl();
 		return ifcLShapeProfileDef;
@@ -6094,6 +6430,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLaborResource createIfcLaborResource() {
 		IfcLaborResourceImpl ifcLaborResource = new IfcLaborResourceImpl();
 		return ifcLaborResource;
@@ -6104,6 +6441,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLaborResourceType createIfcLaborResourceType() {
 		IfcLaborResourceTypeImpl ifcLaborResourceType = new IfcLaborResourceTypeImpl();
 		return ifcLaborResourceType;
@@ -6114,6 +6452,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLagTime createIfcLagTime() {
 		IfcLagTimeImpl ifcLagTime = new IfcLagTimeImpl();
 		return ifcLagTime;
@@ -6124,6 +6463,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLamp createIfcLamp() {
 		IfcLampImpl ifcLamp = new IfcLampImpl();
 		return ifcLamp;
@@ -6134,6 +6474,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLampType createIfcLampType() {
 		IfcLampTypeImpl ifcLampType = new IfcLampTypeImpl();
 		return ifcLampType;
@@ -6144,6 +6485,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLibraryInformation createIfcLibraryInformation() {
 		IfcLibraryInformationImpl ifcLibraryInformation = new IfcLibraryInformationImpl();
 		return ifcLibraryInformation;
@@ -6154,6 +6496,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLibraryReference createIfcLibraryReference() {
 		IfcLibraryReferenceImpl ifcLibraryReference = new IfcLibraryReferenceImpl();
 		return ifcLibraryReference;
@@ -6164,6 +6507,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLightDistributionData createIfcLightDistributionData() {
 		IfcLightDistributionDataImpl ifcLightDistributionData = new IfcLightDistributionDataImpl();
 		return ifcLightDistributionData;
@@ -6174,6 +6518,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLightFixture createIfcLightFixture() {
 		IfcLightFixtureImpl ifcLightFixture = new IfcLightFixtureImpl();
 		return ifcLightFixture;
@@ -6184,6 +6529,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLightFixtureType createIfcLightFixtureType() {
 		IfcLightFixtureTypeImpl ifcLightFixtureType = new IfcLightFixtureTypeImpl();
 		return ifcLightFixtureType;
@@ -6194,6 +6540,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLightIntensityDistribution createIfcLightIntensityDistribution() {
 		IfcLightIntensityDistributionImpl ifcLightIntensityDistribution = new IfcLightIntensityDistributionImpl();
 		return ifcLightIntensityDistribution;
@@ -6204,6 +6551,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLightSource createIfcLightSource() {
 		IfcLightSourceImpl ifcLightSource = new IfcLightSourceImpl();
 		return ifcLightSource;
@@ -6214,6 +6562,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLightSourceAmbient createIfcLightSourceAmbient() {
 		IfcLightSourceAmbientImpl ifcLightSourceAmbient = new IfcLightSourceAmbientImpl();
 		return ifcLightSourceAmbient;
@@ -6224,6 +6573,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLightSourceDirectional createIfcLightSourceDirectional() {
 		IfcLightSourceDirectionalImpl ifcLightSourceDirectional = new IfcLightSourceDirectionalImpl();
 		return ifcLightSourceDirectional;
@@ -6234,6 +6584,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLightSourceGoniometric createIfcLightSourceGoniometric() {
 		IfcLightSourceGoniometricImpl ifcLightSourceGoniometric = new IfcLightSourceGoniometricImpl();
 		return ifcLightSourceGoniometric;
@@ -6244,6 +6595,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLightSourcePositional createIfcLightSourcePositional() {
 		IfcLightSourcePositionalImpl ifcLightSourcePositional = new IfcLightSourcePositionalImpl();
 		return ifcLightSourcePositional;
@@ -6254,6 +6606,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLightSourceSpot createIfcLightSourceSpot() {
 		IfcLightSourceSpotImpl ifcLightSourceSpot = new IfcLightSourceSpotImpl();
 		return ifcLightSourceSpot;
@@ -6264,6 +6617,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLine createIfcLine() {
 		IfcLineImpl ifcLine = new IfcLineImpl();
 		return ifcLine;
@@ -6274,6 +6628,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLocalPlacement createIfcLocalPlacement() {
 		IfcLocalPlacementImpl ifcLocalPlacement = new IfcLocalPlacementImpl();
 		return ifcLocalPlacement;
@@ -6284,6 +6639,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLoop createIfcLoop() {
 		IfcLoopImpl ifcLoop = new IfcLoopImpl();
 		return ifcLoop;
@@ -6294,6 +6650,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcManifoldSolidBrep createIfcManifoldSolidBrep() {
 		IfcManifoldSolidBrepImpl ifcManifoldSolidBrep = new IfcManifoldSolidBrepImpl();
 		return ifcManifoldSolidBrep;
@@ -6304,6 +6661,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMapConversion createIfcMapConversion() {
 		IfcMapConversionImpl ifcMapConversion = new IfcMapConversionImpl();
 		return ifcMapConversion;
@@ -6314,6 +6672,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMappedItem createIfcMappedItem() {
 		IfcMappedItemImpl ifcMappedItem = new IfcMappedItemImpl();
 		return ifcMappedItem;
@@ -6324,6 +6683,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMaterial createIfcMaterial() {
 		IfcMaterialImpl ifcMaterial = new IfcMaterialImpl();
 		return ifcMaterial;
@@ -6334,6 +6694,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMaterialClassificationRelationship createIfcMaterialClassificationRelationship() {
 		IfcMaterialClassificationRelationshipImpl ifcMaterialClassificationRelationship = new IfcMaterialClassificationRelationshipImpl();
 		return ifcMaterialClassificationRelationship;
@@ -6344,6 +6705,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMaterialConstituent createIfcMaterialConstituent() {
 		IfcMaterialConstituentImpl ifcMaterialConstituent = new IfcMaterialConstituentImpl();
 		return ifcMaterialConstituent;
@@ -6354,6 +6716,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMaterialConstituentSet createIfcMaterialConstituentSet() {
 		IfcMaterialConstituentSetImpl ifcMaterialConstituentSet = new IfcMaterialConstituentSetImpl();
 		return ifcMaterialConstituentSet;
@@ -6364,6 +6727,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMaterialDefinition createIfcMaterialDefinition() {
 		IfcMaterialDefinitionImpl ifcMaterialDefinition = new IfcMaterialDefinitionImpl();
 		return ifcMaterialDefinition;
@@ -6374,6 +6738,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMaterialDefinitionRepresentation createIfcMaterialDefinitionRepresentation() {
 		IfcMaterialDefinitionRepresentationImpl ifcMaterialDefinitionRepresentation = new IfcMaterialDefinitionRepresentationImpl();
 		return ifcMaterialDefinitionRepresentation;
@@ -6384,6 +6749,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMaterialLayer createIfcMaterialLayer() {
 		IfcMaterialLayerImpl ifcMaterialLayer = new IfcMaterialLayerImpl();
 		return ifcMaterialLayer;
@@ -6394,6 +6760,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMaterialLayerSet createIfcMaterialLayerSet() {
 		IfcMaterialLayerSetImpl ifcMaterialLayerSet = new IfcMaterialLayerSetImpl();
 		return ifcMaterialLayerSet;
@@ -6404,6 +6771,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMaterialLayerSetUsage createIfcMaterialLayerSetUsage() {
 		IfcMaterialLayerSetUsageImpl ifcMaterialLayerSetUsage = new IfcMaterialLayerSetUsageImpl();
 		return ifcMaterialLayerSetUsage;
@@ -6414,6 +6782,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMaterialLayerWithOffsets createIfcMaterialLayerWithOffsets() {
 		IfcMaterialLayerWithOffsetsImpl ifcMaterialLayerWithOffsets = new IfcMaterialLayerWithOffsetsImpl();
 		return ifcMaterialLayerWithOffsets;
@@ -6424,6 +6793,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMaterialList createIfcMaterialList() {
 		IfcMaterialListImpl ifcMaterialList = new IfcMaterialListImpl();
 		return ifcMaterialList;
@@ -6434,6 +6804,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMaterialProfile createIfcMaterialProfile() {
 		IfcMaterialProfileImpl ifcMaterialProfile = new IfcMaterialProfileImpl();
 		return ifcMaterialProfile;
@@ -6444,6 +6815,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMaterialProfileSet createIfcMaterialProfileSet() {
 		IfcMaterialProfileSetImpl ifcMaterialProfileSet = new IfcMaterialProfileSetImpl();
 		return ifcMaterialProfileSet;
@@ -6454,6 +6826,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMaterialProfileSetUsage createIfcMaterialProfileSetUsage() {
 		IfcMaterialProfileSetUsageImpl ifcMaterialProfileSetUsage = new IfcMaterialProfileSetUsageImpl();
 		return ifcMaterialProfileSetUsage;
@@ -6464,6 +6837,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMaterialProfileSetUsageTapering createIfcMaterialProfileSetUsageTapering() {
 		IfcMaterialProfileSetUsageTaperingImpl ifcMaterialProfileSetUsageTapering = new IfcMaterialProfileSetUsageTaperingImpl();
 		return ifcMaterialProfileSetUsageTapering;
@@ -6474,6 +6848,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMaterialProfileWithOffsets createIfcMaterialProfileWithOffsets() {
 		IfcMaterialProfileWithOffsetsImpl ifcMaterialProfileWithOffsets = new IfcMaterialProfileWithOffsetsImpl();
 		return ifcMaterialProfileWithOffsets;
@@ -6484,6 +6859,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMaterialProperties createIfcMaterialProperties() {
 		IfcMaterialPropertiesImpl ifcMaterialProperties = new IfcMaterialPropertiesImpl();
 		return ifcMaterialProperties;
@@ -6494,6 +6870,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMaterialRelationship createIfcMaterialRelationship() {
 		IfcMaterialRelationshipImpl ifcMaterialRelationship = new IfcMaterialRelationshipImpl();
 		return ifcMaterialRelationship;
@@ -6504,6 +6881,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMaterialUsageDefinition createIfcMaterialUsageDefinition() {
 		IfcMaterialUsageDefinitionImpl ifcMaterialUsageDefinition = new IfcMaterialUsageDefinitionImpl();
 		return ifcMaterialUsageDefinition;
@@ -6514,6 +6892,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMeasureWithUnit createIfcMeasureWithUnit() {
 		IfcMeasureWithUnitImpl ifcMeasureWithUnit = new IfcMeasureWithUnitImpl();
 		return ifcMeasureWithUnit;
@@ -6524,6 +6903,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMechanicalFastener createIfcMechanicalFastener() {
 		IfcMechanicalFastenerImpl ifcMechanicalFastener = new IfcMechanicalFastenerImpl();
 		return ifcMechanicalFastener;
@@ -6534,6 +6914,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMechanicalFastenerType createIfcMechanicalFastenerType() {
 		IfcMechanicalFastenerTypeImpl ifcMechanicalFastenerType = new IfcMechanicalFastenerTypeImpl();
 		return ifcMechanicalFastenerType;
@@ -6544,6 +6925,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMedicalDevice createIfcMedicalDevice() {
 		IfcMedicalDeviceImpl ifcMedicalDevice = new IfcMedicalDeviceImpl();
 		return ifcMedicalDevice;
@@ -6554,6 +6936,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMedicalDeviceType createIfcMedicalDeviceType() {
 		IfcMedicalDeviceTypeImpl ifcMedicalDeviceType = new IfcMedicalDeviceTypeImpl();
 		return ifcMedicalDeviceType;
@@ -6564,6 +6947,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMember createIfcMember() {
 		IfcMemberImpl ifcMember = new IfcMemberImpl();
 		return ifcMember;
@@ -6574,6 +6958,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMemberStandardCase createIfcMemberStandardCase() {
 		IfcMemberStandardCaseImpl ifcMemberStandardCase = new IfcMemberStandardCaseImpl();
 		return ifcMemberStandardCase;
@@ -6584,6 +6969,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMemberType createIfcMemberType() {
 		IfcMemberTypeImpl ifcMemberType = new IfcMemberTypeImpl();
 		return ifcMemberType;
@@ -6594,6 +6980,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMetric createIfcMetric() {
 		IfcMetricImpl ifcMetric = new IfcMetricImpl();
 		return ifcMetric;
@@ -6604,6 +6991,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMirroredProfileDef createIfcMirroredProfileDef() {
 		IfcMirroredProfileDefImpl ifcMirroredProfileDef = new IfcMirroredProfileDefImpl();
 		return ifcMirroredProfileDef;
@@ -6614,6 +7002,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMonetaryUnit createIfcMonetaryUnit() {
 		IfcMonetaryUnitImpl ifcMonetaryUnit = new IfcMonetaryUnitImpl();
 		return ifcMonetaryUnit;
@@ -6624,6 +7013,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMotorConnection createIfcMotorConnection() {
 		IfcMotorConnectionImpl ifcMotorConnection = new IfcMotorConnectionImpl();
 		return ifcMotorConnection;
@@ -6634,6 +7024,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMotorConnectionType createIfcMotorConnectionType() {
 		IfcMotorConnectionTypeImpl ifcMotorConnectionType = new IfcMotorConnectionTypeImpl();
 		return ifcMotorConnectionType;
@@ -6644,6 +7035,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcNamedUnit createIfcNamedUnit() {
 		IfcNamedUnitImpl ifcNamedUnit = new IfcNamedUnitImpl();
 		return ifcNamedUnit;
@@ -6654,6 +7046,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcObject createIfcObject() {
 		IfcObjectImpl ifcObject = new IfcObjectImpl();
 		return ifcObject;
@@ -6664,6 +7057,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcObjectDefinition createIfcObjectDefinition() {
 		IfcObjectDefinitionImpl ifcObjectDefinition = new IfcObjectDefinitionImpl();
 		return ifcObjectDefinition;
@@ -6674,6 +7068,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcObjectPlacement createIfcObjectPlacement() {
 		IfcObjectPlacementImpl ifcObjectPlacement = new IfcObjectPlacementImpl();
 		return ifcObjectPlacement;
@@ -6684,6 +7079,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcObjective createIfcObjective() {
 		IfcObjectiveImpl ifcObjective = new IfcObjectiveImpl();
 		return ifcObjective;
@@ -6694,6 +7090,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcOccupant createIfcOccupant() {
 		IfcOccupantImpl ifcOccupant = new IfcOccupantImpl();
 		return ifcOccupant;
@@ -6704,6 +7101,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcOffsetCurve2D createIfcOffsetCurve2D() {
 		IfcOffsetCurve2DImpl ifcOffsetCurve2D = new IfcOffsetCurve2DImpl();
 		return ifcOffsetCurve2D;
@@ -6714,6 +7112,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcOffsetCurve3D createIfcOffsetCurve3D() {
 		IfcOffsetCurve3DImpl ifcOffsetCurve3D = new IfcOffsetCurve3DImpl();
 		return ifcOffsetCurve3D;
@@ -6724,6 +7123,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcOpenShell createIfcOpenShell() {
 		IfcOpenShellImpl ifcOpenShell = new IfcOpenShellImpl();
 		return ifcOpenShell;
@@ -6734,6 +7134,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcOpeningElement createIfcOpeningElement() {
 		IfcOpeningElementImpl ifcOpeningElement = new IfcOpeningElementImpl();
 		return ifcOpeningElement;
@@ -6744,6 +7145,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcOpeningStandardCase createIfcOpeningStandardCase() {
 		IfcOpeningStandardCaseImpl ifcOpeningStandardCase = new IfcOpeningStandardCaseImpl();
 		return ifcOpeningStandardCase;
@@ -6754,6 +7156,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcOrganization createIfcOrganization() {
 		IfcOrganizationImpl ifcOrganization = new IfcOrganizationImpl();
 		return ifcOrganization;
@@ -6764,6 +7167,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcOrganizationRelationship createIfcOrganizationRelationship() {
 		IfcOrganizationRelationshipImpl ifcOrganizationRelationship = new IfcOrganizationRelationshipImpl();
 		return ifcOrganizationRelationship;
@@ -6774,6 +7178,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcOrientedEdge createIfcOrientedEdge() {
 		IfcOrientedEdgeImpl ifcOrientedEdge = new IfcOrientedEdgeImpl();
 		return ifcOrientedEdge;
@@ -6784,6 +7189,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcOuterBoundaryCurve createIfcOuterBoundaryCurve() {
 		IfcOuterBoundaryCurveImpl ifcOuterBoundaryCurve = new IfcOuterBoundaryCurveImpl();
 		return ifcOuterBoundaryCurve;
@@ -6794,6 +7200,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcOutlet createIfcOutlet() {
 		IfcOutletImpl ifcOutlet = new IfcOutletImpl();
 		return ifcOutlet;
@@ -6804,6 +7211,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcOutletType createIfcOutletType() {
 		IfcOutletTypeImpl ifcOutletType = new IfcOutletTypeImpl();
 		return ifcOutletType;
@@ -6814,6 +7222,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcOwnerHistory createIfcOwnerHistory() {
 		IfcOwnerHistoryImpl ifcOwnerHistory = new IfcOwnerHistoryImpl();
 		return ifcOwnerHistory;
@@ -6824,6 +7233,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcParameterizedProfileDef createIfcParameterizedProfileDef() {
 		IfcParameterizedProfileDefImpl ifcParameterizedProfileDef = new IfcParameterizedProfileDefImpl();
 		return ifcParameterizedProfileDef;
@@ -6834,6 +7244,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPath createIfcPath() {
 		IfcPathImpl ifcPath = new IfcPathImpl();
 		return ifcPath;
@@ -6844,6 +7255,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPcurve createIfcPcurve() {
 		IfcPcurveImpl ifcPcurve = new IfcPcurveImpl();
 		return ifcPcurve;
@@ -6854,6 +7266,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPerformanceHistory createIfcPerformanceHistory() {
 		IfcPerformanceHistoryImpl ifcPerformanceHistory = new IfcPerformanceHistoryImpl();
 		return ifcPerformanceHistory;
@@ -6864,6 +7277,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPermeableCoveringProperties createIfcPermeableCoveringProperties() {
 		IfcPermeableCoveringPropertiesImpl ifcPermeableCoveringProperties = new IfcPermeableCoveringPropertiesImpl();
 		return ifcPermeableCoveringProperties;
@@ -6874,6 +7288,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPermit createIfcPermit() {
 		IfcPermitImpl ifcPermit = new IfcPermitImpl();
 		return ifcPermit;
@@ -6884,6 +7299,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPerson createIfcPerson() {
 		IfcPersonImpl ifcPerson = new IfcPersonImpl();
 		return ifcPerson;
@@ -6894,6 +7310,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPersonAndOrganization createIfcPersonAndOrganization() {
 		IfcPersonAndOrganizationImpl ifcPersonAndOrganization = new IfcPersonAndOrganizationImpl();
 		return ifcPersonAndOrganization;
@@ -6904,6 +7321,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPhysicalComplexQuantity createIfcPhysicalComplexQuantity() {
 		IfcPhysicalComplexQuantityImpl ifcPhysicalComplexQuantity = new IfcPhysicalComplexQuantityImpl();
 		return ifcPhysicalComplexQuantity;
@@ -6914,6 +7332,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPhysicalQuantity createIfcPhysicalQuantity() {
 		IfcPhysicalQuantityImpl ifcPhysicalQuantity = new IfcPhysicalQuantityImpl();
 		return ifcPhysicalQuantity;
@@ -6924,6 +7343,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPhysicalSimpleQuantity createIfcPhysicalSimpleQuantity() {
 		IfcPhysicalSimpleQuantityImpl ifcPhysicalSimpleQuantity = new IfcPhysicalSimpleQuantityImpl();
 		return ifcPhysicalSimpleQuantity;
@@ -6934,6 +7354,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPile createIfcPile() {
 		IfcPileImpl ifcPile = new IfcPileImpl();
 		return ifcPile;
@@ -6944,6 +7365,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPileType createIfcPileType() {
 		IfcPileTypeImpl ifcPileType = new IfcPileTypeImpl();
 		return ifcPileType;
@@ -6954,6 +7376,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPipeFitting createIfcPipeFitting() {
 		IfcPipeFittingImpl ifcPipeFitting = new IfcPipeFittingImpl();
 		return ifcPipeFitting;
@@ -6964,6 +7387,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPipeFittingType createIfcPipeFittingType() {
 		IfcPipeFittingTypeImpl ifcPipeFittingType = new IfcPipeFittingTypeImpl();
 		return ifcPipeFittingType;
@@ -6974,6 +7398,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPipeSegment createIfcPipeSegment() {
 		IfcPipeSegmentImpl ifcPipeSegment = new IfcPipeSegmentImpl();
 		return ifcPipeSegment;
@@ -6984,6 +7409,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPipeSegmentType createIfcPipeSegmentType() {
 		IfcPipeSegmentTypeImpl ifcPipeSegmentType = new IfcPipeSegmentTypeImpl();
 		return ifcPipeSegmentType;
@@ -6994,6 +7420,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPixelTexture createIfcPixelTexture() {
 		IfcPixelTextureImpl ifcPixelTexture = new IfcPixelTextureImpl();
 		return ifcPixelTexture;
@@ -7004,6 +7431,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPlacement createIfcPlacement() {
 		IfcPlacementImpl ifcPlacement = new IfcPlacementImpl();
 		return ifcPlacement;
@@ -7014,6 +7442,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPlanarBox createIfcPlanarBox() {
 		IfcPlanarBoxImpl ifcPlanarBox = new IfcPlanarBoxImpl();
 		return ifcPlanarBox;
@@ -7024,6 +7453,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPlanarExtent createIfcPlanarExtent() {
 		IfcPlanarExtentImpl ifcPlanarExtent = new IfcPlanarExtentImpl();
 		return ifcPlanarExtent;
@@ -7034,6 +7464,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPlane createIfcPlane() {
 		IfcPlaneImpl ifcPlane = new IfcPlaneImpl();
 		return ifcPlane;
@@ -7044,6 +7475,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPlate createIfcPlate() {
 		IfcPlateImpl ifcPlate = new IfcPlateImpl();
 		return ifcPlate;
@@ -7054,6 +7486,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPlateStandardCase createIfcPlateStandardCase() {
 		IfcPlateStandardCaseImpl ifcPlateStandardCase = new IfcPlateStandardCaseImpl();
 		return ifcPlateStandardCase;
@@ -7064,6 +7497,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPlateType createIfcPlateType() {
 		IfcPlateTypeImpl ifcPlateType = new IfcPlateTypeImpl();
 		return ifcPlateType;
@@ -7074,6 +7508,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPoint createIfcPoint() {
 		IfcPointImpl ifcPoint = new IfcPointImpl();
 		return ifcPoint;
@@ -7084,6 +7519,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPointOnCurve createIfcPointOnCurve() {
 		IfcPointOnCurveImpl ifcPointOnCurve = new IfcPointOnCurveImpl();
 		return ifcPointOnCurve;
@@ -7094,6 +7530,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPointOnSurface createIfcPointOnSurface() {
 		IfcPointOnSurfaceImpl ifcPointOnSurface = new IfcPointOnSurfaceImpl();
 		return ifcPointOnSurface;
@@ -7104,6 +7541,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPolyLoop createIfcPolyLoop() {
 		IfcPolyLoopImpl ifcPolyLoop = new IfcPolyLoopImpl();
 		return ifcPolyLoop;
@@ -7114,6 +7552,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPolygonalBoundedHalfSpace createIfcPolygonalBoundedHalfSpace() {
 		IfcPolygonalBoundedHalfSpaceImpl ifcPolygonalBoundedHalfSpace = new IfcPolygonalBoundedHalfSpaceImpl();
 		return ifcPolygonalBoundedHalfSpace;
@@ -7124,6 +7563,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPolygonalFaceSet createIfcPolygonalFaceSet() {
 		IfcPolygonalFaceSetImpl ifcPolygonalFaceSet = new IfcPolygonalFaceSetImpl();
 		return ifcPolygonalFaceSet;
@@ -7134,6 +7574,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPolyline createIfcPolyline() {
 		IfcPolylineImpl ifcPolyline = new IfcPolylineImpl();
 		return ifcPolyline;
@@ -7144,6 +7585,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPort createIfcPort() {
 		IfcPortImpl ifcPort = new IfcPortImpl();
 		return ifcPort;
@@ -7154,6 +7596,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPostalAddress createIfcPostalAddress() {
 		IfcPostalAddressImpl ifcPostalAddress = new IfcPostalAddressImpl();
 		return ifcPostalAddress;
@@ -7164,6 +7607,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPreDefinedColour createIfcPreDefinedColour() {
 		IfcPreDefinedColourImpl ifcPreDefinedColour = new IfcPreDefinedColourImpl();
 		return ifcPreDefinedColour;
@@ -7174,6 +7618,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPreDefinedCurveFont createIfcPreDefinedCurveFont() {
 		IfcPreDefinedCurveFontImpl ifcPreDefinedCurveFont = new IfcPreDefinedCurveFontImpl();
 		return ifcPreDefinedCurveFont;
@@ -7184,6 +7629,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPreDefinedItem createIfcPreDefinedItem() {
 		IfcPreDefinedItemImpl ifcPreDefinedItem = new IfcPreDefinedItemImpl();
 		return ifcPreDefinedItem;
@@ -7194,6 +7640,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPreDefinedProperties createIfcPreDefinedProperties() {
 		IfcPreDefinedPropertiesImpl ifcPreDefinedProperties = new IfcPreDefinedPropertiesImpl();
 		return ifcPreDefinedProperties;
@@ -7204,6 +7651,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPreDefinedPropertySet createIfcPreDefinedPropertySet() {
 		IfcPreDefinedPropertySetImpl ifcPreDefinedPropertySet = new IfcPreDefinedPropertySetImpl();
 		return ifcPreDefinedPropertySet;
@@ -7214,6 +7662,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPreDefinedTextFont createIfcPreDefinedTextFont() {
 		IfcPreDefinedTextFontImpl ifcPreDefinedTextFont = new IfcPreDefinedTextFontImpl();
 		return ifcPreDefinedTextFont;
@@ -7224,6 +7673,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPresentationItem createIfcPresentationItem() {
 		IfcPresentationItemImpl ifcPresentationItem = new IfcPresentationItemImpl();
 		return ifcPresentationItem;
@@ -7234,6 +7684,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPresentationLayerAssignment createIfcPresentationLayerAssignment() {
 		IfcPresentationLayerAssignmentImpl ifcPresentationLayerAssignment = new IfcPresentationLayerAssignmentImpl();
 		return ifcPresentationLayerAssignment;
@@ -7244,6 +7695,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPresentationLayerWithStyle createIfcPresentationLayerWithStyle() {
 		IfcPresentationLayerWithStyleImpl ifcPresentationLayerWithStyle = new IfcPresentationLayerWithStyleImpl();
 		return ifcPresentationLayerWithStyle;
@@ -7254,6 +7706,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPresentationStyle createIfcPresentationStyle() {
 		IfcPresentationStyleImpl ifcPresentationStyle = new IfcPresentationStyleImpl();
 		return ifcPresentationStyle;
@@ -7264,6 +7717,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPresentationStyleAssignment createIfcPresentationStyleAssignment() {
 		IfcPresentationStyleAssignmentImpl ifcPresentationStyleAssignment = new IfcPresentationStyleAssignmentImpl();
 		return ifcPresentationStyleAssignment;
@@ -7274,6 +7728,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProcedure createIfcProcedure() {
 		IfcProcedureImpl ifcProcedure = new IfcProcedureImpl();
 		return ifcProcedure;
@@ -7284,6 +7739,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProcedureType createIfcProcedureType() {
 		IfcProcedureTypeImpl ifcProcedureType = new IfcProcedureTypeImpl();
 		return ifcProcedureType;
@@ -7294,6 +7750,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProcess createIfcProcess() {
 		IfcProcessImpl ifcProcess = new IfcProcessImpl();
 		return ifcProcess;
@@ -7304,6 +7761,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProduct createIfcProduct() {
 		IfcProductImpl ifcProduct = new IfcProductImpl();
 		return ifcProduct;
@@ -7314,6 +7772,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProductDefinitionShape createIfcProductDefinitionShape() {
 		IfcProductDefinitionShapeImpl ifcProductDefinitionShape = new IfcProductDefinitionShapeImpl();
 		return ifcProductDefinitionShape;
@@ -7324,6 +7783,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProductRepresentation createIfcProductRepresentation() {
 		IfcProductRepresentationImpl ifcProductRepresentation = new IfcProductRepresentationImpl();
 		return ifcProductRepresentation;
@@ -7334,6 +7794,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProfileDef createIfcProfileDef() {
 		IfcProfileDefImpl ifcProfileDef = new IfcProfileDefImpl();
 		return ifcProfileDef;
@@ -7344,6 +7805,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProfileProperties createIfcProfileProperties() {
 		IfcProfilePropertiesImpl ifcProfileProperties = new IfcProfilePropertiesImpl();
 		return ifcProfileProperties;
@@ -7354,6 +7816,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProject createIfcProject() {
 		IfcProjectImpl ifcProject = new IfcProjectImpl();
 		return ifcProject;
@@ -7364,6 +7827,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProjectLibrary createIfcProjectLibrary() {
 		IfcProjectLibraryImpl ifcProjectLibrary = new IfcProjectLibraryImpl();
 		return ifcProjectLibrary;
@@ -7374,6 +7838,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProjectOrder createIfcProjectOrder() {
 		IfcProjectOrderImpl ifcProjectOrder = new IfcProjectOrderImpl();
 		return ifcProjectOrder;
@@ -7384,6 +7849,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProjectedCRS createIfcProjectedCRS() {
 		IfcProjectedCRSImpl ifcProjectedCRS = new IfcProjectedCRSImpl();
 		return ifcProjectedCRS;
@@ -7394,6 +7860,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProjectionElement createIfcProjectionElement() {
 		IfcProjectionElementImpl ifcProjectionElement = new IfcProjectionElementImpl();
 		return ifcProjectionElement;
@@ -7404,6 +7871,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProperty createIfcProperty() {
 		IfcPropertyImpl ifcProperty = new IfcPropertyImpl();
 		return ifcProperty;
@@ -7414,6 +7882,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPropertyAbstraction createIfcPropertyAbstraction() {
 		IfcPropertyAbstractionImpl ifcPropertyAbstraction = new IfcPropertyAbstractionImpl();
 		return ifcPropertyAbstraction;
@@ -7424,6 +7893,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPropertyBoundedValue createIfcPropertyBoundedValue() {
 		IfcPropertyBoundedValueImpl ifcPropertyBoundedValue = new IfcPropertyBoundedValueImpl();
 		return ifcPropertyBoundedValue;
@@ -7434,6 +7904,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPropertyDefinition createIfcPropertyDefinition() {
 		IfcPropertyDefinitionImpl ifcPropertyDefinition = new IfcPropertyDefinitionImpl();
 		return ifcPropertyDefinition;
@@ -7444,6 +7915,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPropertyDependencyRelationship createIfcPropertyDependencyRelationship() {
 		IfcPropertyDependencyRelationshipImpl ifcPropertyDependencyRelationship = new IfcPropertyDependencyRelationshipImpl();
 		return ifcPropertyDependencyRelationship;
@@ -7454,6 +7926,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPropertyEnumeratedValue createIfcPropertyEnumeratedValue() {
 		IfcPropertyEnumeratedValueImpl ifcPropertyEnumeratedValue = new IfcPropertyEnumeratedValueImpl();
 		return ifcPropertyEnumeratedValue;
@@ -7464,6 +7937,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPropertyEnumeration createIfcPropertyEnumeration() {
 		IfcPropertyEnumerationImpl ifcPropertyEnumeration = new IfcPropertyEnumerationImpl();
 		return ifcPropertyEnumeration;
@@ -7474,6 +7948,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPropertyListValue createIfcPropertyListValue() {
 		IfcPropertyListValueImpl ifcPropertyListValue = new IfcPropertyListValueImpl();
 		return ifcPropertyListValue;
@@ -7484,6 +7959,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPropertyReferenceValue createIfcPropertyReferenceValue() {
 		IfcPropertyReferenceValueImpl ifcPropertyReferenceValue = new IfcPropertyReferenceValueImpl();
 		return ifcPropertyReferenceValue;
@@ -7494,6 +7970,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPropertySet createIfcPropertySet() {
 		IfcPropertySetImpl ifcPropertySet = new IfcPropertySetImpl();
 		return ifcPropertySet;
@@ -7504,6 +7981,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPropertySetDefinition createIfcPropertySetDefinition() {
 		IfcPropertySetDefinitionImpl ifcPropertySetDefinition = new IfcPropertySetDefinitionImpl();
 		return ifcPropertySetDefinition;
@@ -7514,6 +7992,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPropertySetTemplate createIfcPropertySetTemplate() {
 		IfcPropertySetTemplateImpl ifcPropertySetTemplate = new IfcPropertySetTemplateImpl();
 		return ifcPropertySetTemplate;
@@ -7524,6 +8003,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPropertySingleValue createIfcPropertySingleValue() {
 		IfcPropertySingleValueImpl ifcPropertySingleValue = new IfcPropertySingleValueImpl();
 		return ifcPropertySingleValue;
@@ -7534,6 +8014,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPropertyTableValue createIfcPropertyTableValue() {
 		IfcPropertyTableValueImpl ifcPropertyTableValue = new IfcPropertyTableValueImpl();
 		return ifcPropertyTableValue;
@@ -7544,6 +8025,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPropertyTemplate createIfcPropertyTemplate() {
 		IfcPropertyTemplateImpl ifcPropertyTemplate = new IfcPropertyTemplateImpl();
 		return ifcPropertyTemplate;
@@ -7554,6 +8036,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPropertyTemplateDefinition createIfcPropertyTemplateDefinition() {
 		IfcPropertyTemplateDefinitionImpl ifcPropertyTemplateDefinition = new IfcPropertyTemplateDefinitionImpl();
 		return ifcPropertyTemplateDefinition;
@@ -7564,6 +8047,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProtectiveDevice createIfcProtectiveDevice() {
 		IfcProtectiveDeviceImpl ifcProtectiveDevice = new IfcProtectiveDeviceImpl();
 		return ifcProtectiveDevice;
@@ -7574,6 +8058,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProtectiveDeviceTrippingUnit createIfcProtectiveDeviceTrippingUnit() {
 		IfcProtectiveDeviceTrippingUnitImpl ifcProtectiveDeviceTrippingUnit = new IfcProtectiveDeviceTrippingUnitImpl();
 		return ifcProtectiveDeviceTrippingUnit;
@@ -7584,6 +8069,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProtectiveDeviceTrippingUnitType createIfcProtectiveDeviceTrippingUnitType() {
 		IfcProtectiveDeviceTrippingUnitTypeImpl ifcProtectiveDeviceTrippingUnitType = new IfcProtectiveDeviceTrippingUnitTypeImpl();
 		return ifcProtectiveDeviceTrippingUnitType;
@@ -7594,6 +8080,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProtectiveDeviceType createIfcProtectiveDeviceType() {
 		IfcProtectiveDeviceTypeImpl ifcProtectiveDeviceType = new IfcProtectiveDeviceTypeImpl();
 		return ifcProtectiveDeviceType;
@@ -7604,6 +8091,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProxy createIfcProxy() {
 		IfcProxyImpl ifcProxy = new IfcProxyImpl();
 		return ifcProxy;
@@ -7614,6 +8102,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPump createIfcPump() {
 		IfcPumpImpl ifcPump = new IfcPumpImpl();
 		return ifcPump;
@@ -7624,6 +8113,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPumpType createIfcPumpType() {
 		IfcPumpTypeImpl ifcPumpType = new IfcPumpTypeImpl();
 		return ifcPumpType;
@@ -7634,6 +8124,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcQuantityArea createIfcQuantityArea() {
 		IfcQuantityAreaImpl ifcQuantityArea = new IfcQuantityAreaImpl();
 		return ifcQuantityArea;
@@ -7644,6 +8135,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcQuantityCount createIfcQuantityCount() {
 		IfcQuantityCountImpl ifcQuantityCount = new IfcQuantityCountImpl();
 		return ifcQuantityCount;
@@ -7654,6 +8146,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcQuantityLength createIfcQuantityLength() {
 		IfcQuantityLengthImpl ifcQuantityLength = new IfcQuantityLengthImpl();
 		return ifcQuantityLength;
@@ -7664,6 +8157,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcQuantitySet createIfcQuantitySet() {
 		IfcQuantitySetImpl ifcQuantitySet = new IfcQuantitySetImpl();
 		return ifcQuantitySet;
@@ -7674,6 +8168,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcQuantityTime createIfcQuantityTime() {
 		IfcQuantityTimeImpl ifcQuantityTime = new IfcQuantityTimeImpl();
 		return ifcQuantityTime;
@@ -7684,6 +8179,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcQuantityVolume createIfcQuantityVolume() {
 		IfcQuantityVolumeImpl ifcQuantityVolume = new IfcQuantityVolumeImpl();
 		return ifcQuantityVolume;
@@ -7694,6 +8190,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcQuantityWeight createIfcQuantityWeight() {
 		IfcQuantityWeightImpl ifcQuantityWeight = new IfcQuantityWeightImpl();
 		return ifcQuantityWeight;
@@ -7704,6 +8201,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRailing createIfcRailing() {
 		IfcRailingImpl ifcRailing = new IfcRailingImpl();
 		return ifcRailing;
@@ -7714,6 +8212,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRailingType createIfcRailingType() {
 		IfcRailingTypeImpl ifcRailingType = new IfcRailingTypeImpl();
 		return ifcRailingType;
@@ -7724,6 +8223,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRamp createIfcRamp() {
 		IfcRampImpl ifcRamp = new IfcRampImpl();
 		return ifcRamp;
@@ -7734,6 +8234,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRampFlight createIfcRampFlight() {
 		IfcRampFlightImpl ifcRampFlight = new IfcRampFlightImpl();
 		return ifcRampFlight;
@@ -7744,6 +8245,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRampFlightType createIfcRampFlightType() {
 		IfcRampFlightTypeImpl ifcRampFlightType = new IfcRampFlightTypeImpl();
 		return ifcRampFlightType;
@@ -7754,6 +8256,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRampType createIfcRampType() {
 		IfcRampTypeImpl ifcRampType = new IfcRampTypeImpl();
 		return ifcRampType;
@@ -7764,6 +8267,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRationalBSplineCurveWithKnots createIfcRationalBSplineCurveWithKnots() {
 		IfcRationalBSplineCurveWithKnotsImpl ifcRationalBSplineCurveWithKnots = new IfcRationalBSplineCurveWithKnotsImpl();
 		return ifcRationalBSplineCurveWithKnots;
@@ -7774,6 +8278,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRationalBSplineSurfaceWithKnots createIfcRationalBSplineSurfaceWithKnots() {
 		IfcRationalBSplineSurfaceWithKnotsImpl ifcRationalBSplineSurfaceWithKnots = new IfcRationalBSplineSurfaceWithKnotsImpl();
 		return ifcRationalBSplineSurfaceWithKnots;
@@ -7784,6 +8289,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRectangleHollowProfileDef createIfcRectangleHollowProfileDef() {
 		IfcRectangleHollowProfileDefImpl ifcRectangleHollowProfileDef = new IfcRectangleHollowProfileDefImpl();
 		return ifcRectangleHollowProfileDef;
@@ -7794,6 +8300,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRectangleProfileDef createIfcRectangleProfileDef() {
 		IfcRectangleProfileDefImpl ifcRectangleProfileDef = new IfcRectangleProfileDefImpl();
 		return ifcRectangleProfileDef;
@@ -7804,6 +8311,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRectangularPyramid createIfcRectangularPyramid() {
 		IfcRectangularPyramidImpl ifcRectangularPyramid = new IfcRectangularPyramidImpl();
 		return ifcRectangularPyramid;
@@ -7814,6 +8322,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRectangularTrimmedSurface createIfcRectangularTrimmedSurface() {
 		IfcRectangularTrimmedSurfaceImpl ifcRectangularTrimmedSurface = new IfcRectangularTrimmedSurfaceImpl();
 		return ifcRectangularTrimmedSurface;
@@ -7824,6 +8333,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRecurrencePattern createIfcRecurrencePattern() {
 		IfcRecurrencePatternImpl ifcRecurrencePattern = new IfcRecurrencePatternImpl();
 		return ifcRecurrencePattern;
@@ -7834,6 +8344,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcReference createIfcReference() {
 		IfcReferenceImpl ifcReference = new IfcReferenceImpl();
 		return ifcReference;
@@ -7844,6 +8355,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRegularTimeSeries createIfcRegularTimeSeries() {
 		IfcRegularTimeSeriesImpl ifcRegularTimeSeries = new IfcRegularTimeSeriesImpl();
 		return ifcRegularTimeSeries;
@@ -7854,6 +8366,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcReinforcementBarProperties createIfcReinforcementBarProperties() {
 		IfcReinforcementBarPropertiesImpl ifcReinforcementBarProperties = new IfcReinforcementBarPropertiesImpl();
 		return ifcReinforcementBarProperties;
@@ -7864,6 +8377,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcReinforcementDefinitionProperties createIfcReinforcementDefinitionProperties() {
 		IfcReinforcementDefinitionPropertiesImpl ifcReinforcementDefinitionProperties = new IfcReinforcementDefinitionPropertiesImpl();
 		return ifcReinforcementDefinitionProperties;
@@ -7874,6 +8388,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcReinforcingBar createIfcReinforcingBar() {
 		IfcReinforcingBarImpl ifcReinforcingBar = new IfcReinforcingBarImpl();
 		return ifcReinforcingBar;
@@ -7884,6 +8399,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcReinforcingBarType createIfcReinforcingBarType() {
 		IfcReinforcingBarTypeImpl ifcReinforcingBarType = new IfcReinforcingBarTypeImpl();
 		return ifcReinforcingBarType;
@@ -7894,6 +8410,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcReinforcingElement createIfcReinforcingElement() {
 		IfcReinforcingElementImpl ifcReinforcingElement = new IfcReinforcingElementImpl();
 		return ifcReinforcingElement;
@@ -7904,6 +8421,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcReinforcingElementType createIfcReinforcingElementType() {
 		IfcReinforcingElementTypeImpl ifcReinforcingElementType = new IfcReinforcingElementTypeImpl();
 		return ifcReinforcingElementType;
@@ -7914,6 +8432,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcReinforcingMesh createIfcReinforcingMesh() {
 		IfcReinforcingMeshImpl ifcReinforcingMesh = new IfcReinforcingMeshImpl();
 		return ifcReinforcingMesh;
@@ -7924,6 +8443,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcReinforcingMeshType createIfcReinforcingMeshType() {
 		IfcReinforcingMeshTypeImpl ifcReinforcingMeshType = new IfcReinforcingMeshTypeImpl();
 		return ifcReinforcingMeshType;
@@ -7934,6 +8454,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelAggregates createIfcRelAggregates() {
 		IfcRelAggregatesImpl ifcRelAggregates = new IfcRelAggregatesImpl();
 		return ifcRelAggregates;
@@ -7944,6 +8465,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelAssigns createIfcRelAssigns() {
 		IfcRelAssignsImpl ifcRelAssigns = new IfcRelAssignsImpl();
 		return ifcRelAssigns;
@@ -7954,6 +8476,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelAssignsToActor createIfcRelAssignsToActor() {
 		IfcRelAssignsToActorImpl ifcRelAssignsToActor = new IfcRelAssignsToActorImpl();
 		return ifcRelAssignsToActor;
@@ -7964,6 +8487,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelAssignsToControl createIfcRelAssignsToControl() {
 		IfcRelAssignsToControlImpl ifcRelAssignsToControl = new IfcRelAssignsToControlImpl();
 		return ifcRelAssignsToControl;
@@ -7974,6 +8498,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelAssignsToGroup createIfcRelAssignsToGroup() {
 		IfcRelAssignsToGroupImpl ifcRelAssignsToGroup = new IfcRelAssignsToGroupImpl();
 		return ifcRelAssignsToGroup;
@@ -7984,6 +8509,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelAssignsToGroupByFactor createIfcRelAssignsToGroupByFactor() {
 		IfcRelAssignsToGroupByFactorImpl ifcRelAssignsToGroupByFactor = new IfcRelAssignsToGroupByFactorImpl();
 		return ifcRelAssignsToGroupByFactor;
@@ -7994,6 +8520,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelAssignsToProcess createIfcRelAssignsToProcess() {
 		IfcRelAssignsToProcessImpl ifcRelAssignsToProcess = new IfcRelAssignsToProcessImpl();
 		return ifcRelAssignsToProcess;
@@ -8004,6 +8531,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelAssignsToProduct createIfcRelAssignsToProduct() {
 		IfcRelAssignsToProductImpl ifcRelAssignsToProduct = new IfcRelAssignsToProductImpl();
 		return ifcRelAssignsToProduct;
@@ -8014,6 +8542,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelAssignsToResource createIfcRelAssignsToResource() {
 		IfcRelAssignsToResourceImpl ifcRelAssignsToResource = new IfcRelAssignsToResourceImpl();
 		return ifcRelAssignsToResource;
@@ -8024,6 +8553,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelAssociates createIfcRelAssociates() {
 		IfcRelAssociatesImpl ifcRelAssociates = new IfcRelAssociatesImpl();
 		return ifcRelAssociates;
@@ -8034,6 +8564,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelAssociatesApproval createIfcRelAssociatesApproval() {
 		IfcRelAssociatesApprovalImpl ifcRelAssociatesApproval = new IfcRelAssociatesApprovalImpl();
 		return ifcRelAssociatesApproval;
@@ -8044,6 +8575,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelAssociatesClassification createIfcRelAssociatesClassification() {
 		IfcRelAssociatesClassificationImpl ifcRelAssociatesClassification = new IfcRelAssociatesClassificationImpl();
 		return ifcRelAssociatesClassification;
@@ -8054,6 +8586,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelAssociatesConstraint createIfcRelAssociatesConstraint() {
 		IfcRelAssociatesConstraintImpl ifcRelAssociatesConstraint = new IfcRelAssociatesConstraintImpl();
 		return ifcRelAssociatesConstraint;
@@ -8064,6 +8597,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelAssociatesDocument createIfcRelAssociatesDocument() {
 		IfcRelAssociatesDocumentImpl ifcRelAssociatesDocument = new IfcRelAssociatesDocumentImpl();
 		return ifcRelAssociatesDocument;
@@ -8074,6 +8608,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelAssociatesLibrary createIfcRelAssociatesLibrary() {
 		IfcRelAssociatesLibraryImpl ifcRelAssociatesLibrary = new IfcRelAssociatesLibraryImpl();
 		return ifcRelAssociatesLibrary;
@@ -8084,6 +8619,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelAssociatesMaterial createIfcRelAssociatesMaterial() {
 		IfcRelAssociatesMaterialImpl ifcRelAssociatesMaterial = new IfcRelAssociatesMaterialImpl();
 		return ifcRelAssociatesMaterial;
@@ -8094,6 +8630,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelConnects createIfcRelConnects() {
 		IfcRelConnectsImpl ifcRelConnects = new IfcRelConnectsImpl();
 		return ifcRelConnects;
@@ -8104,6 +8641,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelConnectsElements createIfcRelConnectsElements() {
 		IfcRelConnectsElementsImpl ifcRelConnectsElements = new IfcRelConnectsElementsImpl();
 		return ifcRelConnectsElements;
@@ -8114,6 +8652,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelConnectsPathElements createIfcRelConnectsPathElements() {
 		IfcRelConnectsPathElementsImpl ifcRelConnectsPathElements = new IfcRelConnectsPathElementsImpl();
 		return ifcRelConnectsPathElements;
@@ -8124,6 +8663,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelConnectsPortToElement createIfcRelConnectsPortToElement() {
 		IfcRelConnectsPortToElementImpl ifcRelConnectsPortToElement = new IfcRelConnectsPortToElementImpl();
 		return ifcRelConnectsPortToElement;
@@ -8134,6 +8674,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelConnectsPorts createIfcRelConnectsPorts() {
 		IfcRelConnectsPortsImpl ifcRelConnectsPorts = new IfcRelConnectsPortsImpl();
 		return ifcRelConnectsPorts;
@@ -8144,6 +8685,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelConnectsStructuralActivity createIfcRelConnectsStructuralActivity() {
 		IfcRelConnectsStructuralActivityImpl ifcRelConnectsStructuralActivity = new IfcRelConnectsStructuralActivityImpl();
 		return ifcRelConnectsStructuralActivity;
@@ -8154,6 +8696,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelConnectsStructuralMember createIfcRelConnectsStructuralMember() {
 		IfcRelConnectsStructuralMemberImpl ifcRelConnectsStructuralMember = new IfcRelConnectsStructuralMemberImpl();
 		return ifcRelConnectsStructuralMember;
@@ -8164,6 +8707,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelConnectsWithEccentricity createIfcRelConnectsWithEccentricity() {
 		IfcRelConnectsWithEccentricityImpl ifcRelConnectsWithEccentricity = new IfcRelConnectsWithEccentricityImpl();
 		return ifcRelConnectsWithEccentricity;
@@ -8174,6 +8718,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelConnectsWithRealizingElements createIfcRelConnectsWithRealizingElements() {
 		IfcRelConnectsWithRealizingElementsImpl ifcRelConnectsWithRealizingElements = new IfcRelConnectsWithRealizingElementsImpl();
 		return ifcRelConnectsWithRealizingElements;
@@ -8184,6 +8729,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelContainedInSpatialStructure createIfcRelContainedInSpatialStructure() {
 		IfcRelContainedInSpatialStructureImpl ifcRelContainedInSpatialStructure = new IfcRelContainedInSpatialStructureImpl();
 		return ifcRelContainedInSpatialStructure;
@@ -8194,6 +8740,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelCoversBldgElements createIfcRelCoversBldgElements() {
 		IfcRelCoversBldgElementsImpl ifcRelCoversBldgElements = new IfcRelCoversBldgElementsImpl();
 		return ifcRelCoversBldgElements;
@@ -8204,6 +8751,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelCoversSpaces createIfcRelCoversSpaces() {
 		IfcRelCoversSpacesImpl ifcRelCoversSpaces = new IfcRelCoversSpacesImpl();
 		return ifcRelCoversSpaces;
@@ -8214,6 +8762,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelDeclares createIfcRelDeclares() {
 		IfcRelDeclaresImpl ifcRelDeclares = new IfcRelDeclaresImpl();
 		return ifcRelDeclares;
@@ -8224,6 +8773,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelDecomposes createIfcRelDecomposes() {
 		IfcRelDecomposesImpl ifcRelDecomposes = new IfcRelDecomposesImpl();
 		return ifcRelDecomposes;
@@ -8234,6 +8784,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelDefines createIfcRelDefines() {
 		IfcRelDefinesImpl ifcRelDefines = new IfcRelDefinesImpl();
 		return ifcRelDefines;
@@ -8244,6 +8795,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelDefinesByObject createIfcRelDefinesByObject() {
 		IfcRelDefinesByObjectImpl ifcRelDefinesByObject = new IfcRelDefinesByObjectImpl();
 		return ifcRelDefinesByObject;
@@ -8254,6 +8806,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelDefinesByProperties createIfcRelDefinesByProperties() {
 		IfcRelDefinesByPropertiesImpl ifcRelDefinesByProperties = new IfcRelDefinesByPropertiesImpl();
 		return ifcRelDefinesByProperties;
@@ -8264,6 +8817,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelDefinesByTemplate createIfcRelDefinesByTemplate() {
 		IfcRelDefinesByTemplateImpl ifcRelDefinesByTemplate = new IfcRelDefinesByTemplateImpl();
 		return ifcRelDefinesByTemplate;
@@ -8274,6 +8828,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelDefinesByType createIfcRelDefinesByType() {
 		IfcRelDefinesByTypeImpl ifcRelDefinesByType = new IfcRelDefinesByTypeImpl();
 		return ifcRelDefinesByType;
@@ -8284,6 +8839,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelFillsElement createIfcRelFillsElement() {
 		IfcRelFillsElementImpl ifcRelFillsElement = new IfcRelFillsElementImpl();
 		return ifcRelFillsElement;
@@ -8294,6 +8850,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelFlowControlElements createIfcRelFlowControlElements() {
 		IfcRelFlowControlElementsImpl ifcRelFlowControlElements = new IfcRelFlowControlElementsImpl();
 		return ifcRelFlowControlElements;
@@ -8304,6 +8861,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelInterferesElements createIfcRelInterferesElements() {
 		IfcRelInterferesElementsImpl ifcRelInterferesElements = new IfcRelInterferesElementsImpl();
 		return ifcRelInterferesElements;
@@ -8314,6 +8872,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelNests createIfcRelNests() {
 		IfcRelNestsImpl ifcRelNests = new IfcRelNestsImpl();
 		return ifcRelNests;
@@ -8324,6 +8883,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelProjectsElement createIfcRelProjectsElement() {
 		IfcRelProjectsElementImpl ifcRelProjectsElement = new IfcRelProjectsElementImpl();
 		return ifcRelProjectsElement;
@@ -8334,6 +8894,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelReferencedInSpatialStructure createIfcRelReferencedInSpatialStructure() {
 		IfcRelReferencedInSpatialStructureImpl ifcRelReferencedInSpatialStructure = new IfcRelReferencedInSpatialStructureImpl();
 		return ifcRelReferencedInSpatialStructure;
@@ -8344,6 +8905,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelSequence createIfcRelSequence() {
 		IfcRelSequenceImpl ifcRelSequence = new IfcRelSequenceImpl();
 		return ifcRelSequence;
@@ -8354,6 +8916,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelServicesBuildings createIfcRelServicesBuildings() {
 		IfcRelServicesBuildingsImpl ifcRelServicesBuildings = new IfcRelServicesBuildingsImpl();
 		return ifcRelServicesBuildings;
@@ -8364,6 +8927,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelSpaceBoundary createIfcRelSpaceBoundary() {
 		IfcRelSpaceBoundaryImpl ifcRelSpaceBoundary = new IfcRelSpaceBoundaryImpl();
 		return ifcRelSpaceBoundary;
@@ -8374,6 +8938,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelSpaceBoundary1stLevel createIfcRelSpaceBoundary1stLevel() {
 		IfcRelSpaceBoundary1stLevelImpl ifcRelSpaceBoundary1stLevel = new IfcRelSpaceBoundary1stLevelImpl();
 		return ifcRelSpaceBoundary1stLevel;
@@ -8384,6 +8949,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelSpaceBoundary2ndLevel createIfcRelSpaceBoundary2ndLevel() {
 		IfcRelSpaceBoundary2ndLevelImpl ifcRelSpaceBoundary2ndLevel = new IfcRelSpaceBoundary2ndLevelImpl();
 		return ifcRelSpaceBoundary2ndLevel;
@@ -8394,6 +8960,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelVoidsElement createIfcRelVoidsElement() {
 		IfcRelVoidsElementImpl ifcRelVoidsElement = new IfcRelVoidsElementImpl();
 		return ifcRelVoidsElement;
@@ -8404,6 +8971,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRelationship createIfcRelationship() {
 		IfcRelationshipImpl ifcRelationship = new IfcRelationshipImpl();
 		return ifcRelationship;
@@ -8414,6 +8982,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcReparametrisedCompositeCurveSegment createIfcReparametrisedCompositeCurveSegment() {
 		IfcReparametrisedCompositeCurveSegmentImpl ifcReparametrisedCompositeCurveSegment = new IfcReparametrisedCompositeCurveSegmentImpl();
 		return ifcReparametrisedCompositeCurveSegment;
@@ -8424,6 +8993,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRepresentation createIfcRepresentation() {
 		IfcRepresentationImpl ifcRepresentation = new IfcRepresentationImpl();
 		return ifcRepresentation;
@@ -8434,6 +9004,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRepresentationContext createIfcRepresentationContext() {
 		IfcRepresentationContextImpl ifcRepresentationContext = new IfcRepresentationContextImpl();
 		return ifcRepresentationContext;
@@ -8444,6 +9015,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRepresentationItem createIfcRepresentationItem() {
 		IfcRepresentationItemImpl ifcRepresentationItem = new IfcRepresentationItemImpl();
 		return ifcRepresentationItem;
@@ -8454,6 +9026,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRepresentationMap createIfcRepresentationMap() {
 		IfcRepresentationMapImpl ifcRepresentationMap = new IfcRepresentationMapImpl();
 		return ifcRepresentationMap;
@@ -8464,6 +9037,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcResource createIfcResource() {
 		IfcResourceImpl ifcResource = new IfcResourceImpl();
 		return ifcResource;
@@ -8474,6 +9048,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcResourceApprovalRelationship createIfcResourceApprovalRelationship() {
 		IfcResourceApprovalRelationshipImpl ifcResourceApprovalRelationship = new IfcResourceApprovalRelationshipImpl();
 		return ifcResourceApprovalRelationship;
@@ -8484,6 +9059,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcResourceConstraintRelationship createIfcResourceConstraintRelationship() {
 		IfcResourceConstraintRelationshipImpl ifcResourceConstraintRelationship = new IfcResourceConstraintRelationshipImpl();
 		return ifcResourceConstraintRelationship;
@@ -8494,6 +9070,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcResourceLevelRelationship createIfcResourceLevelRelationship() {
 		IfcResourceLevelRelationshipImpl ifcResourceLevelRelationship = new IfcResourceLevelRelationshipImpl();
 		return ifcResourceLevelRelationship;
@@ -8504,6 +9081,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcResourceTime createIfcResourceTime() {
 		IfcResourceTimeImpl ifcResourceTime = new IfcResourceTimeImpl();
 		return ifcResourceTime;
@@ -8514,6 +9092,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRevolvedAreaSolid createIfcRevolvedAreaSolid() {
 		IfcRevolvedAreaSolidImpl ifcRevolvedAreaSolid = new IfcRevolvedAreaSolidImpl();
 		return ifcRevolvedAreaSolid;
@@ -8524,6 +9103,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRevolvedAreaSolidTapered createIfcRevolvedAreaSolidTapered() {
 		IfcRevolvedAreaSolidTaperedImpl ifcRevolvedAreaSolidTapered = new IfcRevolvedAreaSolidTaperedImpl();
 		return ifcRevolvedAreaSolidTapered;
@@ -8534,6 +9114,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRightCircularCone createIfcRightCircularCone() {
 		IfcRightCircularConeImpl ifcRightCircularCone = new IfcRightCircularConeImpl();
 		return ifcRightCircularCone;
@@ -8544,6 +9125,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRightCircularCylinder createIfcRightCircularCylinder() {
 		IfcRightCircularCylinderImpl ifcRightCircularCylinder = new IfcRightCircularCylinderImpl();
 		return ifcRightCircularCylinder;
@@ -8554,6 +9136,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRoof createIfcRoof() {
 		IfcRoofImpl ifcRoof = new IfcRoofImpl();
 		return ifcRoof;
@@ -8564,6 +9147,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRoofType createIfcRoofType() {
 		IfcRoofTypeImpl ifcRoofType = new IfcRoofTypeImpl();
 		return ifcRoofType;
@@ -8574,6 +9158,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRoot createIfcRoot() {
 		IfcRootImpl ifcRoot = new IfcRootImpl();
 		return ifcRoot;
@@ -8584,6 +9169,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRoundedRectangleProfileDef createIfcRoundedRectangleProfileDef() {
 		IfcRoundedRectangleProfileDefImpl ifcRoundedRectangleProfileDef = new IfcRoundedRectangleProfileDefImpl();
 		return ifcRoundedRectangleProfileDef;
@@ -8594,6 +9180,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSIUnit createIfcSIUnit() {
 		IfcSIUnitImpl ifcSIUnit = new IfcSIUnitImpl();
 		return ifcSIUnit;
@@ -8604,6 +9191,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSanitaryTerminal createIfcSanitaryTerminal() {
 		IfcSanitaryTerminalImpl ifcSanitaryTerminal = new IfcSanitaryTerminalImpl();
 		return ifcSanitaryTerminal;
@@ -8614,6 +9202,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSanitaryTerminalType createIfcSanitaryTerminalType() {
 		IfcSanitaryTerminalTypeImpl ifcSanitaryTerminalType = new IfcSanitaryTerminalTypeImpl();
 		return ifcSanitaryTerminalType;
@@ -8624,6 +9213,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSchedulingTime createIfcSchedulingTime() {
 		IfcSchedulingTimeImpl ifcSchedulingTime = new IfcSchedulingTimeImpl();
 		return ifcSchedulingTime;
@@ -8634,6 +9224,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSeamCurve createIfcSeamCurve() {
 		IfcSeamCurveImpl ifcSeamCurve = new IfcSeamCurveImpl();
 		return ifcSeamCurve;
@@ -8644,6 +9235,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSectionProperties createIfcSectionProperties() {
 		IfcSectionPropertiesImpl ifcSectionProperties = new IfcSectionPropertiesImpl();
 		return ifcSectionProperties;
@@ -8654,6 +9246,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSectionReinforcementProperties createIfcSectionReinforcementProperties() {
 		IfcSectionReinforcementPropertiesImpl ifcSectionReinforcementProperties = new IfcSectionReinforcementPropertiesImpl();
 		return ifcSectionReinforcementProperties;
@@ -8664,6 +9257,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSectionedSpine createIfcSectionedSpine() {
 		IfcSectionedSpineImpl ifcSectionedSpine = new IfcSectionedSpineImpl();
 		return ifcSectionedSpine;
@@ -8674,6 +9268,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSensor createIfcSensor() {
 		IfcSensorImpl ifcSensor = new IfcSensorImpl();
 		return ifcSensor;
@@ -8684,6 +9279,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSensorType createIfcSensorType() {
 		IfcSensorTypeImpl ifcSensorType = new IfcSensorTypeImpl();
 		return ifcSensorType;
@@ -8694,6 +9290,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcShadingDevice createIfcShadingDevice() {
 		IfcShadingDeviceImpl ifcShadingDevice = new IfcShadingDeviceImpl();
 		return ifcShadingDevice;
@@ -8704,6 +9301,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcShadingDeviceType createIfcShadingDeviceType() {
 		IfcShadingDeviceTypeImpl ifcShadingDeviceType = new IfcShadingDeviceTypeImpl();
 		return ifcShadingDeviceType;
@@ -8714,6 +9312,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcShapeAspect createIfcShapeAspect() {
 		IfcShapeAspectImpl ifcShapeAspect = new IfcShapeAspectImpl();
 		return ifcShapeAspect;
@@ -8724,6 +9323,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcShapeModel createIfcShapeModel() {
 		IfcShapeModelImpl ifcShapeModel = new IfcShapeModelImpl();
 		return ifcShapeModel;
@@ -8734,6 +9334,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcShapeRepresentation createIfcShapeRepresentation() {
 		IfcShapeRepresentationImpl ifcShapeRepresentation = new IfcShapeRepresentationImpl();
 		return ifcShapeRepresentation;
@@ -8744,6 +9345,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcShellBasedSurfaceModel createIfcShellBasedSurfaceModel() {
 		IfcShellBasedSurfaceModelImpl ifcShellBasedSurfaceModel = new IfcShellBasedSurfaceModelImpl();
 		return ifcShellBasedSurfaceModel;
@@ -8754,6 +9356,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSimpleProperty createIfcSimpleProperty() {
 		IfcSimplePropertyImpl ifcSimpleProperty = new IfcSimplePropertyImpl();
 		return ifcSimpleProperty;
@@ -8764,6 +9367,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSimplePropertyTemplate createIfcSimplePropertyTemplate() {
 		IfcSimplePropertyTemplateImpl ifcSimplePropertyTemplate = new IfcSimplePropertyTemplateImpl();
 		return ifcSimplePropertyTemplate;
@@ -8774,6 +9378,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSite createIfcSite() {
 		IfcSiteImpl ifcSite = new IfcSiteImpl();
 		return ifcSite;
@@ -8784,6 +9389,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSlab createIfcSlab() {
 		IfcSlabImpl ifcSlab = new IfcSlabImpl();
 		return ifcSlab;
@@ -8794,6 +9400,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSlabElementedCase createIfcSlabElementedCase() {
 		IfcSlabElementedCaseImpl ifcSlabElementedCase = new IfcSlabElementedCaseImpl();
 		return ifcSlabElementedCase;
@@ -8804,6 +9411,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSlabStandardCase createIfcSlabStandardCase() {
 		IfcSlabStandardCaseImpl ifcSlabStandardCase = new IfcSlabStandardCaseImpl();
 		return ifcSlabStandardCase;
@@ -8814,6 +9422,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSlabType createIfcSlabType() {
 		IfcSlabTypeImpl ifcSlabType = new IfcSlabTypeImpl();
 		return ifcSlabType;
@@ -8824,6 +9433,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSlippageConnectionCondition createIfcSlippageConnectionCondition() {
 		IfcSlippageConnectionConditionImpl ifcSlippageConnectionCondition = new IfcSlippageConnectionConditionImpl();
 		return ifcSlippageConnectionCondition;
@@ -8834,6 +9444,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSolarDevice createIfcSolarDevice() {
 		IfcSolarDeviceImpl ifcSolarDevice = new IfcSolarDeviceImpl();
 		return ifcSolarDevice;
@@ -8844,6 +9455,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSolarDeviceType createIfcSolarDeviceType() {
 		IfcSolarDeviceTypeImpl ifcSolarDeviceType = new IfcSolarDeviceTypeImpl();
 		return ifcSolarDeviceType;
@@ -8854,6 +9466,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSolidModel createIfcSolidModel() {
 		IfcSolidModelImpl ifcSolidModel = new IfcSolidModelImpl();
 		return ifcSolidModel;
@@ -8864,6 +9477,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSpace createIfcSpace() {
 		IfcSpaceImpl ifcSpace = new IfcSpaceImpl();
 		return ifcSpace;
@@ -8874,6 +9488,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSpaceHeater createIfcSpaceHeater() {
 		IfcSpaceHeaterImpl ifcSpaceHeater = new IfcSpaceHeaterImpl();
 		return ifcSpaceHeater;
@@ -8884,6 +9499,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSpaceHeaterType createIfcSpaceHeaterType() {
 		IfcSpaceHeaterTypeImpl ifcSpaceHeaterType = new IfcSpaceHeaterTypeImpl();
 		return ifcSpaceHeaterType;
@@ -8894,6 +9510,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSpaceType createIfcSpaceType() {
 		IfcSpaceTypeImpl ifcSpaceType = new IfcSpaceTypeImpl();
 		return ifcSpaceType;
@@ -8904,6 +9521,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSpatialElement createIfcSpatialElement() {
 		IfcSpatialElementImpl ifcSpatialElement = new IfcSpatialElementImpl();
 		return ifcSpatialElement;
@@ -8914,6 +9532,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSpatialElementType createIfcSpatialElementType() {
 		IfcSpatialElementTypeImpl ifcSpatialElementType = new IfcSpatialElementTypeImpl();
 		return ifcSpatialElementType;
@@ -8924,6 +9543,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSpatialStructureElement createIfcSpatialStructureElement() {
 		IfcSpatialStructureElementImpl ifcSpatialStructureElement = new IfcSpatialStructureElementImpl();
 		return ifcSpatialStructureElement;
@@ -8934,6 +9554,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSpatialStructureElementType createIfcSpatialStructureElementType() {
 		IfcSpatialStructureElementTypeImpl ifcSpatialStructureElementType = new IfcSpatialStructureElementTypeImpl();
 		return ifcSpatialStructureElementType;
@@ -8944,6 +9565,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSpatialZone createIfcSpatialZone() {
 		IfcSpatialZoneImpl ifcSpatialZone = new IfcSpatialZoneImpl();
 		return ifcSpatialZone;
@@ -8954,6 +9576,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSpatialZoneType createIfcSpatialZoneType() {
 		IfcSpatialZoneTypeImpl ifcSpatialZoneType = new IfcSpatialZoneTypeImpl();
 		return ifcSpatialZoneType;
@@ -8964,6 +9587,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSphere createIfcSphere() {
 		IfcSphereImpl ifcSphere = new IfcSphereImpl();
 		return ifcSphere;
@@ -8974,6 +9598,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSphericalSurface createIfcSphericalSurface() {
 		IfcSphericalSurfaceImpl ifcSphericalSurface = new IfcSphericalSurfaceImpl();
 		return ifcSphericalSurface;
@@ -8984,6 +9609,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStackTerminal createIfcStackTerminal() {
 		IfcStackTerminalImpl ifcStackTerminal = new IfcStackTerminalImpl();
 		return ifcStackTerminal;
@@ -8994,6 +9620,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStackTerminalType createIfcStackTerminalType() {
 		IfcStackTerminalTypeImpl ifcStackTerminalType = new IfcStackTerminalTypeImpl();
 		return ifcStackTerminalType;
@@ -9004,6 +9631,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStair createIfcStair() {
 		IfcStairImpl ifcStair = new IfcStairImpl();
 		return ifcStair;
@@ -9014,6 +9642,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStairFlight createIfcStairFlight() {
 		IfcStairFlightImpl ifcStairFlight = new IfcStairFlightImpl();
 		return ifcStairFlight;
@@ -9024,6 +9653,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStairFlightType createIfcStairFlightType() {
 		IfcStairFlightTypeImpl ifcStairFlightType = new IfcStairFlightTypeImpl();
 		return ifcStairFlightType;
@@ -9034,6 +9664,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStairType createIfcStairType() {
 		IfcStairTypeImpl ifcStairType = new IfcStairTypeImpl();
 		return ifcStairType;
@@ -9044,6 +9675,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralAction createIfcStructuralAction() {
 		IfcStructuralActionImpl ifcStructuralAction = new IfcStructuralActionImpl();
 		return ifcStructuralAction;
@@ -9054,6 +9686,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralActivity createIfcStructuralActivity() {
 		IfcStructuralActivityImpl ifcStructuralActivity = new IfcStructuralActivityImpl();
 		return ifcStructuralActivity;
@@ -9064,6 +9697,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralAnalysisModel createIfcStructuralAnalysisModel() {
 		IfcStructuralAnalysisModelImpl ifcStructuralAnalysisModel = new IfcStructuralAnalysisModelImpl();
 		return ifcStructuralAnalysisModel;
@@ -9074,6 +9708,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralConnection createIfcStructuralConnection() {
 		IfcStructuralConnectionImpl ifcStructuralConnection = new IfcStructuralConnectionImpl();
 		return ifcStructuralConnection;
@@ -9084,6 +9719,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralConnectionCondition createIfcStructuralConnectionCondition() {
 		IfcStructuralConnectionConditionImpl ifcStructuralConnectionCondition = new IfcStructuralConnectionConditionImpl();
 		return ifcStructuralConnectionCondition;
@@ -9094,6 +9730,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralCurveAction createIfcStructuralCurveAction() {
 		IfcStructuralCurveActionImpl ifcStructuralCurveAction = new IfcStructuralCurveActionImpl();
 		return ifcStructuralCurveAction;
@@ -9104,6 +9741,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralCurveConnection createIfcStructuralCurveConnection() {
 		IfcStructuralCurveConnectionImpl ifcStructuralCurveConnection = new IfcStructuralCurveConnectionImpl();
 		return ifcStructuralCurveConnection;
@@ -9114,6 +9752,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralCurveMember createIfcStructuralCurveMember() {
 		IfcStructuralCurveMemberImpl ifcStructuralCurveMember = new IfcStructuralCurveMemberImpl();
 		return ifcStructuralCurveMember;
@@ -9124,6 +9763,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralCurveMemberVarying createIfcStructuralCurveMemberVarying() {
 		IfcStructuralCurveMemberVaryingImpl ifcStructuralCurveMemberVarying = new IfcStructuralCurveMemberVaryingImpl();
 		return ifcStructuralCurveMemberVarying;
@@ -9134,6 +9774,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralCurveReaction createIfcStructuralCurveReaction() {
 		IfcStructuralCurveReactionImpl ifcStructuralCurveReaction = new IfcStructuralCurveReactionImpl();
 		return ifcStructuralCurveReaction;
@@ -9144,6 +9785,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralItem createIfcStructuralItem() {
 		IfcStructuralItemImpl ifcStructuralItem = new IfcStructuralItemImpl();
 		return ifcStructuralItem;
@@ -9154,6 +9796,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralLinearAction createIfcStructuralLinearAction() {
 		IfcStructuralLinearActionImpl ifcStructuralLinearAction = new IfcStructuralLinearActionImpl();
 		return ifcStructuralLinearAction;
@@ -9164,6 +9807,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralLoad createIfcStructuralLoad() {
 		IfcStructuralLoadImpl ifcStructuralLoad = new IfcStructuralLoadImpl();
 		return ifcStructuralLoad;
@@ -9174,6 +9818,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralLoadCase createIfcStructuralLoadCase() {
 		IfcStructuralLoadCaseImpl ifcStructuralLoadCase = new IfcStructuralLoadCaseImpl();
 		return ifcStructuralLoadCase;
@@ -9184,6 +9829,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralLoadConfiguration createIfcStructuralLoadConfiguration() {
 		IfcStructuralLoadConfigurationImpl ifcStructuralLoadConfiguration = new IfcStructuralLoadConfigurationImpl();
 		return ifcStructuralLoadConfiguration;
@@ -9194,6 +9840,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralLoadGroup createIfcStructuralLoadGroup() {
 		IfcStructuralLoadGroupImpl ifcStructuralLoadGroup = new IfcStructuralLoadGroupImpl();
 		return ifcStructuralLoadGroup;
@@ -9204,6 +9851,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralLoadLinearForce createIfcStructuralLoadLinearForce() {
 		IfcStructuralLoadLinearForceImpl ifcStructuralLoadLinearForce = new IfcStructuralLoadLinearForceImpl();
 		return ifcStructuralLoadLinearForce;
@@ -9214,6 +9862,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralLoadOrResult createIfcStructuralLoadOrResult() {
 		IfcStructuralLoadOrResultImpl ifcStructuralLoadOrResult = new IfcStructuralLoadOrResultImpl();
 		return ifcStructuralLoadOrResult;
@@ -9224,6 +9873,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralLoadPlanarForce createIfcStructuralLoadPlanarForce() {
 		IfcStructuralLoadPlanarForceImpl ifcStructuralLoadPlanarForce = new IfcStructuralLoadPlanarForceImpl();
 		return ifcStructuralLoadPlanarForce;
@@ -9234,6 +9884,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralLoadSingleDisplacement createIfcStructuralLoadSingleDisplacement() {
 		IfcStructuralLoadSingleDisplacementImpl ifcStructuralLoadSingleDisplacement = new IfcStructuralLoadSingleDisplacementImpl();
 		return ifcStructuralLoadSingleDisplacement;
@@ -9244,6 +9895,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralLoadSingleDisplacementDistortion createIfcStructuralLoadSingleDisplacementDistortion() {
 		IfcStructuralLoadSingleDisplacementDistortionImpl ifcStructuralLoadSingleDisplacementDistortion = new IfcStructuralLoadSingleDisplacementDistortionImpl();
 		return ifcStructuralLoadSingleDisplacementDistortion;
@@ -9254,6 +9906,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralLoadSingleForce createIfcStructuralLoadSingleForce() {
 		IfcStructuralLoadSingleForceImpl ifcStructuralLoadSingleForce = new IfcStructuralLoadSingleForceImpl();
 		return ifcStructuralLoadSingleForce;
@@ -9264,6 +9917,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralLoadSingleForceWarping createIfcStructuralLoadSingleForceWarping() {
 		IfcStructuralLoadSingleForceWarpingImpl ifcStructuralLoadSingleForceWarping = new IfcStructuralLoadSingleForceWarpingImpl();
 		return ifcStructuralLoadSingleForceWarping;
@@ -9274,6 +9928,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralLoadStatic createIfcStructuralLoadStatic() {
 		IfcStructuralLoadStaticImpl ifcStructuralLoadStatic = new IfcStructuralLoadStaticImpl();
 		return ifcStructuralLoadStatic;
@@ -9284,6 +9939,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralLoadTemperature createIfcStructuralLoadTemperature() {
 		IfcStructuralLoadTemperatureImpl ifcStructuralLoadTemperature = new IfcStructuralLoadTemperatureImpl();
 		return ifcStructuralLoadTemperature;
@@ -9294,6 +9950,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralMember createIfcStructuralMember() {
 		IfcStructuralMemberImpl ifcStructuralMember = new IfcStructuralMemberImpl();
 		return ifcStructuralMember;
@@ -9304,6 +9961,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralPlanarAction createIfcStructuralPlanarAction() {
 		IfcStructuralPlanarActionImpl ifcStructuralPlanarAction = new IfcStructuralPlanarActionImpl();
 		return ifcStructuralPlanarAction;
@@ -9314,6 +9972,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralPointAction createIfcStructuralPointAction() {
 		IfcStructuralPointActionImpl ifcStructuralPointAction = new IfcStructuralPointActionImpl();
 		return ifcStructuralPointAction;
@@ -9324,6 +9983,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralPointConnection createIfcStructuralPointConnection() {
 		IfcStructuralPointConnectionImpl ifcStructuralPointConnection = new IfcStructuralPointConnectionImpl();
 		return ifcStructuralPointConnection;
@@ -9334,6 +9994,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralPointReaction createIfcStructuralPointReaction() {
 		IfcStructuralPointReactionImpl ifcStructuralPointReaction = new IfcStructuralPointReactionImpl();
 		return ifcStructuralPointReaction;
@@ -9344,6 +10005,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralReaction createIfcStructuralReaction() {
 		IfcStructuralReactionImpl ifcStructuralReaction = new IfcStructuralReactionImpl();
 		return ifcStructuralReaction;
@@ -9354,6 +10016,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralResultGroup createIfcStructuralResultGroup() {
 		IfcStructuralResultGroupImpl ifcStructuralResultGroup = new IfcStructuralResultGroupImpl();
 		return ifcStructuralResultGroup;
@@ -9364,6 +10027,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralSurfaceAction createIfcStructuralSurfaceAction() {
 		IfcStructuralSurfaceActionImpl ifcStructuralSurfaceAction = new IfcStructuralSurfaceActionImpl();
 		return ifcStructuralSurfaceAction;
@@ -9374,6 +10038,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralSurfaceConnection createIfcStructuralSurfaceConnection() {
 		IfcStructuralSurfaceConnectionImpl ifcStructuralSurfaceConnection = new IfcStructuralSurfaceConnectionImpl();
 		return ifcStructuralSurfaceConnection;
@@ -9384,6 +10049,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralSurfaceMember createIfcStructuralSurfaceMember() {
 		IfcStructuralSurfaceMemberImpl ifcStructuralSurfaceMember = new IfcStructuralSurfaceMemberImpl();
 		return ifcStructuralSurfaceMember;
@@ -9394,6 +10060,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralSurfaceMemberVarying createIfcStructuralSurfaceMemberVarying() {
 		IfcStructuralSurfaceMemberVaryingImpl ifcStructuralSurfaceMemberVarying = new IfcStructuralSurfaceMemberVaryingImpl();
 		return ifcStructuralSurfaceMemberVarying;
@@ -9404,6 +10071,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStructuralSurfaceReaction createIfcStructuralSurfaceReaction() {
 		IfcStructuralSurfaceReactionImpl ifcStructuralSurfaceReaction = new IfcStructuralSurfaceReactionImpl();
 		return ifcStructuralSurfaceReaction;
@@ -9414,6 +10082,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStyleModel createIfcStyleModel() {
 		IfcStyleModelImpl ifcStyleModel = new IfcStyleModelImpl();
 		return ifcStyleModel;
@@ -9424,6 +10093,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStyledItem createIfcStyledItem() {
 		IfcStyledItemImpl ifcStyledItem = new IfcStyledItemImpl();
 		return ifcStyledItem;
@@ -9434,6 +10104,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStyledRepresentation createIfcStyledRepresentation() {
 		IfcStyledRepresentationImpl ifcStyledRepresentation = new IfcStyledRepresentationImpl();
 		return ifcStyledRepresentation;
@@ -9444,6 +10115,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSubContractResource createIfcSubContractResource() {
 		IfcSubContractResourceImpl ifcSubContractResource = new IfcSubContractResourceImpl();
 		return ifcSubContractResource;
@@ -9454,6 +10126,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSubContractResourceType createIfcSubContractResourceType() {
 		IfcSubContractResourceTypeImpl ifcSubContractResourceType = new IfcSubContractResourceTypeImpl();
 		return ifcSubContractResourceType;
@@ -9464,6 +10137,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSubedge createIfcSubedge() {
 		IfcSubedgeImpl ifcSubedge = new IfcSubedgeImpl();
 		return ifcSubedge;
@@ -9474,6 +10148,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSurface createIfcSurface() {
 		IfcSurfaceImpl ifcSurface = new IfcSurfaceImpl();
 		return ifcSurface;
@@ -9484,6 +10159,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSurfaceCurve createIfcSurfaceCurve() {
 		IfcSurfaceCurveImpl ifcSurfaceCurve = new IfcSurfaceCurveImpl();
 		return ifcSurfaceCurve;
@@ -9494,6 +10170,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSurfaceCurveSweptAreaSolid createIfcSurfaceCurveSweptAreaSolid() {
 		IfcSurfaceCurveSweptAreaSolidImpl ifcSurfaceCurveSweptAreaSolid = new IfcSurfaceCurveSweptAreaSolidImpl();
 		return ifcSurfaceCurveSweptAreaSolid;
@@ -9504,6 +10181,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSurfaceFeature createIfcSurfaceFeature() {
 		IfcSurfaceFeatureImpl ifcSurfaceFeature = new IfcSurfaceFeatureImpl();
 		return ifcSurfaceFeature;
@@ -9514,6 +10192,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSurfaceOfLinearExtrusion createIfcSurfaceOfLinearExtrusion() {
 		IfcSurfaceOfLinearExtrusionImpl ifcSurfaceOfLinearExtrusion = new IfcSurfaceOfLinearExtrusionImpl();
 		return ifcSurfaceOfLinearExtrusion;
@@ -9524,6 +10203,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSurfaceOfRevolution createIfcSurfaceOfRevolution() {
 		IfcSurfaceOfRevolutionImpl ifcSurfaceOfRevolution = new IfcSurfaceOfRevolutionImpl();
 		return ifcSurfaceOfRevolution;
@@ -9534,6 +10214,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSurfaceReinforcementArea createIfcSurfaceReinforcementArea() {
 		IfcSurfaceReinforcementAreaImpl ifcSurfaceReinforcementArea = new IfcSurfaceReinforcementAreaImpl();
 		return ifcSurfaceReinforcementArea;
@@ -9544,6 +10225,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSurfaceStyle createIfcSurfaceStyle() {
 		IfcSurfaceStyleImpl ifcSurfaceStyle = new IfcSurfaceStyleImpl();
 		return ifcSurfaceStyle;
@@ -9554,6 +10236,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSurfaceStyleLighting createIfcSurfaceStyleLighting() {
 		IfcSurfaceStyleLightingImpl ifcSurfaceStyleLighting = new IfcSurfaceStyleLightingImpl();
 		return ifcSurfaceStyleLighting;
@@ -9564,6 +10247,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSurfaceStyleRefraction createIfcSurfaceStyleRefraction() {
 		IfcSurfaceStyleRefractionImpl ifcSurfaceStyleRefraction = new IfcSurfaceStyleRefractionImpl();
 		return ifcSurfaceStyleRefraction;
@@ -9574,6 +10258,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSurfaceStyleRendering createIfcSurfaceStyleRendering() {
 		IfcSurfaceStyleRenderingImpl ifcSurfaceStyleRendering = new IfcSurfaceStyleRenderingImpl();
 		return ifcSurfaceStyleRendering;
@@ -9584,6 +10269,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSurfaceStyleShading createIfcSurfaceStyleShading() {
 		IfcSurfaceStyleShadingImpl ifcSurfaceStyleShading = new IfcSurfaceStyleShadingImpl();
 		return ifcSurfaceStyleShading;
@@ -9594,6 +10280,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSurfaceStyleWithTextures createIfcSurfaceStyleWithTextures() {
 		IfcSurfaceStyleWithTexturesImpl ifcSurfaceStyleWithTextures = new IfcSurfaceStyleWithTexturesImpl();
 		return ifcSurfaceStyleWithTextures;
@@ -9604,6 +10291,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSurfaceTexture createIfcSurfaceTexture() {
 		IfcSurfaceTextureImpl ifcSurfaceTexture = new IfcSurfaceTextureImpl();
 		return ifcSurfaceTexture;
@@ -9614,6 +10302,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSweptAreaSolid createIfcSweptAreaSolid() {
 		IfcSweptAreaSolidImpl ifcSweptAreaSolid = new IfcSweptAreaSolidImpl();
 		return ifcSweptAreaSolid;
@@ -9624,6 +10313,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSweptDiskSolid createIfcSweptDiskSolid() {
 		IfcSweptDiskSolidImpl ifcSweptDiskSolid = new IfcSweptDiskSolidImpl();
 		return ifcSweptDiskSolid;
@@ -9634,6 +10324,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSweptDiskSolidPolygonal createIfcSweptDiskSolidPolygonal() {
 		IfcSweptDiskSolidPolygonalImpl ifcSweptDiskSolidPolygonal = new IfcSweptDiskSolidPolygonalImpl();
 		return ifcSweptDiskSolidPolygonal;
@@ -9644,6 +10335,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSweptSurface createIfcSweptSurface() {
 		IfcSweptSurfaceImpl ifcSweptSurface = new IfcSweptSurfaceImpl();
 		return ifcSweptSurface;
@@ -9654,6 +10346,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSwitchingDevice createIfcSwitchingDevice() {
 		IfcSwitchingDeviceImpl ifcSwitchingDevice = new IfcSwitchingDeviceImpl();
 		return ifcSwitchingDevice;
@@ -9664,6 +10357,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSwitchingDeviceType createIfcSwitchingDeviceType() {
 		IfcSwitchingDeviceTypeImpl ifcSwitchingDeviceType = new IfcSwitchingDeviceTypeImpl();
 		return ifcSwitchingDeviceType;
@@ -9674,6 +10368,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSystem createIfcSystem() {
 		IfcSystemImpl ifcSystem = new IfcSystemImpl();
 		return ifcSystem;
@@ -9684,6 +10379,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSystemFurnitureElement createIfcSystemFurnitureElement() {
 		IfcSystemFurnitureElementImpl ifcSystemFurnitureElement = new IfcSystemFurnitureElementImpl();
 		return ifcSystemFurnitureElement;
@@ -9694,6 +10390,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSystemFurnitureElementType createIfcSystemFurnitureElementType() {
 		IfcSystemFurnitureElementTypeImpl ifcSystemFurnitureElementType = new IfcSystemFurnitureElementTypeImpl();
 		return ifcSystemFurnitureElementType;
@@ -9704,6 +10401,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTShapeProfileDef createIfcTShapeProfileDef() {
 		IfcTShapeProfileDefImpl ifcTShapeProfileDef = new IfcTShapeProfileDefImpl();
 		return ifcTShapeProfileDef;
@@ -9714,6 +10412,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTable createIfcTable() {
 		IfcTableImpl ifcTable = new IfcTableImpl();
 		return ifcTable;
@@ -9724,6 +10423,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTableColumn createIfcTableColumn() {
 		IfcTableColumnImpl ifcTableColumn = new IfcTableColumnImpl();
 		return ifcTableColumn;
@@ -9734,6 +10434,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTableRow createIfcTableRow() {
 		IfcTableRowImpl ifcTableRow = new IfcTableRowImpl();
 		return ifcTableRow;
@@ -9744,6 +10445,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTank createIfcTank() {
 		IfcTankImpl ifcTank = new IfcTankImpl();
 		return ifcTank;
@@ -9754,6 +10456,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTankType createIfcTankType() {
 		IfcTankTypeImpl ifcTankType = new IfcTankTypeImpl();
 		return ifcTankType;
@@ -9764,6 +10467,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTask createIfcTask() {
 		IfcTaskImpl ifcTask = new IfcTaskImpl();
 		return ifcTask;
@@ -9774,6 +10478,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTaskTime createIfcTaskTime() {
 		IfcTaskTimeImpl ifcTaskTime = new IfcTaskTimeImpl();
 		return ifcTaskTime;
@@ -9784,6 +10489,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTaskTimeRecurring createIfcTaskTimeRecurring() {
 		IfcTaskTimeRecurringImpl ifcTaskTimeRecurring = new IfcTaskTimeRecurringImpl();
 		return ifcTaskTimeRecurring;
@@ -9794,6 +10500,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTaskType createIfcTaskType() {
 		IfcTaskTypeImpl ifcTaskType = new IfcTaskTypeImpl();
 		return ifcTaskType;
@@ -9804,6 +10511,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTelecomAddress createIfcTelecomAddress() {
 		IfcTelecomAddressImpl ifcTelecomAddress = new IfcTelecomAddressImpl();
 		return ifcTelecomAddress;
@@ -9814,6 +10522,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTendon createIfcTendon() {
 		IfcTendonImpl ifcTendon = new IfcTendonImpl();
 		return ifcTendon;
@@ -9824,6 +10533,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTendonAnchor createIfcTendonAnchor() {
 		IfcTendonAnchorImpl ifcTendonAnchor = new IfcTendonAnchorImpl();
 		return ifcTendonAnchor;
@@ -9834,6 +10544,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTendonAnchorType createIfcTendonAnchorType() {
 		IfcTendonAnchorTypeImpl ifcTendonAnchorType = new IfcTendonAnchorTypeImpl();
 		return ifcTendonAnchorType;
@@ -9844,6 +10555,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTendonType createIfcTendonType() {
 		IfcTendonTypeImpl ifcTendonType = new IfcTendonTypeImpl();
 		return ifcTendonType;
@@ -9854,6 +10566,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTessellatedFaceSet createIfcTessellatedFaceSet() {
 		IfcTessellatedFaceSetImpl ifcTessellatedFaceSet = new IfcTessellatedFaceSetImpl();
 		return ifcTessellatedFaceSet;
@@ -9864,6 +10577,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTessellatedItem createIfcTessellatedItem() {
 		IfcTessellatedItemImpl ifcTessellatedItem = new IfcTessellatedItemImpl();
 		return ifcTessellatedItem;
@@ -9874,6 +10588,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTextLiteral createIfcTextLiteral() {
 		IfcTextLiteralImpl ifcTextLiteral = new IfcTextLiteralImpl();
 		return ifcTextLiteral;
@@ -9884,6 +10599,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTextLiteralWithExtent createIfcTextLiteralWithExtent() {
 		IfcTextLiteralWithExtentImpl ifcTextLiteralWithExtent = new IfcTextLiteralWithExtentImpl();
 		return ifcTextLiteralWithExtent;
@@ -9894,6 +10610,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTextStyle createIfcTextStyle() {
 		IfcTextStyleImpl ifcTextStyle = new IfcTextStyleImpl();
 		return ifcTextStyle;
@@ -9904,6 +10621,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTextStyleFontModel createIfcTextStyleFontModel() {
 		IfcTextStyleFontModelImpl ifcTextStyleFontModel = new IfcTextStyleFontModelImpl();
 		return ifcTextStyleFontModel;
@@ -9914,6 +10632,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTextStyleForDefinedFont createIfcTextStyleForDefinedFont() {
 		IfcTextStyleForDefinedFontImpl ifcTextStyleForDefinedFont = new IfcTextStyleForDefinedFontImpl();
 		return ifcTextStyleForDefinedFont;
@@ -9924,6 +10643,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTextStyleTextModel createIfcTextStyleTextModel() {
 		IfcTextStyleTextModelImpl ifcTextStyleTextModel = new IfcTextStyleTextModelImpl();
 		return ifcTextStyleTextModel;
@@ -9934,6 +10654,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTextureCoordinate createIfcTextureCoordinate() {
 		IfcTextureCoordinateImpl ifcTextureCoordinate = new IfcTextureCoordinateImpl();
 		return ifcTextureCoordinate;
@@ -9944,6 +10665,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTextureCoordinateGenerator createIfcTextureCoordinateGenerator() {
 		IfcTextureCoordinateGeneratorImpl ifcTextureCoordinateGenerator = new IfcTextureCoordinateGeneratorImpl();
 		return ifcTextureCoordinateGenerator;
@@ -9954,6 +10676,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTextureMap createIfcTextureMap() {
 		IfcTextureMapImpl ifcTextureMap = new IfcTextureMapImpl();
 		return ifcTextureMap;
@@ -9964,6 +10687,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTextureVertex createIfcTextureVertex() {
 		IfcTextureVertexImpl ifcTextureVertex = new IfcTextureVertexImpl();
 		return ifcTextureVertex;
@@ -9974,6 +10698,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTextureVertexList createIfcTextureVertexList() {
 		IfcTextureVertexListImpl ifcTextureVertexList = new IfcTextureVertexListImpl();
 		return ifcTextureVertexList;
@@ -9984,6 +10709,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTimePeriod createIfcTimePeriod() {
 		IfcTimePeriodImpl ifcTimePeriod = new IfcTimePeriodImpl();
 		return ifcTimePeriod;
@@ -9994,6 +10720,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTimeSeries createIfcTimeSeries() {
 		IfcTimeSeriesImpl ifcTimeSeries = new IfcTimeSeriesImpl();
 		return ifcTimeSeries;
@@ -10004,6 +10731,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTimeSeriesValue createIfcTimeSeriesValue() {
 		IfcTimeSeriesValueImpl ifcTimeSeriesValue = new IfcTimeSeriesValueImpl();
 		return ifcTimeSeriesValue;
@@ -10014,6 +10742,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTopologicalRepresentationItem createIfcTopologicalRepresentationItem() {
 		IfcTopologicalRepresentationItemImpl ifcTopologicalRepresentationItem = new IfcTopologicalRepresentationItemImpl();
 		return ifcTopologicalRepresentationItem;
@@ -10024,6 +10753,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTopologyRepresentation createIfcTopologyRepresentation() {
 		IfcTopologyRepresentationImpl ifcTopologyRepresentation = new IfcTopologyRepresentationImpl();
 		return ifcTopologyRepresentation;
@@ -10034,6 +10764,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcToroidalSurface createIfcToroidalSurface() {
 		IfcToroidalSurfaceImpl ifcToroidalSurface = new IfcToroidalSurfaceImpl();
 		return ifcToroidalSurface;
@@ -10044,6 +10775,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTransformer createIfcTransformer() {
 		IfcTransformerImpl ifcTransformer = new IfcTransformerImpl();
 		return ifcTransformer;
@@ -10054,6 +10786,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTransformerType createIfcTransformerType() {
 		IfcTransformerTypeImpl ifcTransformerType = new IfcTransformerTypeImpl();
 		return ifcTransformerType;
@@ -10064,6 +10797,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTransportElement createIfcTransportElement() {
 		IfcTransportElementImpl ifcTransportElement = new IfcTransportElementImpl();
 		return ifcTransportElement;
@@ -10074,6 +10808,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTransportElementType createIfcTransportElementType() {
 		IfcTransportElementTypeImpl ifcTransportElementType = new IfcTransportElementTypeImpl();
 		return ifcTransportElementType;
@@ -10084,6 +10819,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTrapeziumProfileDef createIfcTrapeziumProfileDef() {
 		IfcTrapeziumProfileDefImpl ifcTrapeziumProfileDef = new IfcTrapeziumProfileDefImpl();
 		return ifcTrapeziumProfileDef;
@@ -10094,6 +10830,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTriangulatedFaceSet createIfcTriangulatedFaceSet() {
 		IfcTriangulatedFaceSetImpl ifcTriangulatedFaceSet = new IfcTriangulatedFaceSetImpl();
 		return ifcTriangulatedFaceSet;
@@ -10104,6 +10841,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTrimmedCurve createIfcTrimmedCurve() {
 		IfcTrimmedCurveImpl ifcTrimmedCurve = new IfcTrimmedCurveImpl();
 		return ifcTrimmedCurve;
@@ -10114,6 +10852,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTubeBundle createIfcTubeBundle() {
 		IfcTubeBundleImpl ifcTubeBundle = new IfcTubeBundleImpl();
 		return ifcTubeBundle;
@@ -10124,6 +10863,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTubeBundleType createIfcTubeBundleType() {
 		IfcTubeBundleTypeImpl ifcTubeBundleType = new IfcTubeBundleTypeImpl();
 		return ifcTubeBundleType;
@@ -10134,6 +10874,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTypeObject createIfcTypeObject() {
 		IfcTypeObjectImpl ifcTypeObject = new IfcTypeObjectImpl();
 		return ifcTypeObject;
@@ -10144,6 +10885,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTypeProcess createIfcTypeProcess() {
 		IfcTypeProcessImpl ifcTypeProcess = new IfcTypeProcessImpl();
 		return ifcTypeProcess;
@@ -10154,6 +10896,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTypeProduct createIfcTypeProduct() {
 		IfcTypeProductImpl ifcTypeProduct = new IfcTypeProductImpl();
 		return ifcTypeProduct;
@@ -10164,6 +10907,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTypeResource createIfcTypeResource() {
 		IfcTypeResourceImpl ifcTypeResource = new IfcTypeResourceImpl();
 		return ifcTypeResource;
@@ -10174,6 +10918,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcUShapeProfileDef createIfcUShapeProfileDef() {
 		IfcUShapeProfileDefImpl ifcUShapeProfileDef = new IfcUShapeProfileDefImpl();
 		return ifcUShapeProfileDef;
@@ -10184,6 +10929,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcUnitAssignment createIfcUnitAssignment() {
 		IfcUnitAssignmentImpl ifcUnitAssignment = new IfcUnitAssignmentImpl();
 		return ifcUnitAssignment;
@@ -10194,6 +10940,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcUnitaryControlElement createIfcUnitaryControlElement() {
 		IfcUnitaryControlElementImpl ifcUnitaryControlElement = new IfcUnitaryControlElementImpl();
 		return ifcUnitaryControlElement;
@@ -10204,6 +10951,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcUnitaryControlElementType createIfcUnitaryControlElementType() {
 		IfcUnitaryControlElementTypeImpl ifcUnitaryControlElementType = new IfcUnitaryControlElementTypeImpl();
 		return ifcUnitaryControlElementType;
@@ -10214,6 +10962,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcUnitaryEquipment createIfcUnitaryEquipment() {
 		IfcUnitaryEquipmentImpl ifcUnitaryEquipment = new IfcUnitaryEquipmentImpl();
 		return ifcUnitaryEquipment;
@@ -10224,6 +10973,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcUnitaryEquipmentType createIfcUnitaryEquipmentType() {
 		IfcUnitaryEquipmentTypeImpl ifcUnitaryEquipmentType = new IfcUnitaryEquipmentTypeImpl();
 		return ifcUnitaryEquipmentType;
@@ -10234,6 +10984,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcValve createIfcValve() {
 		IfcValveImpl ifcValve = new IfcValveImpl();
 		return ifcValve;
@@ -10244,6 +10995,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcValveType createIfcValveType() {
 		IfcValveTypeImpl ifcValveType = new IfcValveTypeImpl();
 		return ifcValveType;
@@ -10254,6 +11006,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcVector createIfcVector() {
 		IfcVectorImpl ifcVector = new IfcVectorImpl();
 		return ifcVector;
@@ -10264,6 +11017,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcVertex createIfcVertex() {
 		IfcVertexImpl ifcVertex = new IfcVertexImpl();
 		return ifcVertex;
@@ -10274,6 +11028,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcVertexLoop createIfcVertexLoop() {
 		IfcVertexLoopImpl ifcVertexLoop = new IfcVertexLoopImpl();
 		return ifcVertexLoop;
@@ -10284,6 +11039,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcVertexPoint createIfcVertexPoint() {
 		IfcVertexPointImpl ifcVertexPoint = new IfcVertexPointImpl();
 		return ifcVertexPoint;
@@ -10294,6 +11050,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcVibrationIsolator createIfcVibrationIsolator() {
 		IfcVibrationIsolatorImpl ifcVibrationIsolator = new IfcVibrationIsolatorImpl();
 		return ifcVibrationIsolator;
@@ -10304,6 +11061,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcVibrationIsolatorType createIfcVibrationIsolatorType() {
 		IfcVibrationIsolatorTypeImpl ifcVibrationIsolatorType = new IfcVibrationIsolatorTypeImpl();
 		return ifcVibrationIsolatorType;
@@ -10314,6 +11072,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcVirtualElement createIfcVirtualElement() {
 		IfcVirtualElementImpl ifcVirtualElement = new IfcVirtualElementImpl();
 		return ifcVirtualElement;
@@ -10324,6 +11083,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcVirtualGridIntersection createIfcVirtualGridIntersection() {
 		IfcVirtualGridIntersectionImpl ifcVirtualGridIntersection = new IfcVirtualGridIntersectionImpl();
 		return ifcVirtualGridIntersection;
@@ -10334,6 +11094,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcVoidingFeature createIfcVoidingFeature() {
 		IfcVoidingFeatureImpl ifcVoidingFeature = new IfcVoidingFeatureImpl();
 		return ifcVoidingFeature;
@@ -10344,6 +11105,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcWall createIfcWall() {
 		IfcWallImpl ifcWall = new IfcWallImpl();
 		return ifcWall;
@@ -10354,6 +11116,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcWallElementedCase createIfcWallElementedCase() {
 		IfcWallElementedCaseImpl ifcWallElementedCase = new IfcWallElementedCaseImpl();
 		return ifcWallElementedCase;
@@ -10364,6 +11127,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcWallStandardCase createIfcWallStandardCase() {
 		IfcWallStandardCaseImpl ifcWallStandardCase = new IfcWallStandardCaseImpl();
 		return ifcWallStandardCase;
@@ -10374,6 +11138,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcWallType createIfcWallType() {
 		IfcWallTypeImpl ifcWallType = new IfcWallTypeImpl();
 		return ifcWallType;
@@ -10384,6 +11149,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcWasteTerminal createIfcWasteTerminal() {
 		IfcWasteTerminalImpl ifcWasteTerminal = new IfcWasteTerminalImpl();
 		return ifcWasteTerminal;
@@ -10394,6 +11160,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcWasteTerminalType createIfcWasteTerminalType() {
 		IfcWasteTerminalTypeImpl ifcWasteTerminalType = new IfcWasteTerminalTypeImpl();
 		return ifcWasteTerminalType;
@@ -10404,6 +11171,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcWindow createIfcWindow() {
 		IfcWindowImpl ifcWindow = new IfcWindowImpl();
 		return ifcWindow;
@@ -10414,6 +11182,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcWindowLiningProperties createIfcWindowLiningProperties() {
 		IfcWindowLiningPropertiesImpl ifcWindowLiningProperties = new IfcWindowLiningPropertiesImpl();
 		return ifcWindowLiningProperties;
@@ -10424,6 +11193,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcWindowPanelProperties createIfcWindowPanelProperties() {
 		IfcWindowPanelPropertiesImpl ifcWindowPanelProperties = new IfcWindowPanelPropertiesImpl();
 		return ifcWindowPanelProperties;
@@ -10434,6 +11204,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcWindowStandardCase createIfcWindowStandardCase() {
 		IfcWindowStandardCaseImpl ifcWindowStandardCase = new IfcWindowStandardCaseImpl();
 		return ifcWindowStandardCase;
@@ -10444,6 +11215,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcWindowStyle createIfcWindowStyle() {
 		IfcWindowStyleImpl ifcWindowStyle = new IfcWindowStyleImpl();
 		return ifcWindowStyle;
@@ -10454,6 +11226,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcWindowType createIfcWindowType() {
 		IfcWindowTypeImpl ifcWindowType = new IfcWindowTypeImpl();
 		return ifcWindowType;
@@ -10464,6 +11237,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcWorkCalendar createIfcWorkCalendar() {
 		IfcWorkCalendarImpl ifcWorkCalendar = new IfcWorkCalendarImpl();
 		return ifcWorkCalendar;
@@ -10474,6 +11248,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcWorkControl createIfcWorkControl() {
 		IfcWorkControlImpl ifcWorkControl = new IfcWorkControlImpl();
 		return ifcWorkControl;
@@ -10484,6 +11259,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcWorkPlan createIfcWorkPlan() {
 		IfcWorkPlanImpl ifcWorkPlan = new IfcWorkPlanImpl();
 		return ifcWorkPlan;
@@ -10494,6 +11270,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcWorkSchedule createIfcWorkSchedule() {
 		IfcWorkScheduleImpl ifcWorkSchedule = new IfcWorkScheduleImpl();
 		return ifcWorkSchedule;
@@ -10504,6 +11281,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcWorkTime createIfcWorkTime() {
 		IfcWorkTimeImpl ifcWorkTime = new IfcWorkTimeImpl();
 		return ifcWorkTime;
@@ -10514,6 +11292,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcZShapeProfileDef createIfcZShapeProfileDef() {
 		IfcZShapeProfileDefImpl ifcZShapeProfileDef = new IfcZShapeProfileDefImpl();
 		return ifcZShapeProfileDef;
@@ -10524,6 +11303,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcZone createIfcZone() {
 		IfcZoneImpl ifcZone = new IfcZoneImpl();
 		return ifcZone;
@@ -10534,6 +11314,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStrippedOptional createIfcStrippedOptional() {
 		IfcStrippedOptionalImpl ifcStrippedOptional = new IfcStrippedOptionalImpl();
 		return ifcStrippedOptional;
@@ -10544,6 +11325,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAbsorbedDoseMeasure createIfcAbsorbedDoseMeasure() {
 		IfcAbsorbedDoseMeasureImpl ifcAbsorbedDoseMeasure = new IfcAbsorbedDoseMeasureImpl();
 		return ifcAbsorbedDoseMeasure;
@@ -10554,6 +11336,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAccelerationMeasure createIfcAccelerationMeasure() {
 		IfcAccelerationMeasureImpl ifcAccelerationMeasure = new IfcAccelerationMeasureImpl();
 		return ifcAccelerationMeasure;
@@ -10564,6 +11347,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAmountOfSubstanceMeasure createIfcAmountOfSubstanceMeasure() {
 		IfcAmountOfSubstanceMeasureImpl ifcAmountOfSubstanceMeasure = new IfcAmountOfSubstanceMeasureImpl();
 		return ifcAmountOfSubstanceMeasure;
@@ -10574,6 +11358,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAngularVelocityMeasure createIfcAngularVelocityMeasure() {
 		IfcAngularVelocityMeasureImpl ifcAngularVelocityMeasure = new IfcAngularVelocityMeasureImpl();
 		return ifcAngularVelocityMeasure;
@@ -10584,6 +11369,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAreaDensityMeasure createIfcAreaDensityMeasure() {
 		IfcAreaDensityMeasureImpl ifcAreaDensityMeasure = new IfcAreaDensityMeasureImpl();
 		return ifcAreaDensityMeasure;
@@ -10594,6 +11380,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAreaMeasure createIfcAreaMeasure() {
 		IfcAreaMeasureImpl ifcAreaMeasure = new IfcAreaMeasureImpl();
 		return ifcAreaMeasure;
@@ -10604,6 +11391,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBinary createIfcBinary() {
 		IfcBinaryImpl ifcBinary = new IfcBinaryImpl();
 		return ifcBinary;
@@ -10614,6 +11402,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBoolean createIfcBoolean() {
 		IfcBooleanImpl ifcBoolean = new IfcBooleanImpl();
 		return ifcBoolean;
@@ -10624,6 +11413,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCardinalPointReference createIfcCardinalPointReference() {
 		IfcCardinalPointReferenceImpl ifcCardinalPointReference = new IfcCardinalPointReferenceImpl();
 		return ifcCardinalPointReference;
@@ -10634,6 +11424,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcContextDependentMeasure createIfcContextDependentMeasure() {
 		IfcContextDependentMeasureImpl ifcContextDependentMeasure = new IfcContextDependentMeasureImpl();
 		return ifcContextDependentMeasure;
@@ -10644,6 +11435,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCountMeasure createIfcCountMeasure() {
 		IfcCountMeasureImpl ifcCountMeasure = new IfcCountMeasureImpl();
 		return ifcCountMeasure;
@@ -10654,6 +11446,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCurvatureMeasure createIfcCurvatureMeasure() {
 		IfcCurvatureMeasureImpl ifcCurvatureMeasure = new IfcCurvatureMeasureImpl();
 		return ifcCurvatureMeasure;
@@ -10664,6 +11457,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDate createIfcDate() {
 		IfcDateImpl ifcDate = new IfcDateImpl();
 		return ifcDate;
@@ -10674,6 +11468,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDateTime createIfcDateTime() {
 		IfcDateTimeImpl ifcDateTime = new IfcDateTimeImpl();
 		return ifcDateTime;
@@ -10684,6 +11479,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDayInMonthNumber createIfcDayInMonthNumber() {
 		IfcDayInMonthNumberImpl ifcDayInMonthNumber = new IfcDayInMonthNumberImpl();
 		return ifcDayInMonthNumber;
@@ -10694,6 +11490,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDayInWeekNumber createIfcDayInWeekNumber() {
 		IfcDayInWeekNumberImpl ifcDayInWeekNumber = new IfcDayInWeekNumberImpl();
 		return ifcDayInWeekNumber;
@@ -10704,6 +11501,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDescriptiveMeasure createIfcDescriptiveMeasure() {
 		IfcDescriptiveMeasureImpl ifcDescriptiveMeasure = new IfcDescriptiveMeasureImpl();
 		return ifcDescriptiveMeasure;
@@ -10714,6 +11512,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDimensionCount createIfcDimensionCount() {
 		IfcDimensionCountImpl ifcDimensionCount = new IfcDimensionCountImpl();
 		return ifcDimensionCount;
@@ -10724,6 +11523,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDoseEquivalentMeasure createIfcDoseEquivalentMeasure() {
 		IfcDoseEquivalentMeasureImpl ifcDoseEquivalentMeasure = new IfcDoseEquivalentMeasureImpl();
 		return ifcDoseEquivalentMeasure;
@@ -10734,6 +11534,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDuration createIfcDuration() {
 		IfcDurationImpl ifcDuration = new IfcDurationImpl();
 		return ifcDuration;
@@ -10744,6 +11545,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDynamicViscosityMeasure createIfcDynamicViscosityMeasure() {
 		IfcDynamicViscosityMeasureImpl ifcDynamicViscosityMeasure = new IfcDynamicViscosityMeasureImpl();
 		return ifcDynamicViscosityMeasure;
@@ -10754,6 +11556,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElectricCapacitanceMeasure createIfcElectricCapacitanceMeasure() {
 		IfcElectricCapacitanceMeasureImpl ifcElectricCapacitanceMeasure = new IfcElectricCapacitanceMeasureImpl();
 		return ifcElectricCapacitanceMeasure;
@@ -10764,6 +11567,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElectricChargeMeasure createIfcElectricChargeMeasure() {
 		IfcElectricChargeMeasureImpl ifcElectricChargeMeasure = new IfcElectricChargeMeasureImpl();
 		return ifcElectricChargeMeasure;
@@ -10774,6 +11578,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElectricConductanceMeasure createIfcElectricConductanceMeasure() {
 		IfcElectricConductanceMeasureImpl ifcElectricConductanceMeasure = new IfcElectricConductanceMeasureImpl();
 		return ifcElectricConductanceMeasure;
@@ -10784,6 +11589,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElectricCurrentMeasure createIfcElectricCurrentMeasure() {
 		IfcElectricCurrentMeasureImpl ifcElectricCurrentMeasure = new IfcElectricCurrentMeasureImpl();
 		return ifcElectricCurrentMeasure;
@@ -10794,6 +11600,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElectricResistanceMeasure createIfcElectricResistanceMeasure() {
 		IfcElectricResistanceMeasureImpl ifcElectricResistanceMeasure = new IfcElectricResistanceMeasureImpl();
 		return ifcElectricResistanceMeasure;
@@ -10804,6 +11611,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElectricVoltageMeasure createIfcElectricVoltageMeasure() {
 		IfcElectricVoltageMeasureImpl ifcElectricVoltageMeasure = new IfcElectricVoltageMeasureImpl();
 		return ifcElectricVoltageMeasure;
@@ -10814,6 +11622,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcEnergyMeasure createIfcEnergyMeasure() {
 		IfcEnergyMeasureImpl ifcEnergyMeasure = new IfcEnergyMeasureImpl();
 		return ifcEnergyMeasure;
@@ -10824,6 +11633,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFontStyle createIfcFontStyle() {
 		IfcFontStyleImpl ifcFontStyle = new IfcFontStyleImpl();
 		return ifcFontStyle;
@@ -10834,6 +11644,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFontVariant createIfcFontVariant() {
 		IfcFontVariantImpl ifcFontVariant = new IfcFontVariantImpl();
 		return ifcFontVariant;
@@ -10844,6 +11655,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFontWeight createIfcFontWeight() {
 		IfcFontWeightImpl ifcFontWeight = new IfcFontWeightImpl();
 		return ifcFontWeight;
@@ -10854,6 +11666,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcForceMeasure createIfcForceMeasure() {
 		IfcForceMeasureImpl ifcForceMeasure = new IfcForceMeasureImpl();
 		return ifcForceMeasure;
@@ -10864,6 +11677,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFrequencyMeasure createIfcFrequencyMeasure() {
 		IfcFrequencyMeasureImpl ifcFrequencyMeasure = new IfcFrequencyMeasureImpl();
 		return ifcFrequencyMeasure;
@@ -10874,6 +11688,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcGloballyUniqueId createIfcGloballyUniqueId() {
 		IfcGloballyUniqueIdImpl ifcGloballyUniqueId = new IfcGloballyUniqueIdImpl();
 		return ifcGloballyUniqueId;
@@ -10884,6 +11699,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcHeatFluxDensityMeasure createIfcHeatFluxDensityMeasure() {
 		IfcHeatFluxDensityMeasureImpl ifcHeatFluxDensityMeasure = new IfcHeatFluxDensityMeasureImpl();
 		return ifcHeatFluxDensityMeasure;
@@ -10894,6 +11710,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcHeatingValueMeasure createIfcHeatingValueMeasure() {
 		IfcHeatingValueMeasureImpl ifcHeatingValueMeasure = new IfcHeatingValueMeasureImpl();
 		return ifcHeatingValueMeasure;
@@ -10904,6 +11721,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcIdentifier createIfcIdentifier() {
 		IfcIdentifierImpl ifcIdentifier = new IfcIdentifierImpl();
 		return ifcIdentifier;
@@ -10914,6 +11732,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcIlluminanceMeasure createIfcIlluminanceMeasure() {
 		IfcIlluminanceMeasureImpl ifcIlluminanceMeasure = new IfcIlluminanceMeasureImpl();
 		return ifcIlluminanceMeasure;
@@ -10924,6 +11743,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcInductanceMeasure createIfcInductanceMeasure() {
 		IfcInductanceMeasureImpl ifcInductanceMeasure = new IfcInductanceMeasureImpl();
 		return ifcInductanceMeasure;
@@ -10934,6 +11754,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcInteger createIfcInteger() {
 		IfcIntegerImpl ifcInteger = new IfcIntegerImpl();
 		return ifcInteger;
@@ -10944,6 +11765,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcIntegerCountRateMeasure createIfcIntegerCountRateMeasure() {
 		IfcIntegerCountRateMeasureImpl ifcIntegerCountRateMeasure = new IfcIntegerCountRateMeasureImpl();
 		return ifcIntegerCountRateMeasure;
@@ -10954,6 +11776,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcIonConcentrationMeasure createIfcIonConcentrationMeasure() {
 		IfcIonConcentrationMeasureImpl ifcIonConcentrationMeasure = new IfcIonConcentrationMeasureImpl();
 		return ifcIonConcentrationMeasure;
@@ -10964,6 +11787,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcIsothermalMoistureCapacityMeasure createIfcIsothermalMoistureCapacityMeasure() {
 		IfcIsothermalMoistureCapacityMeasureImpl ifcIsothermalMoistureCapacityMeasure = new IfcIsothermalMoistureCapacityMeasureImpl();
 		return ifcIsothermalMoistureCapacityMeasure;
@@ -10974,6 +11798,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcKinematicViscosityMeasure createIfcKinematicViscosityMeasure() {
 		IfcKinematicViscosityMeasureImpl ifcKinematicViscosityMeasure = new IfcKinematicViscosityMeasureImpl();
 		return ifcKinematicViscosityMeasure;
@@ -10984,6 +11809,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLabel createIfcLabel() {
 		IfcLabelImpl ifcLabel = new IfcLabelImpl();
 		return ifcLabel;
@@ -10994,6 +11820,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLengthMeasure createIfcLengthMeasure() {
 		IfcLengthMeasureImpl ifcLengthMeasure = new IfcLengthMeasureImpl();
 		return ifcLengthMeasure;
@@ -11004,6 +11831,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLinearForceMeasure createIfcLinearForceMeasure() {
 		IfcLinearForceMeasureImpl ifcLinearForceMeasure = new IfcLinearForceMeasureImpl();
 		return ifcLinearForceMeasure;
@@ -11014,6 +11842,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLinearMomentMeasure createIfcLinearMomentMeasure() {
 		IfcLinearMomentMeasureImpl ifcLinearMomentMeasure = new IfcLinearMomentMeasureImpl();
 		return ifcLinearMomentMeasure;
@@ -11024,6 +11853,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLinearStiffnessMeasure createIfcLinearStiffnessMeasure() {
 		IfcLinearStiffnessMeasureImpl ifcLinearStiffnessMeasure = new IfcLinearStiffnessMeasureImpl();
 		return ifcLinearStiffnessMeasure;
@@ -11034,6 +11864,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLinearVelocityMeasure createIfcLinearVelocityMeasure() {
 		IfcLinearVelocityMeasureImpl ifcLinearVelocityMeasure = new IfcLinearVelocityMeasureImpl();
 		return ifcLinearVelocityMeasure;
@@ -11044,6 +11875,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLogical createIfcLogical() {
 		IfcLogicalImpl ifcLogical = new IfcLogicalImpl();
 		return ifcLogical;
@@ -11054,6 +11886,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLuminousFluxMeasure createIfcLuminousFluxMeasure() {
 		IfcLuminousFluxMeasureImpl ifcLuminousFluxMeasure = new IfcLuminousFluxMeasureImpl();
 		return ifcLuminousFluxMeasure;
@@ -11064,6 +11897,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLuminousIntensityDistributionMeasure createIfcLuminousIntensityDistributionMeasure() {
 		IfcLuminousIntensityDistributionMeasureImpl ifcLuminousIntensityDistributionMeasure = new IfcLuminousIntensityDistributionMeasureImpl();
 		return ifcLuminousIntensityDistributionMeasure;
@@ -11074,6 +11908,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLuminousIntensityMeasure createIfcLuminousIntensityMeasure() {
 		IfcLuminousIntensityMeasureImpl ifcLuminousIntensityMeasure = new IfcLuminousIntensityMeasureImpl();
 		return ifcLuminousIntensityMeasure;
@@ -11084,6 +11919,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMagneticFluxDensityMeasure createIfcMagneticFluxDensityMeasure() {
 		IfcMagneticFluxDensityMeasureImpl ifcMagneticFluxDensityMeasure = new IfcMagneticFluxDensityMeasureImpl();
 		return ifcMagneticFluxDensityMeasure;
@@ -11094,6 +11930,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMagneticFluxMeasure createIfcMagneticFluxMeasure() {
 		IfcMagneticFluxMeasureImpl ifcMagneticFluxMeasure = new IfcMagneticFluxMeasureImpl();
 		return ifcMagneticFluxMeasure;
@@ -11104,6 +11941,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMassDensityMeasure createIfcMassDensityMeasure() {
 		IfcMassDensityMeasureImpl ifcMassDensityMeasure = new IfcMassDensityMeasureImpl();
 		return ifcMassDensityMeasure;
@@ -11114,6 +11952,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMassFlowRateMeasure createIfcMassFlowRateMeasure() {
 		IfcMassFlowRateMeasureImpl ifcMassFlowRateMeasure = new IfcMassFlowRateMeasureImpl();
 		return ifcMassFlowRateMeasure;
@@ -11124,6 +11963,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMassMeasure createIfcMassMeasure() {
 		IfcMassMeasureImpl ifcMassMeasure = new IfcMassMeasureImpl();
 		return ifcMassMeasure;
@@ -11134,6 +11974,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMassPerLengthMeasure createIfcMassPerLengthMeasure() {
 		IfcMassPerLengthMeasureImpl ifcMassPerLengthMeasure = new IfcMassPerLengthMeasureImpl();
 		return ifcMassPerLengthMeasure;
@@ -11144,6 +11985,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcModulusOfElasticityMeasure createIfcModulusOfElasticityMeasure() {
 		IfcModulusOfElasticityMeasureImpl ifcModulusOfElasticityMeasure = new IfcModulusOfElasticityMeasureImpl();
 		return ifcModulusOfElasticityMeasure;
@@ -11154,6 +11996,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcModulusOfLinearSubgradeReactionMeasure createIfcModulusOfLinearSubgradeReactionMeasure() {
 		IfcModulusOfLinearSubgradeReactionMeasureImpl ifcModulusOfLinearSubgradeReactionMeasure = new IfcModulusOfLinearSubgradeReactionMeasureImpl();
 		return ifcModulusOfLinearSubgradeReactionMeasure;
@@ -11164,6 +12007,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcModulusOfRotationalSubgradeReactionMeasure createIfcModulusOfRotationalSubgradeReactionMeasure() {
 		IfcModulusOfRotationalSubgradeReactionMeasureImpl ifcModulusOfRotationalSubgradeReactionMeasure = new IfcModulusOfRotationalSubgradeReactionMeasureImpl();
 		return ifcModulusOfRotationalSubgradeReactionMeasure;
@@ -11174,6 +12018,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcModulusOfSubgradeReactionMeasure createIfcModulusOfSubgradeReactionMeasure() {
 		IfcModulusOfSubgradeReactionMeasureImpl ifcModulusOfSubgradeReactionMeasure = new IfcModulusOfSubgradeReactionMeasureImpl();
 		return ifcModulusOfSubgradeReactionMeasure;
@@ -11184,6 +12029,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMoistureDiffusivityMeasure createIfcMoistureDiffusivityMeasure() {
 		IfcMoistureDiffusivityMeasureImpl ifcMoistureDiffusivityMeasure = new IfcMoistureDiffusivityMeasureImpl();
 		return ifcMoistureDiffusivityMeasure;
@@ -11194,6 +12040,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMolecularWeightMeasure createIfcMolecularWeightMeasure() {
 		IfcMolecularWeightMeasureImpl ifcMolecularWeightMeasure = new IfcMolecularWeightMeasureImpl();
 		return ifcMolecularWeightMeasure;
@@ -11204,6 +12051,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMomentOfInertiaMeasure createIfcMomentOfInertiaMeasure() {
 		IfcMomentOfInertiaMeasureImpl ifcMomentOfInertiaMeasure = new IfcMomentOfInertiaMeasureImpl();
 		return ifcMomentOfInertiaMeasure;
@@ -11214,6 +12062,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMonetaryMeasure createIfcMonetaryMeasure() {
 		IfcMonetaryMeasureImpl ifcMonetaryMeasure = new IfcMonetaryMeasureImpl();
 		return ifcMonetaryMeasure;
@@ -11224,6 +12073,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcMonthInYearNumber createIfcMonthInYearNumber() {
 		IfcMonthInYearNumberImpl ifcMonthInYearNumber = new IfcMonthInYearNumberImpl();
 		return ifcMonthInYearNumber;
@@ -11234,6 +12084,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcNumericMeasure createIfcNumericMeasure() {
 		IfcNumericMeasureImpl ifcNumericMeasure = new IfcNumericMeasureImpl();
 		return ifcNumericMeasure;
@@ -11244,6 +12095,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPHMeasure createIfcPHMeasure() {
 		IfcPHMeasureImpl ifcPHMeasure = new IfcPHMeasureImpl();
 		return ifcPHMeasure;
@@ -11254,6 +12106,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcParameterValue createIfcParameterValue() {
 		IfcParameterValueImpl ifcParameterValue = new IfcParameterValueImpl();
 		return ifcParameterValue;
@@ -11264,6 +12117,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPlanarForceMeasure createIfcPlanarForceMeasure() {
 		IfcPlanarForceMeasureImpl ifcPlanarForceMeasure = new IfcPlanarForceMeasureImpl();
 		return ifcPlanarForceMeasure;
@@ -11274,6 +12128,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPlaneAngleMeasure createIfcPlaneAngleMeasure() {
 		IfcPlaneAngleMeasureImpl ifcPlaneAngleMeasure = new IfcPlaneAngleMeasureImpl();
 		return ifcPlaneAngleMeasure;
@@ -11284,6 +12139,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPowerMeasure createIfcPowerMeasure() {
 		IfcPowerMeasureImpl ifcPowerMeasure = new IfcPowerMeasureImpl();
 		return ifcPowerMeasure;
@@ -11294,6 +12150,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPresentableText createIfcPresentableText() {
 		IfcPresentableTextImpl ifcPresentableText = new IfcPresentableTextImpl();
 		return ifcPresentableText;
@@ -11304,6 +12161,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPressureMeasure createIfcPressureMeasure() {
 		IfcPressureMeasureImpl ifcPressureMeasure = new IfcPressureMeasureImpl();
 		return ifcPressureMeasure;
@@ -11314,6 +12172,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRadioActivityMeasure createIfcRadioActivityMeasure() {
 		IfcRadioActivityMeasureImpl ifcRadioActivityMeasure = new IfcRadioActivityMeasureImpl();
 		return ifcRadioActivityMeasure;
@@ -11324,6 +12183,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRatioMeasure createIfcRatioMeasure() {
 		IfcRatioMeasureImpl ifcRatioMeasure = new IfcRatioMeasureImpl();
 		return ifcRatioMeasure;
@@ -11334,6 +12194,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcReal createIfcReal() {
 		IfcRealImpl ifcReal = new IfcRealImpl();
 		return ifcReal;
@@ -11344,6 +12205,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRotationalFrequencyMeasure createIfcRotationalFrequencyMeasure() {
 		IfcRotationalFrequencyMeasureImpl ifcRotationalFrequencyMeasure = new IfcRotationalFrequencyMeasureImpl();
 		return ifcRotationalFrequencyMeasure;
@@ -11354,6 +12216,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRotationalMassMeasure createIfcRotationalMassMeasure() {
 		IfcRotationalMassMeasureImpl ifcRotationalMassMeasure = new IfcRotationalMassMeasureImpl();
 		return ifcRotationalMassMeasure;
@@ -11364,6 +12227,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRotationalStiffnessMeasure createIfcRotationalStiffnessMeasure() {
 		IfcRotationalStiffnessMeasureImpl ifcRotationalStiffnessMeasure = new IfcRotationalStiffnessMeasureImpl();
 		return ifcRotationalStiffnessMeasure;
@@ -11374,6 +12238,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSectionModulusMeasure createIfcSectionModulusMeasure() {
 		IfcSectionModulusMeasureImpl ifcSectionModulusMeasure = new IfcSectionModulusMeasureImpl();
 		return ifcSectionModulusMeasure;
@@ -11384,6 +12249,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSectionalAreaIntegralMeasure createIfcSectionalAreaIntegralMeasure() {
 		IfcSectionalAreaIntegralMeasureImpl ifcSectionalAreaIntegralMeasure = new IfcSectionalAreaIntegralMeasureImpl();
 		return ifcSectionalAreaIntegralMeasure;
@@ -11394,6 +12260,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcShearModulusMeasure createIfcShearModulusMeasure() {
 		IfcShearModulusMeasureImpl ifcShearModulusMeasure = new IfcShearModulusMeasureImpl();
 		return ifcShearModulusMeasure;
@@ -11404,6 +12271,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSolidAngleMeasure createIfcSolidAngleMeasure() {
 		IfcSolidAngleMeasureImpl ifcSolidAngleMeasure = new IfcSolidAngleMeasureImpl();
 		return ifcSolidAngleMeasure;
@@ -11414,6 +12282,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSoundPowerLevelMeasure createIfcSoundPowerLevelMeasure() {
 		IfcSoundPowerLevelMeasureImpl ifcSoundPowerLevelMeasure = new IfcSoundPowerLevelMeasureImpl();
 		return ifcSoundPowerLevelMeasure;
@@ -11424,6 +12293,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSoundPowerMeasure createIfcSoundPowerMeasure() {
 		IfcSoundPowerMeasureImpl ifcSoundPowerMeasure = new IfcSoundPowerMeasureImpl();
 		return ifcSoundPowerMeasure;
@@ -11434,6 +12304,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSoundPressureLevelMeasure createIfcSoundPressureLevelMeasure() {
 		IfcSoundPressureLevelMeasureImpl ifcSoundPressureLevelMeasure = new IfcSoundPressureLevelMeasureImpl();
 		return ifcSoundPressureLevelMeasure;
@@ -11444,6 +12315,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSoundPressureMeasure createIfcSoundPressureMeasure() {
 		IfcSoundPressureMeasureImpl ifcSoundPressureMeasure = new IfcSoundPressureMeasureImpl();
 		return ifcSoundPressureMeasure;
@@ -11454,6 +12326,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSpecificHeatCapacityMeasure createIfcSpecificHeatCapacityMeasure() {
 		IfcSpecificHeatCapacityMeasureImpl ifcSpecificHeatCapacityMeasure = new IfcSpecificHeatCapacityMeasureImpl();
 		return ifcSpecificHeatCapacityMeasure;
@@ -11464,6 +12337,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSpecularExponent createIfcSpecularExponent() {
 		IfcSpecularExponentImpl ifcSpecularExponent = new IfcSpecularExponentImpl();
 		return ifcSpecularExponent;
@@ -11474,6 +12348,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSpecularRoughness createIfcSpecularRoughness() {
 		IfcSpecularRoughnessImpl ifcSpecularRoughness = new IfcSpecularRoughnessImpl();
 		return ifcSpecularRoughness;
@@ -11484,6 +12359,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTemperatureGradientMeasure createIfcTemperatureGradientMeasure() {
 		IfcTemperatureGradientMeasureImpl ifcTemperatureGradientMeasure = new IfcTemperatureGradientMeasureImpl();
 		return ifcTemperatureGradientMeasure;
@@ -11494,6 +12370,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTemperatureRateOfChangeMeasure createIfcTemperatureRateOfChangeMeasure() {
 		IfcTemperatureRateOfChangeMeasureImpl ifcTemperatureRateOfChangeMeasure = new IfcTemperatureRateOfChangeMeasureImpl();
 		return ifcTemperatureRateOfChangeMeasure;
@@ -11504,6 +12381,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcText createIfcText() {
 		IfcTextImpl ifcText = new IfcTextImpl();
 		return ifcText;
@@ -11514,6 +12392,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTextAlignment createIfcTextAlignment() {
 		IfcTextAlignmentImpl ifcTextAlignment = new IfcTextAlignmentImpl();
 		return ifcTextAlignment;
@@ -11524,6 +12403,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTextDecoration createIfcTextDecoration() {
 		IfcTextDecorationImpl ifcTextDecoration = new IfcTextDecorationImpl();
 		return ifcTextDecoration;
@@ -11534,6 +12414,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTextFontName createIfcTextFontName() {
 		IfcTextFontNameImpl ifcTextFontName = new IfcTextFontNameImpl();
 		return ifcTextFontName;
@@ -11544,6 +12425,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTextTransformation createIfcTextTransformation() {
 		IfcTextTransformationImpl ifcTextTransformation = new IfcTextTransformationImpl();
 		return ifcTextTransformation;
@@ -11554,6 +12436,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcThermalAdmittanceMeasure createIfcThermalAdmittanceMeasure() {
 		IfcThermalAdmittanceMeasureImpl ifcThermalAdmittanceMeasure = new IfcThermalAdmittanceMeasureImpl();
 		return ifcThermalAdmittanceMeasure;
@@ -11564,6 +12447,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcThermalConductivityMeasure createIfcThermalConductivityMeasure() {
 		IfcThermalConductivityMeasureImpl ifcThermalConductivityMeasure = new IfcThermalConductivityMeasureImpl();
 		return ifcThermalConductivityMeasure;
@@ -11574,6 +12458,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcThermalExpansionCoefficientMeasure createIfcThermalExpansionCoefficientMeasure() {
 		IfcThermalExpansionCoefficientMeasureImpl ifcThermalExpansionCoefficientMeasure = new IfcThermalExpansionCoefficientMeasureImpl();
 		return ifcThermalExpansionCoefficientMeasure;
@@ -11584,6 +12469,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcThermalResistanceMeasure createIfcThermalResistanceMeasure() {
 		IfcThermalResistanceMeasureImpl ifcThermalResistanceMeasure = new IfcThermalResistanceMeasureImpl();
 		return ifcThermalResistanceMeasure;
@@ -11594,6 +12480,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcThermalTransmittanceMeasure createIfcThermalTransmittanceMeasure() {
 		IfcThermalTransmittanceMeasureImpl ifcThermalTransmittanceMeasure = new IfcThermalTransmittanceMeasureImpl();
 		return ifcThermalTransmittanceMeasure;
@@ -11604,6 +12491,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcThermodynamicTemperatureMeasure createIfcThermodynamicTemperatureMeasure() {
 		IfcThermodynamicTemperatureMeasureImpl ifcThermodynamicTemperatureMeasure = new IfcThermodynamicTemperatureMeasureImpl();
 		return ifcThermodynamicTemperatureMeasure;
@@ -11614,6 +12502,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTime createIfcTime() {
 		IfcTimeImpl ifcTime = new IfcTimeImpl();
 		return ifcTime;
@@ -11624,6 +12513,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTimeMeasure createIfcTimeMeasure() {
 		IfcTimeMeasureImpl ifcTimeMeasure = new IfcTimeMeasureImpl();
 		return ifcTimeMeasure;
@@ -11634,6 +12524,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTimeStamp createIfcTimeStamp() {
 		IfcTimeStampImpl ifcTimeStamp = new IfcTimeStampImpl();
 		return ifcTimeStamp;
@@ -11644,6 +12535,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcTorqueMeasure createIfcTorqueMeasure() {
 		IfcTorqueMeasureImpl ifcTorqueMeasure = new IfcTorqueMeasureImpl();
 		return ifcTorqueMeasure;
@@ -11654,6 +12546,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcURIReference createIfcURIReference() {
 		IfcURIReferenceImpl ifcURIReference = new IfcURIReferenceImpl();
 		return ifcURIReference;
@@ -11664,6 +12557,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcVaporPermeabilityMeasure createIfcVaporPermeabilityMeasure() {
 		IfcVaporPermeabilityMeasureImpl ifcVaporPermeabilityMeasure = new IfcVaporPermeabilityMeasureImpl();
 		return ifcVaporPermeabilityMeasure;
@@ -11674,6 +12568,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcVolumeMeasure createIfcVolumeMeasure() {
 		IfcVolumeMeasureImpl ifcVolumeMeasure = new IfcVolumeMeasureImpl();
 		return ifcVolumeMeasure;
@@ -11684,6 +12579,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcVolumetricFlowRateMeasure createIfcVolumetricFlowRateMeasure() {
 		IfcVolumetricFlowRateMeasureImpl ifcVolumetricFlowRateMeasure = new IfcVolumetricFlowRateMeasureImpl();
 		return ifcVolumetricFlowRateMeasure;
@@ -11694,6 +12590,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcWarpingConstantMeasure createIfcWarpingConstantMeasure() {
 		IfcWarpingConstantMeasureImpl ifcWarpingConstantMeasure = new IfcWarpingConstantMeasureImpl();
 		return ifcWarpingConstantMeasure;
@@ -11704,6 +12601,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcWarpingMomentMeasure createIfcWarpingMomentMeasure() {
 		IfcWarpingMomentMeasureImpl ifcWarpingMomentMeasure = new IfcWarpingMomentMeasureImpl();
 		return ifcWarpingMomentMeasure;
@@ -11714,6 +12612,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBoxAlignment createIfcBoxAlignment() {
 		IfcBoxAlignmentImpl ifcBoxAlignment = new IfcBoxAlignmentImpl();
 		return ifcBoxAlignment;
@@ -11724,6 +12623,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCompoundPlaneAngleMeasure createIfcCompoundPlaneAngleMeasure() {
 		IfcCompoundPlaneAngleMeasureImpl ifcCompoundPlaneAngleMeasure = new IfcCompoundPlaneAngleMeasureImpl();
 		return ifcCompoundPlaneAngleMeasure;
@@ -11734,6 +12634,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLanguageId createIfcLanguageId() {
 		IfcLanguageIdImpl ifcLanguageId = new IfcLanguageIdImpl();
 		return ifcLanguageId;
@@ -11744,6 +12645,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcNonNegativeLengthMeasure createIfcNonNegativeLengthMeasure() {
 		IfcNonNegativeLengthMeasureImpl ifcNonNegativeLengthMeasure = new IfcNonNegativeLengthMeasureImpl();
 		return ifcNonNegativeLengthMeasure;
@@ -11754,6 +12656,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcNormalisedRatioMeasure createIfcNormalisedRatioMeasure() {
 		IfcNormalisedRatioMeasureImpl ifcNormalisedRatioMeasure = new IfcNormalisedRatioMeasureImpl();
 		return ifcNormalisedRatioMeasure;
@@ -11764,6 +12667,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPositiveInteger createIfcPositiveInteger() {
 		IfcPositiveIntegerImpl ifcPositiveInteger = new IfcPositiveIntegerImpl();
 		return ifcPositiveInteger;
@@ -11774,6 +12678,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPositiveLengthMeasure createIfcPositiveLengthMeasure() {
 		IfcPositiveLengthMeasureImpl ifcPositiveLengthMeasure = new IfcPositiveLengthMeasureImpl();
 		return ifcPositiveLengthMeasure;
@@ -11784,6 +12689,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPositivePlaneAngleMeasure createIfcPositivePlaneAngleMeasure() {
 		IfcPositivePlaneAngleMeasureImpl ifcPositivePlaneAngleMeasure = new IfcPositivePlaneAngleMeasureImpl();
 		return ifcPositivePlaneAngleMeasure;
@@ -11794,6 +12700,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPositiveRatioMeasure createIfcPositiveRatioMeasure() {
 		IfcPositiveRatioMeasureImpl ifcPositiveRatioMeasure = new IfcPositiveRatioMeasureImpl();
 		return ifcPositiveRatioMeasure;
@@ -11804,6 +12711,18 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public IfcArcIndex createIfcArcIndex() {
+		IfcArcIndexImpl ifcArcIndex = new IfcArcIndexImpl();
+		return ifcArcIndex;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public IfcComplexNumber createIfcComplexNumber() {
 		IfcComplexNumberImpl ifcComplexNumber = new IfcComplexNumberImpl();
 		return ifcComplexNumber;
@@ -11814,6 +12733,18 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public IfcLineIndex createIfcLineIndex() {
+		IfcLineIndexImpl ifcLineIndex = new IfcLineIndexImpl();
+		return ifcLineIndex;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public IfcNullStyle createIfcNullStyle() {
 		IfcNullStyleImpl ifcNullStyle = new IfcNullStyleImpl();
 		return ifcNullStyle;
@@ -11824,6 +12755,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ListOfIfcCartesianPoint createListOfIfcCartesianPoint() {
 		ListOfIfcCartesianPointImpl listOfIfcCartesianPoint = new ListOfIfcCartesianPointImpl();
 		return listOfIfcCartesianPoint;
@@ -11834,6 +12766,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ListOfIfcLengthMeasure createListOfIfcLengthMeasure() {
 		ListOfIfcLengthMeasureImpl listOfIfcLengthMeasure = new ListOfIfcLengthMeasureImpl();
 		return listOfIfcLengthMeasure;
@@ -11844,6 +12777,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ListOfIfcNormalisedRatioMeasure createListOfIfcNormalisedRatioMeasure() {
 		ListOfIfcNormalisedRatioMeasureImpl listOfIfcNormalisedRatioMeasure = new ListOfIfcNormalisedRatioMeasureImpl();
 		return listOfIfcNormalisedRatioMeasure;
@@ -11854,6 +12788,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ListOfELong createListOfELong() {
 		ListOfELongImpl listOfELong = new ListOfELongImpl();
 		return listOfELong;
@@ -11864,6 +12799,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ListOfEDouble createListOfEDouble() {
 		ListOfEDoubleImpl listOfEDouble = new ListOfEDoubleImpl();
 		return listOfEDouble;
@@ -11874,6 +12810,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ListOfIfcParameterValue createListOfIfcParameterValue() {
 		ListOfIfcParameterValueImpl listOfIfcParameterValue = new ListOfIfcParameterValueImpl();
 		return listOfIfcParameterValue;
@@ -16536,6 +17473,7 @@ public class Ifc4FactoryImpl extends EFactoryImpl implements Ifc4Factory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Ifc4Package getIfc4Package() {
 		return (Ifc4Package) getEPackage();
 	}

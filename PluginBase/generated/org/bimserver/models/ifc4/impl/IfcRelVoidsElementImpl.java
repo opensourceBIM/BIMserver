@@ -78,6 +78,7 @@ public class IfcRelVoidsElementImpl extends IfcRelDecomposesImpl implements IfcR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElement getRelatingBuildingElement() {
 		return (IfcElement) eGet(Ifc4Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATING_BUILDING_ELEMENT, true);
 	}
@@ -87,6 +88,7 @@ public class IfcRelVoidsElementImpl extends IfcRelDecomposesImpl implements IfcR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRelatingBuildingElement(IfcElement newRelatingBuildingElement) {
 		eSet(Ifc4Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATING_BUILDING_ELEMENT, newRelatingBuildingElement);
 	}
@@ -96,6 +98,7 @@ public class IfcRelVoidsElementImpl extends IfcRelDecomposesImpl implements IfcR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFeatureElementSubtraction getRelatedOpeningElement() {
 		return (IfcFeatureElementSubtraction) eGet(Ifc4Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATED_OPENING_ELEMENT,
 				true);
@@ -106,6 +109,7 @@ public class IfcRelVoidsElementImpl extends IfcRelDecomposesImpl implements IfcR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRelatedOpeningElement(IfcFeatureElementSubtraction newRelatedOpeningElement) {
 		eSet(Ifc4Package.Literals.IFC_REL_VOIDS_ELEMENT__RELATED_OPENING_ELEMENT, newRelatedOpeningElement);
 	}

@@ -77,6 +77,7 @@ public class IfcStructuralPointConnectionImpl extends IfcStructuralConnectionImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAxis2Placement3D getConditionCoordinateSystem() {
 		return (IfcAxis2Placement3D) eGet(
 				Ifc4Package.Literals.IFC_STRUCTURAL_POINT_CONNECTION__CONDITION_COORDINATE_SYSTEM, true);
@@ -87,6 +88,7 @@ public class IfcStructuralPointConnectionImpl extends IfcStructuralConnectionImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setConditionCoordinateSystem(IfcAxis2Placement3D newConditionCoordinateSystem) {
 		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_POINT_CONNECTION__CONDITION_COORDINATE_SYSTEM,
 				newConditionCoordinateSystem);
@@ -97,6 +99,7 @@ public class IfcStructuralPointConnectionImpl extends IfcStructuralConnectionImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetConditionCoordinateSystem() {
 		eUnset(Ifc4Package.Literals.IFC_STRUCTURAL_POINT_CONNECTION__CONDITION_COORDINATE_SYSTEM);
 	}
@@ -106,6 +109,7 @@ public class IfcStructuralPointConnectionImpl extends IfcStructuralConnectionImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetConditionCoordinateSystem() {
 		return eIsSet(Ifc4Package.Literals.IFC_STRUCTURAL_POINT_CONNECTION__CONDITION_COORDINATE_SYSTEM);
 	}

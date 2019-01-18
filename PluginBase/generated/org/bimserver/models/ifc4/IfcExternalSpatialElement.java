@@ -123,6 +123,7 @@ public interface IfcExternalSpatialElement extends IfcExternalSpatialStructureEl
 	 * @see #unsetBoundedBy()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcExternalSpatialElement_BoundedBy()
 	 * @model unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelSpaceBoundary> getBoundedBy();

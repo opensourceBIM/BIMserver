@@ -228,6 +228,7 @@ public interface IfcTypeProcess extends IfcTypeObject, IfcProcessSelect {
 	 * @see #unsetOperatesOn()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTypeProcess_OperatesOn()
 	 * @model unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelAssignsToProcess> getOperatesOn();

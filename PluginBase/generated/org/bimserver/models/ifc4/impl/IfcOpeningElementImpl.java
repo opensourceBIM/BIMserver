@@ -79,6 +79,7 @@ public class IfcOpeningElementImpl extends IfcFeatureElementSubtractionImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcOpeningElementTypeEnum getPredefinedType() {
 		return (IfcOpeningElementTypeEnum) eGet(Ifc4Package.Literals.IFC_OPENING_ELEMENT__PREDEFINED_TYPE, true);
 	}
@@ -88,6 +89,7 @@ public class IfcOpeningElementImpl extends IfcFeatureElementSubtractionImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcOpeningElementTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_OPENING_ELEMENT__PREDEFINED_TYPE, newPredefinedType);
 	}
@@ -97,6 +99,7 @@ public class IfcOpeningElementImpl extends IfcFeatureElementSubtractionImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPredefinedType() {
 		eUnset(Ifc4Package.Literals.IFC_OPENING_ELEMENT__PREDEFINED_TYPE);
 	}
@@ -106,6 +109,7 @@ public class IfcOpeningElementImpl extends IfcFeatureElementSubtractionImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPredefinedType() {
 		return eIsSet(Ifc4Package.Literals.IFC_OPENING_ELEMENT__PREDEFINED_TYPE);
 	}
@@ -116,6 +120,7 @@ public class IfcOpeningElementImpl extends IfcFeatureElementSubtractionImpl impl
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelFillsElement> getHasFillings() {
 		return (EList<IfcRelFillsElement>) eGet(Ifc4Package.Literals.IFC_OPENING_ELEMENT__HAS_FILLINGS, true);
 	}
@@ -125,6 +130,7 @@ public class IfcOpeningElementImpl extends IfcFeatureElementSubtractionImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetHasFillings() {
 		eUnset(Ifc4Package.Literals.IFC_OPENING_ELEMENT__HAS_FILLINGS);
 	}
@@ -134,6 +140,7 @@ public class IfcOpeningElementImpl extends IfcFeatureElementSubtractionImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetHasFillings() {
 		return eIsSet(Ifc4Package.Literals.IFC_OPENING_ELEMENT__HAS_FILLINGS);
 	}

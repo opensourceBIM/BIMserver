@@ -133,6 +133,8 @@ public interface IfcTextureCoordinateGenerator extends IfcTextureCoordinate {
 	 * @see #unsetParameterAsString()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTextureCoordinateGenerator_ParameterAsString()
 	 * @model unique="false" unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	EList<String> getParameterAsString();

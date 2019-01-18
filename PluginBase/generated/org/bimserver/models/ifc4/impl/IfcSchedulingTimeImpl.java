@@ -89,6 +89,7 @@ public class IfcSchedulingTimeImpl extends IdEObjectImpl implements IfcSchedulin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(Ifc4Package.Literals.IFC_SCHEDULING_TIME__NAME, true);
 	}
@@ -98,6 +99,7 @@ public class IfcSchedulingTimeImpl extends IdEObjectImpl implements IfcSchedulin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(Ifc4Package.Literals.IFC_SCHEDULING_TIME__NAME, newName);
 	}
@@ -107,6 +109,7 @@ public class IfcSchedulingTimeImpl extends IdEObjectImpl implements IfcSchedulin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetName() {
 		eUnset(Ifc4Package.Literals.IFC_SCHEDULING_TIME__NAME);
 	}
@@ -116,6 +119,7 @@ public class IfcSchedulingTimeImpl extends IdEObjectImpl implements IfcSchedulin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetName() {
 		return eIsSet(Ifc4Package.Literals.IFC_SCHEDULING_TIME__NAME);
 	}
@@ -125,6 +129,7 @@ public class IfcSchedulingTimeImpl extends IdEObjectImpl implements IfcSchedulin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDataOriginEnum getDataOrigin() {
 		return (IfcDataOriginEnum) eGet(Ifc4Package.Literals.IFC_SCHEDULING_TIME__DATA_ORIGIN, true);
 	}
@@ -134,6 +139,7 @@ public class IfcSchedulingTimeImpl extends IdEObjectImpl implements IfcSchedulin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDataOrigin(IfcDataOriginEnum newDataOrigin) {
 		eSet(Ifc4Package.Literals.IFC_SCHEDULING_TIME__DATA_ORIGIN, newDataOrigin);
 	}
@@ -143,6 +149,7 @@ public class IfcSchedulingTimeImpl extends IdEObjectImpl implements IfcSchedulin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetDataOrigin() {
 		eUnset(Ifc4Package.Literals.IFC_SCHEDULING_TIME__DATA_ORIGIN);
 	}
@@ -152,6 +159,7 @@ public class IfcSchedulingTimeImpl extends IdEObjectImpl implements IfcSchedulin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetDataOrigin() {
 		return eIsSet(Ifc4Package.Literals.IFC_SCHEDULING_TIME__DATA_ORIGIN);
 	}
@@ -161,6 +169,7 @@ public class IfcSchedulingTimeImpl extends IdEObjectImpl implements IfcSchedulin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getUserDefinedDataOrigin() {
 		return (String) eGet(Ifc4Package.Literals.IFC_SCHEDULING_TIME__USER_DEFINED_DATA_ORIGIN, true);
 	}
@@ -170,6 +179,7 @@ public class IfcSchedulingTimeImpl extends IdEObjectImpl implements IfcSchedulin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUserDefinedDataOrigin(String newUserDefinedDataOrigin) {
 		eSet(Ifc4Package.Literals.IFC_SCHEDULING_TIME__USER_DEFINED_DATA_ORIGIN, newUserDefinedDataOrigin);
 	}
@@ -179,6 +189,7 @@ public class IfcSchedulingTimeImpl extends IdEObjectImpl implements IfcSchedulin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetUserDefinedDataOrigin() {
 		eUnset(Ifc4Package.Literals.IFC_SCHEDULING_TIME__USER_DEFINED_DATA_ORIGIN);
 	}
@@ -188,6 +199,7 @@ public class IfcSchedulingTimeImpl extends IdEObjectImpl implements IfcSchedulin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetUserDefinedDataOrigin() {
 		return eIsSet(Ifc4Package.Literals.IFC_SCHEDULING_TIME__USER_DEFINED_DATA_ORIGIN);
 	}

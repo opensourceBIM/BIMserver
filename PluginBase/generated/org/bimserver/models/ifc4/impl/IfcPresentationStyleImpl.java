@@ -86,6 +86,7 @@ public class IfcPresentationStyleImpl extends IdEObjectImpl implements IfcPresen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(Ifc4Package.Literals.IFC_PRESENTATION_STYLE__NAME, true);
 	}
@@ -95,6 +96,7 @@ public class IfcPresentationStyleImpl extends IdEObjectImpl implements IfcPresen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(Ifc4Package.Literals.IFC_PRESENTATION_STYLE__NAME, newName);
 	}
@@ -104,6 +106,7 @@ public class IfcPresentationStyleImpl extends IdEObjectImpl implements IfcPresen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetName() {
 		eUnset(Ifc4Package.Literals.IFC_PRESENTATION_STYLE__NAME);
 	}
@@ -113,6 +116,7 @@ public class IfcPresentationStyleImpl extends IdEObjectImpl implements IfcPresen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetName() {
 		return eIsSet(Ifc4Package.Literals.IFC_PRESENTATION_STYLE__NAME);
 	}

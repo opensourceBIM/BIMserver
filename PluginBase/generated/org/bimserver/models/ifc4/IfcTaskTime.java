@@ -955,6 +955,8 @@ public interface IfcTaskTime extends IfcSchedulingTime {
 	 * @see #setCompletionAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTaskTime_CompletionAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getCompletionAsString();

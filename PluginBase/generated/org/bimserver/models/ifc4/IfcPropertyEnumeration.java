@@ -65,7 +65,7 @@ public interface IfcPropertyEnumeration extends IfcPropertyAbstraction {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPropertyEnumeration_Name()
-	 * @model
+	 * @model annotation="singleindex"
 	 * @generated
 	 */
 	String getName();

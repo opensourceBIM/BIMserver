@@ -109,7 +109,7 @@ public interface IfcDocumentInformation extends IfcExternalInformation, IfcDocum
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDocumentInformation_Name()
-	 * @model
+	 * @model annotation="singleindex"
 	 * @generated
 	 */
 	String getName();
@@ -925,6 +925,7 @@ public interface IfcDocumentInformation extends IfcExternalInformation, IfcDocum
 	 * @see #unsetDocumentInfoForObjects()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDocumentInformation_DocumentInfoForObjects()
 	 * @model unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelAssociatesDocument> getDocumentInfoForObjects();
@@ -966,6 +967,7 @@ public interface IfcDocumentInformation extends IfcExternalInformation, IfcDocum
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDocumentInformation_HasDocumentReferences()
 	 * @see org.bimserver.models.ifc4.IfcDocumentReference#getReferencedDocument
 	 * @model opposite="ReferencedDocument" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcDocumentReference> getHasDocumentReferences();
@@ -1007,6 +1009,7 @@ public interface IfcDocumentInformation extends IfcExternalInformation, IfcDocum
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDocumentInformation_IsPointedTo()
 	 * @see org.bimserver.models.ifc4.IfcDocumentInformationRelationship#getRelatedDocuments
 	 * @model opposite="RelatedDocuments" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcDocumentInformationRelationship> getIsPointedTo();
@@ -1048,6 +1051,7 @@ public interface IfcDocumentInformation extends IfcExternalInformation, IfcDocum
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcDocumentInformation_IsPointer()
 	 * @see org.bimserver.models.ifc4.IfcDocumentInformationRelationship#getRelatingDocument
 	 * @model opposite="RelatingDocument" unsettable="true" upper="2"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcDocumentInformationRelationship> getIsPointer();

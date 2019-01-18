@@ -78,6 +78,7 @@ public class IfcFurnitureTypeImpl extends IfcFurnishingElementTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAssemblyPlaceEnum getAssemblyPlace() {
 		return (IfcAssemblyPlaceEnum) eGet(Ifc4Package.Literals.IFC_FURNITURE_TYPE__ASSEMBLY_PLACE, true);
 	}
@@ -87,6 +88,7 @@ public class IfcFurnitureTypeImpl extends IfcFurnishingElementTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAssemblyPlace(IfcAssemblyPlaceEnum newAssemblyPlace) {
 		eSet(Ifc4Package.Literals.IFC_FURNITURE_TYPE__ASSEMBLY_PLACE, newAssemblyPlace);
 	}
@@ -96,6 +98,7 @@ public class IfcFurnitureTypeImpl extends IfcFurnishingElementTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcFurnitureTypeEnum getPredefinedType() {
 		return (IfcFurnitureTypeEnum) eGet(Ifc4Package.Literals.IFC_FURNITURE_TYPE__PREDEFINED_TYPE, true);
 	}
@@ -105,6 +108,7 @@ public class IfcFurnitureTypeImpl extends IfcFurnishingElementTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcFurnitureTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_FURNITURE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}
@@ -114,6 +118,7 @@ public class IfcFurnitureTypeImpl extends IfcFurnishingElementTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPredefinedType() {
 		eUnset(Ifc4Package.Literals.IFC_FURNITURE_TYPE__PREDEFINED_TYPE);
 	}
@@ -123,6 +128,7 @@ public class IfcFurnitureTypeImpl extends IfcFurnishingElementTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPredefinedType() {
 		return eIsSet(Ifc4Package.Literals.IFC_FURNITURE_TYPE__PREDEFINED_TYPE);
 	}

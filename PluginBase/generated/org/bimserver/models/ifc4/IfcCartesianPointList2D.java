@@ -63,7 +63,7 @@ public interface IfcCartesianPointList2D extends IfcCartesianPointList {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Coord List</em>' reference list.
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCartesianPointList2D_CoordList()
-	 * @model
+	 * @model annotation="twodimensionalarray"
 	 * @generated
 	 */
 	EList<ListOfIfcLengthMeasure> getCoordList();

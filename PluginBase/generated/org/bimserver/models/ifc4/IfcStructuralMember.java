@@ -68,6 +68,7 @@ public interface IfcStructuralMember extends IfcStructuralItem {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralMember_ConnectedBy()
 	 * @see org.bimserver.models.ifc4.IfcRelConnectsStructuralMember#getRelatingStructuralMember
 	 * @model opposite="RelatingStructuralMember" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelConnectsStructuralMember> getConnectedBy();

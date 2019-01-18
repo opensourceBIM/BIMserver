@@ -80,6 +80,7 @@ public class IfcRelAssignsImpl extends IfcRelationshipImpl implements IfcRelAssi
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcObjectDefinition> getRelatedObjects() {
 		return (EList<IfcObjectDefinition>) eGet(Ifc4Package.Literals.IFC_REL_ASSIGNS__RELATED_OBJECTS, true);
 	}
@@ -89,6 +90,7 @@ public class IfcRelAssignsImpl extends IfcRelationshipImpl implements IfcRelAssi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcObjectTypeEnum getRelatedObjectsType() {
 		return (IfcObjectTypeEnum) eGet(Ifc4Package.Literals.IFC_REL_ASSIGNS__RELATED_OBJECTS_TYPE, true);
 	}
@@ -98,6 +100,7 @@ public class IfcRelAssignsImpl extends IfcRelationshipImpl implements IfcRelAssi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRelatedObjectsType(IfcObjectTypeEnum newRelatedObjectsType) {
 		eSet(Ifc4Package.Literals.IFC_REL_ASSIGNS__RELATED_OBJECTS_TYPE, newRelatedObjectsType);
 	}
@@ -107,6 +110,7 @@ public class IfcRelAssignsImpl extends IfcRelationshipImpl implements IfcRelAssi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetRelatedObjectsType() {
 		eUnset(Ifc4Package.Literals.IFC_REL_ASSIGNS__RELATED_OBJECTS_TYPE);
 	}
@@ -116,6 +120,7 @@ public class IfcRelAssignsImpl extends IfcRelationshipImpl implements IfcRelAssi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetRelatedObjectsType() {
 		return eIsSet(Ifc4Package.Literals.IFC_REL_ASSIGNS__RELATED_OBJECTS_TYPE);
 	}

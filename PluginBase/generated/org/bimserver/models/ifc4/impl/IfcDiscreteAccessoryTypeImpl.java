@@ -76,6 +76,7 @@ public class IfcDiscreteAccessoryTypeImpl extends IfcElementComponentTypeImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDiscreteAccessoryTypeEnum getPredefinedType() {
 		return (IfcDiscreteAccessoryTypeEnum) eGet(Ifc4Package.Literals.IFC_DISCRETE_ACCESSORY_TYPE__PREDEFINED_TYPE,
 				true);
@@ -86,6 +87,7 @@ public class IfcDiscreteAccessoryTypeImpl extends IfcElementComponentTypeImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcDiscreteAccessoryTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_DISCRETE_ACCESSORY_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

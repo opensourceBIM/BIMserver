@@ -89,6 +89,7 @@ public class IfcMaterialListImpl extends IdEObjectImpl implements IfcMaterialLis
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcMaterial> getMaterials() {
 		return (EList<IfcMaterial>) eGet(Ifc4Package.Literals.IFC_MATERIAL_LIST__MATERIALS, true);
 	}

@@ -64,7 +64,7 @@ public interface IfcContextDependentUnit extends IfcNamedUnit, IfcResourceObject
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcContextDependentUnit_Name()
-	 * @model
+	 * @model annotation="singleindex"
 	 * @generated
 	 */
 	String getName();
@@ -93,6 +93,7 @@ public interface IfcContextDependentUnit extends IfcNamedUnit, IfcResourceObject
 	 * @see #unsetHasExternalReference()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcContextDependentUnit_HasExternalReference()
 	 * @model unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcExternalReferenceRelationship> getHasExternalReference();

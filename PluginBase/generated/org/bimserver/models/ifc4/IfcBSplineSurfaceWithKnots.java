@@ -120,6 +120,8 @@ public interface IfcBSplineSurfaceWithKnots extends IfcBSplineSurface {
 	 * @return the value of the '<em>UKnots As String</em>' attribute list.
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBSplineSurfaceWithKnots_UKnotsAsString()
 	 * @model unique="false"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	EList<String> getUKnotsAsString();
@@ -152,6 +154,8 @@ public interface IfcBSplineSurfaceWithKnots extends IfcBSplineSurface {
 	 * @return the value of the '<em>VKnots As String</em>' attribute list.
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcBSplineSurfaceWithKnots_VKnotsAsString()
 	 * @model unique="false"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	EList<String> getVKnotsAsString();

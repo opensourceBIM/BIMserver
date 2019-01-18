@@ -48,6 +48,7 @@ public interface IfcMaterialProfile extends IfcMaterialDefinition {
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialProfile_Name()
 	 * @model unsettable="true"
+	 *        annotation="singleindex"
 	 * @generated
 	 */
 	String getName();
@@ -341,6 +342,7 @@ public interface IfcMaterialProfile extends IfcMaterialDefinition {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialProfile_ToMaterialProfileSet()
 	 * @see org.bimserver.models.ifc4.IfcMaterialProfileSet#getMaterialProfiles
 	 * @model opposite="MaterialProfiles" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcMaterialProfileSet getToMaterialProfileSet();

@@ -90,6 +90,7 @@ public class IfcLightIntensityDistributionImpl extends IdEObjectImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcLightDistributionCurveEnum getLightDistributionCurve() {
 		return (IfcLightDistributionCurveEnum) eGet(
 				Ifc4Package.Literals.IFC_LIGHT_INTENSITY_DISTRIBUTION__LIGHT_DISTRIBUTION_CURVE, true);
@@ -100,6 +101,7 @@ public class IfcLightIntensityDistributionImpl extends IdEObjectImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLightDistributionCurve(IfcLightDistributionCurveEnum newLightDistributionCurve) {
 		eSet(Ifc4Package.Literals.IFC_LIGHT_INTENSITY_DISTRIBUTION__LIGHT_DISTRIBUTION_CURVE,
 				newLightDistributionCurve);
@@ -111,6 +113,7 @@ public class IfcLightIntensityDistributionImpl extends IdEObjectImpl implements 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcLightDistributionData> getDistributionData() {
 		return (EList<IfcLightDistributionData>) eGet(
 				Ifc4Package.Literals.IFC_LIGHT_INTENSITY_DISTRIBUTION__DISTRIBUTION_DATA, true);

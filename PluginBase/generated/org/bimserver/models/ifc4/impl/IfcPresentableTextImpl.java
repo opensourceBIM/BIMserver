@@ -86,6 +86,7 @@ public class IfcPresentableTextImpl extends IdEObjectImpl implements IfcPresenta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getWrappedValue() {
 		return (String) eGet(Ifc4Package.Literals.IFC_PRESENTABLE_TEXT__WRAPPED_VALUE, true);
 	}
@@ -95,6 +96,7 @@ public class IfcPresentableTextImpl extends IdEObjectImpl implements IfcPresenta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWrappedValue(String newWrappedValue) {
 		eSet(Ifc4Package.Literals.IFC_PRESENTABLE_TEXT__WRAPPED_VALUE, newWrappedValue);
 	}
@@ -104,6 +106,7 @@ public class IfcPresentableTextImpl extends IdEObjectImpl implements IfcPresenta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetWrappedValue() {
 		eUnset(Ifc4Package.Literals.IFC_PRESENTABLE_TEXT__WRAPPED_VALUE);
 	}
@@ -113,6 +116,7 @@ public class IfcPresentableTextImpl extends IdEObjectImpl implements IfcPresenta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetWrappedValue() {
 		return eIsSet(Ifc4Package.Literals.IFC_PRESENTABLE_TEXT__WRAPPED_VALUE);
 	}

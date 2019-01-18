@@ -71,7 +71,8 @@ public interface IfcRightCircularCylinder extends IfcCsgPrimitive3D {
 	 * @return the value of the '<em>Height As String</em>' attribute.
 	 * @see #setHeightAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRightCircularCylinder_HeightAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getHeightAsString();
@@ -123,7 +124,8 @@ public interface IfcRightCircularCylinder extends IfcCsgPrimitive3D {
 	 * @return the value of the '<em>Radius As String</em>' attribute.
 	 * @see #setRadiusAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRightCircularCylinder_RadiusAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getRadiusAsString();

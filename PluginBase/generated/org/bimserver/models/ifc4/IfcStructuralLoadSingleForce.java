@@ -101,6 +101,8 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * @see #setForceXAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadSingleForce_ForceXAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getForceXAsString();
@@ -207,6 +209,8 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * @see #setForceYAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadSingleForce_ForceYAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getForceYAsString();
@@ -313,6 +317,8 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * @see #setForceZAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadSingleForce_ForceZAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getForceZAsString();
@@ -419,6 +425,8 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * @see #setMomentXAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadSingleForce_MomentXAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getMomentXAsString();
@@ -525,6 +533,8 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * @see #setMomentYAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadSingleForce_MomentYAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getMomentYAsString();
@@ -631,6 +641,8 @@ public interface IfcStructuralLoadSingleForce extends IfcStructuralLoadStatic {
 	 * @see #setMomentZAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadSingleForce_MomentZAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getMomentZAsString();

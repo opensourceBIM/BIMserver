@@ -80,6 +80,7 @@ public class IfcCurveBoundedPlaneImpl extends IfcBoundedSurfaceImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPlane getBasisSurface() {
 		return (IfcPlane) eGet(Ifc4Package.Literals.IFC_CURVE_BOUNDED_PLANE__BASIS_SURFACE, true);
 	}
@@ -89,6 +90,7 @@ public class IfcCurveBoundedPlaneImpl extends IfcBoundedSurfaceImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBasisSurface(IfcPlane newBasisSurface) {
 		eSet(Ifc4Package.Literals.IFC_CURVE_BOUNDED_PLANE__BASIS_SURFACE, newBasisSurface);
 	}
@@ -98,6 +100,7 @@ public class IfcCurveBoundedPlaneImpl extends IfcBoundedSurfaceImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCurve getOuterBoundary() {
 		return (IfcCurve) eGet(Ifc4Package.Literals.IFC_CURVE_BOUNDED_PLANE__OUTER_BOUNDARY, true);
 	}
@@ -107,6 +110,7 @@ public class IfcCurveBoundedPlaneImpl extends IfcBoundedSurfaceImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOuterBoundary(IfcCurve newOuterBoundary) {
 		eSet(Ifc4Package.Literals.IFC_CURVE_BOUNDED_PLANE__OUTER_BOUNDARY, newOuterBoundary);
 	}
@@ -117,6 +121,7 @@ public class IfcCurveBoundedPlaneImpl extends IfcBoundedSurfaceImpl implements I
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcCurve> getInnerBoundaries() {
 		return (EList<IfcCurve>) eGet(Ifc4Package.Literals.IFC_CURVE_BOUNDED_PLANE__INNER_BOUNDARIES, true);
 	}

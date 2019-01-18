@@ -67,6 +67,7 @@ public interface IfcExternalReferenceRelationship extends IfcResourceLevelRelati
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcExternalReferenceRelationship_RelatingReference()
 	 * @see org.bimserver.models.ifc4.IfcExternalReference#getExternalReferenceForResources
 	 * @model opposite="ExternalReferenceForResources"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcExternalReference getRelatingReference();
@@ -92,7 +93,17 @@ public interface IfcExternalReferenceRelationship extends IfcResourceLevelRelati
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Resource Objects</em>' reference list.
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcExternalReferenceRelationship_RelatedResourceObjects()
-	 * @model
+	 * @model annotation="inverse"
+	 *        annotation="inverse"
+	 *        annotation="inverse"
+	 *        annotation="inverse"
+	 *        annotation="inverse"
+	 *        annotation="inverse"
+	 *        annotation="inverse"
+	 *        annotation="inverse"
+	 *        annotation="inverse"
+	 *        annotation="inverse"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcResourceObjectSelect> getRelatedResourceObjects();

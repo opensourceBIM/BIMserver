@@ -80,6 +80,7 @@ public class IfcPropertyListValueImpl extends IfcSimplePropertyImpl implements I
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcValue> getListValues() {
 		return (EList<IfcValue>) eGet(Ifc4Package.Literals.IFC_PROPERTY_LIST_VALUE__LIST_VALUES, true);
 	}
@@ -89,6 +90,7 @@ public class IfcPropertyListValueImpl extends IfcSimplePropertyImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetListValues() {
 		eUnset(Ifc4Package.Literals.IFC_PROPERTY_LIST_VALUE__LIST_VALUES);
 	}
@@ -98,6 +100,7 @@ public class IfcPropertyListValueImpl extends IfcSimplePropertyImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetListValues() {
 		return eIsSet(Ifc4Package.Literals.IFC_PROPERTY_LIST_VALUE__LIST_VALUES);
 	}
@@ -107,6 +110,7 @@ public class IfcPropertyListValueImpl extends IfcSimplePropertyImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcUnit getUnit() {
 		return (IfcUnit) eGet(Ifc4Package.Literals.IFC_PROPERTY_LIST_VALUE__UNIT, true);
 	}
@@ -116,6 +120,7 @@ public class IfcPropertyListValueImpl extends IfcSimplePropertyImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUnit(IfcUnit newUnit) {
 		eSet(Ifc4Package.Literals.IFC_PROPERTY_LIST_VALUE__UNIT, newUnit);
 	}
@@ -125,6 +130,7 @@ public class IfcPropertyListValueImpl extends IfcSimplePropertyImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetUnit() {
 		eUnset(Ifc4Package.Literals.IFC_PROPERTY_LIST_VALUE__UNIT);
 	}
@@ -134,6 +140,7 @@ public class IfcPropertyListValueImpl extends IfcSimplePropertyImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetUnit() {
 		return eIsSet(Ifc4Package.Literals.IFC_PROPERTY_LIST_VALUE__UNIT);
 	}

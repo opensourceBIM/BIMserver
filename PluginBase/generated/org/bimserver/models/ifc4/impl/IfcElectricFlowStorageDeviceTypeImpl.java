@@ -77,6 +77,7 @@ public class IfcElectricFlowStorageDeviceTypeImpl extends IfcFlowStorageDeviceTy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcElectricFlowStorageDeviceTypeEnum getPredefinedType() {
 		return (IfcElectricFlowStorageDeviceTypeEnum) eGet(
 				Ifc4Package.Literals.IFC_ELECTRIC_FLOW_STORAGE_DEVICE_TYPE__PREDEFINED_TYPE, true);
@@ -87,6 +88,7 @@ public class IfcElectricFlowStorageDeviceTypeImpl extends IfcFlowStorageDeviceTy
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcElectricFlowStorageDeviceTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_ELECTRIC_FLOW_STORAGE_DEVICE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

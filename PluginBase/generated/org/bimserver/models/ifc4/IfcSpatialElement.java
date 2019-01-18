@@ -124,6 +124,7 @@ public interface IfcSpatialElement extends IfcProduct {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSpatialElement_ContainsElements()
 	 * @see org.bimserver.models.ifc4.IfcRelContainedInSpatialStructure#getRelatingStructure
 	 * @model opposite="RelatingStructure" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelContainedInSpatialStructure> getContainsElements();
@@ -165,6 +166,7 @@ public interface IfcSpatialElement extends IfcProduct {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSpatialElement_ServicedBySystems()
 	 * @see org.bimserver.models.ifc4.IfcRelServicesBuildings#getRelatedBuildings
 	 * @model opposite="RelatedBuildings" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelServicesBuildings> getServicedBySystems();
@@ -206,6 +208,7 @@ public interface IfcSpatialElement extends IfcProduct {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSpatialElement_ReferencesElements()
 	 * @see org.bimserver.models.ifc4.IfcRelReferencedInSpatialStructure#getRelatingStructure
 	 * @model opposite="RelatingStructure" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelReferencedInSpatialStructure> getReferencesElements();

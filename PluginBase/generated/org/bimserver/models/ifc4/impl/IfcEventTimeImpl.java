@@ -78,6 +78,7 @@ public class IfcEventTimeImpl extends IfcSchedulingTimeImpl implements IfcEventT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getActualDate() {
 		return (String) eGet(Ifc4Package.Literals.IFC_EVENT_TIME__ACTUAL_DATE, true);
 	}
@@ -87,6 +88,7 @@ public class IfcEventTimeImpl extends IfcSchedulingTimeImpl implements IfcEventT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setActualDate(String newActualDate) {
 		eSet(Ifc4Package.Literals.IFC_EVENT_TIME__ACTUAL_DATE, newActualDate);
 	}
@@ -96,6 +98,7 @@ public class IfcEventTimeImpl extends IfcSchedulingTimeImpl implements IfcEventT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetActualDate() {
 		eUnset(Ifc4Package.Literals.IFC_EVENT_TIME__ACTUAL_DATE);
 	}
@@ -105,6 +108,7 @@ public class IfcEventTimeImpl extends IfcSchedulingTimeImpl implements IfcEventT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetActualDate() {
 		return eIsSet(Ifc4Package.Literals.IFC_EVENT_TIME__ACTUAL_DATE);
 	}
@@ -114,6 +118,7 @@ public class IfcEventTimeImpl extends IfcSchedulingTimeImpl implements IfcEventT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getEarlyDate() {
 		return (String) eGet(Ifc4Package.Literals.IFC_EVENT_TIME__EARLY_DATE, true);
 	}
@@ -123,6 +128,7 @@ public class IfcEventTimeImpl extends IfcSchedulingTimeImpl implements IfcEventT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEarlyDate(String newEarlyDate) {
 		eSet(Ifc4Package.Literals.IFC_EVENT_TIME__EARLY_DATE, newEarlyDate);
 	}
@@ -132,6 +138,7 @@ public class IfcEventTimeImpl extends IfcSchedulingTimeImpl implements IfcEventT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetEarlyDate() {
 		eUnset(Ifc4Package.Literals.IFC_EVENT_TIME__EARLY_DATE);
 	}
@@ -141,6 +148,7 @@ public class IfcEventTimeImpl extends IfcSchedulingTimeImpl implements IfcEventT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetEarlyDate() {
 		return eIsSet(Ifc4Package.Literals.IFC_EVENT_TIME__EARLY_DATE);
 	}
@@ -150,6 +158,7 @@ public class IfcEventTimeImpl extends IfcSchedulingTimeImpl implements IfcEventT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLateDate() {
 		return (String) eGet(Ifc4Package.Literals.IFC_EVENT_TIME__LATE_DATE, true);
 	}
@@ -159,6 +168,7 @@ public class IfcEventTimeImpl extends IfcSchedulingTimeImpl implements IfcEventT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLateDate(String newLateDate) {
 		eSet(Ifc4Package.Literals.IFC_EVENT_TIME__LATE_DATE, newLateDate);
 	}
@@ -168,6 +178,7 @@ public class IfcEventTimeImpl extends IfcSchedulingTimeImpl implements IfcEventT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetLateDate() {
 		eUnset(Ifc4Package.Literals.IFC_EVENT_TIME__LATE_DATE);
 	}
@@ -177,6 +188,7 @@ public class IfcEventTimeImpl extends IfcSchedulingTimeImpl implements IfcEventT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetLateDate() {
 		return eIsSet(Ifc4Package.Literals.IFC_EVENT_TIME__LATE_DATE);
 	}
@@ -186,6 +198,7 @@ public class IfcEventTimeImpl extends IfcSchedulingTimeImpl implements IfcEventT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getScheduleDate() {
 		return (String) eGet(Ifc4Package.Literals.IFC_EVENT_TIME__SCHEDULE_DATE, true);
 	}
@@ -195,6 +208,7 @@ public class IfcEventTimeImpl extends IfcSchedulingTimeImpl implements IfcEventT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setScheduleDate(String newScheduleDate) {
 		eSet(Ifc4Package.Literals.IFC_EVENT_TIME__SCHEDULE_DATE, newScheduleDate);
 	}
@@ -204,6 +218,7 @@ public class IfcEventTimeImpl extends IfcSchedulingTimeImpl implements IfcEventT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetScheduleDate() {
 		eUnset(Ifc4Package.Literals.IFC_EVENT_TIME__SCHEDULE_DATE);
 	}
@@ -213,6 +228,7 @@ public class IfcEventTimeImpl extends IfcSchedulingTimeImpl implements IfcEventT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetScheduleDate() {
 		return eIsSet(Ifc4Package.Literals.IFC_EVENT_TIME__SCHEDULE_DATE);
 	}

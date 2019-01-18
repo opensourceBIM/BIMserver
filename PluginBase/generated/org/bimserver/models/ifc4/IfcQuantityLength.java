@@ -71,7 +71,8 @@ public interface IfcQuantityLength extends IfcPhysicalSimpleQuantity {
 	 * @return the value of the '<em>Length Value As String</em>' attribute.
 	 * @see #setLengthValueAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcQuantityLength_LengthValueAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getLengthValueAsString();

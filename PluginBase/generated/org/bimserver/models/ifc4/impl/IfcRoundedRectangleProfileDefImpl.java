@@ -77,6 +77,7 @@ public class IfcRoundedRectangleProfileDefImpl extends IfcRectangleProfileDefImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getRoundingRadius() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS, true);
 	}
@@ -86,6 +87,7 @@ public class IfcRoundedRectangleProfileDefImpl extends IfcRectangleProfileDefImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRoundingRadius(double newRoundingRadius) {
 		eSet(Ifc4Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS, newRoundingRadius);
 	}
@@ -95,6 +97,7 @@ public class IfcRoundedRectangleProfileDefImpl extends IfcRectangleProfileDefImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRoundingRadiusAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS_AS_STRING, true);
 	}
@@ -104,6 +107,7 @@ public class IfcRoundedRectangleProfileDefImpl extends IfcRectangleProfileDefImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRoundingRadiusAsString(String newRoundingRadiusAsString) {
 		eSet(Ifc4Package.Literals.IFC_ROUNDED_RECTANGLE_PROFILE_DEF__ROUNDING_RADIUS_AS_STRING,
 				newRoundingRadiusAsString);

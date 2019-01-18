@@ -67,6 +67,7 @@ public interface IfcStructuralLoad extends IdEObject {
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoad_Name()
 	 * @model unsettable="true"
+	 *        annotation="singleindex"
 	 * @generated
 	 */
 	String getName();

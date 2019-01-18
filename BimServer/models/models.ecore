@@ -19828,6 +19828,12 @@
       <eLiterals name="ACTUAL" value="4" literal="ACTUAL"/>
       <eLiterals name="PLANNED" value="5" literal="PLANNED"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="IfcArcIndex">
+      <eAnnotations source="wrapped"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="wrappedValue" lowerBound="3"
+          upperBound="3" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"
+          unsettable="true"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcComplexNumber" eSuperTypes="#/2/IfcMeasureValue">
       <eAnnotations source="wrapped"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="wrappedValue" upperBound="2"
@@ -19839,6 +19845,12 @@
         <eAnnotations source="asstring"/>
         <eAnnotations source="hidden"/>
       </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="IfcLineIndex">
+      <eAnnotations source="wrapped"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="wrappedValue" lowerBound="2"
+          upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"
+          unsettable="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IfcNullStyle" eSuperTypes="#/2/IfcPresentationStyleSelect">
       <eAnnotations source="wrapped"/>

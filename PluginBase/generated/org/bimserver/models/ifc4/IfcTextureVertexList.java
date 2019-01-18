@@ -63,7 +63,7 @@ public interface IfcTextureVertexList extends IfcPresentationItem {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Tex Coords List</em>' reference list.
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTextureVertexList_TexCoordsList()
-	 * @model
+	 * @model annotation="twodimensionalarray"
 	 * @generated
 	 */
 	EList<ListOfIfcParameterValue> getTexCoordsList();

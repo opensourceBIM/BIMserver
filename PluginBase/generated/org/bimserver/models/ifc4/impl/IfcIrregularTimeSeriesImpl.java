@@ -78,6 +78,7 @@ public class IfcIrregularTimeSeriesImpl extends IfcTimeSeriesImpl implements Ifc
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcIrregularTimeSeriesValue> getValues() {
 		return (EList<IfcIrregularTimeSeriesValue>) eGet(Ifc4Package.Literals.IFC_IRREGULAR_TIME_SERIES__VALUES, true);
 	}

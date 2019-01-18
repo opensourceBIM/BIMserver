@@ -85,6 +85,7 @@ public class IfcStructuralAnalysisModelImpl extends IfcSystemImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAnalysisModelTypeEnum getPredefinedType() {
 		return (IfcAnalysisModelTypeEnum) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__PREDEFINED_TYPE,
 				true);
@@ -95,6 +96,7 @@ public class IfcStructuralAnalysisModelImpl extends IfcSystemImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcAnalysisModelTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__PREDEFINED_TYPE, newPredefinedType);
 	}
@@ -104,6 +106,7 @@ public class IfcStructuralAnalysisModelImpl extends IfcSystemImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAxis2Placement3D getOrientationOf2DPlane() {
 		return (IfcAxis2Placement3D) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__ORIENTATION_OF2_DPLANE,
 				true);
@@ -114,6 +117,7 @@ public class IfcStructuralAnalysisModelImpl extends IfcSystemImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOrientationOf2DPlane(IfcAxis2Placement3D newOrientationOf2DPlane) {
 		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__ORIENTATION_OF2_DPLANE, newOrientationOf2DPlane);
 	}
@@ -123,6 +127,7 @@ public class IfcStructuralAnalysisModelImpl extends IfcSystemImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetOrientationOf2DPlane() {
 		eUnset(Ifc4Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__ORIENTATION_OF2_DPLANE);
 	}
@@ -132,6 +137,7 @@ public class IfcStructuralAnalysisModelImpl extends IfcSystemImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetOrientationOf2DPlane() {
 		return eIsSet(Ifc4Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__ORIENTATION_OF2_DPLANE);
 	}
@@ -142,6 +148,7 @@ public class IfcStructuralAnalysisModelImpl extends IfcSystemImpl implements Ifc
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcStructuralLoadGroup> getLoadedBy() {
 		return (EList<IfcStructuralLoadGroup>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__LOADED_BY,
 				true);
@@ -152,6 +159,7 @@ public class IfcStructuralAnalysisModelImpl extends IfcSystemImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetLoadedBy() {
 		eUnset(Ifc4Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__LOADED_BY);
 	}
@@ -161,6 +169,7 @@ public class IfcStructuralAnalysisModelImpl extends IfcSystemImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetLoadedBy() {
 		return eIsSet(Ifc4Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__LOADED_BY);
 	}
@@ -171,6 +180,7 @@ public class IfcStructuralAnalysisModelImpl extends IfcSystemImpl implements Ifc
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcStructuralResultGroup> getHasResults() {
 		return (EList<IfcStructuralResultGroup>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__HAS_RESULTS,
 				true);
@@ -181,6 +191,7 @@ public class IfcStructuralAnalysisModelImpl extends IfcSystemImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetHasResults() {
 		eUnset(Ifc4Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__HAS_RESULTS);
 	}
@@ -190,6 +201,7 @@ public class IfcStructuralAnalysisModelImpl extends IfcSystemImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetHasResults() {
 		return eIsSet(Ifc4Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__HAS_RESULTS);
 	}
@@ -199,6 +211,7 @@ public class IfcStructuralAnalysisModelImpl extends IfcSystemImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcObjectPlacement getSharedPlacement() {
 		return (IfcObjectPlacement) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__SHARED_PLACEMENT, true);
 	}
@@ -208,6 +221,7 @@ public class IfcStructuralAnalysisModelImpl extends IfcSystemImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSharedPlacement(IfcObjectPlacement newSharedPlacement) {
 		eSet(Ifc4Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__SHARED_PLACEMENT, newSharedPlacement);
 	}
@@ -217,6 +231,7 @@ public class IfcStructuralAnalysisModelImpl extends IfcSystemImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetSharedPlacement() {
 		eUnset(Ifc4Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__SHARED_PLACEMENT);
 	}
@@ -226,6 +241,7 @@ public class IfcStructuralAnalysisModelImpl extends IfcSystemImpl implements Ifc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetSharedPlacement() {
 		return eIsSet(Ifc4Package.Literals.IFC_STRUCTURAL_ANALYSIS_MODEL__SHARED_PLACEMENT);
 	}

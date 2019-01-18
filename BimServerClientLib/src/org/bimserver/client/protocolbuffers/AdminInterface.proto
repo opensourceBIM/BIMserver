@@ -103,6 +103,7 @@ message SPluginDescriptor {
 	optional string pluginClassName = 10;
 	optional string pluginInterfaceClassName = 11;
 	optional int32 rid = 12;
+	optional int64 settingsId = 13;
 }
 
 message GetAllPluginsResponse {

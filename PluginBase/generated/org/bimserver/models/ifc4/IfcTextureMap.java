@@ -83,6 +83,7 @@ public interface IfcTextureMap extends IfcTextureCoordinate {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTextureMap_MappedTo()
 	 * @see org.bimserver.models.ifc4.IfcFace#getHasTextureMaps
 	 * @model opposite="HasTextureMaps"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcFace getMappedTo();

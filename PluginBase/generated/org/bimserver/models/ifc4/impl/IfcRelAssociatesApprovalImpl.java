@@ -76,6 +76,7 @@ public class IfcRelAssociatesApprovalImpl extends IfcRelAssociatesImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcApproval getRelatingApproval() {
 		return (IfcApproval) eGet(Ifc4Package.Literals.IFC_REL_ASSOCIATES_APPROVAL__RELATING_APPROVAL, true);
 	}
@@ -85,6 +86,7 @@ public class IfcRelAssociatesApprovalImpl extends IfcRelAssociatesImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRelatingApproval(IfcApproval newRelatingApproval) {
 		eSet(Ifc4Package.Literals.IFC_REL_ASSOCIATES_APPROVAL__RELATING_APPROVAL, newRelatingApproval);
 	}

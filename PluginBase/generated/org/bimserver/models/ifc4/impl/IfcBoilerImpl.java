@@ -76,6 +76,7 @@ public class IfcBoilerImpl extends IfcEnergyConversionDeviceImpl implements IfcB
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcBoilerTypeEnum getPredefinedType() {
 		return (IfcBoilerTypeEnum) eGet(Ifc4Package.Literals.IFC_BOILER__PREDEFINED_TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcBoilerImpl extends IfcEnergyConversionDeviceImpl implements IfcB
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcBoilerTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_BOILER__PREDEFINED_TYPE, newPredefinedType);
 	}
@@ -94,6 +96,7 @@ public class IfcBoilerImpl extends IfcEnergyConversionDeviceImpl implements IfcB
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPredefinedType() {
 		eUnset(Ifc4Package.Literals.IFC_BOILER__PREDEFINED_TYPE);
 	}
@@ -103,6 +106,7 @@ public class IfcBoilerImpl extends IfcEnergyConversionDeviceImpl implements IfcB
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPredefinedType() {
 		return eIsSet(Ifc4Package.Literals.IFC_BOILER__PREDEFINED_TYPE);
 	}

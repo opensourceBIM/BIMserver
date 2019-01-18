@@ -85,6 +85,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcPermeableCoveringOperationEnum getOperationType() {
 		return (IfcPermeableCoveringOperationEnum) eGet(
 				Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__OPERATION_TYPE, true);
@@ -95,6 +96,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOperationType(IfcPermeableCoveringOperationEnum newOperationType) {
 		eSet(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__OPERATION_TYPE, newOperationType);
 	}
@@ -104,6 +106,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcWindowPanelPositionEnum getPanelPosition() {
 		return (IfcWindowPanelPositionEnum) eGet(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__PANEL_POSITION,
 				true);
@@ -114,6 +117,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPanelPosition(IfcWindowPanelPositionEnum newPanelPosition) {
 		eSet(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__PANEL_POSITION, newPanelPosition);
 	}
@@ -123,6 +127,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getFrameDepth() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_DEPTH, true);
 	}
@@ -132,6 +137,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFrameDepth(double newFrameDepth) {
 		eSet(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_DEPTH, newFrameDepth);
 	}
@@ -141,6 +147,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetFrameDepth() {
 		eUnset(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_DEPTH);
 	}
@@ -150,6 +157,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetFrameDepth() {
 		return eIsSet(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_DEPTH);
 	}
@@ -159,6 +167,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFrameDepthAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_DEPTH_AS_STRING, true);
 	}
@@ -168,6 +177,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFrameDepthAsString(String newFrameDepthAsString) {
 		eSet(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_DEPTH_AS_STRING, newFrameDepthAsString);
 	}
@@ -177,6 +187,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetFrameDepthAsString() {
 		eUnset(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_DEPTH_AS_STRING);
 	}
@@ -186,6 +197,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetFrameDepthAsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_DEPTH_AS_STRING);
 	}
@@ -195,6 +207,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getFrameThickness() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS, true);
 	}
@@ -204,6 +217,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFrameThickness(double newFrameThickness) {
 		eSet(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS, newFrameThickness);
 	}
@@ -213,6 +227,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetFrameThickness() {
 		eUnset(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS);
 	}
@@ -222,6 +237,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetFrameThickness() {
 		return eIsSet(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS);
 	}
@@ -231,6 +247,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFrameThicknessAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS_AS_STRING, true);
 	}
@@ -240,6 +257,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFrameThicknessAsString(String newFrameThicknessAsString) {
 		eSet(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS_AS_STRING,
 				newFrameThicknessAsString);
@@ -250,6 +268,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetFrameThicknessAsString() {
 		eUnset(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS_AS_STRING);
 	}
@@ -259,6 +278,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetFrameThicknessAsString() {
 		return eIsSet(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS_AS_STRING);
 	}
@@ -268,6 +288,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcShapeAspect getShapeAspectStyle() {
 		return (IfcShapeAspect) eGet(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__SHAPE_ASPECT_STYLE, true);
 	}
@@ -277,6 +298,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setShapeAspectStyle(IfcShapeAspect newShapeAspectStyle) {
 		eSet(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__SHAPE_ASPECT_STYLE, newShapeAspectStyle);
 	}
@@ -286,6 +308,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetShapeAspectStyle() {
 		eUnset(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__SHAPE_ASPECT_STYLE);
 	}
@@ -295,6 +318,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetShapeAspectStyle() {
 		return eIsSet(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__SHAPE_ASPECT_STYLE);
 	}

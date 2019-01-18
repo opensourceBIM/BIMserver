@@ -91,6 +91,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTypeIdentifier() {
 		return (String) eGet(Ifc4Package.Literals.IFC_REFERENCE__TYPE_IDENTIFIER, true);
 	}
@@ -100,6 +101,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTypeIdentifier(String newTypeIdentifier) {
 		eSet(Ifc4Package.Literals.IFC_REFERENCE__TYPE_IDENTIFIER, newTypeIdentifier);
 	}
@@ -109,6 +111,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetTypeIdentifier() {
 		eUnset(Ifc4Package.Literals.IFC_REFERENCE__TYPE_IDENTIFIER);
 	}
@@ -118,6 +121,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetTypeIdentifier() {
 		return eIsSet(Ifc4Package.Literals.IFC_REFERENCE__TYPE_IDENTIFIER);
 	}
@@ -127,6 +131,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getAttributeIdentifier() {
 		return (String) eGet(Ifc4Package.Literals.IFC_REFERENCE__ATTRIBUTE_IDENTIFIER, true);
 	}
@@ -136,6 +141,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAttributeIdentifier(String newAttributeIdentifier) {
 		eSet(Ifc4Package.Literals.IFC_REFERENCE__ATTRIBUTE_IDENTIFIER, newAttributeIdentifier);
 	}
@@ -145,6 +151,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetAttributeIdentifier() {
 		eUnset(Ifc4Package.Literals.IFC_REFERENCE__ATTRIBUTE_IDENTIFIER);
 	}
@@ -154,6 +161,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetAttributeIdentifier() {
 		return eIsSet(Ifc4Package.Literals.IFC_REFERENCE__ATTRIBUTE_IDENTIFIER);
 	}
@@ -163,6 +171,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getInstanceName() {
 		return (String) eGet(Ifc4Package.Literals.IFC_REFERENCE__INSTANCE_NAME, true);
 	}
@@ -172,6 +181,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInstanceName(String newInstanceName) {
 		eSet(Ifc4Package.Literals.IFC_REFERENCE__INSTANCE_NAME, newInstanceName);
 	}
@@ -181,6 +191,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetInstanceName() {
 		eUnset(Ifc4Package.Literals.IFC_REFERENCE__INSTANCE_NAME);
 	}
@@ -190,6 +201,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetInstanceName() {
 		return eIsSet(Ifc4Package.Literals.IFC_REFERENCE__INSTANCE_NAME);
 	}
@@ -200,6 +212,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Long> getListPositions() {
 		return (EList<Long>) eGet(Ifc4Package.Literals.IFC_REFERENCE__LIST_POSITIONS, true);
 	}
@@ -209,6 +222,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetListPositions() {
 		eUnset(Ifc4Package.Literals.IFC_REFERENCE__LIST_POSITIONS);
 	}
@@ -218,6 +232,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetListPositions() {
 		return eIsSet(Ifc4Package.Literals.IFC_REFERENCE__LIST_POSITIONS);
 	}
@@ -227,6 +242,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcReference getInnerReference() {
 		return (IfcReference) eGet(Ifc4Package.Literals.IFC_REFERENCE__INNER_REFERENCE, true);
 	}
@@ -236,6 +252,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInnerReference(IfcReference newInnerReference) {
 		eSet(Ifc4Package.Literals.IFC_REFERENCE__INNER_REFERENCE, newInnerReference);
 	}
@@ -245,6 +262,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetInnerReference() {
 		eUnset(Ifc4Package.Literals.IFC_REFERENCE__INNER_REFERENCE);
 	}
@@ -254,6 +272,7 @@ public class IfcReferenceImpl extends IdEObjectImpl implements IfcReference {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetInnerReference() {
 		return eIsSet(Ifc4Package.Literals.IFC_REFERENCE__INNER_REFERENCE);
 	}

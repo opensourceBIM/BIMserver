@@ -45,7 +45,8 @@ public interface IfcRelSpaceBoundary extends IfcRelConnects {
 	 * @return the value of the '<em>Relating Space</em>' reference.
 	 * @see #setRelatingSpace(IfcSpaceBoundarySelect)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelSpaceBoundary_RelatingSpace()
-	 * @model
+	 * @model annotation="inverse"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcSpaceBoundarySelect getRelatingSpace();
@@ -74,6 +75,7 @@ public interface IfcRelSpaceBoundary extends IfcRelConnects {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelSpaceBoundary_RelatedBuildingElement()
 	 * @see org.bimserver.models.ifc4.IfcElement#getProvidesBoundaries
 	 * @model opposite="ProvidesBoundaries"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcElement getRelatedBuildingElement();

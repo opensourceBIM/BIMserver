@@ -90,6 +90,7 @@ public class IfcRootImpl extends IdEObjectImpl implements IfcRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getGlobalId() {
 		return (String) eGet(Ifc4Package.Literals.IFC_ROOT__GLOBAL_ID, true);
 	}
@@ -99,6 +100,7 @@ public class IfcRootImpl extends IdEObjectImpl implements IfcRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGlobalId(String newGlobalId) {
 		eSet(Ifc4Package.Literals.IFC_ROOT__GLOBAL_ID, newGlobalId);
 	}
@@ -108,6 +110,7 @@ public class IfcRootImpl extends IdEObjectImpl implements IfcRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcOwnerHistory getOwnerHistory() {
 		return (IfcOwnerHistory) eGet(Ifc4Package.Literals.IFC_ROOT__OWNER_HISTORY, true);
 	}
@@ -117,6 +120,7 @@ public class IfcRootImpl extends IdEObjectImpl implements IfcRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOwnerHistory(IfcOwnerHistory newOwnerHistory) {
 		eSet(Ifc4Package.Literals.IFC_ROOT__OWNER_HISTORY, newOwnerHistory);
 	}
@@ -126,6 +130,7 @@ public class IfcRootImpl extends IdEObjectImpl implements IfcRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetOwnerHistory() {
 		eUnset(Ifc4Package.Literals.IFC_ROOT__OWNER_HISTORY);
 	}
@@ -135,6 +140,7 @@ public class IfcRootImpl extends IdEObjectImpl implements IfcRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetOwnerHistory() {
 		return eIsSet(Ifc4Package.Literals.IFC_ROOT__OWNER_HISTORY);
 	}
@@ -144,6 +150,7 @@ public class IfcRootImpl extends IdEObjectImpl implements IfcRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(Ifc4Package.Literals.IFC_ROOT__NAME, true);
 	}
@@ -153,6 +160,7 @@ public class IfcRootImpl extends IdEObjectImpl implements IfcRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(Ifc4Package.Literals.IFC_ROOT__NAME, newName);
 	}
@@ -162,6 +170,7 @@ public class IfcRootImpl extends IdEObjectImpl implements IfcRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetName() {
 		eUnset(Ifc4Package.Literals.IFC_ROOT__NAME);
 	}
@@ -171,6 +180,7 @@ public class IfcRootImpl extends IdEObjectImpl implements IfcRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetName() {
 		return eIsSet(Ifc4Package.Literals.IFC_ROOT__NAME);
 	}
@@ -180,6 +190,7 @@ public class IfcRootImpl extends IdEObjectImpl implements IfcRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return (String) eGet(Ifc4Package.Literals.IFC_ROOT__DESCRIPTION, true);
 	}
@@ -189,6 +200,7 @@ public class IfcRootImpl extends IdEObjectImpl implements IfcRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		eSet(Ifc4Package.Literals.IFC_ROOT__DESCRIPTION, newDescription);
 	}
@@ -198,6 +210,7 @@ public class IfcRootImpl extends IdEObjectImpl implements IfcRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetDescription() {
 		eUnset(Ifc4Package.Literals.IFC_ROOT__DESCRIPTION);
 	}
@@ -207,6 +220,7 @@ public class IfcRootImpl extends IdEObjectImpl implements IfcRoot {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetDescription() {
 		return eIsSet(Ifc4Package.Literals.IFC_ROOT__DESCRIPTION);
 	}

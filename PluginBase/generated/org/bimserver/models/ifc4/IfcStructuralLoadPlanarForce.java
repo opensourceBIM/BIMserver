@@ -101,6 +101,8 @@ public interface IfcStructuralLoadPlanarForce extends IfcStructuralLoadStatic {
 	 * @see #setPlanarForceXAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadPlanarForce_PlanarForceXAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getPlanarForceXAsString();
@@ -207,6 +209,8 @@ public interface IfcStructuralLoadPlanarForce extends IfcStructuralLoadStatic {
 	 * @see #setPlanarForceYAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadPlanarForce_PlanarForceYAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getPlanarForceYAsString();
@@ -313,6 +317,8 @@ public interface IfcStructuralLoadPlanarForce extends IfcStructuralLoadStatic {
 	 * @see #setPlanarForceZAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadPlanarForce_PlanarForceZAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getPlanarForceZAsString();

@@ -97,7 +97,8 @@ public interface IfcPointOnSurface extends IfcPoint {
 	 * @return the value of the '<em>Point Parameter UAs String</em>' attribute.
 	 * @see #setPointParameterUAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPointOnSurface_PointParameterUAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getPointParameterUAsString();
@@ -149,7 +150,8 @@ public interface IfcPointOnSurface extends IfcPoint {
 	 * @return the value of the '<em>Point Parameter VAs String</em>' attribute.
 	 * @see #setPointParameterVAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPointOnSurface_PointParameterVAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getPointParameterVAsString();

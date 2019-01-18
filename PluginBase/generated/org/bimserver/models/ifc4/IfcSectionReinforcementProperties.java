@@ -97,7 +97,8 @@ public interface IfcSectionReinforcementProperties extends IfcPreDefinedProperti
 	 * @return the value of the '<em>Longitudinal Start Position As String</em>' attribute.
 	 * @see #setLongitudinalStartPositionAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSectionReinforcementProperties_LongitudinalStartPositionAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getLongitudinalStartPositionAsString();
@@ -149,7 +150,8 @@ public interface IfcSectionReinforcementProperties extends IfcPreDefinedProperti
 	 * @return the value of the '<em>Longitudinal End Position As String</em>' attribute.
 	 * @see #setLongitudinalEndPositionAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSectionReinforcementProperties_LongitudinalEndPositionAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getLongitudinalEndPositionAsString();
@@ -231,6 +233,8 @@ public interface IfcSectionReinforcementProperties extends IfcPreDefinedProperti
 	 * @see #setTransversePositionAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSectionReinforcementProperties_TransversePositionAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getTransversePositionAsString();

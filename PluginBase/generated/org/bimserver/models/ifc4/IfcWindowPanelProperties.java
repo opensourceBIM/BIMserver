@@ -159,6 +159,8 @@ public interface IfcWindowPanelProperties extends IfcPreDefinedPropertySet {
 	 * @see #setFrameDepthAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcWindowPanelProperties_FrameDepthAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getFrameDepthAsString();
@@ -265,6 +267,8 @@ public interface IfcWindowPanelProperties extends IfcPreDefinedPropertySet {
 	 * @see #setFrameThicknessAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcWindowPanelProperties_FrameThicknessAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getFrameThicknessAsString();

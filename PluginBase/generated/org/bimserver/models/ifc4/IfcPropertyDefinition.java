@@ -67,6 +67,7 @@ public interface IfcPropertyDefinition extends IfcRoot, IfcDefinitionSelect {
 	 * @see #unsetHasContext()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPropertyDefinition_HasContext()
 	 * @model unsettable="true" upper="2"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelDeclares> getHasContext();
@@ -106,6 +107,7 @@ public interface IfcPropertyDefinition extends IfcRoot, IfcDefinitionSelect {
 	 * @see #unsetHasAssociations()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPropertyDefinition_HasAssociations()
 	 * @model unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelAssociates> getHasAssociations();

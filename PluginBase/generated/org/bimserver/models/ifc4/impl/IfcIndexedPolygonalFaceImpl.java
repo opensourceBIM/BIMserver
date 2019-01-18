@@ -79,6 +79,7 @@ public class IfcIndexedPolygonalFaceImpl extends IfcTessellatedItemImpl implemen
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Long> getCoordIndex() {
 		return (EList<Long>) eGet(Ifc4Package.Literals.IFC_INDEXED_POLYGONAL_FACE__COORD_INDEX, true);
 	}
@@ -89,6 +90,7 @@ public class IfcIndexedPolygonalFaceImpl extends IfcTessellatedItemImpl implemen
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcPolygonalFaceSet> getToFaceSet() {
 		return (EList<IfcPolygonalFaceSet>) eGet(Ifc4Package.Literals.IFC_INDEXED_POLYGONAL_FACE__TO_FACE_SET, true);
 	}
@@ -98,6 +100,7 @@ public class IfcIndexedPolygonalFaceImpl extends IfcTessellatedItemImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetToFaceSet() {
 		eUnset(Ifc4Package.Literals.IFC_INDEXED_POLYGONAL_FACE__TO_FACE_SET);
 	}
@@ -107,6 +110,7 @@ public class IfcIndexedPolygonalFaceImpl extends IfcTessellatedItemImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetToFaceSet() {
 		return eIsSet(Ifc4Package.Literals.IFC_INDEXED_POLYGONAL_FACE__TO_FACE_SET);
 	}

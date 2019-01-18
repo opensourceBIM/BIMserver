@@ -67,7 +67,7 @@ public interface IfcTriangulatedFaceSet extends IfcTessellatedFaceSet {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Normals</em>' reference list.
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTriangulatedFaceSet_Normals()
-	 * @model
+	 * @model annotation="twodimensionalarray"
 	 * @generated
 	 */
 	EList<ListOfIfcParameterValue> getNormals();
@@ -139,7 +139,7 @@ public interface IfcTriangulatedFaceSet extends IfcTessellatedFaceSet {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Coord Index</em>' reference list.
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTriangulatedFaceSet_CoordIndex()
-	 * @model
+	 * @model annotation="twodimensionalarray"
 	 * @generated
 	 */
 	EList<ListOfELong> getCoordIndex();

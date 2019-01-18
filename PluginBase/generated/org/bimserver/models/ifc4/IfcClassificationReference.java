@@ -71,6 +71,8 @@ public interface IfcClassificationReference
 	 * @see #setReferencedSource(IfcClassificationReferenceSelect)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcClassificationReference_ReferencedSource()
 	 * @model unsettable="true"
+	 *        annotation="inverse"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcClassificationReferenceSelect getReferencedSource();
@@ -230,6 +232,7 @@ public interface IfcClassificationReference
 	 * @see #unsetClassificationRefForObjects()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcClassificationReference_ClassificationRefForObjects()
 	 * @model unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelAssociatesClassification> getClassificationRefForObjects();
@@ -269,6 +272,7 @@ public interface IfcClassificationReference
 	 * @see #unsetHasReferences()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcClassificationReference_HasReferences()
 	 * @model unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcClassificationReference> getHasReferences();

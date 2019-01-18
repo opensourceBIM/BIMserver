@@ -48,7 +48,7 @@ import org.bimserver.emf.IdEObject;
  * </ul>
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStrippedOptional()
- * @model
+ * @model annotation="wrapped"
  * @extends IdEObject
  * @generated
  */

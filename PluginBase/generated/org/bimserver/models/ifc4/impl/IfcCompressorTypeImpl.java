@@ -76,6 +76,7 @@ public class IfcCompressorTypeImpl extends IfcFlowMovingDeviceTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCompressorTypeEnum getPredefinedType() {
 		return (IfcCompressorTypeEnum) eGet(Ifc4Package.Literals.IFC_COMPRESSOR_TYPE__PREDEFINED_TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcCompressorTypeImpl extends IfcFlowMovingDeviceTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcCompressorTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_COMPRESSOR_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

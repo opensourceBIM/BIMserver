@@ -75,6 +75,7 @@ public class IfcSurfaceImpl extends IfcGeometricRepresentationItemImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getDim() {
 		return (Long) eGet(Ifc4Package.Literals.IFC_SURFACE__DIM, true);
 	}
@@ -84,6 +85,7 @@ public class IfcSurfaceImpl extends IfcGeometricRepresentationItemImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDim(long newDim) {
 		eSet(Ifc4Package.Literals.IFC_SURFACE__DIM, newDim);
 	}
@@ -93,6 +95,7 @@ public class IfcSurfaceImpl extends IfcGeometricRepresentationItemImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetDim() {
 		eUnset(Ifc4Package.Literals.IFC_SURFACE__DIM);
 	}
@@ -102,6 +105,7 @@ public class IfcSurfaceImpl extends IfcGeometricRepresentationItemImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetDim() {
 		return eIsSet(Ifc4Package.Literals.IFC_SURFACE__DIM);
 	}

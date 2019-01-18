@@ -64,7 +64,7 @@ public interface IfcResourceApprovalRelationship extends IfcResourceLevelRelatio
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Related Resource Objects</em>' reference list.
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcResourceApprovalRelationship_RelatedResourceObjects()
-	 * @model
+	 * @model annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcResourceObjectSelect> getRelatedResourceObjects();
@@ -83,6 +83,7 @@ public interface IfcResourceApprovalRelationship extends IfcResourceLevelRelatio
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcResourceApprovalRelationship_RelatingApproval()
 	 * @see org.bimserver.models.ifc4.IfcApproval#getApprovedResources
 	 * @model opposite="ApprovedResources"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcApproval getRelatingApproval();

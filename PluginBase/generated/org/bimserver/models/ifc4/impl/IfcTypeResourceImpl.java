@@ -80,6 +80,7 @@ public class IfcTypeResourceImpl extends IfcTypeObjectImpl implements IfcTypeRes
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIdentification() {
 		return (String) eGet(Ifc4Package.Literals.IFC_TYPE_RESOURCE__IDENTIFICATION, true);
 	}
@@ -89,6 +90,7 @@ public class IfcTypeResourceImpl extends IfcTypeObjectImpl implements IfcTypeRes
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentification(String newIdentification) {
 		eSet(Ifc4Package.Literals.IFC_TYPE_RESOURCE__IDENTIFICATION, newIdentification);
 	}
@@ -98,6 +100,7 @@ public class IfcTypeResourceImpl extends IfcTypeObjectImpl implements IfcTypeRes
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetIdentification() {
 		eUnset(Ifc4Package.Literals.IFC_TYPE_RESOURCE__IDENTIFICATION);
 	}
@@ -107,6 +110,7 @@ public class IfcTypeResourceImpl extends IfcTypeObjectImpl implements IfcTypeRes
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetIdentification() {
 		return eIsSet(Ifc4Package.Literals.IFC_TYPE_RESOURCE__IDENTIFICATION);
 	}
@@ -116,6 +120,7 @@ public class IfcTypeResourceImpl extends IfcTypeObjectImpl implements IfcTypeRes
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLongDescription() {
 		return (String) eGet(Ifc4Package.Literals.IFC_TYPE_RESOURCE__LONG_DESCRIPTION, true);
 	}
@@ -125,6 +130,7 @@ public class IfcTypeResourceImpl extends IfcTypeObjectImpl implements IfcTypeRes
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLongDescription(String newLongDescription) {
 		eSet(Ifc4Package.Literals.IFC_TYPE_RESOURCE__LONG_DESCRIPTION, newLongDescription);
 	}
@@ -134,6 +140,7 @@ public class IfcTypeResourceImpl extends IfcTypeObjectImpl implements IfcTypeRes
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetLongDescription() {
 		eUnset(Ifc4Package.Literals.IFC_TYPE_RESOURCE__LONG_DESCRIPTION);
 	}
@@ -143,6 +150,7 @@ public class IfcTypeResourceImpl extends IfcTypeObjectImpl implements IfcTypeRes
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetLongDescription() {
 		return eIsSet(Ifc4Package.Literals.IFC_TYPE_RESOURCE__LONG_DESCRIPTION);
 	}
@@ -152,6 +160,7 @@ public class IfcTypeResourceImpl extends IfcTypeObjectImpl implements IfcTypeRes
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getResourceType() {
 		return (String) eGet(Ifc4Package.Literals.IFC_TYPE_RESOURCE__RESOURCE_TYPE, true);
 	}
@@ -161,6 +170,7 @@ public class IfcTypeResourceImpl extends IfcTypeObjectImpl implements IfcTypeRes
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setResourceType(String newResourceType) {
 		eSet(Ifc4Package.Literals.IFC_TYPE_RESOURCE__RESOURCE_TYPE, newResourceType);
 	}
@@ -170,6 +180,7 @@ public class IfcTypeResourceImpl extends IfcTypeObjectImpl implements IfcTypeRes
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetResourceType() {
 		eUnset(Ifc4Package.Literals.IFC_TYPE_RESOURCE__RESOURCE_TYPE);
 	}
@@ -179,6 +190,7 @@ public class IfcTypeResourceImpl extends IfcTypeObjectImpl implements IfcTypeRes
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetResourceType() {
 		return eIsSet(Ifc4Package.Literals.IFC_TYPE_RESOURCE__RESOURCE_TYPE);
 	}
@@ -189,6 +201,7 @@ public class IfcTypeResourceImpl extends IfcTypeObjectImpl implements IfcTypeRes
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelAssignsToResource> getResourceOf() {
 		return (EList<IfcRelAssignsToResource>) eGet(Ifc4Package.Literals.IFC_TYPE_RESOURCE__RESOURCE_OF, true);
 	}
@@ -198,6 +211,7 @@ public class IfcTypeResourceImpl extends IfcTypeObjectImpl implements IfcTypeRes
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetResourceOf() {
 		eUnset(Ifc4Package.Literals.IFC_TYPE_RESOURCE__RESOURCE_OF);
 	}
@@ -207,6 +221,7 @@ public class IfcTypeResourceImpl extends IfcTypeObjectImpl implements IfcTypeRes
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetResourceOf() {
 		return eIsSet(Ifc4Package.Literals.IFC_TYPE_RESOURCE__RESOURCE_OF);
 	}

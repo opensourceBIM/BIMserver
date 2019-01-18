@@ -80,6 +80,7 @@ public class IfcExternalSpatialElementImpl extends IfcExternalSpatialStructureEl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcExternalSpatialElementTypeEnum getPredefinedType() {
 		return (IfcExternalSpatialElementTypeEnum) eGet(
 				Ifc4Package.Literals.IFC_EXTERNAL_SPATIAL_ELEMENT__PREDEFINED_TYPE, true);
@@ -90,6 +91,7 @@ public class IfcExternalSpatialElementImpl extends IfcExternalSpatialStructureEl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcExternalSpatialElementTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_EXTERNAL_SPATIAL_ELEMENT__PREDEFINED_TYPE, newPredefinedType);
 	}
@@ -99,6 +101,7 @@ public class IfcExternalSpatialElementImpl extends IfcExternalSpatialStructureEl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPredefinedType() {
 		eUnset(Ifc4Package.Literals.IFC_EXTERNAL_SPATIAL_ELEMENT__PREDEFINED_TYPE);
 	}
@@ -108,6 +111,7 @@ public class IfcExternalSpatialElementImpl extends IfcExternalSpatialStructureEl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPredefinedType() {
 		return eIsSet(Ifc4Package.Literals.IFC_EXTERNAL_SPATIAL_ELEMENT__PREDEFINED_TYPE);
 	}
@@ -118,6 +122,7 @@ public class IfcExternalSpatialElementImpl extends IfcExternalSpatialStructureEl
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelSpaceBoundary> getBoundedBy() {
 		return (EList<IfcRelSpaceBoundary>) eGet(Ifc4Package.Literals.IFC_EXTERNAL_SPATIAL_ELEMENT__BOUNDED_BY, true);
 	}
@@ -127,6 +132,7 @@ public class IfcExternalSpatialElementImpl extends IfcExternalSpatialStructureEl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetBoundedBy() {
 		eUnset(Ifc4Package.Literals.IFC_EXTERNAL_SPATIAL_ELEMENT__BOUNDED_BY);
 	}
@@ -136,6 +142,7 @@ public class IfcExternalSpatialElementImpl extends IfcExternalSpatialStructureEl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetBoundedBy() {
 		return eIsSet(Ifc4Package.Literals.IFC_EXTERNAL_SPATIAL_ELEMENT__BOUNDED_BY);
 	}

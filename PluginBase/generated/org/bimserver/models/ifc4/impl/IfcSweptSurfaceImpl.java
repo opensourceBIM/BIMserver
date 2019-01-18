@@ -78,6 +78,7 @@ public class IfcSweptSurfaceImpl extends IfcSurfaceImpl implements IfcSweptSurfa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProfileDef getSweptCurve() {
 		return (IfcProfileDef) eGet(Ifc4Package.Literals.IFC_SWEPT_SURFACE__SWEPT_CURVE, true);
 	}
@@ -87,6 +88,7 @@ public class IfcSweptSurfaceImpl extends IfcSurfaceImpl implements IfcSweptSurfa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSweptCurve(IfcProfileDef newSweptCurve) {
 		eSet(Ifc4Package.Literals.IFC_SWEPT_SURFACE__SWEPT_CURVE, newSweptCurve);
 	}
@@ -96,6 +98,7 @@ public class IfcSweptSurfaceImpl extends IfcSurfaceImpl implements IfcSweptSurfa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAxis2Placement3D getPosition() {
 		return (IfcAxis2Placement3D) eGet(Ifc4Package.Literals.IFC_SWEPT_SURFACE__POSITION, true);
 	}
@@ -105,6 +108,7 @@ public class IfcSweptSurfaceImpl extends IfcSurfaceImpl implements IfcSweptSurfa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPosition(IfcAxis2Placement3D newPosition) {
 		eSet(Ifc4Package.Literals.IFC_SWEPT_SURFACE__POSITION, newPosition);
 	}
@@ -114,6 +118,7 @@ public class IfcSweptSurfaceImpl extends IfcSurfaceImpl implements IfcSweptSurfa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPosition() {
 		eUnset(Ifc4Package.Literals.IFC_SWEPT_SURFACE__POSITION);
 	}
@@ -123,6 +128,7 @@ public class IfcSweptSurfaceImpl extends IfcSurfaceImpl implements IfcSweptSurfa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPosition() {
 		return eIsSet(Ifc4Package.Literals.IFC_SWEPT_SURFACE__POSITION);
 	}

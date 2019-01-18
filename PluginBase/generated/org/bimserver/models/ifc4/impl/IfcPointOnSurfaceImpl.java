@@ -81,6 +81,7 @@ public class IfcPointOnSurfaceImpl extends IfcPointImpl implements IfcPointOnSur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcSurface getBasisSurface() {
 		return (IfcSurface) eGet(Ifc4Package.Literals.IFC_POINT_ON_SURFACE__BASIS_SURFACE, true);
 	}
@@ -90,6 +91,7 @@ public class IfcPointOnSurfaceImpl extends IfcPointImpl implements IfcPointOnSur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBasisSurface(IfcSurface newBasisSurface) {
 		eSet(Ifc4Package.Literals.IFC_POINT_ON_SURFACE__BASIS_SURFACE, newBasisSurface);
 	}
@@ -99,6 +101,7 @@ public class IfcPointOnSurfaceImpl extends IfcPointImpl implements IfcPointOnSur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getPointParameterU() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_POINT_ON_SURFACE__POINT_PARAMETER_U, true);
 	}
@@ -108,6 +111,7 @@ public class IfcPointOnSurfaceImpl extends IfcPointImpl implements IfcPointOnSur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPointParameterU(double newPointParameterU) {
 		eSet(Ifc4Package.Literals.IFC_POINT_ON_SURFACE__POINT_PARAMETER_U, newPointParameterU);
 	}
@@ -117,6 +121,7 @@ public class IfcPointOnSurfaceImpl extends IfcPointImpl implements IfcPointOnSur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getPointParameterUAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_POINT_ON_SURFACE__POINT_PARAMETER_UAS_STRING, true);
 	}
@@ -126,6 +131,7 @@ public class IfcPointOnSurfaceImpl extends IfcPointImpl implements IfcPointOnSur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPointParameterUAsString(String newPointParameterUAsString) {
 		eSet(Ifc4Package.Literals.IFC_POINT_ON_SURFACE__POINT_PARAMETER_UAS_STRING, newPointParameterUAsString);
 	}
@@ -135,6 +141,7 @@ public class IfcPointOnSurfaceImpl extends IfcPointImpl implements IfcPointOnSur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getPointParameterV() {
 		return (Double) eGet(Ifc4Package.Literals.IFC_POINT_ON_SURFACE__POINT_PARAMETER_V, true);
 	}
@@ -144,6 +151,7 @@ public class IfcPointOnSurfaceImpl extends IfcPointImpl implements IfcPointOnSur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPointParameterV(double newPointParameterV) {
 		eSet(Ifc4Package.Literals.IFC_POINT_ON_SURFACE__POINT_PARAMETER_V, newPointParameterV);
 	}
@@ -153,6 +161,7 @@ public class IfcPointOnSurfaceImpl extends IfcPointImpl implements IfcPointOnSur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getPointParameterVAsString() {
 		return (String) eGet(Ifc4Package.Literals.IFC_POINT_ON_SURFACE__POINT_PARAMETER_VAS_STRING, true);
 	}
@@ -162,6 +171,7 @@ public class IfcPointOnSurfaceImpl extends IfcPointImpl implements IfcPointOnSur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPointParameterVAsString(String newPointParameterVAsString) {
 		eSet(Ifc4Package.Literals.IFC_POINT_ON_SURFACE__POINT_PARAMETER_VAS_STRING, newPointParameterVAsString);
 	}
@@ -171,6 +181,7 @@ public class IfcPointOnSurfaceImpl extends IfcPointImpl implements IfcPointOnSur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getDim() {
 		return (Long) eGet(Ifc4Package.Literals.IFC_POINT_ON_SURFACE__DIM, true);
 	}
@@ -180,6 +191,7 @@ public class IfcPointOnSurfaceImpl extends IfcPointImpl implements IfcPointOnSur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDim(long newDim) {
 		eSet(Ifc4Package.Literals.IFC_POINT_ON_SURFACE__DIM, newDim);
 	}
@@ -189,6 +201,7 @@ public class IfcPointOnSurfaceImpl extends IfcPointImpl implements IfcPointOnSur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetDim() {
 		eUnset(Ifc4Package.Literals.IFC_POINT_ON_SURFACE__DIM);
 	}
@@ -198,6 +211,7 @@ public class IfcPointOnSurfaceImpl extends IfcPointImpl implements IfcPointOnSur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetDim() {
 		return eIsSet(Ifc4Package.Literals.IFC_POINT_ON_SURFACE__DIM);
 	}

@@ -207,6 +207,8 @@ public interface IfcStairFlight extends IfcBuildingElement {
 	 * @see #setRiserHeightAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStairFlight_RiserHeightAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getRiserHeightAsString();
@@ -313,6 +315,8 @@ public interface IfcStairFlight extends IfcBuildingElement {
 	 * @see #setTreadLengthAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStairFlight_TreadLengthAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getTreadLengthAsString();

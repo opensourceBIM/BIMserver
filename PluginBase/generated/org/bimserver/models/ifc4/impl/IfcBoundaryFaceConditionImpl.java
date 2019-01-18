@@ -78,6 +78,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcModulusOfSubgradeReactionSelect getTranslationalStiffnessByAreaX() {
 		return (IfcModulusOfSubgradeReactionSelect) eGet(
 				Ifc4Package.Literals.IFC_BOUNDARY_FACE_CONDITION__TRANSLATIONAL_STIFFNESS_BY_AREA_X, true);
@@ -88,6 +89,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTranslationalStiffnessByAreaX(IfcModulusOfSubgradeReactionSelect newTranslationalStiffnessByAreaX) {
 		eSet(Ifc4Package.Literals.IFC_BOUNDARY_FACE_CONDITION__TRANSLATIONAL_STIFFNESS_BY_AREA_X,
 				newTranslationalStiffnessByAreaX);
@@ -98,6 +100,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetTranslationalStiffnessByAreaX() {
 		eUnset(Ifc4Package.Literals.IFC_BOUNDARY_FACE_CONDITION__TRANSLATIONAL_STIFFNESS_BY_AREA_X);
 	}
@@ -107,6 +110,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetTranslationalStiffnessByAreaX() {
 		return eIsSet(Ifc4Package.Literals.IFC_BOUNDARY_FACE_CONDITION__TRANSLATIONAL_STIFFNESS_BY_AREA_X);
 	}
@@ -116,6 +120,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcModulusOfSubgradeReactionSelect getTranslationalStiffnessByAreaY() {
 		return (IfcModulusOfSubgradeReactionSelect) eGet(
 				Ifc4Package.Literals.IFC_BOUNDARY_FACE_CONDITION__TRANSLATIONAL_STIFFNESS_BY_AREA_Y, true);
@@ -126,6 +131,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTranslationalStiffnessByAreaY(IfcModulusOfSubgradeReactionSelect newTranslationalStiffnessByAreaY) {
 		eSet(Ifc4Package.Literals.IFC_BOUNDARY_FACE_CONDITION__TRANSLATIONAL_STIFFNESS_BY_AREA_Y,
 				newTranslationalStiffnessByAreaY);
@@ -136,6 +142,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetTranslationalStiffnessByAreaY() {
 		eUnset(Ifc4Package.Literals.IFC_BOUNDARY_FACE_CONDITION__TRANSLATIONAL_STIFFNESS_BY_AREA_Y);
 	}
@@ -145,6 +152,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetTranslationalStiffnessByAreaY() {
 		return eIsSet(Ifc4Package.Literals.IFC_BOUNDARY_FACE_CONDITION__TRANSLATIONAL_STIFFNESS_BY_AREA_Y);
 	}
@@ -154,6 +162,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcModulusOfSubgradeReactionSelect getTranslationalStiffnessByAreaZ() {
 		return (IfcModulusOfSubgradeReactionSelect) eGet(
 				Ifc4Package.Literals.IFC_BOUNDARY_FACE_CONDITION__TRANSLATIONAL_STIFFNESS_BY_AREA_Z, true);
@@ -164,6 +173,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTranslationalStiffnessByAreaZ(IfcModulusOfSubgradeReactionSelect newTranslationalStiffnessByAreaZ) {
 		eSet(Ifc4Package.Literals.IFC_BOUNDARY_FACE_CONDITION__TRANSLATIONAL_STIFFNESS_BY_AREA_Z,
 				newTranslationalStiffnessByAreaZ);
@@ -174,6 +184,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetTranslationalStiffnessByAreaZ() {
 		eUnset(Ifc4Package.Literals.IFC_BOUNDARY_FACE_CONDITION__TRANSLATIONAL_STIFFNESS_BY_AREA_Z);
 	}
@@ -183,6 +194,7 @@ public class IfcBoundaryFaceConditionImpl extends IfcBoundaryConditionImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetTranslationalStiffnessByAreaZ() {
 		return eIsSet(Ifc4Package.Literals.IFC_BOUNDARY_FACE_CONDITION__TRANSLATIONAL_STIFFNESS_BY_AREA_Z);
 	}

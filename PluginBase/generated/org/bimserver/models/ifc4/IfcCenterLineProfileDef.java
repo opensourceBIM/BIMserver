@@ -71,7 +71,8 @@ public interface IfcCenterLineProfileDef extends IfcArbitraryOpenProfileDef {
 	 * @return the value of the '<em>Thickness As String</em>' attribute.
 	 * @see #setThicknessAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCenterLineProfileDef_ThicknessAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getThicknessAsString();

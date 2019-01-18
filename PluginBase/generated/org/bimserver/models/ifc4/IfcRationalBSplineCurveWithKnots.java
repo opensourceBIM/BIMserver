@@ -83,6 +83,8 @@ public interface IfcRationalBSplineCurveWithKnots extends IfcBSplineCurveWithKno
 	 * @return the value of the '<em>Weights Data As String</em>' attribute list.
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRationalBSplineCurveWithKnots_WeightsDataAsString()
 	 * @model unique="false"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	EList<String> getWeightsDataAsString();
@@ -154,6 +156,8 @@ public interface IfcRationalBSplineCurveWithKnots extends IfcBSplineCurveWithKno
 	 * @see #setWeightsAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRationalBSplineCurveWithKnots_WeightsAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getWeightsAsString();

@@ -79,6 +79,7 @@ public class IfcResourceImpl extends IfcObjectImpl implements IfcResource {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIdentification() {
 		return (String) eGet(Ifc4Package.Literals.IFC_RESOURCE__IDENTIFICATION, true);
 	}
@@ -88,6 +89,7 @@ public class IfcResourceImpl extends IfcObjectImpl implements IfcResource {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentification(String newIdentification) {
 		eSet(Ifc4Package.Literals.IFC_RESOURCE__IDENTIFICATION, newIdentification);
 	}
@@ -97,6 +99,7 @@ public class IfcResourceImpl extends IfcObjectImpl implements IfcResource {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetIdentification() {
 		eUnset(Ifc4Package.Literals.IFC_RESOURCE__IDENTIFICATION);
 	}
@@ -106,6 +109,7 @@ public class IfcResourceImpl extends IfcObjectImpl implements IfcResource {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetIdentification() {
 		return eIsSet(Ifc4Package.Literals.IFC_RESOURCE__IDENTIFICATION);
 	}
@@ -115,6 +119,7 @@ public class IfcResourceImpl extends IfcObjectImpl implements IfcResource {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLongDescription() {
 		return (String) eGet(Ifc4Package.Literals.IFC_RESOURCE__LONG_DESCRIPTION, true);
 	}
@@ -124,6 +129,7 @@ public class IfcResourceImpl extends IfcObjectImpl implements IfcResource {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLongDescription(String newLongDescription) {
 		eSet(Ifc4Package.Literals.IFC_RESOURCE__LONG_DESCRIPTION, newLongDescription);
 	}
@@ -133,6 +139,7 @@ public class IfcResourceImpl extends IfcObjectImpl implements IfcResource {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetLongDescription() {
 		eUnset(Ifc4Package.Literals.IFC_RESOURCE__LONG_DESCRIPTION);
 	}
@@ -142,6 +149,7 @@ public class IfcResourceImpl extends IfcObjectImpl implements IfcResource {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetLongDescription() {
 		return eIsSet(Ifc4Package.Literals.IFC_RESOURCE__LONG_DESCRIPTION);
 	}
@@ -152,6 +160,7 @@ public class IfcResourceImpl extends IfcObjectImpl implements IfcResource {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelAssignsToResource> getResourceOf() {
 		return (EList<IfcRelAssignsToResource>) eGet(Ifc4Package.Literals.IFC_RESOURCE__RESOURCE_OF, true);
 	}
@@ -161,6 +170,7 @@ public class IfcResourceImpl extends IfcObjectImpl implements IfcResource {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetResourceOf() {
 		eUnset(Ifc4Package.Literals.IFC_RESOURCE__RESOURCE_OF);
 	}
@@ -170,6 +180,7 @@ public class IfcResourceImpl extends IfcObjectImpl implements IfcResource {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetResourceOf() {
 		return eIsSet(Ifc4Package.Literals.IFC_RESOURCE__RESOURCE_OF);
 	}

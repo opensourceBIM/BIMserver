@@ -66,6 +66,7 @@ public interface IfcAnnotation extends IfcProduct {
 	 * @see #unsetContainedInStructure()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcAnnotation_ContainedInStructure()
 	 * @model unsettable="true" upper="2"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelContainedInSpatialStructure> getContainedInStructure();

@@ -78,6 +78,7 @@ public class IfcMappedItemImpl extends IfcRepresentationItemImpl implements IfcM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRepresentationMap getMappingSource() {
 		return (IfcRepresentationMap) eGet(Ifc4Package.Literals.IFC_MAPPED_ITEM__MAPPING_SOURCE, true);
 	}
@@ -87,6 +88,7 @@ public class IfcMappedItemImpl extends IfcRepresentationItemImpl implements IfcM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMappingSource(IfcRepresentationMap newMappingSource) {
 		eSet(Ifc4Package.Literals.IFC_MAPPED_ITEM__MAPPING_SOURCE, newMappingSource);
 	}
@@ -96,6 +98,7 @@ public class IfcMappedItemImpl extends IfcRepresentationItemImpl implements IfcM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCartesianTransformationOperator getMappingTarget() {
 		return (IfcCartesianTransformationOperator) eGet(Ifc4Package.Literals.IFC_MAPPED_ITEM__MAPPING_TARGET, true);
 	}
@@ -105,6 +108,7 @@ public class IfcMappedItemImpl extends IfcRepresentationItemImpl implements IfcM
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMappingTarget(IfcCartesianTransformationOperator newMappingTarget) {
 		eSet(Ifc4Package.Literals.IFC_MAPPED_ITEM__MAPPING_TARGET, newMappingTarget);
 	}

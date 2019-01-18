@@ -71,7 +71,8 @@ public interface IfcIShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return the value of the '<em>Overall Width As String</em>' attribute.
 	 * @see #setOverallWidthAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcIShapeProfileDef_OverallWidthAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getOverallWidthAsString();
@@ -123,7 +124,8 @@ public interface IfcIShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return the value of the '<em>Overall Depth As String</em>' attribute.
 	 * @see #setOverallDepthAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcIShapeProfileDef_OverallDepthAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getOverallDepthAsString();
@@ -175,7 +177,8 @@ public interface IfcIShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return the value of the '<em>Web Thickness As String</em>' attribute.
 	 * @see #setWebThicknessAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcIShapeProfileDef_WebThicknessAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getWebThicknessAsString();
@@ -227,7 +230,8 @@ public interface IfcIShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @return the value of the '<em>Flange Thickness As String</em>' attribute.
 	 * @see #setFlangeThicknessAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcIShapeProfileDef_FlangeThicknessAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getFlangeThicknessAsString();
@@ -309,6 +313,8 @@ public interface IfcIShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #setFilletRadiusAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcIShapeProfileDef_FilletRadiusAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getFilletRadiusAsString();
@@ -415,6 +421,8 @@ public interface IfcIShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #setFlangeEdgeRadiusAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcIShapeProfileDef_FlangeEdgeRadiusAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getFlangeEdgeRadiusAsString();
@@ -521,6 +529,8 @@ public interface IfcIShapeProfileDef extends IfcParameterizedProfileDef {
 	 * @see #setFlangeSlopeAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcIShapeProfileDef_FlangeSlopeAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getFlangeSlopeAsString();

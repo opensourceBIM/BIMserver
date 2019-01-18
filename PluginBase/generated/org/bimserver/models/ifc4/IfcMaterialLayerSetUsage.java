@@ -155,7 +155,8 @@ public interface IfcMaterialLayerSetUsage extends IfcMaterialUsageDefinition {
 	 * @return the value of the '<em>Offset From Reference Line As String</em>' attribute.
 	 * @see #setOffsetFromReferenceLineAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialLayerSetUsage_OffsetFromReferenceLineAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getOffsetFromReferenceLineAsString();
@@ -237,6 +238,8 @@ public interface IfcMaterialLayerSetUsage extends IfcMaterialUsageDefinition {
 	 * @see #setReferenceExtentAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialLayerSetUsage_ReferenceExtentAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getReferenceExtentAsString();

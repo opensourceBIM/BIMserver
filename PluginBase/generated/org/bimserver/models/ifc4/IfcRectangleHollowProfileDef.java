@@ -71,7 +71,8 @@ public interface IfcRectangleHollowProfileDef extends IfcRectangleProfileDef {
 	 * @return the value of the '<em>Wall Thickness As String</em>' attribute.
 	 * @see #setWallThicknessAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRectangleHollowProfileDef_WallThicknessAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getWallThicknessAsString();
@@ -153,6 +154,8 @@ public interface IfcRectangleHollowProfileDef extends IfcRectangleProfileDef {
 	 * @see #setInnerFilletRadiusAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRectangleHollowProfileDef_InnerFilletRadiusAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getInnerFilletRadiusAsString();
@@ -259,6 +262,8 @@ public interface IfcRectangleHollowProfileDef extends IfcRectangleProfileDef {
 	 * @see #setOuterFilletRadiusAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRectangleHollowProfileDef_OuterFilletRadiusAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getOuterFilletRadiusAsString();

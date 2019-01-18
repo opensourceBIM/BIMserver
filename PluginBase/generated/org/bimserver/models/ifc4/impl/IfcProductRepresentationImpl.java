@@ -90,6 +90,7 @@ public class IfcProductRepresentationImpl extends IdEObjectImpl implements IfcPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(Ifc4Package.Literals.IFC_PRODUCT_REPRESENTATION__NAME, true);
 	}
@@ -99,6 +100,7 @@ public class IfcProductRepresentationImpl extends IdEObjectImpl implements IfcPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(Ifc4Package.Literals.IFC_PRODUCT_REPRESENTATION__NAME, newName);
 	}
@@ -108,6 +110,7 @@ public class IfcProductRepresentationImpl extends IdEObjectImpl implements IfcPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetName() {
 		eUnset(Ifc4Package.Literals.IFC_PRODUCT_REPRESENTATION__NAME);
 	}
@@ -117,6 +120,7 @@ public class IfcProductRepresentationImpl extends IdEObjectImpl implements IfcPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetName() {
 		return eIsSet(Ifc4Package.Literals.IFC_PRODUCT_REPRESENTATION__NAME);
 	}
@@ -126,6 +130,7 @@ public class IfcProductRepresentationImpl extends IdEObjectImpl implements IfcPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return (String) eGet(Ifc4Package.Literals.IFC_PRODUCT_REPRESENTATION__DESCRIPTION, true);
 	}
@@ -135,6 +140,7 @@ public class IfcProductRepresentationImpl extends IdEObjectImpl implements IfcPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		eSet(Ifc4Package.Literals.IFC_PRODUCT_REPRESENTATION__DESCRIPTION, newDescription);
 	}
@@ -144,6 +150,7 @@ public class IfcProductRepresentationImpl extends IdEObjectImpl implements IfcPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetDescription() {
 		eUnset(Ifc4Package.Literals.IFC_PRODUCT_REPRESENTATION__DESCRIPTION);
 	}
@@ -153,6 +160,7 @@ public class IfcProductRepresentationImpl extends IdEObjectImpl implements IfcPr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetDescription() {
 		return eIsSet(Ifc4Package.Literals.IFC_PRODUCT_REPRESENTATION__DESCRIPTION);
 	}
@@ -163,6 +171,7 @@ public class IfcProductRepresentationImpl extends IdEObjectImpl implements IfcPr
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRepresentation> getRepresentations() {
 		return (EList<IfcRepresentation>) eGet(Ifc4Package.Literals.IFC_PRODUCT_REPRESENTATION__REPRESENTATIONS, true);
 	}

@@ -66,6 +66,7 @@ public interface IfcTextureCoordinate extends IfcPresentationItem {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcTextureCoordinate_Maps()
 	 * @see org.bimserver.models.ifc4.IfcSurfaceTexture#getIsMappedBy
 	 * @model opposite="IsMappedBy"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcSurfaceTexture> getMaps();

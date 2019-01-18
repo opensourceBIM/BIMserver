@@ -101,6 +101,8 @@ public interface IfcSweptDiskSolidPolygonal extends IfcSweptDiskSolid {
 	 * @see #setFilletRadiusAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSweptDiskSolidPolygonal_FilletRadiusAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getFilletRadiusAsString();

@@ -48,6 +48,7 @@ public interface IfcRelInterferesElements extends IfcRelConnects {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelInterferesElements_RelatingElement()
 	 * @see org.bimserver.models.ifc4.IfcElement#getInterferesElements
 	 * @model opposite="InterferesElements"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcElement getRelatingElement();
@@ -76,6 +77,7 @@ public interface IfcRelInterferesElements extends IfcRelConnects {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelInterferesElements_RelatedElement()
 	 * @see org.bimserver.models.ifc4.IfcElement#getIsInterferedByElements
 	 * @model opposite="IsInterferedByElements"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcElement getRelatedElement();

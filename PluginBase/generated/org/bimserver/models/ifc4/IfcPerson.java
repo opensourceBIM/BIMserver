@@ -391,6 +391,7 @@ public interface IfcPerson extends IfcActorSelect, IfcObjectReferenceSelect, Ifc
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPerson_Addresses()
 	 * @see org.bimserver.models.ifc4.IfcAddress#getOfPerson
 	 * @model opposite="OfPerson" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcAddress> getAddresses();
@@ -432,6 +433,7 @@ public interface IfcPerson extends IfcActorSelect, IfcObjectReferenceSelect, Ifc
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPerson_EngagedIn()
 	 * @see org.bimserver.models.ifc4.IfcPersonAndOrganization#getThePerson
 	 * @model opposite="ThePerson" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcPersonAndOrganization> getEngagedIn();

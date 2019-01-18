@@ -76,6 +76,7 @@ public class IfcCableFittingTypeImpl extends IfcFlowFittingTypeImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCableFittingTypeEnum getPredefinedType() {
 		return (IfcCableFittingTypeEnum) eGet(Ifc4Package.Literals.IFC_CABLE_FITTING_TYPE__PREDEFINED_TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcCableFittingTypeImpl extends IfcFlowFittingTypeImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcCableFittingTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_CABLE_FITTING_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

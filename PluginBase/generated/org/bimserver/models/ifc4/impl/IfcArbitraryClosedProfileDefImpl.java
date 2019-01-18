@@ -76,6 +76,7 @@ public class IfcArbitraryClosedProfileDefImpl extends IfcProfileDefImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCurve getOuterCurve() {
 		return (IfcCurve) eGet(Ifc4Package.Literals.IFC_ARBITRARY_CLOSED_PROFILE_DEF__OUTER_CURVE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcArbitraryClosedProfileDefImpl extends IfcProfileDefImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOuterCurve(IfcCurve newOuterCurve) {
 		eSet(Ifc4Package.Literals.IFC_ARBITRARY_CLOSED_PROFILE_DEF__OUTER_CURVE, newOuterCurve);
 	}

@@ -80,6 +80,7 @@ public class IfcDocumentReferenceImpl extends IfcExternalReferenceImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return (String) eGet(Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__DESCRIPTION, true);
 	}
@@ -89,6 +90,7 @@ public class IfcDocumentReferenceImpl extends IfcExternalReferenceImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		eSet(Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__DESCRIPTION, newDescription);
 	}
@@ -98,6 +100,7 @@ public class IfcDocumentReferenceImpl extends IfcExternalReferenceImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetDescription() {
 		eUnset(Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__DESCRIPTION);
 	}
@@ -107,6 +110,7 @@ public class IfcDocumentReferenceImpl extends IfcExternalReferenceImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetDescription() {
 		return eIsSet(Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__DESCRIPTION);
 	}
@@ -116,6 +120,7 @@ public class IfcDocumentReferenceImpl extends IfcExternalReferenceImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDocumentInformation getReferencedDocument() {
 		return (IfcDocumentInformation) eGet(Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__REFERENCED_DOCUMENT, true);
 	}
@@ -125,6 +130,7 @@ public class IfcDocumentReferenceImpl extends IfcExternalReferenceImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferencedDocument(IfcDocumentInformation newReferencedDocument) {
 		eSet(Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__REFERENCED_DOCUMENT, newReferencedDocument);
 	}
@@ -134,6 +140,7 @@ public class IfcDocumentReferenceImpl extends IfcExternalReferenceImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetReferencedDocument() {
 		eUnset(Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__REFERENCED_DOCUMENT);
 	}
@@ -143,6 +150,7 @@ public class IfcDocumentReferenceImpl extends IfcExternalReferenceImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetReferencedDocument() {
 		return eIsSet(Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__REFERENCED_DOCUMENT);
 	}
@@ -153,6 +161,7 @@ public class IfcDocumentReferenceImpl extends IfcExternalReferenceImpl implement
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelAssociatesDocument> getDocumentRefForObjects() {
 		return (EList<IfcRelAssociatesDocument>) eGet(
 				Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__DOCUMENT_REF_FOR_OBJECTS, true);
@@ -163,6 +172,7 @@ public class IfcDocumentReferenceImpl extends IfcExternalReferenceImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetDocumentRefForObjects() {
 		eUnset(Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__DOCUMENT_REF_FOR_OBJECTS);
 	}
@@ -172,6 +182,7 @@ public class IfcDocumentReferenceImpl extends IfcExternalReferenceImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetDocumentRefForObjects() {
 		return eIsSet(Ifc4Package.Literals.IFC_DOCUMENT_REFERENCE__DOCUMENT_REF_FOR_OBJECTS);
 	}

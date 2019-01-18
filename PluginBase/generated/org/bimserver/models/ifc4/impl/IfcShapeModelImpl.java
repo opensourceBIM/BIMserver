@@ -78,6 +78,7 @@ public class IfcShapeModelImpl extends IfcRepresentationImpl implements IfcShape
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcShapeAspect> getOfShapeAspect() {
 		return (EList<IfcShapeAspect>) eGet(Ifc4Package.Literals.IFC_SHAPE_MODEL__OF_SHAPE_ASPECT, true);
 	}
@@ -87,6 +88,7 @@ public class IfcShapeModelImpl extends IfcRepresentationImpl implements IfcShape
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetOfShapeAspect() {
 		eUnset(Ifc4Package.Literals.IFC_SHAPE_MODEL__OF_SHAPE_ASPECT);
 	}
@@ -96,6 +98,7 @@ public class IfcShapeModelImpl extends IfcRepresentationImpl implements IfcShape
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetOfShapeAspect() {
 		return eIsSet(Ifc4Package.Literals.IFC_SHAPE_MODEL__OF_SHAPE_ASPECT);
 	}

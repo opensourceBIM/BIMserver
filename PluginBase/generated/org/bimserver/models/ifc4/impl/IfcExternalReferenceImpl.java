@@ -91,6 +91,7 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements IfcExtern
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLocation() {
 		return (String) eGet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__LOCATION, true);
 	}
@@ -100,6 +101,7 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements IfcExtern
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLocation(String newLocation) {
 		eSet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__LOCATION, newLocation);
 	}
@@ -109,6 +111,7 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements IfcExtern
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetLocation() {
 		eUnset(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__LOCATION);
 	}
@@ -118,6 +121,7 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements IfcExtern
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetLocation() {
 		return eIsSet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__LOCATION);
 	}
@@ -127,6 +131,7 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements IfcExtern
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIdentification() {
 		return (String) eGet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__IDENTIFICATION, true);
 	}
@@ -136,6 +141,7 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements IfcExtern
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentification(String newIdentification) {
 		eSet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__IDENTIFICATION, newIdentification);
 	}
@@ -145,6 +151,7 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements IfcExtern
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetIdentification() {
 		eUnset(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__IDENTIFICATION);
 	}
@@ -154,6 +161,7 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements IfcExtern
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetIdentification() {
 		return eIsSet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__IDENTIFICATION);
 	}
@@ -163,6 +171,7 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements IfcExtern
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__NAME, true);
 	}
@@ -172,6 +181,7 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements IfcExtern
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__NAME, newName);
 	}
@@ -181,6 +191,7 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements IfcExtern
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetName() {
 		eUnset(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__NAME);
 	}
@@ -190,6 +201,7 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements IfcExtern
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetName() {
 		return eIsSet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__NAME);
 	}
@@ -200,6 +212,7 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements IfcExtern
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcExternalReferenceRelationship> getExternalReferenceForResources() {
 		return (EList<IfcExternalReferenceRelationship>) eGet(
 				Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__EXTERNAL_REFERENCE_FOR_RESOURCES, true);
@@ -210,6 +223,7 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements IfcExtern
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetExternalReferenceForResources() {
 		eUnset(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__EXTERNAL_REFERENCE_FOR_RESOURCES);
 	}
@@ -219,6 +233,7 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements IfcExtern
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetExternalReferenceForResources() {
 		return eIsSet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__EXTERNAL_REFERENCE_FOR_RESOURCES);
 	}

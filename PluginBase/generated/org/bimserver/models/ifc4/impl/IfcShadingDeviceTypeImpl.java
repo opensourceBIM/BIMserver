@@ -76,6 +76,7 @@ public class IfcShadingDeviceTypeImpl extends IfcBuildingElementTypeImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcShadingDeviceTypeEnum getPredefinedType() {
 		return (IfcShadingDeviceTypeEnum) eGet(Ifc4Package.Literals.IFC_SHADING_DEVICE_TYPE__PREDEFINED_TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcShadingDeviceTypeImpl extends IfcBuildingElementTypeImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcShadingDeviceTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_SHADING_DEVICE_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

@@ -68,6 +68,7 @@ public interface IfcSystem extends IfcGroup {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSystem_ServicesBuildings()
 	 * @see org.bimserver.models.ifc4.IfcRelServicesBuildings#getRelatingSystem
 	 * @model opposite="RelatingSystem" unsettable="true" upper="2"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelServicesBuildings> getServicesBuildings();

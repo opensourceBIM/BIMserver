@@ -76,6 +76,7 @@ public class IfcProjectionElementImpl extends IfcFeatureElementAdditionImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcProjectionElementTypeEnum getPredefinedType() {
 		return (IfcProjectionElementTypeEnum) eGet(Ifc4Package.Literals.IFC_PROJECTION_ELEMENT__PREDEFINED_TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcProjectionElementImpl extends IfcFeatureElementAdditionImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcProjectionElementTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_PROJECTION_ELEMENT__PREDEFINED_TYPE, newPredefinedType);
 	}
@@ -94,6 +96,7 @@ public class IfcProjectionElementImpl extends IfcFeatureElementAdditionImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPredefinedType() {
 		eUnset(Ifc4Package.Literals.IFC_PROJECTION_ELEMENT__PREDEFINED_TYPE);
 	}
@@ -103,6 +106,7 @@ public class IfcProjectionElementImpl extends IfcFeatureElementAdditionImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPredefinedType() {
 		return eIsSet(Ifc4Package.Literals.IFC_PROJECTION_ELEMENT__PREDEFINED_TYPE);
 	}

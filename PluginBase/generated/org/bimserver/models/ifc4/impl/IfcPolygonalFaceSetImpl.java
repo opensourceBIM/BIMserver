@@ -80,6 +80,7 @@ public class IfcPolygonalFaceSetImpl extends IfcTessellatedFaceSetImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Tristate getClosed() {
 		return (Tristate) eGet(Ifc4Package.Literals.IFC_POLYGONAL_FACE_SET__CLOSED, true);
 	}
@@ -89,6 +90,7 @@ public class IfcPolygonalFaceSetImpl extends IfcTessellatedFaceSetImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClosed(Tristate newClosed) {
 		eSet(Ifc4Package.Literals.IFC_POLYGONAL_FACE_SET__CLOSED, newClosed);
 	}
@@ -98,6 +100,7 @@ public class IfcPolygonalFaceSetImpl extends IfcTessellatedFaceSetImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetClosed() {
 		eUnset(Ifc4Package.Literals.IFC_POLYGONAL_FACE_SET__CLOSED);
 	}
@@ -107,6 +110,7 @@ public class IfcPolygonalFaceSetImpl extends IfcTessellatedFaceSetImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetClosed() {
 		return eIsSet(Ifc4Package.Literals.IFC_POLYGONAL_FACE_SET__CLOSED);
 	}
@@ -117,6 +121,7 @@ public class IfcPolygonalFaceSetImpl extends IfcTessellatedFaceSetImpl implement
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcIndexedPolygonalFace> getFaces() {
 		return (EList<IfcIndexedPolygonalFace>) eGet(Ifc4Package.Literals.IFC_POLYGONAL_FACE_SET__FACES, true);
 	}
@@ -127,6 +132,7 @@ public class IfcPolygonalFaceSetImpl extends IfcTessellatedFaceSetImpl implement
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Long> getPnIndex() {
 		return (EList<Long>) eGet(Ifc4Package.Literals.IFC_POLYGONAL_FACE_SET__PN_INDEX, true);
 	}
@@ -136,6 +142,7 @@ public class IfcPolygonalFaceSetImpl extends IfcTessellatedFaceSetImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPnIndex() {
 		eUnset(Ifc4Package.Literals.IFC_POLYGONAL_FACE_SET__PN_INDEX);
 	}
@@ -145,6 +152,7 @@ public class IfcPolygonalFaceSetImpl extends IfcTessellatedFaceSetImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPnIndex() {
 		return eIsSet(Ifc4Package.Literals.IFC_POLYGONAL_FACE_SET__PN_INDEX);
 	}

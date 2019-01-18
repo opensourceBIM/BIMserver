@@ -67,6 +67,7 @@ public interface IfcApprovalRelationship extends IfcResourceLevelRelationship {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcApprovalRelationship_RelatingApproval()
 	 * @see org.bimserver.models.ifc4.IfcApproval#getRelates
 	 * @model opposite="Relates"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcApproval getRelatingApproval();
@@ -95,6 +96,7 @@ public interface IfcApprovalRelationship extends IfcResourceLevelRelationship {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcApprovalRelationship_RelatedApprovals()
 	 * @see org.bimserver.models.ifc4.IfcApproval#getIsRelatedWith
 	 * @model opposite="IsRelatedWith"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcApproval> getRelatedApprovals();

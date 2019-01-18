@@ -86,6 +86,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Tristate getRepeatS() {
 		return (Tristate) eGet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__REPEAT_S, true);
 	}
@@ -95,6 +96,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRepeatS(Tristate newRepeatS) {
 		eSet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__REPEAT_S, newRepeatS);
 	}
@@ -104,6 +106,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Tristate getRepeatT() {
 		return (Tristate) eGet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__REPEAT_T, true);
 	}
@@ -113,6 +116,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRepeatT(Tristate newRepeatT) {
 		eSet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__REPEAT_T, newRepeatT);
 	}
@@ -122,6 +126,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getMode() {
 		return (String) eGet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__MODE, true);
 	}
@@ -131,6 +136,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMode(String newMode) {
 		eSet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__MODE, newMode);
 	}
@@ -140,6 +146,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetMode() {
 		eUnset(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__MODE);
 	}
@@ -149,6 +156,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetMode() {
 		return eIsSet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__MODE);
 	}
@@ -158,6 +166,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCartesianTransformationOperator2D getTextureTransform() {
 		return (IfcCartesianTransformationOperator2D) eGet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TRANSFORM,
 				true);
@@ -168,6 +177,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTextureTransform(IfcCartesianTransformationOperator2D newTextureTransform) {
 		eSet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TRANSFORM, newTextureTransform);
 	}
@@ -177,6 +187,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetTextureTransform() {
 		eUnset(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TRANSFORM);
 	}
@@ -186,6 +197,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetTextureTransform() {
 		return eIsSet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TRANSFORM);
 	}
@@ -196,6 +208,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<String> getParameter() {
 		return (EList<String>) eGet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__PARAMETER, true);
 	}
@@ -205,6 +218,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetParameter() {
 		eUnset(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__PARAMETER);
 	}
@@ -214,6 +228,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetParameter() {
 		return eIsSet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__PARAMETER);
 	}
@@ -224,6 +239,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcTextureCoordinate> getIsMappedBy() {
 		return (EList<IfcTextureCoordinate>) eGet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__IS_MAPPED_BY, true);
 	}
@@ -233,6 +249,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetIsMappedBy() {
 		eUnset(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__IS_MAPPED_BY);
 	}
@@ -242,6 +259,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetIsMappedBy() {
 		return eIsSet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__IS_MAPPED_BY);
 	}
@@ -252,6 +270,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcSurfaceStyleWithTextures> getUsedInStyles() {
 		return (EList<IfcSurfaceStyleWithTextures>) eGet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__USED_IN_STYLES,
 				true);
@@ -262,6 +281,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetUsedInStyles() {
 		eUnset(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__USED_IN_STYLES);
 	}
@@ -271,6 +291,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetUsedInStyles() {
 		return eIsSet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__USED_IN_STYLES);
 	}

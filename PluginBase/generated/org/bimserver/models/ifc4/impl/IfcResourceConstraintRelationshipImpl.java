@@ -80,6 +80,7 @@ public class IfcResourceConstraintRelationshipImpl extends IfcResourceLevelRelat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcConstraint getRelatingConstraint() {
 		return (IfcConstraint) eGet(Ifc4Package.Literals.IFC_RESOURCE_CONSTRAINT_RELATIONSHIP__RELATING_CONSTRAINT,
 				true);
@@ -90,6 +91,7 @@ public class IfcResourceConstraintRelationshipImpl extends IfcResourceLevelRelat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRelatingConstraint(IfcConstraint newRelatingConstraint) {
 		eSet(Ifc4Package.Literals.IFC_RESOURCE_CONSTRAINT_RELATIONSHIP__RELATING_CONSTRAINT, newRelatingConstraint);
 	}
@@ -100,6 +102,7 @@ public class IfcResourceConstraintRelationshipImpl extends IfcResourceLevelRelat
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcResourceObjectSelect> getRelatedResourceObjects() {
 		return (EList<IfcResourceObjectSelect>) eGet(
 				Ifc4Package.Literals.IFC_RESOURCE_CONSTRAINT_RELATIONSHIP__RELATED_RESOURCE_OBJECTS, true);

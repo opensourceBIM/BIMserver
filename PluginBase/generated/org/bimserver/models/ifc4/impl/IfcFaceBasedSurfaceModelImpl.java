@@ -80,6 +80,7 @@ public class IfcFaceBasedSurfaceModelImpl extends IfcGeometricRepresentationItem
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcConnectedFaceSet> getFbsmFaces() {
 		return (EList<IfcConnectedFaceSet>) eGet(Ifc4Package.Literals.IFC_FACE_BASED_SURFACE_MODEL__FBSM_FACES, true);
 	}
@@ -89,6 +90,7 @@ public class IfcFaceBasedSurfaceModelImpl extends IfcGeometricRepresentationItem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getDim() {
 		return (Long) eGet(Ifc4Package.Literals.IFC_FACE_BASED_SURFACE_MODEL__DIM, true);
 	}
@@ -98,6 +100,7 @@ public class IfcFaceBasedSurfaceModelImpl extends IfcGeometricRepresentationItem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDim(long newDim) {
 		eSet(Ifc4Package.Literals.IFC_FACE_BASED_SURFACE_MODEL__DIM, newDim);
 	}
@@ -107,6 +110,7 @@ public class IfcFaceBasedSurfaceModelImpl extends IfcGeometricRepresentationItem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetDim() {
 		eUnset(Ifc4Package.Literals.IFC_FACE_BASED_SURFACE_MODEL__DIM);
 	}
@@ -116,6 +120,7 @@ public class IfcFaceBasedSurfaceModelImpl extends IfcGeometricRepresentationItem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetDim() {
 		return eIsSet(Ifc4Package.Literals.IFC_FACE_BASED_SURFACE_MODEL__DIM);
 	}

@@ -78,6 +78,7 @@ public class IfcStructuralItemImpl extends IfcProductImpl implements IfcStructur
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcRelConnectsStructuralActivity> getAssignedStructuralActivity() {
 		return (EList<IfcRelConnectsStructuralActivity>) eGet(
 				Ifc4Package.Literals.IFC_STRUCTURAL_ITEM__ASSIGNED_STRUCTURAL_ACTIVITY, true);
@@ -88,6 +89,7 @@ public class IfcStructuralItemImpl extends IfcProductImpl implements IfcStructur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetAssignedStructuralActivity() {
 		eUnset(Ifc4Package.Literals.IFC_STRUCTURAL_ITEM__ASSIGNED_STRUCTURAL_ACTIVITY);
 	}
@@ -97,6 +99,7 @@ public class IfcStructuralItemImpl extends IfcProductImpl implements IfcStructur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetAssignedStructuralActivity() {
 		return eIsSet(Ifc4Package.Literals.IFC_STRUCTURAL_ITEM__ASSIGNED_STRUCTURAL_ACTIVITY);
 	}

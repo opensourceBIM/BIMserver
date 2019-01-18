@@ -80,7 +80,7 @@ public interface IfcStructuralLoadConfiguration extends IfcStructuralLoad {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Locations</em>' reference list.
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcStructuralLoadConfiguration_Locations()
-	 * @model
+	 * @model annotation="twodimensionalarray"
 	 * @generated
 	 */
 	EList<ListOfIfcLengthMeasure> getLocations();

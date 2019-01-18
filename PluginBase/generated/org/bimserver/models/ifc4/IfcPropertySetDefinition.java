@@ -70,6 +70,7 @@ public interface IfcPropertySetDefinition extends IfcPropertyDefinition, IfcProp
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPropertySetDefinition_DefinesType()
 	 * @see org.bimserver.models.ifc4.IfcTypeObject#getHasPropertySets
 	 * @model opposite="HasPropertySets" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcTypeObject> getDefinesType();
@@ -111,6 +112,7 @@ public interface IfcPropertySetDefinition extends IfcPropertyDefinition, IfcProp
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPropertySetDefinition_IsDefinedBy()
 	 * @see org.bimserver.models.ifc4.IfcRelDefinesByTemplate#getRelatedPropertySets
 	 * @model opposite="RelatedPropertySets" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelDefinesByTemplate> getIsDefinedBy();
@@ -150,6 +152,7 @@ public interface IfcPropertySetDefinition extends IfcPropertyDefinition, IfcProp
 	 * @see #unsetDefinesOccurrence()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPropertySetDefinition_DefinesOccurrence()
 	 * @model unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelDefinesByProperties> getDefinesOccurrence();

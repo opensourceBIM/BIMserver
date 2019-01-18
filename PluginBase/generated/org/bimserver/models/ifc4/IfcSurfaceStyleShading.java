@@ -127,6 +127,8 @@ public interface IfcSurfaceStyleShading extends IfcPresentationItem, IfcSurfaceS
 	 * @see #setTransparencyAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSurfaceStyleShading_TransparencyAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getTransparencyAsString();

@@ -71,7 +71,8 @@ public interface IfcRoundedRectangleProfileDef extends IfcRectangleProfileDef {
 	 * @return the value of the '<em>Rounding Radius As String</em>' attribute.
 	 * @see #setRoundingRadiusAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRoundedRectangleProfileDef_RoundingRadiusAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getRoundingRadiusAsString();

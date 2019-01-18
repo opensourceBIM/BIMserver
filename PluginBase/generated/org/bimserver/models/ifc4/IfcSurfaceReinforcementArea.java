@@ -110,6 +110,8 @@ public interface IfcSurfaceReinforcementArea extends IfcStructuralLoadOrResult {
 	 * @see #unsetSurfaceReinforcement1AsString()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSurfaceReinforcementArea_SurfaceReinforcement1AsString()
 	 * @model unique="false" unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	EList<String> getSurfaceReinforcement1AsString();
@@ -188,6 +190,8 @@ public interface IfcSurfaceReinforcementArea extends IfcStructuralLoadOrResult {
 	 * @see #unsetSurfaceReinforcement2AsString()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSurfaceReinforcementArea_SurfaceReinforcement2AsString()
 	 * @model unique="false" unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	EList<String> getSurfaceReinforcement2AsString();
@@ -280,6 +284,8 @@ public interface IfcSurfaceReinforcementArea extends IfcStructuralLoadOrResult {
 	 * @see #setShearReinforcementAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcSurfaceReinforcementArea_ShearReinforcementAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getShearReinforcementAsString();

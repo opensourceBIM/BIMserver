@@ -76,6 +76,7 @@ public class IfcChimneyTypeImpl extends IfcBuildingElementTypeImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcChimneyTypeEnum getPredefinedType() {
 		return (IfcChimneyTypeEnum) eGet(Ifc4Package.Literals.IFC_CHIMNEY_TYPE__PREDEFINED_TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcChimneyTypeImpl extends IfcBuildingElementTypeImpl implements If
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcChimneyTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_CHIMNEY_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

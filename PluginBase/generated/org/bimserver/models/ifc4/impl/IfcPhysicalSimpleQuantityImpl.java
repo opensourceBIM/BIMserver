@@ -76,6 +76,7 @@ public class IfcPhysicalSimpleQuantityImpl extends IfcPhysicalQuantityImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcNamedUnit getUnit() {
 		return (IfcNamedUnit) eGet(Ifc4Package.Literals.IFC_PHYSICAL_SIMPLE_QUANTITY__UNIT, true);
 	}
@@ -85,6 +86,7 @@ public class IfcPhysicalSimpleQuantityImpl extends IfcPhysicalQuantityImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUnit(IfcNamedUnit newUnit) {
 		eSet(Ifc4Package.Literals.IFC_PHYSICAL_SIMPLE_QUANTITY__UNIT, newUnit);
 	}
@@ -94,6 +96,7 @@ public class IfcPhysicalSimpleQuantityImpl extends IfcPhysicalQuantityImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetUnit() {
 		eUnset(Ifc4Package.Literals.IFC_PHYSICAL_SIMPLE_QUANTITY__UNIT);
 	}
@@ -103,6 +106,7 @@ public class IfcPhysicalSimpleQuantityImpl extends IfcPhysicalQuantityImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetUnit() {
 		return eIsSet(Ifc4Package.Literals.IFC_PHYSICAL_SIMPLE_QUANTITY__UNIT);
 	}

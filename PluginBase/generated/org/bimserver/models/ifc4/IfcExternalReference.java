@@ -123,6 +123,7 @@ public interface IfcExternalReference
 	 * @see #setIdentification(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcExternalReference_Identification()
 	 * @model unsettable="true"
+	 *        annotation="singleindex"
 	 * @generated
 	 */
 	String getIdentification();
@@ -176,6 +177,7 @@ public interface IfcExternalReference
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcExternalReference_Name()
 	 * @model unsettable="true"
+	 *        annotation="singleindex"
 	 * @generated
 	 */
 	String getName();
@@ -231,6 +233,7 @@ public interface IfcExternalReference
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcExternalReference_ExternalReferenceForResources()
 	 * @see org.bimserver.models.ifc4.IfcExternalReferenceRelationship#getRelatingReference
 	 * @model opposite="RelatingReference" unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcExternalReferenceRelationship> getExternalReferenceForResources();

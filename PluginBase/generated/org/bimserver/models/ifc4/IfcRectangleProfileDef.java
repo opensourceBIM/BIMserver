@@ -71,7 +71,8 @@ public interface IfcRectangleProfileDef extends IfcParameterizedProfileDef {
 	 * @return the value of the '<em>XDim As String</em>' attribute.
 	 * @see #setXDimAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRectangleProfileDef_XDimAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getXDimAsString();
@@ -123,7 +124,8 @@ public interface IfcRectangleProfileDef extends IfcParameterizedProfileDef {
 	 * @return the value of the '<em>YDim As String</em>' attribute.
 	 * @see #setYDimAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRectangleProfileDef_YDimAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getYDimAsString();

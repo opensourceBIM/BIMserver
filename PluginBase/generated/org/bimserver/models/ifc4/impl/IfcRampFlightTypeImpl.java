@@ -76,6 +76,7 @@ public class IfcRampFlightTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcRampFlightTypeEnum getPredefinedType() {
 		return (IfcRampFlightTypeEnum) eGet(Ifc4Package.Literals.IFC_RAMP_FLIGHT_TYPE__PREDEFINED_TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcRampFlightTypeImpl extends IfcBuildingElementTypeImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcRampFlightTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_RAMP_FLIGHT_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

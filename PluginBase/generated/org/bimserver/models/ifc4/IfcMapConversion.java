@@ -71,7 +71,8 @@ public interface IfcMapConversion extends IfcCoordinateOperation {
 	 * @return the value of the '<em>Eastings As String</em>' attribute.
 	 * @see #setEastingsAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMapConversion_EastingsAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getEastingsAsString();
@@ -123,7 +124,8 @@ public interface IfcMapConversion extends IfcCoordinateOperation {
 	 * @return the value of the '<em>Northings As String</em>' attribute.
 	 * @see #setNorthingsAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMapConversion_NorthingsAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getNorthingsAsString();
@@ -175,7 +177,8 @@ public interface IfcMapConversion extends IfcCoordinateOperation {
 	 * @return the value of the '<em>Orthogonal Height As String</em>' attribute.
 	 * @see #setOrthogonalHeightAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMapConversion_OrthogonalHeightAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getOrthogonalHeightAsString();
@@ -257,6 +260,8 @@ public interface IfcMapConversion extends IfcCoordinateOperation {
 	 * @see #setXAxisAbscissaAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMapConversion_XAxisAbscissaAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getXAxisAbscissaAsString();
@@ -363,6 +368,8 @@ public interface IfcMapConversion extends IfcCoordinateOperation {
 	 * @see #setXAxisOrdinateAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMapConversion_XAxisOrdinateAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getXAxisOrdinateAsString();
@@ -469,6 +476,8 @@ public interface IfcMapConversion extends IfcCoordinateOperation {
 	 * @see #setScaleAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMapConversion_ScaleAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getScaleAsString();

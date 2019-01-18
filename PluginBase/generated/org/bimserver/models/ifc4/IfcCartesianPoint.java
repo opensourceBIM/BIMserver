@@ -82,6 +82,8 @@ public interface IfcCartesianPoint extends IfcPoint, IfcTrimmingSelect {
 	 * @return the value of the '<em>Coordinates As String</em>' attribute list.
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCartesianPoint_CoordinatesAsString()
 	 * @model unique="false"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	EList<String> getCoordinatesAsString();

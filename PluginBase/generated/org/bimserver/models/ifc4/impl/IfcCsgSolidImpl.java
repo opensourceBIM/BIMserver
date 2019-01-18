@@ -76,6 +76,7 @@ public class IfcCsgSolidImpl extends IfcSolidModelImpl implements IfcCsgSolid {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcCsgSelect getTreeRootExpression() {
 		return (IfcCsgSelect) eGet(Ifc4Package.Literals.IFC_CSG_SOLID__TREE_ROOT_EXPRESSION, true);
 	}
@@ -85,6 +86,7 @@ public class IfcCsgSolidImpl extends IfcSolidModelImpl implements IfcCsgSolid {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTreeRootExpression(IfcCsgSelect newTreeRootExpression) {
 		eSet(Ifc4Package.Literals.IFC_CSG_SOLID__TREE_ROOT_EXPRESSION, newTreeRootExpression);
 	}

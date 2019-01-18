@@ -70,6 +70,7 @@ public interface IfcProductRepresentation extends IdEObject {
 	 * @see #setName(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcProductRepresentation_Name()
 	 * @model unsettable="true"
+	 *        annotation="singleindex"
 	 * @generated
 	 */
 	String getName();
@@ -176,6 +177,7 @@ public interface IfcProductRepresentation extends IdEObject {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcProductRepresentation_Representations()
 	 * @see org.bimserver.models.ifc4.IfcRepresentation#getOfProductRepresentation
 	 * @model opposite="OfProductRepresentation"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRepresentation> getRepresentations();

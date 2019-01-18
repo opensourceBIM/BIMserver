@@ -78,6 +78,7 @@ public class IfcPathImpl extends IfcTopologicalRepresentationItemImpl implements
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcOrientedEdge> getEdgeList() {
 		return (EList<IfcOrientedEdge>) eGet(Ifc4Package.Literals.IFC_PATH__EDGE_LIST, true);
 	}

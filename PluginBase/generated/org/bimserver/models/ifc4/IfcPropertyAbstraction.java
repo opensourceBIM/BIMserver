@@ -66,6 +66,7 @@ public interface IfcPropertyAbstraction extends IfcResourceObjectSelect {
 	 * @see #unsetHasExternalReferences()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcPropertyAbstraction_HasExternalReferences()
 	 * @model unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcExternalReferenceRelationship> getHasExternalReferences();

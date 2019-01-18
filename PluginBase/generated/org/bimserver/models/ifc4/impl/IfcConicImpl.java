@@ -76,6 +76,7 @@ public class IfcConicImpl extends IfcCurveImpl implements IfcConic {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcAxis2Placement getPosition() {
 		return (IfcAxis2Placement) eGet(Ifc4Package.Literals.IFC_CONIC__POSITION, true);
 	}
@@ -85,6 +86,7 @@ public class IfcConicImpl extends IfcCurveImpl implements IfcConic {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPosition(IfcAxis2Placement newPosition) {
 		eSet(Ifc4Package.Literals.IFC_CONIC__POSITION, newPosition);
 	}

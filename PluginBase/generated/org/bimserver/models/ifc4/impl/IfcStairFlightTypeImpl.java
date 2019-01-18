@@ -76,6 +76,7 @@ public class IfcStairFlightTypeImpl extends IfcBuildingElementTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcStairFlightTypeEnum getPredefinedType() {
 		return (IfcStairFlightTypeEnum) eGet(Ifc4Package.Literals.IFC_STAIR_FLIGHT_TYPE__PREDEFINED_TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class IfcStairFlightTypeImpl extends IfcBuildingElementTypeImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPredefinedType(IfcStairFlightTypeEnum newPredefinedType) {
 		eSet(Ifc4Package.Literals.IFC_STAIR_FLIGHT_TYPE__PREDEFINED_TYPE, newPredefinedType);
 	}

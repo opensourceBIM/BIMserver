@@ -91,7 +91,8 @@ public interface IfcRegularTimeSeries extends IfcTimeSeries {
 	 * @return the value of the '<em>Time Step As String</em>' attribute.
 	 * @see #setTimeStepAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRegularTimeSeries_TimeStepAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getTimeStepAsString();

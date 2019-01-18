@@ -48,6 +48,7 @@ public interface IfcGeometricRepresentationSubContext extends IfcGeometricRepres
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcGeometricRepresentationSubContext_ParentContext()
 	 * @see org.bimserver.models.ifc4.IfcGeometricRepresentationContext#getHasSubContexts
 	 * @model opposite="HasSubContexts"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcGeometricRepresentationContext getParentContext();
@@ -129,6 +130,8 @@ public interface IfcGeometricRepresentationSubContext extends IfcGeometricRepres
 	 * @see #setTargetScaleAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcGeometricRepresentationSubContext_TargetScaleAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getTargetScaleAsString();

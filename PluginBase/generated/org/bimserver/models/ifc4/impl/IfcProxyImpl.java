@@ -77,6 +77,7 @@ public class IfcProxyImpl extends IfcProductImpl implements IfcProxy {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcObjectTypeEnum getProxyType() {
 		return (IfcObjectTypeEnum) eGet(Ifc4Package.Literals.IFC_PROXY__PROXY_TYPE, true);
 	}
@@ -86,6 +87,7 @@ public class IfcProxyImpl extends IfcProductImpl implements IfcProxy {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProxyType(IfcObjectTypeEnum newProxyType) {
 		eSet(Ifc4Package.Literals.IFC_PROXY__PROXY_TYPE, newProxyType);
 	}
@@ -95,6 +97,7 @@ public class IfcProxyImpl extends IfcProductImpl implements IfcProxy {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTag() {
 		return (String) eGet(Ifc4Package.Literals.IFC_PROXY__TAG, true);
 	}
@@ -104,6 +107,7 @@ public class IfcProxyImpl extends IfcProductImpl implements IfcProxy {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTag(String newTag) {
 		eSet(Ifc4Package.Literals.IFC_PROXY__TAG, newTag);
 	}
@@ -113,6 +117,7 @@ public class IfcProxyImpl extends IfcProductImpl implements IfcProxy {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetTag() {
 		eUnset(Ifc4Package.Literals.IFC_PROXY__TAG);
 	}
@@ -122,6 +127,7 @@ public class IfcProxyImpl extends IfcProductImpl implements IfcProxy {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetTag() {
 		return eIsSet(Ifc4Package.Literals.IFC_PROXY__TAG);
 	}

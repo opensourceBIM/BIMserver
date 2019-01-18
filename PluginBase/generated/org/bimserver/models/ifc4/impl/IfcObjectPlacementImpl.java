@@ -91,6 +91,7 @@ public class IfcObjectPlacementImpl extends IdEObjectImpl implements IfcObjectPl
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcProduct> getPlacesObject() {
 		return (EList<IfcProduct>) eGet(Ifc4Package.Literals.IFC_OBJECT_PLACEMENT__PLACES_OBJECT, true);
 	}
@@ -100,6 +101,7 @@ public class IfcObjectPlacementImpl extends IdEObjectImpl implements IfcObjectPl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetPlacesObject() {
 		eUnset(Ifc4Package.Literals.IFC_OBJECT_PLACEMENT__PLACES_OBJECT);
 	}
@@ -109,6 +111,7 @@ public class IfcObjectPlacementImpl extends IdEObjectImpl implements IfcObjectPl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetPlacesObject() {
 		return eIsSet(Ifc4Package.Literals.IFC_OBJECT_PLACEMENT__PLACES_OBJECT);
 	}
@@ -119,6 +122,7 @@ public class IfcObjectPlacementImpl extends IdEObjectImpl implements IfcObjectPl
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcLocalPlacement> getReferencedByPlacements() {
 		return (EList<IfcLocalPlacement>) eGet(Ifc4Package.Literals.IFC_OBJECT_PLACEMENT__REFERENCED_BY_PLACEMENTS,
 				true);
@@ -129,6 +133,7 @@ public class IfcObjectPlacementImpl extends IdEObjectImpl implements IfcObjectPl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void unsetReferencedByPlacements() {
 		eUnset(Ifc4Package.Literals.IFC_OBJECT_PLACEMENT__REFERENCED_BY_PLACEMENTS);
 	}
@@ -138,6 +143,7 @@ public class IfcObjectPlacementImpl extends IdEObjectImpl implements IfcObjectPl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSetReferencedByPlacements() {
 		return eIsSet(Ifc4Package.Literals.IFC_OBJECT_PLACEMENT__REFERENCED_BY_PLACEMENTS);
 	}

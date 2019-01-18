@@ -48,6 +48,7 @@ public interface IfcRelConnectsStructuralMember extends IfcRelConnects {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelConnectsStructuralMember_RelatingStructuralMember()
 	 * @see org.bimserver.models.ifc4.IfcStructuralMember#getConnectedBy
 	 * @model opposite="ConnectedBy"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcStructuralMember getRelatingStructuralMember();
@@ -76,6 +77,7 @@ public interface IfcRelConnectsStructuralMember extends IfcRelConnects {
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelConnectsStructuralMember_RelatedStructuralConnection()
 	 * @see org.bimserver.models.ifc4.IfcStructuralConnection#getConnectsStructuralMembers
 	 * @model opposite="ConnectsStructuralMembers"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	IfcStructuralConnection getRelatedStructuralConnection();
@@ -263,6 +265,8 @@ public interface IfcRelConnectsStructuralMember extends IfcRelConnects {
 	 * @see #setSupportedLengthAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcRelConnectsStructuralMember_SupportedLengthAsString()
 	 * @model unsettable="true"
+	 *        annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getSupportedLengthAsString();

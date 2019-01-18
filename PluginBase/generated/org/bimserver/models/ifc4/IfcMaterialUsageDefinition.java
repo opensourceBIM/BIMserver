@@ -66,6 +66,7 @@ public interface IfcMaterialUsageDefinition extends IfcMaterialSelect {
 	 * @see #unsetAssociatedTo()
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcMaterialUsageDefinition_AssociatedTo()
 	 * @model unsettable="true"
+	 *        annotation="inverse"
 	 * @generated
 	 */
 	EList<IfcRelAssociatesMaterial> getAssociatedTo();

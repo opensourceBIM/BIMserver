@@ -89,6 +89,7 @@ public class ListOfIfcParameterValueImpl extends IdEObjectImpl implements ListOf
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<IfcParameterValue> getList() {
 		return (EList<IfcParameterValue>) eGet(Ifc4Package.Literals.LIST_OF_IFC_PARAMETER_VALUE__LIST, true);
 	}

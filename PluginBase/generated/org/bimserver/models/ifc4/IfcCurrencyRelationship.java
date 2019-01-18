@@ -123,7 +123,8 @@ public interface IfcCurrencyRelationship extends IfcResourceLevelRelationship {
 	 * @return the value of the '<em>Exchange Rate As String</em>' attribute.
 	 * @see #setExchangeRateAsString(String)
 	 * @see org.bimserver.models.ifc4.Ifc4Package#getIfcCurrencyRelationship_ExchangeRateAsString()
-	 * @model
+	 * @model annotation="asstring"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	String getExchangeRateAsString();

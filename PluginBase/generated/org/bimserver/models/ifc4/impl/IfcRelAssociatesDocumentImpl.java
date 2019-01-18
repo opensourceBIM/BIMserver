@@ -76,6 +76,7 @@ public class IfcRelAssociatesDocumentImpl extends IfcRelAssociatesImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IfcDocumentSelect getRelatingDocument() {
 		return (IfcDocumentSelect) eGet(Ifc4Package.Literals.IFC_REL_ASSOCIATES_DOCUMENT__RELATING_DOCUMENT, true);
 	}
@@ -85,6 +86,7 @@ public class IfcRelAssociatesDocumentImpl extends IfcRelAssociatesImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRelatingDocument(IfcDocumentSelect newRelatingDocument) {
 		eSet(Ifc4Package.Literals.IFC_REL_ASSOCIATES_DOCUMENT__RELATING_DOCUMENT, newRelatingDocument);
 	}
