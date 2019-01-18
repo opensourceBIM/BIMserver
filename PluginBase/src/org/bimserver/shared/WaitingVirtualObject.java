@@ -37,6 +37,10 @@ public class WaitingVirtualObject {
 		this.bufferPosition = bufferPosition;
 	}
 
+	public long getOid() {
+		return object.getOid();
+	}
+	
 	public VirtualObject getObject() {
 		return object;
 	}
@@ -51,7 +55,7 @@ public class WaitingVirtualObject {
 	
 	@Override
 	public String toString() {
-		return getObject() + " " + getStructuralFeature().getName();
+		return "L" + lineNumber + ": " + getObject() + " " + getStructuralFeature().getName();
 	}
 	
 	public int getBufferPosition() {

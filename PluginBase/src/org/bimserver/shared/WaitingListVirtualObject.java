@@ -41,6 +41,9 @@ public class WaitingListVirtualObject<T> {
 	}
 
 	private AtomicInteger getOpenConnectionCounter(long oid) {
+		if (oid == -1 || oid == 0) {
+			throw new RuntimeException("uhoh");
+		}
 		AtomicInteger atomicInteger = openConnections.get(oid);
 		if (atomicInteger == null) {
 			atomicInteger = new AtomicInteger();
@@ -50,7 +53,7 @@ public class WaitingListVirtualObject<T> {
 	}
 	
 	public void add(T referenceId, WaitingVirtualObject waitingObject) {
-		getOpenConnectionCounter(waitingObject.getObject().getOid()).incrementAndGet();
+		getOpenConnectionCounter(waitingObject.getOid()).incrementAndGet();
 		
 		List<WaitingVirtualObject> waitingList = null;
 		if (waitingObjects.containsKey(referenceId)) {
@@ -63,6 +66,9 @@ public class WaitingListVirtualObject<T> {
 	}
 	
 	private void decrementOpenConnections(VirtualObject virtualObject) throws BimserverDatabaseException {
+		if (virtualObject.eClass().getName().contentEquals("IfcCartesianPoint")) {
+			System.out.println();
+		}
 		AtomicInteger openConnectionCounter = getOpenConnectionCounter(virtualObject.getOid());
 		int decrementAndGet = openConnectionCounter.decrementAndGet();
 		if (decrementAndGet == 0) {
@@ -77,7 +83,13 @@ public class WaitingListVirtualObject<T> {
 			if (waitingObject.getStructuralFeature().isMany()) {
 				ListWaitingVirtualObject listWaitingObject = (ListWaitingVirtualObject)waitingObject;
 				if (((EClass) waitingObject.getStructuralFeature().getEType()).isSuperTypeOf(eObject.eClass())) {
-					waitingObject.getObject().setListItemReference(waitingObject.getStructuralFeature(), listWaitingObject.getIndex(), eObject.eClass(), eObject.getOid(), waitingObject.getBufferPosition());
+					if (waitingObject instanceof TwoDimensionalListWaitingVirtualObject) {
+						TwoDimensionalListWaitingVirtualObject twoDimensionalListWaitingVirtualObject = (TwoDimensionalListWaitingVirtualObject)waitingObject;
+						ListCapableVirtualObject object2 = twoDimensionalListWaitingVirtualObject.getObject2();
+						object2.setListItemReference(waitingObject.getStructuralFeature(), listWaitingObject.getIndex(), eObject.eClass(), eObject.getOid(), waitingObject.getBufferPosition());
+					} else {
+						waitingObject.getObject().setListItemReference(waitingObject.getStructuralFeature(), listWaitingObject.getIndex(), eObject.eClass(), eObject.getOid(), waitingObject.getBufferPosition());
+					}
 					decrementOpenConnections(waitingObject.getObject());
 				} else {
 					throw new DeserializeException(waitingObject.getLineNumber(), "Field " + waitingObject.getStructuralFeature().getName() + " of "
@@ -109,7 +121,7 @@ public class WaitingListVirtualObject<T> {
 				}
 				LOGGER.info(sb.toString());
 			}
-			throw new BimServerClientException("Waitinglist not empty, this usually means some objects were referred, but not included in the download");
+			throw new BimServerClientException("Waitinglist not empty, this usually means some objects were referred, but not included in the model");
 		}
 	}
 }
