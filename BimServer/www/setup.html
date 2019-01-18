@@ -508,7 +508,6 @@ function Setup(cd, address) {
 		o.logInfo("Installing " + next + "...");
 		Global.api.call("PluginInterface", "getPluginBundle", requiredPlugins[next], function(pluginBundle){
 			var latestVersion = pluginBundle.latestVersion;
-			debugger;
 			if (latestVersion == pluginBundle.installedVersion) {
 				o.logError("Plugin version already installed" + "\n");
 				delete requiredPlugins[next];
