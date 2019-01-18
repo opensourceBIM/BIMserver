@@ -1,7 +1,5 @@
 package org.bimserver.bimbots;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -40,6 +38,7 @@ public class BimBotsException extends Exception {
 	}
 
 	public BimBotsException(String message, BimBotErrorCode errorCode) {
+		super(message);
 		this.errorCode = errorCode.getErrorCode();
 	}
 
