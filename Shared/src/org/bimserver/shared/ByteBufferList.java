@@ -24,6 +24,11 @@ import org.bimserver.BimserverDatabaseException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+/**
+ * @author Ruben de Laat
+ *
+ *	Used for two-dimensional lists
+ */
 public class ByteBufferList extends AbstractByteBufferVirtualObject implements ListCapableVirtualObject {
 
 	private int currentListStart = -1;
