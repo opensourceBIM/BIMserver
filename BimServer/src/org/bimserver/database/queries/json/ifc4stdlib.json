@@ -262,7 +262,8 @@
             "IfcEllipse",
             "IfcLine",
             "IfcOffsetCurve2D",
-            "IfcOffsetCurve3D"
+            "IfcOffsetCurve3D",
+            "IfcIndexedPolyCurve"
       	 ]
       },
       "IfcRepresentationItem": {
@@ -385,9 +386,14 @@
       "IfcOffsetCurve3D": {
          "type": "IfcOffsetCurve3D"
       },
-      "IfcIndexedPolyCurve":{
+      "IfcCartesianPointList3D": {
+      	"type": "IfcCartesianPointList3D",
+      	"fields": ["CoordList"]
+      },
+      "IfcIndexedPolyCurve": {
          "type": "IfcIndexedPolyCurve",
-         "fields": ["Points", "Segments"]
+         "fields": ["Points", "Segments"],
+         "includes": ["IfcCartesianPointList3D"]
       },
       "IfcElementarySurface": {
          "type": "IfcElementarySurface"
@@ -514,6 +520,11 @@
             "IfcGeometricRepresentationSubContext"
          ]
       },
+      "IfcAdvancedBrep": {
+        "type": "IfcAdvancedBrep",
+        "fields": ["Outer"],
+        "includes": ["IfcClosedShell"]
+      },
       "IfcShapeRepresentation": {
          "type": "IfcShapeRepresentation",
          "fields": ["Items", "ContextOfItems"],
@@ -537,7 +548,8 @@
             "IfcTrimmedCurve",
             "IfcFaceBasedSurfaceModel",
             "IfcRevolvedAreaSolid",
-            "IfcSweptDiskSolid"
+            "IfcSweptDiskSolid",
+            "IfcAdvancedBrep"
          ]
       },
       "IfcFaceBasedSurfaceModel": {
@@ -643,7 +655,8 @@
             "IfcEllipse",
             "IfcLine",
             "IfcOffsetCurve2D",
-            "IfcOffsetCurve3D"
+            "IfcOffsetCurve3D",
+            "IfcIndexedPolyCurve"
          ]
       },
       "IfcAxis1Placement": {
