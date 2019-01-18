@@ -114,7 +114,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	private int maxObjectsPerFile = 50;
 	volatile boolean running = true;
 
-	String debugIdentifier;
+	private String debugIdentifier;
 
 	private EStructuralFeature representationsFeature;
 
@@ -170,7 +170,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 		GregorianCalendar now = new GregorianCalendar();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-		debugIdentifier = dateFormat.format(now.getTime());
+		debugIdentifier = dateFormat.format(now.getTime()) + " (" + report.getOriginalIfcFileName() + ")";
 
 		long start = System.nanoTime();
 		String pluginName = "";
@@ -1127,5 +1127,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 	public void cacheGeometryData(HashMapVirtualObject geometryData, float[] vertices) {
 		geometryDataMap.put(geometryData.getOid(), new Tuple<>(geometryData, vertices));
+	}
+
+	public String getDebugIdentifier() {
+		return debugIdentifier;
 	}
 }

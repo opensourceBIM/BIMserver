@@ -407,4 +407,8 @@ public class GeometryGenerationReport {
 	public void addSkippedBecauseOfInvalidRepresentationIdentifier(String identifier) {
 		skippedBecauseOfInvalidRepresentationIdentifier.merge(identifier, 1, Integer::sum);
 	}
+	
+	public String getOriginalIfcFileName() {
+		return originalIfcFileName;
+	}
 }

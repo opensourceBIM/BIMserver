@@ -1027,7 +1027,7 @@ public class GeometryRunner implements Runnable {
 				Files.createDirectories(debugPath);
 			}
 
-			Path folder = debugPath.resolve(this.streamingGeometryGenerator.debugIdentifier);
+			Path folder = debugPath.resolve(this.streamingGeometryGenerator.getDebugIdentifier());
 			if (!Files.exists(folder)) {
 				Files.createDirectories(folder);
 			}
