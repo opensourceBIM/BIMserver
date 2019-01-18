@@ -391,6 +391,9 @@ public class JsonQueryObjectModelConverter {
 		String identifier = i == -1 ? "type" : "\\types\"[" + i + "]";
 		if (typeNode.isTextual()) {
 			EClass eClass = packageMetaData.getEClassIncludingDependencies(typeNode.asText());
+			if (eClass == null) {
+				throw new QueryException("Type " + typeNode.asText() + " not found");
+			}
 			include.addType(eClass, false);
 		} else if (typeNode.isObject()) {
 			if (!typeNode.has("name")) {
