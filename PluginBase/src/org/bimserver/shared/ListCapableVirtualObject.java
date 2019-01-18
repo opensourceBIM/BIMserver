@@ -32,5 +32,4 @@ public interface ListCapableVirtualObject {
 	int reserveSpaceForListReference() throws BimserverDatabaseException;
 
 	void setListItemReference(EStructuralFeature structuralFeature, int index, EClass referenceEClass, Long referencedOid, int i) throws BimserverDatabaseException;
-
 }

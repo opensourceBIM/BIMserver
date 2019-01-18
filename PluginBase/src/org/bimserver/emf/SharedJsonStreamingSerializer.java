@@ -207,6 +207,8 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 												}
 											} else if (o instanceof HashMapWrappedVirtualObject) {
 												write((HashMapWrappedVirtualObject) o);
+											} else if (o instanceof HashMapVirtualObject) {
+												write((HashMapVirtualObject) o);
 											} else if (eStructuralFeature.getEAnnotation("twodimensionalarray") != null) {
 												EClass type = (EClass) eStructuralFeature.getEType();
 												EStructuralFeature listFeature = type.getEStructuralFeature("List");
@@ -226,7 +228,7 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 												}
 												print("]");
 											} else {
-												LOGGER.info("Unimplemented " + o);
+												LOGGER.info("Unimplemented " + o.getClass() + " " + o);
 											}
 										}
 									}
@@ -285,7 +287,22 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 			print("{");
 			print("\"_t\":\"" + object.eClass().getName() + "\",");
 			print("\"_v\":");
-			writePrimitive(wrappedFeature, object.eGet(wrappedFeature));
+			Object wrappedValue = object.eGet(wrappedFeature);
+			if (wrappedValue instanceof List) {
+				print("[");
+				List<?> list = (List<?>)wrappedValue;
+				boolean f = true;
+				for (Object o : list) {
+					if (!f) {
+						print(", ");
+					}
+					f = false;
+					writePrimitive(wrappedFeature, o);
+				}
+				print("]");
+			} else {
+				writePrimitive(wrappedFeature, wrappedValue);
+			}
 			print("}");
 		} else if (object instanceof HashMapVirtualObject) {
 			print("" + ((HashMapVirtualObject)object).getOid());

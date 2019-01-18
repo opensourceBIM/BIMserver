@@ -37,4 +37,9 @@ public class ListWaitingVirtualObject extends WaitingVirtualObject {
 	public int getIndex() {
 		return index;
 	}
+	
+	@Override
+	public String toString() {
+		return getLineNumber() + ": " + getObject() + " " + getStructuralFeature().getName() + " (index: " + index + ")";
+	}
 }

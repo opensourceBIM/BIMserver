@@ -408,13 +408,13 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			if (e instanceof UserException) {
 				throw (UserException) e;
 			}
-			throw new UserException(e);
+			throw new UserException("[" + fileName + "] " + e.getMessage(), e);
 		}
 		return concreteRevision;
 	}
 
 	private void generateQuantizedVertices(DatabaseSession databaseSession, Revision revision, float[] quantizationMatrix, float multiplierToMm) {
-		PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(revision.getProject().getSchema()); 
+		PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
 		Query query = new Query(packageMetaData);
 		QueryPart queryPart = query.createQueryPart();
 		queryPart.addType(GeometryPackage.eINSTANCE.getGeometryData(), false);

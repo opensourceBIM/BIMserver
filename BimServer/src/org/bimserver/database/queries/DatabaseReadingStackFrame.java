@@ -141,6 +141,9 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 					} else {
 						if (ref instanceof Long) {
 							HashMapVirtualObject byOid = getByOid((Long)ref, true);
+							if (byOid == null) {
+								throw new BimserverDatabaseException("Object with oid " + ref + " not found");
+							}
 							object.setDirectReference(eReference, byOid);
 							object.addUseForSerialization(eReference);
 							processPossibleIncludes(byOid, byOid.eClass(), include);
@@ -423,7 +426,14 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 							if (referenceClass == null) {
 								throw new BimserverDatabaseException("No class found for cid " + (-cid));
 							}
-							idEObject.setListItem(feature, i, readWrappedValue(feature, buffer, referenceClass));
+							EStructuralFeature wv = referenceClass.getEStructuralFeature("wrappedValue");
+							if (wv != null && wv.isMany()) {
+								HashMapVirtualObject eObject = new HashMapVirtualObject(reusable, referenceClass);
+								readList(eObject, buffer, wv);
+								idEObject.setListItem(feature, i, eObject);
+							} else {
+								idEObject.setListItem(feature, i, readWrappedValue(feature, buffer, referenceClass));
+							}
 							idEObject.addUseForSerialization(feature, i);
 						} else if (cid > 0) {
 							// positive cid means value is a
