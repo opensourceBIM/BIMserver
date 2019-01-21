@@ -1,5 +1,7 @@
 package org.bimserver.shared;
 
+import org.eclipse.emf.ecore.EClass;
+
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
  * 
@@ -60,5 +62,9 @@ public class WaitingVirtualObject {
 	
 	public int getBufferPosition() {
 		return bufferPosition;
+	}
+
+	public EClass eClass() {
+		return object.eClass();
 	}
 }

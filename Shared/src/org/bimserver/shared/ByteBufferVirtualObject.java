@@ -19,6 +19,8 @@ package org.bimserver.shared;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.emf.PackageMetaData;
@@ -40,6 +42,7 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 	private int currentListStart = -1;
 	private int currentListSize;
 	private int featureCounter = 0;
+	private Map<Integer, ByteBufferList> referencedBuffers;
 	
 	public ByteBufferVirtualObject(QueryContext reusable, EClass eClass, int capacity) {
 		super(capacity);
@@ -164,6 +167,16 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 			throw new BimserverDatabaseException("Not all features seem to have been set on " + this.eClass.getName() + " " + featureCounter + " / " + nrFeatures);
 		}
 		
+		if (referencedBuffers != null) {
+			for (int startPosition : referencedBuffers.keySet()) {
+				ByteBuffer otherBuffer = referencedBuffers.get(startPosition).write();
+				buffer.position(startPosition);
+				buffer.put(otherBuffer.array(), 0, otherBuffer.position());
+			}
+		}
+		
+		buffer.position(buffer.capacity());
+		
 		return buffer;
 //
 //		if (buffer.position() != bufferSize) {
@@ -219,9 +232,14 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 			ensureCapacity(buffer.position(), otherBuffer.position());
 			buffer.put(otherBuffer.array(), 0, otherBuffer.position());
 		} else if (value instanceof ByteBufferList) {
-			ByteBuffer otherBuffer = ((ByteBufferList)value).write();
-			ensureCapacity(buffer.position(), otherBuffer.position());
-			buffer.put(otherBuffer.array(), 0, otherBuffer.position());
+			if (referencedBuffers == null) {
+				referencedBuffers = new HashMap<>();
+			}
+			// ByteBufferList contains references to other objects, some of those might be resolved in the future, so we cannot simply copy the bytes now, we need to do that later, for now we assume the size is already known
+			ByteBufferList byteBufferList = (ByteBufferList)value;
+			referencedBuffers.put(buffer.position(), (ByteBufferList)value);
+			ensureCapacity(buffer.position(), byteBufferList.size());
+			buffer.position(buffer.position() + byteBufferList.size());
 		} else if (value instanceof PrimitiveByteBufferList) {
 			ByteBuffer otherBuffer = ((PrimitiveByteBufferList)value).write();
 			ensureCapacity(buffer.position(), otherBuffer.position());

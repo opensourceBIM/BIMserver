@@ -398,7 +398,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 				for (int i = 0; i < listSize; i++) {
 					if (feature.getEAnnotation("twodimensionalarray") != null) {
 						HashMapVirtualObject newObject = new HashMapVirtualObject(reusable, (EClass) feature.getEType());
-						
+
 						buffer.order(ByteOrder.LITTLE_ENDIAN);
 						short cid = buffer.getShort();
 						buffer.order(ByteOrder.BIG_ENDIAN);
@@ -451,6 +451,8 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 									idEObject.addUseForSerialization(feature, i);
 								}
 							}
+//						} else if (cid == 0) {
+//							throw new BimserverDatabaseException("Cid cannot be 0");
 						}
 					}
 				}

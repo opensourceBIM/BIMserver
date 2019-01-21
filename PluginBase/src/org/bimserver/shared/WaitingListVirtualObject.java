@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.plugins.deserializers.DeserializeException;
@@ -31,29 +30,31 @@ import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class WaitingListVirtualObject<T> {
+public class WaitingListVirtualObject {
 	private static final Logger LOGGER = LoggerFactory.getLogger(WaitingListVirtualObject.class);
-	private final Map<T, List<WaitingVirtualObject>> waitingObjects = new HashMap<T, List<WaitingVirtualObject>>();
-	private final Map<Long, AtomicInteger> openConnections = new HashMap<>();
+	private final Map<Integer, List<WaitingVirtualObject>> waitingObjects = new HashMap<>();
 
-	public boolean containsKey(T recordNumber) {
+	// TODO this seems to only be used for debugging/error checking, make optional
+	private final Map<Long, OpenConnectionCounter> openConnections = new HashMap<>();
+
+	public boolean containsKey(int recordNumber) {
 		return waitingObjects.containsKey(recordNumber);
 	}
 
-	private AtomicInteger getOpenConnectionCounter(long oid) {
+	private OpenConnectionCounter getOpenConnectionCounter(EClass eClass, long oid) {
 		if (oid == -1 || oid == 0) {
 			throw new RuntimeException("uhoh");
 		}
-		AtomicInteger atomicInteger = openConnections.get(oid);
-		if (atomicInteger == null) {
-			atomicInteger = new AtomicInteger();
-			openConnections.put(oid, atomicInteger);
+		OpenConnectionCounter openConnectionCounter = openConnections.get(oid);
+		if (openConnectionCounter == null) {
+			openConnectionCounter = new OpenConnectionCounter(eClass);
+			openConnections.put(oid, openConnectionCounter);
 		}
-		return atomicInteger;
+		return openConnectionCounter;
 	}
 	
-	public void add(T referenceId, WaitingVirtualObject waitingObject) {
-		getOpenConnectionCounter(waitingObject.getOid()).incrementAndGet();
+	public void add(int referenceId, WaitingVirtualObject waitingObject) {
+		getOpenConnectionCounter(waitingObject.eClass(), waitingObject.getOid()).incrementAndGet();
 		
 		List<WaitingVirtualObject> waitingList = null;
 		if (waitingObjects.containsKey(referenceId)) {
@@ -66,19 +67,17 @@ public class WaitingListVirtualObject<T> {
 	}
 	
 	private void decrementOpenConnections(VirtualObject virtualObject) throws BimserverDatabaseException {
-		if (virtualObject.eClass().getName().contentEquals("IfcCartesianPoint")) {
-			System.out.println();
-		}
-		AtomicInteger openConnectionCounter = getOpenConnectionCounter(virtualObject.getOid());
-		int decrementAndGet = openConnectionCounter.decrementAndGet();
+		OpenConnectionCounter openConnectionCounter = getOpenConnectionCounter(virtualObject.eClass(), virtualObject.getOid());
+		long decrementAndGet = openConnectionCounter.decrementAndGet();
 		if (decrementAndGet == 0) {
+			openConnections.remove(virtualObject.getOid());
 			virtualObject.save();
 		} else if (decrementAndGet < 0) {
 			throw new BimserverDatabaseException("Inconsistent state");
 		}
 	}
 	
-	public void updateNode(T expressId, EClass ec, VirtualObject eObject) throws DeserializeException, BimserverDatabaseException {
+	public void updateNode(int expressId, EClass ec, VirtualObject eObject) throws DeserializeException, BimserverDatabaseException {
 		for (WaitingVirtualObject waitingObject : waitingObjects.get(expressId)) {
 			if (waitingObject.getStructuralFeature().isMany()) {
 				ListWaitingVirtualObject listWaitingObject = (ListWaitingVirtualObject)waitingObject;
@@ -112,9 +111,18 @@ public class WaitingListVirtualObject<T> {
 		return waitingObjects.size();
 	}
 	
+	public boolean isEmpty() {
+		return waitingObjects.size() == 0 && openConnections.size() == 0;
+	}
+	
 	public void dumpIfNotEmpty() throws BimServerClientException {
+		if (!openConnections.isEmpty()) {
+			for (OpenConnectionCounter openConnectionCounter : openConnections.values()) {
+				LOGGER.error("Open connection: " + openConnectionCounter);
+			}
+		}
 		if (size() > 0) {
-			for (Entry<T, List<WaitingVirtualObject>> entry : waitingObjects.entrySet()) {
+			for (Entry<Integer, List<WaitingVirtualObject>> entry : waitingObjects.entrySet()) {
 				StringBuilder sb = new StringBuilder("" + entry.getKey() + " ");
 				for (WaitingVirtualObject waitingObject : entry.getValue()) {
 					sb.append(waitingObject.toString() + " ");

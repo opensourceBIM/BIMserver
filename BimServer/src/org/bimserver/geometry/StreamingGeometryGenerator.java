@@ -135,7 +135,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	private GeometryGenerationDebugger geometryGenerationDebugger = new GeometryGenerationDebugger();
 
 	// TODO get this from a setting
-	private boolean generateLayerSets = true;
+	private boolean generateLayerSets = false;
 
 	public StreamingGeometryGenerator(final BimServer bimServer, ProgressListener progressListener, Long eoid, GeometryGenerationReport report) {
 		this.bimServer = bimServer;
@@ -246,10 +246,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			ThreadPoolExecutor executor = new ThreadPoolExecutor(maxSimultanousThreads, maxSimultanousThreads, 24, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(10000000));
 
 			JsonQueryObjectModelConverter jsonQueryObjectModelConverter = new JsonQueryObjectModelConverter(packageMetaData);
-			String queryNameSpace = "validifc";
-			if (packageMetaData.getSchema() == Schema.IFC4) {
-				queryNameSpace = "ifc4stdlib";
-			}
+			String queryNameSpace = packageMetaData.getSchema().name().toLowerCase() + "-stdlib";
 			
 			// Al references should already be direct, since this is now done in BimServer on startup, quite the hack...
 			Include objectPlacement = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ObjectPlacement", true);
@@ -831,10 +828,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			final RenderEngineFilter renderEngineFilter, RenderEnginePool renderEnginePool, ThreadPoolExecutor executor, EClass eClass, Query query, QueryPart queryPart, boolean geometryReused, Map<Long, ProductDef> map, int nrObjects) throws QueryException, IOException {
 		JsonQueryObjectModelConverter jsonQueryObjectModelConverter = new JsonQueryObjectModelConverter(packageMetaData);
 		
-		String queryNameSpace = "validifc";
-		if (packageMetaData.getSchema() == Schema.IFC4) {
-			queryNameSpace = "ifc4stdlib";
-		}
+		String queryNameSpace = packageMetaData.getSchema().name().toLowerCase() + "-stdlib";
 		
 		if (eClass.getName().equals("IfcAnnotation")) {
 			// IfcAnnotation also has the field ContainedInStructure, but that is it's own field (looks like a hack on the IFC-spec side)
@@ -901,6 +895,12 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			fillsInclude.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ContainedInStructure", true));
 		}
 		
+		// Adding the materials, those don't come automatically
+		Include materialsInclude = queryPart.createInclude();
+		materialsInclude.addType(eClass, false);
+		materialsInclude.addField("HasAssociations");
+		materialsInclude.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":IfcRelAssociatesMaterial", true));
+		
 		if (packageMetaData.getEClass("IfcElement").isSuperTypeOf(eClass)) {
 			Include openingsInclude = queryPart.createInclude();
 			openingsInclude.addType(packageMetaData.getEClass(eClass.getName()), false);
@@ -929,10 +929,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			final RenderEngineFilter renderEngineFilter, RenderEnginePool renderEnginePool, ThreadPoolExecutor executor, EClass eClass, Query query, QueryPart queryPart, boolean geometryReused, Map<Long, ProductDef> map, int nrObjects) throws QueryException, IOException {
 		JsonQueryObjectModelConverter jsonQueryObjectModelConverter = new JsonQueryObjectModelConverter(packageMetaData);
 		
-		String queryNameSpace = "validifc";
-		if (packageMetaData.getSchema() == Schema.IFC4) {
-			queryNameSpace = "ifc4stdlib";
-		}
+		String queryNameSpace = packageMetaData.getSchema().name().toLowerCase() + "-stdlib";
 		
 		if (eClass.getName().equals("IfcAnnotation")) {
 			// IfcAnnotation also has the field ContainedInStructure, but that is it's own field (looks like a hack on the IFC-spec side)

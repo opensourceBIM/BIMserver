@@ -132,6 +132,9 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 //			print("\"_s\":0");
 //			print("}\n");
 //		} else {
+		if (object.eClass().getName().contentEquals("IfcBSplineSurfaceWithKnots")) {
+			System.out.println();
+		}
 			print("{");
 			print("\"_i\":" + object.getOid() + ",");
 			print("\"_t\":\"" + object.eClass().getName() + "\",");
@@ -305,7 +308,27 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 			}
 			print("}");
 		} else if (object instanceof HashMapVirtualObject) {
-			print("" + ((HashMapVirtualObject)object).getOid());
+			EStructuralFeature eStructuralFeature = object.eClass().getEStructuralFeature("List");
+			if (eStructuralFeature != null) {
+				print("[");
+				List<?> l = (List<?>) object.eGet(eStructuralFeature);
+				boolean f = true;
+				for (Object o : l) {
+					if (!f) {
+						print(", ");
+					}
+					f = false;
+					if (eStructuralFeature instanceof EReference) {
+						print("{");
+						print("\"_t\":\"" + eStructuralFeature.getEType().getName() + "\",");
+						print("\"_r\":" + o.toString());
+						print("}");
+					}
+				}
+				print("]");
+ 			} else {
+ 				print("" + ((HashMapVirtualObject)object).getOid());
+ 			}
 		} else if (object instanceof HashMapWrappedVirtualObject) {
 			print("{");
 			print("\"_t\":\"" + object.eClass().getName() + "\",");

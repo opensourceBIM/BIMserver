@@ -127,4 +127,8 @@ public class ByteBufferList extends AbstractByteBufferVirtualObject implements L
 	public ByteBuffer write() {
 		return buffer;
 	}
+
+	public int size() {
+		return buffer.position();
+	}
 }
