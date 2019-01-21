@@ -1,0 +1,293 @@
+{
+   "defines": {
+      "Units": {
+         "type": "IfcProject",
+         "fields": [
+            "UnitsInContext",
+            "RepresentationContexts"
+         ],
+         "includes": [
+            {
+               "type": "IfcUnitAssignment",
+               "field": "Units",
+               "includes": [
+                  "ConversionFactor",
+                  "IfcDerivedUnit",
+                  "Dimensions"
+               ]
+            },
+            "IfcGeometricRepresentationContext"
+         ]
+      },
+      "IfcGeometricRepresentationContext": {
+         "type": "IfcGeometricRepresentationContext",
+         "fields": [
+            "WorldCoordinateSystem",
+            "TrueNorth"
+         ],
+         "includes": ["ifc2x3tc1-geometry:IfcAxis2Placement3D"]
+      },
+      "IfcGeometricRepresentationSubContext": {
+         "type": "IfcGeometricRepresentationSubContext",
+         "field": "ParentContext",
+         "include": "IfcGeometricRepresentationContext"
+      },
+      "IfcAnnotationContainedInStructure": {
+         "type": "IfcAnnotation",
+         "field": "ContainedInStructure",
+         "includes": [
+            {
+               "type": "IfcRelContainedInSpatialStructure",
+               "fields": [
+                  "RelatingStructure"
+               ],
+               "includes": [
+                  "Decomposes",
+                  "OwnerHistory"
+               ]
+            },
+            "OwnerHistory"
+         ]
+      },
+      "ContainedInStructure": {
+         "type": "IfcElement",
+         "field": "ContainedInStructure",
+         "includes": [
+            {
+               "type": "IfcRelContainedInSpatialStructure",
+               "fields": [
+                  "RelatingStructure"
+               ],
+               "includes": [
+                  "Decomposes",
+                  "OwnerHistory"
+               ]
+            },
+            "OwnerHistory"
+         ]
+      },
+      "IfcSIUnit": {
+         "type": "IfcSIUnit"
+      },
+      "IfcContextDependentUnit": {
+         "type": "IfcContextDependentUnit"
+      },
+      "IfcConversionBasedUnit": {
+         "type": "IfcConversionBasedUnit"
+      },
+      "IfcDerivedUnitElement": {
+        "type": "IfcDerivedUnitElement",
+        "field": "Unit",
+        "includes": [
+           "IfcContextDependentUnit",
+           "IfcConversionBasedUnit",
+           "IfcSIUnit"
+        ]
+      },
+      "Dimensions": {
+         "type": "IfcConversionBasedUnit",
+         "field": "Dimensions",
+         "include": "IfcDerivedUnitElement"
+      },
+      "IfcDerivedUnit": {
+         "type": "IfcDerivedUnit",
+         "field": "Elements",
+         "include": "IfcDerivedUnitElement"
+      },
+      "ConversionFactor": {
+         "type": "IfcConversionBasedUnit",
+         "field": "ConversionFactor",
+         "include": {
+            "type": "IfcMeasureWithUnit",
+            "field": "UnitComponent"
+         }
+      },
+      "Decomposes": {
+         "type": "IfcObjectDefinition",
+         "field": "Decomposes",
+         "includes": [
+            {
+               "type": "IfcRelDecomposes",
+               "field": "RelatingObject",
+               "includes": [
+                  "Decomposes",
+                  "Units",
+                  "OwnerHistory",
+                  "ContainedInStructure"
+               ]
+            },
+            "OwnerHistory"
+         ]
+      },
+      "OwnerHistory": {
+         "type": "IfcRoot",
+         "field": "OwnerHistory",
+         "includes": [
+            {
+               "type": "IfcOwnerHistory",
+               "field": "OwningUser",
+               "includes": [
+                  {
+                     "type": "IfcPersonAndOrganization",
+                     "field": "ThePerson"
+                  },
+                  {
+                     "type": "IfcPersonAndOrganization",
+                     "field": "TheOrganization",
+                     "includes": [
+                        {
+                           "type": "IfcOrganization",
+                           "field": "Roles"
+                        },
+                        {
+                           "type": "IfcOrganization",
+                           "field": "Addresses"
+                        }
+                     ]
+                  }
+               ]
+            },
+            {
+               "type": "IfcOwnerHistory",
+               "field": "OwningApplication",
+               "include": {
+                  "type": "IfcApplication",
+                  "field": "ApplicationDeveloper"
+               }
+            }
+         ]
+      },
+      "AllProperties": {
+         "type": "IfcObject",
+         "field": "IsDefinedBy",
+         "include": {
+            "type": "IfcRelDefinesByProperties",
+            "field": "RelatingPropertyDefinition",
+            "includes": [{
+               "type": "IfcPropertySet",
+               "field": "HasProperties"
+            }, {
+            	"type": "IfcElementQuantity",
+            	"field": "Quantities"
+            }]
+         }
+      },
+      "Representation": {
+         "type": "IfcProduct",
+         "fields": ["Representation", "HasAssociations"],
+         "includes": ["IfcRelAssociatesMaterial", {
+            "type": "IfcProductRepresentation",
+            "field": "Representations",
+            "includes": [
+               "ifc2x3tc1-geometry:IfcStyleModel",
+               "ifc2x3tc1-geometry:IfcStyledRepresentation",
+               "ifc2x3tc1-geometry:IfcRepresentation",
+               "ifc2x3tc1-geometry:IfcBooleanResult",
+               "ifc2x3tc1-geometry:IfcShapeModel",
+               "ifc2x3tc1-geometry:IfcShapeRepresentation",
+               "ifc2x3tc1-geometry:IfcTopologyRepresentation"
+            ]
+         }]
+      },
+      "IfcSpecificMappingShapeRepresentation": {
+         "type": "IfcShapeRepresentation",
+         "fields": ["ContextOfItems"],
+         "includes": [
+            "IfcGeometricRepresentationContext",
+            "IfcGeometricRepresentationSubContext"
+         ]
+      },
+      "IfcMaterial": {
+        "type": "IfcMaterial",
+        "fields": ["HasRepresentation"],
+        "includes": ["IfcMaterialDefinitionRepresentation"]
+      },
+      "IfcMaterialDefinitionRepresentation": {
+      	"type": "IfcMaterialDefinitionRepresentation",
+      	"fields": ["Representations"],
+      	"includes": ["ifc2x3tc1-geometry:IfcRepresentation"]
+      },
+      "IfcMaterialList": {
+      	"type": "IfcMaterialList",
+      	"field": "Materials",
+      	"include": "IfcMaterial"
+      },
+      "IfcMaterialLayerSetUsage": {
+        "type": "IfcMaterialLayerSetUsage",
+        "field": "ForLayerSet",
+        "include": "IfcMaterialLayerSet"
+      },
+      "IfcMaterialLayerSet": {
+      	"type": "IfcMaterialLayerSet",
+      	"field": "MaterialLayers",
+      	"include": "IfcMaterialLayer"
+      },
+      "IfcMaterialLayer": {
+      	"type": "IfcMaterialLayer",
+      	"field": "Material",
+      	"include": "IfcMaterial"
+      },
+      "IfcRelAssociatesMaterial": {
+      	"type": "IfcRelAssociatesMaterial",
+      	"field": "RelatingMaterial",
+      	"includes": ["IfcMaterial", "IfcMaterialList", "IfcMaterialLayerSetUsage", "IfcMaterialLayerSet", "IfcMaterialLayer"]
+      },
+      "RepresentationSpecificMapping": {
+         "type": "IfcProduct",
+         "field": "Representation",
+         "include": {
+            "type": "IfcProductRepresentation",
+            "field": "Representations",
+            "includes": [
+               "IfcSpecificMappingShapeRepresentation"
+            ]
+         }
+      },
+      "RelativePlacement": {
+         "type": "IfcLocalPlacement",
+         "fields": ["PlacementRelTo", "RelativePlacement"],
+         "includes": [
+            "RelativePlacement",
+            {
+              "type": "IfcAxis2Placement3D",
+                  "fields": [
+                     "Location",
+                     "Axis",
+                     "RefDirection"
+                  ]
+            },
+            {
+               "type": "IfcLocalPlacement",
+               "fields": ["RelativePlacement", "PlacementRelTo"],
+               "includes": ["RelativePlacement", {
+                  "type": "IfcAxis2Placement3D",
+                  "fields": [
+                     "Location",
+                     "Axis",
+                     "RefDirection"
+                  ]
+               }]
+            }
+         ]
+      },
+      "ObjectPlacement": {
+         "type": "IfcProduct",
+         "field": "ObjectPlacement",
+         "includes": [
+            "RelativePlacement",
+            {
+               "type": "IfcLocalPlacement",
+               "field": "RelativePlacement",
+               "include": {
+                  "type": "IfcAxis2Placement3D",
+                  "fields": [
+                     "Location",
+                     "Axis",
+                     "RefDirection"
+                  ]
+               }
+            }
+         ]
+      }
+   }
+}

@@ -1,0 +1,2020 @@
+{
+  "defines" : {
+    "IfcShapeRepresentation" : {
+      "type" : {
+        "name" : "IfcShapeRepresentation",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "ContextOfItems", "Items" ],
+      "includes" : [ "IfcRepresentationContext", "IfcGeometricRepresentationContext", "IfcGeometricRepresentationSubContext", "IfcGeometricSet", "IfcBoundedSurface", "IfcGeometricCurveSet", "IfcToroidalSurface", "IfcEdgeCurve", "IfcStyledItem", "IfcTextLiteral", "IfcLightSourceDirectional", "IfcRectangularTrimmedSurface", "IfcBoxedHalfSpace", "IfcCsgPrimitive3D", "IfcLightSourceAmbient", "IfcFixedReferenceSweptAreaSolid", "IfcConic", "IfcCurve", "IfcVector", "IfcTriangulatedFaceSet", "IfcLightSourceGoniometric", "IfcFace", "IfcTextLiteralWithExtent", "IfcLine", "IfcBooleanClippingResult", "IfcCartesianPointList", "IfcRationalBSplineCurveWithKnots", "IfcCartesianTransformationOperator", "IfcAxis2Placement2D", "IfcCompositeCurveOnSurface", "IfcFacetedBrep", "IfcDirection", "IfcPointOnCurve", "IfcSurfaceOfRevolution", "IfcEllipse", "IfcEdgeLoop", "IfcPcurve", "IfcVertexPoint", "IfcPolyLoop", "IfcSurfaceOfLinearExtrusion", "IfcCurveBoundedPlane", "IfcSphericalSurface", "IfcCartesianTransformationOperator3DnonUniform", "IfcOffsetCurve2D", "IfcPolygonalBoundedHalfSpace", "IfcRightCircularCylinder", "IfcCurveBoundedSurface", "IfcPlane", "IfcSphere", "IfcPlacement", "IfcTessellatedItem", "IfcCartesianPointList2D", "IfcBSplineCurveWithKnots", "IfcCompositeCurveSegment", "IfcSubedge", "IfcRightCircularCone", "IfcPath", "IfcFaceBasedSurfaceModel", "IfcBooleanResult", "IfcSolidModel", "IfcAnnotationFillArea", "IfcTrimmedCurve", "IfcSurfaceCurve", "IfcFaceOuterBound", "IfcPlanarBox", "IfcConnectedFaceSet", "IfcAdvancedFace", "IfcAdvancedBrepWithVoids", "IfcPolyline", "IfcPoint", "IfcCompositeCurve", "IfcExtrudedAreaSolid", "IfcSweptSurface", "IfcOpenShell", "IfcOffsetCurve3D", "IfcBSplineSurface", "IfcShellBasedSurfaceModel", "IfcCsgSolid", "IfcPolygonalFaceSet", "IfcSweptDiskSolidPolygonal", "IfcFillAreaStyleTiles", "IfcCartesianTransformationOperator3D", "IfcBSplineCurve", "IfcLightSource", "IfcExtrudedAreaSolidTapered", "IfcOrientedEdge", "IfcSurfaceCurveSweptAreaSolid", "IfcFillAreaStyleHatching", "IfcReparametrisedCompositeCurveSegment", "IfcLightSourceSpot", "IfcSectionedSpine", "IfcCartesianTransformationOperator2D", "IfcOuterBoundaryCurve", "IfcAxis2Placement3D", "IfcPointOnSurface", "IfcSurface", "IfcHalfSpaceSolid", "IfcIndexedPolygonalFace", "IfcManifoldSolidBrep", "IfcFaceBound", "IfcCartesianPointList3D", "IfcClosedShell", "IfcIndexedPolyCurve", "IfcPlanarExtent", "IfcElementarySurface", "IfcFacetedBrepWithVoids", "IfcRepresentationItem", "IfcCartesianPoint", "IfcIntersectionCurve", "IfcSweptDiskSolid", "IfcAdvancedBrep", "IfcLoop", "IfcBSplineSurfaceWithKnots", "IfcCircle", "IfcCartesianTransformationOperator2DnonUniform", "IfcFaceSurface", "IfcBoundedCurve", "IfcCylindricalSurface", "IfcEdge", "IfcBoundingBox", "IfcIndexedPolygonalFaceWithVoids", "IfcVertexLoop", "IfcSeamCurve", "IfcBlock", "IfcTopologicalRepresentationItem", "IfcLightSourcePositional", "IfcRevolvedAreaSolidTapered", "IfcSweptAreaSolid", "IfcRationalBSplineSurfaceWithKnots", "IfcRevolvedAreaSolid", "IfcAxis1Placement", "IfcVertex", "IfcMappedItem", "IfcTessellatedFaceSet", "IfcGeometricRepresentationItem", "IfcBoundaryCurve", "IfcRectangularPyramid" ]
+    },
+    "IfcRepresentationContext" : {
+      "type" : {
+        "name" : "IfcRepresentationContext",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcGeometricRepresentationContext" : {
+      "type" : {
+        "name" : "IfcGeometricRepresentationContext",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "WorldCoordinateSystem", "TrueNorth" ],
+      "includes" : [ "IfcAxis2Placement2D", "IfcAxis2Placement", "IfcAxis2Placement3D", "IfcDirection" ]
+    },
+    "IfcAxis2Placement2D" : {
+      "type" : {
+        "name" : "IfcAxis2Placement2D",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Location", "RefDirection" ],
+      "includes" : [ "IfcStyledItem", "IfcCartesianPoint", "IfcDirection" ]
+    },
+    "IfcStyledItem" : {
+      "type" : {
+        "name" : "IfcStyledItem",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Item", "Styles" ],
+      "includes" : [ "IfcStyledItem", "IfcGeometricSet", "IfcBoundedSurface", "IfcGeometricCurveSet", "IfcToroidalSurface", "IfcEdgeCurve", "IfcStyledItem", "IfcTextLiteral", "IfcLightSourceDirectional", "IfcRectangularTrimmedSurface", "IfcBoxedHalfSpace", "IfcCsgPrimitive3D", "IfcLightSourceAmbient", "IfcFixedReferenceSweptAreaSolid", "IfcConic", "IfcCurve", "IfcVector", "IfcTriangulatedFaceSet", "IfcLightSourceGoniometric", "IfcFace", "IfcTextLiteralWithExtent", "IfcLine", "IfcBooleanClippingResult", "IfcCartesianPointList", "IfcRationalBSplineCurveWithKnots", "IfcCartesianTransformationOperator", "IfcAxis2Placement2D", "IfcCompositeCurveOnSurface", "IfcFacetedBrep", "IfcDirection", "IfcPointOnCurve", "IfcSurfaceOfRevolution", "IfcEllipse", "IfcEdgeLoop", "IfcPcurve", "IfcVertexPoint", "IfcPolyLoop", "IfcSurfaceOfLinearExtrusion", "IfcCurveBoundedPlane", "IfcSphericalSurface", "IfcCartesianTransformationOperator3DnonUniform", "IfcOffsetCurve2D", "IfcPolygonalBoundedHalfSpace", "IfcRightCircularCylinder", "IfcCurveBoundedSurface", "IfcPlane", "IfcSphere", "IfcPlacement", "IfcTessellatedItem", "IfcCartesianPointList2D", "IfcBSplineCurveWithKnots", "IfcCompositeCurveSegment", "IfcSubedge", "IfcRightCircularCone", "IfcPath", "IfcFaceBasedSurfaceModel", "IfcBooleanResult", "IfcSolidModel", "IfcAnnotationFillArea", "IfcTrimmedCurve", "IfcSurfaceCurve", "IfcFaceOuterBound", "IfcPlanarBox", "IfcConnectedFaceSet", "IfcAdvancedFace", "IfcAdvancedBrepWithVoids", "IfcPolyline", "IfcPoint", "IfcCompositeCurve", "IfcExtrudedAreaSolid", "IfcSweptSurface", "IfcOpenShell", "IfcOffsetCurve3D", "IfcBSplineSurface", "IfcShellBasedSurfaceModel", "IfcCsgSolid", "IfcPolygonalFaceSet", "IfcSweptDiskSolidPolygonal", "IfcFillAreaStyleTiles", "IfcCartesianTransformationOperator3D", "IfcBSplineCurve", "IfcLightSource", "IfcExtrudedAreaSolidTapered", "IfcOrientedEdge", "IfcSurfaceCurveSweptAreaSolid", "IfcFillAreaStyleHatching", "IfcReparametrisedCompositeCurveSegment", "IfcLightSourceSpot", "IfcSectionedSpine", "IfcCartesianTransformationOperator2D", "IfcOuterBoundaryCurve", "IfcAxis2Placement3D", "IfcPointOnSurface", "IfcSurface", "IfcHalfSpaceSolid", "IfcIndexedPolygonalFace", "IfcManifoldSolidBrep", "IfcFaceBound", "IfcCartesianPointList3D", "IfcClosedShell", "IfcIndexedPolyCurve", "IfcPlanarExtent", "IfcElementarySurface", "IfcFacetedBrepWithVoids", "IfcRepresentationItem", "IfcCartesianPoint", "IfcIntersectionCurve", "IfcSweptDiskSolid", "IfcAdvancedBrep", "IfcLoop", "IfcBSplineSurfaceWithKnots", "IfcCircle", "IfcCartesianTransformationOperator2DnonUniform", "IfcFaceSurface", "IfcBoundedCurve", "IfcCylindricalSurface", "IfcEdge", "IfcBoundingBox", "IfcIndexedPolygonalFaceWithVoids", "IfcVertexLoop", "IfcSeamCurve", "IfcBlock", "IfcTopologicalRepresentationItem", "IfcLightSourcePositional", "IfcRevolvedAreaSolidTapered", "IfcSweptAreaSolid", "IfcRationalBSplineSurfaceWithKnots", "IfcRevolvedAreaSolid", "IfcAxis1Placement", "IfcVertex", "IfcMappedItem", "IfcTessellatedFaceSet", "IfcGeometricRepresentationItem", "IfcBoundaryCurve", "IfcRectangularPyramid", "IfcPresentationStyleAssignment", "IfcPresentationStyle", "IfcTextStyle", "IfcFillAreaStyle", "IfcStyleAssignmentSelect", "IfcCurveStyle", "IfcSurfaceStyle" ]
+    },
+    "IfcGeometricSet" : {
+      "type" : {
+        "name" : "IfcGeometricSet",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Elements" ],
+      "includes" : [ "IfcStyledItem", "IfcIndexedPolyCurve", "IfcCurveBoundedPlane", "IfcBoundedSurface", "IfcSphericalSurface", "IfcOffsetCurve2D", "IfcToroidalSurface", "IfcElementarySurface", "IfcCurveBoundedSurface", "IfcPlane", "IfcBSplineCurveWithKnots", "IfcGeometricSetSelect", "IfcCartesianPoint", "IfcBSplineCurve", "IfcIntersectionCurve", "IfcRectangularTrimmedSurface", "IfcBSplineSurfaceWithKnots", "IfcCircle", "IfcOuterBoundaryCurve", "IfcConic", "IfcTrimmedCurve", "IfcPointOnSurface", "IfcCurve", "IfcSurface", "IfcSurfaceCurve", "IfcBoundedCurve", "IfcCylindricalSurface", "IfcLine", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcSeamCurve", "IfcPoint", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcPointOnCurve", "IfcRationalBSplineSurfaceWithKnots", "IfcSweptSurface", "IfcSurfaceOfRevolution", "IfcEllipse", "IfcPcurve", "IfcOffsetCurve3D", "IfcBSplineSurface", "IfcBoundaryCurve", "IfcSurfaceOfLinearExtrusion" ]
+    },
+    "IfcIndexedPolyCurve" : {
+      "type" : {
+        "name" : "IfcIndexedPolyCurve",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Points", "Segments" ],
+      "includes" : [ "IfcStyledItem", "IfcCartesianPointList3D", "IfcCartesianPointList", "IfcCartesianPointList2D", "IfcSegmentIndexSelect" ]
+    },
+    "IfcCartesianPointList3D" : {
+      "type" : {
+        "name" : "IfcCartesianPointList3D",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "CoordList" ],
+      "includes" : [ "IfcStyledItem", "ListOfIfcLengthMeasure" ]
+    },
+    "ListOfIfcLengthMeasure" : {
+      "type" : {
+        "name" : "ListOfIfcLengthMeasure",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "List" ],
+      "includes" : [ ]
+    },
+    "IfcCartesianPointList" : {
+      "type" : {
+        "name" : "IfcCartesianPointList",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem" ],
+      "includes" : [ "IfcStyledItem" ]
+    },
+    "IfcCartesianPointList2D" : {
+      "type" : {
+        "name" : "IfcCartesianPointList2D",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "CoordList" ],
+      "includes" : [ "IfcStyledItem", "ListOfIfcLengthMeasure" ]
+    },
+    "IfcSegmentIndexSelect" : {
+      "type" : {
+        "name" : "IfcSegmentIndexSelect",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcCurveBoundedPlane" : {
+      "type" : {
+        "name" : "IfcCurveBoundedPlane",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "BasisSurface", "OuterBoundary", "InnerBoundaries" ],
+      "includes" : [ "IfcStyledItem", "IfcPlane", "IfcIndexedPolyCurve", "IfcCurve", "IfcSurfaceCurve", "IfcBoundedCurve", "IfcOffsetCurve2D", "IfcLine", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcSeamCurve", "IfcBSplineCurveWithKnots", "IfcBSplineCurve", "IfcIntersectionCurve", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcEllipse", "IfcPcurve", "IfcCircle", "IfcOffsetCurve3D", "IfcOuterBoundaryCurve", "IfcBoundaryCurve", "IfcConic", "IfcTrimmedCurve", "IfcIndexedPolyCurve", "IfcCurve", "IfcSurfaceCurve", "IfcBoundedCurve", "IfcOffsetCurve2D", "IfcLine", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcSeamCurve", "IfcBSplineCurveWithKnots", "IfcBSplineCurve", "IfcIntersectionCurve", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcEllipse", "IfcPcurve", "IfcCircle", "IfcOffsetCurve3D", "IfcOuterBoundaryCurve", "IfcBoundaryCurve", "IfcConic", "IfcTrimmedCurve" ]
+    },
+    "IfcPlane" : {
+      "type" : {
+        "name" : "IfcPlane",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Position" ],
+      "includes" : [ "IfcStyledItem", "IfcAxis2Placement3D" ]
+    },
+    "IfcAxis2Placement3D" : {
+      "type" : {
+        "name" : "IfcAxis2Placement3D",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Location", "Axis", "RefDirection" ],
+      "includes" : [ "IfcStyledItem", "IfcCartesianPoint", "IfcDirection", "IfcDirection" ]
+    },
+    "IfcCartesianPoint" : {
+      "type" : {
+        "name" : "IfcCartesianPoint",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem" ],
+      "includes" : [ "IfcStyledItem" ]
+    },
+    "IfcDirection" : {
+      "type" : {
+        "name" : "IfcDirection",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem" ],
+      "includes" : [ "IfcStyledItem" ]
+    },
+    "IfcCurve" : {
+      "type" : {
+        "name" : "IfcCurve",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem" ],
+      "includes" : [ "IfcStyledItem" ]
+    },
+    "IfcSurfaceCurve" : {
+      "type" : {
+        "name" : "IfcSurfaceCurve",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Curve3D", "AssociatedGeometry" ],
+      "includes" : [ "IfcStyledItem", "IfcIndexedPolyCurve", "IfcCurve", "IfcSurfaceCurve", "IfcBoundedCurve", "IfcOffsetCurve2D", "IfcLine", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcSeamCurve", "IfcBSplineCurveWithKnots", "IfcBSplineCurve", "IfcIntersectionCurve", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcEllipse", "IfcPcurve", "IfcCircle", "IfcOffsetCurve3D", "IfcOuterBoundaryCurve", "IfcBoundaryCurve", "IfcConic", "IfcTrimmedCurve", "IfcPcurve" ]
+    },
+    "IfcBoundedCurve" : {
+      "type" : {
+        "name" : "IfcBoundedCurve",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem" ],
+      "includes" : [ "IfcStyledItem" ]
+    },
+    "IfcOffsetCurve2D" : {
+      "type" : {
+        "name" : "IfcOffsetCurve2D",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "BasisCurve" ],
+      "includes" : [ "IfcStyledItem", "IfcIndexedPolyCurve", "IfcCurve", "IfcSurfaceCurve", "IfcBoundedCurve", "IfcOffsetCurve2D", "IfcLine", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcSeamCurve", "IfcBSplineCurveWithKnots", "IfcBSplineCurve", "IfcIntersectionCurve", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcEllipse", "IfcPcurve", "IfcCircle", "IfcOffsetCurve3D", "IfcOuterBoundaryCurve", "IfcBoundaryCurve", "IfcConic", "IfcTrimmedCurve" ]
+    },
+    "IfcLine" : {
+      "type" : {
+        "name" : "IfcLine",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Pnt", "Dir" ],
+      "includes" : [ "IfcStyledItem", "IfcCartesianPoint", "IfcVector" ]
+    },
+    "IfcVector" : {
+      "type" : {
+        "name" : "IfcVector",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Orientation" ],
+      "includes" : [ "IfcStyledItem", "IfcDirection" ]
+    },
+    "IfcPolyline" : {
+      "type" : {
+        "name" : "IfcPolyline",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Points" ],
+      "includes" : [ "IfcStyledItem", "IfcCartesianPoint" ]
+    },
+    "IfcRationalBSplineCurveWithKnots" : {
+      "type" : {
+        "name" : "IfcRationalBSplineCurveWithKnots",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "ControlPointsList" ],
+      "includes" : [ "IfcStyledItem", "IfcCartesianPoint" ]
+    },
+    "IfcSeamCurve" : {
+      "type" : {
+        "name" : "IfcSeamCurve",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Curve3D", "AssociatedGeometry" ],
+      "includes" : [ "IfcStyledItem", "IfcIndexedPolyCurve", "IfcCurve", "IfcSurfaceCurve", "IfcBoundedCurve", "IfcOffsetCurve2D", "IfcLine", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcSeamCurve", "IfcBSplineCurveWithKnots", "IfcBSplineCurve", "IfcIntersectionCurve", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcEllipse", "IfcPcurve", "IfcCircle", "IfcOffsetCurve3D", "IfcOuterBoundaryCurve", "IfcBoundaryCurve", "IfcConic", "IfcTrimmedCurve", "IfcPcurve" ]
+    },
+    "IfcBSplineCurveWithKnots" : {
+      "type" : {
+        "name" : "IfcBSplineCurveWithKnots",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "ControlPointsList" ],
+      "includes" : [ "IfcStyledItem", "IfcCartesianPoint" ]
+    },
+    "IfcBSplineCurve" : {
+      "type" : {
+        "name" : "IfcBSplineCurve",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "ControlPointsList" ],
+      "includes" : [ "IfcStyledItem", "IfcCartesianPoint" ]
+    },
+    "IfcIntersectionCurve" : {
+      "type" : {
+        "name" : "IfcIntersectionCurve",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Curve3D", "AssociatedGeometry" ],
+      "includes" : [ "IfcStyledItem", "IfcIndexedPolyCurve", "IfcCurve", "IfcSurfaceCurve", "IfcBoundedCurve", "IfcOffsetCurve2D", "IfcLine", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcSeamCurve", "IfcBSplineCurveWithKnots", "IfcBSplineCurve", "IfcIntersectionCurve", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcEllipse", "IfcPcurve", "IfcCircle", "IfcOffsetCurve3D", "IfcOuterBoundaryCurve", "IfcBoundaryCurve", "IfcConic", "IfcTrimmedCurve", "IfcPcurve" ]
+    },
+    "IfcCompositeCurveOnSurface" : {
+      "type" : {
+        "name" : "IfcCompositeCurveOnSurface",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Segments" ],
+      "includes" : [ "IfcStyledItem", "IfcReparametrisedCompositeCurveSegment", "IfcCompositeCurveSegment" ]
+    },
+    "IfcReparametrisedCompositeCurveSegment" : {
+      "type" : {
+        "name" : "IfcReparametrisedCompositeCurveSegment",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "ParentCurve" ],
+      "includes" : [ "IfcStyledItem", "IfcIndexedPolyCurve", "IfcCurve", "IfcSurfaceCurve", "IfcBoundedCurve", "IfcOffsetCurve2D", "IfcLine", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcSeamCurve", "IfcBSplineCurveWithKnots", "IfcBSplineCurve", "IfcIntersectionCurve", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcEllipse", "IfcPcurve", "IfcCircle", "IfcOffsetCurve3D", "IfcOuterBoundaryCurve", "IfcBoundaryCurve", "IfcConic", "IfcTrimmedCurve" ]
+    },
+    "IfcCompositeCurve" : {
+      "type" : {
+        "name" : "IfcCompositeCurve",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Segments" ],
+      "includes" : [ "IfcStyledItem", "IfcReparametrisedCompositeCurveSegment", "IfcCompositeCurveSegment" ]
+    },
+    "IfcCompositeCurveSegment" : {
+      "type" : {
+        "name" : "IfcCompositeCurveSegment",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "ParentCurve" ],
+      "includes" : [ "IfcStyledItem", "IfcIndexedPolyCurve", "IfcCurve", "IfcSurfaceCurve", "IfcBoundedCurve", "IfcOffsetCurve2D", "IfcLine", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcSeamCurve", "IfcBSplineCurveWithKnots", "IfcBSplineCurve", "IfcIntersectionCurve", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcEllipse", "IfcPcurve", "IfcCircle", "IfcOffsetCurve3D", "IfcOuterBoundaryCurve", "IfcBoundaryCurve", "IfcConic", "IfcTrimmedCurve" ]
+    },
+    "IfcEllipse" : {
+      "type" : {
+        "name" : "IfcEllipse",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Position" ],
+      "includes" : [ "IfcStyledItem", "IfcAxis2Placement2D", "IfcAxis2Placement", "IfcAxis2Placement3D" ]
+    },
+    "IfcAxis2Placement" : {
+      "type" : {
+        "name" : "IfcAxis2Placement",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcPcurve" : {
+      "type" : {
+        "name" : "IfcPcurve",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "BasisSurface", "ReferenceCurve" ],
+      "includes" : [ "IfcStyledItem", "IfcSurface", "IfcCurveBoundedPlane", "IfcBoundedSurface", "IfcCylindricalSurface", "IfcSphericalSurface", "IfcToroidalSurface", "IfcElementarySurface", "IfcCurveBoundedSurface", "IfcPlane", "IfcRectangularTrimmedSurface", "IfcRationalBSplineSurfaceWithKnots", "IfcSweptSurface", "IfcSurfaceOfRevolution", "IfcBSplineSurfaceWithKnots", "IfcBSplineSurface", "IfcSurfaceOfLinearExtrusion", "IfcIndexedPolyCurve", "IfcCurve", "IfcSurfaceCurve", "IfcBoundedCurve", "IfcOffsetCurve2D", "IfcLine", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcSeamCurve", "IfcBSplineCurveWithKnots", "IfcBSplineCurve", "IfcIntersectionCurve", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcEllipse", "IfcPcurve", "IfcCircle", "IfcOffsetCurve3D", "IfcOuterBoundaryCurve", "IfcBoundaryCurve", "IfcConic", "IfcTrimmedCurve" ]
+    },
+    "IfcSurface" : {
+      "type" : {
+        "name" : "IfcSurface",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem" ],
+      "includes" : [ "IfcStyledItem" ]
+    },
+    "IfcBoundedSurface" : {
+      "type" : {
+        "name" : "IfcBoundedSurface",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem" ],
+      "includes" : [ "IfcStyledItem" ]
+    },
+    "IfcCylindricalSurface" : {
+      "type" : {
+        "name" : "IfcCylindricalSurface",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Position" ],
+      "includes" : [ "IfcStyledItem", "IfcAxis2Placement3D" ]
+    },
+    "IfcSphericalSurface" : {
+      "type" : {
+        "name" : "IfcSphericalSurface",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Position" ],
+      "includes" : [ "IfcStyledItem", "IfcAxis2Placement3D" ]
+    },
+    "IfcToroidalSurface" : {
+      "type" : {
+        "name" : "IfcToroidalSurface",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Position" ],
+      "includes" : [ "IfcStyledItem", "IfcAxis2Placement3D" ]
+    },
+    "IfcElementarySurface" : {
+      "type" : {
+        "name" : "IfcElementarySurface",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Position" ],
+      "includes" : [ "IfcStyledItem", "IfcAxis2Placement3D" ]
+    },
+    "IfcCurveBoundedSurface" : {
+      "type" : {
+        "name" : "IfcCurveBoundedSurface",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "BasisSurface", "Boundaries" ],
+      "includes" : [ "IfcStyledItem", "IfcSurface", "IfcCurveBoundedPlane", "IfcBoundedSurface", "IfcCylindricalSurface", "IfcSphericalSurface", "IfcToroidalSurface", "IfcElementarySurface", "IfcCurveBoundedSurface", "IfcPlane", "IfcRectangularTrimmedSurface", "IfcRationalBSplineSurfaceWithKnots", "IfcSweptSurface", "IfcSurfaceOfRevolution", "IfcBSplineSurfaceWithKnots", "IfcBSplineSurface", "IfcSurfaceOfLinearExtrusion", "IfcOuterBoundaryCurve", "IfcBoundaryCurve" ]
+    },
+    "IfcRectangularTrimmedSurface" : {
+      "type" : {
+        "name" : "IfcRectangularTrimmedSurface",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "BasisSurface" ],
+      "includes" : [ "IfcStyledItem", "IfcSurface", "IfcCurveBoundedPlane", "IfcBoundedSurface", "IfcCylindricalSurface", "IfcSphericalSurface", "IfcToroidalSurface", "IfcElementarySurface", "IfcCurveBoundedSurface", "IfcPlane", "IfcRectangularTrimmedSurface", "IfcRationalBSplineSurfaceWithKnots", "IfcSweptSurface", "IfcSurfaceOfRevolution", "IfcBSplineSurfaceWithKnots", "IfcBSplineSurface", "IfcSurfaceOfLinearExtrusion" ]
+    },
+    "IfcRationalBSplineSurfaceWithKnots" : {
+      "type" : {
+        "name" : "IfcRationalBSplineSurfaceWithKnots",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "ControlPointsList", "WeightsData" ],
+      "includes" : [ "IfcStyledItem", "ListOfIfcCartesianPoint", "ListOfEDouble" ]
+    },
+    "ListOfIfcCartesianPoint" : {
+      "type" : {
+        "name" : "ListOfIfcCartesianPoint",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "List" ],
+      "includes" : [ "IfcCartesianPoint" ]
+    },
+    "ListOfEDouble" : {
+      "type" : {
+        "name" : "ListOfEDouble",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcSweptSurface" : {
+      "type" : {
+        "name" : "IfcSweptSurface",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "SweptCurve", "Position" ],
+      "includes" : [ "IfcStyledItem", "IfcDerivedProfileDef", "IfcArbitraryOpenProfileDef", "IfcParameterizedProfileDef", "IfcCenterLineProfileDef", "IfcTrapeziumProfileDef", "IfcProfileDef", "IfcRectangleHollowProfileDef", "IfcArbitraryProfileDefWithVoids", "IfcMirroredProfileDef", "IfcCircleHollowProfileDef", "IfcZShapeProfileDef", "IfcIShapeProfileDef", "IfcRectangleProfileDef", "IfcRoundedRectangleProfileDef", "IfcEllipseProfileDef", "IfcLShapeProfileDef", "IfcAsymmetricIShapeProfileDef", "IfcCompositeProfileDef", "IfcTShapeProfileDef", "IfcCShapeProfileDef", "IfcCircleProfileDef", "IfcUShapeProfileDef", "IfcArbitraryClosedProfileDef", "IfcAxis2Placement3D" ]
+    },
+    "IfcDerivedProfileDef" : {
+      "type" : {
+        "name" : "IfcDerivedProfileDef",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "ParentProfile", "Operator" ],
+      "includes" : [ "IfcDerivedProfileDef", "IfcArbitraryOpenProfileDef", "IfcParameterizedProfileDef", "IfcCenterLineProfileDef", "IfcTrapeziumProfileDef", "IfcProfileDef", "IfcRectangleHollowProfileDef", "IfcArbitraryProfileDefWithVoids", "IfcMirroredProfileDef", "IfcCircleHollowProfileDef", "IfcZShapeProfileDef", "IfcIShapeProfileDef", "IfcRectangleProfileDef", "IfcRoundedRectangleProfileDef", "IfcEllipseProfileDef", "IfcLShapeProfileDef", "IfcAsymmetricIShapeProfileDef", "IfcCompositeProfileDef", "IfcTShapeProfileDef", "IfcCShapeProfileDef", "IfcCircleProfileDef", "IfcUShapeProfileDef", "IfcArbitraryClosedProfileDef", "IfcCartesianTransformationOperator2DnonUniform", "IfcCartesianTransformationOperator2D" ]
+    },
+    "IfcMirroredProfileDef" : {
+      "type" : {
+        "name" : "IfcMirroredProfileDef",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "ParentProfile", "Operator" ],
+      "includes" : [ "IfcDerivedProfileDef", "IfcArbitraryOpenProfileDef", "IfcParameterizedProfileDef", "IfcCenterLineProfileDef", "IfcTrapeziumProfileDef", "IfcProfileDef", "IfcRectangleHollowProfileDef", "IfcArbitraryProfileDefWithVoids", "IfcMirroredProfileDef", "IfcCircleHollowProfileDef", "IfcZShapeProfileDef", "IfcIShapeProfileDef", "IfcRectangleProfileDef", "IfcRoundedRectangleProfileDef", "IfcEllipseProfileDef", "IfcLShapeProfileDef", "IfcAsymmetricIShapeProfileDef", "IfcCompositeProfileDef", "IfcTShapeProfileDef", "IfcCShapeProfileDef", "IfcCircleProfileDef", "IfcUShapeProfileDef", "IfcArbitraryClosedProfileDef", "IfcCartesianTransformationOperator2DnonUniform", "IfcCartesianTransformationOperator2D" ]
+    },
+    "IfcArbitraryOpenProfileDef" : {
+      "type" : {
+        "name" : "IfcArbitraryOpenProfileDef",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Curve" ],
+      "includes" : [ "IfcBSplineCurve", "IfcIndexedPolyCurve", "IfcCompositeCurveOnSurface", "IfcBoundedCurve", "IfcCompositeCurve", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcOuterBoundaryCurve", "IfcBSplineCurveWithKnots", "IfcBoundaryCurve", "IfcTrimmedCurve" ]
+    },
+    "IfcOuterBoundaryCurve" : {
+      "type" : {
+        "name" : "IfcOuterBoundaryCurve",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Segments" ],
+      "includes" : [ "IfcStyledItem", "IfcReparametrisedCompositeCurveSegment", "IfcCompositeCurveSegment" ]
+    },
+    "IfcBoundaryCurve" : {
+      "type" : {
+        "name" : "IfcBoundaryCurve",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Segments" ],
+      "includes" : [ "IfcStyledItem", "IfcReparametrisedCompositeCurveSegment", "IfcCompositeCurveSegment" ]
+    },
+    "IfcTrimmedCurve" : {
+      "type" : {
+        "name" : "IfcTrimmedCurve",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "BasisCurve", "Trim1", "Trim2" ],
+      "includes" : [ "IfcStyledItem", "IfcIndexedPolyCurve", "IfcCurve", "IfcSurfaceCurve", "IfcBoundedCurve", "IfcOffsetCurve2D", "IfcLine", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcSeamCurve", "IfcBSplineCurveWithKnots", "IfcBSplineCurve", "IfcIntersectionCurve", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcEllipse", "IfcPcurve", "IfcCircle", "IfcOffsetCurve3D", "IfcOuterBoundaryCurve", "IfcBoundaryCurve", "IfcConic", "IfcTrimmedCurve", "IfcCartesianPoint", "IfcTrimmingSelect", "IfcCartesianPoint", "IfcTrimmingSelect" ]
+    },
+    "IfcCircle" : {
+      "type" : {
+        "name" : "IfcCircle",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Position" ],
+      "includes" : [ "IfcStyledItem", "IfcAxis2Placement2D", "IfcAxis2Placement", "IfcAxis2Placement3D" ]
+    },
+    "IfcOffsetCurve3D" : {
+      "type" : {
+        "name" : "IfcOffsetCurve3D",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "BasisCurve", "RefDirection" ],
+      "includes" : [ "IfcStyledItem", "IfcIndexedPolyCurve", "IfcCurve", "IfcSurfaceCurve", "IfcBoundedCurve", "IfcOffsetCurve2D", "IfcLine", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcSeamCurve", "IfcBSplineCurveWithKnots", "IfcBSplineCurve", "IfcIntersectionCurve", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcEllipse", "IfcPcurve", "IfcCircle", "IfcOffsetCurve3D", "IfcOuterBoundaryCurve", "IfcBoundaryCurve", "IfcConic", "IfcTrimmedCurve", "IfcDirection" ]
+    },
+    "IfcConic" : {
+      "type" : {
+        "name" : "IfcConic",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Position" ],
+      "includes" : [ "IfcStyledItem", "IfcAxis2Placement2D", "IfcAxis2Placement", "IfcAxis2Placement3D" ]
+    },
+    "IfcParameterValue" : {
+      "type" : {
+        "name" : "IfcParameterValue",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcTrimmingSelect" : {
+      "type" : {
+        "name" : "IfcTrimmingSelect",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcCenterLineProfileDef" : {
+      "type" : {
+        "name" : "IfcCenterLineProfileDef",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Curve" ],
+      "includes" : [ "IfcBSplineCurve", "IfcIndexedPolyCurve", "IfcCompositeCurveOnSurface", "IfcBoundedCurve", "IfcCompositeCurve", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcOuterBoundaryCurve", "IfcBSplineCurveWithKnots", "IfcBoundaryCurve", "IfcTrimmedCurve" ]
+    },
+    "IfcParameterizedProfileDef" : {
+      "type" : {
+        "name" : "IfcParameterizedProfileDef",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Position" ],
+      "includes" : [ "IfcAxis2Placement2D" ]
+    },
+    "IfcTrapeziumProfileDef" : {
+      "type" : {
+        "name" : "IfcTrapeziumProfileDef",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Position" ],
+      "includes" : [ "IfcAxis2Placement2D" ]
+    },
+    "IfcRectangleHollowProfileDef" : {
+      "type" : {
+        "name" : "IfcRectangleHollowProfileDef",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Position" ],
+      "includes" : [ "IfcAxis2Placement2D" ]
+    },
+    "IfcCircleHollowProfileDef" : {
+      "type" : {
+        "name" : "IfcCircleHollowProfileDef",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Position" ],
+      "includes" : [ "IfcAxis2Placement2D" ]
+    },
+    "IfcZShapeProfileDef" : {
+      "type" : {
+        "name" : "IfcZShapeProfileDef",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Position" ],
+      "includes" : [ "IfcAxis2Placement2D" ]
+    },
+    "IfcIShapeProfileDef" : {
+      "type" : {
+        "name" : "IfcIShapeProfileDef",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Position" ],
+      "includes" : [ "IfcAxis2Placement2D" ]
+    },
+    "IfcRectangleProfileDef" : {
+      "type" : {
+        "name" : "IfcRectangleProfileDef",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Position" ],
+      "includes" : [ "IfcAxis2Placement2D" ]
+    },
+    "IfcRoundedRectangleProfileDef" : {
+      "type" : {
+        "name" : "IfcRoundedRectangleProfileDef",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Position" ],
+      "includes" : [ "IfcAxis2Placement2D" ]
+    },
+    "IfcEllipseProfileDef" : {
+      "type" : {
+        "name" : "IfcEllipseProfileDef",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Position" ],
+      "includes" : [ "IfcAxis2Placement2D" ]
+    },
+    "IfcLShapeProfileDef" : {
+      "type" : {
+        "name" : "IfcLShapeProfileDef",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Position" ],
+      "includes" : [ "IfcAxis2Placement2D" ]
+    },
+    "IfcAsymmetricIShapeProfileDef" : {
+      "type" : {
+        "name" : "IfcAsymmetricIShapeProfileDef",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Position" ],
+      "includes" : [ "IfcAxis2Placement2D" ]
+    },
+    "IfcTShapeProfileDef" : {
+      "type" : {
+        "name" : "IfcTShapeProfileDef",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Position" ],
+      "includes" : [ "IfcAxis2Placement2D" ]
+    },
+    "IfcCShapeProfileDef" : {
+      "type" : {
+        "name" : "IfcCShapeProfileDef",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Position" ],
+      "includes" : [ "IfcAxis2Placement2D" ]
+    },
+    "IfcCircleProfileDef" : {
+      "type" : {
+        "name" : "IfcCircleProfileDef",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Position" ],
+      "includes" : [ "IfcAxis2Placement2D" ]
+    },
+    "IfcUShapeProfileDef" : {
+      "type" : {
+        "name" : "IfcUShapeProfileDef",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Position" ],
+      "includes" : [ "IfcAxis2Placement2D" ]
+    },
+    "IfcProfileDef" : {
+      "type" : {
+        "name" : "IfcProfileDef",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcArbitraryProfileDefWithVoids" : {
+      "type" : {
+        "name" : "IfcArbitraryProfileDefWithVoids",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "OuterCurve", "InnerCurves" ],
+      "includes" : [ "IfcIndexedPolyCurve", "IfcCurve", "IfcSurfaceCurve", "IfcBoundedCurve", "IfcOffsetCurve2D", "IfcLine", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcSeamCurve", "IfcBSplineCurveWithKnots", "IfcBSplineCurve", "IfcIntersectionCurve", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcEllipse", "IfcPcurve", "IfcCircle", "IfcOffsetCurve3D", "IfcOuterBoundaryCurve", "IfcBoundaryCurve", "IfcConic", "IfcTrimmedCurve", "IfcIndexedPolyCurve", "IfcCurve", "IfcSurfaceCurve", "IfcBoundedCurve", "IfcOffsetCurve2D", "IfcLine", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcSeamCurve", "IfcBSplineCurveWithKnots", "IfcBSplineCurve", "IfcIntersectionCurve", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcEllipse", "IfcPcurve", "IfcCircle", "IfcOffsetCurve3D", "IfcOuterBoundaryCurve", "IfcBoundaryCurve", "IfcConic", "IfcTrimmedCurve" ]
+    },
+    "IfcCompositeProfileDef" : {
+      "type" : {
+        "name" : "IfcCompositeProfileDef",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Profiles" ],
+      "includes" : [ "IfcDerivedProfileDef", "IfcArbitraryOpenProfileDef", "IfcParameterizedProfileDef", "IfcCenterLineProfileDef", "IfcTrapeziumProfileDef", "IfcProfileDef", "IfcRectangleHollowProfileDef", "IfcArbitraryProfileDefWithVoids", "IfcMirroredProfileDef", "IfcCircleHollowProfileDef", "IfcZShapeProfileDef", "IfcIShapeProfileDef", "IfcRectangleProfileDef", "IfcRoundedRectangleProfileDef", "IfcEllipseProfileDef", "IfcLShapeProfileDef", "IfcAsymmetricIShapeProfileDef", "IfcCompositeProfileDef", "IfcTShapeProfileDef", "IfcCShapeProfileDef", "IfcCircleProfileDef", "IfcUShapeProfileDef", "IfcArbitraryClosedProfileDef" ]
+    },
+    "IfcArbitraryClosedProfileDef" : {
+      "type" : {
+        "name" : "IfcArbitraryClosedProfileDef",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "OuterCurve" ],
+      "includes" : [ "IfcIndexedPolyCurve", "IfcCurve", "IfcSurfaceCurve", "IfcBoundedCurve", "IfcOffsetCurve2D", "IfcLine", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcSeamCurve", "IfcBSplineCurveWithKnots", "IfcBSplineCurve", "IfcIntersectionCurve", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcEllipse", "IfcPcurve", "IfcCircle", "IfcOffsetCurve3D", "IfcOuterBoundaryCurve", "IfcBoundaryCurve", "IfcConic", "IfcTrimmedCurve" ]
+    },
+    "IfcCartesianTransformationOperator2DnonUniform" : {
+      "type" : {
+        "name" : "IfcCartesianTransformationOperator2DnonUniform",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Axis1", "Axis2", "LocalOrigin" ],
+      "includes" : [ "IfcStyledItem", "IfcDirection", "IfcDirection", "IfcCartesianPoint" ]
+    },
+    "IfcCartesianTransformationOperator2D" : {
+      "type" : {
+        "name" : "IfcCartesianTransformationOperator2D",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Axis1", "Axis2", "LocalOrigin" ],
+      "includes" : [ "IfcStyledItem", "IfcDirection", "IfcDirection", "IfcCartesianPoint" ]
+    },
+    "IfcSurfaceOfRevolution" : {
+      "type" : {
+        "name" : "IfcSurfaceOfRevolution",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "SweptCurve", "Position", "AxisPosition" ],
+      "includes" : [ "IfcStyledItem", "IfcDerivedProfileDef", "IfcArbitraryOpenProfileDef", "IfcParameterizedProfileDef", "IfcCenterLineProfileDef", "IfcTrapeziumProfileDef", "IfcProfileDef", "IfcRectangleHollowProfileDef", "IfcArbitraryProfileDefWithVoids", "IfcMirroredProfileDef", "IfcCircleHollowProfileDef", "IfcZShapeProfileDef", "IfcIShapeProfileDef", "IfcRectangleProfileDef", "IfcRoundedRectangleProfileDef", "IfcEllipseProfileDef", "IfcLShapeProfileDef", "IfcAsymmetricIShapeProfileDef", "IfcCompositeProfileDef", "IfcTShapeProfileDef", "IfcCShapeProfileDef", "IfcCircleProfileDef", "IfcUShapeProfileDef", "IfcArbitraryClosedProfileDef", "IfcAxis2Placement3D", "IfcAxis1Placement" ]
+    },
+    "IfcAxis1Placement" : {
+      "type" : {
+        "name" : "IfcAxis1Placement",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Location", "Axis" ],
+      "includes" : [ "IfcStyledItem", "IfcCartesianPoint", "IfcDirection" ]
+    },
+    "IfcBSplineSurfaceWithKnots" : {
+      "type" : {
+        "name" : "IfcBSplineSurfaceWithKnots",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "ControlPointsList" ],
+      "includes" : [ "IfcStyledItem", "ListOfIfcCartesianPoint" ]
+    },
+    "IfcBSplineSurface" : {
+      "type" : {
+        "name" : "IfcBSplineSurface",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "ControlPointsList" ],
+      "includes" : [ "IfcStyledItem", "ListOfIfcCartesianPoint" ]
+    },
+    "IfcSurfaceOfLinearExtrusion" : {
+      "type" : {
+        "name" : "IfcSurfaceOfLinearExtrusion",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "SweptCurve", "Position", "ExtrudedDirection" ],
+      "includes" : [ "IfcStyledItem", "IfcDerivedProfileDef", "IfcArbitraryOpenProfileDef", "IfcParameterizedProfileDef", "IfcCenterLineProfileDef", "IfcTrapeziumProfileDef", "IfcProfileDef", "IfcRectangleHollowProfileDef", "IfcArbitraryProfileDefWithVoids", "IfcMirroredProfileDef", "IfcCircleHollowProfileDef", "IfcZShapeProfileDef", "IfcIShapeProfileDef", "IfcRectangleProfileDef", "IfcRoundedRectangleProfileDef", "IfcEllipseProfileDef", "IfcLShapeProfileDef", "IfcAsymmetricIShapeProfileDef", "IfcCompositeProfileDef", "IfcTShapeProfileDef", "IfcCShapeProfileDef", "IfcCircleProfileDef", "IfcUShapeProfileDef", "IfcArbitraryClosedProfileDef", "IfcAxis2Placement3D", "IfcDirection" ]
+    },
+    "IfcGeometricSetSelect" : {
+      "type" : {
+        "name" : "IfcGeometricSetSelect",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcPointOnSurface" : {
+      "type" : {
+        "name" : "IfcPointOnSurface",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "BasisSurface" ],
+      "includes" : [ "IfcStyledItem", "IfcSurface", "IfcCurveBoundedPlane", "IfcBoundedSurface", "IfcCylindricalSurface", "IfcSphericalSurface", "IfcToroidalSurface", "IfcElementarySurface", "IfcCurveBoundedSurface", "IfcPlane", "IfcRectangularTrimmedSurface", "IfcRationalBSplineSurfaceWithKnots", "IfcSweptSurface", "IfcSurfaceOfRevolution", "IfcBSplineSurfaceWithKnots", "IfcBSplineSurface", "IfcSurfaceOfLinearExtrusion" ]
+    },
+    "IfcPoint" : {
+      "type" : {
+        "name" : "IfcPoint",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem" ],
+      "includes" : [ "IfcStyledItem" ]
+    },
+    "IfcPointOnCurve" : {
+      "type" : {
+        "name" : "IfcPointOnCurve",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "BasisCurve" ],
+      "includes" : [ "IfcStyledItem", "IfcIndexedPolyCurve", "IfcCurve", "IfcSurfaceCurve", "IfcBoundedCurve", "IfcOffsetCurve2D", "IfcLine", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcSeamCurve", "IfcBSplineCurveWithKnots", "IfcBSplineCurve", "IfcIntersectionCurve", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcEllipse", "IfcPcurve", "IfcCircle", "IfcOffsetCurve3D", "IfcOuterBoundaryCurve", "IfcBoundaryCurve", "IfcConic", "IfcTrimmedCurve" ]
+    },
+    "IfcGeometricCurveSet" : {
+      "type" : {
+        "name" : "IfcGeometricCurveSet",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Elements" ],
+      "includes" : [ "IfcStyledItem", "IfcIndexedPolyCurve", "IfcCurveBoundedPlane", "IfcBoundedSurface", "IfcSphericalSurface", "IfcOffsetCurve2D", "IfcToroidalSurface", "IfcElementarySurface", "IfcCurveBoundedSurface", "IfcPlane", "IfcBSplineCurveWithKnots", "IfcGeometricSetSelect", "IfcCartesianPoint", "IfcBSplineCurve", "IfcIntersectionCurve", "IfcRectangularTrimmedSurface", "IfcBSplineSurfaceWithKnots", "IfcCircle", "IfcOuterBoundaryCurve", "IfcConic", "IfcTrimmedCurve", "IfcPointOnSurface", "IfcCurve", "IfcSurface", "IfcSurfaceCurve", "IfcBoundedCurve", "IfcCylindricalSurface", "IfcLine", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcSeamCurve", "IfcPoint", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcPointOnCurve", "IfcRationalBSplineSurfaceWithKnots", "IfcSweptSurface", "IfcSurfaceOfRevolution", "IfcEllipse", "IfcPcurve", "IfcOffsetCurve3D", "IfcBSplineSurface", "IfcBoundaryCurve", "IfcSurfaceOfLinearExtrusion" ]
+    },
+    "IfcEdgeCurve" : {
+      "type" : {
+        "name" : "IfcEdgeCurve",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "EdgeStart", "EdgeEnd", "EdgeGeometry" ],
+      "includes" : [ "IfcStyledItem", "IfcVertex", "IfcVertexPoint", "IfcVertex", "IfcVertexPoint", "IfcIndexedPolyCurve", "IfcCurve", "IfcSurfaceCurve", "IfcBoundedCurve", "IfcOffsetCurve2D", "IfcLine", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcSeamCurve", "IfcBSplineCurveWithKnots", "IfcBSplineCurve", "IfcIntersectionCurve", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcEllipse", "IfcPcurve", "IfcCircle", "IfcOffsetCurve3D", "IfcOuterBoundaryCurve", "IfcBoundaryCurve", "IfcConic", "IfcTrimmedCurve" ]
+    },
+    "IfcVertex" : {
+      "type" : {
+        "name" : "IfcVertex",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem" ],
+      "includes" : [ "IfcStyledItem" ]
+    },
+    "IfcVertexPoint" : {
+      "type" : {
+        "name" : "IfcVertexPoint",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "VertexGeometry" ],
+      "includes" : [ "IfcStyledItem", "IfcCartesianPoint", "IfcPointOnSurface", "IfcPointOnCurve", "IfcPoint" ]
+    },
+    "IfcTextLiteral" : {
+      "type" : {
+        "name" : "IfcTextLiteral",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Placement" ],
+      "includes" : [ "IfcStyledItem", "IfcAxis2Placement2D", "IfcAxis2Placement", "IfcAxis2Placement3D" ]
+    },
+    "IfcTextLiteralWithExtent" : {
+      "type" : {
+        "name" : "IfcTextLiteralWithExtent",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Placement", "Extent" ],
+      "includes" : [ "IfcStyledItem", "IfcAxis2Placement2D", "IfcAxis2Placement", "IfcAxis2Placement3D", "IfcPlanarBox", "IfcPlanarExtent" ]
+    },
+    "IfcPlanarBox" : {
+      "type" : {
+        "name" : "IfcPlanarBox",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Placement" ],
+      "includes" : [ "IfcStyledItem", "IfcAxis2Placement2D", "IfcAxis2Placement", "IfcAxis2Placement3D" ]
+    },
+    "IfcPlanarExtent" : {
+      "type" : {
+        "name" : "IfcPlanarExtent",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem" ],
+      "includes" : [ "IfcStyledItem" ]
+    },
+    "IfcLightSourceDirectional" : {
+      "type" : {
+        "name" : "IfcLightSourceDirectional",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "LightColour", "Orientation" ],
+      "includes" : [ "IfcStyledItem", "IfcColourRgb", "IfcDirection" ]
+    },
+    "IfcColourRgb" : {
+      "type" : {
+        "name" : "IfcColourRgb",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcBoxedHalfSpace" : {
+      "type" : {
+        "name" : "IfcBoxedHalfSpace",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "BaseSurface", "Enclosure" ],
+      "includes" : [ "IfcStyledItem", "IfcSurface", "IfcCurveBoundedPlane", "IfcBoundedSurface", "IfcCylindricalSurface", "IfcSphericalSurface", "IfcToroidalSurface", "IfcElementarySurface", "IfcCurveBoundedSurface", "IfcPlane", "IfcRectangularTrimmedSurface", "IfcRationalBSplineSurfaceWithKnots", "IfcSweptSurface", "IfcSurfaceOfRevolution", "IfcBSplineSurfaceWithKnots", "IfcBSplineSurface", "IfcSurfaceOfLinearExtrusion", "IfcBoundingBox" ]
+    },
+    "IfcBoundingBox" : {
+      "type" : {
+        "name" : "IfcBoundingBox",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Corner" ],
+      "includes" : [ "IfcStyledItem", "IfcCartesianPoint" ]
+    },
+    "IfcBlock" : {
+      "type" : {
+        "name" : "IfcBlock",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Position" ],
+      "includes" : [ "IfcStyledItem", "IfcAxis2Placement3D" ]
+    },
+    "IfcRightCircularCone" : {
+      "type" : {
+        "name" : "IfcRightCircularCone",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Position" ],
+      "includes" : [ "IfcStyledItem", "IfcAxis2Placement3D" ]
+    },
+    "IfcCsgPrimitive3D" : {
+      "type" : {
+        "name" : "IfcCsgPrimitive3D",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Position" ],
+      "includes" : [ "IfcStyledItem", "IfcAxis2Placement3D" ]
+    },
+    "IfcRightCircularCylinder" : {
+      "type" : {
+        "name" : "IfcRightCircularCylinder",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Position" ],
+      "includes" : [ "IfcStyledItem", "IfcAxis2Placement3D" ]
+    },
+    "IfcSphere" : {
+      "type" : {
+        "name" : "IfcSphere",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Position" ],
+      "includes" : [ "IfcStyledItem", "IfcAxis2Placement3D" ]
+    },
+    "IfcRectangularPyramid" : {
+      "type" : {
+        "name" : "IfcRectangularPyramid",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Position" ],
+      "includes" : [ "IfcStyledItem", "IfcAxis2Placement3D" ]
+    },
+    "IfcLightSourceAmbient" : {
+      "type" : {
+        "name" : "IfcLightSourceAmbient",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "LightColour" ],
+      "includes" : [ "IfcStyledItem", "IfcColourRgb" ]
+    },
+    "IfcFixedReferenceSweptAreaSolid" : {
+      "type" : {
+        "name" : "IfcFixedReferenceSweptAreaSolid",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "SweptArea", "Position", "Directrix", "FixedReference" ],
+      "includes" : [ "IfcStyledItem", "IfcDerivedProfileDef", "IfcArbitraryOpenProfileDef", "IfcParameterizedProfileDef", "IfcCenterLineProfileDef", "IfcTrapeziumProfileDef", "IfcProfileDef", "IfcRectangleHollowProfileDef", "IfcArbitraryProfileDefWithVoids", "IfcMirroredProfileDef", "IfcCircleHollowProfileDef", "IfcZShapeProfileDef", "IfcIShapeProfileDef", "IfcRectangleProfileDef", "IfcRoundedRectangleProfileDef", "IfcEllipseProfileDef", "IfcLShapeProfileDef", "IfcAsymmetricIShapeProfileDef", "IfcCompositeProfileDef", "IfcTShapeProfileDef", "IfcCShapeProfileDef", "IfcCircleProfileDef", "IfcUShapeProfileDef", "IfcArbitraryClosedProfileDef", "IfcAxis2Placement3D", "IfcIndexedPolyCurve", "IfcCurve", "IfcSurfaceCurve", "IfcBoundedCurve", "IfcOffsetCurve2D", "IfcLine", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcSeamCurve", "IfcBSplineCurveWithKnots", "IfcBSplineCurve", "IfcIntersectionCurve", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcEllipse", "IfcPcurve", "IfcCircle", "IfcOffsetCurve3D", "IfcOuterBoundaryCurve", "IfcBoundaryCurve", "IfcConic", "IfcTrimmedCurve", "IfcDirection" ]
+    },
+    "IfcTriangulatedFaceSet" : {
+      "type" : {
+        "name" : "IfcTriangulatedFaceSet",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Coordinates", "Normals", "CoordIndex" ],
+      "includes" : [ "IfcStyledItem", "IfcCartesianPointList3D", "ListOfIfcParameterValue", "ListOfELong" ]
+    },
+    "ListOfIfcParameterValue" : {
+      "type" : {
+        "name" : "ListOfIfcParameterValue",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "List" ],
+      "includes" : [ ]
+    },
+    "ListOfELong" : {
+      "type" : {
+        "name" : "ListOfELong",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcLightSourceGoniometric" : {
+      "type" : {
+        "name" : "IfcLightSourceGoniometric",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "LightColour", "Position", "ColourAppearance", "LightDistributionDataSource" ],
+      "includes" : [ "IfcStyledItem", "IfcColourRgb", "IfcAxis2Placement3D", "IfcColourRgb", "IfcClassificationReference", "IfcLightIntensityDistribution", "IfcLightDistributionDataSourceSelect", "IfcExternallyDefinedHatchStyle", "IfcExternalReference", "IfcExternallyDefinedSurfaceStyle", "IfcLibraryReference", "IfcExternallyDefinedTextFont", "IfcDocumentReference" ]
+    },
+    "IfcClassificationReference" : {
+      "type" : {
+        "name" : "IfcClassificationReference",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "ReferencedSource" ],
+      "includes" : [ "IfcClassificationReference", "IfcClassification", "IfcClassificationReferenceSelect" ]
+    },
+    "IfcClassification" : {
+      "type" : {
+        "name" : "IfcClassification",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcClassificationReferenceSelect" : {
+      "type" : {
+        "name" : "IfcClassificationReferenceSelect",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcLightIntensityDistribution" : {
+      "type" : {
+        "name" : "IfcLightIntensityDistribution",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "DistributionData" ],
+      "includes" : [ "IfcLightDistributionData" ]
+    },
+    "IfcLightDistributionData" : {
+      "type" : {
+        "name" : "IfcLightDistributionData",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcLightDistributionDataSourceSelect" : {
+      "type" : {
+        "name" : "IfcLightDistributionDataSourceSelect",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcExternallyDefinedHatchStyle" : {
+      "type" : {
+        "name" : "IfcExternallyDefinedHatchStyle",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcExternalReference" : {
+      "type" : {
+        "name" : "IfcExternalReference",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcExternallyDefinedSurfaceStyle" : {
+      "type" : {
+        "name" : "IfcExternallyDefinedSurfaceStyle",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcLibraryReference" : {
+      "type" : {
+        "name" : "IfcLibraryReference",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "ReferencedLibrary" ],
+      "includes" : [ "IfcLibraryInformation" ]
+    },
+    "IfcLibraryInformation" : {
+      "type" : {
+        "name" : "IfcLibraryInformation",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Publisher" ],
+      "includes" : [ "IfcPerson", "IfcOrganization", "IfcActorSelect", "IfcPersonAndOrganization" ]
+    },
+    "IfcPerson" : {
+      "type" : {
+        "name" : "IfcPerson",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Roles", "Addresses" ],
+      "includes" : [ "IfcActorRole", "IfcTelecomAddress", "IfcPostalAddress", "IfcAddress" ]
+    },
+    "IfcActorRole" : {
+      "type" : {
+        "name" : "IfcActorRole",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcTelecomAddress" : {
+      "type" : {
+        "name" : "IfcTelecomAddress",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcPostalAddress" : {
+      "type" : {
+        "name" : "IfcPostalAddress",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcAddress" : {
+      "type" : {
+        "name" : "IfcAddress",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcOrganization" : {
+      "type" : {
+        "name" : "IfcOrganization",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Roles", "Addresses" ],
+      "includes" : [ "IfcActorRole", "IfcTelecomAddress", "IfcPostalAddress", "IfcAddress" ]
+    },
+    "IfcActorSelect" : {
+      "type" : {
+        "name" : "IfcActorSelect",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcPersonAndOrganization" : {
+      "type" : {
+        "name" : "IfcPersonAndOrganization",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "ThePerson", "TheOrganization", "Roles" ],
+      "includes" : [ "IfcPerson", "IfcOrganization", "IfcActorRole" ]
+    },
+    "IfcExternallyDefinedTextFont" : {
+      "type" : {
+        "name" : "IfcExternallyDefinedTextFont",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcDocumentReference" : {
+      "type" : {
+        "name" : "IfcDocumentReference",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "ReferencedDocument" ],
+      "includes" : [ "IfcDocumentInformation" ]
+    },
+    "IfcDocumentInformation" : {
+      "type" : {
+        "name" : "IfcDocumentInformation",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "DocumentOwner", "Editors" ],
+      "includes" : [ "IfcPerson", "IfcOrganization", "IfcActorSelect", "IfcPersonAndOrganization", "IfcPerson", "IfcOrganization", "IfcActorSelect", "IfcPersonAndOrganization" ]
+    },
+    "IfcFaceSurface" : {
+      "type" : {
+        "name" : "IfcFaceSurface",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Bounds", "FaceSurface" ],
+      "includes" : [ "IfcStyledItem", "IfcFaceOuterBound", "IfcFaceBound", "IfcSurface", "IfcCurveBoundedPlane", "IfcBoundedSurface", "IfcCylindricalSurface", "IfcSphericalSurface", "IfcToroidalSurface", "IfcElementarySurface", "IfcCurveBoundedSurface", "IfcPlane", "IfcRectangularTrimmedSurface", "IfcRationalBSplineSurfaceWithKnots", "IfcSweptSurface", "IfcSurfaceOfRevolution", "IfcBSplineSurfaceWithKnots", "IfcBSplineSurface", "IfcSurfaceOfLinearExtrusion" ]
+    },
+    "IfcFaceOuterBound" : {
+      "type" : {
+        "name" : "IfcFaceOuterBound",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Bound" ],
+      "includes" : [ "IfcStyledItem", "IfcLoop", "IfcEdgeLoop", "IfcVertexLoop", "IfcPolyLoop" ]
+    },
+    "IfcLoop" : {
+      "type" : {
+        "name" : "IfcLoop",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem" ],
+      "includes" : [ "IfcStyledItem" ]
+    },
+    "IfcEdgeLoop" : {
+      "type" : {
+        "name" : "IfcEdgeLoop",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "EdgeList" ],
+      "includes" : [ "IfcStyledItem", "IfcOrientedEdge" ]
+    },
+    "IfcOrientedEdge" : {
+      "type" : {
+        "name" : "IfcOrientedEdge",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "EdgeStart", "EdgeEnd", "EdgeElement" ],
+      "includes" : [ "IfcStyledItem", "IfcVertex", "IfcVertexPoint", "IfcVertex", "IfcVertexPoint", "IfcOrientedEdge", "IfcEdge", "IfcEdgeCurve", "IfcSubedge" ]
+    },
+    "IfcEdge" : {
+      "type" : {
+        "name" : "IfcEdge",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "EdgeStart", "EdgeEnd" ],
+      "includes" : [ "IfcStyledItem", "IfcVertex", "IfcVertexPoint", "IfcVertex", "IfcVertexPoint" ]
+    },
+    "IfcSubedge" : {
+      "type" : {
+        "name" : "IfcSubedge",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "EdgeStart", "EdgeEnd", "ParentEdge" ],
+      "includes" : [ "IfcStyledItem", "IfcVertex", "IfcVertexPoint", "IfcVertex", "IfcVertexPoint", "IfcOrientedEdge", "IfcEdge", "IfcEdgeCurve", "IfcSubedge" ]
+    },
+    "IfcVertexLoop" : {
+      "type" : {
+        "name" : "IfcVertexLoop",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "LoopVertex" ],
+      "includes" : [ "IfcStyledItem", "IfcVertex", "IfcVertexPoint" ]
+    },
+    "IfcPolyLoop" : {
+      "type" : {
+        "name" : "IfcPolyLoop",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Polygon" ],
+      "includes" : [ "IfcStyledItem", "IfcCartesianPoint" ]
+    },
+    "IfcFaceBound" : {
+      "type" : {
+        "name" : "IfcFaceBound",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Bound" ],
+      "includes" : [ "IfcStyledItem", "IfcLoop", "IfcEdgeLoop", "IfcVertexLoop", "IfcPolyLoop" ]
+    },
+    "IfcAdvancedFace" : {
+      "type" : {
+        "name" : "IfcAdvancedFace",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Bounds", "FaceSurface" ],
+      "includes" : [ "IfcStyledItem", "IfcFaceOuterBound", "IfcFaceBound", "IfcSurface", "IfcCurveBoundedPlane", "IfcBoundedSurface", "IfcCylindricalSurface", "IfcSphericalSurface", "IfcToroidalSurface", "IfcElementarySurface", "IfcCurveBoundedSurface", "IfcPlane", "IfcRectangularTrimmedSurface", "IfcRationalBSplineSurfaceWithKnots", "IfcSweptSurface", "IfcSurfaceOfRevolution", "IfcBSplineSurfaceWithKnots", "IfcBSplineSurface", "IfcSurfaceOfLinearExtrusion" ]
+    },
+    "IfcFace" : {
+      "type" : {
+        "name" : "IfcFace",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Bounds" ],
+      "includes" : [ "IfcStyledItem", "IfcFaceOuterBound", "IfcFaceBound" ]
+    },
+    "IfcBooleanClippingResult" : {
+      "type" : {
+        "name" : "IfcBooleanClippingResult",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "FirstOperand", "SecondOperand" ],
+      "includes" : [ "IfcStyledItem", "IfcBooleanOperand", "IfcCsgSolid", "IfcPolygonalFaceSet", "IfcPolygonalBoundedHalfSpace", "IfcRightCircularCylinder", "IfcSweptDiskSolidPolygonal", "IfcSphere", "IfcFacetedBrepWithVoids", "IfcRightCircularCone", "IfcSweptDiskSolid", "IfcAdvancedBrep", "IfcExtrudedAreaSolidTapered", "IfcSurfaceCurveSweptAreaSolid", "IfcBoxedHalfSpace", "IfcCsgPrimitive3D", "IfcBooleanResult", "IfcSolidModel", "IfcFixedReferenceSweptAreaSolid", "IfcHalfSpaceSolid", "IfcTriangulatedFaceSet", "IfcAdvancedBrepWithVoids", "IfcBooleanClippingResult", "IfcBlock", "IfcFacetedBrep", "IfcRevolvedAreaSolidTapered", "IfcSweptAreaSolid", "IfcManifoldSolidBrep", "IfcExtrudedAreaSolid", "IfcRevolvedAreaSolid", "IfcTessellatedFaceSet", "IfcRectangularPyramid", "IfcBooleanOperand", "IfcCsgSolid", "IfcPolygonalFaceSet", "IfcPolygonalBoundedHalfSpace", "IfcRightCircularCylinder", "IfcSweptDiskSolidPolygonal", "IfcSphere", "IfcFacetedBrepWithVoids", "IfcRightCircularCone", "IfcSweptDiskSolid", "IfcAdvancedBrep", "IfcExtrudedAreaSolidTapered", "IfcSurfaceCurveSweptAreaSolid", "IfcBoxedHalfSpace", "IfcCsgPrimitive3D", "IfcBooleanResult", "IfcSolidModel", "IfcFixedReferenceSweptAreaSolid", "IfcHalfSpaceSolid", "IfcTriangulatedFaceSet", "IfcAdvancedBrepWithVoids", "IfcBooleanClippingResult", "IfcBlock", "IfcFacetedBrep", "IfcRevolvedAreaSolidTapered", "IfcSweptAreaSolid", "IfcManifoldSolidBrep", "IfcExtrudedAreaSolid", "IfcRevolvedAreaSolid", "IfcTessellatedFaceSet", "IfcRectangularPyramid" ]
+    },
+    "IfcBooleanOperand" : {
+      "type" : {
+        "name" : "IfcBooleanOperand",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcCsgSolid" : {
+      "type" : {
+        "name" : "IfcCsgSolid",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "TreeRootExpression" ],
+      "includes" : [ "IfcStyledItem", "IfcBlock", "IfcRightCircularCone", "IfcCsgPrimitive3D", "IfcCsgSelect", "IfcBooleanResult", "IfcRightCircularCylinder", "IfcSphere", "IfcBooleanClippingResult", "IfcRectangularPyramid" ]
+    },
+    "IfcCsgSelect" : {
+      "type" : {
+        "name" : "IfcCsgSelect",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcBooleanResult" : {
+      "type" : {
+        "name" : "IfcBooleanResult",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "FirstOperand", "SecondOperand" ],
+      "includes" : [ "IfcStyledItem", "IfcBooleanOperand", "IfcCsgSolid", "IfcPolygonalFaceSet", "IfcPolygonalBoundedHalfSpace", "IfcRightCircularCylinder", "IfcSweptDiskSolidPolygonal", "IfcSphere", "IfcFacetedBrepWithVoids", "IfcRightCircularCone", "IfcSweptDiskSolid", "IfcAdvancedBrep", "IfcExtrudedAreaSolidTapered", "IfcSurfaceCurveSweptAreaSolid", "IfcBoxedHalfSpace", "IfcCsgPrimitive3D", "IfcBooleanResult", "IfcSolidModel", "IfcFixedReferenceSweptAreaSolid", "IfcHalfSpaceSolid", "IfcTriangulatedFaceSet", "IfcAdvancedBrepWithVoids", "IfcBooleanClippingResult", "IfcBlock", "IfcFacetedBrep", "IfcRevolvedAreaSolidTapered", "IfcSweptAreaSolid", "IfcManifoldSolidBrep", "IfcExtrudedAreaSolid", "IfcRevolvedAreaSolid", "IfcTessellatedFaceSet", "IfcRectangularPyramid", "IfcBooleanOperand", "IfcCsgSolid", "IfcPolygonalFaceSet", "IfcPolygonalBoundedHalfSpace", "IfcRightCircularCylinder", "IfcSweptDiskSolidPolygonal", "IfcSphere", "IfcFacetedBrepWithVoids", "IfcRightCircularCone", "IfcSweptDiskSolid", "IfcAdvancedBrep", "IfcExtrudedAreaSolidTapered", "IfcSurfaceCurveSweptAreaSolid", "IfcBoxedHalfSpace", "IfcCsgPrimitive3D", "IfcBooleanResult", "IfcSolidModel", "IfcFixedReferenceSweptAreaSolid", "IfcHalfSpaceSolid", "IfcTriangulatedFaceSet", "IfcAdvancedBrepWithVoids", "IfcBooleanClippingResult", "IfcBlock", "IfcFacetedBrep", "IfcRevolvedAreaSolidTapered", "IfcSweptAreaSolid", "IfcManifoldSolidBrep", "IfcExtrudedAreaSolid", "IfcRevolvedAreaSolid", "IfcTessellatedFaceSet", "IfcRectangularPyramid" ]
+    },
+    "IfcPolygonalFaceSet" : {
+      "type" : {
+        "name" : "IfcPolygonalFaceSet",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Coordinates", "Faces" ],
+      "includes" : [ "IfcStyledItem", "IfcCartesianPointList3D", "IfcIndexedPolygonalFace", "IfcIndexedPolygonalFaceWithVoids" ]
+    },
+    "IfcIndexedPolygonalFace" : {
+      "type" : {
+        "name" : "IfcIndexedPolygonalFace",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem" ],
+      "includes" : [ "IfcStyledItem" ]
+    },
+    "IfcIndexedPolygonalFaceWithVoids" : {
+      "type" : {
+        "name" : "IfcIndexedPolygonalFaceWithVoids",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "InnerCoordIndices" ],
+      "includes" : [ "IfcStyledItem", "ListOfELong" ]
+    },
+    "IfcPolygonalBoundedHalfSpace" : {
+      "type" : {
+        "name" : "IfcPolygonalBoundedHalfSpace",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "BaseSurface", "Position", "PolygonalBoundary" ],
+      "includes" : [ "IfcStyledItem", "IfcSurface", "IfcCurveBoundedPlane", "IfcBoundedSurface", "IfcCylindricalSurface", "IfcSphericalSurface", "IfcToroidalSurface", "IfcElementarySurface", "IfcCurveBoundedSurface", "IfcPlane", "IfcRectangularTrimmedSurface", "IfcRationalBSplineSurfaceWithKnots", "IfcSweptSurface", "IfcSurfaceOfRevolution", "IfcBSplineSurfaceWithKnots", "IfcBSplineSurface", "IfcSurfaceOfLinearExtrusion", "IfcAxis2Placement3D", "IfcBSplineCurve", "IfcIndexedPolyCurve", "IfcCompositeCurveOnSurface", "IfcBoundedCurve", "IfcCompositeCurve", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcOuterBoundaryCurve", "IfcBSplineCurveWithKnots", "IfcBoundaryCurve", "IfcTrimmedCurve" ]
+    },
+    "IfcSweptDiskSolidPolygonal" : {
+      "type" : {
+        "name" : "IfcSweptDiskSolidPolygonal",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Directrix" ],
+      "includes" : [ "IfcStyledItem", "IfcIndexedPolyCurve", "IfcCurve", "IfcSurfaceCurve", "IfcBoundedCurve", "IfcOffsetCurve2D", "IfcLine", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcSeamCurve", "IfcBSplineCurveWithKnots", "IfcBSplineCurve", "IfcIntersectionCurve", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcEllipse", "IfcPcurve", "IfcCircle", "IfcOffsetCurve3D", "IfcOuterBoundaryCurve", "IfcBoundaryCurve", "IfcConic", "IfcTrimmedCurve" ]
+    },
+    "IfcFacetedBrepWithVoids" : {
+      "type" : {
+        "name" : "IfcFacetedBrepWithVoids",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Outer", "Voids" ],
+      "includes" : [ "IfcStyledItem", "IfcClosedShell", "IfcClosedShell" ]
+    },
+    "IfcClosedShell" : {
+      "type" : {
+        "name" : "IfcClosedShell",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "CfsFaces" ],
+      "includes" : [ "IfcStyledItem", "IfcFaceSurface", "IfcAdvancedFace", "IfcFace" ]
+    },
+    "IfcSweptDiskSolid" : {
+      "type" : {
+        "name" : "IfcSweptDiskSolid",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Directrix" ],
+      "includes" : [ "IfcStyledItem", "IfcIndexedPolyCurve", "IfcCurve", "IfcSurfaceCurve", "IfcBoundedCurve", "IfcOffsetCurve2D", "IfcLine", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcSeamCurve", "IfcBSplineCurveWithKnots", "IfcBSplineCurve", "IfcIntersectionCurve", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcEllipse", "IfcPcurve", "IfcCircle", "IfcOffsetCurve3D", "IfcOuterBoundaryCurve", "IfcBoundaryCurve", "IfcConic", "IfcTrimmedCurve" ]
+    },
+    "IfcAdvancedBrep" : {
+      "type" : {
+        "name" : "IfcAdvancedBrep",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Outer" ],
+      "includes" : [ "IfcStyledItem", "IfcClosedShell" ]
+    },
+    "IfcExtrudedAreaSolidTapered" : {
+      "type" : {
+        "name" : "IfcExtrudedAreaSolidTapered",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "SweptArea", "Position", "ExtrudedDirection", "EndSweptArea" ],
+      "includes" : [ "IfcStyledItem", "IfcDerivedProfileDef", "IfcArbitraryOpenProfileDef", "IfcParameterizedProfileDef", "IfcCenterLineProfileDef", "IfcTrapeziumProfileDef", "IfcProfileDef", "IfcRectangleHollowProfileDef", "IfcArbitraryProfileDefWithVoids", "IfcMirroredProfileDef", "IfcCircleHollowProfileDef", "IfcZShapeProfileDef", "IfcIShapeProfileDef", "IfcRectangleProfileDef", "IfcRoundedRectangleProfileDef", "IfcEllipseProfileDef", "IfcLShapeProfileDef", "IfcAsymmetricIShapeProfileDef", "IfcCompositeProfileDef", "IfcTShapeProfileDef", "IfcCShapeProfileDef", "IfcCircleProfileDef", "IfcUShapeProfileDef", "IfcArbitraryClosedProfileDef", "IfcAxis2Placement3D", "IfcDirection", "IfcDerivedProfileDef", "IfcArbitraryOpenProfileDef", "IfcParameterizedProfileDef", "IfcCenterLineProfileDef", "IfcTrapeziumProfileDef", "IfcProfileDef", "IfcRectangleHollowProfileDef", "IfcArbitraryProfileDefWithVoids", "IfcMirroredProfileDef", "IfcCircleHollowProfileDef", "IfcZShapeProfileDef", "IfcIShapeProfileDef", "IfcRectangleProfileDef", "IfcRoundedRectangleProfileDef", "IfcEllipseProfileDef", "IfcLShapeProfileDef", "IfcAsymmetricIShapeProfileDef", "IfcCompositeProfileDef", "IfcTShapeProfileDef", "IfcCShapeProfileDef", "IfcCircleProfileDef", "IfcUShapeProfileDef", "IfcArbitraryClosedProfileDef" ]
+    },
+    "IfcSurfaceCurveSweptAreaSolid" : {
+      "type" : {
+        "name" : "IfcSurfaceCurveSweptAreaSolid",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "SweptArea", "Position", "Directrix", "ReferenceSurface" ],
+      "includes" : [ "IfcStyledItem", "IfcDerivedProfileDef", "IfcArbitraryOpenProfileDef", "IfcParameterizedProfileDef", "IfcCenterLineProfileDef", "IfcTrapeziumProfileDef", "IfcProfileDef", "IfcRectangleHollowProfileDef", "IfcArbitraryProfileDefWithVoids", "IfcMirroredProfileDef", "IfcCircleHollowProfileDef", "IfcZShapeProfileDef", "IfcIShapeProfileDef", "IfcRectangleProfileDef", "IfcRoundedRectangleProfileDef", "IfcEllipseProfileDef", "IfcLShapeProfileDef", "IfcAsymmetricIShapeProfileDef", "IfcCompositeProfileDef", "IfcTShapeProfileDef", "IfcCShapeProfileDef", "IfcCircleProfileDef", "IfcUShapeProfileDef", "IfcArbitraryClosedProfileDef", "IfcAxis2Placement3D", "IfcIndexedPolyCurve", "IfcCurve", "IfcSurfaceCurve", "IfcBoundedCurve", "IfcOffsetCurve2D", "IfcLine", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcSeamCurve", "IfcBSplineCurveWithKnots", "IfcBSplineCurve", "IfcIntersectionCurve", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcEllipse", "IfcPcurve", "IfcCircle", "IfcOffsetCurve3D", "IfcOuterBoundaryCurve", "IfcBoundaryCurve", "IfcConic", "IfcTrimmedCurve", "IfcSurface", "IfcCurveBoundedPlane", "IfcBoundedSurface", "IfcCylindricalSurface", "IfcSphericalSurface", "IfcToroidalSurface", "IfcElementarySurface", "IfcCurveBoundedSurface", "IfcPlane", "IfcRectangularTrimmedSurface", "IfcRationalBSplineSurfaceWithKnots", "IfcSweptSurface", "IfcSurfaceOfRevolution", "IfcBSplineSurfaceWithKnots", "IfcBSplineSurface", "IfcSurfaceOfLinearExtrusion" ]
+    },
+    "IfcSolidModel" : {
+      "type" : {
+        "name" : "IfcSolidModel",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem" ],
+      "includes" : [ "IfcStyledItem" ]
+    },
+    "IfcHalfSpaceSolid" : {
+      "type" : {
+        "name" : "IfcHalfSpaceSolid",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "BaseSurface" ],
+      "includes" : [ "IfcStyledItem", "IfcSurface", "IfcCurveBoundedPlane", "IfcBoundedSurface", "IfcCylindricalSurface", "IfcSphericalSurface", "IfcToroidalSurface", "IfcElementarySurface", "IfcCurveBoundedSurface", "IfcPlane", "IfcRectangularTrimmedSurface", "IfcRationalBSplineSurfaceWithKnots", "IfcSweptSurface", "IfcSurfaceOfRevolution", "IfcBSplineSurfaceWithKnots", "IfcBSplineSurface", "IfcSurfaceOfLinearExtrusion" ]
+    },
+    "IfcAdvancedBrepWithVoids" : {
+      "type" : {
+        "name" : "IfcAdvancedBrepWithVoids",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Outer", "Voids" ],
+      "includes" : [ "IfcStyledItem", "IfcClosedShell", "IfcClosedShell" ]
+    },
+    "IfcFacetedBrep" : {
+      "type" : {
+        "name" : "IfcFacetedBrep",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Outer" ],
+      "includes" : [ "IfcStyledItem", "IfcClosedShell" ]
+    },
+    "IfcRevolvedAreaSolidTapered" : {
+      "type" : {
+        "name" : "IfcRevolvedAreaSolidTapered",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "SweptArea", "Position", "Axis", "EndSweptArea" ],
+      "includes" : [ "IfcStyledItem", "IfcDerivedProfileDef", "IfcArbitraryOpenProfileDef", "IfcParameterizedProfileDef", "IfcCenterLineProfileDef", "IfcTrapeziumProfileDef", "IfcProfileDef", "IfcRectangleHollowProfileDef", "IfcArbitraryProfileDefWithVoids", "IfcMirroredProfileDef", "IfcCircleHollowProfileDef", "IfcZShapeProfileDef", "IfcIShapeProfileDef", "IfcRectangleProfileDef", "IfcRoundedRectangleProfileDef", "IfcEllipseProfileDef", "IfcLShapeProfileDef", "IfcAsymmetricIShapeProfileDef", "IfcCompositeProfileDef", "IfcTShapeProfileDef", "IfcCShapeProfileDef", "IfcCircleProfileDef", "IfcUShapeProfileDef", "IfcArbitraryClosedProfileDef", "IfcAxis2Placement3D", "IfcAxis1Placement", "IfcDerivedProfileDef", "IfcArbitraryOpenProfileDef", "IfcParameterizedProfileDef", "IfcCenterLineProfileDef", "IfcTrapeziumProfileDef", "IfcProfileDef", "IfcRectangleHollowProfileDef", "IfcArbitraryProfileDefWithVoids", "IfcMirroredProfileDef", "IfcCircleHollowProfileDef", "IfcZShapeProfileDef", "IfcIShapeProfileDef", "IfcRectangleProfileDef", "IfcRoundedRectangleProfileDef", "IfcEllipseProfileDef", "IfcLShapeProfileDef", "IfcAsymmetricIShapeProfileDef", "IfcCompositeProfileDef", "IfcTShapeProfileDef", "IfcCShapeProfileDef", "IfcCircleProfileDef", "IfcUShapeProfileDef", "IfcArbitraryClosedProfileDef" ]
+    },
+    "IfcSweptAreaSolid" : {
+      "type" : {
+        "name" : "IfcSweptAreaSolid",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "SweptArea", "Position" ],
+      "includes" : [ "IfcStyledItem", "IfcDerivedProfileDef", "IfcArbitraryOpenProfileDef", "IfcParameterizedProfileDef", "IfcCenterLineProfileDef", "IfcTrapeziumProfileDef", "IfcProfileDef", "IfcRectangleHollowProfileDef", "IfcArbitraryProfileDefWithVoids", "IfcMirroredProfileDef", "IfcCircleHollowProfileDef", "IfcZShapeProfileDef", "IfcIShapeProfileDef", "IfcRectangleProfileDef", "IfcRoundedRectangleProfileDef", "IfcEllipseProfileDef", "IfcLShapeProfileDef", "IfcAsymmetricIShapeProfileDef", "IfcCompositeProfileDef", "IfcTShapeProfileDef", "IfcCShapeProfileDef", "IfcCircleProfileDef", "IfcUShapeProfileDef", "IfcArbitraryClosedProfileDef", "IfcAxis2Placement3D" ]
+    },
+    "IfcManifoldSolidBrep" : {
+      "type" : {
+        "name" : "IfcManifoldSolidBrep",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Outer" ],
+      "includes" : [ "IfcStyledItem", "IfcClosedShell" ]
+    },
+    "IfcExtrudedAreaSolid" : {
+      "type" : {
+        "name" : "IfcExtrudedAreaSolid",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "SweptArea", "Position", "ExtrudedDirection" ],
+      "includes" : [ "IfcStyledItem", "IfcDerivedProfileDef", "IfcArbitraryOpenProfileDef", "IfcParameterizedProfileDef", "IfcCenterLineProfileDef", "IfcTrapeziumProfileDef", "IfcProfileDef", "IfcRectangleHollowProfileDef", "IfcArbitraryProfileDefWithVoids", "IfcMirroredProfileDef", "IfcCircleHollowProfileDef", "IfcZShapeProfileDef", "IfcIShapeProfileDef", "IfcRectangleProfileDef", "IfcRoundedRectangleProfileDef", "IfcEllipseProfileDef", "IfcLShapeProfileDef", "IfcAsymmetricIShapeProfileDef", "IfcCompositeProfileDef", "IfcTShapeProfileDef", "IfcCShapeProfileDef", "IfcCircleProfileDef", "IfcUShapeProfileDef", "IfcArbitraryClosedProfileDef", "IfcAxis2Placement3D", "IfcDirection" ]
+    },
+    "IfcRevolvedAreaSolid" : {
+      "type" : {
+        "name" : "IfcRevolvedAreaSolid",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "SweptArea", "Position", "Axis" ],
+      "includes" : [ "IfcStyledItem", "IfcDerivedProfileDef", "IfcArbitraryOpenProfileDef", "IfcParameterizedProfileDef", "IfcCenterLineProfileDef", "IfcTrapeziumProfileDef", "IfcProfileDef", "IfcRectangleHollowProfileDef", "IfcArbitraryProfileDefWithVoids", "IfcMirroredProfileDef", "IfcCircleHollowProfileDef", "IfcZShapeProfileDef", "IfcIShapeProfileDef", "IfcRectangleProfileDef", "IfcRoundedRectangleProfileDef", "IfcEllipseProfileDef", "IfcLShapeProfileDef", "IfcAsymmetricIShapeProfileDef", "IfcCompositeProfileDef", "IfcTShapeProfileDef", "IfcCShapeProfileDef", "IfcCircleProfileDef", "IfcUShapeProfileDef", "IfcArbitraryClosedProfileDef", "IfcAxis2Placement3D", "IfcAxis1Placement" ]
+    },
+    "IfcTessellatedFaceSet" : {
+      "type" : {
+        "name" : "IfcTessellatedFaceSet",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Coordinates" ],
+      "includes" : [ "IfcStyledItem", "IfcCartesianPointList3D" ]
+    },
+    "IfcCartesianTransformationOperator3D" : {
+      "type" : {
+        "name" : "IfcCartesianTransformationOperator3D",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Axis1", "Axis2", "LocalOrigin", "Axis3" ],
+      "includes" : [ "IfcStyledItem", "IfcDirection", "IfcDirection", "IfcCartesianPoint", "IfcDirection" ]
+    },
+    "IfcCartesianTransformationOperator" : {
+      "type" : {
+        "name" : "IfcCartesianTransformationOperator",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Axis1", "Axis2", "LocalOrigin" ],
+      "includes" : [ "IfcStyledItem", "IfcDirection", "IfcDirection", "IfcCartesianPoint" ]
+    },
+    "IfcCartesianTransformationOperator3DnonUniform" : {
+      "type" : {
+        "name" : "IfcCartesianTransformationOperator3DnonUniform",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Axis1", "Axis2", "LocalOrigin", "Axis3" ],
+      "includes" : [ "IfcStyledItem", "IfcDirection", "IfcDirection", "IfcCartesianPoint", "IfcDirection" ]
+    },
+    "IfcPlacement" : {
+      "type" : {
+        "name" : "IfcPlacement",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "Location" ],
+      "includes" : [ "IfcStyledItem", "IfcCartesianPoint" ]
+    },
+    "IfcTessellatedItem" : {
+      "type" : {
+        "name" : "IfcTessellatedItem",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem" ],
+      "includes" : [ "IfcStyledItem" ]
+    },
+    "IfcPath" : {
+      "type" : {
+        "name" : "IfcPath",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "EdgeList" ],
+      "includes" : [ "IfcStyledItem", "IfcOrientedEdge" ]
+    },
+    "IfcFaceBasedSurfaceModel" : {
+      "type" : {
+        "name" : "IfcFaceBasedSurfaceModel",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "FbsmFaces" ],
+      "includes" : [ "IfcStyledItem", "IfcConnectedFaceSet", "IfcOpenShell", "IfcClosedShell" ]
+    },
+    "IfcConnectedFaceSet" : {
+      "type" : {
+        "name" : "IfcConnectedFaceSet",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "CfsFaces" ],
+      "includes" : [ "IfcStyledItem", "IfcFaceSurface", "IfcAdvancedFace", "IfcFace" ]
+    },
+    "IfcOpenShell" : {
+      "type" : {
+        "name" : "IfcOpenShell",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "CfsFaces" ],
+      "includes" : [ "IfcStyledItem", "IfcFaceSurface", "IfcAdvancedFace", "IfcFace" ]
+    },
+    "IfcAnnotationFillArea" : {
+      "type" : {
+        "name" : "IfcAnnotationFillArea",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "OuterBoundary", "InnerBoundaries" ],
+      "includes" : [ "IfcStyledItem", "IfcIndexedPolyCurve", "IfcCurve", "IfcSurfaceCurve", "IfcBoundedCurve", "IfcOffsetCurve2D", "IfcLine", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcSeamCurve", "IfcBSplineCurveWithKnots", "IfcBSplineCurve", "IfcIntersectionCurve", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcEllipse", "IfcPcurve", "IfcCircle", "IfcOffsetCurve3D", "IfcOuterBoundaryCurve", "IfcBoundaryCurve", "IfcConic", "IfcTrimmedCurve", "IfcIndexedPolyCurve", "IfcCurve", "IfcSurfaceCurve", "IfcBoundedCurve", "IfcOffsetCurve2D", "IfcLine", "IfcPolyline", "IfcRationalBSplineCurveWithKnots", "IfcSeamCurve", "IfcBSplineCurveWithKnots", "IfcBSplineCurve", "IfcIntersectionCurve", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcEllipse", "IfcPcurve", "IfcCircle", "IfcOffsetCurve3D", "IfcOuterBoundaryCurve", "IfcBoundaryCurve", "IfcConic", "IfcTrimmedCurve" ]
+    },
+    "IfcShellBasedSurfaceModel" : {
+      "type" : {
+        "name" : "IfcShellBasedSurfaceModel",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "SbsmBoundary" ],
+      "includes" : [ "IfcStyledItem", "IfcShell", "IfcOpenShell", "IfcClosedShell" ]
+    },
+    "IfcShell" : {
+      "type" : {
+        "name" : "IfcShell",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcFillAreaStyleTiles" : {
+      "type" : {
+        "name" : "IfcFillAreaStyleTiles",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "TilingPattern", "Tiles" ],
+      "includes" : [ "IfcStyledItem", "IfcVector", "IfcStyledItem" ]
+    },
+    "IfcLightSourcePositional" : {
+      "type" : {
+        "name" : "IfcLightSourcePositional",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "LightColour", "Position" ],
+      "includes" : [ "IfcStyledItem", "IfcColourRgb", "IfcCartesianPoint" ]
+    },
+    "IfcLightSource" : {
+      "type" : {
+        "name" : "IfcLightSource",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "LightColour" ],
+      "includes" : [ "IfcStyledItem", "IfcColourRgb" ]
+    },
+    "IfcLightSourceSpot" : {
+      "type" : {
+        "name" : "IfcLightSourceSpot",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "LightColour", "Position", "Orientation" ],
+      "includes" : [ "IfcStyledItem", "IfcColourRgb", "IfcCartesianPoint", "IfcDirection" ]
+    },
+    "IfcFillAreaStyleHatching" : {
+      "type" : {
+        "name" : "IfcFillAreaStyleHatching",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "HatchLineAppearance", "StartOfNextHatchLine", "PointOfReferenceHatchLine", "PatternStart" ],
+      "includes" : [ "IfcStyledItem", "IfcCurveStyle", "IfcHatchLineDistanceSelect", "IfcVector", "IfcCartesianPoint", "IfcCartesianPoint" ]
+    },
+    "IfcCurveStyle" : {
+      "type" : {
+        "name" : "IfcCurveStyle",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "CurveFont", "CurveWidth", "CurveColour" ],
+      "includes" : [ "IfcCurveStyleFont", "IfcPreDefinedCurveFont", "IfcCurveFontOrScaledCurveFontSelect", "IfcCurveStyleFontSelect", "IfcCurveStyleFontAndScaling", "IfcDraughtingPreDefinedCurveFont", "IfcSizeSelect", "IfcDraughtingPreDefinedColour", "IfcPreDefinedColour", "IfcColour", "IfcColourSpecification", "IfcColourRgb" ]
+    },
+    "IfcCurveStyleFont" : {
+      "type" : {
+        "name" : "IfcCurveStyleFont",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "PatternList" ],
+      "includes" : [ "IfcCurveStyleFontPattern" ]
+    },
+    "IfcCurveStyleFontPattern" : {
+      "type" : {
+        "name" : "IfcCurveStyleFontPattern",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcPreDefinedCurveFont" : {
+      "type" : {
+        "name" : "IfcPreDefinedCurveFont",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcDraughtingPreDefinedCurveFont" : {
+      "type" : {
+        "name" : "IfcDraughtingPreDefinedCurveFont",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcCurveFontOrScaledCurveFontSelect" : {
+      "type" : {
+        "name" : "IfcCurveFontOrScaledCurveFontSelect",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcCurveStyleFontSelect" : {
+      "type" : {
+        "name" : "IfcCurveStyleFontSelect",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcCurveStyleFontAndScaling" : {
+      "type" : {
+        "name" : "IfcCurveStyleFontAndScaling",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "CurveFont" ],
+      "includes" : [ "IfcCurveStyleFont", "IfcPreDefinedCurveFont", "IfcCurveStyleFontSelect", "IfcDraughtingPreDefinedCurveFont" ]
+    },
+    "IfcSizeSelect" : {
+      "type" : {
+        "name" : "IfcSizeSelect",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcDescriptiveMeasure" : {
+      "type" : {
+        "name" : "IfcDescriptiveMeasure",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcNonNegativeLengthMeasure" : {
+      "type" : {
+        "name" : "IfcNonNegativeLengthMeasure",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcNormalisedRatioMeasure" : {
+      "type" : {
+        "name" : "IfcNormalisedRatioMeasure",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcPositiveLengthMeasure" : {
+      "type" : {
+        "name" : "IfcPositiveLengthMeasure",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcPositiveRatioMeasure" : {
+      "type" : {
+        "name" : "IfcPositiveRatioMeasure",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcLengthMeasure" : {
+      "type" : {
+        "name" : "IfcLengthMeasure",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcRatioMeasure" : {
+      "type" : {
+        "name" : "IfcRatioMeasure",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcDraughtingPreDefinedColour" : {
+      "type" : {
+        "name" : "IfcDraughtingPreDefinedColour",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcPreDefinedColour" : {
+      "type" : {
+        "name" : "IfcPreDefinedColour",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcColour" : {
+      "type" : {
+        "name" : "IfcColour",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcColourSpecification" : {
+      "type" : {
+        "name" : "IfcColourSpecification",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcHatchLineDistanceSelect" : {
+      "type" : {
+        "name" : "IfcHatchLineDistanceSelect",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcSectionedSpine" : {
+      "type" : {
+        "name" : "IfcSectionedSpine",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "SpineCurve", "CrossSections", "CrossSectionPositions" ],
+      "includes" : [ "IfcStyledItem", "IfcCompositeCurveOnSurface", "IfcCompositeCurve", "IfcOuterBoundaryCurve", "IfcBoundaryCurve", "IfcDerivedProfileDef", "IfcArbitraryOpenProfileDef", "IfcParameterizedProfileDef", "IfcCenterLineProfileDef", "IfcTrapeziumProfileDef", "IfcProfileDef", "IfcRectangleHollowProfileDef", "IfcArbitraryProfileDefWithVoids", "IfcMirroredProfileDef", "IfcCircleHollowProfileDef", "IfcZShapeProfileDef", "IfcIShapeProfileDef", "IfcRectangleProfileDef", "IfcRoundedRectangleProfileDef", "IfcEllipseProfileDef", "IfcLShapeProfileDef", "IfcAsymmetricIShapeProfileDef", "IfcCompositeProfileDef", "IfcTShapeProfileDef", "IfcCShapeProfileDef", "IfcCircleProfileDef", "IfcUShapeProfileDef", "IfcArbitraryClosedProfileDef", "IfcAxis2Placement3D" ]
+    },
+    "IfcRepresentationItem" : {
+      "type" : {
+        "name" : "IfcRepresentationItem",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem" ],
+      "includes" : [ "IfcStyledItem" ]
+    },
+    "IfcTopologicalRepresentationItem" : {
+      "type" : {
+        "name" : "IfcTopologicalRepresentationItem",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem" ],
+      "includes" : [ "IfcStyledItem" ]
+    },
+    "IfcMappedItem" : {
+      "type" : {
+        "name" : "IfcMappedItem",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem", "MappingSource", "MappingTarget" ],
+      "includes" : [ "IfcStyledItem", "IfcRepresentationMap", "IfcCartesianTransformationOperator2DnonUniform", "IfcCartesianTransformationOperator3D", "IfcCartesianTransformationOperator", "IfcCartesianTransformationOperator3DnonUniform", "IfcCartesianTransformationOperator2D" ]
+    },
+    "IfcRepresentationMap" : {
+      "type" : {
+        "name" : "IfcRepresentationMap",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "MappingOrigin", "MappedRepresentation" ],
+      "includes" : [ "IfcAxis2Placement2D", "IfcAxis2Placement", "IfcAxis2Placement3D", "IfcShapeRepresentation", "IfcStyleModel", "IfcRepresentation", "IfcTopologyRepresentation", "IfcStyledRepresentation", "IfcShapeModel" ]
+    },
+    "IfcStyleModel" : {
+      "type" : {
+        "name" : "IfcStyleModel",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "ContextOfItems", "Items" ],
+      "includes" : [ "IfcRepresentationContext", "IfcGeometricRepresentationContext", "IfcGeometricRepresentationSubContext", "IfcGeometricSet", "IfcBoundedSurface", "IfcGeometricCurveSet", "IfcToroidalSurface", "IfcEdgeCurve", "IfcStyledItem", "IfcTextLiteral", "IfcLightSourceDirectional", "IfcRectangularTrimmedSurface", "IfcBoxedHalfSpace", "IfcCsgPrimitive3D", "IfcLightSourceAmbient", "IfcFixedReferenceSweptAreaSolid", "IfcConic", "IfcCurve", "IfcVector", "IfcTriangulatedFaceSet", "IfcLightSourceGoniometric", "IfcFace", "IfcTextLiteralWithExtent", "IfcLine", "IfcBooleanClippingResult", "IfcCartesianPointList", "IfcRationalBSplineCurveWithKnots", "IfcCartesianTransformationOperator", "IfcAxis2Placement2D", "IfcCompositeCurveOnSurface", "IfcFacetedBrep", "IfcDirection", "IfcPointOnCurve", "IfcSurfaceOfRevolution", "IfcEllipse", "IfcEdgeLoop", "IfcPcurve", "IfcVertexPoint", "IfcPolyLoop", "IfcSurfaceOfLinearExtrusion", "IfcCurveBoundedPlane", "IfcSphericalSurface", "IfcCartesianTransformationOperator3DnonUniform", "IfcOffsetCurve2D", "IfcPolygonalBoundedHalfSpace", "IfcRightCircularCylinder", "IfcCurveBoundedSurface", "IfcPlane", "IfcSphere", "IfcPlacement", "IfcTessellatedItem", "IfcCartesianPointList2D", "IfcBSplineCurveWithKnots", "IfcCompositeCurveSegment", "IfcSubedge", "IfcRightCircularCone", "IfcPath", "IfcFaceBasedSurfaceModel", "IfcBooleanResult", "IfcSolidModel", "IfcAnnotationFillArea", "IfcTrimmedCurve", "IfcSurfaceCurve", "IfcFaceOuterBound", "IfcPlanarBox", "IfcConnectedFaceSet", "IfcAdvancedFace", "IfcAdvancedBrepWithVoids", "IfcPolyline", "IfcPoint", "IfcCompositeCurve", "IfcExtrudedAreaSolid", "IfcSweptSurface", "IfcOpenShell", "IfcOffsetCurve3D", "IfcBSplineSurface", "IfcShellBasedSurfaceModel", "IfcCsgSolid", "IfcPolygonalFaceSet", "IfcSweptDiskSolidPolygonal", "IfcFillAreaStyleTiles", "IfcCartesianTransformationOperator3D", "IfcBSplineCurve", "IfcLightSource", "IfcExtrudedAreaSolidTapered", "IfcOrientedEdge", "IfcSurfaceCurveSweptAreaSolid", "IfcFillAreaStyleHatching", "IfcReparametrisedCompositeCurveSegment", "IfcLightSourceSpot", "IfcSectionedSpine", "IfcCartesianTransformationOperator2D", "IfcOuterBoundaryCurve", "IfcAxis2Placement3D", "IfcPointOnSurface", "IfcSurface", "IfcHalfSpaceSolid", "IfcIndexedPolygonalFace", "IfcManifoldSolidBrep", "IfcFaceBound", "IfcCartesianPointList3D", "IfcClosedShell", "IfcIndexedPolyCurve", "IfcPlanarExtent", "IfcElementarySurface", "IfcFacetedBrepWithVoids", "IfcRepresentationItem", "IfcCartesianPoint", "IfcIntersectionCurve", "IfcSweptDiskSolid", "IfcAdvancedBrep", "IfcLoop", "IfcBSplineSurfaceWithKnots", "IfcCircle", "IfcCartesianTransformationOperator2DnonUniform", "IfcFaceSurface", "IfcBoundedCurve", "IfcCylindricalSurface", "IfcEdge", "IfcBoundingBox", "IfcIndexedPolygonalFaceWithVoids", "IfcVertexLoop", "IfcSeamCurve", "IfcBlock", "IfcTopologicalRepresentationItem", "IfcLightSourcePositional", "IfcRevolvedAreaSolidTapered", "IfcSweptAreaSolid", "IfcRationalBSplineSurfaceWithKnots", "IfcRevolvedAreaSolid", "IfcAxis1Placement", "IfcVertex", "IfcMappedItem", "IfcTessellatedFaceSet", "IfcGeometricRepresentationItem", "IfcBoundaryCurve", "IfcRectangularPyramid" ]
+    },
+    "IfcGeometricRepresentationSubContext" : {
+      "type" : {
+        "name" : "IfcGeometricRepresentationSubContext",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "WorldCoordinateSystem", "TrueNorth", "ParentContext" ],
+      "includes" : [ "IfcAxis2Placement2D", "IfcAxis2Placement", "IfcAxis2Placement3D", "IfcDirection", "IfcGeometricRepresentationSubContext", "IfcGeometricRepresentationContext" ]
+    },
+    "IfcGeometricRepresentationItem" : {
+      "type" : {
+        "name" : "IfcGeometricRepresentationItem",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "StyledByItem" ],
+      "includes" : [ "IfcStyledItem" ]
+    },
+    "IfcStyledRepresentation" : {
+      "type" : {
+        "name" : "IfcStyledRepresentation",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "ContextOfItems", "Items" ],
+      "includes" : [ "IfcRepresentationContext", "IfcGeometricRepresentationContext", "IfcGeometricRepresentationSubContext", "IfcGeometricSet", "IfcBoundedSurface", "IfcGeometricCurveSet", "IfcToroidalSurface", "IfcEdgeCurve", "IfcStyledItem", "IfcTextLiteral", "IfcLightSourceDirectional", "IfcRectangularTrimmedSurface", "IfcBoxedHalfSpace", "IfcCsgPrimitive3D", "IfcLightSourceAmbient", "IfcFixedReferenceSweptAreaSolid", "IfcConic", "IfcCurve", "IfcVector", "IfcTriangulatedFaceSet", "IfcLightSourceGoniometric", "IfcFace", "IfcTextLiteralWithExtent", "IfcLine", "IfcBooleanClippingResult", "IfcCartesianPointList", "IfcRationalBSplineCurveWithKnots", "IfcCartesianTransformationOperator", "IfcAxis2Placement2D", "IfcCompositeCurveOnSurface", "IfcFacetedBrep", "IfcDirection", "IfcPointOnCurve", "IfcSurfaceOfRevolution", "IfcEllipse", "IfcEdgeLoop", "IfcPcurve", "IfcVertexPoint", "IfcPolyLoop", "IfcSurfaceOfLinearExtrusion", "IfcCurveBoundedPlane", "IfcSphericalSurface", "IfcCartesianTransformationOperator3DnonUniform", "IfcOffsetCurve2D", "IfcPolygonalBoundedHalfSpace", "IfcRightCircularCylinder", "IfcCurveBoundedSurface", "IfcPlane", "IfcSphere", "IfcPlacement", "IfcTessellatedItem", "IfcCartesianPointList2D", "IfcBSplineCurveWithKnots", "IfcCompositeCurveSegment", "IfcSubedge", "IfcRightCircularCone", "IfcPath", "IfcFaceBasedSurfaceModel", "IfcBooleanResult", "IfcSolidModel", "IfcAnnotationFillArea", "IfcTrimmedCurve", "IfcSurfaceCurve", "IfcFaceOuterBound", "IfcPlanarBox", "IfcConnectedFaceSet", "IfcAdvancedFace", "IfcAdvancedBrepWithVoids", "IfcPolyline", "IfcPoint", "IfcCompositeCurve", "IfcExtrudedAreaSolid", "IfcSweptSurface", "IfcOpenShell", "IfcOffsetCurve3D", "IfcBSplineSurface", "IfcShellBasedSurfaceModel", "IfcCsgSolid", "IfcPolygonalFaceSet", "IfcSweptDiskSolidPolygonal", "IfcFillAreaStyleTiles", "IfcCartesianTransformationOperator3D", "IfcBSplineCurve", "IfcLightSource", "IfcExtrudedAreaSolidTapered", "IfcOrientedEdge", "IfcSurfaceCurveSweptAreaSolid", "IfcFillAreaStyleHatching", "IfcReparametrisedCompositeCurveSegment", "IfcLightSourceSpot", "IfcSectionedSpine", "IfcCartesianTransformationOperator2D", "IfcOuterBoundaryCurve", "IfcAxis2Placement3D", "IfcPointOnSurface", "IfcSurface", "IfcHalfSpaceSolid", "IfcIndexedPolygonalFace", "IfcManifoldSolidBrep", "IfcFaceBound", "IfcCartesianPointList3D", "IfcClosedShell", "IfcIndexedPolyCurve", "IfcPlanarExtent", "IfcElementarySurface", "IfcFacetedBrepWithVoids", "IfcRepresentationItem", "IfcCartesianPoint", "IfcIntersectionCurve", "IfcSweptDiskSolid", "IfcAdvancedBrep", "IfcLoop", "IfcBSplineSurfaceWithKnots", "IfcCircle", "IfcCartesianTransformationOperator2DnonUniform", "IfcFaceSurface", "IfcBoundedCurve", "IfcCylindricalSurface", "IfcEdge", "IfcBoundingBox", "IfcIndexedPolygonalFaceWithVoids", "IfcVertexLoop", "IfcSeamCurve", "IfcBlock", "IfcTopologicalRepresentationItem", "IfcLightSourcePositional", "IfcRevolvedAreaSolidTapered", "IfcSweptAreaSolid", "IfcRationalBSplineSurfaceWithKnots", "IfcRevolvedAreaSolid", "IfcAxis1Placement", "IfcVertex", "IfcMappedItem", "IfcTessellatedFaceSet", "IfcGeometricRepresentationItem", "IfcBoundaryCurve", "IfcRectangularPyramid" ]
+    },
+    "IfcRepresentation" : {
+      "type" : {
+        "name" : "IfcRepresentation",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "ContextOfItems", "Items" ],
+      "includes" : [ "IfcRepresentationContext", "IfcGeometricRepresentationContext", "IfcGeometricRepresentationSubContext", "IfcGeometricSet", "IfcBoundedSurface", "IfcGeometricCurveSet", "IfcToroidalSurface", "IfcEdgeCurve", "IfcStyledItem", "IfcTextLiteral", "IfcLightSourceDirectional", "IfcRectangularTrimmedSurface", "IfcBoxedHalfSpace", "IfcCsgPrimitive3D", "IfcLightSourceAmbient", "IfcFixedReferenceSweptAreaSolid", "IfcConic", "IfcCurve", "IfcVector", "IfcTriangulatedFaceSet", "IfcLightSourceGoniometric", "IfcFace", "IfcTextLiteralWithExtent", "IfcLine", "IfcBooleanClippingResult", "IfcCartesianPointList", "IfcRationalBSplineCurveWithKnots", "IfcCartesianTransformationOperator", "IfcAxis2Placement2D", "IfcCompositeCurveOnSurface", "IfcFacetedBrep", "IfcDirection", "IfcPointOnCurve", "IfcSurfaceOfRevolution", "IfcEllipse", "IfcEdgeLoop", "IfcPcurve", "IfcVertexPoint", "IfcPolyLoop", "IfcSurfaceOfLinearExtrusion", "IfcCurveBoundedPlane", "IfcSphericalSurface", "IfcCartesianTransformationOperator3DnonUniform", "IfcOffsetCurve2D", "IfcPolygonalBoundedHalfSpace", "IfcRightCircularCylinder", "IfcCurveBoundedSurface", "IfcPlane", "IfcSphere", "IfcPlacement", "IfcTessellatedItem", "IfcCartesianPointList2D", "IfcBSplineCurveWithKnots", "IfcCompositeCurveSegment", "IfcSubedge", "IfcRightCircularCone", "IfcPath", "IfcFaceBasedSurfaceModel", "IfcBooleanResult", "IfcSolidModel", "IfcAnnotationFillArea", "IfcTrimmedCurve", "IfcSurfaceCurve", "IfcFaceOuterBound", "IfcPlanarBox", "IfcConnectedFaceSet", "IfcAdvancedFace", "IfcAdvancedBrepWithVoids", "IfcPolyline", "IfcPoint", "IfcCompositeCurve", "IfcExtrudedAreaSolid", "IfcSweptSurface", "IfcOpenShell", "IfcOffsetCurve3D", "IfcBSplineSurface", "IfcShellBasedSurfaceModel", "IfcCsgSolid", "IfcPolygonalFaceSet", "IfcSweptDiskSolidPolygonal", "IfcFillAreaStyleTiles", "IfcCartesianTransformationOperator3D", "IfcBSplineCurve", "IfcLightSource", "IfcExtrudedAreaSolidTapered", "IfcOrientedEdge", "IfcSurfaceCurveSweptAreaSolid", "IfcFillAreaStyleHatching", "IfcReparametrisedCompositeCurveSegment", "IfcLightSourceSpot", "IfcSectionedSpine", "IfcCartesianTransformationOperator2D", "IfcOuterBoundaryCurve", "IfcAxis2Placement3D", "IfcPointOnSurface", "IfcSurface", "IfcHalfSpaceSolid", "IfcIndexedPolygonalFace", "IfcManifoldSolidBrep", "IfcFaceBound", "IfcCartesianPointList3D", "IfcClosedShell", "IfcIndexedPolyCurve", "IfcPlanarExtent", "IfcElementarySurface", "IfcFacetedBrepWithVoids", "IfcRepresentationItem", "IfcCartesianPoint", "IfcIntersectionCurve", "IfcSweptDiskSolid", "IfcAdvancedBrep", "IfcLoop", "IfcBSplineSurfaceWithKnots", "IfcCircle", "IfcCartesianTransformationOperator2DnonUniform", "IfcFaceSurface", "IfcBoundedCurve", "IfcCylindricalSurface", "IfcEdge", "IfcBoundingBox", "IfcIndexedPolygonalFaceWithVoids", "IfcVertexLoop", "IfcSeamCurve", "IfcBlock", "IfcTopologicalRepresentationItem", "IfcLightSourcePositional", "IfcRevolvedAreaSolidTapered", "IfcSweptAreaSolid", "IfcRationalBSplineSurfaceWithKnots", "IfcRevolvedAreaSolid", "IfcAxis1Placement", "IfcVertex", "IfcMappedItem", "IfcTessellatedFaceSet", "IfcGeometricRepresentationItem", "IfcBoundaryCurve", "IfcRectangularPyramid" ]
+    },
+    "IfcTopologyRepresentation" : {
+      "type" : {
+        "name" : "IfcTopologyRepresentation",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "ContextOfItems", "Items" ],
+      "includes" : [ "IfcRepresentationContext", "IfcGeometricRepresentationContext", "IfcGeometricRepresentationSubContext", "IfcGeometricSet", "IfcBoundedSurface", "IfcGeometricCurveSet", "IfcToroidalSurface", "IfcEdgeCurve", "IfcStyledItem", "IfcTextLiteral", "IfcLightSourceDirectional", "IfcRectangularTrimmedSurface", "IfcBoxedHalfSpace", "IfcCsgPrimitive3D", "IfcLightSourceAmbient", "IfcFixedReferenceSweptAreaSolid", "IfcConic", "IfcCurve", "IfcVector", "IfcTriangulatedFaceSet", "IfcLightSourceGoniometric", "IfcFace", "IfcTextLiteralWithExtent", "IfcLine", "IfcBooleanClippingResult", "IfcCartesianPointList", "IfcRationalBSplineCurveWithKnots", "IfcCartesianTransformationOperator", "IfcAxis2Placement2D", "IfcCompositeCurveOnSurface", "IfcFacetedBrep", "IfcDirection", "IfcPointOnCurve", "IfcSurfaceOfRevolution", "IfcEllipse", "IfcEdgeLoop", "IfcPcurve", "IfcVertexPoint", "IfcPolyLoop", "IfcSurfaceOfLinearExtrusion", "IfcCurveBoundedPlane", "IfcSphericalSurface", "IfcCartesianTransformationOperator3DnonUniform", "IfcOffsetCurve2D", "IfcPolygonalBoundedHalfSpace", "IfcRightCircularCylinder", "IfcCurveBoundedSurface", "IfcPlane", "IfcSphere", "IfcPlacement", "IfcTessellatedItem", "IfcCartesianPointList2D", "IfcBSplineCurveWithKnots", "IfcCompositeCurveSegment", "IfcSubedge", "IfcRightCircularCone", "IfcPath", "IfcFaceBasedSurfaceModel", "IfcBooleanResult", "IfcSolidModel", "IfcAnnotationFillArea", "IfcTrimmedCurve", "IfcSurfaceCurve", "IfcFaceOuterBound", "IfcPlanarBox", "IfcConnectedFaceSet", "IfcAdvancedFace", "IfcAdvancedBrepWithVoids", "IfcPolyline", "IfcPoint", "IfcCompositeCurve", "IfcExtrudedAreaSolid", "IfcSweptSurface", "IfcOpenShell", "IfcOffsetCurve3D", "IfcBSplineSurface", "IfcShellBasedSurfaceModel", "IfcCsgSolid", "IfcPolygonalFaceSet", "IfcSweptDiskSolidPolygonal", "IfcFillAreaStyleTiles", "IfcCartesianTransformationOperator3D", "IfcBSplineCurve", "IfcLightSource", "IfcExtrudedAreaSolidTapered", "IfcOrientedEdge", "IfcSurfaceCurveSweptAreaSolid", "IfcFillAreaStyleHatching", "IfcReparametrisedCompositeCurveSegment", "IfcLightSourceSpot", "IfcSectionedSpine", "IfcCartesianTransformationOperator2D", "IfcOuterBoundaryCurve", "IfcAxis2Placement3D", "IfcPointOnSurface", "IfcSurface", "IfcHalfSpaceSolid", "IfcIndexedPolygonalFace", "IfcManifoldSolidBrep", "IfcFaceBound", "IfcCartesianPointList3D", "IfcClosedShell", "IfcIndexedPolyCurve", "IfcPlanarExtent", "IfcElementarySurface", "IfcFacetedBrepWithVoids", "IfcRepresentationItem", "IfcCartesianPoint", "IfcIntersectionCurve", "IfcSweptDiskSolid", "IfcAdvancedBrep", "IfcLoop", "IfcBSplineSurfaceWithKnots", "IfcCircle", "IfcCartesianTransformationOperator2DnonUniform", "IfcFaceSurface", "IfcBoundedCurve", "IfcCylindricalSurface", "IfcEdge", "IfcBoundingBox", "IfcIndexedPolygonalFaceWithVoids", "IfcVertexLoop", "IfcSeamCurve", "IfcBlock", "IfcTopologicalRepresentationItem", "IfcLightSourcePositional", "IfcRevolvedAreaSolidTapered", "IfcSweptAreaSolid", "IfcRationalBSplineSurfaceWithKnots", "IfcRevolvedAreaSolid", "IfcAxis1Placement", "IfcVertex", "IfcMappedItem", "IfcTessellatedFaceSet", "IfcGeometricRepresentationItem", "IfcBoundaryCurve", "IfcRectangularPyramid" ]
+    },
+    "IfcShapeModel" : {
+      "type" : {
+        "name" : "IfcShapeModel",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "ContextOfItems", "Items" ],
+      "includes" : [ "IfcRepresentationContext", "IfcGeometricRepresentationContext", "IfcGeometricRepresentationSubContext", "IfcGeometricSet", "IfcBoundedSurface", "IfcGeometricCurveSet", "IfcToroidalSurface", "IfcEdgeCurve", "IfcStyledItem", "IfcTextLiteral", "IfcLightSourceDirectional", "IfcRectangularTrimmedSurface", "IfcBoxedHalfSpace", "IfcCsgPrimitive3D", "IfcLightSourceAmbient", "IfcFixedReferenceSweptAreaSolid", "IfcConic", "IfcCurve", "IfcVector", "IfcTriangulatedFaceSet", "IfcLightSourceGoniometric", "IfcFace", "IfcTextLiteralWithExtent", "IfcLine", "IfcBooleanClippingResult", "IfcCartesianPointList", "IfcRationalBSplineCurveWithKnots", "IfcCartesianTransformationOperator", "IfcAxis2Placement2D", "IfcCompositeCurveOnSurface", "IfcFacetedBrep", "IfcDirection", "IfcPointOnCurve", "IfcSurfaceOfRevolution", "IfcEllipse", "IfcEdgeLoop", "IfcPcurve", "IfcVertexPoint", "IfcPolyLoop", "IfcSurfaceOfLinearExtrusion", "IfcCurveBoundedPlane", "IfcSphericalSurface", "IfcCartesianTransformationOperator3DnonUniform", "IfcOffsetCurve2D", "IfcPolygonalBoundedHalfSpace", "IfcRightCircularCylinder", "IfcCurveBoundedSurface", "IfcPlane", "IfcSphere", "IfcPlacement", "IfcTessellatedItem", "IfcCartesianPointList2D", "IfcBSplineCurveWithKnots", "IfcCompositeCurveSegment", "IfcSubedge", "IfcRightCircularCone", "IfcPath", "IfcFaceBasedSurfaceModel", "IfcBooleanResult", "IfcSolidModel", "IfcAnnotationFillArea", "IfcTrimmedCurve", "IfcSurfaceCurve", "IfcFaceOuterBound", "IfcPlanarBox", "IfcConnectedFaceSet", "IfcAdvancedFace", "IfcAdvancedBrepWithVoids", "IfcPolyline", "IfcPoint", "IfcCompositeCurve", "IfcExtrudedAreaSolid", "IfcSweptSurface", "IfcOpenShell", "IfcOffsetCurve3D", "IfcBSplineSurface", "IfcShellBasedSurfaceModel", "IfcCsgSolid", "IfcPolygonalFaceSet", "IfcSweptDiskSolidPolygonal", "IfcFillAreaStyleTiles", "IfcCartesianTransformationOperator3D", "IfcBSplineCurve", "IfcLightSource", "IfcExtrudedAreaSolidTapered", "IfcOrientedEdge", "IfcSurfaceCurveSweptAreaSolid", "IfcFillAreaStyleHatching", "IfcReparametrisedCompositeCurveSegment", "IfcLightSourceSpot", "IfcSectionedSpine", "IfcCartesianTransformationOperator2D", "IfcOuterBoundaryCurve", "IfcAxis2Placement3D", "IfcPointOnSurface", "IfcSurface", "IfcHalfSpaceSolid", "IfcIndexedPolygonalFace", "IfcManifoldSolidBrep", "IfcFaceBound", "IfcCartesianPointList3D", "IfcClosedShell", "IfcIndexedPolyCurve", "IfcPlanarExtent", "IfcElementarySurface", "IfcFacetedBrepWithVoids", "IfcRepresentationItem", "IfcCartesianPoint", "IfcIntersectionCurve", "IfcSweptDiskSolid", "IfcAdvancedBrep", "IfcLoop", "IfcBSplineSurfaceWithKnots", "IfcCircle", "IfcCartesianTransformationOperator2DnonUniform", "IfcFaceSurface", "IfcBoundedCurve", "IfcCylindricalSurface", "IfcEdge", "IfcBoundingBox", "IfcIndexedPolygonalFaceWithVoids", "IfcVertexLoop", "IfcSeamCurve", "IfcBlock", "IfcTopologicalRepresentationItem", "IfcLightSourcePositional", "IfcRevolvedAreaSolidTapered", "IfcSweptAreaSolid", "IfcRationalBSplineSurfaceWithKnots", "IfcRevolvedAreaSolid", "IfcAxis1Placement", "IfcVertex", "IfcMappedItem", "IfcTessellatedFaceSet", "IfcGeometricRepresentationItem", "IfcBoundaryCurve", "IfcRectangularPyramid" ]
+    },
+    "IfcPresentationStyleAssignment" : {
+      "type" : {
+        "name" : "IfcPresentationStyleAssignment",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Styles" ],
+      "includes" : [ "IfcPresentationStyleSelect", "IfcTextStyle", "IfcFillAreaStyle", "IfcCurveStyle", "IfcSurfaceStyle" ]
+    },
+    "IfcPresentationStyleSelect" : {
+      "type" : {
+        "name" : "IfcPresentationStyleSelect",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcTextStyle" : {
+      "type" : {
+        "name" : "IfcTextStyle",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "TextCharacterAppearance", "TextStyle", "TextFontStyle" ],
+      "includes" : [ "IfcTextStyleForDefinedFont", "IfcTextStyleTextModel", "IfcTextFontSelect", "IfcPreDefinedTextFont", "IfcTextStyleFontModel", "IfcExternallyDefinedTextFont" ]
+    },
+    "IfcTextStyleForDefinedFont" : {
+      "type" : {
+        "name" : "IfcTextStyleForDefinedFont",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Colour", "BackgroundColour" ],
+      "includes" : [ "IfcDraughtingPreDefinedColour", "IfcPreDefinedColour", "IfcColour", "IfcColourSpecification", "IfcColourRgb", "IfcDraughtingPreDefinedColour", "IfcPreDefinedColour", "IfcColour", "IfcColourSpecification", "IfcColourRgb" ]
+    },
+    "IfcTextStyleTextModel" : {
+      "type" : {
+        "name" : "IfcTextStyleTextModel",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "TextIndent", "LetterSpacing", "WordSpacing", "LineHeight" ],
+      "includes" : [ "IfcSizeSelect", "IfcSizeSelect", "IfcSizeSelect", "IfcSizeSelect" ]
+    },
+    "IfcTextFontSelect" : {
+      "type" : {
+        "name" : "IfcTextFontSelect",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcPreDefinedTextFont" : {
+      "type" : {
+        "name" : "IfcPreDefinedTextFont",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcTextStyleFontModel" : {
+      "type" : {
+        "name" : "IfcTextStyleFontModel",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "FontSize" ],
+      "includes" : [ "IfcSizeSelect" ]
+    },
+    "IfcFillAreaStyle" : {
+      "type" : {
+        "name" : "IfcFillAreaStyle",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "FillStyles" ],
+      "includes" : [ "IfcDraughtingPreDefinedColour", "IfcFillAreaStyleHatching", "IfcExternallyDefinedHatchStyle", "IfcPreDefinedColour", "IfcColour", "IfcColourSpecification", "IfcFillAreaStyleTiles", "IfcFillStyleSelect", "IfcColourRgb" ]
+    },
+    "IfcFillStyleSelect" : {
+      "type" : {
+        "name" : "IfcFillStyleSelect",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcSurfaceStyle" : {
+      "type" : {
+        "name" : "IfcSurfaceStyle",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Styles" ],
+      "includes" : [ "IfcSurfaceStyleLighting", "IfcSurfaceStyleShading", "IfcSurfaceStyleWithTextures", "IfcSurfaceStyleRendering", "IfcSurfaceStyleElementSelect", "IfcExternallyDefinedSurfaceStyle", "IfcSurfaceStyleRefraction" ]
+    },
+    "IfcSurfaceStyleLighting" : {
+      "type" : {
+        "name" : "IfcSurfaceStyleLighting",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "DiffuseTransmissionColour", "DiffuseReflectionColour", "TransmissionColour", "ReflectanceColour" ],
+      "includes" : [ "IfcColourRgb", "IfcColourRgb", "IfcColourRgb", "IfcColourRgb" ]
+    },
+    "IfcSurfaceStyleShading" : {
+      "type" : {
+        "name" : "IfcSurfaceStyleShading",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "SurfaceColour" ],
+      "includes" : [ "IfcColourRgb" ]
+    },
+    "IfcSurfaceStyleRendering" : {
+      "type" : {
+        "name" : "IfcSurfaceStyleRendering",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "SurfaceColour", "DiffuseColour", "TransmissionColour", "DiffuseTransmissionColour", "ReflectionColour", "SpecularColour", "SpecularHighlight" ],
+      "includes" : [ "IfcColourRgb", "IfcColourOrFactor", "IfcColourRgb", "IfcColourOrFactor", "IfcColourRgb", "IfcColourOrFactor", "IfcColourRgb", "IfcColourOrFactor", "IfcColourRgb", "IfcColourOrFactor", "IfcColourRgb", "IfcSpecularHighlightSelect" ]
+    },
+    "IfcColourOrFactor" : {
+      "type" : {
+        "name" : "IfcColourOrFactor",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcSpecularExponent" : {
+      "type" : {
+        "name" : "IfcSpecularExponent",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcSpecularHighlightSelect" : {
+      "type" : {
+        "name" : "IfcSpecularHighlightSelect",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcSpecularRoughness" : {
+      "type" : {
+        "name" : "IfcSpecularRoughness",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcSurfaceStyleWithTextures" : {
+      "type" : {
+        "name" : "IfcSurfaceStyleWithTextures",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "Textures" ],
+      "includes" : [ "IfcSurfaceTexture", "IfcImageTexture", "IfcBlobTexture", "IfcPixelTexture" ]
+    },
+    "IfcSurfaceTexture" : {
+      "type" : {
+        "name" : "IfcSurfaceTexture",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "TextureTransform" ],
+      "includes" : [ "IfcCartesianTransformationOperator2DnonUniform", "IfcCartesianTransformationOperator2D" ]
+    },
+    "IfcImageTexture" : {
+      "type" : {
+        "name" : "IfcImageTexture",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "TextureTransform" ],
+      "includes" : [ "IfcCartesianTransformationOperator2DnonUniform", "IfcCartesianTransformationOperator2D" ]
+    },
+    "IfcBlobTexture" : {
+      "type" : {
+        "name" : "IfcBlobTexture",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "TextureTransform" ],
+      "includes" : [ "IfcCartesianTransformationOperator2DnonUniform", "IfcCartesianTransformationOperator2D" ]
+    },
+    "IfcPixelTexture" : {
+      "type" : {
+        "name" : "IfcPixelTexture",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ "TextureTransform" ],
+      "includes" : [ "IfcCartesianTransformationOperator2DnonUniform", "IfcCartesianTransformationOperator2D" ]
+    },
+    "IfcSurfaceStyleElementSelect" : {
+      "type" : {
+        "name" : "IfcSurfaceStyleElementSelect",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcSurfaceStyleRefraction" : {
+      "type" : {
+        "name" : "IfcSurfaceStyleRefraction",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcNullStyle" : {
+      "type" : {
+        "name" : "IfcNullStyle",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcPresentationStyle" : {
+      "type" : {
+        "name" : "IfcPresentationStyle",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    },
+    "IfcStyleAssignmentSelect" : {
+      "type" : {
+        "name" : "IfcStyleAssignmentSelect",
+        "includeAllSubTypes" : true
+      },
+      "fields" : [ ],
+      "includes" : [ ]
+    }
+  }
+}
