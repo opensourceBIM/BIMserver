@@ -398,7 +398,9 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 				for (int i = 0; i < listSize; i++) {
 					if (feature.getEAnnotation("twodimensionalarray") != null) {
 						HashMapVirtualObject newObject = new HashMapVirtualObject(reusable, (EClass) feature.getEType());
-
+						EClass eClass = (EClass)feature.getEType();
+						EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature("List");
+						
 						buffer.order(ByteOrder.LITTLE_ENDIAN);
 						short cid = buffer.getShort();
 						buffer.order(ByteOrder.BIG_ENDIAN);
@@ -406,10 +408,13 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 						if (referenceClass == null) {
 							throw new BimserverDatabaseException("No class found for cid " + (-cid));
 						}
-						EStructuralFeature eStructuralFeature = ((EClass)feature.getEType()).getEStructuralFeature("List");
+						
 						Object result = readList(newObject, buffer, eStructuralFeature);
 						if (result != null) {
 							newObject.setAttribute(newObject.eClass().getEStructuralFeature("List"), result);
+						}
+						if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
+							result = readList(newObject, buffer, eClass.getEStructuralFeature("ListAsString"));
 						}
 						idEObject.setListItem(feature, i, newObject);
 					} else {
@@ -459,6 +464,9 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 			}
 		} else if (feature.getEType() instanceof EDataType) {
 			int listSize = buffer.getInt();
+			if (listSize < 0) {
+				throw new BimserverDatabaseException("Negative array size for " + feature.getEContainingClass().getName() + "." + feature.getName());
+			}
 			for (int i = 0; i < listSize; i++) {
 				Object reference = readPrimitiveValue(feature.getEType(), buffer);
 				if (reference != null) {
