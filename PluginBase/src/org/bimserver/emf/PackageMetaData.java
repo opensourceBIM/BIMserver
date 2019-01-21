@@ -130,9 +130,173 @@ public class PackageMetaData implements ObjectFactory {
 			}
 		}
 		
-		initUnsettedLengths();
+		try {
+			initUnsettedLengths();
+			initInverses();
+		} catch (Exception e) {
+			LOGGER.error("", e);
+		}
 	}
 	
+	private void initInverses() {
+		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+			if (eClassifier instanceof EClass) {
+				EClass eClass = (EClass)eClassifier;
+				for (EReference eReference : eClass.getEReferences()) {
+					initIsInverse(eReference);
+				}
+			}
+		}
+		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
+			if (eClassifier instanceof EClass) {
+				EClass eClass = (EClass)eClassifier;
+				for (EReference eReference : eClass.getEReferences()) {
+					initHasInverse(eReference);
+				}
+			}
+		}
+	}
+	
+	private void initHasInverse(EReference eReference) {
+		/*
+		 * This has been implemented manually, but with the assistance of the output of Express2Emf (which dumps all the mismatched inverses in the schema).
+		 * Code has been updated for IFC4_ADD2
+		 * 
+		 */
+		boolean hasInverse = false;
+		if (eReference.getEOpposite() != null) {
+			hasInverse = isInverse(eReference.getEOpposite());
+		}
+		if (!hasInverse) {
+			if (eReference.getEContainingClass().getEPackage() == Ifc2x3tc1Package.eINSTANCE) {
+				if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements()) {
+					hasInverse = true;
+				} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcPresentationLayerAssignment_AssignedItems()) {
+					hasInverse = true;
+				} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRelAssociates_RelatedObjects()) {
+					hasInverse = true;
+				} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcTerminatorSymbol_AnnotatedCurve()) {
+					hasInverse = true;
+				} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRelReferencedInSpatialStructure_RelatedElements()) {
+					hasInverse = true;
+				} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcProduct_Representation()) {
+					hasInverse = true;
+				} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRelConnectsStructuralActivity_RelatingElement()) {
+					hasInverse = true;
+				}
+			} else if (eReference.getEContainingClass().getEPackage() == Ifc4Package.eINSTANCE) {
+				if (eReference == Ifc4Package.eINSTANCE.getIfcExternalReferenceRelationship_RelatedResourceObjects()) {
+					hasInverse = true;
+				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements()) {
+					hasInverse = true;
+					// Removed in IFC4 _after_ IFC4-final
+//				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelCoversBldgElements_RelatingBuildingElement()) {
+//					hasInverse = true;
+				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssociatesClassification_RelatingClassification()) {
+					hasInverse = true;
+				} else if (eReference == Ifc4Package.eINSTANCE.getIfcClassificationReference_ReferencedSource()) {
+					hasInverse = true;
+				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelDefinesByProperties_RelatedObjects()) {
+					hasInverse = true;
+				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssociatesDocument_RelatingDocument()) {
+					hasInverse = true;
+				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelReferencedInSpatialStructure_RelatedElements()) {
+					hasInverse = true;
+				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelSpaceBoundary_RelatingSpace()) {
+					hasInverse = true;
+				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssociatesLibrary_RelatingLibrary()) {
+					hasInverse = true;
+				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssociatesMaterial_RelatingMaterial()) {
+					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelDeclares_RelatedDefinitions()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssociates_RelatedObjects()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssignsToProcess_RelatingProcess()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssignsToProduct_RelatingProduct()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcProduct_Representation()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcShapeAspect_PartOfProductDefinitionShape()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelDefinesByProperties_RelatingPropertyDefinition()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcPresentationLayerAssignment_AssignedItems()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssignsToResource_RelatingResource()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelConnectsStructuralActivity_RelatingElement()) {
+ 					hasInverse = true;
+
+ 				// New in IFC4 _after_ IFC4-final
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcCoordinateOperation_SourceCRS()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssignsToProduct_RelatingProduct()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcResourceConstraintRelationship_RelatedResourceObjects()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcResourceApprovalRelationship_RelatedResourceObjects()) {
+ 					hasInverse = true;
+ 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssignsToProduct_RelatingProduct()) {
+ 					hasInverse = true;
+ 				}			
+			} 
+		}
+		hasInverseCache.put(eReference, hasInverse);
+	}
+	
+	private void initIsInverse(EReference eReference) {
+		EntityDefinition entityBN = schemaDefinition.getEntityBNNoCaseConvert(upperCases.get(eReference.getEContainingClass()));
+		if (entityBN == null) {
+			return;
+		}
+		Attribute attributeBNWithSuper = entityBN.getAttributeBNWithSuper(eReference.getName());
+		boolean isInverse = entityBN != null && attributeBNWithSuper instanceof InverseAttribute;
+		
+		// TODO seems like IFC4 needs to be added as well here?
+		
+		if (!isInverse) {
+			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcElement_ContainedInStructure()) {
+				isInverse = true;
+			} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcAnnotation_ContainedInStructure()) {
+				isInverse = true;
+			} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcGrid_ContainedInStructure()) {
+				isInverse = true;
+			}
+			
+			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRepresentation_LayerAssignments()) {
+				isInverse = true;
+			} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem_LayerAssignments()) {
+				isInverse = true;
+			}
+			
+			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcObjectDefinition_HasAssociations()) {
+				isInverse = true;
+			} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcPropertyDefinition_HasAssociations()) {
+				isInverse = true;
+			}
+			
+			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcDimensionCurve_AnnotatedBySymbols()) {
+				isInverse = true;
+			}
+			
+			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcElement_ReferencedInStructures()) {
+				isInverse = true;
+			}
+			
+			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcProductDefinitionShape_ShapeOfProduct()) {
+				isInverse = true;
+			}
+			
+			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcStructuralItem_AssignedStructuralActivity()) {
+				isInverse = true;
+			}
+		}
+		
+		isInverseCache.put(eReference, isInverse);
+	}
+
 	private void initUnsettedLengths() {
 		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
 			if (eClassifier instanceof EClass) {
@@ -265,53 +429,7 @@ public class PackageMetaData implements ObjectFactory {
 		if (isInverseCache.containsKey(eReference)) {
 			return isInverseCache.get(eReference);
 		}
-		EntityDefinition entityBN = schemaDefinition.getEntityBNNoCaseConvert(upperCases.get(eReference.getEContainingClass()));
-		if (entityBN == null) {
-			return false;
-		}
-		Attribute attributeBNWithSuper = entityBN.getAttributeBNWithSuper(eReference.getName());
-		boolean isInverse = entityBN != null && attributeBNWithSuper instanceof InverseAttribute;
-		
-		if (!isInverse) {
-			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcElement_ContainedInStructure()) {
-				isInverse = true;
-			} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcAnnotation_ContainedInStructure()) {
-				isInverse = true;
-			} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcGrid_ContainedInStructure()) {
-				isInverse = true;
-			}
-			
-			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRepresentation_LayerAssignments()) {
-				isInverse = true;
-			} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRepresentationItem_LayerAssignments()) {
-				isInverse = true;
-			}
-			
-			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcObjectDefinition_HasAssociations()) {
-				isInverse = true;
-			} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcPropertyDefinition_HasAssociations()) {
-				isInverse = true;
-			}
-			
-			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcDimensionCurve_AnnotatedBySymbols()) {
-				isInverse = true;
-			}
-			
-			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcElement_ReferencedInStructures()) {
-				isInverse = true;
-			}
-			
-			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcProductDefinitionShape_ShapeOfProduct()) {
-				isInverse = true;
-			}
-			
-			if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcStructuralItem_AssignedStructuralActivity()) {
-				isInverse = true;
-			}
-		}
-		
-		isInverseCache.put(eReference, isInverse);
-		return isInverse;
+		throw new RuntimeException("Inverse cache not initialized for " + eReference.getName());
 	}
 
 
@@ -333,6 +451,12 @@ public class PackageMetaData implements ObjectFactory {
 				}
 			}
 		}
+		return set;
+	}
+
+	public Set<EClass> getAllSubClassesIncludingSelf(EClass superClass) {
+		HashSet<EClass> set = new HashSet<>(getAllSubClasses(superClass));
+		set.add(superClass);
 		return set;
 	}
 
@@ -518,96 +642,10 @@ public class PackageMetaData implements ObjectFactory {
 	}
 	
 	public boolean hasInverse(EReference eReference) {
-		/*
-		 * This has been implemented manually, but with the assistance of the output of Express2Emf (which dumps all the mismatched inverses in the schema).
-		 * Code has been updated for IFC4_ADD2
-		 * 
-		 */
 		if (hasInverseCache.containsKey(eReference)) {
 			return hasInverseCache.get(eReference);
 		}
-		boolean hasInverse = false;
-		if (eReference.getEOpposite() != null) {
-			hasInverse = isInverse(eReference.getEOpposite());
-		}
-		if (!hasInverse) {
-			if (eReference.getEContainingClass().getEPackage() == Ifc2x3tc1Package.eINSTANCE) {
-				if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements()) {
-					hasInverse = true;
-				} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcPresentationLayerAssignment_AssignedItems()) {
-					hasInverse = true;
-				} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRelAssociates_RelatedObjects()) {
-					hasInverse = true;
-				} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcTerminatorSymbol_AnnotatedCurve()) {
-					hasInverse = true;
-				} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRelReferencedInSpatialStructure_RelatedElements()) {
-					hasInverse = true;
-				} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcProduct_Representation()) {
-					hasInverse = true;
-				} else if (eReference == Ifc2x3tc1Package.eINSTANCE.getIfcRelConnectsStructuralActivity_RelatingElement()) {
-					hasInverse = true;
-				}
-			} else if (eReference.getEContainingClass().getEPackage() == Ifc4Package.eINSTANCE) {
-				if (eReference == Ifc4Package.eINSTANCE.getIfcExternalReferenceRelationship_RelatedResourceObjects()) {
-					hasInverse = true;
-				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements()) {
-					hasInverse = true;
-					// Removed in IFC4 _after_ IFC4-final
-//				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelCoversBldgElements_RelatingBuildingElement()) {
-//					hasInverse = true;
-				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssociatesClassification_RelatingClassification()) {
-					hasInverse = true;
-				} else if (eReference == Ifc4Package.eINSTANCE.getIfcClassificationReference_ReferencedSource()) {
-					hasInverse = true;
-				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelDefinesByProperties_RelatedObjects()) {
-					hasInverse = true;
-				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssociatesDocument_RelatingDocument()) {
-					hasInverse = true;
-				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelReferencedInSpatialStructure_RelatedElements()) {
-					hasInverse = true;
-				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelSpaceBoundary_RelatingSpace()) {
-					hasInverse = true;
-				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssociatesLibrary_RelatingLibrary()) {
-					hasInverse = true;
-				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssociatesMaterial_RelatingMaterial()) {
-					hasInverse = true;
- 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelDeclares_RelatedDefinitions()) {
- 					hasInverse = true;
- 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssociates_RelatedObjects()) {
- 					hasInverse = true;
- 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssignsToProcess_RelatingProcess()) {
- 					hasInverse = true;
- 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssignsToProduct_RelatingProduct()) {
- 					hasInverse = true;
- 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcProduct_Representation()) {
- 					hasInverse = true;
- 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcShapeAspect_PartOfProductDefinitionShape()) {
- 					hasInverse = true;
- 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelDefinesByProperties_RelatingPropertyDefinition()) {
- 					hasInverse = true;
- 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcPresentationLayerAssignment_AssignedItems()) {
- 					hasInverse = true;
- 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssignsToResource_RelatingResource()) {
- 					hasInverse = true;
- 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelConnectsStructuralActivity_RelatingElement()) {
- 					hasInverse = true;
-
- 				// New in IFC4 _after_ IFC4-final
- 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcCoordinateOperation_SourceCRS()) {
- 					hasInverse = true;
- 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssignsToProduct_RelatingProduct()) {
- 					hasInverse = true;
- 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcResourceConstraintRelationship_RelatedResourceObjects()) {
- 					hasInverse = true;
- 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcResourceApprovalRelationship_RelatedResourceObjects()) {
- 					hasInverse = true;
- 				} else if (eReference == Ifc4Package.eINSTANCE.getIfcRelAssignsToProduct_RelatingProduct()) {
- 					hasInverse = true;
- 				}			
-			} 
-		}
-		hasInverseCache.put(eReference, hasInverse);
-		return hasInverse;
+		throw new RuntimeException("Has inverse cache not initialized for " + eReference.getName());
 	}
 	
 	public EReference getInverseOrOpposite(EClass eClassOfOtherEnd, EStructuralFeature eStructuralFeature) {
