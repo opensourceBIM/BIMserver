@@ -29,8 +29,6 @@ import org.bimserver.database.OldQuery;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.geometry.GeometryGenerationReport;
 import org.bimserver.geometry.StreamingGeometryGenerator;
-import org.bimserver.models.geometry.Bounds;
-import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.ExtendedData;
@@ -84,7 +82,7 @@ public class RegenerateGeometryDatabaseAction extends ProjectBasedDatabaseAction
 
 		QueryContext queryContext = new QueryContext(getDatabaseSession(), packageMetaData, revision.getProject().getId(), revision.getId(), roid, concreteRevision.getOid(), highestStopId);
 		try {
-			GenerateGeometryResult generateGeometry = streamingGeometryGenerator.generateGeometry(uoid, getDatabaseSession(), queryContext);
+			GenerateGeometryResult generateGeometry = streamingGeometryGenerator.generateGeometry(uoid, getDatabaseSession(), queryContext, 1000); // TODO get the actual amount of products
 			
 			for (Revision other : concreteRevision.getRevisions()) {
 				other.setHasGeometry(true);

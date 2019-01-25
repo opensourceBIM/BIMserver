@@ -111,7 +111,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 	private volatile boolean allJobsPushed;
 
-	private int maxObjectsPerFile = 50;
 	volatile boolean running = true;
 
 	private String debugIdentifier;
@@ -135,7 +134,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	private GeometryGenerationDebugger geometryGenerationDebugger = new GeometryGenerationDebugger();
 
 	// TODO get this from a setting
-	private boolean generateLayerSets = false;
+	private boolean generateLayerSets = true;
 
 	public StreamingGeometryGenerator(final BimServer bimServer, ProgressListener progressListener, Long eoid, GeometryGenerationReport report) {
 		this.bimServer = bimServer;
@@ -158,7 +157,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public GenerateGeometryResult generateGeometry(long uoid, final DatabaseSession databaseSession, QueryContext queryContext) throws BimserverDatabaseException, GeometryGeneratingException {
+	public GenerateGeometryResult generateGeometry(long uoid, final DatabaseSession databaseSession, QueryContext queryContext, long nrObjects) throws BimserverDatabaseException, GeometryGeneratingException {
 		GenerateGeometryResult generateGeometryResult = new GenerateGeometryResult();
 		packageMetaData = queryContext.getPackageMetaData();
 		productClass = packageMetaData.getEClass("IfcProduct");
@@ -187,7 +186,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		
 		report.setStart(new GregorianCalendar());
 		report.setIfcSchema(queryContext.getPackageMetaData().getSchema());
-		report.setMaxPerFile(maxObjectsPerFile);
 		report.setUseMappingOptimization(optimizeMappedItems);
 		report.setReuseGeometry(reuseGeometry);
 
@@ -504,6 +502,16 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					Query query = new Query("Main " + eClass.getName(), packageMetaData);
 					QueryPart queryPart = query.createQueryPart();
 					int written = 0;
+					
+					int maxObjectsPerFile = 0;
+					if (nrObjects <= 100) {
+						maxObjectsPerFile = 1;
+					} else if (nrObjects < 10000) {
+						maxObjectsPerFile = (int) (nrObjects / 100);
+					} else {
+						maxObjectsPerFile = 100;
+					}
+					report.setMaxPerFile(maxObjectsPerFile);
 					
 					while (next != null) {
 						if (next.eClass() == eClass && !done.contains(next.getOid()) && !toSkip.contains(next.getOid())) {

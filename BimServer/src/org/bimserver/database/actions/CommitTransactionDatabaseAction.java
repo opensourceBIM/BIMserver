@@ -237,7 +237,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 
 				queryContext.setOidCounters(oidCounters);
 
-				GenerateGeometryResult generateGeometry = streamingGeometryGenerator.generateGeometry(authorization.getUoid(), getDatabaseSession(), queryContext);
+				GenerateGeometryResult generateGeometry = streamingGeometryGenerator.generateGeometry(authorization.getUoid(), getDatabaseSession(), queryContext, summaryMap.count());
 				
 				concreteRevision.setMultiplierToMm(generateGeometry.getMultiplierToMm());
 				concreteRevision.setBounds(generateGeometry.getBounds());

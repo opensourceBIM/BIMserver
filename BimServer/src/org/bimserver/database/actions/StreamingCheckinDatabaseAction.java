@@ -242,7 +242,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			setProgress("Generating geometry...", 0);
 
 			long start = System.nanoTime();
-			GenerateGeometryResult generateGeometry = geometryGenerator.generateGeometry(getActingUid(), getDatabaseSession(), queryContext);
+			GenerateGeometryResult generateGeometry = geometryGenerator.generateGeometry(getActingUid(), getDatabaseSession(), queryContext, size);
 			long end = System.nanoTime();
 			
 			for (Revision other : concreteRevision.getRevisions()) {
