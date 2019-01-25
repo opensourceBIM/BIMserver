@@ -32,6 +32,10 @@ public class RunServiceAuthorization extends Authorization {
 		this.soid = soid;
 		this.setUoid(uoid);
 	}
+	
+	public long getSoid() {
+		return soid;
+	}
 
 	public RunServiceAuthorization() {
 		super();

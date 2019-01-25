@@ -4,7 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -33,6 +32,7 @@ import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.AuthenticationException;
 import org.bimserver.webservices.authorization.Authorization;
+import org.bimserver.webservices.authorization.RunServiceAuthorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -76,6 +76,19 @@ public class ServiceRunnerServlet extends SubServlet {
 			serviceName = request.getRequestURI();
 			if (serviceName.startsWith("/services/")) {
 				serviceName = serviceName.substring(10);
+			}
+		}
+		if (serviceName == null) {
+			// Get it from the token
+			try {
+				Authorization authorization = Authorization.fromToken(getBimServer().getEncryptionKey(), token);
+				if (authorization instanceof RunServiceAuthorization) {
+					RunServiceAuthorization runServiceAuthorization = (RunServiceAuthorization)authorization;
+					serviceName = "" + runServiceAuthorization.getSoid();
+					LOGGER.info("Got SOID from token (" + serviceName + ")");
+				}
+			} catch (AuthenticationException e) {
+				e.printStackTrace();
 			}
 		}
 		LOGGER.info("ServiceName: " + serviceName);
