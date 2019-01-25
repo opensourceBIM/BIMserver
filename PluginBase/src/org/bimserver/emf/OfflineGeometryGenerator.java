@@ -120,8 +120,8 @@ public class OfflineGeometryGenerator {
 						ObjectNode additionalData = renderEngineInstance.getAdditionalData();
 						if (additionalData != null) {
 							geometryInfo.setAdditionalData(additionalData.toString());
-							if (additionalData.has("SURFACE_AREA_ALONG_Z")) {
-								geometryInfo.setArea(additionalData.get("SURFACE_AREA_ALONG_Z").asDouble());
+							if (additionalData.has("TOTAL_SURFACE_AREA")) {
+								geometryInfo.setArea(additionalData.get("TOTAL_SURFACE_AREA").asDouble());
 							}
 							if (additionalData.has("TOTAL_SHAPE_VOLUME")) {
 								geometryInfo.setVolume(additionalData.get("TOTAL_SHAPE_VOLUME").asDouble());
