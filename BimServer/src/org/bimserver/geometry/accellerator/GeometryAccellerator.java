@@ -156,12 +156,12 @@ public class GeometryAccellerator {
 				next = queryObjectProvider.next();
 			}
 			
-//			octree.traverseBreathFirst(new Traverser() {
-//				@Override
-//				public void traverse(Node t) {
-//					t.sort();
-//				}
-//			});
+			octree.traverseBreathFirst(new Traverser() {
+				@Override
+				public void traverse(Node t) {
+					t.sort();
+				}
+			});
 			
 			octree.moveUp(new MoveUpDecider() {
 				@Override
