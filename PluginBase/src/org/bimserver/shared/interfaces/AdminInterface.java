@@ -230,4 +230,7 @@ public interface AdminInterface extends PublicInterface {
 	
 	@WebMethod(action = "getMetrics")
 	SMetrics getMetrics() throws UserException, ServerException;
+
+	@WebMethod(action = "shutdown")
+	void shutdown() throws UserException, ServerException;
 }

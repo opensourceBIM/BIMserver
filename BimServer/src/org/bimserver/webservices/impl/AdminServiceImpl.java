@@ -84,12 +84,14 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 	}
 
 	@Override
-	public Integer clearOutputFileCache() {
+	public Integer clearOutputFileCache() throws UserException {
+		requireAdminAuthentication();
 		return getBimServer().getNewDiskCacheManager().cleanup();
 	}
 
 	@Override
-	public SSystemInfo getSystemInfo() {
+	public SSystemInfo getSystemInfo() throws UserException {
+		requireAdminAuthentication();
 		SSystemInfo systemInfo = new SSystemInfo();
 		systemInfo.setCpucores(Runtime.getRuntime().availableProcessors());
 		systemInfo.setDatetime(new GregorianCalendar().getTime());
@@ -102,7 +104,8 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 	}
 
 	@Override
-	public SJavaInfo getJavaInfo() {
+	public SJavaInfo getJavaInfo() throws UserException {
+		requireAdminAuthentication();
 		SJavaInfo javaInfo = new SJavaInfo();
 		javaInfo.setHeapTotal(Runtime.getRuntime().totalMemory());
 		javaInfo.setHeapUsed(Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory());
@@ -138,6 +141,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 
 	@Override
 	public SBimServerInfo getBimServerInfo() throws ServerException, UserException {
+		requireAdminAuthentication();
 		SBimServerInfo bimServerInfo = new SBimServerInfo();
 		SVersion version = getBimServer().getVersionChecker().getLocalVersion();
 		SVersion latestVersion = getBimServer().getVersionChecker().getOnlineVersion();
@@ -198,7 +202,8 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 	}
 
 	@Override
-	public Boolean upgradePossible() {
+	public Boolean upgradePossible() throws UserException {
+		requireAdminAuthentication();
 		return getBimServer().getVersionChecker().updateNeeded();
 	}
 	
@@ -220,7 +225,6 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 	public Date getServerStartTime() {
 		return getBimServer().getServerStartTime().getTime();
 	}
-	
 
 	@Override
 	public Date getLastDatabaseReset() throws ServerException, UserException {
@@ -272,6 +276,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 
 	@Override
 	public List<SMigration> getMigrations() throws UserException {
+		requireAdminAuthentication();
 		Migrator migrator = getBimServer().getDatabase().getMigrator();
 		List<SMigration> list = new ArrayList<SMigration>(getBimServer().getSConverter().convertToSSetMigration(migrator.getMigrations()));
 		Collections.sort(list, new SMigrationComparator());
@@ -280,6 +285,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 
 	@Override
 	public void migrateDatabase() throws ServerException, UserException {
+		requireAdminAuthentication();
 		try {
 			getBimServer().getDatabase().getMigrator().migrate();
 			getBimServer().getServerInfoManager().update();
@@ -365,7 +371,14 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 	}
 
 	@Override
-	public SMetrics getMetrics() {
+	public SMetrics getMetrics() throws UserException {
+		requireAdminAuthentication();
 		return getBimServer().getMetricsRegistry().getMetrics();
+	}
+
+	@Override
+	public void shutdown() throws UserException, ServerException {
+		requireAdminAuthentication();
+		getBimServer().stop();
 	}
 }

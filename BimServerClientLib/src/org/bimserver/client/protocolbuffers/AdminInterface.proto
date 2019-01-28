@@ -67,6 +67,8 @@ service AdminInterface {
 
 	rpc setup (SetupRequest) returns (VoidResponse);
 
+	rpc shutdown (ShutdownRequest) returns (VoidResponse);
+
 	rpc upgradePossible (UpgradePossibleRequest) returns (UpgradePossibleResponse);
 
 }
@@ -383,6 +385,9 @@ message SetupRequest {
 	optional string adminName = 5;
 	optional string adminUsername = 6;
 	optional string adminPassword = 7;
+}
+
+message ShutdownRequest {
 }
 
 message UpgradePossibleRequest {

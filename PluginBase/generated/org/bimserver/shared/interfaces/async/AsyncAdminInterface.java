@@ -134,6 +134,11 @@ public class AsyncAdminInterface {
 		void error(Throwable e);
 	}
 	
+	public interface ShutdownCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
 	public interface UpgradePossibleCallback {
 		void success(java.lang.Boolean result);
 		void error(Throwable e);
@@ -390,6 +395,19 @@ public class AsyncAdminInterface {
 			public void run(){
 				try {
 					syncService.setup(siteAddress, serverName, serverDescription, serverIcon, adminName, adminUsername, adminPassword);
+					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void shutdown(final ShutdownCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.shutdown();
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);
