@@ -17,7 +17,7 @@
 package org.bimserver.models.geometry.util;
 
 /******************************************************************************
- * Copyright (C) 2009-2018  BIMserver.org
+ * Copyright (C) 2009-2019  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -32,6 +32,7 @@ package org.bimserver.models.geometry.util;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
+
 import org.bimserver.models.geometry.*;
 import org.bimserver.models.geometry.Bounds;
 import org.bimserver.models.geometry.Buffer;
