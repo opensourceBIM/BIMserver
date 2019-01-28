@@ -145,7 +145,7 @@ public class RootServlet extends HttpServlet {
 				oAuthAuthorizationServlet.service(request, response);
 			} else if (requestUri.startsWith("/oauth/access")) {
 				oAuthAccesssTokenServlet.service(request, response);
-			} else if (requestUri.startsWith("/services/") || requestUri.startsWith("/servicelist")) {
+			} else if (requestUri.startsWith("/services") || requestUri.startsWith("/servicelist")) {
 				serviceRunner.service(request, response);
 			} else if (requestUri.startsWith("/upload/") || requestUri.equals("/upload")) {
 				uploadServlet.service(request, response);
