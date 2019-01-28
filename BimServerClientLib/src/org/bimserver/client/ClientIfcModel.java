@@ -567,7 +567,7 @@ public class ClientIfcModel extends IfcModel {
 				} else if (geometryType == 6) {
 					done = true;
 				} else {
-					throw new GeometryException("Unimplemented type: " + geometryType);
+					throw new GeometryException("Unimplemented geometryType: " + geometryType);
 				}
 				t++;
 				dataInputStream.align8();
