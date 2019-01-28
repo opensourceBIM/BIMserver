@@ -164,7 +164,6 @@
 						
 						<br/>
 						<span class="label label-warning">Not installing</span> Access to BIMserver functionality will be limited to the technical interfaces JSON, SOAP and Protocol Buffers and no GUI will be available if this plugin is not installed.
-						<span class="label label-warning">Dependencies</span> This plugin bundle requires both the "BimServerJavaScriptApi" and the "BimSurfer" plugin bundles to be installed as well (BimSurfer will automatically be installed when you select BIMvie.ws).
 					</div>
 				</div>
 				<div class="media list-group-item maven">
@@ -204,20 +203,7 @@
 					<div class="media-body">
 						<h4 class="media-heading">BinarySerializers</h4>
 						Contains binary serializers required for loading geometry in most of the viewers<br/><br/>
-						<span class="label label-warning">Not installing</span> Without this plugin BIMsurfer will not be able to load 3D geometry
-					</div>
-				</div>
-				<div class="media list-group-item maven">
-					<div class="media-left media-middle">
-						<input type="checkbox" class="bimserverapi" checked="checked"/>
-					</div>
-					<div class="media-left">
-						<div class="well" style="width: 260px; height: 153px; padding: 10px"><img class="media-object" height="130" style="margin-left: auto; margin-right: auto" src="img/opensourcebim.png"></div>
-					</div>
-					<div class="media-body">
-						<h4 class="media-heading">BimServerJavaScriptApi</h4>
-						JavaScript API for BIMserver.<br/><br/>
-						<span class="label label-warning">Not installing</span> Without this plugin all JavaScript based plugins will not be able to communicatie with BIMserver (BIMvie.ws, BIMsurfer, Console).
+						<span class="label label-warning">Not installing</span> Without this plugin BIMsurfer/BIMvie.ws and possiblt other viewers will not be able to load 3D geometry
 					</div>
 				</div>
 				<div class="media list-group-item maven">
@@ -647,13 +633,6 @@ function Setup(cd, address) {
 			};
 			cd.find(".plugins .maven input[type=\"checkbox\"]:checked").each(function(index, checkbox){
 				var artifactId = $(checkbox).attr("class");
-				if (artifactId == "bimviews") {
-					pluginsToInstall["bimsurfer"] = {
-						repository: "http://central.maven.org/maven2",
-						groupId: "org.opensourcebim",
-						artifactId: "bimsurfer"
-					};
-				}
 				pluginsToInstall[artifactId] = {
 					repository: "http://central.maven.org/maven2",
 					groupId: "org.opensourcebim",
