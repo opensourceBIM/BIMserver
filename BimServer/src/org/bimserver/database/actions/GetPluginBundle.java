@@ -25,11 +25,13 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.interfaces.objects.SPluginBundle;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.MavenPluginLocation;
-import org.bimserver.plugins.PluginBundle;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class GetPluginBundle extends PluginBundleDatabaseAction<SPluginBundle> {
+	private static final Logger LOGGER = LoggerFactory.getLogger(GetPluginBundle.class);
 	private BimServer bimServer;
 	private DefaultArtifactVersion bimserverVersion;
 	private String repository;
@@ -50,8 +52,11 @@ public class GetPluginBundle extends PluginBundleDatabaseAction<SPluginBundle> {
 	public SPluginBundle execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException {
 		if (bimServer.getVersionChecker() != null && bimServer.getVersionChecker().getLocalVersion() != null) {
 			bimserverVersion = new DefaultArtifactVersion(bimServer.getVersionChecker().getLocalVersion().getFullString());
+			LOGGER.info(bimserverVersion.toString());
+		} else {
+			LOGGER.info("No BIMserver version");
 		}
-
+		
 		MavenPluginLocation pluginLocation = bimServer.getMavenPluginRepository().getPluginLocation(repository, groupId, artifactId);
 		
 		SPluginBundle sPluginBundle = processPluginLocation(pluginLocation, strictChecking, bimserverVersion);
