@@ -133,7 +133,6 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 	}
 
 	private MavenPluginVersion createMavenVersion(Version version) throws ArtifactDescriptorException, FileNotFoundException, IOException, ArtifactResolutionException, XmlPullParserException {
-		LOGGER.info(this.groupId + "." + this.artifactId + ": " + version.toString());
 		ArtifactDescriptorRequest descriptorRequest = new ArtifactDescriptorRequest();
 		
 		Artifact versionArtifact = new DefaultArtifact(groupId, artifactId, "pom", version.toString());
