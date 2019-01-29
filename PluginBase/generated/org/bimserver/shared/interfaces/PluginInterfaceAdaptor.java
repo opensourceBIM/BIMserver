@@ -16,7 +16,6 @@ package org.bimserver.shared.interfaces;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.exceptions.ServerException;
 
@@ -248,6 +247,10 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	}
 	
 	public org.bimserver.interfaces.objects.SPluginBundle getPluginBundle(java.lang.String repository, java.lang.String groupId, java.lang.String artifactId) throws UserException, ServerException {
+		return null;
+	}
+	
+	public org.bimserver.interfaces.objects.SPluginBundleVersion getPluginBundleVersionById(java.lang.Long bdid) throws UserException, ServerException {
 		return null;
 	}
 	

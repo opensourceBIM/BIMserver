@@ -115,7 +115,6 @@ public abstract class PluginBundleDatabaseAction<T> extends BimDatabaseAction<T>
 					pluginBundle.setLatestVersion(sPluginBundleVersion);
 				}
 				pluginBundle.getAvailableVersions().add(sPluginBundleVersion);
-
 				try {
 					sPluginBundleVersion.setIcon(mavenPluginLocation.getVersionIcon(mavenPluginVersion.getVersion().toString()));
 				} catch (ArtifactResolutionException e) {

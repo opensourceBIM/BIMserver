@@ -17,6 +17,7 @@
 						<th>Path</th>
 						<th>Name</th>
 						<th>Description</th>
+						<th>Version</th>
 					</tr>
 				</thead>
 				<tbody></tbody>
@@ -26,7 +27,7 @@
 	<div class="panel panel-default license">
 		<div class="panel-heading">License</div>
 		<div class="panel-body">
-			<p>Copyright (C) 2009-2018 BIMserver.org</p>
+			<p>Copyright (C) 2009-2019 BIMserver.org</p>
 			
 			<p>This program is free software: you can redistribute it and/or modify
 			it under the terms of the GNU Affero General Public License as
@@ -64,9 +65,16 @@ function Status(cd, serverInfo) {
 			var tr = $("<tr>");
 			cd.find(".webModules table tbody").append(tr);
 			Global.api.call("PluginInterface", "getPluginDescriptor", {oid: webModule.pluginDescriptorId}, function(pluginDescriptor){
+				var td = $("<td>");
+				Global.api.call("PluginInterface", "getPluginBundleVersionById", {
+					pbid: pluginDescriptor.pluginBundleVersionId
+				}, function(pbv){
+					td.append(pbv.version);
+				});
 				tr.append("<td><a href=\"apps/" + pluginDescriptor.identifier + "/\">" + pluginDescriptor.identifier + "</a></td>");
 				tr.append("<td>" + pluginDescriptor.name + "</td>");
 				tr.append("<td>" + pluginDescriptor.description + "</td>");
+				tr.append(td);
 			});
 		});
 	});

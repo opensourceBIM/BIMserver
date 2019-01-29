@@ -16,7 +16,6 @@ package org.bimserver.shared.interfaces.async;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-
 import java.util.concurrent.ExecutorService;
 import org.bimserver.shared.interfaces.PluginInterface;
 
@@ -327,6 +326,11 @@ public class AsyncPluginInterface {
 	
 	public interface GetPluginBundleCallback {
 		void success(org.bimserver.interfaces.objects.SPluginBundle result);
+		void error(Throwable e);
+	}
+	
+	public interface GetPluginBundleVersionByIdCallback {
+		void success(org.bimserver.interfaces.objects.SPluginBundleVersion result);
 		void error(Throwable e);
 	}
 	
@@ -1251,6 +1255,18 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getPluginBundle(repository, groupId, artifactId));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getPluginBundleVersionById(final java.lang.Long bdid, final GetPluginBundleVersionByIdCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getPluginBundleVersionById(bdid));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

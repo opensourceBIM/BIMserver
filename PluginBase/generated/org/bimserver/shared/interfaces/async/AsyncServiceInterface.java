@@ -16,7 +16,6 @@ package org.bimserver.shared.interfaces.async;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-
 import java.util.concurrent.ExecutorService;
 import org.bimserver.shared.interfaces.ServiceInterface;
 

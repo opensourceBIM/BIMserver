@@ -631,6 +631,10 @@ public interface PluginInterface extends PublicInterface {
 		@WebParam(name = "groupId", partName = "getPluginBundle.groupId") String groupId, 
 		@WebParam(name = "artifactId", partName = "getPluginBundle.artifactId") String artifactId) throws UserException, ServerException;
 
+	@WebMethod(action = "getPluginBundleVersionById")
+	SPluginBundleVersion getPluginBundleVersionById(
+		@WebParam(name = "pbid", partName = "getPluginBundleVersionById.pbid") Long pbid) throws UserException, ServerException;
+
 	@WebMethod(action = "getInstalledPluginBundles")
 	List<SPluginBundle> getInstalledPluginBundles() throws UserException, ServerException;
 

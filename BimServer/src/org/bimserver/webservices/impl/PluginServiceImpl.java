@@ -66,6 +66,7 @@ import org.bimserver.database.actions.GetModelMergerByNameDatabaseAction;
 import org.bimserver.database.actions.GetObjectIDMByIdDatabaseAction;
 import org.bimserver.database.actions.GetObjectIDMByNameDatabaseAction;
 import org.bimserver.database.actions.GetPluginBundle;
+import org.bimserver.database.actions.GetPluginBundleVersionById;
 import org.bimserver.database.actions.GetPluginInformation;
 import org.bimserver.database.actions.GetRenderEngineByIdDatabaseAction;
 import org.bimserver.database.actions.GetRenderEngineByNameDatabaseAction;
@@ -1656,6 +1657,18 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		}
 	}
 
+	@Override
+	public SPluginBundleVersion getPluginBundleVersionById(Long pbid) throws UserException, ServerException {
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			return session.executeAndCommitAction(new GetPluginBundleVersionById(session, getInternalAccessMethod(), getBimServer(), pbid));
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
 	@Override
 	public void clearMavenCache() throws UserException, ServerException {
 		try {
