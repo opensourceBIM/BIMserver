@@ -1,7 +1,7 @@
 package org.bimserver.pb;
 
 /******************************************************************************
- * Copyright (C) 2009-2018  BIMserver.org
+ * Copyright (C) 2009-2019  BIMserver.org
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -148,6 +148,8 @@ service PluginInterface {
 	rpc getObjectIDMByName (GetObjectIDMByNameRequest) returns (GetObjectIDMByNameResponse);
 
 	rpc getPluginBundle (GetPluginBundleRequest) returns (GetPluginBundleResponse);
+
+	rpc getPluginBundleVersionById (GetPluginBundleVersionByIdRequest) returns (GetPluginBundleVersionByIdResponse);
 
 	rpc getPluginDescriptor (GetPluginDescriptorRequest) returns (GetPluginDescriptorResponse);
 
@@ -807,6 +809,15 @@ message GetPluginBundleRequest {
 message GetPluginBundleResponse {
 	optional string errorMessage = 1;
 	optional SPluginBundle value = 2;
+}
+
+message GetPluginBundleVersionByIdRequest {
+	optional int64 bdid = 1;
+}
+
+message GetPluginBundleVersionByIdResponse {
+	optional string errorMessage = 1;
+	optional SPluginBundleVersion value = 2;
 }
 
 message GetPluginDescriptorRequest {

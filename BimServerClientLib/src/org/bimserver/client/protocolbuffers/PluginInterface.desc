@@ -1,5 +1,5 @@
 
-Öå
+†è
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoNewServicesInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"b
 AddDeserializerRequestH
 deserializer (22.org.bimserver.pb.SDeserializerPluginConfiguration">
@@ -350,7 +350,12 @@ repository (	
 artifactId (	"_
 GetPluginBundleResponse
 errorMessage (	.
-value (2.org.bimserver.pb.SPluginBundle")
+value (2.org.bimserver.pb.SPluginBundle"1
+!GetPluginBundleVersionByIdRequest
+bdid ("q
+"GetPluginBundleVersionByIdResponse
+errorMessage (	5
+value (2&.org.bimserver.pb.SPluginBundleVersion")
 GetPluginDescriptorRequest
 oid ("g
 GetPluginDescriptorResponse
@@ -612,7 +617,7 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*Œ
 SPrimitiveEnum_DOUBLE
 SPrimitiveEnum_BOOLEAN
 SPrimitiveEnum_STRING
-SPrimitiveEnum_BYTE_ARRAY2ÜZ
+SPrimitiveEnum_BYTE_ARRAY2æ[
 PluginInterfacef
 addDeserializer(.org.bimserver.pb.AddDeserializerRequest).org.bimserver.pb.AddDeserializerResponseo
 addInternalService+.org.bimserver.pb.AddInternalServiceRequest,.org.bimserver.pb.AddInternalServiceResponsef
@@ -673,7 +678,8 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*Œ
 getModelMergerByName-.org.bimserver.pb.GetModelMergerByNameRequest..org.bimserver.pb.GetModelMergerByNameResponsei
 getObjectIDMById).org.bimserver.pb.GetObjectIDMByIdRequest*.org.bimserver.pb.GetObjectIDMByIdResponseo
 getObjectIDMByName+.org.bimserver.pb.GetObjectIDMByNameRequest,.org.bimserver.pb.GetObjectIDMByNameResponsef
-getPluginBundle(.org.bimserver.pb.GetPluginBundleRequest).org.bimserver.pb.GetPluginBundleResponser
+getPluginBundle(.org.bimserver.pb.GetPluginBundleRequest).org.bimserver.pb.GetPluginBundleResponse‡
+getPluginBundleVersionById3.org.bimserver.pb.GetPluginBundleVersionByIdRequest4.org.bimserver.pb.GetPluginBundleVersionByIdResponser
 getPluginDescriptor,.org.bimserver.pb.GetPluginDescriptorRequest-.org.bimserver.pb.GetPluginDescriptorResponse„
 getPluginDescriptorByName2.org.bimserver.pb.GetPluginDescriptorByNameRequest3.org.bimserver.pb.GetPluginDescriptorByNameResponseu
 getPluginInformation-.org.bimserver.pb.GetPluginInformationRequest..org.bimserver.pb.GetPluginInformationResponse„
