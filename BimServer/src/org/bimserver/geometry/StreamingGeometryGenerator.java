@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.DoubleBuffer;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.DateFormat;
@@ -129,7 +131,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	private boolean reuseGeometry;
 	private boolean optimizeMappedItems;
 	
-	private final Map<Long, Tuple<HashMapVirtualObject, float[]>> geometryDataMap = new ConcurrentHashMap<>();
+	private final Map<Long, Tuple<HashMapVirtualObject, ByteBuffer>> geometryDataMap = new ConcurrentHashMap<>();
 
 	private GeometryGenerationDebugger geometryGenerationDebugger = new GeometryGenerationDebugger();
 
@@ -559,13 +561,13 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 //			geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_VerticesQuantized(), verticesQuantized.array());
 
 			LOGGER.debug("Generating quantized vertices");
-			float[] quantizationMatrix = createQuantizationMatrixFromBounds(generateGeometryResult.getBoundsUntransformed(), multiplierToMm);
+			double[] quantizationMatrix = createQuantizationMatrixFromBounds(generateGeometryResult.getBoundsUntransformed(), multiplierToMm);
 			for (Long id : geometryDataMap.keySet()) {
-				Tuple<HashMapVirtualObject, float[]> tuple = geometryDataMap.get(id);
+				Tuple<HashMapVirtualObject, ByteBuffer> tuple = geometryDataMap.get(id);
 				
 				HashMapVirtualObject buffer = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getBuffer());
 //				Buffer buffer = databaseSession.create(Buffer.class);
-				buffer.set("data", quantizeVertices(tuple.getB(), quantizationMatrix, multiplierToMm).array());
+				buffer.set("data", quantizeVertices(tuple.getB().asDoubleBuffer(), quantizationMatrix, multiplierToMm).array());
 //				buffer.setData(quantizeVertices(tuple.getB(), quantizationMatrix, multiplierToMm).array());
 //				databaseSession.store(buffer);
 				buffer.save();
@@ -615,8 +617,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		return generateGeometryResult;
 	}
 	
-	private float[] createQuantizationMatrixFromBounds(Bounds bounds, float multiplierToMm) {
-		float[] matrix = Matrix.identityF();
+	private double[] createQuantizationMatrixFromBounds(Bounds bounds, float multiplierToMm) {
+		// TODO do everything in double
+		double[] matrix = Matrix.identity();
 		float scale = 32768;
 		
 		Vector3f min = bounds.getMin();
@@ -662,18 +665,18 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		return matrix;
 	}
 
-	private ByteBuffer quantizeVertices(float[] vertices, float[] quantizationMatrix, float multiplierToMm) {
-		ByteBuffer quantizedBuffer = ByteBuffer.wrap(new byte[vertices.length * 2]);
+	private ByteBuffer quantizeVertices(DoubleBuffer vertices, double[] quantizationMatrix, float multiplierToMm) {
+		ByteBuffer quantizedBuffer = ByteBuffer.wrap(new byte[vertices.capacity() * 2]);
 		quantizedBuffer.order(ByteOrder.LITTLE_ENDIAN);
 		
-		float[] vertex = new float[4];
+		double[] vertex = new double[4];
 		float[] result = new float[4];
 		vertex[3] = 1;
-		int nrVertices = vertices.length;
+		int nrVertices = vertices.capacity();
 		for (int i=0; i<nrVertices; i+=3) {
-			vertex[0] = vertices[i];
-			vertex[1] = vertices[i+1];
-			vertex[2] = vertices[i+2];
+			vertex[0] = vertices.get(i);
+			vertex[1] = vertices.get(i+1);
+			vertex[2] = vertices.get(i+2);
 	
 			if (multiplierToMm != 1f) {
 				vertex[0] = vertex[0] * multiplierToMm;
@@ -1021,19 +1024,19 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	long getSize(VirtualObject geometryData) {
 		long size = 0;
 		size += (int)geometryData.get("nrIndices") * 4;
-		size += (int)geometryData.get("nrVertices") * (4 + 2);
+		size += (int)geometryData.get("nrVertices") * (8 + 2);
 		size += (int)geometryData.get("nrNormals") * (4 + 1);
 		size += (int)geometryData.get("nrColors") * (4 + 1);
 		return size;
 	}
 
 	// TODO add color??
-	int hash(int[] indices, float[] vertices, float[] normals, byte[] colors) {
-		int hashCode =0;
-		hashCode += Arrays.hashCode(indices);
-		hashCode += Arrays.hashCode(vertices);
-		hashCode += Arrays.hashCode(normals);
-		hashCode += Arrays.hashCode(colors);
+	int hash(ByteBuffer indices, ByteBuffer vertices, ByteBuffer normals, ByteBuffer colors) {
+		int hashCode = 0;
+		hashCode += indices.hashCode();
+		hashCode += vertices.hashCode();
+		hashCode += normals.hashCode();
+		hashCode += colors.hashCode();
 		
 		return hashCode;
 	}
@@ -1065,10 +1068,10 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		return (byte[])((HashMapVirtualObject)buffer).get("data");
 	}
 
-	void processExtendsUntranslated(VirtualObject geometryInfo, float[] vertices, int index, GenerateGeometryResult generateGeometryResult) throws BimserverDatabaseException {
-		double x = vertices[index];
-		double y = vertices[index + 1];
-		double z = vertices[index + 2];
+	void processExtendsUntranslated(VirtualObject geometryInfo, DoubleBuffer vertices, int index, GenerateGeometryResult generateGeometryResult) throws BimserverDatabaseException {
+		double x = vertices.get(index);
+		double y = vertices.get(index + 1);
+		double z = vertices.get(index + 2);
 		
 		HashMapWrappedVirtualObject bounds = (HashMapWrappedVirtualObject) geometryInfo.eGet(GeometryPackage.eINSTANCE.getGeometryInfo_BoundsUntransformed());
 		HashMapWrappedVirtualObject minBounds = (HashMapWrappedVirtualObject) bounds.eGet(GeometryPackage.eINSTANCE.getBounds_Min());
@@ -1089,10 +1092,10 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		generateGeometryResult.setUntranslatedMaxZ(Math.max(z, generateGeometryResult.getUntranslatedMaxZ()));
 	}
 
-	void processExtends(HashMapWrappedVirtualObject minBounds, HashMapWrappedVirtualObject maxBounds, double[] transformationMatrix, float[] vertices, int index, GenerateGeometryResult generateGeometryResult) throws BimserverDatabaseException {
-		double x = vertices[index];
-		double y = vertices[index + 1];
-		double z = vertices[index + 2];
+	void processExtends(HashMapWrappedVirtualObject minBounds, HashMapWrappedVirtualObject maxBounds, double[] transformationMatrix, DoubleBuffer vertices, int index, GenerateGeometryResult generateGeometryResult) throws BimserverDatabaseException {
+		double x = vertices.get(index);
+		double y = vertices.get(index + 1);
+		double z = vertices.get(index + 2);
 		
 		double[] result = new double[4];
 		
@@ -1130,7 +1133,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		return renderEngineName;
 	}
 
-	public void cacheGeometryData(HashMapVirtualObject geometryData, float[] vertices) {
+	public void cacheGeometryData(HashMapVirtualObject geometryData, ByteBuffer vertices) {
 		geometryDataMap.put(geometryData.getOid(), new Tuple<>(geometryData, vertices));
 	}
 

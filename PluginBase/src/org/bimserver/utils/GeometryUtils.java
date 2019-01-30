@@ -78,6 +78,19 @@ public class GeometryUtils {
 		return buffer.array();
 	}
 
+	public static byte[] doubleArrayToByteArray(double[] vertices) {
+		if (vertices == null) {
+			return null;
+		}
+		ByteBuffer buffer = ByteBuffer.wrap(new byte[vertices.length * 4]);
+		buffer.order(ByteOrder.LITTLE_ENDIAN);
+		DoubleBuffer asDoubleBuffer = buffer.asDoubleBuffer();
+		for (double d : vertices) {
+			asDoubleBuffer.put(d);
+		}
+		return buffer.array();
+	}
+
 	public static byte[] intArrayToByteArray(int[] indices) {
 		if (indices == null) {
 			return null;

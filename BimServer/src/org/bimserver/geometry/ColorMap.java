@@ -45,7 +45,7 @@ public class ColorMap {
 	
 	private Color4f lastColor;
 	private final List<A> list = new ArrayList<>();
-	private final Map<Color4f, Float> colorToArea = new HashMap<>();
+	private final Map<Color4f, Double> colorToArea = new HashMap<>();
 	private int index;
 	private boolean hasTransparency;
 	private A lastA;
@@ -54,7 +54,7 @@ public class ColorMap {
 	public ColorMap() {
 	}
 	
-	public void addTriangle(float[] triangle, Color4f color) {
+	public void addTriangle(double[] triangle, Color4f color) {
 		if (lastColor == null || !lastColor.equals(color)) {
 			lastA = new A(index, color);
 			list.add(lastA);
@@ -75,8 +75,8 @@ public class ColorMap {
 		}
 	}
 	
-	public float area(float[] triangle) {
-		return (float) (0.5f * 
+	public double area(double[] triangle) {
+		return (0.5d * 
 			Math.sqrt(
 				Math.pow(((triangle[3] * triangle[7]) - (triangle[6] * triangle[4])), 2) +
 				Math.pow(((triangle[6] * triangle[1]) - (triangle[0] * triangle[7])), 2) +
@@ -96,9 +96,9 @@ public class ColorMap {
 	}
 
 	public Color4f getMostUsedColor() {
-		float totalArea = 0;
+		double totalArea = 0;
 		Color4f mostUsed = null;
-		for (Entry<Color4f, Float> entry : colorToArea.entrySet()) {
+		for (Entry<Color4f, Double> entry : colorToArea.entrySet()) {
 			if (mostUsed == null || entry.getValue() > totalArea) {
 				mostUsed = entry.getKey();
 				totalArea = entry.getValue();

@@ -1,5 +1,7 @@
 package org.bimserver.plugins.renderengine;
 
+import java.nio.ByteBuffer;
+
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
  * 
@@ -18,13 +20,13 @@ package org.bimserver.plugins.renderengine;
  *****************************************************************************/
 
 public class RenderEngineGeometry {
-	private final int[] indices;
-	private final float[] vertices;
-	private final float[] normals;
-	private float[] materials;
-	private int[] materialIndices;
+	private final ByteBuffer indices;
+	private final ByteBuffer vertices;
+	private final ByteBuffer normals;
+	private final ByteBuffer materials;
+	private final ByteBuffer materialIndices;
 
-	public RenderEngineGeometry(int[] indices, float[] vertices, float[] normals, float[] materials, int[] materialIndices) {
+	public RenderEngineGeometry(ByteBuffer indices, ByteBuffer vertices, ByteBuffer normals, ByteBuffer materials, ByteBuffer materialIndices) {
 		this.indices = indices;
 		this.vertices = vertices;
 		this.normals = normals;
@@ -33,54 +35,58 @@ public class RenderEngineGeometry {
 	}
 	
 	public int getIndex(int index) {
-		return indices[index];
+		return indices.get(index);
 	}
 	
-	public float getVertex(int index) {
-		return vertices[index];
+	public double getVertex(int index) {
+		return vertices.get(index);
 	}
 	
 	public float getNormal(int index) {
-		return normals[index];
+		return normals.get(index);
 	}
 
-	public float[] getMaterials() {
+	public ByteBuffer getMaterials() {
 		return materials;
 	}
 	
-	public int[] getMaterialIndices() {
+	public ByteBuffer getMaterialIndices() {
 		return materialIndices;
 	}
 	
 	public int getNrVertices() {
-		return vertices.length;
+		return vertices.capacity();
 	}
 
 	public int getNrNormals() {
-		return normals.length;
+		return normals.capacity();
 	}
 
 	public int getNrIndices() {
-		return indices.length;
+		return indices.capacity();
 	}
 
-	public float[] getVertices() {
+	public ByteBuffer getVertices() {
 		return vertices;
 	}
 	
-	public float[] getNormals() {
+	public ByteBuffer getNormals() {
 		return normals;
 	}
 	
-	public int[] getIndices() {
+	public ByteBuffer getIndices() {
 		return indices;
 	}
 
 	public int getMaterialIndex(int index) {
-		return materialIndices[index];
+		return materialIndices.get(index);
 	}
 
-	public float getMaterial(int i) {
-		return materials[i];
+	public float getMaterial(int index) {
+		return materials.get(index);
+	}
+
+	public int getNrMaterialIndices() {
+		return materialIndices.capacity();
 	}
 }

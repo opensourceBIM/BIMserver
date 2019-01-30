@@ -24,6 +24,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.nio.DoubleBuffer;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
@@ -66,9 +69,7 @@ import org.bimserver.renderengine.RenderEnginePool;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.HashMapWrappedVirtualObject;
 import org.bimserver.shared.QueryContext;
-import org.bimserver.shared.VirtualObject;
 import org.bimserver.shared.WrappedVirtualObject;
-import org.bimserver.utils.GeometryUtils;
 import org.eclipse.emf.ecore.EClass;
 import org.slf4j.LoggerFactory;
 
@@ -265,49 +266,53 @@ public class GeometryRunner implements Runnable {
 										HashMapVirtualObject geometryData = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getGeometryData());
 										
 										geometryData.set("type", databaseSession.getCid(eClass));
-										int[] indices = geometry.getIndices();
+										ByteBuffer indices = geometry.getIndices();
+										IntBuffer indicesAsInt = indices.order(ByteOrder.LITTLE_ENDIAN).asIntBuffer();
 										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Reused(), 1);
-										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Indices(), createBuffer(queryContext, GeometryUtils.intArrayToByteArray(indices)));
-										geometryData.set("nrIndices", indices.length);
-										float[] vertices = geometry.getVertices();
-										geometryData.set("nrVertices", vertices.length);
-										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Vertices(), createBuffer(queryContext, GeometryUtils.floatArrayToByteArray(vertices)));
-										float[] normals = geometry.getNormals();
-										geometryData.set("nrNormals", normals.length);
-										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Normals(), createBuffer(queryContext, GeometryUtils.floatArrayToByteArray(normals)));
+										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Indices(), createBuffer(queryContext, indices));
+										geometryData.set("nrIndices", indicesAsInt.capacity());
+										ByteBuffer vertices = geometry.getVertices();
+										DoubleBuffer verticesAsDouble = vertices.order(ByteOrder.LITTLE_ENDIAN).asDoubleBuffer();
+										geometryData.set("nrVertices", verticesAsDouble.capacity());
+										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Vertices(), createBuffer(queryContext, vertices));
+										ByteBuffer normals = geometry.getNormals();
+										FloatBuffer normalsAsFloat = normals.order(ByteOrder.LITTLE_ENDIAN).asFloatBuffer();
+										geometryData.set("nrNormals", normalsAsFloat.capacity());
+										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Normals(), createBuffer(queryContext, normals));
 										
-										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), indices.length / 3);
+										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), indicesAsInt.capacity() / 3);
 										
-										job.setTrianglesGenerated(indices.length / 3);
-										job.getReport().incrementTriangles(indices.length / 3);
+										job.setTrianglesGenerated(indicesAsInt.capacity() / 3);
+										job.getReport().incrementTriangles(indicesAsInt.capacity() / 3);
 										
 										streamingGeometryGenerator.cacheGeometryData(geometryData, vertices);
 
 										ColorMap colorMap = new ColorMap();
 										
-										byte[] colors = new byte[0];
-										if (geometry.getMaterialIndices() != null && geometry.getMaterialIndices().length > 0) {
-											float[] materials = geometry.getMaterials();
+										ByteBuffer colors = ByteBuffer.wrap(new byte[0]);
+										IntBuffer materialIndices = geometry.getMaterialIndices().order(ByteOrder.LITTLE_ENDIAN).asIntBuffer();
+										if (materialIndices != null && materialIndices.capacity() > 0) {
+											FloatBuffer materialsAsFloat = geometry.getMaterials().order(ByteOrder.LITTLE_ENDIAN).asFloatBuffer();
 											boolean hasMaterial = false;
-											colors = new byte[(vertices.length / 3) * 4];
-											float[] triangle = new float[9];
-											for (int i = 0; i < geometry.getMaterialIndices().length; ++i) {
-												int c = geometry.getMaterialIndices()[i];
+											colors = ByteBuffer.allocate((verticesAsDouble.capacity() / 3) * 4);
+											double[] triangle = new double[9];
+											for (int i = 0; i < materialIndices.capacity(); ++i) {
+												int c = materialIndices.get(i);
 												if (c > -1) {
 													Color4f color = new Color4f();
 													for (int l = 0; l < 4; ++l) {
-														float val = fixColor(materials[4 * c + l]);
+														float val = fixColor(materialsAsFloat.get(4 * c + l));
 														color.set(l, val);
 													}
 													for (int j = 0; j < 3; ++j) {
-														int k = indices[i * 3 + j];
-														triangle[j * 3 + 0] = vertices[3 * k];
-														triangle[j * 3 + 1] = vertices[3 * k + 1];
-														triangle[j * 3 + 2] = vertices[3 * k + 2];
+														int k = indicesAsInt.get(i * 3 + j);
+														triangle[j * 3 + 0] = verticesAsDouble.get(3 * k);
+														triangle[j * 3 + 1] = verticesAsDouble.get(3 * k + 1);
+														triangle[j * 3 + 2] = verticesAsDouble.get(3 * k + 2);
 														hasMaterial = true;
 														for (int l = 0; l < 4; ++l) {
-															float val = fixColor(materials[4 * c + l]);
-															colors[4 * k + l] = UnsignedBytes.checkedCast((int)(val * 255));
+															float val = fixColor(materialsAsFloat.get(4 * c + l));
+															colors.put(4 * k + l, UnsignedBytes.checkedCast((int)(val * 255)));
 														}
 													}
 													colorMap.addTriangle(triangle, color);
@@ -315,10 +320,9 @@ public class GeometryRunner implements Runnable {
 											}
 											if (hasMaterial) {
 												ColorMap2 colorMap2 = new ColorMap2();
-												ByteBuffer cb = ByteBuffer.wrap(colors);
 												byte[] colorB = new byte[4];
-												for (int i=0; i<colors.length; i+=4) {
-													cb.get(colorB);
+												for (int i=0; i<colors.capacity(); i+=4) {
+													colors.get(colorB);
 													colorMap2.addColor(colorB);
 												}
 												
@@ -350,7 +354,7 @@ public class GeometryRunner implements Runnable {
 												geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_MostUsedColor(), color);
 											}
 											if (hasMaterial) {
-												geometryData.set("nrColors", colors.length);
+												geometryData.set("nrColors", colors.capacity());
 												geometryData.set(GeometryPackage.eINSTANCE.getGeometryData_ColorsQuantized(), createBuffer(queryContext, colors));
 											} else {
 												geometryData.set("nrColors", 0);
@@ -368,17 +372,17 @@ public class GeometryRunner implements Runnable {
 											Matrix.setIdentityM(productTranformationMatrix, 0);
 										}
 
-										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_NrColors(), colors.length);
-										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_NrVertices(), vertices.length);
+										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_NrColors(), colors.capacity());
+										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_NrVertices(), verticesAsDouble.capacity());
 										geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), geometryData.getOid(), 0);
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_HasTransparency(), hasTransparency);
 										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_HasTransparency(), hasTransparency);
 
 										long size = this.streamingGeometryGenerator.getSize(geometryData);
 
-										for (int i = 0; i < indices.length; i++) {
-											this.streamingGeometryGenerator.processExtends(minBounds, maxBounds, productTranformationMatrix, vertices, indices[i] * 3, generateGeometryResult);
-											this.streamingGeometryGenerator.processExtendsUntranslated(geometryInfo, vertices, indices[i] * 3, generateGeometryResult);
+										for (int i = 0; i < indicesAsInt.capacity(); i++) {
+											this.streamingGeometryGenerator.processExtends(minBounds, maxBounds, productTranformationMatrix, verticesAsDouble, indicesAsInt.get(i) * 3, generateGeometryResult);
+											this.streamingGeometryGenerator.processExtendsUntranslated(geometryInfo, verticesAsDouble, indicesAsInt.get(i) * 3, generateGeometryResult);
 										}
 										
 										HashMapWrappedVirtualObject boundsUntransformedMm = createMmBounds(geometryInfo, boundsUntransformed, generateGeometryResult.getMultiplierToMm());
@@ -386,8 +390,8 @@ public class GeometryRunner implements Runnable {
 										HashMapWrappedVirtualObject boundsMm = createMmBounds(geometryInfo, bounds, generateGeometryResult.getMultiplierToMm());
 										geometryInfo.set("boundsMm", boundsMm);
 
-										ByteBuffer normalsQuantized = quantizeNormals(normals);
-										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_NormalsQuantized(), createBuffer(queryContext, normalsQuantized.array()));
+										ByteBuffer normalsQuantized = quantizeNormals(normalsAsFloat);
+										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_NormalsQuantized(), createBuffer(queryContext, normalsQuantized));
 										
 										HashMapWrappedVirtualObject geometryDataBounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getBounds());
 										WrappedVirtualObject geometryDataBoundsMin = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
@@ -426,8 +430,10 @@ public class GeometryRunner implements Runnable {
 											 * 	- When the same geometry is processed concurrently they could both do the hash check at a time when there is no cached version, then they both think it's non-reused geometry
 											*/
 											int hash = this.streamingGeometryGenerator.hash(indices, vertices, normals, colors);
-											float[] firstVertex = new float[] { vertices[indices[0]], vertices[indices[0] + 1], vertices[indices[0] + 2] };
-											float[] lastVertex = new float[] { vertices[indices[indices.length - 1] * 3], vertices[indices[indices.length - 1] * 3 + 1], vertices[indices[indices.length - 1] * 3 + 2] };
+											int firstIndex = indicesAsInt.get(0);
+											int lastIndex = indicesAsInt.get(indicesAsInt.capacity() - 1);
+											double[] firstVertex = new double[] { verticesAsDouble.get(firstIndex), verticesAsDouble.get(firstIndex + 1), verticesAsDouble.get(firstIndex + 2) };
+											double[] lastVertex = new double[] { verticesAsDouble.get(lastIndex * 3), verticesAsDouble.get(lastIndex * 3 + 1), verticesAsDouble.get(lastIndex * 3 + 2) };
 											Range range = new Range(firstVertex, lastVertex);
 											Long referenceOid = this.streamingGeometryGenerator.hashes.get(hash);
 											if (referenceOid != null) {
@@ -496,9 +502,9 @@ public class GeometryRunner implements Runnable {
 														}
 													}
 
-													geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), indices.length / 3);
+													geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), indicesAsInt.capacity() / 3);
 
-													productToData.put(ifcProduct.getOid(), new TemporaryGeometryData(geometryData.getOid(), additionalData, indices.length / 3, size, mibu, mabu, indices, vertices, hasTransparency, colors.length));
+													productToData.put(ifcProduct.getOid(), new TemporaryGeometryData(geometryData.getOid(), additionalData, indicesAsInt.capacity() / 3, size, mibu, mabu, indicesAsInt, verticesAsDouble, hasTransparency, colors.capacity()));
 													geometryData.save();
 													databaseSession.cache((HashMapVirtualObject) geometryData);
 												}
@@ -535,9 +541,8 @@ public class GeometryRunner implements Runnable {
 											databaseSession.cache((HashMapVirtualObject) geometryData);
 										}
 
-										calculateObb(geometryInfo, productTranformationMatrix, indices, vertices, generateGeometryResult);
 										this.streamingGeometryGenerator.setTransformationMatrix(geometryInfo, productTranformationMatrix);
-										debuggingInfo.put(ifcProduct.getOid(), new DebuggingInfo(productTranformationMatrix, indices, vertices));
+										debuggingInfo.put(ifcProduct.getOid(), new DebuggingInfo(productTranformationMatrix, indices.asIntBuffer(), vertices.asFloatBuffer()));
 
 										geometryInfo.save();
 										this.streamingGeometryGenerator.totalBytes.addAndGet(size);
@@ -676,37 +681,38 @@ public class GeometryRunner implements Runnable {
 											Matrix.multiplyMM(totalTranformationMatrix, 0, productDef.getProductMatrix(), 0, finalMatrix, 0);
 
 											if (geometryGenerationDebugger != null) {
-												if (debuggingInfo.containsKey(ifcProduct.getOid())) {
-													DebuggingInfo debuggingInfo2 = debuggingInfo.get(ifcProduct.getOid());
-													DebuggingInfo debuggingInfo3 = debuggingInfo.get(productDef.getMasterOid());
-													
-													if (debuggingInfo2.getIndices().length != debuggingInfo3.getIndices().length) {
-														LOGGER.error("Different sizes for indices, weird...");
-														LOGGER.error(ifcProduct.getOid() + " / " + productDef.getMasterOid());
-													} else {
-														for (int i=0; i<debuggingInfo2.getIndices().length; i++) {
-															int index = debuggingInfo2.getIndices()[i];
-															float[] vertex = new float[]{debuggingInfo2.getVertices()[index * 3], debuggingInfo2.getVertices()[index * 3 + 1], debuggingInfo2.getVertices()[index * 3 + 2], 1};
-															float[] transformedOriginal = new float[4];
-															Matrix.multiplyMV(transformedOriginal, 0, debuggingInfo2.getProductTranformationMatrix(), 0, vertex, 0);
-															float[] transformedNew = new float[4];
-															int index2 = debuggingInfo3.getIndices()[i];
-															float[] vertex2 = new float[]{debuggingInfo3.getVertices()[index2 * 3], debuggingInfo3.getVertices()[index2 * 3 + 1], debuggingInfo3.getVertices()[index2 * 3 + 2], 1};
-															Matrix.multiplyMV(transformedNew, 0, totalTranformationMatrix, 0, vertex2, 0);
-															
-															// TODO margin should depend on bb of complete model
-															if (!almostTheSame((String)ifcProduct.get("GlobalId"), transformedNew, transformedOriginal, 0.05F)) {
-																geometryGenerationDebugger.transformedVertexNotMatching(ifcProduct, transformedOriginal, transformedNew, debuggingInfo2.getProductTranformationMatrix(), totalTranformationMatrix);
-															}
-														}
-													}
+//												if (debuggingInfo.containsKey(ifcProduct.getOid())) {
+//													DebuggingInfo debuggingInfo2 = debuggingInfo.get(ifcProduct.getOid());
+//													DebuggingInfo debuggingInfo3 = debuggingInfo.get(productDef.getMasterOid());
+//													
+//													if (debuggingInfo2.getIndices().length != debuggingInfo3.getIndices().length) {
+//														LOGGER.error("Different sizes for indices, weird...");
+//														LOGGER.error(ifcProduct.getOid() + " / " + productDef.getMasterOid());
+//													} else {
+//														for (int i=0; i<debuggingInfo2.getIndices().length; i++) {
+//															int index = debuggingInfo2.getIndices()[i];
+//															float[] vertex = new float[]{debuggingInfo2.getVertices()[index * 3], debuggingInfo2.getVertices()[index * 3 + 1], debuggingInfo2.getVertices()[index * 3 + 2], 1};
+//															float[] transformedOriginal = new float[4];
+//															Matrix.multiplyMV(transformedOriginal, 0, debuggingInfo2.getProductTranformationMatrix(), 0, vertex, 0);
+//															float[] transformedNew = new float[4];
+//															int index2 = debuggingInfo3.getIndices()[i];
+//															float[] vertex2 = new float[]{debuggingInfo3.getVertices()[index2 * 3], debuggingInfo3.getVertices()[index2 * 3 + 1], debuggingInfo3.getVertices()[index2 * 3 + 2], 1};
+//															Matrix.multiplyMV(transformedNew, 0, totalTranformationMatrix, 0, vertex2, 0);
+//															
+//															// TODO margin should depend on bb of complete model
+//															if (!almostTheSame((String)ifcProduct.get("GlobalId"), transformedNew, transformedOriginal, 0.05F)) {
+//																geometryGenerationDebugger.transformedVertexNotMatching(ifcProduct, transformedOriginal, transformedNew, debuggingInfo2.getProductTranformationMatrix(), totalTranformationMatrix);
+//															}
+//														}
+//													}
 													
 //												almostTheSame((String)ifcProduct.get("GlobalId"), debuggingInfo2.getProductTranformationMatrix(), totalTranformationMatrix, 0.01D);
-												}
+//												}
 											}
 
-											for (int i = 0; i < masterGeometryData.getIndices().length; i++) {
-												this.streamingGeometryGenerator.processExtends(minBounds, maxBounds, totalTranformationMatrix, masterGeometryData.getVertices(), masterGeometryData.getIndices()[i] * 3, generateGeometryResult);
+											IntBuffer indices = masterGeometryData.getIndices();
+											for (int i = 0; i < indices.capacity(); i++) {
+												this.streamingGeometryGenerator.processExtends(minBounds, maxBounds, totalTranformationMatrix, masterGeometryData.getVertices(), indices.get(i) * 3, generateGeometryResult);
 											}
 
 											HashMapWrappedVirtualObject boundsUntransformedMm = createMmBounds(geometryInfo, boundsUntransformed, generateGeometryResult.getMultiplierToMm());
@@ -813,9 +819,9 @@ public class GeometryRunner implements Runnable {
 		return 0.5f;
 	}
 	
-	private long createBuffer(QueryContext queryContext, byte[] data) throws BimserverDatabaseException {
+	private long createBuffer(QueryContext queryContext, ByteBuffer data) throws BimserverDatabaseException {
 		HashMapVirtualObject buffer = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getBuffer());
-		buffer.set("data", data);
+		buffer.set("data", data.array());
 		buffer.save();
 		return buffer.getOid();
 	}
@@ -829,11 +835,11 @@ public class GeometryRunner implements Runnable {
 		return quantizedColors;
 	}
 
-	private ByteBuffer quantizeNormals(float[] normals) {
-		ByteBuffer quantizedNormals = ByteBuffer.wrap(new byte[normals.length]);
+	private ByteBuffer quantizeNormals(FloatBuffer normals) {
+		ByteBuffer quantizedNormals = ByteBuffer.wrap(new byte[normals.capacity()]);
 		quantizedNormals.order(ByteOrder.LITTLE_ENDIAN);
-		for (int i=0; i<normals.length; i++) {
-			float normal = normals[i];
+		for (int i=0; i<normals.capacity(); i++) {
+			float normal = normals.get(i);
 			quantizedNormals.put((byte)(normal * 127));
 		}
 		return quantizedNormals;
@@ -1054,9 +1060,5 @@ public class GeometryRunner implements Runnable {
 //			StreamingGeometryGenerator.LOGGER.info("Writing debug file to " + file.toAbsolutePath().toString());
 			FileUtils.writeByteArrayToFile(file.toFile(), bytes);
 		}
-	}
-
-	private void calculateObb(VirtualObject geometryInfo, double[] tranformationMatrix, int[] indices, float[] vertices, GenerateGeometryResult generateGeometryResult2) {
-
 	}
 }

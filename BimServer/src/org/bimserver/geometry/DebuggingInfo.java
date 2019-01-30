@@ -1,5 +1,8 @@
 package org.bimserver.geometry;
 
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
  * 
@@ -20,20 +23,20 @@ package org.bimserver.geometry;
 public class DebuggingInfo {
 
 	private double[] productTranformationMatrix;
-	private float[] vertices;
-	private int[] indices;
+	private FloatBuffer vertices;
+	private IntBuffer indices;
 
-	public DebuggingInfo(double[] productTranformationMatrix, int[] indices, float[] vertices) {
+	public DebuggingInfo(double[] productTranformationMatrix, IntBuffer indices, FloatBuffer vertices) {
 		this.productTranformationMatrix = productTranformationMatrix;
 		this.indices = indices;
 		this.vertices = vertices;
 	}
 
-	public float[] getVertices() {
+	public FloatBuffer getVertices() {
 		return vertices;
 	}
 	
-	public int[] getIndices() {
+	public IntBuffer getIndices() {
 		return indices;
 	}
 	

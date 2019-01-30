@@ -1,5 +1,9 @@
 package org.bimserver;
 
+import java.nio.DoubleBuffer;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
  * 
@@ -43,14 +47,14 @@ public class TemporaryGeometryData {
 	private long size;
 	private double[] mibu;
 	private double[] mabu;
-	private int[] indices;
-	private float[] vertices;
+	private IntBuffer indices;
+	private DoubleBuffer vertices;
 	private ObjectNode additionalData;
 	private boolean hasTransparancy;
 	private int nrVertices;
 	private int nrColors;
 
-	public TemporaryGeometryData(long oid, ObjectNode additionalData, int nrPrimitives, long size, double[] mibu, double[] mabu, int[] indices, float[] vertices, boolean hasTransparancy, int nrColors) {
+	public TemporaryGeometryData(long oid, ObjectNode additionalData, int nrPrimitives, long size, double[] mibu, double[] mabu, IntBuffer indices, DoubleBuffer vertices, boolean hasTransparancy, int nrColors) {
 		this.oid = oid;
 		this.additionalData = additionalData;
 		this.nrPrimitives = nrPrimitives;
@@ -60,15 +64,15 @@ public class TemporaryGeometryData {
 		this.indices = indices;
 		this.vertices = vertices;
 		this.hasTransparancy = hasTransparancy;
-		this.nrVertices = vertices.length;
+		this.nrVertices = vertices.capacity();
 		this.nrColors = nrColors;
 	}
 	
-	public int[] getIndices() {
+	public IntBuffer getIndices() {
 		return indices;
 	}
 	
-	public float[] getVertices() {
+	public DoubleBuffer getVertices() {
 		return vertices;
 	}
 	
