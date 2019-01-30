@@ -55,15 +55,15 @@ public class RenderEngineGeometry {
 	}
 	
 	public int getNrVertices() {
-		return vertices.capacity();
+		return vertices.asDoubleBuffer().capacity();
 	}
 
 	public int getNrNormals() {
-		return normals.capacity();
+		return normals.asFloatBuffer().capacity();
 	}
 
 	public int getNrIndices() {
-		return indices.capacity();
+		return indices.asIntBuffer().capacity();
 	}
 
 	public ByteBuffer getVertices() {
@@ -87,6 +87,6 @@ public class RenderEngineGeometry {
 	}
 
 	public int getNrMaterialIndices() {
-		return materialIndices.capacity();
+		return materialIndices.asIntBuffer().capacity();
 	}
 }
