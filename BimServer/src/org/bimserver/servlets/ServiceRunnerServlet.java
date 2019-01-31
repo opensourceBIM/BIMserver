@@ -91,6 +91,7 @@ public class ServiceRunnerServlet extends SubServlet {
 		String serviceName = request.getHeader("ServiceName");
 		if (serviceName == null) {
 			serviceName = request.getRequestURI();
+			LOGGER.info("Request URI: " + serviceName);
 			if (serviceName.startsWith("/services/")) {
 				serviceName = serviceName.substring(10);
 			}
@@ -99,13 +100,14 @@ public class ServiceRunnerServlet extends SubServlet {
 			// Get it from the token
 			try {
 				Authorization authorization = Authorization.fromToken(getBimServer().getEncryptionKey(), token);
+				LOGGER.info("Authorization: " + authorization);
 				if (authorization instanceof RunServiceAuthorization) {
 					RunServiceAuthorization runServiceAuthorization = (RunServiceAuthorization)authorization;
 					serviceName = "" + runServiceAuthorization.getSoid();
 					LOGGER.info("Got SOID from token (" + serviceName + ")");
 				}
 			} catch (AuthenticationException e) {
-				e.printStackTrace();
+				LOGGER.error("", e);
 			}
 		}
 		LOGGER.info("ServiceName: " + serviceName);
