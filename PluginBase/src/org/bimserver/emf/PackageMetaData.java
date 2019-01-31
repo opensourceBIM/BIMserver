@@ -72,6 +72,7 @@ public class PackageMetaData implements ObjectFactory {
 	private Path schemaPath;
 
 	public PackageMetaData(EPackage ePackage, Schema schema, Path tempDir) {
+		LOGGER.info("Initializing " + schema + " with " + ePackage.getName());
 		this.ePackage = ePackage;
 		this.schema = schema;
 		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
@@ -132,7 +133,10 @@ public class PackageMetaData implements ObjectFactory {
 		
 		try {
 			initUnsettedLengths();
-			initInverses();
+			if (ePackage == Ifc2x3tc1Package.eINSTANCE || ePackage == Ifc4Package.eINSTANCE) {
+				// Only do this for IFC schemas, other schemas do not have inverses (since that's an express concept)
+				initInverses();
+			}
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
