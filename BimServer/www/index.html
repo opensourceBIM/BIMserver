@@ -33,24 +33,26 @@
 	<script>
 		var Global = {};
 		
-		$.getJSON("x.getbimserveraddress", function(data){
-			Global.api = new BasicApi(data.address)
+		function getApiAddress() {
+			console.log(window.location);
+			return document.location.origin;
+		}		    			
 
-			Global.api.call("AdminInterface", "getServerInfo", {}, function(serverInfo){
-				var state = serverInfo.serverState;
-				if (state == "NOT_SETUP") {
-					$(".indexcontainer").load("setup.html", function(){
-						new Setup($(this), window.location.href);
-					});
-				} else {
-					$(".indexcontainer").load("status.html", function(){
-						new Status($(this), serverInfo);
-					});
-				}
-			});
-		}).fail(function(){
+		var apiAddress = getApiAddress();
+		Global.api = new BasicApi(apiAddress)
+
+		Global.api.call("AdminInterface", "getServerInfo", {}, function(serverInfo){
+			var state = serverInfo.serverState;
+			if (state == "NOT_SETUP") {
+				$(".indexcontainer").load("setup.html", function(){
+					new Setup($(this), window.location.href);
+				});
+			} else {
+				$(".indexcontainer").load("status.html", function(){
+					new Status($(this), serverInfo);
+				});
+			}
 		});
-
 	</script>
 </body>
 </html>
