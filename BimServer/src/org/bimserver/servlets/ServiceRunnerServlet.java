@@ -95,7 +95,7 @@ public class ServiceRunnerServlet extends SubServlet {
 				serviceName = serviceName.substring(10);
 			}
 		}
-		if (serviceName == null || serviceName.contentEquals("/services") || serviceName.contentEquals("/services/")) {
+		if (serviceName == null || serviceName.trim().contentEquals("") || serviceName.trim().contentEquals("/") || serviceName.contentEquals("/services") || serviceName.contentEquals("/services/")) {
 			// Get it from the token
 			try {
 				Authorization authorization = Authorization.fromToken(getBimServer().getEncryptionKey(), token);
