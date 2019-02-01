@@ -113,7 +113,8 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 				}
 			}
 			if (!requestUri.equals("index.html")) {
-				response.setHeader("Expires", FAR_FUTURE_EXPIRE_DATE);
+				// Disabled for now since ES6 modules can't be loaded with a ?_v=[version] addition, causing all sorts of problems
+//				response.setHeader("Expires", FAR_FUTURE_EXPIRE_DATE);
 			}
 			Path resolved = pluginContext.getRootPath().resolve(getInternalPath() + requestUri);
 			InputStream resourceAsInputStream = Files.newInputStream(resolved);
