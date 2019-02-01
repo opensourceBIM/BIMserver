@@ -219,6 +219,8 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 										for (Object o : subList) {
 											if (o instanceof HashMapWrappedVirtualObject) {
 												newList.add(convertWrapped(revision, ifcModel, (HashMapWrappedVirtualObject)o));
+											} else if (o instanceof Long) {
+												// TODO
 											} else {
 												newList.add(o);
 											}
