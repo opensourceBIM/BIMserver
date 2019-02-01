@@ -288,9 +288,6 @@ function Setup(cd, address) {
 	if (address.endsWith(":80")) {
 		address = address.substring(0, address.length - 3);
 	}
-	if (address.endsWith("/")) {
-		address = address.substring(0, address.length - 1);
-	}
 	$(".setup .siteAddressInput").val(address);
 	
 	$(".emailCheckBox").change(function(){

@@ -35,7 +35,11 @@
 		
 		function getApiAddress() {
 			console.log(window.location);
-			return document.location.origin;
+			var fullpath = document.location.origin + document.location.pathname;
+			if (fullpath.substring(fullpath.length - 1) == "/") {
+				fullpath = fullpath.substring(0, fullpath.length - 1);
+			}
+			return fullpath;
 		}		    			
 
 		var apiAddress = getApiAddress();
@@ -45,7 +49,7 @@
 			var state = serverInfo.serverState;
 			if (state == "NOT_SETUP") {
 				$(".indexcontainer").load("setup.html", function(){
-					new Setup($(this), window.location.href);
+					new Setup($(this), apiAddress);
 				});
 			} else {
 				$(".indexcontainer").load("status.html", function(){
