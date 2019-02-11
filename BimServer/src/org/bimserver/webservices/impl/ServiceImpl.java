@@ -1057,22 +1057,11 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			}
 			username = user.getName();
 			userUsername = user.getUsername();
-			Path homeDirIncoming = getBimServer().getHomeDir().resolve("incoming");
-			Path userDirIncoming = homeDirIncoming.resolve(userUsername);
-			if (!Files.exists(userDirIncoming)) {
-				Files.createDirectories(userDirIncoming);
-			}
-			if (fileName.contains("/")) {
-				fileName = fileName.substring(fileName.lastIndexOf("/") + 1);
-			}
-			if (fileName.contains("\\")) {
-				fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
-			}
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-			String cacheFileName = dateFormat.format(new Date()) + "-" + fileName;
-			Path file = userDirIncoming.resolve(cacheFileName);
+			
+			Path incomingFile = getIncomingFileName(fileName, null, userUsername);
+			
 			return checkinInternal(topicId, poid, comment, deserializerOid, fileSize, fileName, dataHandler.getInputStream(), merge,
-					sync, session, username, userUsername, project, file, newServiceId);
+					sync, session, username, userUsername, project, incomingFile, newServiceId);
 		} catch (UserException e) {
 			try {
 				clearCheckinInProgress(poid);
@@ -1106,22 +1095,11 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			}
 			username = user.getName();
 			userUsername = user.getUsername();
-			Path homeDirIncoming = getBimServer().getHomeDir().resolve("incoming");
-			Path userDirIncoming = homeDirIncoming.resolve(userUsername);
-			if (!Files.exists(userDirIncoming)) {
-				Files.createDirectories(userDirIncoming);
-			}
-			if (fileName.contains("/")) {
-				fileName = fileName.substring(fileName.lastIndexOf("/") + 1);
-			}
-			if (fileName.contains("\\")) {
-				fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
-			}
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-			String cacheFileName = dateFormat.format(new Date()) + "-" + fileName;
-			Path file = userDirIncoming.resolve(cacheFileName);
+			
+			Path incomingFile = getIncomingFileName(fileName, null, userUsername);
+			
 			return checkinInternal(topicId, poid, comment, deserializerOid, fileSize, fileName, dataHandler.getInputStream(), merge,
-					sync, session, username, userUsername, project, file, newServiceId);
+					sync, session, username, userUsername, project, incomingFile, newServiceId);
 		} catch (UserException e) {
 			try {
 				clearCheckinInProgress(poid);
@@ -1238,6 +1216,48 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		return topicId;
 	}
 	
+	private Path getIncomingFileName(String fileName, String urlString, String userUsername) throws IOException {
+		Path homeDirIncoming = getBimServer().getHomeDir().resolve("incoming");
+		if (!Files.isDirectory(homeDirIncoming)) {
+			Files.createDirectory(homeDirIncoming);
+		}
+
+		Path userDirIncoming = homeDirIncoming.resolve(userUsername);
+		if (!Files.exists(userDirIncoming)) {
+			Files.createDirectory(userDirIncoming);
+		}
+
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS");
+		if (fileName == null) {
+			if (urlString != null) {
+				if (urlString.contains("/")) {
+					fileName = urlString.substring(urlString.lastIndexOf("/") + 1);
+				} else {
+					fileName = urlString;
+				}
+			}
+			if (fileName.contains("?")) {
+				fileName = fileName.substring(0, fileName.indexOf("?"));
+			}
+			fileName = URLDecoder.decode(fileName, Charsets.UTF_8.name());
+		} else {
+			fileName = dateFormat.format(new Date()) + "-" + fileName;
+		}
+		
+		if (fileName.contains(" ")) {
+			fileName = fileName.replace(" ", "_");
+		}
+		if (fileName.contains("/")) {
+			fileName = fileName.substring(fileName.lastIndexOf("/") + 1);
+		}
+		if (fileName.contains("\\")) {
+			fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
+		}
+		
+		Path file = userDirIncoming.resolve(fileName);
+		return file;
+	}
+	
 	@Override
 	public SLongCheckinActionState checkinFromUrlSync(Long poid, String comment, Long deserializerOid, String fileName, String urlString, Boolean merge) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
@@ -1250,14 +1270,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
 			username = user.getName();
 			userUsername = user.getUsername();
-			Path homeDirIncoming = getBimServer().getHomeDir().resolve("incoming");
-			if (!Files.isDirectory(homeDirIncoming)) {
-				Files.createDirectory(homeDirIncoming);
-			}
-			Path userDirIncoming = homeDirIncoming.resolve(userUsername);
-			if (!Files.exists(userDirIncoming)) {
-				Files.createDirectory(userDirIncoming);
-			}
 			
 			Project project = session.get(poid, OldQuery.getDefault());
 			if (project == null) {
@@ -1267,27 +1279,10 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			URL url = new URL(urlString);
 			URLConnection openConnection = url.openConnection();
 			InputStream input = openConnection.getInputStream();
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-			if (fileName == null) {
-				if (urlString.contains("/")) {
-					fileName = urlString.substring(urlString.lastIndexOf("/") + 1);
-				} else {
-					fileName = urlString;
-				}
-				if (fileName.contains("?")) {
-					fileName = fileName.substring(0, fileName.indexOf("?"));
-				}
-				fileName = URLDecoder.decode(fileName, Charsets.UTF_8.name());
-			} else {
-				fileName = dateFormat.format(new Date()) + "-" + fileName;
-			}
-			Path file = userDirIncoming.resolve(fileName);
 			
-			if (fileName.contains(" ")) {
-				fileName = fileName.replace(" ", "_");
-			}
+			Path incomingFile = getIncomingFileName(fileName, urlString, userUsername);
 			
-			return checkinInternal(topicId, poid, comment, deserializerOid, (long)openConnection.getContentLength(), fileName, input, merge, true, session, username, userUsername, project, file, -1);
+			return checkinInternal(topicId, poid, comment, deserializerOid, (long)openConnection.getContentLength(), fileName, input, merge, true, session, username, userUsername, project, incomingFile, -1);
 			
 //			DeserializerPluginConfiguration deserializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, OldQuery.getDefault());
 //			if (deserializerPluginConfiguration == null) {
@@ -1349,7 +1344,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			URL url = new URL(urlString);
 			URLConnection openConnection = url.openConnection();
 			InputStream input = openConnection.getInputStream();
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS");
 			if (fileName == null) {
 				if (urlString.contains("/")) {
 					fileName = urlString.substring(urlString.lastIndexOf("/") + 1);
@@ -1361,8 +1356,10 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				}
 				fileName = URLDecoder.decode(fileName, Charsets.UTF_8.name());
 			} else {
-				fileName = dateFormat.format(new Date()) + "-" + fileName;
+				fileName = "";
 			}
+			fileName = fileName + "-" + dateFormat.format(new Date());
+			
 			Path file = userDirIncoming.resolve(fileName);
 			
 			if (fileName.contains(" ")) {
