@@ -353,7 +353,7 @@ public class ClientIfcModel extends IfcModel {
 			}
 		}
 		long end = System.nanoTime();
-		LOGGER.info((((end - start) / 1000000) + " ms"));
+//		LOGGER.info((((end - start) / 1000000) + " ms"));
 	}
 
 	private void loadGeometry() throws QueryException, ServerException, UserException, PublicInterfaceNotFoundException, IOException, GeometryException, IfcModelInterfaceException {
