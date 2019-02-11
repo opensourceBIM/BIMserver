@@ -63,6 +63,12 @@ public class RestartableInputStream extends InputStream {
 		return read;
 	}
 
+	@Override
+	public void close() throws IOException {
+		outputStream.close();
+		canRestart = true;
+	}
+	
 	public void restartIfAtEnd() throws IOException {
 		if (canRestart) {
 			outputStream.close();
