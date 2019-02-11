@@ -112,7 +112,7 @@ public class StringUtils {
 			} else if (c == '/') {
 				if (escapeMode == 7) {
 					escapeMode = 0;
-				} else {
+				} else if (quotes == 0) {
 					escapeMode = 5;
 				}
 			} else if (c == '*') {
