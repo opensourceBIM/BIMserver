@@ -72,7 +72,7 @@ public class ExplicitRightsAuthorization extends Authorization {
 	
 	public void canWriteExtendedData(long roid) throws UserException {
 		if (getWriteExtendedDataRoid() != roid) {
-			throw new UserException("No rights to write extended data to revision");
+			throw new UserException("No rights to write extended data to revision (" + roid + "), has rights for " + getWriteExtendedDataRoid());
 		}
 	}
 
