@@ -479,7 +479,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 							
 							LOGGER.debug("Running " + map.size() + " objects in one batch because of reused geometry " + (eClass.getName()));
 
-//							queryPart3.addInclude(jsonQueryObjectModelConverter.getDefineFromFile("validifc:IfcMappedItem"));
+//							queryPart3.addInclude(jsonQueryObjectModelConverter.getDefineFromFile("ifc2x3tc1-stdlib:IfcMappedItem"));
 							
 							processQuery(databaseSession, queryContext, generateGeometryResult, ifcSerializerPlugin, settings, renderEngineFilter, renderEnginePool, executor, eClass, query, queryPart, true, map, map.size());
 						}
