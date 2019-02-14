@@ -132,9 +132,6 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 //			print("\"_s\":0");
 //			print("}\n");
 //		} else {
-		if (object.eClass().getName().contentEquals("IfcBSplineSurfaceWithKnots")) {
-			System.out.println();
-		}
 			print("{");
 			print("\"_i\":" + object.getOid() + ",");
 			print("\"_t\":\"" + object.eClass().getName() + "\",");
@@ -319,10 +316,7 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 					}
 					f = false;
 					if (eStructuralFeature instanceof EReference) {
-						print("{");
-						print("\"_t\":\"" + eStructuralFeature.getEType().getName() + "\",");
-						print("\"_r\":" + o.toString());
-						print("}");
+						writeWrapper((MinimalVirtualObject) o);
 					}
 				}
 				print("]");
@@ -330,22 +324,26 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
  				print("" + ((HashMapVirtualObject)object).getOid());
  			}
 		} else if (object instanceof HashMapWrappedVirtualObject) {
-			print("{");
-			print("\"_t\":\"" + object.eClass().getName() + "\",");
-			for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
-				print("\"" + eStructuralFeature.getName() + "\":");
-				if (eStructuralFeature.getEType() instanceof EDataType) {
-					writePrimitive(eStructuralFeature, object.eGet(eStructuralFeature));
-				} else {
-					Object val = object.eGet(eStructuralFeature);
-					write((MinimalVirtualObject) val);
-				}
-				if (object.eClass().getEAllStructuralFeatures().get(object.eClass().getEAllStructuralFeatures().size()-1) != eStructuralFeature) {
-					print(",");
-				}
-			}
-			print("}");
+			writeWrapper(object);
 		}
+	}
+
+	private void writeWrapper(MinimalVirtualObject object) throws IOException {
+		print("{");
+		print("\"_t\":\"" + object.eClass().getName() + "\",");
+		for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
+			print("\"" + eStructuralFeature.getName() + "\":");
+			if (eStructuralFeature.getEType() instanceof EDataType) {
+				writePrimitive(eStructuralFeature, object.eGet(eStructuralFeature));
+			} else {
+				Object val = object.eGet(eStructuralFeature);
+				write((MinimalVirtualObject) val);
+			}
+			if (object.eClass().getEAllStructuralFeatures().get(object.eClass().getEAllStructuralFeatures().size()-1) != eStructuralFeature) {
+				print(",");
+			}
+		}
+		print("}");
 	}
 	
 	// Following two methods copied from http://www.json.org/java/org/json/JSONObject.java
