@@ -665,12 +665,12 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		return matrix;
 	}
 
-	private ByteBuffer quantizeVertices(DoubleBuffer vertices, double[] quantizationMatrix, float multiplierToMm) {
+	private ByteBuffer quantizeVertices(DoubleBuffer vertices, double[] quantizationMatrix, double multiplierToMm) {
 		ByteBuffer quantizedBuffer = ByteBuffer.wrap(new byte[vertices.capacity() * 2]);
 		quantizedBuffer.order(ByteOrder.LITTLE_ENDIAN);
 		
 		double[] vertex = new double[4];
-		float[] result = new float[4];
+		double[] result = new double[4];
 		vertex[3] = 1;
 		int nrVertices = vertices.capacity();
 		for (int i=0; i<nrVertices; i+=3) {
