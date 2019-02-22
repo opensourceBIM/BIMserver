@@ -287,7 +287,7 @@ public class NewRevisionNotification extends Notification {
 				channel = notificationsManager.getChannel(service);
 				final RemoteServiceInterface remoteServiceInterface = channel.get(RemoteServiceInterface.class);
 				long writeProjectPoid = service.getWriteRevision() == null ? -1 : service.getWriteRevision().getOid();
-				long writeExtendedDataRoid = service.getWriteExtendedData() != null ? roid : -1;
+				long writeExtendedDataRoid = roid;
 				if (writeExtendedDataRoid == -1) {
 					LOGGER.error("Write extended data roid is already -1 here");
 				}
