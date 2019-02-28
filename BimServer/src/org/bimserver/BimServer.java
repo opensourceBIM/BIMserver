@@ -522,14 +522,14 @@ public class BimServer implements BasicServerInfoProvider {
 							}
 							
 							try {
-								session.commit();
-							} catch (ServiceException e) {
+								pluginContext.initialize(pluginDescriptor.getSettings() == null ? null : new org.bimserver.plugins.PluginConfiguration(pluginDescriptor.getSettings()));
+							} catch (PluginException e) {
 								LOGGER.error("", e);
 							}
 
 							try {
-								pluginContext.initialize(pluginDescriptor.getSettings() == null ? null : new org.bimserver.plugins.PluginConfiguration(pluginDescriptor.getSettings()));
-							} catch (PluginException e) {
+								session.commit();
+							} catch (ServiceException e) {
 								LOGGER.error("", e);
 							}
 						}
@@ -999,7 +999,7 @@ public class BimServer implements BasicServerInfoProvider {
 			}
 			
 			if (defaultReference != null) {
-				if (userSettings.eGet(defaultReference) == null || pluginConfiguration.getName().equals("IfcOpenShell")) {
+				if (userSettings.eGet(defaultReference) == null && pluginConfiguration.getName().equals("IfcOpenShell")) {
 					userSettings.eSet(defaultReference, pluginConfiguration);
 				}
 			}
