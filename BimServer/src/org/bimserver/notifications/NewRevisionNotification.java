@@ -123,12 +123,20 @@ public class NewRevisionNotification extends Notification {
 			
 			for (NewService newService : project.getNewServices()) {
 				if (soid == -1 || newService.getOid() == soid) {
+					if (revision.getService() != null && revision.getService().getOid() == newService.getOid()) {
+						// Don't keep calling service recursively
+						continue;
+					}
 					triggerNewRevision(session, getBimServer().getNotificationsManager(), getBimServer(), getBimServer().getNotificationsManager().getSiteAddress(), project, roid, Trigger.NEW_REVISION, newService);
 				}
 			}
 			
 			for (Service service : project.getServices()) {
 				if (soid == -1 || service.getOid() == soid) {
+					if (revision.getService() != null && revision.getService().getOid() == service.getOid()) {
+						// Don't keep calling service recursively
+						continue;
+					}
 					triggerNewRevision(session, getBimServer().getNotificationsManager(), getBimServer(), getBimServer().getNotificationsManager().getSiteAddress(), project, roid, Trigger.NEW_REVISION, service);
 				}
 			}
@@ -267,7 +275,7 @@ public class NewRevisionNotification extends Notification {
 									Revision revision;
 									try {
 										revision = session.get(roid, OldQuery.getDefault());
-										session.getMap(model, new OldQuery(packageMetaData, project.getId(), revision.getId(), revision.getOid(), null, Deep.NO));
+										session.getMap(model, new OldQuery(packageMetaData, project.getId(), revision.getId(), revision.getOid(), Deep.NO));
 									} catch (BimserverDatabaseException e) {
 										LOGGER.error("", e);
 									}

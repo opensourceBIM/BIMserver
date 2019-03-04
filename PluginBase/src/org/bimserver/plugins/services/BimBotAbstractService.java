@@ -72,32 +72,39 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 			};
 			BimBotsOutput output = runBimBot(input, bimBotContext, new PluginConfiguration(settings));
 			long end = System.nanoTime();
-			SFile file = new SFile();
-
-			SExtendedData extendedData = new SExtendedData();
-			extendedData.setTimeToGenerate((end - start) / 1000000);
-			extendedData.setTitle(output.getTitle());
-			extendedData.setSize(output.getData().length);
-			file.setFilename(output.getContentDisposition());
-			SExtendedDataSchema extendedDataSchemaByName = null;
-			try {
-				extendedDataSchemaByName = bimServerClientInterface.getServiceInterface().getExtendedDataSchemaByName(output.getSchemaName());
-			} catch (Exception e) {
-				extendedDataSchemaByName = new SExtendedDataSchema();
-				extendedDataSchemaByName.setContentType(output.getContentType());
-				extendedDataSchemaByName.setName(output.getSchemaName());
-				bimServerClientInterface.getServiceInterface().addExtendedDataSchema(extendedDataSchemaByName);
+			
+			if (output.getSchemaName().contentEquals(SchemaName.IFC_STEP_2X3TC1.name()) || output.getSchemaName().contentEquals(SchemaName.IFC_STEP_4.name())) {
+				// There is no point in storing the retuned model as extended data, lets make a new revision
+				
+				output.getModel().checkin(poid, output.getTitle());
+			} else {
+				SFile file = new SFile();
+				
+				SExtendedData extendedData = new SExtendedData();
+				extendedData.setTimeToGenerate((end - start) / 1000000);
+				extendedData.setTitle(output.getTitle());
+				extendedData.setSize(output.getData().length);
+				file.setFilename(output.getContentDisposition());
+				SExtendedDataSchema extendedDataSchemaByName = null;
+				try {
+					extendedDataSchemaByName = bimServerClientInterface.getServiceInterface().getExtendedDataSchemaByName(output.getSchemaName());
+				} catch (Exception e) {
+					extendedDataSchemaByName = new SExtendedDataSchema();
+					extendedDataSchemaByName.setContentType(output.getContentType());
+					extendedDataSchemaByName.setName(output.getSchemaName());
+					bimServerClientInterface.getServiceInterface().addExtendedDataSchema(extendedDataSchemaByName);
+				}
+				
+				extendedData.setSchemaId(extendedDataSchemaByName.getOid());
+				file.setData(output.getData());
+				file.setSize(output.getData().length);
+				file.setMime(output.getContentType());
+				
+				long fileId = bimServerClientInterface.getServiceInterface().uploadFile(file);
+				extendedData.setFileId(fileId);
+				
+				bimServerClientInterface.getServiceInterface().addExtendedDataToRevision(roid, extendedData);
 			}
-
-			extendedData.setSchemaId(extendedDataSchemaByName.getOid());
-			file.setData(output.getData());
-			file.setSize(output.getData().length);
-			file.setMime(output.getContentType());
-
-			long fileId = bimServerClientInterface.getServiceInterface().uploadFile(file);
-			extendedData.setFileId(fileId);
-
-			bimServerClientInterface.getServiceInterface().addExtendedDataToRevision(roid, extendedData);
 		} catch (BimBotsException e) {
 			LOGGER.error("", e);
 		} catch (Throwable e) {
@@ -107,7 +114,11 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 
 	@Override
 	public void addRequiredRights(ServiceDescriptor serviceDescriptor) {
-		serviceDescriptor.setWriteExtendedData(getOutputSchema());
+		if (getOutputSchema().contentEquals(SchemaName.IFC_STEP.name()) || getOutputSchema().contentEquals(SchemaName.IFC_STEP_2X3TC1.name()) || getOutputSchema().contentEquals(SchemaName.IFC_STEP_4.name())) {
+			serviceDescriptor.setWriteRevision(true);
+		} else {
+			serviceDescriptor.setWriteExtendedData(getOutputSchema());
+		}
 	}
 
 	@Override

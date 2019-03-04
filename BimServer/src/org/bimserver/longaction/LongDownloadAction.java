@@ -18,9 +18,7 @@ package org.bimserver.longaction;
  *****************************************************************************/
 
 import org.bimserver.BimServer;
-import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.OldQuery;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.DownloadByNewJsonQueryDatabaseAction;
 import org.bimserver.database.actions.DownloadCompareDatabaseAction;
@@ -30,12 +28,6 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ActionState;
-import org.bimserver.models.store.ObjectIDMPluginConfiguration;
-import org.bimserver.models.store.SerializerPluginConfiguration;
-import org.bimserver.models.store.StorePackage;
-import org.bimserver.plugins.PluginConfiguration;
-import org.bimserver.plugins.objectidms.ObjectIDM;
-import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 
@@ -75,26 +67,6 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 		if (getBimServer().getServerSettingsCache().getServerSettings().getCacheOutputFiles() && getBimServer().getDiskCacheManager().contains(downloadParameters)) {
 			return;
 		}
-		ObjectIDM objectIDM = null;
-		if (downloadParameters.getUseObjectIDM()) {
-			session = getBimServer().getDatabase().createSession();
-			try {
-				SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), OldQuery.getDefault());
-				if (serializerPluginConfiguration != null) {
-					ObjectIDMPluginConfiguration objectIdm = serializerPluginConfiguration.getObjectIDM();
-					if (objectIdm != null) {
-						ObjectIDMPlugin objectIDMPlugin = getBimServer().getPluginManager().getObjectIDMByName(objectIdm.getPluginDescriptor().getPluginClassName(), true);
-						if (objectIDMPlugin != null) {
-							objectIDM = objectIDMPlugin.getObjectIDM(new PluginConfiguration());
-						}
-					}
-				}
-			} catch (BimserverDatabaseException e) {
-				LOGGER.error("", e);
-			} finally {
-				session.close();
-			}
-		}
 
 		session = getBimServer().getDatabase().createSession();
 		switch (downloadParameters.getDownloadType()) {
@@ -102,10 +74,10 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 			action = new DownloadByNewJsonQueryDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getJsonQuery(), downloadParameters.getSerializerOid(), getAuthorization());
 			break;
 		case DOWNLOAD_PROJECTS:
-			action = new DownloadProjectsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getSerializerOid(), getAuthorization(), objectIDM);
+			action = new DownloadProjectsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getSerializerOid(), getAuthorization());
 			break;
 		case DOWNLOAD_COMPARE:
-			action = new DownloadCompareDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getModelCompareIdentifier(), downloadParameters.getCompareType(), getAuthorization(), objectIDM);
+			action = new DownloadCompareDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getModelCompareIdentifier(), downloadParameters.getCompareType(), getAuthorization());
 			break;
 		}
 		action.addProgressListener(this);

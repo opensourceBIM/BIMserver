@@ -1,5 +1,7 @@
 package org.bimserver.bimbots;
 
+import org.bimserver.emf.IfcModelInterface;
+
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
  * 
@@ -29,17 +31,23 @@ public class BimBotsOutput {
 	private String contentType;
 	private String title;
 	private String contextId;
+	private IfcModelInterface model;
 
 	public BimBotsOutput(SchemaName schemaName, byte[] data) {
 		this.schemaName = schemaName.name();
 		this.data = data;
+	}
+
+	public BimBotsOutput(SchemaName schemaName, IfcModelInterface model) {
+		this.model = model;
+		this.schemaName = schemaName.name();
 	}
 	
 	public BimBotsOutput(String schemaName, byte[] data) {
 		this.schemaName = schemaName;
 		this.data = data;
 	}
-	
+
 	public String getSchemaName() {
 		return schemaName;
 	}
@@ -88,6 +96,10 @@ public class BimBotsOutput {
 		this.contextId = contextId;
 	}
 
+	public IfcModelInterface getModel() {
+		return model;
+	}
+	
 	public ObjectNode toJson() {
 		ObjectMapper objectMapper = new ObjectMapper();
 		ObjectNode result = objectMapper.createObjectNode();

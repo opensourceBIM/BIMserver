@@ -195,7 +195,7 @@ public class BimBotRunner implements Runnable {
 				IfcModelInterface model = new BasicIfcModel(packageMetaData, null);
 				try {
 					Revision revision = session.get(project.getLastRevisionId(), OldQuery.getDefault());
-					session.getMap(model, new OldQuery(packageMetaData, project.getId(), revision.getId(), revision.getOid(), null, Deep.NO));
+					session.getMap(model, new OldQuery(packageMetaData, project.getId(), revision.getId(), revision.getOid(), Deep.NO));
 					model.getModelMetaData().setIfcHeader(revision.getLastConcreteRevision().getIfcHeader());
 				} catch (BimserverDatabaseException e) {
 					e.printStackTrace();

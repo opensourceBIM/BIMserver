@@ -45,6 +45,11 @@
 			<artifactId>shared</artifactId>
 			<version>1.5.126-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>org.opensourcebim</groupId>
+			<artifactId>ifcplugins</artifactId>
+			<version>0.0.58-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 		<licenses>
 		<license>

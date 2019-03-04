@@ -26,9 +26,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.QueryInterface;
 import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class OldQuery implements QueryInterface {
 
@@ -40,7 +38,6 @@ public class OldQuery implements QueryInterface {
 	private final int pid;
 	private final int rid;
 	private final long roid;
-	private final ObjectIDM objectIDM;
 	private final Deep deep;
 	private final int stopRid;
 	private PackageMetaData packageMetaData;
@@ -70,7 +67,6 @@ public class OldQuery implements QueryInterface {
 		this.roid = -1;
 		this.rid = Integer.MAX_VALUE;
 		this.stopRid = Integer.MIN_VALUE;
-		this.objectIDM = null;
 		this.deep = Deep.NO;
 	}
 	
@@ -80,7 +76,6 @@ public class OldQuery implements QueryInterface {
 		this.rid = rid;
 		this.roid = roid;
 		this.stopRid = Integer.MIN_VALUE;
-		this.objectIDM = null;
 		this.deep = Deep.NO;
 	}
 	
@@ -90,13 +85,11 @@ public class OldQuery implements QueryInterface {
 		this.rid = Integer.MAX_VALUE;
 		this.roid = -1;
 		this.stopRid = Integer.MIN_VALUE;
-		this.objectIDM = null;
 		this.deep = deep ? Deep.YES : Deep.NO;
 	}
 
 	public OldQuery(PackageMetaData packageMetaData, int pid, int rid, long roid, Deep deep) {
 		this.packageMetaData = packageMetaData;
-		this.objectIDM = null;
 		this.pid = pid;
 		this.rid = rid;
 		this.roid = roid;
@@ -104,23 +97,12 @@ public class OldQuery implements QueryInterface {
 		this.deep = deep;
 	}
 
-	public OldQuery(PackageMetaData packageMetaData, int pid, int rid, long roid, ObjectIDM objectIDM, Deep deep) {
-		this.packageMetaData = packageMetaData;
-		this.pid = pid;
-		this.rid = rid;
-		this.roid = roid;
-		this.stopRid = Integer.MIN_VALUE;
-		this.objectIDM = objectIDM;
-		this.deep = deep;
-	}
-	
-	public OldQuery(PackageMetaData packageMetaData, int pid, int rid, long roid, ObjectIDM objectIDM, Deep deep, int stopRid) {
+	public OldQuery(PackageMetaData packageMetaData, int pid, int rid, long roid, Deep deep, int stopRid) {
 		this.packageMetaData = packageMetaData;
 		this.pid = pid;
 		this.rid = rid;
 		this.roid = roid;
 		this.stopRid = stopRid;
-		this.objectIDM = objectIDM;
 		this.deep = deep;
 	}
 
@@ -153,18 +135,6 @@ public class OldQuery implements QueryInterface {
 
 	public boolean isDeep() {
 		return deep == Deep.YES;
-	}
-	
-	public ObjectIDM getObjectIDM() {
-		return objectIDM;
-	}
-	
-	public boolean shouldIncludeClass(EClass eClass) {
-		return objectIDM == null || objectIDM.shouldIncludeClass(eClass, eClass);
-	}
-
-	public boolean shouldFollowReference(EClass originalQueryClass, EClass eClass, EStructuralFeature feature) {
-		return objectIDM == null || objectIDM.shouldFollowReference(originalQueryClass, eClass, feature);
 	}
 	
 	@Override
