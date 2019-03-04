@@ -32,8 +32,6 @@ import org.bimserver.emf.ObjectFactory;
 import org.bimserver.emf.OidProvider;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.plugins.objectidms.HideAllInversesObjectIDM;
-import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.shared.GuidCompressor;
 import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.common.util.EList;
@@ -46,11 +44,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class ModelHelper {
 
-	private static ObjectIDM skipRepresentation;
-	private static Map<EPackage, HideAllInversesObjectIDM> hideAllInverseMap;
-	private static Map<EClass, ObjectIDM> objectIdmCache = null;
-
-	private ObjectIDM objectIDM;
 	private final HashMap<IdEObject, IdEObject> converted = new HashMap<IdEObject, IdEObject>();
 	private ObjectFactory objectFactory;
 	private IfcModelInterface targetModel;
@@ -58,75 +51,10 @@ public class ModelHelper {
 	private boolean keepOriginalOids;
 	private final HashMap<Long, InverseFix> inverseFixes = new HashMap<>();
 	
-	public static ObjectIDM createObjectIdm(final EClass onlyIncludeRepresentationForThisClass) {
-		return objectIdmCache.get(onlyIncludeRepresentationForThisClass);
-	}
-
-	private static void initObjectIdmCache(final MetaDataManager metaDataManager) {
-		hideAllInverseMap = new HashMap<EPackage, HideAllInversesObjectIDM>();
-		objectIdmCache = new HashMap<EClass, ObjectIDM>();
-		for (PackageMetaData packageMetaData : metaDataManager.getAllIfc()) {
-			final HideAllInversesObjectIDM hideAllInverse = new HideAllInversesObjectIDM(Collections.singleton(packageMetaData.getEPackage()), packageMetaData);
-			hideAllInverseMap.put(packageMetaData.getEPackage(), hideAllInverse);
-			for (final EClass onlyIncludeRepresentationForThisClass : packageMetaData.getAllSubClasses(packageMetaData.getEClass("IfcProduct"))) {
-				ObjectIDM objectIdm = new ObjectIDM() {
-					@Override
-					public boolean shouldIncludeClass(EClass originalClass, EClass eClass) {
-						return hideAllInverse.shouldIncludeClass(originalClass, eClass);
-					}
-					
-					@Override
-					public boolean shouldFollowReference(EClass originalClass, EClass eClass, EStructuralFeature eStructuralFeature) {
-						if (eStructuralFeature.getName().equals("Representation") && onlyIncludeRepresentationForThisClass != eClass) {
-							return false;
-						} else {
-							if (eStructuralFeature.getName().equals("StyledByItem")) {
-								return true;
-							}
-							return hideAllInverse.shouldFollowReference(originalClass, eClass, eStructuralFeature);
-						}
-					}
-				};
-				objectIdmCache.put(onlyIncludeRepresentationForThisClass, objectIdm);
-			}
-		}
-		skipRepresentation = new ObjectIDM() {
-			private ObjectIDM hideAllInverse = new HideAllInversesObjectIDM(hideAllInverseMap.keySet(), metaDataManager.getPackageMetaData("ifc2x3tc1"));
-			@Override
-			public boolean shouldIncludeClass(EClass originalClass, EClass eClass) {
-				return hideAllInverse.shouldIncludeClass(originalClass, eClass);
-			}
-			
-			@Override
-			public boolean shouldFollowReference(EClass originalClass, EClass eClass, EStructuralFeature eStructuralFeature) {
-				if (eStructuralFeature.getName().equals("Representation")) {
-					return false;
-				} else {
-					return hideAllInverse.shouldFollowReference(originalClass, eClass, eStructuralFeature);
-				}
-			}
-		};
-	}
-	
-	public ModelHelper(MetaDataManager metaDataManager, ObjectIDM objectIDM, IfcModelInterface targetModel) {
-		synchronized (ModelHelper.class) {
-			if (hideAllInverseMap == null) {
-				initObjectIdmCache(metaDataManager);
-			}
-		}
-		this.objectIDM = objectIDM;
-		this.targetModel = targetModel;
-		this.objectFactory = targetModel;
-	}
-	
 	public ModelHelper(MetaDataManager metaDataManager, IfcModelInterface targetModel) {
 		synchronized (ModelHelper.class) {
-			if (hideAllInverseMap == null) {
-				initObjectIdmCache(metaDataManager);
-			}
 		}
 		this.targetModel = targetModel;
-		this.objectIDM = null;
 		this.objectFactory = targetModel;
 	}
 
@@ -134,24 +62,16 @@ public class ModelHelper {
 		return copy(object.eClass(), object, setOid);
 	}
 
-	public IdEObject copy(IdEObject object, boolean setOid, ObjectIDM objectIDM) throws IfcModelInterfaceException {
-		return copy(object.eClass(), object, setOid, objectIDM);
-	}
-
 	public void setKeepOriginalOids(boolean keepOriginalOids) {
 		this.keepOriginalOids = keepOriginalOids;
 	}
 
-	private IdEObject copy(EClass originalEClass, IdEObject original, boolean setOid) throws IfcModelInterfaceException {
-		return copy(originalEClass, original, setOid, this.objectIDM);
-	}
-	
 	@SuppressWarnings("unchecked")
 	public void copyDecomposes(IdEObject ifcObjectDefinition, IdEObject ownerHistory) throws IfcModelInterfaceException, ObjectAlreadyExistsException {
-		IdEObject newObjectDefinition = copy(ifcObjectDefinition, false, skipRepresentation);
+		IdEObject newObjectDefinition = copy(ifcObjectDefinition, false);
 		EStructuralFeature decomposesFeature = newObjectDefinition.eClass().getEStructuralFeature("Decomposes");
 		for (IdEObject ifcRelDecomposes : (List<IdEObject>)ifcObjectDefinition.eGet(decomposesFeature)) {
-			copy(ifcRelDecomposes, false, skipRepresentation);
+			copy(ifcRelDecomposes, false);
 			EStructuralFeature relatingObjectFeature = ifcRelDecomposes.eClass().getEStructuralFeature("RelatingObject");
 			IdEObject relatingObject = (IdEObject) ifcRelDecomposes.eGet(relatingObjectFeature);
 			if (relatingObject != null) {
@@ -167,7 +87,7 @@ public class ModelHelper {
 				EStructuralFeature relatedElementsFeature = newContainedInSpatialStructure.eClass().getEStructuralFeature("RelatedElements");
 				((List<IdEObject>)newContainedInSpatialStructure.eGet(relatedElementsFeature)).add(newObjectDefinition);
 				EStructuralFeature relatingStructureFeature = containedInStructure.eClass().getEStructuralFeature("RelatingStructure");
-				IdEObject newRelatingStructre = copy(((IdEObject)containedInStructure.eGet(relatingStructureFeature)), false, skipRepresentation);
+				IdEObject newRelatingStructre = copy(((IdEObject)containedInStructure.eGet(relatingStructureFeature)), false);
 				newContainedInSpatialStructure.eSet(relatingStructureFeature, newRelatingStructre);
 				getTargetModel().add(oidProvider.newOid(newContainedInSpatialStructure.eClass()), newContainedInSpatialStructure);
 				copyDecomposes((IdEObject)containedInStructure.eGet(relatingStructureFeature), ownerHistory);
@@ -176,7 +96,7 @@ public class ModelHelper {
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private IdEObject copy(EClass originalEClass, IdEObject original, boolean setOid, ObjectIDM objectIDM) throws IfcModelInterfaceException {
+	private IdEObject copy(EClass originalEClass, IdEObject original, boolean setOid) throws IfcModelInterfaceException {
 		if (!((IdEObjectImpl)original).isLoadedOrLoading()) {
 			return null;
 		}
@@ -213,7 +133,7 @@ public class ModelHelper {
 		}
 
 		for (EStructuralFeature eStructuralFeature : original.eClass().getEAllStructuralFeatures()) {
-			boolean canFollow = objectIDM == null || objectIDM.shouldFollowReference(originalEClass, original.eClass(), eStructuralFeature);
+			boolean canFollow = true;
 			Object get = original.eGet(eStructuralFeature);
 			if (eStructuralFeature instanceof EAttribute) {
 				if (get instanceof List) {
@@ -240,7 +160,7 @@ public class ModelHelper {
 								toList.addUnique(converted.get(o));
 							} else {
 								if (canFollow) {
-									IdEObject result = copy(originalEClass, (IdEObject) o, setOid, objectIDM);
+									IdEObject result = copy(originalEClass, (IdEObject) o, setOid);
 									if (result != null) {
 										toList.addUnique(result);
 									}
@@ -258,7 +178,7 @@ public class ModelHelper {
 							newObject.eSet(eStructuralFeature, converted.get(get));
 						} else {
 							if (canFollow) {
-								newObject.eSet(eStructuralFeature, copy(originalEClass, (IdEObject) get, setOid, objectIDM));
+								newObject.eSet(eStructuralFeature, copy(originalEClass, (IdEObject) get, setOid));
 							}
 						}
 					}
@@ -284,31 +204,23 @@ public class ModelHelper {
 		return targetModel;
 	}
 
-	public void setObjectIDM(ObjectIDM idm) {
-		this.objectIDM = idm;
-	}
-
-	public ObjectIDM getObjectIDM() {
-		return objectIDM;
-	}
-
 	public IdEObject copyBasicObjects(IfcModelInterface model, Map<IdEObject, IdEObject> bigMap) throws IfcModelInterfaceException {
 		PackageMetaData packageMetaData = model.getPackageMetaData();
 		IdEObject newProject = null;
 		for (IdEObject idEObject : model.getAllWithSubTypes(packageMetaData.getEClass("IfcProject"))) {
-			newProject = copy(idEObject, false, skipRepresentation);
+			newProject = copy(idEObject, false);
 			bigMap.put(newProject, idEObject);
 		}
 		IdEObject newOwnerHistory = null;
 		for (IdEObject idEObject : model.getAllWithSubTypes(packageMetaData.getEClass("IfcOwnerHistory"))) {
-			newOwnerHistory = copy(idEObject, false, skipRepresentation);
+			newOwnerHistory = copy(idEObject, false);
 			bigMap.put(newOwnerHistory, idEObject);
 		}
 		for (IdEObject idEObject : model.getAllWithSubTypes(packageMetaData.getEClass("IfcUnit"))) {
-			bigMap.put(copy(idEObject, false, skipRepresentation), idEObject);
+			bigMap.put(copy(idEObject, false), idEObject);
 		}
 		for (IdEObject idEObject : model.getAllWithSubTypes(packageMetaData.getEClass("IfcUnitAssignment"))) {
-			bigMap.put(copy(idEObject, false, skipRepresentation), idEObject);
+			bigMap.put(copy(idEObject, false), idEObject);
 		}
 		return newOwnerHistory;
 	}

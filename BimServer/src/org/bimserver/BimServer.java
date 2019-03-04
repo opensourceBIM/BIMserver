@@ -114,6 +114,7 @@ import org.bimserver.plugins.BasicServerInfoProvider;
 import org.bimserver.plugins.MavenPluginRepository;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.PluginBundle;
+import org.bimserver.plugins.PluginBundleManager;
 import org.bimserver.plugins.PluginBundleVersionIdentifier;
 import org.bimserver.plugins.PluginChangeListener;
 import org.bimserver.plugins.PluginContext;
@@ -168,6 +169,7 @@ public class BimServer implements BasicServerInfoProvider {
 	private SerializerFactory serializerFactory;
 	private MergerFactory mergerFactory;
 	private PluginManager pluginManager;
+	private PluginBundleManager pluginBundleManager;
 	private MailSystem mailSystem;
 	private DiskCacheManager diskCacheManager;
 	private NewDiskCacheManager newDiskCacheManager;
@@ -273,7 +275,8 @@ public class BimServer implements BasicServerInfoProvider {
 			}
 
 			MavenPluginRepository mavenPluginRepository = new MavenPluginRepository(config.getHomeDir().resolve("maven"));
-			pluginManager = new PluginManager(tmp, config.getHomeDir().resolve("plugins"), mavenPluginRepository, config.getClassPath(), serviceFactory, internalServicesManager, servicesMap, this);
+			pluginManager = new PluginManager(tmp, config.getClassPath(), serviceFactory, internalServicesManager, servicesMap, this);
+			pluginBundleManager = new PluginBundleManager(pluginManager, mavenPluginRepository, config.getHomeDir().resolve("plugins"));
 			metaDataManager = new MetaDataManager(tmp);
 			pluginManager.setMetaDataManager(metaDataManager);
 			LOGGER.debug("PluginManager created");
@@ -1232,7 +1235,7 @@ public class BimServer implements BasicServerInfoProvider {
 						}
 						
 						try {
-							pluginManager.loadFromPluginDir(pluginBundleVersionIdentifier, getSConverter().convertToSObject(pluginBundleVersion), plugins, serverSettingsCache.getServerSettings().isPluginStrictVersionChecking());
+							pluginBundleManager.loadFromPluginDir(pluginBundleVersionIdentifier, getSConverter().convertToSObject(pluginBundleVersion), plugins, serverSettingsCache.getServerSettings().isPluginStrictVersionChecking());
 						} catch (Exception e) {
 							LOGGER.error("", e);
 						}
@@ -1417,7 +1420,7 @@ public class BimServer implements BasicServerInfoProvider {
 		if (commandLine != null) {
 			commandLine.shutdown();
 		}
-		pluginManager.close();
+		pluginBundleManager.close();
 		LOGGER.info("BIMserver stopped");
 //		ILoggerFactory loggerFactory = LoggerFactory.getILoggerFactory();
 //		if (loggerFactory instanceof LoggerContext) {
@@ -1428,6 +1431,10 @@ public class BimServer implements BasicServerInfoProvider {
 
 	public PluginManager getPluginManager() {
 		return pluginManager;
+	}
+	
+	public PluginBundleManager getPluginBundleManager() {
+		return pluginBundleManager;
 	}
 
 	public MailSystem getMailSystem() {

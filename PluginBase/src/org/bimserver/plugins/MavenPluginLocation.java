@@ -72,7 +72,7 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 
 	protected MavenPluginLocation(MavenPluginRepository mavenPluginRepository, String defaultrepository, String groupId, String artifactId) {
 		this.mavenPluginRepository = mavenPluginRepository;
-		this.mavenPluginRepository.getRepositories().add(new RemoteRepository.Builder("given", "default", defaultrepository).build());
+		this.mavenPluginRepository.addRepository(new RemoteRepository.Builder("given", "default", defaultrepository).build());
 		this.defaultrepository = defaultrepository;
 		this.groupId = groupId;
 		this.artifactId = artifactId;
@@ -104,7 +104,7 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 
 		VersionRangeRequest rangeRequest = new VersionRangeRequest();
 		rangeRequest.setArtifact(artifact);
-		rangeRequest.setRepositories(mavenPluginRepository.getRepositories());
+		rangeRequest.setRepositories(mavenPluginRepository.getRepositoriesAsList());
 
 		try {
 			VersionRangeResult rangeResult = mavenPluginRepository.getSystem().resolveVersionRange(mavenPluginRepository.getSession(), rangeRequest);
@@ -138,14 +138,14 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 		Artifact versionArtifact = new DefaultArtifact(groupId, artifactId, "pom", version.toString());
 		
 		descriptorRequest.setArtifact(versionArtifact);
-		descriptorRequest.setRepositories(mavenPluginRepository.getRepositories());
+		descriptorRequest.setRepositories(mavenPluginRepository.getRepositoriesAsList());
 		
 		MavenPluginVersion mavenPluginVersion = new MavenPluginVersion(versionArtifact, version);
 		ArtifactDescriptorResult descriptorResult;
 		descriptorResult = mavenPluginRepository.getSystem().readArtifactDescriptor(mavenPluginRepository.getSession(), descriptorRequest);
 		ArtifactRequest request = new ArtifactRequest();
 		request.setArtifact(descriptorResult.getArtifact());
-		request.setRepositories(mavenPluginRepository.getRepositories());
+		request.setRepositories(mavenPluginRepository.getRepositoriesAsList());
 		ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
 		
 		File pomFile = resolveArtifact.getArtifact().getFile();
@@ -171,7 +171,7 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 
 		VersionRangeRequest rangeRequest = new VersionRangeRequest();
 		rangeRequest.setArtifact(artifact);
-		rangeRequest.setRepositories(mavenPluginRepository.getRepositories());
+		rangeRequest.setRepositories(mavenPluginRepository.getRepositoriesAsList());
 
 //		RemoteRepository centralRepo = newCentralRepository();
 		try {
@@ -185,14 +185,14 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 					Artifact versionArtifact = new DefaultArtifact(groupId, artifactId, "pom", version.toString());
 					
 					descriptorRequest.setArtifact(versionArtifact);
-					descriptorRequest.setRepositories(mavenPluginRepository.getRepositories());
+					descriptorRequest.setRepositories(mavenPluginRepository.getRepositoriesAsList());
 	
 					MavenPluginVersion mavenPluginVersion = new MavenPluginVersion(versionArtifact, version);
 					ArtifactDescriptorResult descriptorResult = mavenPluginRepository.getSystem().readArtifactDescriptor(mavenPluginRepository.getSession(), descriptorRequest);
 					
 					ArtifactRequest request = new ArtifactRequest();
 					request.setArtifact(descriptorResult.getArtifact());
-					request.setRepositories(mavenPluginRepository.getRepositories());
+					request.setRepositories(mavenPluginRepository.getRepositoriesAsList());
 					ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
 					
 					File pomFile = resolveArtifact.getArtifact().getFile();
@@ -232,7 +232,7 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 
 		ArtifactRequest request = new ArtifactRequest();
 		request.setArtifact(lastArt);
-		request.setRepositories(mavenPluginRepository.getRepositories());
+		request.setRepositories(mavenPluginRepository.getRepositoriesAsList());
 		
 		try {
 			ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
@@ -248,7 +248,7 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 		
 		VersionRangeRequest rangeRequest = new VersionRangeRequest();
 		rangeRequest.setArtifact(artifact);
-		rangeRequest.setRepositories(mavenPluginRepository.getRepositories());
+		rangeRequest.setRepositories(mavenPluginRepository.getRepositoriesAsList());
 		
 		try {
 			VersionRangeResult rangeResult = mavenPluginRepository.getSystem().resolveVersionRange(mavenPluginRepository.getSession(), rangeRequest);
@@ -260,14 +260,14 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 				Artifact versionArtifact = new DefaultArtifact(groupId + ":" + artifactId + ":pom:" + version.toString());
 
 				descriptorRequest.setArtifact(versionArtifact);
-				descriptorRequest.setRepositories(mavenPluginRepository.getRepositories());
+				descriptorRequest.setRepositories(mavenPluginRepository.getRepositoriesAsList());
 
 				MavenPluginVersion mavenPluginVersion = new MavenPluginVersion(versionArtifact, version);
 				ArtifactDescriptorResult descriptorResult = mavenPluginRepository.getSystem().readArtifactDescriptor(mavenPluginRepository.getSession(), descriptorRequest);
 
 				ArtifactRequest request = new ArtifactRequest();
 				request.setArtifact(descriptorResult.getArtifact());
-				request.setRepositories(mavenPluginRepository.getRepositories());
+				request.setRepositories(mavenPluginRepository.getRepositoriesAsList());
 				ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
 
 				File pomFile = resolveArtifact.getArtifact().getFile();
@@ -307,7 +307,7 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 		
 		ArtifactRequest request = new ArtifactRequest();
 		request.setArtifact(versionArtifact);
-		request.setRepositories(mavenPluginRepository.getRepositories());
+		request.setRepositories(mavenPluginRepository.getRepositoriesAsList());
 		ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
 		
 		return resolveArtifact.getArtifact().getFile().toPath();
@@ -318,7 +318,7 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 		
 		ArtifactRequest request = new ArtifactRequest();
 		request.setArtifact(versionArtifact);
-		request.setRepositories(mavenPluginRepository.getRepositories());
+		request.setRepositories(mavenPluginRepository.getRepositoriesAsList());
 		ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
 		
 		return FileUtils.readFileToByteArray(resolveArtifact.getArtifact().getFile());
@@ -346,7 +346,7 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 		
 		ArtifactRequest request = new ArtifactRequest();
 		request.setArtifact(versionArtifact);
-		request.setRepositories(mavenPluginRepository.getRepositories());
+		request.setRepositories(mavenPluginRepository.getRepositoriesAsList());
 		ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
 		
 		byte[] bytes = FileUtils.readFileToByteArray(resolveArtifact.getArtifact().getFile());
@@ -385,7 +385,7 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 		
 		ArtifactRequest request = new ArtifactRequest();
 		request.setArtifact(versionArtifact);
-		request.setRepositories(mavenPluginRepository.getRepositories());
+		request.setRepositories(mavenPluginRepository.getRepositoriesAsList());
 		ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
 		
 		byte[] bytes = FileUtils.readFileToByteArray(resolveArtifact.getArtifact().getFile());
@@ -397,7 +397,7 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 
 		ArtifactRequest request = new ArtifactRequest();
 		request.setArtifact(pomArtifact);
-		request.setRepositories(mavenPluginRepository.getRepositories());
+		request.setRepositories(mavenPluginRepository.getRepositoriesAsList());
 		ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
 		
 		return resolveArtifact.getArtifact().getFile().toPath();
@@ -414,7 +414,7 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 			
 			ArtifactRequest request = new ArtifactRequest();
 			request.setArtifact(versionArtifact);
-			request.setRepositories(mavenPluginRepository.getRepositories());
+			request.setRepositories(mavenPluginRepository.getRepositoriesAsList());
 			ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
 	
 			File pomFile = resolveArtifact.getArtifact().getFile();
@@ -508,7 +508,7 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 
 		ArtifactRequest request = new ArtifactRequest();
 		request.setArtifact(pomArtifact);
-		request.setRepositories(mavenPluginRepository.getRepositories());
+		request.setRepositories(mavenPluginRepository.getRepositoriesAsList());
 		ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
 		
 		return resolveArtifact.getRepository().toString();

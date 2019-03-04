@@ -350,7 +350,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 								idEObject.eSet(feature, feature.getDefaultValue());
 							}
 						} else {
-							if (!query.shouldFollowReference(originalQueryClass, eClass, feature)) {
+							if (false) {
 								// we have to do some reading to maintain a correct
 								// index
 								fakeRead(buffer, feature);
@@ -1242,7 +1242,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 					throw new BimserverDatabaseException("Thread interrupted");
 				}
 				if (eClass.getEAnnotation("nolazyload") == null && eClass.getEAnnotation("nodatabase") == null) {
-					if (query.shouldIncludeClass(eClass)) {
+					if (true) {
 						getMap(eClass, ifcModel, query, todoList);
 					}
 				}
@@ -1254,7 +1254,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 					throw new BimserverDatabaseException("Thread interrupted");
 				}
 				if (eClass.getEAnnotation("nolazyload") == null && eClass.getEAnnotation("nodatabase") == null) {
-					if (query.shouldIncludeClass(eClass)) {
+					if (true) {
 						getMap(eClass, ifcModel, query, todoList);
 					}
 				}

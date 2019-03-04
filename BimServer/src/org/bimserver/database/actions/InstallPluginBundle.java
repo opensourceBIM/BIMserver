@@ -70,7 +70,7 @@ public class InstallPluginBundle extends BimDatabaseAction<Void> {
 		LOGGER.info(mavenPluginBundle.getVersion());
 
 		try {
-			bimServer.getPluginManager().install(mavenPluginBundle, plugins, false);
+			bimServer.getPluginBundleManager().install(mavenPluginBundle, plugins, false);
 		} catch (Exception e) {
 			LOGGER.error("", e);
 			throw new UserException(e);

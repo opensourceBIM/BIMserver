@@ -78,7 +78,7 @@ public class GetDataObjectsByTypeDatabaseAction extends AbstractDownloadDatabase
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 			int highestStopId = findHighestStopRid(project, concreteRevision);
-			OldQuery query = new OldQuery(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), -1, null, Deep.NO, highestStopId);
+			OldQuery query = new OldQuery(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), -1, Deep.NO, highestStopId);
 			lastPackageMetaData = packageMetaData;
 			IfcModelInterface subModel = getDatabaseSession().getAllOfType(packageMetaData.getEPackage().getName(), className, query);
 			subModel.getModelMetaData().setDate(concreteRevision.getDate());

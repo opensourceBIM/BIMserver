@@ -28,8 +28,6 @@ import org.bimserver.models.store.Parameter;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.objectidms.ObjectIDM;
-import org.bimserver.plugins.objectidms.ObjectIDMException;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.BimServerClientInterface;
@@ -78,9 +76,7 @@ public interface PluginManagerInterface {
 
 	MetaDataManager getMetaDataManager();
 
-	ObjectIDM getDefaultObjectIDM() throws ObjectIDMException;
-
-	PluginBundle loadPluginsFromEclipseProject(Path projectRoot) throws PluginException;
+//	PluginBundle loadPluginsFromEclipseProject(Path projectRoot) throws PluginException;
 
 	DeserializerPlugin getFirstDeserializer(String extension, Schema schema, boolean onlyEnabled) throws PluginException;
 

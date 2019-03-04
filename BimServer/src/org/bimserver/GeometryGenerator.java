@@ -60,7 +60,6 @@ import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.ObjectAlreadyExistsException;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginManager;
-import org.bimserver.plugins.objectidms.HideAllInversesObjectIDM;
 import org.bimserver.plugins.renderengine.EntityNotFoundException;
 import org.bimserver.plugins.renderengine.IndexFormat;
 import org.bimserver.plugins.renderengine.Precision;
@@ -76,7 +75,6 @@ import org.bimserver.plugins.serializers.SerializerInputstream;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.renderengine.RenderEnginePool;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.utils.CollectionUtils;
 import org.bimserver.utils.Formatters;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -539,7 +537,6 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 
 				final Map<IdEObject, IdEObject> bigMap = new HashMap<IdEObject, IdEObject>();
 
-				HideAllInversesObjectIDM idm = new HideAllInversesObjectIDM(CollectionUtils.singleSet(packageMetaData.getEPackage()), model.getPackageMetaData());
 				OidProvider oidProvider = new OidProvider(){
 					@Override
 					public long newOid(EClass eClass) {
@@ -549,12 +546,11 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 					final BasicIfcModel targetModel = new BasicIfcModel(model.getPackageMetaData(), null);
 					ModelHelper modelHelper = new ModelHelper(bimServer.getMetaDataManager(), targetModel);
 					modelHelper.setOidProvider(oidProvider);
-					modelHelper.setObjectIDM(idm);
 					
 					IdEObject newOwnerHistory = modelHelper.copyBasicObjects(model, bigMap);
 					
 					for (IdEObject idEObject : model.getAll(eClass)) {
-						IdEObject newObject = modelHelper.copy(idEObject, false, ModelHelper.createObjectIdm(idEObject.eClass()));
+						IdEObject newObject = modelHelper.copy(idEObject, false);
 						modelHelper.copyDecomposes(idEObject, newOwnerHistory);
 						bigMap.put(newObject, idEObject);
 						if (packageMetaData.getEClass("IfcElement").isSuperTypeOf(eClass)) {

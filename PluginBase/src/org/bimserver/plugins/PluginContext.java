@@ -30,8 +30,6 @@ import org.bimserver.models.store.Parameter;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.objectidms.ObjectIDM;
-import org.bimserver.plugins.objectidms.ObjectIDMException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.NewExtendedDataOnProjectHandler;
@@ -164,18 +162,14 @@ public class PluginContext {
 	}
 
 	public void initialize(PluginConfiguration systemSettings) throws PluginException {
-		if (!isInitialized()) {
+//		if (!isInitialized()) {
 			plugin.init(this, systemSettings);
 			setInitialized(true);
-		}
+//		}
 	}
 
 	public String getIdentifier() {
 		return identifier;
-	}
-
-	public ObjectIDM getDefaultObjectIDM() throws ObjectIDMException {
-		return pluginManager.getDefaultObjectIDM();
 	}
 
 	public Path getTempDir() {

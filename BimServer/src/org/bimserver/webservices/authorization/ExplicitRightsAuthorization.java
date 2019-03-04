@@ -60,7 +60,7 @@ public class ExplicitRightsAuthorization extends Authorization {
 	
 	public void canCheckin(long poid) throws UserException {
 		if (getWriteProjectPoid() != poid) {
-			throw new UserException("No rights to checkin to this project");
+			throw new UserException("No rights to checkin to this project (" + poid + ", " + getWriteProjectPoid() + ")");
 		}
 	}
 	

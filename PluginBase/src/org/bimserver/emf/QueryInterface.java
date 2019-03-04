@@ -28,8 +28,6 @@ public interface QueryInterface {
 	int getRid();
 	boolean isDeep();
 	int getStopRid();
-	boolean shouldFollowReference(EClass originalQueryClass, EClass eClass, EStructuralFeature feature);
-	boolean shouldIncludeClass(EClass eClass);
 	PackageMetaData getPackageMetaData();
 	long getRoid();
 	Map<EClass, Long> getOidCounters();

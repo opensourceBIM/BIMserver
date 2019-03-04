@@ -22,6 +22,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import org.bimserver.plugins.MavenPluginRepository;
+import org.bimserver.plugins.PluginBundleManager;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.shared.exceptions.PluginException;
 import org.slf4j.Logger;
@@ -30,11 +31,11 @@ import org.slf4j.LoggerFactory;
 public class LocalDevPluginLoader {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LocalDevPluginLoader.class);
 	
-	public static void loadPlugins(PluginManager pluginManager, Path[] pluginDirectories) throws PluginException {
+	public static void loadPlugins(PluginBundleManager pluginBundleManager, Path[] pluginDirectories) throws PluginException {
 		if (pluginDirectories != null) {
 			for (Path pluginDirectory : pluginDirectories) {
 				try {
-					pluginManager.loadPluginsFromEclipseProject(pluginDirectory);
+					pluginBundleManager.loadPluginsFromEclipseProject(pluginDirectory);
 				} catch (PluginException e) {
 					LOGGER.error("", e);
 				}
@@ -55,8 +56,9 @@ public class LocalDevPluginLoader {
 			}
 		}
 		MavenPluginRepository mavenPluginRepository = new MavenPluginRepository(home.resolve("maven"));
-		PluginManager pluginManager = new PluginManager(home.resolve("tmp"), home.resolve("plugins"), mavenPluginRepository, System.getProperty("java.class.path"), null, null, null, null);
-		loadPlugins(pluginManager, pluginDirectories);
+		PluginManager pluginManager = new PluginManager(home.resolve("tmp"), System.getProperty("java.class.path"), null, null, null, null);
+		PluginBundleManager pluginBundleManager = new PluginBundleManager(pluginManager, mavenPluginRepository, home.resolve("plugins"));
+		loadPlugins(pluginBundleManager, pluginDirectories);
 		pluginManager.initAllLoadedPlugins();
 		return pluginManager;
 	}

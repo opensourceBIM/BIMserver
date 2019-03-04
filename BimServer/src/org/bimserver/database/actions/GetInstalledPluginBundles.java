@@ -72,7 +72,7 @@ public class GetInstalledPluginBundles extends PluginBundleDatabaseAction<List<S
 		
 		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(4, 32, 1L, TimeUnit.HOURS, new ArrayBlockingQueue<>(100));
 		
-		for (PluginBundle currentlyInstalledPluginBundle : bimServer.getPluginManager().getPluginBundles()) {
+		for (PluginBundle currentlyInstalledPluginBundle : bimServer.getPluginBundleManager().getPluginBundles()) {
 			SPluginBundleVersion installedVersion = currentlyInstalledPluginBundle.getPluginBundleVersion();
 			for (PluginBundleVersion pluginBundleVersion : getDatabaseSession().getAll(PluginBundleVersion.class)) {
 				if (pluginBundleVersion.getArtifactId().equals(installedVersion.getArtifactId()) && pluginBundleVersion.getGroupId().equals(installedVersion.getGroupId()) && pluginBundleVersion.getVersion().equals(installedVersion.getVersion())) {

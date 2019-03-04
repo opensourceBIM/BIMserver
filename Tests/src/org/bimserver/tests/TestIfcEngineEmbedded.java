@@ -140,7 +140,7 @@ public class TestIfcEngineEmbedded {
 			Path[] pluginDirs = new Path[] {
 				// TODO: Set these up yourself...
 			};
-			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirs);
+			LocalDevPluginLoader.loadPlugins(bimServer.getPluginBundleManager(), pluginDirs);
 			
 			// Start it
 			bimServer.start();

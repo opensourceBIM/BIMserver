@@ -20,7 +20,9 @@ package org.bimserver.plugins;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.maven.repository.internal.MavenRepositorySystemUtils;
@@ -44,7 +46,7 @@ public class MavenPluginRepository {
 	private static final Logger LOGGER = LoggerFactory.getLogger(MavenPluginRepository.class);
 	private final RepositorySystem system;
 	private final RepositorySystemSession session;
-	private final List<RemoteRepository> repositories = new ArrayList<>();
+	private final Set<RemoteRepository> repositories = new LinkedHashSet<>();
 	private List<RemoteRepository> localRepositories;
 	private final RemoteRepository remoteRepository;
 	private String defaultRemoteRepositoryLocation;
@@ -122,8 +124,12 @@ public class MavenPluginRepository {
 		return session;
 	}
 
-	public List<RemoteRepository> getRepositories() {
+	public Set<RemoteRepository> getRepositories() {
 		return repositories;
+	}
+
+	public List<RemoteRepository> getRepositoriesAsList() {
+		return new ArrayList<>(repositories);
 	}
 	
 	public RepositorySystemSession getSession() {
@@ -140,5 +146,9 @@ public class MavenPluginRepository {
 
 	public List<RemoteRepository> getLocalRepositories() {
 		return localRepositories;
+	}
+
+	public void addRepository(RemoteRepository repository) {
+		repositories.add(repository);
 	}
 }

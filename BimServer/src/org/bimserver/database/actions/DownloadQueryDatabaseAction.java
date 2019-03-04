@@ -26,42 +26,35 @@ import org.bimserver.database.OldQuery;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.OidProvider;
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.QueryEnginePluginConfiguration;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.ModelHelper;
-import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.Reporter;
-import org.bimserver.plugins.objectidms.HideAllInversesObjectIDM;
-import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.plugins.queryengine.QueryEngine;
 import org.bimserver.plugins.queryengine.QueryEngineException;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.utils.CollectionUtils;
 import org.bimserver.webservices.authorization.Authorization;
 import org.eclipse.emf.ecore.EClass;
 
 public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<IfcModelInterface> {
 
-	private ObjectIDM objectIDM;
 	private final long qeid;
 	private final String code;
 	private final long roid;
 	private long serializerOid;
 
-	public DownloadQueryDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long qeid, long serializerOid, String code, Authorization authorization, ObjectIDM objectIDM) {
+	public DownloadQueryDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long qeid, long serializerOid, String code, Authorization authorization) {
 		super(bimServer, databaseSession, accessMethod, authorization);
 		this.roid = roid;
 		this.qeid = qeid;
 		this.serializerOid = serializerOid;
 		this.code = code;
-		this.objectIDM = objectIDM;
 	}
 
 	@Override
@@ -69,22 +62,18 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			SerializerPluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, OldQuery.getDefault());
-			BimDatabaseAction<IfcModelInterface> action = new DownloadDatabaseAction(getBimServer(), session, AccessMethod.INTERNAL, roid, -1, serializerPluginConfiguration.getOid(), getAuthorization(), null);
+			BimDatabaseAction<IfcModelInterface> action = new DownloadDatabaseAction(getBimServer(), session, AccessMethod.INTERNAL, roid, -1, serializerPluginConfiguration.getOid(), getAuthorization());
 			IfcModelInterface ifcModel = session.executeAndCommitAction(action);
 			QueryEnginePluginConfiguration queryEngineObject = session.get(StorePackage.eINSTANCE.getQueryEnginePluginConfiguration(), qeid, OldQuery.getDefault());
 			Revision revision = session.get(roid, OldQuery.getDefault());
 			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
-			
-			if (objectIDM == null) {
-				objectIDM = new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), packageMetaData);
-			}
 			
 			if (queryEngineObject != null) {
 				QueryEnginePlugin queryEnginePlugin = getBimServer().getPluginManager().getQueryEngine(queryEngineObject.getPluginDescriptor().getPluginClassName(), true);
 				if (queryEnginePlugin != null) {
 					QueryEngine queryEngine = queryEnginePlugin.getQueryEngine(getBimServer().getPluginSettingsCache().getPluginSettings(queryEngineObject.getOid()));
 					final IfcModelInterface result = new ServerIfcModel(packageMetaData, null, getDatabaseSession());
-					ModelHelper modelHelper = new ModelHelper(getBimServer().getMetaDataManager(), objectIDM, result);
+					ModelHelper modelHelper = new ModelHelper(getBimServer().getMetaDataManager(), result);
 					modelHelper.setOidProvider(new OidProvider(){
 						private long oid = 1000000;
 						@Override

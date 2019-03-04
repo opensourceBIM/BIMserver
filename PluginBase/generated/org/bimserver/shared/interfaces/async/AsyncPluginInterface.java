@@ -579,18 +579,6 @@ public class AsyncPluginInterface {
 		});
 	}
 	
-	public void addObjectIDM(final org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration objectIDM, final AddObjectIDMCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.addObjectIDM(objectIDM));
-				} catch (Throwable e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
 	public void addQueryEngine(final org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration queryEngine, final AddQueryEngineCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -697,19 +685,6 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					syncService.deleteModelMerger(iid);
-					callback.success();
-				} catch (Throwable e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void deleteObjectIDM(final java.lang.Long oid, final DeleteObjectIDMCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					syncService.deleteObjectIDM(oid);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);
@@ -890,30 +865,6 @@ public class AsyncPluginInterface {
 		});
 	}
 	
-	public void getAllObjectIDMPluginDescriptors(final GetAllObjectIDMPluginDescriptorsCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getAllObjectIDMPluginDescriptors());
-				} catch (Throwable e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void getAllObjectIDMs(final java.lang.Boolean onlyEnabled, final GetAllObjectIDMsCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getAllObjectIDMs(onlyEnabled));
-				} catch (Throwable e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
 	public void getAllQueryEnginePluginDescriptors(final GetAllQueryEnginePluginDescriptorsCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1082,18 +1033,6 @@ public class AsyncPluginInterface {
 		});
 	}
 	
-	public void getDefaultObjectIDM(final GetDefaultObjectIDMCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getDefaultObjectIDM());
-				} catch (Throwable e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
 	public void getDefaultQueryEngine(final GetDefaultQueryEngineCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1219,30 +1158,6 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getModelMergerByName(name));
-				} catch (Throwable e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void getObjectIDMById(final java.lang.Long oid, final GetObjectIDMByIdCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getObjectIDMById(oid));
-				} catch (Throwable e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void getObjectIDMByName(final java.lang.String objectIDMName, final GetObjectIDMByNameCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					callback.success(syncService.getObjectIDMByName(objectIDMName));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
@@ -1544,19 +1459,6 @@ public class AsyncPluginInterface {
 		});
 	}
 	
-	public void setDefaultObjectIDM(final java.lang.Long oid, final SetDefaultObjectIDMCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					syncService.setDefaultObjectIDM(oid);
-					callback.success();
-				} catch (Throwable e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
 	public void setDefaultQueryEngine(final java.lang.Long oid, final SetDefaultQueryEngineCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
@@ -1692,19 +1594,6 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					syncService.updateModelMerger(modelMerger);
-					callback.success();
-				} catch (Throwable e) {
-					callback.error(e);
-				}
-			}
-		});
-	}
-	
-	public void updateObjectIDM(final org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration objectIDM, final UpdateObjectIDMCallback callback) {
-		executorService.submit(new Runnable(){
-			public void run(){
-				try {
-					syncService.updateObjectIDM(objectIDM);
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);

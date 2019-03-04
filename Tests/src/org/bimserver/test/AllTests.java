@@ -104,7 +104,7 @@ public class AllTests {
 				for (String p : plugins) {
 					paths[i++] = Paths.get(p);
 				}
-				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), paths);
+				LocalDevPluginLoader.loadPlugins(bimServer.getPluginBundleManager(), paths);
 			} else {
 				LoggerFactory.getLogger(AllTests.class).info("Installing plugins");
 				client.getPluginInterface().installPluginBundle("http://archiva.logic-labs.nl/repository/snapshots", "org.opensourcebim", "ifcplugins", null, null);

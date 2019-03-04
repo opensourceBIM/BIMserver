@@ -43,9 +43,9 @@ import org.bimserver.emf.ModelMetaData;
 import org.bimserver.emf.OidProvider;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.SharedJsonDeserializer;
-import org.bimserver.emf.SharedJsonSerializer;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
+import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
@@ -58,8 +58,9 @@ import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.plugins.ObjectAlreadyExistsException;
 import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.serializers.ProjectInfo;
+import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerInputstream;
-import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -447,8 +448,8 @@ public class ClientIfcModel extends IfcModel {
 						throw new GeometryException("Protocol != BGS (" + protocol + ")");
 					}
 					byte formatVersion = dataInputStream.readByte();
-					if (formatVersion != 16) {
-						throw new GeometryException("Unsupported version " + formatVersion + " / 16");
+					if (formatVersion != 17) {
+						throw new GeometryException("Unsupported version " + formatVersion + " / 17");
 					}
 
 					float multiplierToMm = dataInputStream.readFloat();
@@ -1034,9 +1035,16 @@ public class ClientIfcModel extends IfcModel {
 				return c++;
 			}
 		});
-		SharedJsonSerializer sharedJsonSerializer = new SharedJsonSerializer(this, false);
-		SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("json", poid);
-		bimServerClient.checkinSync(poid, comment, deserializer.getOid(), false, -1, "test", new SerializerInputstream(sharedJsonSerializer));
+		IfcStepSerializer ifcStepSerializer = new IfcStepSerializer(null);
+		ProjectInfo projectInfo = new ProjectInfo();
+		try {
+			ifcStepSerializer.init(this, projectInfo, true);
+			ifcStepSerializer.setHeaderSchema(getPackageMetaData().getSchema().getHeaderName());
+			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", poid);
+			bimServerClient.checkinSync(poid, comment, deserializer.getOid(), false, -1, "test", new SerializerInputstream(ifcStepSerializer));
+		} catch (SerializerException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void load(IdEObject object) {

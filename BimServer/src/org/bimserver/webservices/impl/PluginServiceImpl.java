@@ -21,7 +21,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -99,7 +98,6 @@ import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
 import org.bimserver.interfaces.objects.SModelMergerPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectDefinition;
 import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
-import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SPluginBundle;
 import org.bimserver.interfaces.objects.SPluginBundleVersion;
@@ -133,7 +131,6 @@ import org.bimserver.plugins.deserializers.StreamingDeserializerPlugin;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
 import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
-import org.bimserver.plugins.objectidms.ObjectIDMPlugin;
 import org.bimserver.plugins.queryengine.QueryEnginePlugin;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
@@ -200,64 +197,6 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	}
 
 	@Override
-	public List<SObjectIDMPluginConfiguration> getAllObjectIDMs(Boolean onlyEnabled) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			UserSettings userSettings = getUserSettings(session);
-			List<SObjectIDMPluginConfiguration> objectIdms = getBimServer().getSConverter().convertToSListObjectIDMPluginConfiguration(userSettings.getObjectIDMs());
-			Collections.sort(objectIdms, new SPluginConfigurationComparator());
-			return objectIdms;
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-		return null;
-	}
-
-	@Override
-	public Long addObjectIDM(SObjectIDMPluginConfiguration objectIDM) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return session.executeAndCommitAction(
-					new AddObjectIDMDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), getBimServer().getSConverter().convertFromSObject(objectIDM, session)));
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void updateObjectIDM(SObjectIDMPluginConfiguration objectIDM) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			session.executeAndCommitAction(new UpdateObjectIDMDatabaseAction(session, getInternalAccessMethod(),
-					getBimServer().getSConverter().convertFromSObject(objectIDM, session.get(objectIDM.getOid(), OldQuery.getDefault()), session)));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public SObjectIDMPluginConfiguration getObjectIDMById(Long oid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetObjectIDMByIdDatabaseAction(session, getInternalAccessMethod(), oid)));
-		} catch (Exception e) {
-			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
 	public List<SPluginDescriptor> getAllSerializerPluginDescriptors() throws UserException, ServerException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
@@ -279,20 +218,6 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), WebModulePlugin.class.getName()));
 		} catch (Exception e) {
 			return handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void deleteObjectIDM(Long ifid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			BimDatabaseAction<Void> action = new DeleteObjectIDMDatabaseAction(session, getInternalAccessMethod(), ifid);
-			session.executeAndCommitAction(action);
-		} catch (Exception e) {
-			handleException(e);
 		} finally {
 			session.close();
 		}
@@ -373,20 +298,6 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		} finally {
 			session.close();
 		}
-	}
-
-	@Override
-	public SObjectIDMPluginConfiguration getObjectIDMByName(String ObjectIDMName) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetObjectIDMByNameDatabaseAction(session, getInternalAccessMethod(), ObjectIDMName)));
-		} catch (Exception e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-		return null;
 	}
 
 	@Override
@@ -1434,19 +1345,6 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		} finally {
 			session.close();
 		}
-	}
-
-	@Override
-	public List<SObjectIDMPluginDescriptor> getAllObjectIDMPluginDescriptors() throws UserException {
-		requireRealUserAuthentication();
-		Collection<ObjectIDMPlugin> allObjectIDMs = getBimServer().getPluginManager().getAllObjectIDMPlugins(true).values();
-		List<SObjectIDMPluginDescriptor> descriptors = new ArrayList<SObjectIDMPluginDescriptor>();
-		for (ObjectIDMPlugin ObjectIDMPlugin : allObjectIDMs) {
-			SObjectIDMPluginDescriptor descriptor = new SObjectIDMPluginDescriptor();
-			descriptor.setClassName(ObjectIDMPlugin.getClass().getName());
-			descriptors.add(descriptor);
-		}
-		return descriptors;
 	}
 
 	@Override

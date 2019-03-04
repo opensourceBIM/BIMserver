@@ -30,7 +30,7 @@ import java.util.Set;
 import org.apache.commons.io.FileUtils;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.models.store.StorePackage;
-import org.bimserver.plugins.PluginManager;
+import org.bimserver.plugins.PluginBundleManager;
 import org.bimserver.shared.InterfaceList;
 import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.interfaces.PublicInterface;
@@ -71,13 +71,13 @@ public class CodeMigrator {
 		new CodeMigrator().start();
 	}
 
-	public static void loadPlugins(PluginManager pluginManager, Path current, Path[] pluginDirectories) throws PluginException {
+	public static void loadPlugins(PluginBundleManager pluginBundleManager, Path current, Path[] pluginDirectories) throws PluginException {
 		LOGGER.info("Loading plugins from " + current.toString());
 
 		if (pluginDirectories != null) {
 			for (Path pluginDirectory : pluginDirectories) {
 				try {
-					pluginManager.loadAllPluginsFromEclipseWorkspaces(pluginDirectory, false);
+					pluginBundleManager.loadAllPluginsFromEclipseWorkspaces(pluginDirectory, false);
 				} catch (PluginException e) {
 					LOGGER.error("", e);
 				} catch (IOException e) {
@@ -87,11 +87,11 @@ public class CodeMigrator {
 		}
 	}
 	
-	public static void loadPlugins(PluginManager pluginManager, Path[] pluginDirectories) throws PluginException {
+	public static void loadPlugins(PluginBundleManager pluginBundleManager, Path[] pluginDirectories) throws PluginException {
 		if (pluginDirectories != null) {
 			for (Path pluginDirectory : pluginDirectories) {
 				try {
-					pluginManager.loadAllPluginsFromEclipseWorkspaces(pluginDirectory, false);
+					pluginBundleManager.loadAllPluginsFromEclipseWorkspaces(pluginDirectory, false);
 				} catch (PluginException e) {
 					LOGGER.error("", e);
 				} catch (IOException e) {

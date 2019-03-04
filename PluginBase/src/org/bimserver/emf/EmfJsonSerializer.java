@@ -123,7 +123,12 @@ public class EmfJsonSerializer {
 												print("\"" + ref.eClass().getName() + "\"");
 												print("}");
 											} else {
-												print("" + ref.getOid());
+												print("{");
+												print("\"_i\":");
+												print("" + ref.getOid() + ",");
+												print("\"_t\":");
+												print("\"" + ref.eClass().getName() + "\"");
+												print("}");
 											}
 										}
 									}

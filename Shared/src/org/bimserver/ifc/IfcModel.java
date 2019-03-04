@@ -63,7 +63,6 @@ import org.bimserver.emf.Schema;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.plugins.ObjectAlreadyExistsException;
-import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -212,24 +211,24 @@ public abstract class IfcModel implements IfcModelInterface {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	public void sortAllAggregates(ObjectIDM objectIDM, IdEObject ifcRoot) {
-		for (EStructuralFeature eStructuralFeature : ifcRoot.eClass().getEAllStructuralFeatures()) {
-			if (objectIDM.shouldFollowReference(ifcRoot.eClass(), ifcRoot.eClass(), eStructuralFeature)) {
-				if (eStructuralFeature.getUpperBound() == -1 || eStructuralFeature.getUpperBound() > 1) {
-					if (eStructuralFeature.getEType() instanceof EClass) {
-						if (eStructuralFeature.getEType().getEAnnotation("wrapped") != null) {
-							EList<IdEObject> list = (EList<IdEObject>) ifcRoot.eGet(eStructuralFeature);
-							sortPrimitiveList(list);
-						} else {
-							EList<IdEObject> list = (EList<IdEObject>) ifcRoot.eGet(eStructuralFeature);
-							sortComplexList(objectIDM, ifcRoot.eClass(), list, eStructuralFeature);
-						}
-					}
-				}
-			}
-		}
-	}
+//	@SuppressWarnings("unchecked")
+//	public void sortAllAggregates(IdEObject ifcRoot) {
+//		for (EStructuralFeature eStructuralFeature : ifcRoot.eClass().getEAllStructuralFeatures()) {
+//			if (true) {
+//				if (eStructuralFeature.getUpperBound() == -1 || eStructuralFeature.getUpperBound() > 1) {
+//					if (eStructuralFeature.getEType() instanceof EClass) {
+//						if (eStructuralFeature.getEType().getEAnnotation("wrapped") != null) {
+//							EList<IdEObject> list = (EList<IdEObject>) ifcRoot.eGet(eStructuralFeature);
+//							sortPrimitiveList(list);
+//						} else {
+//							EList<IdEObject> list = (EList<IdEObject>) ifcRoot.eGet(eStructuralFeature);
+//							sortComplexList(ifcRoot.eClass(), list, eStructuralFeature);
+//						}
+//					}
+//				}
+//			}
+//		}
+//	}
 
 	private void sortPrimitiveList(EList<IdEObject> list) {
 		ECollections.sort(list, new Comparator<IdEObject>() {
@@ -240,33 +239,33 @@ public abstract class IfcModel implements IfcModelInterface {
 		});
 	}
 
-	private void sortComplexList(final ObjectIDM objectIDM, final EClass originalQueryClass, EList<IdEObject> list, EStructuralFeature eStructuralFeature) {
-		final EClass type = (EClass) eStructuralFeature.getEType();
-		ECollections.sort(list, new Comparator<IdEObject>() {
-			@Override
-			public int compare(IdEObject o1, IdEObject o2) {
-				int i = 1;
-				for (EStructuralFeature eStructuralFeature : type.getEAllStructuralFeatures()) {
-					if (objectIDM.shouldFollowReference(originalQueryClass, type, eStructuralFeature)) {
-						Object val1 = o1.eGet(eStructuralFeature);
-						Object val2 = o2.eGet(eStructuralFeature);
-						if (val1 != null && val2 != null) {
-							if (eStructuralFeature.getEType() instanceof EClass) {
-								if (eStructuralFeature.getEType().getEAnnotation("wrapped") != null) {
-									int compare = comparePrimitives((IdEObject) val1, (IdEObject) val2);
-									if (compare != 0) {
-										return compare * i;
-									}
-								}
-							}
-						}
-						i++;
-					}
-				}
-				return 0;
-			}
-		});
-	}
+//	private void sortComplexList(final EClass originalQueryClass, EList<IdEObject> list, EStructuralFeature eStructuralFeature) {
+//		final EClass type = (EClass) eStructuralFeature.getEType();
+//		ECollections.sort(list, new Comparator<IdEObject>() {
+//			@Override
+//			public int compare(IdEObject o1, IdEObject o2) {
+//				int i = 1;
+//				for (EStructuralFeature eStructuralFeature : type.getEAllStructuralFeatures()) {
+//					if (objectIDM.shouldFollowReference(originalQueryClass, type, eStructuralFeature)) {
+//						Object val1 = o1.eGet(eStructuralFeature);
+//						Object val2 = o2.eGet(eStructuralFeature);
+//						if (val1 != null && val2 != null) {
+//							if (eStructuralFeature.getEType() instanceof EClass) {
+//								if (eStructuralFeature.getEType().getEAnnotation("wrapped") != null) {
+//									int compare = comparePrimitives((IdEObject) val1, (IdEObject) val2);
+//									if (compare != 0) {
+//										return compare * i;
+//									}
+//								}
+//							}
+//						}
+//						i++;
+//					}
+//				}
+//				return 0;
+//			}
+//		});
+//	}
 
 	private int comparePrimitives(IdEObject o1, IdEObject o2) {
 		EClass eClass = o1.eClass();

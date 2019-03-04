@@ -35,8 +35,6 @@ import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
 import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
 import org.bimserver.interfaces.objects.SModelMergerPluginConfiguration;
 import org.bimserver.interfaces.objects.SObjectDefinition;
-import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
-import org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.interfaces.objects.SPluginBundle;
 import org.bimserver.interfaces.objects.SPluginBundleVersion;
@@ -69,9 +67,6 @@ public interface PluginInterface extends PublicInterface {
 
 	@WebMethod(action="getDefaultSerializer")
 	SSerializerPluginConfiguration getDefaultSerializer() throws ServerException, UserException;
-
-	@WebMethod(action="getDefaultObjectIDM")
-	SObjectIDMPluginConfiguration getDefaultObjectIDM() throws ServerException, UserException;
 
 	@WebMethod(action="setDefaultRenderEngine")
 	void setDefaultRenderEngine(
@@ -111,10 +106,6 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action="setDefaultSerializer")
 	void setDefaultSerializer(
 		@WebParam(name = "oid", partName = "setDefaultSerializer.oid") Long oid) throws UserException, ServerException;
-
-	@WebMethod(action="setDefaultObjectIDM")
-	void setDefaultObjectIDM(
-		@WebParam(name = "oid", partName = "setDefaultObjectIDM.oid") Long oid) throws UserException, ServerException;
 	
 	/**
 	 * @return List of all SerializerPluginDescriptors
@@ -411,49 +402,7 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "updateDeserializer")
 	void updateDeserializer(
 		@WebParam(name = "deserializer", partName = "updateDeserializer.deserializer") SDeserializerPluginConfiguration deserializer) throws ServerException, UserException;
-
-	/**
-	 * @param onlyEnabled Whether to include only enabled ObjectIDMs
-	 * @return A list of ObjectIDMs
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAllObjectIDMs")
-	List<SObjectIDMPluginConfiguration> getAllObjectIDMs(
-		@WebParam(name = "onlyEnabled", partName = "getAllSerializers.onlyEnabled") Boolean onlyEnabled) throws ServerException, UserException;
 	
-	/**
-	 * @param oid ObjectID of the ObjectIDM
-	 * @return ObjectIDM
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getObjectIDMById")
-	SObjectIDMPluginConfiguration getObjectIDMById(
-		@WebParam(name = "oid", partName = "getObjectIDMById.oid") Long oid) throws ServerException, UserException;
-	
-	/**
-	 * @param objectIDM The ObjectIDM to add
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "addObjectIDM")
-	Long addObjectIDM(
-		@WebParam(name = "objectIDM", partName = "addObjectIDM.objectIDM") SObjectIDMPluginConfiguration objectIDM) throws ServerException, UserException;
-	
-	/**
-	 * @param objectIDM The ObjectIDM to update
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "updateObjectIDM")
-	void updateObjectIDM(
-		@WebParam(name = "objectIDM", partName = "updateObjectIDM.objectIDM") SObjectIDMPluginConfiguration objectIDM) throws ServerException, UserException;
-	
-	/**
-	 * @param oid ObjectID of the ObjectIDM to delete
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "deleteObjectIDM")
-	void deleteObjectIDM(
-		@WebParam(name = "oid", partName = "deleteObjectIDM.oid") Long oid) throws ServerException, UserException;
-
 	/**
 	 * @param sid ObjectID of the Serializer to delete
 	 * @throws ServerException, UserException
@@ -517,15 +466,6 @@ public interface PluginInterface extends PublicInterface {
 	@WebMethod(action = "deleteDeserializer")
 	void deleteDeserializer(
 		@WebParam(name = "sid", partName = "deleteDeserializer.sid") Long sid) throws ServerException, UserException;
-
-	/**
-	 * @param objectIDMName Name of the ObjectIDM
-	 * @return ObjectIDM
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getObjectIDMByName")
-	SObjectIDMPluginConfiguration getObjectIDMByName(
-		@WebParam(name = "objectIDMName", partName = "getObjectIDMByName.objectIDMName") String objectIDMName) throws ServerException, UserException;
 
 	@WebMethod(action = "getPluginObjectDefinition")
 	SObjectDefinition getPluginObjectDefinition(
@@ -614,13 +554,6 @@ public interface PluginInterface extends PublicInterface {
 	List<SInternalServicePluginConfiguration> getAllInternalServicesOfService(
 		@WebParam(name = "name", partName = "getAllInternalServicesOfService.name") String name,
 		@WebParam(name = "onlyEnabled", partName = "getAllInternalServicesOfService.onlyEnabled") Boolean onlyEnabled) throws UserException, ServerException;
-	
-	/**
-	 * @return A list of available IDMPlugins
-	 * @throws ServerException, UserException
-	 */
-	@WebMethod(action = "getAllObjectIDMPluginDescriptors")
-	List<SObjectIDMPluginDescriptor> getAllObjectIDMPluginDescriptors() throws ServerException, UserException;
 	
 	@WebMethod(action = "getAvailablePluginBundles")
 	List<SPluginBundle> getAvailablePluginBundles() throws UserException, ServerException;

@@ -63,7 +63,7 @@ public class InstallPluginBundleFromBytes extends BimDatabaseAction<Void> {
 					sPluginInformation.setInstallForNewUsers(true);
 				}
 			}
-			bimServer.getPluginManager().install(mavenPluginBundle, pluginInformationFromPluginFile, false);
+			bimServer.getPluginBundleManager().install(mavenPluginBundle, pluginInformationFromPluginFile, false);
 		} catch (Exception e) {
 			LOGGER.error("", e);
 			throw new UserException(e);

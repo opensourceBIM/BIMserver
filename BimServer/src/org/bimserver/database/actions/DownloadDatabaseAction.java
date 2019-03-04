@@ -45,7 +45,6 @@ import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.modelmerger.MergeException;
-import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
@@ -54,17 +53,14 @@ import org.eclipse.emf.common.util.EList;
 public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcModelInterface> {
 
 	private final long roid;
-	private final ObjectIDM objectIDM;
 	private final long ignoreUoid;
 	private long serializerOid;
 
-	public DownloadDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long ignoreUoid, long serializerOid, Authorization authorization,
-			ObjectIDM objectIDM) {
+	public DownloadDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long ignoreUoid, long serializerOid, Authorization authorization) {
 		super(bimServer, databaseSession, accessMethod, authorization);
 		this.roid = roid;
 		this.ignoreUoid = ignoreUoid;
 		this.serializerOid = serializerOid;
-		this.objectIDM = objectIDM;
 	}
 
 	@Override
@@ -106,7 +102,7 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 				IfcModel subModel = new ServerIfcModel(packageMetaData, pidRoidMap, getDatabaseSession());
 				ifcHeader = concreteRevision.getIfcHeader();
 				int highestStopId = findHighestStopRid(project, concreteRevision);
-				OldQuery query = new OldQuery(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), concreteRevision.getOid(), objectIDM, Deep.YES, highestStopId);
+				OldQuery query = new OldQuery(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), concreteRevision.getOid(), Deep.YES, highestStopId);
 				subModel.addChangeListener(new IfcModelChangeListener() {
 					@Override
 					public void objectAdded(IdEObject idEObject) {

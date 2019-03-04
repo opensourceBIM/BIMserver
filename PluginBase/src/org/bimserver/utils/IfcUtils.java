@@ -30,6 +30,8 @@ import java.util.function.Function;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.geometry.AxisAlignedBoundingBox2D;
+import org.bimserver.geometry.Vector2d;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAreaMeasure;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement;
@@ -61,8 +63,10 @@ import org.bimserver.models.ifc2x3tc1.IfcObjectDefinition;
 import org.bimserver.models.ifc2x3tc1.IfcObjectPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcPhysicalQuantity;
 import org.bimserver.models.ifc2x3tc1.IfcPlaneAngleMeasure;
+import org.bimserver.models.ifc2x3tc1.IfcPolyline;
 import org.bimserver.models.ifc2x3tc1.IfcPowerMeasure;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
+import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
 import org.bimserver.models.ifc2x3tc1.IfcProperty;
 import org.bimserver.models.ifc2x3tc1.IfcPropertySet;
@@ -78,8 +82,11 @@ import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
 import org.bimserver.models.ifc2x3tc1.IfcRelDecomposes;
 import org.bimserver.models.ifc2x3tc1.IfcRelDefines;
 import org.bimserver.models.ifc2x3tc1.IfcRelDefinesByProperties;
+import org.bimserver.models.ifc2x3tc1.IfcRepresentation;
+import org.bimserver.models.ifc2x3tc1.IfcRepresentationItem;
 import org.bimserver.models.ifc2x3tc1.IfcSIPrefix;
 import org.bimserver.models.ifc2x3tc1.IfcSIUnit;
+import org.bimserver.models.ifc2x3tc1.IfcShapeRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcSpace;
 import org.bimserver.models.ifc2x3tc1.IfcSpatialStructureElement;
 import org.bimserver.models.ifc2x3tc1.IfcText;
@@ -976,5 +983,40 @@ public class IfcUtils {
 			}
 		}
 		return total;
+	}
+
+	public static String dumpRepresentationInfo(IfcProduct ifcProduct) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Dumping representation info for " + ifcProduct.eClass().getName() + "\n");
+		IfcProductRepresentation representation = ifcProduct.getRepresentation();
+		for (IfcRepresentation ifcRepresentation : representation.getRepresentations()) {
+			sb.append("\t" + ifcRepresentation.eClass().getName() + "\n");
+			if (ifcRepresentation instanceof IfcShapeRepresentation) {
+				IfcShapeRepresentation ifcShapeRepresentation = (IfcShapeRepresentation)ifcRepresentation;
+				sb.append("\t\tRepresentationIdentifier: " + ifcShapeRepresentation.getRepresentationIdentifier() + "\n");
+				sb.append("\t\tRepresentationType: " + ifcShapeRepresentation.getRepresentationType() + "\n");
+			}
+			for (IfcRepresentationItem ifcRepresentationItem : ifcRepresentation.getItems()) {
+				sb.append("\t\t" + ifcRepresentationItem.eClass().getName() + "\n");
+			}
+		}
+		return sb.toString();
+	}
+
+	public static AxisAlignedBoundingBox2D getBoundingBox(IfcPolyline ifcPolyline) throws GeometryException {
+		AxisAlignedBoundingBox2D box2d = new AxisAlignedBoundingBox2D();
+		for (IfcCartesianPoint ifcCartesianPoint : ifcPolyline.getPoints()) {
+			EList<Double> coordinates = ifcCartesianPoint.getCoordinates();
+			if (coordinates.size() > 2) {
+				throw new GeometryException("Too many dimensions (" + coordinates.size() + ") for 2D boundingbox");
+			}
+			box2d.process(coordinates);
+		}
+		return box2d;
+	}
+	
+	public static Vector2d getCenter(IfcPolyline ifcPolyline) throws GeometryException {
+		AxisAlignedBoundingBox2D bb = getBoundingBox(ifcPolyline);
+		return bb.getCenter();
 	}
 }

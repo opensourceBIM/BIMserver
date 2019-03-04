@@ -113,7 +113,7 @@ public class CheckoutDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 			lastPackageMetaData = packageMetaData;
 			IfcModel subModel = new BasicIfcModel(packageMetaData, null);
 			int highestStopId = findHighestStopRid(project, subRevision);
-			OldQuery query = new OldQuery(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), revision.getOid(), null,  Deep.YES, highestStopId);
+			OldQuery query = new OldQuery(packageMetaData, subRevision.getProject().getId(), subRevision.getId(), revision.getOid(), Deep.YES, highestStopId);
 			subModel.addChangeListener(new IfcModelChangeListener() {
 				@Override
 				public void objectAdded(IdEObject idEObject) {

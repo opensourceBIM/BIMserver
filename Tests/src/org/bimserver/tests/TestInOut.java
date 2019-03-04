@@ -74,7 +74,7 @@ public class TestInOut {
 
 		BimServer bimServer = new BimServer(config);
 		try {
-			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), new OptionsParser(args).getPluginDirectories());
+			LocalDevPluginLoader.loadPlugins(bimServer.getPluginBundleManager(), new OptionsParser(args).getPluginDirectories());
 			bimServer.start();
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				AdminInterface adminInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(AdminInterface.class);

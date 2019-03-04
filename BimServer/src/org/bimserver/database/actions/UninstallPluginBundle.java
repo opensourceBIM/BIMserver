@@ -48,7 +48,7 @@ public class UninstallPluginBundle extends BimDatabaseAction<Void> {
 		MavenPluginLocation mavenPluginLocation = bimServer.getMavenPluginRepository().getPluginLocation(repository, groupId, artifactId);
 
 		try {
-			bimServer.getPluginManager().uninstall(mavenPluginLocation.getPluginVersionIdentifier(version));
+			bimServer.getPluginBundleManager().uninstall(mavenPluginLocation.getPluginVersionIdentifier(version));
 		} catch (Exception e) {
 			throw new UserException(e);
 		}

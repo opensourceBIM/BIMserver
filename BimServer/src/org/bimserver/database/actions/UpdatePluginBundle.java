@@ -73,7 +73,7 @@ public class UpdatePluginBundle extends BimDatabaseAction<Void> {
 					// update plugin information with data from potentially existing plugins
 //				}
 				
-				bimServer.getPluginManager().update(mavenPluginLocation.getPluginVersionIdentifier(version), mavenPluginLocation.getPluginBundle(version), mavenPluginLocation.getPluginBundleVersion(version), jarFile, pomFile, plugins);
+				bimServer.getPluginBundleManager().update(mavenPluginLocation.getPluginVersionIdentifier(version), mavenPluginLocation.getPluginBundle(version), mavenPluginLocation.getPluginBundleVersion(version), jarFile, pomFile, plugins);
 			} catch (Exception e) {
 				throw new UserException(e);
 			}

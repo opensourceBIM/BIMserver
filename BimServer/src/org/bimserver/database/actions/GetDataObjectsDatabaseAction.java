@@ -67,7 +67,7 @@ public class GetDataObjectsDatabaseAction extends AbstractDownloadDatabaseAction
 			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 			lastPackageMetaData = packageMetaData;
 			IfcModel subModel = new ServerIfcModel(packageMetaData, pidRoidMap, getDatabaseSession());
-			OldQuery query = new OldQuery(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), null, Deep.YES, highestStopId);
+			OldQuery query = new OldQuery(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), Deep.YES, highestStopId);
 			getDatabaseSession().getMap(subModel, query);
 			subModel.getModelMetaData().setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);

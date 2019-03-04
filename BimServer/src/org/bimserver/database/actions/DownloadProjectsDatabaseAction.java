@@ -46,21 +46,18 @@ import org.bimserver.models.store.User;
 import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.modelmerger.MergeException;
-import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 
 public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseAction<IfcModelInterface> {
 
 	private final Set<Long> roids;
-	private final ObjectIDM objectIDM;
 	private long serializerOid;
 
-	public DownloadProjectsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, long serializerOid, Authorization authorization, ObjectIDM objectIDM) {
+	public DownloadProjectsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, long serializerOid, Authorization authorization) {
 		super(bimServer, databaseSession, accessMethod, authorization);
 		this.roids = roids;
 		this.serializerOid = serializerOid;
-		this.objectIDM = objectIDM;
 	}
 
 	@Override
@@ -96,7 +93,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 					lastPackageMetaData = packageMetaData;
 					IfcModel subModel = new ServerIfcModel(packageMetaData, pidRoidMap, getDatabaseSession());
 					int highestStopId = findHighestStopRid(project, concreteRevision);
-					OldQuery query = new OldQuery(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), revision.getOid(), objectIDM, Deep.YES, highestStopId);
+					OldQuery query = new OldQuery(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), revision.getOid(), Deep.YES, highestStopId);
 					subModel.addChangeListener(new IfcModelChangeListener() {
 						@Override
 						public void objectAdded(IdEObject idEObject) {

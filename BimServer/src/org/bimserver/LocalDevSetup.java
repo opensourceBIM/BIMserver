@@ -28,6 +28,7 @@ import org.bimserver.client.soap.SoapBimServerClientFactory;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.plugins.MavenPluginRepository;
 import org.bimserver.plugins.OptionsParser;
+import org.bimserver.plugins.PluginBundleManager;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.services.BimServerClientInterface;
@@ -50,13 +51,13 @@ import org.slf4j.LoggerFactory;
 public class LocalDevSetup {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LocalDevSetup.class);
 
-	public static void loadPlugins(PluginManager pluginManager, Path current, Path[] pluginDirectories) throws PluginException {
+	public static void loadPlugins(PluginBundleManager pluginBundleManager, Path current, Path[] pluginDirectories) throws PluginException {
 		LOGGER.info("Loading plugins from " + current.toString());
 
 		if (pluginDirectories != null) {
 			for (Path pluginDirectory : pluginDirectories) {
 				try {
-					pluginManager.loadAllPluginsFromEclipseWorkspaces(pluginDirectory, false);
+					pluginBundleManager.loadAllPluginsFromEclipseWorkspaces(pluginDirectory, false);
 				} catch (PluginException e) {
 					LOGGER.error("", e);
 				} catch (IOException e) {
@@ -78,11 +79,12 @@ public class LocalDevSetup {
 				Files.createDirectories(tmp);
 			}
 			MavenPluginRepository mavenPluginRepository = new MavenPluginRepository(home.resolve("maven"));
-			PluginManager pluginManager = new PluginManager(tmp, home.resolve("plugins"), mavenPluginRepository, System.getProperty("java.class.path"), null, null, null, null);
+			PluginManager pluginManager = new PluginManager(tmp, System.getProperty("java.class.path"), null, null, null, null);
 
 			MetaDataManager metaDataManager = new MetaDataManager(tmp);
 			pluginManager.setMetaDataManager(metaDataManager);
-			loadPlugins(pluginManager, Paths.get(".."), new OptionsParser(args).getPluginDirectories());
+			PluginBundleManager pluginBundleManager = new PluginBundleManager(pluginManager, mavenPluginRepository, home.resolve("plugins"));
+			loadPlugins(pluginBundleManager, Paths.get(".."), new OptionsParser(args).getPluginDirectories());
 			metaDataManager.init();
 
 			pluginManager.initAllLoadedPlugins();
@@ -111,8 +113,9 @@ public class LocalDevSetup {
 				Files.createDirectory(tmp);
 			}
 			MavenPluginRepository mavenPluginRepository = new MavenPluginRepository(home.resolve("maven"));
-			PluginManager pluginManager = new PluginManager(tmp, home.resolve("plugins"), mavenPluginRepository, System.getProperty("java.class.path"), null, null, null, null);
-			pluginManager.loadAllPluginsFromEclipseWorkspace(Paths.get("../"), true);
+			PluginManager pluginManager = new PluginManager(tmp, System.getProperty("java.class.path"), null, null, null, null);
+			PluginBundleManager pluginBundleManager = new PluginBundleManager(pluginManager, mavenPluginRepository, home.resolve("plugins"));
+			pluginBundleManager.loadAllPluginsFromEclipseWorkspace(Paths.get("../"), true);
 			
 			MetaDataManager metaDataManager = new MetaDataManager(tmp);
 			pluginManager.setMetaDataManager(metaDataManager);

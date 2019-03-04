@@ -54,13 +54,11 @@ import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
-import org.bimserver.plugins.objectidms.HideAllInversesObjectIDM;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.IncrementingOidProvider;
 import org.bimserver.shared.exceptions.PluginException;
-import org.bimserver.utils.CollectionUtils;
 import org.bimserver.utils.DeserializerUtils;
 import org.bimserver.utils.SerializerUtils;
 
@@ -82,7 +80,7 @@ public class ExtractFurniture {
 			IfcFurnishingElement picknick = (IfcFurnishingElement) model.getByName(Ifc2x3tc1Package.eINSTANCE.getIfcFurnishingElement(), "Picknik Bank");
 
 			IfcModelInterface newModel = new BasicIfcModel(packageMetaData, null);
-			ModelHelper modelHelper = new ModelHelper(pluginManager.getMetaDataManager(), new HideAllInversesObjectIDM(CollectionUtils.singleSet(Ifc2x3tc1Package.eINSTANCE), pluginManager.getMetaDataManager().getPackageMetaData("ifc2x3tc1")), newModel);
+			ModelHelper modelHelper = new ModelHelper(pluginManager.getMetaDataManager(), newModel);
 			
 			modelHelper.copy(picknick, false);
 			

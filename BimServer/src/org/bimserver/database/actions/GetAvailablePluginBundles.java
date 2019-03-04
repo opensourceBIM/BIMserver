@@ -60,7 +60,7 @@ public class GetAvailablePluginBundles extends PluginBundleDatabaseAction<List<S
 		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(32, 32, 1L, TimeUnit.HOURS, new ArrayBlockingQueue<>(100));
 
 		for (PluginLocation<?> pluginLocation : repository.listPluginLocations()) {
-			PluginBundle pluginBundle = bimServer.getPluginManager().getPluginBundle(pluginLocation.getPluginIdentifier());
+			PluginBundle pluginBundle = bimServer.getPluginBundleManager().getPluginBundle(pluginLocation.getPluginIdentifier());
 			// Skipping all plugin bundles that already have an installed version
 			if (pluginBundle == null) {
 				threadPoolExecutor.submit(new Runnable(){

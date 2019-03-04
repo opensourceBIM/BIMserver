@@ -81,7 +81,7 @@ public class TestSimultaniousDownloadWithCaching {
 		config.setResourceFetcher(new LocalDevelopmentResourceFetcher(Paths.get("../")));
 		final BimServer bimServer = new BimServer(config);
 		try {
-			LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), null);
+			LocalDevPluginLoader.loadPlugins(bimServer.getPluginBundleManager(), null);
 			bimServer.start();
 			if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
 				bimServer.getService(AdminInterface.class).setup("http://localhost", "Administrator", "admin@bimserver.org", "admin", null, null, null);

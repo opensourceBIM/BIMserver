@@ -47,12 +47,10 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
-import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.modelcompare.ModelCompareException;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.modelmerger.ModelMerger;
-import org.bimserver.plugins.objectidms.ObjectIDM;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
@@ -69,7 +67,7 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 	private final long mcid;
 
 	public DownloadCompareDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, long mcid, CompareType compareType,
-			Authorization authorization, ObjectIDM objectIDM) {
+			Authorization authorization) {
 		super(bimServer, databaseSession, accessMethod, authorization);
 		this.mcid = mcid;
 		Iterator<Long> iterator = roids.iterator();
@@ -109,8 +107,8 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 			CompareResult compareResults = null;// bimServer.getCompareCache().getCompareResults(roid1,
 												// roid2, compareType,
 												// compareIdentifier);
-			IfcModelInterface model1 = new DownloadDatabaseAction(getBimServer(), getDatabaseSession(), getAccessMethod(), roid1, -1, -1, getAuthorization(), null).execute();
-			IfcModelInterface model2 = new DownloadDatabaseAction(getBimServer(), getDatabaseSession(), getAccessMethod(), roid2, -1, -1, getAuthorization(), null).execute();
+			IfcModelInterface model1 = new DownloadDatabaseAction(getBimServer(), getDatabaseSession(), getAccessMethod(), roid1, -1, -1, getAuthorization()).execute();
+			IfcModelInterface model2 = new DownloadDatabaseAction(getBimServer(), getDatabaseSession(), getAccessMethod(), roid2, -1, -1, getAuthorization()).execute();
 
 			try {
 				compareResults = getModelCompare().compare(model1, model2, compareType);

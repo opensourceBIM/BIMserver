@@ -79,7 +79,7 @@ public class AbstractLocalDevBimServerStarter {
 					public void stateChanged(ServerState oldState, ServerState newState) {
 						if (oldState == ServerState.MIGRATION_REQUIRED && newState == ServerState.RUNNING) {
 							try {
-								LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
+								LocalDevPluginLoader.loadPlugins(bimServer.getPluginBundleManager(), pluginDirectories);
 							} catch (PluginException e) {
 								LOGGER.error("", e);
 							}
@@ -89,12 +89,12 @@ public class AbstractLocalDevBimServerStarter {
 			} else if (bimServer.getServerInfo().getServerState() == ServerState.RUNNING) {
 				long start = System.nanoTime();
 				LOGGER.info("Loading plugins...");
-				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
+				LocalDevPluginLoader.loadPlugins(bimServer.getPluginBundleManager(), pluginDirectories);
 				bimServer.activateServices();
 				long end = System.nanoTime();
 				LOGGER.info("All plugins loaded (" + ((end - start) / 1000000) + " ms)");
 			} else if (bimServer.getServerInfo().getServerState() == ServerState.NOT_SETUP) {
-				LocalDevPluginLoader.loadPlugins(bimServer.getPluginManager(), pluginDirectories);
+				LocalDevPluginLoader.loadPlugins(bimServer.getPluginBundleManager(), pluginDirectories);
 				if (autoSetup) {
 					try {
 						AdminInterface adminInterface = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL).get(AdminInterface.class);
