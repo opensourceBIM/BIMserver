@@ -49,11 +49,6 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
-	public interface AddObjectIDMCallback {
-		void success(java.lang.Long result);
-		void error(Throwable e);
-	}
-	
 	public interface AddQueryEngineCallback {
 		void success(java.lang.Long result);
 		void error(Throwable e);
@@ -95,11 +90,6 @@ public class AsyncPluginInterface {
 	}
 	
 	public interface DeleteModelMergerCallback {
-		void success();
-		void error(Throwable e);
-	}
-	
-	public interface DeleteObjectIDMCallback {
 		void success();
 		void error(Throwable e);
 	}
@@ -174,16 +164,6 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
-	public interface GetAllObjectIDMPluginDescriptorsCallback {
-		void success(java.util.List<org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor> result);
-		void error(Throwable e);
-	}
-	
-	public interface GetAllObjectIDMsCallback {
-		void success(java.util.List<org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration> result);
-		void error(Throwable e);
-	}
-	
 	public interface GetAllQueryEnginePluginDescriptorsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> result);
 		void error(Throwable e);
@@ -254,11 +234,6 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
-	public interface GetDefaultObjectIDMCallback {
-		void success(org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration result);
-		void error(Throwable e);
-	}
-	
 	public interface GetDefaultQueryEngineCallback {
 		void success(org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration result);
 		void error(Throwable e);
@@ -311,16 +286,6 @@ public class AsyncPluginInterface {
 	
 	public interface GetModelMergerByNameCallback {
 		void success(org.bimserver.interfaces.objects.SModelMergerPluginConfiguration result);
-		void error(Throwable e);
-	}
-	
-	public interface GetObjectIDMByIdCallback {
-		void success(org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration result);
-		void error(Throwable e);
-	}
-	
-	public interface GetObjectIDMByNameCallback {
-		void success(org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration result);
 		void error(Throwable e);
 	}
 	
@@ -444,11 +409,6 @@ public class AsyncPluginInterface {
 		void error(Throwable e);
 	}
 	
-	public interface SetDefaultObjectIDMCallback {
-		void success();
-		void error(Throwable e);
-	}
-	
 	public interface SetDefaultQueryEngineCallback {
 		void success();
 		void error(Throwable e);
@@ -500,11 +460,6 @@ public class AsyncPluginInterface {
 	}
 	
 	public interface UpdateModelMergerCallback {
-		void success();
-		void error(Throwable e);
-	}
-	
-	public interface UpdateObjectIDMCallback {
 		void success();
 		void error(Throwable e);
 	}
@@ -1177,11 +1132,11 @@ public class AsyncPluginInterface {
 		});
 	}
 	
-	public void getPluginBundleVersionById(final java.lang.Long bdid, final GetPluginBundleVersionByIdCallback callback) {
+	public void getPluginBundleVersionById(final java.lang.Long pbid, final GetPluginBundleVersionByIdCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.getPluginBundleVersionById(bdid));
+					callback.success(syncService.getPluginBundleVersionById(pbid));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

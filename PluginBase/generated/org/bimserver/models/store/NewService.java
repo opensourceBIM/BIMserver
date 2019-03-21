@@ -394,7 +394,7 @@ public interface NewService extends IdEObject {
 	 * @return the value of the '<em>Action</em>' reference.
 	 * @see #setAction(Action)
 	 * @see org.bimserver.models.store.StorePackage#getNewService_Action()
-	 * @model
+	 * @model annotation="embedsreference"
 	 * @generated
 	 */
 	Action getAction();

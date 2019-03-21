@@ -104,7 +104,7 @@ public interface OAuthServer extends IdEObject {
 	 * @return the value of the '<em>Client Id</em>' attribute.
 	 * @see #setClientId(String)
 	 * @see org.bimserver.models.store.StorePackage#getOAuthServer_ClientId()
-	 * @model
+	 * @model annotation="singleindex"
 	 * @generated
 	 */
 	String getClientId();
@@ -260,7 +260,7 @@ public interface OAuthServer extends IdEObject {
 	 * @return the value of the '<em>Redirect Url</em>' attribute.
 	 * @see #setRedirectUrl(String)
 	 * @see org.bimserver.models.store.StorePackage#getOAuthServer_RedirectUrl()
-	 * @model
+	 * @model annotation="singleindex"
 	 * @generated
 	 */
 	String getRedirectUrl();
@@ -364,7 +364,7 @@ public interface OAuthServer extends IdEObject {
 	 * @return the value of the '<em>Api Url</em>' attribute.
 	 * @see #setApiUrl(String)
 	 * @see org.bimserver.models.store.StorePackage#getOAuthServer_ApiUrl()
-	 * @model
+	 * @model annotation="singleindex"
 	 * @generated
 	 */
 	String getApiUrl();
@@ -390,7 +390,7 @@ public interface OAuthServer extends IdEObject {
 	 * @return the value of the '<em>Registration Endpoint</em>' attribute.
 	 * @see #setRegistrationEndpoint(String)
 	 * @see org.bimserver.models.store.StorePackage#getOAuthServer_RegistrationEndpoint()
-	 * @model
+	 * @model annotation="singleindex"
 	 * @generated
 	 */
 	String getRegistrationEndpoint();

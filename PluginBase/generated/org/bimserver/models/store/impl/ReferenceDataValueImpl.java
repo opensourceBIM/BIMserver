@@ -76,6 +76,7 @@ public class ReferenceDataValueImpl extends DataValueImpl implements ReferenceDa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTypeName() {
 		return (String) eGet(StorePackage.Literals.REFERENCE_DATA_VALUE__TYPE_NAME, true);
 	}
@@ -85,6 +86,7 @@ public class ReferenceDataValueImpl extends DataValueImpl implements ReferenceDa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTypeName(String newTypeName) {
 		eSet(StorePackage.Literals.REFERENCE_DATA_VALUE__TYPE_NAME, newTypeName);
 	}
@@ -94,6 +96,7 @@ public class ReferenceDataValueImpl extends DataValueImpl implements ReferenceDa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getGuid() {
 		return (String) eGet(StorePackage.Literals.REFERENCE_DATA_VALUE__GUID, true);
 	}
@@ -103,6 +106,7 @@ public class ReferenceDataValueImpl extends DataValueImpl implements ReferenceDa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGuid(String newGuid) {
 		eSet(StorePackage.Literals.REFERENCE_DATA_VALUE__GUID, newGuid);
 	}

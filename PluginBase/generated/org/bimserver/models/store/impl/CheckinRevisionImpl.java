@@ -76,6 +76,7 @@ public class CheckinRevisionImpl extends ActionImpl implements CheckinRevision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Project getProject() {
 		return (Project) eGet(StorePackage.Literals.CHECKIN_REVISION__PROJECT, true);
 	}
@@ -85,6 +86,7 @@ public class CheckinRevisionImpl extends ActionImpl implements CheckinRevision {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProject(Project newProject) {
 		eSet(StorePackage.Literals.CHECKIN_REVISION__PROJECT, newProject);
 	}

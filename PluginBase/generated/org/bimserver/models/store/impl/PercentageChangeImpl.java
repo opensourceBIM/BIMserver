@@ -75,6 +75,7 @@ public class PercentageChangeImpl extends RemoteServiceUpdateImpl implements Per
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getPercentage() {
 		return (Integer) eGet(StorePackage.Literals.PERCENTAGE_CHANGE__PERCENTAGE, true);
 	}
@@ -84,6 +85,7 @@ public class PercentageChangeImpl extends RemoteServiceUpdateImpl implements Per
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPercentage(int newPercentage) {
 		eSet(StorePackage.Literals.PERCENTAGE_CHANGE__PERCENTAGE, newPercentage);
 	}

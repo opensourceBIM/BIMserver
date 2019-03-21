@@ -101,7 +101,7 @@ public interface PluginDescriptor extends IdEObject {
 	 * @return the value of the '<em>Plugin Class Name</em>' attribute.
 	 * @see #setPluginClassName(String)
 	 * @see org.bimserver.models.store.StorePackage#getPluginDescriptor_PluginClassName()
-	 * @model
+	 * @model annotation="singleindex"
 	 * @generated
 	 */
 	String getPluginClassName();
@@ -249,7 +249,7 @@ public interface PluginDescriptor extends IdEObject {
 	 * @return the value of the '<em>Identifier</em>' attribute.
 	 * @see #setIdentifier(String)
 	 * @see org.bimserver.models.store.StorePackage#getPluginDescriptor_Identifier()
-	 * @model
+	 * @model annotation="singleindex"
 	 * @generated
 	 */
 	String getIdentifier();

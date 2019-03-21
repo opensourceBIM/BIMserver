@@ -75,6 +75,7 @@ public class SimpleDataValueImpl extends DataValueImpl implements SimpleDataValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getStringValue() {
 		return (String) eGet(StorePackage.Literals.SIMPLE_DATA_VALUE__STRING_VALUE, true);
 	}
@@ -84,6 +85,7 @@ public class SimpleDataValueImpl extends DataValueImpl implements SimpleDataValu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStringValue(String newStringValue) {
 		eSet(StorePackage.Literals.SIMPLE_DATA_VALUE__STRING_VALUE, newStringValue);
 	}

@@ -93,6 +93,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements ParameterD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(StorePackage.Literals.PARAMETER_DEFINITION__NAME, true);
 	}
@@ -102,6 +103,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements ParameterD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(StorePackage.Literals.PARAMETER_DEFINITION__NAME, newName);
 	}
@@ -111,6 +113,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements ParameterD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIdentifier() {
 		return (String) eGet(StorePackage.Literals.PARAMETER_DEFINITION__IDENTIFIER, true);
 	}
@@ -120,6 +123,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements ParameterD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentifier(String newIdentifier) {
 		eSet(StorePackage.Literals.PARAMETER_DEFINITION__IDENTIFIER, newIdentifier);
 	}
@@ -129,6 +133,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements ParameterD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isRequired() {
 		return (Boolean) eGet(StorePackage.Literals.PARAMETER_DEFINITION__REQUIRED, true);
 	}
@@ -138,6 +143,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements ParameterD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRequired(boolean newRequired) {
 		eSet(StorePackage.Literals.PARAMETER_DEFINITION__REQUIRED, newRequired);
 	}
@@ -147,6 +153,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements ParameterD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return (String) eGet(StorePackage.Literals.PARAMETER_DEFINITION__DESCRIPTION, true);
 	}
@@ -156,6 +163,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements ParameterD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		eSet(StorePackage.Literals.PARAMETER_DEFINITION__DESCRIPTION, newDescription);
 	}
@@ -165,6 +173,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements ParameterD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypeDefinition getType() {
 		return (TypeDefinition) eGet(StorePackage.Literals.PARAMETER_DEFINITION__TYPE, true);
 	}
@@ -174,6 +183,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements ParameterD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(TypeDefinition newType) {
 		eSet(StorePackage.Literals.PARAMETER_DEFINITION__TYPE, newType);
 	}
@@ -183,6 +193,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements ParameterD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getDefaultValue() {
 		return (Type) eGet(StorePackage.Literals.PARAMETER_DEFINITION__DEFAULT_VALUE, true);
 	}
@@ -192,6 +203,7 @@ public class ParameterDefinitionImpl extends IdEObjectImpl implements ParameterD
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefaultValue(Type newDefaultValue) {
 		eSet(StorePackage.Literals.PARAMETER_DEFINITION__DEFAULT_VALUE, newDefaultValue);
 	}

@@ -94,6 +94,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(StorePackage.Literals.PROJECT_SMALL__NAME, true);
 	}
@@ -103,6 +104,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(StorePackage.Literals.PROJECT_SMALL__NAME, newName);
 	}
@@ -112,6 +114,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getParentId() {
 		return (Long) eGet(StorePackage.Literals.PROJECT_SMALL__PARENT_ID, true);
 	}
@@ -121,6 +124,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParentId(long newParentId) {
 		eSet(StorePackage.Literals.PROJECT_SMALL__PARENT_ID, newParentId);
 	}
@@ -130,6 +134,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ObjectState getState() {
 		return (ObjectState) eGet(StorePackage.Literals.PROJECT_SMALL__STATE, true);
 	}
@@ -139,6 +144,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setState(ObjectState newState) {
 		eSet(StorePackage.Literals.PROJECT_SMALL__STATE, newState);
 	}
@@ -148,6 +154,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getNrRevisions() {
 		return (Integer) eGet(StorePackage.Literals.PROJECT_SMALL__NR_REVISIONS, true);
 	}
@@ -157,6 +164,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNrRevisions(int newNrRevisions) {
 		eSet(StorePackage.Literals.PROJECT_SMALL__NR_REVISIONS, newNrRevisions);
 	}
@@ -166,6 +174,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getNrSubProjects() {
 		return (Integer) eGet(StorePackage.Literals.PROJECT_SMALL__NR_SUB_PROJECTS, true);
 	}
@@ -175,6 +184,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNrSubProjects(int newNrSubProjects) {
 		eSet(StorePackage.Literals.PROJECT_SMALL__NR_SUB_PROJECTS, newNrSubProjects);
 	}
@@ -184,6 +194,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isHasCheckinRights() {
 		return (Boolean) eGet(StorePackage.Literals.PROJECT_SMALL__HAS_CHECKIN_RIGHTS, true);
 	}
@@ -193,6 +204,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHasCheckinRights(boolean newHasCheckinRights) {
 		eSet(StorePackage.Literals.PROJECT_SMALL__HAS_CHECKIN_RIGHTS, newHasCheckinRights);
 	}
@@ -202,6 +214,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getLastRevisionId() {
 		return (Long) eGet(StorePackage.Literals.PROJECT_SMALL__LAST_REVISION_ID, true);
 	}
@@ -211,6 +224,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLastRevisionId(long newLastRevisionId) {
 		eSet(StorePackage.Literals.PROJECT_SMALL__LAST_REVISION_ID, newLastRevisionId);
 	}
@@ -220,6 +234,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSchema() {
 		return (String) eGet(StorePackage.Literals.PROJECT_SMALL__SCHEMA, true);
 	}
@@ -229,6 +244,7 @@ public class ProjectSmallImpl extends IdEObjectImpl implements ProjectSmall {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSchema(String newSchema) {
 		eSet(StorePackage.Literals.PROJECT_SMALL__SCHEMA, newSchema);
 	}

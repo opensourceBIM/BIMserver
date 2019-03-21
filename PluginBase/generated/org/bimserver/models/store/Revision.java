@@ -477,7 +477,9 @@ public interface Revision extends IdEObject {
 	 * @return the value of the '<em>Bounds</em>' reference.
 	 * @see #setBounds(Bounds)
 	 * @see org.bimserver.models.store.StorePackage#getRevision_Bounds()
-	 * @model
+	 * @model annotation="dbembed"
+	 *        annotation="embedsreference"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	Bounds getBounds();
@@ -503,7 +505,9 @@ public interface Revision extends IdEObject {
 	 * @return the value of the '<em>Bounds Untransformed</em>' reference.
 	 * @see #setBoundsUntransformed(Bounds)
 	 * @see org.bimserver.models.store.StorePackage#getRevision_BoundsUntransformed()
-	 * @model
+	 * @model annotation="dbembed"
+	 *        annotation="embedsreference"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	Bounds getBoundsUntransformed();
@@ -529,7 +533,9 @@ public interface Revision extends IdEObject {
 	 * @return the value of the '<em>Bounds Mm</em>' reference.
 	 * @see #setBoundsMm(Bounds)
 	 * @see org.bimserver.models.store.StorePackage#getRevision_BoundsMm()
-	 * @model
+	 * @model annotation="dbembed"
+	 *        annotation="embedsreference"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	Bounds getBoundsMm();
@@ -555,7 +561,9 @@ public interface Revision extends IdEObject {
 	 * @return the value of the '<em>Bounds Untransformed Mm</em>' reference.
 	 * @see #setBoundsUntransformedMm(Bounds)
 	 * @see org.bimserver.models.store.StorePackage#getRevision_BoundsUntransformedMm()
-	 * @model
+	 * @model annotation="dbembed"
+	 *        annotation="embedsreference"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	Bounds getBoundsUntransformedMm();

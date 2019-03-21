@@ -100,6 +100,7 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__NAME, true);
 	}
@@ -109,6 +110,7 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__NAME, newName);
 	}
@@ -118,6 +120,7 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getPluginClassName() {
 		return (String) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME, true);
 	}
@@ -127,6 +130,7 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPluginClassName(String newPluginClassName) {
 		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__PLUGIN_CLASS_NAME, newPluginClassName);
 	}
@@ -136,6 +140,7 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return (String) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__DESCRIPTION, true);
 	}
@@ -145,6 +150,7 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__DESCRIPTION, newDescription);
 	}
@@ -154,6 +160,7 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLocation() {
 		return (String) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__LOCATION, true);
 	}
@@ -163,6 +170,7 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLocation(String newLocation) {
 		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__LOCATION, newLocation);
 	}
@@ -172,6 +180,7 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Boolean getEnabled() {
 		return (Boolean) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__ENABLED, true);
 	}
@@ -181,6 +190,7 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEnabled(Boolean newEnabled) {
 		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__ENABLED, newEnabled);
 	}
@@ -190,6 +200,7 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getPluginInterfaceClassName() {
 		return (String) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME, true);
 	}
@@ -199,6 +210,7 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPluginInterfaceClassName(String newPluginInterfaceClassName) {
 		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__PLUGIN_INTERFACE_CLASS_NAME, newPluginInterfaceClassName);
 	}
@@ -209,6 +221,7 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<PluginConfiguration> getConfigurations() {
 		return (EList<PluginConfiguration>) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__CONFIGURATIONS, true);
 	}
@@ -218,6 +231,7 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIdentifier() {
 		return (String) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__IDENTIFIER, true);
 	}
@@ -227,6 +241,7 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentifier(String newIdentifier) {
 		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__IDENTIFIER, newIdentifier);
 	}
@@ -236,6 +251,7 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isInstallForNewUsers() {
 		return (Boolean) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS, true);
 	}
@@ -245,6 +261,7 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInstallForNewUsers(boolean newInstallForNewUsers) {
 		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__INSTALL_FOR_NEW_USERS, newInstallForNewUsers);
 	}
@@ -254,6 +271,7 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PluginBundleVersion getPluginBundleVersion() {
 		return (PluginBundleVersion) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION, true);
 	}
@@ -263,6 +281,7 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPluginBundleVersion(PluginBundleVersion newPluginBundleVersion) {
 		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__PLUGIN_BUNDLE_VERSION, newPluginBundleVersion);
 	}
@@ -272,6 +291,7 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ObjectType getSettings() {
 		return (ObjectType) eGet(StorePackage.Literals.PLUGIN_DESCRIPTOR__SETTINGS, true);
 	}
@@ -281,6 +301,7 @@ public class PluginDescriptorImpl extends IdEObjectImpl implements PluginDescrip
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSettings(ObjectType newSettings) {
 		eSet(StorePackage.Literals.PLUGIN_DESCRIPTOR__SETTINGS, newSettings);
 	}

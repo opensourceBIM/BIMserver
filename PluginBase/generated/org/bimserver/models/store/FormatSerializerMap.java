@@ -92,7 +92,7 @@ public interface FormatSerializerMap extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Serializers</em>' reference list.
 	 * @see org.bimserver.models.store.StorePackage#getFormatSerializerMap_Serializers()
-	 * @model
+	 * @model annotation="embedsreference"
 	 * @generated
 	 */
 	EList<SerializerPluginConfiguration> getSerializers();

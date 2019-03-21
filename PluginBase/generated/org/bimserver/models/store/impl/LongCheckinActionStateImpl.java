@@ -76,6 +76,7 @@ public class LongCheckinActionStateImpl extends LongActionStateImpl implements L
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getRoid() {
 		return (Long) eGet(StorePackage.Literals.LONG_CHECKIN_ACTION_STATE__ROID, true);
 	}
@@ -85,6 +86,7 @@ public class LongCheckinActionStateImpl extends LongActionStateImpl implements L
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRoid(long newRoid) {
 		eSet(StorePackage.Literals.LONG_CHECKIN_ACTION_STATE__ROID, newRoid);
 	}

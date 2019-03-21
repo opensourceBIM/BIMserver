@@ -99,6 +99,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<String> getDescription() {
 		return (EList<String>) eGet(StorePackage.Literals.IFC_HEADER__DESCRIPTION, true);
 	}
@@ -108,6 +109,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getImplementationLevel() {
 		return (String) eGet(StorePackage.Literals.IFC_HEADER__IMPLEMENTATION_LEVEL, true);
 	}
@@ -117,6 +119,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setImplementationLevel(String newImplementationLevel) {
 		eSet(StorePackage.Literals.IFC_HEADER__IMPLEMENTATION_LEVEL, newImplementationLevel);
 	}
@@ -126,6 +129,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFilename() {
 		return (String) eGet(StorePackage.Literals.IFC_HEADER__FILENAME, true);
 	}
@@ -135,6 +139,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFilename(String newFilename) {
 		eSet(StorePackage.Literals.IFC_HEADER__FILENAME, newFilename);
 	}
@@ -144,6 +149,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getTimeStamp() {
 		return (Date) eGet(StorePackage.Literals.IFC_HEADER__TIME_STAMP, true);
 	}
@@ -153,6 +159,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTimeStamp(Date newTimeStamp) {
 		eSet(StorePackage.Literals.IFC_HEADER__TIME_STAMP, newTimeStamp);
 	}
@@ -163,6 +170,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<String> getAuthor() {
 		return (EList<String>) eGet(StorePackage.Literals.IFC_HEADER__AUTHOR, true);
 	}
@@ -173,6 +181,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<String> getOrganization() {
 		return (EList<String>) eGet(StorePackage.Literals.IFC_HEADER__ORGANIZATION, true);
 	}
@@ -182,6 +191,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getPreProcessorVersion() {
 		return (String) eGet(StorePackage.Literals.IFC_HEADER__PRE_PROCESSOR_VERSION, true);
 	}
@@ -191,6 +201,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPreProcessorVersion(String newPreProcessorVersion) {
 		eSet(StorePackage.Literals.IFC_HEADER__PRE_PROCESSOR_VERSION, newPreProcessorVersion);
 	}
@@ -200,6 +211,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getOriginatingSystem() {
 		return (String) eGet(StorePackage.Literals.IFC_HEADER__ORIGINATING_SYSTEM, true);
 	}
@@ -209,6 +221,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOriginatingSystem(String newOriginatingSystem) {
 		eSet(StorePackage.Literals.IFC_HEADER__ORIGINATING_SYSTEM, newOriginatingSystem);
 	}
@@ -218,6 +231,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIfcSchemaVersion() {
 		return (String) eGet(StorePackage.Literals.IFC_HEADER__IFC_SCHEMA_VERSION, true);
 	}
@@ -227,6 +241,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIfcSchemaVersion(String newIfcSchemaVersion) {
 		eSet(StorePackage.Literals.IFC_HEADER__IFC_SCHEMA_VERSION, newIfcSchemaVersion);
 	}
@@ -236,6 +251,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getAuthorization() {
 		return (String) eGet(StorePackage.Literals.IFC_HEADER__AUTHORIZATION, true);
 	}
@@ -245,6 +261,7 @@ public class IfcHeaderImpl extends IdEObjectImpl implements IfcHeader {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAuthorization(String newAuthorization) {
 		eSet(StorePackage.Literals.IFC_HEADER__AUTHORIZATION, newAuthorization);
 	}

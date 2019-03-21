@@ -336,15 +336,17 @@ public class PluginBundleManager implements AutoCloseable {
 			jarClassLoader = new FileJarClassLoader(pluginManager, parentClassLoader, file);
 			jarClassLoaders.add(jarClassLoader);
 			final JarClassLoader finalLoader = jarClassLoader;
-			InputStream pluginStream = jarClassLoader.getResourceAsStream("plugin/plugin.xml");
-			if (pluginStream == null) {
-				jarClassLoader.close();
+			URL resource = jarClassLoader.findResource("plugin/plugin.xml");
+			if (resource == null) {
 				throw new PluginException("No plugin/plugin.xml found in " + file.getFileName().toString());
 			}
-			PluginDescriptor pluginDescriptor = pluginManager.getPluginDescriptor(pluginStream);
-			if (pluginDescriptor == null) {
-				jarClassLoader.close();
-				throw new PluginException("No plugin descriptor could be created");
+			PluginDescriptor pluginDescriptor = null;
+			try (InputStream pluginStream = resource.openStream()) {
+				pluginDescriptor = pluginManager.getPluginDescriptor(pluginStream);
+				if (pluginDescriptor == null) {
+					jarClassLoader.close();
+					throw new PluginException("No plugin descriptor could be created");
+				}
 			}
 			LOGGER.debug(pluginDescriptor.toString());
 
@@ -769,7 +771,9 @@ public class PluginBundleManager implements AutoCloseable {
 			for (SPluginInformation sPluginInformation : plugins) {
 				if (sPluginInformation.isEnabled()) {
 					PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getIdentifier());
-					pluginManager.pluginInstalled(pluginBundleVersionId, pluginContext, sPluginInformation);
+					if (pluginContext != null) {
+						pluginManager.pluginInstalled(pluginBundleVersionId, pluginContext, sPluginInformation);
+					}
 				}
 			}
 			return pluginBundle;

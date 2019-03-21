@@ -96,7 +96,7 @@ public interface OAuthAuthorizationCode extends IdEObject {
 	 * @return the value of the '<em>Code</em>' attribute.
 	 * @see #setCode(String)
 	 * @see org.bimserver.models.store.StorePackage#getOAuthAuthorizationCode_Code()
-	 * @model
+	 * @model annotation="singleindex"
 	 * @generated
 	 */
 	String getCode();

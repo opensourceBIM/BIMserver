@@ -37,8 +37,6 @@ service PluginInterface {
 
 	rpc addModelMerger (AddModelMergerRequest) returns (AddModelMergerResponse);
 
-	rpc addObjectIDM (AddObjectIDMRequest) returns (AddObjectIDMResponse);
-
 	rpc addQueryEngine (AddQueryEngineRequest) returns (AddQueryEngineResponse);
 
 	rpc addRenderEngine (AddRenderEngineRequest) returns (AddRenderEngineResponse);
@@ -56,8 +54,6 @@ service PluginInterface {
 	rpc deleteModelCompare (DeleteModelCompareRequest) returns (VoidResponse);
 
 	rpc deleteModelMerger (DeleteModelMergerRequest) returns (VoidResponse);
-
-	rpc deleteObjectIDM (DeleteObjectIDMRequest) returns (VoidResponse);
 
 	rpc deletePluginConfiguration (DeletePluginConfigurationRequest) returns (VoidResponse);
 
@@ -87,10 +83,6 @@ service PluginInterface {
 
 	rpc getAllModelMergers (GetAllModelMergersRequest) returns (GetAllModelMergersResponse);
 
-	rpc getAllObjectIDMPluginDescriptors (GetAllObjectIDMPluginDescriptorsRequest) returns (GetAllObjectIDMPluginDescriptorsResponse);
-
-	rpc getAllObjectIDMs (GetAllObjectIDMsRequest) returns (GetAllObjectIDMsResponse);
-
 	rpc getAllQueryEnginePluginDescriptors (GetAllQueryEnginePluginDescriptorsRequest) returns (GetAllQueryEnginePluginDescriptorsResponse);
 
 	rpc getAllQueryEngines (GetAllQueryEnginesRequest) returns (GetAllQueryEnginesResponse);
@@ -119,8 +111,6 @@ service PluginInterface {
 
 	rpc getDefaultModelMerger (GetDefaultModelMergerRequest) returns (GetDefaultModelMergerResponse);
 
-	rpc getDefaultObjectIDM (GetDefaultObjectIDMRequest) returns (GetDefaultObjectIDMResponse);
-
 	rpc getDefaultQueryEngine (GetDefaultQueryEngineRequest) returns (GetDefaultQueryEngineResponse);
 
 	rpc getDefaultRenderEngine (GetDefaultRenderEngineRequest) returns (GetDefaultRenderEngineResponse);
@@ -142,10 +132,6 @@ service PluginInterface {
 	rpc getModelMergerById (GetModelMergerByIdRequest) returns (GetModelMergerByIdResponse);
 
 	rpc getModelMergerByName (GetModelMergerByNameRequest) returns (GetModelMergerByNameResponse);
-
-	rpc getObjectIDMById (GetObjectIDMByIdRequest) returns (GetObjectIDMByIdResponse);
-
-	rpc getObjectIDMByName (GetObjectIDMByNameRequest) returns (GetObjectIDMByNameResponse);
 
 	rpc getPluginBundle (GetPluginBundleRequest) returns (GetPluginBundleResponse);
 
@@ -195,8 +181,6 @@ service PluginInterface {
 
 	rpc setDefaultModelMerger (SetDefaultModelMergerRequest) returns (VoidResponse);
 
-	rpc setDefaultObjectIDM (SetDefaultObjectIDMRequest) returns (VoidResponse);
-
 	rpc setDefaultQueryEngine (SetDefaultQueryEngineRequest) returns (VoidResponse);
 
 	rpc setDefaultRenderEngine (SetDefaultRenderEngineRequest) returns (VoidResponse);
@@ -218,8 +202,6 @@ service PluginInterface {
 	rpc updateModelCompare (UpdateModelCompareRequest) returns (VoidResponse);
 
 	rpc updateModelMerger (UpdateModelMergerRequest) returns (VoidResponse);
-
-	rpc updateObjectIDM (UpdateObjectIDMRequest) returns (VoidResponse);
 
 	rpc updatePluginBundle (UpdatePluginBundleRequest) returns (VoidResponse);
 
@@ -302,27 +284,6 @@ message AddModelMergerResponse {
 	optional int64 value = 2;
 }
 
-message SObjectIDMPluginConfiguration {
-	optional string description = 1;
-	optional bool enabled = 2;
-	optional string name = 3;
-	optional int64 oid = 4;
-	optional int64 pluginDescriptorId = 5;
-	optional int32 rid = 6;
-	repeated int64 serializers = 7;
-	optional int64 settingsId = 8;
-	optional int64 userSettingsId = 9;
-}
-
-message AddObjectIDMRequest {
-	optional SObjectIDMPluginConfiguration objectIDM = 1;
-}
-
-message AddObjectIDMResponse {
-	optional string errorMessage = 1;
-	optional int64 value = 2;
-}
-
 message AddQueryEngineRequest {
 	optional SQueryEnginePluginConfiguration queryEngine = 1;
 }
@@ -383,10 +344,6 @@ message DeleteModelCompareRequest {
 
 message DeleteModelMergerRequest {
 	optional int64 iid = 1;
-}
-
-message DeleteObjectIDMRequest {
-	optional int64 oid = 1;
 }
 
 message DeletePluginConfigurationRequest {
@@ -491,29 +448,6 @@ message GetAllModelMergersRequest {
 message GetAllModelMergersResponse {
 	optional string errorMessage = 1;
 	repeated SModelMergerPluginConfiguration value = 2;
-}
-
-message GetAllObjectIDMPluginDescriptorsRequest {
-}
-
-message SObjectIDMPluginDescriptor {
-	optional string className = 1;
-	optional int64 oid = 2;
-	optional int32 rid = 3;
-}
-
-message GetAllObjectIDMPluginDescriptorsResponse {
-	optional string errorMessage = 1;
-	repeated SObjectIDMPluginDescriptor value = 2;
-}
-
-message GetAllObjectIDMsRequest {
-	optional bool onlyEnabled = 1;
-}
-
-message GetAllObjectIDMsResponse {
-	optional string errorMessage = 1;
-	repeated SObjectIDMPluginConfiguration value = 2;
 }
 
 message GetAllQueryEnginePluginDescriptorsRequest {
@@ -680,14 +614,6 @@ message GetDefaultModelMergerResponse {
 	optional SModelMergerPluginConfiguration value = 2;
 }
 
-message GetDefaultObjectIDMRequest {
-}
-
-message GetDefaultObjectIDMResponse {
-	optional string errorMessage = 1;
-	optional SObjectIDMPluginConfiguration value = 2;
-}
-
 message GetDefaultQueryEngineRequest {
 }
 
@@ -782,24 +708,6 @@ message GetModelMergerByNameResponse {
 	optional SModelMergerPluginConfiguration value = 2;
 }
 
-message GetObjectIDMByIdRequest {
-	optional int64 oid = 1;
-}
-
-message GetObjectIDMByIdResponse {
-	optional string errorMessage = 1;
-	optional SObjectIDMPluginConfiguration value = 2;
-}
-
-message GetObjectIDMByNameRequest {
-	optional string objectIDMName = 1;
-}
-
-message GetObjectIDMByNameResponse {
-	optional string errorMessage = 1;
-	optional SObjectIDMPluginConfiguration value = 2;
-}
-
 message GetPluginBundleRequest {
 	optional string repository = 1;
 	optional string groupId = 2;
@@ -812,7 +720,7 @@ message GetPluginBundleResponse {
 }
 
 message GetPluginBundleVersionByIdRequest {
-	optional int64 bdid = 1;
+	optional int64 pbid = 1;
 }
 
 message GetPluginBundleVersionByIdResponse {
@@ -1130,10 +1038,6 @@ message SetDefaultModelMergerRequest {
 	optional int64 oid = 1;
 }
 
-message SetDefaultObjectIDMRequest {
-	optional int64 oid = 1;
-}
-
 message SetDefaultQueryEngineRequest {
 	optional int64 oid = 1;
 }
@@ -1181,10 +1085,6 @@ message UpdateModelCompareRequest {
 
 message UpdateModelMergerRequest {
 	optional SModelMergerPluginConfiguration modelMerger = 1;
-}
-
-message UpdateObjectIDMRequest {
-	optional SObjectIDMPluginConfiguration objectIDM = 1;
 }
 
 message UpdatePluginBundleRequest {

@@ -105,6 +105,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(StorePackage.Literals.NEW_SERVICE__NAME, true);
 	}
@@ -114,6 +115,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(StorePackage.Literals.NEW_SERVICE__NAME, newName);
 	}
@@ -123,6 +125,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getProvider() {
 		return (String) eGet(StorePackage.Literals.NEW_SERVICE__PROVIDER, true);
 	}
@@ -132,6 +135,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProvider(String newProvider) {
 		eSet(StorePackage.Literals.NEW_SERVICE__PROVIDER, newProvider);
 	}
@@ -141,6 +145,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return (String) eGet(StorePackage.Literals.NEW_SERVICE__DESCRIPTION, true);
 	}
@@ -150,6 +155,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		eSet(StorePackage.Literals.NEW_SERVICE__DESCRIPTION, newDescription);
 	}
@@ -159,6 +165,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getAuthorizationUrl() {
 		return (String) eGet(StorePackage.Literals.NEW_SERVICE__AUTHORIZATION_URL, true);
 	}
@@ -168,6 +175,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAuthorizationUrl(String newAuthorizationUrl) {
 		eSet(StorePackage.Literals.NEW_SERVICE__AUTHORIZATION_URL, newAuthorizationUrl);
 	}
@@ -177,6 +185,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTokenUrl() {
 		return (String) eGet(StorePackage.Literals.NEW_SERVICE__TOKEN_URL, true);
 	}
@@ -186,6 +195,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTokenUrl(String newTokenUrl) {
 		eSet(StorePackage.Literals.NEW_SERVICE__TOKEN_URL, newTokenUrl);
 	}
@@ -195,6 +205,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getResourceUrl() {
 		return (String) eGet(StorePackage.Literals.NEW_SERVICE__RESOURCE_URL, true);
 	}
@@ -204,6 +215,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setResourceUrl(String newResourceUrl) {
 		eSet(StorePackage.Literals.NEW_SERVICE__RESOURCE_URL, newResourceUrl);
 	}
@@ -213,6 +225,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRegisterUrl() {
 		return (String) eGet(StorePackage.Literals.NEW_SERVICE__REGISTER_URL, true);
 	}
@@ -222,6 +235,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRegisterUrl(String newRegisterUrl) {
 		eSet(StorePackage.Literals.NEW_SERVICE__REGISTER_URL, newRegisterUrl);
 	}
@@ -231,6 +245,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getInput() {
 		return (String) eGet(StorePackage.Literals.NEW_SERVICE__INPUT, true);
 	}
@@ -240,6 +255,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInput(String newInput) {
 		eSet(StorePackage.Literals.NEW_SERVICE__INPUT, newInput);
 	}
@@ -249,6 +265,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getOauthCode() {
 		return (String) eGet(StorePackage.Literals.NEW_SERVICE__OAUTH_CODE, true);
 	}
@@ -258,6 +275,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOauthCode(String newOauthCode) {
 		eSet(StorePackage.Literals.NEW_SERVICE__OAUTH_CODE, newOauthCode);
 	}
@@ -267,6 +285,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ServiceStatus getStatus() {
 		return (ServiceStatus) eGet(StorePackage.Literals.NEW_SERVICE__STATUS, true);
 	}
@@ -276,6 +295,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStatus(ServiceStatus newStatus) {
 		eSet(StorePackage.Literals.NEW_SERVICE__STATUS, newStatus);
 	}
@@ -285,6 +305,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SerializerPluginConfiguration getSerializer() {
 		return (SerializerPluginConfiguration) eGet(StorePackage.Literals.NEW_SERVICE__SERIALIZER, true);
 	}
@@ -294,6 +315,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSerializer(SerializerPluginConfiguration newSerializer) {
 		eSet(StorePackage.Literals.NEW_SERVICE__SERIALIZER, newSerializer);
 	}
@@ -303,6 +325,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getOutput() {
 		return (String) eGet(StorePackage.Literals.NEW_SERVICE__OUTPUT, true);
 	}
@@ -312,6 +335,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOutput(String newOutput) {
 		eSet(StorePackage.Literals.NEW_SERVICE__OUTPUT, newOutput);
 	}
@@ -321,6 +345,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Action getAction() {
 		return (Action) eGet(StorePackage.Literals.NEW_SERVICE__ACTION, true);
 	}
@@ -330,6 +355,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAction(Action newAction) {
 		eSet(StorePackage.Literals.NEW_SERVICE__ACTION, newAction);
 	}
@@ -339,6 +365,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getAccessToken() {
 		return (String) eGet(StorePackage.Literals.NEW_SERVICE__ACCESS_TOKEN, true);
 	}
@@ -348,6 +375,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAccessToken(String newAccessToken) {
 		eSet(StorePackage.Literals.NEW_SERVICE__ACCESS_TOKEN, newAccessToken);
 	}
@@ -357,6 +385,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Project getProject() {
 		return (Project) eGet(StorePackage.Literals.NEW_SERVICE__PROJECT, true);
 	}
@@ -366,6 +395,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProject(Project newProject) {
 		eSet(StorePackage.Literals.NEW_SERVICE__PROJECT, newProject);
 	}
@@ -375,6 +405,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getStateJson() {
 		return (String) eGet(StorePackage.Literals.NEW_SERVICE__STATE_JSON, true);
 	}
@@ -384,6 +415,7 @@ public class NewServiceImpl extends IdEObjectImpl implements NewService {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStateJson(String newStateJson) {
 		eSet(StorePackage.Literals.NEW_SERVICE__STATE_JSON, newStateJson);
 	}

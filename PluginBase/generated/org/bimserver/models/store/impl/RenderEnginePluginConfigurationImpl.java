@@ -80,6 +80,7 @@ public class RenderEnginePluginConfigurationImpl extends PluginConfigurationImpl
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<SerializerPluginConfiguration> getSerializers() {
 		return (EList<SerializerPluginConfiguration>) eGet(StorePackage.Literals.RENDER_ENGINE_PLUGIN_CONFIGURATION__SERIALIZERS, true);
 	}
@@ -89,6 +90,7 @@ public class RenderEnginePluginConfigurationImpl extends PluginConfigurationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UserSettings getUserSettings() {
 		return (UserSettings) eGet(StorePackage.Literals.RENDER_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS, true);
 	}
@@ -98,6 +100,7 @@ public class RenderEnginePluginConfigurationImpl extends PluginConfigurationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUserSettings(UserSettings newUserSettings) {
 		eSet(StorePackage.Literals.RENDER_ENGINE_PLUGIN_CONFIGURATION__USER_SETTINGS, newUserSettings);
 	}

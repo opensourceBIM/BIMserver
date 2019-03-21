@@ -86,6 +86,7 @@ public class ObjectIDMPluginDescriptorImpl extends IdEObjectImpl implements Obje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getClassName() {
 		return (String) eGet(StorePackage.Literals.OBJECT_IDM_PLUGIN_DESCRIPTOR__CLASS_NAME, true);
 	}
@@ -95,6 +96,7 @@ public class ObjectIDMPluginDescriptorImpl extends IdEObjectImpl implements Obje
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClassName(String newClassName) {
 		eSet(StorePackage.Literals.OBJECT_IDM_PLUGIN_DESCRIPTOR__CLASS_NAME, newClassName);
 	}

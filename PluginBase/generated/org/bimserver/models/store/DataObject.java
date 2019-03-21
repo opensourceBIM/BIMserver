@@ -146,7 +146,7 @@ public interface DataObject extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Values</em>' reference list.
 	 * @see org.bimserver.models.store.StorePackage#getDataObject_Values()
-	 * @model
+	 * @model annotation="embedsreference"
 	 * @generated
 	 */
 	EList<DataValue> getValues();

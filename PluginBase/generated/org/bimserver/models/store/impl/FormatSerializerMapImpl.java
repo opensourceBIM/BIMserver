@@ -89,6 +89,7 @@ public class FormatSerializerMapImpl extends IdEObjectImpl implements FormatSeri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFormat() {
 		return (String) eGet(StorePackage.Literals.FORMAT_SERIALIZER_MAP__FORMAT, true);
 	}
@@ -98,6 +99,7 @@ public class FormatSerializerMapImpl extends IdEObjectImpl implements FormatSeri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFormat(String newFormat) {
 		eSet(StorePackage.Literals.FORMAT_SERIALIZER_MAP__FORMAT, newFormat);
 	}
@@ -108,6 +110,7 @@ public class FormatSerializerMapImpl extends IdEObjectImpl implements FormatSeri
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<SerializerPluginConfiguration> getSerializers() {
 		return (EList<SerializerPluginConfiguration>) eGet(StorePackage.Literals.FORMAT_SERIALIZER_MAP__SERIALIZERS, true);
 	}

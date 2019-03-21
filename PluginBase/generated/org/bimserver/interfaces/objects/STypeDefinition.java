@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SPrimitiveDefinition.class, SArrayDefinition.class, SObjectDefinition.class})
+@XmlSeeAlso(value={SPrimitiveDefinition.class, SObjectDefinition.class, SArrayDefinition.class})
 public class STypeDefinition implements SBase
 {
 

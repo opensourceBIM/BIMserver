@@ -121,7 +121,7 @@ public interface PluginBundle extends IdEObject {
 	 * @return the value of the '<em>Latest Version</em>' reference.
 	 * @see #setLatestVersion(PluginBundleVersion)
 	 * @see org.bimserver.models.store.StorePackage#getPluginBundle_LatestVersion()
-	 * @model
+	 * @model annotation="embedsreference"
 	 * @generated
 	 */
 	PluginBundleVersion getLatestVersion();
@@ -147,7 +147,7 @@ public interface PluginBundle extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Available Versions</em>' reference list.
 	 * @see org.bimserver.models.store.StorePackage#getPluginBundle_AvailableVersions()
-	 * @model
+	 * @model annotation="embedsreference"
 	 * @generated
 	 */
 	EList<PluginBundleVersion> getAvailableVersions();
@@ -163,7 +163,7 @@ public interface PluginBundle extends IdEObject {
 	 * @return the value of the '<em>Installed Version</em>' reference.
 	 * @see #setInstalledVersion(PluginBundleVersion)
 	 * @see org.bimserver.models.store.StorePackage#getPluginBundle_InstalledVersion()
-	 * @model
+	 * @model annotation="embedsreference"
 	 * @generated
 	 */
 	PluginBundleVersion getInstalledVersion();

@@ -95,6 +95,7 @@ public class NewServiceDescriptorImpl extends IdEObjectImpl implements NewServic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__NAME, true);
 	}
@@ -104,6 +105,7 @@ public class NewServiceDescriptorImpl extends IdEObjectImpl implements NewServic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__NAME, newName);
 	}
@@ -113,6 +115,7 @@ public class NewServiceDescriptorImpl extends IdEObjectImpl implements NewServic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return (String) eGet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__DESCRIPTION, true);
 	}
@@ -122,6 +125,7 @@ public class NewServiceDescriptorImpl extends IdEObjectImpl implements NewServic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		eSet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__DESCRIPTION, newDescription);
 	}
@@ -131,6 +135,7 @@ public class NewServiceDescriptorImpl extends IdEObjectImpl implements NewServic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getProvider() {
 		return (String) eGet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__PROVIDER, true);
 	}
@@ -140,6 +145,7 @@ public class NewServiceDescriptorImpl extends IdEObjectImpl implements NewServic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProvider(String newProvider) {
 		eSet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__PROVIDER, newProvider);
 	}
@@ -149,6 +155,7 @@ public class NewServiceDescriptorImpl extends IdEObjectImpl implements NewServic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getAuthorizationUrl() {
 		return (String) eGet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__AUTHORIZATION_URL, true);
 	}
@@ -158,6 +165,7 @@ public class NewServiceDescriptorImpl extends IdEObjectImpl implements NewServic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAuthorizationUrl(String newAuthorizationUrl) {
 		eSet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__AUTHORIZATION_URL, newAuthorizationUrl);
 	}
@@ -167,6 +175,7 @@ public class NewServiceDescriptorImpl extends IdEObjectImpl implements NewServic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTokenUrl() {
 		return (String) eGet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__TOKEN_URL, true);
 	}
@@ -176,6 +185,7 @@ public class NewServiceDescriptorImpl extends IdEObjectImpl implements NewServic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTokenUrl(String newTokenUrl) {
 		eSet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__TOKEN_URL, newTokenUrl);
 	}
@@ -185,6 +195,7 @@ public class NewServiceDescriptorImpl extends IdEObjectImpl implements NewServic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getResourceUrl() {
 		return (String) eGet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__RESOURCE_URL, true);
 	}
@@ -194,6 +205,7 @@ public class NewServiceDescriptorImpl extends IdEObjectImpl implements NewServic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setResourceUrl(String newResourceUrl) {
 		eSet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__RESOURCE_URL, newResourceUrl);
 	}
@@ -203,6 +215,7 @@ public class NewServiceDescriptorImpl extends IdEObjectImpl implements NewServic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRegisterUrl() {
 		return (String) eGet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__REGISTER_URL, true);
 	}
@@ -212,6 +225,7 @@ public class NewServiceDescriptorImpl extends IdEObjectImpl implements NewServic
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRegisterUrl(String newRegisterUrl) {
 		eSet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__REGISTER_URL, newRegisterUrl);
 	}
@@ -222,6 +236,7 @@ public class NewServiceDescriptorImpl extends IdEObjectImpl implements NewServic
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<String> getInputs() {
 		return (EList<String>) eGet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__INPUTS, true);
 	}
@@ -232,6 +247,7 @@ public class NewServiceDescriptorImpl extends IdEObjectImpl implements NewServic
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<String> getOutputs() {
 		return (EList<String>) eGet(StorePackage.Literals.NEW_SERVICE_DESCRIPTOR__OUTPUTS, true);
 	}

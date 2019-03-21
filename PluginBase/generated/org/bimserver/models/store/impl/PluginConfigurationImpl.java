@@ -92,6 +92,7 @@ public class PluginConfigurationImpl extends IdEObjectImpl implements PluginConf
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(StorePackage.Literals.PLUGIN_CONFIGURATION__NAME, true);
 	}
@@ -101,6 +102,7 @@ public class PluginConfigurationImpl extends IdEObjectImpl implements PluginConf
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(StorePackage.Literals.PLUGIN_CONFIGURATION__NAME, newName);
 	}
@@ -110,6 +112,7 @@ public class PluginConfigurationImpl extends IdEObjectImpl implements PluginConf
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Boolean getEnabled() {
 		return (Boolean) eGet(StorePackage.Literals.PLUGIN_CONFIGURATION__ENABLED, true);
 	}
@@ -119,6 +122,7 @@ public class PluginConfigurationImpl extends IdEObjectImpl implements PluginConf
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEnabled(Boolean newEnabled) {
 		eSet(StorePackage.Literals.PLUGIN_CONFIGURATION__ENABLED, newEnabled);
 	}
@@ -128,6 +132,7 @@ public class PluginConfigurationImpl extends IdEObjectImpl implements PluginConf
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return (String) eGet(StorePackage.Literals.PLUGIN_CONFIGURATION__DESCRIPTION, true);
 	}
@@ -137,6 +142,7 @@ public class PluginConfigurationImpl extends IdEObjectImpl implements PluginConf
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		eSet(StorePackage.Literals.PLUGIN_CONFIGURATION__DESCRIPTION, newDescription);
 	}
@@ -146,6 +152,7 @@ public class PluginConfigurationImpl extends IdEObjectImpl implements PluginConf
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PluginDescriptor getPluginDescriptor() {
 		return (PluginDescriptor) eGet(StorePackage.Literals.PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR, true);
 	}
@@ -155,6 +162,7 @@ public class PluginConfigurationImpl extends IdEObjectImpl implements PluginConf
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPluginDescriptor(PluginDescriptor newPluginDescriptor) {
 		eSet(StorePackage.Literals.PLUGIN_CONFIGURATION__PLUGIN_DESCRIPTOR, newPluginDescriptor);
 	}
@@ -164,6 +172,7 @@ public class PluginConfigurationImpl extends IdEObjectImpl implements PluginConf
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ObjectType getSettings() {
 		return (ObjectType) eGet(StorePackage.Literals.PLUGIN_CONFIGURATION__SETTINGS, true);
 	}
@@ -173,6 +182,7 @@ public class PluginConfigurationImpl extends IdEObjectImpl implements PluginConf
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSettings(ObjectType newSettings) {
 		eSet(StorePackage.Literals.PLUGIN_CONFIGURATION__SETTINGS, newSettings);
 	}

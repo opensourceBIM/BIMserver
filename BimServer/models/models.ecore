@@ -20095,6 +20095,7 @@
       <eLiterals name="ADMIN" value="1"/>
       <eLiterals name="USER" value="2"/>
       <eLiterals name="READ_ONLY" value="3"/>
+      <eLiterals name="MONITOR" value="4"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="SIPrefix">
       <eLiterals name="meter"/>

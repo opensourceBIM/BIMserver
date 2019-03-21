@@ -92,6 +92,7 @@ public class PluginBundleImpl extends IdEObjectImpl implements PluginBundle {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getOrganization() {
 		return (String) eGet(StorePackage.Literals.PLUGIN_BUNDLE__ORGANIZATION, true);
 	}
@@ -101,6 +102,7 @@ public class PluginBundleImpl extends IdEObjectImpl implements PluginBundle {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOrganization(String newOrganization) {
 		eSet(StorePackage.Literals.PLUGIN_BUNDLE__ORGANIZATION, newOrganization);
 	}
@@ -110,6 +112,7 @@ public class PluginBundleImpl extends IdEObjectImpl implements PluginBundle {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(StorePackage.Literals.PLUGIN_BUNDLE__NAME, true);
 	}
@@ -119,6 +122,7 @@ public class PluginBundleImpl extends IdEObjectImpl implements PluginBundle {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(StorePackage.Literals.PLUGIN_BUNDLE__NAME, newName);
 	}
@@ -128,6 +132,7 @@ public class PluginBundleImpl extends IdEObjectImpl implements PluginBundle {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PluginBundleVersion getLatestVersion() {
 		return (PluginBundleVersion) eGet(StorePackage.Literals.PLUGIN_BUNDLE__LATEST_VERSION, true);
 	}
@@ -137,6 +142,7 @@ public class PluginBundleImpl extends IdEObjectImpl implements PluginBundle {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLatestVersion(PluginBundleVersion newLatestVersion) {
 		eSet(StorePackage.Literals.PLUGIN_BUNDLE__LATEST_VERSION, newLatestVersion);
 	}
@@ -147,6 +153,7 @@ public class PluginBundleImpl extends IdEObjectImpl implements PluginBundle {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<PluginBundleVersion> getAvailableVersions() {
 		return (EList<PluginBundleVersion>) eGet(StorePackage.Literals.PLUGIN_BUNDLE__AVAILABLE_VERSIONS, true);
 	}
@@ -156,6 +163,7 @@ public class PluginBundleImpl extends IdEObjectImpl implements PluginBundle {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PluginBundleVersion getInstalledVersion() {
 		return (PluginBundleVersion) eGet(StorePackage.Literals.PLUGIN_BUNDLE__INSTALLED_VERSION, true);
 	}
@@ -165,6 +173,7 @@ public class PluginBundleImpl extends IdEObjectImpl implements PluginBundle {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInstalledVersion(PluginBundleVersion newInstalledVersion) {
 		eSet(StorePackage.Literals.PLUGIN_BUNDLE__INSTALLED_VERSION, newInstalledVersion);
 	}

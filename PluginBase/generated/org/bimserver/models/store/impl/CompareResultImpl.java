@@ -89,6 +89,7 @@ public class CompareResultImpl extends IdEObjectImpl implements CompareResult {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<CompareContainer> getItems() {
 		return (EList<CompareContainer>) eGet(StorePackage.Literals.COMPARE_RESULT__ITEMS, true);
 	}

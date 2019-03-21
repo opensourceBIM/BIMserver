@@ -90,6 +90,7 @@ public class ServiceParameterImpl extends IdEObjectImpl implements ServiceParame
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(StorePackage.Literals.SERVICE_PARAMETER__NAME, true);
 	}
@@ -99,6 +100,7 @@ public class ServiceParameterImpl extends IdEObjectImpl implements ServiceParame
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(StorePackage.Literals.SERVICE_PARAMETER__NAME, newName);
 	}
@@ -108,6 +110,7 @@ public class ServiceParameterImpl extends IdEObjectImpl implements ServiceParame
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDoc() {
 		return (String) eGet(StorePackage.Literals.SERVICE_PARAMETER__DOC, true);
 	}
@@ -117,6 +120,7 @@ public class ServiceParameterImpl extends IdEObjectImpl implements ServiceParame
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDoc(String newDoc) {
 		eSet(StorePackage.Literals.SERVICE_PARAMETER__DOC, newDoc);
 	}
@@ -126,6 +130,7 @@ public class ServiceParameterImpl extends IdEObjectImpl implements ServiceParame
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ServiceType getType() {
 		return (ServiceType) eGet(StorePackage.Literals.SERVICE_PARAMETER__TYPE, true);
 	}
@@ -135,6 +140,7 @@ public class ServiceParameterImpl extends IdEObjectImpl implements ServiceParame
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(ServiceType newType) {
 		eSet(StorePackage.Literals.SERVICE_PARAMETER__TYPE, newType);
 	}
@@ -144,6 +150,7 @@ public class ServiceParameterImpl extends IdEObjectImpl implements ServiceParame
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ServiceType getGenericType() {
 		return (ServiceType) eGet(StorePackage.Literals.SERVICE_PARAMETER__GENERIC_TYPE, true);
 	}
@@ -153,6 +160,7 @@ public class ServiceParameterImpl extends IdEObjectImpl implements ServiceParame
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGenericType(ServiceType newGenericType) {
 		eSet(StorePackage.Literals.SERVICE_PARAMETER__GENERIC_TYPE, newGenericType);
 	}

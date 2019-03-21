@@ -2072,7 +2072,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		checkOpen();
 		try {
 			getMap(ifcModel, query);
-			Set<String> classes = new HashSet<String>();
+			Set<String> classes = new HashSet<>();
 			for (IdEObject idEObject : ifcModel.getValues()) {
 				classes.add(idEObject.eClass().getName());
 			}

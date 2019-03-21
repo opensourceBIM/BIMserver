@@ -99,6 +99,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements LongActionStat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getStart() {
 		return (Date) eGet(StorePackage.Literals.LONG_ACTION_STATE__START, true);
 	}
@@ -108,6 +109,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements LongActionStat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStart(Date newStart) {
 		eSet(StorePackage.Literals.LONG_ACTION_STATE__START, newStart);
 	}
@@ -117,6 +119,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements LongActionStat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getEnd() {
 		return (Date) eGet(StorePackage.Literals.LONG_ACTION_STATE__END, true);
 	}
@@ -126,6 +129,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements LongActionStat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEnd(Date newEnd) {
 		eSet(StorePackage.Literals.LONG_ACTION_STATE__END, newEnd);
 	}
@@ -135,6 +139,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements LongActionStat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Integer getProgress() {
 		return (Integer) eGet(StorePackage.Literals.LONG_ACTION_STATE__PROGRESS, true);
 	}
@@ -144,6 +149,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements LongActionStat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProgress(Integer newProgress) {
 		eSet(StorePackage.Literals.LONG_ACTION_STATE__PROGRESS, newProgress);
 	}
@@ -153,6 +159,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements LongActionStat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ActionState getState() {
 		return (ActionState) eGet(StorePackage.Literals.LONG_ACTION_STATE__STATE, true);
 	}
@@ -162,6 +169,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements LongActionStat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setState(ActionState newState) {
 		eSet(StorePackage.Literals.LONG_ACTION_STATE__STATE, newState);
 	}
@@ -171,6 +179,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements LongActionStat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTitle() {
 		return (String) eGet(StorePackage.Literals.LONG_ACTION_STATE__TITLE, true);
 	}
@@ -180,6 +189,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements LongActionStat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTitle(String newTitle) {
 		eSet(StorePackage.Literals.LONG_ACTION_STATE__TITLE, newTitle);
 	}
@@ -189,6 +199,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements LongActionStat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getStage() {
 		return (Integer) eGet(StorePackage.Literals.LONG_ACTION_STATE__STAGE, true);
 	}
@@ -198,6 +209,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements LongActionStat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStage(int newStage) {
 		eSet(StorePackage.Literals.LONG_ACTION_STATE__STAGE, newStage);
 	}
@@ -208,6 +220,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements LongActionStat
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<String> getErrors() {
 		return (EList<String>) eGet(StorePackage.Literals.LONG_ACTION_STATE__ERRORS, true);
 	}
@@ -218,6 +231,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements LongActionStat
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<String> getWarnings() {
 		return (EList<String>) eGet(StorePackage.Literals.LONG_ACTION_STATE__WARNINGS, true);
 	}
@@ -228,6 +242,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements LongActionStat
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<String> getInfos() {
 		return (EList<String>) eGet(StorePackage.Literals.LONG_ACTION_STATE__INFOS, true);
 	}
@@ -237,6 +252,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements LongActionStat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getTopicId() {
 		return (Long) eGet(StorePackage.Literals.LONG_ACTION_STATE__TOPIC_ID, true);
 	}
@@ -246,6 +262,7 @@ public class LongActionStateImpl extends IdEObjectImpl implements LongActionStat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTopicId(long newTopicId) {
 		eSet(StorePackage.Literals.LONG_ACTION_STATE__TOPIC_ID, newTopicId);
 	}

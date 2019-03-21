@@ -118,7 +118,7 @@ public interface Parameter extends IdEObject {
 	 * @return the value of the '<em>Value</em>' reference.
 	 * @see #setValue(Type)
 	 * @see org.bimserver.models.store.StorePackage#getParameter_Value()
-	 * @model
+	 * @model annotation="embedsreference"
 	 * @generated
 	 */
 	Type getValue();

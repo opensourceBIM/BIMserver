@@ -87,6 +87,7 @@ public class TokenImpl extends IdEObjectImpl implements Token {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTokenString() {
 		return (String) eGet(StorePackage.Literals.TOKEN__TOKEN_STRING, true);
 	}
@@ -96,6 +97,7 @@ public class TokenImpl extends IdEObjectImpl implements Token {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTokenString(String newTokenString) {
 		eSet(StorePackage.Literals.TOKEN__TOKEN_STRING, newTokenString);
 	}
@@ -105,6 +107,7 @@ public class TokenImpl extends IdEObjectImpl implements Token {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getExpires() {
 		return (Long) eGet(StorePackage.Literals.TOKEN__EXPIRES, true);
 	}
@@ -114,6 +117,7 @@ public class TokenImpl extends IdEObjectImpl implements Token {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExpires(long newExpires) {
 		eSet(StorePackage.Literals.TOKEN__EXPIRES, newExpires);
 	}

@@ -95,6 +95,7 @@ public class OAuthAuthorizationCodeImpl extends IdEObjectImpl implements OAuthAu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OAuthServer getOauthServer() {
 		return (OAuthServer) eGet(StorePackage.Literals.OAUTH_AUTHORIZATION_CODE__OAUTH_SERVER, true);
 	}
@@ -104,6 +105,7 @@ public class OAuthAuthorizationCodeImpl extends IdEObjectImpl implements OAuthAu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOauthServer(OAuthServer newOauthServer) {
 		eSet(StorePackage.Literals.OAUTH_AUTHORIZATION_CODE__OAUTH_SERVER, newOauthServer);
 	}
@@ -113,6 +115,7 @@ public class OAuthAuthorizationCodeImpl extends IdEObjectImpl implements OAuthAu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCode() {
 		return (String) eGet(StorePackage.Literals.OAUTH_AUTHORIZATION_CODE__CODE, true);
 	}
@@ -122,6 +125,7 @@ public class OAuthAuthorizationCodeImpl extends IdEObjectImpl implements OAuthAu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCode(String newCode) {
 		eSet(StorePackage.Literals.OAUTH_AUTHORIZATION_CODE__CODE, newCode);
 	}
@@ -131,6 +135,7 @@ public class OAuthAuthorizationCodeImpl extends IdEObjectImpl implements OAuthAu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Authorization getAuthorization() {
 		return (Authorization) eGet(StorePackage.Literals.OAUTH_AUTHORIZATION_CODE__AUTHORIZATION, true);
 	}
@@ -140,6 +145,7 @@ public class OAuthAuthorizationCodeImpl extends IdEObjectImpl implements OAuthAu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAuthorization(Authorization newAuthorization) {
 		eSet(StorePackage.Literals.OAUTH_AUTHORIZATION_CODE__AUTHORIZATION, newAuthorization);
 	}
@@ -149,6 +155,7 @@ public class OAuthAuthorizationCodeImpl extends IdEObjectImpl implements OAuthAu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public User getUser() {
 		return (User) eGet(StorePackage.Literals.OAUTH_AUTHORIZATION_CODE__USER, true);
 	}
@@ -158,6 +165,7 @@ public class OAuthAuthorizationCodeImpl extends IdEObjectImpl implements OAuthAu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUser(User newUser) {
 		eSet(StorePackage.Literals.OAUTH_AUTHORIZATION_CODE__USER, newUser);
 	}
@@ -167,6 +175,7 @@ public class OAuthAuthorizationCodeImpl extends IdEObjectImpl implements OAuthAu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getIssued() {
 		return (Date) eGet(StorePackage.Literals.OAUTH_AUTHORIZATION_CODE__ISSUED, true);
 	}
@@ -176,6 +185,7 @@ public class OAuthAuthorizationCodeImpl extends IdEObjectImpl implements OAuthAu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIssued(Date newIssued) {
 		eSet(StorePackage.Literals.OAUTH_AUTHORIZATION_CODE__ISSUED, newIssued);
 	}

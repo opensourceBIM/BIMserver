@@ -75,6 +75,7 @@ public class ModelCheckerResultHeaderImpl extends ModelCheckerResultItemImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getText() {
 		return (String) eGet(StorePackage.Literals.MODEL_CHECKER_RESULT_HEADER__TEXT, true);
 	}
@@ -84,6 +85,7 @@ public class ModelCheckerResultHeaderImpl extends ModelCheckerResultItemImpl imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setText(String newText) {
 		eSet(StorePackage.Literals.MODEL_CHECKER_RESULT_HEADER__TEXT, newText);
 	}

@@ -89,6 +89,7 @@ public class MetricsImpl extends IdEObjectImpl implements Metrics {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<InterfaceMetric> getInterfaces() {
 		return (EList<InterfaceMetric>) eGet(StorePackage.Literals.METRICS__INTERFACES, true);
 	}

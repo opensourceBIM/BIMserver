@@ -37,10 +37,6 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
-	public java.lang.Long addObjectIDM(org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration objectIDM) throws UserException, ServerException {
-		return null;
-	}
-	
 	public java.lang.Long addQueryEngine(org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration queryEngine) throws UserException, ServerException {
 		return null;
 	}
@@ -69,9 +65,6 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	}
 	
 	public void deleteModelMerger(java.lang.Long iid) throws UserException, ServerException {
-	}
-	
-	public void deleteObjectIDM(java.lang.Long oid) throws UserException, ServerException {
 	}
 	
 	public void deletePluginConfiguration(java.lang.Long oid) throws UserException, ServerException {
@@ -123,14 +116,6 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	}
 	
 	public java.util.List<org.bimserver.interfaces.objects.SModelMergerPluginConfiguration> getAllModelMergers(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<org.bimserver.interfaces.objects.SObjectIDMPluginDescriptor> getAllObjectIDMPluginDescriptors() throws UserException, ServerException {
-		return null;
-	}
-	
-	public java.util.List<org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration> getAllObjectIDMs(java.lang.Boolean onlyEnabled) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -190,10 +175,6 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration getDefaultObjectIDM() throws UserException, ServerException {
-		return null;
-	}
-	
 	public org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration getDefaultQueryEngine() throws UserException, ServerException {
 		return null;
 	}
@@ -238,19 +219,11 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration getObjectIDMById(java.lang.Long oid) throws UserException, ServerException {
-		return null;
-	}
-	
-	public org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration getObjectIDMByName(java.lang.String objectIDMName) throws UserException, ServerException {
-		return null;
-	}
-	
 	public org.bimserver.interfaces.objects.SPluginBundle getPluginBundle(java.lang.String repository, java.lang.String groupId, java.lang.String artifactId) throws UserException, ServerException {
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SPluginBundleVersion getPluginBundleVersionById(java.lang.Long bdid) throws UserException, ServerException {
+	public org.bimserver.interfaces.objects.SPluginBundleVersion getPluginBundleVersionById(java.lang.Long pbid) throws UserException, ServerException {
 		return null;
 	}
 	
@@ -336,9 +309,6 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	public void setDefaultModelMerger(java.lang.Long oid) throws UserException, ServerException {
 	}
 	
-	public void setDefaultObjectIDM(java.lang.Long oid) throws UserException, ServerException {
-	}
-	
 	public void setDefaultQueryEngine(java.lang.Long oid) throws UserException, ServerException {
 	}
 	
@@ -370,9 +340,6 @@ public class PluginInterfaceAdaptor implements org.bimserver.shared.interfaces.P
 	}
 	
 	public void updateModelMerger(org.bimserver.interfaces.objects.SModelMergerPluginConfiguration modelMerger) throws UserException, ServerException {
-	}
-	
-	public void updateObjectIDM(org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration objectIDM) throws UserException, ServerException {
 	}
 	
 	public void updatePluginBundle(java.lang.String repository, java.lang.String groupId, java.lang.String artifactId, java.lang.String version) throws UserException, ServerException {

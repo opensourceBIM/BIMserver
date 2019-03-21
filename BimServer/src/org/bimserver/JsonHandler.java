@@ -27,6 +27,7 @@ import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
 import org.apache.oltu.oauth2.common.message.types.ParameterStyle;
 import org.apache.oltu.oauth2.rs.request.OAuthAccessResourceRequest;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
@@ -36,10 +37,10 @@ import org.bimserver.shared.meta.SMethod;
 import org.bimserver.shared.meta.SParameter;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.reflector.KeyValuePair;
+import org.bimserver.webservices.ServiceMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -151,15 +152,22 @@ public class JsonHandler {
 			throw new UserException("Missing 'parameters' field, expected " + parameters.length + " parameters");
 		}
 
-		PublicInterface service = getServiceInterface(httpRequest, bimServer, sService.getInterfaceClass(), methodName, jsonToken, oAuthCode);
+		ServiceMap serviceMap = getServiceMap(httpRequest, bimServer, methodName, jsonToken, oAuthCode);
+		PublicInterface service = getServiceInterface(httpRequest, bimServer, sService.getInterfaceClass(), methodName, jsonToken, serviceMap);
 		String oldThreadName = Thread.currentThread().getName();
 		Thread.currentThread().setName(interfaceName + "." + methodName);
 		try {
-			Recording recording = bimServer.getMetricsRegistry().startRecording(sService, method);
+			boolean isMonitor = serviceMap != null && serviceMap.getUser() != null && serviceMap.getUser().getUserType() == UserType.MONITOR;
+			Recording recording = null;
+			if (!isMonitor) {
+				recording = bimServer.getMetricsRegistry().startRecording(sService, method);
+			}
 
 			Object result = method.invoke(sService.getInterfaceClass(), service, parameters);
 
-			recording.finish();
+			if (!isMonitor) {
+				recording.finish();
+			}
 
 			// When we have managed to get here, no exceptions have been thrown.
 			// We
@@ -218,11 +226,7 @@ public class JsonHandler {
 		}
 	}
 
-	private <T extends PublicInterface> T getServiceInterface(HttpServletRequest httpRequest, BimServer bimServer, Class<T> interfaceClass, String methodName, String token, String oAuthCode) throws UserException, ServerException {
-		if (methodName.equals("login") || methodName.equals("autologin")) {
-			return bimServer.getServiceFactory().get(AccessMethod.JSON).get(interfaceClass);
-		}
-
+	private ServiceMap getServiceMap(HttpServletRequest httpRequest, BimServer bimServer, String methodName, String token, String oAuthCode) throws UserException {
 		if (token == null) {
 			token = httpRequest == null ? null : (String) httpRequest.getSession().getAttribute("token");
 		}
@@ -240,9 +244,20 @@ public class JsonHandler {
 			}
 		}
 		if (token == null) {
+			return null;
+		}
+		ServiceMap serviceMap = bimServer.getServiceFactory().get(token, AccessMethod.JSON);
+		return serviceMap;
+	}
+	
+	private <T extends PublicInterface> T getServiceInterface(HttpServletRequest httpRequest, BimServer bimServer, Class<T> interfaceClass, String methodName, String token, ServiceMap serviceMap) throws UserException, ServerException {
+		if (serviceMap == null) {
 			return bimServer.getServiceFactory().get(AccessMethod.JSON).get(interfaceClass);
 		}
-		T service = bimServer.getServiceFactory().get(token, AccessMethod.JSON).get(interfaceClass);
+		if (methodName.equals("login") || methodName.equals("autologin")) {
+			return bimServer.getServiceFactory().get(AccessMethod.JSON).get(interfaceClass);
+		}
+		T service = serviceMap.get(interfaceClass);
 		if (service == null) {
 			service = bimServer.getServiceFactory().get(AccessMethod.JSON).get(interfaceClass);
 			if (httpRequest != null) {

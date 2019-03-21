@@ -76,6 +76,7 @@ public class ModelComparePluginConfigurationImpl extends PluginConfigurationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UserSettings getUserSettings() {
 		return (UserSettings) eGet(StorePackage.Literals.MODEL_COMPARE_PLUGIN_CONFIGURATION__USER_SETTINGS, true);
 	}
@@ -85,6 +86,7 @@ public class ModelComparePluginConfigurationImpl extends PluginConfigurationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUserSettings(UserSettings newUserSettings) {
 		eSet(StorePackage.Literals.MODEL_COMPARE_PLUGIN_CONFIGURATION__USER_SETTINGS, newUserSettings);
 	}

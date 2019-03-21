@@ -78,6 +78,7 @@ public class ObjectDefinitionImpl extends TypeDefinitionImpl implements ObjectDe
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<ParameterDefinition> getParameters() {
 		return (EList<ParameterDefinition>) eGet(StorePackage.Literals.OBJECT_DEFINITION__PARAMETERS, true);
 	}

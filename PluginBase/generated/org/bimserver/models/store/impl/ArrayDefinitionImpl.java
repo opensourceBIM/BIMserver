@@ -76,6 +76,7 @@ public class ArrayDefinitionImpl extends TypeDefinitionImpl implements ArrayDefi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TypeDefinition getType() {
 		return (TypeDefinition) eGet(StorePackage.Literals.ARRAY_DEFINITION__TYPE, true);
 	}
@@ -85,6 +86,7 @@ public class ArrayDefinitionImpl extends TypeDefinitionImpl implements ArrayDefi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(TypeDefinition newType) {
 		eSet(StorePackage.Literals.ARRAY_DEFINITION__TYPE, newType);
 	}

@@ -89,6 +89,7 @@ public class DensityCollectionImpl extends IdEObjectImpl implements DensityColle
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Density> getDensities() {
 		return (EList<Density>) eGet(StorePackage.Literals.DENSITY_COLLECTION__DENSITIES, true);
 	}

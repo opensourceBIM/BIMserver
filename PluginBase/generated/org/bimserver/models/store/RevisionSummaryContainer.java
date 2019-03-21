@@ -92,7 +92,7 @@ public interface RevisionSummaryContainer extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Types</em>' reference list.
 	 * @see org.bimserver.models.store.StorePackage#getRevisionSummaryContainer_Types()
-	 * @model
+	 * @model annotation="embedsreference"
 	 * @generated
 	 */
 	EList<RevisionSummaryType> getTypes();

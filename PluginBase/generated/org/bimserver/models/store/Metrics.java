@@ -65,7 +65,7 @@ public interface Metrics extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Interfaces</em>' reference list.
 	 * @see org.bimserver.models.store.StorePackage#getMetrics_Interfaces()
-	 * @model
+	 * @model annotation="embedsreference"
 	 * @generated
 	 */
 	EList<InterfaceMetric> getInterfaces();

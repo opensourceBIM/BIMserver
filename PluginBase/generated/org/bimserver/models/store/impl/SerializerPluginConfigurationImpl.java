@@ -81,6 +81,7 @@ public class SerializerPluginConfigurationImpl extends PluginConfigurationImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ObjectIDMPluginConfiguration getObjectIDM() {
 		return (ObjectIDMPluginConfiguration) eGet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__OBJECT_IDM, true);
 	}
@@ -90,6 +91,7 @@ public class SerializerPluginConfigurationImpl extends PluginConfigurationImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setObjectIDM(ObjectIDMPluginConfiguration newObjectIDM) {
 		eSet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__OBJECT_IDM, newObjectIDM);
 	}
@@ -99,6 +101,7 @@ public class SerializerPluginConfigurationImpl extends PluginConfigurationImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UserSettings getUserSettings() {
 		return (UserSettings) eGet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS, true);
 	}
@@ -108,6 +111,7 @@ public class SerializerPluginConfigurationImpl extends PluginConfigurationImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUserSettings(UserSettings newUserSettings) {
 		eSet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__USER_SETTINGS, newUserSettings);
 	}
@@ -117,6 +121,7 @@ public class SerializerPluginConfigurationImpl extends PluginConfigurationImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RenderEnginePluginConfiguration getRenderEngine() {
 		return (RenderEnginePluginConfiguration) eGet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__RENDER_ENGINE, true);
 	}
@@ -126,6 +131,7 @@ public class SerializerPluginConfigurationImpl extends PluginConfigurationImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRenderEngine(RenderEnginePluginConfiguration newRenderEngine) {
 		eSet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__RENDER_ENGINE, newRenderEngine);
 	}
@@ -135,6 +141,7 @@ public class SerializerPluginConfigurationImpl extends PluginConfigurationImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isStreaming() {
 		return (Boolean) eGet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__STREAMING, true);
 	}
@@ -144,6 +151,7 @@ public class SerializerPluginConfigurationImpl extends PluginConfigurationImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStreaming(boolean newStreaming) {
 		eSet(StorePackage.Literals.SERIALIZER_PLUGIN_CONFIGURATION__STREAMING, newStreaming);
 	}

@@ -152,20 +152,22 @@ public class JsonQueryObjectModelConverter {
 		ObjectNode includeNode = OBJECT_MAPPER.createObjectNode();
 		
 		ArrayNode typesNode = OBJECT_MAPPER.createArrayNode();
-		for (TypeDef type : include.getTypes()) {
-			ObjectNode typeDefNode = OBJECT_MAPPER.createObjectNode();
-			typeDefNode.put("name", type.geteClass().getName());
-			typeDefNode.put("includeAllSubTypes", type.isIncludeSubTypes());
-			if (type.getExcluded() != null) {
-				ArrayNode excludesNode = OBJECT_MAPPER.createArrayNode();
-				for (EClass eClass : type.getExcluded()) {
-					excludesNode.add(eClass.getName());
+		if (include.hasTypes()) {
+			for (TypeDef type : include.getTypes()) {
+				ObjectNode typeDefNode = OBJECT_MAPPER.createObjectNode();
+				typeDefNode.put("name", type.geteClass().getName());
+				typeDefNode.put("includeAllSubTypes", type.isIncludeSubTypes());
+				if (type.getExcluded() != null) {
+					ArrayNode excludesNode = OBJECT_MAPPER.createArrayNode();
+					for (EClass eClass : type.getExcluded()) {
+						excludesNode.add(eClass.getName());
+					}
+					typeDefNode.set("exlude", excludesNode);
 				}
-				typeDefNode.set("exlude", excludesNode);
+				typesNode.add(typeDefNode);
 			}
-			typesNode.add(typeDefNode);
+			includeNode.set("types", typesNode);
 		}
-		includeNode.set("types", typesNode);
 		
 		if (include.hasFields()) {
 			ArrayNode fieldsNode = OBJECT_MAPPER.createArrayNode();
@@ -279,11 +281,18 @@ public class JsonQueryObjectModelConverter {
 			include = new Include(packageMetaData);
 		}
 		if (!jsonNode.has("type") && !jsonNode.has("types")) {
-			throw new QueryException("includes require a \"type\" or \"types\" field " + jsonNode);
+			for (EClass eClass : packageMetaData.getAllClasses()) {
+				include.addType(eClass, false);
+			}
+
+//			throw new QueryException("includes require a \"type\" or \"types\" field " + jsonNode);
 		}
 		if (jsonNode.has("type")) {
 			JsonNode typeNode = jsonNode.get("type");
 			parseTypeNode(include, -1, typeNode);
+		}
+		if (jsonNode.has("includeAllFields") && jsonNode.get("includeAllFields").asBoolean()) {
+			include.setIncludeAllFields(true);
 		}
 		if (jsonNode.has("types")) {
 			JsonNode typesNode = jsonNode.get("types");

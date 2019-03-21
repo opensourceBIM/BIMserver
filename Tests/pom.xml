@@ -52,11 +52,5 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.25</version>
 		</dependency>
-		<dependency>
-			<groupId>org.opensourcebim</groupId>
-			<artifactId>ifcplugins</artifactId>
-			<version>0.0.58-SNAPSHOT</version>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 </project>

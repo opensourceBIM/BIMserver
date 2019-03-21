@@ -1,4 +1,4 @@
-package org.bimserver.geometry;
+package org.bimserver.database.migrations.steps;
 
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
@@ -17,32 +17,21 @@ package org.bimserver.geometry;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-public class Vector2d {
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.migrations.Migration;
+import org.bimserver.database.migrations.Schema;
+import org.eclipse.emf.ecore.EEnum;
 
-	public static final Vector2d ZERO = null;
-	
-	public double x;
-	public double y;
+public class Step0050 extends Migration {
 
-	public Vector2d(double d, double e) {
-	}
-
-	public Vector2d() {
+	@Override
+	public void migrate(Schema schema, DatabaseSession databaseSession) {
+		EEnum userType = schema.getEEnum("store", "UserType");
+		schema.createEEnumLiteral(userType, "MONITOR");
 	}
 
-	public double getX() {
-		return x;
-	}
-	
-	public double getY() {
-		return y;
-	}
-	
-	public void y(double y) {
-		this.y = y;
-	}
-	
-	public void x(double x) {
-		this.x = x;
+	@Override
+	public String getDescription() {
+		return "Add new user type MONITOR";
 	}
 }

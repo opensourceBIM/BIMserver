@@ -11754,6 +11754,7 @@
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/UserType/ADMIN"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/UserType/USER"/>
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/UserType/READ_ONLY"/>
+      <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/UserType/MONITOR"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="models.ecore#/4/SIPrefix">
       <genEnumLiterals ecoreEnumLiteral="models.ecore#/4/SIPrefix/meter"/>

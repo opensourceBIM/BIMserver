@@ -93,6 +93,7 @@ public class PluginInformationImpl extends IdEObjectImpl implements PluginInform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(StorePackage.Literals.PLUGIN_INFORMATION__NAME, true);
 	}
@@ -102,6 +103,7 @@ public class PluginInformationImpl extends IdEObjectImpl implements PluginInform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(StorePackage.Literals.PLUGIN_INFORMATION__NAME, newName);
 	}
@@ -111,6 +113,7 @@ public class PluginInformationImpl extends IdEObjectImpl implements PluginInform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PluginType getType() {
 		return (PluginType) eGet(StorePackage.Literals.PLUGIN_INFORMATION__TYPE, true);
 	}
@@ -120,6 +123,7 @@ public class PluginInformationImpl extends IdEObjectImpl implements PluginInform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(PluginType newType) {
 		eSet(StorePackage.Literals.PLUGIN_INFORMATION__TYPE, newType);
 	}
@@ -129,6 +133,7 @@ public class PluginInformationImpl extends IdEObjectImpl implements PluginInform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return (String) eGet(StorePackage.Literals.PLUGIN_INFORMATION__DESCRIPTION, true);
 	}
@@ -138,6 +143,7 @@ public class PluginInformationImpl extends IdEObjectImpl implements PluginInform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		eSet(StorePackage.Literals.PLUGIN_INFORMATION__DESCRIPTION, newDescription);
 	}
@@ -147,6 +153,7 @@ public class PluginInformationImpl extends IdEObjectImpl implements PluginInform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isEnabled() {
 		return (Boolean) eGet(StorePackage.Literals.PLUGIN_INFORMATION__ENABLED, true);
 	}
@@ -156,6 +163,7 @@ public class PluginInformationImpl extends IdEObjectImpl implements PluginInform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEnabled(boolean newEnabled) {
 		eSet(StorePackage.Literals.PLUGIN_INFORMATION__ENABLED, newEnabled);
 	}
@@ -165,6 +173,7 @@ public class PluginInformationImpl extends IdEObjectImpl implements PluginInform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIdentifier() {
 		return (String) eGet(StorePackage.Literals.PLUGIN_INFORMATION__IDENTIFIER, true);
 	}
@@ -174,6 +183,7 @@ public class PluginInformationImpl extends IdEObjectImpl implements PluginInform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentifier(String newIdentifier) {
 		eSet(StorePackage.Literals.PLUGIN_INFORMATION__IDENTIFIER, newIdentifier);
 	}
@@ -183,6 +193,7 @@ public class PluginInformationImpl extends IdEObjectImpl implements PluginInform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isInstallForAllUsers() {
 		return (Boolean) eGet(StorePackage.Literals.PLUGIN_INFORMATION__INSTALL_FOR_ALL_USERS, true);
 	}
@@ -192,6 +203,7 @@ public class PluginInformationImpl extends IdEObjectImpl implements PluginInform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInstallForAllUsers(boolean newInstallForAllUsers) {
 		eSet(StorePackage.Literals.PLUGIN_INFORMATION__INSTALL_FOR_ALL_USERS, newInstallForAllUsers);
 	}
@@ -201,6 +213,7 @@ public class PluginInformationImpl extends IdEObjectImpl implements PluginInform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isInstallForNewUsers() {
 		return (Boolean) eGet(StorePackage.Literals.PLUGIN_INFORMATION__INSTALL_FOR_NEW_USERS, true);
 	}
@@ -210,6 +223,7 @@ public class PluginInformationImpl extends IdEObjectImpl implements PluginInform
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInstallForNewUsers(boolean newInstallForNewUsers) {
 		eSet(StorePackage.Literals.PLUGIN_INFORMATION__INSTALL_FOR_NEW_USERS, newInstallForNewUsers);
 	}

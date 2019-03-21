@@ -91,6 +91,7 @@ public class DensityImpl extends IdEObjectImpl implements Density {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getType() {
 		return (String) eGet(StorePackage.Literals.DENSITY__TYPE, true);
 	}
@@ -100,6 +101,7 @@ public class DensityImpl extends IdEObjectImpl implements Density {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(String newType) {
 		eSet(StorePackage.Literals.DENSITY__TYPE, newType);
 	}
@@ -109,6 +111,7 @@ public class DensityImpl extends IdEObjectImpl implements Density {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getGeometryInfoId() {
 		return (Long) eGet(StorePackage.Literals.DENSITY__GEOMETRY_INFO_ID, true);
 	}
@@ -118,6 +121,7 @@ public class DensityImpl extends IdEObjectImpl implements Density {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGeometryInfoId(long newGeometryInfoId) {
 		eSet(StorePackage.Literals.DENSITY__GEOMETRY_INFO_ID, newGeometryInfoId);
 	}
@@ -127,6 +131,7 @@ public class DensityImpl extends IdEObjectImpl implements Density {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getTrianglesBelow() {
 		return (Long) eGet(StorePackage.Literals.DENSITY__TRIANGLES_BELOW, true);
 	}
@@ -136,6 +141,7 @@ public class DensityImpl extends IdEObjectImpl implements Density {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTrianglesBelow(long newTrianglesBelow) {
 		eSet(StorePackage.Literals.DENSITY__TRIANGLES_BELOW, newTrianglesBelow);
 	}
@@ -145,6 +151,7 @@ public class DensityImpl extends IdEObjectImpl implements Density {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getTrianglesAbove() {
 		return (Long) eGet(StorePackage.Literals.DENSITY__TRIANGLES_ABOVE, true);
 	}
@@ -154,6 +161,7 @@ public class DensityImpl extends IdEObjectImpl implements Density {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTrianglesAbove(long newTrianglesAbove) {
 		eSet(StorePackage.Literals.DENSITY__TRIANGLES_ABOVE, newTrianglesAbove);
 	}
@@ -163,6 +171,7 @@ public class DensityImpl extends IdEObjectImpl implements Density {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public float getVolume() {
 		return (Float) eGet(StorePackage.Literals.DENSITY__VOLUME, true);
 	}
@@ -172,6 +181,7 @@ public class DensityImpl extends IdEObjectImpl implements Density {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVolume(float newVolume) {
 		eSet(StorePackage.Literals.DENSITY__VOLUME, newVolume);
 	}
@@ -181,6 +191,7 @@ public class DensityImpl extends IdEObjectImpl implements Density {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public float getDensity() {
 		return (Float) eGet(StorePackage.Literals.DENSITY__DENSITY, true);
 	}
@@ -190,6 +201,7 @@ public class DensityImpl extends IdEObjectImpl implements Density {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDensity(float newDensity) {
 		eSet(StorePackage.Literals.DENSITY__DENSITY, newDensity);
 	}

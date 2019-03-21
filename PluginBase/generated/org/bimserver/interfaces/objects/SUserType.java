@@ -21,7 +21,8 @@ public enum SUserType {
 	SYSTEM(0),
 	ADMIN(1),
 	USER(2),
-	READ_ONLY(3);
+	READ_ONLY(3),
+	MONITOR(4);
 	int ordinal;
 
 	SUserType(int ordinal) {

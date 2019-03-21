@@ -88,6 +88,7 @@ public class RevisionSummaryTypeImpl extends IdEObjectImpl implements RevisionSu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(StorePackage.Literals.REVISION_SUMMARY_TYPE__NAME, true);
 	}
@@ -97,6 +98,7 @@ public class RevisionSummaryTypeImpl extends IdEObjectImpl implements RevisionSu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(StorePackage.Literals.REVISION_SUMMARY_TYPE__NAME, newName);
 	}
@@ -106,6 +108,7 @@ public class RevisionSummaryTypeImpl extends IdEObjectImpl implements RevisionSu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Integer getCount() {
 		return (Integer) eGet(StorePackage.Literals.REVISION_SUMMARY_TYPE__COUNT, true);
 	}
@@ -115,6 +118,7 @@ public class RevisionSummaryTypeImpl extends IdEObjectImpl implements RevisionSu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCount(Integer newCount) {
 		eSet(StorePackage.Literals.REVISION_SUMMARY_TYPE__COUNT, newCount);
 	}
@@ -124,6 +128,7 @@ public class RevisionSummaryTypeImpl extends IdEObjectImpl implements RevisionSu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSchema() {
 		return (String) eGet(StorePackage.Literals.REVISION_SUMMARY_TYPE__SCHEMA, true);
 	}
@@ -133,6 +138,7 @@ public class RevisionSummaryTypeImpl extends IdEObjectImpl implements RevisionSu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSchema(String newSchema) {
 		eSet(StorePackage.Literals.REVISION_SUMMARY_TYPE__SCHEMA, newSchema);
 	}

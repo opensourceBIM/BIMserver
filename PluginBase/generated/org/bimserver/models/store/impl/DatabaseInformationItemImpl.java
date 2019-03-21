@@ -87,6 +87,7 @@ public class DatabaseInformationItemImpl extends IdEObjectImpl implements Databa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getKey() {
 		return (String) eGet(StorePackage.Literals.DATABASE_INFORMATION_ITEM__KEY, true);
 	}
@@ -96,6 +97,7 @@ public class DatabaseInformationItemImpl extends IdEObjectImpl implements Databa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setKey(String newKey) {
 		eSet(StorePackage.Literals.DATABASE_INFORMATION_ITEM__KEY, newKey);
 	}
@@ -105,6 +107,7 @@ public class DatabaseInformationItemImpl extends IdEObjectImpl implements Databa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getValue() {
 		return (String) eGet(StorePackage.Literals.DATABASE_INFORMATION_ITEM__VALUE, true);
 	}
@@ -114,6 +117,7 @@ public class DatabaseInformationItemImpl extends IdEObjectImpl implements Databa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(String newValue) {
 		eSet(StorePackage.Literals.DATABASE_INFORMATION_ITEM__VALUE, newValue);
 	}

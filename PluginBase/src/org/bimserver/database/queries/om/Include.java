@@ -72,6 +72,7 @@ public class Include extends PartOfQuery implements CanInclude {
 	private List<Include> includes;
 	private List<Reference> references;
 	private PackageMetaData packageMetaData;
+	private boolean includeAllFields;
 	
 	public Include(PackageMetaData packageMetaData) {
 		this.packageMetaData = packageMetaData;
@@ -205,7 +206,7 @@ public class Include extends PartOfQuery implements CanInclude {
 
 	@Override
 	public boolean isIncludeAllFields() {
-		return false;
+		return includeAllFields;
 	}
 
 	public void dump(int indent, StringBuilder sb) {
@@ -336,5 +337,14 @@ public class Include extends PartOfQuery implements CanInclude {
 			}
 		}
 		return newInclude;
+	}
+
+	@Override
+	public boolean hasOids() {
+		return false;
+	}
+
+	public void setIncludeAllFields(boolean includeAllFields) {
+		this.includeAllFields = includeAllFields;
 	}
 }

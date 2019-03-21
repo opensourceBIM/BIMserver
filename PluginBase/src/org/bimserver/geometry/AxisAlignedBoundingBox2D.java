@@ -26,7 +26,7 @@ public class AxisAlignedBoundingBox2D {
 		}
 	}
 
-	public Vector2d getCenter() {
-		return new Vector2d(min[0] + (max[0] - min[0]) / 2d, min[1] + (max[1] - min[1]) / 2d);
+	public Vector2D getCenter() {
+		return new Vector2D(min[0] + (max[0] - min[0]) / 2d, min[1] + (max[1] - min[1]) / 2d);
 	}
 }

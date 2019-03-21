@@ -75,6 +75,7 @@ public class LongTypeImpl extends PrimitiveTypeImpl implements LongType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getValue() {
 		return (Long) eGet(StorePackage.Literals.LONG_TYPE__VALUE, true);
 	}
@@ -84,6 +85,7 @@ public class LongTypeImpl extends PrimitiveTypeImpl implements LongType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(long newValue) {
 		eSet(StorePackage.Literals.LONG_TYPE__VALUE, newValue);
 	}

@@ -120,7 +120,7 @@ public interface ServiceType extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Fields</em>' reference list.
 	 * @see org.bimserver.models.store.StorePackage#getServiceType_Fields()
-	 * @model
+	 * @model annotation="embedsreference"
 	 * @generated
 	 */
 	EList<ServiceField> getFields();

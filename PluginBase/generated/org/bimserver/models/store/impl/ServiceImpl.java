@@ -114,6 +114,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(StorePackage.Literals.SERVICE__NAME, true);
 	}
@@ -123,6 +124,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(StorePackage.Literals.SERVICE__NAME, newName);
 	}
@@ -132,6 +134,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getServiceName() {
 		return (String) eGet(StorePackage.Literals.SERVICE__SERVICE_NAME, true);
 	}
@@ -141,6 +144,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setServiceName(String newServiceName) {
 		eSet(StorePackage.Literals.SERVICE__SERVICE_NAME, newServiceName);
 	}
@@ -150,6 +154,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getServiceIdentifier() {
 		return (String) eGet(StorePackage.Literals.SERVICE__SERVICE_IDENTIFIER, true);
 	}
@@ -159,6 +164,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setServiceIdentifier(String newServiceIdentifier) {
 		eSet(StorePackage.Literals.SERVICE__SERVICE_IDENTIFIER, newServiceIdentifier);
 	}
@@ -168,6 +174,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getProviderName() {
 		return (String) eGet(StorePackage.Literals.SERVICE__PROVIDER_NAME, true);
 	}
@@ -177,6 +184,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProviderName(String newProviderName) {
 		eSet(StorePackage.Literals.SERVICE__PROVIDER_NAME, newProviderName);
 	}
@@ -186,6 +194,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getUrl() {
 		return (String) eGet(StorePackage.Literals.SERVICE__URL, true);
 	}
@@ -195,6 +204,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUrl(String newUrl) {
 		eSet(StorePackage.Literals.SERVICE__URL, newUrl);
 	}
@@ -204,6 +214,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getToken() {
 		return (String) eGet(StorePackage.Literals.SERVICE__TOKEN, true);
 	}
@@ -213,6 +224,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setToken(String newToken) {
 		eSet(StorePackage.Literals.SERVICE__TOKEN, newToken);
 	}
@@ -222,6 +234,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AccessMethod getNotificationProtocol() {
 		return (AccessMethod) eGet(StorePackage.Literals.SERVICE__NOTIFICATION_PROTOCOL, true);
 	}
@@ -231,6 +244,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNotificationProtocol(AccessMethod newNotificationProtocol) {
 		eSet(StorePackage.Literals.SERVICE__NOTIFICATION_PROTOCOL, newNotificationProtocol);
 	}
@@ -240,6 +254,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return (String) eGet(StorePackage.Literals.SERVICE__DESCRIPTION, true);
 	}
@@ -249,6 +264,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		eSet(StorePackage.Literals.SERVICE__DESCRIPTION, newDescription);
 	}
@@ -258,6 +274,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Trigger getTrigger() {
 		return (Trigger) eGet(StorePackage.Literals.SERVICE__TRIGGER, true);
 	}
@@ -267,6 +284,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTrigger(Trigger newTrigger) {
 		eSet(StorePackage.Literals.SERVICE__TRIGGER, newTrigger);
 	}
@@ -276,6 +294,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isReadRevision() {
 		return (Boolean) eGet(StorePackage.Literals.SERVICE__READ_REVISION, true);
 	}
@@ -285,6 +304,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReadRevision(boolean newReadRevision) {
 		eSet(StorePackage.Literals.SERVICE__READ_REVISION, newReadRevision);
 	}
@@ -294,6 +314,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExtendedDataSchema getReadExtendedData() {
 		return (ExtendedDataSchema) eGet(StorePackage.Literals.SERVICE__READ_EXTENDED_DATA, true);
 	}
@@ -303,6 +324,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReadExtendedData(ExtendedDataSchema newReadExtendedData) {
 		eSet(StorePackage.Literals.SERVICE__READ_EXTENDED_DATA, newReadExtendedData);
 	}
@@ -312,6 +334,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Project getWriteRevision() {
 		return (Project) eGet(StorePackage.Literals.SERVICE__WRITE_REVISION, true);
 	}
@@ -321,6 +344,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWriteRevision(Project newWriteRevision) {
 		eSet(StorePackage.Literals.SERVICE__WRITE_REVISION, newWriteRevision);
 	}
@@ -330,6 +354,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExtendedDataSchema getWriteExtendedData() {
 		return (ExtendedDataSchema) eGet(StorePackage.Literals.SERVICE__WRITE_EXTENDED_DATA, true);
 	}
@@ -339,6 +364,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWriteExtendedData(ExtendedDataSchema newWriteExtendedData) {
 		eSet(StorePackage.Literals.SERVICE__WRITE_EXTENDED_DATA, newWriteExtendedData);
 	}
@@ -348,6 +374,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getProfileIdentifier() {
 		return (String) eGet(StorePackage.Literals.SERVICE__PROFILE_IDENTIFIER, true);
 	}
@@ -357,6 +384,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProfileIdentifier(String newProfileIdentifier) {
 		eSet(StorePackage.Literals.SERVICE__PROFILE_IDENTIFIER, newProfileIdentifier);
 	}
@@ -366,6 +394,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getProfileName() {
 		return (String) eGet(StorePackage.Literals.SERVICE__PROFILE_NAME, true);
 	}
@@ -375,6 +404,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProfileName(String newProfileName) {
 		eSet(StorePackage.Literals.SERVICE__PROFILE_NAME, newProfileName);
 	}
@@ -384,6 +414,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getProfileDescription() {
 		return (String) eGet(StorePackage.Literals.SERVICE__PROFILE_DESCRIPTION, true);
 	}
@@ -393,6 +424,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProfileDescription(String newProfileDescription) {
 		eSet(StorePackage.Literals.SERVICE__PROFILE_DESCRIPTION, newProfileDescription);
 	}
@@ -402,6 +434,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isProfilePublic() {
 		return (Boolean) eGet(StorePackage.Literals.SERVICE__PROFILE_PUBLIC, true);
 	}
@@ -411,6 +444,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProfilePublic(boolean newProfilePublic) {
 		eSet(StorePackage.Literals.SERVICE__PROFILE_PUBLIC, newProfilePublic);
 	}
@@ -420,6 +454,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Project getProject() {
 		return (Project) eGet(StorePackage.Literals.SERVICE__PROJECT, true);
 	}
@@ -429,6 +464,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProject(Project newProject) {
 		eSet(StorePackage.Literals.SERVICE__PROJECT, newProject);
 	}
@@ -438,6 +474,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public User getUser() {
 		return (User) eGet(StorePackage.Literals.SERVICE__USER, true);
 	}
@@ -447,6 +484,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUser(User newUser) {
 		eSet(StorePackage.Literals.SERVICE__USER, newUser);
 	}
@@ -456,6 +494,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public InternalServicePluginConfiguration getInternalService() {
 		return (InternalServicePluginConfiguration) eGet(StorePackage.Literals.SERVICE__INTERNAL_SERVICE, true);
 	}
@@ -465,6 +504,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setInternalService(InternalServicePluginConfiguration newInternalService) {
 		eSet(StorePackage.Literals.SERVICE__INTERNAL_SERVICE, newInternalService);
 	}
@@ -475,6 +515,7 @@ public class ServiceImpl extends IdEObjectImpl implements Service {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<ModelCheckerInstance> getModelCheckers() {
 		return (EList<ModelCheckerInstance>) eGet(StorePackage.Literals.SERVICE__MODEL_CHECKERS, true);
 	}

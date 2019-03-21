@@ -66,7 +66,7 @@ public interface InterfaceMetric extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Methods</em>' reference list.
 	 * @see org.bimserver.models.store.StorePackage#getInterfaceMetric_Methods()
-	 * @model
+	 * @model annotation="embedsreference"
 	 * @generated
 	 */
 	EList<MethodMetric> getMethods();

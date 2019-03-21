@@ -28,10 +28,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 
+import org.apache.commons.lang3.NotImplementedException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.geometry.AxisAlignedBoundingBox2D;
-import org.bimserver.geometry.Vector2d;
+import org.bimserver.geometry.AxisAlignedBoundingBox3D;
+import org.bimserver.geometry.Vector2D;
+import org.bimserver.geometry.Vector3D;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcAreaMeasure;
 import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement;
@@ -45,6 +48,8 @@ import org.bimserver.models.ifc2x3tc1.IfcCountMeasure;
 import org.bimserver.models.ifc2x3tc1.IfcElectricCurrentMeasure;
 import org.bimserver.models.ifc2x3tc1.IfcElement;
 import org.bimserver.models.ifc2x3tc1.IfcElementQuantity;
+import org.bimserver.models.ifc2x3tc1.IfcFace;
+import org.bimserver.models.ifc2x3tc1.IfcFaceBound;
 import org.bimserver.models.ifc2x3tc1.IfcGridPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcIdentifier;
 import org.bimserver.models.ifc2x3tc1.IfcInteger;
@@ -52,6 +57,7 @@ import org.bimserver.models.ifc2x3tc1.IfcLabel;
 import org.bimserver.models.ifc2x3tc1.IfcLengthMeasure;
 import org.bimserver.models.ifc2x3tc1.IfcLocalPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcLogical;
+import org.bimserver.models.ifc2x3tc1.IfcLoop;
 import org.bimserver.models.ifc2x3tc1.IfcMaterial;
 import org.bimserver.models.ifc2x3tc1.IfcMaterialLayer;
 import org.bimserver.models.ifc2x3tc1.IfcMaterialLayerSet;
@@ -63,7 +69,7 @@ import org.bimserver.models.ifc2x3tc1.IfcObjectDefinition;
 import org.bimserver.models.ifc2x3tc1.IfcObjectPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcPhysicalQuantity;
 import org.bimserver.models.ifc2x3tc1.IfcPlaneAngleMeasure;
-import org.bimserver.models.ifc2x3tc1.IfcPolyline;
+import org.bimserver.models.ifc2x3tc1.IfcPolyLoop;
 import org.bimserver.models.ifc2x3tc1.IfcPowerMeasure;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
@@ -1003,9 +1009,9 @@ public class IfcUtils {
 		return sb.toString();
 	}
 
-	public static AxisAlignedBoundingBox2D getBoundingBox(IfcPolyline ifcPolyline) throws GeometryException {
+	public static AxisAlignedBoundingBox2D getBoundingBox2D(List<IfcCartesianPoint> points) throws GeometryException {
 		AxisAlignedBoundingBox2D box2d = new AxisAlignedBoundingBox2D();
-		for (IfcCartesianPoint ifcCartesianPoint : ifcPolyline.getPoints()) {
+		for (IfcCartesianPoint ifcCartesianPoint : points) {
 			EList<Double> coordinates = ifcCartesianPoint.getCoordinates();
 			if (coordinates.size() > 2) {
 				throw new GeometryException("Too many dimensions (" + coordinates.size() + ") for 2D boundingbox");
@@ -1014,9 +1020,44 @@ public class IfcUtils {
 		}
 		return box2d;
 	}
+
+	public static AxisAlignedBoundingBox3D getBoundingBox3D(List<IfcCartesianPoint> points) throws GeometryException {
+		AxisAlignedBoundingBox3D box3d = new AxisAlignedBoundingBox3D();
+		for (IfcCartesianPoint ifcCartesianPoint : points) {
+			EList<Double> coordinates = ifcCartesianPoint.getCoordinates();
+			if (coordinates.size() < 2) {
+				throw new GeometryException("Not enough dimensions (" + coordinates.size() + ") for 3D boundingbox");
+			}
+			box3d.process(coordinates);
+		}
+		return box3d;
+	}
 	
-	public static Vector2d getCenter(IfcPolyline ifcPolyline) throws GeometryException {
-		AxisAlignedBoundingBox2D bb = getBoundingBox(ifcPolyline);
+	public static Vector2D getCenter2D(List<IfcCartesianPoint> points) throws GeometryException {
+		AxisAlignedBoundingBox2D bb = getBoundingBox2D(points);
 		return bb.getCenter();
+	}
+
+	public static Vector3D getCenter3D(List<IfcCartesianPoint> points) throws GeometryException {
+		AxisAlignedBoundingBox3D bb = getBoundingBox3D(points);
+		return bb.getCenter();
+	}
+
+	public static AxisAlignedBoundingBox3D getBoundingBox3D(EList<IfcFace> cfsFaces) {
+		AxisAlignedBoundingBox3D box = new AxisAlignedBoundingBox3D();
+		for (IfcFace ifcFace : cfsFaces) {
+			for (IfcFaceBound ifcFaceBound : ifcFace.getBounds()) {
+				IfcLoop ifcLoop = ifcFaceBound.getBound();
+				if (ifcLoop instanceof IfcPolyLoop) {
+					IfcPolyLoop ifcPolyLoop = (IfcPolyLoop)ifcLoop;
+					for (IfcCartesianPoint ifcCartesianPoint : ifcPolyLoop.getPolygon()) {
+						box.process(ifcCartesianPoint.getCoordinates());
+					}
+				} else {
+					throw new NotImplementedException(ifcLoop.eClass().getName());
+				}
+			}
+		}
+		return box;
 	}
 }

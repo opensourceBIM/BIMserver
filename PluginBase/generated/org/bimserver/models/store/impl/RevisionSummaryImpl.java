@@ -89,6 +89,7 @@ public class RevisionSummaryImpl extends IdEObjectImpl implements RevisionSummar
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<RevisionSummaryContainer> getList() {
 		return (EList<RevisionSummaryContainer>) eGet(StorePackage.Literals.REVISION_SUMMARY__LIST, true);
 	}

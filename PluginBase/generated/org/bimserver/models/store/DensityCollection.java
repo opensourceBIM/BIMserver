@@ -65,7 +65,9 @@ public interface DensityCollection extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Densities</em>' reference list.
 	 * @see org.bimserver.models.store.StorePackage#getDensityCollection_Densities()
-	 * @model
+	 * @model annotation="dbembed"
+	 *        annotation="embedsreference"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	EList<Density> getDensities();

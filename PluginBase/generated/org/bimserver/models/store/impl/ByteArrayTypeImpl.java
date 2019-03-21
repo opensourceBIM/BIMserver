@@ -75,6 +75,7 @@ public class ByteArrayTypeImpl extends PrimitiveTypeImpl implements ByteArrayTyp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public byte[] getValue() {
 		return (byte[]) eGet(StorePackage.Literals.BYTE_ARRAY_TYPE__VALUE, true);
 	}
@@ -84,6 +85,7 @@ public class ByteArrayTypeImpl extends PrimitiveTypeImpl implements ByteArrayTyp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(byte[] newValue) {
 		eSet(StorePackage.Literals.BYTE_ARRAY_TYPE__VALUE, newValue);
 	}

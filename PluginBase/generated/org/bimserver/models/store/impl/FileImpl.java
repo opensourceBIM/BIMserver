@@ -89,6 +89,7 @@ public class FileImpl extends IdEObjectImpl implements File {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public byte[] getData() {
 		return (byte[]) eGet(StorePackage.Literals.FILE__DATA, true);
 	}
@@ -98,6 +99,7 @@ public class FileImpl extends IdEObjectImpl implements File {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setData(byte[] newData) {
 		eSet(StorePackage.Literals.FILE__DATA, newData);
 	}
@@ -107,6 +109,7 @@ public class FileImpl extends IdEObjectImpl implements File {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFilename() {
 		return (String) eGet(StorePackage.Literals.FILE__FILENAME, true);
 	}
@@ -116,6 +119,7 @@ public class FileImpl extends IdEObjectImpl implements File {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFilename(String newFilename) {
 		eSet(StorePackage.Literals.FILE__FILENAME, newFilename);
 	}
@@ -125,6 +129,7 @@ public class FileImpl extends IdEObjectImpl implements File {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getMime() {
 		return (String) eGet(StorePackage.Literals.FILE__MIME, true);
 	}
@@ -134,6 +139,7 @@ public class FileImpl extends IdEObjectImpl implements File {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMime(String newMime) {
 		eSet(StorePackage.Literals.FILE__MIME, newMime);
 	}
@@ -143,6 +149,7 @@ public class FileImpl extends IdEObjectImpl implements File {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getSize() {
 		return (Long) eGet(StorePackage.Literals.FILE__SIZE, true);
 	}
@@ -152,6 +159,7 @@ public class FileImpl extends IdEObjectImpl implements File {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSize(long newSize) {
 		eSet(StorePackage.Literals.FILE__SIZE, newSize);
 	}

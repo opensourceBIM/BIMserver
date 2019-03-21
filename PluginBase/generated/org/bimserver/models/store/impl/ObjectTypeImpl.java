@@ -78,6 +78,7 @@ public class ObjectTypeImpl extends TypeImpl implements ObjectType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(StorePackage.Literals.OBJECT_TYPE__NAME, true);
 	}
@@ -87,6 +88,7 @@ public class ObjectTypeImpl extends TypeImpl implements ObjectType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(StorePackage.Literals.OBJECT_TYPE__NAME, newName);
 	}
@@ -97,6 +99,7 @@ public class ObjectTypeImpl extends TypeImpl implements ObjectType {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Parameter> getParameters() {
 		return (EList<Parameter>) eGet(StorePackage.Literals.OBJECT_TYPE__PARAMETERS, true);
 	}

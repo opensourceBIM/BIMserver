@@ -88,6 +88,7 @@ public class ImmediateNotificationResultImpl extends IdEObjectImpl implements Im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotifictionResultEnum getResult() {
 		return (NotifictionResultEnum) eGet(StorePackage.Literals.IMMEDIATE_NOTIFICATION_RESULT__RESULT, true);
 	}
@@ -97,6 +98,7 @@ public class ImmediateNotificationResultImpl extends IdEObjectImpl implements Im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setResult(NotifictionResultEnum newResult) {
 		eSet(StorePackage.Literals.IMMEDIATE_NOTIFICATION_RESULT__RESULT, newResult);
 	}
@@ -106,6 +108,7 @@ public class ImmediateNotificationResultImpl extends IdEObjectImpl implements Im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return (String) eGet(StorePackage.Literals.IMMEDIATE_NOTIFICATION_RESULT__DESCRIPTION, true);
 	}
@@ -115,6 +118,7 @@ public class ImmediateNotificationResultImpl extends IdEObjectImpl implements Im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		eSet(StorePackage.Literals.IMMEDIATE_NOTIFICATION_RESULT__DESCRIPTION, newDescription);
 	}

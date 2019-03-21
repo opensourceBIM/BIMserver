@@ -99,6 +99,7 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getVersion() {
 		return (String) eGet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__VERSION, true);
 	}
@@ -108,6 +109,7 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVersion(String newVersion) {
 		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__VERSION, newVersion);
 	}
@@ -117,6 +119,7 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PluginBundleType getType() {
 		return (PluginBundleType) eGet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__TYPE, true);
 	}
@@ -126,6 +129,7 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(PluginBundleType newType) {
 		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__TYPE, newType);
 	}
@@ -135,6 +139,7 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return (String) eGet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__DESCRIPTION, true);
 	}
@@ -144,6 +149,7 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__DESCRIPTION, newDescription);
 	}
@@ -153,6 +159,7 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isMismatch() {
 		return (Boolean) eGet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__MISMATCH, true);
 	}
@@ -162,6 +169,7 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMismatch(boolean newMismatch) {
 		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__MISMATCH, newMismatch);
 	}
@@ -171,6 +179,7 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRepository() {
 		return (String) eGet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__REPOSITORY, true);
 	}
@@ -180,6 +189,7 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRepository(String newRepository) {
 		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__REPOSITORY, newRepository);
 	}
@@ -189,6 +199,7 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getGroupId() {
 		return (String) eGet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__GROUP_ID, true);
 	}
@@ -198,6 +209,7 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGroupId(String newGroupId) {
 		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__GROUP_ID, newGroupId);
 	}
@@ -207,6 +219,7 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getArtifactId() {
 		return (String) eGet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__ARTIFACT_ID, true);
 	}
@@ -216,6 +229,7 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setArtifactId(String newArtifactId) {
 		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__ARTIFACT_ID, newArtifactId);
 	}
@@ -225,6 +239,7 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public byte[] getIcon() {
 		return (byte[]) eGet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__ICON, true);
 	}
@@ -234,6 +249,7 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIcon(byte[] newIcon) {
 		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__ICON, newIcon);
 	}
@@ -243,6 +259,7 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getOrganization() {
 		return (String) eGet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__ORGANIZATION, true);
 	}
@@ -252,6 +269,7 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOrganization(String newOrganization) {
 		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__ORGANIZATION, newOrganization);
 	}
@@ -261,6 +279,7 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__NAME, true);
 	}
@@ -270,6 +289,7 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__NAME, newName);
 	}
@@ -279,6 +299,7 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getDate() {
 		return (Date) eGet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__DATE, true);
 	}
@@ -288,6 +309,7 @@ public class PluginBundleVersionImpl extends IdEObjectImpl implements PluginBund
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDate(Date newDate) {
 		eSet(StorePackage.Literals.PLUGIN_BUNDLE_VERSION__DATE, newDate);
 	}

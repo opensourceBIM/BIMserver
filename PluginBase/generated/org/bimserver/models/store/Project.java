@@ -92,7 +92,7 @@ public interface Project extends IdEObject {
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(Integer)
 	 * @see org.bimserver.models.store.StorePackage#getProject_Id()
-	 * @model
+	 * @model annotation="singleindex"
 	 * @generated
 	 */
 	Integer getId();
@@ -118,7 +118,7 @@ public interface Project extends IdEObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.bimserver.models.store.StorePackage#getProject_Name()
-	 * @model
+	 * @model annotation="singleindex"
 	 * @generated
 	 */
 	String getName();
@@ -642,7 +642,8 @@ public interface Project extends IdEObject {
 	 * @return the value of the '<em>Uuid</em>' attribute.
 	 * @see #setUuid(String)
 	 * @see org.bimserver.models.store.StorePackage#getProject_Uuid()
-	 * @model
+	 * @model annotation="unique"
+	 *        annotation="singleindex"
 	 * @generated
 	 */
 	String getUuid();

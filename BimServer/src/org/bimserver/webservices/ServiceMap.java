@@ -22,6 +22,7 @@ import java.util.Map;
 
 import org.bimserver.BimServer;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.User;
 import org.bimserver.shared.ServiceHolder;
 import org.bimserver.shared.ServiceMapInterface;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
@@ -64,11 +65,17 @@ public class ServiceMap implements ServiceMapInterface, ServiceHolder {
 	private AccessMethod accessMethod;
 	private Authorization authorization;
 	private final Map<Class<? extends PublicInterface>, PublicInterface> interfaces = new HashMap<Class<? extends PublicInterface>, PublicInterface>();
+	private User user;
 
-	public ServiceMap(BimServer bimServer, Authorization authorization, AccessMethod accessMethod) {
+	public ServiceMap(BimServer bimServer, Authorization authorization, AccessMethod accessMethod, User user) {
 		this.bimServer = bimServer;
 		this.authorization = authorization;
 		this.accessMethod = accessMethod;
+		this.user = user;
+	}
+	
+	public User getUser() {
+		return user;
 	}
 
 	public void put(Class<PublicInterface> clazz, PublicInterface publicInterface) {

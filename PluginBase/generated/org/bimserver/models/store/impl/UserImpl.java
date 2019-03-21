@@ -118,6 +118,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(StorePackage.Literals.USER__NAME, true);
 	}
@@ -127,6 +128,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(StorePackage.Literals.USER__NAME, newName);
 	}
@@ -136,6 +138,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public byte[] getPasswordHash() {
 		return (byte[]) eGet(StorePackage.Literals.USER__PASSWORD_HASH, true);
 	}
@@ -145,6 +148,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPasswordHash(byte[] newPasswordHash) {
 		eSet(StorePackage.Literals.USER__PASSWORD_HASH, newPasswordHash);
 	}
@@ -154,6 +158,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public byte[] getPasswordSalt() {
 		return (byte[]) eGet(StorePackage.Literals.USER__PASSWORD_SALT, true);
 	}
@@ -163,6 +168,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPasswordSalt(byte[] newPasswordSalt) {
 		eSet(StorePackage.Literals.USER__PASSWORD_SALT, newPasswordSalt);
 	}
@@ -173,6 +179,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Project> getHasRightsOn() {
 		return (EList<Project>) eGet(StorePackage.Literals.USER__HAS_RIGHTS_ON, true);
 	}
@@ -182,6 +189,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ObjectState getState() {
 		return (ObjectState) eGet(StorePackage.Literals.USER__STATE, true);
 	}
@@ -191,6 +199,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setState(ObjectState newState) {
 		eSet(StorePackage.Literals.USER__STATE, newState);
 	}
@@ -200,6 +209,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getCreatedOn() {
 		return (Date) eGet(StorePackage.Literals.USER__CREATED_ON, true);
 	}
@@ -209,6 +219,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCreatedOn(Date newCreatedOn) {
 		eSet(StorePackage.Literals.USER__CREATED_ON, newCreatedOn);
 	}
@@ -218,6 +229,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public User getCreatedBy() {
 		return (User) eGet(StorePackage.Literals.USER__CREATED_BY, true);
 	}
@@ -227,6 +239,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCreatedBy(User newCreatedBy) {
 		eSet(StorePackage.Literals.USER__CREATED_BY, newCreatedBy);
 	}
@@ -236,6 +249,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UserType getUserType() {
 		return (UserType) eGet(StorePackage.Literals.USER__USER_TYPE, true);
 	}
@@ -245,6 +259,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUserType(UserType newUserType) {
 		eSet(StorePackage.Literals.USER__USER_TYPE, newUserType);
 	}
@@ -254,6 +269,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getUsername() {
 		return (String) eGet(StorePackage.Literals.USER__USERNAME, true);
 	}
@@ -263,6 +279,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUsername(String newUsername) {
 		eSet(StorePackage.Literals.USER__USERNAME, newUsername);
 	}
@@ -272,6 +289,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getLastSeen() {
 		return (Date) eGet(StorePackage.Literals.USER__LAST_SEEN, true);
 	}
@@ -281,6 +299,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLastSeen(Date newLastSeen) {
 		eSet(StorePackage.Literals.USER__LAST_SEEN, newLastSeen);
 	}
@@ -290,6 +309,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getToken() {
 		return (String) eGet(StorePackage.Literals.USER__TOKEN, true);
 	}
@@ -299,6 +319,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setToken(String newToken) {
 		eSet(StorePackage.Literals.USER__TOKEN, newToken);
 	}
@@ -308,6 +329,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public byte[] getValidationToken() {
 		return (byte[]) eGet(StorePackage.Literals.USER__VALIDATION_TOKEN, true);
 	}
@@ -317,6 +339,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValidationToken(byte[] newValidationToken) {
 		eSet(StorePackage.Literals.USER__VALIDATION_TOKEN, newValidationToken);
 	}
@@ -326,6 +349,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getValidationTokenCreated() {
 		return (Date) eGet(StorePackage.Literals.USER__VALIDATION_TOKEN_CREATED, true);
 	}
@@ -335,6 +359,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValidationTokenCreated(Date newValidationTokenCreated) {
 		eSet(StorePackage.Literals.USER__VALIDATION_TOKEN_CREATED, newValidationTokenCreated);
 	}
@@ -344,6 +369,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UserSettings getUserSettings() {
 		return (UserSettings) eGet(StorePackage.Literals.USER__USER_SETTINGS, true);
 	}
@@ -353,6 +379,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUserSettings(UserSettings newUserSettings) {
 		eSet(StorePackage.Literals.USER__USER_SETTINGS, newUserSettings);
 	}
@@ -363,6 +390,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<ExtendedDataSchema> getSchemas() {
 		return (EList<ExtendedDataSchema>) eGet(StorePackage.Literals.USER__SCHEMAS, true);
 	}
@@ -373,6 +401,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<ExtendedData> getExtendedData() {
 		return (EList<ExtendedData>) eGet(StorePackage.Literals.USER__EXTENDED_DATA, true);
 	}
@@ -383,6 +412,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<Service> getServices() {
 		return (EList<Service>) eGet(StorePackage.Literals.USER__SERVICES, true);
 	}
@@ -393,6 +423,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<UserRelated> getLogs() {
 		return (EList<UserRelated>) eGet(StorePackage.Literals.USER__LOGS, true);
 	}
@@ -403,6 +434,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<OAuthAuthorizationCode> getOAuthAuthorizationCodes() {
 		return (EList<OAuthAuthorizationCode>) eGet(StorePackage.Literals.USER__OAUTH_AUTHORIZATION_CODES, true);
 	}
@@ -413,6 +445,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<OAuthAuthorizationCode> getOAuthIssuedAuthorizationCodes() {
 		return (EList<OAuthAuthorizationCode>) eGet(StorePackage.Literals.USER__OAUTH_ISSUED_AUTHORIZATION_CODES, true);
 	}
@@ -422,6 +455,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getUuid() {
 		return (String) eGet(StorePackage.Literals.USER__UUID, true);
 	}
@@ -431,6 +465,7 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUuid(String newUuid) {
 		eSet(StorePackage.Literals.USER__UUID, newUuid);
 	}

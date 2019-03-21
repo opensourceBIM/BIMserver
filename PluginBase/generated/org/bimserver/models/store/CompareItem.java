@@ -64,7 +64,7 @@ public interface CompareItem extends IdEObject {
 	 * @return the value of the '<em>Data Object</em>' reference.
 	 * @see #setDataObject(DataObject)
 	 * @see org.bimserver.models.store.StorePackage#getCompareItem_DataObject()
-	 * @model
+	 * @model annotation="embedsreference"
 	 * @generated
 	 */
 	DataObject getDataObject();

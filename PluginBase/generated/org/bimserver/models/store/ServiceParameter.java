@@ -51,7 +51,7 @@ import org.bimserver.emf.IdEObject;
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getServiceParameter()
- * @model
+ * @model annotation="nodatabase"
  * @extends IdEObject
  * @generated
  */
@@ -119,7 +119,7 @@ public interface ServiceParameter extends IdEObject {
 	 * @return the value of the '<em>Type</em>' reference.
 	 * @see #setType(ServiceType)
 	 * @see org.bimserver.models.store.StorePackage#getServiceParameter_Type()
-	 * @model
+	 * @model annotation="embedsreference"
 	 * @generated
 	 */
 	ServiceType getType();
@@ -145,7 +145,7 @@ public interface ServiceParameter extends IdEObject {
 	 * @return the value of the '<em>Generic Type</em>' reference.
 	 * @see #setGenericType(ServiceType)
 	 * @see org.bimserver.models.store.StorePackage#getServiceParameter_GenericType()
-	 * @model
+	 * @model annotation="embedsreference"
 	 * @generated
 	 */
 	ServiceType getGenericType();

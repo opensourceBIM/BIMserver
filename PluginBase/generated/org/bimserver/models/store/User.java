@@ -294,7 +294,8 @@ public interface User extends IdEObject {
 	 * @return the value of the '<em>Username</em>' attribute.
 	 * @see #setUsername(String)
 	 * @see org.bimserver.models.store.StorePackage#getUser_Username()
-	 * @model
+	 * @model annotation="unique"
+	 *        annotation="singleindex"
 	 * @generated
 	 */
 	String getUsername();
@@ -556,7 +557,8 @@ public interface User extends IdEObject {
 	 * @return the value of the '<em>Uuid</em>' attribute.
 	 * @see #setUuid(String)
 	 * @see org.bimserver.models.store.StorePackage#getUser_Uuid()
-	 * @model
+	 * @model annotation="unique"
+	 *        annotation="singleindex"
 	 * @generated
 	 */
 	String getUuid();

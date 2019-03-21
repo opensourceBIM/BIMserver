@@ -65,7 +65,7 @@ import org.bimserver.models.log.AccessMethod;
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getServiceDescriptor()
- * @model
+ * @model annotation="nodatabase"
  * @extends IdEObject
  * @generated
  */

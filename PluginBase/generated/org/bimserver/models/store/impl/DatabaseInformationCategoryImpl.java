@@ -89,6 +89,7 @@ public class DatabaseInformationCategoryImpl extends IdEObjectImpl implements Da
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getTitle() {
 		return (String) eGet(StorePackage.Literals.DATABASE_INFORMATION_CATEGORY__TITLE, true);
 	}
@@ -98,6 +99,7 @@ public class DatabaseInformationCategoryImpl extends IdEObjectImpl implements Da
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTitle(String newTitle) {
 		eSet(StorePackage.Literals.DATABASE_INFORMATION_CATEGORY__TITLE, newTitle);
 	}
@@ -108,6 +110,7 @@ public class DatabaseInformationCategoryImpl extends IdEObjectImpl implements Da
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<DatabaseInformationItem> getItems() {
 		return (EList<DatabaseInformationItem>) eGet(StorePackage.Literals.DATABASE_INFORMATION_CATEGORY__ITEMS, true);
 	}

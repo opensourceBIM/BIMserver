@@ -93,6 +93,7 @@ public class MethodMetricImpl extends IdEObjectImpl implements MethodMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(StorePackage.Literals.METHOD_METRIC__NAME, true);
 	}
@@ -102,6 +103,7 @@ public class MethodMetricImpl extends IdEObjectImpl implements MethodMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(StorePackage.Literals.METHOD_METRIC__NAME, newName);
 	}
@@ -111,6 +113,7 @@ public class MethodMetricImpl extends IdEObjectImpl implements MethodMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Long getNrCalls() {
 		return (Long) eGet(StorePackage.Literals.METHOD_METRIC__NR_CALLS, true);
 	}
@@ -120,6 +123,7 @@ public class MethodMetricImpl extends IdEObjectImpl implements MethodMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNrCalls(Long newNrCalls) {
 		eSet(StorePackage.Literals.METHOD_METRIC__NR_CALLS, newNrCalls);
 	}
@@ -129,6 +133,7 @@ public class MethodMetricImpl extends IdEObjectImpl implements MethodMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getLastCall() {
 		return (Date) eGet(StorePackage.Literals.METHOD_METRIC__LAST_CALL, true);
 	}
@@ -138,6 +143,7 @@ public class MethodMetricImpl extends IdEObjectImpl implements MethodMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLastCall(Date newLastCall) {
 		eSet(StorePackage.Literals.METHOD_METRIC__LAST_CALL, newLastCall);
 	}
@@ -147,6 +153,7 @@ public class MethodMetricImpl extends IdEObjectImpl implements MethodMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Long getAverageMs() {
 		return (Long) eGet(StorePackage.Literals.METHOD_METRIC__AVERAGE_MS, true);
 	}
@@ -156,6 +163,7 @@ public class MethodMetricImpl extends IdEObjectImpl implements MethodMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAverageMs(Long newAverageMs) {
 		eSet(StorePackage.Literals.METHOD_METRIC__AVERAGE_MS, newAverageMs);
 	}
@@ -165,6 +173,7 @@ public class MethodMetricImpl extends IdEObjectImpl implements MethodMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Long getShortestMs() {
 		return (Long) eGet(StorePackage.Literals.METHOD_METRIC__SHORTEST_MS, true);
 	}
@@ -174,6 +183,7 @@ public class MethodMetricImpl extends IdEObjectImpl implements MethodMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setShortestMs(Long newShortestMs) {
 		eSet(StorePackage.Literals.METHOD_METRIC__SHORTEST_MS, newShortestMs);
 	}
@@ -183,6 +193,7 @@ public class MethodMetricImpl extends IdEObjectImpl implements MethodMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Long getLongestMs() {
 		return (Long) eGet(StorePackage.Literals.METHOD_METRIC__LONGEST_MS, true);
 	}
@@ -192,6 +203,7 @@ public class MethodMetricImpl extends IdEObjectImpl implements MethodMetric {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLongestMs(Long newLongestMs) {
 		eSet(StorePackage.Literals.METHOD_METRIC__LONGEST_MS, newLongestMs);
 	}

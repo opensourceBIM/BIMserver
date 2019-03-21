@@ -53,7 +53,7 @@ import org.bimserver.emf.IdEObject;
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getParameterDefinition()
- * @model
+ * @model annotation="nodatabase"
  * @extends IdEObject
  * @generated
  */
@@ -173,7 +173,7 @@ public interface ParameterDefinition extends IdEObject {
 	 * @return the value of the '<em>Type</em>' reference.
 	 * @see #setType(TypeDefinition)
 	 * @see org.bimserver.models.store.StorePackage#getParameterDefinition_Type()
-	 * @model
+	 * @model annotation="embedsreference"
 	 * @generated
 	 */
 	TypeDefinition getType();
@@ -199,7 +199,7 @@ public interface ParameterDefinition extends IdEObject {
 	 * @return the value of the '<em>Default Value</em>' reference.
 	 * @see #setDefaultValue(Type)
 	 * @see org.bimserver.models.store.StorePackage#getParameterDefinition_DefaultValue()
-	 * @model
+	 * @model annotation="embedsreference"
 	 * @generated
 	 */
 	Type getDefaultValue();

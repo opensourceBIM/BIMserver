@@ -76,6 +76,7 @@ public class RunServiceAuthorizationImpl extends AuthorizationImpl implements Ru
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public InternalServicePluginConfiguration getService() {
 		return (InternalServicePluginConfiguration) eGet(StorePackage.Literals.RUN_SERVICE_AUTHORIZATION__SERVICE, true);
 	}
@@ -85,6 +86,7 @@ public class RunServiceAuthorizationImpl extends AuthorizationImpl implements Ru
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setService(InternalServicePluginConfiguration newService) {
 		eSet(StorePackage.Literals.RUN_SERVICE_AUTHORIZATION__SERVICE, newService);
 	}

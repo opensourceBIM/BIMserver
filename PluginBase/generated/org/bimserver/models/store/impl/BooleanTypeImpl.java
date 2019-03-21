@@ -75,6 +75,7 @@ public class BooleanTypeImpl extends PrimitiveTypeImpl implements BooleanType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isValue() {
 		return (Boolean) eGet(StorePackage.Literals.BOOLEAN_TYPE__VALUE, true);
 	}
@@ -84,6 +85,7 @@ public class BooleanTypeImpl extends PrimitiveTypeImpl implements BooleanType {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(boolean newValue) {
 		eSet(StorePackage.Literals.BOOLEAN_TYPE__VALUE, newValue);
 	}

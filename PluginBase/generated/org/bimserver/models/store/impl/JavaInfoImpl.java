@@ -109,6 +109,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getHeapTotal() {
 		return (Long) eGet(StorePackage.Literals.JAVA_INFO__HEAP_TOTAL, true);
 	}
@@ -118,6 +119,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHeapTotal(long newHeapTotal) {
 		eSet(StorePackage.Literals.JAVA_INFO__HEAP_TOTAL, newHeapTotal);
 	}
@@ -127,6 +129,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getHeapUsed() {
 		return (Long) eGet(StorePackage.Literals.JAVA_INFO__HEAP_USED, true);
 	}
@@ -136,6 +139,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHeapUsed(long newHeapUsed) {
 		eSet(StorePackage.Literals.JAVA_INFO__HEAP_USED, newHeapUsed);
 	}
@@ -145,6 +149,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getHeapFree() {
 		return (Long) eGet(StorePackage.Literals.JAVA_INFO__HEAP_FREE, true);
 	}
@@ -154,6 +159,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHeapFree(long newHeapFree) {
 		eSet(StorePackage.Literals.JAVA_INFO__HEAP_FREE, newHeapFree);
 	}
@@ -163,6 +169,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getHeapMax() {
 		return (Long) eGet(StorePackage.Literals.JAVA_INFO__HEAP_MAX, true);
 	}
@@ -172,6 +179,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHeapMax(long newHeapMax) {
 		eSet(StorePackage.Literals.JAVA_INFO__HEAP_MAX, newHeapMax);
 	}
@@ -181,6 +189,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getThreads() {
 		return (Integer) eGet(StorePackage.Literals.JAVA_INFO__THREADS, true);
 	}
@@ -190,6 +199,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setThreads(int newThreads) {
 		eSet(StorePackage.Literals.JAVA_INFO__THREADS, newThreads);
 	}
@@ -199,6 +209,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getJavaHome() {
 		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVA_HOME, true);
 	}
@@ -208,6 +219,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setJavaHome(String newJavaHome) {
 		eSet(StorePackage.Literals.JAVA_INFO__JAVA_HOME, newJavaHome);
 	}
@@ -217,6 +229,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getJavaVersion() {
 		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVA_VERSION, true);
 	}
@@ -226,6 +239,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setJavaVersion(String newJavaVersion) {
 		eSet(StorePackage.Literals.JAVA_INFO__JAVA_VERSION, newJavaVersion);
 	}
@@ -235,6 +249,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getJavaVendor() {
 		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVA_VENDOR, true);
 	}
@@ -244,6 +259,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setJavaVendor(String newJavaVendor) {
 		eSet(StorePackage.Literals.JAVA_INFO__JAVA_VENDOR, newJavaVendor);
 	}
@@ -253,6 +269,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getJavaVendorurl() {
 		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVA_VENDORURL, true);
 	}
@@ -262,6 +279,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setJavaVendorurl(String newJavaVendorurl) {
 		eSet(StorePackage.Literals.JAVA_INFO__JAVA_VENDORURL, newJavaVendorurl);
 	}
@@ -271,6 +289,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getJavavmVersion() {
 		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVAVM_VERSION, true);
 	}
@@ -280,6 +299,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setJavavmVersion(String newJavavmVersion) {
 		eSet(StorePackage.Literals.JAVA_INFO__JAVAVM_VERSION, newJavavmVersion);
 	}
@@ -289,6 +309,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getJavavmVendor() {
 		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVAVM_VENDOR, true);
 	}
@@ -298,6 +319,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setJavavmVendor(String newJavavmVendor) {
 		eSet(StorePackage.Literals.JAVA_INFO__JAVAVM_VENDOR, newJavavmVendor);
 	}
@@ -307,6 +329,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getJavavmName() {
 		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVAVM_NAME, true);
 	}
@@ -316,6 +339,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setJavavmName(String newJavavmName) {
 		eSet(StorePackage.Literals.JAVA_INFO__JAVAVM_NAME, newJavavmName);
 	}
@@ -325,6 +349,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getJavaspecVersion() {
 		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVASPEC_VERSION, true);
 	}
@@ -334,6 +359,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setJavaspecVersion(String newJavaspecVersion) {
 		eSet(StorePackage.Literals.JAVA_INFO__JAVASPEC_VERSION, newJavaspecVersion);
 	}
@@ -343,6 +369,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getJavaspecVendor() {
 		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVASPEC_VENDOR, true);
 	}
@@ -352,6 +379,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setJavaspecVendor(String newJavaspecVendor) {
 		eSet(StorePackage.Literals.JAVA_INFO__JAVASPEC_VENDOR, newJavaspecVendor);
 	}
@@ -361,6 +389,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getJavaspecName() {
 		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVASPEC_NAME, true);
 	}
@@ -370,6 +399,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setJavaspecName(String newJavaspecName) {
 		eSet(StorePackage.Literals.JAVA_INFO__JAVASPEC_NAME, newJavaspecName);
 	}
@@ -379,6 +409,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getJavaClassVersion() {
 		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVA_CLASS_VERSION, true);
 	}
@@ -388,6 +419,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setJavaClassVersion(String newJavaClassVersion) {
 		eSet(StorePackage.Literals.JAVA_INFO__JAVA_CLASS_VERSION, newJavaClassVersion);
 	}
@@ -398,6 +430,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<String> getJavaClasspath() {
 		return (EList<String>) eGet(StorePackage.Literals.JAVA_INFO__JAVA_CLASSPATH, true);
 	}
@@ -408,6 +441,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<String> getJavaLibrarypath() {
 		return (EList<String>) eGet(StorePackage.Literals.JAVA_INFO__JAVA_LIBRARYPATH, true);
 	}
@@ -417,6 +451,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getJavaIoTmp() {
 		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVA_IO_TMP, true);
 	}
@@ -426,6 +461,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setJavaIoTmp(String newJavaIoTmp) {
 		eSet(StorePackage.Literals.JAVA_INFO__JAVA_IO_TMP, newJavaIoTmp);
 	}
@@ -435,6 +471,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getJavaExtdir() {
 		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVA_EXTDIR, true);
 	}
@@ -444,6 +481,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setJavaExtdir(String newJavaExtdir) {
 		eSet(StorePackage.Literals.JAVA_INFO__JAVA_EXTDIR, newJavaExtdir);
 	}
@@ -453,6 +491,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getJavaFileSeparator() {
 		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVA_FILE_SEPARATOR, true);
 	}
@@ -462,6 +501,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setJavaFileSeparator(String newJavaFileSeparator) {
 		eSet(StorePackage.Literals.JAVA_INFO__JAVA_FILE_SEPARATOR, newJavaFileSeparator);
 	}
@@ -471,6 +511,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getJavaPathSeparator() {
 		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVA_PATH_SEPARATOR, true);
 	}
@@ -480,6 +521,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setJavaPathSeparator(String newJavaPathSeparator) {
 		eSet(StorePackage.Literals.JAVA_INFO__JAVA_PATH_SEPARATOR, newJavaPathSeparator);
 	}
@@ -489,6 +531,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getJavaLineSeparator() {
 		return (String) eGet(StorePackage.Literals.JAVA_INFO__JAVA_LINE_SEPARATOR, true);
 	}
@@ -498,6 +541,7 @@ public class JavaInfoImpl extends IdEObjectImpl implements JavaInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setJavaLineSeparator(String newJavaLineSeparator) {
 		eSet(StorePackage.Literals.JAVA_INFO__JAVA_LINE_SEPARATOR, newJavaLineSeparator);
 	}

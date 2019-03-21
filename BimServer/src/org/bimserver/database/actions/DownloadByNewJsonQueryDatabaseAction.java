@@ -26,6 +26,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.management.RuntimeErrorException;
+
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.ServerIfcModel;
@@ -114,16 +116,34 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
 			lastPackageMetaData = packageMetaData;
 			JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(packageMetaData);
-			ObjectNode queryObject;
 			try {
-				queryObject = OBJECT_MAPPER.readValue(json, ObjectNode.class);
+				ObjectNode queryObject = OBJECT_MAPPER.readValue(json, ObjectNode.class);
 				converter.setCopyExternalDefines(true);
 				Query query = converter.parseJson("query", (ObjectNode) queryObject);
 				
+				System.out.println(query.getOriginalJson());
+				
 				// We now have the original user query, we'll amend it a little bit to include geometry, but only if the serializer requires certain fields
 				// TODO only checking the base level of the query now, should check recursive and possibly more
+				
+				
+//				System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(new JsonQueryObjectModelConverter(packageMetaData).toJson(query)));
+
+				pidRoidMap.put(revision.getProject().getId(), roid);
+				IfcModelInterface ifcModel = new ServerIfcModel(packageMetaData, pidRoidMap, getDatabaseSession());
+
+				ifcModelSet.add(ifcModel);
+				
+				Query secondQuery = new Query("second", query.getPackageMetaData());
+				QueryPart queryPart2 = secondQuery.createQueryPart();
+
 				if (geometryFields != null) {
+					for (String defineName : query.getDefines().keySet()) {
+						Include define = query.getDefine(defineName);
+						apply(geometryFields, packageMetaData, define, updatedIncludes);
+					}
 					for (QueryPart queryPart : query.getQueryParts()) {
+						apply(geometryFields, packageMetaData, queryPart, updatedIncludes);
 						if (queryPart.hasReferences()) {
 							for (Reference reference : queryPart.getReferences()) {
 								apply(geometryFields, packageMetaData, reference.getInclude(), updatedIncludes);
@@ -146,17 +166,15 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 						}
 					}
 				}
-				
-//				System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(new JsonQueryObjectModelConverter(packageMetaData).toJson(query)));
 
-				pidRoidMap.put(revision.getProject().getId(), roid);
-				IfcModelInterface ifcModel = new ServerIfcModel(packageMetaData, pidRoidMap, getDatabaseSession());
-
-				ifcModelSet.add(ifcModel);
+				System.out.println(converter.toJson(query));
 				
 				QueryObjectProvider queryObjectProvider = new QueryObjectProvider(getDatabaseSession(), getBimServer(), query, Collections.singleton(roid), packageMetaData);
 				HashMapVirtualObject next = queryObjectProvider.next();
 				while (next != null) {
+					if (next.getOid() == 14660274027L) {
+						System.out.println();
+					}
 					IdEObject newObject = packageMetaData.create(next.eClass());
 					IdEObjectImpl idEObjectImpl = (IdEObjectImpl)newObject;
 					idEObjectImpl.setPid(revision.getProject().getId());
@@ -178,13 +196,46 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 						}
 					}
 					ifcModel.add(next.getOid(), newObject);
+					queryPart2.addOid(next.getOid());
 					next = queryObjectProvider.next();
 				}
-		
-				queryObjectProvider = new QueryObjectProvider(getDatabaseSession(), getBimServer(), query, Collections.singleton(roid), packageMetaData);
+				
+				if (geometryFields != null) {
+					for (QueryPart queryPart : secondQuery.getQueryParts()) {
+						apply(geometryFields, packageMetaData, queryPart, updatedIncludes);
+//						if (queryPart.hasReferences()) {
+//							for (Reference reference : queryPart.getReferences()) {
+//								apply(geometryFields, packageMetaData, reference.getInclude(), updatedIncludes);
+//							}
+//						}
+//						if (queryPart.hasIncludes()) {
+//							apply(geometryFields, packageMetaData, queryPart, updatedIncludes);
+//						}
+//						if (queryPart.hasTypes()) {
+//							for (TypeDef typeDef : queryPart.getTypes()) {
+//								if (packageMetaData.getEClass("IfcProduct").isSuperTypeOf(typeDef.geteClass())) {
+//									Include include = queryPart.createInclude();
+//									applyFields(geometryFields, new TypeDef(packageMetaData.getEClass("IfcProduct"), true), include);
+//								}
+//							}
+//						}
+//						if (queryPart.isIncludeAllFields()) {
+//							Include newInclude = queryPart.createInclude();
+//							applyFields(geometryFields, new TypeDef(packageMetaData.getEClass("IfcProduct"), true), newInclude);
+//						}
+					}
+				}
+				
+				queryObjectProvider = new QueryObjectProvider(getDatabaseSession(), getBimServer(), secondQuery, Collections.singleton(roid), packageMetaData);
+				
+				System.out.println(converter.toJson(secondQuery));
+				
 				next = queryObjectProvider.next();
 				while (next != null) {
 					IdEObject idEObject = ifcModel.get(next.getOid());
+					if (idEObject == null) {
+						throw new RuntimeException("Object not found");
+					}
 					if (idEObject.eClass() != next.eClass()) {
 						// Something is wrong
 						throw new RuntimeException("Classes not the same");
@@ -220,6 +271,7 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 											if (o instanceof HashMapWrappedVirtualObject) {
 												newList.add(convertWrapped(revision, ifcModel, (HashMapWrappedVirtualObject)o));
 											} else if (o instanceof Long) {
+												System.out.println();
 												// TODO
 											} else {
 												newList.add(o);
@@ -236,6 +288,9 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 							if (r instanceof Long) {
 								long refOid = (Long)r;
 								IdEObject referred = ifcModel.get(refOid);
+								if (referred == null) {
+									System.out.println(eReference.getName() + " " + refOid);
+								}
 								idEObject.eSet(eReference, referred);
 							} else if (r instanceof HashMapWrappedVirtualObject) {
 								idEObject.eSet(eReference, convertWrapped(revision, ifcModel, (HashMapWrappedVirtualObject) r));
@@ -354,6 +409,10 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 			for (Include existingInclude : canInclude.getIncludes()) {
 				apply(geometryFields, packageMetaData, existingInclude, updatedIncludes);
 			}
+		}
+		if (canInclude.hasOids()) {
+			Include newInclude = canInclude.createInclude();
+			applyFields(geometryFields, new TypeDef(packageMetaData.getEClass("IfcProduct"), true), newInclude);
 		}
 		if (canInclude.hasReferences()) {
 			for (Reference reference : canInclude.getReferences()) {

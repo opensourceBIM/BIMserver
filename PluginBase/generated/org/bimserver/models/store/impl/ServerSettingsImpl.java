@@ -121,6 +121,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSendConfirmationEmailAfterRegistration() {
 		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION, true);
 	}
@@ -130,6 +131,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSendConfirmationEmailAfterRegistration(boolean newSendConfirmationEmailAfterRegistration) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__SEND_CONFIRMATION_EMAIL_AFTER_REGISTRATION, newSendConfirmationEmailAfterRegistration);
 	}
@@ -139,6 +141,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Boolean getAllowSelfRegistration() {
 		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_SELF_REGISTRATION, true);
 	}
@@ -148,6 +151,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAllowSelfRegistration(Boolean newAllowSelfRegistration) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_SELF_REGISTRATION, newAllowSelfRegistration);
 	}
@@ -157,6 +161,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isAllowUsersToCreateTopLevelProjects() {
 		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS, true);
 	}
@@ -166,6 +171,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAllowUsersToCreateTopLevelProjects(boolean newAllowUsersToCreateTopLevelProjects) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_USERS_TO_CREATE_TOP_LEVEL_PROJECTS, newAllowUsersToCreateTopLevelProjects);
 	}
@@ -175,6 +181,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Boolean getCheckinMergingEnabled() {
 		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__CHECKIN_MERGING_ENABLED, true);
 	}
@@ -184,6 +191,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCheckinMergingEnabled(Boolean newCheckinMergingEnabled) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__CHECKIN_MERGING_ENABLED, newCheckinMergingEnabled);
 	}
@@ -193,6 +201,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSmtpServer() {
 		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__SMTP_SERVER, true);
 	}
@@ -202,6 +211,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSmtpServer(String newSmtpServer) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__SMTP_SERVER, newSmtpServer);
 	}
@@ -211,6 +221,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getEmailSenderAddress() {
 		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__EMAIL_SENDER_ADDRESS, true);
 	}
@@ -220,6 +231,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEmailSenderAddress(String newEmailSenderAddress) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__EMAIL_SENDER_ADDRESS, newEmailSenderAddress);
 	}
@@ -229,6 +241,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getEmailSenderName() {
 		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__EMAIL_SENDER_NAME, true);
 	}
@@ -238,6 +251,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEmailSenderName(String newEmailSenderName) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__EMAIL_SENDER_NAME, newEmailSenderName);
 	}
@@ -247,6 +261,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSiteAddress() {
 		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__SITE_ADDRESS, true);
 	}
@@ -256,6 +271,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSiteAddress(String newSiteAddress) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__SITE_ADDRESS, newSiteAddress);
 	}
@@ -265,6 +281,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isGenerateGeometryOnCheckin() {
 		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__GENERATE_GEOMETRY_ON_CHECKIN, true);
 	}
@@ -274,6 +291,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setGenerateGeometryOnCheckin(boolean newGenerateGeometryOnCheckin) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__GENERATE_GEOMETRY_ON_CHECKIN, newGenerateGeometryOnCheckin);
 	}
@@ -283,6 +301,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isAllowOnlyWhitelisted() {
 		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_ONLY_WHITELISTED, true);
 	}
@@ -292,6 +311,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAllowOnlyWhitelisted(boolean newAllowOnlyWhitelisted) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_ONLY_WHITELISTED, newAllowOnlyWhitelisted);
 	}
@@ -302,6 +322,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<String> getWhitelistedDomains() {
 		return (EList<String>) eGet(StorePackage.Literals.SERVER_SETTINGS__WHITELISTED_DOMAINS, true);
 	}
@@ -311,6 +332,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Boolean getHideUserListForNonAdmin() {
 		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN, true);
 	}
@@ -320,6 +342,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHideUserListForNonAdmin(Boolean newHideUserListForNonAdmin) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__HIDE_USER_LIST_FOR_NON_ADMIN, newHideUserListForNonAdmin);
 	}
@@ -329,6 +352,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Integer getProtocolBuffersPort() {
 		return (Integer) eGet(StorePackage.Literals.SERVER_SETTINGS__PROTOCOL_BUFFERS_PORT, true);
 	}
@@ -338,6 +362,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProtocolBuffersPort(Integer newProtocolBuffersPort) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__PROTOCOL_BUFFERS_PORT, newProtocolBuffersPort);
 	}
@@ -347,6 +372,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Boolean getCacheOutputFiles() {
 		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__CACHE_OUTPUT_FILES, true);
 	}
@@ -356,6 +382,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCacheOutputFiles(Boolean newCacheOutputFiles) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__CACHE_OUTPUT_FILES, newCacheOutputFiles);
 	}
@@ -366,6 +393,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<WebModulePluginConfiguration> getWebModules() {
 		return (EList<WebModulePluginConfiguration>) eGet(StorePackage.Literals.SERVER_SETTINGS__WEB_MODULES, true);
 	}
@@ -375,6 +403,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public WebModulePluginConfiguration getWebModule() {
 		return (WebModulePluginConfiguration) eGet(StorePackage.Literals.SERVER_SETTINGS__WEB_MODULE, true);
 	}
@@ -384,6 +413,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setWebModule(WebModulePluginConfiguration newWebModule) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__WEB_MODULE, newWebModule);
 	}
@@ -393,6 +423,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getServiceRepositoryUrl() {
 		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__SERVICE_REPOSITORY_URL, true);
 	}
@@ -402,6 +433,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setServiceRepositoryUrl(String newServiceRepositoryUrl) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__SERVICE_REPOSITORY_URL, newServiceRepositoryUrl);
 	}
@@ -411,6 +443,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isSendEmailOnNewRevision() {
 		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__SEND_EMAIL_ON_NEW_REVISION, true);
 	}
@@ -420,6 +453,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSendEmailOnNewRevision(boolean newSendEmailOnNewRevision) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__SEND_EMAIL_ON_NEW_REVISION, newSendEmailOnNewRevision);
 	}
@@ -429,6 +463,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getSessionTimeOutSeconds() {
 		return (Integer) eGet(StorePackage.Literals.SERVER_SETTINGS__SESSION_TIME_OUT_SECONDS, true);
 	}
@@ -438,6 +473,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSessionTimeOutSeconds(int newSessionTimeOutSeconds) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__SESSION_TIME_OUT_SECONDS, newSessionTimeOutSeconds);
 	}
@@ -447,6 +483,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSmtpUsername() {
 		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__SMTP_USERNAME, true);
 	}
@@ -456,6 +493,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSmtpUsername(String newSmtpUsername) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__SMTP_USERNAME, newSmtpUsername);
 	}
@@ -465,6 +503,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSmtpPassword() {
 		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PASSWORD, true);
 	}
@@ -474,6 +513,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSmtpPassword(String newSmtpPassword) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PASSWORD, newSmtpPassword);
 	}
@@ -483,6 +523,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getSmtpPort() {
 		return (Integer) eGet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PORT, true);
 	}
@@ -492,6 +533,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSmtpPort(int newSmtpPort) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PORT, newSmtpPort);
 	}
@@ -501,6 +543,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public SmtpProtocol getSmtpProtocol() {
 		return (SmtpProtocol) eGet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PROTOCOL, true);
 	}
@@ -510,6 +553,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSmtpProtocol(SmtpProtocol newSmtpProtocol) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__SMTP_PROTOCOL, newSmtpProtocol);
 	}
@@ -519,6 +563,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isReuseGeometry() {
 		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__REUSE_GEOMETRY, true);
 	}
@@ -528,6 +573,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReuseGeometry(boolean newReuseGeometry) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__REUSE_GEOMETRY, newReuseGeometry);
 	}
@@ -537,6 +583,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isAllowCreateValidatedUser() {
 		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_CREATE_VALIDATED_USER, true);
 	}
@@ -546,6 +593,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAllowCreateValidatedUser(boolean newAllowCreateValidatedUser) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__ALLOW_CREATE_VALIDATED_USER, newAllowCreateValidatedUser);
 	}
@@ -555,6 +603,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getRenderEngineProcesses() {
 		return (Integer) eGet(StorePackage.Literals.SERVER_SETTINGS__RENDER_ENGINE_PROCESSES, true);
 	}
@@ -564,6 +613,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRenderEngineProcesses(int newRenderEngineProcesses) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__RENDER_ENGINE_PROCESSES, newRenderEngineProcesses);
 	}
@@ -573,6 +623,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isPluginStrictVersionChecking() {
 		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__PLUGIN_STRICT_VERSION_CHECKING, true);
 	}
@@ -582,6 +633,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPluginStrictVersionChecking(boolean newPluginStrictVersionChecking) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__PLUGIN_STRICT_VERSION_CHECKING, newPluginStrictVersionChecking);
 	}
@@ -591,6 +643,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__NAME, true);
 	}
@@ -600,6 +653,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__NAME, newName);
 	}
@@ -609,6 +663,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__DESCRIPTION, true);
 	}
@@ -618,6 +673,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__DESCRIPTION, newDescription);
 	}
@@ -627,6 +683,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIcon() {
 		return (String) eGet(StorePackage.Literals.SERVER_SETTINGS__ICON, true);
 	}
@@ -636,6 +693,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIcon(String newIcon) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__ICON, newIcon);
 	}
@@ -645,6 +703,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isStoreLastLogin() {
 		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__STORE_LAST_LOGIN, true);
 	}
@@ -654,6 +713,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStoreLastLogin(boolean newStoreLastLogin) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__STORE_LAST_LOGIN, newStoreLastLogin);
 	}
@@ -663,6 +723,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isStoreServiceRuns() {
 		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__STORE_SERVICE_RUNS, true);
 	}
@@ -672,6 +733,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStoreServiceRuns(boolean newStoreServiceRuns) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__STORE_SERVICE_RUNS, newStoreServiceRuns);
 	}
@@ -681,6 +743,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isOptimizeMappedItems() {
 		return (Boolean) eGet(StorePackage.Literals.SERVER_SETTINGS__OPTIMIZE_MAPPED_ITEMS, true);
 	}
@@ -690,6 +753,7 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOptimizeMappedItems(boolean newOptimizeMappedItems) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__OPTIMIZE_MAPPED_ITEMS, newOptimizeMappedItems);
 	}

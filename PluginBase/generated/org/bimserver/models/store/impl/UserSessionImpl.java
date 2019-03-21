@@ -98,6 +98,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public User getUser() {
 		return (User) eGet(StorePackage.Literals.USER_SESSION__USER, true);
 	}
@@ -107,6 +108,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUser(User newUser) {
 		eSet(StorePackage.Literals.USER_SESSION__USER, newUser);
 	}
@@ -116,6 +118,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getUsername() {
 		return (String) eGet(StorePackage.Literals.USER_SESSION__USERNAME, true);
 	}
@@ -125,6 +128,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUsername(String newUsername) {
 		eSet(StorePackage.Literals.USER_SESSION__USERNAME, newUsername);
 	}
@@ -134,6 +138,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(StorePackage.Literals.USER_SESSION__NAME, true);
 	}
@@ -143,6 +148,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(StorePackage.Literals.USER_SESSION__NAME, newName);
 	}
@@ -152,6 +158,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UserType getType() {
 		return (UserType) eGet(StorePackage.Literals.USER_SESSION__TYPE, true);
 	}
@@ -161,6 +168,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(UserType newType) {
 		eSet(StorePackage.Literals.USER_SESSION__TYPE, newType);
 	}
@@ -170,6 +178,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRemoteAddress() {
 		return (String) eGet(StorePackage.Literals.USER_SESSION__REMOTE_ADDRESS, true);
 	}
@@ -179,6 +188,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRemoteAddress(String newRemoteAddress) {
 		eSet(StorePackage.Literals.USER_SESSION__REMOTE_ADDRESS, newRemoteAddress);
 	}
@@ -188,6 +198,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getActiveSince() {
 		return (Date) eGet(StorePackage.Literals.USER_SESSION__ACTIVE_SINCE, true);
 	}
@@ -197,6 +208,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setActiveSince(Date newActiveSince) {
 		eSet(StorePackage.Literals.USER_SESSION__ACTIVE_SINCE, newActiveSince);
 	}
@@ -206,6 +218,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getLastActive() {
 		return (Date) eGet(StorePackage.Literals.USER_SESSION__LAST_ACTIVE, true);
 	}
@@ -215,6 +228,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLastActive(Date newLastActive) {
 		eSet(StorePackage.Literals.USER_SESSION__LAST_ACTIVE, newLastActive);
 	}
@@ -224,6 +238,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AccessMethod getAccessMethod() {
 		return (AccessMethod) eGet(StorePackage.Literals.USER_SESSION__ACCESS_METHOD, true);
 	}
@@ -233,6 +248,7 @@ public class UserSessionImpl extends IdEObjectImpl implements UserSession {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAccessMethod(AccessMethod newAccessMethod) {
 		eSet(StorePackage.Literals.USER_SESSION__ACCESS_METHOD, newAccessMethod);
 	}

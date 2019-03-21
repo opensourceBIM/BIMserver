@@ -76,6 +76,7 @@ public class SingleProjectAuthorizationImpl extends AuthorizationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Project getProject() {
 		return (Project) eGet(StorePackage.Literals.SINGLE_PROJECT_AUTHORIZATION__PROJECT, true);
 	}
@@ -85,6 +86,7 @@ public class SingleProjectAuthorizationImpl extends AuthorizationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProject(Project newProject) {
 		eSet(StorePackage.Literals.SINGLE_PROJECT_AUTHORIZATION__PROJECT, newProject);
 	}

@@ -98,6 +98,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCurrentVersion() {
 		return (String) eGet(StorePackage.Literals.BIM_SERVER_INFO__CURRENT_VERSION, true);
 	}
@@ -107,6 +108,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCurrentVersion(String newCurrentVersion) {
 		eSet(StorePackage.Literals.BIM_SERVER_INFO__CURRENT_VERSION, newCurrentVersion);
 	}
@@ -116,6 +118,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getCurrentDate() {
 		return (Date) eGet(StorePackage.Literals.BIM_SERVER_INFO__CURRENT_DATE, true);
 	}
@@ -125,6 +128,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCurrentDate(Date newCurrentDate) {
 		eSet(StorePackage.Literals.BIM_SERVER_INFO__CURRENT_DATE, newCurrentDate);
 	}
@@ -134,6 +138,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getSchemaVersion() {
 		return (Integer) eGet(StorePackage.Literals.BIM_SERVER_INFO__SCHEMA_VERSION, true);
 	}
@@ -143,6 +148,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSchemaVersion(int newSchemaVersion) {
 		eSet(StorePackage.Literals.BIM_SERVER_INFO__SCHEMA_VERSION, newSchemaVersion);
 	}
@@ -152,6 +158,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getLatestDate() {
 		return (Date) eGet(StorePackage.Literals.BIM_SERVER_INFO__LATEST_DATE, true);
 	}
@@ -161,6 +168,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLatestDate(Date newLatestDate) {
 		eSet(StorePackage.Literals.BIM_SERVER_INFO__LATEST_DATE, newLatestDate);
 	}
@@ -170,6 +178,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLatestVersion() {
 		return (String) eGet(StorePackage.Literals.BIM_SERVER_INFO__LATEST_VERSION, true);
 	}
@@ -179,6 +188,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLatestVersion(String newLatestVersion) {
 		eSet(StorePackage.Literals.BIM_SERVER_INFO__LATEST_VERSION, newLatestVersion);
 	}
@@ -188,6 +198,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getProjects() {
 		return (Integer) eGet(StorePackage.Literals.BIM_SERVER_INFO__PROJECTS, true);
 	}
@@ -197,6 +208,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProjects(int newProjects) {
 		eSet(StorePackage.Literals.BIM_SERVER_INFO__PROJECTS, newProjects);
 	}
@@ -206,6 +218,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getRevisions() {
 		return (Integer) eGet(StorePackage.Literals.BIM_SERVER_INFO__REVISIONS, true);
 	}
@@ -215,6 +228,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRevisions(int newRevisions) {
 		eSet(StorePackage.Literals.BIM_SERVER_INFO__REVISIONS, newRevisions);
 	}
@@ -224,6 +238,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getUsers() {
 		return (Integer) eGet(StorePackage.Literals.BIM_SERVER_INFO__USERS, true);
 	}
@@ -233,6 +248,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUsers(int newUsers) {
 		eSet(StorePackage.Literals.BIM_SERVER_INFO__USERS, newUsers);
 	}
@@ -242,6 +258,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getCheckouts() {
 		return (Integer) eGet(StorePackage.Literals.BIM_SERVER_INFO__CHECKOUTS, true);
 	}
@@ -251,6 +268,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCheckouts(int newCheckouts) {
 		eSet(StorePackage.Literals.BIM_SERVER_INFO__CHECKOUTS, newCheckouts);
 	}
@@ -260,6 +278,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getServerLogUrl() {
 		return (String) eGet(StorePackage.Literals.BIM_SERVER_INFO__SERVER_LOG_URL, true);
 	}
@@ -269,6 +288,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setServerLogUrl(String newServerLogUrl) {
 		eSet(StorePackage.Literals.BIM_SERVER_INFO__SERVER_LOG_URL, newServerLogUrl);
 	}
@@ -278,6 +298,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getStarted() {
 		return (Date) eGet(StorePackage.Literals.BIM_SERVER_INFO__STARTED, true);
 	}
@@ -287,6 +308,7 @@ public class BimServerInfoImpl extends IdEObjectImpl implements BimServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStarted(Date newStarted) {
 		eSet(StorePackage.Literals.BIM_SERVER_INFO__STARTED, newStarted);
 	}

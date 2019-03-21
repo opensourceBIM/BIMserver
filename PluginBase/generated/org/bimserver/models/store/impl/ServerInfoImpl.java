@@ -90,6 +90,7 @@ public class ServerInfoImpl extends IdEObjectImpl implements ServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ServerState getServerState() {
 		return (ServerState) eGet(StorePackage.Literals.SERVER_INFO__SERVER_STATE, true);
 	}
@@ -99,6 +100,7 @@ public class ServerInfoImpl extends IdEObjectImpl implements ServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setServerState(ServerState newServerState) {
 		eSet(StorePackage.Literals.SERVER_INFO__SERVER_STATE, newServerState);
 	}
@@ -108,6 +110,7 @@ public class ServerInfoImpl extends IdEObjectImpl implements ServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getErrorMessage() {
 		return (String) eGet(StorePackage.Literals.SERVER_INFO__ERROR_MESSAGE, true);
 	}
@@ -117,6 +120,7 @@ public class ServerInfoImpl extends IdEObjectImpl implements ServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setErrorMessage(String newErrorMessage) {
 		eSet(StorePackage.Literals.SERVER_INFO__ERROR_MESSAGE, newErrorMessage);
 	}
@@ -126,6 +130,7 @@ public class ServerInfoImpl extends IdEObjectImpl implements ServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Version getVersion() {
 		return (Version) eGet(StorePackage.Literals.SERVER_INFO__VERSION, true);
 	}
@@ -135,6 +140,7 @@ public class ServerInfoImpl extends IdEObjectImpl implements ServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVersion(Version newVersion) {
 		eSet(StorePackage.Literals.SERVER_INFO__VERSION, newVersion);
 	}

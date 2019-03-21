@@ -88,6 +88,7 @@ public class ServiceInterfaceImpl extends IdEObjectImpl implements ServiceInterf
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(StorePackage.Literals.SERVICE_INTERFACE__NAME, true);
 	}
@@ -97,6 +98,7 @@ public class ServiceInterfaceImpl extends IdEObjectImpl implements ServiceInterf
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(StorePackage.Literals.SERVICE_INTERFACE__NAME, newName);
 	}
@@ -106,6 +108,7 @@ public class ServiceInterfaceImpl extends IdEObjectImpl implements ServiceInterf
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getNameSpace() {
 		return (String) eGet(StorePackage.Literals.SERVICE_INTERFACE__NAME_SPACE, true);
 	}
@@ -115,6 +118,7 @@ public class ServiceInterfaceImpl extends IdEObjectImpl implements ServiceInterf
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNameSpace(String newNameSpace) {
 		eSet(StorePackage.Literals.SERVICE_INTERFACE__NAME_SPACE, newNameSpace);
 	}
@@ -124,6 +128,7 @@ public class ServiceInterfaceImpl extends IdEObjectImpl implements ServiceInterf
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSimpleName() {
 		return (String) eGet(StorePackage.Literals.SERVICE_INTERFACE__SIMPLE_NAME, true);
 	}
@@ -133,6 +138,7 @@ public class ServiceInterfaceImpl extends IdEObjectImpl implements ServiceInterf
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSimpleName(String newSimpleName) {
 		eSet(StorePackage.Literals.SERVICE_INTERFACE__SIMPLE_NAME, newSimpleName);
 	}

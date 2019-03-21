@@ -90,6 +90,7 @@ public class InterfaceMetricImpl extends IdEObjectImpl implements InterfaceMetri
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<MethodMetric> getMethods() {
 		return (EList<MethodMetric>) eGet(StorePackage.Literals.INTERFACE_METRIC__METHODS, true);
 	}
@@ -99,6 +100,7 @@ public class InterfaceMetricImpl extends IdEObjectImpl implements InterfaceMetri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return (String) eGet(StorePackage.Literals.INTERFACE_METRIC__NAME, true);
 	}
@@ -108,6 +110,7 @@ public class InterfaceMetricImpl extends IdEObjectImpl implements InterfaceMetri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		eSet(StorePackage.Literals.INTERFACE_METRIC__NAME, newName);
 	}

@@ -99,6 +99,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Integer getNumberOfProjects() {
 		return (Integer) eGet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_PROJECTS, true);
 	}
@@ -108,6 +109,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNumberOfProjects(Integer newNumberOfProjects) {
 		eSet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_PROJECTS, newNumberOfProjects);
 	}
@@ -117,6 +119,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Integer getNumberOfUsers() {
 		return (Integer) eGet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_USERS, true);
 	}
@@ -126,6 +129,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNumberOfUsers(Integer newNumberOfUsers) {
 		eSet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_USERS, newNumberOfUsers);
 	}
@@ -135,6 +139,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Integer getNumberOfRevisions() {
 		return (Integer) eGet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_REVISIONS, true);
 	}
@@ -144,6 +149,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNumberOfRevisions(Integer newNumberOfRevisions) {
 		eSet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_REVISIONS, newNumberOfRevisions);
 	}
@@ -153,6 +159,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Integer getNumberOfCheckouts() {
 		return (Integer) eGet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_CHECKOUTS, true);
 	}
@@ -162,6 +169,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNumberOfCheckouts(Integer newNumberOfCheckouts) {
 		eSet(StorePackage.Literals.DATABASE_INFORMATION__NUMBER_OF_CHECKOUTS, newNumberOfCheckouts);
 	}
@@ -171,6 +179,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Long getDatabaseSizeInBytes() {
 		return (Long) eGet(StorePackage.Literals.DATABASE_INFORMATION__DATABASE_SIZE_IN_BYTES, true);
 	}
@@ -180,6 +189,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDatabaseSizeInBytes(Long newDatabaseSizeInBytes) {
 		eSet(StorePackage.Literals.DATABASE_INFORMATION__DATABASE_SIZE_IN_BYTES, newDatabaseSizeInBytes);
 	}
@@ -189,6 +199,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getType() {
 		return (String) eGet(StorePackage.Literals.DATABASE_INFORMATION__TYPE, true);
 	}
@@ -198,6 +209,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(String newType) {
 		eSet(StorePackage.Literals.DATABASE_INFORMATION__TYPE, newType);
 	}
@@ -207,6 +219,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Date getCreated() {
 		return (Date) eGet(StorePackage.Literals.DATABASE_INFORMATION__CREATED, true);
 	}
@@ -216,6 +229,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCreated(Date newCreated) {
 		eSet(StorePackage.Literals.DATABASE_INFORMATION__CREATED, newCreated);
 	}
@@ -225,6 +239,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLocation() {
 		return (String) eGet(StorePackage.Literals.DATABASE_INFORMATION__LOCATION, true);
 	}
@@ -234,6 +249,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLocation(String newLocation) {
 		eSet(StorePackage.Literals.DATABASE_INFORMATION__LOCATION, newLocation);
 	}
@@ -243,6 +259,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Integer getSchemaVersion() {
 		return (Integer) eGet(StorePackage.Literals.DATABASE_INFORMATION__SCHEMA_VERSION, true);
 	}
@@ -252,6 +269,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSchemaVersion(Integer newSchemaVersion) {
 		eSet(StorePackage.Literals.DATABASE_INFORMATION__SCHEMA_VERSION, newSchemaVersion);
 	}
@@ -262,6 +280,7 @@ public class DatabaseInformationImpl extends IdEObjectImpl implements DatabaseIn
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<DatabaseInformationCategory> getCategories() {
 		return (EList<DatabaseInformationCategory>) eGet(StorePackage.Literals.DATABASE_INFORMATION__CATEGORIES, true);
 	}

@@ -121,7 +121,7 @@ public interface ServerInfo extends IdEObject {
 	 * @return the value of the '<em>Version</em>' reference.
 	 * @see #setVersion(Version)
 	 * @see org.bimserver.models.store.StorePackage#getServerInfo_Version()
-	 * @model
+	 * @model annotation="embedsreference"
 	 * @generated
 	 */
 	Version getVersion();

@@ -59,11 +59,15 @@ public class PublicInterfaceFactory implements ServiceFactory {
 	}
 
 	public ServiceMap get(Authorization authorization, AccessMethod accessMethod) {
+		return get(authorization, accessMethod, null);
+	}
+	
+	public ServiceMap get(Authorization authorization, AccessMethod accessMethod, User user) {
 		ServiceKey serviceKey = new ServiceKey(authorization, accessMethod);
 		if (cachedServiceMaps.containsKey(serviceKey)) {
 			return cachedServiceMaps.get(serviceKey);
 		} else {
-			ServiceMap serviceMap = new ServiceMap(bimServer, authorization, accessMethod);
+			ServiceMap serviceMap = new ServiceMap(bimServer, authorization, accessMethod, user);
 			cachedServiceMaps.put(serviceKey, serviceMap);
 			return serviceMap;
 		}
@@ -71,12 +75,13 @@ public class PublicInterfaceFactory implements ServiceFactory {
 	
 	public synchronized ServiceMap get(AccessMethod accessMethod) throws UserException {
 		Authorization authorization = new AnonymousAuthorization(bimServer.getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS);
-		return get(authorization, accessMethod);
+		return get(authorization, accessMethod, null);
 	}
 	
 	public synchronized ServiceMap get(String token, AccessMethod accessMethod) throws UserException {
 		try {
 			Authorization authorization = bimServer.getAuthCache().getAuthorization(token);
+			User user = null;
 			if (authorization == null) {
 				authorization = Authorization.fromToken(bimServer.getEncryptionKey(), token);
 				// We do this on login as well, so no need to do for cached auth
@@ -84,7 +89,7 @@ public class PublicInterfaceFactory implements ServiceFactory {
 				// TODO A logout method should be added
 				DatabaseSession session = bimServer.getDatabase().createSession();
 				try {
-					User user = session.get(authorization.getUoid(), OldQuery.getDefault());
+					user = session.get(authorization.getUoid(), OldQuery.getDefault());
 					if (user == null) {
 						throw new UserException("No user found with uoid " + authorization.getUoid());
 					}
@@ -95,7 +100,7 @@ public class PublicInterfaceFactory implements ServiceFactory {
 					session.close();
 				}
 			}
-			return get(authorization, accessMethod);
+			return get(authorization, accessMethod, user);
 		} catch (Exception e) {
 			if (e instanceof UserException) {
 				throw (UserException)e;

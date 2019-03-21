@@ -91,6 +91,7 @@ public class DownloadResultImpl extends IdEObjectImpl implements DownloadResult 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getProjectName() {
 		return (String) eGet(StorePackage.Literals.DOWNLOAD_RESULT__PROJECT_NAME, true);
 	}
@@ -100,6 +101,7 @@ public class DownloadResultImpl extends IdEObjectImpl implements DownloadResult 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProjectName(String newProjectName) {
 		eSet(StorePackage.Literals.DOWNLOAD_RESULT__PROJECT_NAME, newProjectName);
 	}
@@ -109,6 +111,7 @@ public class DownloadResultImpl extends IdEObjectImpl implements DownloadResult 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Integer getRevisionNr() {
 		return (Integer) eGet(StorePackage.Literals.DOWNLOAD_RESULT__REVISION_NR, true);
 	}
@@ -118,6 +121,7 @@ public class DownloadResultImpl extends IdEObjectImpl implements DownloadResult 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRevisionNr(Integer newRevisionNr) {
 		eSet(StorePackage.Literals.DOWNLOAD_RESULT__REVISION_NR, newRevisionNr);
 	}
@@ -127,6 +131,7 @@ public class DownloadResultImpl extends IdEObjectImpl implements DownloadResult 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DataHandler getFile() {
 		return (DataHandler) eGet(StorePackage.Literals.DOWNLOAD_RESULT__FILE, true);
 	}
@@ -136,6 +141,7 @@ public class DownloadResultImpl extends IdEObjectImpl implements DownloadResult 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFile(DataHandler newFile) {
 		eSet(StorePackage.Literals.DOWNLOAD_RESULT__FILE, newFile);
 	}
@@ -145,6 +151,7 @@ public class DownloadResultImpl extends IdEObjectImpl implements DownloadResult 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getSerializerOid() {
 		return (Long) eGet(StorePackage.Literals.DOWNLOAD_RESULT__SERIALIZER_OID, true);
 	}
@@ -154,6 +161,7 @@ public class DownloadResultImpl extends IdEObjectImpl implements DownloadResult 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSerializerOid(long newSerializerOid) {
 		eSet(StorePackage.Literals.DOWNLOAD_RESULT__SERIALIZER_OID, newSerializerOid);
 	}

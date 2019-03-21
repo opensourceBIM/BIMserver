@@ -63,7 +63,7 @@ public interface ListDataValue extends DataValue {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Values</em>' reference list.
 	 * @see org.bimserver.models.store.StorePackage#getListDataValue_Values()
-	 * @model
+	 * @model annotation="embedsreference"
 	 * @generated
 	 */
 	EList<DataValue> getValues();

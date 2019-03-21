@@ -90,7 +90,7 @@ public interface ObjectType extends Type {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parameters</em>' reference list.
 	 * @see org.bimserver.models.store.StorePackage#getObjectType_Parameters()
-	 * @model
+	 * @model annotation="embedsreference"
 	 * @generated
 	 */
 	EList<Parameter> getParameters();

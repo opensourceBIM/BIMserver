@@ -87,7 +87,16 @@ public enum UserType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	READ_ONLY(3, "READ_ONLY", "READ_ONLY");
+	READ_ONLY(3, "READ_ONLY", "READ_ONLY"),
+	/**
+	* The '<em><b>MONITOR</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #MONITOR_VALUE
+	* @generated
+	* @ordered
+	*/
+	MONITOR(4, "MONITOR", "MONITOR");
 
 	/**
 	 * The '<em><b>SYSTEM</b></em>' literal value.
@@ -150,12 +159,27 @@ public enum UserType implements Enumerator {
 	public static final int READ_ONLY_VALUE = 3;
 
 	/**
+	 * The '<em><b>MONITOR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>MONITOR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MONITOR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MONITOR_VALUE = 4;
+
+	/**
 	 * An array of all the '<em><b>User Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final UserType[] VALUES_ARRAY = new UserType[] { SYSTEM, ADMIN, USER, READ_ONLY, };
+	private static final UserType[] VALUES_ARRAY = new UserType[] { SYSTEM, ADMIN, USER, READ_ONLY, MONITOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>User Type</b></em>' enumerators.
@@ -219,6 +243,8 @@ public enum UserType implements Enumerator {
 			return USER;
 		case READ_ONLY_VALUE:
 			return READ_ONLY;
+		case MONITOR_VALUE:
+			return MONITOR;
 		}
 		return null;
 	}
@@ -261,6 +287,7 @@ public enum UserType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getValue() {
 		return value;
 	}
@@ -270,6 +297,7 @@ public enum UserType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -279,6 +307,7 @@ public enum UserType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLiteral() {
 		return literal;
 	}

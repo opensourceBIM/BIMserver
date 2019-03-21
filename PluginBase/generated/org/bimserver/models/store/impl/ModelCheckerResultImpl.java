@@ -89,6 +89,7 @@ public class ModelCheckerResultImpl extends IdEObjectImpl implements ModelChecke
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isValid() {
 		return (Boolean) eGet(StorePackage.Literals.MODEL_CHECKER_RESULT__VALID, true);
 	}
@@ -98,6 +99,7 @@ public class ModelCheckerResultImpl extends IdEObjectImpl implements ModelChecke
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValid(boolean newValid) {
 		eSet(StorePackage.Literals.MODEL_CHECKER_RESULT__VALID, newValid);
 	}
@@ -108,6 +110,7 @@ public class ModelCheckerResultImpl extends IdEObjectImpl implements ModelChecke
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<ModelCheckerResultItem> getItems() {
 		return (EList<ModelCheckerResultItem>) eGet(StorePackage.Literals.MODEL_CHECKER_RESULT__ITEMS, true);
 	}

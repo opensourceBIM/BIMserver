@@ -266,6 +266,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			
 			for (EClass eClass : classes) {
 				if (packageMetaData.getEClass("IfcProduct").isSuperTypeOf(eClass)) {
+					int nrObjectsForType = 0;
+
 					Query query2 = new Query(eClass.getName() + "Main query", packageMetaData);
 					QueryPart queryPart2 = query2.createQueryPart();
 					queryPart2.addType(eClass, false);
@@ -302,6 +304,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					
 					QueryObjectProvider queryObjectProvider2 = new QueryObjectProvider(databaseSession, bimServer, query2, Collections.singleton(queryContext.getRoid()), packageMetaData);
 					HashMapVirtualObject next = queryObjectProvider2.next();
+					int nrProductsWithRepresentation = 0;
 					while (next != null) {
 						if (next.eClass() == eClass) {
 							AbstractHashMapVirtualObject representation = next.getDirectFeature(representationFeature);
@@ -313,6 +316,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 										if (usableContext(representationItem)) {
 											foundValidContext = true;
 										}
+									}
+									if (foundValidContext) {
+										nrProductsWithRepresentation++;
 									}
 									for (HashMapVirtualObject representationItem : representations) {
 										if (!usableContext(representationItem) && foundValidContext) {
@@ -328,6 +334,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 											for (HashMapVirtualObject item : items) {
 												report.addRepresentationItem(item.eClass().getName());
 												if (!packageMetaData.getEClass("IfcMappedItem").isSuperTypeOf(item.eClass())) {
+													nrObjectsForType++;
 													continue; // All non IfcMappedItem objects will be done in phase 2
 												}
 												AbstractHashMapVirtualObject mappingTarget = item.getDirectFeature(packageMetaData.getEReference("IfcMappedItem", "MappingTarget"));
@@ -506,13 +513,17 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					int written = 0;
 					
 					int maxObjectsPerFile = 0;
-					if (nrObjects <= 100) {
+					if (nrProductsWithRepresentation <= 100) {
 						maxObjectsPerFile = 1;
-					} else if (nrObjects < 10000) {
-						maxObjectsPerFile = (int) (nrObjects / 100);
+					} else if (nrProductsWithRepresentation < 10000) {
+						maxObjectsPerFile = (int) (nrProductsWithRepresentation / 100);
 					} else {
 						maxObjectsPerFile = 100;
 					}
+					
+//					LOGGER.info(report.getOriginalIfcFileName());
+//					LOGGER.info("Max objects per file: " + maxObjectsPerFile + " (" + eClass.getName() + ": " + nrProductsWithRepresentation + ")");
+					
 					report.setMaxPerFile(maxObjectsPerFile);
 					
 					while (next != null) {

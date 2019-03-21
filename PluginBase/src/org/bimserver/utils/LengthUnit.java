@@ -111,6 +111,13 @@ public enum LengthUnit {
 		return null;
 	}
 
+	/**
+	 * Will convert FROM the given value+unit TO this unit
+	 * 
+	 * @param v
+	 * @param modelLengthUnit
+	 * @return
+	 */
 	public float convert(float v, LengthUnit modelLengthUnit) {
 		throw new AbstractMethodError();
 	}

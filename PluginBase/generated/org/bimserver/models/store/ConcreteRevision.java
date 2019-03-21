@@ -363,7 +363,9 @@ public interface ConcreteRevision extends IdEObject {
 	 * @return the value of the '<em>Bounds</em>' reference.
 	 * @see #setBounds(Bounds)
 	 * @see org.bimserver.models.store.StorePackage#getConcreteRevision_Bounds()
-	 * @model
+	 * @model annotation="dbembed"
+	 *        annotation="embedsreference"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	Bounds getBounds();
@@ -389,7 +391,9 @@ public interface ConcreteRevision extends IdEObject {
 	 * @return the value of the '<em>Bounds Untransformed</em>' reference.
 	 * @see #setBoundsUntransformed(Bounds)
 	 * @see org.bimserver.models.store.StorePackage#getConcreteRevision_BoundsUntransformed()
-	 * @model
+	 * @model annotation="dbembed"
+	 *        annotation="embedsreference"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	Bounds getBoundsUntransformed();

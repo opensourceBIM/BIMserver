@@ -45,7 +45,7 @@ public interface ArrayDefinition extends TypeDefinition {
 	 * @return the value of the '<em>Type</em>' reference.
 	 * @see #setType(TypeDefinition)
 	 * @see org.bimserver.models.store.StorePackage#getArrayDefinition_Type()
-	 * @model
+	 * @model annotation="embedsreference"
 	 * @generated
 	 */
 	TypeDefinition getType();

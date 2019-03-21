@@ -65,7 +65,7 @@ public interface RevisionSummary extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>List</em>' reference list.
 	 * @see org.bimserver.models.store.StorePackage#getRevisionSummary_List()
-	 * @model
+	 * @model annotation="embedsreference"
 	 * @generated
 	 */
 	EList<RevisionSummaryContainer> getList();

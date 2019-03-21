@@ -50,7 +50,7 @@ import org.bimserver.emf.IdEObject;
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getServiceMethod()
- * @model
+ * @model annotation="nodatabase"
  * @extends IdEObject
  * @generated
  */

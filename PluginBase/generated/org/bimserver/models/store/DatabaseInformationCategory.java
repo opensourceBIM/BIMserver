@@ -92,7 +92,7 @@ public interface DatabaseInformationCategory extends IdEObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Items</em>' reference list.
 	 * @see org.bimserver.models.store.StorePackage#getDatabaseInformationCategory_Items()
-	 * @model
+	 * @model annotation="embedsreference"
 	 * @generated
 	 */
 	EList<DatabaseInformationItem> getItems();

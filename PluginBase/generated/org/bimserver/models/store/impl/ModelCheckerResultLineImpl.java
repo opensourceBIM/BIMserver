@@ -80,6 +80,7 @@ public class ModelCheckerResultLineImpl extends ModelCheckerResultItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFieldOrClass() {
 		return (String) eGet(StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__FIELD_OR_CLASS, true);
 	}
@@ -89,6 +90,7 @@ public class ModelCheckerResultLineImpl extends ModelCheckerResultItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFieldOrClass(String newFieldOrClass) {
 		eSet(StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__FIELD_OR_CLASS, newFieldOrClass);
 	}
@@ -98,6 +100,7 @@ public class ModelCheckerResultLineImpl extends ModelCheckerResultItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getValue() {
 		return (String) eGet(StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__VALUE, true);
 	}
@@ -107,6 +110,7 @@ public class ModelCheckerResultLineImpl extends ModelCheckerResultItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(String newValue) {
 		eSet(StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__VALUE, newValue);
 	}
@@ -116,6 +120,7 @@ public class ModelCheckerResultLineImpl extends ModelCheckerResultItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getShouldBe() {
 		return (String) eGet(StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__SHOULD_BE, true);
 	}
@@ -125,6 +130,7 @@ public class ModelCheckerResultLineImpl extends ModelCheckerResultItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setShouldBe(String newShouldBe) {
 		eSet(StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__SHOULD_BE, newShouldBe);
 	}
@@ -134,6 +140,7 @@ public class ModelCheckerResultLineImpl extends ModelCheckerResultItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ModelCheckerResultType getType() {
 		return (ModelCheckerResultType) eGet(StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__TYPE, true);
 	}
@@ -143,6 +150,7 @@ public class ModelCheckerResultLineImpl extends ModelCheckerResultItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(ModelCheckerResultType newType) {
 		eSet(StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__TYPE, newType);
 	}
@@ -152,6 +160,7 @@ public class ModelCheckerResultLineImpl extends ModelCheckerResultItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getObjectId() {
 		return (Long) eGet(StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__OBJECT_ID, true);
 	}
@@ -161,6 +170,7 @@ public class ModelCheckerResultLineImpl extends ModelCheckerResultItemImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setObjectId(long newObjectId) {
 		eSet(StorePackage.Literals.MODEL_CHECKER_RESULT_LINE__OBJECT_ID, newObjectId);
 	}
