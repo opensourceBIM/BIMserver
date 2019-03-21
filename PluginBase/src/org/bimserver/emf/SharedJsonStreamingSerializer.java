@@ -63,7 +63,10 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 	private IfcHeader ifcHeader;
 	private EmfJsonSerializer emfJsonSerializer;
 
-	public SharedJsonStreamingSerializer(ObjectProvider objectProvider, IfcHeader ifcHeader, boolean includeHidden) throws SerializerException {
+	private boolean minimal;
+
+	public SharedJsonStreamingSerializer(ObjectProvider objectProvider, IfcHeader ifcHeader, boolean includeHidden, boolean minimal) throws SerializerException {
+		this.minimal = minimal;
 		if (objectProvider == null) {
 			throw new SerializerException("No object provider");
 		}
@@ -85,10 +88,12 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 					this.emfJsonSerializer = new EmfJsonSerializer(outputStream, includeHidden, SERIALIZE_EMPTY_LISTS);
 				}
 				print("{");
-				if (ifcHeader != null) {
-					print("\"header\":");
-					this.emfJsonSerializer.writeObject(ifcHeader);
-					print("\n,");
+				if (!minimal) {
+					if (ifcHeader != null) {
+						print("\"header\":");
+						this.emfJsonSerializer.writeObject(ifcHeader);
+						print("\n,");
+					}
 				}
 				print("\"objects\":[");
 				mode = Mode.BODY;
@@ -105,7 +110,11 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 						} else {
 							firstObject = false;
 						}
-						writeObject(object);
+						if (minimal) {
+							print("" + object.getOid());
+						} else {
+							writeObject(object);
+						}
 					}
 					return true;
 				} else {

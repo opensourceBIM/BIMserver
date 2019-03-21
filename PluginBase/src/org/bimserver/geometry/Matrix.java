@@ -1093,6 +1093,10 @@ public class Matrix {
 		System.arraycopy(mModelMatrix, 0, mModelMatrix2, 0, mModelMatrix.length);
 	}
 
+	public static void copy(double[] mModelMatrix, double[] mModelMatrix2) {
+		System.arraycopy(mModelMatrix, 0, mModelMatrix2, 0, mModelMatrix.length);
+	}
+
 	public static float[] changeOrientation(float[] input) {
 		float[] result = new float[16];
 		result[0] = input[0];
