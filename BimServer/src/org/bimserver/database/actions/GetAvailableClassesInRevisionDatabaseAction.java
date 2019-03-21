@@ -1,50 +1,61 @@
 package org.bimserver.database.actions;
 
-/******************************************************************************
- * Copyright (C) 2009-2019  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
- *****************************************************************************/
-
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.OldQuery;
-import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Revision;
 import org.bimserver.shared.exceptions.UserException;
+import org.eclipse.emf.ecore.EClass;
 
 public class GetAvailableClassesInRevisionDatabaseAction extends BimDatabaseAction<List<String>> {
 
 	private final long roid;
-	private BimServer bimServer;
 
 	public GetAvailableClassesInRevisionDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid) {
 		super(databaseSession, accessMethod);
-		this.bimServer = bimServer;
 		this.roid = roid;
 	}
 
 	@Override
 	public List<String> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision revision = getRevisionByRoid(roid);
-		PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
-		return new ArrayList<String>(getDatabaseSession().getAvailableClassesInRevision(new OldQuery(packageMetaData, revision.getProject().getId(), revision.getId(), -1)));
+
+		// TODO there are still some situations where there are no oid counters, in those cases this will fail
+		
+		Set<String> set = new HashSet<>();
+		for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
+			Map<EClass, Long> updateOidCounters = updateOidCounters(concreteRevision, getDatabaseSession());
+			
+			set.addAll(updateOidCounters.keySet().stream().map(EClass::getName).collect(Collectors.toSet()));
+		}
+		return new ArrayList<>(set);
+	}
+	
+	private Map<EClass, Long> updateOidCounters(ConcreteRevision subRevision, DatabaseSession databaseSession) throws BimserverDatabaseException {
+		if (subRevision.getOidCounters() != null) {
+			Map<EClass, Long> oidCounters = new HashMap<>(subRevision.getOidCounters().length / 8);
+			ByteBuffer buffer = ByteBuffer.wrap(subRevision.getOidCounters());
+			buffer.order(ByteOrder.LITTLE_ENDIAN);
+			for (int i=0; i<buffer.capacity() / 8; i++) {
+				long oid = buffer.getLong();
+				EClass eClass = databaseSession.getEClass((short)oid);
+				oidCounters.put(eClass, oid);
+			}
+			return oidCounters;
+		}
+		return null;
 	}
 }
