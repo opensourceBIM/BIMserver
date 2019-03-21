@@ -49,7 +49,6 @@ import org.bimserver.ifc.step.serializer.IfcStepSerializer;
 import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
-import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.geometry.Bounds;
 import org.bimserver.models.geometry.Buffer;
 import org.bimserver.models.geometry.GeometryData;
@@ -92,8 +91,6 @@ public class ClientIfcModel extends IfcModel {
 	private long tid = -1;
 	private long roid;
 	private final Set<String> loadedClasses = new HashSet<String>();
-	private long ifcSerializerOid = -1;
-	private long binaryGeometrySerializerOid = -1;
 	private int cachedObjectCount = -1;
 	private boolean recordChanges;
 	private boolean includeGeometry;
@@ -142,8 +139,8 @@ public class ClientIfcModel extends IfcModel {
 
 			JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
 			try {
-				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
-				waitForDonePreparing(topicId);
+				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), bimServerClient.getJsonSerializerOid(), false);
+				bimServerClient.waitForDonePreparing(topicId);
 				processDownload(topicId);
 				bimServerClient.getServiceInterface().cleanupLongAction(topicId);
 			} catch (ServerException e) {
@@ -304,30 +301,6 @@ public class ClientIfcModel extends IfcModel {
 		return bimServerClient.getLowLevelInterface().commitTransaction(tid, comment);
 	}
 
-	public long getJsonSerializerOid() throws ServerException, UserException, PublicInterfaceNotFoundException {
-		if (ifcSerializerOid == -1) {
-			SSerializerPluginConfiguration serializerPluginConfiguration = bimServerClient.getPluginInterface().getSerializerByPluginClassName("org.bimserver.serializers.JsonStreamingSerializerPlugin");
-			if (serializerPluginConfiguration != null) {
-				ifcSerializerOid = serializerPluginConfiguration.getOid();
-			} else {
-				throw new UserException("No JSON streaming serializer found");
-			}
-		}
-		return ifcSerializerOid;
-	}
-
-	public long getBinaryGeometrySerializerOid() throws ServerException, UserException, PublicInterfaceNotFoundException {
-		if (binaryGeometrySerializerOid == -1) {
-			SSerializerPluginConfiguration serializerPluginConfiguration = bimServerClient.getPluginInterface().getSerializerByPluginClassName("org.bimserver.serializers.binarygeometry.BinaryGeometrySerializerPlugin");
-			if (serializerPluginConfiguration != null) {
-				binaryGeometrySerializerOid = serializerPluginConfiguration.getOid();
-			} else {
-				throw new UserException("No binary geometry serializer found");
-			}
-		}
-		return binaryGeometrySerializerOid;
-	}
-
 	private void loadDeep() throws ServerException, UserException, PublicInterfaceNotFoundException, QueryException {
 		long start = System.nanoTime();
 		if (modelState != ModelState.FULLY_LOADED && modelState != ModelState.LOADING) {
@@ -337,8 +310,8 @@ public class ClientIfcModel extends IfcModel {
 			queryPart.setIncludeAllFields(true);
 
 			ObjectNode queryNode = new JsonQueryObjectModelConverter(query.getPackageMetaData()).toJson(query);
-			Long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), queryNode.toString(), getJsonSerializerOid(), false);
-			waitForDonePreparing(topicId);
+			Long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), queryNode.toString(), bimServerClient.getJsonSerializerOid(), false);
+			bimServerClient.waitForDonePreparing(topicId);
 			try {
 				processDownload(topicId);
 				bimServerClient.getServiceInterface().cleanupLongAction(topicId);
@@ -400,7 +373,7 @@ public class ClientIfcModel extends IfcModel {
 
 			long topicId = bimServerClient.query(query, roid, serializerOid);
 			// TODO use websocket notifications
-			waitForDonePreparing(topicId);
+			bimServerClient.waitForDonePreparing(topicId);
 			InputStream inputStream = bimServerClient.getDownloadData(topicId);
 			clientDebugInfo.incrementGeometryGetDownloadData();
 			try {
@@ -415,24 +388,6 @@ public class ClientIfcModel extends IfcModel {
 
 	public ClientDebugInfo getClientDebugInfo() {
 		return clientDebugInfo;
-	}
-
-	private void waitForDonePreparing(long topicId) throws UserException, ServerException, PublicInterfaceNotFoundException {
-		for (int i = 0; i < 10; i++) {
-			SLongActionState progress = bimServerClient.getRegistry().getProgress(topicId);
-			if (progress != null) {
-				if (progress.getTitle() != null && progress.getTitle().equals("Done preparing")) {
-					break;
-				} else if (progress.getState() == SActionState.AS_ERROR) {
-					throw new UserException(Joiner.on(", ").join(progress.getErrors()));
-				}
-			}
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
 	}
 
 	private void processGeometryInputStream(InputStream inputStream, Map<Long, Long> geometryInfoOidToOid) throws IOException, GeometryException, IfcModelInterfaceException {
@@ -628,9 +583,9 @@ public class ClientIfcModel extends IfcModel {
 				}
 
 				JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
-				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
+				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), bimServerClient.getJsonSerializerOid(), false);
 
-				waitForDonePreparing(topicId);
+				bimServerClient.waitForDonePreparing(topicId);
 
 				clientDebugInfo.incrementGetAll();
 
@@ -729,8 +684,8 @@ public class ClientIfcModel extends IfcModel {
 
 				JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
 
-				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
-				waitForDonePreparing(topicId);
+				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), bimServerClient.getJsonSerializerOid(), false);
+				bimServerClient.waitForDonePreparing(topicId);
 				clientDebugInfo.incExplicit();
 				processDownload(topicId);
 				bimServerClient.getServiceInterface().cleanupLongAction(topicId);
@@ -776,9 +731,9 @@ public class ClientIfcModel extends IfcModel {
 				}
 
 				JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
-				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
+				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), bimServerClient.getJsonSerializerOid(), false);
 
-				waitForDonePreparing(topicId);
+				bimServerClient.waitForDonePreparing(topicId);
 				processDownload(topicId);
 				clientDebugInfo.incrementGetAll();
 				bimServerClient.getServiceInterface().cleanupLongAction(topicId);
@@ -848,9 +803,9 @@ public class ClientIfcModel extends IfcModel {
 
 				JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
 
-				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
+				long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), bimServerClient.getJsonSerializerOid(), false);
 
-				waitForDonePreparing(topicId);
+				bimServerClient.waitForDonePreparing(topicId);
 				processDownload(topicId);
 				clientDebugInfo.incGuid();
 				bimServerClient.getServiceInterface().cleanupLongAction(topicId);
@@ -1085,8 +1040,8 @@ public class ClientIfcModel extends IfcModel {
 	public void query(ObjectNode query, boolean assumeCompletePreload) throws ServerException, UserException, PublicInterfaceNotFoundException, IfcModelInterfaceException, IOException {
 		this.assumeCompletePreload = assumeCompletePreload;
 		modelState = ModelState.LOADING;
-		Long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), query.toString(), getJsonSerializerOid(), false);
-		waitForDonePreparing(topicId);
+		Long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), query.toString(), bimServerClient.getJsonSerializerOid(), false);
+		bimServerClient.waitForDonePreparing(topicId);
 
 		processDownload(topicId);
 		bimServerClient.getServiceInterface().cleanupLongAction(topicId);
@@ -1098,8 +1053,8 @@ public class ClientIfcModel extends IfcModel {
 		try {
 			modelState = ModelState.LOADING;
 			JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
-			Long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), getJsonSerializerOid(), false);
-			waitForDonePreparing(topicId);
+			Long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), converter.toJson(query).toString(), bimServerClient.getJsonSerializerOid(), false);
+			bimServerClient.waitForDonePreparing(topicId);
 
 			if (ifcModelChangeListener != null) {
 				addChangeListener(ifcModelChangeListener);

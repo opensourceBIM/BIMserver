@@ -188,9 +188,9 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 	protected HashMapVirtualObject convertByteArrayToObject(EClass eClass, long oid, ByteBuffer buffer, int rid) throws BimserverDatabaseException {
 		try {
 			HashMapVirtualObject idEObject = new HashMapVirtualObject(reusable, eClass);
-			if (idEObject.eClass().getName().contentEquals("IfcSite")) {
-				System.out.println();
-			}
+//			if (idEObject.eClass().getName().contentEquals("IfcSite")) {
+//				System.out.println();
+//			}
 			idEObject.setOid(oid);
 			
 			int unsettedLength = getPackageMetaData().getUnsettedLength(eClass);

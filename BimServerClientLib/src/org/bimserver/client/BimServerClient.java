@@ -95,6 +95,8 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	private String token;
 	private MetaDataManager metaDataManager;
 	private long binaryGeometryMessagingStreamingSerializer = -1;
+	private long ifcSerializerOid = -1;
+	private long binaryGeometrySerializerOid = -1;
 
 	public BimServerClient(MetaDataManager metaDataManager, String baseAddress, SServicesMap servicesMap, Channel channel) {
 		this.metaDataManager = metaDataManager;
@@ -198,6 +200,10 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 			throw new UserException("Roid cannot be -1");
 		}
 		return new ClientIfcModel(this, project.getOid(), roid, deep, getMetaDataManager().getPackageMetaData(project.getSchema()), recordChanges, includeGeometry);
+	}
+	
+	public StreamingModel getStreamingModel(SProject project, long roid) {
+		return new StreamingModel(this, metaDataManager.getPackageMetaData(project.getSchema()), roid);
 	}
 
 	public boolean isConnected() {
@@ -512,6 +518,48 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 			throws IOException, UserException, ServerException {
 		try (InputStream newInputStream = Files.newInputStream(file)) {
 			return checkinAsync(poid, comment, deserializerOid, merge, Files.size(file), file.getFileName().toString(), newInputStream);
+		}
+	}
+	
+	public long getJsonSerializerOid() throws ServerException, UserException, PublicInterfaceNotFoundException {
+		if (ifcSerializerOid == -1) {
+			SSerializerPluginConfiguration serializerPluginConfiguration = getPluginInterface().getSerializerByPluginClassName("org.bimserver.serializers.JsonStreamingSerializerPlugin");
+			if (serializerPluginConfiguration != null) {
+				ifcSerializerOid = serializerPluginConfiguration.getOid();
+			} else {
+				throw new UserException("No JSON streaming serializer found");
+			}
+		}
+		return ifcSerializerOid;
+	}
+
+	public long getBinaryGeometrySerializerOid() throws ServerException, UserException, PublicInterfaceNotFoundException {
+		if (binaryGeometrySerializerOid == -1) {
+			SSerializerPluginConfiguration serializerPluginConfiguration = getPluginInterface().getSerializerByPluginClassName("org.bimserver.serializers.binarygeometry.BinaryGeometrySerializerPlugin");
+			if (serializerPluginConfiguration != null) {
+				binaryGeometrySerializerOid = serializerPluginConfiguration.getOid();
+			} else {
+				throw new UserException("No binary geometry serializer found");
+			}
+		}
+		return binaryGeometrySerializerOid;
+	}
+	
+	public void waitForDonePreparing(long topicId) throws UserException, ServerException, PublicInterfaceNotFoundException {
+		for (int i = 0; i < 10; i++) {
+			SLongActionState progress = getRegistry().getProgress(topicId);
+			if (progress != null) {
+				if (progress.getTitle() != null && progress.getTitle().equals("Done preparing")) {
+					break;
+				} else if (progress.getState() == SActionState.AS_ERROR) {
+					throw new UserException(Joiner.on(", ").join(progress.getErrors()));
+				}
+			}
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
