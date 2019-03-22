@@ -179,7 +179,7 @@ public class RootServlet extends HttpServlet {
 							response.getWriter().println("No webmodule " + modulePath + " found");
 							return;
 						} else {
-							if (webModulePlugin.service(substring, response)) {
+							if (webModulePlugin.service(substring, request, response)) {
 								return;
 							}
 						}
@@ -187,7 +187,7 @@ public class RootServlet extends HttpServlet {
 				}
 
 				if (bimServer.getDefaultWebModule() != null) {
-					if (bimServer.getDefaultWebModule().service(requestUri, response)) {
+					if (bimServer.getDefaultWebModule().service(requestUri, request, response)) {
 						return;
 					}
 				}

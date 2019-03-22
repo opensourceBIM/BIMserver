@@ -30,6 +30,7 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
@@ -75,16 +76,20 @@ public abstract class AbstractWebModulePlugin implements WebModulePlugin {
 	}
 	
 	@Override
-	public boolean service(String requestUri, HttpServletResponse response) {
+	public boolean service(String requestUri, HttpServletRequest httpServletRequest, HttpServletResponse response) {
 		try {
 			if (requestUri.startsWith(getDefaultContextPath())) {
 				requestUri = requestUri.substring(getDefaultContextPath().length());
 			}
+			if (requestUri.equals("")) {
+				LOGGER.info("Redirect");
+				response.sendRedirect(httpServletRequest.getServletPath() + httpServletRequest.getPathInfo() + "/");
+			}
+			if (requestUri.equals("/")) {
+				requestUri = "index.html";
+			}
 			while (requestUri.startsWith("/")) {
 				requestUri = requestUri.substring(1);
-			}
-			if (requestUri.equals("")) {
-				requestUri = "index.html";
 			}
 			if (requestUri.endsWith("plugin.version")) {
 				ObjectNode version = OBJECT_MAPPER.createObjectNode();

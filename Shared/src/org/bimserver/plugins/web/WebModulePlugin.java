@@ -1,5 +1,7 @@
 package org.bimserver.plugins.web;
 
+import javax.servlet.http.HttpServletRequest;
+
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
  * 
@@ -30,7 +32,7 @@ public interface WebModulePlugin extends Plugin {
 	 * @param requestUrl Request URL
 	 * @param response The HTTP response
 	 */
-	boolean service(String requestUrl, HttpServletResponse response);
+	boolean service(String requestUrl, HttpServletRequest httpServletRequest, HttpServletResponse response);
 	
 	@Override
 	default SPluginType getPluginType() {
