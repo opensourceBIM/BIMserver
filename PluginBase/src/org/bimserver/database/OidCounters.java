@@ -19,6 +19,9 @@ public class OidCounters {
 	}
 
 	public OidCounters(DatabaseInterface databaseInterface, byte[] oidCounters) throws BimserverDatabaseException {
+		if (oidCounters == null) {
+			return;
+		}
 		ByteBuffer buffer = ByteBuffer.wrap(oidCounters);
 		buffer.order(ByteOrder.LITTLE_ENDIAN);
 		for (int i=0; i<buffer.capacity() / 8; i++) {
