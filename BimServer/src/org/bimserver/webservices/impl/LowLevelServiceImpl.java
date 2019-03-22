@@ -536,7 +536,11 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 			if (object == null) {
 				throw new UserException("No object of type " + eClass.getName() + " with oid " + oid + " found");
 			}
-			Object eGet = object.eGet(object.eClass().getEStructuralFeature(attributeName));
+			EStructuralFeature eStructuralFeature = object.eClass().getEStructuralFeature(attributeName);
+			if (eStructuralFeature == null) {
+				throw new UserException(eClass.getName() + " does not have a field called " + attributeName);
+			}
+			Object eGet = object.eGet(eStructuralFeature);
 			if (eGet instanceof IdEObject) {
 				IdEObject refObject = (IdEObject)eGet;
 				return refObject.eGet(refObject.eClass().getEStructuralFeature("wrappedValue"));
