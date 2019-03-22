@@ -24,7 +24,6 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
@@ -35,6 +34,7 @@ import org.bimserver.GenerateGeometryResult;
 import org.bimserver.SummaryMap;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.OidCounters;
 import org.bimserver.database.OldQuery;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.database.Record;
@@ -199,27 +199,17 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			if (startOids == null) {
 				throw new BimserverDatabaseException("No objects changed");
 			}
-			Map<EClass, Long> oidCounters = new HashMap<>();
-			int s = 0;
+			OidCounters oidCounters = new OidCounters();
 			for (EClass eClass : eClasses) {
 				if (!DatabaseSession.perRecordVersioning(eClass)) {
-					s++;
-				}
-			}
-			ByteBuffer buffer = ByteBuffer.allocate(8 * s);
-			buffer.order(ByteOrder.LITTLE_ENDIAN);
-			for (EClass eClass : eClasses) {
-				if (!DatabaseSession.perRecordVersioning(eClass)) {
-					long oid = startOids.get(eClass);
-					oidCounters.put(eClass, oid);
-					buffer.putLong(oid);
+					oidCounters.put(eClass, startOids.get(eClass));
 				}
 			}
 			
 			queryContext.setOidCounters(oidCounters);
 			
 			concreteRevision = result.getConcreteRevision();
-			concreteRevision.setOidCounters(buffer.array());
+			concreteRevision.setOidCounters(oidCounters.getBytes());
 
 			setProgress("Generating inverses/opposites...", -1);
 			
@@ -264,31 +254,25 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			setProgress("Doing other stuff...", -1);
 			
 			eClasses = deserializer.getSummaryMap().keySet();
-			s = (startOids.containsKey(GeometryPackage.eINSTANCE.getGeometryInfo()) && startOids.containsKey(GeometryPackage.eINSTANCE.getGeometryData())) ? 2 : 0;
-			for (EClass eClass : eClasses) {
-				if (!DatabaseSession.perRecordVersioning(eClass)) {
-					s++;
-				}
-			}
-			buffer = ByteBuffer.allocate(8 * s);
-			buffer.order(ByteOrder.LITTLE_ENDIAN);
+			oidCounters = new OidCounters();
 			for (EClass eClass : eClasses) {
 				Long oid = startOids.get(eClass);
 				if (oid == null) {
 					throw new UserException("EClass " + eClass + " not found in startOids, please report");
 				}
 				if (!DatabaseSession.perRecordVersioning(eClass)) {
-					buffer.putLong(oid);
+					oidCounters.put(eClass, oid);
 				}
 			}
 			
 			if (startOids.containsKey(GeometryPackage.eINSTANCE.getGeometryInfo()) && startOids.containsKey(GeometryPackage.eINSTANCE.getGeometryData())) {
-				buffer.putLong(startOids.get(GeometryPackage.eINSTANCE.getGeometryInfo()));
-				buffer.putLong(startOids.get(GeometryPackage.eINSTANCE.getGeometryData()));
+				// TODO Buffer? Vector?
+				oidCounters.put(GeometryPackage.eINSTANCE.getGeometryInfo(), startOids.get(GeometryPackage.eINSTANCE.getGeometryInfo()));
+				oidCounters.put(GeometryPackage.eINSTANCE.getGeometryData(), startOids.get(GeometryPackage.eINSTANCE.getGeometryData()));
 			}
 			
 			concreteRevision = result.getConcreteRevision();
-			concreteRevision.setOidCounters(buffer.array());
+			concreteRevision.setOidCounters(oidCounters.getBytes());
 			
 			// Clear the cache, we don't want it to cache incomplete oidcounters
 			ConcreteRevisionStackFrame.clearCache(concreteRevision.getOid());

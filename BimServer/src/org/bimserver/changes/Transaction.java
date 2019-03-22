@@ -37,6 +37,7 @@ public class Transaction {
 	private ConcreteRevision concreteRevision;
 	private DatabaseSession databaseSession;
 	private BimServer bimServer;
+	private int newRid;
 
 	public Transaction(BimServer bimServer, Revision previousRevision, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession) {
 		this.bimServer = bimServer;
@@ -44,6 +45,7 @@ public class Transaction {
 		this.project = project;
 		this.concreteRevision = concreteRevision;
 		this.databaseSession = databaseSession;
+		this.newRid = concreteRevision.getId();
 	}
 	
 	public DatabaseSession getDatabaseSession() {
@@ -97,5 +99,9 @@ public class Transaction {
 	
 	public Collection<HashMapVirtualObject> getDeleted() {
 		return deleted.values();
+	}
+
+	public int getNewRid() {
+		return newRid;
 	}
 }

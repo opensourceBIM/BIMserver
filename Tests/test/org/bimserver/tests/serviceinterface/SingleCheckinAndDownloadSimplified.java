@@ -21,6 +21,7 @@ import static org.junit.Assert.fail;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
@@ -47,17 +48,14 @@ public class SingleCheckinAndDownloadSimplified extends TestWithEmbeddedServer {
 			// Create a new project
 			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
-			// This is the file we will be checking in
-			Path ifcFile = Paths.get("../TestData/data/AC11-FZK-Haus-IFC.ifc");
-			
 			// Find a deserializer to use
 			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
 			
-			// Checkin
-			bimServerClient.checkinSync(newProject.getOid(), "test", deserializer.getOid(), false, ifcFile);
+			// This is the file we will be checking in
+			bimServerClient.checkinSync(newProject.getOid(), "test", deserializer.getOid(), false, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/export1.ifc"));
 			
 			// Find a serializer
-			SSerializerPluginConfiguration colladaSerializer = bimServerClient.getServiceInterface().getSerializerByContentType("application/collada");
+			SSerializerPluginConfiguration colladaSerializer = bimServerClient.getServiceInterface().getSerializerByContentType("application/ifc");
 			
 			// Get the project details
 			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());

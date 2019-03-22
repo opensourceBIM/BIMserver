@@ -19,6 +19,7 @@ package org.bimserver.shared;
 
 import java.util.Map;
 
+import org.bimserver.database.OidCounters;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.plugins.deserializers.DatabaseInterface;
 import org.eclipse.emf.ecore.EClass;
@@ -30,7 +31,7 @@ public class QueryContext {
 	private PackageMetaData packageMetaData;
 	private DatabaseInterface databaseInterface;
 	private int highestStopId;
-	private Map<EClass, Long> oidCounters;
+	private OidCounters oidCounters;
 	private long croid;
 	
 	public QueryContext(DatabaseInterface databaseInterface, PackageMetaData packageMetaData, int pid, int rid, long roid, long croid, int highestStopId) {
@@ -67,11 +68,11 @@ public class QueryContext {
 		return highestStopId;
 	}
 
-	public Map<EClass, Long> getOidCounters() {
+	public OidCounters getOidCounters() {
 		return oidCounters;
 	}
 
-	public void setOidCounters(Map<EClass, Long> oidCounters) {
+	public void setOidCounters(OidCounters oidCounters) {
 		this.oidCounters = oidCounters;
 	}
 	

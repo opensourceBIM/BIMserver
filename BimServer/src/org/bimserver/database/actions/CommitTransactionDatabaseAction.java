@@ -33,6 +33,7 @@ import org.bimserver.changes.RemoveObjectChange;
 import org.bimserver.changes.Transaction;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.OidCounters;
 import org.bimserver.database.OldQuery;
 import org.bimserver.database.OldQuery.Deep;
 import org.bimserver.database.PostCommitAction;
@@ -92,9 +93,6 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		Revision previousRevision = project.getLastRevision();
 		if (project.getLastRevision() != null) {
 			size += project.getLastRevision().getSize();
-//			for (ConcreteRevision concreteRevision : project.getLastRevision().getConcreteRevisions()) {
-//				size += concreteRevision.getSize();
-//			}
 		}
 		for (Change change : longTransaction.getChanges()) {
 			if (change instanceof CreateObjectChange) {
@@ -116,13 +114,12 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		newRevisionAdded.setProject(project);
 		newRevisionAdded.setAccessMethod(getAccessMethod());
 		
+		OidCounters originalOidCounters = null;
 		PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(project.getSchema());
-//		IfcModelInterface ifcModel = new BasicIfcModel(packageMetaData, null);
 		if (oldLastRevision != null) {
 			int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(project, oldLastRevision.getLastConcreteRevision());
 			OldQuery query = new OldQuery(longTransaction.getPackageMetaData(), project.getId(), oldLastRevision.getId(), -1, Deep.YES, highestStopId);
-			query.updateOidCounters(oldLastRevision.getLastConcreteRevision(), getDatabaseSession());
-//			getDatabaseSession().getMap(ifcModel, query);
+			originalOidCounters = query.updateOidCounters(oldLastRevision.getLastConcreteRevision(), getDatabaseSession());
 		}
 		
 		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
@@ -216,26 +213,18 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 				if (startOids == null) {
 					throw new BimserverDatabaseException("No objects changed");
 				}
-				Map<EClass, Long> oidCounters = new HashMap<>();
-//				int s = 0;
-//				for (EClass eClass : packageMetaData.getEClasses()) {
-//					if (!DatabaseSession.perRecordVersioning(eClass)) {
-//						s++;
-//					}
-//				}
-//				ByteBuffer buffer = ByteBuffer.allocate(8 * s);
-//				buffer.order(ByteOrder.LITTLE_ENDIAN);
+				
 				for (EClass eClass : packageMetaData.getEClasses()) {
 					if (startOids.containsKey(eClass)) {
 						long oid = startOids.get(eClass);
 						if (!DatabaseSession.perRecordVersioning(eClass)) {
-							oidCounters.put(eClass, oid);
-//						buffer.putLong(oid);
+							originalOidCounters.putIfAbsent(eClass, oid);
 						}
 					}
 				}
 
-				queryContext.setOidCounters(oidCounters);
+				queryContext.setOidCounters(originalOidCounters);
+				concreteRevision.setOidCounters(originalOidCounters.getBytes());
 
 				GenerateGeometryResult generateGeometry = streamingGeometryGenerator.generateGeometry(authorization.getUoid(), getDatabaseSession(), queryContext, summaryMap.count());
 				
@@ -250,9 +239,6 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 			revision.setHasGeometry(true);
 		}
 
-		if (oldLastRevision != null) {
-			concreteRevision.setOidCounters(oldLastRevision.getConcreteRevisions().get(0).getOidCounters());
-		}
 		concreteRevision.setSummary(summaryMap.toRevisionSummary(getDatabaseSession()));
 
 		getDatabaseSession().store(concreteRevision);

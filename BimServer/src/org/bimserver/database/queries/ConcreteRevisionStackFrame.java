@@ -18,18 +18,16 @@ package org.bimserver.database.queries;
  *****************************************************************************/
 
 import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.OidCounters;
 import org.bimserver.database.actions.AbstractDownloadDatabaseAction;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.shared.QueryContext;
-import org.eclipse.emf.ecore.EClass;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -41,7 +39,7 @@ public class ConcreteRevisionStackFrame extends StackFrame {
 	private final QueryContext queryContext;
 	
 	// TODO make not static (use factory somewhere), and check concurrency
-	private static final Map<Long, Map<EClass, Long>> reusableQueryContexts = new HashMap<>();
+	private static final Map<Long, OidCounters> reusableQueryContexts = new HashMap<>();
 
 	public ConcreteRevisionStackFrame(QueryObjectProvider queryObjectProvider, ConcreteRevision concreteRevision, long roid) {
 		this.queryObjectProvider = queryObjectProvider;
@@ -55,7 +53,7 @@ public class ConcreteRevisionStackFrame extends StackFrame {
 					queryContext.setOidCounters(reusableQueryContexts.get(concreteRevision.getOid()));
 				} else {
 					try {
-						Map<EClass, Long> updateOidCounters = updateOidCounters(concreteRevision, queryObjectProvider.getDatabaseSession());
+						OidCounters updateOidCounters = updateOidCounters(concreteRevision, queryObjectProvider.getDatabaseSession());
 						queryContext.setOidCounters(updateOidCounters);
 						reusableQueryContexts.put(concreteRevision.getOid(), updateOidCounters);
 					} catch (BimserverDatabaseException e) {
@@ -70,17 +68,9 @@ public class ConcreteRevisionStackFrame extends StackFrame {
 		reusableQueryContexts.remove(croid);
 	}
 	
-	private Map<EClass, Long> updateOidCounters(ConcreteRevision subRevision, DatabaseSession databaseSession) throws BimserverDatabaseException {
+	private OidCounters updateOidCounters(ConcreteRevision subRevision, DatabaseSession databaseSession) throws BimserverDatabaseException {
 		if (subRevision.getOidCounters() != null) {
-			Map<EClass, Long> oidCounters = new HashMap<>(subRevision.getOidCounters().length / 8);
-			ByteBuffer buffer = ByteBuffer.wrap(subRevision.getOidCounters());
-			buffer.order(ByteOrder.LITTLE_ENDIAN);
-			for (int i=0; i<buffer.capacity() / 8; i++) {
-				long oid = buffer.getLong();
-				EClass eClass = databaseSession.getEClass((short)oid);
-				oidCounters.put(eClass, oid);
-			}
-			return oidCounters;
+			return new OidCounters(databaseSession, subRevision.getOidCounters());
 		}
 		return null;
 	}

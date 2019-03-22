@@ -1,32 +1,9 @@
 package org.bimserver.database;
 
-/******************************************************************************
- * Copyright (C) 2009-2019  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
- *****************************************************************************/
-
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.QueryInterface;
 import org.bimserver.models.store.ConcreteRevision;
-import org.eclipse.emf.ecore.EClass;
 
 public class OldQuery implements QueryInterface {
 
@@ -41,7 +18,7 @@ public class OldQuery implements QueryInterface {
 	private final Deep deep;
 	private final int stopRid;
 	private PackageMetaData packageMetaData;
-	private Map<EClass, Long> oidCounters;
+	private OidCounters oidCounters;
 
 	private static final OldQuery DEFAULT = new OldQuery();
 	
@@ -53,11 +30,11 @@ public class OldQuery implements QueryInterface {
 		return DEFAULT;
 	}
 	
-	public void setOidCounters(Map<EClass, Long> oidCounters) {
+	public void setOidCounters(OidCounters oidCounters) {
 		this.oidCounters = oidCounters;
 	}
 	
-	public Map<EClass, Long> getOidCounters() {
+	public OidCounters getOidCounters() {
 		return oidCounters;
 	}
 	
@@ -106,19 +83,13 @@ public class OldQuery implements QueryInterface {
 		this.deep = deep;
 	}
 
-	public void updateOidCounters(ConcreteRevision subRevision, DatabaseSession databaseSession) throws BimserverDatabaseException {
+	public OidCounters updateOidCounters(ConcreteRevision subRevision, DatabaseSession databaseSession) throws BimserverDatabaseException {
 		if (subRevision.getOidCounters() != null) {
-			Map<EClass, Long> oidCounters = new HashMap<>();
-			ByteBuffer buffer = ByteBuffer.wrap(subRevision.getOidCounters());
-			for (int i=0; i<buffer.capacity() / 8; i++) {
-				buffer.order(ByteOrder.LITTLE_ENDIAN);
-				long oid = buffer.getLong();
-				buffer.order(ByteOrder.BIG_ENDIAN);
-				EClass eClass = databaseSession.getEClass((short)oid);
-				oidCounters.put(eClass, oid);
-			}
+			OidCounters oidCounters = new OidCounters(databaseSession, subRevision.getOidCounters());
 			setOidCounters(oidCounters);
+			return oidCounters;
 		}
+		return null;
 	}
 	
 	public int getStopRid() {

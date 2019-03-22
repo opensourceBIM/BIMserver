@@ -2288,7 +2288,11 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		EClass eClass = object.eClass();
 		ByteBuffer keyBuffer = createKeyBuffer(object.getPid(), object.getOid(), object.getRid());
 		database.getKeyValueStore().store(eClass.getEPackage().getName() + "_" + eClass.getName(), keyBuffer.array(), valueBuffer.array(), 0, valueBuffer.position(), this);
+
+		processPossibleIndices(keyBuffer, object.getPid(), object.getRid(), object.getOid(), object.eClass(), valueBuffer);
+
 		database.incrementCommittedWrites(1);
+		
 		return valueBuffer.position();
 	}
 
@@ -2335,7 +2339,9 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 
 	public void addStartOid(EClass eClass, long oid) {
 		Long currentStart = startOids.get(eClass);
-		if (currentStart == null || oid < currentStart) {
+		if (currentStart == null) {
+			 startOids.put(eClass, oid - 65536);
+		} else if (oid < currentStart) {
 			startOids.put(eClass, oid);
 		}
 	}

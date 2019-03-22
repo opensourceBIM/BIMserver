@@ -1,24 +1,5 @@
 package org.bimserver.database.actions;
 
-/******************************************************************************
- * Copyright (C) 2009-2019  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
- *****************************************************************************/
-
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -33,6 +14,7 @@ import org.bimserver.GeometryGenerator;
 import org.bimserver.SummaryMap;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.OidCounters;
 import org.bimserver.database.OldQuery;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.emf.IdEObject;
@@ -55,13 +37,10 @@ import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.notifications.NewRevisionNotification;
-import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.modelchecker.ModelChecker;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
 import org.bimserver.renderengine.RenderEnginePool;
-import org.bimserver.shared.HashMapVirtualObject;
-import org.bimserver.shared.VirtualObject;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
@@ -250,22 +229,16 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			if (startOids == null) {
 				throw new BimserverDatabaseException("No objects changed");
 			}
-			int s = 0;
-			for (EClass eClass : eClasses) {
-				if (!DatabaseSession.perRecordVersioning(eClass)) {
-					s++;
-				}
-			}
-			ByteBuffer buffer = ByteBuffer.allocate(8 * s);
-			buffer.order(ByteOrder.LITTLE_ENDIAN);
+			
+			OidCounters oidCounters = new OidCounters();
 			for (EClass eClass : eClasses) {
 				long oid = startOids.get(eClass);
 				if (!DatabaseSession.perRecordVersioning(eClass)) {
-					buffer.putLong(oid);
+					oidCounters.put(eClass, oid);
 				}
 			}
 			
-			concreteRevision.setOidCounters(buffer.array());
+			concreteRevision.setOidCounters(oidCounters.getBytes());
 
 			if (ifcModel != null) {
 				getDatabaseSession().store(ifcModel.getValues(), project.getId(), concreteRevision.getId());
