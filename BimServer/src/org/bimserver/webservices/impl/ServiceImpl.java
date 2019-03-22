@@ -1591,6 +1591,21 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	@Override
 	public Long downloadCompareResults(Long serializerOid, Long roid1, Long roid2, Long mcid, SCompareType type, Boolean sync) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
+		
+		DatabaseSession session = getBimServer().getDatabase().createSession();
+		try {
+			SerializerPluginConfiguration serializer = session.get(serializerOid, OldQuery.getDefault());
+			SerializerPlugin plugin = getBimServer().getPluginManager().getSerializerPlugin(serializer.getPluginDescriptor().getPluginClassName());
+			if (!(plugin instanceof SerializerPlugin)) {
+				throw new UserException("For now, downloadCompareResults can only be used with a non-streaming serializer");
+			}
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+
+		
 		DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_COMPARE);
 		downloadParameters.setModelCompareIdentifier(mcid);
 		downloadParameters.setCompareType(getBimServer().getSConverter().convertFromSObject(type));
