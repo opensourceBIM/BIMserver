@@ -143,6 +143,7 @@ import org.bimserver.shared.pb.ProtocolBuffersMetaData;
 import org.bimserver.shared.reflector.RealtimeReflectorFactoryBuilder;
 import org.bimserver.shared.reflector.ReflectorFactory;
 import org.bimserver.templating.TemplateEngine;
+import org.bimserver.utils.Formatters;
 import org.bimserver.utils.StringUtils;
 import org.bimserver.version.VersionChecker;
 import org.bimserver.webservices.LongTransactionManager;
@@ -240,12 +241,7 @@ public class BimServer implements BasicServerInfoProvider {
 			Thread.setDefaultUncaughtExceptionHandler(uncaughtExceptionHandler);
 			LOGGER = LoggerFactory.getLogger(BimServer.class);
 
-			LOGGER.info("Starting BIMserver");
-			if (config.getHomeDir() != null) {
-				LOGGER.info("Using \"" + config.getHomeDir().toString() + "\" as homedir");
-			} else {
-				LOGGER.info("Not using a homedir");
-			}
+			LOGGER.info("Starting BIMserver (" + System.getProperty("os.name") + ", " + System.getProperty("java.version") + ", " + System.getProperty("sun.arch.data.model") + "bit, Xmx: " + Formatters.bytesToString(Runtime.getRuntime().maxMemory()) + ")");
 
 			servicesMap = InterfaceList.createSServicesMap();
 			LOGGER.debug("SServiceMap Created");
@@ -330,7 +326,6 @@ public class BimServer implements BasicServerInfoProvider {
 
 	public void start() throws DatabaseInitException, BimserverDatabaseException, PluginException, DatabaseRestartRequiredException, ServerException {
 		try {
-			LOGGER.debug("Starting BIMserver");
 			if (versionChecker != null) {
 				SVersion localVersion = versionChecker.getLocalVersion();
 				if (localVersion != null) {
@@ -340,6 +335,12 @@ public class BimServer implements BasicServerInfoProvider {
 				}
 			} else {
 				LOGGER.info("Unknown version");
+			}
+			
+			if (config.getHomeDir() != null) {
+				LOGGER.info("Using \"" + config.getHomeDir().toString() + "\" as homedir");
+			} else {
+				LOGGER.info("Not using a homedir");
 			}
 
 			try {
@@ -672,7 +673,7 @@ public class BimServer implements BasicServerInfoProvider {
 			if (!Files.exists(mavenPath)) {
 				Files.createDirectories(mavenPath);
 			}
-			mavenPluginRepository = new MavenPluginRepository(mavenPath, "http://central.maven.org/maven2", "~/.m2/repository");
+//			mavenPluginRepository = new MavenPluginRepository(mavenPath, "http://central.maven.org/maven2", "~/.m2/repository");
 			
 			OldQuery.setPackageMetaDataForDefaultQuery(metaDataManager.getPackageMetaData("store"));
 
@@ -833,7 +834,7 @@ public class BimServer implements BasicServerInfoProvider {
 			LOGGER.error("", e1);
 		}
 		long e = System.nanoTime();
-		LOGGER.info("Checking for stale records took " + ((e - s) / 1000000) + " ms");
+		LOGGER.info("Done checking for stale records (" + ((e - s) / 1000000) + " ms)");
 	}
 
 	private int checkPidRid(DatabaseSession session, Project project, int pid, int rid) throws BimserverDatabaseException, BimserverLockConflictException {
@@ -997,9 +998,9 @@ public class BimServer implements BasicServerInfoProvider {
 				genericPluginConversion(pluginContext, session, pluginConfiguration, pluginDescriptor);
 			}
 
-			if (pluginInterfaceName.equals("Service")) {
-				activateService(user.getOid(), (InternalServicePluginConfiguration) pluginConfiguration);
-			}
+//			if (pluginInterfaceName.equals("Service")) {
+//				activateService(user.getOid(), (InternalServicePluginConfiguration) pluginConfiguration);
+//			}
 			
 			if (defaultReference != null) {
 				if (userSettings.eGet(defaultReference) == null && pluginConfiguration.getName().equals("IfcOpenShell")) {
@@ -1101,6 +1102,7 @@ public class BimServer implements BasicServerInfoProvider {
 
 	private void initDatabaseDependantItems() throws BimserverDatabaseException {
 		LOGGER.info("Initializing database dependant logic...");
+		long start = System.nanoTime();
 		notificationsManager.init();
 
 		getSerializerFactory().init(pluginManager, bimDatabase, this);
@@ -1249,7 +1251,8 @@ public class BimServer implements BasicServerInfoProvider {
 //		} catch (PluginException e) {
 //			throw new BimserverDatabaseException(e);
 		}
-		LOGGER.info("Done initializing database dependant logic");
+		long end = System.nanoTime();
+		LOGGER.info("Done initializing database dependant logic (" + ((end - start) / 1000000) + "ms)");
 	}
 
 	/**
