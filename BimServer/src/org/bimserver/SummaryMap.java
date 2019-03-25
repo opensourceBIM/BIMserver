@@ -141,4 +141,16 @@ public class SummaryMap {
 	public Map<EClass, Integer> getSummaryMap() {
 		return summaryMap;
 	}
+
+	public void integrate(SummaryMap summaryMap) {
+		Map<EClass, Integer> map = summaryMap.getSummaryMap();
+		for (EClass eClass : map.keySet()) {
+			Integer current = this.summaryMap.get(eClass);
+			if (current == null) {
+				this.summaryMap.put(eClass, map.get(eClass));
+			} else {
+				this.summaryMap.put(eClass, current + map.get(eClass));
+			}
+		}
+	}
 }

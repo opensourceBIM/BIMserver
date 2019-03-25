@@ -42,6 +42,7 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.log.AccessMethod;
+import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.RevisionSummary;
@@ -69,15 +70,16 @@ public class CountDatabaseAction extends BimDatabaseAction<Integer> {
 		}
 		PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
 		Project project = revision.getProject();
-		if (revision.getConcreteRevisions().size() == 1 && revision.getConcreteRevisions().get(0).getSummary() != null) {
-			RevisionSummary summary = revision.getConcreteRevisions().get(0).getSummary();
+		SummaryMap total = new SummaryMap(packageMetaData);
+		for (ConcreteRevision concreteRevision : revision.getConcreteRevisions()) {
+			RevisionSummary summary = concreteRevision.getSummary();
 			SummaryMap summaryMap = new SummaryMap(packageMetaData, summary);
-			if (className.equals("[ALL]")) {
-				return summaryMap.count();
-			} else {
-				return summaryMap.count(getDatabaseSession().getEClass(project.getSchema(), className));
-			}
+			total.integrate(summaryMap);
 		}
-		return null;
+		if (className.equals("[ALL]")) {
+			return total.count();
+		} else {
+			return total.count(getDatabaseSession().getEClass(project.getSchema(), className));
+		}
 	}
 }
