@@ -410,6 +410,12 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 				apply(geometryFields, packageMetaData, existingInclude, updatedIncludes);
 			}
 		}
+		if (canInclude.hasIncludesToResolve()) {
+			for (String existingInclude : canInclude.getIncludesToResolve()) {
+				// TODO
+//				apply(geometryFields, packageMetaData, existingInclude, updatedIncludes);
+			}
+		}
 		if (canInclude.hasOids()) {
 			Include newInclude = canInclude.createInclude();
 			applyFields(geometryFields, new TypeDef(packageMetaData.getEClass("IfcProduct"), true), newInclude);

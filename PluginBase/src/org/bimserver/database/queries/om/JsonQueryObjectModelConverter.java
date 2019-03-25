@@ -123,13 +123,18 @@ public class JsonQueryObjectModelConverter {
 				inBoundingBoxNode.put("densityUpperThreshold", queryPart.getInBoundingBox().getDensityUpperThreshold());
 				queryPartNode.set("inBoundingBox", inBoundingBoxNode);
 			}
-			if (queryPart.hasIncludes() || queryPart.hasReferences()) {
+			if (queryPart.hasIncludes() || queryPart.hasIncludesToResolve() || queryPart.hasReferences()) {
 				ArrayNode includesNode = OBJECT_MAPPER.createArrayNode();
 				queryPartNode.set("includes", includesNode);
 				if (queryPart.hasIncludes()) {
 					for (Include include : queryPart.getIncludes()) {
 						ObjectNode includeNode = dumpInclude(include);
 						includesNode.add(includeNode);
+					}
+				}
+				if (queryPart.hasIncludesToResolve()) {
+					for (String name : queryPart.getIncludesToResolve()) {
+						includesNode.add(name);
 					}
 				}
 				if (queryPart.hasReferences()) {

@@ -25,8 +25,11 @@ import org.eclipse.emf.ecore.EClass;
 
 public interface CanInclude {
 	void addInclude(Include include);
+	void addInclude(String name);
 	boolean hasIncludes();
+	boolean hasIncludesToResolve();
 	List<Include> getIncludes();
+	Set<String> getIncludesToResolve();
 	boolean isIncludeAllFields();
 	void addIncludeReference(Include down, String name);
 	boolean hasReferences();

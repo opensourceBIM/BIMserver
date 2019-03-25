@@ -43,6 +43,7 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 	private List<Reference> references;
 	private Tiles tiles;
 	private int minimumReuseThreshold = -1;
+	private Set<String> includesToResolve;
 	
 	public QueryPart(PackageMetaData packageMetaData) {
 		this.packageMetaData = packageMetaData;
@@ -277,5 +278,22 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 	
 	public int getMinimumReuseThreshold() {
 		return minimumReuseThreshold;
+	}
+
+
+	@Override
+	public void addInclude(String name) {
+		if (includesToResolve == null) {
+			includesToResolve = new HashSet<String>();
+		}
+		includesToResolve.add(name);
+	}
+	
+	public Set<String> getIncludesToResolve() {
+		return includesToResolve;
+	}
+	
+	public boolean hasIncludesToResolve() {
+		return includesToResolve != null;
 	}
 }

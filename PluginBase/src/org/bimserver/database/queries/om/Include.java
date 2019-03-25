@@ -73,6 +73,7 @@ public class Include extends PartOfQuery implements CanInclude {
 	private List<Reference> references;
 	private PackageMetaData packageMetaData;
 	private boolean includeAllFields;
+	private Set<String> includesToResolve;
 	
 	public Include(PackageMetaData packageMetaData) {
 		this.packageMetaData = packageMetaData;
@@ -203,7 +204,7 @@ public class Include extends PartOfQuery implements CanInclude {
 	public boolean hasIncludes() {
 		return includes != null;
 	}
-
+	
 	@Override
 	public boolean isIncludeAllFields() {
 		return includeAllFields;
@@ -346,5 +347,21 @@ public class Include extends PartOfQuery implements CanInclude {
 
 	public void setIncludeAllFields(boolean includeAllFields) {
 		this.includeAllFields = includeAllFields;
+	}
+
+	@Override
+	public void addInclude(String name) {
+		if (includesToResolve == null) {
+			includesToResolve = new HashSet<String>();
+		}
+		includesToResolve.add(name);
+	}
+	
+	public Set<String> getIncludesToResolve() {
+		return includesToResolve;
+	}
+
+	public boolean hasIncludesToResolve() {
+		return includesToResolve != null;
 	}
 }
