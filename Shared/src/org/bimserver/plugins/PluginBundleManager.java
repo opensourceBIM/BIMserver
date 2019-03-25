@@ -504,8 +504,8 @@ public class PluginBundleManager implements AutoCloseable {
 				for (SPluginInformation sPluginInformation : plugins) {
 					if (sPluginInformation.isEnabled()) {
 						PluginContext pluginContext = pluginBundle.getPluginContext(sPluginInformation.getIdentifier());
-						PluginConfiguration pluginConfiguration = PluginConfiguration.fromDefaults(pluginContext.getPlugin().getSystemSettingsDefinition());
-						pluginContext.initialize(pluginConfiguration);
+//						PluginConfiguration pluginConfiguration = PluginConfiguration.fromDefaults(pluginContext.getPlugin().getSystemSettingsDefinition());
+//						pluginContext.initialize(pluginConfiguration);
 						pluginManager.pluginInstalled(pluginBundleVersionId, pluginContext, sPluginInformation);
 					}
 				}
