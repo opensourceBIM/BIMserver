@@ -45,7 +45,7 @@ public class NewClassBulkChange implements Change {
 	@Override
 	public void change(Database database, DatabaseSession databaseSession) throws BimserverDatabaseException {
 		boolean transactional = !(ePackage == Ifc2x3tc1Package.eINSTANCE || ePackage == Ifc4Package.eINSTANCE || ePackage == GeometryPackage.eINSTANCE);
-		LOGGER.info("Creating " + eClasses.size() + " " + (transactional ? "transactional" : "non transactional")  + " tables for package " + ePackage.getName());
+		LOGGER.debug("Creating " + eClasses.size() + " " + (transactional ? "transactional" : "non transactional")  + " tables for package " + ePackage.getName());
 		for (EClass eClass : eClasses) {
 			String tableName = eClass.getEPackage().getName() + "_" + eClass.getName();
 			if (eClass.getEAnnotation("nodatabase") == null) {

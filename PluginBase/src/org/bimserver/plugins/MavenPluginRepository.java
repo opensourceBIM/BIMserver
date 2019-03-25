@@ -79,7 +79,7 @@ public class MavenPluginRepository {
 			RemoteRepository.Builder localRepoBuilder = new RemoteRepository.Builder("local", "default", "file://" + defaultLocalRepositoryLocation);
 			localRepoBuilder.setPolicy(new RepositoryPolicy(true, RepositoryPolicy.UPDATE_POLICY_INTERVAL + ":60", RepositoryPolicy.CHECKSUM_POLICY_FAIL));
 			repositories.add(localRepoBuilder.build());
-			LOGGER.info("Adding " + defaultLocalRepositoryLocation + " as repository");
+			LOGGER.debug("Adding " + defaultLocalRepositoryLocation + " as repository");
 		}
 
 		localRepositories = new ArrayList<RemoteRepository>();

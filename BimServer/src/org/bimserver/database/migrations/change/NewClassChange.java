@@ -43,7 +43,7 @@ public class NewClassChange implements Change {
 		String tableName = getEClass().getEPackage().getName() + "_" + getEClass().getName();
 		if (eClass.getEAnnotation("nodatabase") == null) {
 			boolean transactional = !(eClass.getEPackage() == Ifc2x3tc1Package.eINSTANCE || eClass.getEPackage() == Ifc4Package.eINSTANCE || eClass.getEPackage() == GeometryPackage.eINSTANCE);
-			LOGGER.info("Creating " + (transactional ? "transactional" : "non transactional") + " table: " + tableName);
+			LOGGER.debug("Creating " + (transactional ? "transactional" : "non transactional") + " table: " + tableName);
 			try {
 				boolean created = database.createTable(getEClass(), databaseSession, transactional);
 				if (!created) {

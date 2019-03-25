@@ -233,7 +233,7 @@ public class Schema {
 	}
 
 	public void upgradeDatabase(Database database, int version, DatabaseSession databaseSession) {
-		LOGGER.info("Upgrading database to version " + version);
+		LOGGER.debug("Upgrading database to version " + version);
 //		initSubClasses();
 		for (Change change : changes) {
 			try {

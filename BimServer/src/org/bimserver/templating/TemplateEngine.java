@@ -61,7 +61,7 @@ public class TemplateEngine {
 	}
 
 	public void init(URL resource) {
-		LOGGER.info("Using \"" + StringUtils.getPrettyFileUrl(resource) + "\" as template dir");
+		LOGGER.debug("Using \"" + StringUtils.getPrettyFileUrl(resource) + "\" as template dir");
 		velocityEngine = new VelocityEngine();
 		velocityEngine.setProperty(VelocityEngine.RESOURCE_LOADER, "url");
 		velocityEngine.setProperty("url.resource.loader.class", URLResourceLoader.class.getName());
