@@ -189,12 +189,17 @@ public class JsonQueryObjectModelConverter {
 			includeNode.set("fieldsDirect", fieldsNode);
 		}
 		
-		if (include.hasIncludes() || include.hasReferences()) {
+		if (include.hasIncludes() || include.hasIncludesToResolve() || include.hasReferences()) {
 			ArrayNode includes = OBJECT_MAPPER.createArrayNode();
 			includeNode.set("includes", includes);
 			if (include.hasIncludes()) {
 				for (Include nextInclude : include.getIncludes()) {
 					includes.add(dumpInclude(nextInclude));
+				}
+			}
+			if (include.hasIncludesToResolve()) {
+				for (String nextInclude : include.getIncludesToResolve()) {
+					includes.add(nextInclude);
 				}
 			}
 			if (include.hasReferences()) {
