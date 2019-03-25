@@ -45,10 +45,7 @@ import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.SharedJsonDeserializer;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
-import org.bimserver.ifc.step.serializer.IfcStepSerializer;
-import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
-import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.models.geometry.Bounds;
 import org.bimserver.models.geometry.Buffer;
 import org.bimserver.models.geometry.GeometryData;
@@ -58,6 +55,7 @@ import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.plugins.ObjectAlreadyExistsException;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.serializers.ProjectInfo;
+import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerInputstream;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
@@ -78,7 +76,6 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.google.common.base.Joiner;
 
 public class ClientIfcModel extends IfcModel {
 	public enum ModelState {
@@ -990,14 +987,21 @@ public class ClientIfcModel extends IfcModel {
 				return c++;
 			}
 		});
-		IfcStepSerializer ifcStepSerializer = new IfcStepSerializer(null);
-		ProjectInfo projectInfo = new ProjectInfo();
 		try {
+			Class<?> stepSerializerClass = Class.forName("org.bimserver.ifc.step.serializer.IfcStepSerializer");
+			Serializer ifcStepSerializer = (Serializer) stepSerializerClass.newInstance();
+			ProjectInfo projectInfo = new ProjectInfo();
 			ifcStepSerializer.init(this, projectInfo, true);
-			ifcStepSerializer.setHeaderSchema(getPackageMetaData().getSchema().getHeaderName());
+//			ifcStepSerializer.setHeaderSchema(getPackageMetaData().getSchema().getHeaderName());
 			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", poid);
 			bimServerClient.checkinSync(poid, comment, deserializer.getOid(), false, -1, "test", new SerializerInputstream(ifcStepSerializer));
 		} catch (SerializerException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
 	}
