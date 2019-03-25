@@ -270,7 +270,7 @@ public class BimServer implements BasicServerInfoProvider {
 				Files.createDirectory(homeDirIncoming);
 			}
 
-			MavenPluginRepository mavenPluginRepository = new MavenPluginRepository(config.getHomeDir().resolve("maven"));
+			mavenPluginRepository = new MavenPluginRepository(config.getHomeDir().resolve("maven"));
 			pluginManager = new PluginManager(tmp, config.getClassPath(), serviceFactory, internalServicesManager, servicesMap, this);
 			pluginBundleManager = new PluginBundleManager(pluginManager, mavenPluginRepository, config.getHomeDir().resolve("plugins"));
 			metaDataManager = new MetaDataManager(tmp);
