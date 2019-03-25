@@ -122,10 +122,10 @@ public class Migrator {
 			}
 		}
 		
-		Schema emfSchema = new Schema();
-		emfSchema.addEPackage(StorePackage.eINSTANCE);
-		emfSchema.addEPackage(LogPackage.eINSTANCE);
-		emfSchema.addEPackage(Ifc2x3tc1Package.eINSTANCE);
+//		Schema emfSchema = new Schema();
+//		emfSchema.addEPackage(StorePackage.eINSTANCE);
+//		emfSchema.addEPackage(LogPackage.eINSTANCE);
+//		emfSchema.addEPackage(Ifc2x3tc1Package.eINSTANCE);
 		
 		// Check whether the migrated schema is the same as the programmatic schema		
 //		SchemaChecker checker = new SchemaChecker(schema, emfSchema);
