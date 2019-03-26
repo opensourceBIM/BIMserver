@@ -63,7 +63,7 @@ public class RealtimeReflectorFactoryBuilder implements ReflectorFactoryBuilder 
 			createCreateReflectorMethod1(reflectorFactoryImpl);
 			createCreateReflectorMethod2(reflectorFactoryImpl);
 			
-			Class<?> class1 = pool.toClass(reflectorFactoryImpl, getClass().getClassLoader(), getClass().getProtectionDomain());
+			Class<?> class1 = pool.toClass(reflectorFactoryImpl, null, getClass().getClassLoader(), getClass().getProtectionDomain());
 			return (ReflectorFactory) class1.newInstance();
 		} catch (Exception e) {
 			LOGGER.error("", e);
@@ -160,7 +160,7 @@ public class RealtimeReflectorFactoryBuilder implements ReflectorFactoryBuilder 
 				method.setBody(methodBuilder.toString());
 				reflectorImplClass.addMethod(method);
 			}
-			pool.toClass(reflectorImplClass, getClass().getClassLoader(), getClass().getProtectionDomain());
+			pool.toClass(reflectorImplClass, null, getClass().getClassLoader(), getClass().getProtectionDomain());
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
@@ -214,7 +214,7 @@ public class RealtimeReflectorFactoryBuilder implements ReflectorFactoryBuilder 
 			method.setBody(methodBuilder.toString());
 			reflectorImplClass.addMethod(method);
 			
-			pool.toClass(reflectorImplClass, getClass().getClassLoader(), getClass().getProtectionDomain());
+			pool.toClass(reflectorImplClass, null, getClass().getClassLoader(), getClass().getProtectionDomain());
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
