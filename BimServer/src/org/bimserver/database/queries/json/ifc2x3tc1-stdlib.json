@@ -102,6 +102,15 @@
             "field": "UnitComponent"
          }
       },
+      "ContainsElements": {
+      	"type": "IfcSpatialStructureElement",
+      	"fields": ["ContainsElements"],
+      	"includes": [{
+      		"type": "IfcRelContainedInSpatialStructure",
+      		"fields": ["RelatedElements"],
+      		"includes": ["ContainsElements"]
+      	}]
+      },
       "Decomposes": {
          "type": "IfcObjectDefinition",
          "field": "Decomposes",
