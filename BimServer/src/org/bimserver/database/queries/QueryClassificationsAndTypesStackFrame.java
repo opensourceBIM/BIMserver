@@ -45,7 +45,6 @@ import com.google.common.base.Charsets;
 public class QueryClassificationsAndTypesStackFrame extends DatabaseReadingStackFrame {
 
 	private EClass eClass;
-	private Set<String> classifications;
 	private SearchingRecordIterator typeRecordIterator;
 	private Record record;
 	private Set<Long> allowedOids = new HashSet<>();
@@ -54,13 +53,12 @@ public class QueryClassificationsAndTypesStackFrame extends DatabaseReadingStack
 	public QueryClassificationsAndTypesStackFrame(QueryObjectProvider queryObjectProvider, EClass eClass, QueryPart partialQuery, QueryContext reusable, Set<String> classifications) throws BimserverDatabaseException {
 		super(reusable, queryObjectProvider, partialQuery);
 		this.eClass = eClass;
-		this.classifications = classifications;
 
 		DatabaseSession databaseSession = getQueryObjectProvider().getDatabaseSession();
-	  String schemaName = eClass.getEPackage().getName();
+		String schemaName = eClass.getEPackage().getName();
 		EClass classificationReferenceClass = databaseSession.getEClass(schemaName, "IfcClassificationReference");
 		EClass relAssociatesClassificationReferenceClass = databaseSession.getEClass(schemaName, "IfcRelAssociatesClassification");
-    EStructuralFeature classificationKeyFeature = classificationReferenceClass.getEStructuralFeature(1); // renamed from "ItemReference" in IFC2x3 to "Identification" in IFC4
+		EStructuralFeature classificationKeyFeature = classificationReferenceClass.getEStructuralFeature(1); // renamed from "ItemReference" in IFC2x3 to "Identification" in IFC4
 		for (String classification : classifications) {
 			List<ObjectIdentifier> objectIdentifiers = getOids(classificationReferenceClass, classificationKeyFeature, classification, databaseSession, reusable.getPid(), reusable.getRid());
 			for (ObjectIdentifier objectIdentifier : objectIdentifiers) {
