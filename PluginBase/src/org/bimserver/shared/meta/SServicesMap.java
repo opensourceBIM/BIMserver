@@ -166,7 +166,11 @@ public class SServicesMap {
 				return (Class<?>) first;
 			}
 		}
-		return (Class<?>) method.getGenericReturnType();
+		Type genericReturnType2 = method.getGenericReturnType();
+		if (genericReturnType2 instanceof Class) {
+			return (Class<?>)genericReturnType2;
+		}
+		return null;
 	}
 
 	public Set<SClass> getTypes() {
