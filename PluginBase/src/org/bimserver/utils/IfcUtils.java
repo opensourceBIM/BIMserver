@@ -337,7 +337,7 @@ public class IfcUtils {
 		return result;
 	}
 
-	private static Object nominalValueToObject(IfcValue nominalValue) {
+	public static Object nominalValueToObject(IfcValue nominalValue) {
 		if (nominalValue instanceof IfcLabel) {
 			return ((IfcLabel) nominalValue).getWrappedValue();
 		} else if (nominalValue instanceof IfcIdentifier) {
@@ -371,7 +371,7 @@ public class IfcUtils {
 		}
 	}
 
-	private static String nominalValueToString(IfcValue nominalValue) {
+	public static String nominalValueToString(IfcValue nominalValue) {
 		Object object = nominalValueToObject(nominalValue);
 		if (object == null) {
 			return null;
@@ -980,6 +980,19 @@ public class IfcUtils {
 		return 0;
 	}
 
+	public static int countContains(IfcSpatialStructureElement object) {
+		int total = 0;
+		for (IfcRelContainedInSpatialStructure ifcRelContainedInSpatialStructure : object.getContainsElements()) {
+			for (IfcProduct ifcProduct : ifcRelContainedInSpatialStructure.getRelatedElements()) {
+				total += 1;
+				if (ifcProduct instanceof IfcSpatialStructureElement) {
+					total += countContains((IfcSpatialStructureElement) ifcProduct);
+				}
+			}
+		}
+		return total;
+	}
+	
 	public static int countDecomposed(IfcObjectDefinition object) {
 		int total = 0;
 		for (IfcRelDecomposes ifcRelDecomposes : object.getIsDecomposedBy()) {
