@@ -1,5 +1,8 @@
 package org.bimserver.shared.reflector;
 
+import org.bimserver.generated.GeneratedNeighbourClass;
+import org.bimserver.reflector.NeighbourClass;
+
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
  * 
@@ -63,7 +66,7 @@ public class RealtimeReflectorFactoryBuilder implements ReflectorFactoryBuilder 
 			createCreateReflectorMethod1(reflectorFactoryImpl);
 			createCreateReflectorMethod2(reflectorFactoryImpl);
 			
-			Class<?> class1 = pool.toClass(reflectorFactoryImpl, null, getClass().getClassLoader(), getClass().getProtectionDomain());
+			Class<?> class1 = pool.toClass(reflectorFactoryImpl, NeighbourClass.class, getClass().getClassLoader(), getClass().getProtectionDomain());
 			return (ReflectorFactory) class1.newInstance();
 		} catch (Exception e) {
 			LOGGER.error("", e);
@@ -160,7 +163,7 @@ public class RealtimeReflectorFactoryBuilder implements ReflectorFactoryBuilder 
 				method.setBody(methodBuilder.toString());
 				reflectorImplClass.addMethod(method);
 			}
-			pool.toClass(reflectorImplClass, null, getClass().getClassLoader(), getClass().getProtectionDomain());
+			pool.toClass(reflectorImplClass, GeneratedNeighbourClass.class, getClass().getClassLoader(), getClass().getProtectionDomain());
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
@@ -214,7 +217,7 @@ public class RealtimeReflectorFactoryBuilder implements ReflectorFactoryBuilder 
 			method.setBody(methodBuilder.toString());
 			reflectorImplClass.addMethod(method);
 			
-			pool.toClass(reflectorImplClass, null, getClass().getClassLoader(), getClass().getProtectionDomain());
+			pool.toClass(reflectorImplClass, GeneratedNeighbourClass.class, getClass().getClassLoader(), getClass().getProtectionDomain());
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}

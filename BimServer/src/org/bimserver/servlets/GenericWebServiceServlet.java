@@ -42,7 +42,6 @@ import org.apache.cxf.databinding.DataBinding;
 import org.apache.cxf.headers.HeaderManager;
 import org.apache.cxf.headers.HeaderProcessor;
 import org.apache.cxf.helpers.IOUtils;
-import org.apache.cxf.interceptor.InterceptorProvider;
 import org.apache.cxf.jaxb.JAXBDataBinding;
 import org.apache.cxf.jaxws.JaxWsServerFactoryBean;
 import org.apache.cxf.resource.ResourceManager;
@@ -321,11 +320,6 @@ public class GenericWebServiceServlet extends SubServlet {
 			@Override
 			public String getNamespace() {
 				return "uri:org.bimserver.shared";
-			}
-
-			@Override
-			public InterceptorProvider getInterceptorProvider() {
-				return null;
 			}
 
 			@Override
