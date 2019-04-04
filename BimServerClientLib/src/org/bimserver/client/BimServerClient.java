@@ -562,4 +562,12 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 			}
 		}
 	}
+	
+	public AuthenticationInfo getAuthenticationInfo() {
+		return authenticationInfo;
+	}
+	
+	public String getBaseAddress() {
+		return baseAddress;
+	}
 }
