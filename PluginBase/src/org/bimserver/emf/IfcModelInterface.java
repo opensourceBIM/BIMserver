@@ -43,6 +43,7 @@ import java.util.Set;
 
 import org.bimserver.plugins.ObjectAlreadyExistsException;
 import org.bimserver.plugins.ObjectAlreadyStoredException;
+import org.bimserver.shared.PluginClassLoaderProvider;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -259,4 +260,7 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory, A
 	<T extends IdEObject> T getFirst(EClass eClass);
 
 	void dumpDebug();
+
+	PluginClassLoaderProvider getPluginClassLoaderProvider();
+	void setPluginClassLoaderProvider(PluginClassLoaderProvider pluginClassLoaderProvider);
 }

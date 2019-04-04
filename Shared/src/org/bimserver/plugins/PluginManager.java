@@ -75,6 +75,7 @@ import org.bimserver.plugins.web.WebModulePlugin;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.ChannelConnectionException;
+import org.bimserver.shared.PluginClassLoaderProvider;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -82,7 +83,7 @@ import org.bimserver.shared.meta.SServicesMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class PluginManager implements PluginManagerInterface {
+public class PluginManager implements PluginManagerInterface, PluginClassLoaderProvider {
 	private static final Logger LOGGER = LoggerFactory.getLogger(PluginManager.class);
 	private static Unmarshaller PLUGIN_DESCRIPTOR_UNMARSHALLER;
 	private final Map<Class<? extends Plugin>, Set<PluginContext>> implementations = new LinkedHashMap<>();
@@ -675,5 +676,18 @@ public class PluginManager implements PluginManagerInterface {
 	public void removeImplementation(PluginContext pluginContext) {
 		Set<PluginContext> set = implementations.get(pluginContext.getPluginInterface());
 		set.remove(pluginContext);
+	}
+
+	@Override
+	public ClassLoader getClassLoaderFor(String pluginClassName) {
+		for (Class<? extends Plugin> class1 : implementations.keySet()) {
+			Set<PluginContext> set = implementations.get(class1);
+			for (PluginContext pluginContext : set) {
+				if (pluginContext.getPlugin().getClass().getName().contentEquals(pluginClassName)) {
+					return pluginContext.getPlugin().getClass().getClassLoader();
+				}
+			}
+		}
+		return getClass().getClassLoader();
 	}
 }

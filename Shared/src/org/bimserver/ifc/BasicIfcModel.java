@@ -21,8 +21,11 @@ import java.util.Map;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.shared.PluginClassLoaderProvider;
 
 public class BasicIfcModel extends IfcModel {
+
+	private PluginClassLoaderProvider pluginClassLoaderProvider;
 
 	public BasicIfcModel(PackageMetaData packageMetaData, Map<Integer, Long> pidRoidMap) {
 		super(packageMetaData, pidRoidMap);
@@ -30,6 +33,15 @@ public class BasicIfcModel extends IfcModel {
 
 	public BasicIfcModel(PackageMetaData packageMetaData, Map<Integer, Long> pidRoidMap, int size) {
 		super(packageMetaData, pidRoidMap, size);
+	}
+	
+	public void setPluginClassLoaderProvider(PluginClassLoaderProvider pluginClassLoaderProvider) {
+		this.pluginClassLoaderProvider = pluginClassLoaderProvider;
+	}
+	
+	@Override
+	public PluginClassLoaderProvider getPluginClassLoaderProvider() {
+		return pluginClassLoaderProvider;
 	}
 
 	@Override

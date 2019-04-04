@@ -20,6 +20,8 @@ package org.bimserver.client;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -52,12 +54,15 @@ import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.geometry.GeometryPackage;
+import org.bimserver.plugins.HeaderTakingSerializer;
 import org.bimserver.plugins.ObjectAlreadyExistsException;
+import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.serializers.ProjectInfo;
 import org.bimserver.plugins.serializers.Serializer;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.SerializerInputstream;
+import org.bimserver.shared.PluginClassLoaderProvider;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -115,6 +120,12 @@ public class ClientIfcModel extends IfcModel {
 				LOGGER.error("", e);
 			}
 		}
+		pluginClassLoaderProvider = new PluginClassLoaderProvider() {
+			@Override
+			public ClassLoader getClassLoaderFor(String pluginName) {
+				return ClientIfcModel.class.getClassLoader();
+			}
+		};
 	}
 
 	@Override
@@ -223,6 +234,7 @@ public class ClientIfcModel extends IfcModel {
 		}
 	};
 	private boolean assumeCompletePreload;
+	private PluginClassLoaderProvider pluginClassLoaderProvider;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ClientIfcModel branch(long poid, boolean recordChanges) {
@@ -978,6 +990,11 @@ public class ClientIfcModel extends IfcModel {
 		}
 	}
 
+	/**
+	 * 
+	 * This method requires IfcPlugins to be loaded (either on the default cp, or a a BIMserver plugin)
+	 * 
+	 */
 	public void checkin(long poid, String comment) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		this.fixOids(new OidProvider() {
 			private long c = 1;
@@ -988,11 +1005,12 @@ public class ClientIfcModel extends IfcModel {
 			}
 		});
 		try {
-			Class<?> stepSerializerClass = Class.forName("org.bimserver.ifc.step.serializer.IfcStepSerializer");
-			Serializer ifcStepSerializer = (Serializer) stepSerializerClass.newInstance();
+			Class<?> stepSerializerClass = getPluginClassLoaderProvider().getClassLoaderFor("org.bimserver.ifc.step.serializer.Ifc2x3tc1StepSerializerPlugin").loadClass("org.bimserver.ifc.step.serializer.IfcStepSerializer");
+			Constructor<Serializer> constructor = (Constructor<Serializer>) stepSerializerClass.getConstructor(PluginConfiguration.class);
+			Serializer ifcStepSerializer = (Serializer) constructor.newInstance(new PluginConfiguration());
 			ProjectInfo projectInfo = new ProjectInfo();
 			ifcStepSerializer.init(this, projectInfo, true);
-//			ifcStepSerializer.setHeaderSchema(getPackageMetaData().getSchema().getHeaderName());
+			((HeaderTakingSerializer)ifcStepSerializer).setHeaderSchema(getPackageMetaData().getSchema().getHeaderName());
 			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", poid);
 			bimServerClient.checkinSync(poid, comment, deserializer.getOid(), false, -1, "test", new SerializerInputstream(ifcStepSerializer));
 		} catch (SerializerException e) {
@@ -1002,6 +1020,14 @@ public class ClientIfcModel extends IfcModel {
 		} catch (InstantiationException e) {
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
 			e.printStackTrace();
 		}
 	}
@@ -1104,5 +1130,15 @@ public class ClientIfcModel extends IfcModel {
 	@Override
 	public void dumpDebug() {
 		clientDebugInfo.dump();
+	}
+
+	@Override
+	public PluginClassLoaderProvider getPluginClassLoaderProvider() {
+		return pluginClassLoaderProvider;
+	}
+
+	@Override
+	public void setPluginClassLoaderProvider(PluginClassLoaderProvider pluginClassLoaderProvider) {
+		this.pluginClassLoaderProvider = pluginClassLoaderProvider;
 	}
 }

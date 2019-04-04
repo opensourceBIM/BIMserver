@@ -37,6 +37,7 @@ import org.bimserver.plugins.services.NewExtendedDataOnRevisionHandler;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.ChannelConnectionException;
+import org.bimserver.shared.PluginClassLoaderProvider;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -218,5 +219,9 @@ public class PluginContext {
 	
 	public PluginConfiguration getSystemSettings() {
 		return systemSettings;
+	}
+
+	public PluginClassLoaderProvider getPluginClassLoaderProvider() {
+		return pluginManager;
 	}
 }

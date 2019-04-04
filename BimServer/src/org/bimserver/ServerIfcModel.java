@@ -27,11 +27,13 @@ import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.IfcModel;
+import org.bimserver.shared.PluginClassLoaderProvider;
 import org.eclipse.emf.ecore.EClass;
 
 public class ServerIfcModel extends IfcModel {
 
 	private DatabaseSession databaseSession;
+	private PluginClassLoaderProvider pluginClassLoaderProvider;
 
 	public ServerIfcModel(PackageMetaData packageMetaData, Map<Integer, Long> pidRoidMap, DatabaseSession databaseSession) {
 		super(packageMetaData, pidRoidMap);
@@ -62,6 +64,16 @@ public class ServerIfcModel extends IfcModel {
 
 	@Override
 	public void dumpDebug() {
+	}
+
+	@Override
+	public PluginClassLoaderProvider getPluginClassLoaderProvider() {
+		return pluginClassLoaderProvider;
+	}
+
+	@Override
+	public void setPluginClassLoaderProvider(PluginClassLoaderProvider pluginClassLoaderProvider) {
+		this.pluginClassLoaderProvider = pluginClassLoaderProvider;
 	}
 	
 //	@SuppressWarnings({ "unchecked" })

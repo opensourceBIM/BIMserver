@@ -36,11 +36,12 @@ import org.bimserver.plugins.services.NewExtendedDataOnRevisionHandler;
 import org.bimserver.plugins.services.NewRevisionHandler;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.ChannelConnectionException;
+import org.bimserver.shared.PluginClassLoaderProvider;
 import org.bimserver.shared.ServiceFactory;
 import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.exceptions.ServiceException;
 
-public interface PluginManagerInterface {
+public interface PluginManagerInterface extends PluginClassLoaderProvider {
 
 	Plugin getPlugin(String string, boolean b);
 
