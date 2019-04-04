@@ -131,6 +131,10 @@ public class BimBotRunner implements Runnable {
 			public String getCurrentUser() {
 				return authorization.getUsername();
 			}
+			
+			public String getContextId() {
+				return contextId;
+			}
 		};
 
 		try (DatabaseSession session = bimServer.getDatabase().createSession()) {
@@ -192,7 +196,8 @@ public class BimBotRunner implements Runnable {
 				project = serviceInterface.getProjectByPoid(project.getOid());
 				
 				PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(project.getSchema());
-				IfcModelInterface model = new BasicIfcModel(packageMetaData, null);
+				BasicIfcModel model = new BasicIfcModel(packageMetaData, null);
+				model.setPluginClassLoaderProvider(bimServer.getPluginManager());
 				try {
 					Revision revision = session.get(project.getLastRevisionId(), OldQuery.getDefault());
 					session.getMap(model, new OldQuery(packageMetaData, project.getId(), revision.getId(), revision.getOid(), Deep.NO));

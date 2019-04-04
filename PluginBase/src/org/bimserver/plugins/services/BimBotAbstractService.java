@@ -28,6 +28,7 @@ import org.bimserver.bimbots.BimBotsInput;
 import org.bimserver.bimbots.BimBotsOutput;
 import org.bimserver.bimbots.BimBotsServiceInterface;
 import org.bimserver.database.queries.om.Query;
+import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
@@ -58,7 +59,10 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 			}
 			BimBotsInput input = new BimBotsInput(SchemaName.IFC_STEP_2X3TC1, data);
 			SProject project = bimServerClientInterface.getServiceInterface().getProjectByPoid(poid);
-			input.setIfcModel(bimServerClientInterface.getModel(project, roid, preloadCompleteModel(), false, requiresGeometry()));
+			String contextId = project.getUuid();
+			IfcModelInterface model = bimServerClientInterface.getModel(project, roid, preloadCompleteModel(), false, requiresGeometry());
+			model.setPluginClassLoaderProvider(getPluginContext().getPluginClassLoaderProvider());
+			input.setIfcModel(model);
 			BimBotContext bimBotContext = new BimBotContext() {
 				@Override
 				public void updateProgress(String label, int percentage) {
@@ -68,6 +72,11 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 				@Override
 				public String getCurrentUser() {
 					return runningService.getCurrentUser();
+				}
+
+				@Override
+				public String getContextId() {
+					return contextId;
 				}
 			};
 			BimBotsOutput output = runBimBot(input, bimBotContext, new PluginConfiguration(settings));

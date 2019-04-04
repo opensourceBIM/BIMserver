@@ -27,4 +27,9 @@ public class BimBotDummyContext implements BimBotContext {
 	public String getCurrentUser() {
 		return "dummy user";
 	}
+
+	@Override
+	public String getContextId() {
+		return null;
+	}
 }

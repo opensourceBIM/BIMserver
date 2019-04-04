@@ -21,4 +21,5 @@ public interface BimBotContext {
 
 	void updateProgress(String label, int percentage);
 	String getCurrentUser();
+	String getContextId();
 }
