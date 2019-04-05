@@ -92,9 +92,11 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 	private SCheckoutResult checkoutResult = new SCheckoutResult();
 	private DownloadDescriptor downloadDescriptor;
 	private Path cacheFile;
+	private String jsonQuery;
 
 	public LongStreamingDownloadAction(BimServer bimServer, String username, String userUsername, Authorization authorization, Long serializerOid, String jsonQuery, Set<Long> roids) {
 		super(bimServer, username, userUsername, authorization);
+		this.jsonQuery = jsonQuery;
 
 		checkoutResult.setSerializerOid(serializerOid);
 		
@@ -207,7 +209,7 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 
 	@Override
 	public String getDescription() {
-		return "Streaming download";
+		return "Streaming download " + jsonQuery.toString();
 	}
 
 	@Override
