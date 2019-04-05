@@ -26,6 +26,7 @@ import java.util.Random;
 import javax.activation.DataHandler;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.bimbots.BimBotContext;
@@ -57,6 +58,9 @@ import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.SchemaName;
 import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
+import org.bimserver.plugins.serializers.ProjectInfo;
+import org.bimserver.plugins.serializers.Serializer;
+import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.StreamingSocketInterface;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -209,6 +213,16 @@ public class BimBotRunner implements Runnable {
 				BimServerBimBotsInput input = new BimServerBimBotsInput(bimServer, authorization.getUoid(), inputType, data, model, false);
 				BimBotsOutput output = bimBotsServiceInterface.runBimBot(input, bimBotContext, settings);
 				long end = System.nanoTime();
+				
+				if (output.getModel() != null) {
+					SerializerPlugin plugin = bimServer.getPluginManager().getSerializerPlugin("org.bimserver.ifc.step.serializer.Ifc2x3tc1StepSerializerPlugin");
+					Serializer serializer = plugin.createSerializer(new PluginConfiguration());
+					serializer.init(output.getModel(), new ProjectInfo(), true);
+					ByteArrayOutputStream baos = new ByteArrayOutputStream();
+					serializer.writeToOutputStream(baos, null);
+					output.setData(baos.toByteArray());
+					output.setContentType("application/ifc");
+				}
 				
 				SExtendedData extendedData = new SExtendedData();
 				SFile file = new SFile();

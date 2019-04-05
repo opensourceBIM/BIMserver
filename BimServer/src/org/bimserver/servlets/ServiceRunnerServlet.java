@@ -171,7 +171,6 @@ public class ServiceRunnerServlet extends SubServlet {
 						response.setHeader("Context-Id", bimBotsOutput.getContextId());
 					}
 					response.getOutputStream().write(bimBotsOutput.getData());
-
 				} else {
 					TopicKey topicKey = new TopicKey();
 					response.setHeader("Output-Type", "Async");
