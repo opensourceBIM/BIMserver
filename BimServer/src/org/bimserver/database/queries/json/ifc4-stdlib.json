@@ -276,6 +276,15 @@
       	"field": "RelatingMaterial",
       	"includes": ["IfcMaterial", "IfcMaterialList", "IfcMaterialLayerSetUsage", "IfcMaterialLayerSet", "IfcMaterialLayer"]
       },
+      "ContainsElements": {
+      	"type": "IfcSpatialStructureElement",
+      	"fields": ["ContainsElements"],
+      	"includes": [{
+      		"type": "IfcRelContainedInSpatialStructure",
+      		"fields": ["RelatedElements"],
+      		"includes": ["ContainsElements"]
+      	}]
+      },
       "ObjectPlacement": {
          "type": "IfcProduct",
          "field": "ObjectPlacement",
