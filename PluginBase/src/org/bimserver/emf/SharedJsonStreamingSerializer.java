@@ -326,6 +326,8 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 					f = false;
 					if (eStructuralFeature instanceof EReference) {
 						writeWrapper((MinimalVirtualObject) o);
+					} else {
+						print(o.toString());
 					}
 				}
 				print("]");
