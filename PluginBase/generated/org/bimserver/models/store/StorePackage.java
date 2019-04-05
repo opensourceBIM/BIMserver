@@ -3260,13 +3260,22 @@ public interface StorePackage extends EPackage {
 	int SERVER_INFO__VERSION = 2;
 
 	/**
+	 * The feature id for the '<em><b>Uuid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_INFO__UUID = 3;
+
+	/**
 	 * The number of structural features of the '<em>Server Info</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_INFO_FEATURE_COUNT = 3;
+	int SERVER_INFO_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.VersionImpl <em>Version</em>}' class.
@@ -10696,6 +10705,17 @@ public interface StorePackage extends EPackage {
 	EReference getServerInfo_Version();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.ServerInfo#getUuid <em>Uuid</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Uuid</em>'.
+	 * @see org.bimserver.models.store.ServerInfo#getUuid()
+	 * @see #getServerInfo()
+	 * @generated
+	 */
+	EAttribute getServerInfo_Uuid();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Version <em>Version</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16988,6 +17008,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EReference SERVER_INFO__VERSION = eINSTANCE.getServerInfo_Version();
+
+		/**
+		 * The meta object literal for the '<em><b>Uuid</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SERVER_INFO__UUID = eINSTANCE.getServerInfo_Uuid();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.VersionImpl <em>Version</em>}' class.

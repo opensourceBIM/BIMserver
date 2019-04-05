@@ -1569,4 +1569,8 @@ public class BimServer implements BasicServerInfoProvider {
 		BasicServerInfo basicServerInfo = new BasicServerInfo(getServerSettingsCache().getServerSettings().getSiteAddress());
 		return basicServerInfo;
 	}
+	
+	public String getUuid() {
+		return bimDatabase.getUuid();
+	}
 }

@@ -32,6 +32,7 @@ public class SServerInfo implements SDataBase
 	private SServerState serverState;
 	private java.lang.String errorMessage;
 	private SVersion version;
+	private java.lang.String uuid;
 
 	public long getOid() {
 		return this.oid;
@@ -68,6 +69,9 @@ public class SServerInfo implements SDataBase
 		if (sField.getName().equals("version")) {
 			return getVersion();
 		}
+		if (sField.getName().equals("uuid")) {
+			return getUuid();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -88,6 +92,10 @@ public class SServerInfo implements SDataBase
 		}
 		if (sField.getName().equals("version")) {
 			setVersion((SVersion)val);
+			return;
+		}
+		if (sField.getName().equals("uuid")) {
+			setUuid((String)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -125,6 +133,14 @@ public class SServerInfo implements SDataBase
 		this.version = version;
 	}
 	
+	
+	public java.lang.String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(java.lang.String uuid) {
+		this.uuid = uuid;
+	}
 	
 	@Override
 	public int hashCode() {

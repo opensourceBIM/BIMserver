@@ -51,6 +51,14 @@ public class Registry {
 		}
 	}
 
+	public void save(String key, String value, DatabaseSession databaseSession) throws BimserverLockConflictException {
+		try {
+			keyValueStore.store(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), value.getBytes(Charsets.UTF_8), databaseSession);
+		} catch (BimserverDatabaseException e) {
+			LOGGER.error("", e);
+		}
+	}
+
 	public void save(String key, boolean value, DatabaseSession databaseSession) throws BimserverLockConflictException {
 		try {
 			keyValueStore.store(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), BinUtils.booleanToByteArray(value), databaseSession);
@@ -121,5 +129,9 @@ public class Registry {
 
 	public byte[] readByteArray(String key, DatabaseSession databaseSession) throws BimserverLockConflictException, BimserverDatabaseException {
 		return keyValueStore.get(REGISTRY_TABLE, key.getBytes(Charsets.UTF_8), databaseSession);
+	}
+
+	public String readString(String key, DatabaseSession databaseSession) throws BimserverLockConflictException, BimserverDatabaseException {
+		return new String(readByteArray(key, databaseSession), Charsets.UTF_8);
 	}
 }

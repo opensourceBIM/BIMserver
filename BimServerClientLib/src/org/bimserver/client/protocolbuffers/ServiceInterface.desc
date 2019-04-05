@@ -1,5 +1,5 @@
 
-§¶
+¾¶
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -1603,12 +1603,13 @@ serviceOid ("F
 SSIPrefix_exameter*A
 SObjectState
 SObjectState_ACTIVE 
-SObjectState_DELETED*c
+SObjectState_DELETED*z
 	SUserType
 SUserType_SYSTEM 
 SUserType_ADMIN
 SUserType_USER
-SUserType_READ_ONLY*x
+SUserType_READ_ONLY
+SUserType_MONITOR*x
 SActionState
 SActionState_UNKNOWN 
 SActionState_STARTED

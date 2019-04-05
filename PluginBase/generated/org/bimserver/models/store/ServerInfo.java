@@ -47,6 +47,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.store.ServerInfo#getServerState <em>Server State</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerInfo#getErrorMessage <em>Error Message</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerInfo#getVersion <em>Version</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerInfo#getUuid <em>Uuid</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getServerInfo()
@@ -135,5 +136,27 @@ public interface ServerInfo extends IdEObject {
 	 * @generated
 	 */
 	void setVersion(Version value);
+
+	/**
+	 * Returns the value of the '<em><b>Uuid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Uuid</em>' attribute.
+	 * @see #setUuid(String)
+	 * @see org.bimserver.models.store.StorePackage#getServerInfo_Uuid()
+	 * @model
+	 * @generated
+	 */
+	String getUuid();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerInfo#getUuid <em>Uuid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Uuid</em>' attribute.
+	 * @see #getUuid()
+	 * @generated
+	 */
+	void setUuid(String value);
 
 } // ServerInfo

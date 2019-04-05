@@ -53,6 +53,7 @@ public class ServerInfoManager {
 
 	public void update() {
 		try {
+			serverInfo.setUuid(bimServer.getUuid());
 			if (bimServer.getVersionChecker() != null) {
 				serverInfo.setVersion(bimServer.getSConverter().convertFromSObject(bimServer.getVersionChecker().getLocalVersion()));
 			}

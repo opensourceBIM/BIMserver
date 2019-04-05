@@ -594,6 +594,7 @@ enum SUserType{
 	SUserType_ADMIN = 1;
 	SUserType_USER = 2;
 	SUserType_READ_ONLY = 3;
+	SUserType_MONITOR = 4;
 }
 
 message AddUserRequest {

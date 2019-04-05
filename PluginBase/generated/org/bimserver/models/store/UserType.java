@@ -89,13 +89,13 @@ public enum UserType implements Enumerator {
 	 */
 	READ_ONLY(3, "READ_ONLY", "READ_ONLY"),
 	/**
-	* The '<em><b>MONITOR</b></em>' literal object.
-	* <!-- begin-user-doc -->
+	 * The '<em><b>MONITOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	* <!-- end-user-doc -->
-	* @see #MONITOR_VALUE
-	* @generated
-	* @ordered
-	*/
+	 * @see #MONITOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	MONITOR(4, "MONITOR", "MONITOR");
 
 	/**

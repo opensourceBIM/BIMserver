@@ -26,6 +26,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -71,6 +72,7 @@ public class Database implements BimDatabase {
 	public static final int STORE_PROJECT_ID = 1;
 	public static final String SCHEMA_VERSION = "SCHEMA_VERSION";
 	private static final String DATE_CREATED = "DATE_CREATED";
+	private static final String SERVER_UUID = "SERVER_UUID";
 	private final Map<String, EPackage> emfPackages = new LinkedHashMap<String, EPackage>();
 	private final KeyValueStore keyValueStore;
 	private final EClass[] cidToEclass;
@@ -86,13 +88,14 @@ public class Database implements BimDatabase {
 	private Migrator migrator;
 	private final MetaDataManager metaDataManager;
 	private final BimServer bimServer;
+	private String uuid;
 
 	/*
 	 * This variable should be _incremented_ with every (released)
 	 * database-schema change. Do not change this variable when nothing has
 	 * changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 50;
+	public static final int APPLICATION_SCHEMA_VERSION = 51;
 
 	public Database(BimServer bimServer, Set<? extends EPackage> emfPackages, KeyValueStore keyValueStore, MetaDataManager metaDataManager) throws DatabaseInitException {
 		this.cidToEclass = new EClass[Short.MAX_VALUE]; 
@@ -134,11 +137,14 @@ public class Database implements BimDatabase {
 				setDatabaseVersion(-1, databaseSession);
 				created = new Date();
 				registry.save(DATE_CREATED, created, databaseSession);
+				this.uuid = UUID.randomUUID().toString();
+				registry.save(SERVER_UUID, uuid, databaseSession);
 			} else {
 				keyValueStore.openTable(databaseSession, CLASS_LOOKUP_TABLE, true);
 				keyValueStore.openTable(databaseSession, Database.STORE_PROJECT_NAME, true);
 				keyValueStore.openTable(databaseSession, Registry.REGISTRY_TABLE, true);
 				created = registry.readDate(DATE_CREATED, databaseSession);
+				uuid = registry.readString(SERVER_UUID, databaseSession);
 				if (created == null) {
 					created = new Date();
 					registry.save(DATE_CREATED, created, databaseSession);
@@ -456,5 +462,9 @@ public class Database implements BimDatabase {
 	@Override
 	public String getTableName(EClass eClass) {
 		return eClass.getEPackage().getName() + "_" + eClass.getName();
+	}
+	
+	public String getUuid() {
+		return uuid;
 	}
 }

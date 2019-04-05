@@ -1,4 +1,4 @@
-package org.bimserver.database;
+package org.bimserver.database.migrations.steps;
 
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
@@ -17,31 +17,22 @@ package org.bimserver.database;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import org.bimserver.BimserverDatabaseException;
-import org.bimserver.database.berkeley.DatabaseInitException;
-import org.bimserver.database.migrations.InconsistentModelsException;
-import org.bimserver.database.migrations.Migrator;
-import org.bimserver.emf.MetaDataManager;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.migrations.Migration;
+import org.bimserver.database.migrations.Schema;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EcorePackage;
 
-public interface BimDatabase {
-	DatabaseSession createSession();
+public class Step0051 extends Migration {
 
-	void close();
+	@Override
+	public void migrate(Schema schema, DatabaseSession databaseSession) {
+		EClass serverInfo = schema.getEClass("store", "ServerInfo");
+		schema.createEAttribute(serverInfo, "uuid", EcorePackage.eINSTANCE.getEString());
+	}
 
-	Migrator getMigrator();
-
-	void init() throws DatabaseInitException, DatabaseRestartRequiredException, InconsistentModelsException;
-
-	long newOid(EClass eClass);
-	
-	MetaDataManager getMetaDataManager();
-
-	Registry getRegistry();
-
-	EClass getEClassForOid(long oid) throws BimserverDatabaseException;
-
-	String getTableName(EClass eClass);
-	
-	String getUuid();
+	@Override
+	public String getDescription() {
+		return "Added server UUID";
+	}
 }

@@ -12190,6 +12190,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ServerInfo/serverState"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ServerInfo/errorMessage"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/ServerInfo/version"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ServerInfo/uuid"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/4/Version">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Version/major"/>
