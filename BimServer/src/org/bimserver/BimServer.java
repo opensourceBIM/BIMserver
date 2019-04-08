@@ -497,6 +497,12 @@ public class BimServer implements BasicServerInfoProvider {
 							pluginDescriptor.setInstallForNewUsers(sPluginInformation.isInstallForNewUsers());
 							pluginDescriptor.setPluginBundleVersion(session.get(pluginBundleVersionId, OldQuery.getDefault()));
 
+							try {
+								pluginContext.initialize(pluginDescriptor.getSettings() == null ? null : new org.bimserver.plugins.PluginConfiguration(pluginDescriptor.getSettings()));
+							} catch (PluginException e) {
+								LOGGER.error("", e);
+							}
+							
 							if (sPluginInformation.isInstallForAllUsers()) {
 								IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getUser(), OldQuery.getDefault());
 								for (User user : allOfType.getAll(User.class)) {
@@ -525,12 +531,6 @@ public class BimServer implements BasicServerInfoProvider {
 								webModules.put(contextPath, (WebModulePlugin) pluginManager.getPlugin(pluginContext.getIdentifier(), true));
 							}
 							
-							try {
-								pluginContext.initialize(pluginDescriptor.getSettings() == null ? null : new org.bimserver.plugins.PluginConfiguration(pluginDescriptor.getSettings()));
-							} catch (PluginException e) {
-								LOGGER.error("", e);
-							}
-
 							try {
 								session.commit();
 							} catch (ServiceException e) {
@@ -998,9 +998,9 @@ public class BimServer implements BasicServerInfoProvider {
 				genericPluginConversion(pluginContext, session, pluginConfiguration, pluginDescriptor);
 			}
 
-//			if (pluginInterfaceName.equals("Service")) {
-//				activateService(user.getOid(), (InternalServicePluginConfiguration) pluginConfiguration);
-//			}
+			if (pluginInterfaceName.equals("Service")) {
+				activateService(user.getOid(), (InternalServicePluginConfiguration) pluginConfiguration);
+			}
 			
 			if (defaultReference != null) {
 				if (userSettings.eGet(defaultReference) == null && pluginConfiguration.getName().equals("IfcOpenShell")) {
