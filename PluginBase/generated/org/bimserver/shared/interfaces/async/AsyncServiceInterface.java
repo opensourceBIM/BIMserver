@@ -1595,11 +1595,11 @@ public class AsyncServiceInterface {
 		});
 	}
 	
-	public void getDensityThreshold(final java.lang.Long roid, final java.lang.Long nrTriangles, final java.util.Set<java.lang.String> excludedTypes, final GetDensityThresholdCallback callback) {
+	public void getDensityThreshold(final java.util.Set<java.lang.Long> roids, final java.lang.Long nrTriangles, final java.util.Set<java.lang.String> excludedTypes, final GetDensityThresholdCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.getDensityThreshold(roid, nrTriangles, excludedTypes));
+					callback.success(syncService.getDensityThreshold(roids, nrTriangles, excludedTypes));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
