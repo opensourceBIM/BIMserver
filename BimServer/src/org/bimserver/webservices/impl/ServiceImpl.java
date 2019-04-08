@@ -3296,8 +3296,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 
 	@Override
-	public SDensity getDensityThreshold(Long roid, Long nrTriangles, Set<String> excludedTypes) throws ServerException, UserException {
-		return getBimServer().getGeometryAccellerator().getDensityThreshold(roid, nrTriangles, excludedTypes);
+	public SDensity getDensityThreshold(Set<Long> roids, Long nrTriangles, Set<String> excludedTypes) throws ServerException, UserException {
+		return getBimServer().getGeometryAccellerator().getDensityThreshold(roids, nrTriangles, excludedTypes);
 	}
 
 	@Override

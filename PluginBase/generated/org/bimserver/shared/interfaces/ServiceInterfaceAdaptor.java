@@ -285,7 +285,7 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SDensity getDensityThreshold(java.lang.Long roid, java.lang.Long nrTriangles, java.util.Set<java.lang.String> excludedTypes) throws UserException, ServerException {
+	public org.bimserver.interfaces.objects.SDensity getDensityThreshold(java.util.Set<java.lang.Long> roids, java.lang.Long nrTriangles, java.util.Set<java.lang.String> excludedTypes) throws UserException, ServerException {
 		return null;
 	}
 	

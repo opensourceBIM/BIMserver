@@ -1398,7 +1398,7 @@ message GetCheckoutWarningsResponse {
 }
 
 message GetDensityThresholdRequest {
-	optional int64 roid = 1;
+	repeated int64 roids = 1;
 	optional int64 nrTriangles = 2;
 	repeated string excludedTypes = 3;
 }

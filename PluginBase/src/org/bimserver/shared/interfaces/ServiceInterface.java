@@ -1567,7 +1567,7 @@ public interface ServiceInterface extends PublicInterface {
 	
 	@WebMethod(action = "getDensityThreshold")
 	SDensity getDensityThreshold(
-		@WebParam(name = "roid", partName = "getDensityThreshold.roid") Long roid, 
+		@WebParam(name = "roids", partName = "getDensityThreshold.roids") Set<Long> roids, 
 		@WebParam(name = "nrTriangles", partName = "getDensityThreshold.nrTriangles") Long nrTriangles,
 		@WebParam(name = "excludedTypes", partName = "getDensityThreshold.excludedTypes") Set<String> excludedTypes) throws ServerException, UserException;
 	

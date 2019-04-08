@@ -322,7 +322,8 @@ message SServerInfo {
 	optional int64 oid = 2;
 	optional int32 rid = 3;
 	optional SServerState serverState = 4;
-	optional SVersion version = 5;
+	optional string uuid = 5;
+	optional SVersion version = 6;
 }
 
 message GetServerInfoResponse {

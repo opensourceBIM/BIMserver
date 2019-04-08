@@ -1,5 +1,5 @@
 
-¾¶
+¿¶
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -714,9 +714,9 @@ $GetAvailableClassesInRevisionRequest
 poid ("B
 GetCheckoutWarningsResponse
 errorMessage (	
-value (	"V
-GetDensityThresholdRequest
-roid (
+value (	"W
+GetDensityThresholdRequest
+roids (
 nrTriangles (
 excludedTypes (	"›
 SDensity
