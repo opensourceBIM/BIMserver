@@ -18,8 +18,11 @@ package org.bimserver.geometry.accellerator;
  *****************************************************************************/
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
@@ -41,7 +44,6 @@ import org.bimserver.models.store.Density;
 import org.bimserver.models.store.Revision;
 import org.bimserver.shared.AbstractHashMapVirtualObject;
 import org.bimserver.shared.HashMapVirtualObject;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -210,17 +212,28 @@ public class GeometryAccellerator {
 		long start = System.nanoTime();
 		DensityThreshold densityThreshold = new DensityThreshold();
 		try (DatabaseSession session = bimServer.getDatabase().createSession()) {
-			Revision revision = session.get(key.getRoid(), OldQuery.getDefault());
-			EList<Density> densities = revision.getDensityCollection().getDensities();
-			if (densities.isEmpty()) {
-				return null;
+			Set<Long> roids = key.getRoid();
+			List<Density> allDensities = new ArrayList<>();
+			for (long roid : roids) {
+				Revision revision = session.get(roid, OldQuery.getDefault());
+				List<Density> densities = revision.getDensityCollection().getDensities();
+				allDensities.addAll(densities);
+			}
+			if (key.getRoid().size() > 1) {
+				// Densities on themselves are sorted, but when combining multiple revisions, we need to sort again
+				allDensities.sort(new Comparator<Density>() {
+					@Override
+					public int compare(Density o1, Density o2) {
+						return Float.compare(o1.getDensity(), o2.getDensity());
+					}
+				});
 			}
 			long cumulativeTrianglesBelow = 0;
 			long cumulativeTrianglesAbove = 0;
 			Density densityResult = null;
 			int l = 0;
 			float ld = -1f;
-			for (Density density : densities) {
+			for (Density density : allDensities) {
 				if (key.getExcludedTypes().contains(density.getType())) {
 					continue;
 				}
@@ -243,7 +256,7 @@ public class GeometryAccellerator {
 				}
 			}
 			if (densityResult == null) {
-				densityResult = densities.get(0);
+				densityResult = allDensities.get(0);
 				densityResult.setDensity(-1);
 			}
 			// This is useful information, so the client knows exactly how many triangles will be loaded by using this threshold
@@ -326,8 +339,8 @@ public class GeometryAccellerator {
 		return reuseSet;
 	}
 
-	public SDensity getDensityThreshold(Long roid, Long nrTriangles, Set<String> excludedTypes) {
-		DensityThresholdKey key = new DensityThresholdKey(roid, nrTriangles, excludedTypes);
+	public SDensity getDensityThreshold(Set<Long> roids, Long nrTriangles, Set<String> excludedTypes) {
+		DensityThresholdKey key = new DensityThresholdKey(roids, nrTriangles, excludedTypes);
 		try {
 			return densityThresholds.get(key).getDensity();
 		} catch (ExecutionException e) {

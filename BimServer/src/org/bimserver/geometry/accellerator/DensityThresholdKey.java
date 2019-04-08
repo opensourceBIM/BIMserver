@@ -23,31 +23,31 @@ import jersey.repackaged.com.google.common.base.Joiner;
 
 public class DensityThresholdKey {
 
-	private Long roid;
+	private Set<Long> roids;
 	private Long nrTriangles;
 	private Set<String> excludedTypes;
 
-	public DensityThresholdKey(Long roid, Long nrTriangles, Set<String> excludedTypes) {
-		this.roid = roid;
+	public DensityThresholdKey(Set<Long> roids, Long nrTriangles, Set<String> excludedTypes) {
+		this.roids = roids;
 		this.nrTriangles = nrTriangles;
 		this.excludedTypes = excludedTypes;
 	}
-	
-	public Long getRoid() {
-		return roid;
+
+	public Set<Long> getRoid() {
+		return roids;
 	}
-	
+
 	public Long getNrTriangles() {
 		return nrTriangles;
 	}
-	
+
 	public Set<String> getExcludedTypes() {
 		return excludedTypes;
 	}
-	
+
 	@Override
 	public String toString() {
-		return roid + " " + nrTriangles + " " + Joiner.on(", ").join(excludedTypes);
+		return com.google.common.base.Joiner.on(", ").join(roids) + " " + nrTriangles + " " + Joiner.on(", ").join(excludedTypes);
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class DensityThresholdKey {
 		int result = 1;
 		result = prime * result + ((excludedTypes == null) ? 0 : excludedTypes.hashCode());
 		result = prime * result + ((nrTriangles == null) ? 0 : nrTriangles.hashCode());
-		result = prime * result + ((roid == null) ? 0 : roid.hashCode());
+		result = prime * result + ((roids == null) ? 0 : roids.hashCode());
 		return result;
 	}
 
@@ -79,11 +79,12 @@ public class DensityThresholdKey {
 				return false;
 		} else if (!nrTriangles.equals(other.nrTriangles))
 			return false;
-		if (roid == null) {
-			if (other.roid != null)
+		if (roids == null) {
+			if (other.roids != null)
 				return false;
-		} else if (!roid.equals(other.roid))
+		} else if (!roids.equals(other.roids))
 			return false;
 		return true;
 	}
+
 }
