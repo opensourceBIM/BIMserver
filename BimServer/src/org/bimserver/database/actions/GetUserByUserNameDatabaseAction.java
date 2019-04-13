@@ -36,6 +36,9 @@ public class GetUserByUserNameDatabaseAction extends BimDatabaseAction<User> {
 
 	@Override
 	public User execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		if (username == null) {
+			throw new UserException("Username cannot be null");
+		}
 		return (User) getDatabaseSession().querySingle(StorePackage.eINSTANCE.getUser_Username(), username.trim().toLowerCase());
 	}
 }
