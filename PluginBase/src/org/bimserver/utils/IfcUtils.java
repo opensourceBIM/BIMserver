@@ -31,6 +31,7 @@ import java.util.function.Function;
 import org.apache.commons.lang3.NotImplementedException;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.Schema;
 import org.bimserver.geometry.AxisAlignedBoundingBox2D;
 import org.bimserver.geometry.AxisAlignedBoundingBox3D;
 import org.bimserver.geometry.Vector2D;
@@ -595,25 +596,61 @@ public class IfcUtils {
 	}
 
 	public static LengthUnit getLengthUnit(IfcModelInterface model) {
-		IfcSIPrefix prefix = getUnitPrefix(model, IfcUnitEnum.LENGTHUNIT);
-		if (prefix != null) {
-			return LengthUnit.fromPrefix(prefix);
+		if (model.getPackageMetaData().getSchema() == Schema.IFC2X3TC1) {
+			IfcSIPrefix prefix = getUnitPrefix(model, IfcUnitEnum.LENGTHUNIT);
+			if (prefix != null) {
+				return LengthUnit.fromPrefix(prefix);
+			}
+		} else if (model.getPackageMetaData().getSchema() == Schema.IFC4) {
+			org.bimserver.models.ifc4.IfcSIPrefix prefix = getUnitPrefix(model, org.bimserver.models.ifc4.IfcUnitEnum.LENGTHUNIT);
+			if (prefix != null) {
+				return LengthUnit.fromPrefix(prefix);
+			}
+		}
+		return null;
+	}
+
+	public static MassUnit getWeightUnit(IfcModelInterface model) {
+		if (model.getPackageMetaData().getSchema() == Schema.IFC2X3TC1) {
+			IfcSIPrefix prefix = getUnitPrefix(model, IfcUnitEnum.MASSUNIT);
+			if (prefix != null) {
+				return MassUnit.fromPrefix(prefix);
+			}
+		} else if (model.getPackageMetaData().getSchema() == Schema.IFC4) {
+			org.bimserver.models.ifc4.IfcSIPrefix prefix = getUnitPrefix(model, org.bimserver.models.ifc4.IfcUnitEnum.MASSUNIT);
+			if (prefix != null) {
+				return MassUnit.fromPrefix(prefix);
+			}
 		}
 		return null;
 	}
 
 	public static AreaUnit getAreaUnit(IfcModelInterface model) {
-		IfcSIPrefix prefix = getUnitPrefix(model, IfcUnitEnum.AREAUNIT);
-		if (prefix != null) {
-			return AreaUnit.fromPrefix(prefix);
+		if (model.getPackageMetaData().getSchema() == Schema.IFC2X3TC1) {
+			IfcSIPrefix prefix = getUnitPrefix(model, IfcUnitEnum.AREAUNIT);
+			if (prefix != null) {
+				return AreaUnit.fromPrefix(prefix);
+			}
+		} else if (model.getPackageMetaData().getSchema() == Schema.IFC4) {
+			org.bimserver.models.ifc4.IfcSIPrefix prefix = getUnitPrefix(model, org.bimserver.models.ifc4.IfcUnitEnum.AREAUNIT);
+			if (prefix != null) {
+				return AreaUnit.fromPrefix(prefix);
+			}
 		}
 		return null;
 	}
 
 	public static VolumeUnit getVolumeUnit(IfcModelInterface model) {
-		IfcSIPrefix prefix = getUnitPrefix(model, IfcUnitEnum.VOLUMEUNIT);
-		if (prefix != null) {
-			return VolumeUnit.fromPrefix(prefix);
+		if (model.getPackageMetaData().getSchema() == Schema.IFC2X3TC1) {
+			IfcSIPrefix prefix = getUnitPrefix(model, IfcUnitEnum.VOLUMEUNIT);
+			if (prefix != null) {
+				return VolumeUnit.fromPrefix(prefix);
+			}
+		} else if (model.getPackageMetaData().getSchema() == Schema.IFC4) {
+			org.bimserver.models.ifc4.IfcSIPrefix prefix = getUnitPrefix(model, org.bimserver.models.ifc4.IfcUnitEnum.VOLUMEUNIT);
+			if (prefix != null) {
+				return VolumeUnit.fromPrefix(prefix);
+			}
 		}
 		return null;
 	}
@@ -629,6 +666,26 @@ public class IfcUtils {
 						IfcUnitEnum unitType = ifcSIUnit.getUnitType();
 						if (unitType == unitToFind) {
 							IfcSIPrefix prefix = ifcSIUnit.getPrefix();
+							return prefix;
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	public static org.bimserver.models.ifc4.IfcSIPrefix getUnitPrefix(IfcModelInterface model, org.bimserver.models.ifc4.IfcUnitEnum unitToFind) {
+		for (org.bimserver.models.ifc4.IfcProject ifcProject : model.getAll(org.bimserver.models.ifc4.IfcProject.class)) {
+			org.bimserver.models.ifc4.IfcUnitAssignment unitsInContext = ifcProject.getUnitsInContext();
+			if (unitsInContext != null) {
+				EList<org.bimserver.models.ifc4.IfcUnit> units = unitsInContext.getUnits();
+				for (org.bimserver.models.ifc4.IfcUnit unit : units) {
+					if (unit instanceof org.bimserver.models.ifc4.IfcSIUnit) {
+						org.bimserver.models.ifc4.IfcSIUnit ifcSIUnit = (org.bimserver.models.ifc4.IfcSIUnit) unit;
+						org.bimserver.models.ifc4.IfcUnitEnum unitType = ifcSIUnit.getUnitType();
+						if (unitType == unitToFind) {
+							org.bimserver.models.ifc4.IfcSIPrefix prefix = ifcSIUnit.getPrefix();
 							return prefix;
 						}
 					}

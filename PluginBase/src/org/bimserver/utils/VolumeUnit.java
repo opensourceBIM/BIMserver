@@ -19,7 +19,7 @@ package org.bimserver.utils;
 
 import org.bimserver.models.ifc2x3tc1.IfcSIPrefix;
 
-public enum VolumeUnit {
+public enum VolumeUnit implements BasicUnit {
 	CUBIC_METER {
 		@Override
 		public double toCubicMeter(double input) {
@@ -62,6 +62,16 @@ public enum VolumeUnit {
 		return null;
 	}
 
+	public static VolumeUnit fromPrefix(org.bimserver.models.ifc4.IfcSIPrefix prefix) {
+		switch(prefix) {
+		case NULL: 
+			return VolumeUnit.CUBIC_METER;
+		case MILLI:
+			return VolumeUnit.CUBIC_MILLI_METER;
+		}
+		return null;
+	}
+	
 	protected double toCubicMilliMeter(double volume) {
 		throw new AbstractMethodError();
 	}

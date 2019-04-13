@@ -19,7 +19,7 @@ package org.bimserver.utils;
 
 import org.bimserver.models.ifc2x3tc1.IfcSIPrefix;
 
-public enum LengthUnit {
+public enum LengthUnit implements BasicUnit {
 	METER{
 		@Override
 		public float toMeter(float v) {
@@ -84,6 +84,16 @@ public enum LengthUnit {
 	};
 
 	public static LengthUnit fromPrefix(IfcSIPrefix prefix) {
+		switch (prefix) {
+		case NULL:
+			return METER;
+		case MILLI:
+			return MILLI_METER;
+		}
+		return null;
+	}
+
+	public static LengthUnit fromPrefix(org.bimserver.models.ifc4.IfcSIPrefix prefix) {
 		switch (prefix) {
 		case NULL:
 			return METER;
