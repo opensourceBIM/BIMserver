@@ -144,6 +144,15 @@
             "OwnerHistory"
          ]
       },
+      "IsDecomposedBy": {
+        "type": "IfcObjectDefinition",
+        "field": "IsDecomposedBy",
+        "includes": [{
+        	"type": "IfcRelAggregates",
+        	"field": "RelatedObjects",
+        	"includes": ["IsDecomposedBy"]
+        }]
+      },
       "OwnerHistory": {
          "type": "IfcRoot",
          "field": "OwnerHistory",

@@ -108,7 +108,7 @@
       	"includes": [{
       		"type": "IfcRelContainedInSpatialStructure",
       		"fields": ["RelatedElements"],
-      		"includes": ["ContainsElements"]
+      		"includes": ["ContainsElements", "IsDecomposedBy"]
       	}]
       },
       "Decomposes": {
@@ -127,6 +127,15 @@
             },
             "OwnerHistory"
          ]
+      },
+      "IsDecomposedBy": {
+        "type": "IfcObjectDefinition",
+        "field": "IsDecomposedBy",
+        "includes": [{
+        	"type": "IfcRelAggregates",
+        	"field": "RelatedObjects",
+        	"includes": ["IsDecomposedBy", "ContainsElements"]
+        }]
       },
       "OwnerHistory": {
          "type": "IfcRoot",
