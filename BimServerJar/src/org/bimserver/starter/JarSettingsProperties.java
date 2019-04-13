@@ -46,19 +46,21 @@ public class JarSettingsProperties {
 		JarSettingsProperties jarSettingsProperties = new JarSettingsProperties();
 		Properties properties = new Properties();
 		try {
-			try (InputStream inputStream = Files.newInputStream(path)) {
-				properties.load(inputStream);
+			if (Files.exists(path)) {
+				try (InputStream inputStream = Files.newInputStream(path)) {
+					properties.load(inputStream);
+				}
+				jarSettingsProperties.setJvm(properties.getProperty("jvm"));
+				jarSettingsProperties.setHomedir(properties.getProperty("homedir"));
+				jarSettingsProperties.setAddress(properties.getProperty("address"));
+				jarSettingsProperties.setUseProxy(Boolean.valueOf(properties.getProperty("useProxy")));
+				jarSettingsProperties.setProxyHost(properties.getProperty("proxyHost"));
+				jarSettingsProperties.setProxyPort(Integer.parseInt(properties.getProperty("proxyPort")));
+				jarSettingsProperties.setPort(Integer.parseInt(properties.getProperty("port")));
+				jarSettingsProperties.setHeapsize(properties.getProperty("heapsize"));
+				jarSettingsProperties.setStacksize(properties.getProperty("stacksize"));
+				jarSettingsProperties.setForceipv4(Boolean.valueOf(properties.getProperty("forceipv4")));
 			}
-			jarSettingsProperties.setJvm(properties.getProperty("jvm"));
-			jarSettingsProperties.setHomedir(properties.getProperty("homedir"));
-			jarSettingsProperties.setAddress(properties.getProperty("address"));
-			jarSettingsProperties.setUseProxy(Boolean.valueOf(properties.getProperty("useProxy")));
-			jarSettingsProperties.setProxyHost(properties.getProperty("proxyHost"));
-			jarSettingsProperties.setProxyPort(Integer.parseInt(properties.getProperty("proxyPort")));
-			jarSettingsProperties.setPort(Integer.parseInt(properties.getProperty("port")));
-			jarSettingsProperties.setHeapsize(properties.getProperty("heapsize"));
-			jarSettingsProperties.setStacksize(properties.getProperty("stacksize"));
-			jarSettingsProperties.setForceipv4(Boolean.valueOf(properties.getProperty("forceipv4")));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
