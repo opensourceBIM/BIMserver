@@ -21,8 +21,6 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.DoubleBuffer;
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.DateFormat;
@@ -135,8 +133,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 	private GeometryGenerationDebugger geometryGenerationDebugger = new GeometryGenerationDebugger();
 
-	// TODO get this from a setting
-	private boolean generateLayerSets = true;
+	private boolean applyLayerSets;
+
+	private boolean calculateQuantities;
 
 	public StreamingGeometryGenerator(final BimServer bimServer, ProgressListener progressListener, Long eoid, GeometryGenerationReport report) {
 		this.bimServer = bimServer;
@@ -239,6 +238,10 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			try (RenderEngine engine = renderEnginePool.borrowObject()) {
 				VersionInfo versionInfo = renderEnginePool.getRenderEngineFactory().getVersionInfo();
 				report.setRenderEngineVersion(versionInfo);
+				applyLayerSets = engine.isApplyLayerSets();
+				report.setApplyLayersets(applyLayerSets);
+				calculateQuantities = engine.isCalculateQuantities();
+				report.setCalculateQuantities(calculateQuantities);
 			}
 			
 			// TODO reuse, pool the pools :) Or something smarter
@@ -867,7 +870,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		Include decomposes = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Decomposes", true);
 		Include ownerHistory = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":OwnerHistory", true);
 
-		if (generateLayerSets ) {
+		if (applyLayerSets) {
 			if (packageMetaData.getEClass("IfcElement").isSuperTypeOf(eClass)) {
 				Include connected = queryPart.createInclude();
 				connected.addType(eClass, false);
@@ -1150,5 +1153,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 	public String getDebugIdentifier() {
 		return debugIdentifier;
+	}
+	
+	public boolean isCalculateQuantities() {
+		return calculateQuantities;
 	}
 }

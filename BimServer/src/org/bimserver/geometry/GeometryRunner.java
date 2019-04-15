@@ -252,14 +252,16 @@ public class GeometryRunner implements Runnable {
 
 										double volume = 0;
 										ObjectNode additionalData = renderEngineInstance.getAdditionalData();
-										if (additionalData != null) {
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_AdditionalData(), additionalData.toString());
-											if (additionalData.has("TOTAL_SURFACE_AREA")) {
-												geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), additionalData.get("TOTAL_SURFACE_AREA").asDouble());
-											}
-											if (additionalData.has("TOTAL_SHAPE_VOLUME")) {
-												volume = additionalData.get("TOTAL_SHAPE_VOLUME").asDouble();
-												geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), volume);
+										if (streamingGeometryGenerator.isCalculateQuantities()) {
+											if (additionalData != null) {
+												geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_AdditionalData(), additionalData.toString());
+												if (additionalData.has("TOTAL_SURFACE_AREA")) {
+													geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), additionalData.get("TOTAL_SURFACE_AREA").asDouble());
+												}
+												if (additionalData.has("TOTAL_SHAPE_VOLUME")) {
+													volume = additionalData.get("TOTAL_SHAPE_VOLUME").asDouble();
+													geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), volume);
+												}
 											}
 										}
 
@@ -492,13 +494,15 @@ public class GeometryRunner implements Runnable {
 													range.setGeometryDataOid(geometryData.getOid());
 													reusableGeometryData.add(range);
 
-													if (additionalData != null) {
-														geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_AdditionalData(), additionalData.toString());
-														if (additionalData.has("SURFACE_AREA_ALONG_Z")) {
-															geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), additionalData.get("SURFACE_AREA_ALONG_Z").asDouble());
-														}
-														if (additionalData.has("TOTAL_SHAPE_VOLUME")) {
-															geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), additionalData.get("TOTAL_SHAPE_VOLUME").asDouble());
+													if (streamingGeometryGenerator.isCalculateQuantities()) {
+														if (additionalData != null) {
+															geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_AdditionalData(), additionalData.toString());
+															if (additionalData.has("SURFACE_AREA_ALONG_Z")) {
+																geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), additionalData.get("SURFACE_AREA_ALONG_Z").asDouble());
+															}
+															if (additionalData.has("TOTAL_SHAPE_VOLUME")) {
+																geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), additionalData.get("TOTAL_SHAPE_VOLUME").asDouble());
+															}
 														}
 													}
 
