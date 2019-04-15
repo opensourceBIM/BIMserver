@@ -39,7 +39,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class GeometryGenerationReport {
 
-	private static final String REPORT_VERSION = "1.1";
+	private static final String REPORT_VERSION = "1.2";
 	private String renderEngineName;
 	private VersionInfo renderEngineVersion;
 	private String renderEnginePluginVersion;
@@ -60,6 +60,8 @@ public class GeometryGenerationReport {
 	private int numberOfTriangles;
 	private int numberOfTrianglesIncludingReuse;
 	private boolean reuseGeometry;
+	private boolean calculateQuantities;
+	private boolean applyLayersets;
 	private final Map<Integer, String> debugFiles = new ConcurrentSkipListMap<>();
 	private Map<String, Integer> skippedBecauseOfInvalidRepresentationIdentifier = new HashMap<>();
 	
@@ -141,6 +143,11 @@ public class GeometryGenerationReport {
 		settings.put("reuseGeometry", reuseGeometry);
 		settings.put("useMappingOptimization", useMappingOptimization);
 		result.set("settings", settings);
+
+		ObjectNode engineSettings = objectMapper.createObjectNode();
+		settings.put("applyLayersets", applyLayersets);
+		settings.put("calculateQuantities", calculateQuantities);
+		result.set("engineSettings", engineSettings);
 		
 		ObjectNode deserializer = objectMapper.createObjectNode();
 		deserializer.put("name", originalDeserializer);
@@ -245,6 +252,12 @@ public class GeometryGenerationReport {
 		builder.append("<tr><td>Max objects per file</td><td>" + maxObjectsPerFile + "</td></tr>");
 		builder.append("<tr><td>Reuse geometry</td><td>" + reuseGeometry + "</td></tr>");
 		builder.append("<tr><td>Optimize mapped items</td><td>" + useMappingOptimization + "</td></tr>");
+		builder.append("</tbody></table>");
+
+		builder.append("<h3>Render engine settings</h3>");
+		builder.append("<table><tbody>");
+		builder.append("<tr><td>Apple layer sets</td><td>" + applyLayersets + "</td></tr>");
+		builder.append("<tr><td>Calculate quantities</td><td>" + calculateQuantities + "</td></tr>");
 		builder.append("</tbody></table>");
 		
 		builder.append("<h3>Deserializer</h3>");
@@ -410,5 +423,21 @@ public class GeometryGenerationReport {
 	
 	public String getOriginalIfcFileName() {
 		return originalIfcFileName;
+	}
+
+	public boolean isCalculateQuantities() {
+		return calculateQuantities;
+	}
+
+	public void setCalculateQuantities(boolean calculateQuantities) {
+		this.calculateQuantities = calculateQuantities;
+	}
+
+	public boolean isApplyLayersets() {
+		return applyLayersets;
+	}
+
+	public void setApplyLayersets(boolean applyLayersets) {
+		this.applyLayersets = applyLayersets;
 	}
 }
