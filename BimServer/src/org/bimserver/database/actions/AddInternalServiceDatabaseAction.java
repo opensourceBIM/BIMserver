@@ -48,7 +48,7 @@ public class AddInternalServiceDatabaseAction extends AddDatabaseAction<Internal
 		InternalServicePluginConfiguration idEObject = getIdEObject();
 		idEObject.setUserSettings(user.getUserSettings());
 		Plugin plugin = bimServer.getPluginManager().getPlugin(idEObject.getPluginDescriptor().getIdentifier(), true);
-		ObjectType settings = bimServer.convertSettings(getDatabaseSession(), plugin);
+		ObjectType settings = bimServer.convertSettings(getDatabaseSession(), plugin.getUserSettingsDefinition());
 		user.getUserSettings().getServices().add(idEObject);
 		idEObject.setSettings(settings);
 		getDatabaseSession().store(user.getUserSettings());

@@ -487,6 +487,8 @@ public class BimServer implements BasicServerInfoProvider {
 								pluginDescriptor = session.create(PluginDescriptor.class);
 							}
 							
+							ObjectType settings = convertSettings(session, pluginContext.getPlugin().getSystemSettingsDefinition());
+							pluginDescriptor.setSettings(settings);
 							pluginDescriptor.setIdentifier(pluginContext.getIdentifier());
 							pluginDescriptor.setPluginClassName(plugin.getClass().getName());
 							pluginDescriptor.setDescription(pluginContext.getDescription());
@@ -498,7 +500,7 @@ public class BimServer implements BasicServerInfoProvider {
 							pluginDescriptor.setPluginBundleVersion(session.get(pluginBundleVersionId, OldQuery.getDefault()));
 
 							try {
-								pluginContext.initialize(pluginDescriptor.getSettings() == null ? null : new org.bimserver.plugins.PluginConfiguration(pluginDescriptor.getSettings()));
+								pluginContext.initialize(new org.bimserver.plugins.PluginConfiguration(settings));
 							} catch (PluginException e) {
 								LOGGER.error("", e);
 							}
@@ -910,7 +912,7 @@ public class BimServer implements BasicServerInfoProvider {
 
 			pluginConfiguration.setDescription(pluginContext.getDescription());
 			pluginConfiguration.setEnabled(true);
-			pluginConfiguration.setSettings(convertSettings(session, plugin));
+			pluginConfiguration.setSettings(convertSettings(session, plugin.getUserSettingsDefinition()));
 		} catch (NoClassDefFoundError e) {
 			// ignore for now
 		}
@@ -1041,11 +1043,10 @@ public class BimServer implements BasicServerInfoProvider {
 		return renderEnginePools;
 	}
 
-	public ObjectType convertSettings(DatabaseSession session, Plugin plugin) throws BimserverDatabaseException {
+	public ObjectType convertSettings(DatabaseSession session, ObjectDefinition objectDefinition) throws BimserverDatabaseException {
 		ObjectType settings = session.create(ObjectType.class);
-		ObjectDefinition settingsDefinition = plugin.getUserSettingsDefinition();
-		if (plugin.getUserSettingsDefinition() != null) {
-			for (ParameterDefinition parameterDefinition : settingsDefinition.getParameters()) {
+		if (objectDefinition != null) {
+			for (ParameterDefinition parameterDefinition : objectDefinition.getParameters()) {
 				Parameter parameter = session.create(Parameter.class);
 				parameter.setName(parameterDefinition.getName());
 				parameter.setIdentifier(parameterDefinition.getIdentifier());
