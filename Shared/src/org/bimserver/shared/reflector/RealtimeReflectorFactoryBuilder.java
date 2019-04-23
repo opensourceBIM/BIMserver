@@ -35,6 +35,7 @@ import javassist.CtClass;
 import javassist.CtConstructor;
 import javassist.CtField;
 import javassist.CtMethod;
+import javassist.LoaderClassPath;
 import javassist.NotFoundException;
 
 public class RealtimeReflectorFactoryBuilder implements ReflectorFactoryBuilder {
@@ -52,6 +53,7 @@ public class RealtimeReflectorFactoryBuilder implements ReflectorFactoryBuilder 
 		implementationCounter++;
 		try {
 			pool = ClassPool.getDefault();
+			pool.appendClassPath(new LoaderClassPath(getClass().getClassLoader()));
 			pool.insertClassPath(new ClassClassPath(this.getClass()));
 			
 			for (String name : servicesMap.keySetName()) {
