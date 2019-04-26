@@ -58,8 +58,9 @@ public enum VolumeUnit implements BasicUnit {
 			return VolumeUnit.CUBIC_METER;
 		case MILLI:
 			return VolumeUnit.CUBIC_MILLI_METER;
+		default:
+			throw new RuntimeException("Unimplemented prefix: " + prefix);
 		}
-		return null;
 	}
 
 	public static VolumeUnit fromPrefix(org.bimserver.models.ifc4.IfcSIPrefix prefix) {
@@ -68,8 +69,9 @@ public enum VolumeUnit implements BasicUnit {
 			return VolumeUnit.CUBIC_METER;
 		case MILLI:
 			return VolumeUnit.CUBIC_MILLI_METER;
+		default:
+			throw new RuntimeException("Unimplemented prefix: " + prefix);
 		}
-		return null;
 	}
 	
 	protected double toCubicMilliMeter(double volume) {

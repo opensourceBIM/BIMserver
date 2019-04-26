@@ -89,8 +89,9 @@ public enum LengthUnit implements BasicUnit {
 			return METER;
 		case MILLI:
 			return MILLI_METER;
+		default:
+			throw new RuntimeException("Unimplemented prefix: " + prefix);
 		}
-		return null;
 	}
 
 	public static LengthUnit fromPrefix(org.bimserver.models.ifc4.IfcSIPrefix prefix) {
@@ -99,8 +100,9 @@ public enum LengthUnit implements BasicUnit {
 			return METER;
 		case MILLI:
 			return MILLI_METER;
+		default:
+			throw new RuntimeException("Unimplemented prefix: " + prefix);
 		}
-		return null;
 	}
 
 	public AreaUnit toAreaUnit() {

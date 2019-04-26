@@ -59,8 +59,9 @@ public enum AreaUnit implements BasicUnit {
 			return AreaUnit.SQUARED_METER;
 		case MILLI:
 			return AreaUnit.SQUARED_MILLI_METER;
+		default:
+			throw new RuntimeException("Unimplemented prefix: " + prefix);
 		}
-		return null;
 	}
 
 	public static AreaUnit fromPrefix(org.bimserver.models.ifc4.IfcSIPrefix prefix) {
@@ -69,8 +70,9 @@ public enum AreaUnit implements BasicUnit {
 			return AreaUnit.SQUARED_METER;
 		case MILLI:
 			return AreaUnit.SQUARED_MILLI_METER;
+		default:
+			throw new RuntimeException("Unimplemented prefix: " + prefix);
 		}
-		return null;
 	}
 	
 	protected double toSquaredMilliMeters(double area) {

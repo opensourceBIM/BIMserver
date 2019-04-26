@@ -41,16 +41,18 @@ public enum MassUnit implements BasicUnit {
 		switch(prefix) {
 		case NULL: 
 			return MassUnit.KILOGRAM;
+		default:
+			throw new RuntimeException("Unimplemented prefix: " + prefix);
 		}
-		return null;
 	}
 
 	public static MassUnit fromPrefix(org.bimserver.models.ifc4.IfcSIPrefix prefix) {
 		switch(prefix) {
 		case NULL: 
 			return MassUnit.KILOGRAM;
+		default:
+			throw new RuntimeException("Unimplemented prefix: " + prefix);
 		}
-		return null;
 	}
 
 	protected double toCubicMilliMeter(double volume) {
