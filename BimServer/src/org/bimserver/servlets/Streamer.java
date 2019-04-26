@@ -175,7 +175,7 @@ public class Streamer implements EndPoint {
 									}
 								} while (writeMessage);
 								
-								ByteBuffer endMessage = ByteBuffer.allocate(12).order(ByteOrder.LITTLE_ENDIAN);
+								ByteBuffer endMessage = ByteBuffer.allocate(16).order(ByteOrder.LITTLE_ENDIAN);
 								endMessage.putLong(topicId);
 								endMessage.putLong(1);
 								endMessage.position(0);
