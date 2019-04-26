@@ -40,6 +40,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.GregorianCalendar;
 
 import org.bimserver.BimServer;
@@ -160,6 +161,7 @@ public class Streamer implements EndPoint {
 								// }
 
 								byteArrayOutputStream.writeLongUnchecked(topicId);
+								byteArrayOutputStream.writeIntUnchecked(0);
 								do {
 									writeMessage = writer.writeMessage(byteArrayOutputStream, progressReporter);
 									messagesSent++;
@@ -169,8 +171,16 @@ public class Streamer implements EndPoint {
 										streamingSocketInterface.sendBlocking(newBuffer);
 										byteArrayOutputStream.reset();
 										byteArrayOutputStream.writeLongUnchecked(topicId);
+										byteArrayOutputStream.writeIntUnchecked(0);
 									}
 								} while (writeMessage);
+								
+								ByteBuffer endMessage = ByteBuffer.allocate(12).order(ByteOrder.LITTLE_ENDIAN);
+								endMessage.putLong(topicId);
+								endMessage.putInt(1);
+								endMessage.position(0);
+								streamingSocketInterface.sendBlocking(endMessage);
+								
 								// streamingSocketInterface.flush();
 								// long end = System.nanoTime();
 								// LOGGER.info(messagesSent + " messages written
