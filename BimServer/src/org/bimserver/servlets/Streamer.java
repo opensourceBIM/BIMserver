@@ -161,7 +161,7 @@ public class Streamer implements EndPoint {
 								// }
 
 								byteArrayOutputStream.writeLongUnchecked(topicId);
-								byteArrayOutputStream.writeIntUnchecked(0);
+								byteArrayOutputStream.writeLongUnchecked(0);
 								do {
 									writeMessage = writer.writeMessage(byteArrayOutputStream, progressReporter);
 									messagesSent++;
@@ -171,13 +171,13 @@ public class Streamer implements EndPoint {
 										streamingSocketInterface.sendBlocking(newBuffer);
 										byteArrayOutputStream.reset();
 										byteArrayOutputStream.writeLongUnchecked(topicId);
-										byteArrayOutputStream.writeIntUnchecked(0);
+										byteArrayOutputStream.writeLongUnchecked(0);
 									}
 								} while (writeMessage);
 								
 								ByteBuffer endMessage = ByteBuffer.allocate(12).order(ByteOrder.LITTLE_ENDIAN);
 								endMessage.putLong(topicId);
-								endMessage.putInt(1);
+								endMessage.putLong(1);
 								endMessage.position(0);
 								streamingSocketInterface.sendBlocking(endMessage);
 								
