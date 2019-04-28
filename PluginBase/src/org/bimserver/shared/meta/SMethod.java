@@ -41,6 +41,7 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.sun.xml.ws.policy.privateutil.PolicyUtils.Collections;
 
 public class SMethod {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SMethod.class);
@@ -52,7 +53,7 @@ public class SMethod {
 	private String returnDoc;
 	private String name;
 	private SService service;
-	private final Map<PublicInterface, Reflector> reflectorCache = new HashMap<>();
+	private final Map<PublicInterface, Reflector> reflectorCache = java.util.Collections.synchronizedMap(new HashMap<>());
 	
 	@SuppressWarnings("rawtypes")
 	public SMethod(SService service, Method method) {
