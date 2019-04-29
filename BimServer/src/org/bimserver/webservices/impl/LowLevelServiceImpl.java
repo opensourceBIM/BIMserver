@@ -589,7 +589,7 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	@Override
 	public String getEnumAttribute(Long tid, Long oid, String attributeName) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		return (String)getAttribute(tid, oid, attributeName);
+		return getAttribute(tid, oid, attributeName).toString();
 	}
 
 	@Override
