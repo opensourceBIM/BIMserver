@@ -1,5 +1,6 @@
 package org.bimserver.shared.reflector;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.bimserver.generated.GeneratedNeighbourClass;
 import org.bimserver.reflector.NeighbourClass;
 
@@ -42,31 +43,34 @@ public class RealtimeReflectorFactoryBuilder implements ReflectorFactoryBuilder 
 	private static final Logger LOGGER = LoggerFactory.getLogger(RealtimeReflectorFactoryBuilder.class);
 	private SServicesMap servicesMap;
 	private ClassPool pool;
+	private String prefix;
 	private static volatile int implementationCounter = 0;
 	private static final String GENERATED_CLASSES_PACKAGE = "org.bimserver.generated";
 
 	public RealtimeReflectorFactoryBuilder(SServicesMap servicesMap) {
 		this.servicesMap = servicesMap;
+		this.prefix = RandomStringUtils.randomAlphabetic(12);
 	}
 
 	public ReflectorFactory newReflectorFactory() {
-		implementationCounter++;
 		try {
 			pool = ClassPool.getDefault();
 			pool.appendClassPath(new LoaderClassPath(getClass().getClassLoader()));
 			pool.insertClassPath(new ClassClassPath(this.getClass()));
 			
+			String newClassPrefix = getNewClassPrefix();
+
 			for (String name : servicesMap.keySetName()) {
 				SService sService = servicesMap.getByName(name);
-				build1((Class<? extends PublicInterface>) sService.getInterfaceClass(), sService);
-				build2((Class<? extends PublicInterface>) sService.getInterfaceClass(), sService);
+				build1(newClassPrefix, (Class<? extends PublicInterface>) sService.getInterfaceClass(), sService);
+				build2(newClassPrefix, (Class<? extends PublicInterface>) sService.getInterfaceClass(), sService);
 			}
 			
-			CtClass reflectorFactoryImpl = pool.makeClass("org.bimserver.reflector.ReflectorFactoryImpl" + implementationCounter);
+			CtClass reflectorFactoryImpl = pool.makeClass("org.bimserver.reflector.ReflectorFactoryImpl" + newClassPrefix);
 			reflectorFactoryImpl.addInterface(pool.get(ReflectorFactory.class.getName()));
 			
-			createCreateReflectorMethod1(reflectorFactoryImpl);
-			createCreateReflectorMethod2(reflectorFactoryImpl);
+			createCreateReflectorMethod1(newClassPrefix, reflectorFactoryImpl);
+			createCreateReflectorMethod2(newClassPrefix, reflectorFactoryImpl);
 			
 			Class<?> class1 = pool.toClass(reflectorFactoryImpl, NeighbourClass.class, getClass().getClassLoader(), getClass().getProtectionDomain());
 			return (ReflectorFactory) class1.newInstance();
@@ -76,7 +80,12 @@ public class RealtimeReflectorFactoryBuilder implements ReflectorFactoryBuilder 
 		return null;
 	}
 
-	private void createCreateReflectorMethod2(CtClass reflectorFactoryImpl) throws NotFoundException, CannotCompileException {
+	private String getNewClassPrefix() {
+		implementationCounter++;
+		return prefix + "_" + implementationCounter;
+	}
+	
+	private void createCreateReflectorMethod2(String newClassPrefix, CtClass reflectorFactoryImpl) throws NotFoundException, CannotCompileException {
 		CtClass[] parameters = new CtClass[2];
 		parameters[0] = pool.get(Class.class.getName());
 		parameters[1] = pool.get(PublicInterface.class.getName());
@@ -87,7 +96,7 @@ public class RealtimeReflectorFactoryBuilder implements ReflectorFactoryBuilder 
 		for (String name : servicesMap.keySetName()) {
 			SService sService = servicesMap.getByName(name);
 			methodBuilder.append("} else if ($1.getSimpleName().equals(\"" + sService.getSimpleName() + "\")) {");
-			methodBuilder.append("return new " + GENERATED_CLASSES_PACKAGE + "." + sService.getSimpleName() + "Reflector" + implementationCounter + "((" + sService.getInterfaceClass().getName() + ")$2);");
+			methodBuilder.append("return new " + GENERATED_CLASSES_PACKAGE + "." + sService.getSimpleName() + "Reflector" + newClassPrefix + "((" + sService.getInterfaceClass().getName() + ")$2);");
 		}
 		methodBuilder.append("}");
 		methodBuilder.append("return null;");
@@ -96,7 +105,7 @@ public class RealtimeReflectorFactoryBuilder implements ReflectorFactoryBuilder 
 		reflectorFactoryImpl.addMethod(method);
 	}
 
-	private void createCreateReflectorMethod1(CtClass reflectorFactoryImpl) throws NotFoundException, CannotCompileException {
+	private void createCreateReflectorMethod1(String newClassPrefix, CtClass reflectorFactoryImpl) throws NotFoundException, CannotCompileException {
 		CtClass[] parameters = new CtClass[2];
 		parameters[0] = pool.get(Class.class.getName());
 		parameters[1] = pool.get(Reflector.class.getName());
@@ -107,7 +116,7 @@ public class RealtimeReflectorFactoryBuilder implements ReflectorFactoryBuilder 
 		for (String name : servicesMap.keySetName()) {
 			SService sService = servicesMap.getByName(name);
 			methodBuilder.append("} else if ($1.getSimpleName().equals(\"" + sService.getSimpleName() + "\")) {");
-			methodBuilder.append("return new " + GENERATED_CLASSES_PACKAGE + "." + sService.getSimpleName() + "Impl" + implementationCounter + "($2);");
+			methodBuilder.append("return new " + GENERATED_CLASSES_PACKAGE + "." + sService.getSimpleName() + "Impl" + newClassPrefix + "($2);");
 		}
 		methodBuilder.append("}");
 		methodBuilder.append("return null;");
@@ -116,9 +125,9 @@ public class RealtimeReflectorFactoryBuilder implements ReflectorFactoryBuilder 
 		reflectorFactoryImpl.addMethod(method);
 	}
 	
-	private void build1(Class<? extends PublicInterface> interfaceClass, org.bimserver.shared.meta.SService sService) {
+	private void build1(String newClassPrefix, Class<? extends PublicInterface> interfaceClass, org.bimserver.shared.meta.SService sService) {
 		try {
-			CtClass reflectorImplClass = pool.makeClass(GENERATED_CLASSES_PACKAGE + "." + interfaceClass.getSimpleName() + "Impl" + implementationCounter);
+			CtClass reflectorImplClass = pool.makeClass(GENERATED_CLASSES_PACKAGE + "." + interfaceClass.getSimpleName() + "Impl" + newClassPrefix);
 			reflectorImplClass.addInterface(pool.get(interfaceClass.getName()));
 			CtClass reflectorClass = pool.get(Reflector.class.getName());
 			CtField reflectorField = new CtField(reflectorClass, "reflector", reflectorImplClass);
@@ -171,9 +180,9 @@ public class RealtimeReflectorFactoryBuilder implements ReflectorFactoryBuilder 
 		}
 	}
 	
-	private void build2(Class<? extends PublicInterface> interfaceClass, org.bimserver.shared.meta.SService sService) {
+	private void build2(String newClassPrefix, Class<? extends PublicInterface> interfaceClass, org.bimserver.shared.meta.SService sService) {
 		try {
-			CtClass reflectorImplClass = pool.makeClass(GENERATED_CLASSES_PACKAGE + "." + interfaceClass.getSimpleName() + "Reflector" + implementationCounter);
+			CtClass reflectorImplClass = pool.makeClass(GENERATED_CLASSES_PACKAGE + "." + interfaceClass.getSimpleName() + "Reflector" + newClassPrefix);
 			CtClass reflectorClass = pool.get(Reflector.class.getName());
 			CtClass interfaceCtClass = pool.get(interfaceClass.getName());
 			reflectorImplClass.addInterface(reflectorClass);
