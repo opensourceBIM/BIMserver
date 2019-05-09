@@ -695,6 +695,16 @@ public class Matrix {
             sm[12 + smi] = m[12 + mi];
         }
     }
+    
+    public static void scaleM(double[] m, int mOffset,
+    		double x, double y, double z) {
+    	for (int i=0 ; i<4 ; i++) {
+    		int mi = mOffset + i;
+    		m[     mi] *= x;
+    		m[ 4 + mi] *= y;
+    		m[ 8 + mi] *= z;
+    	}
+    }
 
     /**
      * Scales matrix m in place by sx, sy, and sz
