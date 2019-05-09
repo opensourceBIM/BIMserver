@@ -113,7 +113,7 @@ public class Streamer implements EndPoint {
 									LongDownloadOrCheckoutAction longDownloadAction = (LongDownloadOrCheckoutAction) longAction;
 									// NPE happens here sometimes when using the viewer??
 									if (longDownloadAction == null) {
-										LOGGER.error("No long download actions for " + topicId);
+										LOGGER.error("No long download action for " + topicId);
 									} else {
 										writer = longDownloadAction.getMessagingSerializer();
 										return;
