@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.opensourcebim</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.5.141-SNAPSHOT</version>
+		<version>1.5.141</version>
 	</parent>
 	<properties>
 		<jetty.version>9.4.17.v20190418</jetty.version>
@@ -67,7 +67,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>bimserver</artifactId>
-			<version>1.5.141-SNAPSHOT</version>
+			<version>1.5.141</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
