@@ -111,6 +111,23 @@
       		"includes": ["ContainsElements", "IsDecomposedBy"]
       	}]
       },
+      "HasOpenings": {
+      	"type": "IfcElement",
+      	"field": "HasOpenings",
+      	"include": {
+      		"type": "IfcRelVoidsElement",
+      		"field": "RelatedOpeningElement"
+        }	
+      },
+      "ContainsElementsIncludingOpenings": {
+      	"type": "IfcSpatialStructureElement",
+      	"fields": ["ContainsElements"],
+      	"includes": [{
+      		"type": "IfcRelContainedInSpatialStructure",
+      		"fields": ["RelatedElements"],
+      		"includes": ["ContainsElementsIncludingOpenings", "IsDecomposedByIncludingOpenings", "HasOpenings"]
+      	}]
+      },
       "Decomposes": {
          "type": "IfcObjectDefinition",
          "field": "Decomposes",
@@ -135,6 +152,15 @@
         	"type": "IfcRelAggregates",
         	"field": "RelatedObjects",
         	"includes": ["IsDecomposedBy", "ContainsElements"]
+        }]
+      },
+      "IsDecomposedByIncludingOpenings": {
+        "type": "IfcObjectDefinition",
+        "field": "IsDecomposedBy",
+        "includes": [{
+        	"type": "IfcRelAggregates",
+        	"field": "RelatedObjects",
+        	"includes": ["IsDecomposedByIncludingOpenings", "ContainsElementsIncludingOpenings", "HasOpenings"]
         }]
       },
       "OwnerHistory": {
