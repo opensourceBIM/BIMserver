@@ -22,24 +22,41 @@ import org.bimserver.models.ifc2x3tc1.IfcSIPrefix;
 public enum MassUnit implements BasicUnit {
 	KILOGRAM {
 		@Override
-		public double toCubicMeter(double input) {
+		public double toGram(double input) {
+			return input * 1000;
+		}
+
+		@Override
+		public double toKilogram(double input) {
 			return input;
 		}
 
 		@Override
-		public double toCubicMilliMeter(double input) {
-			return input * 1000000000;
+		public double convert(double volume, MassUnit other) {
+			return other.toKilogram(volume);
+		}
+	}, GRAM {
+		@Override
+		public double toGram(double input) {
+			return input;
 		}
 
 		@Override
-		public double convert(double volume, MassUnit modelVolumeUnit) {
-			return modelVolumeUnit.toCubicMeter(volume);
+		public double toKilogram(double input) {
+			return input / 1000d;
+		}
+
+		@Override
+		public double convert(double volume, MassUnit other) {
+			return other.toGram(volume);
 		}
 	};
 
 	public static MassUnit fromPrefix(IfcSIPrefix prefix) {
 		switch(prefix) {
 		case NULL: 
+			return MassUnit.GRAM;
+		case KILO: 
 			return MassUnit.KILOGRAM;
 		default:
 			throw new RuntimeException("Unimplemented prefix: " + prefix);
@@ -48,18 +65,20 @@ public enum MassUnit implements BasicUnit {
 
 	public static MassUnit fromPrefix(org.bimserver.models.ifc4.IfcSIPrefix prefix) {
 		switch(prefix) {
-		case NULL: 
+		case NULL:
+			return MassUnit.GRAM;
+		case KILO:
 			return MassUnit.KILOGRAM;
 		default:
 			throw new RuntimeException("Unimplemented prefix: " + prefix);
 		}
 	}
 
-	protected double toCubicMilliMeter(double volume) {
+	protected double toGram(double volume) {
 		throw new AbstractMethodError();
 	}
 
-	public double toCubicMeter(double input) {
+	public double toKilogram(double input) {
 		throw new AbstractMethodError();
 	}
 
