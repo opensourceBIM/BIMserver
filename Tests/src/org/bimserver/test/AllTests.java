@@ -30,6 +30,7 @@ import org.bimserver.BimServer;
 import org.bimserver.BimServerConfig;
 import org.bimserver.EmbeddedWebServer;
 import org.bimserver.LocalDevPluginLoader;
+import org.bimserver.client.DirectBimServerClientFactory;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
@@ -91,6 +92,8 @@ public class AllTests {
 			client.getAdminInterface().setup("http://localhost:7010", "Test Name", "Test Description", "noicon", "Administrator", "admin@bimserver.org", "admin");
 			ServiceMap serviceMap = bimServer.getServiceFactory().get(new SystemAuthorization(1, TimeUnit.HOURS), AccessMethod.INTERNAL);
 			serviceMap.getSettingsInterface().setCacheOutputFiles(false);
+			
+			((DirectBimServerClientFactory)bimServer.getBimServerClientFactory()).setBaseAddress("http://localhost:7010");
 		
 			client.disconnect();
 			

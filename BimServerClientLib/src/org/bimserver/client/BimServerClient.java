@@ -46,6 +46,7 @@ import org.bimserver.interfaces.objects.SLongCheckinActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.plugins.services.CheckinProgressHandler;
 import org.bimserver.plugins.services.Geometry;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.AutologinAuthenticationInfo;
@@ -269,21 +270,69 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		tokenChangeListeners.add(tokenChangeListener);
 	}
 
-//	public long checkin(long poid, String comment, long deserializerOid, boolean merge, Flow flow, Path file) throws IOException, UserException, ServerException {
-//		FileInputStream fis = new FileInputStream(file.toFile());
-//		long result = checkin(poid, comment, deserializerOid, merge, flow, file.toFile().length(), file.getFileName().toString(), fis);
-//		if (flow == Flow.SYNC) {
-//			fis.close();
-//		}
-//		return result;
-//	}
+	public SLongCheckinActionState checkin(long poid, String comment, long deserializerOid, long fileSize, String filename, InputStream inputStream, CheckinProgressHandler progressHandler) throws ServerException, UserException, PublicInterfaceNotFoundException {
+		long topicId = getServiceInterface().initiateCheckin(poid, deserializerOid);
+		ProgressHandler progressHandlerWrapper = new ProgressHandler() {
+			@Override
+			public void progress(SLongActionState state) {
+				progressHandler.progress(state.getTitle(), state.getProgress());
+			}
+		};
+		getNotificationsManager().registerProgressHandler(topicId, progressHandlerWrapper);
+		channel.checkinAsync(baseAddress, token, poid, comment, deserializerOid, false, fileSize, filename, inputStream, topicId);
+		getNotificationsManager().unregisterProgressHandler(topicId, progressHandlerWrapper);
+		return (SLongCheckinActionState) getRegistry().getProgress(topicId);
+	}
 
+	public SLongCheckinActionState checkin(long poid, String comment, long deserializerOid, Path file, CheckinProgressHandler progressHandler) throws ServerException, UserException, PublicInterfaceNotFoundException {
+		long topicId = getServiceInterface().initiateCheckin(poid, deserializerOid);
+		ProgressHandler progressHandlerWrapper = new ProgressHandler() {
+			@Override
+			public void progress(SLongActionState state) {
+				progressHandler.progress(state.getTitle(), state.getProgress());
+			}
+		};
+		getNotificationsManager().registerProgressHandler(topicId, progressHandlerWrapper);
+		try (InputStream newInputStream = Files.newInputStream(file)) {
+			channel.checkinAsync(baseAddress, token, poid, comment, deserializerOid, false, Files.size(file), file.getFileName().toString(), newInputStream, topicId);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		getNotificationsManager().unregisterProgressHandler(topicId, progressHandlerWrapper);
+		return (SLongCheckinActionState) getRegistry().getProgress(topicId);
+	}
+	
+	public SLongCheckinActionState checkin(long poid, String comment, long deserializerOid, URL url, CheckinProgressHandler progressHandler) throws ServerException, UserException, PublicInterfaceNotFoundException {
+		long topicId = getServiceInterface().initiateCheckin(poid, deserializerOid);
+		ProgressHandler progressHandlerWrapper = new ProgressHandler() {
+			@Override
+			public void progress(SLongActionState state) {
+				progressHandler.progress(state.getTitle(), state.getProgress());
+			}
+		};
+		getNotificationsManager().registerProgressHandler(topicId, progressHandlerWrapper);
+
+		try {
+			InputStream openStream = url.openStream();
+			try {
+				channel.checkinAsync(baseAddress, token, poid, comment, deserializerOid, false, -1, url.toString(), openStream, topicId);
+			} finally {
+				openStream.close();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		getNotificationsManager().unregisterProgressHandler(topicId, progressHandlerWrapper);
+		return (SLongCheckinActionState) getRegistry().getProgress(topicId);
+	}
+	
 	public SLongCheckinActionState checkinSync(long poid, String comment, long deserializerOid, boolean merge, long fileSize, String filename, InputStream inputStream) throws UserException, ServerException {
 		return channel.checkinSync(baseAddress, token, poid, comment, deserializerOid, merge, fileSize, filename, inputStream);
 	}
 
-	public long checkinAsync(long poid, String comment, long deserializerOid, boolean merge, long fileSize, String filename, InputStream inputStream) throws UserException, ServerException {
-		return channel.checkinAsync(baseAddress, token, poid, comment, deserializerOid, merge, fileSize, filename, inputStream);
+	public long checkinAsync(long poid, String comment, long deserializerOid, boolean merge, long fileSize, String filename, InputStream inputStream, long topicId) throws UserException, ServerException {
+		return channel.checkinAsync(baseAddress, token, poid, comment, deserializerOid, merge, fileSize, filename, inputStream, topicId);
 	}
 
 	public void bulkCheckin(long poid, Path file, String comment) throws UserException, ServerException {
@@ -309,11 +358,11 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		return null;
 	}
 
-	public long checkinAsync(long poid, String comment, long deserializerOid, boolean merge, URL url) throws UserException, ServerException {
+	public long checkinAsync(long poid, String comment, long deserializerOid, boolean merge, URL url, long topicId) throws UserException, ServerException {
 		try {
 			InputStream openStream = url.openStream();
 			try {
-				long topicId = channel.checkinAsync(baseAddress, token, poid, comment, deserializerOid, merge, -1, url.toString(), openStream);
+				channel.checkinAsync(baseAddress, token, poid, comment, deserializerOid, merge, -1, url.toString(), openStream, topicId);
 				return topicId;
 			} finally {
 				openStream.close();
@@ -514,10 +563,10 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	}
 
 	@Override
-	public long checkinAsync(long poid, String comment, long deserializerOid, boolean merge, Path file)
+	public long checkinAsync(long poid, String comment, long deserializerOid, boolean merge, Path file, long topicId)
 			throws IOException, UserException, ServerException {
 		try (InputStream newInputStream = Files.newInputStream(file)) {
-			return checkinAsync(poid, comment, deserializerOid, merge, Files.size(file), file.getFileName().toString(), newInputStream);
+			return checkinAsync(poid, comment, deserializerOid, merge, Files.size(file), file.getFileName().toString(), newInputStream, topicId);
 		}
 	}
 	

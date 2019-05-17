@@ -181,18 +181,17 @@ public abstract class Channel implements ServiceHolder {
 		return null;
 	}
 
-	public long checkinAsync(String baseAddress, String token, long poid, String comment, long deserializerOid, boolean merge, long fileSize, String filename, InputStream inputStream) throws ServerException, UserException {
+	public long checkinAsync(String baseAddress, String token, long poid, String comment, long deserializerOid, boolean merge, long fileSize, String filename, InputStream inputStream, long topicId) throws ServerException, UserException {
 		String address = baseAddress + "/upload";
 		HttpPost httppost = new HttpPost(address);
 		try {
-//			Long topicId = getServiceInterface().initiateCheckin(poid, deserializerOid);
 			// TODO find some GzipInputStream variant that _compresses_ instead
 			// of _decompresses_ using deflate for now
 			InputStreamBody data = new InputStreamBody(new DeflaterInputStream(inputStream), filename);
 			
 			MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
 			
-//			multipartEntityBuilder.addPart("topicId", new StringBody("" + topicId, ContentType.DEFAULT_TEXT));
+			multipartEntityBuilder.addPart("topicId", new StringBody("" + topicId, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("token", new StringBody(token, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("deserializerOid", new StringBody("" + deserializerOid, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("merge", new StringBody("" + merge, ContentType.DEFAULT_TEXT));

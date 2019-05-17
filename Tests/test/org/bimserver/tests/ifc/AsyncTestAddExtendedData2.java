@@ -52,7 +52,8 @@ public class AsyncTestAddExtendedData2 {
 			
 			SProject project = client.getServiceInterface().addProject(RandomUtils.nextInt(1, 100000000) + "", "ifc2x3tc1");
 			SDeserializerPluginConfiguration deserializerForExtension = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
-			long topicId = client.checkinAsync(project.getOid(), "initial", deserializerForExtension.getOid(), false, Paths.get("C:\\Git\\TestFiles\\TestData\\data\\AC11-FZK-Haus-IFC.ifc"));
+			long topicId = client.getServiceInterface().initiateCheckin(project.getOid(), deserializerForExtension.getOid());
+			client.checkinAsync(project.getOid(), "initial", deserializerForExtension.getOid(), false, Paths.get("C:\\Git\\TestFiles\\TestData\\data\\AC11-FZK-Haus-IFC.ifc"), topicId);
 			
 			while(true) {
 				SLongCheckinActionState progress = (SLongCheckinActionState) client.getNotificationRegistryInterface().getProgress(topicId);

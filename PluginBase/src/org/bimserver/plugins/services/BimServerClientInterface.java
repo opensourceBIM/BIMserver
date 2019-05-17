@@ -54,12 +54,17 @@ public interface BimServerClientInterface extends ServiceHolder, AutoCloseable {
 	void download(long roid, Query query, long serializerOid, Path file) throws IOException, BimServerClientException;
 	
 	SLongCheckinActionState checkinSync(long poid, String comment, long deserializerOid, boolean merge, Path file) throws IOException, UserException, ServerException;
-	long checkinAsync(long poid, String comment, long deserializerOid, boolean merge, Path file) throws IOException, UserException, ServerException;
+	long checkinAsync(long poid, String comment, long deserializerOid, boolean merge, Path file, long topicId) throws IOException, UserException, ServerException;
+	SLongCheckinActionState checkin(long poid, String comment, long deserializerOid, Path file, CheckinProgressHandler progressHandler) throws ServerException, UserException, PublicInterfaceNotFoundException;
+
 	SLongCheckinActionState checkinSync(long poid, String comment, long deserializerOid, boolean merge, URL url) throws UserException, ServerException;
-	long checkinAsync(long poid, String comment, long deserializerOid, boolean merge, URL url) throws UserException, ServerException;
-	SLongCheckinActionState checkinSync(long poid, String comment, long deserializerOid, boolean merge, long fileSize, String filename, InputStream inputStream) throws UserException, ServerException;
-	long checkinAsync(long poid, String comment, long deserializerOid, boolean merge, long fileSize, String filename, InputStream inputStream) throws UserException, ServerException;
+	long checkinAsync(long poid, String comment, long deserializerOid, boolean merge, URL url, long topicId) throws UserException, ServerException;
+	SLongCheckinActionState checkin(long poid, String comment, long deserializerOid, URL url, CheckinProgressHandler progressHandler) throws ServerException, UserException, PublicInterfaceNotFoundException;
 	
+	SLongCheckinActionState checkinSync(long poid, String comment, long deserializerOid, boolean merge, long fileSize, String filename, InputStream inputStream) throws UserException, ServerException;
+	long checkinAsync(long poid, String comment, long deserializerOid, boolean merge, long fileSize, String filename, InputStream inputStream, long topicId) throws UserException, ServerException;
+	SLongCheckinActionState checkin(long poid, String comment, long deserializerOid, long fileSize, String filename, InputStream inputStream, CheckinProgressHandler progressHandler) throws ServerException, UserException, PublicInterfaceNotFoundException;
+
 	/**
 	 * Convenience method that given you the InputStream belonging to an already started download
 	 * 
