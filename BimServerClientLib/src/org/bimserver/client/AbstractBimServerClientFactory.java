@@ -73,7 +73,6 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 			this.metaDataManager = metaDataManager;
 		}
 		this.servicesMap = new SServicesMap();
-//		servicesMap.setReflectorFactory(new ReflectorFactoryImpl1());
 		SService serviceInterface = new SServiceInterfaceService(servicesMap, null, ServiceInterface.class);
 		addService(serviceInterface);
 		addService(new SService(servicesMap, null, MetaInterface.class));
