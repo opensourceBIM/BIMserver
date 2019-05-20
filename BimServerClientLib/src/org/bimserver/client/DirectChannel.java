@@ -70,7 +70,7 @@ public class DirectChannel extends Channel implements TokenChangeListener {
 	}
 	
 	@Override
-	public SLongCheckinActionState checkinSync(String baseAddress, String token, long poid, String comment, long deserializerOid, boolean merge, long fileSize, String filename, InputStream inputStream) throws ServerException, UserException {
+	public SLongCheckinActionState checkinSync(String baseAddress, String token, long poid, String comment, long deserializerOid, boolean merge, long fileSize, String filename, InputStream inputStream, Long topicId) throws ServerException, UserException {
 		try {
 			return get(ServiceInterface.class).checkinSync(poid, comment, deserializerOid, fileSize, filename, new DataHandler(new InputStreamDataSource(inputStream)), merge);
 		} catch (PublicInterfaceNotFoundException e) {

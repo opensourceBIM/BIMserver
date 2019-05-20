@@ -152,7 +152,7 @@ public class NotificationsManager extends NotificationsClient {
 			progressListeners.get(topicId).remove(progressHandler);
 			bimServerClient.getRegistry().unregisterProgressHandler(topicId, getEndpointid());
 		} catch (UserException e) {
-			LOGGER.error("", e);
+//			LOGGER.error("", e);
 		} catch (ServerException e) {
 			LOGGER.error("", e);
 		} catch (PublicInterfaceNotFoundException e) {

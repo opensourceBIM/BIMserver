@@ -111,11 +111,13 @@ public abstract class Channel implements ServiceHolder {
 
 	public abstract void connect(TokenHolder tokenHolder) throws ChannelConnectionException;
 
-	public SLongCheckinActionState checkinSync(String baseAddress, String token, long poid, String comment, long deserializerOid, boolean merge, long fileSize, String filename, InputStream inputStream) throws ServerException, UserException {
+	public SLongCheckinActionState checkinSync(String baseAddress, String token, long poid, String comment, long deserializerOid, boolean merge, long fileSize, String filename, InputStream inputStream, Long topicId) throws ServerException, UserException {
 		String address = baseAddress + "/upload";
 		HttpPost httppost = new HttpPost(address);
 		try {
-			Long topicId = getServiceInterface().initiateCheckin(poid, deserializerOid);
+			if (topicId == null) {
+				topicId = getServiceInterface().initiateCheckin(poid, deserializerOid);
+			}
 			// TODO find some GzipInputStream variant that _compresses_ instead
 			// of _decompresses_ using deflate for now
 			InputStreamBody data = new InputStreamBody(new DeflaterInputStream(inputStream), filename);

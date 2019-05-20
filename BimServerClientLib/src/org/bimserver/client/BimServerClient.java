@@ -279,9 +279,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 			}
 		};
 		getNotificationsManager().registerProgressHandler(topicId, progressHandlerWrapper);
-		channel.checkinAsync(baseAddress, token, poid, comment, deserializerOid, false, fileSize, filename, inputStream, topicId);
-		getNotificationsManager().unregisterProgressHandler(topicId, progressHandlerWrapper);
-		return (SLongCheckinActionState) getRegistry().getProgress(topicId);
+		return channel.checkinSync(baseAddress, token, poid, comment, deserializerOid, false, fileSize, filename, inputStream, topicId);
 	}
 
 	public SLongCheckinActionState checkin(long poid, String comment, long deserializerOid, Path file, CheckinProgressHandler progressHandler) throws ServerException, UserException, PublicInterfaceNotFoundException {
@@ -328,7 +326,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	}
 	
 	public SLongCheckinActionState checkinSync(long poid, String comment, long deserializerOid, boolean merge, long fileSize, String filename, InputStream inputStream) throws UserException, ServerException {
-		return channel.checkinSync(baseAddress, token, poid, comment, deserializerOid, merge, fileSize, filename, inputStream);
+		return channel.checkinSync(baseAddress, token, poid, comment, deserializerOid, merge, fileSize, filename, inputStream, null);
 	}
 
 	public long checkinAsync(long poid, String comment, long deserializerOid, boolean merge, long fileSize, String filename, InputStream inputStream, long topicId) throws UserException, ServerException {
@@ -343,7 +341,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		try {
 			InputStream openStream = url.openStream();
 			try {
-				SLongCheckinActionState longActionState = channel.checkinSync(baseAddress, token, poid, comment, deserializerOid, merge, -1, url.toString(), openStream);
+				SLongCheckinActionState longActionState = channel.checkinSync(baseAddress, token, poid, comment, deserializerOid, merge, -1, url.toString(), openStream, null);
 				if (longActionState.getState() == SActionState.AS_ERROR) {
 					throw new UserException(Joiner.on(", ").join(longActionState.getErrors()));
 				} else {
@@ -521,6 +519,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 
 	@Override
 	public void close() throws Exception {
+		disconnect();
 	}
 
 	public void downloadExtendedData(long edid, Path outputFile) throws IOException {
