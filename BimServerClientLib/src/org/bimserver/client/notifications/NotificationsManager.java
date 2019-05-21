@@ -78,7 +78,6 @@ public class NotificationsManager extends NotificationsClient {
 	}
 	
 	public void start() {
-		System.out.println("Starting websocket");
 		webSocketClient = new WebSocketClient();
 		try {
 			webSocketClient.start();
@@ -87,7 +86,6 @@ public class NotificationsManager extends NotificationsClient {
 		}
 		try {
 			URI uri = URI.create("ws://" + address + "/stream");
-			System.out.println(uri);
 			webSocketImpl = new WebSocketImpl(this);
 			ClientUpgradeRequest request = new ClientUpgradeRequest();
 			webSocketClient.connect(webSocketImpl, uri, request);

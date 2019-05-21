@@ -8,6 +8,7 @@ import org.bimserver.shared.json.ConvertException;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketClose;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
+import org.eclipse.jetty.websocket.api.annotations.OnWebSocketError;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import org.slf4j.Logger;
@@ -48,7 +49,6 @@ public class WebSocketImpl {
     @OnWebSocketConnect
     public void onConnect(Session session) {
         this.session = session;
-        System.out.println("Connect");
     }
  
     @OnWebSocketMessage
@@ -76,5 +76,10 @@ public class WebSocketImpl {
 		} catch (Exception e) {
 			LOGGER.error("", e);
 		}
+    }
+    
+    @OnWebSocketError
+    public void methodName(Session session, Throwable error) {
+    	LOGGER.error("", error);
     }
 }
