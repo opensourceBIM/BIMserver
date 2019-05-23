@@ -40,6 +40,6 @@ public class ListWaitingVirtualObject extends WaitingVirtualObject {
 	
 	@Override
 	public String toString() {
-		return getLineNumber() + ": " + getObject() + " " + getStructuralFeature().getName() + " (index: " + index + ")";
+		return "L" + getLineNumber() + ": " + getObject() + " " + getStructuralFeature().getName() + " (index: " + index + ")";
 	}
 }
