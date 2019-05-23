@@ -124,9 +124,9 @@ import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.web.WebModulePlugin;
 import org.bimserver.pluginsettings.PluginSettingsCache;
-import org.bimserver.renderengine.NoPoolingRenderEnginePoolFactory;
 import org.bimserver.renderengine.RenderEnginePoolFactory;
 import org.bimserver.renderengine.RenderEnginePools;
+import org.bimserver.renderengine.pooled.CommonsPoolingRenderEnginePoolFactory;
 import org.bimserver.schemaconverter.Ifc2x3tc1ToIfc4SchemaConverterFactory;
 import org.bimserver.schemaconverter.Ifc4ToIfc2x3tc1SchemaConverterFactory;
 import org.bimserver.schemaconverter.SchemaConverterManager;
@@ -747,10 +747,9 @@ public class BimServer implements BasicServerInfoProvider {
 			
 			serverInfoManager.update();
 
-//			int renderEngineProcesses = getServerSettingsCache().getServerSettings().getRenderEngineProcesses();
-//			RenderEnginePoolFactory renderEnginePoolFactory = new CommonsPoolingRenderEnginePoolFactory(renderEngineProcesses);
+			int renderEngineProcesses = getServerSettingsCache().getServerSettings().getRenderEngineProcesses();
+			RenderEnginePoolFactory renderEnginePoolFactory = new CommonsPoolingRenderEnginePoolFactory(renderEngineProcesses);
 
-			RenderEnginePoolFactory renderEnginePoolFactory = new NoPoolingRenderEnginePoolFactory();
 			renderEnginePools = new RenderEnginePools(this, renderEnginePoolFactory);
 
 			if (serverInfoManager.getServerState() == ServerState.MIGRATION_REQUIRED) {

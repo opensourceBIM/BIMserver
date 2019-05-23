@@ -235,13 +235,18 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			report.setRenderEngineName(renderEngine.getName());
 			report.setRenderEnginePluginVersion(renderEngine.getPluginDescriptor().getPluginBundleVersion().getVersion());
 			
-			try (RenderEngine engine = renderEnginePool.borrowObject()) {
-				VersionInfo versionInfo = renderEnginePool.getRenderEngineFactory().getVersionInfo();
-				report.setRenderEngineVersion(versionInfo);
+			VersionInfo versionInfo = renderEnginePool.getRenderEngineFactory().getVersionInfo();
+			report.setRenderEngineVersion(versionInfo);
+
+			// TODO there must be a cleaner way of getting this info, since it's in the database...
+			RenderEngine engine = renderEnginePool.borrowObject();
+			try {
 				applyLayerSets = engine.isApplyLayerSets();
 				report.setApplyLayersets(applyLayerSets);
 				calculateQuantities = engine.isCalculateQuantities();
 				report.setCalculateQuantities(calculateQuantities);
+			} finally {
+				renderEnginePool.returnObject(engine);
 			}
 			
 			// TODO reuse, pool the pools :) Or something smarter

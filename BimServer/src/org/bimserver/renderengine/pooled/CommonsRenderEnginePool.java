@@ -25,13 +25,21 @@ import org.bimserver.plugins.renderengine.RenderEngine;
 import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.renderengine.RenderEngineFactory;
 import org.bimserver.renderengine.RenderEnginePool;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CommonsRenderEnginePool implements RenderEnginePool {
+	private static final Logger LOGGER = LoggerFactory.getLogger(CommonsRenderEnginePool.class);
 	private GenericObjectPool<RenderEngine> genericObjectPool;
 	private RenderEngineFactory renderEngineFactory;
 	
 	public CommonsRenderEnginePool(int poolSize, RenderEngineFactory renderEngineFactory) throws RenderEngineException {
+		LOGGER.info("Pool size: " + poolSize);
 		this.renderEngineFactory = renderEngineFactory;
+		
+		// This pool is currently only used for making sure there is a max amount of engines running simultaneously.
+		// It is not actually pooling the render engines because the render engines used are not stable enough to reuse at the moment.
+		
 		PooledObjectFactory<RenderEngine> pooledObjectFactory = new PooledObjectFactory<RenderEngine>() {
 			@Override
 			public void activateObject(PooledObject<RenderEngine> arg0) throws Exception {
@@ -45,11 +53,13 @@ public class CommonsRenderEnginePool implements RenderEnginePool {
 
 			@Override
 			public PooledObject<RenderEngine> makeObject() throws Exception {
-				return new DefaultPooledObject<RenderEngine>(renderEngineFactory.createRenderEngine());
+				RenderEngine createRenderEngine = renderEngineFactory.createRenderEngine();
+				return new DefaultPooledObject<RenderEngine>(createRenderEngine);
 			}
 
 			@Override
 			public void passivateObject(PooledObject<RenderEngine> arg0) throws Exception {
+				arg0.getObject().close();
 			}
 
 			@Override
@@ -60,14 +70,15 @@ public class CommonsRenderEnginePool implements RenderEnginePool {
 		
 		genericObjectPool = new GenericObjectPool<RenderEngine>(pooledObjectFactory);
 		
-		genericObjectPool.setMaxWaitMillis(1000 * 60 * 1);
-		genericObjectPool.setMaxTotal(8);
+		genericObjectPool.setMaxWaitMillis(1000 * 60 * 60);
+		genericObjectPool.setMaxTotal(poolSize);
 	}
 
 	@Override
 	public RenderEngine borrowObject() throws RenderEngineException {
 		try {
-			return genericObjectPool.borrowObject();
+			RenderEngine borrowObject = genericObjectPool.borrowObject();
+			return borrowObject;
 		} catch (Exception e) {
 			throw new RenderEngineException(e);
 		}
