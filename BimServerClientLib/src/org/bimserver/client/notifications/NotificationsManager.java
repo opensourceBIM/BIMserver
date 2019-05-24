@@ -61,6 +61,7 @@ public class NotificationsManager extends NotificationsClient {
 	private NotificationInterface service;
 	private WebSocketClient webSocketClient;
 	private WebSocketImpl webSocketImpl;
+	private WebSocketHeartbeat heartbeat;
 
 	public NotificationsManager(BimServerClient bimServerClient) {
 		this.bimServerClient = bimServerClient;
@@ -90,6 +91,7 @@ public class NotificationsManager extends NotificationsClient {
 			ClientUpgradeRequest request = new ClientUpgradeRequest();
 			webSocketClient.connect(webSocketImpl, uri, request);
 			webSocketImpl.waitForEndpointId();
+			heartbeat = new WebSocketHeartbeat(webSocketImpl);
 			running = true;
 		} catch (IOException e) {
 			LOGGER.error("", e);
@@ -104,6 +106,12 @@ public class NotificationsManager extends NotificationsClient {
 
 	public void disconnect() {
 		running = false;
+		if (heartbeat != null) {
+			try {
+				heartbeat.shutdown();
+			} catch (Exception e) {
+			}
+		}
 		if (webSocketImpl != null) {
 			webSocketImpl.close();
 		}
