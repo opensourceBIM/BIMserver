@@ -1,5 +1,6 @@
 package org.bimserver.client.notifications;
 
+import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -14,6 +15,7 @@ import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
@@ -51,6 +53,14 @@ public class WebSocketImpl {
         this.session = session;
     }
  
+    public void send(JsonNode jsonNode) {
+    	try {
+			this.session.getRemote().sendString(jsonNode.toString());
+		} catch (IOException e) {
+			LOGGER.error("", e);
+		}
+    }
+    
     @OnWebSocketMessage
     public void onMessage(String msg) {
     	try {
@@ -79,7 +89,7 @@ public class WebSocketImpl {
     }
     
     @OnWebSocketError
-    public void methodName(Session session, Throwable error) {
+    public void onError(Session session, Throwable error) {
     	LOGGER.error("", error);
     }
 }
