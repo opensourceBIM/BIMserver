@@ -134,4 +134,14 @@ public class Query {
 	public void setOriginalJson(ObjectNode originalJson) {
 		this.originalJson = originalJson;
 	}
+
+	public QueryPart insertQueryPart() {
+		QueryPart queryPart = new QueryPart(packageMetaData);
+		queryParts.add(0, queryPart);
+		return queryPart;
+	}
+
+	public void clear() {
+		this.queryParts.clear();
+	}
 }
