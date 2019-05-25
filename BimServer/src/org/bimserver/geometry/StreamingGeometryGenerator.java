@@ -336,6 +336,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 											Set<HashMapVirtualObject> items = representationItem.getDirectListFeature(itemsFeature);
 											if (items == null || items.size() > 1) {
 												// Only if there is just one item, we'll store this for reuse
+												// TODO actually we could store them for > 1 as well, only they should only be used (2nd stage) for products that use the exact same items, for now
 												continue;
 											}
 											// So this next loop always results in 1 (or no) loops
@@ -355,8 +356,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 												if (!hasValidRepresentationIdentifier(mappedRepresentation)) {
 													// Skip this mapping, we should store somewhere that this object should also be skipped in the normal way
-													// TODO too many log statements, should log only 1 line for the complete model
-//													LOGGER.info("Skipping because of invalid RepresentationIdentifier in mapped item (" + (String) mappedRepresentation.get("RepresentationIdentifier") + ")");
 													report.addSkippedBecauseOfInvalidRepresentationIdentifier((String) mappedRepresentation.get("RepresentationIdentifier"));
 													toSkip.add(next.getOid());
 													continue;
@@ -441,6 +440,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 													
 													pd.setProductMatrix(productMatrix);
 													pd.setMappingMatrix(mappingMatrix);
+													pd.setRepresentationOid(representationItem.getOid());
 													map.put(next.getOid(), pd);
 												}
 											}
@@ -477,10 +477,13 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 								continue;
 							}
 							
+							Set<Long> representationOids = new HashSet<>();
+							
 							for (ProductDef pd : map.values()) {
 								done.add(pd.getOid());
 								if (!optimizeMappedItems) {
 									queryPart.addOid(pd.getOid());
+									representationOids.add(pd.getRepresentationOid());
 									
 									// In theory these should be fused together during querying
 //									queryPart3.addOid(pd.getMappedItemOid());
@@ -490,13 +493,14 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 							}
 							if (optimizeMappedItems) {
 								queryPart.addOid(masterOid);
+								representationOids.add(masterProductDef.getRepresentationOid());
 							}
 							
 							LOGGER.debug("Running " + map.size() + " objects in one batch because of reused geometry " + (eClass.getName()));
 
 //							queryPart3.addInclude(jsonQueryObjectModelConverter.getDefineFromFile("ifc2x3tc1-stdlib:IfcMappedItem"));
 							
-							processQuery(databaseSession, queryContext, generateGeometryResult, ifcSerializerPlugin, settings, renderEngineFilter, renderEnginePool, executor, eClass, query, queryPart, true, map, map.size());
+							processQuery(databaseSession, queryContext, generateGeometryResult, ifcSerializerPlugin, settings, renderEngineFilter, renderEnginePool, executor, eClass, query, queryPart, true, map, map.size(), representationOids);
 						}
 					}
 					
@@ -517,6 +521,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					next = queryObjectProvider2.next();
 					
 					Query query = new Query("Main " + eClass.getName(), packageMetaData);
+					query.setDoubleBuffer(true);
 					QueryPart queryPart = query.createQueryPart();
 					int written = 0;
 					
@@ -529,31 +534,38 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 						maxObjectsPerFile = 100;
 					}
 					
+//					maxObjectsPerFile = 1;
+					
 //					LOGGER.info(report.getOriginalIfcFileName());
 //					LOGGER.info("Max objects per file: " + maxObjectsPerFile + " (" + eClass.getName() + ": " + nrProductsWithRepresentation + ")");
 					
 					report.setMaxPerFile(maxObjectsPerFile);
 					
+					Set<Long> representationOids = new HashSet<>();
 					while (next != null) {
+						// Not sure why the duplicate code in the next 20 lines
 						if (next.eClass() == eClass && !done.contains(next.getOid()) && !toSkip.contains(next.getOid())) {
 							AbstractHashMapVirtualObject representation = next.getDirectFeature(representationFeature);
 							if (representation != null) {
 								Set<HashMapVirtualObject> list = representation.getDirectListFeature(packageMetaData.getEReference("IfcProductRepresentation", "Representations"));
-								boolean goForIt = goForIt(list);
-								if (goForIt) {
+								Set<Long> goForIt = goForIt(list);
+								if (!goForIt.isEmpty()) {
 									if (next.eClass() == eClass && !done.contains(next.getOid())) {
 										representation = next.getDirectFeature(representationFeature);
 										if (representation != null) {
 											list = representation.getDirectListFeature(packageMetaData.getEReference("IfcProductRepresentation", "Representations"));
-											boolean goForIt2 = goForIt(list);
-											if (goForIt2) {
+											Set<Long> goForIt2 = goForIt(list);
+											if (!goForIt2.isEmpty()) {
 												queryPart.addOid(next.getOid());
+												representationOids.addAll(goForIt2);
 												written++;
 												if (written >= maxObjectsPerFile) {
-													processQuery(databaseSession, queryContext, generateGeometryResult, ifcSerializerPlugin, settings, renderEngineFilter, renderEnginePool, executor, eClass, query, queryPart, false, null, written);
+													processQuery(databaseSession, queryContext, generateGeometryResult, ifcSerializerPlugin, settings, renderEngineFilter, renderEnginePool, executor, eClass, query, queryPart, false, null, written, representationOids);
 													query = new Query("Main " + eClass.getName(), packageMetaData);
+													query.setDoubleBuffer(true);
 													queryPart = query.createQueryPart();
 													written = 0;
+													representationOids.clear();
 												}
 											}
 										}
@@ -564,7 +576,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 						next = queryObjectProvider2.next();
 					}
 					if (written > 0) {
-						processQuery(databaseSession, queryContext, generateGeometryResult, ifcSerializerPlugin, settings, renderEngineFilter, renderEnginePool, executor, eClass, query, queryPart, false, null, written);
+						processQuery(databaseSession, queryContext, generateGeometryResult, ifcSerializerPlugin, settings, renderEngineFilter, renderEnginePool, executor, eClass, query, queryPart, false, null, written, representationOids);
 					}
 				}
 			}
@@ -579,27 +591,31 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 //			ByteBuffer verticesQuantized = quantizeVertices(vertices, quantizationMatrix, generateGeometryResult.getMultiplierToMm());
 //			geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_VerticesQuantized(), verticesQuantized.array());
 
-			LOGGER.debug("Generating quantized vertices");
-			double[] quantizationMatrix = createQuantizationMatrixFromBounds(generateGeometryResult.getBoundsUntransformed(), multiplierToMm);
-			for (Long id : geometryDataMap.keySet()) {
-				Tuple<HashMapVirtualObject, ByteBuffer> tuple = geometryDataMap.get(id);
-				
-				HashMapVirtualObject buffer = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getBuffer());
+			
+			// TODO, disable?
+			if (true) {
+				LOGGER.debug("Generating quantized vertices");
+				double[] quantizationMatrix = createQuantizationMatrixFromBounds(generateGeometryResult.getBoundsUntransformed(), multiplierToMm);
+				for (Long id : geometryDataMap.keySet()) {
+					Tuple<HashMapVirtualObject, ByteBuffer> tuple = geometryDataMap.get(id);
+					
+					HashMapVirtualObject buffer = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getBuffer());
 //				Buffer buffer = databaseSession.create(Buffer.class);
-				buffer.set("data", quantizeVertices(tuple.getB().asDoubleBuffer(), quantizationMatrix, multiplierToMm).array());
+					buffer.set("data", quantizeVertices(tuple.getB().asDoubleBuffer(), quantizationMatrix, multiplierToMm).array());
 //				buffer.setData(quantizeVertices(tuple.getB(), quantizationMatrix, multiplierToMm).array());
 //				databaseSession.store(buffer);
-				buffer.save();
-				HashMapVirtualObject geometryData = tuple.getA();
-				geometryData.set("verticesQuantized", buffer.getOid());
-				int reused = (int) geometryData.eGet(GeometryPackage.eINSTANCE.getGeometryData_Reused());
-				int nrTriangles = (int) geometryData.eGet(GeometryPackage.eINSTANCE.getGeometryData_NrIndices()) / 3;
-				int saveableTriangles = Math.max(0, (reused - 1)) * nrTriangles;
-				geometryData.set("saveableTriangles", saveableTriangles);
+					buffer.save();
+					HashMapVirtualObject geometryData = tuple.getA();
+					geometryData.set("verticesQuantized", buffer.getOid());
+					int reused = (int) geometryData.eGet(GeometryPackage.eINSTANCE.getGeometryData_Reused());
+					int nrTriangles = (int) geometryData.eGet(GeometryPackage.eINSTANCE.getGeometryData_NrIndices()) / 3;
+					int saveableTriangles = Math.max(0, (reused - 1)) * nrTriangles;
+					geometryData.set("saveableTriangles", saveableTriangles);
 //				if (saveableTriangles > 0) {
 //					System.out.println("Saveable triangles: " + saveableTriangles);
 //				}
-				geometryData.saveOverwrite();
+					geometryData.saveOverwrite();
+				}
 			}
 
 			long end = System.nanoTime();
@@ -745,8 +761,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		return 1000f;
 	}
 
-	private boolean goForIt(Set<HashMapVirtualObject> list) {
-		boolean goForIt = false;
+	private Set<Long> goForIt(Set<HashMapVirtualObject> list) {
+		Set<Long> representationOids = new HashSet<>();
 		if (list != null) {
 			boolean foundValidContext = false;
 			for (HashMapVirtualObject representationItem : list) {
@@ -762,14 +778,14 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 						if (directListFeature != null) {
 							int nrItems = directListFeature.size();
 							if (nrItems != 0) {
-								goForIt = true;
+								representationOids.add(representationItem.getOid());
 							}
 						}
 					}
 				}
 			}
 		}
-		return goForIt;
+		return representationOids;
 	}
 
 	private boolean usableContext(HashMapVirtualObject representationItem) {
@@ -855,10 +871,11 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	}
 
 	private void processQuery(final DatabaseSession databaseSession, QueryContext queryContext, GenerateGeometryResult generateGeometryResult, final StreamingSerializerPlugin ifcSerializerPlugin, final RenderEngineSettings settings,
-			final RenderEngineFilter renderEngineFilter, RenderEnginePool renderEnginePool, ThreadPoolExecutor executor, EClass eClass, Query query, QueryPart queryPart, boolean geometryReused, Map<Long, ProductDef> map, int nrObjects) throws QueryException, IOException {
+			final RenderEngineFilter renderEngineFilter, RenderEnginePool renderEnginePool, ThreadPoolExecutor executor, EClass eClass, Query query, QueryPart queryPart, boolean geometryReused, Map<Long, ProductDef> map, int nrObjects, Set<Long> representationOids) throws QueryException, IOException {
 		JsonQueryObjectModelConverter jsonQueryObjectModelConverter = new JsonQueryObjectModelConverter(packageMetaData);
 		
-		String queryNameSpace = packageMetaData.getSchema().name().toLowerCase() + "-stdlib";
+		String lowerCasePackage = packageMetaData.getSchema().name().toLowerCase();
+		String queryNameSpace = lowerCasePackage + "-stdlib";
 		
 		if (eClass.getName().equals("IfcAnnotation")) {
 			// IfcAnnotation also has the field ContainedInStructure, but that is it's own field (looks like a hack on the IFC-spec side)
@@ -869,8 +886,32 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		if (packageMetaData.getSchema() == Schema.IFC4) {
 			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":IsTypedBy", true));
 		}
+
+		// TODO this includes all representations, should only include "Body" and "Facetation"
+		Include representationInclude = new Include(packageMetaData);
+		representationInclude.addType(eClass, false);
+		representationInclude.addField("Representation");
+		representationInclude.addField("HasAssociations");
+		Include hasAssociations = representationInclude.createInclude();
+		hasAssociations.addInclude(queryNameSpace + ":IfcRelAssociatesMaterial");
 		
-		Include representationInclude = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Representation", true);
+		QueryPart secondPart = query.insertQueryPart();
+		secondPart.addType(packageMetaData.getEClass("IfcRepresentation"), true);
+		for (long oid : representationOids) {
+			secondPart.addOid(oid);
+		}
+		
+		// TODO addInclude(String) does not seem to work
+
+		secondPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(lowerCasePackage + "-geometry:IfcStyleModel", true));
+		secondPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(lowerCasePackage + "-geometry:IfcStyledRepresentation", true));
+		secondPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(lowerCasePackage + "-geometry:IfcRepresentation", true));
+		secondPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(lowerCasePackage + "-geometry:IfcBooleanResult", true));
+		secondPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(lowerCasePackage + "-geometry:IfcShapeModel", true));
+		secondPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(lowerCasePackage + "-geometry:IfcShapeRepresentation", true));
+		secondPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(lowerCasePackage + "-geometry:IfcTopologyRepresentation", true));
+		
+//		Include representationInclude = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Representation", true);
 		Include objectPlacement = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ObjectPlacement", true);
 		Include decomposes = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Decomposes", true);
 		Include ownerHistory = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":OwnerHistory", true);
@@ -938,7 +979,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			Include hasOpenings = openingsInclude.createInclude();
 			hasOpenings.addType(packageMetaData.getEClass("IfcRelVoidsElement"), false);
 			hasOpenings.addField("RelatedOpeningElement");
-			hasOpenings.addInclude(representationInclude);
+			hasOpenings.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Representation", true));
 			hasOpenings.addInclude(objectPlacement);
 			//						Include relatedOpeningElement = hasOpenings.createInclude();
 			//						relatedOpeningElement.addType(packageMetaData.getEClass("IfcOpeningElement"), false);

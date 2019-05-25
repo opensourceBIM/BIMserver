@@ -27,6 +27,7 @@ public class ProductDef {
 	private double[] mappingMatrix;
 	private double[] productMatrix;
 	private long mappedItemOid;
+	private long representationOid;
 
 	public ProductDef(long oid) {
 		this.oid = oid;
@@ -75,5 +76,13 @@ public class ProductDef {
 	public void setMappedItemOid(long mappedItemOid) {
 		this.mappedItemOid = mappedItemOid;
 		
+	}
+
+	public void setRepresentationOid(long representationOid) {
+		this.representationOid = representationOid;
+	}
+	
+	public long getRepresentationOid() {
+		return representationOid;
 	}
 }

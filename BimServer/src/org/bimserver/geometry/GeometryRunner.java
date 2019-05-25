@@ -132,8 +132,10 @@ public class GeometryRunner implements Runnable {
 				long oid = next.getOid();
 				queryPart.addOid(oid);
 				if (eClass.isSuperTypeOf(next.eClass())) {
-					if (originalQuery.getQueryParts().get(0).getOids().contains(oid)) {
-						job.addObject(next.getOid(), next.eClass().getName());
+					for (QueryPart qp : originalQuery.getQueryParts()) {
+						if (qp.getOids().contains(oid)) {
+							job.addObject(next.getOid(), next.eClass().getName());
+						}
 					}
 				}
 				next = objectProvider.next();
@@ -151,8 +153,10 @@ public class GeometryRunner implements Runnable {
 					public void newObject(HashMapVirtualObject next) {
 						if (eClass.isSuperTypeOf(next.eClass())) {
 							if (next.eGet(GeometryRunner.this.streamingGeometryGenerator.representationFeature) != null) {
-								if (originalQuery.getQueryParts().get(0).getOids().contains(next.getOid())) {
-									objects.add(next);
+								for (QueryPart qp : originalQuery.getQueryParts()) {
+									if (qp.getOids().contains(next.getOid())) {
+										objects.add(next);
+									}
 								}
 							}
 						}
@@ -781,6 +785,7 @@ public class GeometryRunner implements Runnable {
 					}
 				} finally {
 					if (renderEngine != null) {
+						job.setCpuTime(renderEngine.getCpuTime());
 						renderEnginePool.returnObject(renderEngine);
 					}
 					try {
