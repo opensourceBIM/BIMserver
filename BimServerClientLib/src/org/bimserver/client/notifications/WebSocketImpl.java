@@ -32,7 +32,9 @@ public class WebSocketImpl {
     }
  
 	public void close() {
-		session.close();
+		if (session != null) {
+			session.close();
+		}
 	}
 	
     public void waitForEndpointId() {
