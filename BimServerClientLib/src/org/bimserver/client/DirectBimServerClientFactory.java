@@ -48,4 +48,8 @@ public class DirectBimServerClientFactory<T extends PublicInterface> extends Abs
 		bimServerClient.setAuthentication(authenticationInfo);
 		return bimServerClient;
 	}
+
+	public void setBaseAddress(String baseAddress) {
+		this.baseAddress = baseAddress;
+	}
 }
