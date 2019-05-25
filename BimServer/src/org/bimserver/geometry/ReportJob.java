@@ -26,6 +26,7 @@ public class ReportJob {
 	private Exception exception;
 	private long end;
 	private long start;
+	private long cpuTime;
 	private String mainType;
 	private int nrObjects;
 	private boolean usesMapping;
@@ -101,5 +102,13 @@ public class ReportJob {
 	
 	public int getId() {
 		return id;
+	}
+
+	public long getCpuTime() {
+		return cpuTime;
+	}
+
+	public void setCpuTime(long cpuTime) {
+		this.cpuTime = cpuTime;
 	}
 }

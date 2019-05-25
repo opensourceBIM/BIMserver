@@ -167,6 +167,7 @@ public class GeometryGenerationReport {
 			jobNode.put("usesMapping", job.isUsesMapping());
 			jobNode.put("trianglesGenerated", job.getTrianglesGenerated());
 			jobNode.put("totalTimeNanos", job.getTotalNanos());
+			jobNode.put("cpuTime", job.getCpuTime());
 			
 			if (job.getException() != null) {
 				StringWriter writer = new StringWriter();
@@ -297,6 +298,7 @@ public class GeometryGenerationReport {
 //			}
 //			builder.append("</td>");
 			builder.append("<td>" + Formatters.millisecondsToString(job.getTotalNanos() / 1000000) + "</td>");
+			builder.append("<td>" + job.getCpuTime() + "</td>");
 			if (job.getException() != null) {
 				StringWriter writer = new StringWriter();
 				job.getException().printStackTrace(new PrintWriter(writer));

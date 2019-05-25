@@ -54,4 +54,6 @@ public interface RenderEngine extends AutoCloseable {
 	boolean isCalculateQuantities();
 
 	boolean isApplyLayerSets();
+	
+	long getCpuTime();
 }
