@@ -200,6 +200,12 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 				include.dump(indent + 1, sb);
 			}
 		}
+		if (hasIncludesToResolve()) {
+			sb.append(indent(indent) + "includes (to resolve)\n");
+			for (String include : getIncludesToResolve()) {
+				sb.append(indent(indent + 1) + include + "\n");
+			}
+		}
 		if (hasInBoundingBox()) {
 			sb.append(indent(indent) + "inBoundingBox\n");
 			inBoundingBox.dump(indent + 1, sb);
