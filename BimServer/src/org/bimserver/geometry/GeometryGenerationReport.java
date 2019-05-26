@@ -163,6 +163,16 @@ public class GeometryGenerationReport {
 			ObjectNode jobNode = objectMapper.createObjectNode();
 			jobNode.put("id", job.getId());
 			jobNode.put("mainType", job.getMainType());
+			
+			ArrayNode objectsNode = objectMapper.createArrayNode();
+			for (Long oid : job.getObjects().keySet()) {
+				ObjectNode objectNode = objectMapper.createObjectNode();
+				objectNode.put("oid", oid);
+				objectNode.put("type", job.getObjects().get(oid));
+				objectsNode.add(objectNode);
+			}
+			jobNode.set("objects", objectsNode);
+			
 			jobNode.put("nrObjects", job.getNrObjects());
 			jobNode.put("usesMapping", job.isUsesMapping());
 			jobNode.put("trianglesGenerated", job.getTrianglesGenerated());
