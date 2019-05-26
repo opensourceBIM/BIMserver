@@ -54,6 +54,7 @@ import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.renderengine.EntityNotFoundException;
+import org.bimserver.plugins.renderengine.Metrics;
 import org.bimserver.plugins.renderengine.RenderEngine;
 import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.plugins.renderengine.RenderEngineFilter;
@@ -785,7 +786,10 @@ public class GeometryRunner implements Runnable {
 					}
 				} finally {
 					if (renderEngine != null) {
-						job.setCpuTime(renderEngine.getCpuTime());
+						Metrics metrics = renderEngine.getMetrics();
+						if (metrics != null) {
+							job.setCpuTime(metrics.getCpuTime());
+						}
 						renderEnginePool.returnObject(renderEngine);
 					}
 					try {
