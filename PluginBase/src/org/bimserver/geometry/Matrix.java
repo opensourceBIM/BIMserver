@@ -757,6 +757,20 @@ public class Matrix {
                 m[12 + mi];
         }
     }
+    
+    public static void translateM(double[] tm, int tmOffset,
+    		double[] m, int mOffset,
+    		double x, double y, double z) {
+        for (int i=0 ; i<12 ; i++) {
+            tm[tmOffset + i] = m[mOffset + i];
+        }
+        for (int i=0 ; i<4 ; i++) {
+            int tmi = tmOffset + i;
+            int mi = mOffset + i;
+            tm[12 + tmi] = m[mi] * x + m[4 + mi] * y + m[8 + mi] * z +
+                m[12 + mi];
+        }
+    }
 
     /**
      * Translates matrix m by x, y, and z in place.
