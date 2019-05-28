@@ -452,4 +452,16 @@ public class GeometryGenerationReport {
 	public void setApplyLayersets(boolean applyLayersets) {
 		this.applyLayersets = applyLayersets;
 	}
+	
+	public GregorianCalendar getStart() {
+		return start;
+	}
+	
+	public GregorianCalendar getEnd() {
+		return end;
+	}
+	
+	public long getTimeToGenerateMs() {
+		return end.getTimeInMillis() - start.getTimeInMillis();
+	}
 }

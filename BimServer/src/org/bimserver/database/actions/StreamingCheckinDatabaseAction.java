@@ -222,30 +222,31 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 				}
 			};
 			
-			GeometryGenerationReport report = new GeometryGenerationReport();
-			report.setOriginalIfcFileName(fileName);
-			report.setOriginalIfcFileSize(bytesRead.get());
-			report.setNumberOfObjects(size);
-			report.setOriginalDeserializer(pluginBundleVersion.getGroupId() + "." + pluginBundleVersion.getArtifactId() + ":" + pluginBundleVersion.getVersion());
-			
-			StreamingGeometryGenerator geometryGenerator = new StreamingGeometryGenerator(getBimServer(), progressListener, -1L, report);
-			setProgress("Generating geometry...", 0);
+			GeometryGenerationReport report = null;
+			if (getBimServer().getServerSettingsCache().getServerSettings().isGenerateGeometryOnCheckin()) {
+				report = new GeometryGenerationReport();
+				report.setOriginalIfcFileName(fileName);
+				report.setOriginalIfcFileSize(bytesRead.get());
+				report.setNumberOfObjects(size);
+				report.setOriginalDeserializer(pluginBundleVersion.getGroupId() + "." + pluginBundleVersion.getArtifactId() + ":" + pluginBundleVersion.getVersion());
+				StreamingGeometryGenerator geometryGenerator = new StreamingGeometryGenerator(getBimServer(), progressListener, -1L, report);
+				setProgress("Generating geometry...", 0);
 
-			long start = System.nanoTime();
-			GenerateGeometryResult generateGeometry = geometryGenerator.generateGeometry(getActingUid(), getDatabaseSession(), queryContext, size);
-			long end = System.nanoTime();
+				GenerateGeometryResult generateGeometry = geometryGenerator.generateGeometry(getActingUid(), getDatabaseSession(), queryContext, size);
 			
-			for (Revision other : concreteRevision.getRevisions()) {
-				other.setHasGeometry(true);
+				for (Revision other : concreteRevision.getRevisions()) {
+					other.setHasGeometry(true);
+				}
+				concreteRevision.setMultiplierToMm(generateGeometry.getMultiplierToMm());
+				concreteRevision.setBounds(generateGeometry.getBounds());
+				concreteRevision.setBoundsUntransformed(generateGeometry.getBoundsUntransformed());
+				
+				// TODO terrible code, but had to get it going quickly, will cleanup later
+				
+				generateDensityAndBounds(result, generateGeometry, concreteRevision);
 			}
 			
-			concreteRevision.setMultiplierToMm(generateGeometry.getMultiplierToMm());
-			concreteRevision.setBounds(generateGeometry.getBounds());
-			concreteRevision.setBoundsUntransformed(generateGeometry.getBoundsUntransformed());
-
-			// TODO terrible code, but had to get it going quickly, will cleanup later
-			
-			generateDensityAndBounds(result, generateGeometry, concreteRevision);
+			final GeometryGenerationReport finalReport = report;
 			
 //			float[] quantizationMatrix = createQuantizationMatrixFromBounds(newRevision.getBoundsMm());
 			
@@ -339,11 +340,6 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 				concreteRevision.setClear(true);
 			}
 
-			byte[] htmlBytes = report.toHtml().getBytes(Charsets.UTF_8);
-			byte[] jsonBytes = report.toJson().toString().getBytes(Charsets.UTF_8);
-
-			long timeToGenerateMs = (end - start) / 1000000;
-			
 			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 				@Override
 				public void execute() throws UserException {
@@ -358,15 +354,19 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 					} catch (ServiceException e) {
 						LOGGER.error("", e);
 					}
-					try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession()) {
-						AddGeometryReports addGeometryReports = new AddGeometryReports(tmpSession, AccessMethod.INTERNAL, htmlBytes, jsonBytes, timeToGenerateMs, authorization.getUoid(), revision.getOid());
-						try {
-							tmpSession.executeAndCommitAction(addGeometryReports);
-						} catch (ServerException e1) {
+					if (finalReport != null) {
+						byte[] htmlBytes = finalReport.toHtml().getBytes(Charsets.UTF_8);
+						byte[] jsonBytes = finalReport.toJson().toString().getBytes(Charsets.UTF_8);
+						try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession()) {
+							AddGeometryReports addGeometryReports = new AddGeometryReports(tmpSession, AccessMethod.INTERNAL, htmlBytes, jsonBytes, finalReport.getTimeToGenerateMs(), authorization.getUoid(), revision.getOid());
+							try {
+								tmpSession.executeAndCommitAction(addGeometryReports);
+							} catch (ServerException e1) {
+								LOGGER.error("", e1);
+							}
+						} catch (BimserverDatabaseException e1) {
 							LOGGER.error("", e1);
 						}
-					} catch (BimserverDatabaseException e1) {
-						LOGGER.error("", e1);
 					}
 				}
 			});
