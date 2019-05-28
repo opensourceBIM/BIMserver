@@ -50,6 +50,14 @@ public class Vector {
     public static float[] addition(float[] u, float[] v){
         return new float[]{u[X]+v[X],u[Y]+v[Y],u[Z]+v[Z]};
     }
+    public static double[] addition(double[] u, double[] v){
+    	return new double[]{u[X]+v[X],u[Y]+v[Y],u[Z]+v[Z]};
+    }
+    public static void addition(double[] output, double[] u, double[] v){
+    	output[X] = u[X]+v[X];
+    	output[Y] = u[Y]+v[Y];
+    	output[Z] = u[Z]+v[Z];
+    }
     public static double[] subtract(double[] u, double[] v){
     	return new double[]{u[X]-v[X],u[Y]-v[Y],u[Z]-v[Z], 1};
     }
@@ -59,6 +67,10 @@ public class Vector {
     //scalar product
     public static float[] scalarProduct(float r, float[] u){
         return new float[]{u[X]*r,u[Y]*r,u[Z]*r};
+    }
+    //scalar product
+    public static float[] scalarProduct2(float r, float[] u){
+    	return new float[]{u[X]*r,u[Y]*r};
     }
     //scalar product
     public static double[] scalarProduct(double r, double[] u){
