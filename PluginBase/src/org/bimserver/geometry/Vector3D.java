@@ -18,7 +18,7 @@ package org.bimserver.geometry;
  * {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-public class Vector3D extends Vector0D {
+public class Vector3D extends Vector0D implements Comparable<Vector3D> {
 
 	private double x;
 	private double y;
@@ -66,6 +66,20 @@ public class Vector3D extends Vector0D {
 			return y;
 		case 2:
 			return z;
+		}
+		return 0;
+	}
+
+	@Override
+	public int compareTo(Vector3D o) {
+		if (o.x != x) {
+			return Double.compare(o.x, x);
+		}
+		if (o.y != y) {
+			return Double.compare(o.y, y);
+		}
+		if (o.z != z) {
+			return Double.compare(o.z, z);
 		}
 		return 0;
 	}
