@@ -19,12 +19,13 @@ package org.bimserver.mail;
 
 import java.util.Properties;
 
+import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.Message.RecipientType;
 import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.URLName;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
@@ -34,9 +35,6 @@ import org.bimserver.models.store.SmtpProtocol;
 import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.sun.mail.smtp.SMTPSSLTransport;
-import com.sun.mail.smtp.SMTPTransport;
 
 public class EmailMessage {
 
@@ -62,36 +60,37 @@ public class EmailMessage {
 		props.put("mail.smtp.connectiontimeout", 10000);
 		props.put("mail.smtp.timeout", 10000);
 		props.put("mail.smtp.writetimeout", 10000);
+		props.put("mail.smtp.host", serverSettings.getSmtpServer());
+		props.put("mail.smtp.port", serverSettings.getSmtpPort());
+		props.put("mail.smtp.auth", serverSettings.getSmtpUsername() != null);
 		
 		props.put(smtpProps, serverSettings.getSmtpPort());
 		
 		if (serverSettings.getSmtpProtocol() == SmtpProtocol.STARTTLS) {
 			props.put("mail.smtp.starttls.enable","true");
 		}
+
+		Session session = null;
 		
-		Session mailSession = Session.getInstance(props);
-		
-		Transport transport = null;
+		if (serverSettings.getSmtpUsername() != null) {
+			session = Session.getInstance(props, new Authenticator() {
+				@Override
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication(serverSettings.getSmtpUsername(), serverSettings.getSmtpPassword());
+				}
+			});
+		} else {
+			session = Session.getInstance(props);
+		}
 		
 		try {
-			if (serverSettings.getSmtpProtocol() == SmtpProtocol.SMTP) {
-				transport = new SMTPTransport(mailSession, new URLName(serverSettings.getSmtpServer()));
-			} else if (serverSettings.getSmtpProtocol() == SmtpProtocol.SMTPS) {
-				transport = new SMTPSSLTransport(mailSession, new URLName(serverSettings.getSmtpServer()));
-			} else if (serverSettings.getSmtpProtocol() == SmtpProtocol.STARTTLS) {
-				transport = new SMTPSSLTransport(mailSession, new URLName(serverSettings.getSmtpServer()));
-			} else {
-				throw new RuntimeException("Unimplemented SMTP protocol: " + serverSettings.getSmtpProtocol());
-			}
-			transport.connect(serverSettings.getSmtpServer(), serverSettings.getSmtpPort(), serverSettings.getSmtpUsername(), serverSettings.getSmtpPassword());
-
-			Message message = new MimeMessage(mailSession);
+			Message message = new MimeMessage(session);
 			message.setSubject(subject);
 			message.setRecipients(to, addressTo);
 			message.setContent(body, contentType);
 			message.setFrom(from);
 			
-			transport.sendMessage(message, addressTo);
+			Transport.send(message, addressTo);
 		} catch (MessagingException e) {
 			LOGGER.error("Error sending email " + body + " " + e.getMessage());
 			throw new UserException("Error sending email " + e.getMessage());
