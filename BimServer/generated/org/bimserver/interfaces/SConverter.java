@@ -424,7 +424,7 @@ public class SConverter {
 		Bounds boundsMmVal = input.getBoundsMm();
 		result.setBoundsMm(convertToSObject(boundsMmVal));
 		ColorPack colorPackVal = input.getColorPack();
-		result.setColorPackId(colorPackVal == null ? -1 : colorPackVal.getOid());
+		result.setColorPack(convertToSObject(colorPackVal));
 		return result;
 	}
 
@@ -467,7 +467,7 @@ public class SConverter {
 		result.setColor(convertFromSObject(input.getColor(), session));
 		result.setMostUsedColor(convertFromSObject(input.getMostUsedColor(), session));
 		result.setBoundsMm(convertFromSObject(input.getBoundsMm(), session));
-		result.setColorPack((ColorPack)session.get(GeometryPackage.eINSTANCE.getColorPack(), input.getColorPackId(), OldQuery.getDefault()));
+		result.setColorPack(convertFromSObject(input.getColorPack(), session));
 		return result;
 	}
 

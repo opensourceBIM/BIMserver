@@ -95,7 +95,9 @@
         <eAnnotations source="hidden"/>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="saveableTriangles" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="colorPack" eType="#/0/ColorPack"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="colorPack" eType="#/0/ColorPack">
+        <eAnnotations source="embedsreference"/>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Vector4f">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>

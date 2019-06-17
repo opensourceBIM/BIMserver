@@ -36,8 +36,7 @@ public class Step0048 extends Migration {
 		schema.createEAttribute(colorPack, "data", EcorePackage.eINSTANCE.getEByteArray());
 		
 		EClass geometryData = schema.getEClass("geometry", "GeometryData");
-		// TODO embedded?
-		schema.createEReference(geometryData, "colorPack", colorPack);
+		schema.createEReference(geometryData, "colorPack", colorPack).getEAnnotations().add(createEmbedsReferenceAnnotation());
 	}
 
 	@Override
