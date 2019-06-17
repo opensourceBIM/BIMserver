@@ -594,6 +594,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GetTilesCallback {
+		void success(java.util.List<org.bimserver.interfaces.objects.STile> result);
+		void error(Throwable e);
+	}
+	
 	public interface GetTopLevelProjectByNameCallback {
 		void success(org.bimserver.interfaces.objects.SProject result);
 		void error(Throwable e);
@@ -2128,6 +2133,18 @@ public class AsyncServiceInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getTileCounts(roids, excludedTypes, geometryIdsToReuse, minimumThreshold, maximumThreshold, depth));
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getTiles(final java.util.Set<java.lang.Long> roids, final java.util.Set<java.lang.String> excludedTypes, final java.util.Set<java.lang.Long> geometryIdsToReuse, final java.lang.Float minimumThreshold, final java.lang.Float maximumThreshold, final java.lang.Integer depth, final GetTilesCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getTiles(roids, excludedTypes, geometryIdsToReuse, minimumThreshold, maximumThreshold, depth));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

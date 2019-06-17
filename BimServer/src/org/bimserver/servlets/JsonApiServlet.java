@@ -19,7 +19,6 @@ package org.bimserver.servlets;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;

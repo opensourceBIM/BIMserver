@@ -64,7 +64,7 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 		if (metaDataManager == null) {
 			try {
 				this.metaDataManager = new MetaDataManager(Files.createTempDirectory("bimserver-tmp"));
-				this.metaDataManager.init();
+				this.metaDataManager.init(false);
 			} catch (IOException e) {
 				throw new BimServerClientException("Problem creating tmp directory");
 			}

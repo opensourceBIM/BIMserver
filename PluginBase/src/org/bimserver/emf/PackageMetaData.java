@@ -21,12 +21,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc4.Ifc4Package;
@@ -51,7 +53,7 @@ import nl.tue.buildingsmart.schema.ExplicitAttribute;
 import nl.tue.buildingsmart.schema.InverseAttribute;
 import nl.tue.buildingsmart.schema.SchemaDefinition;
 
-public class PackageMetaData implements ObjectFactory {
+public class PackageMetaData implements ObjectFactory, Comparable<PackageMetaData> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(PackageMetaData.class);
 	private final Map<String, Set<EClass>> directSubClasses = new TreeMap<String, Set<EClass>>();
 	private final Map<String, Set<EClass>> allSubClasses = new TreeMap<String, Set<EClass>>();
@@ -63,7 +65,7 @@ public class PackageMetaData implements ObjectFactory {
 	private final Map<EReference, Boolean> hasInverseCache = new HashMap<EReference, Boolean>();
 	private final EPackage ePackage;
 	private final Schema schema;
-	private final Set<PackageMetaData> dependencies = new HashSet<>();
+	private final Set<PackageMetaData> dependencies = new TreeSet<>();
 	private SchemaDefinition schemaDefinition;
 	private final Map<EClass, Set<EStructuralFeature>> useForSerialization = new HashMap<>();
 	private final Map<EClass, Set<EStructuralFeature>> useForDatabaseStorage = new HashMap<>();
@@ -436,13 +438,20 @@ public class PackageMetaData implements ObjectFactory {
 		throw new RuntimeException("Inverse cache not initialized for " + eReference.getName());
 	}
 
-
+	// This is a slow method, but only used in code generators
 	@SuppressWarnings("unchecked")
 	public Set<EClass> getDirectSubClasses(EClass superClass) {
 		if (!directSubClasses.containsKey(superClass.getName())) {
 			return java.util.Collections.EMPTY_SET;
 		}
-		return directSubClasses.get(superClass.getName());
+		// Converting to TreeSet in order to make the orders stable, this way the generated source will be more stable (not change all the time)
+		Set<EClass> result = new TreeSet<EClass>(new Comparator<EClass>() {
+			@Override
+			public int compare(EClass o1, EClass o2) {
+				return o1.getName().compareTo(o2.getName());
+			}});
+		result.addAll(directSubClasses.get(superClass.getName()));
+		return result;
 	}
 	
 	public Set<EClass> getAllSubClasses(EClass superClass) {
@@ -459,7 +468,7 @@ public class PackageMetaData implements ObjectFactory {
 	}
 
 	public Set<EClass> getAllSubClassesIncludingSelf(EClass superClass) {
-		HashSet<EClass> set = new HashSet<>(getAllSubClasses(superClass));
+		Set<EClass> set = new TreeSet<>(getAllSubClasses(superClass));
 		set.add(superClass);
 		return set;
 	}
@@ -566,7 +575,7 @@ public class PackageMetaData implements ObjectFactory {
 	private void buildUseForSerializationSet(EClass eClass) {
 		if (this.getSchemaDefinition() != null) {
 			if (!useForSerialization.containsKey(eClass)) {
-				HashSet<EStructuralFeature> set = new HashSet<>();
+				Set<EStructuralFeature> set = new HashSet<>();
 				for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
 					EntityDefinition entityBN = this.getSchemaDefinition().getEntityBN(eClass.getName());
 //					if (eStructuralFeature.getEAnnotation("hidden") != null) {
@@ -595,7 +604,7 @@ public class PackageMetaData implements ObjectFactory {
 
 	private void buildUseForDatabaseStorage(EClass eClass) {
 		if (this.getSchemaDefinition() != null) {
-			HashSet<EStructuralFeature> set = new HashSet<>();
+			Set<EStructuralFeature> set = new HashSet<>();
 			for (EStructuralFeature eStructuralFeature : eClass.getEAllStructuralFeatures()) {
 				EntityDefinition entityBN = this.getSchemaDefinition().getEntityBN(eClass.getName());
 				if (entityBN == null) {
@@ -1002,5 +1011,10 @@ public class PackageMetaData implements ObjectFactory {
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public int compareTo(PackageMetaData o) {
+		return getSchema().compareTo(o.getSchema());
 	}
 }

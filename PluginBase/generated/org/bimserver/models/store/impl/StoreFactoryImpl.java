@@ -298,6 +298,8 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 			return (EObject) createDensity();
 		case StorePackage.LONG_CHECKIN_ACTION_STATE:
 			return (EObject) createLongCheckinActionState();
+		case StorePackage.TILE:
+			return (EObject) createTile();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -1561,6 +1563,17 @@ public class StoreFactoryImpl extends EFactoryImpl implements StoreFactory {
 	public LongCheckinActionState createLongCheckinActionState() {
 		LongCheckinActionStateImpl longCheckinActionState = new LongCheckinActionStateImpl();
 		return longCheckinActionState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Tile createTile() {
+		TileImpl tile = new TileImpl();
+		return tile;
 	}
 
 	/**

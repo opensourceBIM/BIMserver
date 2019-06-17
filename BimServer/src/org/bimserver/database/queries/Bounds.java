@@ -18,6 +18,9 @@ package org.bimserver.database.queries;
  *****************************************************************************/
 
 import org.bimserver.interfaces.objects.SBounds;
+import org.bimserver.interfaces.objects.SVector3f;
+import org.bimserver.models.geometry.GeometryFactory;
+import org.bimserver.models.geometry.Vector3f;
 
 public class Bounds {
 	private double minX;
@@ -175,5 +178,35 @@ public class Bounds {
 	public Bounds scale(Bounds from, Bounds to) {
 		
 		return null;
+	}
+
+	public org.bimserver.models.geometry.Bounds toDbBounds() {
+		org.bimserver.models.geometry.Bounds bounds = GeometryFactory.eINSTANCE.createBounds();
+		Vector3f min = GeometryFactory.eINSTANCE.createVector3f();
+		min.setX(getMinX());
+		min.setY(getMinY());
+		min.setZ(getMinZ());
+		Vector3f max = GeometryFactory.eINSTANCE.createVector3f();
+		max.setX(getMaxX());
+		max.setY(getMaxY());
+		max.setZ(getMaxZ());
+		bounds.setMin(min);
+		bounds.setMax(max);
+		return bounds;
+	}
+
+	public SBounds toSBounds() {
+		SBounds bounds = new SBounds();
+		SVector3f min = new SVector3f();
+		min.setX(getMinX());
+		min.setY(getMinY());
+		min.setZ(getMinZ());
+		SVector3f max = new SVector3f();
+		max.setX(getMaxX());
+		max.setY(getMaxY());
+		max.setZ(getMaxZ());
+		bounds.setMin(min);
+		bounds.setMax(max);
+		return bounds;
 	}
 }

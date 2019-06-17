@@ -152,7 +152,7 @@ public class Octree extends Node {
 		Traverser traverser = new Traverser() {
 			@Override
 			public void traverse(Node t) {
-				nodeCounter.counted(t.getId(), t.valuesSize(minimumThreshold, maximumThreshold));
+				nodeCounter.counted(t, t.valuesSize(minimumThreshold, maximumThreshold));
 			}
 		};
 		for (int l=0; l<=Math.min(getDeepestLevel(), maxDepth); l++) {
@@ -171,7 +171,7 @@ public class Octree extends Node {
 						}};
 						node.traverseBreathFirst(countingTraverser);
 						if (count.get() > 0) {
-							nodeCounter.counted(node.getId(), count.get());
+							nodeCounter.counted(node, count.get());
 						}
 					}
 				}

@@ -69,14 +69,16 @@ public class MetaDataManager {
 		this.tempDir = tempDir;
 	}
 	
-	public void init() {
+	public void init(boolean suppressOutput) {
 		ThreadPoolExecutor executor = new ThreadPoolExecutor(Runtime.getRuntime().availableProcessors(), Runtime.getRuntime().availableProcessors(), 1, TimeUnit.HOURS, new ArrayBlockingQueue<>(5));
 
 		PrintStream oldErr = System.err;
 		PrintStream oldOut = System.out;
-		PrintStream nop = new PrintStream(new ByteArrayOutputStream());
-		System.setErr(nop);
-		System.setOut(nop);
+		if (suppressOutput) {
+			PrintStream nop = new PrintStream(new ByteArrayOutputStream());
+			System.setErr(nop);
+			System.setOut(nop);
+		}
 		
 		executor.submit(new PackageLoader(this, Ifc2x3tc1Package.eINSTANCE, Schema.IFC2X3TC1));
 		executor.submit(new PackageLoader(this, Ifc4Package.eINSTANCE, Schema.IFC4));
@@ -91,8 +93,10 @@ public class MetaDataManager {
 			LOGGER.error("", e);
 		}
 
-		System.setErr(oldErr);
-		System.setOut(oldOut);
+		if (suppressOutput) {
+			System.setErr(oldErr);
+			System.setOut(oldOut);
+		}
 
 		initDependencies();
 	}

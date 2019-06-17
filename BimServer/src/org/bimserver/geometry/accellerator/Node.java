@@ -143,7 +143,7 @@ public class Node {
 		}
 	}
 
-	private Bounds getBounds() {
+	public Bounds getBounds() {
 		return bounds;
 	}
 

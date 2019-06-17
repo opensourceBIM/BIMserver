@@ -12600,5 +12600,11 @@
     <genClasses ecoreClass="models.ecore#/4/LongCheckinActionState">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/LongCheckinActionState/roid"/>
     </genClasses>
+    <genClasses ecoreClass="models.ecore#/4/Tile">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Tile/tileId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Tile/nrObjects"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/Tile/minBounds"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/Tile/bounds"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

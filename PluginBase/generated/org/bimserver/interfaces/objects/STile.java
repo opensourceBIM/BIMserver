@@ -16,26 +16,23 @@ package org.bimserver.interfaces.objects;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
-@XmlSeeAlso(value={SDeserializerPluginConfiguration.class, SInternalServicePluginConfiguration.class, SModelComparePluginConfiguration.class, SModelMergerPluginConfiguration.class, SObjectIDMPluginConfiguration.class, SQueryEnginePluginConfiguration.class, SRenderEnginePluginConfiguration.class, SSerializerPluginConfiguration.class, SWebModulePluginConfiguration.class})
-public class SPluginConfiguration implements SDataBase
+public class STile implements SDataBase
 {
 	private long oid = -1;
 	private int rid = 0;
 
 	@XmlTransient
 	private static SClass sClass;
-	private java.lang.String name;
-	private java.lang.Boolean enabled;
-	private java.lang.String description;
-	private long pluginDescriptorId = -1;
-	private long settingsId = -1;
+	private int tileId;
+	private int nrObjects;
+	private SBounds minBounds;
+	private SBounds bounds;
 
 	public long getOid() {
 		return this.oid;
@@ -59,24 +56,21 @@ public class SPluginConfiguration implements SDataBase
 	}
 	
 	public static void setSClass(SClass sClass) {
-		SPluginConfiguration.sClass = sClass;
+		STile.sClass = sClass;
 	}
 
 	public Object sGet(SField sField) {
-		if (sField.getName().equals("name")) {
-			return getName();
+		if (sField.getName().equals("tileId")) {
+			return getTileId();
 		}
-		if (sField.getName().equals("enabled")) {
-			return getEnabled();
+		if (sField.getName().equals("nrObjects")) {
+			return getNrObjects();
 		}
-		if (sField.getName().equals("description")) {
-			return getDescription();
+		if (sField.getName().equals("minBounds")) {
+			return getMinBounds();
 		}
-		if (sField.getName().equals("pluginDescriptorId")) {
-			return getPluginDescriptorId();
-		}
-		if (sField.getName().equals("settingsId")) {
-			return getSettingsId();
+		if (sField.getName().equals("bounds")) {
+			return getBounds();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -88,24 +82,20 @@ public class SPluginConfiguration implements SDataBase
 	}
 
 	public void sSet(SField sField, Object val) {
-		if (sField.getName().equals("name")) {
-			setName((String)val);
+		if (sField.getName().equals("tileId")) {
+			setTileId((Integer)val);
 			return;
 		}
-		if (sField.getName().equals("enabled")) {
-			setEnabled((Boolean)val);
+		if (sField.getName().equals("nrObjects")) {
+			setNrObjects((Integer)val);
 			return;
 		}
-		if (sField.getName().equals("description")) {
-			setDescription((String)val);
+		if (sField.getName().equals("minBounds")) {
+			setMinBounds((SBounds)val);
 			return;
 		}
-		if (sField.getName().equals("pluginDescriptorId")) {
-			setPluginDescriptorId((Long)val);
-			return;
-		}
-		if (sField.getName().equals("settingsId")) {
-			setSettingsId((Long)val);
+		if (sField.getName().equals("bounds")) {
+			setBounds((SBounds)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -119,45 +109,39 @@ public class SPluginConfiguration implements SDataBase
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 	
-	public java.lang.String getName() {
-		return name;
+	public int getTileId() {
+		return tileId;
 	}
 
-	public void setName(java.lang.String name) {
-		this.name = name;
+	public void setTileId(int tileId) {
+		this.tileId = tileId;
 	}
 	
-	public java.lang.Boolean getEnabled() {
-		return enabled;
+	public int getNrObjects() {
+		return nrObjects;
 	}
 
-	public void setEnabled(java.lang.Boolean enabled) {
-		this.enabled = enabled;
+	public void setNrObjects(int nrObjects) {
+		this.nrObjects = nrObjects;
 	}
 	
-	public java.lang.String getDescription() {
-		return description;
+	public SBounds getMinBounds() {
+		return minBounds;
 	}
 
-	public void setDescription(java.lang.String description) {
-		this.description = description;
+	public void setMinBounds(SBounds minBounds) {
+		this.minBounds = minBounds;
 	}
 	
-	public long getPluginDescriptorId() {
-		return pluginDescriptorId;
+	
+	public SBounds getBounds() {
+		return bounds;
 	}
 
-	public void setPluginDescriptorId(long pluginDescriptorId) {
-		this.pluginDescriptorId = pluginDescriptorId;
+	public void setBounds(SBounds bounds) {
+		this.bounds = bounds;
 	}
 	
-	public long getSettingsId() {
-		return settingsId;
-	}
-
-	public void setSettingsId(long settingsId) {
-		this.settingsId = settingsId;
-	}
 	
 	@Override
 	public int hashCode() {
@@ -175,7 +159,7 @@ public class SPluginConfiguration implements SDataBase
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SPluginConfiguration other = (SPluginConfiguration) obj;
+		STile other = (STile) obj;
 		if (oid != other.oid)
 			return false;
 		return true;

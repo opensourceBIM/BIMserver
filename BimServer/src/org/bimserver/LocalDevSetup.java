@@ -85,7 +85,7 @@ public class LocalDevSetup {
 			pluginManager.setMetaDataManager(metaDataManager);
 			PluginBundleManager pluginBundleManager = new PluginBundleManager(pluginManager, mavenPluginRepository, home.resolve("plugins"));
 			loadPlugins(pluginBundleManager, Paths.get(".."), new OptionsParser(args).getPluginDirectories());
-			metaDataManager.init();
+			metaDataManager.init(false);
 
 			pluginManager.initAllLoadedPlugins();
 			return pluginManager;
@@ -119,7 +119,7 @@ public class LocalDevSetup {
 			
 			MetaDataManager metaDataManager = new MetaDataManager(tmp);
 			pluginManager.setMetaDataManager(metaDataManager);
-			metaDataManager.init();
+			metaDataManager.init(false);
 
 			pluginManager.initAllLoadedPlugins();
 			

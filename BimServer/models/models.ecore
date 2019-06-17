@@ -21204,5 +21204,15 @@
     <eClassifiers xsi:type="ecore:EClass" name="LongCheckinActionState" eSuperTypes="#/4/LongActionState">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="roid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Tile">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="tileId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="nrObjects" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="minBounds" eType="#/0/Bounds">
+        <eAnnotations source="embedsreference"/>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="bounds" eType="#/0/Bounds">
+        <eAnnotations source="embedsreference"/>
+      </eStructuralFeatures>
+    </eClassifiers>
   </ecore:EPackage>
 </xmi:XMI>

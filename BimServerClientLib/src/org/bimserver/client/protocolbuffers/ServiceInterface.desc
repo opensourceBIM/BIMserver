@@ -1,5 +1,5 @@
 
-ø∂
+ù∫
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -1103,7 +1103,24 @@ settingsId (
 Number"V
 GetTileCountsResponse
 errorMessage (	'
-value (2.org.bimserver.pb.Number"/
+value (2.org.bimserver.pb.Number"ñ
+GetTilesRequest
+roids (
+excludedTypes (	
+geometryIdsToReuse (
+minimumThreshold (
+maximumThreshold (
+depth ("ù
+STile)
+bounds (2.org.bimserver.pb.SBounds,
+	minBounds (2.org.bimserver.pb.SBounds
+	nrObjects (
+oid (
+rid (
+tileId ("P
+GetTilesResponse
+errorMessage (	&
+value (2.org.bimserver.pb.STile"/
 GetTopLevelProjectByNameRequest
 name (	"c
  GetTopLevelProjectByNameResponse
@@ -1624,7 +1641,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2≈Ö
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2òÜ
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
@@ -1741,7 +1758,8 @@ getService#.org.bimserver.pb.GetServiceRequest$.org.bimserver.pb.GetServiceRes
 getSubProjectByName,.org.bimserver.pb.GetSubProjectByNameRequest-.org.bimserver.pb.GetSubProjectByNameResponsec
 getSubProjects'.org.bimserver.pb.GetSubProjectsRequest(.org.bimserver.pb.GetSubProjectsResponse•
 $getSuggestedDeserializerForExtension=.org.bimserver.pb.GetSuggestedDeserializerForExtensionRequest>.org.bimserver.pb.GetSuggestedDeserializerForExtensionResponse`
-getTileCounts&.org.bimserver.pb.GetTileCountsRequest'.org.bimserver.pb.GetTileCountsResponseÅ
+getTileCounts&.org.bimserver.pb.GetTileCountsRequest'.org.bimserver.pb.GetTileCountsResponseQ
+getTiles!.org.bimserver.pb.GetTilesRequest".org.bimserver.pb.GetTilesResponseÅ
 getTopLevelProjectByName1.org.bimserver.pb.GetTopLevelProjectByNameRequest2.org.bimserver.pb.GetTopLevelProjectByNameResponsec
 getTotalBounds'.org.bimserver.pb.GetTotalBoundsRequest(.org.bimserver.pb.GetTotalBoundsResponseä
 getTotalUntransformedBounds4.org.bimserver.pb.GetTotalUntransformedBoundsRequest5.org.bimserver.pb.GetTotalUntransformedBoundsResponse`

@@ -23,25 +23,21 @@ import org.bimserver.database.migrations.Schema;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EcorePackage;
 
-public class Step0048 extends Migration {
+public class Step0052 extends Migration {
 
 	@Override
 	public void migrate(Schema schema, DatabaseSession databaseSession) {
-		EClass geometryInfo = schema.getEClass("geometry", "GeometryInfo");
-		schema.createEAttribute(geometryInfo, "nrColors", EcorePackage.eINSTANCE.getEInt());
-		schema.createEAttribute(geometryInfo, "nrVertices", EcorePackage.eINSTANCE.getEInt());
+		EClass tile = schema.createEClass("store", "Tile");
+		EClass bounds = schema.getEClass("geometry", "Bounds");
 		
-		EClass colorPack = schema.createEClass("geometry", "ColorPack");
-		
-		schema.createEAttribute(colorPack, "data", EcorePackage.eINSTANCE.getEByteArray());
-		
-		EClass geometryData = schema.getEClass("geometry", "GeometryData");
-		// TODO embedded?
-		schema.createEReference(geometryData, "colorPack", colorPack);
+		schema.createEAttribute(tile, "tileId", EcorePackage.eINSTANCE.getEInt());
+		schema.createEAttribute(tile, "nrObjects", EcorePackage.eINSTANCE.getEInt());
+		schema.createEReference(tile, "minBounds", bounds).getEAnnotations().add(createEmbedsReferenceAnnotation());
+		schema.createEReference(tile, "bounds", bounds).getEAnnotations().add(createEmbedsReferenceAnnotation());
 	}
 
 	@Override
 	public String getDescription() {
-		return "Added additional data to GeometryInfo (json)";
+		return "Added Tile object";
 	}
 }

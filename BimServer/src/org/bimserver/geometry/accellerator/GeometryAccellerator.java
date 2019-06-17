@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
@@ -175,12 +176,18 @@ public class GeometryAccellerator {
 				next = queryObjectProvider.next();
 			}
 			
+			AtomicLong totalTriangles = new AtomicLong();
+			
 			octree.traverseBreathFirst(new Traverser() {
 				@Override
-				public void traverse(Node t) {
-					t.sort();
+				public void traverse(Node node) {
+					for (GeometryObject geometryObject : node.getValues()) {
+						totalTriangles.addAndGet(geometryObject.getTriangles());
+					}
 				}
 			});
+			
+			LOGGER.info("Total triangles: " + totalTriangles);
 			
 			octree.moveUp(new MoveUpDecider() {
 				@Override

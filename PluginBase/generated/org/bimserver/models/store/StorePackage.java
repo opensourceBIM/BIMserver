@@ -7494,6 +7494,61 @@ public interface StorePackage extends EPackage {
 	int LONG_CHECKIN_ACTION_STATE_FEATURE_COUNT = LONG_ACTION_STATE_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.bimserver.models.store.impl.TileImpl <em>Tile</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.bimserver.models.store.impl.TileImpl
+	 * @see org.bimserver.models.store.impl.StorePackageImpl#getTile()
+	 * @generated
+	 */
+	int TILE = 106;
+
+	/**
+	 * The feature id for the '<em><b>Tile Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TILE__TILE_ID = 0;
+
+	/**
+	 * The feature id for the '<em><b>Nr Objects</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TILE__NR_OBJECTS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Min Bounds</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TILE__MIN_BOUNDS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Bounds</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TILE__BOUNDS = 3;
+
+	/**
+	 * The number of structural features of the '<em>Tile</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TILE_FEATURE_COUNT = 4;
+
+	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7501,7 +7556,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getUserType()
 	 * @generated
 	 */
-	int USER_TYPE = 106;
+	int USER_TYPE = 107;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SIPrefix <em>SI Prefix</em>}' enum.
@@ -7511,7 +7566,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSIPrefix()
 	 * @generated
 	 */
-	int SI_PREFIX = 107;
+	int SI_PREFIX = 108;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ObjectState <em>Object State</em>}' enum.
@@ -7521,7 +7576,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getObjectState()
 	 * @generated
 	 */
-	int OBJECT_STATE = 108;
+	int OBJECT_STATE = 109;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.CompareType <em>Compare Type</em>}' enum.
@@ -7531,7 +7586,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getCompareType()
 	 * @generated
 	 */
-	int COMPARE_TYPE = 109;
+	int COMPARE_TYPE = 110;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ActionState <em>Action State</em>}' enum.
@@ -7541,7 +7596,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getActionState()
 	 * @generated
 	 */
-	int ACTION_STATE = 110;
+	int ACTION_STATE = 111;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServerState <em>Server State</em>}' enum.
@@ -7551,7 +7606,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServerState()
 	 * @generated
 	 */
-	int SERVER_STATE = 111;
+	int SERVER_STATE = 112;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.Trigger <em>Trigger</em>}' enum.
@@ -7561,7 +7616,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getTrigger()
 	 * @generated
 	 */
-	int TRIGGER = 112;
+	int TRIGGER = 113;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServiceSimpleType <em>Service Simple Type</em>}' enum.
@@ -7571,7 +7626,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceSimpleType()
 	 * @generated
 	 */
-	int SERVICE_SIMPLE_TYPE = 113;
+	int SERVICE_SIMPLE_TYPE = 114;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PrimitiveEnum <em>Primitive Enum</em>}' enum.
@@ -7581,7 +7636,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPrimitiveEnum()
 	 * @generated
 	 */
-	int PRIMITIVE_ENUM = 114;
+	int PRIMITIVE_ENUM = 115;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.NotifictionResultEnum <em>Notifiction Result Enum</em>}' enum.
@@ -7591,7 +7646,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getNotifictionResultEnum()
 	 * @generated
 	 */
-	int NOTIFICTION_RESULT_ENUM = 115;
+	int NOTIFICTION_RESULT_ENUM = 116;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ProgressTopicType <em>Progress Topic Type</em>}' enum.
@@ -7601,7 +7656,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getProgressTopicType()
 	 * @generated
 	 */
-	int PROGRESS_TOPIC_TYPE = 116;
+	int PROGRESS_TOPIC_TYPE = 117;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ModelCheckerResultType <em>Model Checker Result Type</em>}' enum.
@@ -7611,7 +7666,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getModelCheckerResultType()
 	 * @generated
 	 */
-	int MODEL_CHECKER_RESULT_TYPE = 117;
+	int MODEL_CHECKER_RESULT_TYPE = 118;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.SmtpProtocol <em>Smtp Protocol</em>}' enum.
@@ -7621,7 +7676,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getSmtpProtocol()
 	 * @generated
 	 */
-	int SMTP_PROTOCOL = 118;
+	int SMTP_PROTOCOL = 119;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PluginBundleType <em>Plugin Bundle Type</em>}' enum.
@@ -7631,7 +7686,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginBundleType()
 	 * @generated
 	 */
-	int PLUGIN_BUNDLE_TYPE = 119;
+	int PLUGIN_BUNDLE_TYPE = 120;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.PluginType <em>Plugin Type</em>}' enum.
@@ -7641,7 +7696,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getPluginType()
 	 * @generated
 	 */
-	int PLUGIN_TYPE = 120;
+	int PLUGIN_TYPE = 121;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.ServiceStatus <em>Service Status</em>}' enum.
@@ -7651,7 +7706,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getServiceStatus()
 	 * @generated
 	 */
-	int SERVICE_STATUS = 121;
+	int SERVICE_STATUS = 122;
 
 	/**
 	 * The meta object id for the '<em>Data Handler</em>' data type.
@@ -7661,7 +7716,7 @@ public interface StorePackage extends EPackage {
 	 * @see org.bimserver.models.store.impl.StorePackageImpl#getDataHandler()
 	 * @generated
 	 */
-	int DATA_HANDLER = 122;
+	int DATA_HANDLER = 123;
 
 	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Project <em>Project</em>}'.
@@ -14499,6 +14554,60 @@ public interface StorePackage extends EPackage {
 	EAttribute getLongCheckinActionState_Roid();
 
 	/**
+	 * Returns the meta object for class '{@link org.bimserver.models.store.Tile <em>Tile</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Tile</em>'.
+	 * @see org.bimserver.models.store.Tile
+	 * @generated
+	 */
+	EClass getTile();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Tile#getTileId <em>Tile Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Tile Id</em>'.
+	 * @see org.bimserver.models.store.Tile#getTileId()
+	 * @see #getTile()
+	 * @generated
+	 */
+	EAttribute getTile_TileId();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.Tile#getNrObjects <em>Nr Objects</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Nr Objects</em>'.
+	 * @see org.bimserver.models.store.Tile#getNrObjects()
+	 * @see #getTile()
+	 * @generated
+	 */
+	EAttribute getTile_NrObjects();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Tile#getMinBounds <em>Min Bounds</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Min Bounds</em>'.
+	 * @see org.bimserver.models.store.Tile#getMinBounds()
+	 * @see #getTile()
+	 * @generated
+	 */
+	EReference getTile_MinBounds();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.Tile#getBounds <em>Bounds</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Bounds</em>'.
+	 * @see org.bimserver.models.store.Tile#getBounds()
+	 * @see #getTile()
+	 * @generated
+	 */
+	EReference getTile_Bounds();
+
+	/**
 	 * Returns the meta object for enum '{@link org.bimserver.models.store.UserType <em>User Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19950,6 +20059,48 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LONG_CHECKIN_ACTION_STATE__ROID = eINSTANCE.getLongCheckinActionState_Roid();
+
+		/**
+		 * The meta object literal for the '{@link org.bimserver.models.store.impl.TileImpl <em>Tile</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.bimserver.models.store.impl.TileImpl
+		 * @see org.bimserver.models.store.impl.StorePackageImpl#getTile()
+		 * @generated
+		 */
+		EClass TILE = eINSTANCE.getTile();
+
+		/**
+		 * The meta object literal for the '<em><b>Tile Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TILE__TILE_ID = eINSTANCE.getTile_TileId();
+
+		/**
+		 * The meta object literal for the '<em><b>Nr Objects</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TILE__NR_OBJECTS = eINSTANCE.getTile_NrObjects();
+
+		/**
+		 * The meta object literal for the '<em><b>Min Bounds</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TILE__MIN_BOUNDS = eINSTANCE.getTile_MinBounds();
+
+		/**
+		 * The meta object literal for the '<em><b>Bounds</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TILE__BOUNDS = eINSTANCE.getTile_Bounds();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.UserType <em>User Type</em>}' enum.

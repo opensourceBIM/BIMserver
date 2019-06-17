@@ -18,9 +18,12 @@ package org.bimserver.emf;
  *****************************************************************************/
 
 import org.eclipse.emf.ecore.EPackage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PackageLoader implements Runnable {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(PackageLoader.class);
 	private EPackage ePackage;
 	private Schema schema;
 	private MetaDataManager metaDataManager;
@@ -33,6 +36,10 @@ public class PackageLoader implements Runnable {
 
 	@Override
 	public void run() {
-		metaDataManager.addEPackage(ePackage, schema);
+		try {
+			metaDataManager.addEPackage(ePackage, schema);
+		} catch (Throwable e) {
+			LOGGER.error("", e);
+		}
 	}
 }

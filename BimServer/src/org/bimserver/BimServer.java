@@ -638,7 +638,7 @@ public class BimServer implements BasicServerInfoProvider {
 			}
 
 			try {
-				metaDataManager.init();
+				metaDataManager.init(true);
 				pluginManager.initAllLoadedPlugins();
 			} catch (PluginException e) {
 				LOGGER.error("", e);

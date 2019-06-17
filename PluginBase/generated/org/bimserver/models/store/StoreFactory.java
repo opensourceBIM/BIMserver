@@ -1007,6 +1007,15 @@ public interface StoreFactory extends EFactory {
 	LongCheckinActionState createLongCheckinActionState();
 
 	/**
+	 * Returns a new object of class '<em>Tile</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tile</em>'.
+	 * @generated
+	 */
+	Tile createTile();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

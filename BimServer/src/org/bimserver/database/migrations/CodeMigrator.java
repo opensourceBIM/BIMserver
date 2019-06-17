@@ -130,7 +130,7 @@ public class CodeMigrator {
 			}
 		}
 		MetaDataManager metaDataManager = new MetaDataManager(tmp);
-		metaDataManager.init();
+		metaDataManager.init(false);
 
 		DataObjectGeneratorWrapper serviceGenerator = new DataObjectGeneratorWrapper(metaDataManager);
 

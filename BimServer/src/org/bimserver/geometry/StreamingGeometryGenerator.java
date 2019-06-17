@@ -242,9 +242,13 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			RenderEngine engine = renderEnginePool.borrowObject();
 			try {
 				applyLayerSets = engine.isApplyLayerSets();
+				applyLayerSets = false;
 				report.setApplyLayersets(applyLayerSets);
+
 				calculateQuantities = engine.isCalculateQuantities();
+				calculateQuantities = false;
 				report.setCalculateQuantities(calculateQuantities);
+				
 			} finally {
 				renderEnginePool.returnObject(engine);
 			}
@@ -332,6 +336,10 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 										if (!usableContext(representationItem) && foundValidContext) {
 											continue;
 										}
+										
+										// TODO Geometries that are the same, but have different colors, will result in geometry with the wrong color, for example SampleModelErrorExportLight.ifc
+										// So what we need to do is also compare the materials...
+										
 										if (hasValidRepresentationIdentifier(representationItem)) {
 											Set<HashMapVirtualObject> items = representationItem.getDirectListFeature(itemsFeature);
 											if (items == null || items.size() > 1) {

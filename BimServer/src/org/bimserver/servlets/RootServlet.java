@@ -65,9 +65,9 @@ public class RootServlet extends HttpServlet {
 		bulkUploadServlet = new BulkUploadServlet(bimServer, servletContext);
 		downloadServlet = new DownloadServlet(bimServer, servletContext);
 		soap11Servlet = new WebServiceServlet11(bimServer, servletContext);
-		soap11Servlet.init(getServletConfig());
+//		soap11Servlet.init(getServletConfig());
 		soap12Servlet = new WebServiceServlet12(bimServer, servletContext);
-		soap12Servlet.init(getServletConfig());
+//		soap12Servlet.init(getServletConfig());
 		oAuthAuthorizationServlet = new OAuthAuthorizationServlet(bimServer, servletContext);
 		oAuthAccesssTokenServlet = new OAuthAccessTokenServlet(bimServer, servletContext);
 		oAuthRegistrationServlet = new OAuthRegistrationServlet(bimServer, servletContext);

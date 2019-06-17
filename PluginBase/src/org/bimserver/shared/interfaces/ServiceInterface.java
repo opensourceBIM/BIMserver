@@ -56,6 +56,7 @@ import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SService;
 import org.bimserver.interfaces.objects.SServiceDescriptor;
+import org.bimserver.interfaces.objects.STile;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserSettings;
 import org.bimserver.interfaces.objects.SUserType;
@@ -1594,4 +1595,13 @@ public interface ServiceInterface extends PublicInterface {
 	String determineIfcVersion(
 		@WebParam(name = "head", partName = "determineIfcVersion.head") byte[] head, 
 		@WebParam(name = "zipped", partName = "determineIfcVersion.zipped") Boolean zipped) throws UserException, ServiceException;
+
+	@WebMethod(action = "getTiles")
+	List<STile> getTiles(
+		@WebParam(name = "roids", partName = "getTiles.roids") Set<Long> roids, 
+		@WebParam(name = "excludedTypes", partName = "getTiles.excludedTypes") Set<String> excludedTypes,
+		@WebParam(name = "geometryIdsToReuse", partName = "getTiles.geometryIdsToReuse") Set<Long> geometryIdsToReuse,
+		@WebParam(name = "minimumThreshold", partName = "getTiles.minimumThreshold") Float minimumThreshold,
+		@WebParam(name = "maximumThreshold", partName = "getTiles.maximumThreshold") Float maximumThreshold,
+		@WebParam(name = "depth", partName = "getTiles.depth") Integer depth) throws ServerException, UserException;
 }
