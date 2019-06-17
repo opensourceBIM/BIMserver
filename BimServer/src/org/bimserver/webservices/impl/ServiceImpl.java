@@ -163,6 +163,7 @@ import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;
+import org.bimserver.geometry.accellerator.Node;
 import org.bimserver.geometry.accellerator.NodeCounter;
 import org.bimserver.geometry.accellerator.Octree;
 import org.bimserver.interfaces.objects.SAccessMethod;
@@ -197,6 +198,7 @@ import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SRevisionSummary;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SServiceDescriptor;
+import org.bimserver.interfaces.objects.STile;
 import org.bimserver.interfaces.objects.STrigger;
 import org.bimserver.interfaces.objects.SUser;
 import org.bimserver.interfaces.objects.SUserSettings;
@@ -243,7 +245,9 @@ import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.Service;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.models.store.StoreExtendedData;
+import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.Tile;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.models.store.UserType;
@@ -1518,7 +1522,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	@Override
 	public List<SUser> getAllUsers() throws ServerException, UserException {
 		if (getBimServer().getServerSettingsCache().getServerSettings().getHideUserListForNonAdmin()) {
-			if (getCurrentUser().getUserType() != SUserType.ADMIN) {
+			if (getCurrentUser() == null || getCurrentUser().getUserType() != SUserType.ADMIN) {
 				throw new UserException("Admin rights required to list users");
 			}
 		}
@@ -3309,11 +3313,33 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		// TODO non-breath-first is probably faster, don't think it matters for the client (ATM)
 		octree.breathFirstCounts(minimumThreshold, maximumThreshold, new NodeCounter() {
 			@Override
-			public void counted(int nodeId, int count) {
+			public void counted(Node node, int count) {
 				if (count > 0) {
-					result.add(nodeId);
+					result.add(node.getId());
 					result.add(count);
 					totalObjects.addAndGet(count);
+				}				
+			}
+		}, maxDepth);
+		return result;
+	}
+
+	@Override
+	public List<STile> getTiles(Set<Long> roids, Set<String> excludedTypes, Set<Long> geometryIdsToReuse, Float minimumThreshold, Float maximumThreshold, Integer maxDepth) throws ServerException, UserException {
+		Octree octree = getBimServer().getGeometryAccellerator().getOctree(roids, excludedTypes, geometryIdsToReuse, maxDepth, minimumThreshold, maximumThreshold);
+
+		List<STile> result = new ArrayList<>();
+		// TODO non-breath-first is probably faster, don't think it matters for the client (ATM)
+		octree.breathFirstCounts(minimumThreshold, maximumThreshold, new NodeCounter() {
+			@Override
+			public void counted(Node node, int count) {
+				if (count > 0) {
+					STile tile = new STile();
+					tile.setTileId(node.getId());
+					tile.setNrObjects(count);
+					tile.setBounds(node.getBounds().toSBounds());
+					tile.setMinBounds(node.getMinimumBounds().toSBounds());
+					result.add(tile);
 				}				
 			}
 		}, maxDepth);
