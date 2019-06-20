@@ -30,12 +30,17 @@ public enum VolumeUnit implements BasicUnit {
 		public double toCubicMilliMeter(double input) {
 			return input * 1000000000;
 		}
-
+		
+		@Override
+		protected double toCubicDeciMeter(double input) {
+			return input * 1000;
+		}
+		
 		@Override
 		public double convert(double volume, VolumeUnit modelVolumeUnit) {
 			return modelVolumeUnit.toCubicMeter(volume);
 		}
-}, CUBIC_MILLI_METER {
+	}, CUBIC_MILLI_METER {
 		@Override
 		public double toCubicMeter(double input) {
 			return input / 1000000000;
@@ -47,8 +52,33 @@ public enum VolumeUnit implements BasicUnit {
 		}
 		
 		@Override
+		protected double toCubicDeciMeter(double input) {
+			return input / 1000000;
+		}
+		
+		@Override
 		public double convert(double volume, VolumeUnit modelVolumeUnit) {
 			return modelVolumeUnit.toCubicMilliMeter(volume);
+		}
+	}, CUBIC_DECI_METER {
+		@Override
+		public double toCubicMeter(double input) {
+			return input / 1000;
+		}
+		
+		@Override
+		public double toCubicMilliMeter(double input) {
+			return input * 1000000;
+		}
+
+		@Override
+		protected double toCubicDeciMeter(double input) {
+			return input;
+		}
+
+		@Override
+		public double convert(double volume, VolumeUnit modelVolumeUnit) {
+			return modelVolumeUnit.toCubicDeciMeter(volume);
 		}
 	};
 
@@ -58,9 +88,15 @@ public enum VolumeUnit implements BasicUnit {
 			return VolumeUnit.CUBIC_METER;
 		case MILLI:
 			return VolumeUnit.CUBIC_MILLI_METER;
+		case DECI:
+			return VolumeUnit.CUBIC_DECI_METER;
 		default:
 			throw new RuntimeException("Unimplemented prefix: " + prefix);
 		}
+	}
+
+	protected double toCubicDeciMeter(double volume) {
+		throw new AbstractMethodError();
 	}
 
 	public static VolumeUnit fromPrefix(org.bimserver.models.ifc4.IfcSIPrefix prefix) {
@@ -69,6 +105,8 @@ public enum VolumeUnit implements BasicUnit {
 			return VolumeUnit.CUBIC_METER;
 		case MILLI:
 			return VolumeUnit.CUBIC_MILLI_METER;
+		case DECI:
+			return VolumeUnit.CUBIC_DECI_METER;
 		default:
 			throw new RuntimeException("Unimplemented prefix: " + prefix);
 		}
