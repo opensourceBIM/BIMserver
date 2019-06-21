@@ -481,14 +481,16 @@ public class BimServer implements BasicServerInfoProvider {
 							Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginDescriptor_Identifier(), new StringLiteral(pluginContext.getIdentifier()));
 							Map<Long, PluginDescriptor> pluginsFound = session.query(pluginCondition, PluginDescriptor.class, OldQuery.getDefault());
 							PluginDescriptor pluginDescriptor = null;
+							ObjectType settings = null;
 							if (pluginsFound.size() > 0) {
 								pluginDescriptor = pluginsFound.values().iterator().next(); 
+								settings = pluginDescriptor.getSettings();
 							} else {
 								pluginDescriptor = session.create(PluginDescriptor.class);
+								settings = convertSettings(session, pluginContext.getPlugin().getSystemSettingsDefinition());
+								pluginDescriptor.setSettings(settings);
 							}
 							
-							ObjectType settings = convertSettings(session, pluginContext.getPlugin().getSystemSettingsDefinition());
-							pluginDescriptor.setSettings(settings);
 							pluginDescriptor.setIdentifier(pluginContext.getIdentifier());
 							pluginDescriptor.setPluginClassName(plugin.getClass().getName());
 							pluginDescriptor.setDescription(pluginContext.getDescription());
