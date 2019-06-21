@@ -48,13 +48,12 @@ public class CommonsRenderEnginePool implements RenderEnginePool {
 
 			@Override
 			public void destroyObject(PooledObject<RenderEngine> arg0) throws Exception {
-				arg0.getObject().close();
 			}
 
 			@Override
 			public PooledObject<RenderEngine> makeObject() throws Exception {
-				RenderEngine createRenderEngine = renderEngineFactory.createRenderEngine();
-				return new DefaultPooledObject<RenderEngine>(createRenderEngine);
+				AlwaysClosingRenderEngineWrapper alwaysClosingRenderEngineWrapper = new AlwaysClosingRenderEngineWrapper(renderEngineFactory);
+				return new DefaultPooledObject<RenderEngine>(alwaysClosingRenderEngineWrapper);
 			}
 
 			@Override
