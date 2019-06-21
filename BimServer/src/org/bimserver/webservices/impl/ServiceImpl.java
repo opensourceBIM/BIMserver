@@ -3410,14 +3410,16 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			if (!(firstDeserializer instanceof IfcSchemaDeterminer)) {
 				throw new UserException("Deserializer not capable of determining schema");
 			}
-			Schema determineSchema = ((IfcSchemaDeterminer)firstDeserializer).determineSchema(head, usesZip);
-			if (determineSchema == null) {
-				throw new UserException("No schema detected");
+			try {
+				Schema determineSchema = ((IfcSchemaDeterminer)firstDeserializer).determineSchema(head, usesZip);
+				if (determineSchema == null) {
+					throw new UserException("No schema detected");
+				}
+				return determineSchema.name();
+			} catch (DeserializeException e) {
+				throw new UserException(e.getMessage());
 			}
-			return determineSchema.name();
 		} catch (PluginException e) {
-			throw new UserException(e);
-		} catch (DeserializeException e) {
 			throw new UserException(e);
 		}
 	}
