@@ -34,6 +34,7 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.ServiceMap;
 import org.bimserver.webservices.authorization.AdminAuthorization;
 import org.bimserver.webservices.authorization.Authorization;
+import org.bimserver.webservices.authorization.MonitorAuthorization;
 import org.bimserver.webservices.authorization.UserAuthorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -72,6 +73,8 @@ public class LoginDatabaseAction extends BimDatabaseAction<String> {
 				Authorization authorization = null;
 				if (user.getUserType() == UserType.ADMIN) {
 					authorization = new AdminAuthorization(bimServer.getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS);
+				} else if (user.getUserType() == UserType.MONITOR) {
+					authorization = new MonitorAuthorization(bimServer.getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS);
 				} else {
 					authorization = new UserAuthorization(bimServer.getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS);
 				}
