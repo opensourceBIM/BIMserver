@@ -88,6 +88,7 @@ public class BoundsImpl extends IdEObjectImpl implements Bounds {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Vector3f getMin() {
 		return (Vector3f) eGet(GeometryPackage.Literals.BOUNDS__MIN, true);
 	}
@@ -97,6 +98,7 @@ public class BoundsImpl extends IdEObjectImpl implements Bounds {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMin(Vector3f newMin) {
 		eSet(GeometryPackage.Literals.BOUNDS__MIN, newMin);
 	}
@@ -106,6 +108,7 @@ public class BoundsImpl extends IdEObjectImpl implements Bounds {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Vector3f getMax() {
 		return (Vector3f) eGet(GeometryPackage.Literals.BOUNDS__MAX, true);
 	}
@@ -115,6 +118,7 @@ public class BoundsImpl extends IdEObjectImpl implements Bounds {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMax(Vector3f newMax) {
 		eSet(GeometryPackage.Literals.BOUNDS__MAX, newMax);
 	}

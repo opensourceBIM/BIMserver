@@ -287,6 +287,10 @@ public class GeometryRunner implements Runnable {
 										geometryData.set("nrNormals", normalsAsFloat.capacity());
 										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Normals(), createBuffer(queryContext, normals));
 										
+										ByteBuffer lineIndices = generateLineRendering(indicesAsInt);
+										geometryData.set("nrLineIndices", lineIndices.capacity() / 4);
+										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_LineIndices(), createBuffer(queryContext, lineIndices));
+										
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), indicesAsInt.capacity() / 3);
 										
 										job.setTrianglesGenerated(indicesAsInt.capacity() / 3);
@@ -828,6 +832,28 @@ public class GeometryRunner implements Runnable {
 		job.setEndNanos(end);
 	}
 	
+	private ByteBuffer generateLineRendering(IntBuffer indicesAsInt) {
+		Set<Line> lines = new HashSet<>();
+		for (int i=0; i<indicesAsInt.capacity(); i+=3) {
+			for (int j=0; j<3; j++) {
+				int index1 = indicesAsInt.get(i + j);
+				int index2 = indicesAsInt.get(i + (j + 1) % 3);
+				Line line = new Line(index1, index2);
+				if (lines.contains(line)) {
+					lines.remove(line);
+				} else {
+					lines.add(line);
+				}
+			}
+		}
+		ByteBuffer byteBuffer = ByteBuffer.allocate(lines.size() * 2 * 4).order(ByteOrder.LITTLE_ENDIAN);
+		IntBuffer newIndices = byteBuffer.asIntBuffer();
+		for (Line line : lines) {
+			newIndices.put(line.getIndex1(), line.getIndex2());
+		}
+		return byteBuffer;
+	}
+
 	private float fixColor(float input) {
 		if (input >= 0 && input <=1) {
 			return input;

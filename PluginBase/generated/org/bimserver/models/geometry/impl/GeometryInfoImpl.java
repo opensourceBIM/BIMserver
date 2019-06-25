@@ -104,6 +104,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Bounds getBounds() {
 		return (Bounds) eGet(GeometryPackage.Literals.GEOMETRY_INFO__BOUNDS, true);
 	}
@@ -113,6 +114,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBounds(Bounds newBounds) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__BOUNDS, newBounds);
 	}
@@ -122,6 +124,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Bounds getBoundsUntransformed() {
 		return (Bounds) eGet(GeometryPackage.Literals.GEOMETRY_INFO__BOUNDS_UNTRANSFORMED, true);
 	}
@@ -131,6 +134,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBoundsUntransformed(Bounds newBoundsUntransformed) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__BOUNDS_UNTRANSFORMED, newBoundsUntransformed);
 	}
@@ -140,6 +144,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Integer getStartVertex() {
 		return (Integer) eGet(GeometryPackage.Literals.GEOMETRY_INFO__START_VERTEX, true);
 	}
@@ -149,6 +154,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStartVertex(Integer newStartVertex) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__START_VERTEX, newStartVertex);
 	}
@@ -158,6 +164,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Integer getStartIndex() {
 		return (Integer) eGet(GeometryPackage.Literals.GEOMETRY_INFO__START_INDEX, true);
 	}
@@ -167,6 +174,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStartIndex(Integer newStartIndex) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__START_INDEX, newStartIndex);
 	}
@@ -176,6 +184,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Integer getPrimitiveCount() {
 		return (Integer) eGet(GeometryPackage.Literals.GEOMETRY_INFO__PRIMITIVE_COUNT, true);
 	}
@@ -185,6 +194,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPrimitiveCount(Integer newPrimitiveCount) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__PRIMITIVE_COUNT, newPrimitiveCount);
 	}
@@ -194,6 +204,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public byte[] getTransformation() {
 		return (byte[]) eGet(GeometryPackage.Literals.GEOMETRY_INFO__TRANSFORMATION, true);
 	}
@@ -203,6 +214,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setTransformation(byte[] newTransformation) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__TRANSFORMATION, newTransformation);
 	}
@@ -212,6 +224,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GeometryData getData() {
 		return (GeometryData) eGet(GeometryPackage.Literals.GEOMETRY_INFO__DATA, true);
 	}
@@ -221,6 +234,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setData(GeometryData newData) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__DATA, newData);
 	}
@@ -230,6 +244,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getArea() {
 		return (Double) eGet(GeometryPackage.Literals.GEOMETRY_INFO__AREA, true);
 	}
@@ -239,6 +254,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setArea(double newArea) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__AREA, newArea);
 	}
@@ -248,6 +264,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getVolume() {
 		return (Double) eGet(GeometryPackage.Literals.GEOMETRY_INFO__VOLUME, true);
 	}
@@ -257,6 +274,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVolume(double newVolume) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__VOLUME, newVolume);
 	}
@@ -266,6 +284,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isHasTransparency() {
 		return (Boolean) eGet(GeometryPackage.Literals.GEOMETRY_INFO__HAS_TRANSPARENCY, true);
 	}
@@ -275,6 +294,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHasTransparency(boolean newHasTransparency) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__HAS_TRANSPARENCY, newHasTransparency);
 	}
@@ -284,6 +304,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public long getIfcProductOid() {
 		return (Long) eGet(GeometryPackage.Literals.GEOMETRY_INFO__IFC_PRODUCT_OID, true);
 	}
@@ -293,6 +314,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIfcProductOid(long newIfcProductOid) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__IFC_PRODUCT_OID, newIfcProductOid);
 	}
@@ -302,6 +324,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public float getDensity() {
 		return (Float) eGet(GeometryPackage.Literals.GEOMETRY_INFO__DENSITY, true);
 	}
@@ -311,6 +334,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDensity(float newDensity) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__DENSITY, newDensity);
 	}
@@ -320,6 +344,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Bounds getBoundsMm() {
 		return (Bounds) eGet(GeometryPackage.Literals.GEOMETRY_INFO__BOUNDS_MM, true);
 	}
@@ -329,6 +354,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBoundsMm(Bounds newBoundsMm) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__BOUNDS_MM, newBoundsMm);
 	}
@@ -338,6 +364,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Bounds getBoundsUntransformedMm() {
 		return (Bounds) eGet(GeometryPackage.Literals.GEOMETRY_INFO__BOUNDS_UNTRANSFORMED_MM, true);
 	}
@@ -347,6 +374,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBoundsUntransformedMm(Bounds newBoundsUntransformedMm) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__BOUNDS_UNTRANSFORMED_MM, newBoundsUntransformedMm);
 	}
@@ -356,6 +384,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getAdditionalData() {
 		return (String) eGet(GeometryPackage.Literals.GEOMETRY_INFO__ADDITIONAL_DATA, true);
 	}
@@ -365,6 +394,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAdditionalData(String newAdditionalData) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__ADDITIONAL_DATA, newAdditionalData);
 	}
@@ -374,6 +404,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getNrColors() {
 		return (Integer) eGet(GeometryPackage.Literals.GEOMETRY_INFO__NR_COLORS, true);
 	}
@@ -383,6 +414,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNrColors(int newNrColors) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__NR_COLORS, newNrColors);
 	}
@@ -392,6 +424,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getNrVertices() {
 		return (Integer) eGet(GeometryPackage.Literals.GEOMETRY_INFO__NR_VERTICES, true);
 	}
@@ -401,6 +434,7 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNrVertices(int newNrVertices) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__NR_VERTICES, newNrVertices);
 	}

@@ -115,6 +115,7 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GeometryInfo createGeometryInfo() {
 		GeometryInfoImpl geometryInfo = new GeometryInfoImpl();
 		return geometryInfo;
@@ -125,6 +126,7 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Vector3f createVector3f() {
 		Vector3fImpl vector3f = new Vector3fImpl();
 		return vector3f;
@@ -135,6 +137,7 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Bounds createBounds() {
 		BoundsImpl bounds = new BoundsImpl();
 		return bounds;
@@ -145,6 +148,7 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Buffer createBuffer() {
 		BufferImpl buffer = new BufferImpl();
 		return buffer;
@@ -155,6 +159,7 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GeometryData createGeometryData() {
 		GeometryDataImpl geometryData = new GeometryDataImpl();
 		return geometryData;
@@ -165,6 +170,7 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Vector4f createVector4f() {
 		Vector4fImpl vector4f = new Vector4fImpl();
 		return vector4f;
@@ -175,6 +181,7 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ColorPack createColorPack() {
 		ColorPackImpl colorPack = new ColorPackImpl();
 		return colorPack;
@@ -185,6 +192,7 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GeometryPackage getGeometryPackage() {
 		return (GeometryPackage) getEPackage();
 	}

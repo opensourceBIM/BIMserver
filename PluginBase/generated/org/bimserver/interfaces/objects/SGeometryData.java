@@ -47,6 +47,8 @@ public class SGeometryData implements SDataBase
 	private SBounds boundsMm;
 	private int saveableTriangles;
 	private SColorPack colorPack;
+	private long lineIndicesId = -1;
+	private int nrLineIndices;
 
 	public long getOid() {
 		return this.oid;
@@ -128,6 +130,12 @@ public class SGeometryData implements SDataBase
 		if (sField.getName().equals("colorPack")) {
 			return getColorPack();
 		}
+		if (sField.getName().equals("lineIndicesId")) {
+			return getLineIndicesId();
+		}
+		if (sField.getName().equals("nrLineIndices")) {
+			return getNrLineIndices();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -208,6 +216,14 @@ public class SGeometryData implements SDataBase
 		}
 		if (sField.getName().equals("colorPack")) {
 			setColorPack((SColorPack)val);
+			return;
+		}
+		if (sField.getName().equals("lineIndicesId")) {
+			setLineIndicesId((Long)val);
+			return;
+		}
+		if (sField.getName().equals("nrLineIndices")) {
+			setNrLineIndices((Integer)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -368,6 +384,22 @@ public class SGeometryData implements SDataBase
 		this.colorPack = colorPack;
 	}
 	
+	
+	public long getLineIndicesId() {
+		return lineIndicesId;
+	}
+
+	public void setLineIndicesId(long lineIndicesId) {
+		this.lineIndicesId = lineIndicesId;
+	}
+	
+	public int getNrLineIndices() {
+		return nrLineIndices;
+	}
+
+	public void setNrLineIndices(int nrLineIndices) {
+		this.nrLineIndices = nrLineIndices;
+	}
 	
 	@Override
 	public int hashCode() {

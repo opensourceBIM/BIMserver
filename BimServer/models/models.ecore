@@ -98,6 +98,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="colorPack" eType="#/0/ColorPack">
         <eAnnotations source="embedsreference"/>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="lineIndices" eType="#/0/Buffer"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="nrLineIndices" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Vector4f">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>

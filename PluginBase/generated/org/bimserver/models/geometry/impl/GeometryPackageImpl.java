@@ -203,6 +203,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getGeometryInfo() {
 		if (geometryInfoEClass == null) {
 			geometryInfoEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers().get(0);
@@ -215,6 +216,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGeometryInfo_Bounds() {
 		return (EReference) getGeometryInfo().getEStructuralFeatures().get(0);
 	}
@@ -224,6 +226,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGeometryInfo_BoundsUntransformed() {
 		return (EReference) getGeometryInfo().getEStructuralFeatures().get(1);
 	}
@@ -233,6 +236,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGeometryInfo_StartVertex() {
 		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(2);
 	}
@@ -242,6 +246,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGeometryInfo_StartIndex() {
 		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(3);
 	}
@@ -251,6 +256,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGeometryInfo_PrimitiveCount() {
 		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(4);
 	}
@@ -260,6 +266,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGeometryInfo_Transformation() {
 		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(5);
 	}
@@ -269,6 +276,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGeometryInfo_Data() {
 		return (EReference) getGeometryInfo().getEStructuralFeatures().get(6);
 	}
@@ -278,6 +286,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGeometryInfo_Area() {
 		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(7);
 	}
@@ -287,6 +296,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGeometryInfo_Volume() {
 		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(8);
 	}
@@ -296,6 +306,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGeometryInfo_HasTransparency() {
 		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(9);
 	}
@@ -305,6 +316,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGeometryInfo_IfcProductOid() {
 		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(10);
 	}
@@ -314,6 +326,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGeometryInfo_Density() {
 		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(11);
 	}
@@ -323,6 +336,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGeometryInfo_BoundsMm() {
 		return (EReference) getGeometryInfo().getEStructuralFeatures().get(12);
 	}
@@ -332,6 +346,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGeometryInfo_BoundsUntransformedMm() {
 		return (EReference) getGeometryInfo().getEStructuralFeatures().get(13);
 	}
@@ -341,6 +356,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGeometryInfo_AdditionalData() {
 		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(14);
 	}
@@ -350,6 +366,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGeometryInfo_NrColors() {
 		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(15);
 	}
@@ -359,6 +376,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGeometryInfo_NrVertices() {
 		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(16);
 	}
@@ -368,6 +386,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getVector3f() {
 		if (vector3fEClass == null) {
 			vector3fEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers().get(1);
@@ -380,6 +399,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getVector3f_X() {
 		return (EAttribute) getVector3f().getEStructuralFeatures().get(0);
 	}
@@ -389,6 +409,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getVector3f_Y() {
 		return (EAttribute) getVector3f().getEStructuralFeatures().get(1);
 	}
@@ -398,6 +419,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getVector3f_Z() {
 		return (EAttribute) getVector3f().getEStructuralFeatures().get(2);
 	}
@@ -407,6 +429,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBounds() {
 		if (boundsEClass == null) {
 			boundsEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers().get(2);
@@ -419,6 +442,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getBounds_Min() {
 		return (EReference) getBounds().getEStructuralFeatures().get(0);
 	}
@@ -428,6 +452,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getBounds_Max() {
 		return (EReference) getBounds().getEStructuralFeatures().get(1);
 	}
@@ -437,6 +462,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBuffer() {
 		if (bufferEClass == null) {
 			bufferEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers().get(3);
@@ -449,6 +475,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getBuffer_Data() {
 		return (EAttribute) getBuffer().getEStructuralFeatures().get(0);
 	}
@@ -458,6 +485,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getGeometryData() {
 		if (geometryDataEClass == null) {
 			geometryDataEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers().get(4);
@@ -470,6 +498,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGeometryData_NrIndices() {
 		return (EAttribute) getGeometryData().getEStructuralFeatures().get(0);
 	}
@@ -479,6 +508,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGeometryData_NrVertices() {
 		return (EAttribute) getGeometryData().getEStructuralFeatures().get(1);
 	}
@@ -488,6 +518,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGeometryData_NrNormals() {
 		return (EAttribute) getGeometryData().getEStructuralFeatures().get(2);
 	}
@@ -497,6 +528,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGeometryData_NrColors() {
 		return (EAttribute) getGeometryData().getEStructuralFeatures().get(3);
 	}
@@ -506,6 +538,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGeometryData_Indices() {
 		return (EReference) getGeometryData().getEStructuralFeatures().get(4);
 	}
@@ -515,6 +548,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGeometryData_Vertices() {
 		return (EReference) getGeometryData().getEStructuralFeatures().get(5);
 	}
@@ -524,6 +558,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGeometryData_Normals() {
 		return (EReference) getGeometryData().getEStructuralFeatures().get(7);
 	}
@@ -533,6 +568,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGeometryData_Color() {
 		return (EReference) getGeometryData().getEStructuralFeatures().get(10);
 	}
@@ -542,6 +578,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGeometryData_HasTransparency() {
 		return (EAttribute) getGeometryData().getEStructuralFeatures().get(11);
 	}
@@ -551,6 +588,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGeometryData_Reused() {
 		return (EAttribute) getGeometryData().getEStructuralFeatures().get(12);
 	}
@@ -560,6 +598,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGeometryData_Type() {
 		return (EAttribute) getGeometryData().getEStructuralFeatures().get(13);
 	}
@@ -569,6 +608,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGeometryData_MostUsedColor() {
 		return (EReference) getGeometryData().getEStructuralFeatures().get(14);
 	}
@@ -578,6 +618,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGeometryData_BoundsMm() {
 		return (EReference) getGeometryData().getEStructuralFeatures().get(15);
 	}
@@ -587,6 +628,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGeometryData_SaveableTriangles() {
 		return (EAttribute) getGeometryData().getEStructuralFeatures().get(16);
 	}
@@ -596,6 +638,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGeometryData_ColorPack() {
 		return (EReference) getGeometryData().getEStructuralFeatures().get(17);
 	}
@@ -605,6 +648,27 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public EReference getGeometryData_LineIndices() {
+		return (EReference) getGeometryData().getEStructuralFeatures().get(18);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGeometryData_NrLineIndices() {
+		return (EAttribute) getGeometryData().getEStructuralFeatures().get(19);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EReference getGeometryData_NormalsQuantized() {
 		return (EReference) getGeometryData().getEStructuralFeatures().get(8);
 	}
@@ -614,6 +678,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGeometryData_VerticesQuantized() {
 		return (EReference) getGeometryData().getEStructuralFeatures().get(6);
 	}
@@ -623,6 +688,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGeometryData_ColorsQuantized() {
 		return (EReference) getGeometryData().getEStructuralFeatures().get(9);
 	}
@@ -632,6 +698,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getVector4f() {
 		if (vector4fEClass == null) {
 			vector4fEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers().get(5);
@@ -644,6 +711,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getVector4f_X() {
 		return (EAttribute) getVector4f().getEStructuralFeatures().get(0);
 	}
@@ -653,6 +721,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getVector4f_Y() {
 		return (EAttribute) getVector4f().getEStructuralFeatures().get(1);
 	}
@@ -662,6 +731,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getVector4f_Z() {
 		return (EAttribute) getVector4f().getEStructuralFeatures().get(2);
 	}
@@ -671,6 +741,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getVector4f_W() {
 		return (EAttribute) getVector4f().getEStructuralFeatures().get(3);
 	}
@@ -680,6 +751,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getColorPack() {
 		if (colorPackEClass == null) {
 			colorPackEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers().get(6);
@@ -692,6 +764,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getColorPack_Data() {
 		return (EAttribute) getColorPack().getEStructuralFeatures().get(0);
 	}
@@ -701,6 +774,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GeometryFactory getGeometryFactory() {
 		return (GeometryFactory) getEFactoryInstance();
 	}

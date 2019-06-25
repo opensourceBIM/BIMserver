@@ -64,7 +64,7 @@ import org.bimserver.emf.IdEObject;
  * </ul>
  *
  * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo()
- * @model
+ * @model annotation="hidden"
  * @extends IdEObject
  * @generated
  */
@@ -80,7 +80,9 @@ public interface GeometryInfo extends IdEObject {
 	 * @return the value of the '<em>Bounds</em>' reference.
 	 * @see #setBounds(Bounds)
 	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_Bounds()
-	 * @model
+	 * @model annotation="dbembed"
+	 *        annotation="embedsreference"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	Bounds getBounds();
@@ -106,7 +108,9 @@ public interface GeometryInfo extends IdEObject {
 	 * @return the value of the '<em>Bounds Untransformed</em>' reference.
 	 * @see #setBoundsUntransformed(Bounds)
 	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_BoundsUntransformed()
-	 * @model
+	 * @model annotation="dbembed"
+	 *        annotation="embedsreference"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	Bounds getBoundsUntransformed();
@@ -392,7 +396,9 @@ public interface GeometryInfo extends IdEObject {
 	 * @return the value of the '<em>Bounds Mm</em>' reference.
 	 * @see #setBoundsMm(Bounds)
 	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_BoundsMm()
-	 * @model
+	 * @model annotation="dbembed"
+	 *        annotation="embedsreference"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	Bounds getBoundsMm();
@@ -418,7 +424,9 @@ public interface GeometryInfo extends IdEObject {
 	 * @return the value of the '<em>Bounds Untransformed Mm</em>' reference.
 	 * @see #setBoundsUntransformedMm(Bounds)
 	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_BoundsUntransformedMm()
-	 * @model
+	 * @model annotation="dbembed"
+	 *        annotation="embedsreference"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	Bounds getBoundsUntransformedMm();

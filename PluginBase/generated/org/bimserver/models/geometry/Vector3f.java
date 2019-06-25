@@ -50,7 +50,7 @@ import org.bimserver.emf.IdEObject;
  * </ul>
  *
  * @see org.bimserver.models.geometry.GeometryPackage#getVector3f()
- * @model
+ * @model annotation="hidden"
  * @extends IdEObject
  * @generated
  */

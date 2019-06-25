@@ -68,6 +68,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getBoundsMm <em>Bounds Mm</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getSaveableTriangles <em>Saveable Triangles</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getColorPack <em>Color Pack</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getLineIndices <em>Line Indices</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryDataImpl#getNrLineIndices <em>Nr Line Indices</em>}</li>
  * </ul>
  *
  * @generated
@@ -107,6 +109,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getNrIndices() {
 		return (Integer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__NR_INDICES, true);
 	}
@@ -116,6 +119,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNrIndices(int newNrIndices) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__NR_INDICES, newNrIndices);
 	}
@@ -125,6 +129,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getNrVertices() {
 		return (Integer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__NR_VERTICES, true);
 	}
@@ -134,6 +139,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNrVertices(int newNrVertices) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__NR_VERTICES, newNrVertices);
 	}
@@ -143,6 +149,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getNrNormals() {
 		return (Integer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__NR_NORMALS, true);
 	}
@@ -152,6 +159,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNrNormals(int newNrNormals) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__NR_NORMALS, newNrNormals);
 	}
@@ -161,6 +169,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getNrColors() {
 		return (Integer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__NR_COLORS, true);
 	}
@@ -170,6 +179,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNrColors(int newNrColors) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__NR_COLORS, newNrColors);
 	}
@@ -179,6 +189,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Buffer getIndices() {
 		return (Buffer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__INDICES, true);
 	}
@@ -188,6 +199,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIndices(Buffer newIndices) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__INDICES, newIndices);
 	}
@@ -197,6 +209,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Buffer getVertices() {
 		return (Buffer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__VERTICES, true);
 	}
@@ -206,6 +219,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVertices(Buffer newVertices) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__VERTICES, newVertices);
 	}
@@ -215,6 +229,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Buffer getNormals() {
 		return (Buffer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__NORMALS, true);
 	}
@@ -224,6 +239,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNormals(Buffer newNormals) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__NORMALS, newNormals);
 	}
@@ -233,6 +249,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Vector4f getColor() {
 		return (Vector4f) eGet(GeometryPackage.Literals.GEOMETRY_DATA__COLOR, true);
 	}
@@ -242,6 +259,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setColor(Vector4f newColor) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__COLOR, newColor);
 	}
@@ -251,6 +269,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isHasTransparency() {
 		return (Boolean) eGet(GeometryPackage.Literals.GEOMETRY_DATA__HAS_TRANSPARENCY, true);
 	}
@@ -260,6 +279,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setHasTransparency(boolean newHasTransparency) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__HAS_TRANSPARENCY, newHasTransparency);
 	}
@@ -269,6 +289,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getReused() {
 		return (Integer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__REUSED, true);
 	}
@@ -278,6 +299,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReused(int newReused) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__REUSED, newReused);
 	}
@@ -287,6 +309,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public short getType() {
 		return (Short) eGet(GeometryPackage.Literals.GEOMETRY_DATA__TYPE, true);
 	}
@@ -296,6 +319,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(short newType) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__TYPE, newType);
 	}
@@ -305,6 +329,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Vector4f getMostUsedColor() {
 		return (Vector4f) eGet(GeometryPackage.Literals.GEOMETRY_DATA__MOST_USED_COLOR, true);
 	}
@@ -314,6 +339,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMostUsedColor(Vector4f newMostUsedColor) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__MOST_USED_COLOR, newMostUsedColor);
 	}
@@ -323,6 +349,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Bounds getBoundsMm() {
 		return (Bounds) eGet(GeometryPackage.Literals.GEOMETRY_DATA__BOUNDS_MM, true);
 	}
@@ -332,6 +359,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBoundsMm(Bounds newBoundsMm) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__BOUNDS_MM, newBoundsMm);
 	}
@@ -341,6 +369,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getSaveableTriangles() {
 		return (Integer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__SAVEABLE_TRIANGLES, true);
 	}
@@ -350,6 +379,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSaveableTriangles(int newSaveableTriangles) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__SAVEABLE_TRIANGLES, newSaveableTriangles);
 	}
@@ -359,6 +389,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ColorPack getColorPack() {
 		return (ColorPack) eGet(GeometryPackage.Literals.GEOMETRY_DATA__COLOR_PACK, true);
 	}
@@ -368,6 +399,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setColorPack(ColorPack newColorPack) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__COLOR_PACK, newColorPack);
 	}
@@ -377,6 +409,47 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public Buffer getLineIndices() {
+		return (Buffer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__LINE_INDICES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setLineIndices(Buffer newLineIndices) {
+		eSet(GeometryPackage.Literals.GEOMETRY_DATA__LINE_INDICES, newLineIndices);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int getNrLineIndices() {
+		return (Integer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__NR_LINE_INDICES, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setNrLineIndices(int newNrLineIndices) {
+		eSet(GeometryPackage.Literals.GEOMETRY_DATA__NR_LINE_INDICES, newNrLineIndices);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Buffer getNormalsQuantized() {
 		return (Buffer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__NORMALS_QUANTIZED, true);
 	}
@@ -386,6 +459,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNormalsQuantized(Buffer newNormalsQuantized) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__NORMALS_QUANTIZED, newNormalsQuantized);
 	}
@@ -395,6 +469,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Buffer getVerticesQuantized() {
 		return (Buffer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__VERTICES_QUANTIZED, true);
 	}
@@ -404,6 +479,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVerticesQuantized(Buffer newVerticesQuantized) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__VERTICES_QUANTIZED, newVerticesQuantized);
 	}
@@ -413,6 +489,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Buffer getColorsQuantized() {
 		return (Buffer) eGet(GeometryPackage.Literals.GEOMETRY_DATA__COLORS_QUANTIZED, true);
 	}
@@ -422,6 +499,7 @@ public class GeometryDataImpl extends IdEObjectImpl implements GeometryData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setColorsQuantized(Buffer newColorsQuantized) {
 		eSet(GeometryPackage.Literals.GEOMETRY_DATA__COLORS_QUANTIZED, newColorsQuantized);
 	}

@@ -86,6 +86,7 @@ public class BufferImpl extends IdEObjectImpl implements Buffer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public byte[] getData() {
 		return (byte[]) eGet(GeometryPackage.Literals.BUFFER__DATA, true);
 	}
@@ -95,6 +96,7 @@ public class BufferImpl extends IdEObjectImpl implements Buffer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setData(byte[] newData) {
 		eSet(GeometryPackage.Literals.BUFFER__DATA, newData);
 	}

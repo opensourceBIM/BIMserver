@@ -65,7 +65,9 @@ public interface Bounds extends IdEObject {
 	 * @return the value of the '<em>Min</em>' reference.
 	 * @see #setMin(Vector3f)
 	 * @see org.bimserver.models.geometry.GeometryPackage#getBounds_Min()
-	 * @model
+	 * @model annotation="dbembed"
+	 *        annotation="embedsreference"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	Vector3f getMin();
@@ -91,7 +93,9 @@ public interface Bounds extends IdEObject {
 	 * @return the value of the '<em>Max</em>' reference.
 	 * @see #setMax(Vector3f)
 	 * @see org.bimserver.models.geometry.GeometryPackage#getBounds_Max()
-	 * @model
+	 * @model annotation="dbembed"
+	 *        annotation="embedsreference"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	Vector3f getMax();

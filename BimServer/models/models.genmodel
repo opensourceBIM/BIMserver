@@ -60,6 +60,8 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryData/boundsMm"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/saveableTriangles"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryData/colorPack"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/0/GeometryData/lineIndices"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryData/nrLineIndices"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/Vector4f">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector4f/x"/>

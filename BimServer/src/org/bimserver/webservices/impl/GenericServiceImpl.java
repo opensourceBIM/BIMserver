@@ -37,6 +37,7 @@ import org.bimserver.webservices.authorization.AdminAuthorization;
 import org.bimserver.webservices.authorization.AnonymousAuthorization;
 import org.bimserver.webservices.authorization.Authorization;
 import org.bimserver.webservices.authorization.ExplicitRightsAuthorization;
+import org.bimserver.webservices.authorization.MonitorAuthorization;
 import org.bimserver.webservices.authorization.SystemAuthorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -90,6 +91,17 @@ public class GenericServiceImpl {
 			throw new UserException("Authentication required for this call");
 		}
 		if (authorization instanceof AdminAuthorization || authorization instanceof SystemAuthorization) {
+			return;
+		}
+		throw new UserException("Administrator rights required for this call");
+	}
+
+	protected void requireAdminOrMonitorAuthentication() throws UserException {
+		Authorization authorization = serviceMap.getAuthorization();
+		if (authorization == null) {
+			throw new UserException("Authentication required for this call");
+		}
+		if (authorization instanceof AdminAuthorization || authorization instanceof SystemAuthorization || authorization instanceof MonitorAuthorization) {
 			return;
 		}
 		throw new UserException("Administrator rights required for this call");

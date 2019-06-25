@@ -88,6 +88,7 @@ public class Vector3fImpl extends IdEObjectImpl implements Vector3f {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getX() {
 		return (Double) eGet(GeometryPackage.Literals.VECTOR3F__X, true);
 	}
@@ -97,6 +98,7 @@ public class Vector3fImpl extends IdEObjectImpl implements Vector3f {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setX(double newX) {
 		eSet(GeometryPackage.Literals.VECTOR3F__X, newX);
 	}
@@ -106,6 +108,7 @@ public class Vector3fImpl extends IdEObjectImpl implements Vector3f {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getY() {
 		return (Double) eGet(GeometryPackage.Literals.VECTOR3F__Y, true);
 	}
@@ -115,6 +118,7 @@ public class Vector3fImpl extends IdEObjectImpl implements Vector3f {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setY(double newY) {
 		eSet(GeometryPackage.Literals.VECTOR3F__Y, newY);
 	}
@@ -124,6 +128,7 @@ public class Vector3fImpl extends IdEObjectImpl implements Vector3f {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public double getZ() {
 		return (Double) eGet(GeometryPackage.Literals.VECTOR3F__Z, true);
 	}
@@ -133,6 +138,7 @@ public class Vector3fImpl extends IdEObjectImpl implements Vector3f {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setZ(double newZ) {
 		eSet(GeometryPackage.Literals.VECTOR3F__Z, newZ);
 	}

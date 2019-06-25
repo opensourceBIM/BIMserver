@@ -542,13 +542,31 @@ public interface GeometryPackage extends EPackage {
 	int GEOMETRY_DATA__COLOR_PACK = 17;
 
 	/**
+	 * The feature id for the '<em><b>Line Indices</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_DATA__LINE_INDICES = 18;
+
+	/**
+	 * The feature id for the '<em><b>Nr Line Indices</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_DATA__NR_LINE_INDICES = 19;
+
+	/**
 	 * The number of structural features of the '<em>Data</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_DATA_FEATURE_COUNT = 18;
+	int GEOMETRY_DATA_FEATURE_COUNT = 20;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.Vector4fImpl <em>Vector4f</em>}' class.
@@ -1102,6 +1120,28 @@ public interface GeometryPackage extends EPackage {
 	EReference getGeometryData_ColorPack();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryData#getLineIndices <em>Line Indices</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Line Indices</em>'.
+	 * @see org.bimserver.models.geometry.GeometryData#getLineIndices()
+	 * @see #getGeometryData()
+	 * @generated
+	 */
+	EReference getGeometryData_LineIndices();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryData#getNrLineIndices <em>Nr Line Indices</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Nr Line Indices</em>'.
+	 * @see org.bimserver.models.geometry.GeometryData#getNrLineIndices()
+	 * @see #getGeometryData()
+	 * @generated
+	 */
+	EAttribute getGeometryData_NrLineIndices();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.bimserver.models.geometry.GeometryData#getNormalsQuantized <em>Normals Quantized</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1584,6 +1624,22 @@ public interface GeometryPackage extends EPackage {
 		 * @generated
 		 */
 		EReference GEOMETRY_DATA__COLOR_PACK = eINSTANCE.getGeometryData_ColorPack();
+
+		/**
+		 * The meta object literal for the '<em><b>Line Indices</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GEOMETRY_DATA__LINE_INDICES = eINSTANCE.getGeometryData_LineIndices();
+
+		/**
+		 * The meta object literal for the '<em><b>Nr Line Indices</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GEOMETRY_DATA__NR_LINE_INDICES = eINSTANCE.getGeometryData_NrLineIndices();
 
 		/**
 		 * The meta object literal for the '<em><b>Normals Quantized</b></em>' reference feature.

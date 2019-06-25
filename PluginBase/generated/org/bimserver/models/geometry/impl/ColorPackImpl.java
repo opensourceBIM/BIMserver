@@ -88,6 +88,7 @@ public class ColorPackImpl extends IdEObjectImpl implements ColorPack {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public byte[] getData() {
 		return (byte[]) eGet(GeometryPackage.Literals.COLOR_PACK__DATA, true);
 	}
@@ -97,6 +98,7 @@ public class ColorPackImpl extends IdEObjectImpl implements ColorPack {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setData(byte[] newData) {
 		eSet(GeometryPackage.Literals.COLOR_PACK__DATA, newData);
 	}

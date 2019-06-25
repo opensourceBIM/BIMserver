@@ -62,6 +62,8 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getBoundsMm <em>Bounds Mm</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getSaveableTriangles <em>Saveable Triangles</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryData#getColorPack <em>Color Pack</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#getLineIndices <em>Line Indices</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryData#getNrLineIndices <em>Nr Line Indices</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData()
@@ -267,7 +269,9 @@ public interface GeometryData extends IdEObject {
 	 * @return the value of the '<em>Color</em>' reference.
 	 * @see #setColor(Vector4f)
 	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_Color()
-	 * @model
+	 * @model annotation="dbembed"
+	 *        annotation="embedsreference"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	Vector4f getColor();
@@ -371,7 +375,9 @@ public interface GeometryData extends IdEObject {
 	 * @return the value of the '<em>Most Used Color</em>' reference.
 	 * @see #setMostUsedColor(Vector4f)
 	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_MostUsedColor()
-	 * @model
+	 * @model annotation="dbembed"
+	 *        annotation="embedsreference"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	Vector4f getMostUsedColor();
@@ -397,7 +403,9 @@ public interface GeometryData extends IdEObject {
 	 * @return the value of the '<em>Bounds Mm</em>' reference.
 	 * @see #setBoundsMm(Bounds)
 	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_BoundsMm()
-	 * @model
+	 * @model annotation="dbembed"
+	 *        annotation="embedsreference"
+	 *        annotation="hidden"
 	 * @generated
 	 */
 	Bounds getBoundsMm();
@@ -449,7 +457,7 @@ public interface GeometryData extends IdEObject {
 	 * @return the value of the '<em>Color Pack</em>' reference.
 	 * @see #setColorPack(ColorPack)
 	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_ColorPack()
-	 * @model
+	 * @model annotation="embedsreference"
 	 * @generated
 	 */
 	ColorPack getColorPack();
@@ -463,6 +471,50 @@ public interface GeometryData extends IdEObject {
 	 * @generated
 	 */
 	void setColorPack(ColorPack value);
+
+	/**
+	 * Returns the value of the '<em><b>Line Indices</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Line Indices</em>' reference.
+	 * @see #setLineIndices(Buffer)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_LineIndices()
+	 * @model
+	 * @generated
+	 */
+	Buffer getLineIndices();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getLineIndices <em>Line Indices</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Line Indices</em>' reference.
+	 * @see #getLineIndices()
+	 * @generated
+	 */
+	void setLineIndices(Buffer value);
+
+	/**
+	 * Returns the value of the '<em><b>Nr Line Indices</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Nr Line Indices</em>' attribute.
+	 * @see #setNrLineIndices(int)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryData_NrLineIndices()
+	 * @model
+	 * @generated
+	 */
+	int getNrLineIndices();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryData#getNrLineIndices <em>Nr Line Indices</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Nr Line Indices</em>' attribute.
+	 * @see #getNrLineIndices()
+	 * @generated
+	 */
+	void setNrLineIndices(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Normals Quantized</b></em>' reference.
