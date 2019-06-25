@@ -205,6 +205,9 @@ public abstract class Authorization {
 				case RunServiceAuthorization.ID:
 					authorization = RunServiceAuthorization.fromBuffer(buffer);
 					break;
+				case MonitorAuthorization.ID:
+					authorization = MonitorAuthorization.fromBuffer(buffer);
+					break;
 				default:
 					throw new AuthenticationException("Unknown authorization type: " + type);
 				}

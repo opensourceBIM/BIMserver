@@ -75,7 +75,9 @@ public class FileJarClassLoader extends JarClassLoader implements Closeable {
 		try {
 			if (Files.isDirectory(path)) {
 				for (Path subPath : PathUtils.list(path)) {
-					loadEmbeddedJarFileSystems(subPath);
+					if (!subPath.getFileName().toString().contentEquals("..")) {
+						loadEmbeddedJarFileSystems(subPath);
+					}
 				}
 			} else {
 				// This is annoying, but we are caching the contents of JAR files within JAR files in memory, could not get the JarFileSystem to work with jar:jar:file URI's
