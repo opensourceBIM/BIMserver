@@ -292,7 +292,7 @@ public class GeometryGenerationReport {
 		
 		builder.append("<h3>Jobs</h3>");
 		builder.append("<table>");
-		builder.append("<thead><tr><th>Main type</th><th># objects</th><th>Uses mapping</th><th># triangles</th><th>Total time</th><th>Exception</th><th>Debug file</th></tr></thead>");
+		builder.append("<thead><tr><th>Main type</th><th># objects</th><th>Uses mapping</th><th># triangles</th><th>Total time</th><th>CPU time</th><th>Exception</th><th>Debug file</th></tr></thead>");
 		builder.append("<tbody>");
 		for (ReportJob job : jobs) {
 			builder.append("<tr>");
@@ -319,7 +319,7 @@ public class GeometryGenerationReport {
 			if (debugFiles.containsKey(job.getId())) {
 				builder.append("<td><a href=\"#debug" + job.getId() + "\">" + job.getId() + "</a></td>");
 			} else {
-				builder.append("<td></td>");
+				builder.append("<td>None</td>");
 			}
 			builder.append("</tr>\n");
 		}
