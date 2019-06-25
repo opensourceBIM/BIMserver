@@ -166,12 +166,14 @@ public class PluginBundleManager implements AutoCloseable {
 			dependenciesToResolve.add(new Dependency(new DefaultArtifact(dependency2.getGroupId(), dependency2.getArtifactId(), "pom", dependency2.getVersion()), dependency2.getScope()));
 		}
 		CollectRequest collectRequest = new CollectRequest(dependenciesToResolve, null, null);
+		collectRequest.setRepositories(mavenPluginRepository.getRepositoriesAsList());
 		CollectResult collectDependencies = mavenPluginRepository.getSystem().collectDependencies(mavenPluginRepository.getSession(), collectRequest);
 		PreorderNodeListGenerator nlg = new PreorderNodeListGenerator();
 		DependencyNode rootDep = collectDependencies.getRoot();
 		rootDep.accept(nlg);
 		
 		for (Dependency dependency : nlg.getDependencies(true)) {
+			LOGGER.info(dependency.getArtifact().getGroupId() + "." + dependency.getArtifact().getArtifactId());
 			Artifact dependencyArtifact = dependency.getArtifact();
 			PluginBundleIdentifier pluginBundleIdentifier = new PluginBundleIdentifier(dependencyArtifact.getGroupId(), dependencyArtifact.getArtifactId());
 			if (pluginBundleIdentifierToPluginBundle.containsKey(pluginBundleIdentifier)) {
@@ -202,6 +204,7 @@ public class PluginBundleManager implements AutoCloseable {
 					jarClassLoaders.add(jarClassLoader);
 					delegatingClassLoader.add(jarClassLoader);
 				} catch (Exception e) {
+					e.printStackTrace();
 					throw new Exception("Required dependency " + pluginBundleIdentifier + " is not installed");
 				}
 			}

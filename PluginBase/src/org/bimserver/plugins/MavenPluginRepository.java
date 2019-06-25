@@ -47,8 +47,7 @@ public class MavenPluginRepository {
 	private final RepositorySystem system;
 	private final RepositorySystemSession session;
 	private final Set<RemoteRepository> repositories = new LinkedHashSet<>();
-	private List<RemoteRepository> localRepositories;
-	private final RemoteRepository remoteRepository;
+	private final List<RemoteRepository> localRepositories;
 	private String defaultRemoteRepositoryLocation;
 	private Path localRepoFile;
 	private RemoteRepository local;
@@ -66,14 +65,13 @@ public class MavenPluginRepository {
 
 		RemoteRepository.Builder builder = new RemoteRepository.Builder("central", "default", defaultRemoteRepositoryLocation);
 		builder.setPolicy(new RepositoryPolicy(true, RepositoryPolicy.UPDATE_POLICY_INTERVAL + ":60", RepositoryPolicy.CHECKSUM_POLICY_FAIL));
-		remoteRepository = builder.build();
+		RemoteRepository remoteRepository = builder.build();
 
 		repositories.add(remoteRepository);
 
-		builder = new RemoteRepository.Builder("github", "default", "http://repo.logic-labs.nl.s3.amazonaws.com/release");
+		builder = new RemoteRepository.Builder("public", "default", "http://public.logic-labs.nl.s3.amazonaws.com/release");
 		builder.setPolicy(new RepositoryPolicy(true, RepositoryPolicy.UPDATE_POLICY_INTERVAL + ":60", RepositoryPolicy.CHECKSUM_POLICY_IGNORE));
-		RemoteRepository remoteRepository2 = builder.build();
-		repositories.add(remoteRepository2);
+		repositories.add(builder.build());
 
 		if (defaultLocalRepositoryLocation != null) {
 			RemoteRepository.Builder localRepoBuilder = new RemoteRepository.Builder("local", "default", "file://" + defaultLocalRepositoryLocation);
@@ -82,7 +80,7 @@ public class MavenPluginRepository {
 			LOGGER.debug("Adding " + defaultLocalRepositoryLocation + " as repository");
 		}
 
-		localRepositories = new ArrayList<RemoteRepository>();
+		localRepositories = new ArrayList<>();
 		localRepositories.add(local);
 	}
 
