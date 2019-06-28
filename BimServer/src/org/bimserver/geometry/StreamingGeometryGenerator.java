@@ -242,13 +242,10 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			RenderEngine engine = renderEnginePool.borrowObject();
 			try {
 				applyLayerSets = engine.isApplyLayerSets();
-				applyLayerSets = false;
 				report.setApplyLayersets(applyLayerSets);
 
 				calculateQuantities = engine.isCalculateQuantities();
-				calculateQuantities = false;
 				report.setCalculateQuantities(calculateQuantities);
-				
 			} finally {
 				renderEnginePool.returnObject(engine);
 			}
