@@ -173,7 +173,7 @@ public class PluginBundleManager implements AutoCloseable {
 		rootDep.accept(nlg);
 		
 		for (Dependency dependency : nlg.getDependencies(true)) {
-			LOGGER.info(dependency.getArtifact().getGroupId() + "." + dependency.getArtifact().getArtifactId());
+//			LOGGER.info(dependency.getArtifact().getGroupId() + "." + dependency.getArtifact().getArtifactId());
 			Artifact dependencyArtifact = dependency.getArtifact();
 			PluginBundleIdentifier pluginBundleIdentifier = new PluginBundleIdentifier(dependencyArtifact.getGroupId(), dependencyArtifact.getArtifactId());
 			if (pluginBundleIdentifierToPluginBundle.containsKey(pluginBundleIdentifier)) {
