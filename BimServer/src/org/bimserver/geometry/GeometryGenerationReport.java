@@ -177,7 +177,8 @@ public class GeometryGenerationReport {
 			jobNode.put("usesMapping", job.isUsesMapping());
 			jobNode.put("trianglesGenerated", job.getTrianglesGenerated());
 			jobNode.put("totalTimeNanos", job.getTotalNanos());
-			jobNode.put("cpuTime", job.getCpuTime());
+			jobNode.put("cpuTimeMs", job.getCpuTimeMs());
+			jobNode.put("maxMemoryBytes", job.getMaxMemoryBytes());
 			
 			if (job.getException() != null) {
 				StringWriter writer = new StringWriter();
@@ -292,7 +293,7 @@ public class GeometryGenerationReport {
 		
 		builder.append("<h3>Jobs</h3>");
 		builder.append("<table>");
-		builder.append("<thead><tr><th>Main type</th><th># objects</th><th>Uses mapping</th><th># triangles</th><th>Total time</th><th>CPU time</th><th>Exception</th><th>Debug file</th></tr></thead>");
+		builder.append("<thead><tr><th>Main type</th><th># objects</th><th>Uses mapping</th><th># triangles</th><th>Total time</th><th>CPU time</th><th>Max memory</th><th>Exception</th><th>Debug file</th></tr></thead>");
 		builder.append("<tbody>");
 		for (ReportJob job : jobs) {
 			builder.append("<tr>");
@@ -308,7 +309,8 @@ public class GeometryGenerationReport {
 //			}
 //			builder.append("</td>");
 			builder.append("<td>" + Formatters.millisecondsToString(job.getTotalNanos() / 1000000) + "</td>");
-			builder.append("<td>" + job.getCpuTime() + "</td>");
+			builder.append("<td>" + job.getCpuTimeMs() + "ms</td>");
+			builder.append("<td>" + job.getMaxMemoryBytes() + "</td>");
 			if (job.getException() != null) {
 				StringWriter writer = new StringWriter();
 				job.getException().printStackTrace(new PrintWriter(writer));

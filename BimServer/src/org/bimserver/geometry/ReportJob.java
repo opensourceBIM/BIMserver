@@ -26,13 +26,14 @@ public class ReportJob {
 	private Exception exception;
 	private long end;
 	private long start;
-	private long cpuTime;
+	private long cpuTimeMs;
 	private String mainType;
 	private int nrObjects;
 	private boolean usesMapping;
 	private int trianglesGenerated;
 	private GeometryGenerationReport report;
 	private int id;
+	private long maxMemoryBytes;
 	
 	public ReportJob(GeometryGenerationReport report, String mainType, int nrObjects) {
 		this.report = report;
@@ -104,11 +105,19 @@ public class ReportJob {
 		return id;
 	}
 
-	public long getCpuTime() {
-		return cpuTime;
+	public long getCpuTimeMs() {
+		return cpuTimeMs;
 	}
 
-	public void setCpuTime(long cpuTime) {
-		this.cpuTime = cpuTime;
+	public void setCpuTime(long cpuTimeMs) {
+		this.cpuTimeMs = cpuTimeMs;
+	}
+
+	public void setMaxMemoryBytes(long maxMemoryBytes) {
+		this.maxMemoryBytes = maxMemoryBytes;
+	}
+	
+	public long getMaxMemoryBytes() {
+		return maxMemoryBytes;
 	}
 }

@@ -1,8 +1,11 @@
 package org.bimserver.plugins.renderengine;
 
-public class Metrics {
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
-	public long getCpuTime() {
-		return 0;
-	}
+public interface Metrics {
+
+	long getCpuTime();
+	long getMaxMemoryBytes();
+	
+	ObjectNode asJson();
 }
