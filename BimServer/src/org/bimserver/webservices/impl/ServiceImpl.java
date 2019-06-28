@@ -1126,6 +1126,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession()) {
 			Project project = tmpSession.get(poid, OldQuery.getDefault());
 			project.setCheckinInProgress(0);
+			tmpSession.store(project);
 			tmpSession.commit();
 		}
 	}
