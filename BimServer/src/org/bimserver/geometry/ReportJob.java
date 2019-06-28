@@ -109,7 +109,7 @@ public class ReportJob {
 		return cpuTimeMs;
 	}
 
-	public void setCpuTime(long cpuTimeMs) {
+	public void setCpuTimeMs(long cpuTimeMs) {
 		this.cpuTimeMs = cpuTimeMs;
 	}
 

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public interface Metrics {
 
-	long getCpuTime();
+	long getCpuTimeMs();
 	long getMaxMemoryBytes();
 	
 	ObjectNode asJson();

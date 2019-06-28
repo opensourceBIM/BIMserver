@@ -792,7 +792,8 @@ public class GeometryRunner implements Runnable {
 					if (renderEngine != null) {
 						Metrics metrics = renderEngine.getMetrics();
 						if (metrics != null) {
-							job.setCpuTime(metrics.getCpuTime());
+							job.setCpuTimeMs(metrics.getCpuTimeMs());
+							job.setMaxMemoryBytes(metrics.getMaxMemoryBytes());
 						}
 						renderEnginePool.returnObject(renderEngine);
 					}
