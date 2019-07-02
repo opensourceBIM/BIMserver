@@ -36,7 +36,9 @@ import org.bimserver.plugins.deserializers.DatabaseInterface;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.QueryContext;
 import org.bimserver.utils.BinUtils;
-import org.eclipse.emf.ecore.*;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;

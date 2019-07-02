@@ -23,7 +23,6 @@ import java.util.List;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
-import org.bimserver.database.DatabaseSession.GetResult;
 import org.bimserver.database.Record;
 import org.bimserver.database.SearchingRecordIterator;
 import org.bimserver.database.queries.om.QueryException;

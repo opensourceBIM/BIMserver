@@ -22,15 +22,9 @@ import java.util.Set;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
-import org.bimserver.database.OldQuery;
-import org.bimserver.database.query.conditions.Condition;
-import org.bimserver.database.query.conditions.HasReferenceToCondition;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.utils.CollectionUtils;
 
 public class GetAllRevisionsByUserDatabaseAction extends BimDatabaseAction<Set<Revision>>{
 

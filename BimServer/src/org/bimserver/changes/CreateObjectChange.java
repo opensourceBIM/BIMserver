@@ -19,7 +19,6 @@ package org.bimserver.changes;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
-import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.shared.GuidCompressor;
 import org.bimserver.shared.HashMapVirtualObject;

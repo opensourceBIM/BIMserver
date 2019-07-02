@@ -29,7 +29,6 @@ import java.nio.file.Path;
 import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.serializers.Writer;
-import org.bimserver.servlets.ReusableByteArrayOutputStream;
 import org.bimserver.servlets.ReusableLittleEndianDataOutputStream;
 import org.bimserver.utils.GrowingByteBuffer;
 

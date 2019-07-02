@@ -19,7 +19,6 @@ package org.bimserver.database.actions;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.bimserver.BimServer;
@@ -43,8 +42,6 @@ import org.bimserver.geometry.GeometryGenerationReport;
 import org.bimserver.geometry.StreamingGeometryGenerator;
 import org.bimserver.interfaces.SConverter;
 import org.bimserver.mail.MailSystem;
-import org.bimserver.models.geometry.Bounds;
-import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;

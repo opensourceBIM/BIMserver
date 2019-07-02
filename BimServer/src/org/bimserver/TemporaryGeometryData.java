@@ -1,7 +1,6 @@
 package org.bimserver;
 
 import java.nio.DoubleBuffer;
-import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
 /******************************************************************************

@@ -26,8 +26,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.management.RuntimeErrorException;
-
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.ServerIfcModel;

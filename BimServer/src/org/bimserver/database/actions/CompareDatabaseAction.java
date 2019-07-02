@@ -30,7 +30,6 @@ import org.bimserver.models.store.CompareType;
 import org.bimserver.models.store.ModelComparePluginConfiguration;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
-import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.modelcompare.ModelCompareException;
 import org.bimserver.plugins.modelcompare.ModelComparePlugin;
 import org.bimserver.shared.exceptions.ServerException;
