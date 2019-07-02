@@ -2921,8 +2921,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
-			BimDatabaseAction<Long> action = new GetNrPrimitivesDatabaseAction(getBimServer(), session, getInternalAccessMethod(), roid, getAuthorization());
-			return session.executeAndCommitAction(action);
+			return new GetNrPrimitivesDatabaseAction(getBimServer(), session, getInternalAccessMethod(), roid, getAuthorization()).execute();
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -3404,7 +3403,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			if (head == null) {
 				throw new UserException("head cannot be null");
 			}
-			DeserializerPlugin firstDeserializer = getBimServer().getPluginManager().getFirstDeserializer("ifc", Schema.IFC2X3TC1, true);
+			StreamingDeserializerPlugin firstDeserializer = getBimServer().getPluginManager().getFirstStreamingDeserializer("ifc", Schema.IFC2X3TC1, true);
 			if (firstDeserializer == null) {
 				throw new UserException("No deserializer found for ifc, cannot determine schema version");
 			}
