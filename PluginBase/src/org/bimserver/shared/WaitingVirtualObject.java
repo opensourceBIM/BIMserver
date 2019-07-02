@@ -45,11 +45,11 @@ public class WaitingVirtualObject {
 	// The structural feature (usually a reference) on which to 'connect' the object on
 	private final EStructuralFeature structuralFeature;
 
-	private int lineNumber;
+	private long lineNumber;
 
 	private int bufferPosition = -1;
 	
-	public WaitingVirtualObject(int lineNumber, VirtualObject object, EStructuralFeature structuralFeature, int bufferPosition) {
+	public WaitingVirtualObject(long lineNumber, VirtualObject object, EStructuralFeature structuralFeature, int bufferPosition) {
 		this.lineNumber = lineNumber;
 		this.object = object;
 		this.structuralFeature = structuralFeature;
@@ -68,7 +68,7 @@ public class WaitingVirtualObject {
 		return structuralFeature;
 	}
 	
-	public int getLineNumber() {
+	public long getLineNumber() {
 		return lineNumber;
 	}
 	

@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class SingleWaitingVirtualObject extends WaitingVirtualObject {
 
-	public SingleWaitingVirtualObject(int lineNumber, VirtualObject object, EStructuralFeature structuralFeature, int bufferPosition) {
+	public SingleWaitingVirtualObject(long lineNumber, VirtualObject object, EStructuralFeature structuralFeature, int bufferPosition) {
 		super(lineNumber, object, structuralFeature, bufferPosition);
 	}
 }

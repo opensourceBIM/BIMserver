@@ -20,9 +20,9 @@ package org.bimserver.plugins.deserializers;
 public class DeserializeException extends Exception {
 
 	private static final long serialVersionUID = -7216984454398041095L;
-	private int lineNumber;
+	private long lineNumber;
 
-	public DeserializeException(int lineNumber, String message, Exception e) {
+	public DeserializeException(long lineNumber, String message, Exception e) {
 		super("Error on line " + lineNumber + ": " + message, e);
 		this.lineNumber = lineNumber;
 	}
@@ -31,7 +31,7 @@ public class DeserializeException extends Exception {
 		super(message, e);
 	}
 	
-	public int getLineNumber() {
+	public long getLineNumber() {
 		return lineNumber;
 	}
 	
@@ -39,7 +39,7 @@ public class DeserializeException extends Exception {
 		super(message);
 	}
 	
-	public DeserializeException(int lineNumber, String message) {
+	public DeserializeException(long lineNumber, String message) {
 		super("Error on line " + lineNumber + ": " + message);
 		this.lineNumber = lineNumber;
 	}
@@ -48,7 +48,7 @@ public class DeserializeException extends Exception {
 		super(e);
 	}
 
-	public DeserializeException(int lineNumber, Exception e) {
+	public DeserializeException(long lineNumber, Exception e) {
 		super(e);
 		this.lineNumber = lineNumber;
 	}

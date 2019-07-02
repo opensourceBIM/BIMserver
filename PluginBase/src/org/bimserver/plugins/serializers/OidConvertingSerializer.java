@@ -21,5 +21,5 @@ import java.util.Map;
 
 public interface OidConvertingSerializer {
 
-	Map<Long, Integer> getOidToEid();
+	Map<Long, Long> getOidToEid();
 }

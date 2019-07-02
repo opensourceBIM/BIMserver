@@ -27,9 +27,9 @@ public class WaitingObject {
 	// The structural feature on which to 'connect' the object on
 	private final EReference eReference;
 
-	private int lineNumber;
+	private long lineNumber;
 	
-	public WaitingObject(int lineNumber, EObject object, EReference eReference) {
+	public WaitingObject(long lineNumber, EObject object, EReference eReference) {
 		this.lineNumber = lineNumber;
 		this.object = object;
 		this.eReference = eReference;
@@ -43,7 +43,7 @@ public class WaitingObject {
 		return eReference;
 	}
 	
-	public int getLineNumber() {
+	public long getLineNumber() {
 		return lineNumber;
 	}
 	

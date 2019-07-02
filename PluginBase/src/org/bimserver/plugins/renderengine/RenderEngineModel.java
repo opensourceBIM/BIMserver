@@ -29,7 +29,7 @@ public interface RenderEngineModel extends AutoCloseable {
 
 	void setFormat(int format, int mask) throws RenderEngineException;
 	void setSettings(RenderEngineSettings settings) throws RenderEngineException;
-	RenderEngineInstance getInstanceFromExpressId(int oid) throws RenderEngineException;
+	RenderEngineInstance getInstanceFromExpressId(long expressId) throws RenderEngineException;
 	Collection<RenderEngineInstance> listInstances() throws RenderEngineException;
 	void generateGeneralGeometry() throws RenderEngineException;
 	void close() throws RenderEngineException;

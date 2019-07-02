@@ -35,7 +35,7 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 	private long oid = -1;
 	private int pid;
 	private int rid;
-	private int expressId = -1;
+	private long expressId = -1;
 	private IfcModelInterface model;
 	private State loadingState = State.NO_LAZY_LOADING;
 	private QueryInterface queryInterface;
@@ -148,11 +148,11 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 		return getModel() != null;
 	}
 
-	public int getExpressId() {
+	public long getExpressId() {
 		return expressId;
 	}
 
-	public void setExpressId(int expressId) {
+	public void setExpressId(long expressId) {
 		this.expressId = expressId;
 	}
 

@@ -29,7 +29,7 @@ public class ListWaitingVirtualObject extends WaitingVirtualObject {
 	// To keep an eventual order intact, for EList's you can store the index at which it should be placed
 	private final int index;
 
-	public ListWaitingVirtualObject(int lineNumber, VirtualObject object, EStructuralFeature structuralFeature, int index, int bufferPosition) {
+	public ListWaitingVirtualObject(long lineNumber, VirtualObject object, EStructuralFeature structuralFeature, int index, int bufferPosition) {
 		super(lineNumber, object, structuralFeature, bufferPosition);
 		this.index = index;
 	}

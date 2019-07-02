@@ -31,7 +31,7 @@ public class TwoDimensionalListWaitingVirtualObject extends ListWaitingVirtualOb
 	private int index2;
 	private ListCapableVirtualObject object2;
 
-	public TwoDimensionalListWaitingVirtualObject(int lineNumber, VirtualObject parentObject, ListCapableVirtualObject object, EStructuralFeature structuralFeature, int index1, int index2, int bufferPosition) {
+	public TwoDimensionalListWaitingVirtualObject(long lineNumber, VirtualObject parentObject, ListCapableVirtualObject object, EStructuralFeature structuralFeature, int index1, int index2, int bufferPosition) {
 		super(lineNumber, parentObject, structuralFeature, index1, bufferPosition);
 		this.object2 = object;
 		this.index1 = index1;

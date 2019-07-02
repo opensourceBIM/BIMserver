@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EReference;
 
 public class SingleWaitingObject extends WaitingObject {
 
-	public SingleWaitingObject(int lineNumber, EObject object, EReference eReference) {
+	public SingleWaitingObject(long lineNumber, EObject object, EReference eReference) {
 		super(lineNumber, object, eReference);
 	}
 }

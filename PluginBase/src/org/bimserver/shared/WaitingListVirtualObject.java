@@ -32,12 +32,12 @@ import org.slf4j.LoggerFactory;
 
 public class WaitingListVirtualObject {
 	private static final Logger LOGGER = LoggerFactory.getLogger(WaitingListVirtualObject.class);
-	private final Map<Integer, List<WaitingVirtualObject>> waitingObjects = new HashMap<>();
+	private final Map<Long, List<WaitingVirtualObject>> waitingObjects = new HashMap<>();
 
 	// TODO this seems to only be used for debugging/error checking, make optional
 	private final Map<Long, OpenConnectionCounter> openConnections = new HashMap<>();
 
-	public boolean containsKey(int recordNumber) {
+	public boolean containsKey(long recordNumber) {
 		return waitingObjects.containsKey(recordNumber);
 	}
 
@@ -53,7 +53,7 @@ public class WaitingListVirtualObject {
 		return openConnectionCounter;
 	}
 	
-	public void add(int referenceId, WaitingVirtualObject waitingObject) {
+	public void add(long referenceId, WaitingVirtualObject waitingObject) {
 		getOpenConnectionCounter(waitingObject.eClass(), waitingObject.getOid()).incrementAndGet();
 		
 		List<WaitingVirtualObject> waitingList = null;
@@ -77,7 +77,7 @@ public class WaitingListVirtualObject {
 		}
 	}
 	
-	public void updateNode(int expressId, EClass ec, VirtualObject eObject) throws DeserializeException, BimserverDatabaseException {
+	public void updateNode(long expressId, EClass ec, VirtualObject eObject) throws DeserializeException, BimserverDatabaseException {
 		for (WaitingVirtualObject waitingObject : waitingObjects.get(expressId)) {
 			if (waitingObject.getStructuralFeature().isMany()) {
 				ListWaitingVirtualObject listWaitingObject = (ListWaitingVirtualObject)waitingObject;
@@ -122,7 +122,7 @@ public class WaitingListVirtualObject {
 			}
 		}
 		if (size() > 0) {
-			for (Entry<Integer, List<WaitingVirtualObject>> entry : waitingObjects.entrySet()) {
+			for (Entry<Long, List<WaitingVirtualObject>> entry : waitingObjects.entrySet()) {
 				StringBuilder sb = new StringBuilder("" + entry.getKey() + " ");
 				for (WaitingVirtualObject waitingObject : entry.getValue()) {
 					sb.append(waitingObject.toString() + " ");
