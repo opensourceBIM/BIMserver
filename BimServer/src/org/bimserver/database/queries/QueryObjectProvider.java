@@ -20,7 +20,6 @@ package org.bimserver.database.queries;
 import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -46,6 +45,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
+
 public class QueryObjectProvider implements ObjectProvider {
 
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
@@ -54,17 +55,17 @@ public class QueryObjectProvider implements ObjectProvider {
 	private static final int MAX_STACK_FRAMES_PROCESSED = 1000000000;
 	
 	// So far 100000 has proven to not be enough for some legit IFC files
-	private static final int MAX_STACK_SIZE = 1000000;
+	private static final int MAX_STACK_SIZE = 10000000;
 	private static final Logger LOGGER = LoggerFactory.getLogger(QueryObjectProvider.class);
 	private DatabaseSession databaseSession;
 	private BimServer bimServer;
 	
-	private final Set<Long> oidsRead = new HashSet<>();
+	private final Set<Long> oidsRead = new LongOpenHashSet();
 	private Deque<StackFrame> stack;
 	private long start = -1;
 	private long reads = 0;
 	private long stackFramesProcessed = 0;
-	private final Set<Long> goingToRead = new HashSet<>();
+	private final Set<Long> goingToRead = new LongOpenHashSet();
 	private Query query;
 	private StackFrame stackFrame;
 
@@ -152,7 +153,7 @@ public class QueryObjectProvider implements ObjectProvider {
 			while (!stack.isEmpty()) {
 				if (stack.size() > MAX_STACK_SIZE) {
 					dumpEndQuery();
-					throw new BimserverDatabaseException("Query stack size > 10000, probably a bug, please report");
+					throw new BimserverDatabaseException("Query stack size > " + MAX_STACK_SIZE + ", probably a bug, please report");
 				}
 				stackFrame = stack.peek();
 				if (stackFrame.isDone()) {
