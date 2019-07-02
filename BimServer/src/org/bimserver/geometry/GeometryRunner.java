@@ -125,6 +125,20 @@ public class GeometryRunner implements Runnable {
 		Thread.currentThread().setName("GeometryRunner");
 		long start = System.nanoTime();
 		job.setStartNanos(start);
+
+		// For all objects "hitchhiking" on this GeometryRunner, we also want to couple them to the job
+		if (map != null) {
+			for (long oid : map.keySet()) {
+				if (map.get(oid).getMasterOid() != oid) {
+					try {
+						job.addObject(oid, databaseSession.getEClassForOid(oid).getName());
+					} catch (BimserverDatabaseException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+		
 		try {
 			HashMapVirtualObject next = objectProvider.next();
 			Query query = new Query("Double buffer query " + eClass.getName(), this.streamingGeometryGenerator.packageMetaData);
@@ -169,7 +183,7 @@ public class GeometryRunner implements Runnable {
 				IOUtils.copy(serializer.getInputStream(), baos);
 				bytes = baos.toByteArray();
 				InputStream in = new ByteArrayInputStream(bytes);
-				Map<Integer, HashMapVirtualObject> notFoundObjects = new HashMap<>();
+				Map<Long, HashMapVirtualObject> notFoundObjects = new HashMap<>();
 
 				Set<Range> reusableGeometryData = new HashSet<>();
 
@@ -194,29 +208,18 @@ public class GeometryRunner implements Runnable {
 							}
 
 							OidConvertingSerializer oidConvertingSerializer = (OidConvertingSerializer) serializer;
-							Map<Long, Integer> oidToEid = oidConvertingSerializer.getOidToEid();
+							Map<Long, Long> oidToEid = oidConvertingSerializer.getOidToEid();
 							Map<Long, DebuggingInfo> debuggingInfo = new HashMap<>();
 
 							for (HashMapVirtualObject ifcProduct : objects) {
 								if (!this.streamingGeometryGenerator.running) {
 									return;
 								}
-								Integer expressId = oidToEid.get(ifcProduct.getOid());
+								Long expressId = oidToEid.get(ifcProduct.getOid());
 								try {
 									RenderEngineInstance renderEngineInstance = renderEngineModel.getInstanceFromExpressId(expressId);
 									RenderEngineGeometry geometry = renderEngineInstance.generateGeometry();
 									boolean translate = true;
-									// if (geometry == null ||
-									// geometry.getIndices().length == 0) {
-									// LOGGER.info("Running again...");
-									// renderEngineModel.setFilter(renderEngineFilterTransformed);
-									// geometry =
-									// renderEngineInstance.generateGeometry();
-									// if (geometry != null) {
-									// translate = false;
-									// }
-									// renderEngineModel.setFilter(renderEngineFilter);
-									// }
 
 									if (geometry != null && geometry.getNrIndices() > 0) {
 										HashMapVirtualObject geometryInfo = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getGeometryInfo());
@@ -256,19 +259,8 @@ public class GeometryRunner implements Runnable {
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_BoundsUntransformed(), boundsUntransformed);
 
 										double volume = 0;
-										if (streamingGeometryGenerator.isCalculateQuantities()) {
-											ObjectNode additionalData = renderEngineInstance.getAdditionalData();
-											if (additionalData != null) {
-												geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_AdditionalData(), additionalData.toString());
-												if (additionalData.has("TOTAL_SURFACE_AREA")) {
-													geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), additionalData.get("TOTAL_SURFACE_AREA").asDouble());
-												}
-												if (additionalData.has("TOTAL_SHAPE_VOLUME")) {
-													volume = additionalData.get("TOTAL_SHAPE_VOLUME").asDouble();
-													geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), volume);
-												}
-											}
-										}
+										
+										volume = setCalculatedQuantities(renderEngineInstance, geometryInfo, volume);
 
 										HashMapVirtualObject geometryData = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getGeometryData());
 										
@@ -503,22 +495,11 @@ public class GeometryRunner implements Runnable {
 													range.setGeometryDataOid(geometryData.getOid());
 													reusableGeometryData.add(range);
 
-													ObjectNode additionalData = renderEngineInstance.getAdditionalData();
-													if (streamingGeometryGenerator.isCalculateQuantities()) {
-														if (additionalData != null) {
-															geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_AdditionalData(), additionalData.toString());
-															if (additionalData.has("SURFACE_AREA_ALONG_Z")) {
-																geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), additionalData.get("SURFACE_AREA_ALONG_Z").asDouble());
-															}
-															if (additionalData.has("TOTAL_SHAPE_VOLUME")) {
-																geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), additionalData.get("TOTAL_SHAPE_VOLUME").asDouble());
-															}
-														}
-													}
+													volume = setCalculatedQuantities(renderEngineInstance, geometryInfo, volume);
 
 													geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), indicesAsInt.capacity() / 3);
 
-													productToData.put(ifcProduct.getOid(), new TemporaryGeometryData(geometryData.getOid(), additionalData, indicesAsInt.capacity() / 3, size, mibu, mabu, indicesAsInt, verticesAsDouble, hasTransparency, colors.capacity()));
+													productToData.put(ifcProduct.getOid(), new TemporaryGeometryData(geometryData.getOid(), renderEngineInstance.getAdditionalData(), indicesAsInt.capacity() / 3, size, mibu, mabu, indicesAsInt, verticesAsDouble, hasTransparency, colors.capacity()));
 													geometryData.save();
 													databaseSession.cache((HashMapVirtualObject) geometryData);
 												}
@@ -801,7 +782,7 @@ public class GeometryRunner implements Runnable {
 						if (!notFoundObjects.isEmpty()) {
 							writeDebugFile(bytes, false, notFoundObjects);
 							StringBuilder sb = new StringBuilder();
-							for (Integer key : notFoundObjects.keySet()) {
+							for (Long key : notFoundObjects.keySet()) {
 								sb.append(key + " (" + notFoundObjects.get(key).getOid() + ")");
 								sb.append(", ");
 							}
@@ -831,6 +812,23 @@ public class GeometryRunner implements Runnable {
 		}
 		long end = System.nanoTime();
 		job.setEndNanos(end);
+	}
+
+	private double setCalculatedQuantities(RenderEngineInstance renderEngineInstance, HashMapVirtualObject geometryInfo, double volume) throws RenderEngineException {
+		if (streamingGeometryGenerator.isCalculateQuantities()) {
+			ObjectNode additionalData = renderEngineInstance.getAdditionalData();
+			if (additionalData != null) {
+				geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_AdditionalData(), additionalData.toString());
+				if (additionalData.has("TOTAL_SURFACE_AREA")) {
+					geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), additionalData.get("TOTAL_SURFACE_AREA").asDouble());
+				}
+				if (additionalData.has("TOTAL_SHAPE_VOLUME")) {
+					volume = additionalData.get("TOTAL_SHAPE_VOLUME").asDouble();
+					geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Volume(), volume);
+				}
+			}
+		}
+		return volume;
 	}
 	
 	private ByteBuffer generateLineRendering(IntBuffer indicesAsInt) {
@@ -1068,7 +1066,7 @@ public class GeometryRunner implements Runnable {
 		return true;
 	}
 	
-	private synchronized void writeDebugFile(byte[] bytes, boolean error, Map<Integer, HashMapVirtualObject> notFoundObjects) throws FileNotFoundException, IOException {
+	private synchronized void writeDebugFile(byte[] bytes, boolean error, Map<Long, HashMapVirtualObject> notFoundObjects) throws FileNotFoundException, IOException {
 		boolean debug = true;
 		if (debug) {
 			Path debugPath = this.streamingGeometryGenerator.bimServer.getHomeDir().resolve("debug");
