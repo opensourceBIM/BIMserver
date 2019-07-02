@@ -180,6 +180,18 @@ public class PluginManager implements PluginManagerInterface, PluginClassLoaderP
 		return getPlugins(StreamingDeserializerPlugin.class, onlyEnabled);
 	}
 
+	public Collection<StreamingDeserializerPlugin> getAllStreamingDeserializerPlugins(String extension, boolean onlyEnabled) {
+		Collection<StreamingDeserializerPlugin> allDeserializerPlugins = getAllStreamingDeserializerPlugins(onlyEnabled).values();
+		Iterator<StreamingDeserializerPlugin> iterator = allDeserializerPlugins.iterator();
+		while (iterator.hasNext()) {
+			StreamingDeserializerPlugin deserializerPlugin = iterator.next();
+			if (!deserializerPlugin.canHandleExtension(extension)) {
+				iterator.remove();
+			}
+		}
+		return allDeserializerPlugins;
+	}
+
 	public Map<PluginContext, StreamingSerializerPlugin> getAllStreamingSeserializerPlugins(boolean onlyEnabled) {
 		return getPlugins(StreamingSerializerPlugin.class, onlyEnabled);
 	}
@@ -342,8 +354,8 @@ public class PluginManager implements PluginManagerInterface, PluginClassLoaderP
 	}
 
 	public StreamingDeserializerPlugin getFirstStreamingDeserializer(String extension, Schema schema, boolean onlyEnabled) throws PluginException {
-		Map<PluginContext, StreamingDeserializerPlugin> allDeserializerPlugins = getAllStreamingDeserializerPlugins(onlyEnabled);
-		Iterator<StreamingDeserializerPlugin> iterator = allDeserializerPlugins.values().iterator();
+		Collection<StreamingDeserializerPlugin> allDeserializerPlugins = getAllStreamingDeserializerPlugins(extension, onlyEnabled);
+		Iterator<StreamingDeserializerPlugin> iterator = allDeserializerPlugins.iterator();
 		while (iterator.hasNext()) {
 			StreamingDeserializerPlugin next = iterator.next();
 			if (!next.getSupportedSchemas().contains(schema)) {
@@ -353,7 +365,7 @@ public class PluginManager implements PluginManagerInterface, PluginClassLoaderP
 		if (allDeserializerPlugins.size() == 0) {
 			throw new PluginException("No deserializers with extension " + extension + " found");
 		}
-		return allDeserializerPlugins.values().iterator().next();
+		return allDeserializerPlugins.iterator().next();
 	}
 
 	public RenderEnginePlugin getRenderEnginePlugin(String className, boolean onlyEnabled) {
