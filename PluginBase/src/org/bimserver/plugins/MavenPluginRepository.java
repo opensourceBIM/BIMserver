@@ -53,7 +53,7 @@ public class MavenPluginRepository {
 	private RemoteRepository local;
 	
 	public MavenPluginRepository(Path localRepoFile) {
-		this(localRepoFile, "http://central.maven.org/maven2", "~/.m2");
+		this(localRepoFile, "http://central.maven.org/maven2", System.getProperty("user.home") + "/.m2/repository");
 	}
 	
 	public MavenPluginRepository(Path localRepoFile, String defaultRemoteRepositoryLocation, String defaultLocalRepositoryLocation) {
@@ -76,7 +76,8 @@ public class MavenPluginRepository {
 		if (defaultLocalRepositoryLocation != null) {
 			RemoteRepository.Builder localRepoBuilder = new RemoteRepository.Builder("local", "default", "file://" + defaultLocalRepositoryLocation);
 			localRepoBuilder.setPolicy(new RepositoryPolicy(true, RepositoryPolicy.UPDATE_POLICY_INTERVAL + ":60", RepositoryPolicy.CHECKSUM_POLICY_FAIL));
-			repositories.add(localRepoBuilder.build());
+			local = localRepoBuilder.build();
+			repositories.add(local);
 			LOGGER.debug("Adding " + defaultLocalRepositoryLocation + " as repository");
 		}
 

@@ -236,7 +236,7 @@ public class PluginBundleManager implements AutoCloseable {
 		loadDependencies(model.getVersion(), strictDependencyChecking, model, delegatingClassLoader);
 		
 		for (org.apache.maven.model.Dependency dependency : model.getDependencies()) {
-			if (dependency.getGroupId().equals("org.opensourcebim") && (dependency.getArtifactId().equals("shared") || dependency.getArtifactId().equals("pluginbase"))) {
+			if (dependency.getGroupId().equals("org.opensourcebim") && (dependency.getArtifactId().equals("shared") || dependency.getArtifactId().equals("pluginbase") || dependency.getArtifactId().equals("ifcplugins"))) {
 				// TODO Skip, we should also check the version though
 			} else {
 				PluginBundleIdentifier pluginBundleIdentifier = new PluginBundleIdentifier(dependency.getGroupId(), dependency.getArtifactId());
@@ -377,7 +377,7 @@ public class PluginBundleManager implements AutoCloseable {
 		}
 	}
 	
-	public PluginBundle loadJavaProject(Path projectRoot, Path pomFile, Path pluginFolder, PluginDescriptor pluginDescriptor) throws PluginException, FileNotFoundException, IOException, XmlPullParserException {
+	public PluginBundle loadJavaProject(Path projectRoot, Path pomFile, Path pluginFolder, PluginDescriptor pluginDescriptor, boolean resolveRemoteDependencies) throws PluginException, FileNotFoundException, IOException, XmlPullParserException {
 		MavenXpp3Reader mavenreader = new MavenXpp3Reader();
 		Model model = null;
 		try (FileReader reader = new FileReader(pomFile.toFile())) {
@@ -410,9 +410,9 @@ public class PluginBundleManager implements AutoCloseable {
 
 		pluginBundleVersionIdentifier = new PluginBundleVersionIdentifier(new PluginBundleIdentifier(model.getGroupId(), model.getArtifactId()), model.getVersion());
 
-		previous = loadDependencies(bimServerDependencies, model, previous);
-
+		previous = loadDependencies(bimServerDependencies, model, previous, resolveRemoteDependencies);
 		delegatingClassLoader.add(previous);
+
 		// Path libFolder = projectRoot.resolve("lib");
 		// loadDependencies(libFolder, delegatingClassLoader);
 		EclipsePluginClassloader pluginClassloader = new EclipsePluginClassloader(delegatingClassLoader, projectRoot);
@@ -480,7 +480,7 @@ public class PluginBundleManager implements AutoCloseable {
 			// return loadJavaScriptProject(projectRoot, packageFile,
 			// pluginFolder, pluginDescriptor);
 			// } else if (Files.exists(pomFile)) {
-			PluginBundle pluginBundle = loadJavaProject(projectRoot, pomFile, pluginFolder, pluginDescriptor);
+			PluginBundle pluginBundle = loadJavaProject(projectRoot, pomFile, pluginFolder, pluginDescriptor, false);
 			// } else {
 			// throw new PluginException("No pom.xml or package.json found in "
 			// + projectRoot.toString());
@@ -528,7 +528,7 @@ public class PluginBundleManager implements AutoCloseable {
 		}
 	}
 	
-	private PublicFindClassClassLoader loadDependencies(Set<org.bimserver.plugins.Dependency> bimServerDependencies, Model model, PublicFindClassClassLoader previous) throws FileNotFoundException, IOException {
+	private PublicFindClassClassLoader loadDependencies(Set<org.bimserver.plugins.Dependency> bimServerDependencies, Model model, PublicFindClassClassLoader previous, boolean resolveRemoteDependencies) throws FileNotFoundException, IOException {
 		List<org.apache.maven.model.Dependency> dependencies = model.getDependencies();
 		Iterator<org.apache.maven.model.Dependency> it = dependencies.iterator();
 
@@ -557,7 +557,7 @@ public class PluginBundleManager implements AutoCloseable {
 					} else {
 						ArtifactRequest request = new ArtifactRequest();
 						request.setArtifact(dependency2.getArtifact());
-						request.setRepositories(mavenPluginRepository.getRepositoriesAsList());
+						request.setRepositories(resolveRemoteDependencies ? mavenPluginRepository.getRepositoriesAsList() : mavenPluginRepository.getLocalRepositories());
 						try {
 							ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
 							if (resolveArtifact.getArtifact().getFile() != null) {
@@ -567,7 +567,7 @@ public class PluginBundleManager implements AutoCloseable {
 								// TODO error?
 							}
 						} catch (ArtifactResolutionException e) {
-							e.printStackTrace();
+							LOGGER.error(model.getGroupId() + "." + model.getArtifactId(), e);
 						}
 					}
 				} else {
