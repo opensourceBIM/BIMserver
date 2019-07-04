@@ -848,7 +848,8 @@ public class GeometryRunner implements Runnable {
 		ByteBuffer byteBuffer = ByteBuffer.allocate(lines.size() * 2 * 4).order(ByteOrder.LITTLE_ENDIAN);
 		IntBuffer newIndices = byteBuffer.asIntBuffer();
 		for (Line line : lines) {
-			newIndices.put(line.getIndex1(), line.getIndex2());
+			newIndices.put(line.getIndex1());
+			newIndices.put(line.getIndex2());
 		}
 		return byteBuffer;
 	}
