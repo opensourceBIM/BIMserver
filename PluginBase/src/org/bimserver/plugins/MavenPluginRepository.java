@@ -31,14 +31,12 @@ import org.eclipse.aether.RepositorySystem;
 import org.eclipse.aether.RepositorySystemSession;
 import org.eclipse.aether.connector.basic.BasicRepositoryConnectorFactory;
 import org.eclipse.aether.impl.DefaultServiceLocator;
-import org.eclipse.aether.repository.LocalRepository;
-import org.eclipse.aether.repository.LocalRepositoryManager;
-import org.eclipse.aether.repository.RemoteRepository;
-import org.eclipse.aether.repository.RepositoryPolicy;
+import org.eclipse.aether.repository.*;
 import org.eclipse.aether.spi.connector.RepositoryConnectorFactory;
 import org.eclipse.aether.spi.connector.transport.TransporterFactory;
 import org.eclipse.aether.transport.file.FileTransporterFactory;
 import org.eclipse.aether.transport.http.HttpTransporterFactory;
+import org.jetbrains.idea.maven.aether.JreProxySelector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,6 +46,7 @@ public class MavenPluginRepository {
 	private final RepositorySystemSession session;
 	private final Set<RemoteRepository> repositories = new LinkedHashSet<>();
 	private final List<RemoteRepository> localRepositories;
+	private final JreProxySelector proxySelector = new JreProxySelector();
 	private String defaultRemoteRepositoryLocation;
 	private Path localRepoFile;
 	private RemoteRepository local;
@@ -63,15 +62,15 @@ public class MavenPluginRepository {
 		system = newRepositorySystem();
 		session = newRepositorySystemSession(system, localRepoFile);
 
+		Proxy proxy = proxySelector.getProxy(defaultLocalRepositoryLocation);
+
 		RemoteRepository.Builder builder = new RemoteRepository.Builder("central", "default", defaultRemoteRepositoryLocation);
 		builder.setPolicy(new RepositoryPolicy(true, RepositoryPolicy.UPDATE_POLICY_INTERVAL + ":60", RepositoryPolicy.CHECKSUM_POLICY_FAIL));
-		RemoteRepository remoteRepository = builder.build();
-
-		repositories.add(remoteRepository);
+		repositories.add(builder.setProxy(proxy).build());
 
 		builder = new RemoteRepository.Builder("public", "default", "http://public.logic-labs.nl.s3.amazonaws.com/release");
 		builder.setPolicy(new RepositoryPolicy(true, RepositoryPolicy.UPDATE_POLICY_INTERVAL + ":60", RepositoryPolicy.CHECKSUM_POLICY_IGNORE));
-		repositories.add(builder.build());
+		repositories.add(builder.setProxy(proxy).build());
 
 		if (defaultLocalRepositoryLocation != null) {
 			RemoteRepository.Builder localRepoBuilder = new RemoteRepository.Builder("local", "default", "file://" + defaultLocalRepositoryLocation);
@@ -115,6 +114,7 @@ public class MavenPluginRepository {
 
 	private DefaultRepositorySystemSession newRepositorySystemSession(RepositorySystem system, Path localRepoFile) {
 		DefaultRepositorySystemSession session = MavenRepositorySystemUtils.newSession();
+		session.setProxySelector(proxySelector);
 
 		LocalRepository localRepo = new LocalRepository(localRepoFile.toFile());
 		LocalRepositoryManager manager = system.newLocalRepositoryManager(session, localRepo);
@@ -147,7 +147,9 @@ public class MavenPluginRepository {
 		return localRepositories;
 	}
 
-	public void addRepository(RemoteRepository repository) {
-		repositories.add(repository);
+	public void addRepository(String id, String type, String url){
+		repositories.add(
+			new RemoteRepository.Builder(id, type, url).setProxy(proxySelector.getProxy(url)).build()
+		);
 	}
 }

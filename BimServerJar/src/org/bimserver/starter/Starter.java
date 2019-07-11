@@ -442,6 +442,8 @@ public class Starter extends JFrame {
 			if (useProxy.isSelected()) {
 				commands.add("-Dhttp.proxyHost=" + proxyHost.getText());
 				commands.add("-Dhttp.proxyPort=" + proxyPort.getText());
+				commands.add("-Dhttps.proxyHost=" + proxyHost.getText());
+				commands.add("-Dhttps.proxyPort=" + proxyPort.getText());
 			}
 			
 			String cp = "." + File.pathSeparator;
