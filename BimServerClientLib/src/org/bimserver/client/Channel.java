@@ -64,6 +64,7 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.google.common.base.Charsets;
 
 public abstract class Channel implements ServiceHolder {
 	private final Map<String, PublicInterface> serviceInterfaces = new HashMap<String, PublicInterface>();
@@ -123,6 +124,7 @@ public abstract class Channel implements ServiceHolder {
 			InputStreamBody data = new InputStreamBody(new DeflaterInputStream(inputStream), filename);
 
 			MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
+			multipartEntityBuilder.setCharset(Charsets.UTF_8);
 
 			multipartEntityBuilder.addPart("topicId", new StringBody("" + topicId, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("token", new StringBody(token, ContentType.DEFAULT_TEXT));
@@ -192,6 +194,7 @@ public abstract class Channel implements ServiceHolder {
 			InputStreamBody data = new InputStreamBody(new DeflaterInputStream(inputStream), filename);
 			
 			MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
+			multipartEntityBuilder.setCharset(Charsets.UTF_8);
 			
 			multipartEntityBuilder.addPart("topicId", new StringBody("" + topicId, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("token", new StringBody(token, ContentType.DEFAULT_TEXT));
@@ -349,6 +352,7 @@ public abstract class Channel implements ServiceHolder {
 			InputStreamBody data = new InputStreamBody(inputStream, file.getFileName().toString());
 
 			MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
+			multipartEntityBuilder.setCharset(Charsets.UTF_8);
 
 			multipartEntityBuilder.addPart("token", new StringBody(token, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("poid", new StringBody("" + poid, ContentType.DEFAULT_TEXT));
