@@ -152,8 +152,7 @@ public class PluginBundleManager implements AutoCloseable {
 			throws DependencyCollectionException, InvalidVersionSpecificationException, Exception {
 		if (model.getRepositories() != null) {
 			for (Repository repository : model.getRepositories()) {
-				RemoteRepository remoteRepository = new RemoteRepository.Builder(repository.getId(), "default", repository.getUrl()).build();
-				mavenPluginRepository.addRepository(remoteRepository);
+				mavenPluginRepository.addRepository(repository.getId(), "default", repository.getUrl());
 			}
 		}
 
