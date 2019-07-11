@@ -30,6 +30,16 @@ public enum LengthUnit implements BasicUnit {
 		public double toMeter(double v) {
 			return v;
 		}
+
+		@Override
+		public float toCentiMeter(float v) {
+			return v * 100;
+		}
+		
+		@Override
+		public double toCentiMeter(double v) {
+			return v * 100;
+		}
 		
 		@Override
 		public float toMilliMeter(float v) {
@@ -71,6 +81,16 @@ public enum LengthUnit implements BasicUnit {
 		public double toMilliMeter(double v) {
 			return v;
 		}
+		
+		@Override
+		public double toCentiMeter(double v) {
+			return v / 10;
+		}
+		
+		@Override
+		public float toCentiMeter(float v) {
+			return v / 10;
+		}
 
 		@Override
 		public float convert(float v, LengthUnit modelLengthUnit) {
@@ -81,6 +101,46 @@ public enum LengthUnit implements BasicUnit {
 		public double convert(double v, LengthUnit modelLengthUnit) {
 			return modelLengthUnit.toMilliMeter(v);
 		}
+	}, CENTI_METER{
+		@Override
+		public float toMeter(float v) {
+			return v / 100;
+		}
+		
+		@Override
+		public float toMilliMeter(float v) {
+			return v * 10;
+		}
+
+		@Override
+		public double toMeter(double v) {
+			return v / 100;
+		}
+		
+		@Override
+		public double toMilliMeter(double v) {
+			return v * 10;
+		}
+
+		@Override
+		public double toCentiMeter(double v) {
+			return v;
+		}
+		
+		@Override
+		public float toCentiMeter(float v) {
+			return v;
+		}
+		
+		@Override
+		public float convert(float v, LengthUnit modelLengthUnit) {
+			return modelLengthUnit.toCentiMeter(v);
+		}
+
+		@Override
+		public double convert(double v, LengthUnit modelLengthUnit) {
+			return modelLengthUnit.toCentiMeter(v);
+		}
 	};
 
 	public static LengthUnit fromPrefix(IfcSIPrefix prefix) {
@@ -89,6 +149,8 @@ public enum LengthUnit implements BasicUnit {
 			return METER;
 		case MILLI:
 			return MILLI_METER;
+		case CENTI:
+			return CENTI_METER;
 		default:
 			throw new RuntimeException("Unimplemented prefix: " + prefix);
 		}
@@ -100,6 +162,8 @@ public enum LengthUnit implements BasicUnit {
 			return METER;
 		case MILLI:
 			return MILLI_METER;
+		case CENTI:
+			return CENTI_METER;
 		default:
 			throw new RuntimeException("Unimplemented prefix: " + prefix);
 		}
@@ -149,7 +213,15 @@ public enum LengthUnit implements BasicUnit {
 	public double toMeter(double v) {
 		throw new AbstractMethodError();
 	}
-	
+
+	public float toCentiMeter(float v) {
+		throw new AbstractMethodError();
+	}
+
+	public double toCentiMeter(double v) {
+		throw new AbstractMethodError();
+	}
+
 	public double toMilliMeter(double v) {
 		throw new AbstractMethodError();
 	}
