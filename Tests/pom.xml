@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.opensourcebim</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.5.151-SNAPSHOT</version>
+		<version>1.5.153-SNAPSHOT</version>
 	</parent>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -45,7 +45,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>bimserverjar</artifactId>
-			<version>1.5.151-SNAPSHOT</version>
+			<version>1.5.153-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -55,7 +55,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>ifcplugins</artifactId>
-			<version>0.0.68-SNAPSHOT</version>
+			<version>0.0.69-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
