@@ -465,6 +465,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 						// When there is more than one instance using this mapping
 						if (map.size() > 1) {
 							Query query = new Query("Reuse query " + eClass.getName(), packageMetaData);
+							query.setDoubleBuffer(true);
 							QueryPart queryPart = query.createQueryPart();
 //							QueryPart queryPart3 = query.createQueryPart();
 							queryPart.addType(eClass, false);
@@ -897,8 +898,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		representationInclude.addType(eClass, false);
 		representationInclude.addField("Representation");
 		representationInclude.addField("HasAssociations");
-		Include hasAssociations = representationInclude.createInclude();
-		hasAssociations.addInclude(queryNameSpace + ":IfcRelAssociatesMaterial");
+		
+		representationInclude.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":IfcRelAssociatesMaterial", true));
 		
 		QueryPart secondPart = query.insertQueryPart();
 		secondPart.addType(packageMetaData.getEClass("IfcRepresentation"), true);
@@ -970,12 +971,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			fillsInclude.addInclude(ownerHistory);
 			fillsInclude.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ContainedInStructure", true));
 		}
-		
-		// Adding the materials, those don't come automatically
-		Include materialsInclude = queryPart.createInclude();
-		materialsInclude.addType(eClass, false);
-		materialsInclude.addField("HasAssociations");
-		materialsInclude.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":IfcRelAssociatesMaterial", true));
 		
 		if (packageMetaData.getEClass("IfcElement").isSuperTypeOf(eClass)) {
 			Include openingsInclude = queryPart.createInclude();
