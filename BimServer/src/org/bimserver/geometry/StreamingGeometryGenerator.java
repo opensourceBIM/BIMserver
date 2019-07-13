@@ -449,6 +449,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 													map.put(next.getOid(), pd);
 												}
 											}
+										} else {
+											report.addSkippedBecauseOfInvalidRepresentationIdentifier((String) representationItem.get("RepresentationIdentifier"));
 										}
 									}
 								}
@@ -628,11 +630,11 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			long total = totalBytes.get() - (bytesSavedByHash.get() + bytesSavedByTransformation.get() + bytesSavedByMapping.get());
 			LOGGER.info("Rendertime: " + Formatters.nanosToString(end - start) + ", " + "Reused (by hash): " + Formatters.bytesToString(bytesSavedByHash.get()) + ", Reused (by transformation): " + Formatters.bytesToString(bytesSavedByTransformation.get()) + ", Reused (by mapping): " + Formatters.bytesToString(bytesSavedByMapping.get()) + ", Total: " + Formatters.bytesToString(totalBytes.get()) + ", Final: " + Formatters.bytesToString(total));
 			if (report.getNumberOfDebugFiles() > 0) {
-				LOGGER.error("Number of erroneous files: " + report.getNumberOfDebugFiles());
+				LOGGER.error("[" + report.getOriginalIfcFileName() + "] Number of erroneous files: " + report.getNumberOfDebugFiles());
 			}
 			Map<String, Integer> skipped = report.getSkippedBecauseOfInvalidRepresentationIdentifier();
 			if (skipped.size() > 0) {
-				LOGGER.error("Number of representations skipped:");
+				LOGGER.error("[" + report.getOriginalIfcFileName() + "] Number of representations skipped:");
 				for (String identifier : skipped.keySet()) {
 					LOGGER.error("\t" + identifier + ": " + skipped.get(identifier));
 				}
@@ -778,8 +780,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			}
 			for (HashMapVirtualObject representationItem : list) {
 				if (usableContext(representationItem) || !foundValidContext) {
-					Object representationIdentifier = representationItem.get("RepresentationIdentifier");
-					if (representationIdentifier != null && (representationIdentifier.equals("Body") || representationIdentifier.equals("Facetation"))) {
+					if (hasValidRepresentationIdentifier(representationItem)) {
 						Set<HashMapVirtualObject> directListFeature = representationItem.getDirectListFeature(itemsFeature);
 						if (directListFeature != null) {
 							int nrItems = directListFeature.size();
