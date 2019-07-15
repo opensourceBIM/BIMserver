@@ -79,6 +79,10 @@ public class NotificationsManager extends NotificationsClient {
 		};
 	}
 	
+	public void setBinaryMessageListener(BinaryMessageListener binaryMessageListener) {
+		webSocketImpl.setBinaryMessageListener(binaryMessageListener);
+	}
+	
 	public void start() {
 		webSocketClient = new WebSocketClient();
 		try {
