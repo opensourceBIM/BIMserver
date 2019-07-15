@@ -26,6 +26,7 @@ public class WebSocketImpl {
     private Session session;
 	private NotificationsManager socketNotificationsClient;
 	private CountDownLatch countDownLatch = new CountDownLatch(1);
+	private BinaryMessageListener binaryMessageListener;
     
 	public WebSocketImpl(NotificationsManager socketNotificationsClient) {
 		this.socketNotificationsClient = socketNotificationsClient;
@@ -64,6 +65,11 @@ public class WebSocketImpl {
     }
     
     @OnWebSocketMessage
+	public void onBinary(byte[] bytes, int start, int length) {
+		binaryMessageListener.newData(bytes, start, length);
+	}
+    
+    @OnWebSocketMessage
     public void onMessage(String msg) {
     	try {
 			ObjectNode parse = new ObjectMapper().readValue(msg, ObjectNode.class);
@@ -94,4 +100,8 @@ public class WebSocketImpl {
     public void onError(Session session, Throwable error) {
     	LOGGER.error("", error);
     }
+    
+	public void setBinaryMessageListener(BinaryMessageListener messageListener) {
+		this.binaryMessageListener = messageListener;
+	}
 }

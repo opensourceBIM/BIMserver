@@ -13,7 +13,7 @@ import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.junit.Test;
 
-public class TestCheckinUTF8From {
+public class TestSimultanousCheckin {
 	@Test
 	public void test() {
 		try (JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080")) {
@@ -21,7 +21,7 @@ public class TestCheckinUTF8From {
 				SProject project = client.getServiceInterface().addProject(RandomStringUtils.randomAlphanumeric(10), "ifc2x3tc1");
 				
 				SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
-				Path path = Paths.get("C:\\Git\\TestFiles\\TestData\\data\\174240904075130-12-泰州金融中心（全）.IFC");
+				Path path = Paths.get("C:\\Git\\TestFiles\\TestData\\data\\export1.ifc");
 				client.checkinSync(project.getOid(), "test", deserializer.getOid(), path, new CheckinProgressHandler() {
 					@Override
 					public void progress(String title, int progress) {
@@ -29,6 +29,7 @@ public class TestCheckinUTF8From {
 					}
 				});
 			}
+			Thread.sleep(10000000);
 		} catch (BimServerClientException e) {
 			e.printStackTrace();
 		} catch (Exception e1) {

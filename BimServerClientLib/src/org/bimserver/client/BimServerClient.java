@@ -282,7 +282,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		return channel.checkinSync(baseAddress, token, poid, comment, deserializerOid, false, fileSize, filename, inputStream, topicId);
 	}
 
-	public SLongCheckinActionState checkin(long poid, String comment, long deserializerOid, Path file, CheckinProgressHandler progressHandler) throws ServerException, UserException, PublicInterfaceNotFoundException {
+	public SLongCheckinActionState checkinSync(long poid, String comment, long deserializerOid, Path file, CheckinProgressHandler progressHandler) throws ServerException, UserException, PublicInterfaceNotFoundException {
 		long topicId = getServiceInterface().initiateCheckin(poid, deserializerOid);
 		ProgressHandler progressHandlerWrapper = new ProgressHandler() {
 			@Override
@@ -292,12 +292,13 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		};
 		getNotificationsManager().registerProgressHandler(topicId, progressHandlerWrapper);
 		try (InputStream newInputStream = Files.newInputStream(file)) {
-			channel.checkinAsync(baseAddress, token, poid, comment, deserializerOid, false, Files.size(file), file.getFileName().toString(), newInputStream, topicId);
+			SLongCheckinActionState checkinSync = channel.checkinSync(baseAddress, token, poid, comment, deserializerOid, false, Files.size(file), file.getFileName().toString(), newInputStream, topicId);
+			getNotificationsManager().unregisterProgressHandler(topicId, progressHandlerWrapper);
+			return checkinSync;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		getNotificationsManager().unregisterProgressHandler(topicId, progressHandlerWrapper);
-		return (SLongCheckinActionState) getRegistry().getProgress(topicId);
+		return null;
 	}
 	
 	public SLongCheckinActionState checkin(long poid, String comment, long deserializerOid, URL url, CheckinProgressHandler progressHandler) throws ServerException, UserException, PublicInterfaceNotFoundException {

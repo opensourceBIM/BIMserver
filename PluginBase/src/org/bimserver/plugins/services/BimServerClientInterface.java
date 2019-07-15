@@ -55,7 +55,7 @@ public interface BimServerClientInterface extends ServiceHolder, AutoCloseable {
 	
 	SLongCheckinActionState checkinSync(long poid, String comment, long deserializerOid, boolean merge, Path file) throws IOException, UserException, ServerException;
 	long checkinAsync(long poid, String comment, long deserializerOid, boolean merge, Path file, long topicId) throws IOException, UserException, ServerException;
-	SLongCheckinActionState checkin(long poid, String comment, long deserializerOid, Path file, CheckinProgressHandler progressHandler) throws ServerException, UserException, PublicInterfaceNotFoundException;
+	SLongCheckinActionState checkinSync(long poid, String comment, long deserializerOid, Path file, CheckinProgressHandler progressHandler) throws ServerException, UserException, PublicInterfaceNotFoundException;
 
 	SLongCheckinActionState checkinSync(long poid, String comment, long deserializerOid, boolean merge, URL url) throws UserException, ServerException;
 	long checkinAsync(long poid, String comment, long deserializerOid, boolean merge, URL url, long topicId) throws UserException, ServerException;
