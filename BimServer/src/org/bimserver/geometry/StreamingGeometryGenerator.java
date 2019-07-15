@@ -519,7 +519,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 				}
 			}
 			
-			LOGGER.info("Regular object count: " + regularObjectCount);
+//			LOGGER.info("Regular object count: " + regularObjectCount);
 			
 			int maxObjectsPerFile = regularObjectCount / 100;
 			if (regularObjectCount < 100) {
@@ -530,7 +530,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			}
 			report.setMaxPerFile(maxObjectsPerFile);
 			
-			LOGGER.info("Max objects per file: " + maxObjectsPerFile);
+//			LOGGER.info("Max objects per file: " + maxObjectsPerFile);
 			
 			for (EClass eClass : typesToDo) {
 				Query query3 = new Query("Remaining " + eClass.getName(), packageMetaData);
