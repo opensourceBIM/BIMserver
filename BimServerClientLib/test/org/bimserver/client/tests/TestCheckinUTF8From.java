@@ -6,33 +6,28 @@ import java.nio.file.Paths;
 import org.apache.commons.lang.RandomStringUtils;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.json.JsonBimServerClientFactory;
-import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
-import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.CheckinProgressHandler;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.junit.Test;
 
-public class TestCheckinFromUrlAsync {
+public class TestCheckinUTF8From {
 	@Test
 	public void test() {
 		try (JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080")) {
 			try (BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"))) {
-				SProject project = client.getServiceInterface().addProject(RandomStringUtils.random(10), "ifc2x3tc1");
+				SProject project = client.getServiceInterface().addProject(RandomStringUtils.randomAlphanumeric(10), "ifc2x3tc1");
 				
 				SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
-				String url = "https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/AC11-Institute-Var-2-IFC.ifc";
-				Long topicId = client.getServiceInterface().checkinFromUrlAsync(project.getOid(), "test", deserializer.getOid(), "test", url, false);
-				for (int i=0; i<100; i++) {
-					SLongActionState progress = client.getNotificationRegistryInterface().getProgress(topicId);
-					System.out.println(progress.getState());
-					if (progress.getState() == SActionState.FINISHED) {
-						break;
+				Path path = Paths.get("C:\\Git\\TestFiles\\TestData\\data\\174240904075130-12-泰州金融中心（全）.IFC");
+				client.checkin(project.getOid(), "test", deserializer.getOid(), path, new CheckinProgressHandler() {
+					@Override
+					public void progress(String title, int progress) {
+						System.out.println(title + ": " + progress);
 					}
-					Thread.sleep(1000);
-				}
+				});
 			}
 		} catch (BimServerClientException e) {
 			e.printStackTrace();
