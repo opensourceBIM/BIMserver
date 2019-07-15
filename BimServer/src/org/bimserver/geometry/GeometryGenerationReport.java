@@ -63,7 +63,7 @@ public class GeometryGenerationReport {
 	private boolean calculateQuantities;
 	private boolean applyLayersets;
 	private final Map<Integer, String> debugFiles = new ConcurrentSkipListMap<>();
-	private Map<String, Integer> skippedBecauseOfInvalidRepresentationIdentifier = new HashMap<>();
+	private SkippedBecauseOfInvalidRepresentation skippedBecauseOfInvalidRepresentationIdentifier = new SkippedBecauseOfInvalidRepresentation();
 	
 	public synchronized void incrementTriangles(int triangles) {
 		this.numberOfTriangles += triangles;
@@ -427,12 +427,12 @@ public class GeometryGenerationReport {
 		return debugFiles.size();
 	}
 
-	public Map<String, Integer> getSkippedBecauseOfInvalidRepresentationIdentifier() {
+	public SkippedBecauseOfInvalidRepresentation getSkippedBecauseOfInvalidRepresentationIdentifier() {
 		return skippedBecauseOfInvalidRepresentationIdentifier;
 	}
 	
 	public void addSkippedBecauseOfInvalidRepresentationIdentifier(String identifier) {
-		skippedBecauseOfInvalidRepresentationIdentifier.merge(identifier, 1, Integer::sum);
+		skippedBecauseOfInvalidRepresentationIdentifier.merge(identifier, 1);
 	}
 	
 	public String getOriginalIfcFileName() {

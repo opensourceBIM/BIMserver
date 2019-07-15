@@ -273,10 +273,18 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			// Phase 1 (mapped item detection) sometimes detects that mapped items have invalid (unsupported) RepresentationIdentifier values, this set keeps track of objects to skip in Phase 2 because of that
 			Set<Long> toSkip = new HashSet<>();
 			
+			// Less than 100 objects -> Use 1 object per process (so we have progress indication per 1%)
+			// More than 100 objects -> Use # objects / 100 objects per process
+			// Unless the amount of objects becomes > 100 / process, than cap it on 100
+			
+			int regularObjectCount = 0;
+			
+			Set<EClass> typesToDo = new HashSet<>();
+			
+			Set<Long> done = new HashSet<>();
+
 			for (EClass eClass : classes) {
 				if (packageMetaData.getEClass("IfcProduct").isSuperTypeOf(eClass)) {
-					int nrObjectsForType = 0;
-
 					Query query2 = new Query(eClass.getName() + "Main query", packageMetaData);
 					QueryPart queryPart2 = query2.createQueryPart();
 					queryPart2.addType(eClass, false);
@@ -313,7 +321,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					
 					QueryObjectProvider queryObjectProvider2 = new QueryObjectProvider(databaseSession, bimServer, query2, Collections.singleton(queryContext.getRoid()), packageMetaData);
 					HashMapVirtualObject next = queryObjectProvider2.next();
-					int nrProductsWithRepresentation = 0;
 					while (next != null) {
 						if (next.eClass() == eClass) {
 							AbstractHashMapVirtualObject representation = next.getDirectFeature(representationFeature);
@@ -326,9 +333,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 											foundValidContext = true;
 										}
 									}
-									if (foundValidContext) {
-										nrProductsWithRepresentation++;
-									}
 									for (HashMapVirtualObject representationItem : representations) {
 										if (!usableContext(representationItem) && foundValidContext) {
 											continue;
@@ -336,19 +340,20 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 										
 										// TODO Geometries that are the same, but have different colors, will result in geometry with the wrong color, for example SampleModelErrorExportLight.ifc
 										// So what we need to do is also compare the materials...
-										
+
 										if (hasValidRepresentationIdentifier(representationItem)) {
 											Set<HashMapVirtualObject> items = representationItem.getDirectListFeature(itemsFeature);
 											if (items == null || items.size() > 1) {
 												// Only if there is just one item, we'll store this for reuse
 												// TODO actually we could store them for > 1 as well, only they should only be used (2nd stage) for products that use the exact same items, for now
+												regularObjectCount++;
 												continue;
 											}
 											// So this next loop always results in 1 (or no) loops
 											for (HashMapVirtualObject item : items) {
 												report.addRepresentationItem(item.eClass().getName());
 												if (!packageMetaData.getEClass("IfcMappedItem").isSuperTypeOf(item.eClass())) {
-													nrObjectsForType++;
+													regularObjectCount++;
 													continue; // All non IfcMappedItem objects will be done in phase 2
 												}
 												AbstractHashMapVirtualObject mappingTarget = item.getDirectFeature(packageMetaData.getEReference("IfcMappedItem", "MappingTarget"));
@@ -459,8 +464,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 						next = queryObjectProvider2.next();
 					}
 					
-					Set<Long> done = new HashSet<>();
-					
 					for (Long repMapId : representationMapToProduct.keySet()) {
 						Map<Long, ProductDef> map = representationMapToProduct.get(repMapId);
 						
@@ -512,80 +515,81 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 						}
 					}
 					
-					Query query3 = new Query("Remaining " + eClass.getName(), packageMetaData);
-					QueryPart queryPart3 = query3.createQueryPart();
-					queryPart3.addType(eClass, false);
-					Include include3 = queryPart3.createInclude();
-					include3.addType(eClass, false);
-					include3.addFieldDirect("Representation");
-					Include rInclude = include3.createInclude();
-					rInclude.addType(packageMetaData.getEClass("IfcProductRepresentation"), true);
-					rInclude.addFieldDirect("Representations");
-					Include representationsInclude2 = rInclude.createInclude();
-					representationsInclude2.addType(packageMetaData.getEClass("IfcShapeModel"), true);
-					representationsInclude2.addFieldDirect("ContextOfItems");
-					
-					queryObjectProvider2 = new QueryObjectProvider(databaseSession, bimServer, query3, Collections.singleton(queryContext.getRoid()), packageMetaData);
-					next = queryObjectProvider2.next();
-					
-					Query query = new Query("Main " + eClass.getName(), packageMetaData);
-					query.setDoubleBuffer(true);
-					QueryPart queryPart = query.createQueryPart();
-					int written = 0;
-					
-					int maxObjectsPerFile = 0;
-					if (nrProductsWithRepresentation <= 100) {
-						maxObjectsPerFile = 1;
-					} else if (nrProductsWithRepresentation < 10000) {
-						maxObjectsPerFile = (int) (nrProductsWithRepresentation / 100);
-					} else {
-						maxObjectsPerFile = 100;
-					}
-					
-//					maxObjectsPerFile = 1;
-					
-//					LOGGER.info(report.getOriginalIfcFileName());
-//					LOGGER.info("Max objects per file: " + maxObjectsPerFile + " (" + eClass.getName() + ": " + nrProductsWithRepresentation + ")");
-					
-					report.setMaxPerFile(maxObjectsPerFile);
-					
-					Set<Long> representationOids = new HashSet<>();
-					while (next != null) {
-						// Not sure why the duplicate code in the next 20 lines
-						if (next.eClass() == eClass && !done.contains(next.getOid()) && !toSkip.contains(next.getOid())) {
-							AbstractHashMapVirtualObject representation = next.getDirectFeature(representationFeature);
-							if (representation != null) {
-								Set<HashMapVirtualObject> list = representation.getDirectListFeature(packageMetaData.getEReference("IfcProductRepresentation", "Representations"));
-								Set<Long> goForIt = goForIt(list);
-								if (!goForIt.isEmpty()) {
-									if (next.eClass() == eClass && !done.contains(next.getOid())) {
-										representation = next.getDirectFeature(representationFeature);
-										if (representation != null) {
-											list = representation.getDirectListFeature(packageMetaData.getEReference("IfcProductRepresentation", "Representations"));
-											Set<Long> goForIt2 = goForIt(list);
-											if (!goForIt2.isEmpty()) {
-												queryPart.addOid(next.getOid());
-												representationOids.addAll(goForIt2);
-												written++;
-												if (written >= maxObjectsPerFile) {
-													processQuery(databaseSession, queryContext, generateGeometryResult, ifcSerializerPlugin, settings, renderEngineFilter, renderEnginePool, executor, eClass, query, queryPart, false, null, written, representationOids);
-													query = new Query("Main " + eClass.getName(), packageMetaData);
-													query.setDoubleBuffer(true);
-													queryPart = query.createQueryPart();
-													written = 0;
-													representationOids.clear();
-												}
+					typesToDo.add(eClass);
+				}
+			}
+			
+			LOGGER.info("Regular object count: " + regularObjectCount);
+			
+			int maxObjectsPerFile = regularObjectCount / 100;
+			if (regularObjectCount < 100) {
+				maxObjectsPerFile = 1;
+			}
+			if (maxObjectsPerFile > 100) {
+				maxObjectsPerFile = 100;
+			}
+			report.setMaxPerFile(maxObjectsPerFile);
+			
+			LOGGER.info("Max objects per file: " + maxObjectsPerFile);
+			
+			for (EClass eClass : typesToDo) {
+				Query query3 = new Query("Remaining " + eClass.getName(), packageMetaData);
+				QueryPart queryPart3 = query3.createQueryPart();
+				queryPart3.addType(eClass, false);
+				Include include3 = queryPart3.createInclude();
+				include3.addType(eClass, false);
+				include3.addFieldDirect("Representation");
+				Include rInclude = include3.createInclude();
+				rInclude.addType(packageMetaData.getEClass("IfcProductRepresentation"), true);
+				rInclude.addFieldDirect("Representations");
+				Include representationsInclude2 = rInclude.createInclude();
+				representationsInclude2.addType(packageMetaData.getEClass("IfcShapeModel"), true);
+				representationsInclude2.addFieldDirect("ContextOfItems");
+				
+				Query query = new Query("Main " + eClass.getName(), packageMetaData);
+				query.setDoubleBuffer(true);
+				QueryPart queryPart = query.createQueryPart();
+				int written = 0;
+
+				QueryObjectProvider queryObjectProvider2 = new QueryObjectProvider(databaseSession, bimServer, query3, Collections.singleton(queryContext.getRoid()), packageMetaData);
+				HashMapVirtualObject next = queryObjectProvider2.next();
+				
+				Set<Long> representationOids = new HashSet<>();
+				while (next != null) {
+					// Not sure why the duplicate code in the next 20 lines
+					if (next.eClass() == eClass && !done.contains(next.getOid()) && !toSkip.contains(next.getOid())) {
+						AbstractHashMapVirtualObject representation = next.getDirectFeature(representationFeature);
+						if (representation != null) {
+							Set<HashMapVirtualObject> list = representation.getDirectListFeature(packageMetaData.getEReference("IfcProductRepresentation", "Representations"));
+							Set<Long> goForIt = goForIt(list);
+							if (!goForIt.isEmpty()) {
+								if (next.eClass() == eClass && !done.contains(next.getOid())) {
+									representation = next.getDirectFeature(representationFeature);
+									if (representation != null) {
+										list = representation.getDirectListFeature(packageMetaData.getEReference("IfcProductRepresentation", "Representations"));
+										Set<Long> goForIt2 = goForIt(list);
+										if (!goForIt2.isEmpty()) {
+											queryPart.addOid(next.getOid());
+											representationOids.addAll(goForIt2);
+											written++;
+											if (written >= maxObjectsPerFile) {
+												processQuery(databaseSession, queryContext, generateGeometryResult, ifcSerializerPlugin, settings, renderEngineFilter, renderEnginePool, executor, eClass, query, queryPart, false, null, written, representationOids);
+												query = new Query("Main " + eClass.getName(), packageMetaData);
+												query.setDoubleBuffer(true);
+												queryPart = query.createQueryPart();
+												written = 0;
+												representationOids.clear();
 											}
 										}
 									}
 								}
 							}
 						}
-						next = queryObjectProvider2.next();
 					}
-					if (written > 0) {
-						processQuery(databaseSession, queryContext, generateGeometryResult, ifcSerializerPlugin, settings, renderEngineFilter, renderEnginePool, executor, eClass, query, queryPart, false, null, written, representationOids);
-					}
+					next = queryObjectProvider2.next();
+				}
+				if (written > 0) {
+					processQuery(databaseSession, queryContext, generateGeometryResult, ifcSerializerPlugin, settings, renderEngineFilter, renderEnginePool, executor, eClass, query, queryPart, false, null, written, representationOids);
 				}
 			}
 			
@@ -593,6 +597,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			
 			executor.shutdown();
 			executor.awaitTermination(24, TimeUnit.HOURS);
+			LOGGER.info(executor.getCompletedTaskCount() + " jobs executed");
 			
 			// Need total bounds
 //			float[] quantizationMatrix = createQuantizationMatrixFromBounds(boundsMm);
@@ -632,10 +637,10 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			if (report.getNumberOfDebugFiles() > 0) {
 				LOGGER.error("[" + report.getOriginalIfcFileName() + "] Number of erroneous files: " + report.getNumberOfDebugFiles());
 			}
-			Map<String, Integer> skipped = report.getSkippedBecauseOfInvalidRepresentationIdentifier();
-			if (skipped.size() > 0) {
+			SkippedBecauseOfInvalidRepresentation skipped = report.getSkippedBecauseOfInvalidRepresentationIdentifier();
+			if (skipped.hasImportant()) {
 				LOGGER.error("[" + report.getOriginalIfcFileName() + "] Number of representations skipped:");
-				for (String identifier : skipped.keySet()) {
+				for (String identifier : skipped.getImportantSet()) {
 					LOGGER.error("\t" + identifier + ": " + skipped.get(identifier));
 				}
 			}
@@ -948,9 +953,11 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 				openingsInclude.addField("HasOpenings");
 				Include hasOpenings = openingsInclude.createInclude();
 				hasOpenings.addType(packageMetaData.getEClass("IfcRelVoidsElement"), false);
-				hasOpenings.addField("RelatedOpeningElement");
-				hasOpenings.addInclude(representationInclude);
-				hasOpenings.addInclude(objectPlacement);
+				
+				Include opening = hasOpenings.createInclude();
+				opening.addType(packageMetaData.getEClass("IfcFeatureElementSubtraction"), true);
+				opening.addInclude(representationInclude);
+				opening.addInclude(objectPlacement);
 			}
 		}
 		
@@ -982,12 +989,6 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			hasOpenings.addField("RelatedOpeningElement");
 			hasOpenings.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Representation", true));
 			hasOpenings.addInclude(objectPlacement);
-			//						Include relatedOpeningElement = hasOpenings.createInclude();
-			//						relatedOpeningElement.addType(packageMetaData.getEClass("IfcOpeningElement"), false);
-			//						relatedOpeningElement.addField("HasFillings");
-			//						Include hasFillings = relatedOpeningElement.createInclude();
-			//						hasFillings.addType(packageMetaData.getEClass("IfcRelFillsElement"), false);
-			//						hasFillings.addField("RelatedBuildingElement");
 		}
 		QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
 		
