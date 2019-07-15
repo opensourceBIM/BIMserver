@@ -32,6 +32,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
+import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.InputStreamBody;
 import org.apache.http.entity.mime.content.StringBody;
@@ -123,8 +124,7 @@ public abstract class Channel implements ServiceHolder {
 			// of _decompresses_ using deflate for now
 			InputStreamBody data = new InputStreamBody(new DeflaterInputStream(inputStream), filename);
 
-			MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
-			multipartEntityBuilder.setCharset(Charsets.UTF_8);
+			MultipartEntityBuilder multipartEntityBuilder = createMultiPart();
 
 			multipartEntityBuilder.addPart("topicId", new StringBody("" + topicId, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("token", new StringBody(token, ContentType.DEFAULT_TEXT));
@@ -177,6 +177,13 @@ public abstract class Channel implements ServiceHolder {
 		return null;
 	}
 
+	private MultipartEntityBuilder createMultiPart() {
+		MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
+		multipartEntityBuilder.setCharset(Charsets.UTF_8);
+		multipartEntityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+		return multipartEntityBuilder;
+	}
+
 	protected JsonConverter getJsonConverter() {
 		return null;
 	}
@@ -193,8 +200,7 @@ public abstract class Channel implements ServiceHolder {
 			// of _decompresses_ using deflate for now
 			InputStreamBody data = new InputStreamBody(new DeflaterInputStream(inputStream), filename);
 			
-			MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
-			multipartEntityBuilder.setCharset(Charsets.UTF_8);
+			MultipartEntityBuilder multipartEntityBuilder = createMultiPart();
 			
 			multipartEntityBuilder.addPart("topicId", new StringBody("" + topicId, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("token", new StringBody(token, ContentType.DEFAULT_TEXT));
@@ -351,8 +357,7 @@ public abstract class Channel implements ServiceHolder {
 		try (InputStream inputStream = Files.newInputStream(file)) {
 			InputStreamBody data = new InputStreamBody(inputStream, file.getFileName().toString());
 
-			MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
-			multipartEntityBuilder.setCharset(Charsets.UTF_8);
+			MultipartEntityBuilder multipartEntityBuilder = createMultiPart();
 
 			multipartEntityBuilder.addPart("token", new StringBody(token, ContentType.DEFAULT_TEXT));
 			multipartEntityBuilder.addPart("poid", new StringBody("" + poid, ContentType.DEFAULT_TEXT));
