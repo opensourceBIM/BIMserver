@@ -127,6 +127,7 @@ public class UploadServlet extends SubServlet {
 							} else {
 								realStream = in;
 							}
+							realStream = new TriggerOnCloseInputStream(realStream);
 							InputStreamDataSource inputStreamDataSource = new InputStreamDataSource(realStream);
 							inputStreamDataSource.setName(name);
 							DataHandler ifcFile = new DataHandler(inputStreamDataSource);
@@ -134,14 +135,14 @@ public class UploadServlet extends SubServlet {
 							if (token != null) {
 								try {
 									ServiceInterface service = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
-									// For now it's always sync
-									sync = true;
 									if (topicId == -1) {
 										if (sync) {
 											SLongCheckinActionState checkinSync = service.checkinSync(poid, comment, deserializerOid, -1L, name, ifcFile, merge);
 											result = (ObjectNode) getBimServer().getJsonHandler().getJsonConverter().toJson(checkinSync);
 											service.cleanupLongAction(checkinSync.getTopicId());
 										} else {
+											// When async, we can return as soon as all the data has been read
+											((TriggerOnCloseInputStream)realStream).await();
 											long newTopicId = service.checkinAsync(poid, comment, deserializerOid, -1L, name, ifcFile, merge);
 											result.put("topicId", newTopicId);
 										}
@@ -152,6 +153,7 @@ public class UploadServlet extends SubServlet {
 											service.cleanupLongAction(checkinSync.getTopicId());
 										} else {
 											service.checkinInitiatedAsync(topicId, poid, comment, deserializerOid, -1L, name, ifcFile, merge);
+											((TriggerOnCloseInputStream)realStream).await();
 											result.put("topicId", topicId);
 										}
 									}
