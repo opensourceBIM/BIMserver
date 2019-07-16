@@ -597,7 +597,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			
 			executor.shutdown();
 			executor.awaitTermination(24, TimeUnit.HOURS);
-			LOGGER.info(executor.getCompletedTaskCount() + " jobs executed");
+//			LOGGER.info(executor.getCompletedTaskCount() + " jobs executed");
 			
 			// Need total bounds
 //			float[] quantizationMatrix = createQuantizationMatrixFromBounds(boundsMm);
