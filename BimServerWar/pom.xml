@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.opensourcebim</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.5.156-SNAPSHOT</version>
+		<version>1.5.156</version>
 	</parent>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -87,7 +87,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>bimserver</artifactId>
-			<version>1.5.156-SNAPSHOT</version>
+			<version>1.5.156</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>

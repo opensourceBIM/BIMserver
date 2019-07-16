@@ -1,6 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<name>BimServerClientLib</name>
 	<description>A client library for BIMserver, can communicate via JSON, SOAP and ProtocolBuffers</description>
 	<modelVersion>4.0.0</modelVersion>
@@ -8,7 +6,7 @@
 	<parent>
 		<groupId>org.opensourcebim</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.5.156-SNAPSHOT</version>
+		<version>1.5.156</version>
 	</parent>
 	<properties>
 		<jetty.version>9.4.19.v20190610</jetty.version>
