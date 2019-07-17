@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-@WebSocket(maxBinaryMessageSize = 1024 * 1024 * 10)
+@WebSocket(maxBinaryMessageSize = 1024 * 1024 * 100)
 public class WebSocketImpl {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(WebSocketImpl.class);
