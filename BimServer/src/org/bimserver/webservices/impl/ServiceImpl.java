@@ -2594,7 +2594,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			
 			CloseableHttpResponse response = httpclient.execute(httpPost);
 			
-			LOGGER.info(response.getStatusLine().toString());
 			if (response.getStatusLine().getStatusCode() == 401) {
 				throw new UserException("Remote service responded with a 401 Unauthorized");
 			} else if (response.getStatusLine().getStatusCode() == 200) {
