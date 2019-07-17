@@ -21,8 +21,9 @@ public class RootIssueContainer extends IssueContainer {
 
 	private ValidationMetaData validationMetaData;
 
-	public RootIssueContainer() {
+	public RootIssueContainer(String title) {
 		this.validationMetaData = new ValidationMetaData();
+		setTitle(title);
 	}
 	
 	public void setValidationMetaData(ValidationMetaData validationMetaData) {
