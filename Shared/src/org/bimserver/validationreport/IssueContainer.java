@@ -30,6 +30,7 @@ import org.slf4j.LoggerFactory;
 public class IssueContainer extends Issue {
 	private static final Logger LOGGER = LoggerFactory.getLogger(IssueContainer.class);
 	private final List<Issue> issues = new ArrayList<>();
+	private String title;
 
 	public IssueBuilder builder() {
 		return new IssueBuilder(this);
@@ -64,5 +65,13 @@ public class IssueContainer extends Issue {
 				((IssueContainer)issue).dumpSummary(map, indentation + 1);
 			}
 		}
+	}
+ 
+	public String getTitle() {
+		return title;
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;
 	}
 }

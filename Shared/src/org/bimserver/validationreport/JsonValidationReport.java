@@ -20,6 +20,7 @@ package org.bimserver.validationreport;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -35,6 +36,9 @@ public class JsonValidationReport implements IssueContainerSerializer {
 	public ObjectNode toJson(IssueContainer issueContainer) {
 		ObjectNode result = OBJECT_MAPPER.createObjectNode();
 		ArrayNode itemsJson = OBJECT_MAPPER.createArrayNode();
+		if (issueContainer.getTitle() != null) {
+			result.put("title", issueContainer.getTitle());
+		}
 		result.set("items", itemsJson);
 		for (Issue issue : issueContainer.list()) {
 			ObjectNode jsonIssue = OBJECT_MAPPER.createObjectNode();
@@ -59,7 +63,9 @@ public class JsonValidationReport implements IssueContainerSerializer {
 			itemsJson.add(jsonIssue);
 			
 			if (issue instanceof IssueContainer) {
-				jsonIssue.set("items", toJson((IssueContainer)issue).get("items"));
+				JsonNode value = toJson((IssueContainer)issue);
+				jsonIssue.set("items", value.get("items"));
+				jsonIssue.set("title", value.get("title"));
 			}
 		}
 		return result;
