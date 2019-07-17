@@ -954,10 +954,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 				Include hasOpenings = openingsInclude.createInclude();
 				hasOpenings.addType(packageMetaData.getEClass("IfcRelVoidsElement"), false);
 				
-				Include opening = hasOpenings.createInclude();
-				opening.addType(packageMetaData.getEClass("IfcFeatureElementSubtraction"), true);
-				opening.addInclude(representationInclude);
-				opening.addInclude(objectPlacement);
+				hasOpenings.addField("RelatedOpeningElement");
+				hasOpenings.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Representation", true));
+				hasOpenings.addInclude(objectPlacement);
 			}
 		}
 		
