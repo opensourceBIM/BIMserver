@@ -473,7 +473,10 @@ public class IfcTools2D {
 		while (!pathIterator.isDone()) {
 			int currentSegment = pathIterator.currentSegment(coords);
 			if (currentSegment == PathIterator.SEG_CLOSE) {
-				
+				if (last != null) {
+					sum = sum + Math.abs(last[0] * coords[1] - last[1] * coords[0]);
+				}
+				last = new float[]{coords[0], coords[1]};
 			} else if (currentSegment == PathIterator.SEG_MOVETO) {
 				last = new float[]{coords[0], coords[1]};
 				if (first == null) {
@@ -481,7 +484,7 @@ public class IfcTools2D {
 				}
 			} else if (currentSegment == PathIterator.SEG_LINETO) {
 				if (last != null) {
-					sum = sum + last[0] * coords[1] - last[1] * coords[0];
+					sum = sum + Math.abs(last[0] * coords[1] - last[1] * coords[0]);
 				}
 
 				last = new float[]{coords[0], coords[1]};
@@ -489,7 +492,7 @@ public class IfcTools2D {
 			pathIterator.next();
 		}
 		if (last != null && first != null) {
-			sum = sum + last[0] * first[1] - last[1] * first[0];
+			sum += Math.abs(last[0] * first[1] - last[1] * first[0]);
 		}
 		return sum / 2f;
 	}
