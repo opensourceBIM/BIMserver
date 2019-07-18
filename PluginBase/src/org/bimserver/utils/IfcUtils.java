@@ -206,6 +206,33 @@ public class IfcUtils {
 		return list;
 	}
 
+	public static Set<IfcProduct> getDecompositionAndContainmentRecursive(IfcObjectDefinition parent) {
+		Set<IfcProduct> set = new HashSet<>();
+		getDecompositionAndContainmentRecursive(set, parent);
+		return set;
+	}
+	
+	public static Set<IfcProduct> getDecompositionAndContainmentRecursive(Set<IfcProduct> result, IfcObjectDefinition parent) {
+		for (IfcRelDecomposes ifcRelDecomposes : parent.getIsDecomposedBy()) {
+			for (IfcObjectDefinition ifcObjectDefinition : ifcRelDecomposes.getRelatedObjects()) {
+				if (ifcObjectDefinition instanceof IfcProduct) {
+					result.add((IfcProduct) ifcObjectDefinition);
+				}
+				getDecompositionAndContainmentRecursive(result, ifcObjectDefinition);
+			}
+		}
+		if (parent instanceof IfcSpatialStructureElement) {
+			IfcSpatialStructureElement ifcSpatialStructureElement = (IfcSpatialStructureElement)parent;
+			for (IfcRelContainedInSpatialStructure ifcRelContainedInSpatialStructure : ifcSpatialStructureElement.getContainsElements()) {
+				for (IfcProduct ifcProduct : ifcRelContainedInSpatialStructure.getRelatedElements()) {
+					result.add(ifcProduct);
+					getDecompositionAndContainmentRecursive(result, ifcProduct);
+				}
+			}
+		}
+		return result;
+	}
+
 	public static List<IfcProduct> getContains(IfcBuildingStorey ifcBuildingStorey) {
 		List<IfcProduct> list = new ArrayList<>();
 		for (IfcRelContainedInSpatialStructure ifcRelContainedInSpatialStructure : ifcBuildingStorey.getContainsElements()) {
