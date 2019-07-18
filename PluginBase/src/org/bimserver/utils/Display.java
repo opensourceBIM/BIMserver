@@ -1,5 +1,7 @@
 package org.bimserver.utils;
 
+import java.awt.Color;
+
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
  * 
@@ -19,6 +21,9 @@ package org.bimserver.utils;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.WindowAdapter;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 import java.awt.image.BufferedImage;
@@ -29,6 +34,7 @@ public class Display extends JFrame {
 
 	private static final long serialVersionUID = -4323346123771019062L;
 	private BufferedImage bufferedImage;
+	private Area area;
 
 	public Display(String title, int width, int height) {
 		setTitle(title);
@@ -38,6 +44,22 @@ public class Display extends JFrame {
 	
 	public Display(String title, int width, int height, Area area) {
 		this(title, width, height);
+		this.area = area;
+		
+		redraw();
+		
+		this.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				super.componentResized(e);
+				redraw();
+			}
+		});
+	}
+
+	public void redraw() {
+		int width = getWidth();
+		int height = getHeight();
 		double scaleX = (width * 0.9) / area.getBounds().getWidth();
 		double scaleY = (height * 0.9) / area.getBounds().getHeight();
 		double scale = Math.min(scaleX, scaleY);
@@ -51,7 +73,10 @@ public class Display extends JFrame {
 		
 		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D graphics = (Graphics2D) image.getGraphics();
+		graphics.setColor(Color.GREEN);
 		graphics.fill(area);
+		graphics.setColor(Color.RED);
+		graphics.draw(area);
 		
 		this.bufferedImage = image;
 	}
