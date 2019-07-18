@@ -1,5 +1,7 @@
 package org.bimserver.utils;
 
+import java.awt.Rectangle;
+
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
  * 
@@ -85,7 +87,7 @@ public class IfcTools2D {
 				}
 			}
 		}
-		
+
 		// Fall back to 3D geometry projected from the top
 		GeometryInfo geometry = ifcProduct.getGeometry();
 		if (geometry != null) {
@@ -93,7 +95,7 @@ public class IfcTools2D {
 			if (geometryData != null) {
 				int[] indices = GeometryUtils.toIntegerArray(geometryData.getIndices().getData());
 				float[] vertices = GeometryUtils.toFloatArray(geometryData.getVertices().getData());
-				float[] matrix = GeometryUtils.toFloatArray(GeometryUtils.toDoubleArray(geometry.getTransformation()));
+				double[] matrix = GeometryUtils.toDoubleArray(geometry.getTransformation());
 				
 				Area area = new Area();
 				
@@ -114,10 +116,10 @@ public class IfcTools2D {
 						for (int j=0; j<3; j++) {
 							float[] point = points[j];
 							float[] res = new float[4];
-							Matrix.multiplyMV(res, 0, matrix, 0, new float[]{point[0], point[1], point[2], 1}, 0);
+							Matrix.multiplyMV(res, 0, matrix, 0, new double[]{point[0], point[1], point[2], 1}, 0);
 							
-							float x = (float) (res[0]); // * multiplierMillimeters
-							float y = (float) (res[1]); // * multiplierMillimeters
+							float x = (float) (res[0] * multiplierMillimeters);
+							float y = (float) (res[1] * multiplierMillimeters);
 							if (first) {
 								path.moveTo(x, y);
 								first = false;
@@ -383,6 +385,23 @@ public class IfcTools2D {
 		path.closePath();
 		
 		System.out.println(getArea(new Area(path)));
+
+		path = new Path2D.Float();
+		path.moveTo(1, 1);
+		path.lineTo(3, 1);
+		path.lineTo(3, -3);
+		path.lineTo(1, -3);
+		path.closePath();
+		
+		System.out.println(getArea(new Area(path)));
+		
+		Rectangle rectangle = new Rectangle(24000, 2300, 8900, 4400);
+		Area newArea = new Area(rectangle);
+		System.out.println(getArea(newArea) / 1000000);
+
+		rectangle = new Rectangle(24000, 9299, 2900, 4400);
+		newArea = new Area(rectangle);
+		System.out.println(getArea(newArea) / 1000000);
 	}
 	
 	public static Path2D enlargeSlightlyInPlace(Path2D path2d) {
@@ -470,31 +489,33 @@ public class IfcTools2D {
 		float[] coords = new float[6];
 		float[] last = null;
 		float[] first = null;
+		float[] lastMoveTo = null;
 		while (!pathIterator.isDone()) {
 			int currentSegment = pathIterator.currentSegment(coords);
 			if (currentSegment == PathIterator.SEG_CLOSE) {
-				if (last != null) {
-					sum = sum + Math.abs(last[0] * coords[1] - last[1] * coords[0]);
-				}
+//				sum += lastMoveTo[0] * coords[1] - lastMoveTo[1] * coords[0];
 				last = new float[]{coords[0], coords[1]};
 			} else if (currentSegment == PathIterator.SEG_MOVETO) {
+				lastMoveTo = new float[]{coords[0], coords[1]};
 				last = new float[]{coords[0], coords[1]};
 				if (first == null) {
 					first = new float[]{coords[0], coords[1]};
 				}
 			} else if (currentSegment == PathIterator.SEG_LINETO) {
 				if (last != null) {
-					sum = sum + Math.abs(last[0] * coords[1] - last[1] * coords[0]);
+					sum += last[0] * coords[1] - last[1] * coords[0];
 				}
 
 				last = new float[]{coords[0], coords[1]};
+			} else {
+				LOGGER.info("Unimplemented segment: " + currentSegment);
 			}
 			pathIterator.next();
 		}
 		if (last != null && first != null) {
-			sum += Math.abs(last[0] * first[1] - last[1] * first[0]);
+			sum += last[0] * first[1] - last[1] * first[0];
 		}
-		return sum / 2f;
+		return Math.abs(sum / 2f);
 	}
 
 	public void dumpStatistics() {

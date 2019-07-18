@@ -98,10 +98,12 @@ public class ClientIfcModel extends IfcModel {
 	private boolean includeGeometry;
 
 	private ClientDebugInfo clientDebugInfo = new ClientDebugInfo();
+	private boolean deep;
 
 	public ClientIfcModel(BimServerClient bimServerClient, long poid, long roid, boolean deep, PackageMetaData packageMetaData, boolean recordChanges, boolean includeGeometry)
 			throws ServerException, UserException, PublicInterfaceNotFoundException {
 		super(packageMetaData, null);
+		this.deep = deep;
 		this.recordChanges = recordChanges;
 		this.bimServerClient = bimServerClient;
 		this.roid = roid;
@@ -324,9 +326,9 @@ public class ClientIfcModel extends IfcModel {
 			try {
 				processDownload(topicId);
 				bimServerClient.getServiceInterface().cleanupLongAction(topicId);
-				modelState = ModelState.FULLY_LOADED;
 				buildIndex();
 				loadGeometry();
+				modelState = ModelState.FULLY_LOADED;
 			} catch (IfcModelInterfaceException | IOException e) {
 				LOGGER.error("", e);
 			} catch (QueryException e) {
@@ -341,6 +343,9 @@ public class ClientIfcModel extends IfcModel {
 
 	private void loadGeometry() throws QueryException, ServerException, UserException, PublicInterfaceNotFoundException, IOException, GeometryException, IfcModelInterfaceException {
 		if (includeGeometry) {
+			if (modelState == ModelState.FULLY_LOADED) {
+				return;
+			}
 			Query query = new Query("test", getPackageMetaData());
 			ObjectNode settings = new ObjectMapper().createObjectNode();
 			query.setGeometrySettings(settings);
@@ -356,7 +361,7 @@ public class ClientIfcModel extends IfcModel {
 			for (IdEObject ifcProduct : allWithSubTypes) {
 				GeometryInfo geometry = (GeometryInfo) ifcProduct.eGet(geometryFeature);
 				if (geometry != null) {
-					if (geometry.getData() == null || geometry.getData().getIndices() == null) {
+					if (geometry.getData() == null || geometry.getData().getIndices() == null || geometry.getData().getIndices().getData() == null) {
 						queryPart.addOid(geometry.getOid());
 						geometryInfoOidToOid.put(geometry.getOid(), ifcProduct.getOid());
 					}
@@ -412,8 +417,8 @@ public class ClientIfcModel extends IfcModel {
 						throw new GeometryException("Protocol != BGS (" + protocol + ")");
 					}
 					byte formatVersion = dataInputStream.readByte();
-					if (formatVersion != 17) {
-						throw new GeometryException("Unsupported version " + formatVersion + " / 17");
+					if (formatVersion != 19) {
+						throw new GeometryException("Unsupported version " + formatVersion + " / 19");
 					}
 
 					float multiplierToMm = dataInputStream.readFloat();
@@ -422,8 +427,10 @@ public class ClientIfcModel extends IfcModel {
 						dataInputStream.readDouble();
 					}
 				} else if (geometryType == 5) {
+					boolean isInPreparedBuffer = dataInputStream.readByte() == 1;
 					long oid = dataInputStream.readLong();
 					String type = dataInputStream.readUTF();
+					int nrColors = dataInputStream.readInt();
 					dataInputStream.align8();
 					long roid = dataInputStream.readLong(); // roid
 					long geometryInfoOid = dataInputStream.readLong();

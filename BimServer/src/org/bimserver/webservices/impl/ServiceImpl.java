@@ -2592,6 +2592,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			httpPost.setHeader("Output-Type", newService.getOutput());
 			httpPost.setEntity(new ByteArrayEntity(baos.toByteArray()));
 			
+			long start = System.nanoTime();
+			
 			CloseableHttpResponse response = httpclient.execute(httpPost);
 			
 			if (response.getStatusLine().getStatusCode() == 401) {
@@ -2616,6 +2618,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				
 				byte[] responseBytes = ByteStreams.toByteArray(response.getEntity().getContent());
 				
+				long end = System.nanoTime();
+				
 				Action action = newService.getAction();
 				if (action instanceof StoreExtendedData) {
 					SFile file = new SFile();
@@ -2632,6 +2636,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 					extendedData.setSize(responseBytes.length);
 					extendedData.setFileId(fileId);
 					extendedData.setSchemaId(getExtendedDataSchemaByName(newService.getOutput()).getOid());
+					extendedData.setTimeToGenerate((end - start) / 1000000);
 					addExtendedDataToRevision(roid, extendedData);
 				} else if (action instanceof CheckinRevision) {
 					CheckinRevision checkinRevision = (CheckinRevision)action;

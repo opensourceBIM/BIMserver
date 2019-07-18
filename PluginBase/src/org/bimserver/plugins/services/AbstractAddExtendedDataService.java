@@ -20,6 +20,7 @@ package org.bimserver.plugins.services;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
 import org.bimserver.interfaces.objects.SFile;
+import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,12 +31,19 @@ public abstract class AbstractAddExtendedDataService extends AbstractService {
 	// This variable is not of type SchemaName because we want plugin developers to be able to come up with new schema names that are not yet in the SchemaName enum
 	private String name;
 
+	private long start;
+
 	public AbstractAddExtendedDataService(String name) {
 		this.name = name;
 	}
 	
 	public String getName() {
 		return name;
+	}
+	
+	@Override
+	public void newRevision(RunningService runningService, BimServerClientInterface bimServerClientInterface, long poid, long roid, String userToken, long soid, SObjectType settings) throws Exception {
+		this.start = System.nanoTime();
 	}
 
 	public void addExtendedData(byte[] data, String filename, String title, String mime, BimServerClientInterface bimServerClientInterface, long roid) {
@@ -45,6 +53,8 @@ public abstract class AbstractAddExtendedDataService extends AbstractService {
 			SExtendedData extendedData = new SExtendedData();
 			extendedData.setTitle(title);
 			extendedData.setSize(data.length);
+			long end = System.nanoTime();
+			extendedData.setTimeToGenerate((end - start) / 1000000);
 			file.setFilename(filename);
 			SExtendedDataSchema extendedDataSchemaByName = bimServerClientInterface.getServiceInterface().getExtendedDataSchemaByName(name);
 			
