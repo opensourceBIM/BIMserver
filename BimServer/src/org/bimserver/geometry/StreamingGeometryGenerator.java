@@ -156,7 +156,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	
 	private boolean hasValidRepresentationIdentifier(AbstractHashMapVirtualObject representationItem) {
 		String representationIdentifier = (String) representationItem.get("RepresentationIdentifier");
-		return representationIdentifier != null && (representationIdentifier.equals("Body") || representationIdentifier.equals("Facetation"));
+		return representationIdentifier != null && (representationIdentifier.equals("Body") || representationIdentifier.equals("Facetation") || (applyLayerSets && representationIdentifier.contentEquals("Axis")));
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -531,7 +531,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 				maxObjectsPerFile = 100;
 			}
 			
-//			maxObjectsPerFile = 1;
+			maxObjectsPerFile = 1;
 			
 			report.setMaxPerFile(maxObjectsPerFile);
 			

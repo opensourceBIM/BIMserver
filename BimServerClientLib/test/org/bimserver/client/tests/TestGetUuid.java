@@ -37,7 +37,7 @@ public class TestGetUuid {
 				ClientIfcModel model = client.getModel(project, project.getLastRevisionId(), true, false);
 				
 				for (IfcBuildingStorey ifcBuildingStorey : model.getAll(IfcBuildingStorey.class)) {
-					System.out.println(ifcBuildingStorey.getUuid());
+					System.out.println(ifcBuildingStorey.getUuid() + ":" + ifcBuildingStorey.getRid());
 				}
 			}
 		} catch (BimServerClientException e) {

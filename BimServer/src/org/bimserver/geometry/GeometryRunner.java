@@ -95,7 +95,7 @@ public class GeometryRunner implements Runnable {
 	private Map<Long, ProductDef> map;
 	private ReportJob job;
 	private boolean reuseGeometry;
-	private boolean writeOutputFiles = false;
+	private boolean writeOutputFiles = true;
 	private GeometryGenerationDebugger geometryGenerationDebugger;
 	private Query originalQuery;
 

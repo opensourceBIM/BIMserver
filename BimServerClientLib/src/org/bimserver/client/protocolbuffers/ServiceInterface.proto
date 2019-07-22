@@ -1589,7 +1589,7 @@ message SGeometryInfo {
 	optional bool hasTransparency = 9;
 	optional int64 ifcProductOid = 10;
 	optional int32 ifcProductRid = 11;
-	optional string ifcProductUuid = 12;
+	optional bytes ifcProductUuid = 12;
 	optional int32 nrColors = 13;
 	optional int32 nrVertices = 14;
 	optional int64 oid = 15;

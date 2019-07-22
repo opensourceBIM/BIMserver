@@ -82,40 +82,41 @@ public class SConverterGenerator
   protected final String TEXT_61 = "Val.getOid());";
   protected final String TEXT_62 = NL + "\t\treturn result;" + NL + "\t}" + NL + "" + NL + "\tpublic ";
   protected final String TEXT_63 = " convertFromSObject(S";
-  protected final String TEXT_64 = " input, DatabaseSession session) throws BimserverDatabaseException {" + NL + "\t\tif (session == null) {" + NL + "\t\t\tthrow new BimserverDatabaseException(\"session == null, use the other method\");" + NL + "\t\t}" + NL + "\t\tLOGGER.info(\"Potential unlinked object created\");" + NL + "\t\t";
-  protected final String TEXT_65 = " result = convertFromSObject(input, ";
-  protected final String TEXT_66 = "Factory.eINSTANCE.create";
-  protected final String TEXT_67 = "(), session);" + NL + "\t\t";
-  protected final String TEXT_68 = NL + "\t\t((IdEObjectImpl)result).setOid(input.getOid());" + NL + "\t\t((IdEObjectImpl)result).setRid(input.getRid());" + NL + "\t\t";
+  protected final String TEXT_64 = " input, DatabaseSession session) throws BimserverDatabaseException {" + NL + "\t\tif (session == null) {" + NL + "\t\t\tthrow new BimserverDatabaseException(\"session == null, use the other method\");" + NL + "\t\t}" + NL + "\t\t";
+  protected final String TEXT_65 = " result = convertFromSObject(input, (";
+  protected final String TEXT_66 = ")session.create(";
+  protected final String TEXT_67 = "Package.eINSTANCE.get";
+  protected final String TEXT_68 = "()), session);" + NL + "\t\t";
   protected final String TEXT_69 = " input) throws BimserverDatabaseException {" + NL + "\t\t";
-  protected final String TEXT_70 = "(), null);" + NL + "\t\treturn result;" + NL + "\t}" + NL + "" + NL + "\tpublic ";
-  protected final String TEXT_71 = " input, ";
-  protected final String TEXT_72 = " result, DatabaseSession session) throws BimserverDatabaseException {" + NL + "\t\tif (input == null) {" + NL + "\t\t\treturn null;" + NL + "\t\t}";
-  protected final String TEXT_73 = "if (input instanceof S";
-  protected final String TEXT_74 = ") {" + NL + "\t\t\treturn convertFromSObject((S";
-  protected final String TEXT_75 = ")input, session);" + NL + "\t\t}";
-  protected final String TEXT_76 = "(";
-  protected final String TEXT_77 = NL + "\t\tList<";
-  protected final String TEXT_78 = " = result.get";
-  protected final String TEXT_79 = "();" + NL + "\t\tfor (S";
-  protected final String TEXT_80 = ".add(convertFromSObject(v, session));" + NL + "\t\t}";
-  protected final String TEXT_81 = "();" + NL + "\t\tfor (long oid : input.get";
-  protected final String TEXT_82 = ".add((";
-  protected final String TEXT_83 = ")session.get(";
-  protected final String TEXT_84 = "Package.eINSTANCE.get";
-  protected final String TEXT_85 = "(), oid, OldQuery.getDefault()));" + NL + "\t\t}";
-  protected final String TEXT_86 = "(convertFromSObject(input.get";
-  protected final String TEXT_87 = "(), session));";
-  protected final String TEXT_88 = "((";
-  protected final String TEXT_89 = "(), input.get";
-  protected final String TEXT_90 = "Id(), OldQuery.getDefault()));";
-  protected final String TEXT_91 = NL + "\t\treturn result;" + NL + "\t}";
-  protected final String TEXT_92 = NL + "\t\tpublic S";
-  protected final String TEXT_93 = " input) {" + NL + "\t\t\treturn S";
-  protected final String TEXT_94 = ".values()[input.ordinal()];" + NL + "\t\t}" + NL + "\t\t" + NL + "\t\tpublic ";
-  protected final String TEXT_95 = " input) {" + NL + "\t\t\treturn ";
-  protected final String TEXT_96 = ".values()[input.ordinal()];" + NL + "\t\t}";
-  protected final String TEXT_97 = NL + "}";
+  protected final String TEXT_70 = " result = convertFromSObject(input, ";
+  protected final String TEXT_71 = "Factory.eINSTANCE.create";
+  protected final String TEXT_72 = "(), null);" + NL + "\t\treturn result;" + NL + "\t}" + NL + "" + NL + "\tpublic ";
+  protected final String TEXT_73 = " input, ";
+  protected final String TEXT_74 = " result, DatabaseSession session) throws BimserverDatabaseException {" + NL + "\t\tif (input == null) {" + NL + "\t\t\treturn null;" + NL + "\t\t}";
+  protected final String TEXT_75 = "if (input instanceof S";
+  protected final String TEXT_76 = ") {" + NL + "\t\t\treturn convertFromSObject((S";
+  protected final String TEXT_77 = ")input, session);" + NL + "\t\t}";
+  protected final String TEXT_78 = "(";
+  protected final String TEXT_79 = NL + "\t\tList<";
+  protected final String TEXT_80 = " = result.get";
+  protected final String TEXT_81 = "();" + NL + "\t\tfor (S";
+  protected final String TEXT_82 = ".add(convertFromSObject(v, session));" + NL + "\t\t}";
+  protected final String TEXT_83 = "();" + NL + "\t\tfor (long oid : input.get";
+  protected final String TEXT_84 = ".add((";
+  protected final String TEXT_85 = ")session.get(";
+  protected final String TEXT_86 = "(), oid, OldQuery.getDefault()));" + NL + "\t\t}";
+  protected final String TEXT_87 = "(convertFromSObject(input.get";
+  protected final String TEXT_88 = "(), session));";
+  protected final String TEXT_89 = "((";
+  protected final String TEXT_90 = "(), input.get";
+  protected final String TEXT_91 = "Id(), OldQuery.getDefault()));";
+  protected final String TEXT_92 = NL + "\t\treturn result;" + NL + "\t}";
+  protected final String TEXT_93 = NL + "\t\tpublic S";
+  protected final String TEXT_94 = " input) {" + NL + "\t\t\treturn S";
+  protected final String TEXT_95 = ".values()[input.ordinal()];" + NL + "\t\t}" + NL + "\t\t" + NL + "\t\tpublic ";
+  protected final String TEXT_96 = " input) {" + NL + "\t\t\treturn ";
+  protected final String TEXT_97 = ".values()[input.ordinal()];" + NL + "\t\t}";
+  protected final String TEXT_98 = NL + "}";
 
   public String generate(Object argument)
   {
@@ -343,12 +344,14 @@ public class SConverterGenerator
     stringBuffer.append(TEXT_64);
     stringBuffer.append(eClass.getName());
     stringBuffer.append(TEXT_65);
-    stringBuffer.append(StringUtils.firstUpperCase(eClass.getEPackage().getName()));
-    stringBuffer.append(TEXT_66);
     stringBuffer.append(eClass.getName());
+    stringBuffer.append(TEXT_66);
+    stringBuffer.append(StringUtils.firstUpperCase(eClass.getEPackage().getName()));
     stringBuffer.append(TEXT_67);
-     if (eClass.getEAnnotation("nodatabase") == null) { 
+    stringBuffer.append(eClass.getName());
     stringBuffer.append(TEXT_68);
+     if (eClass.getEAnnotation("nodatabase") == null) { 
+    stringBuffer.append(TEXT_27);
      } 
     stringBuffer.append(TEXT_62);
     stringBuffer.append(eClass.getName());
@@ -356,28 +359,28 @@ public class SConverterGenerator
     stringBuffer.append(eClass.getName());
     stringBuffer.append(TEXT_69);
     stringBuffer.append(eClass.getName());
-    stringBuffer.append(TEXT_65);
-    stringBuffer.append(StringUtils.firstUpperCase(eClass.getEPackage().getName()));
-    stringBuffer.append(TEXT_66);
-    stringBuffer.append(eClass.getName());
     stringBuffer.append(TEXT_70);
-    stringBuffer.append(eClass.getName());
-    stringBuffer.append(TEXT_63);
-    stringBuffer.append(eClass.getName());
+    stringBuffer.append(StringUtils.firstUpperCase(eClass.getEPackage().getName()));
     stringBuffer.append(TEXT_71);
     stringBuffer.append(eClass.getName());
     stringBuffer.append(TEXT_72);
+    stringBuffer.append(eClass.getName());
+    stringBuffer.append(TEXT_63);
+    stringBuffer.append(eClass.getName());
+    stringBuffer.append(TEXT_73);
+    stringBuffer.append(eClass.getName());
+    stringBuffer.append(TEXT_74);
     
 	if (!metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass).isEmpty()) {
 		for (EClass subClass : metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass)) {
 
     stringBuffer.append(TEXT_27);
     stringBuffer.append(metaDataManager.getPackageMetaData(ePackage.getName()).getDirectSubClasses(eClass).iterator().next() == subClass ? "" : "else ");
-    stringBuffer.append(TEXT_73);
-    stringBuffer.append(subClass.getName());
-    stringBuffer.append(TEXT_74);
-    stringBuffer.append(subClass.getName());
     stringBuffer.append(TEXT_75);
+    stringBuffer.append(subClass.getName());
+    stringBuffer.append(TEXT_76);
+    stringBuffer.append(subClass.getName());
+    stringBuffer.append(TEXT_77);
     
 		}
 		}
@@ -386,7 +389,7 @@ public class SConverterGenerator
 
     stringBuffer.append(TEXT_35);
     stringBuffer.append(StringUtils.firstUpperCase(eAttribute.getName()));
-    stringBuffer.append(TEXT_76);
+    stringBuffer.append(TEXT_78);
     stringBuffer.append(eAttribute.getEType().getName());
     stringBuffer.append(TEXT_37);
     stringBuffer.append(StringUtils.firstUpperCase(eAttribute.getName()));
@@ -418,39 +421,39 @@ public class SConverterGenerator
 		if (eReference.isMany()) {
 			if (eReference.getEAnnotation("embedsreference") != null) {
 
-    stringBuffer.append(TEXT_77);
+    stringBuffer.append(TEXT_79);
     stringBuffer.append(eReference.getEType().getName());
     stringBuffer.append(TEXT_44);
     stringBuffer.append(eReference.getName());
-    stringBuffer.append(TEXT_78);
+    stringBuffer.append(TEXT_80);
     stringBuffer.append(StringUtils.firstUpperCase(eReference.getName()));
-    stringBuffer.append(TEXT_79);
+    stringBuffer.append(TEXT_81);
     stringBuffer.append(eReference.getEType().getName());
     stringBuffer.append(TEXT_46);
     stringBuffer.append(StringUtils.firstUpperCase(eReference.getName()));
     stringBuffer.append(TEXT_47);
     stringBuffer.append(eReference.getName());
-    stringBuffer.append(TEXT_80);
+    stringBuffer.append(TEXT_82);
     
 			} else {
 
-    stringBuffer.append(TEXT_77);
+    stringBuffer.append(TEXT_79);
     stringBuffer.append(eReference.getEType().getName());
     stringBuffer.append(TEXT_44);
     stringBuffer.append(eReference.getName());
-    stringBuffer.append(TEXT_78);
+    stringBuffer.append(TEXT_80);
     stringBuffer.append(StringUtils.firstUpperCase(eReference.getName()));
-    stringBuffer.append(TEXT_81);
+    stringBuffer.append(TEXT_83);
     stringBuffer.append(StringUtils.firstUpperCase(eReference.getName()));
     stringBuffer.append(TEXT_47);
     stringBuffer.append(eReference.getName());
-    stringBuffer.append(TEXT_82);
-    stringBuffer.append(eReference.getEType().getName());
-    stringBuffer.append(TEXT_83);
-    stringBuffer.append(StringUtils.firstUpperCase(eReference.getEType().getEPackage().getName()));
     stringBuffer.append(TEXT_84);
     stringBuffer.append(eReference.getEType().getName());
     stringBuffer.append(TEXT_85);
+    stringBuffer.append(StringUtils.firstUpperCase(eReference.getEType().getEPackage().getName()));
+    stringBuffer.append(TEXT_67);
+    stringBuffer.append(eReference.getEType().getName());
+    stringBuffer.append(TEXT_86);
     		
 			}
 		} else {
@@ -458,46 +461,46 @@ public class SConverterGenerator
 
     stringBuffer.append(TEXT_35);
     stringBuffer.append(StringUtils.firstUpperCase(eReference.getName()));
-    stringBuffer.append(TEXT_86);
-    stringBuffer.append(StringUtils.firstUpperCase(eReference.getName()));
     stringBuffer.append(TEXT_87);
+    stringBuffer.append(StringUtils.firstUpperCase(eReference.getName()));
+    stringBuffer.append(TEXT_88);
     
 			} else {
 
     stringBuffer.append(TEXT_35);
     stringBuffer.append(StringUtils.firstUpperCase(eReference.getName()));
-    stringBuffer.append(TEXT_88);
-    stringBuffer.append(eReference.getEType().getName());
-    stringBuffer.append(TEXT_83);
-    stringBuffer.append(StringUtils.firstUpperCase(eReference.getEType().getEPackage().getName()));
-    stringBuffer.append(TEXT_84);
-    stringBuffer.append(eReference.getEType().getName());
     stringBuffer.append(TEXT_89);
-    stringBuffer.append(StringUtils.firstUpperCase(eReference.getName()));
+    stringBuffer.append(eReference.getEType().getName());
+    stringBuffer.append(TEXT_85);
+    stringBuffer.append(StringUtils.firstUpperCase(eReference.getEType().getEPackage().getName()));
+    stringBuffer.append(TEXT_67);
+    stringBuffer.append(eReference.getEType().getName());
     stringBuffer.append(TEXT_90);
+    stringBuffer.append(StringUtils.firstUpperCase(eReference.getName()));
+    stringBuffer.append(TEXT_91);
     
 			}
 		}
 	}
 
-    stringBuffer.append(TEXT_91);
+    stringBuffer.append(TEXT_92);
     
 		} else if (eClassifier instanceof EEnum) {
 			EEnum eEnum = (EEnum)eClassifier;
 
-    stringBuffer.append(TEXT_92);
+    stringBuffer.append(TEXT_93);
     stringBuffer.append(eEnum.getName());
     stringBuffer.append(TEXT_25);
     stringBuffer.append(eEnum.getName());
-    stringBuffer.append(TEXT_93);
-    stringBuffer.append(eEnum.getName());
     stringBuffer.append(TEXT_94);
-    stringBuffer.append(eEnum.getName());
-    stringBuffer.append(TEXT_63);
     stringBuffer.append(eEnum.getName());
     stringBuffer.append(TEXT_95);
     stringBuffer.append(eEnum.getName());
+    stringBuffer.append(TEXT_63);
+    stringBuffer.append(eEnum.getName());
     stringBuffer.append(TEXT_96);
+    stringBuffer.append(eEnum.getName());
+    stringBuffer.append(TEXT_97);
     
 		}
 	}
@@ -506,7 +509,7 @@ public class SConverterGenerator
 	e.printStackTrace();
 }
 
-    stringBuffer.append(TEXT_97);
+    stringBuffer.append(TEXT_98);
     return stringBuffer.toString();
   }
 }

@@ -144,6 +144,7 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 			print("{");
 			print("\"_i\":" + object.getOid() + ",");
 			print("\"_u\":\"" + object.getUuid().toString() + "\",");
+			print("\"_r\":\"" + object.getRid() + "\",");
 			print("\"_t\":\"" + object.eClass().getName() + "\",");
 			print("\"_s\":1");
 			for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {

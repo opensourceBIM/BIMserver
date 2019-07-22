@@ -156,11 +156,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		<%=eClass.getName()%> result = convertFromSObject(input, <%=StringUtils.firstUpperCase(eClass.getEPackage().getName())%>Factory.eINSTANCE.create<%=eClass.getName()%>(), session);
+		<%=eClass.getName()%> result = convertFromSObject(input, (<%=eClass.getName()%>)session.create(<%=StringUtils.firstUpperCase(eClass.getEPackage().getName())%>Package.eINSTANCE.get<%=eClass.getName()%>()), session);
 		<% if (eClass.getEAnnotation("nodatabase") == null) { %>
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		<% } %>
 		return result;
 	}

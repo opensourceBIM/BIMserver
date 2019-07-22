@@ -169,11 +169,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		Project result = convertFromSObject(input, StoreFactory.eINSTANCE.createProject(), session);
+		Project result = convertFromSObject(input, (Project)session.create(StorePackage.eINSTANCE.getProject()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -341,11 +338,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		User result = convertFromSObject(input, StoreFactory.eINSTANCE.createUser(), session);
+		User result = convertFromSObject(input, (User)session.create(StorePackage.eINSTANCE.getUser()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -502,11 +496,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		Revision result = convertFromSObject(input, StoreFactory.eINSTANCE.createRevision(), session);
+		Revision result = convertFromSObject(input, (Revision)session.create(StorePackage.eINSTANCE.getRevision()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -635,11 +626,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ConcreteRevision result = convertFromSObject(input, StoreFactory.eINSTANCE.createConcreteRevision(), session);
+		ConcreteRevision result = convertFromSObject(input, (ConcreteRevision)session.create(StorePackage.eINSTANCE.getConcreteRevision()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -733,11 +721,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		GeoTag result = convertFromSObject(input, StoreFactory.eINSTANCE.createGeoTag(), session);
+		GeoTag result = convertFromSObject(input, (GeoTag)session.create(StorePackage.eINSTANCE.getGeoTag()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -826,11 +811,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		Checkout result = convertFromSObject(input, StoreFactory.eINSTANCE.createCheckout(), session);
+		Checkout result = convertFromSObject(input, (Checkout)session.create(StorePackage.eINSTANCE.getCheckout()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -942,11 +924,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ServerSettings result = convertFromSObject(input, StoreFactory.eINSTANCE.createServerSettings(), session);
+		ServerSettings result = convertFromSObject(input, (ServerSettings)session.create(StorePackage.eINSTANCE.getServerSettings()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -1098,11 +1077,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		UserSettings result = convertFromSObject(input, StoreFactory.eINSTANCE.createUserSettings(), session);
+		UserSettings result = convertFromSObject(input, (UserSettings)session.create(StorePackage.eINSTANCE.getUserSettings()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -1238,11 +1214,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		PluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createPluginConfiguration(), session);
+		PluginConfiguration result = convertFromSObject(input, (PluginConfiguration)session.create(StorePackage.eINSTANCE.getPluginConfiguration()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -1355,11 +1328,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		SerializerPluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createSerializerPluginConfiguration(), session);
+		SerializerPluginConfiguration result = convertFromSObject(input, (SerializerPluginConfiguration)session.create(StorePackage.eINSTANCE.getSerializerPluginConfiguration()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -1449,11 +1419,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ObjectIDMPluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createObjectIDMPluginConfiguration(), session);
+		ObjectIDMPluginConfiguration result = convertFromSObject(input, (ObjectIDMPluginConfiguration)session.create(StorePackage.eINSTANCE.getObjectIDMPluginConfiguration()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -1541,11 +1508,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		RenderEnginePluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createRenderEnginePluginConfiguration(), session);
+		RenderEnginePluginConfiguration result = convertFromSObject(input, (RenderEnginePluginConfiguration)session.create(StorePackage.eINSTANCE.getRenderEnginePluginConfiguration()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -1628,11 +1592,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		DeserializerPluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createDeserializerPluginConfiguration(), session);
+		DeserializerPluginConfiguration result = convertFromSObject(input, (DeserializerPluginConfiguration)session.create(StorePackage.eINSTANCE.getDeserializerPluginConfiguration()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -1709,11 +1670,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		DownloadResult result = convertFromSObject(input, StoreFactory.eINSTANCE.createDownloadResult(), session);
+		DownloadResult result = convertFromSObject(input, (DownloadResult)session.create(StorePackage.eINSTANCE.getDownloadResult()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -1788,11 +1746,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		CheckoutResult result = convertFromSObject(input, StoreFactory.eINSTANCE.createCheckoutResult(), session);
+		CheckoutResult result = convertFromSObject(input, (CheckoutResult)session.create(StorePackage.eINSTANCE.getCheckoutResult()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -1870,11 +1825,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		DataValue result = convertFromSObject(input, StoreFactory.eINSTANCE.createDataValue(), session);
+		DataValue result = convertFromSObject(input, (DataValue)session.create(StorePackage.eINSTANCE.getDataValue()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -1956,11 +1908,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		DataObject result = convertFromSObject(input, StoreFactory.eINSTANCE.createDataObject(), session);
+		DataObject result = convertFromSObject(input, (DataObject)session.create(StorePackage.eINSTANCE.getDataObject()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -2040,11 +1989,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		UserSession result = convertFromSObject(input, StoreFactory.eINSTANCE.createUserSession(), session);
+		UserSession result = convertFromSObject(input, (UserSession)session.create(StorePackage.eINSTANCE.getUserSession()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -2119,11 +2065,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		Migration result = convertFromSObject(input, StoreFactory.eINSTANCE.createMigration(), session);
+		Migration result = convertFromSObject(input, (Migration)session.create(StorePackage.eINSTANCE.getMigration()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -2193,11 +2136,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ReferenceDataValue result = convertFromSObject(input, StoreFactory.eINSTANCE.createReferenceDataValue(), session);
+		ReferenceDataValue result = convertFromSObject(input, (ReferenceDataValue)session.create(StorePackage.eINSTANCE.getReferenceDataValue()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -2270,11 +2210,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ListDataValue result = convertFromSObject(input, StoreFactory.eINSTANCE.createListDataValue(), session);
+		ListDataValue result = convertFromSObject(input, (ListDataValue)session.create(StorePackage.eINSTANCE.getListDataValue()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -2345,11 +2282,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		SimpleDataValue result = convertFromSObject(input, StoreFactory.eINSTANCE.createSimpleDataValue(), session);
+		SimpleDataValue result = convertFromSObject(input, (SimpleDataValue)session.create(StorePackage.eINSTANCE.getSimpleDataValue()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -2417,11 +2351,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		DatabaseInformationItem result = convertFromSObject(input, StoreFactory.eINSTANCE.createDatabaseInformationItem(), session);
+		DatabaseInformationItem result = convertFromSObject(input, (DatabaseInformationItem)session.create(StorePackage.eINSTANCE.getDatabaseInformationItem()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -2493,11 +2424,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		DatabaseInformationCategory result = convertFromSObject(input, StoreFactory.eINSTANCE.createDatabaseInformationCategory(), session);
+		DatabaseInformationCategory result = convertFromSObject(input, (DatabaseInformationCategory)session.create(StorePackage.eINSTANCE.getDatabaseInformationCategory()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -2580,11 +2508,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		DatabaseInformation result = convertFromSObject(input, StoreFactory.eINSTANCE.createDatabaseInformation(), session);
+		DatabaseInformation result = convertFromSObject(input, (DatabaseInformation)session.create(StorePackage.eINSTANCE.getDatabaseInformation()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -2678,11 +2603,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		PluginDescriptor result = convertFromSObject(input, StoreFactory.eINSTANCE.createPluginDescriptor(), session);
+		PluginDescriptor result = convertFromSObject(input, (PluginDescriptor)session.create(StorePackage.eINSTANCE.getPluginDescriptor()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -2763,11 +2685,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		RevisionSummaryType result = convertFromSObject(input, StoreFactory.eINSTANCE.createRevisionSummaryType(), session);
+		RevisionSummaryType result = convertFromSObject(input, (RevisionSummaryType)session.create(StorePackage.eINSTANCE.getRevisionSummaryType()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -2840,11 +2759,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		RevisionSummaryContainer result = convertFromSObject(input, StoreFactory.eINSTANCE.createRevisionSummaryContainer(), session);
+		RevisionSummaryContainer result = convertFromSObject(input, (RevisionSummaryContainer)session.create(StorePackage.eINSTANCE.getRevisionSummaryContainer()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -2918,11 +2834,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		RevisionSummary result = convertFromSObject(input, StoreFactory.eINSTANCE.createRevisionSummary(), session);
+		RevisionSummary result = convertFromSObject(input, (RevisionSummary)session.create(StorePackage.eINSTANCE.getRevisionSummary()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -2996,11 +2909,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		LongAction result = convertFromSObject(input, StoreFactory.eINSTANCE.createLongAction(), session);
+		LongAction result = convertFromSObject(input, (LongAction)session.create(StorePackage.eINSTANCE.getLongAction()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -3070,11 +2980,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ObjectIDMPluginDescriptor result = convertFromSObject(input, StoreFactory.eINSTANCE.createObjectIDMPluginDescriptor(), session);
+		ObjectIDMPluginDescriptor result = convertFromSObject(input, (ObjectIDMPluginDescriptor)session.create(StorePackage.eINSTANCE.getObjectIDMPluginDescriptor()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -3157,11 +3064,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		CompareItem result = convertFromSObject(input, StoreFactory.eINSTANCE.createCompareItem(), session);
+		CompareItem result = convertFromSObject(input, (CompareItem)session.create(StorePackage.eINSTANCE.getCompareItem()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -3237,11 +3141,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ObjectAdded result = convertFromSObject(input, StoreFactory.eINSTANCE.createObjectAdded(), session);
+		ObjectAdded result = convertFromSObject(input, (ObjectAdded)session.create(StorePackage.eINSTANCE.getObjectAdded()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -3308,11 +3209,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ObjectRemoved result = convertFromSObject(input, StoreFactory.eINSTANCE.createObjectRemoved(), session);
+		ObjectRemoved result = convertFromSObject(input, (ObjectRemoved)session.create(StorePackage.eINSTANCE.getObjectRemoved()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -3382,11 +3280,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ObjectModified result = convertFromSObject(input, StoreFactory.eINSTANCE.createObjectModified(), session);
+		ObjectModified result = convertFromSObject(input, (ObjectModified)session.create(StorePackage.eINSTANCE.getObjectModified()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -3460,11 +3355,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		CompareContainer result = convertFromSObject(input, StoreFactory.eINSTANCE.createCompareContainer(), session);
+		CompareContainer result = convertFromSObject(input, (CompareContainer)session.create(StorePackage.eINSTANCE.getCompareContainer()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -3538,11 +3430,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		CompareResult result = convertFromSObject(input, StoreFactory.eINSTANCE.createCompareResult(), session);
+		CompareResult result = convertFromSObject(input, (CompareResult)session.create(StorePackage.eINSTANCE.getCompareResult()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -3630,11 +3519,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		LongActionState result = convertFromSObject(input, StoreFactory.eINSTANCE.createLongActionState(), session);
+		LongActionState result = convertFromSObject(input, (LongActionState)session.create(StorePackage.eINSTANCE.getLongActionState()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -3722,11 +3608,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ServerInfo result = convertFromSObject(input, StoreFactory.eINSTANCE.createServerInfo(), session);
+		ServerInfo result = convertFromSObject(input, (ServerInfo)session.create(StorePackage.eINSTANCE.getServerInfo()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -3801,11 +3684,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		Version result = convertFromSObject(input, StoreFactory.eINSTANCE.createVersion(), session);
+		Version result = convertFromSObject(input, (Version)session.create(StorePackage.eINSTANCE.getVersion()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -3881,11 +3761,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		File result = convertFromSObject(input, StoreFactory.eINSTANCE.createFile(), session);
+		File result = convertFromSObject(input, (File)session.create(StorePackage.eINSTANCE.getFile()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -3970,11 +3847,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ExtendedDataSchema result = convertFromSObject(input, StoreFactory.eINSTANCE.createExtendedDataSchema(), session);
+		ExtendedDataSchema result = convertFromSObject(input, (ExtendedDataSchema)session.create(StorePackage.eINSTANCE.getExtendedDataSchema()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -4067,11 +3941,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ExtendedData result = convertFromSObject(input, StoreFactory.eINSTANCE.createExtendedData(), session);
+		ExtendedData result = convertFromSObject(input, (ExtendedData)session.create(StorePackage.eINSTANCE.getExtendedData()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -4154,11 +4025,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		QueryEnginePluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createQueryEnginePluginConfiguration(), session);
+		QueryEnginePluginConfiguration result = convertFromSObject(input, (QueryEnginePluginConfiguration)session.create(StorePackage.eINSTANCE.getQueryEnginePluginConfiguration()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -4237,11 +4105,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		WebModulePluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createWebModulePluginConfiguration(), session);
+		WebModulePluginConfiguration result = convertFromSObject(input, (WebModulePluginConfiguration)session.create(StorePackage.eINSTANCE.getWebModulePluginConfiguration()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -4320,11 +4185,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ModelMergerPluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createModelMergerPluginConfiguration(), session);
+		ModelMergerPluginConfiguration result = convertFromSObject(input, (ModelMergerPluginConfiguration)session.create(StorePackage.eINSTANCE.getModelMergerPluginConfiguration()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -4403,11 +4265,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ModelComparePluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createModelComparePluginConfiguration(), session);
+		ModelComparePluginConfiguration result = convertFromSObject(input, (ModelComparePluginConfiguration)session.create(StorePackage.eINSTANCE.getModelComparePluginConfiguration()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -4486,8 +4345,7 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ProfileDescriptor result = convertFromSObject(input, StoreFactory.eINSTANCE.createProfileDescriptor(), session);
+		ProfileDescriptor result = convertFromSObject(input, (ProfileDescriptor)session.create(StorePackage.eINSTANCE.getProfileDescriptor()), session);
 		
 		return result;
 	}
@@ -4570,8 +4428,7 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ServiceDescriptor result = convertFromSObject(input, StoreFactory.eINSTANCE.createServiceDescriptor(), session);
+		ServiceDescriptor result = convertFromSObject(input, (ServiceDescriptor)session.create(StorePackage.eINSTANCE.getServiceDescriptor()), session);
 		
 		return result;
 	}
@@ -4683,11 +4540,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		Service result = convertFromSObject(input, StoreFactory.eINSTANCE.createService(), session);
+		Service result = convertFromSObject(input, (Service)session.create(StorePackage.eINSTANCE.getService()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -4777,11 +4631,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		Token result = convertFromSObject(input, StoreFactory.eINSTANCE.createToken(), session);
+		Token result = convertFromSObject(input, (Token)session.create(StorePackage.eINSTANCE.getToken()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -4858,11 +4709,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		InternalServicePluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createInternalServicePluginConfiguration(), session);
+		InternalServicePluginConfiguration result = convertFromSObject(input, (InternalServicePluginConfiguration)session.create(StorePackage.eINSTANCE.getInternalServicePluginConfiguration()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -4935,8 +4783,7 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ServiceInterface result = convertFromSObject(input, StoreFactory.eINSTANCE.createServiceInterface(), session);
+		ServiceInterface result = convertFromSObject(input, (ServiceInterface)session.create(StorePackage.eINSTANCE.getServiceInterface()), session);
 		
 		return result;
 	}
@@ -5004,8 +4851,7 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ServiceMethod result = convertFromSObject(input, StoreFactory.eINSTANCE.createServiceMethod(), session);
+		ServiceMethod result = convertFromSObject(input, (ServiceMethod)session.create(StorePackage.eINSTANCE.getServiceMethod()), session);
 		
 		return result;
 	}
@@ -5083,8 +4929,7 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ServiceField result = convertFromSObject(input, StoreFactory.eINSTANCE.createServiceField(), session);
+		ServiceField result = convertFromSObject(input, (ServiceField)session.create(StorePackage.eINSTANCE.getServiceField()), session);
 		
 		return result;
 	}
@@ -5160,11 +5005,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ServiceType result = convertFromSObject(input, StoreFactory.eINSTANCE.createServiceType(), session);
+		ServiceType result = convertFromSObject(input, (ServiceType)session.create(StorePackage.eINSTANCE.getServiceType()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -5239,8 +5081,7 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ServiceParameter result = convertFromSObject(input, StoreFactory.eINSTANCE.createServiceParameter(), session);
+		ServiceParameter result = convertFromSObject(input, (ServiceParameter)session.create(StorePackage.eINSTANCE.getServiceParameter()), session);
 		
 		return result;
 	}
@@ -5322,8 +5163,7 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		TypeDefinition result = convertFromSObject(input, StoreFactory.eINSTANCE.createTypeDefinition(), session);
+		TypeDefinition result = convertFromSObject(input, (TypeDefinition)session.create(StorePackage.eINSTANCE.getTypeDefinition()), session);
 		
 		return result;
 	}
@@ -5399,8 +5239,7 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ObjectDefinition result = convertFromSObject(input, StoreFactory.eINSTANCE.createObjectDefinition(), session);
+		ObjectDefinition result = convertFromSObject(input, (ObjectDefinition)session.create(StorePackage.eINSTANCE.getObjectDefinition()), session);
 		
 		return result;
 	}
@@ -5467,8 +5306,7 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		PrimitiveDefinition result = convertFromSObject(input, StoreFactory.eINSTANCE.createPrimitiveDefinition(), session);
+		PrimitiveDefinition result = convertFromSObject(input, (PrimitiveDefinition)session.create(StorePackage.eINSTANCE.getPrimitiveDefinition()), session);
 		
 		return result;
 	}
@@ -5533,8 +5371,7 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ArrayDefinition result = convertFromSObject(input, StoreFactory.eINSTANCE.createArrayDefinition(), session);
+		ArrayDefinition result = convertFromSObject(input, (ArrayDefinition)session.create(StorePackage.eINSTANCE.getArrayDefinition()), session);
 		
 		return result;
 	}
@@ -5605,8 +5442,7 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ParameterDefinition result = convertFromSObject(input, StoreFactory.eINSTANCE.createParameterDefinition(), session);
+		ParameterDefinition result = convertFromSObject(input, (ParameterDefinition)session.create(StorePackage.eINSTANCE.getParameterDefinition()), session);
 		
 		return result;
 	}
@@ -5685,11 +5521,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		Type result = convertFromSObject(input, StoreFactory.eINSTANCE.createType(), session);
+		Type result = convertFromSObject(input, (Type)session.create(StorePackage.eINSTANCE.getType()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -5768,11 +5601,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ObjectType result = convertFromSObject(input, StoreFactory.eINSTANCE.createObjectType(), session);
+		ObjectType result = convertFromSObject(input, (ObjectType)session.create(StorePackage.eINSTANCE.getObjectType()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -5856,11 +5686,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		PrimitiveType result = convertFromSObject(input, StoreFactory.eINSTANCE.createPrimitiveType(), session);
+		PrimitiveType result = convertFromSObject(input, (PrimitiveType)session.create(StorePackage.eINSTANCE.getPrimitiveType()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -5940,11 +5767,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		LongType result = convertFromSObject(input, StoreFactory.eINSTANCE.createLongType(), session);
+		LongType result = convertFromSObject(input, (LongType)session.create(StorePackage.eINSTANCE.getLongType()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -6010,11 +5834,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ByteArrayType result = convertFromSObject(input, StoreFactory.eINSTANCE.createByteArrayType(), session);
+		ByteArrayType result = convertFromSObject(input, (ByteArrayType)session.create(StorePackage.eINSTANCE.getByteArrayType()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -6080,11 +5901,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		DoubleType result = convertFromSObject(input, StoreFactory.eINSTANCE.createDoubleType(), session);
+		DoubleType result = convertFromSObject(input, (DoubleType)session.create(StorePackage.eINSTANCE.getDoubleType()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -6150,11 +5968,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		StringType result = convertFromSObject(input, StoreFactory.eINSTANCE.createStringType(), session);
+		StringType result = convertFromSObject(input, (StringType)session.create(StorePackage.eINSTANCE.getStringType()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -6220,11 +6035,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		BooleanType result = convertFromSObject(input, StoreFactory.eINSTANCE.createBooleanType(), session);
+		BooleanType result = convertFromSObject(input, (BooleanType)session.create(StorePackage.eINSTANCE.getBooleanType()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -6294,11 +6106,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ArrayType result = convertFromSObject(input, StoreFactory.eINSTANCE.createArrayType(), session);
+		ArrayType result = convertFromSObject(input, (ArrayType)session.create(StorePackage.eINSTANCE.getArrayType()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -6370,11 +6179,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		Parameter result = convertFromSObject(input, StoreFactory.eINSTANCE.createParameter(), session);
+		Parameter result = convertFromSObject(input, (Parameter)session.create(StorePackage.eINSTANCE.getParameter()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -6450,11 +6256,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ImmediateNotificationResult result = convertFromSObject(input, StoreFactory.eINSTANCE.createImmediateNotificationResult(), session);
+		ImmediateNotificationResult result = convertFromSObject(input, (ImmediateNotificationResult)session.create(StorePackage.eINSTANCE.getImmediateNotificationResult()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -6523,11 +6326,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		RemoteServiceUpdate result = convertFromSObject(input, StoreFactory.eINSTANCE.createRemoteServiceUpdate(), session);
+		RemoteServiceUpdate result = convertFromSObject(input, (RemoteServiceUpdate)session.create(StorePackage.eINSTANCE.getRemoteServiceUpdate()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -6595,11 +6395,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		PercentageChange result = convertFromSObject(input, StoreFactory.eINSTANCE.createPercentageChange(), session);
+		PercentageChange result = convertFromSObject(input, (PercentageChange)session.create(StorePackage.eINSTANCE.getPercentageChange()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -6671,11 +6468,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		SystemInfo result = convertFromSObject(input, StoreFactory.eINSTANCE.createSystemInfo(), session);
+		SystemInfo result = convertFromSObject(input, (SystemInfo)session.create(StorePackage.eINSTANCE.getSystemInfo()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -6769,11 +6563,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		JavaInfo result = convertFromSObject(input, StoreFactory.eINSTANCE.createJavaInfo(), session);
+		JavaInfo result = convertFromSObject(input, (JavaInfo)session.create(StorePackage.eINSTANCE.getJavaInfo()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -6871,11 +6662,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		BimServerInfo result = convertFromSObject(input, StoreFactory.eINSTANCE.createBimServerInfo(), session);
+		BimServerInfo result = convertFromSObject(input, (BimServerInfo)session.create(StorePackage.eINSTANCE.getBimServerInfo()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -6965,11 +6753,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ProjectSmall result = convertFromSObject(input, StoreFactory.eINSTANCE.createProjectSmall(), session);
+		ProjectSmall result = convertFromSObject(input, (ProjectSmall)session.create(StorePackage.eINSTANCE.getProjectSmall()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -7051,11 +6836,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		IfcHeader result = convertFromSObject(input, StoreFactory.eINSTANCE.createIfcHeader(), session);
+		IfcHeader result = convertFromSObject(input, (IfcHeader)session.create(StorePackage.eINSTANCE.getIfcHeader()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -7135,11 +6917,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ModelCheckerResultItem result = convertFromSObject(input, StoreFactory.eINSTANCE.createModelCheckerResultItem(), session);
+		ModelCheckerResultItem result = convertFromSObject(input, (ModelCheckerResultItem)session.create(StorePackage.eINSTANCE.getModelCheckerResultItem()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -7210,11 +6989,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ModelCheckerResultHeader result = convertFromSObject(input, StoreFactory.eINSTANCE.createModelCheckerResultHeader(), session);
+		ModelCheckerResultHeader result = convertFromSObject(input, (ModelCheckerResultHeader)session.create(StorePackage.eINSTANCE.getModelCheckerResultHeader()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -7291,11 +7067,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ModelCheckerResultLine result = convertFromSObject(input, StoreFactory.eINSTANCE.createModelCheckerResultLine(), session);
+		ModelCheckerResultLine result = convertFromSObject(input, (ModelCheckerResultLine)session.create(StorePackage.eINSTANCE.getModelCheckerResultLine()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -7370,11 +7143,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ModelCheckerResult result = convertFromSObject(input, StoreFactory.eINSTANCE.createModelCheckerResult(), session);
+		ModelCheckerResult result = convertFromSObject(input, (ModelCheckerResult)session.create(StorePackage.eINSTANCE.getModelCheckerResult()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -7449,11 +7219,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ModelCheckerInstance result = convertFromSObject(input, StoreFactory.eINSTANCE.createModelCheckerInstance(), session);
+		ModelCheckerInstance result = convertFromSObject(input, (ModelCheckerInstance)session.create(StorePackage.eINSTANCE.getModelCheckerInstance()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -7544,11 +7311,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		MessagingSerializerPluginConfiguration result = convertFromSObject(input, StoreFactory.eINSTANCE.createMessagingSerializerPluginConfiguration(), session);
+		MessagingSerializerPluginConfiguration result = convertFromSObject(input, (MessagingSerializerPluginConfiguration)session.create(StorePackage.eINSTANCE.getMessagingSerializerPluginConfiguration()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -7626,11 +7390,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		Metrics result = convertFromSObject(input, StoreFactory.eINSTANCE.createMetrics(), session);
+		Metrics result = convertFromSObject(input, (Metrics)session.create(StorePackage.eINSTANCE.getMetrics()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -7704,11 +7465,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		InterfaceMetric result = convertFromSObject(input, StoreFactory.eINSTANCE.createInterfaceMetric(), session);
+		InterfaceMetric result = convertFromSObject(input, (InterfaceMetric)session.create(StorePackage.eINSTANCE.getInterfaceMetric()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -7783,11 +7541,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		MethodMetric result = convertFromSObject(input, StoreFactory.eINSTANCE.createMethodMetric(), session);
+		MethodMetric result = convertFromSObject(input, (MethodMetric)session.create(StorePackage.eINSTANCE.getMethodMetric()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -7868,11 +7623,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		PluginBundleVersion result = convertFromSObject(input, StoreFactory.eINSTANCE.createPluginBundleVersion(), session);
+		PluginBundleVersion result = convertFromSObject(input, (PluginBundleVersion)session.create(StorePackage.eINSTANCE.getPluginBundleVersion()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -7972,11 +7724,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		PluginBundle result = convertFromSObject(input, StoreFactory.eINSTANCE.createPluginBundle(), session);
+		PluginBundle result = convertFromSObject(input, (PluginBundle)session.create(StorePackage.eINSTANCE.getPluginBundle()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -8055,11 +7804,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		PluginInformation result = convertFromSObject(input, StoreFactory.eINSTANCE.createPluginInformation(), session);
+		PluginInformation result = convertFromSObject(input, (PluginInformation)session.create(StorePackage.eINSTANCE.getPluginInformation()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -8143,11 +7889,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		OAuthServer result = convertFromSObject(input, StoreFactory.eINSTANCE.createOAuthServer(), session);
+		OAuthServer result = convertFromSObject(input, (OAuthServer)session.create(StorePackage.eINSTANCE.getOAuthServer()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -8232,11 +7975,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		OAuthAuthorizationCode result = convertFromSObject(input, StoreFactory.eINSTANCE.createOAuthAuthorizationCode(), session);
+		OAuthAuthorizationCode result = convertFromSObject(input, (OAuthAuthorizationCode)session.create(StorePackage.eINSTANCE.getOAuthAuthorizationCode()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -8311,11 +8051,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		Authorization result = convertFromSObject(input, StoreFactory.eINSTANCE.createAuthorization(), session);
+		Authorization result = convertFromSObject(input, (Authorization)session.create(StorePackage.eINSTANCE.getAuthorization()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -8387,11 +8124,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		SingleProjectAuthorization result = convertFromSObject(input, StoreFactory.eINSTANCE.createSingleProjectAuthorization(), session);
+		SingleProjectAuthorization result = convertFromSObject(input, (SingleProjectAuthorization)session.create(StorePackage.eINSTANCE.getSingleProjectAuthorization()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -8465,11 +8199,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		NewServiceDescriptor result = convertFromSObject(input, StoreFactory.eINSTANCE.createNewServiceDescriptor(), session);
+		NewServiceDescriptor result = convertFromSObject(input, (NewServiceDescriptor)session.create(StorePackage.eINSTANCE.getNewServiceDescriptor()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -8548,11 +8279,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		FormatSerializerMap result = convertFromSObject(input, StoreFactory.eINSTANCE.createFormatSerializerMap(), session);
+		FormatSerializerMap result = convertFromSObject(input, (FormatSerializerMap)session.create(StorePackage.eINSTANCE.getFormatSerializerMap()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -8627,11 +8355,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		Action result = convertFromSObject(input, StoreFactory.eINSTANCE.createAction(), session);
+		Action result = convertFromSObject(input, (Action)session.create(StorePackage.eINSTANCE.getAction()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -8701,11 +8426,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		StoreExtendedData result = convertFromSObject(input, StoreFactory.eINSTANCE.createStoreExtendedData(), session);
+		StoreExtendedData result = convertFromSObject(input, (StoreExtendedData)session.create(StorePackage.eINSTANCE.getStoreExtendedData()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -8771,11 +8493,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		CheckinRevision result = convertFromSObject(input, StoreFactory.eINSTANCE.createCheckinRevision(), session);
+		CheckinRevision result = convertFromSObject(input, (CheckinRevision)session.create(StorePackage.eINSTANCE.getCheckinRevision()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -8866,11 +8585,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		NewService result = convertFromSObject(input, StoreFactory.eINSTANCE.createNewService(), session);
+		NewService result = convertFromSObject(input, (NewService)session.create(StorePackage.eINSTANCE.getNewService()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -8952,11 +8668,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		RunServiceAuthorization result = convertFromSObject(input, StoreFactory.eINSTANCE.createRunServiceAuthorization(), session);
+		RunServiceAuthorization result = convertFromSObject(input, (RunServiceAuthorization)session.create(StorePackage.eINSTANCE.getRunServiceAuthorization()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -9026,11 +8739,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		DensityCollection result = convertFromSObject(input, StoreFactory.eINSTANCE.createDensityCollection(), session);
+		DensityCollection result = convertFromSObject(input, (DensityCollection)session.create(StorePackage.eINSTANCE.getDensityCollection()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -9104,11 +8814,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		Density result = convertFromSObject(input, StoreFactory.eINSTANCE.createDensity(), session);
+		Density result = convertFromSObject(input, (Density)session.create(StorePackage.eINSTANCE.getDensity()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -9189,11 +8896,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		LongCheckinActionState result = convertFromSObject(input, StoreFactory.eINSTANCE.createLongCheckinActionState(), session);
+		LongCheckinActionState result = convertFromSObject(input, (LongCheckinActionState)session.create(StorePackage.eINSTANCE.getLongCheckinActionState()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -9274,11 +8978,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		Tile result = convertFromSObject(input, StoreFactory.eINSTANCE.createTile(), session);
+		Tile result = convertFromSObject(input, (Tile)session.create(StorePackage.eINSTANCE.getTile()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -9399,11 +9100,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		LogAction result = convertFromSObject(input, LogFactory.eINSTANCE.createLogAction(), session);
+		LogAction result = convertFromSObject(input, (LogAction)session.create(LogPackage.eINSTANCE.getLogAction()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -9517,11 +9215,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ServerLog result = convertFromSObject(input, LogFactory.eINSTANCE.createServerLog(), session);
+		ServerLog result = convertFromSObject(input, (ServerLog)session.create(LogPackage.eINSTANCE.getServerLog()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -9607,11 +9302,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ProjectRelated result = convertFromSObject(input, LogFactory.eINSTANCE.createProjectRelated(), session);
+		ProjectRelated result = convertFromSObject(input, (ProjectRelated)session.create(LogPackage.eINSTANCE.getProjectRelated()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -9700,11 +9392,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		CheckoutRelated result = convertFromSObject(input, LogFactory.eINSTANCE.createCheckoutRelated(), session);
+		CheckoutRelated result = convertFromSObject(input, (CheckoutRelated)session.create(LogPackage.eINSTANCE.getCheckoutRelated()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -9787,11 +9476,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		RevisionRelated result = convertFromSObject(input, LogFactory.eINSTANCE.createRevisionRelated(), session);
+		RevisionRelated result = convertFromSObject(input, (RevisionRelated)session.create(LogPackage.eINSTANCE.getRevisionRelated()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -9895,11 +9581,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		UserRelated result = convertFromSObject(input, LogFactory.eINSTANCE.createUserRelated(), session);
+		UserRelated result = convertFromSObject(input, (UserRelated)session.create(LogPackage.eINSTANCE.getUserRelated()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -9997,11 +9680,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		NewUserAdded result = convertFromSObject(input, LogFactory.eINSTANCE.createNewUserAdded(), session);
+		NewUserAdded result = convertFromSObject(input, (NewUserAdded)session.create(LogPackage.eINSTANCE.getNewUserAdded()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -10077,11 +9757,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		NewProjectAdded result = convertFromSObject(input, LogFactory.eINSTANCE.createNewProjectAdded(), session);
+		NewProjectAdded result = convertFromSObject(input, (NewProjectAdded)session.create(LogPackage.eINSTANCE.getNewProjectAdded()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -10158,11 +9835,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		RevisionBranched result = convertFromSObject(input, LogFactory.eINSTANCE.createRevisionBranched(), session);
+		RevisionBranched result = convertFromSObject(input, (RevisionBranched)session.create(LogPackage.eINSTANCE.getRevisionBranched()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -10239,11 +9913,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		NewRevisionAdded result = convertFromSObject(input, LogFactory.eINSTANCE.createNewRevisionAdded(), session);
+		NewRevisionAdded result = convertFromSObject(input, (NewRevisionAdded)session.create(LogPackage.eINSTANCE.getNewRevisionAdded()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -10318,11 +9989,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		NewCheckoutAdded result = convertFromSObject(input, LogFactory.eINSTANCE.createNewCheckoutAdded(), session);
+		NewCheckoutAdded result = convertFromSObject(input, (NewCheckoutAdded)session.create(LogPackage.eINSTANCE.getNewCheckoutAdded()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -10394,11 +10062,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		SettingsSaved result = convertFromSObject(input, LogFactory.eINSTANCE.createSettingsSaved(), session);
+		SettingsSaved result = convertFromSObject(input, (SettingsSaved)session.create(LogPackage.eINSTANCE.getSettingsSaved()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -10473,11 +10138,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		UserAddedToProject result = convertFromSObject(input, LogFactory.eINSTANCE.createUserAddedToProject(), session);
+		UserAddedToProject result = convertFromSObject(input, (UserAddedToProject)session.create(LogPackage.eINSTANCE.getUserAddedToProject()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -10550,11 +10212,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		NewObjectIDMUploaded result = convertFromSObject(input, LogFactory.eINSTANCE.createNewObjectIDMUploaded(), session);
+		NewObjectIDMUploaded result = convertFromSObject(input, (NewObjectIDMUploaded)session.create(LogPackage.eINSTANCE.getNewObjectIDMUploaded()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -10625,11 +10284,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		Download result = convertFromSObject(input, LogFactory.eINSTANCE.createDownload(), session);
+		Download result = convertFromSObject(input, (Download)session.create(LogPackage.eINSTANCE.getDownload()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -10704,11 +10360,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		UserRemovedFromProject result = convertFromSObject(input, LogFactory.eINSTANCE.createUserRemovedFromProject(), session);
+		UserRemovedFromProject result = convertFromSObject(input, (UserRemovedFromProject)session.create(LogPackage.eINSTANCE.getUserRemovedFromProject()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -10783,11 +10436,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ProjectDeleted result = convertFromSObject(input, LogFactory.eINSTANCE.createProjectDeleted(), session);
+		ProjectDeleted result = convertFromSObject(input, (ProjectDeleted)session.create(LogPackage.eINSTANCE.getProjectDeleted()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -10861,11 +10511,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		UserDeleted result = convertFromSObject(input, LogFactory.eINSTANCE.createUserDeleted(), session);
+		UserDeleted result = convertFromSObject(input, (UserDeleted)session.create(LogPackage.eINSTANCE.getUserDeleted()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -10939,11 +10586,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		PasswordReset result = convertFromSObject(input, LogFactory.eINSTANCE.createPasswordReset(), session);
+		PasswordReset result = convertFromSObject(input, (PasswordReset)session.create(LogPackage.eINSTANCE.getPasswordReset()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -11017,11 +10661,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		DatabaseCreated result = convertFromSObject(input, LogFactory.eINSTANCE.createDatabaseCreated(), session);
+		DatabaseCreated result = convertFromSObject(input, (DatabaseCreated)session.create(LogPackage.eINSTANCE.getDatabaseCreated()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -11094,11 +10735,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ServerStarted result = convertFromSObject(input, LogFactory.eINSTANCE.createServerStarted(), session);
+		ServerStarted result = convertFromSObject(input, (ServerStarted)session.create(LogPackage.eINSTANCE.getServerStarted()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -11171,11 +10809,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ProjectUpdated result = convertFromSObject(input, LogFactory.eINSTANCE.createProjectUpdated(), session);
+		ProjectUpdated result = convertFromSObject(input, (ProjectUpdated)session.create(LogPackage.eINSTANCE.getProjectUpdated()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -11249,11 +10884,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		UserUndeleted result = convertFromSObject(input, LogFactory.eINSTANCE.createUserUndeleted(), session);
+		UserUndeleted result = convertFromSObject(input, (UserUndeleted)session.create(LogPackage.eINSTANCE.getUserUndeleted()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -11327,11 +10959,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ProjectUndeleted result = convertFromSObject(input, LogFactory.eINSTANCE.createProjectUndeleted(), session);
+		ProjectUndeleted result = convertFromSObject(input, (ProjectUndeleted)session.create(LogPackage.eINSTANCE.getProjectUndeleted()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -11405,11 +11034,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		RevisionUpdated result = convertFromSObject(input, LogFactory.eINSTANCE.createRevisionUpdated(), session);
+		RevisionUpdated result = convertFromSObject(input, (RevisionUpdated)session.create(LogPackage.eINSTANCE.getRevisionUpdated()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -11483,11 +11109,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		GeoTagUpdated result = convertFromSObject(input, LogFactory.eINSTANCE.createGeoTagUpdated(), session);
+		GeoTagUpdated result = convertFromSObject(input, (GeoTagUpdated)session.create(LogPackage.eINSTANCE.getGeoTagUpdated()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -11561,11 +11184,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		PasswordChanged result = convertFromSObject(input, LogFactory.eINSTANCE.createPasswordChanged(), session);
+		PasswordChanged result = convertFromSObject(input, (PasswordChanged)session.create(LogPackage.eINSTANCE.getPasswordChanged()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -11639,11 +11259,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		UserChanged result = convertFromSObject(input, LogFactory.eINSTANCE.createUserChanged(), session);
+		UserChanged result = convertFromSObject(input, (UserChanged)session.create(LogPackage.eINSTANCE.getUserChanged()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -11719,11 +11336,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ExtendedDataAddedToRevision result = convertFromSObject(input, LogFactory.eINSTANCE.createExtendedDataAddedToRevision(), session);
+		ExtendedDataAddedToRevision result = convertFromSObject(input, (ExtendedDataAddedToRevision)session.create(LogPackage.eINSTANCE.getExtendedDataAddedToRevision()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -11800,11 +11414,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ExtendedDataAddedToProject result = convertFromSObject(input, LogFactory.eINSTANCE.createExtendedDataAddedToProject(), session);
+		ExtendedDataAddedToProject result = convertFromSObject(input, (ExtendedDataAddedToProject)session.create(LogPackage.eINSTANCE.getExtendedDataAddedToProject()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -11884,11 +11495,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		RemoteServiceCalled result = convertFromSObject(input, LogFactory.eINSTANCE.createRemoteServiceCalled(), session);
+		RemoteServiceCalled result = convertFromSObject(input, (RemoteServiceCalled)session.create(LogPackage.eINSTANCE.getRemoteServiceCalled()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -11985,11 +11593,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		GeometryInfo result = convertFromSObject(input, GeometryFactory.eINSTANCE.createGeometryInfo(), session);
+		GeometryInfo result = convertFromSObject(input, (GeometryInfo)session.create(GeometryPackage.eINSTANCE.getGeometryInfo()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -12075,11 +11680,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		Vector3f result = convertFromSObject(input, GeometryFactory.eINSTANCE.createVector3f(), session);
+		Vector3f result = convertFromSObject(input, (Vector3f)session.create(GeometryPackage.eINSTANCE.getVector3f()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -12150,11 +11752,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		Bounds result = convertFromSObject(input, GeometryFactory.eINSTANCE.createBounds(), session);
+		Bounds result = convertFromSObject(input, (Bounds)session.create(GeometryPackage.eINSTANCE.getBounds()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -12221,11 +11820,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		Buffer result = convertFromSObject(input, GeometryFactory.eINSTANCE.createBuffer(), session);
+		Buffer result = convertFromSObject(input, (Buffer)session.create(GeometryPackage.eINSTANCE.getBuffer()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -12321,11 +11917,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		GeometryData result = convertFromSObject(input, GeometryFactory.eINSTANCE.createGeometryData(), session);
+		GeometryData result = convertFromSObject(input, (GeometryData)session.create(GeometryPackage.eINSTANCE.getGeometryData()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -12413,11 +12006,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		Vector4f result = convertFromSObject(input, GeometryFactory.eINSTANCE.createVector4f(), session);
+		Vector4f result = convertFromSObject(input, (Vector4f)session.create(GeometryPackage.eINSTANCE.getVector4f()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}
@@ -12486,11 +12076,8 @@ public class SConverter {
 		if (session == null) {
 			throw new BimserverDatabaseException("session == null, use the other method");
 		}
-		LOGGER.info("Potential unlinked object created");
-		ColorPack result = convertFromSObject(input, GeometryFactory.eINSTANCE.createColorPack(), session);
+		ColorPack result = convertFromSObject(input, (ColorPack)session.create(GeometryPackage.eINSTANCE.getColorPack()), session);
 		
-		((IdEObjectImpl)result).setOid(input.getOid());
-		((IdEObjectImpl)result).setRid(input.getRid());
 		
 		return result;
 	}

@@ -48,6 +48,8 @@ public class EmfJsonSerializer {
 		if (((IdEObjectImpl) object).getLoadingState() != State.LOADED) {
 			print("{");
 			print("\"_i\":" + object.getOid() + ",");
+			print("\"_u\":\"" + object.getUuid() + "\",");
+			print("\"_r\":" + object.getRid() + ",");
 			print("\"_t\":\"" + object.eClass().getName() + "\",");
 			print("\"_s\":0");
 			print("}\n");
@@ -55,6 +57,7 @@ public class EmfJsonSerializer {
 			print("{");
 			print("\"_i\":" + object.getOid() + ",");
 			print("\"_u\":\"" + object.getUuid() + "\",");
+			print("\"_r\":" + object.getRid() + ",");
 			print("\"_t\":\"" + object.eClass().getName() + "\",");
 			print("\"_s\":1");
 			for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
