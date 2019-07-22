@@ -196,13 +196,31 @@ public interface GeometryPackage extends EPackage {
 	int GEOMETRY_INFO__IFC_PRODUCT_OID = 10;
 
 	/**
+	 * The feature id for the '<em><b>Ifc Product Uuid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_INFO__IFC_PRODUCT_UUID = 11;
+
+	/**
+	 * The feature id for the '<em><b>Ifc Product Rid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_INFO__IFC_PRODUCT_RID = 12;
+
+	/**
 	 * The feature id for the '<em><b>Density</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO__DENSITY = 11;
+	int GEOMETRY_INFO__DENSITY = 13;
 
 	/**
 	 * The feature id for the '<em><b>Bounds Mm</b></em>' reference.
@@ -211,7 +229,7 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO__BOUNDS_MM = 12;
+	int GEOMETRY_INFO__BOUNDS_MM = 14;
 
 	/**
 	 * The feature id for the '<em><b>Bounds Untransformed Mm</b></em>' reference.
@@ -220,7 +238,7 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO__BOUNDS_UNTRANSFORMED_MM = 13;
+	int GEOMETRY_INFO__BOUNDS_UNTRANSFORMED_MM = 15;
 
 	/**
 	 * The feature id for the '<em><b>Additional Data</b></em>' attribute.
@@ -229,7 +247,7 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO__ADDITIONAL_DATA = 14;
+	int GEOMETRY_INFO__ADDITIONAL_DATA = 16;
 
 	/**
 	 * The feature id for the '<em><b>Nr Colors</b></em>' attribute.
@@ -238,7 +256,7 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO__NR_COLORS = 15;
+	int GEOMETRY_INFO__NR_COLORS = 17;
 
 	/**
 	 * The feature id for the '<em><b>Nr Vertices</b></em>' attribute.
@@ -247,7 +265,7 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO__NR_VERTICES = 16;
+	int GEOMETRY_INFO__NR_VERTICES = 18;
 
 	/**
 	 * The number of structural features of the '<em>Info</em>' class.
@@ -256,7 +274,7 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO_FEATURE_COUNT = 17;
+	int GEOMETRY_INFO_FEATURE_COUNT = 19;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.Vector3fImpl <em>Vector3f</em>}' class.
@@ -781,6 +799,28 @@ public interface GeometryPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getGeometryInfo_IfcProductOid();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryInfo#getIfcProductUuid <em>Ifc Product Uuid</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Ifc Product Uuid</em>'.
+	 * @see org.bimserver.models.geometry.GeometryInfo#getIfcProductUuid()
+	 * @see #getGeometryInfo()
+	 * @generated
+	 */
+	EAttribute getGeometryInfo_IfcProductUuid();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryInfo#getIfcProductRid <em>Ifc Product Rid</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Ifc Product Rid</em>'.
+	 * @see org.bimserver.models.geometry.GeometryInfo#getIfcProductRid()
+	 * @see #getGeometryInfo()
+	 * @generated
+	 */
+	EAttribute getGeometryInfo_IfcProductRid();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryInfo#getDensity <em>Density</em>}'.
@@ -1368,6 +1408,22 @@ public interface GeometryPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute GEOMETRY_INFO__IFC_PRODUCT_OID = eINSTANCE.getGeometryInfo_IfcProductOid();
+
+		/**
+		 * The meta object literal for the '<em><b>Ifc Product Uuid</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GEOMETRY_INFO__IFC_PRODUCT_UUID = eINSTANCE.getGeometryInfo_IfcProductUuid();
+
+		/**
+		 * The meta object literal for the '<em><b>Ifc Product Rid</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GEOMETRY_INFO__IFC_PRODUCT_RID = eINSTANCE.getGeometryInfo_IfcProductRid();
 
 		/**
 		 * The meta object literal for the '<em><b>Density</b></em>' attribute feature.

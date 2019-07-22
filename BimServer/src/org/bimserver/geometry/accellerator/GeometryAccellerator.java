@@ -144,33 +144,47 @@ public class GeometryAccellerator {
 
 			QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, key.getRoids(), packageMetaData);
 			HashMapVirtualObject next = queryObjectProvider.next();
+			
+			Map<Long, GeometryDataObject> map = new HashMap<>();
+			
 			while (next != null) {
 				AbstractHashMapVirtualObject geometry = next.getDirectFeature(packageMetaData.getEReference("IfcProduct", "geometry"));
 				if (geometry != null) {
 					float density = (float) geometry.get("density");
 					long geometryDataId = (long) geometry.get("data");
 					AbstractHashMapVirtualObject boundsMm = geometry.getDirectFeature(GeometryPackage.eINSTANCE.getGeometryInfo_BoundsMm());
+					
+					GeometryDataObject geometryDataObject = null;
+					
 					if (key.getGeometryIdsToReuse().contains(geometryDataId)) {
 						// Special case, we now have to use the complete
 						// bounding box of all reused objects, instead of using
 						// the object's aabb
-						AbstractHashMapVirtualObject geometryData = geometry.getDirectFeature(GeometryPackage.eINSTANCE.getGeometryInfo_Data());
+						HashMapVirtualObject geometryData = (HashMapVirtualObject) geometry.getDirectFeature(GeometryPackage.eINSTANCE.getGeometryInfo_Data());
 						boundsMm = geometryData.getDirectFeature(GeometryPackage.eINSTANCE.getGeometryData_BoundsMm());
+						
+						geometryDataObject = map.get(geometryData.getOid());
+						if (geometryDataObject == null) {
+							geometryDataObject = new GeometryDataObject(geometryData);
+							map.put(geometryData.getOid(), geometryDataObject);
+						}
 					}
 					if (boundsMm != null) {
 						AbstractHashMapVirtualObject min = boundsMm.getDirectFeature(GeometryPackage.eINSTANCE.getBounds_Min());
 						AbstractHashMapVirtualObject max = boundsMm.getDirectFeature(GeometryPackage.eINSTANCE.getBounds_Max());
 
-						AbstractHashMapVirtualObject geometryData = geometry.getDirectFeature(GeometryPackage.eINSTANCE.getGeometryInfo_Data());
+						HashMapVirtualObject geometryData = (HashMapVirtualObject) geometry.getDirectFeature(GeometryPackage.eINSTANCE.getGeometryInfo_Data());
 						int saveableTriangles = (int)geometryData.get("saveableTriangles");
+						int reused = (int)geometryData.get("reused");
 						int triangles = (int)geometryData.get("nrIndices") / 3;
-						
+
 						org.bimserver.database.queries.Bounds objectBounds = new org.bimserver.database.queries.Bounds((double) min.get("x"), (double) min.get("y"), (double) min.get("z"), (double) max.get("x"), (double) max.get("y"),
 								(double) max.get("z"));
-						GeometryObject geometryObject = new GeometryObject(next.getOid(), next.eClass(), next.getCroid(), saveableTriangles, triangles, density, objectBounds);
+						GeometryObject geometryObject = new GeometryObject(next.getOid(), next.eClass(), next.getCroid(), saveableTriangles, reused, triangles, density, objectBounds);
 						Node node = octree.add(geometryObject);
 						geometryObject.setTileId(node.getId());
 						geometryObject.setTileLevel(node.getLevel());
+						geometryObject.setGeometryDataObject(geometryDataObject);
 					}
 				}
 				next = queryObjectProvider.next();
@@ -189,6 +203,23 @@ public class GeometryAccellerator {
 			
 			LOGGER.info("Total triangles: " + totalTriangles);
 			
+			octree.moveGeometryDown(new MoveGeometryDownDecider() {
+				@Override
+				public boolean shouldMoveDown(GeometryObject geometryObject) {
+					GeometryDataObject geometryDataObject = geometryObject.getGeometryDataObject();
+					if (geometryDataObject == null) {
+						// It's not reused at all
+						return false;
+					}
+					
+					// Maybe we should reason the other way around. Each tile can at max be X triangles big. If the amount of triangles is too large, we start moving reusable objects down by splitting them.
+					// If that in turn means that reuse in those tiles makes no sense anymore, stop applying reuse altogether.W
+					
+					// So we have already decided that reuse is going to be useful, but if moving the geometry down a level would result
+					
+					return false;
+				}});
+			
 			octree.moveUp(new MoveUpDecider() {
 				@Override
 				public boolean moveUp(Node node) {
@@ -197,7 +228,11 @@ public class GeometryAccellerator {
 					for (GeometryObject geometryObject : node.getValues()) {
 						totalTriangles += geometryObject.getTriangles();
 					}
-					return totalTriangles < 1200;
+					if (totalTriangles < 1200) {
+						return true;
+					}
+					
+					return false;
 				}
 			});
 			
@@ -348,11 +383,12 @@ public class GeometryAccellerator {
 
 	public SDensity getDensityThreshold(Set<Long> roids, Long nrTriangles, Set<String> excludedTypes) {
 		DensityThresholdKey key = new DensityThresholdKey(roids, nrTriangles, excludedTypes);
-		try {
-			return densityThresholds.get(key).getDensity();
-		} catch (ExecutionException e) {
-			LOGGER.error("", e);
-			return null;
-		}
+		return generateDensityThreshold(key).getDensity();
+//		try {
+//			return densityThresholds.get(key).getDensity();
+//		} catch (ExecutionException e) {
+//			LOGGER.error("", e);
+//			return null;
+//		}
 	}
 }

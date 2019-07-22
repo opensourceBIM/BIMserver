@@ -33,6 +33,8 @@ public class Step0039 extends Migration {
 		schema.createEAttribute(geometryData, "type", EcorePackage.eINSTANCE.getEShort());
 		
 		schema.createEAttribute(geometryInfo, "ifcProductOid", EcorePackage.eINSTANCE.getELong());
+		schema.createEAttribute(geometryInfo, "ifcProductUuid", EcorePackage.eINSTANCE.getEByteArray());
+		schema.createEAttribute(geometryInfo, "ifcProductRid", EcorePackage.eINSTANCE.getEInt());
 	}
 
 	@Override

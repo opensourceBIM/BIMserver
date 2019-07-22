@@ -18,6 +18,7 @@ package org.bimserver.plugins.deserializers;
  *****************************************************************************/
 
 import java.util.List;
+import java.util.UUID;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.shared.VirtualObject;
@@ -32,4 +33,5 @@ public interface DatabaseInterface {
 	int saveOverwrite(VirtualObject virtualObject) throws BimserverDatabaseException;
 	byte[] get(String tableName, byte[] key) throws BimserverDatabaseException;
 	List<byte[]> getDuplicates(String tableName, byte[] key) throws BimserverDatabaseException;
+	UUID newUuid();
 }

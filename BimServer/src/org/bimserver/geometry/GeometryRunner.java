@@ -71,6 +71,7 @@ import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.HashMapWrappedVirtualObject;
 import org.bimserver.shared.QueryContext;
 import org.bimserver.shared.WrappedVirtualObject;
+import org.bimserver.utils.UuidUtils;
 import org.eclipse.emf.ecore.EClass;
 import org.slf4j.LoggerFactory;
 
@@ -237,6 +238,9 @@ public class GeometryRunner implements Runnable {
 										maxBounds.set("z", -Double.POSITIVE_INFINITY);
 
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_IfcProductOid(), ifcProduct.getOid());
+										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_IfcProductUuid(), UuidUtils.toByteArray(ifcProduct.getUuid()));
+										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_IfcProductRid(), ifcProduct.getRid());
+										
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Bounds(), bounds);
 										bounds.setAttribute(GeometryPackage.eINSTANCE.getBounds_Min(), minBounds);
 										bounds.setAttribute(GeometryPackage.eINSTANCE.getBounds_Max(), maxBounds);
@@ -636,6 +640,8 @@ public class GeometryRunner implements Runnable {
 											maxBoundsUntransformed.set("z", mabu[2]);
 
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_IfcProductOid(), ifcProduct.getOid());
+											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_IfcProductUuid(), UuidUtils.toByteArray(ifcProduct.getUuid()));
+											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_IfcProductRid(), ifcProduct.getRid());
 											
 											boundsUntransformed.setAttribute(GeometryPackage.eINSTANCE.getBounds_Min(), minBoundsUntransformed);
 											boundsUntransformed.setAttribute(GeometryPackage.eINSTANCE.getBounds_Max(), maxBoundsUntransformed);

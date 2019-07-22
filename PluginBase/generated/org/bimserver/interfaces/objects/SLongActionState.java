@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
+import java.util.UUID;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -30,6 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SLongActionState implements SDataBase
 {
 	private long oid = -1;
+	private UUID uuid;
 	private int rid = 0;
 
 	@XmlTransient
@@ -51,6 +53,14 @@ public class SLongActionState implements SDataBase
 
 	public void setOid(long oid) {
 		this.oid = oid;
+	}
+
+	public UUID getUuid() {
+		return this.uuid;
+	}
+
+	public void setOid(UUID uuid) {
+		this.uuid = uuid;
 	}
 
 	public int getRid() {

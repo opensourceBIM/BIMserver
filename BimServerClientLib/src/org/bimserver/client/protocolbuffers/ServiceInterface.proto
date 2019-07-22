@@ -562,7 +562,6 @@ message SProject {
 	repeated int64 services = 24;
 	optional SObjectState state = 25;
 	repeated int64 subProjects = 26;
-	optional string uuid = 27;
 }
 
 message AddProjectResponse {
@@ -628,9 +627,8 @@ message SUser {
 	optional int64 userSettingsId = 18;
 	optional SUserType userType = 19;
 	optional string username = 20;
-	optional string uuid = 21;
-	optional bytes validationToken = 22;
-	optional int64 validationTokenCreated = 23;
+	optional bytes validationToken = 21;
+	optional int64 validationTokenCreated = 22;
 }
 
 message AddUserResponse {
@@ -1590,15 +1588,17 @@ message SGeometryInfo {
 	optional float density = 8;
 	optional bool hasTransparency = 9;
 	optional int64 ifcProductOid = 10;
-	optional int32 nrColors = 11;
-	optional int32 nrVertices = 12;
-	optional int64 oid = 13;
-	optional int32 primitiveCount = 14;
-	optional int32 rid = 15;
-	optional int32 startIndex = 16;
-	optional int32 startVertex = 17;
-	optional bytes transformation = 18;
-	optional double volume = 19;
+	optional int32 ifcProductRid = 11;
+	optional string ifcProductUuid = 12;
+	optional int32 nrColors = 13;
+	optional int32 nrVertices = 14;
+	optional int64 oid = 15;
+	optional int32 primitiveCount = 16;
+	optional int32 rid = 17;
+	optional int32 startIndex = 18;
+	optional int32 startVertex = 19;
+	optional bytes transformation = 20;
+	optional double volume = 21;
 }
 
 message GetGeometryInfoResponse {

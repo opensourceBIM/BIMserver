@@ -74,6 +74,7 @@ public class Include extends PartOfQuery implements CanInclude {
 	private PackageMetaData packageMetaData;
 	private boolean includeAllFields;
 	private Set<String> includesToResolve;
+	private boolean exclude;
 	
 	public Include(PackageMetaData packageMetaData) {
 		this.packageMetaData = packageMetaData;
@@ -363,5 +364,13 @@ public class Include extends PartOfQuery implements CanInclude {
 
 	public boolean hasIncludesToResolve() {
 		return includesToResolve != null;
+	}
+
+	public void setExclude(boolean exclude) {
+		this.exclude = exclude;
+	}
+	
+	public boolean isExclude() {
+		return exclude;
 	}
 }

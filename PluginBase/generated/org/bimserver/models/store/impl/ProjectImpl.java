@@ -85,7 +85,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#isSendEmailOnNewRevision <em>Send Email On New Revision</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getNewServices <em>New Services</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getCheckinInProgress <em>Checkin In Progress</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ProjectImpl#getUuid <em>Uuid</em>}</li>
  * </ul>
  *
  * @generated
@@ -515,19 +514,5 @@ public class ProjectImpl extends IdEObjectImpl implements Project {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public String getUuid() {
-		return (String) eGet(StorePackage.Literals.PROJECT__UUID, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setUuid(String newUuid) {
-		eSet(StorePackage.Literals.PROJECT__UUID, newUuid);
-	}
 
 } //ProjectImpl

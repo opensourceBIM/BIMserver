@@ -119,9 +119,9 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 
 	private void processReference(long refOid) {
 		if (outputFilterCids == null || outputFilterCids.contains((short)refOid)) {
-			if (!getQueryObjectProvider().hasRead(refOid)) {
+//			if (!getQueryObjectProvider().hasRead(refOid)) {
 				getQueryObjectProvider().push(new FollowReferenceStackFrame(getQueryObjectProvider(), refOid, getReusable(), getQueryPart(), feature, currentObject.getOid(), include));
-			}
+//			}
 		}
 	}
 	

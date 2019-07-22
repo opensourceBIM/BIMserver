@@ -337,6 +337,8 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 			buffer.get(unsetted);
 			int fieldCounter = 0;
 			
+			((IdEObjectImpl) idEObject).setUuid(new UUID(buffer.getLong(), buffer.getLong()));
+			
 			for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
 				try {
 					if (model.getPackageMetaData().useForDatabaseStorage(eClass, feature)) {
@@ -544,6 +546,9 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	}
 	
 	private ByteBuffer convertObjectToByteArray(IdEObject object, ByteBuffer buffer, PackageMetaData packageMetaData) throws BimserverDatabaseException {
+		if (object.getUuid() == null) {
+			throw new BimserverDatabaseException("UUID is required " + object.eClass().getName());
+		}
 		int bufferSize = getExactSize(object, packageMetaData, true);
 		if (bufferSize > buffer.capacity()) {
 			LOGGER.debug("Buffer too small (" + bufferSize + ")");
@@ -568,6 +573,9 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		if (!eClass.isSuperTypeOf(object.eClass())) {
 			throw new BimserverDatabaseException("Object with oid " + object.getOid() + " is a " + object.eClass().getName() + " but it's cid-part says it's a " + eClass.getName());
 		}
+
+		buffer.putLong(object.getUuid().getMostSignificantBits());
+		buffer.putLong(object.getUuid().getLeastSignificantBits());
 
 		for (EStructuralFeature feature : object.eClass().getEAllStructuralFeatures()) {
 			if (packageMetaData.useForDatabaseStorage(object.eClass(), feature)) {
@@ -1103,7 +1111,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	}
 
 	private int getExactSize(IdEObject idEObject, PackageMetaData packageMetaData, boolean useUnsetBits) {
-		int size = 0;
+		int size = useUnsetBits ? 16 : 0; // Using useUnsetBits to determine whether this objects has a UUID, dodgy...
 		int bits = 0;
 		
 		for (EStructuralFeature eStructuralFeature : idEObject.eClass().getEAllStructuralFeatures()) {
@@ -2134,12 +2142,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	public EObject create(EClass eClass) {
 		// checkOpen();
 		IdEObjectImpl idEObject = createInternal(eClass, null);
-		EStructuralFeature uuidFeature = eClass.getEStructuralFeature("uuid");
-		if (uuidFeature != null) {
-			if (idEObject.eGet(uuidFeature) == null) {
-				idEObject.eSet(uuidFeature, UUID.randomUUID().toString());
-			}
-		}
+		idEObject.setUuid(UUID.randomUUID());
 		try {
 			store(idEObject, Database.STORE_PROJECT_ID, Integer.MAX_VALUE);
 		} catch (BimserverDatabaseException e) {
@@ -2238,6 +2241,8 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 			byte[] unsetted = new byte[unsettedLength];
 			buffer.get(unsetted);
 			fieldCounter = 0;
+			
+			buffer.position(buffer.position() + 16); // UUID
 			
 			for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
 				boolean isUnsetted = (unsetted[fieldCounter / 8] & (1 << (fieldCounter % 8))) != 0;
@@ -2348,5 +2353,10 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	
 	public void setCleanupListener(CleanupListener cleanupListener) {
 		this.cleanupListener = cleanupListener;
+	}
+
+	@Override
+	public UUID newUuid() {
+		return UUID.randomUUID();
 	}
 }

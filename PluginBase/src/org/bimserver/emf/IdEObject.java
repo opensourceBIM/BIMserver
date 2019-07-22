@@ -1,5 +1,7 @@
 package org.bimserver.emf;
 
+import java.util.UUID;
+
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
  * 
@@ -28,4 +30,5 @@ public interface IdEObject extends EObject {
 	void forceLoad();
 	void remove();
 	boolean isLoadedOrLoading();
+	UUID getUuid();
 }

@@ -24,6 +24,7 @@ import org.bimserver.database.OldQuery;
 import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.emf.IdEObject;
+import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.models.store.ServerInfo;
 import org.bimserver.models.store.ServerSettings;
@@ -53,7 +54,7 @@ public class ServerInfoManager {
 
 	public void update() {
 		try {
-			serverInfo.setUuid(bimServer.getUuid());
+			((IdEObjectImpl)serverInfo).setUuid(bimServer.getUuid());
 			if (bimServer.getVersionChecker() != null) {
 				serverInfo.setVersion(bimServer.getSConverter().convertFromSObject(bimServer.getVersionChecker().getLocalVersion()));
 			}

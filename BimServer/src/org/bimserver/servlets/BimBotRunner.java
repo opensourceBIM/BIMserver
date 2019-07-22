@@ -246,7 +246,7 @@ public class BimBotRunner implements Runnable {
 				extendedData.setSchemaId(extendedDataSchema.getOid());
 				serviceInterface.addExtendedDataToRevision(project.getLastRevisionId(), extendedData);
 				
-				output.setContextId(project.getUuid());
+				output.setContextId(project.getUuid().toString());
 				
 				if (progressTopic != null) {
 					try {

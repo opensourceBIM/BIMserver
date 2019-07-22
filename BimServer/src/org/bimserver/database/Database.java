@@ -88,7 +88,7 @@ public class Database implements BimDatabase {
 	private Migrator migrator;
 	private final MetaDataManager metaDataManager;
 	private final BimServer bimServer;
-	private String uuid;
+	private UUID uuid;
 
 	/*
 	 * This variable should be _incremented_ with every (released)
@@ -137,14 +137,14 @@ public class Database implements BimDatabase {
 				setDatabaseVersion(-1, databaseSession);
 				created = new Date();
 				registry.save(DATE_CREATED, created, databaseSession);
-				this.uuid = UUID.randomUUID().toString();
-				registry.save(SERVER_UUID, uuid, databaseSession);
+				this.uuid = UUID.randomUUID();
+				registry.save(SERVER_UUID, uuid.toString(), databaseSession);
 			} else {
 				keyValueStore.openTable(databaseSession, CLASS_LOOKUP_TABLE, true);
 				keyValueStore.openTable(databaseSession, Database.STORE_PROJECT_NAME, true);
 				keyValueStore.openTable(databaseSession, Registry.REGISTRY_TABLE, true);
 				created = registry.readDate(DATE_CREATED, databaseSession);
-				uuid = registry.readString(SERVER_UUID, databaseSession);
+				uuid = UUID.fromString(registry.readString(SERVER_UUID, databaseSession));
 				if (created == null) {
 					created = new Date();
 					registry.save(DATE_CREATED, created, databaseSession);
@@ -464,7 +464,7 @@ public class Database implements BimDatabase {
 		return eClass.getEPackage().getName() + "_" + eClass.getName();
 	}
 	
-	public String getUuid() {
+	public UUID getUuid() {
 		return uuid;
 	}
 }

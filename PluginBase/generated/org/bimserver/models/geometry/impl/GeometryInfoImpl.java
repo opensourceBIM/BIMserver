@@ -59,6 +59,8 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getVolume <em>Volume</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#isHasTransparency <em>Has Transparency</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getIfcProductOid <em>Ifc Product Oid</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getIfcProductUuid <em>Ifc Product Uuid</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getIfcProductRid <em>Ifc Product Rid</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getDensity <em>Density</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getBoundsMm <em>Bounds Mm</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getBoundsUntransformedMm <em>Bounds Untransformed Mm</em>}</li>
@@ -317,6 +319,46 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	@Override
 	public void setIfcProductOid(long newIfcProductOid) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__IFC_PRODUCT_OID, newIfcProductOid);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public byte[] getIfcProductUuid() {
+		return (byte[]) eGet(GeometryPackage.Literals.GEOMETRY_INFO__IFC_PRODUCT_UUID, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIfcProductUuid(byte[] newIfcProductUuid) {
+		eSet(GeometryPackage.Literals.GEOMETRY_INFO__IFC_PRODUCT_UUID, newIfcProductUuid);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int getIfcProductRid() {
+		return (Integer) eGet(GeometryPackage.Literals.GEOMETRY_INFO__IFC_PRODUCT_RID, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIfcProductRid(int newIfcProductRid) {
+		eSet(GeometryPackage.Literals.GEOMETRY_INFO__IFC_PRODUCT_RID, newIfcProductRid);
 	}
 
 	/**

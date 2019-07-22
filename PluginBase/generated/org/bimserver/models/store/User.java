@@ -68,7 +68,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.User#getLogs <em>Logs</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getOAuthAuthorizationCodes <em>OAuth Authorization Codes</em>}</li>
  *   <li>{@link org.bimserver.models.store.User#getOAuthIssuedAuthorizationCodes <em>OAuth Issued Authorization Codes</em>}</li>
- *   <li>{@link org.bimserver.models.store.User#getUuid <em>Uuid</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getUser()
@@ -561,16 +560,5 @@ public interface User extends IdEObject {
 	 *        annotation="singleindex"
 	 * @generated
 	 */
-	String getUuid();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.User#getUuid <em>Uuid</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Uuid</em>' attribute.
-	 * @see #getUuid()
-	 * @generated
-	 */
-	void setUuid(String value);
 
 } // User

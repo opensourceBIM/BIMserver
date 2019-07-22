@@ -55,6 +55,8 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getVolume <em>Volume</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#isHasTransparency <em>Has Transparency</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getIfcProductOid <em>Ifc Product Oid</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getIfcProductUuid <em>Ifc Product Uuid</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getIfcProductRid <em>Ifc Product Rid</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getDensity <em>Density</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getBoundsMm <em>Bounds Mm</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getBoundsUntransformedMm <em>Bounds Untransformed Mm</em>}</li>
@@ -358,6 +360,50 @@ public interface GeometryInfo extends IdEObject {
 	 * @generated
 	 */
 	void setIfcProductOid(long value);
+
+	/**
+	 * Returns the value of the '<em><b>Ifc Product Uuid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Ifc Product Uuid</em>' attribute.
+	 * @see #setIfcProductUuid(byte[])
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_IfcProductUuid()
+	 * @model
+	 * @generated
+	 */
+	byte[] getIfcProductUuid();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getIfcProductUuid <em>Ifc Product Uuid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Ifc Product Uuid</em>' attribute.
+	 * @see #getIfcProductUuid()
+	 * @generated
+	 */
+	void setIfcProductUuid(byte[] value);
+
+	/**
+	 * Returns the value of the '<em><b>Ifc Product Rid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Ifc Product Rid</em>' attribute.
+	 * @see #setIfcProductRid(int)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_IfcProductRid()
+	 * @model
+	 * @generated
+	 */
+	int getIfcProductRid();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getIfcProductRid <em>Ifc Product Rid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Ifc Product Rid</em>' attribute.
+	 * @see #getIfcProductRid()
+	 * @generated
+	 */
+	void setIfcProductRid(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Density</b></em>' attribute.

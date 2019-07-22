@@ -403,6 +403,21 @@ public class JsonQueryObjectModelConverter {
 				throw new QueryException("\"includes\" must be of type array");
 			}
 		}
+		
+		if (jsonNode.has("exclude")) {
+			include.setExclude(jsonNode.get("exclude").asBoolean());
+		}
+		
+		Iterator<String> fieldNames = jsonNode.fieldNames();
+		while (fieldNames.hasNext()) {
+			String fieldName = fieldNames.next();
+			if (fieldName.equals("includeAllFields") || fieldName.contentEquals("outputType") || fieldName.contentEquals("outputTypes") || fieldName.contentEquals("fieldsDirect") || fieldName.contentEquals("exclude") || fieldName.contentEquals("field") || fieldName.contentEquals("fields") || fieldName.equals("type") || fieldName.equals("types") || fieldName.equals("oid") || fieldName.equals("oids") || fieldName.equals("guid") || fieldName.equals("guids") || fieldName.equals("name") || fieldName.equals("names") || fieldName.equals("properties") || fieldName.equals("inBoundingBox") || fieldName.equals("include") || fieldName.equals("includes") || fieldName.equalsIgnoreCase("includeAllSubtypes") || fieldName.equals("classifications")) {
+				// fine
+			} else {
+				throw new QueryException("Unknown field: \"" + fieldName + "\"");
+			}
+		}
+		
 		return include;
 	}
 
@@ -719,7 +734,7 @@ public class JsonQueryObjectModelConverter {
 			if (tilesNode.has("reuseLowerThreshold")) {
 				tiles.setMinimumReuseThreshold(tilesNode.get("reuseLowerThreshold").asInt());
 			}
-			if (tilesNode.has("geometryDataToReuse")) {
+			if (tilesNode.has("geometryDataToReuse") && !tilesNode.get("geometryDataToReuse").isNull()) {
 				ArrayNode geometryDataToReuse = (ArrayNode) tilesNode.get("geometryDataToReuse");
 				for (JsonNode node : geometryDataToReuse) {
 					tiles.addGeometryIdToReuse(node.asLong());

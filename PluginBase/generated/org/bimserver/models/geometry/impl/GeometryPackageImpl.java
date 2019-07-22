@@ -327,7 +327,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * @generated
 	 */
 	@Override
-	public EAttribute getGeometryInfo_Density() {
+	public EAttribute getGeometryInfo_IfcProductUuid() {
 		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(11);
 	}
 
@@ -337,8 +337,28 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getGeometryInfo_IfcProductRid() {
+		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGeometryInfo_Density() {
+		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EReference getGeometryInfo_BoundsMm() {
-		return (EReference) getGeometryInfo().getEStructuralFeatures().get(12);
+		return (EReference) getGeometryInfo().getEStructuralFeatures().get(14);
 	}
 
 	/**
@@ -348,7 +368,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 */
 	@Override
 	public EReference getGeometryInfo_BoundsUntransformedMm() {
-		return (EReference) getGeometryInfo().getEStructuralFeatures().get(13);
+		return (EReference) getGeometryInfo().getEStructuralFeatures().get(15);
 	}
 
 	/**
@@ -358,7 +378,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 */
 	@Override
 	public EAttribute getGeometryInfo_AdditionalData() {
-		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(14);
+		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(16);
 	}
 
 	/**
@@ -368,7 +388,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 */
 	@Override
 	public EAttribute getGeometryInfo_NrColors() {
-		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(15);
+		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(17);
 	}
 
 	/**
@@ -378,7 +398,7 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 */
 	@Override
 	public EAttribute getGeometryInfo_NrVertices() {
-		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(16);
+		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(18);
 	}
 
 	/**

@@ -27,8 +27,8 @@ public class Step0051 extends Migration {
 
 	@Override
 	public void migrate(Schema schema, DatabaseSession databaseSession) {
-		EClass serverInfo = schema.getEClass("store", "ServerInfo");
-		schema.createEAttribute(serverInfo, "uuid", EcorePackage.eINSTANCE.getEString());
+//		EClass serverInfo = schema.getEClass("store", "ServerInfo");
+//		schema.createEAttribute(serverInfo, "uuid", EcorePackage.eINSTANCE.getEString());
 	}
 
 	@Override

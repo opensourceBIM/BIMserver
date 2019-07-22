@@ -1,5 +1,7 @@
 package org.bimserver.database;
 
+import java.util.UUID;
+
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
  * 
@@ -43,5 +45,5 @@ public interface BimDatabase {
 
 	String getTableName(EClass eClass);
 	
-	String getUuid();
+	UUID getUuid();
 }

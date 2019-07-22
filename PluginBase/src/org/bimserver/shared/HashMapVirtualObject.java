@@ -26,6 +26,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.emf.PackageMetaData;
@@ -51,21 +52,24 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 	private final Map<EStructuralFeature, Object> map = new HashMap<>();
 	private EClass eClass;
 	private long oid;
+	private UUID uuid;
 	private QueryContext reusable;
 	private Map<EStructuralFeature, Object> useForSerializationFeatures = new HashMap<>();
 	private HashMap<EReference, AbstractHashMapVirtualObject> directReferences;
 	private HashMap<EReference, Set<HashMapVirtualObject>> directListReferences;
-	
+
 	public HashMapVirtualObject(QueryContext reusable, EClass eClass) {
 		this.reusable = reusable;
 		this.eClass = eClass;
 		this.oid = reusable.getDatabaseInterface().newOid(eClass);
+		this.uuid = reusable.getDatabaseInterface().newUuid();
 	}
 
-	public HashMapVirtualObject(QueryContext reusable, EClass eClass, long oid) {
+	public HashMapVirtualObject(QueryContext reusable, EClass eClass, long oid, UUID uuid) {
 		this.reusable = reusable;
 		this.eClass = eClass;
 		this.oid = oid;
+		this.uuid = uuid;
 	}
 	
 	public void eUnset(EStructuralFeature feature) {
@@ -136,7 +140,7 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 	}
 
 	private int getExactSize(VirtualObject virtualObject) {
-		int size = 0;
+		int size = 16;
 		int lastSize = 0;
 
 		for (EStructuralFeature eStructuralFeature : eClass().getEAllStructuralFeatures()) {
@@ -216,6 +220,9 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 			throw new BimserverDatabaseException("Object with oid " + getOid() + " is a " + eClass().getName() + " but it's cid-part says it's a " + eClass.getName());
 		}
 
+		buffer.putLong(getUuid().getMostSignificantBits());
+		buffer.putLong(getUuid().getLeastSignificantBits());
+		
 		for (EStructuralFeature feature : eClass().getEAllStructuralFeatures()) {
 			if (getPackageMetaData().useForDatabaseStorage(eClass, feature)) {
 				if (!useUnsetBit(feature)) {
@@ -650,5 +657,13 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 	public void addReference(EReference eReference, EClass eClassForOid, long referencedOid) {
 		List<Long> list = getOrCreateList(eReference, 0);
 		list.add(referencedOid);
+	}
+
+	public UUID getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(UUID uuid) {
+		this.uuid = uuid;
 	}
 }

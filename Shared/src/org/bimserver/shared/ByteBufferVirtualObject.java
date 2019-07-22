@@ -21,6 +21,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.emf.PackageMetaData;
@@ -38,6 +39,7 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 	private static final Logger LOGGER = LoggerFactory.getLogger(VirtualObject.class);
 	private EClass eClass;
 	private long oid;
+	private UUID uuid;
 	private QueryContext reusable;
 	private int currentListStart = -1;
 	private int currentListSize;
@@ -49,9 +51,12 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 		this.reusable = reusable;
 		this.eClass = eClass;
 		this.oid = reusable.getDatabaseInterface().newOid(eClass);
+		this.uuid = reusable.getDatabaseInterface().newUuid();
 
 		int unsettedLength = reusable.getPackageMetaData().getUnsettedLength(eClass);
 		buffer.put(new byte[unsettedLength]);
+		buffer.putLong(this.uuid.getMostSignificantBits());
+		buffer.putLong(this.uuid.getLeastSignificantBits());
 	}
 
 	private boolean useUnsetBit(EStructuralFeature feature) {

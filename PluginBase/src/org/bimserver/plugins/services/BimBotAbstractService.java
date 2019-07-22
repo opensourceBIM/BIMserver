@@ -59,7 +59,7 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 			}
 			BimBotsInput input = new BimBotsInput(SchemaName.IFC_STEP_2X3TC1, data);
 			SProject project = bimServerClientInterface.getServiceInterface().getProjectByPoid(poid);
-			String contextId = project.getUuid();
+			String contextId = project.getUuid().toString();
 			IfcModelInterface model = bimServerClientInterface.getModel(project, roid, preloadCompleteModel(), false, requiresGeometry());
 			model.setPluginClassLoaderProvider(getPluginContext().getPluginClassLoaderProvider());
 			input.setIfcModel(model);

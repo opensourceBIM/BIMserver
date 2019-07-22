@@ -17,6 +17,7 @@ package org.bimserver.interfaces.objects;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 import javax.xml.bind.annotation.XmlTransient;
+import java.util.UUID;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -25,6 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SGeometryInfo implements SDataBase
 {
 	private long oid = -1;
+	private UUID uuid;
 	private int rid = 0;
 
 	@XmlTransient
@@ -40,6 +42,8 @@ public class SGeometryInfo implements SDataBase
 	private double volume;
 	private boolean hasTransparency;
 	private long ifcProductOid;
+	private byte[] ifcProductUuid;
+	private int ifcProductRid;
 	private float density;
 	private SBounds boundsMm;
 	private SBounds boundsUntransformedMm;
@@ -53,6 +57,14 @@ public class SGeometryInfo implements SDataBase
 
 	public void setOid(long oid) {
 		this.oid = oid;
+	}
+
+	public UUID getUuid() {
+		return this.uuid;
+	}
+
+	public void setOid(UUID uuid) {
+		this.uuid = uuid;
 	}
 
 	public int getRid() {
@@ -105,6 +117,12 @@ public class SGeometryInfo implements SDataBase
 		}
 		if (sField.getName().equals("ifcProductOid")) {
 			return getIfcProductOid();
+		}
+		if (sField.getName().equals("ifcProductUuid")) {
+			return getIfcProductUuid();
+		}
+		if (sField.getName().equals("ifcProductRid")) {
+			return getIfcProductRid();
 		}
 		if (sField.getName().equals("density")) {
 			return getDensity();
@@ -176,6 +194,14 @@ public class SGeometryInfo implements SDataBase
 		}
 		if (sField.getName().equals("ifcProductOid")) {
 			setIfcProductOid((Long)val);
+			return;
+		}
+		if (sField.getName().equals("ifcProductUuid")) {
+			setIfcProductUuid((byte[])val);
+			return;
+		}
+		if (sField.getName().equals("ifcProductRid")) {
+			setIfcProductRid((Integer)val);
 			return;
 		}
 		if (sField.getName().equals("density")) {
@@ -301,6 +327,22 @@ public class SGeometryInfo implements SDataBase
 
 	public void setIfcProductOid(long ifcProductOid) {
 		this.ifcProductOid = ifcProductOid;
+	}
+	
+	public byte[] getIfcProductUuid() {
+		return ifcProductUuid;
+	}
+
+	public void setIfcProductUuid(byte[] ifcProductUuid) {
+		this.ifcProductUuid = ifcProductUuid;
+	}
+	
+	public int getIfcProductRid() {
+		return ifcProductRid;
+	}
+
+	public void setIfcProductRid(int ifcProductRid) {
+		this.ifcProductRid = ifcProductRid;
 	}
 	
 	public float getDensity() {

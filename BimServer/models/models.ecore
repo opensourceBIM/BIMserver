@@ -24,6 +24,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="volume" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasTransparency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="ifcProductOid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="ifcProductUuid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="ifcProductRid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="density" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="boundsMm" eType="#/0/Bounds">
         <eAnnotations source="dbembed"/>
@@ -20168,10 +20170,6 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="newServices" upperBound="-1"
           eType="#/4/NewService"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="checkinInProgress" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="uuid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-        <eAnnotations source="unique"/>
-        <eAnnotations source="singleindex"/>
-      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="User">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -20205,10 +20203,6 @@
           upperBound="-1" eType="#/4/OAuthAuthorizationCode"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="oAuthIssuedAuthorizationCodes"
           upperBound="-1" eType="#/4/OAuthAuthorizationCode" eOpposite="#/4/OAuthAuthorizationCode/user"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="uuid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-        <eAnnotations source="unique"/>
-        <eAnnotations source="singleindex"/>
-      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Revision">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
@@ -20618,7 +20612,6 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="version" eType="#/4/Version">
         <eAnnotations source="embedsreference"/>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="uuid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Version">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="major" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>

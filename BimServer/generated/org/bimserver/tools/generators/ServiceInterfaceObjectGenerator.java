@@ -30,7 +30,7 @@ public class ServiceInterfaceObjectGenerator
   protected final String TEXT_10 = " extends ";
   protected final String TEXT_11 = " implements ";
   protected final String TEXT_12 = NL + "{";
-  protected final String TEXT_13 = NL + "\tprivate long oid = -1;" + NL + "\tprivate int rid = 0;";
+  protected final String TEXT_13 = NL + "\tprivate long oid = -1;" + NL + "\tprivate UUID uuid;" + NL + "\tprivate int rid = 0;";
   protected final String TEXT_14 = NL + NL + "\t@XmlTransient" + NL + "\tprivate static SClass sClass;";
   protected final String TEXT_15 = NL + "\tprivate S";
   protected final String TEXT_16 = " ";
@@ -47,7 +47,7 @@ public class ServiceInterfaceObjectGenerator
   protected final String TEXT_27 = " = new ArrayList<Long>();";
   protected final String TEXT_28 = NL + "\tprivate long ";
   protected final String TEXT_29 = "Id = -1;";
-  protected final String TEXT_30 = NL + NL + "\tpublic long getOid() {" + NL + "\t\treturn this.oid;" + NL + "\t}" + NL + "" + NL + "\tpublic void setOid(long oid) {" + NL + "\t\tthis.oid = oid;" + NL + "\t}" + NL + "" + NL + "\tpublic int getRid() {" + NL + "\t\treturn rid;" + NL + "\t}" + NL + "\t" + NL + "\tpublic void setRid(int rid) {" + NL + "\t\tthis.rid = rid;" + NL + "\t}";
+  protected final String TEXT_30 = NL + NL + "\tpublic long getOid() {" + NL + "\t\treturn this.oid;" + NL + "\t}" + NL + "" + NL + "\tpublic void setOid(long oid) {" + NL + "\t\tthis.oid = oid;" + NL + "\t}" + NL + "" + NL + "\tpublic UUID getUuid() {" + NL + "\t\treturn this.uuid;" + NL + "\t}" + NL + "" + NL + "\tpublic void setOid(UUID uuid) {" + NL + "\t\tthis.uuid = uuid;" + NL + "\t}" + NL + "" + NL + "\tpublic int getRid() {" + NL + "\t\treturn rid;" + NL + "\t}" + NL + "\t" + NL + "\tpublic void setRid(int rid) {" + NL + "\t\tthis.rid = rid;" + NL + "\t}";
   protected final String TEXT_31 = NL + "\t" + NL + "\t@XmlTransient" + NL + "\tpublic SClass getSClass() {" + NL + "\t\treturn sClass;" + NL + "\t}" + NL + "\t" + NL + "\tpublic static void setSClass(SClass sClass) {" + NL + "\t\tS";
   protected final String TEXT_32 = ".sClass = sClass;" + NL + "\t}" + NL + "" + NL + "\tpublic Object sGet(SField sField) {";
   protected final String TEXT_33 = NL + "\t\tif (sField.getName().equals(\"";
@@ -141,6 +141,7 @@ public class ServiceInterfaceObjectGenerator
 	
 		importManager.getImport("javax.xml.bind.annotation.XmlRootElement");
 		importManager.getImport("org.bimserver.shared.meta.*");
+		importManager.getImport("java.util.UUID");
 
     stringBuffer.append(TEXT_3);
     

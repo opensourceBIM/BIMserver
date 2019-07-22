@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -1572,7 +1573,7 @@ public class BimServer implements BasicServerInfoProvider {
 		return basicServerInfo;
 	}
 	
-	public String getUuid() {
+	public UUID getUuid() {
 		return bimDatabase.getUuid();
 	}
 }

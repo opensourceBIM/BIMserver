@@ -23,6 +23,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession.GetResult;
@@ -154,9 +155,8 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 				}
 			}
 		}
-		if (include.hasFields()) {
+		if (include.hasFields() && !include.isExclude()) {
 			for (EStructuralFeature eStructuralFeature : include.getFields()) {
-				// TODO do we really have to iterate through the EAtrributes as well? You should not use fields for attributes anyways, so there should be none ...
 				object.addUseForSerialization(eStructuralFeature);
 			}
 		}
@@ -187,18 +187,14 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 	
 	protected HashMapVirtualObject convertByteArrayToObject(EClass eClass, long oid, ByteBuffer buffer, int rid) throws BimserverDatabaseException {
 		try {
-			HashMapVirtualObject idEObject = new HashMapVirtualObject(reusable, eClass);
-//			if (idEObject.eClass().getName().contentEquals("IfcSite")) {
-//				System.out.println();
-//			}
-			idEObject.setOid(oid);
-			
 			int unsettedLength = getPackageMetaData().getUnsettedLength(eClass);
 			
 			byte[] unsetted = new byte[unsettedLength];
 			buffer.get(unsetted);
 			
 			int fieldCounter = 0;
+			
+			HashMapVirtualObject idEObject = new HashMapVirtualObject(reusable, eClass, oid, new UUID(buffer.getLong(), buffer.getLong()));
 			
 			for (EStructuralFeature feature : eClass.getEAllStructuralFeatures()) {
 				try {

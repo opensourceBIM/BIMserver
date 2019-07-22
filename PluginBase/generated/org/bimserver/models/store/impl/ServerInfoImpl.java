@@ -51,7 +51,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServerInfoImpl#getServerState <em>Server State</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerInfoImpl#getErrorMessage <em>Error Message</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerInfoImpl#getVersion <em>Version</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.ServerInfoImpl#getUuid <em>Uuid</em>}</li>
  * </ul>
  *
  * @generated
@@ -151,19 +150,5 @@ public class ServerInfoImpl extends IdEObjectImpl implements ServerInfo {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public String getUuid() {
-		return (String) eGet(StorePackage.Literals.SERVER_INFO__UUID, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setUuid(String newUuid) {
-		eSet(StorePackage.Literals.SERVER_INFO__UUID, newUuid);
-	}
 
 } //ServerInfoImpl

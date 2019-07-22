@@ -1,5 +1,7 @@
 package org.bimserver.changes;
 
+import java.util.UUID;
+
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
  * 
@@ -33,10 +35,12 @@ public class CreateObjectChange implements Change {
 	private final String type;
 	private EClass eClass;
 	private Boolean generateGuid;
+	private UUID uuid;
 
 	public CreateObjectChange(String type, long oid, EClass eClass, Boolean generateGuid) {
 		this.type = type;
 		this.oid = oid;
+		this.uuid = UUID.randomUUID();
 		this.eClass = eClass;
 		this.generateGuid = generateGuid;
 	}
@@ -59,7 +63,7 @@ public class CreateObjectChange implements Change {
 			throw new UserException("Only objects from the following schemas are allowed to be changed: Ifc2x3tc1 and IFC4, this object (" + eClass.getName() + ") is from the \"" + eClass.getEPackage().getName() + "\" package");
 		}
 
-		HashMapVirtualObject object = new HashMapVirtualObject(queryContext, eClass, oid);
+		HashMapVirtualObject object = new HashMapVirtualObject(queryContext, eClass, oid, uuid);
 		
 		if (generateGuid) {
 			EStructuralFeature globalIdFeature = object.eClass().getEStructuralFeature("GlobalId");

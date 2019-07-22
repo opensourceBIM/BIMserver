@@ -200,4 +200,24 @@ public class Octree extends Node {
 		}
 		return id;
 	}
+
+	public void moveGeometryDown(MoveGeometryDownDecider moveGeometryDownDecider) {
+		for (int level=0; level <= getDeepestLevel(); level++) {
+			traverseBreathFirst(new Traverser() {
+				@Override
+				public void traverse(Node node) {
+					Set<GeometryObject> toMoveDown = new HashSet<>();
+					for (GeometryObject geometryObject : node.getValues()) {
+						if (moveGeometryDownDecider.shouldMoveDown(geometryObject)) {
+							toMoveDown.add(geometryObject);
+						}
+					}
+					for (GeometryObject geometryObject : toMoveDown) {
+						// Moving it down means
+					}
+				}
+			}, level);
+			
+		}
+	}
 }

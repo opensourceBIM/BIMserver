@@ -1278,16 +1278,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	@Override
-	public EAttribute getProject_Uuid() {
-		return (EAttribute) getProject().getEStructuralFeatures().get(24);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getUser() {
 		if (userEClass == null) {
 			userEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(4);
@@ -1493,16 +1483,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	@Override
 	public EReference getUser_OAuthIssuedAuthorizationCodes() {
 		return (EReference) getUser().getEStructuralFeatures().get(19);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getUser_Uuid() {
-		return (EAttribute) getUser().getEStructuralFeatures().get(20);
 	}
 
 	/**
@@ -3934,16 +3914,6 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	@Override
 	public EReference getServerInfo_Version() {
 		return (EReference) getServerInfo().getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EAttribute getServerInfo_Uuid() {
-		return (EAttribute) getServerInfo().getEStructuralFeatures().get(3);
 	}
 
 	/**

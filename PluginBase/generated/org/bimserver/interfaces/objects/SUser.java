@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlTransient;
+import java.util.UUID;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -28,6 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SUser implements SDataBase
 {
 	private long oid = -1;
+	private UUID uuid;
 	private int rid = 0;
 
 	@XmlTransient
@@ -52,7 +54,6 @@ public class SUser implements SDataBase
 	private List<Long> logs = new ArrayList<Long>();
 	private List<Long> oAuthAuthorizationCodes = new ArrayList<Long>();
 	private List<Long> oAuthIssuedAuthorizationCodes = new ArrayList<Long>();
-	private java.lang.String uuid;
 
 	public long getOid() {
 		return this.oid;
@@ -60,6 +61,14 @@ public class SUser implements SDataBase
 
 	public void setOid(long oid) {
 		this.oid = oid;
+	}
+
+	public UUID getUuid() {
+		return this.uuid;
+	}
+
+	public void setOid(UUID uuid) {
+		this.uuid = uuid;
 	}
 
 	public int getRid() {
@@ -139,9 +148,6 @@ public class SUser implements SDataBase
 		}
 		if (sField.getName().equals("oAuthIssuedAuthorizationCodes")) {
 			return getOAuthIssuedAuthorizationCodes();
-		}
-		if (sField.getName().equals("uuid")) {
-			return getUuid();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -232,10 +238,6 @@ public class SUser implements SDataBase
 		}
 		if (sField.getName().equals("oAuthIssuedAuthorizationCodes")) {
 			setOAuthIssuedAuthorizationCodes((List<Long>)val);
-			return;
-		}
-		if (sField.getName().equals("uuid")) {
-			setUuid((String)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -407,14 +409,6 @@ public class SUser implements SDataBase
 
 	public void setOAuthIssuedAuthorizationCodes(List<Long> oAuthIssuedAuthorizationCodes) {
 		this.oAuthIssuedAuthorizationCodes = oAuthIssuedAuthorizationCodes;
-	}
-	
-	public java.lang.String getUuid() {
-		return uuid;
-	}
-
-	public void setUuid(java.lang.String uuid) {
-		this.uuid = uuid;
 	}
 	
 	@Override

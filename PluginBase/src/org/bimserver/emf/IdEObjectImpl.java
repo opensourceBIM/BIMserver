@@ -1,5 +1,7 @@
 package org.bimserver.emf;
 
+import java.util.UUID;
+
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
  * 
@@ -33,6 +35,7 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 	}
 
 	private long oid = -1;
+	private UUID uuid;
 	private int pid;
 	private int rid;
 	private long expressId = -1;
@@ -195,5 +198,13 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 			model.set(this, eClass().getEStructuralFeature(featureID), newValue);
 		}
 		super.eSet(featureID, newValue);
+	}
+
+	public UUID getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(UUID uuid) {
+		this.uuid = uuid;
 	}
 }

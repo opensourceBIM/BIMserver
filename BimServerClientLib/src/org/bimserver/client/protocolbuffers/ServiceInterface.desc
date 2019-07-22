@@ -1,5 +1,5 @@
 
-ù∫
+∞∫
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -130,7 +130,7 @@ revisionId (
 value ("8
 AddProjectRequest
 projectName (	
-schema (	"ı
+schema (	"Á
 SProject
 checkinInProgress (
 	checkouts (
@@ -159,8 +159,7 @@ revisionId (
 sendEmailOnNewRevision (
 services (-
 state (2.org.bimserver.pb.SObjectState
-subProjects (
-uuid (	"U
+subProjects ("U
 AddProjectResponse
 errorMessage (	)
 value (2.org.bimserver.pb.SProject"X
@@ -183,7 +182,7 @@ parentPoid (
 name (	)
 type (2.org.bimserver.pb.SUserType
 selfRegistration (
-resetUrl (	"ó
+resetUrl (	"â
 SUser
 createdById (
 	createdOn (
@@ -205,10 +204,9 @@ parentPoid (
 token (	
 userSettingsId (-
 userType (2.org.bimserver.pb.SUserType
-username (	
-uuid (	
-validationToken (
-validationTokenCreated ("O
+username (	
+validationToken (
+validationTokenCreated ("O
 AddUserResponse
 errorMessage (	&
 value (2.org.bimserver.pb.SUser"A
@@ -835,7 +833,7 @@ revisionNr (
 value ("3
 GetGeometryInfoRequest
 roid (
-oid ("˘
+oid ("®
 SGeometryInfo
 additionalData (	
 area ()
@@ -847,18 +845,20 @@ revisionNr (
 density (
 hasTransparency	 (
 ifcProductOid
- (
-nrColors (
+ (
+ifcProductRid (
+ifcProductUuid (	
+nrColors (
 
-nrVertices (
-oid (
-primitiveCount (
-rid (
+nrVertices (
+oid (
+primitiveCount (
+rid (
 
-startIndex (
-startVertex (
-transformation (
-volume ("_
+startIndex (
+startVertex (
+transformation (
+volume ("_
 GetGeometryInfoResponse
 errorMessage (	.
 value (2.org.bimserver.pb.SGeometryInfo"$

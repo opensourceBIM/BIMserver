@@ -78,7 +78,6 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getLogs <em>Logs</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getOAuthAuthorizationCodes <em>OAuth Authorization Codes</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.UserImpl#getOAuthIssuedAuthorizationCodes <em>OAuth Issued Authorization Codes</em>}</li>
- *   <li>{@link org.bimserver.models.store.impl.UserImpl#getUuid <em>Uuid</em>}</li>
  * </ul>
  *
  * @generated
@@ -455,19 +454,5 @@ public class UserImpl extends IdEObjectImpl implements User {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public String getUuid() {
-		return (String) eGet(StorePackage.Literals.USER__UUID, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setUuid(String newUuid) {
-		eSet(StorePackage.Literals.USER__UUID, newUuid);
-	}
 
 } //UserImpl

@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlTransient;
+import java.util.UUID;
 import org.bimserver.shared.meta.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -28,6 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SProject implements SDataBase
 {
 	private long oid = -1;
+	private UUID uuid;
 	private int rid = 0;
 
 	@XmlTransient
@@ -56,7 +58,6 @@ public class SProject implements SDataBase
 	private boolean sendEmailOnNewRevision;
 	private List<Long> newServices = new ArrayList<Long>();
 	private long checkinInProgress;
-	private java.lang.String uuid;
 
 	public long getOid() {
 		return this.oid;
@@ -64,6 +65,14 @@ public class SProject implements SDataBase
 
 	public void setOid(long oid) {
 		this.oid = oid;
+	}
+
+	public UUID getUuid() {
+		return this.uuid;
+	}
+
+	public void setOid(UUID uuid) {
+		this.uuid = uuid;
 	}
 
 	public int getRid() {
@@ -155,9 +164,6 @@ public class SProject implements SDataBase
 		}
 		if (sField.getName().equals("checkinInProgress")) {
 			return getCheckinInProgress();
-		}
-		if (sField.getName().equals("uuid")) {
-			return getUuid();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -264,10 +270,6 @@ public class SProject implements SDataBase
 		}
 		if (sField.getName().equals("checkinInProgress")) {
 			setCheckinInProgress((Long)val);
-			return;
-		}
-		if (sField.getName().equals("uuid")) {
-			setUuid((String)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -471,14 +473,6 @@ public class SProject implements SDataBase
 
 	public void setCheckinInProgress(long checkinInProgress) {
 		this.checkinInProgress = checkinInProgress;
-	}
-	
-	public java.lang.String getUuid() {
-		return uuid;
-	}
-
-	public void setUuid(java.lang.String uuid) {
-		this.uuid = uuid;
 	}
 	
 	@Override

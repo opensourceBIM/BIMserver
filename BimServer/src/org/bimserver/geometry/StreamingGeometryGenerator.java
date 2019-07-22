@@ -88,6 +88,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.sun.tools.xjc.model.CNonElement;
+
 public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	static final Logger LOGGER = LoggerFactory.getLogger(StreamingGeometryGenerator.class);
 	
@@ -528,6 +530,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			if (maxObjectsPerFile > 100) {
 				maxObjectsPerFile = 100;
 			}
+			
+//			maxObjectsPerFile = 1;
+			
 			report.setMaxPerFile(maxObjectsPerFile);
 			
 //			LOGGER.info("Max objects per file: " + maxObjectsPerFile);
@@ -941,7 +946,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 				
 				// TODO According to Thomas we only need the "Axis" representation types, too much work for now, so sending all representations for now
 				
-				connectedTo.addInclude(representationInclude);
+				connectedTo.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Representation", true));
 				connectedTo.addInclude(objectPlacement);
 				connectedTo.addInclude(ownerHistory);
 				connectedTo.addInclude(decomposes);

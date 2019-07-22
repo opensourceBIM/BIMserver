@@ -27,13 +27,13 @@ public class Step0042 extends Migration {
 
 	@Override
 	public void migrate(Schema schema, DatabaseSession databaseSession) {
-		EAttribute projectUuid = schema.createEAttribute(schema.getEClass("store", "Project"), "uuid", EcorePackage.eINSTANCE.getEString());
-		projectUuid.getEAnnotations().add(createUniqueAnnotation());
-		schema.addIndex(projectUuid);
+//		EAttribute projectUuid = schema.createEAttribute(schema.getEClass("store", "Project"), "uuid", EcorePackage.eINSTANCE.getEString());
+//		projectUuid.getEAnnotations().add(createUniqueAnnotation());
+//		schema.addIndex(projectUuid);
 		
-		EAttribute userUuid = schema.createEAttribute(schema.getEClass("store", "User"), "uuid", EcorePackage.eINSTANCE.getEString());
-		userUuid.getEAnnotations().add(createUniqueAnnotation());
-		schema.addIndex(userUuid);
+//		EAttribute userUuid = schema.createEAttribute(schema.getEClass("store", "User"), "uuid", EcorePackage.eINSTANCE.getEString());
+//		userUuid.getEAnnotations().add(createUniqueAnnotation());
+//		schema.addIndex(userUuid);
 		
 		// Disabled for revisions for now, caused weird error
 		

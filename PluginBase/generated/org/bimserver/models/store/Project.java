@@ -72,7 +72,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.Project#isSendEmailOnNewRevision <em>Send Email On New Revision</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#getNewServices <em>New Services</em>}</li>
  *   <li>{@link org.bimserver.models.store.Project#getCheckinInProgress <em>Checkin In Progress</em>}</li>
- *   <li>{@link org.bimserver.models.store.Project#getUuid <em>Uuid</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getProject()
@@ -646,16 +645,5 @@ public interface Project extends IdEObject {
 	 *        annotation="singleindex"
 	 * @generated
 	 */
-	String getUuid();
-
-	/**
-	 * Sets the value of the '{@link org.bimserver.models.store.Project#getUuid <em>Uuid</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Uuid</em>' attribute.
-	 * @see #getUuid()
-	 * @generated
-	 */
-	void setUuid(String value);
 
 } // Project

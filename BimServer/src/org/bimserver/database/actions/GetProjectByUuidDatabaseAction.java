@@ -61,22 +61,24 @@ public class GetProjectByUuidDatabaseAction extends BimDatabaseAction<Project> {
 
 	@Override
 	public Project execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-		List<IdEObject> projects = (List<IdEObject>) getDatabaseSession().query(StorePackage.eINSTANCE.getProject_Uuid(), uuid);
-		if (projects.size() == 0) {
-			throw new UserException("Project with uuid " + uuid + " does not exist");
-		}
-		Project project = (Project) projects.get(0);
-		User user = getUserByUoid(authorization.getUoid());
-		if (user == null) {
-			throw new UserException("Authenticated user required");
-		}
-		if (project.getState() == ObjectState.DELETED && user.getUserType() != UserType.ADMIN) {
-			throw new UserException("Project has been deleted");
-		}
-		if (authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
-			return project;
-		} else {
-			throw new UserException("User '" + user.getUsername() + "' has no rights on this project");
-		}
+//		List<IdEObject> projects = (List<IdEObject>) getDatabaseSession().query(StorePackage.eINSTANCE.getProject_Uuid(), uuid);
+//		if (projects.size() == 0) {
+//			throw new UserException("Project with uuid " + uuid + " does not exist");
+//		}
+//		Project project = (Project) projects.get(0);
+//		User user = getUserByUoid(authorization.getUoid());
+//		if (user == null) {
+//			throw new UserException("Authenticated user required");
+//		}
+//		if (project.getState() == ObjectState.DELETED && user.getUserType() != UserType.ADMIN) {
+//			throw new UserException("Project has been deleted");
+//		}
+//		if (authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
+//			return project;
+//		} else {
+//			throw new UserException("User '" + user.getUsername() + "' has no rights on this project");
+//		}
+		// TODO reimplement
+		return null;
 	}
 }

@@ -30,20 +30,25 @@ public class GeometryObject implements Comparable<GeometryObject> {
 	private final int triangles;
 	private final float biggestFace;
 	private Bounds bounds;
-
-
 	private int tileId;
 	private int tileLevel;
+	private int reused;
+	private GeometryDataObject geometryDataObject;
 
-	public GeometryObject(long oid, EClass eClass, long croid, int saveableTriangles, int triangles, float density, Bounds objectBounds) {
+	public GeometryObject(long oid, EClass eClass, long croid, int saveableTriangles, int reused, int triangles, float density, Bounds objectBounds) {
 		this.oid = oid;
 		this.eClass = eClass;
 		this.croid = croid;
 		this.saveableTriangles = saveableTriangles;
 		this.triangles = triangles;
 		this.density = density;
-		bounds = objectBounds;
+		this.reused = reused;
+		this.bounds = objectBounds;
 		this.biggestFace = triangles / density;
+	}
+	
+	public int getReused() {
+		return reused;
 	}
 	
 	public void setTileId(int tileId) {
@@ -120,5 +125,13 @@ public class GeometryObject implements Comparable<GeometryObject> {
 
 	public Bounds getBounds() {
 		return bounds;
+	}
+
+	public void setGeometryDataObject(GeometryDataObject geometryDataObject) {
+		this.geometryDataObject = geometryDataObject;
+	}
+	
+	public GeometryDataObject getGeometryDataObject() {
+		return geometryDataObject;
 	}
 }
