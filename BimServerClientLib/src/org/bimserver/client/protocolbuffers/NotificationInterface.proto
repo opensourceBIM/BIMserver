@@ -122,7 +122,8 @@ message SLongActionState {
 	optional SActionState state = 11;
 	optional string title = 12;
 	optional int64 topicId = 13;
-	repeated string warnings = 14;
+	optional UUID uuid = 14;
+	repeated string warnings = 15;
 }
 
 message ProgressRequest {

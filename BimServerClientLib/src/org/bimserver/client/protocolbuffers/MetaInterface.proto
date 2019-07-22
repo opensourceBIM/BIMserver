@@ -137,6 +137,7 @@ message SServiceType {
 	optional int32 rid = 4;
 	optional string simpleName = 5;
 	optional SServiceSimpleType simpleType = 6;
+	optional UUID uuid = 7;
 }
 
 message SServiceParameter {

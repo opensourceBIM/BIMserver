@@ -52,7 +52,7 @@ public class SConverterGenerator
   protected final String TEXT_31 = NL + "\t\tS";
   protected final String TEXT_32 = " result = new S";
   protected final String TEXT_33 = "();";
-  protected final String TEXT_34 = NL + "\t\tresult.setOid(input.getOid());" + NL + "\t\tresult.setRid(input.getRid());";
+  protected final String TEXT_34 = NL + "\t\tresult.setOid(input.getOid());" + NL + "\t\tresult.setUuid(input.getUuid());" + NL + "\t\tresult.setRid(input.getRid());";
   protected final String TEXT_35 = NL + "\t\tresult.set";
   protected final String TEXT_36 = "(S";
   protected final String TEXT_37 = ".values()[input.get";

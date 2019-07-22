@@ -1,11 +1,11 @@
 
-∞’
+ﬁ⁄
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoNewServicesInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"b
 AddDeserializerRequestH
 deserializer (22.org.bimserver.pb.SDeserializerPluginConfiguration">
 AddDeserializerResponse
 errorMessage (	
-value ("Ï
+value ("í
 #SInternalServicePluginConfiguration
 description (	
 enabled (
@@ -18,12 +18,13 @@
 
 settingsId	 (
 userSettingsId
- ("k
+ ($
+uuid (2.org.bimserver.pb.UUID"k
 AddInternalServiceRequestN
 internalService (25.org.bimserver.pb.SInternalServicePluginConfiguration"A
 AddInternalServiceResponse
 errorMessage (	
-value ("∏
+value ("ﬁ
  SModelComparePluginConfiguration
 description (	
 enabled (
@@ -33,12 +34,13 @@ settingsId	 (
 rid (
 
 settingsId (
-userSettingsId ("b
+userSettingsId ($
+uuid	 (2.org.bimserver.pb.UUID"b
 AddModelCompareRequestH
 modelCompare (22.org.bimserver.pb.SModelComparePluginConfiguration">
 AddModelCompareResponse
 errorMessage (	
-value ("∑
+value ("›
 SModelMergerPluginConfiguration
 description (	
 enabled (
@@ -48,7 +50,8 @@ settingsId (
 rid (
 
 settingsId (
-userSettingsId ("_
+userSettingsId ($
+uuid	 (2.org.bimserver.pb.UUID"_
 AddModelMergerRequestF
 modelMerger (21.org.bimserver.pb.SModelMergerPluginConfiguration"=
 AddModelMergerResponse
@@ -58,7 +61,7 @@ settingsId (
 queryEngine (21.org.bimserver.pb.SQueryEnginePluginConfiguration"=
 AddQueryEngineResponse
 errorMessage (	
-value ("Õ
+value ("Û
  SRenderEnginePluginConfiguration
 description (	
 enabled (
@@ -69,7 +72,9 @@ settingsId (
 serializers (
 
 settingsId (
-userSettingsId	 ("b
+userSettingsId	 ($
+uuid
+ (2.org.bimserver.pb.UUID"b
 AddRenderEngineRequestH
 renderEngine (22.org.bimserver.pb.SRenderEnginePluginConfiguration">
 AddRenderEngineResponse
@@ -196,7 +201,7 @@ $GetAllDeserializersForProjectRequest
 errorMessage (	2
 value (2#.org.bimserver.pb.SPluginDescriptor".
 GetAllWebModulesRequest
-onlyEnabled ("∑
+onlyEnabled ("›
 SWebModulePluginConfiguration
 description (	
 enabled (
@@ -206,11 +211,12 @@ $GetAllDeserializersForProjectRequest
 rid (
 serverSettingsId (
 
-settingsId ("p
+settingsId ($
+uuid	 (2.org.bimserver.pb.UUID"p
 GetAllWebModulesResponse
 errorMessage (	>
 value (2/.org.bimserver.pb.SWebModulePluginConfiguration""
- GetAvailablePluginBundlesRequest"î
+ GetAvailablePluginBundlesRequest"∫
 SPluginBundleVersion
 
 artifactId (	
@@ -226,8 +232,9 @@ artifactId (	
 repository
  (	
 rid (1
-type (2#.org.bimserver.pb.SPluginBundleType
-version (	"ë
+type (2#.org.bimserver.pb.SPluginBundleType$
+uuid (2.org.bimserver.pb.UUID
+version (	"∑
 SPluginBundleA
 availableVersions (2&.org.bimserver.pb.SPluginBundleVersion@
 installedVersion (2&.org.bimserver.pb.SPluginBundleVersion=
@@ -235,7 +242,8 @@ repository
 name (	
 oid (
 organization (	
-rid ("i
+rid ($
+uuid (2.org.bimserver.pb.UUID"i
 !GetAvailablePluginBundlesResponse
 errorMessage (	.
 value (2.org.bimserver.pb.SPluginBundle"
@@ -327,7 +335,7 @@ repository (	
 groupId (	
 
 artifactId (	
-version (	"€
+version (	"Å
 SPluginInformation
 description (	
 enabled (
@@ -338,51 +346,61 @@ identifier (	
 name (	
 oid (
 rid (+
-type	 (2.org.bimserver.pb.SPluginType"i
+type	 (2.org.bimserver.pb.SPluginType$
+uuid
+ (2.org.bimserver.pb.UUID"i
 GetPluginInformationResponse
 errorMessage (	3
 value (2$.org.bimserver.pb.SPluginInformation"/
  GetPluginObjectDefinitionRequest
-oid ("O
+oid ("u
 
 SArrayType
 oid (
-rid ('
-values (2.org.bimserver.pb.SType"p
+rid ($
+uuid (2.org.bimserver.pb.UUID'
+values (2.org.bimserver.pb.SType"ñ
 
 SParameter
 
 identifier (	
 name (	
 oid (
-rid (&
-value (2.org.bimserver.pb.SType"g
+rid ($
+uuid (2.org.bimserver.pb.UUID&
+value (2.org.bimserver.pb.SType"ç
 SObjectType
 name (	
 oid (0
 
 parameters (2.org.bimserver.pb.SParameter
-rid ("7
+rid ($
+uuid (2.org.bimserver.pb.UUID"]
 SBooleanType
 oid (
-rid (
-value ("9
+rid ($
+uuid (2.org.bimserver.pb.UUID
+value ("_
 SByteArrayType
 oid (
-rid (
-value ("6
+rid ($
+uuid (2.org.bimserver.pb.UUID
+value ("\
 SDoubleType
 oid (
-rid (
-value ("4
+rid ($
+uuid (2.org.bimserver.pb.UUID
+value ("Z
 	SLongType
 oid (
-rid (
-value ("6
+rid ($
+uuid (2.org.bimserver.pb.UUID
+value ("\
 SStringType
 oid (
-rid (
-value (	"”
+rid ($
+uuid (2.org.bimserver.pb.UUID
+value (	"˘
 SPrimitiveType
 __actual_type (	6
 __SBooleanType (2.org.bimserver.pb.SBooleanType:
@@ -391,14 +409,16 @@ parameters (2.org.bimserver.pb.SParameter
 __SLongType (2.org.bimserver.pb.SLongType4
 __SStringType (2.org.bimserver.pb.SStringType
 oid (
-rid ("ﬁ
+rid ($
+uuid	 (2.org.bimserver.pb.UUID"Ñ
 SType
 __actual_type (	2
 __SArrayType (2.org.bimserver.pb.SArrayType4
 __SObjectType (2.org.bimserver.pb.SObjectType:
 __SPrimitiveType (2 .org.bimserver.pb.SPrimitiveType
 oid (
-rid ("C
+rid ($
+uuid (2.org.bimserver.pb.UUID"C
 SArrayDefinition/
 type (2!.org.bimserver.pb.STypeDefinition"F
 SPrimitiveDefinition.

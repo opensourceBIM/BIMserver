@@ -1,5 +1,5 @@
 
-á
+‡
 NotificationInterface.protoorg.bimserver.pbServiceInterface.protoNewServicesInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.proto"D
 #ClosedProgressOnProjectTopicRequest
 poid (
@@ -30,7 +30,7 @@ $ClosedProgressOnRevisionTopicRequest
 poid (
 roid ("
 NewUserRequest
-uoid ("Î
+uoid ("ô
 SLongActionState
 __actual_type (	L
 __SLongCheckinActionState (2).org.bimserver.pb.SLongCheckinActionState
@@ -45,8 +45,9 @@ $ClosedProgressOnRevisionTopicRequest
  (-
 state (2.org.bimserver.pb.SActionState
 title (	
-topicId (
-warnings (	"U
+topicId ($
+uuid (2.org.bimserver.pb.UUID
+warnings (	"U
 ProgressRequest
 topicId (1
 state (2".org.bimserver.pb.SLongActionState2Ï	

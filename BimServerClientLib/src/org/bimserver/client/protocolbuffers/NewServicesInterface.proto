@@ -45,6 +45,7 @@ message SNewServiceDescriptor {
 	optional string resourceUrl = 9;
 	optional int32 rid = 10;
 	optional string tokenUrl = 11;
+	optional UUID uuid = 12;
 }
 
 message ListAllServiceDescriptorsResponse {
@@ -61,6 +62,7 @@ message SFormatSerializerMap {
 	optional int64 oid = 2;
 	optional int32 rid = 3;
 	repeated SSerializerPluginConfiguration serializers = 4;
+	optional UUID uuid = 5;
 }
 
 message ListAvailableOutputFormatsResponse {

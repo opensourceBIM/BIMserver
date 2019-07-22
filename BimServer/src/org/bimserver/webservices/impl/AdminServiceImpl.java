@@ -60,6 +60,7 @@ import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.PluginDescriptor;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
+import org.bimserver.models.store.ServerInfo;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
@@ -188,7 +189,9 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 
 	@Override
 	public SServerInfo getServerInfo() {
-		return getBimServer().getSConverter().convertToSObject(getBimServer().getServerInfo());
+		ServerInfo serverInfo = getBimServer().getServerInfo();
+		SServerInfo convertToSObject = getBimServer().getSConverter().convertToSObject(serverInfo);
+		return convertToSObject;
 	}
 
 	@Override

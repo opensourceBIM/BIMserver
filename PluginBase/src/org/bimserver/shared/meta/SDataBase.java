@@ -1,5 +1,7 @@
 package org.bimserver.shared.meta;
 
+import java.util.UUID;
+
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
  * 
@@ -19,6 +21,8 @@ package org.bimserver.shared.meta;
 
 public interface SDataBase extends SBase {
 	long getOid();
+	UUID getUuid();
+	void setUuid(UUID uuid);
 	void setOid(long oid);
 	int getRid();
 	void setRid(int rid);

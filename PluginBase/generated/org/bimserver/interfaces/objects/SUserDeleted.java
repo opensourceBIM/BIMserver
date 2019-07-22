@@ -45,7 +45,7 @@ public class SUserDeleted extends SUserRelated implements SDataBase
 		return this.uuid;
 	}
 
-	public void setOid(UUID uuid) {
+	public void setUuid(UUID uuid) {
 		this.uuid = uuid;
 	}
 
@@ -85,6 +85,9 @@ public class SUserDeleted extends SUserRelated implements SDataBase
 		if (sField.getName().equals("rid")) {
 			return getRid();
 		}
+		if (sField.getName().equals("uuid")) {
+			return getUuid();
+		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");
 	}
 
@@ -111,6 +114,10 @@ public class SUserDeleted extends SUserRelated implements SDataBase
 		}
 		if (sField.getName().equals("rid")) {
 			setRid((Integer)val);
+			return;
+		}
+		if (sField.getName().equals("uuid")) {
+			setUuid((UUID)val);
 			return;
 		}
 		throw new RuntimeException("Field " + sField.getName() + " not found");

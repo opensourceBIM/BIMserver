@@ -233,6 +233,7 @@ message SInternalServicePluginConfiguration {
 	optional int32 rid = 8;
 	optional int64 settingsId = 9;
 	optional int64 userSettingsId = 10;
+	optional UUID uuid = 11;
 }
 
 message AddInternalServiceRequest {
@@ -253,6 +254,7 @@ message SModelComparePluginConfiguration {
 	optional int32 rid = 6;
 	optional int64 settingsId = 7;
 	optional int64 userSettingsId = 8;
+	optional UUID uuid = 9;
 }
 
 message AddModelCompareRequest {
@@ -273,6 +275,7 @@ message SModelMergerPluginConfiguration {
 	optional int32 rid = 6;
 	optional int64 settingsId = 7;
 	optional int64 userSettingsId = 8;
+	optional UUID uuid = 9;
 }
 
 message AddModelMergerRequest {
@@ -303,6 +306,7 @@ message SRenderEnginePluginConfiguration {
 	repeated int64 serializers = 7;
 	optional int64 settingsId = 8;
 	optional int64 userSettingsId = 9;
+	optional UUID uuid = 10;
 }
 
 message AddRenderEngineRequest {
@@ -550,6 +554,7 @@ message SWebModulePluginConfiguration {
 	optional int32 rid = 6;
 	optional int64 serverSettingsId = 7;
 	optional int64 settingsId = 8;
+	optional UUID uuid = 9;
 }
 
 message GetAllWebModulesResponse {
@@ -580,7 +585,8 @@ message SPluginBundleVersion {
 	optional string repository = 10;
 	optional int32 rid = 11;
 	optional SPluginBundleType type = 12;
-	optional string version = 13;
+	optional UUID uuid = 13;
+	optional string version = 14;
 }
 
 message SPluginBundle {
@@ -591,6 +597,7 @@ message SPluginBundle {
 	optional int64 oid = 5;
 	optional string organization = 6;
 	optional int32 rid = 7;
+	optional UUID uuid = 8;
 }
 
 message GetAvailablePluginBundlesResponse {
@@ -777,6 +784,7 @@ message SPluginInformation {
 	optional int64 oid = 7;
 	optional int32 rid = 8;
 	optional SPluginType type = 9;
+	optional UUID uuid = 10;
 }
 
 message GetPluginInformationResponse {
@@ -791,7 +799,8 @@ message GetPluginObjectDefinitionRequest {
 message SArrayType {
 	optional int64 oid = 1;
 	optional int32 rid = 2;
-	repeated SType values = 3;
+	optional UUID uuid = 3;
+	repeated SType values = 4;
 }
 
 message SParameter {
@@ -799,7 +808,8 @@ message SParameter {
 	optional string name = 2;
 	optional int64 oid = 3;
 	optional int32 rid = 4;
-	optional SType value = 5;
+	optional UUID uuid = 5;
+	optional SType value = 6;
 }
 
 message SObjectType {
@@ -807,36 +817,42 @@ message SObjectType {
 	optional int64 oid = 2;
 	repeated SParameter parameters = 3;
 	optional int32 rid = 4;
+	optional UUID uuid = 5;
 }
 
 message SBooleanType {
 	optional int64 oid = 1;
 	optional int32 rid = 2;
-	optional bool value = 3;
+	optional UUID uuid = 3;
+	optional bool value = 4;
 }
 
 message SByteArrayType {
 	optional int64 oid = 1;
 	optional int32 rid = 2;
-	optional bytes value = 3;
+	optional UUID uuid = 3;
+	optional bytes value = 4;
 }
 
 message SDoubleType {
 	optional int64 oid = 1;
 	optional int32 rid = 2;
-	optional double value = 3;
+	optional UUID uuid = 3;
+	optional double value = 4;
 }
 
 message SLongType {
 	optional int64 oid = 1;
 	optional int32 rid = 2;
-	optional int64 value = 3;
+	optional UUID uuid = 3;
+	optional int64 value = 4;
 }
 
 message SStringType {
 	optional int64 oid = 1;
 	optional int32 rid = 2;
-	optional string value = 3;
+	optional UUID uuid = 3;
+	optional string value = 4;
 }
 
 message SPrimitiveType {
@@ -848,6 +864,7 @@ message SPrimitiveType {
 	optional SStringType __SStringType = 6;
 	optional int64 oid = 7;
 	optional int32 rid = 8;
+	optional UUID uuid = 9;
 }
 
 message SType {
@@ -857,6 +874,7 @@ message SType {
 	optional SPrimitiveType __SPrimitiveType = 4;
 	optional int64 oid = 5;
 	optional int32 rid = 6;
+	optional UUID uuid = 7;
 }
 
 message SArrayDefinition {

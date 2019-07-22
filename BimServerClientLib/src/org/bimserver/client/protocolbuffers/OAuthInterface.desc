@@ -1,20 +1,23 @@
 
-Ë&
-OAuthInterface.protoorg.bimserver.pbServiceInterface.protoNewServicesInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.protoNotificationInterface.protoRemoteServiceInterface.protoLowLevelInterface.proto#NotificationRegistryInterface.proto"G
+¶(
+OAuthInterface.protoorg.bimserver.pbServiceInterface.protoNewServicesInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.protoNotificationInterface.protoRemoteServiceInterface.protoLowLevelInterface.proto#NotificationRegistryInterface.proto"m
 SRunServiceAuthorization
 oid (
 rid (
-	serviceId ("J
+	serviceId ($
+uuid (2.org.bimserver.pb.UUID"p
 SSingleProjectAuthorization
 oid (
 	projectId (
-rid ("Á
+rid ($
+uuid (2.org.bimserver.pb.UUID"ç
 SAuthorization
 __actual_type (	N
 __SRunServiceAuthorization (2*.org.bimserver.pb.SRunServiceAuthorizationT
 __SSingleProjectAuthorization (2-.org.bimserver.pb.SSingleProjectAuthorization
 oid (
-rid ("c
+rid ($
+uuid (2.org.bimserver.pb.UUID"c
 AuthorizeRequest
 oAuthServerOid (7
 authorization (2 .org.bimserver.pb.SAuthorization"8
@@ -34,7 +37,7 @@
 errorMessage (	/
 value (2 .org.bimserver.pb.SAuthorization"3
 GetOAuthServerByClientIdRequest
-clientId (	"π
+clientId (	"ﬂ
 SOAuthServer
 apiUrl (	
 clientDescription (	
@@ -53,7 +56,8 @@ clientName (	
 redirectUrl (	
 registrationEndpoint (	
 registrationUrl (	
-rid ("g
+rid ($
+uuid (2.org.bimserver.pb.UUID"g
  GetOAuthServerByClientIdResponse
 errorMessage (	-
 value (2.org.bimserver.pb.SOAuthServer"(
@@ -69,7 +73,7 @@ clientName (	
 GetRemoteTokenResponse
 errorMessage (	
 value (	"
-ListAuthorizationCodesRequest"ë
+ListAuthorizationCodesRequest"∑
 SOAuthAuthorizationCode
 authorizationId (
 code (	
@@ -77,7 +81,8 @@ clientName (	
 oauthServerId (
 oid (
 rid (
-userId ("p
+userId ($
+uuid (2.org.bimserver.pb.UUID"p
 ListAuthorizationCodesResponse
 errorMessage (	8
 value (2).org.bimserver.pb.SOAuthAuthorizationCode"%

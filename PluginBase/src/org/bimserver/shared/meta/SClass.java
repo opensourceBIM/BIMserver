@@ -27,6 +27,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.UUID;
 
 import javax.activation.DataHandler;
 
@@ -330,5 +331,9 @@ public class SClass implements Comparable<SClass> {
 	@Override
 	public int compareTo(SClass arg0) {
 		return name.compareTo(arg0.getName());
+	}
+
+	public boolean isUuid() {
+		return instanceClass == UUID.class;
 	}
 }

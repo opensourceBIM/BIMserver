@@ -95,6 +95,7 @@ public class SConverter {
 		S<%=eClass.getName()%> result = new S<%=eClass.getName()%>();
 <% if (eClass.getEAnnotation("nodatabase") == null) {%>
 		result.setOid(input.getOid());
+		result.setUuid(input.getUuid());
 		result.setRid(input.getRid());
 <% } %>
 <%

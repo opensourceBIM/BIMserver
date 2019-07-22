@@ -328,7 +328,10 @@ message VoidResponse {
 }
 
 message Void {
-}message SExtendedDataSchema {
+}message UUID {
+}
+
+message SExtendedDataSchema {
 	optional string contentType = 1;
 	optional string description = 2;
 	repeated int64 extendedData = 3;
@@ -339,6 +342,7 @@ message Void {
 	optional int64 size = 8;
 	optional string url = 9;
 	repeated int64 users = 10;
+	optional UUID uuid = 11;
 }
 
 message AddExtendedDataSchemaRequest {
@@ -363,6 +367,7 @@ message SExtendedData {
 	optional string title = 10;
 	optional string url = 11;
 	optional int64 userId = 12;
+	optional UUID uuid = 13;
 }
 
 message AddExtendedDataToProjectRequest {
@@ -413,8 +418,9 @@ message SService {
 	optional STrigger trigger = 19;
 	optional string url = 20;
 	optional int64 userId = 21;
-	optional int64 writeExtendedDataId = 22;
-	optional int64 writeRevisionId = 23;
+	optional UUID uuid = 22;
+	optional int64 writeExtendedDataId = 23;
+	optional int64 writeRevisionId = 24;
 }
 
 message AddLocalServiceToProjectRequest {
@@ -431,7 +437,8 @@ message SModelCheckerInstance {
 	optional string name = 5;
 	optional int64 oid = 6;
 	optional int32 rid = 7;
-	optional bool valid = 8;
+	optional UUID uuid = 8;
+	optional bool valid = 9;
 }
 
 message AddModelCheckerRequest {
@@ -452,11 +459,13 @@ message SCheckinRevision {
 	optional int64 oid = 1;
 	optional int64 projectId = 2;
 	optional int32 rid = 3;
+	optional UUID uuid = 4;
 }
 
 message SStoreExtendedData {
 	optional int64 oid = 1;
 	optional int32 rid = 2;
+	optional UUID uuid = 3;
 }
 
 message SAction {
@@ -465,6 +474,7 @@ message SAction {
 	optional SStoreExtendedData __SStoreExtendedData = 3;
 	optional int64 oid = 4;
 	optional int32 rid = 5;
+	optional UUID uuid = 6;
 }
 
 enum SServiceStatus{
@@ -492,6 +502,7 @@ message SNewService {
 	optional string stateJson = 16;
 	optional SServiceStatus status = 17;
 	optional string tokenUrl = 18;
+	optional UUID uuid = 19;
 }
 
 message AddNewServiceToProjectRequest {
@@ -562,6 +573,7 @@ message SProject {
 	repeated int64 services = 24;
 	optional SObjectState state = 25;
 	repeated int64 subProjects = 26;
+	optional UUID uuid = 27;
 }
 
 message AddProjectResponse {
@@ -627,8 +639,9 @@ message SUser {
 	optional int64 userSettingsId = 18;
 	optional SUserType userType = 19;
 	optional string username = 20;
-	optional bytes validationToken = 21;
-	optional int64 validationTokenCreated = 22;
+	optional UUID uuid = 21;
+	optional bytes validationToken = 22;
+	optional int64 validationTokenCreated = 23;
 }
 
 message AddUserResponse {
@@ -769,7 +782,8 @@ message SLongCheckinActionState {
 	optional SActionState state = 10;
 	optional string title = 11;
 	optional int64 topicId = 12;
-	repeated string warnings = 13;
+	optional UUID uuid = 13;
+	repeated string warnings = 14;
 }
 
 message CheckinFromUrlSyncResponse {
@@ -857,7 +871,8 @@ message SListDataValue {
 	optional string fieldName = 1;
 	optional int64 oid = 2;
 	optional int32 rid = 3;
-	repeated SDataValue values = 4;
+	optional UUID uuid = 4;
+	repeated SDataValue values = 5;
 }
 
 message SReferenceDataValue {
@@ -866,6 +881,7 @@ message SReferenceDataValue {
 	optional int64 oid = 3;
 	optional int32 rid = 4;
 	optional string typeName = 5;
+	optional UUID uuid = 6;
 }
 
 message SSimpleDataValue {
@@ -873,6 +889,7 @@ message SSimpleDataValue {
 	optional int64 oid = 2;
 	optional int32 rid = 3;
 	optional string stringValue = 4;
+	optional UUID uuid = 5;
 }
 
 message SDataValue {
@@ -883,6 +900,7 @@ message SDataValue {
 	optional string fieldName = 5;
 	optional int64 oid = 6;
 	optional int32 rid = 7;
+	optional UUID uuid = 8;
 }
 
 message SDataObject {
@@ -891,13 +909,15 @@ message SDataObject {
 	optional int64 oid = 3;
 	optional int32 rid = 4;
 	optional string type = 5;
-	repeated SDataValue values = 6;
+	optional UUID uuid = 6;
+	repeated SDataValue values = 7;
 }
 
 message SObjectAdded {
 	optional SDataObject dataObject = 1;
 	optional int64 oid = 2;
 	optional int32 rid = 3;
+	optional UUID uuid = 4;
 }
 
 message SObjectModified {
@@ -907,12 +927,14 @@ message SObjectModified {
 	optional int64 oid = 4;
 	optional string oldValue = 5;
 	optional int32 rid = 6;
+	optional UUID uuid = 7;
 }
 
 message SObjectRemoved {
 	optional SDataObject dataObject = 1;
 	optional int64 oid = 2;
 	optional int32 rid = 3;
+	optional UUID uuid = 4;
 }
 
 message SCompareItem {
@@ -923,6 +945,7 @@ message SCompareItem {
 	optional SDataObject dataObject = 5;
 	optional int64 oid = 6;
 	optional int32 rid = 7;
+	optional UUID uuid = 8;
 }
 
 message SCompareContainer {
@@ -930,12 +953,14 @@ message SCompareContainer {
 	optional int64 oid = 2;
 	optional int32 rid = 3;
 	optional string type = 4;
+	optional UUID uuid = 5;
 }
 
 message SCompareResult {
 	repeated SCompareContainer items = 1;
 	optional int64 oid = 2;
 	optional int32 rid = 3;
+	optional UUID uuid = 4;
 }
 
 message CompareResponse {
@@ -1017,9 +1042,10 @@ message GetAllCheckoutsByUserRequest {
 message SVector3f {
 	optional int64 oid = 1;
 	optional int32 rid = 2;
-	optional double x = 3;
-	optional double y = 4;
-	optional double z = 5;
+	optional UUID uuid = 3;
+	optional double x = 4;
+	optional double y = 5;
+	optional double z = 6;
 }
 
 message SBounds {
@@ -1027,6 +1053,7 @@ message SBounds {
 	optional SVector3f min = 2;
 	optional int64 oid = 3;
 	optional int32 rid = 4;
+	optional UUID uuid = 5;
 }
 
 message SRevision {
@@ -1055,6 +1082,7 @@ message SRevision {
 	optional int64 size = 23;
 	optional string tag = 24;
 	optional int64 userId = 25;
+	optional UUID uuid = 26;
 }
 
 message SCheckout {
@@ -1067,6 +1095,7 @@ message SCheckout {
 	optional SRevision revision = 7;
 	optional int32 rid = 8;
 	optional int64 userId = 9;
+	optional UUID uuid = 10;
 }
 
 message GetAllCheckoutsByUserResponse {
@@ -1250,6 +1279,7 @@ message SProjectSmall {
 	optional int32 rid = 8;
 	optional string schema = 9;
 	optional SObjectState state = 10;
+	optional UUID uuid = 11;
 }
 
 message GetAllProjectsSmallResponse {
@@ -1411,7 +1441,8 @@ message SDensity {
 	optional int64 trianglesAbove = 5;
 	optional int64 trianglesBelow = 6;
 	optional string type = 7;
-	optional float volume = 8;
+	optional UUID uuid = 8;
+	optional float volume = 9;
 }
 
 message GetDensityThresholdResponse {
@@ -1432,6 +1463,7 @@ message SDeserializerPluginConfiguration {
 	optional int32 rid = 6;
 	optional int64 settingsId = 7;
 	optional int64 userSettingsId = 8;
+	optional UUID uuid = 9;
 }
 
 message GetDeserializerByIdResponse {
@@ -1459,6 +1491,7 @@ message SCheckoutResult {
 	optional int32 revisionNr = 4;
 	optional int32 rid = 5;
 	optional int64 serializerOid = 6;
+	optional UUID uuid = 7;
 }
 
 message SDownloadResult {
@@ -1470,6 +1503,7 @@ message SDownloadResult {
 	optional int32 revisionNr = 6;
 	optional int32 rid = 7;
 	optional int64 serializerOid = 8;
+	optional UUID uuid = 9;
 }
 
 message GetDownloadDataResponse {
@@ -1524,6 +1558,7 @@ message SFile {
 	optional int64 oid = 4;
 	optional int32 rid = 5;
 	optional int64 size = 6;
+	optional UUID uuid = 7;
 }
 
 message GetFileResponse {
@@ -1551,9 +1586,10 @@ message SGeoTag {
 	optional int64 oid = 4;
 	repeated int64 projects = 5;
 	optional int32 rid = 6;
-	optional double x = 7;
-	optional double y = 8;
-	optional double z = 9;
+	optional UUID uuid = 7;
+	optional double x = 8;
+	optional double y = 9;
+	optional double z = 10;
 }
 
 message GetGeoTagResponse {
@@ -1598,7 +1634,8 @@ message SGeometryInfo {
 	optional int32 startIndex = 18;
 	optional int32 startVertex = 19;
 	optional bytes transformation = 20;
-	optional double volume = 21;
+	optional UUID uuid = 21;
+	optional double volume = 22;
 }
 
 message GetGeometryInfoResponse {
@@ -1623,6 +1660,7 @@ message SIfcHeader {
 	optional string preProcessorVersion = 10;
 	optional int32 rid = 11;
 	optional int64 timeStamp = 12;
+	optional UUID uuid = 13;
 }
 
 message GetIfcHeaderResponse {
@@ -1789,6 +1827,7 @@ message SQueryEnginePluginConfiguration {
 	optional int32 rid = 6;
 	optional int64 settingsId = 7;
 	optional int64 userSettingsId = 8;
+	optional UUID uuid = 9;
 }
 
 message GetQueryEngineByIdResponse {
@@ -1843,6 +1882,7 @@ message SRevisionSummaryType {
 	optional int64 oid = 3;
 	optional int32 rid = 4;
 	optional string schema = 5;
+	optional UUID uuid = 6;
 }
 
 message SRevisionSummaryContainer {
@@ -1850,12 +1890,14 @@ message SRevisionSummaryContainer {
 	optional int64 oid = 2;
 	optional int32 rid = 3;
 	repeated SRevisionSummaryType types = 4;
+	optional UUID uuid = 5;
 }
 
 message SRevisionSummary {
 	repeated SRevisionSummaryContainer list = 1;
 	optional int64 oid = 2;
 	optional int32 rid = 3;
+	optional UUID uuid = 4;
 }
 
 message GetRevisionSummaryResponse {
@@ -1879,6 +1921,7 @@ message SMessagingSerializerPluginConfiguration {
 	optional int64 settingsId = 9;
 	optional bool streaming = 10;
 	optional int64 userSettingsId = 11;
+	optional UUID uuid = 12;
 }
 
 message SSerializerPluginConfiguration {
@@ -1895,6 +1938,7 @@ message SSerializerPluginConfiguration {
 	optional int64 settingsId = 11;
 	optional bool streaming = 12;
 	optional int64 userSettingsId = 13;
+	optional UUID uuid = 14;
 }
 
 message GetSerializerByContentTypeResponse {
@@ -2001,6 +2045,7 @@ message STile {
 	optional int64 oid = 4;
 	optional int32 rid = 5;
 	optional int32 tileId = 6;
+	optional UUID uuid = 7;
 }
 
 message GetTilesResponse {
@@ -2064,6 +2109,7 @@ message SNewCheckoutAdded {
 	optional int64 executorId = 4;
 	optional int64 oid = 5;
 	optional int32 rid = 6;
+	optional UUID uuid = 7;
 }
 
 message SCheckoutRelated {
@@ -2075,6 +2121,7 @@ message SCheckoutRelated {
 	optional int64 executorId = 6;
 	optional int64 oid = 7;
 	optional int32 rid = 8;
+	optional UUID uuid = 9;
 }
 
 message SDatabaseCreated {
@@ -2084,7 +2131,8 @@ message SDatabaseCreated {
 	optional int64 oid = 4;
 	optional string path = 5;
 	optional int32 rid = 6;
-	optional int32 version = 7;
+	optional UUID uuid = 7;
+	optional int32 version = 8;
 }
 
 message SDownload {
@@ -2093,6 +2141,7 @@ message SDownload {
 	optional int64 executorId = 3;
 	optional int64 oid = 4;
 	optional int32 rid = 5;
+	optional UUID uuid = 6;
 }
 
 message SExtendedDataAddedToProject {
@@ -2103,6 +2152,7 @@ message SExtendedDataAddedToProject {
 	optional int64 oid = 5;
 	optional int64 projectId = 6;
 	optional int32 rid = 7;
+	optional UUID uuid = 8;
 }
 
 message SExtendedDataAddedToRevision {
@@ -2113,6 +2163,7 @@ message SExtendedDataAddedToRevision {
 	optional int64 oid = 5;
 	optional int64 revisionId = 6;
 	optional int32 rid = 7;
+	optional UUID uuid = 8;
 }
 
 message SGeoTagUpdated {
@@ -2122,6 +2173,7 @@ message SGeoTagUpdated {
 	optional int64 geoTagId = 4;
 	optional int64 oid = 5;
 	optional int32 rid = 6;
+	optional UUID uuid = 7;
 }
 
 message SNewObjectIDMUploaded {
@@ -2130,6 +2182,7 @@ message SNewObjectIDMUploaded {
 	optional int64 executorId = 3;
 	optional int64 oid = 4;
 	optional int32 rid = 5;
+	optional UUID uuid = 6;
 }
 
 message SNewProjectAdded {
@@ -2140,6 +2193,7 @@ message SNewProjectAdded {
 	optional int64 parentProjectId = 5;
 	optional int64 projectId = 6;
 	optional int32 rid = 7;
+	optional UUID uuid = 8;
 }
 
 message SProjectDeleted {
@@ -2149,6 +2203,7 @@ message SProjectDeleted {
 	optional int64 oid = 4;
 	optional int64 projectId = 5;
 	optional int32 rid = 6;
+	optional UUID uuid = 7;
 }
 
 message SProjectUndeleted {
@@ -2158,6 +2213,7 @@ message SProjectUndeleted {
 	optional int64 oid = 4;
 	optional int64 projectId = 5;
 	optional int32 rid = 6;
+	optional UUID uuid = 7;
 }
 
 message SProjectUpdated {
@@ -2167,6 +2223,7 @@ message SProjectUpdated {
 	optional int64 oid = 4;
 	optional int64 projectId = 5;
 	optional int32 rid = 6;
+	optional UUID uuid = 7;
 }
 
 message SProjectRelated {
@@ -2181,6 +2238,7 @@ message SProjectRelated {
 	optional int64 oid = 9;
 	optional int64 projectId = 10;
 	optional int32 rid = 11;
+	optional UUID uuid = 12;
 }
 
 enum SNotifictionResultEnum{
@@ -2201,7 +2259,8 @@ message SRemoteServiceCalled {
 	optional int32 rid = 8;
 	optional int64 serviceId = 9;
 	optional SNotifictionResultEnum state = 10;
-	repeated string warnings = 11;
+	optional UUID uuid = 11;
+	repeated string warnings = 12;
 }
 
 message SRevisionBranched {
@@ -2212,6 +2271,7 @@ message SRevisionBranched {
 	optional int64 oid = 5;
 	optional int64 oldrevisionId = 6;
 	optional int32 rid = 7;
+	optional UUID uuid = 8;
 }
 
 message SNewRevisionAdded {
@@ -2222,6 +2282,7 @@ message SNewRevisionAdded {
 	optional int64 projectId = 5;
 	optional int64 revisionId = 6;
 	optional int32 rid = 7;
+	optional UUID uuid = 8;
 }
 
 message SRevisionUpdated {
@@ -2231,6 +2292,7 @@ message SRevisionUpdated {
 	optional int64 oid = 4;
 	optional int64 revisionId = 5;
 	optional int32 rid = 6;
+	optional UUID uuid = 7;
 }
 
 message SRevisionRelated {
@@ -2243,6 +2305,7 @@ message SRevisionRelated {
 	optional int64 oid = 7;
 	optional int64 revisionId = 8;
 	optional int32 rid = 9;
+	optional UUID uuid = 10;
 }
 
 message SServerStarted {
@@ -2251,6 +2314,7 @@ message SServerStarted {
 	optional int64 executorId = 3;
 	optional int64 oid = 4;
 	optional int32 rid = 5;
+	optional UUID uuid = 6;
 }
 
 message SSettingsSaved {
@@ -2259,6 +2323,7 @@ message SSettingsSaved {
 	optional int64 executorId = 3;
 	optional int64 oid = 4;
 	optional int32 rid = 5;
+	optional UUID uuid = 6;
 }
 
 message SNewUserAdded {
@@ -2268,6 +2333,7 @@ message SNewUserAdded {
 	optional int64 oid = 4;
 	optional int32 rid = 5;
 	optional int64 userId = 6;
+	optional UUID uuid = 7;
 }
 
 message SPasswordChanged {
@@ -2277,6 +2343,7 @@ message SPasswordChanged {
 	optional int64 oid = 4;
 	optional int32 rid = 5;
 	optional int64 userId = 6;
+	optional UUID uuid = 7;
 }
 
 message SPasswordReset {
@@ -2286,6 +2353,7 @@ message SPasswordReset {
 	optional int64 oid = 4;
 	optional int32 rid = 5;
 	optional int64 userId = 6;
+	optional UUID uuid = 7;
 }
 
 message SUserAddedToProject {
@@ -2296,6 +2364,7 @@ message SUserAddedToProject {
 	optional int64 projectId = 5;
 	optional int32 rid = 6;
 	optional int64 userId = 7;
+	optional UUID uuid = 8;
 }
 
 message SUserChanged {
@@ -2305,6 +2374,7 @@ message SUserChanged {
 	optional int64 oid = 4;
 	optional int32 rid = 5;
 	optional int64 userId = 6;
+	optional UUID uuid = 7;
 }
 
 message SUserDeleted {
@@ -2314,6 +2384,7 @@ message SUserDeleted {
 	optional int64 oid = 4;
 	optional int32 rid = 5;
 	optional int64 userId = 6;
+	optional UUID uuid = 7;
 }
 
 message SUserRemovedFromProject {
@@ -2324,6 +2395,7 @@ message SUserRemovedFromProject {
 	optional int64 projectId = 5;
 	optional int32 rid = 6;
 	optional int64 userId = 7;
+	optional UUID uuid = 8;
 }
 
 message SUserUndeleted {
@@ -2333,6 +2405,7 @@ message SUserUndeleted {
 	optional int64 oid = 4;
 	optional int32 rid = 5;
 	optional int64 userId = 6;
+	optional UUID uuid = 7;
 }
 
 message SUserRelated {
@@ -2351,6 +2424,7 @@ message SUserRelated {
 	optional int64 oid = 13;
 	optional int32 rid = 14;
 	optional int64 userId = 15;
+	optional UUID uuid = 16;
 }
 
 message SLogAction {
@@ -2374,6 +2448,7 @@ message SLogAction {
 	optional int64 executorId = 18;
 	optional int64 oid = 19;
 	optional int32 rid = 20;
+	optional UUID uuid = 21;
 }
 
 message GetUserRelatedLogsResponse {
@@ -2401,6 +2476,7 @@ message SUserSettings {
 	optional int32 rid = 14;
 	repeated int64 serializers = 15;
 	repeated int64 services = 16;
+	optional UUID uuid = 17;
 }
 
 message GetUserSettingsResponse {

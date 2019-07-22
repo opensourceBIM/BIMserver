@@ -27,6 +27,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.activation.DataHandler;
 
@@ -141,6 +142,8 @@ public class JsonConverter {
 			return new TextNode((String) object);
 		} else if (object instanceof Long) {
 			return new LongNode((Long) object);
+		} else if (object instanceof UUID) {
+			return new TextNode(((UUID) object).toString());
 		} else if (object instanceof Integer) {
 			return new IntNode((Integer) object);
 		} else if (object instanceof Double) {
@@ -243,6 +246,12 @@ public class JsonConverter {
 			} else if (definedType.isString()) {
 				if (object instanceof ValueNode) {
 					return ((ValueNode) object).asText();
+				} else if (object instanceof NullNode) {
+					return null;
+				}
+			} else if (definedType.isUuid()) {
+				if (object instanceof TextNode) {
+					return UUID.fromString(((TextNode) object).asText());
 				} else if (object instanceof NullNode) {
 					return null;
 				}

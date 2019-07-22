@@ -106,6 +106,7 @@ message SPluginDescriptor {
 	optional string pluginInterfaceClassName = 11;
 	optional int32 rid = 12;
 	optional int64 settingsId = 13;
+	optional UUID uuid = 14;
 }
 
 message GetAllPluginsResponse {
@@ -130,6 +131,7 @@ message SBimServerInfo {
 	optional string serverLogUrl = 11;
 	optional int64 started = 12;
 	optional int32 users = 13;
+	optional UUID uuid = 14;
 }
 
 message GetBimServerInfoResponse {
@@ -144,7 +146,8 @@ message SDatabaseInformationItem {
 	optional string key = 1;
 	optional int64 oid = 2;
 	optional int32 rid = 3;
-	optional string value = 4;
+	optional UUID uuid = 4;
+	optional string value = 5;
 }
 
 message SDatabaseInformationCategory {
@@ -152,6 +155,7 @@ message SDatabaseInformationCategory {
 	optional int64 oid = 2;
 	optional int32 rid = 3;
 	optional string title = 4;
+	optional UUID uuid = 5;
 }
 
 message SDatabaseInformation {
@@ -167,6 +171,7 @@ message SDatabaseInformation {
 	optional int32 rid = 10;
 	optional int32 schemaVersion = 11;
 	optional string type = 12;
+	optional UUID uuid = 13;
 }
 
 message GetDatabaseInformationResponse {
@@ -203,6 +208,7 @@ message SJavaInfo {
 	optional int64 oid = 23;
 	optional int32 rid = 24;
 	optional int32 threads = 25;
+	optional UUID uuid = 26;
 }
 
 message GetJavaInfoResponse {
@@ -232,6 +238,7 @@ message SVersion {
 	optional int32 rid = 8;
 	optional string supportEmail = 9;
 	optional string supportUrl = 10;
+	optional UUID uuid = 11;
 }
 
 message GetLatestVersionResponse {
@@ -259,6 +266,7 @@ message SMethodMetric {
 	optional int64 oid = 6;
 	optional int32 rid = 7;
 	optional int64 shortestMs = 8;
+	optional UUID uuid = 9;
 }
 
 message SInterfaceMetric {
@@ -266,12 +274,14 @@ message SInterfaceMetric {
 	optional string name = 2;
 	optional int64 oid = 3;
 	optional int32 rid = 4;
+	optional UUID uuid = 5;
 }
 
 message SMetrics {
 	repeated SInterfaceMetric interfaces = 1;
 	optional int64 oid = 2;
 	optional int32 rid = 3;
+	optional UUID uuid = 4;
 }
 
 message GetMetricsResponse {
@@ -288,6 +298,7 @@ message SMigration {
 	optional int32 number = 3;
 	optional int64 oid = 4;
 	optional int32 rid = 5;
+	optional UUID uuid = 6;
 }
 
 message GetMigrationsResponse {
@@ -322,7 +333,8 @@ message SServerInfo {
 	optional int64 oid = 2;
 	optional int32 rid = 3;
 	optional SServerState serverState = 4;
-	optional SVersion version = 5;
+	optional UUID uuid = 5;
+	optional SVersion version = 6;
 }
 
 message GetServerInfoResponse {
@@ -359,6 +371,7 @@ message SSystemInfo {
 	optional string userDir = 7;
 	optional string userHome = 8;
 	optional string userName = 9;
+	optional UUID uuid = 10;
 }
 
 message GetSystemInfoResponse {
