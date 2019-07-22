@@ -54,6 +54,7 @@ public class EmfJsonSerializer {
 		} else {
 			print("{");
 			print("\"_i\":" + object.getOid() + ",");
+			print("\"_u\":\"" + object.getUuid() + "\",");
 			print("\"_t\":\"" + object.eClass().getName() + "\",");
 			print("\"_s\":1");
 			for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {

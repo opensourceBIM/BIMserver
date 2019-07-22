@@ -1,8 +1,5 @@
 package org.bimserver.client.tests;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 import org.apache.commons.lang.RandomStringUtils;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.json.JsonBimServerClientFactory;
@@ -10,7 +7,6 @@ import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.plugins.services.CheckinProgressHandler;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.junit.Test;

@@ -1,6 +1,5 @@
 package org.bimserver.client.tests;
 
-import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.file.Path;
