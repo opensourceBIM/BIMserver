@@ -179,6 +179,9 @@ public class GeometryLoader {
 					geometryData.setNrNormals(normals.length / 4);
 					
 					int nrMaterials = dataInputStream.readInt();
+					if (nrMaterials > 0) {
+						System.out.println();
+					}
 					byte[] materials = new byte[nrMaterials];
 					dataInputStream.readFully(materials);
 					Buffer colorsBuffer = GeometryFactory.eINSTANCE.createBuffer();
@@ -212,6 +215,7 @@ public class GeometryLoader {
 		query.setGeometrySettings(settings);
 		query.getGeometrySettings().put("useSmallInts", false);
 		query.getGeometrySettings().put("splitGeometry", false);
+		query.getGeometrySettings().put("quantizeColors", true);
 		QueryPart queryPart = query.createQueryPart();
 
 		queryPart.addOids(oids);

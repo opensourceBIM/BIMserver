@@ -329,6 +329,7 @@ public class ClientIfcModel extends IfcModel implements GeometryTarget {
 			query.setGeometrySettings(settings);
 			query.getGeometrySettings().put("useSmallInts", false);
 			query.getGeometrySettings().put("splitGeometry", false);
+			query.getGeometrySettings().put("quantizeColors", true);
 			QueryPart queryPart = query.createQueryPart();
 
 			EClass ifcProductClass = getPackageMetaData().getEClass("IfcProduct");

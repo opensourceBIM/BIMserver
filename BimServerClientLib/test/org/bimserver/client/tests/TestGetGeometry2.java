@@ -2,28 +2,22 @@ package org.bimserver.client.tests;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ClientIfcModel;
-import org.bimserver.client.GeometryLoader;
-import org.bimserver.client.GeometryTargetImpl;
 import org.bimserver.client.json.JsonBimServerClientFactory;
-import org.bimserver.emf.PackageMetaData;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SLongCheckinActionState;
 import org.bimserver.interfaces.objects.SProject;
-import org.bimserver.models.geometry.GeometryData;
 import org.bimserver.models.geometry.GeometryInfo;
-import org.bimserver.models.ifc2x3tc1.IfcWall;
+import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.plugins.services.CheckinProgressHandler;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.junit.Test;
 
-public class TestGetGeometry {
+public class TestGetGeometry2 {
 	@Test
 	public void test() {
 		try (JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080")) {
@@ -39,34 +33,14 @@ public class TestGetGeometry {
 					}
 				});
 
-				PackageMetaData packageMetaData = client.getMetaDataManager().getPackageMetaData("ifc2x3tc1");
-				GeometryTargetImpl geometryTargetImpl = new GeometryTargetImpl(packageMetaData);
-				GeometryLoader geometryLoader = new GeometryLoader(client, packageMetaData, geometryTargetImpl);
-				
-				Set<Long> oids = new HashSet<>();
-				
-				// Only to gather oids
-				ClientIfcModel model = client.getModel(project, actionState.getRoid(), true, false, false);
-				for (IfcWall ifcWall : model.getAllWithSubTypes(IfcWall.class)) {
-					oids.add(ifcWall.getOid());
+				ClientIfcModel model = client.getModel(project, actionState.getRoid(), false, false, true);
+				for (IfcProduct product : model.getAllWithSubTypes(IfcProduct.class)) {
+					GeometryInfo geometry = product.getGeometry();
+					if (geometry != null) {
+						System.out.println(product.getGeometry().getData().getNrVertices());
+						System.out.println(product.getGeometry().getData().getVertices().getData().length);
+					}
 				}
-
-				geometryLoader.loadProducts(actionState.getRoid(), oids);
-				System.out.println(geometryTargetImpl);
-				
-				Set<Long> geometryDataOids = new HashSet<>();
-				
-				for (GeometryInfo geometryInfo : geometryTargetImpl.getAllGeometryInfo()) {
-					GeometryData geometryData = geometryInfo.getData();
-					System.out.println(geometryInfo.getPrimitiveCount());
-					System.out.println(geometryData.getNrIndices());
-					geometryDataOids.add(geometryData.getOid());
-				}
-				
-				geometryTargetImpl = new GeometryTargetImpl(packageMetaData);
-				geometryLoader = new GeometryLoader(client, packageMetaData, geometryTargetImpl);
-				geometryLoader.loadGeometryData(actionState.getRoid(), geometryDataOids);
-				System.out.println(geometryTargetImpl);
 			}
 		} catch (BimServerClientException e) {
 			e.printStackTrace();
