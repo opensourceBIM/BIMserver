@@ -1,23 +1,5 @@
 package org.bimserver.client;
 
-/******************************************************************************
- * Copyright (C) 2009-2019  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
- *****************************************************************************/
-
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
@@ -48,10 +30,6 @@ import org.bimserver.emf.SharedJsonDeserializer;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.ifc.IfcModelChangeListener;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
-import org.bimserver.models.geometry.Bounds;
-import org.bimserver.models.geometry.Buffer;
-import org.bimserver.models.geometry.GeometryData;
-import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.plugins.HeaderTakingSerializer;
@@ -82,7 +60,7 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-public class ClientIfcModel extends IfcModel {
+public class ClientIfcModel extends IfcModel implements GeometryTarget {
 	public enum ModelState {
 		NONE, LOADING, FULLY_LOADED
 	}
@@ -341,7 +319,7 @@ public class ClientIfcModel extends IfcModel {
 //		LOGGER.info((((end - start) / 1000000) + " ms"));
 	}
 
-	private void loadGeometry() throws QueryException, ServerException, UserException, PublicInterfaceNotFoundException, IOException, GeometryException, IfcModelInterfaceException {
+	public void loadGeometry() throws QueryException, ServerException, UserException, PublicInterfaceNotFoundException, IOException, GeometryException, IfcModelInterfaceException {
 		if (includeGeometry) {
 			if (modelState == ModelState.FULLY_LOADED) {
 				return;
@@ -353,8 +331,6 @@ public class ClientIfcModel extends IfcModel {
 			query.getGeometrySettings().put("splitGeometry", false);
 			QueryPart queryPart = query.createQueryPart();
 
-			Map<Long, Long> geometryInfoOidToOid = new HashMap<>();
-
 			EClass ifcProductClass = getPackageMetaData().getEClass("IfcProduct");
 			EStructuralFeature geometryFeature = ifcProductClass.getEStructuralFeature("geometry");
 			List<IdEObject> allWithSubTypes = new ArrayList<>(super.getAllWithSubTypes(ifcProductClass));
@@ -363,7 +339,6 @@ public class ClientIfcModel extends IfcModel {
 				if (geometry != null) {
 					if (geometry.getData() == null || geometry.getData().getIndices() == null || geometry.getData().getIndices().getData() == null) {
 						queryPart.addOid(geometry.getOid());
-						geometryInfoOidToOid.put(geometry.getOid(), ifcProduct.getOid());
 					}
 				}
 			}
@@ -391,7 +366,7 @@ public class ClientIfcModel extends IfcModel {
 			InputStream inputStream = bimServerClient.getDownloadData(topicId);
 			clientDebugInfo.incrementGeometryGetDownloadData();
 			try {
-				processGeometryInputStream(inputStream, geometryInfoOidToOid);
+				processGeometryInputStream(inputStream);
 			} catch (Throwable e) {
 				e.printStackTrace();
 			} finally {
@@ -404,156 +379,8 @@ public class ClientIfcModel extends IfcModel {
 		return clientDebugInfo;
 	}
 
-	private void processGeometryInputStream(InputStream inputStream, Map<Long, Long> geometryInfoOidToOid) throws IOException, GeometryException, IfcModelInterfaceException {
-		int t = 0;
-		CountingLittleEndianDataInputStream dataInputStream = new CountingLittleEndianDataInputStream(inputStream);
-		try {
-			boolean done = false;
-			while (true) {
-				byte geometryType = dataInputStream.readByte();
-				if (geometryType == 0) {
-					String protocol = dataInputStream.readUTF();
-					if (!protocol.equals("BGS")) {
-						throw new GeometryException("Protocol != BGS (" + protocol + ")");
-					}
-					byte formatVersion = dataInputStream.readByte();
-					if (formatVersion != 19) {
-						throw new GeometryException("Unsupported version " + formatVersion + " / 19");
-					}
-
-					float multiplierToMm = dataInputStream.readFloat();
-					dataInputStream.align8();
-					for (int i = 0; i < 6; i++) {
-						dataInputStream.readDouble();
-					}
-				} else if (geometryType == 5) {
-					boolean isInPreparedBuffer = dataInputStream.readByte() == 1;
-					long oid = dataInputStream.readLong();
-					String type = dataInputStream.readUTF();
-					int nrColors = dataInputStream.readInt();
-					dataInputStream.align8();
-					long roid = dataInputStream.readLong(); // roid
-					long geometryInfoOid = dataInputStream.readLong();
-					boolean hasTransparency = dataInputStream.readLong() == 1; // transparent
-					GeometryInfo geometryInfo = (GeometryInfo) get(geometryInfoOid);
-					if (geometryInfo == null) {
-						geometryInfo = create(GeometryInfo.class);
-					}
-					((IdEObjectImpl) geometryInfo).setOid(geometryInfoOid);
-					((IdEObjectImpl) geometryInfo).setLoadingState(State.LOADING);
-					add(geometryInfoOid, geometryInfo);
-
-					Long ifcProductOid = geometryInfoOidToOid.get(geometryInfoOid);
-					if (ifcProductOid == null) {
-						throw new GeometryException("Missing geometry info id: " + geometryInfoOid);
-					}
-					IdEObject ifcProduct = get(ifcProductOid);
-
-					EStructuralFeature geometryFeature = getPackageMetaData().getEClass("IfcProduct").getEStructuralFeature("geometry");
-					ifcProduct.eSet(geometryFeature, geometryInfo);
-
-					org.bimserver.models.geometry.Vector3f minBounds = GeometryFactory.eINSTANCE.createVector3f();
-					minBounds.setX(dataInputStream.readDouble());
-					minBounds.setY(dataInputStream.readDouble());
-					minBounds.setZ(dataInputStream.readDouble());
-
-					org.bimserver.models.geometry.Vector3f maxBounds = GeometryFactory.eINSTANCE.createVector3f();
-					maxBounds.setX(dataInputStream.readDouble());
-					maxBounds.setY(dataInputStream.readDouble());
-					maxBounds.setZ(dataInputStream.readDouble());
-
-					Bounds bounds = GeometryFactory.eINSTANCE.createBounds();
-
-					bounds.setMin(minBounds);
-					bounds.setMax(maxBounds);
-
-					geometryInfo.setBounds(bounds);
-
-					byte[] transformation = new byte[16 * 8];
-					dataInputStream.readFully(transformation);
-					geometryInfo.setTransformation(transformation);
-
-					long geometryDataOid = dataInputStream.readLong();
-					GeometryData geometryData = (GeometryData) get(geometryDataOid);
-					if (geometryData == null) {
-						geometryData = GeometryFactory.eINSTANCE.createGeometryData();
-						add(geometryDataOid, geometryData);
-					}
-					geometryInfo.setData(geometryData);
-					((IdEObjectImpl) geometryData).setLoadingState(State.LOADED);
-				} else if (geometryType == 3) {
-					throw new GeometryException("Parts not supported");
-				} else if (geometryType == 1) {
-					int reused = dataInputStream.readInt();
-					String type = dataInputStream.readUTF();
-					dataInputStream.align8();
-					long roid = dataInputStream.readLong();
-					long croid = dataInputStream.readLong();
-					boolean hasTransparency = dataInputStream.readLong() == 1; // transparent
-					long geometryDataOid = dataInputStream.readLong();
-
-					GeometryData geometryData = (GeometryData) get(geometryDataOid);
-					if (geometryData == null) {
-						geometryData = GeometryFactory.eINSTANCE.createGeometryData();
-						add(geometryDataOid, geometryData);
-					}
-					((IdEObjectImpl) geometryData).setOid(geometryDataOid);
-					((IdEObjectImpl) geometryData).setLoadingState(State.LOADING);
-
-					int nrIndices = dataInputStream.readInt();
-					byte[] indices = new byte[nrIndices * 4];
-					dataInputStream.readFully(indices);
-					Buffer buffer = GeometryFactory.eINSTANCE.createBuffer();
-					buffer.setData(indices);
-					geometryData.setIndices(buffer);
-
-					int colorType = dataInputStream.readInt();
-					if (colorType == 1) {
-						dataInputStream.readFloat();
-						dataInputStream.readFloat();
-						dataInputStream.readFloat();
-						dataInputStream.readFloat();
-					}
-
-					int nrVertices = dataInputStream.readInt();
-					byte[] vertices = new byte[nrVertices * 4];
-					dataInputStream.readFully(vertices);
-					Buffer verticesBuffer = GeometryFactory.eINSTANCE.createBuffer();
-					verticesBuffer.setData(vertices);
-					geometryData.setVertices(verticesBuffer);
-
-					int nrNormals = dataInputStream.readInt();
-					byte[] normals = new byte[nrNormals * 4];
-					dataInputStream.readFully(normals);
-					Buffer normalsBuffer = GeometryFactory.eINSTANCE.createBuffer();
-					normalsBuffer.setData(normals);
-					geometryData.setNormals(normalsBuffer);
-
-					int nrMaterials = dataInputStream.readInt();
-					byte[] materials = new byte[nrMaterials * 4];
-					dataInputStream.readFully(materials);
-					Buffer colorsBuffer = GeometryFactory.eINSTANCE.createBuffer();
-					colorsBuffer.setData(materials);
-					geometryData.setColorsQuantized(colorsBuffer);
-					((IdEObjectImpl) geometryData).setLoadingState(State.LOADED);
-				} else if (geometryType == 6) {
-					done = true;
-				} else {
-					throw new GeometryException("Unimplemented geometryType: " + geometryType);
-				}
-				t++;
-				dataInputStream.align8();
-			}
-		} catch (EOFException e) {
-		} catch (IOException e) {
-			System.out.println("T: " + t);
-			e.printStackTrace();
-		} catch (ObjectAlreadyExistsException e) {
-			e.printStackTrace();
-		} finally {
-			dataInputStream.close();
-			this.clientDebugInfo.incBytesOverTheLine(dataInputStream.getPos());
-		}
+	private void processGeometryInputStream(InputStream inputStream) throws IOException, GeometryException, IfcModelInterfaceException {
+		new GeometryLoader(bimServerClient, getPackageMetaData(), this).load(inputStream);
 	}
 
 	private void processDownload(Long topicId) throws UserException, ServerException, PublicInterfaceNotFoundException, IfcModelInterfaceException, IOException {
@@ -1098,6 +925,7 @@ public class ClientIfcModel extends IfcModel {
 			}
 			processDownload(topicId);
 			bimServerClient.getServiceInterface().cleanupLongAction(topicId);
+			loadGeometry();
 			if (ifcModelChangeListener != null) {
 				removeChangeListener(ifcModelChangeListener);
 			}

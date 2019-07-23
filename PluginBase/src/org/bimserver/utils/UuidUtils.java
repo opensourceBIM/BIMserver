@@ -12,4 +12,9 @@ public class UuidUtils {
 		buffer.putLong(uuid.getLeastSignificantBits());
 		return buffer.array();
 	}
+	
+	public static UUID fromByteArray(byte[] data) {
+		ByteBuffer buffer = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN);
+		return new UUID(buffer.getLong(), buffer.getLong());
+	}
 }

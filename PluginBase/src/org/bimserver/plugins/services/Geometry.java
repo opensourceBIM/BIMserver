@@ -153,4 +153,9 @@ public class Geometry {
 	public FloatBuffer getNormals() {
 		return normals;
 	}
+	
+	@Override
+	public String toString() {
+		return "Geometry [" + indices.capacity() + ", " + vertices.capacity() + ", " + normals.capacity() + "]";
+	}
 }
