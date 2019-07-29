@@ -179,9 +179,6 @@ public class GeometryLoader {
 					geometryData.setNrNormals(normals.length / 4);
 					
 					int nrMaterials = dataInputStream.readInt();
-					if (nrMaterials > 0) {
-						System.out.println();
-					}
 					byte[] materials = new byte[nrMaterials];
 					dataInputStream.readFully(materials);
 					Buffer colorsBuffer = GeometryFactory.eINSTANCE.createBuffer();
