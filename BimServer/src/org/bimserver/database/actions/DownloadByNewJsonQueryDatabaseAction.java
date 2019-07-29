@@ -165,14 +165,9 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 					}
 				}
 
-				System.out.println(converter.toJson(query));
-				
 				QueryObjectProvider queryObjectProvider = new QueryObjectProvider(getDatabaseSession(), getBimServer(), query, Collections.singleton(roid), packageMetaData);
 				HashMapVirtualObject next = queryObjectProvider.next();
 				while (next != null) {
-					if (next.getOid() == 14660274027L) {
-						System.out.println();
-					}
 					IdEObject newObject = packageMetaData.create(next.eClass());
 					IdEObjectImpl idEObjectImpl = (IdEObjectImpl)newObject;
 					idEObjectImpl.setPid(revision.getProject().getId());
@@ -269,7 +264,7 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 											if (o instanceof HashMapWrappedVirtualObject) {
 												newList.add(convertWrapped(revision, ifcModel, (HashMapWrappedVirtualObject)o));
 											} else if (o instanceof Long) {
-												System.out.println();
+												LOGGER.warn("TODO");
 												// TODO
 											} else {
 												newList.add(o);
