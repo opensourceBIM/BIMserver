@@ -531,7 +531,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 				maxObjectsPerFile = 100;
 			}
 			
-			maxObjectsPerFile = 1;
+//			maxObjectsPerFile = 1;
 			
 			report.setMaxPerFile(maxObjectsPerFile);
 			
