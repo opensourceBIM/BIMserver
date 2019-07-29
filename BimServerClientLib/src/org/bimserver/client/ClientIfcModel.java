@@ -914,7 +914,8 @@ public class ClientIfcModel extends IfcModel implements GeometryTarget {
 		modelState = ModelState.NONE;
 	}
 	
-	public void queryNew(Query query, IfcModelChangeListener ifcModelChangeListener) {
+	public void queryNew(Query query, IfcModelChangeListener ifcModelChangeListener, boolean assumeCompletePreload) {
+		this.assumeCompletePreload = assumeCompletePreload;
 		try {
 			modelState = ModelState.LOADING;
 			JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(getPackageMetaData());
@@ -927,6 +928,7 @@ public class ClientIfcModel extends IfcModel implements GeometryTarget {
 			processDownload(topicId);
 			bimServerClient.getServiceInterface().cleanupLongAction(topicId);
 			loadGeometry();
+			buildIndex();
 			if (ifcModelChangeListener != null) {
 				removeChangeListener(ifcModelChangeListener);
 			}
