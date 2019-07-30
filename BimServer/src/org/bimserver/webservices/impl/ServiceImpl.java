@@ -27,6 +27,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLDecoder;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.DateFormat;
@@ -1227,7 +1228,11 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 		Path userDirIncoming = homeDirIncoming.resolve(userUsername);
 		if (!Files.exists(userDirIncoming)) {
-			Files.createDirectory(userDirIncoming);
+			try {
+				Files.createDirectory(userDirIncoming);
+			} catch (FileAlreadyExistsException e) {
+				// Directory was probably created in the mean time (by checking-in a file as the same user)
+			}
 		}
 
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS");
