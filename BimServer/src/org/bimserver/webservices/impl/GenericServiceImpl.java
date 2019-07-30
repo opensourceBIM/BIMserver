@@ -71,6 +71,12 @@ public class GenericServiceImpl {
 			throw new UserException("Authentication required for this call");
 		}
 	}
+
+	protected void requireAtLeastAnonymousAuthentication() throws UserException {
+		if (serviceMap.getAuthorization() == null) {
+			throw new UserException("Authentication required for this call");
+		}
+	}
 	
 	protected void requireRealUserAuthentication() throws UserException {
 		requireRunningServer();

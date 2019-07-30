@@ -276,7 +276,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	@Override
 	public List<SWebModulePluginConfiguration> listAllWebModules() throws ServerException, UserException {
-		requireAuthentication();
+		requireAtLeastAnonymousAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			List<SWebModulePluginConfiguration> list = getBimServer().getSConverter()

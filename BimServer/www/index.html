@@ -34,7 +34,6 @@
 		var Global = {};
 		
 		function getApiAddress() {
-			console.log(window.location);
 			var fullpath = document.location.origin + document.location.pathname;
 			if (fullpath.substring(fullpath.length - 1) == "/") {
 				fullpath = fullpath.substring(0, fullpath.length - 1);
