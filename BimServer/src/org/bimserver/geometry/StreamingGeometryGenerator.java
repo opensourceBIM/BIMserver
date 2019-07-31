@@ -88,8 +88,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.sun.tools.xjc.model.CNonElement;
-
 public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	static final Logger LOGGER = LoggerFactory.getLogger(StreamingGeometryGenerator.class);
 	
@@ -644,9 +642,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			}
 			SkippedBecauseOfInvalidRepresentation skipped = report.getSkippedBecauseOfInvalidRepresentationIdentifier();
 			if (skipped.hasImportant()) {
-				LOGGER.error("[" + report.getOriginalIfcFileName() + "] Number of representations skipped:");
+				LOGGER.warn("[" + report.getOriginalIfcFileName() + "] Number of representations skipped:");
 				for (String identifier : skipped.getImportantSet()) {
-					LOGGER.error("\t" + identifier + ": " + skipped.get(identifier));
+					LOGGER.warn("\t" + identifier + ": " + skipped.get(identifier));
 				}
 			}
 			String dump = geometryGenerationDebugger.dump();
