@@ -54,7 +54,7 @@ public class RenderEnginePools {
 		}
 	}
 
-	public RenderEnginePool getRenderEnginePool(Schema schema, String className, PluginConfiguration pluginConfiguration) throws PluginException {
+	public synchronized RenderEnginePool getRenderEnginePool(Schema schema, String className, PluginConfiguration pluginConfiguration) throws PluginException {
 		if (pools.containsKey(schema)) {
 			Map<String, RenderEnginePool> map = pools.get(schema);
 			if (map.containsKey(className)) {
