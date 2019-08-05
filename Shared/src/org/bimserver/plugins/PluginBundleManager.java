@@ -158,8 +158,9 @@ public class PluginBundleManager implements AutoCloseable {
 
 		List<Dependency> dependenciesToResolve = new ArrayList<>();
 		for (org.apache.maven.model.Dependency dependency2 : model.getDependencies()) {
-			if (dependency2.getGroupId().contentEquals("org.opensourcebim") && (dependency2.getArtifactId().contentEquals("shared") || dependency2.getArtifactId().contentEquals("pluginbase"))) {
+			if (dependency2.getGroupId().contentEquals("org.opensourcebim") && (dependency2.getArtifactId().contentEquals("shared") || dependency2.getArtifactId().contentEquals("pluginbase") || dependency2.getArtifactId().contentEquals("ifcplugins"))) {
 				// We don't need to load BIMserver dependencies (and all their dependencies!)
+				// IfcPlugins is also added to this list, because it should never be referenced for actual use in plugins. The only time it is referenced is in a "test" scope, in that case we want to avoid resolving it (and all it's deps!)
 				continue;
 			}
 			dependenciesToResolve.add(new Dependency(new DefaultArtifact(dependency2.getGroupId(), dependency2.getArtifactId(), "pom", dependency2.getVersion()), dependency2.getScope()));
@@ -172,6 +173,9 @@ public class PluginBundleManager implements AutoCloseable {
 		rootDep.accept(nlg);
 		
 		for (Dependency dependency : nlg.getDependencies(true)) {
+			if (dependency.getScope().contentEquals("test")) {
+				continue;
+			}
 //			LOGGER.info(dependency.getArtifact().getGroupId() + "." + dependency.getArtifact().getArtifactId());
 			Artifact dependencyArtifact = dependency.getArtifact();
 			PluginBundleIdentifier pluginBundleIdentifier = new PluginBundleIdentifier(dependencyArtifact.getGroupId(), dependencyArtifact.getArtifactId());
