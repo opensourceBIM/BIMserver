@@ -142,7 +142,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 
 	@Override
 	public SBimServerInfo getBimServerInfo() throws ServerException, UserException {
-		requireAdminAuthentication();
+		requireAdminOrMonitorAuthentication();
 		SBimServerInfo bimServerInfo = new SBimServerInfo();
 		SVersion version = getBimServer().getVersionChecker().getLocalVersion();
 		SVersion latestVersion = getBimServer().getVersionChecker().getOnlineVersion();
@@ -166,7 +166,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 
 	@Override
 	public String getServerLog() throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
+		requireAdminOrMonitorAuthentication();
 		try {
 			return FileUtils.readFileToString(getBimServer().getHomeDir().resolve("logs/bimserver.log").toFile());
 		} catch (IOException e) {
@@ -375,7 +375,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 
 	@Override
 	public SMetrics getMetrics() throws UserException {
-		requireAdminAuthentication();
+		requireAdminOrMonitorAuthentication();
 		return getBimServer().getMetricsRegistry().getMetrics();
 	}
 
