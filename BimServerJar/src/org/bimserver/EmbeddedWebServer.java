@@ -19,6 +19,7 @@ package org.bimserver;
 
 import java.nio.file.Paths;
 
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.websocket.DeploymentException;
 import javax.websocket.Session;
@@ -42,6 +43,7 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 	private WebAppContext context;
 	private Server server;
 
+	@SuppressWarnings("unchecked")
 	public EmbeddedWebServer(BimServer bimServer, String resourceBase, boolean localDev) {
 		server = new Server(new QueuedThreadPool(200, 20));
 
@@ -86,6 +88,13 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 		
 		ServletHolder servletHolder = new ServletHolder(new RootServlet());
 		context.addServlet(servletHolder, "/*");
+		
+		try {
+			// Only if the Jolokia agent is available (JAR is on the classpath) the servlet will be mapped, if the class is not found, no errors are logged
+			context.addServlet((Class<? extends Servlet>) Class.forName("org.jolokia.http.AgentServlet"), "/jolokia/*");
+			LOGGER.info("Jolokia agent listening on /jolokia");
+		} catch (Throwable e) {
+		}
 		
 		context.getServletContext().setAttribute("bimserver", bimServer);
 		if (context.getResourceBase() == null) {
