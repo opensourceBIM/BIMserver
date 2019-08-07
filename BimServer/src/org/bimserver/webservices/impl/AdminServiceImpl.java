@@ -384,4 +384,10 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 		requireAdminAuthentication();
 		getBimServer().stop();
 	}
+	
+	@Override
+	public void gc() throws UserException, ServerException {
+		requireAdminAuthentication();
+		System.gc();
+	}
 }

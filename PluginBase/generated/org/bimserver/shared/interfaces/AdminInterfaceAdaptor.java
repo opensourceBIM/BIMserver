@@ -31,6 +31,9 @@ public class AdminInterfaceAdaptor implements org.bimserver.shared.interfaces.Ad
 	public void enablePlugin(java.lang.String name) throws UserException, ServerException {
 	}
 	
+	public void gc() throws UserException, ServerException {
+	}
+	
 	public java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> getAllPlugins() throws UserException, ServerException {
 		return null;
 	}

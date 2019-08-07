@@ -31,6 +31,8 @@ service AdminInterface {
 
 	rpc enablePlugin (EnablePluginRequest) returns (VoidResponse);
 
+	rpc gc (GcRequest) returns (VoidResponse);
+
 	rpc getAllPlugins (GetAllPluginsRequest) returns (GetAllPluginsResponse);
 
 	rpc getBimServerInfo (GetBimServerInfoRequest) returns (GetBimServerInfoResponse);
@@ -87,6 +89,9 @@ message DisablePluginRequest {
 
 message EnablePluginRequest {
 	optional string name = 1;
+}
+
+message GcRequest {
 }
 
 message GetAllPluginsRequest {

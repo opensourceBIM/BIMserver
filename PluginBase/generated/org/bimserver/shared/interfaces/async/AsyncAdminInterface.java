@@ -44,6 +44,11 @@ public class AsyncAdminInterface {
 		void error(Throwable e);
 	}
 	
+	public interface GcCallback {
+		void success();
+		void error(Throwable e);
+	}
+	
 	public interface GetAllPluginsCallback {
 		void success(java.util.List<org.bimserver.interfaces.objects.SPluginDescriptor> result);
 		void error(Throwable e);
@@ -176,6 +181,19 @@ public class AsyncAdminInterface {
 			public void run(){
 				try {
 					syncService.enablePlugin(name);
+					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void gc(final GcCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					syncService.gc();
 					callback.success();
 				} catch (Throwable e) {
 					callback.error(e);

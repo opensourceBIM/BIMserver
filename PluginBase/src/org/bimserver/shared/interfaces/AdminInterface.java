@@ -233,4 +233,7 @@ public interface AdminInterface extends PublicInterface {
 
 	@WebMethod(action = "shutdown")
 	void shutdown() throws UserException, ServerException;
+
+	@WebMethod(action = "gc")
+	void gc() throws UserException, ServerException;
 }
