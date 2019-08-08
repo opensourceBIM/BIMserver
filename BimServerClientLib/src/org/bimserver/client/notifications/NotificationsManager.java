@@ -97,6 +97,7 @@ public class NotificationsManager extends NotificationsClient {
 			webSocketClient.connect(webSocketImpl, uri, request);
 			webSocketImpl.waitForEndpointId();
 			heartbeat = new WebSocketHeartbeat(webSocketImpl);
+			heartbeat.start();
 			running = true;
 		} catch (IOException e) {
 			LOGGER.error("", e);
