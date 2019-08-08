@@ -60,6 +60,15 @@ public class GeometryAccellerator {
 	private final LoadingCache<DensityThresholdKey, DensityThreshold> densityThresholds;
 	private final LoadingCache<ReuseKey, ReuseSet> reuseSets;
 
+	/*
+	 * TODO
+	 * - Implement cache eviction either
+	 * 		- By trying to come up with an estimate as to how many bytes each cache entry uses and simply limiting on for example 10% of MAX heap (and eviction on last used, or least used)
+	 * 		- By simply changing the limit on the amount of entries to something smaller
+	 * 		- Manually, by adding an API call that cleans up cache entries, this can be useful for clients that already know they won't be querying a model anytime soon
+	 * 		- Allowing clients to set the maximumSize
+	 */
+	
 	public GeometryAccellerator(BimServer bimServer) {
 		this.bimServer = bimServer;
 		
