@@ -231,7 +231,7 @@ public class Database implements BimDatabase {
 		settings.setAllowUsersToCreateTopLevelProjects(false);
 		settings.setCheckinMergingEnabled(false);
 		settings.setHideUserListForNonAdmin(true);
-		settings.setCacheOutputFiles(true);
+		settings.setCacheOutputFiles(false);
 		settings.setServiceRepositoryUrl("https://raw.githubusercontent.com/opensourceBIM/BIMserver-Repository/master");
 		settings.setAllowOnlyWhitelisted(false);
 		settings.setGenerateGeometryOnCheckin(true);
