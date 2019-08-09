@@ -40,7 +40,7 @@ public class WebSocketImpl {
 	
     public void waitForEndpointId() {
     	try {
-			if (countDownLatch.await(1, TimeUnit.MINUTES)) {
+			if (!countDownLatch.await(1, TimeUnit.MINUTES)) {
 				LOGGER.warn("Did not get an EndpointId within 1 minute");
 			}
 		} catch (InterruptedException e) {
