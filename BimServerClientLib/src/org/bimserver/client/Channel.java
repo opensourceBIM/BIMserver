@@ -158,12 +158,14 @@ public abstract class Channel implements ServiceHolder {
 						try {
 							return (SLongCheckinActionState) getJsonConverter().fromJson(sServicesMap.getSType("SLongCheckinState"), null, result);
 						} catch (ConvertException e) {
-							e.printStackTrace();
+							throw new ServerException(e);
 						}
 					}
 				} finally {
 					in.close();
 				}
+			} else {
+				throw new ServerException("HTTP Status Code " + httpResponse.getStatusLine().getStatusCode() + " " + httpResponse.getStatusLine().getReasonPhrase());
 			}
 		} catch (ClientProtocolException e) {
 			throw new ServerException(e);
@@ -171,10 +173,12 @@ public abstract class Channel implements ServiceHolder {
 			throw new ServerException(e);
 		} catch (PublicInterfaceNotFoundException e) {
 			throw new ServerException(e);
+		} catch (Exception e) {
+			throw new ServerException(e);
 		} finally {
 			httppost.releaseConnection();
 		}
-		return null;
+		throw new ServerException("Null result");
 	}
 
 	private MultipartEntityBuilder createMultiPart() {
