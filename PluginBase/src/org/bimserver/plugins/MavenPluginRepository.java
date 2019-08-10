@@ -1,5 +1,7 @@
 package org.bimserver.plugins;
 
+import java.io.File;
+
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
  * 
@@ -18,24 +20,34 @@ package org.bimserver.plugins;
  *****************************************************************************/
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.maven.repository.internal.MavenRepositorySystemUtils;
+import org.apache.maven.settings.Mirror;
+import org.apache.maven.settings.Settings;
+import org.apache.maven.settings.building.DefaultSettingsBuilder;
+import org.apache.maven.settings.building.DefaultSettingsBuilderFactory;
+import org.apache.maven.settings.building.DefaultSettingsBuildingRequest;
+import org.apache.maven.settings.building.SettingsBuildingException;
+import org.apache.maven.settings.building.SettingsBuildingRequest;
+import org.apache.maven.settings.building.SettingsBuildingResult;
 import org.eclipse.aether.DefaultRepositorySystemSession;
 import org.eclipse.aether.RepositorySystem;
 import org.eclipse.aether.RepositorySystemSession;
 import org.eclipse.aether.connector.basic.BasicRepositoryConnectorFactory;
 import org.eclipse.aether.impl.DefaultServiceLocator;
-import org.eclipse.aether.repository.*;
+import org.eclipse.aether.repository.LocalRepository;
+import org.eclipse.aether.repository.LocalRepositoryManager;
+import org.eclipse.aether.repository.RemoteRepository;
+import org.eclipse.aether.repository.RepositoryPolicy;
 import org.eclipse.aether.spi.connector.RepositoryConnectorFactory;
 import org.eclipse.aether.spi.connector.transport.TransporterFactory;
 import org.eclipse.aether.transport.file.FileTransporterFactory;
 import org.eclipse.aether.transport.http.HttpTransporterFactory;
+import org.eclipse.aether.util.repository.DefaultMirrorSelector;
 import org.jetbrains.idea.maven.aether.JreProxySelector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,56 +59,66 @@ public class MavenPluginRepository {
 	private final Set<RemoteRepository> repositories = new LinkedHashSet<>();
 	private final List<RemoteRepository> localRepositories;
 	private final JreProxySelector proxySelector = new JreProxySelector();
-	private String defaultRemoteRepositoryLocation;
-	private Path localRepoFile;
 	private RemoteRepository local;
 	
-	public MavenPluginRepository(Path localRepoFile) {
-		this(localRepoFile, "http://central.maven.org/maven2", System.getProperty("user.home") + "/.m2/repository");
-	}
-	
-	public MavenPluginRepository(Path localRepoFile, String defaultRemoteRepositoryLocation, String defaultLocalRepositoryLocation) {
-		this.localRepoFile = localRepoFile;
-		this.defaultRemoteRepositoryLocation = defaultRemoteRepositoryLocation;
+	public MavenPluginRepository() {
+		Settings settings = loadDefaultUserSettings();
 
+		RemoteRepository central = new RemoteRepository.Builder( "central", "default", "http://repo1.maven.org/maven2/" ).build();
+		repositories.add(central);
+		
 		system = newRepositorySystem();
-		session = newRepositorySystemSession(system, localRepoFile);
-
-		RemoteRepository.Builder builder = new RemoteRepository.Builder("central", "default", defaultRemoteRepositoryLocation);
-		builder.setPolicy(new RepositoryPolicy(true, RepositoryPolicy.UPDATE_POLICY_INTERVAL + ":60", RepositoryPolicy.CHECKSUM_POLICY_FAIL));
-		repositories.add(builder.setProxy(proxySelector.getProxy(defaultRemoteRepositoryLocation)).build());
-
-		String amazonUrl = "http://public.logic-labs.nl.s3.amazonaws.com/release";
-		builder = new RemoteRepository.Builder("public", "default", amazonUrl);
-		builder.setPolicy(new RepositoryPolicy(true, RepositoryPolicy.UPDATE_POLICY_INTERVAL + ":60", RepositoryPolicy.CHECKSUM_POLICY_IGNORE));
-		repositories.add(builder.setProxy(proxySelector.getProxy(amazonUrl)).build());
-
-		if (defaultLocalRepositoryLocation != null) {
-			RemoteRepository.Builder localRepoBuilder = new RemoteRepository.Builder("local", "default", "file://" + defaultLocalRepositoryLocation);
-			localRepoBuilder.setPolicy(new RepositoryPolicy(true, RepositoryPolicy.UPDATE_POLICY_INTERVAL + ":60", RepositoryPolicy.CHECKSUM_POLICY_FAIL));
-			local = localRepoBuilder.build();
-			repositories.add(local);
-			LOGGER.debug("Adding " + defaultLocalRepositoryLocation + " as repository");
-		}
+		session = newRepositorySystemSession(system, settings.getLocalRepository(), settings);
 
 		localRepositories = new ArrayList<>();
+
+		RemoteRepository.Builder localRepoBuilder = new RemoteRepository.Builder("local", "default", "file://" + settings.getLocalRepository());
+		localRepoBuilder.setPolicy(new RepositoryPolicy(true, RepositoryPolicy.UPDATE_POLICY_INTERVAL + ":60", RepositoryPolicy.CHECKSUM_POLICY_FAIL));
+		local = localRepoBuilder.build();
+		repositories.add(local);
+		LOGGER.debug("Adding " + settings.getLocalRepository() + " as repository");
+
 		localRepositories.add(local);
+	}
+
+	private Settings loadDefaultUserSettings() {
+		String userHome = System.getProperty("user.home");
+	    File userMavenConfigurationHome = new File(userHome, ".m2");
+	    String envM2Home = System.getenv("M2_HOME");
+	    File DEFAULT_USER_SETTINGS_FILE = new File(userMavenConfigurationHome, "settings.xml");
+	    File DEFAULT_GLOBAL_SETTINGS_FILE = new File(System.getProperty("maven.home", envM2Home != null ? envM2Home : ""), "conf/settings.xml");
+	    SettingsBuildingRequest settingsBuildingRequest = new DefaultSettingsBuildingRequest();
+	    settingsBuildingRequest.setSystemProperties(System.getProperties());
+	    settingsBuildingRequest.setUserSettingsFile(DEFAULT_USER_SETTINGS_FILE);
+	    settingsBuildingRequest.setGlobalSettingsFile(DEFAULT_GLOBAL_SETTINGS_FILE);
+
+	    DefaultSettingsBuilderFactory mvnSettingBuilderFactory = new DefaultSettingsBuilderFactory();
+	    DefaultSettingsBuilder settingsBuilder = mvnSettingBuilderFactory.newInstance();
+	    try {
+			SettingsBuildingResult settingsBuildingResult = settingsBuilder.build(settingsBuildingRequest);
+			Settings settings = settingsBuildingResult.getEffectiveSettings();
+			return settings;
+		} catch (SettingsBuildingException e) {
+			e.printStackTrace();
+		}
+	    return null;
 	}
 
 	public RemoteRepository getLocal() {
 		return local;
 	}	
 	
-	public MavenPluginLocation getPluginLocation(String defaultrepository, String groupId, String artifactId) {
-		return new MavenPluginLocation(this, defaultrepository, groupId, artifactId);
-	}
-	
 	public MavenPluginLocation getPluginLocation(String groupId, String artifactId) {
-		return new MavenPluginLocation(this, defaultRemoteRepositoryLocation, groupId, artifactId);
+		return new MavenPluginLocation(this, groupId, artifactId);
+	}
+
+	public MavenPluginLocation getPluginLocation(String repository, String groupId, String artifactId) {
+		return new MavenPluginLocation(this, repository, groupId, artifactId);
 	}
 	
 	private RepositorySystem newRepositorySystem() {
 		DefaultServiceLocator locator = MavenRepositorySystemUtils.newServiceLocator();
+		
 		locator.addService(RepositoryConnectorFactory.class, BasicRepositoryConnectorFactory.class);
 		locator.addService(TransporterFactory.class, FileTransporterFactory.class);
 		locator.addService(TransporterFactory.class, HttpTransporterFactory.class);
@@ -111,11 +133,16 @@ public class MavenPluginRepository {
 		return locator.getService(RepositorySystem.class);
 	}
 
-	private DefaultRepositorySystemSession newRepositorySystemSession(RepositorySystem system, Path localRepoFile) {
+	private DefaultRepositorySystemSession newRepositorySystemSession(RepositorySystem system, String localRepoFile, Settings settings) {
 		DefaultRepositorySystemSession session = MavenRepositorySystemUtils.newSession();
+		DefaultMirrorSelector mirrorSelector = new DefaultMirrorSelector();
+		for (Mirror mirror : settings.getMirrors()) {
+			mirrorSelector.add(mirror.getId(), mirror.getUrl(), "default", true, mirror.getMirrorOf(), "*");
+		}
+		session.setMirrorSelector(mirrorSelector);
 		session.setProxySelector(proxySelector);
 
-		LocalRepository localRepo = new LocalRepository(localRepoFile.toFile());
+		LocalRepository localRepo = new LocalRepository(localRepoFile);
 		LocalRepositoryManager manager = system.newLocalRepositoryManager(session, localRepo);
 		session.setLocalRepositoryManager(manager);
 
@@ -139,7 +166,7 @@ public class MavenPluginRepository {
 	}
 
 	public void clearCache() throws IOException {
-		FileUtils.deleteDirectory(this.localRepoFile.toFile());
+		LOGGER.error("clearCache not supported");
 	}
 
 	public List<RemoteRepository> getLocalRepositories() {

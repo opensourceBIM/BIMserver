@@ -44,7 +44,6 @@ import org.bimserver.interfaces.objects.SPluginBundleVersion;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 import org.eclipse.aether.artifact.Artifact;
 import org.eclipse.aether.artifact.DefaultArtifact;
-import org.eclipse.aether.repository.RemoteRepository;
 import org.eclipse.aether.resolution.ArtifactDescriptorException;
 import org.eclipse.aether.resolution.ArtifactDescriptorRequest;
 import org.eclipse.aether.resolution.ArtifactDescriptorResult;
@@ -65,15 +64,19 @@ import com.google.common.collect.Lists;
 public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(MavenPluginLocation.class);
-	private String defaultrepository;
 	private String groupId;
 	private String artifactId;
 	private MavenPluginRepository mavenPluginRepository;
 
-	protected MavenPluginLocation(MavenPluginRepository mavenPluginRepository, String defaultrepository, String groupId, String artifactId) {
+	protected MavenPluginLocation(MavenPluginRepository mavenPluginRepository, String groupId, String artifactId) {
 		this.mavenPluginRepository = mavenPluginRepository;
-		this.mavenPluginRepository.addRepository("given", "default", defaultrepository);
-		this.defaultrepository = defaultrepository;
+		this.groupId = groupId;
+		this.artifactId = artifactId;
+	}
+
+	protected MavenPluginLocation(MavenPluginRepository mavenPluginRepository, String defaultRepository, String groupId, String artifactId) {
+		this.mavenPluginRepository = mavenPluginRepository;
+		this.mavenPluginRepository.addRepository("given", "default", defaultRepository);
 		this.groupId = groupId;
 		this.artifactId = artifactId;
 	}
@@ -143,17 +146,21 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 		MavenPluginVersion mavenPluginVersion = new MavenPluginVersion(versionArtifact, version);
 		ArtifactDescriptorResult descriptorResult;
 		descriptorResult = mavenPluginRepository.getSystem().readArtifactDescriptor(mavenPluginRepository.getSession(), descriptorRequest);
-		ArtifactRequest request = new ArtifactRequest();
-		request.setArtifact(descriptorResult.getArtifact());
-		request.setRepositories(mavenPluginRepository.getRepositoriesAsList());
-		ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
 		
-		File pomFile = resolveArtifact.getArtifact().getFile();
-		MavenXpp3Reader mavenreader = new MavenXpp3Reader();
-		
-		try (FileReader fileReader = new FileReader(pomFile)) {
-			Model model = mavenreader.read(fileReader);
-			mavenPluginVersion.setModel(model);
+		try {
+			ArtifactRequest request = new ArtifactRequest();
+			request.setArtifact(descriptorResult.getArtifact());
+			request.setRepositories(mavenPluginRepository.getRepositoriesAsList());
+			ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
+			File pomFile = resolveArtifact.getArtifact().getFile();
+			MavenXpp3Reader mavenreader = new MavenXpp3Reader();
+			
+			try (FileReader fileReader = new FileReader(pomFile)) {
+				Model model = mavenreader.read(fileReader);
+				mavenPluginVersion.setModel(model);
+			}
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage());
 		}
 		
 		for (org.eclipse.aether.graph.Dependency dependency : descriptorResult.getDependencies()) {
@@ -248,7 +255,6 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 		
 		VersionRangeRequest rangeRequest = new VersionRangeRequest();
 		rangeRequest.setArtifact(artifact);
-		rangeRequest.setRepositories(mavenPluginRepository.getRepositoriesAsList());
 		
 		try {
 			VersionRangeResult rangeResult = mavenPluginRepository.getSystem().resolveVersionRange(mavenPluginRepository.getSession(), rangeRequest);
@@ -260,14 +266,12 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 				Artifact versionArtifact = new DefaultArtifact(groupId + ":" + artifactId + ":pom:" + version.toString());
 
 				descriptorRequest.setArtifact(versionArtifact);
-				descriptorRequest.setRepositories(mavenPluginRepository.getRepositoriesAsList());
 
 				MavenPluginVersion mavenPluginVersion = new MavenPluginVersion(versionArtifact, version);
 				ArtifactDescriptorResult descriptorResult = mavenPluginRepository.getSystem().readArtifactDescriptor(mavenPluginRepository.getSession(), descriptorRequest);
 
 				ArtifactRequest request = new ArtifactRequest();
 				request.setArtifact(descriptorResult.getArtifact());
-				request.setRepositories(mavenPluginRepository.getRepositoriesAsList());
 				ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
 
 				File pomFile = resolveArtifact.getArtifact().getFile();
@@ -414,7 +418,6 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 			
 			ArtifactRequest request = new ArtifactRequest();
 			request.setArtifact(versionArtifact);
-			request.setRepositories(mavenPluginRepository.getRepositoriesAsList());
 			ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
 	
 			File pomFile = resolveArtifact.getArtifact().getFile();
@@ -461,7 +464,7 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 			sPluginBundleVersion.setArtifactId(artifactId);
 			sPluginBundleVersion.setVersion(version);
 			sPluginBundleVersion.setDescription(model.getDescription());
-			sPluginBundleVersion.setRepository(defaultrepository);
+//			sPluginBundleVersion.setRepository(defaultrepository);
 			sPluginBundleVersion.setMismatch(false);
 			
 			try {

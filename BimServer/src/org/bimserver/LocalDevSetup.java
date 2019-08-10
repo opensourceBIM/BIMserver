@@ -78,7 +78,7 @@ public class LocalDevSetup {
 			if (!Files.exists(tmp)) {
 				Files.createDirectories(tmp);
 			}
-			MavenPluginRepository mavenPluginRepository = new MavenPluginRepository(home.resolve("maven"));
+			MavenPluginRepository mavenPluginRepository = new MavenPluginRepository();
 			PluginManager pluginManager = new PluginManager(tmp, System.getProperty("java.class.path"), null, null, null, null);
 
 			MetaDataManager metaDataManager = new MetaDataManager(tmp);
@@ -112,7 +112,7 @@ public class LocalDevSetup {
 			if (!Files.isDirectory(tmp)) {
 				Files.createDirectory(tmp);
 			}
-			MavenPluginRepository mavenPluginRepository = new MavenPluginRepository(home.resolve("maven"));
+			MavenPluginRepository mavenPluginRepository = new MavenPluginRepository();
 			PluginManager pluginManager = new PluginManager(tmp, System.getProperty("java.class.path"), null, null, null, null);
 			PluginBundleManager pluginBundleManager = new PluginBundleManager(pluginManager, mavenPluginRepository, home.resolve("plugins"));
 			pluginBundleManager.loadAllPluginsFromEclipseWorkspace(Paths.get("../"), true);
