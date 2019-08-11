@@ -64,20 +64,20 @@ public class MavenPluginRepository {
 	public MavenPluginRepository() {
 		Settings settings = loadDefaultUserSettings();
 
-		RemoteRepository central = new RemoteRepository.Builder( "central", "default", "http://repo1.maven.org/maven2/" ).build();
+		RemoteRepository central = new RemoteRepository.Builder("central", "default", "http://repo1.maven.org/maven2/").build();
 		repositories.add(central);
 		
 		system = newRepositorySystem();
-		session = newRepositorySystemSession(system, settings.getLocalRepository(), settings);
+		String userHome = System.getProperty("user.home");
+		File localRepository = new File(settings.getLocalRepository() == null ? userHome + "/.m2/repository" : settings.getLocalRepository());
+		session = newRepositorySystemSession(system, localRepository, settings);
 
 		localRepositories = new ArrayList<>();
 
-		RemoteRepository.Builder localRepoBuilder = new RemoteRepository.Builder("local", "default", "file://" + settings.getLocalRepository());
+		RemoteRepository.Builder localRepoBuilder = new RemoteRepository.Builder("local", "default", "file://" + localRepository.toString());
 		localRepoBuilder.setPolicy(new RepositoryPolicy(true, RepositoryPolicy.UPDATE_POLICY_INTERVAL + ":60", RepositoryPolicy.CHECKSUM_POLICY_FAIL));
 		local = localRepoBuilder.build();
 		repositories.add(local);
-		LOGGER.debug("Adding " + settings.getLocalRepository() + " as repository");
-
 		localRepositories.add(local);
 	}
 
@@ -133,18 +133,19 @@ public class MavenPluginRepository {
 		return locator.getService(RepositorySystem.class);
 	}
 
-	private DefaultRepositorySystemSession newRepositorySystemSession(RepositorySystem system, String localRepoFile, Settings settings) {
+	private DefaultRepositorySystemSession newRepositorySystemSession(RepositorySystem system, File localRepoFile, Settings settings) {
 		DefaultRepositorySystemSession session = MavenRepositorySystemUtils.newSession();
-		DefaultMirrorSelector mirrorSelector = new DefaultMirrorSelector();
-		for (Mirror mirror : settings.getMirrors()) {
-			mirrorSelector.add(mirror.getId(), mirror.getUrl(), "default", true, mirror.getMirrorOf(), "*");
+		if (!settings.getMirrors().isEmpty()) {
+			DefaultMirrorSelector mirrorSelector = new DefaultMirrorSelector();
+			for (Mirror mirror : settings.getMirrors()) {
+				mirrorSelector.add(mirror.getId(), mirror.getUrl(), "default", true, mirror.getMirrorOf(), "*");
+			}
+			session.setMirrorSelector(mirrorSelector);
 		}
-		session.setMirrorSelector(mirrorSelector);
 		session.setProxySelector(proxySelector);
 
 		LocalRepository localRepo = new LocalRepository(localRepoFile);
-		LocalRepositoryManager manager = system.newLocalRepositoryManager(session, localRepo);
-		session.setLocalRepositoryManager(manager);
+		session.setLocalRepositoryManager(system.newLocalRepositoryManager(session, localRepo));
 
 		return session;
 	}
