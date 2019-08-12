@@ -3,10 +3,10 @@ function BasicApi(serverAddress) {
 	
 	o.serverAddress = serverAddress;
 	
-	this.call = function(interface, method, parameters, callback, errorCallback) {
+	this.call = function(interfaceName, method, parameters, callback, errorCallback) {
 		var request = {
 			request: {
-				interface: interface,
+				"interface": interfaceName,
 				method: method,
 				parameters: parameters
 			}
