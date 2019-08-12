@@ -34,6 +34,7 @@ package org.bimserver.models.store.impl;
  *****************************************************************************/
 
 import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.models.store.PluginDescriptor;
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.SmtpProtocol;
 import org.bimserver.models.store.StorePackage;
@@ -82,6 +83,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isStoreLastLogin <em>Store Last Login</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isStoreServiceRuns <em>Store Service Runs</em>}</li>
  *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#isOptimizeMappedItems <em>Optimize Mapped Items</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.ServerSettingsImpl#getDefaultRenderEnginePlugin <em>Default Render Engine Plugin</em>}</li>
  * </ul>
  *
  * @generated
@@ -756,6 +758,26 @@ public class ServerSettingsImpl extends IdEObjectImpl implements ServerSettings 
 	@Override
 	public void setOptimizeMappedItems(boolean newOptimizeMappedItems) {
 		eSet(StorePackage.Literals.SERVER_SETTINGS__OPTIMIZE_MAPPED_ITEMS, newOptimizeMappedItems);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public PluginDescriptor getDefaultRenderEnginePlugin() {
+		return (PluginDescriptor) eGet(StorePackage.Literals.SERVER_SETTINGS__DEFAULT_RENDER_ENGINE_PLUGIN, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDefaultRenderEnginePlugin(PluginDescriptor newDefaultRenderEnginePlugin) {
+		eSet(StorePackage.Literals.SERVER_SETTINGS__DEFAULT_RENDER_ENGINE_PLUGIN, newDefaultRenderEnginePlugin);
 	}
 
 } //ServerSettingsImpl

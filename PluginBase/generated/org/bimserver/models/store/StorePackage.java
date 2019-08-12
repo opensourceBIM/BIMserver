@@ -1383,13 +1383,22 @@ public interface StorePackage extends EPackage {
 	int SERVER_SETTINGS__OPTIMIZE_MAPPED_ITEMS = 32;
 
 	/**
+	 * The feature id for the '<em><b>Default Render Engine Plugin</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVER_SETTINGS__DEFAULT_RENDER_ENGINE_PLUGIN = 33;
+
+	/**
 	 * The number of structural features of the '<em>Server Settings</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVER_SETTINGS_FEATURE_COUNT = 33;
+	int SERVER_SETTINGS_FEATURE_COUNT = 34;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.UserSettingsImpl <em>User Settings</em>}' class.
@@ -9192,6 +9201,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getServerSettings_OptimizeMappedItems();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.bimserver.models.store.ServerSettings#getDefaultRenderEnginePlugin <em>Default Render Engine Plugin</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Default Render Engine Plugin</em>'.
+	 * @see org.bimserver.models.store.ServerSettings#getDefaultRenderEnginePlugin()
+	 * @see #getServerSettings()
+	 * @generated
+	 */
+	EReference getServerSettings_DefaultRenderEnginePlugin();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.UserSettings <em>User Settings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15849,6 +15869,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SERVER_SETTINGS__OPTIMIZE_MAPPED_ITEMS = eINSTANCE.getServerSettings_OptimizeMappedItems();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Render Engine Plugin</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SERVER_SETTINGS__DEFAULT_RENDER_ENGINE_PLUGIN = eINSTANCE.getServerSettings_DefaultRenderEnginePlugin();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.UserSettingsImpl <em>User Settings</em>}' class.

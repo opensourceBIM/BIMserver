@@ -115,6 +115,8 @@ service PluginInterface {
 
 	rpc getDefaultRenderEngine (GetDefaultRenderEngineRequest) returns (GetDefaultRenderEngineResponse);
 
+	rpc getDefaultRenderEnginePluginDescriptor (GetDefaultRenderEnginePluginDescriptorRequest) returns (GetDefaultRenderEnginePluginDescriptorResponse);
+
 	rpc getDefaultSerializer (GetDefaultSerializerRequest) returns (GetDefaultSerializerResponse);
 
 	rpc getDefaultWebModule (GetDefaultWebModuleRequest) returns (GetDefaultWebModuleResponse);
@@ -635,6 +637,14 @@ message GetDefaultRenderEngineRequest {
 message GetDefaultRenderEngineResponse {
 	optional string errorMessage = 1;
 	optional SRenderEnginePluginConfiguration value = 2;
+}
+
+message GetDefaultRenderEnginePluginDescriptorRequest {
+}
+
+message GetDefaultRenderEnginePluginDescriptorResponse {
+	optional string errorMessage = 1;
+	optional SPluginDescriptor value = 2;
 }
 
 message GetDefaultSerializerRequest {

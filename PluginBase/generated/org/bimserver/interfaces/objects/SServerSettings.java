@@ -18,10 +18,14 @@ package org.bimserver.interfaces.objects;
  *****************************************************************************/
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlTransient;
 import java.util.UUID;
-import org.bimserver.shared.meta.*;
+
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import org.bimserver.shared.meta.SClass;
+import org.bimserver.shared.meta.SDataBase;
+import org.bimserver.shared.meta.SField;
 
 
 @XmlRootElement
@@ -66,6 +70,7 @@ public class SServerSettings implements SDataBase
 	private boolean storeLastLogin;
 	private boolean storeServiceRuns;
 	private boolean optimizeMappedItems;
+	private long defaultRenderEnginePluginId = -1;
 
 	public long getOid() {
 		return this.oid;
@@ -199,6 +204,9 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("optimizeMappedItems")) {
 			return isOptimizeMappedItems();
+		}
+		if (sField.getName().equals("defaultRenderEnginePluginId")) {
+			return getDefaultRenderEnginePluginId();
 		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
@@ -344,6 +352,10 @@ public class SServerSettings implements SDataBase
 		}
 		if (sField.getName().equals("optimizeMappedItems")) {
 			setOptimizeMappedItems((Boolean)val);
+			return;
+		}
+		if (sField.getName().equals("defaultRenderEnginePluginId")) {
+			setDefaultRenderEnginePluginId((Long)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -624,6 +636,14 @@ public class SServerSettings implements SDataBase
 
 	public void setOptimizeMappedItems(boolean optimizeMappedItems) {
 		this.optimizeMappedItems = optimizeMappedItems;
+	}
+	
+	public long getDefaultRenderEnginePluginId() {
+		return defaultRenderEnginePluginId;
+	}
+
+	public void setDefaultRenderEnginePluginId(long defaultRenderEnginePluginId) {
+		this.defaultRenderEnginePluginId = defaultRenderEnginePluginId;
 	}
 	
 	@Override

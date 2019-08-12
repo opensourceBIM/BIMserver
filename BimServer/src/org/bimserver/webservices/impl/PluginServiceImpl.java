@@ -1627,4 +1627,9 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			throw new UserException(e);
 		}
 	}
+
+	@Override
+	public SPluginDescriptor getDefaultRenderEnginePluginDescriptor() throws ServerException, UserException {
+		return getBimServer().getSConverter().convertToSObject(getBimServer().getServerSettingsCache().getServerSettings().getDefaultRenderEnginePlugin());
+	}
 }

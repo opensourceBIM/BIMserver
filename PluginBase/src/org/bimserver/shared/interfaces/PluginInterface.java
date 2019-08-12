@@ -137,6 +137,13 @@ public interface PluginInterface extends PublicInterface {
 	List<SPluginDescriptor> getAllRenderEnginePluginDescriptors() throws ServerException, UserException;
 
 	/**
+	 * @return Return the default render engine plugin descriptor, this is the one used to set as the default render engine for new users
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "getDefaultRenderEnginePluginDescriptor")
+	SPluginDescriptor getDefaultRenderEnginePluginDescriptor() throws ServerException, UserException;
+
+	/**
 	 * @return List of all DeserializerPluginDescriptors
 	 * @throws ServerException, UserException
 	 */

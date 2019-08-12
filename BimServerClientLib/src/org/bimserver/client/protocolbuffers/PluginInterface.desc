@@ -1,5 +1,5 @@
 
-ﬁ⁄
+π›
 PluginInterface.protoorg.bimserver.pbServiceInterface.protoNewServicesInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.proto"b
 AddDeserializerRequestH
 deserializer (22.org.bimserver.pb.SDeserializerPluginConfiguration">
@@ -262,7 +262,11 @@ repository
 GetDefaultRenderEngineRequest"y
 GetDefaultRenderEngineResponse
 errorMessage (	A
-value (22.org.bimserver.pb.SRenderEnginePluginConfiguration"
+value (22.org.bimserver.pb.SRenderEnginePluginConfiguration"/
+-GetDefaultRenderEnginePluginDescriptorRequest"z
+.GetDefaultRenderEnginePluginDescriptorResponse
+errorMessage (	2
+value (2#.org.bimserver.pb.SPluginDescriptor"
 GetDefaultSerializerRequest"u
 GetDefaultSerializerResponse
 errorMessage (	?
@@ -588,7 +592,7 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*å
 SPrimitiveEnum_DOUBLE
 SPrimitiveEnum_BOOLEAN
 SPrimitiveEnum_STRING
-SPrimitiveEnum_BYTE_ARRAY2ëT
+SPrimitiveEnum_BYTE_ARRAY2øU
 PluginInterfacef
 addDeserializer(.org.bimserver.pb.AddDeserializerRequest).org.bimserver.pb.AddDeserializerResponseo
 addInternalService+.org.bimserver.pb.AddInternalServiceRequest,.org.bimserver.pb.AddInternalServiceResponsef
@@ -632,7 +636,8 @@ serializer (20.org.bimserver.pb.SSerializerPluginConfiguration*å
 getDefaultModelCompare/.org.bimserver.pb.GetDefaultModelCompareRequest0.org.bimserver.pb.GetDefaultModelCompareResponsex
 getDefaultModelMerger..org.bimserver.pb.GetDefaultModelMergerRequest/.org.bimserver.pb.GetDefaultModelMergerResponsex
 getDefaultQueryEngine..org.bimserver.pb.GetDefaultQueryEngineRequest/.org.bimserver.pb.GetDefaultQueryEngineResponse{
-getDefaultRenderEngine/.org.bimserver.pb.GetDefaultRenderEngineRequest0.org.bimserver.pb.GetDefaultRenderEngineResponseu
+getDefaultRenderEngine/.org.bimserver.pb.GetDefaultRenderEngineRequest0.org.bimserver.pb.GetDefaultRenderEngineResponse´
+&getDefaultRenderEnginePluginDescriptor?.org.bimserver.pb.GetDefaultRenderEnginePluginDescriptorRequest@.org.bimserver.pb.GetDefaultRenderEnginePluginDescriptorResponseu
 getDefaultSerializer-.org.bimserver.pb.GetDefaultSerializerRequest..org.bimserver.pb.GetDefaultSerializerResponser
 getDefaultWebModule,.org.bimserver.pb.GetDefaultWebModuleRequest-.org.bimserver.pb.GetDefaultWebModuleResponseÅ
 getInstalledPluginBundle1.org.bimserver.pb.GetInstalledPluginBundleRequest2.org.bimserver.pb.GetInstalledPluginBundleResponseÑ

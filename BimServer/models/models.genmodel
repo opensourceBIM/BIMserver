@@ -12022,6 +12022,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ServerSettings/storeLastLogin"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ServerSettings/storeServiceRuns"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/ServerSettings/optimizeMappedItems"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/ServerSettings/defaultRenderEnginePlugin"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/4/UserSettings">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference models.ecore#/4/UserSettings/serializers"/>

@@ -41,7 +41,6 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.sun.xml.ws.policy.privateutil.PolicyUtils.Collections;
 
 public class SMethod {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SMethod.class);

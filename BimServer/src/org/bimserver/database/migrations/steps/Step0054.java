@@ -1,4 +1,4 @@
-package org.bimserver.database.queries.om;
+package org.bimserver.database.migrations.steps;
 
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
@@ -17,35 +17,19 @@ package org.bimserver.database.queries.om;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.migrations.Migration;
+import org.bimserver.database.migrations.Schema;
 
-public class Properties {
+public class Step0054 extends Migration {
 
-	private final Map<String, Object> mappings = new HashMap<>();
-	
-	public Properties(String key, Object value) {
-		mappings.put(key, value);
+	@Override
+	public void migrate(Schema schema, DatabaseSession databaseSession) {
+		schema.createEReference(schema.getEClass("store", "ServerSettings"), "defaultRenderEnginePlugin", schema.getEClass("store", "PluginDescriptor"));
 	}
 
-	public void add(String key, Object value) {
-		mappings.put(key, value);
-	}
-
-	public int count() {
-		return mappings.size();
-	}
-
-	public boolean has(String name) {
-		return mappings.containsKey(name);
-	}
-
-	public Object get(String name) {
-		return mappings.get(name);
-	}
-	
-	public Set<String> keys() {
-		return mappings.keySet();
+	@Override
+	public String getDescription() {
+		return "Added default render engine server setting";
 	}
 }

@@ -17,7 +17,6 @@
 package org.bimserver.models.store;
 
 import org.bimserver.emf.IdEObject;
-
 import org.bimserver.models.geometry.Bounds;
 
 /**

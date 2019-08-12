@@ -22,6 +22,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.lang.reflect.TypeVariable;
 import java.lang.reflect.WildcardType;
 import java.util.Collection;
 import java.util.HashSet;
@@ -146,7 +147,6 @@ public class SServicesMap {
 		}
 	}
 	
-	@SuppressWarnings("restriction")
 	public Class<?> getGenericType(Method method) {
 		Type genericReturnType = method.getGenericReturnType();
 		if (method.getGenericReturnType() instanceof ParameterizedType) {
@@ -156,8 +156,8 @@ public class SServicesMap {
 				return null;
 			} else if (first instanceof ParameterizedType) {
 				return null;
-			} else if (first instanceof sun.reflect.generics.reflectiveObjects.TypeVariableImpl) {
-				sun.reflect.generics.reflectiveObjects.TypeVariableImpl<?> typeVariableImpl = (sun.reflect.generics.reflectiveObjects.TypeVariableImpl<?>)first;
+			} else if (first instanceof TypeVariable) {
+				TypeVariable<?> typeVariableImpl = (TypeVariable<?>)first;
 				GenericDeclaration genericDeclaration = typeVariableImpl.getGenericDeclaration();
 				if (genericDeclaration instanceof Class) {
 					return (Class<?>) genericDeclaration;

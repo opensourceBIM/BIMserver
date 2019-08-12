@@ -34,10 +34,8 @@ package org.bimserver.models.geometry.impl;
  *****************************************************************************/
 
 import org.bimserver.emf.IdEObjectImpl;
-
 import org.bimserver.models.geometry.ColorPack;
 import org.bimserver.models.geometry.GeometryPackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**

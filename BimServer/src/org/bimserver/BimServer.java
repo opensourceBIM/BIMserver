@@ -122,6 +122,7 @@ import org.bimserver.plugins.PluginContext;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
+import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.plugins.services.ServicePlugin;
 import org.bimserver.plugins.web.WebModulePlugin;
 import org.bimserver.pluginsettings.PluginSettingsCache;
@@ -477,6 +478,8 @@ public class BimServer implements BasicServerInfoProvider {
 					@Override
 					public void pluginInstalled(long pluginBundleVersionId, PluginContext pluginContext, SPluginInformation sPluginInformation) throws BimserverDatabaseException {
 						try (DatabaseSession session = bimDatabase.createSession()) {
+							ServerSettings serverSettings = getServerSettingsCache().getServerSettings();
+
 							Plugin plugin = pluginContext.getPlugin();
 							
 							Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginDescriptor_Identifier(), new StringLiteral(pluginContext.getIdentifier()));
@@ -508,6 +511,13 @@ public class BimServer implements BasicServerInfoProvider {
 								LOGGER.error("", e);
 							}
 							
+							if (pluginDescriptor.getPluginClassName().contentEquals("org.ifcopenshell.IfcOpenShellEnginePlugin")) {
+								if (serverSettings.getDefaultRenderEnginePlugin() == null) {
+									serverSettings.setDefaultRenderEnginePlugin(pluginDescriptor);
+									session.store(serverSettings);
+								}
+							}
+							
 							if (sPluginInformation.isInstallForAllUsers()) {
 								IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getUser(), OldQuery.getDefault());
 								for (User user : allOfType.getAll(User.class)) {
@@ -518,7 +528,6 @@ public class BimServer implements BasicServerInfoProvider {
 							}
 							
 							if (pluginContext.getPlugin() instanceof WebModulePlugin) {
-								ServerSettings serverSettings = getServerSettingsCache().getServerSettings();
 								WebModulePluginConfiguration webPluginConfiguration = find(serverSettings.getWebModules(), pluginContext.getIdentifier());
 								if (webPluginConfiguration == null) {
 									webPluginConfiguration = session.create(WebModulePluginConfiguration.class);
@@ -749,11 +758,6 @@ public class BimServer implements BasicServerInfoProvider {
 			}
 			
 			serverInfoManager.update();
-
-			int renderEngineProcesses = getServerSettingsCache().getServerSettings().getRenderEngineProcesses();
-			RenderEnginePoolFactory renderEnginePoolFactory = new CommonsPoolingRenderEnginePoolFactory(renderEngineProcesses);
-
-			renderEnginePools = new RenderEnginePools(this, renderEnginePoolFactory);
 
 			if (serverInfoManager.getServerState() == ServerState.MIGRATION_REQUIRED) {
 				serverInfoManager.registerStateChangeListener(new StateChangeListener() {
@@ -1007,8 +1011,12 @@ public class BimServer implements BasicServerInfoProvider {
 			}
 			
 			if (defaultReference != null) {
-				if (userSettings.eGet(defaultReference) == null && pluginConfiguration.getName().equals("IfcOpenShell")) {
-					userSettings.eSet(defaultReference, pluginConfiguration);
+				if (userSettings.eGet(defaultReference) == null && pluginInterfaceName.contentEquals("RenderEngine")) {
+					PluginDescriptor defaultRenderEnginePlugin = getServerSettingsCache().getServerSettings().getDefaultRenderEnginePlugin();
+					if (defaultRenderEnginePlugin != null && pluginDescriptor.getOid() == defaultRenderEnginePlugin.getOid()) {
+						LOGGER.info("Settings default render engine for user to " + defaultRenderEnginePlugin.getName());
+						userSettings.eSet(defaultReference, pluginConfiguration);
+					}
 				}
 			}
 			
@@ -1120,6 +1128,11 @@ public class BimServer implements BasicServerInfoProvider {
 				session.close();
 			}
 
+			int renderEngineProcesses = getServerSettingsCache().getServerSettings().getRenderEngineProcesses();
+			RenderEnginePoolFactory renderEnginePoolFactory = new CommonsPoolingRenderEnginePoolFactory(renderEngineProcesses);
+
+			renderEnginePools = new RenderEnginePools(this, renderEnginePoolFactory);
+			
 			session = bimDatabase.createSession();
 //			createDatabaseObjects(session);
 			
@@ -1253,6 +1266,8 @@ public class BimServer implements BasicServerInfoProvider {
 			throw new BimserverDatabaseException(e);
 //		} catch (PluginException e) {
 //			throw new BimserverDatabaseException(e);
+		} catch (RenderEngineException e) {
+			throw new BimserverDatabaseException(e);
 		}
 		long end = System.nanoTime();
 		LOGGER.info("Done initializing database dependant logic (" + ((end - start) / 1000000) + "ms)");

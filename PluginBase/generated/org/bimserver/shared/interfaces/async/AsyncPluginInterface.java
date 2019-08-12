@@ -17,6 +17,7 @@ package org.bimserver.shared.interfaces.async;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 import java.util.concurrent.ExecutorService;
+
 import org.bimserver.shared.interfaces.PluginInterface;
 
 public class AsyncPluginInterface {
@@ -241,6 +242,11 @@ public class AsyncPluginInterface {
 	
 	public interface GetDefaultRenderEngineCallback {
 		void success(org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration result);
+		void error(Throwable e);
+	}
+	
+	public interface GetDefaultRenderEnginePluginDescriptorCallback {
+		void success(org.bimserver.interfaces.objects.SPluginDescriptor result);
 		void error(Throwable e);
 	}
 	
@@ -1005,6 +1011,18 @@ public class AsyncPluginInterface {
 			public void run(){
 				try {
 					callback.success(syncService.getDefaultRenderEngine());
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void getDefaultRenderEnginePluginDescriptor(final GetDefaultRenderEnginePluginDescriptorCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.getDefaultRenderEnginePluginDescriptor());
 				} catch (Throwable e) {
 					callback.error(e);
 				}

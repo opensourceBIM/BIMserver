@@ -19,8 +19,6 @@ package org.bimserver.geometry;
 
 import java.util.Arrays;
 
-import com.fasterxml.jackson.databind.node.ArrayNode;
-
 /******************************************************************************
  * Copyright (C) 2009-2017  BIMserver.org
  * 

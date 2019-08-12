@@ -78,6 +78,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.bimserver.models.store.ServerSettings#isStoreLastLogin <em>Store Last Login</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#isStoreServiceRuns <em>Store Service Runs</em>}</li>
  *   <li>{@link org.bimserver.models.store.ServerSettings#isOptimizeMappedItems <em>Optimize Mapped Items</em>}</li>
+ *   <li>{@link org.bimserver.models.store.ServerSettings#getDefaultRenderEnginePlugin <em>Default Render Engine Plugin</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.store.StorePackage#getServerSettings()
@@ -932,5 +933,27 @@ public interface ServerSettings extends IdEObject {
 	 * @generated
 	 */
 	void setOptimizeMappedItems(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Default Render Engine Plugin</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Default Render Engine Plugin</em>' reference.
+	 * @see #setDefaultRenderEnginePlugin(PluginDescriptor)
+	 * @see org.bimserver.models.store.StorePackage#getServerSettings_DefaultRenderEnginePlugin()
+	 * @model
+	 * @generated
+	 */
+	PluginDescriptor getDefaultRenderEnginePlugin();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.ServerSettings#getDefaultRenderEnginePlugin <em>Default Render Engine Plugin</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Default Render Engine Plugin</em>' reference.
+	 * @see #getDefaultRenderEnginePlugin()
+	 * @generated
+	 */
+	void setDefaultRenderEnginePlugin(PluginDescriptor value);
 
 } // ServerSettings

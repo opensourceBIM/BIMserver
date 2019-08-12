@@ -62,6 +62,7 @@ import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.DatabaseInformationCategory;
 import org.bimserver.models.store.DatabaseInformationItem;
 import org.bimserver.models.store.Project;
+import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
@@ -204,7 +205,12 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 					int valueBufferPosition = valueBuffer.position();
 					processPossibleIndices(keyBuffer, object.getPid(), object.getRid(), object.getOid(), object.eClass(), valueBuffer);
 					if (object.eClass().getEAnnotation("nolazyload") == null && !overwriteEnabled) {
-						database.getKeyValueStore().storeNoOverwrite(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), keyBuffer.array(), valueBuffer.array(), 0, valueBufferPosition, this);
+						try {
+							database.getKeyValueStore().storeNoOverwrite(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), keyBuffer.array(), valueBuffer.array(), 0, valueBufferPosition, this);
+						} catch (BimserverConcurrentModificationDatabaseException e) {
+							LOGGER.error(object.eClass().getName());
+							throw e;
+						}
 					} else {
 						database.getKeyValueStore().store(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), keyBuffer.array(),
 								valueBuffer.array(), 0, valueBuffer.position(), this);
