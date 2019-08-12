@@ -652,8 +652,8 @@ public class GeometryRunner implements Runnable {
 												ObjectNode additionalData = masterGeometryData.getAdditionalData();
 												if (additionalData != null) {
 													geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_AdditionalData(), additionalData.toString());
-													if (additionalData.has("SURFACE_AREA_ALONG_Z")) {
-														geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), additionalData.get("SURFACE_AREA_ALONG_Z").asDouble());
+													if (additionalData.has("TOTAL_SURFACE_AREA")) {
+														geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Area(), additionalData.get("TOTAL_SURFACE_AREA").asDouble());
 													}
 													if (additionalData.has("TOTAL_SHAPE_VOLUME")) {
 														volume = additionalData.get("TOTAL_SHAPE_VOLUME").asDouble();
