@@ -259,7 +259,19 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			for (EClass eClass : eClasses) {
 				Long oid = startOids.get(eClass);
 				if (oid == null) {
-					throw new UserException("EClass " + eClass + " not found in startOids, please report");
+					// This happens almost never, but it most certainly must be a bug, adding verbose logging to try and identify the problem
+					
+					LOGGER.info("EClass " + eClass.getName() + " not found in startOids, please report");
+					LOGGER.info("eClasses:");
+					for (EClass eClass2 : eClasses) {
+						LOGGER.info(eClass2.getName());
+					}
+					LOGGER.info("startOids");
+					for (EClass eClass2 : startOids.keySet()) {
+						LOGGER.info(eClass2.getName() + ": " + startOids.get(eClass2));
+					}
+					
+					throw new UserException("EClass " + eClass.getName() + " not found in startOids, please report");
 				}
 				if (!DatabaseSession.perRecordVersioning(eClass)) {
 					oidCounters.put(eClass, oid);
@@ -343,7 +355,6 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 				@Override
 				public void execute() throws UserException {
-					getBimServer().getNotificationsManager().notify(new NewRevisionNotification(getBimServer(), project.getOid(), revision.getOid(), authorization));
 					try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession()) {
 						Project project = tmpSession.get(poid, OldQuery.getDefault());
 						project.setCheckinInProgress(0);
@@ -368,6 +379,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 							LOGGER.error("", e1);
 						}
 					}
+					getBimServer().getNotificationsManager().notify(new NewRevisionNotification(getBimServer(), project.getOid(), revision.getOid(), authorization));
 				}
 			});
 
