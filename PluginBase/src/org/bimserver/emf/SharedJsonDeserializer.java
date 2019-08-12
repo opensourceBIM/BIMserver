@@ -64,6 +64,7 @@ import org.bimserver.shared.ListWaitingObject;
 import org.bimserver.shared.WaitingList;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.eclipse.emf.common.util.AbstractEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -273,21 +274,25 @@ public class SharedJsonDeserializer {
 														EStructuralFeature listFeature = listObject.eClass().getEStructuralFeature("List");
 														jsonReader.beginArray();
 														AbstractEList innerList = (AbstractEList) listObject.eGet(listFeature);
-														if(listFeature instanceof EAttribute){
+														if (listFeature instanceof EAttribute){
 															while (jsonReader.hasNext()) {
 																innerList.add(readPrimitive(jsonReader, listFeature));
 															}
 														} else {
-															while(jsonReader.hasNext()){
+															while (jsonReader.hasNext()){
 																jsonReader.beginObject();
-																if(jsonReader.nextName().equals("_t")){
+																if (jsonReader.nextName().equals("_t")){
 																	String t = jsonReader.nextString();
-																	IdEObject wrappedObject = model.create(model.getPackageMetaData().getEClass(t),-1);
-																	if(jsonReader.nextName().equals("_v")){
-																		EStructuralFeature wv = wrappedObject.eClass().getEStructuralFeature("wrappedValue");
-																		wrappedObject.eSet(wv, readPrimitive(jsonReader, wv));
-																		innerList.add(wrappedObject);
+																	IdEObject wrappedObject = model.create(model.getPackageMetaData().getEClass(t), -1);
+																	EList<EStructuralFeature> eAllStructuralFeatures = wrappedObject.eClass().getEAllStructuralFeatures();
+																	for (EStructuralFeature eStructuralFeature2 : eAllStructuralFeatures) {
+																		if (jsonReader.nextName().contentEquals(eStructuralFeature2.getName())) {
+																			wrappedObject.eSet(eStructuralFeature2, readPrimitive(jsonReader, eStructuralFeature2));
+																		} else {
+																			// trouble
+																		}
 																	}
+																	innerList.add(wrappedObject);
 																}
 																jsonReader.endObject();
 															}
