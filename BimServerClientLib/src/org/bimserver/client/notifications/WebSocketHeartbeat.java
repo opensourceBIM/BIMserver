@@ -32,6 +32,7 @@ public class WebSocketHeartbeat extends Thread {
 				if (running) {
 					LOGGER.error("", e);
 				}
+				return;
 			}
 		}
 	}
