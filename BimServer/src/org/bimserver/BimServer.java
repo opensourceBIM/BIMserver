@@ -1014,7 +1014,7 @@ public class BimServer implements BasicServerInfoProvider {
 				if (userSettings.eGet(defaultReference) == null && pluginInterfaceName.contentEquals("RenderEngine")) {
 					PluginDescriptor defaultRenderEnginePlugin = getServerSettingsCache().getServerSettings().getDefaultRenderEnginePlugin();
 					if (defaultRenderEnginePlugin != null && pluginDescriptor.getOid() == defaultRenderEnginePlugin.getOid()) {
-						LOGGER.info("Settings default render engine for user to " + defaultRenderEnginePlugin.getName());
+						LOGGER.info("Setting default render engine for user " + user.getUsername() + " to " + defaultRenderEnginePlugin.getName());
 						userSettings.eSet(defaultReference, pluginConfiguration);
 					}
 				}
