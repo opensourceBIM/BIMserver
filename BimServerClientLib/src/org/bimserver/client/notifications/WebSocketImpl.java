@@ -19,7 +19,16 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-@WebSocket(maxBinaryMessageSize = 1024 * 1024 * 100)
+/*
+ * TODO 
+ * 
+ * 100MB is sometimes exceeded, probably because of very large (single) objects. 
+ * Would be really nice if we could guarantee an upper limit (preferably even smaller than 100MB)
+ * Increased to 512MB for now to be sure this never results in errors
+ */
+
+// Max binary message size should match what's in EmbeddedWebServer (or tomcat generic websocket configuration)
+@WebSocket(maxBinaryMessageSize = 1024 * 1024 * 512)
 public class WebSocketImpl {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(WebSocketImpl.class);
@@ -59,6 +68,7 @@ public class WebSocketImpl {
     }
  
     public void send(JsonNode jsonNode) {
+    	LOGGER.info(jsonNode.toString());
     	try {
 			this.session.getRemote().sendString(jsonNode.toString());
 		} catch (IOException e) {
