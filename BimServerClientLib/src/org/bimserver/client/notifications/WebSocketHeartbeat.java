@@ -25,7 +25,6 @@ public class WebSocketHeartbeat extends Thread {
 		ObjectNode message = new ObjectMapper().createObjectNode();
 		message.put("hb", true);
 		while (running) {
-			webSocketImpl.send(message);
 			try {
 				Thread.sleep(1000 * 30);
 			} catch (InterruptedException e) {
@@ -33,6 +32,9 @@ public class WebSocketHeartbeat extends Thread {
 					LOGGER.error("", e);
 				}
 				return;
+			}
+			if (running) {
+				webSocketImpl.send(message);
 			}
 		}
 	}
