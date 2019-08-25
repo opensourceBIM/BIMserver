@@ -1,12 +1,12 @@
 package org.bimserver.client.notifications;
 
-import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.json.ConvertException;
 import org.eclipse.jetty.websocket.api.Session;
+import org.eclipse.jetty.websocket.api.WriteCallback;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketClose;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketError;
@@ -68,12 +68,15 @@ public class WebSocketImpl {
     }
  
     public void send(JsonNode jsonNode) {
-    	LOGGER.info(jsonNode.toString());
-    	try {
-			this.session.getRemote().sendString(jsonNode.toString());
-		} catch (IOException e) {
-			LOGGER.error("", e);
-		}
+		this.session.getRemote().sendString(jsonNode.toString(), new WriteCallback() {
+			@Override
+			public void writeSuccess() {
+			}
+			
+			@Override
+			public void writeFailed(Throwable x) {
+			}
+		});
     }
     
     @OnWebSocketMessage
