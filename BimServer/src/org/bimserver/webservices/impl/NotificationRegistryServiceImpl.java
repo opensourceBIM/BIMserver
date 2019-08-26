@@ -59,11 +59,11 @@ public class NotificationRegistryServiceImpl extends GenericServiceImpl implemen
 	@Override
 	public void registerProgressHandler(Long topicId, Long endPointId) throws UserException {
 		if (endPointId == null) {
-			throw new UserException("No EndpointId given");
+			throw new UserException("No EndpointId given", ErrorCode.ENDPOINT_NOT_FOUND);
 		}
 		EndPoint endPoint = getEndPoint(endPointId);
 		if (endPoint == null) {
-			throw new UserException("Endpoint with id " + endPointId + " not found");
+			throw new UserException("Endpoint with id " + endPointId + " not found", ErrorCode.ENDPOINT_NOT_FOUND);
 		}
 		ProgressTopic progressTopic = getBimServer().getNotificationsManager().getProgressTopic(topicId);
 		if (progressTopic == null) {

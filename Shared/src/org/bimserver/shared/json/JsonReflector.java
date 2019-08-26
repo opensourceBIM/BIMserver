@@ -1,5 +1,7 @@
 package org.bimserver.shared.json;
 
+import org.apache.http.conn.HttpHostConnectException;
+
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
  * 
@@ -45,7 +47,7 @@ public abstract class JsonReflector implements Reflector {
 	}
 
 	@Override
-	public Object callMethod(String interfaceName, String methodName, Class<?> definedReturnType, KeyValuePair... args) throws ServerException, UserException, ReflectorException {
+	public Object callMethod(String interfaceName, String methodName, Class<?> definedReturnType, KeyValuePair... args) throws ServerException, UserException {
 		try {
 			ObjectNode request = OBJECT_MAPPER.createObjectNode();
 			request.put("interface", interfaceName);
@@ -96,14 +98,14 @@ public abstract class JsonReflector implements Reflector {
 			} else {
 				return null;
 			}
-		} catch (ReflectorException e) {
-			throw e;
+		} catch (HttpHostConnectException e) {
+			throw new UserException(e.getMessage(), ErrorCode.HTTP_CONNECTION_REFUSED);
 		} catch (UserException e) {
 			throw e;
 		} catch (ServerException e) {
 			throw e;
 		} catch (Exception e) {
-			throw new ReflectorException(e);
+			throw new UserException(e);
 		}
 	}
 

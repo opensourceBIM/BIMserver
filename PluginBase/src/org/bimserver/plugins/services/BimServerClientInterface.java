@@ -99,4 +99,9 @@ public interface BimServerClientInterface extends ServiceHolder, AutoCloseable {
 	MetaDataManager getMetaDataManager();
 	void download(long roid, String query, long oid, Path file) throws ServerException, UserException, PublicInterfaceNotFoundException, IOException;
 	void authenticate() throws ServerException, UserException;
+	void downloadExtendedData(long edid, OutputStream outputStream) throws IOException;
+	AuthenticationInfo getAuthenticationInfo();
+	String getBaseAddress();
+	long query(Query query, long roid, long serializerOid) throws ServerException, UserException, PublicInterfaceNotFoundException;
+	NotificationsManagerInterface getNotificationsManager();
 }

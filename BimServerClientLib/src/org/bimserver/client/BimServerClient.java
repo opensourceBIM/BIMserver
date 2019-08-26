@@ -48,6 +48,7 @@ import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.CheckinProgressHandler;
 import org.bimserver.plugins.services.Geometry;
+import org.bimserver.plugins.services.ProgressHandler;
 import org.bimserver.shared.AuthenticationInfo;
 import org.bimserver.shared.AutologinAuthenticationInfo;
 import org.bimserver.shared.ChannelConnectionException;
@@ -471,8 +472,12 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 
 	public NotificationsManager getNotificationsManager() {
 		if (!notificationsManager.isRunning()) {
-			notificationsManager.connect(servicesMap, StringUtils.stripHttps(baseAddress));
-			notificationsManager.startAndWaitForInit();
+			synchronized (notificationsManager) {
+				if (!notificationsManager.isRunning()) {
+					notificationsManager.connect(servicesMap, StringUtils.stripHttps(baseAddress));
+					notificationsManager.startAndWaitForInit();
+				}
+			}
 		}
 		return notificationsManager;
 	}
