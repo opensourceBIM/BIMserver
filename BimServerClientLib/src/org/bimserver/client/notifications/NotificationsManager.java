@@ -53,7 +53,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 public class NotificationsManager extends NotificationsClient implements NotificationsManagerInterface {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(NotificationsManager.class);
-	private final Map<Long, Set<ProgressHandler>> progressListeners = new HashMap<Long, Set<ProgressHandler>>();
+	private final Map<Long, Set<ProgressHandler>> progressListeners = java.util.Collections.synchronizedMap(new HashMap<>());
 	private String address;
 	private SServicesMap servicesMap;
 	private volatile boolean running;
@@ -132,7 +132,6 @@ public class NotificationsManager extends NotificationsClient implements Notific
 	}
 
 	public synchronized void startAndWaitForInit() {
-		running = true;
 		start();
 	}
 
