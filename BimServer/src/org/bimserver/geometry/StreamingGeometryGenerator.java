@@ -992,6 +992,25 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			hasOpenings.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Representation", true));
 			hasOpenings.addInclude(objectPlacement);
 		}
+		
+		if (packageMetaData.getEClass("IfcBuildingElementPart").isSuperTypeOf(eClass)) {
+			// For decomposed objects (with element parts) the openings of the parent object should be subtracted from the element parts (which is kind of an assumption)
+			Include decomposesStartInclude = queryPart.createInclude();
+			decomposesStartInclude.addType(packageMetaData.getEClass(eClass.getName()), false);
+			decomposesStartInclude.addField("Decomposes");
+			Include decomposesInclude = decomposesStartInclude.createInclude();
+			decomposesInclude.addType(packageMetaData.getEClass("IfcRelAggregates"), true);
+			decomposesInclude.addField("RelatingObject");
+			Include relatingObject = decomposesInclude.createInclude();
+			relatingObject.addType(packageMetaData.getEClass("IfcElement"), true);
+			relatingObject.addField("HasOpenings");
+			Include hasOpenings2 = relatingObject.createInclude();
+			hasOpenings2.addType(packageMetaData.getEClass("IfcRelVoidsElement"), false);
+			hasOpenings2.addField("RelatedOpeningElement");
+			hasOpenings2.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Representation", true));
+			hasOpenings2.addInclude(objectPlacement);
+		}
+		
 		QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, bimServer, query, Collections.singleton(queryContext.getRoid()), packageMetaData);
 		
 		ReportJob job = report.newJob(eClass.getName(), nrObjects);
