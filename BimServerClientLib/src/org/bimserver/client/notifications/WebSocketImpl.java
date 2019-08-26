@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.json.ConvertException;
+import org.eclipse.jetty.io.EofException;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.WriteCallback;
 import org.eclipse.jetty.websocket.api.annotations.OnWebSocketClose;
@@ -36,21 +37,28 @@ public class WebSocketImpl {
 	private NotificationsManager socketNotificationsClient;
 	private CountDownLatch countDownLatch = new CountDownLatch(1);
 	private BinaryMessageListener binaryMessageListener;
+	private WebSocketHeartbeat heartbeat;
     
 	public WebSocketImpl(NotificationsManager socketNotificationsClient) {
 		this.socketNotificationsClient = socketNotificationsClient;
     }
  
 	public void close() {
-		if (session != null) {
-			session.close();
+		this.socketNotificationsClient.socketIsClosed();
+		if (this.heartbeat != null) {
+			this.heartbeat.shutdown();
+			this.heartbeat = null;
+		}
+		if (this.session != null) {
+			this.session.close();
+			this.session = null;
 		}
 	}
 	
     public void waitForEndpointId() {
     	try {
-			if (!countDownLatch.await(1, TimeUnit.MINUTES)) {
-				LOGGER.warn("Did not get an EndpointId within 1 minute");
+			if (!countDownLatch.await(15, TimeUnit.SECONDS)) {
+				LOGGER.error("Did not get an EndpointId within 1 minute");
 			}
 		} catch (InterruptedException e) {
 			LOGGER.error("", e);
@@ -59,24 +67,30 @@ public class WebSocketImpl {
     
     @OnWebSocketClose
     public void onClose(int statusCode, String reason) {
-        this.session = null;
+    	close();
     }
  
     @OnWebSocketConnect
     public void onConnect(Session session) {
         this.session = session;
+		this.heartbeat = new WebSocketHeartbeat(this);
+		this.heartbeat.start();
     }
  
     public void send(JsonNode jsonNode) {
-		this.session.getRemote().sendString(jsonNode.toString(), new WriteCallback() {
-			@Override
-			public void writeSuccess() {
-			}
-			
-			@Override
-			public void writeFailed(Throwable x) {
-			}
-		});
+    	if (this.session != null) {
+    		this.session.getRemote().sendString(jsonNode.toString(), new WriteCallback() {
+    			@Override
+    			public void writeSuccess() {
+    			}
+    			
+    			@Override
+    			public void writeFailed(Throwable x) {
+    			}
+    		});
+    	} else {
+    		LOGGER.warn("Cannot send message, session is closed");
+    	}
     }
     
     @OnWebSocketMessage
@@ -88,6 +102,7 @@ public class WebSocketImpl {
     public void onMessage(String msg) {
     	try {
 			ObjectNode parse = new ObjectMapper().readValue(msg, ObjectNode.class);
+			LOGGER.info(parse.toString());
 			if (parse instanceof ObjectNode) {
 				ObjectNode object = (ObjectNode)parse;
 				if (object.has("welcome")) {
@@ -96,6 +111,7 @@ public class WebSocketImpl {
 				} else if (object.has("endpointid")) {
 					socketNotificationsClient.setEndpointId(object.get("endpointid").asLong());
 					countDownLatch.countDown();
+					LOGGER.info("Counted down to " + countDownLatch.getCount());
 				} else {
 					try {
 						socketNotificationsClient.handleIncoming((ObjectNode) object.get("request"));
@@ -113,7 +129,11 @@ public class WebSocketImpl {
     
     @OnWebSocketError
     public void onError(Session session, Throwable error) {
-    	LOGGER.error("", error);
+    	if (error instanceof EofException) {
+    		LOGGER.error("EofException for " + session.getRemoteAddress());
+    	} else {
+    		LOGGER.error("", error);
+    	}
     }
     
 	public void setBinaryMessageListener(BinaryMessageListener messageListener) {

@@ -25,8 +25,9 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.client.BimServerClient;
-import org.bimserver.client.ProgressHandler;
 import org.bimserver.interfaces.objects.SLongActionState;
+import org.bimserver.plugins.services.NotificationsManagerInterface;
+import org.bimserver.plugins.services.ProgressHandler;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -49,7 +50,7 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-public class NotificationsManager extends NotificationsClient {
+public class NotificationsManager extends NotificationsClient implements NotificationsManagerInterface {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(NotificationsManager.class);
 	private final Map<Long, Set<ProgressHandler>> progressListeners = new HashMap<Long, Set<ProgressHandler>>();
@@ -57,12 +58,11 @@ public class NotificationsManager extends NotificationsClient {
 	private SServicesMap servicesMap;
 	private volatile boolean running;
 	private BimServerClient bimServerClient;
-	private long endpointid;
+	private Long endpointid;
 	private JsonConverter converter;
 	private NotificationInterface service;
 	private WebSocketClient webSocketClient;
 	private WebSocketImpl webSocketImpl;
-	private WebSocketHeartbeat heartbeat;
 
 	public NotificationsManager(BimServerClient bimServerClient) {
 		this.bimServerClient = bimServerClient;
@@ -96,8 +96,6 @@ public class NotificationsManager extends NotificationsClient {
 			ClientUpgradeRequest request = new ClientUpgradeRequest();
 			webSocketClient.connect(webSocketImpl, uri, request);
 			webSocketImpl.waitForEndpointId();
-			heartbeat = new WebSocketHeartbeat(webSocketImpl);
-			heartbeat.start();
 			running = true;
 		} catch (IOException e) {
 			LOGGER.error("", e);
@@ -116,12 +114,6 @@ public class NotificationsManager extends NotificationsClient {
 	
 	public void disconnect() {
 		running = false;
-		if (heartbeat != null) {
-			try {
-				heartbeat.shutdown();
-			} catch (Exception e) {
-			}
-		}
 		if (webSocketImpl != null) {
 			webSocketImpl.close();
 		}
@@ -139,7 +131,7 @@ public class NotificationsManager extends NotificationsClient {
 		return running;
 	}
 
-	public void startAndWaitForInit() {
+	public synchronized void startAndWaitForInit() {
 		running = true;
 		start();
 	}
@@ -152,11 +144,11 @@ public class NotificationsManager extends NotificationsClient {
 		return bimServerClient;
 	}
 
-	public long getEndpointid() {
+	public Long getEndpointid() {
 		return endpointid;
 	}
 	
-	public void setEndpointId(long endpointid) {
+	public void setEndpointId(Long endpointid) {
 		this.endpointid = endpointid;
 	}
 
@@ -235,5 +227,11 @@ public class NotificationsManager extends NotificationsClient {
 		} catch (ReflectorException e) {
 			LOGGER.error("", e);
 		}
+	}
+
+	public void socketIsClosed() {
+		LOGGER.info("WebSocket is closed");
+		this.running = false;
+		this.endpointid = null;
 	}
 }
