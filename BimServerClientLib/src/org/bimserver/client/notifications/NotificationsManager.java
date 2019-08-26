@@ -230,7 +230,7 @@ public class NotificationsManager extends NotificationsClient implements Notific
 	}
 
 	public void socketIsClosed() {
-		LOGGER.info("WebSocket is closed");
+//		LOGGER.info("WebSocket is closed");
 		this.running = false;
 		this.endpointid = null;
 	}

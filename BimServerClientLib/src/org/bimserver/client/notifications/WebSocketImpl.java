@@ -102,7 +102,7 @@ public class WebSocketImpl {
     public void onMessage(String msg) {
     	try {
 			ObjectNode parse = new ObjectMapper().readValue(msg, ObjectNode.class);
-			LOGGER.info(parse.toString());
+//			LOGGER.info(parse.toString());
 			if (parse instanceof ObjectNode) {
 				ObjectNode object = (ObjectNode)parse;
 				if (object.has("welcome")) {
@@ -111,7 +111,7 @@ public class WebSocketImpl {
 				} else if (object.has("endpointid")) {
 					socketNotificationsClient.setEndpointId(object.get("endpointid").asLong());
 					countDownLatch.countDown();
-					LOGGER.info("Counted down to " + countDownLatch.getCount());
+//					LOGGER.info("Counted down to " + countDownLatch.getCount());
 				} else {
 					try {
 						socketNotificationsClient.handleIncoming((ObjectNode) object.get("request"));

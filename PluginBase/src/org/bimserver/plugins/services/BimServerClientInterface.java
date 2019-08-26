@@ -104,4 +104,5 @@ public interface BimServerClientInterface extends ServiceHolder, AutoCloseable {
 	String getBaseAddress();
 	long query(Query query, long roid, long serializerOid) throws ServerException, UserException, PublicInterfaceNotFoundException;
 	NotificationsManagerInterface getNotificationsManager();
+	String getToken();
 }
