@@ -1063,8 +1063,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			
 			Path incomingFile = getIncomingFileName(fileName, null, userUsername);
 			
-			return checkinInternal(topicId, poid, comment, deserializerOid, fileSize, fileName, dataHandler.getInputStream(), merge,
-					sync, session, username, userUsername, project, incomingFile, newServiceId);
+			// This is where we pass the responsibility for closing the inputStream on
+			return checkinInternal(topicId, poid, comment, deserializerOid, fileSize, fileName, dataHandler.getInputStream(), merge, sync, session, username, userUsername, project, incomingFile, newServiceId);
 		} catch (UserException e) {
 			try {
 				clearCheckinInProgress(poid);

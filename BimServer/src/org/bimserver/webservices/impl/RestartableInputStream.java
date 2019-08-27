@@ -34,8 +34,10 @@ public class RestartableInputStream extends InputStream {
 	private InputStream currentInputStream;
 	private volatile boolean canRestart = false;
 	private OutputStream outputStream;
+	private InputStream originalInputStream;
 
 	public RestartableInputStream(InputStream originalInputStream, Path file) {
+		this.originalInputStream = originalInputStream;
 		this.cachingFile = file;
 		try {
 			outputStream = Files.newOutputStream(file);
@@ -65,6 +67,7 @@ public class RestartableInputStream extends InputStream {
 
 	@Override
 	public void close() throws IOException {
+		originalInputStream.close();
 		outputStream.close();
 		canRestart = true;
 	}
