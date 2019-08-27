@@ -142,8 +142,8 @@ public class UploadServlet extends SubServlet {
 											service.cleanupLongAction(checkinSync.getTopicId());
 										} else {
 											// When async, we can return as soon as all the data has been read
-											((TriggerOnCloseInputStream)realStream).await();
 											long newTopicId = service.checkinAsync(poid, comment, deserializerOid, -1L, name, ifcFile, merge);
+											((TriggerOnCloseInputStream)realStream).await();
 											result.put("topicId", newTopicId);
 										}
 									} else {
