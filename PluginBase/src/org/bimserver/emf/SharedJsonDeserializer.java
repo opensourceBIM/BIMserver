@@ -281,7 +281,8 @@ public class SharedJsonDeserializer {
 														} else {
 															while (jsonReader.hasNext()){
 																jsonReader.beginObject();
-																if (jsonReader.nextName().equals("_t")){
+																String nextName = jsonReader.nextName();
+																if (nextName.equals("_t")){
 																	String t = jsonReader.nextString();
 																	IdEObject wrappedObject = model.create(model.getPackageMetaData().getEClass(t), -1);
 																	EList<EStructuralFeature> eAllStructuralFeatures = wrappedObject.eClass().getEAllStructuralFeatures();
@@ -293,6 +294,17 @@ public class SharedJsonDeserializer {
 																		}
 																	}
 																	innerList.add(wrappedObject);
+																} else if (nextName.equals("_i")) {
+																	// Reference
+																	long referenceOid = jsonReader.nextLong();
+																	if (jsonReader.nextName().equals("_t")) {
+																		String refType = jsonReader.nextString();
+																		IdEObject refObject = (IdEObject) model.create(model.getPackageMetaData().getEClassIncludingDependencies(refType), referenceOid);
+																		((IdEObjectImpl)refObject).setLoadingState(State.OPPOSITE_SETTING);
+																		model.add(refObject.getOid(), refObject);
+																		addToList(listFeature, index, innerList, refObject);
+																		((IdEObjectImpl)refObject).setLoadingState(State.TO_BE_LOADED);
+																	}
 																}
 																jsonReader.endObject();
 															}
