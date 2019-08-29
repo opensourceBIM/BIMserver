@@ -8,18 +8,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	<repositories>
-		<repository>
-			<id>central</id>
-			<url>http://repo1.maven.org/maven2</url>
-		</repository>
-		<repository>
-			<id>oracleReleases</id>
-			<name>Oracle Released Java Packages</name>
-			<url>http://download.oracle.com/maven</url>
-			<layout>default</layout>
-		</repository>
-	</repositories>
 	<scm>
 		<url>https://github.com/opensourceBIM/BIMserver.git</url>
 		<connection>scm:git:https://github.com/opensourceBIM/BIMserver.git</connection>
