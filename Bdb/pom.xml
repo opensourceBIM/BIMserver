@@ -2,9 +2,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.opensourcebim</groupId>
 	<artifactId>bdb</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<parent>
+		<groupId>org.opensourcebim</groupId>
+		<artifactId>parent</artifactId>
+		<version>1.5.169-SNAPSHOT</version>
+	</parent>
 	<packaging>pom</packaging>
 	<name>Bdb</name>
 	<dependencies>

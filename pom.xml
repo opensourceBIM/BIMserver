@@ -38,6 +38,7 @@
 		</developer>
 	</developers>
 	<modules>
+		<module>Bdb</module>
 		<module>BimServer</module>
 		<module>BimServerClientLib</module>
 		<module>PluginBase</module>

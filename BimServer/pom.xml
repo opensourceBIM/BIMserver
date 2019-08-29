@@ -191,7 +191,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>bdb</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.5.169-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<licenses>
