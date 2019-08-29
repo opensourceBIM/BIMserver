@@ -32,6 +32,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -62,7 +63,6 @@ import org.bimserver.models.store.DatabaseInformation;
 import org.bimserver.models.store.DatabaseInformationCategory;
 import org.bimserver.models.store.DatabaseInformationItem;
 import org.bimserver.models.store.Project;
-import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
@@ -107,7 +107,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	private ObjectsToDelete objectsToDelete;
 	private StackTraceElement[] stackTrace;
 	private final ObjectCache objectCache = new ObjectCache();
-	private Map<EClass, Long> startOids;
+	private Map<String, Long> startOids;
 	private final Map<Long, HashMapVirtualObject> voCache = new ConcurrentHashMap<>();
 	private CleanupListener cleanupListener;
 	private long reads;
@@ -127,10 +127,6 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 			LOGGER.info("");
 			LOGGER.info("NEW SESSION");
 		}
-		// TODO, maybe only store this per class that is actually being used in this DatabaseSession?
-//		for (EClass eClass : database.getClasses()) {
-//			startOids.put(eClass, database.getCounter(eClass));
-//		}
 	}
 	
 	public void setOverwriteEnabled(boolean overwriteEnabled) {
@@ -1564,18 +1560,19 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		}
 	}
 
-	public long newOid(EClass eClass) {
+	public synchronized long newOid(EClass eClass) {
 		long newOid = database.newOid(eClass);
 		if (startOids == null) {
-			startOids = new HashMap<>();
+			startOids = new TreeMap<>();
 		}
-		if (!startOids.containsKey(eClass)) {
-			startOids.put(eClass, newOid - 65536);
+		String fullname = eClass.getEPackage().getName() + "." + eClass.getName();
+		if (!startOids.containsKey(fullname)) {
+			startOids.put(fullname, newOid - 65536);
 		}
 		return newOid;
 	}
 	
-	public Map<EClass, Long> getStartOids() {
+	public Map<String, Long> getStartOids() {
 		return startOids;
 	}
 
@@ -2349,11 +2346,12 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	}
 
 	public void addStartOid(EClass eClass, long oid) {
-		Long currentStart = startOids.get(eClass);
+		String fullname = eClass.getEPackage().getName() + "." + eClass.getName();
+		Long currentStart = startOids.get(fullname);
 		if (currentStart == null) {
-			 startOids.put(eClass, oid - 65536);
+			 startOids.put(fullname, oid - 65536);
 		} else if (oid < currentStart) {
-			startOids.put(eClass, oid);
+			startOids.put(fullname, oid);
 		}
 	}
 	

@@ -195,14 +195,14 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			long size = deserializer.read(inputStream, fileName, fileSize, queryContext);
 			
 			Set<EClass> eClasses = deserializer.getSummaryMap().keySet();
-			Map<EClass, Long> startOids = getDatabaseSession().getStartOids();
+			Map<String, Long> startOids = getDatabaseSession().getStartOids();
 			if (startOids == null) {
 				throw new BimserverDatabaseException("No objects changed");
 			}
 			OidCounters oidCounters = new OidCounters();
 			for (EClass eClass : eClasses) {
 				if (!DatabaseSession.perRecordVersioning(eClass)) {
-					oidCounters.put(eClass, startOids.get(eClass));
+					oidCounters.put(eClass, startOids.get(fullname(eClass)));
 				}
 			}
 			
@@ -257,18 +257,21 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			eClasses = deserializer.getSummaryMap().keySet();
 			oidCounters = new OidCounters();
 			for (EClass eClass : eClasses) {
-				Long oid = startOids.get(eClass);
+				String fullname = fullname(eClass);
+				Long oid = startOids.get(fullname);
 				if (oid == null) {
 					// This happens almost never, but it most certainly must be a bug, adding verbose logging to try and identify the problem
-					
+
+					LOGGER.info("");
 					LOGGER.info("EClass " + eClass.getName() + " not found in startOids, please report");
 					LOGGER.info("eClasses:");
 					for (EClass eClass2 : eClasses) {
-						LOGGER.info(eClass2.getName());
+						LOGGER.info(fullname(eClass2));
 					}
+					LOGGER.info("");
 					LOGGER.info("startOids");
-					for (EClass eClass2 : startOids.keySet()) {
-						LOGGER.info(eClass2.getName() + ": " + startOids.get(eClass2));
+					for (String fullname2 : startOids.keySet()) {
+						LOGGER.info(fullname2 + ": " + startOids.get(fullname2));
 					}
 					
 					throw new UserException("EClass " + eClass.getName() + " not found in startOids, please report");
@@ -278,10 +281,10 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 				}
 			}
 			
-			if (startOids.containsKey(GeometryPackage.eINSTANCE.getGeometryInfo()) && startOids.containsKey(GeometryPackage.eINSTANCE.getGeometryData())) {
+			if (startOids.containsKey(fullname(GeometryPackage.eINSTANCE.getGeometryInfo())) && startOids.containsKey(fullname(GeometryPackage.eINSTANCE.getGeometryData()))) {
 				// TODO Buffer? Vector?
-				oidCounters.put(GeometryPackage.eINSTANCE.getGeometryInfo(), startOids.get(GeometryPackage.eINSTANCE.getGeometryInfo()));
-				oidCounters.put(GeometryPackage.eINSTANCE.getGeometryData(), startOids.get(GeometryPackage.eINSTANCE.getGeometryData()));
+				oidCounters.put(GeometryPackage.eINSTANCE.getGeometryInfo(), startOids.get(fullname(GeometryPackage.eINSTANCE.getGeometryInfo())));
+				oidCounters.put(GeometryPackage.eINSTANCE.getGeometryData(), startOids.get(fullname(GeometryPackage.eINSTANCE.getGeometryData())));
 			}
 			
 			concreteRevision = result.getConcreteRevision();
@@ -409,6 +412,10 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 		return concreteRevision;
 	}
 
+	private String fullname(EClass eClass) {
+		return eClass.getEPackage().getName() + "." + eClass.getName();
+	}
+
 	private void generateQuantizedVertices(DatabaseSession databaseSession, Revision revision, float[] quantizationMatrix, float multiplierToMm) {
 		PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
 		Query query = new Query(packageMetaData);
@@ -523,20 +530,23 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 		int pid = newRevision.getProject().getId();
 		int rid = newRevision.getRid();
 		
-		Map<EClass, Long> startOids = getDatabaseSession().getStartOids();
+		Map<String, Long> startOids = getDatabaseSession().getStartOids();
 		if (startOids == null) {
 			throw new BimserverDatabaseException("No objects changed");
 		}
 		int deleted = 0;
-		for (EClass eClass : startOids.keySet()) {
-			Long startOid = startOids.get(eClass);
+		for (String fullName : startOids.keySet()) {
+			String packageName = fullName.substring(0, fullName.indexOf("."));
+			String className = fullName.substring(fullName.indexOf(".") + 1);
+			getDatabaseSession().getEClassForName(packageName, className);
+			Long startOid = startOids.get(fullName);
 			ByteBuffer mustStartWith = ByteBuffer.wrap(new byte[4]);
 			mustStartWith.putInt(pid);
 			ByteBuffer startSearchWith = ByteBuffer.wrap(new byte[12]);
 			startSearchWith.putInt(pid);
 			startSearchWith.putLong(startOid);
 			
-			String tableName = eClass.getEPackage().getName() + "_" + eClass.getName();
+			String tableName = packageName + "_" + className;
 			try {
 				if (!getDatabaseSession().getKeyValueStore().isTransactional(getDatabaseSession(), tableName)) {
 					// We only need to check the non-transactional tables, the rest is rolled-back by bdb

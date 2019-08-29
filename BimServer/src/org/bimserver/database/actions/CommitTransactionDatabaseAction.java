@@ -206,7 +206,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 
 				QueryContext queryContext = new QueryContext(getDatabaseSession(), packageMetaData, project.getId(), concreteRevision.getId(), concreteRevision.getRevisions().get(0).getOid(), concreteRevision.getOid(), highestStopId);
 
-				Map<EClass, Long> startOids = getDatabaseSession().getStartOids();
+				Map<String, Long> startOids = getDatabaseSession().getStartOids();
 				if (startOids == null) {
 					throw new BimserverDatabaseException("No objects changed");
 				}
