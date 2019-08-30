@@ -474,7 +474,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		if (!notificationsManager.isRunning()) {
 			synchronized (notificationsManager) {
 				if (!notificationsManager.isRunning()) {
-					notificationsManager.connect(servicesMap, StringUtils.stripHttps(baseAddress));
+					notificationsManager.connect(servicesMap, baseAddress);
 					notificationsManager.startAndWaitForInit();
 				}
 			}

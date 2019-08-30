@@ -91,7 +91,8 @@ public class NotificationsManager extends NotificationsClient implements Notific
 			LOGGER.error("", e);
 		}
 		try {
-			URI uri = URI.create("ws://" + address + "/stream");
+			address = address.replace("http://", "ws://").replace("https://", "wss://");
+			URI uri = URI.create(address + "/stream");
 			webSocketImpl = new WebSocketImpl(this);
 			ClientUpgradeRequest request = new ClientUpgradeRequest();
 			webSocketClient.connect(webSocketImpl, uri, request);
