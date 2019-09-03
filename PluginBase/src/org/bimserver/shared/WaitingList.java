@@ -26,6 +26,7 @@ import java.util.Map.Entry;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.deserializers.DeserializerErrorCode;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.ecore.EClass;
@@ -69,7 +70,7 @@ public class WaitingList<T> {
 						}
 						list.setUnique(listWaitingObject.getIndex(), eObject);
 					} else {
-						throw new DeserializeException(waitingObject.getLineNumber(), "Field " + waitingObject.getEReference().getName() + " of "
+						throw new DeserializeException(DeserializerErrorCode.REFERENCED_OBJECT_CANNOT_BE_STORED_IN_THIS_FIELD, waitingObject.getLineNumber(), "Field " + waitingObject.getEReference().getName() + " of "
 								+ waitingObject.getEReference().getEContainingClass().getName() + " cannot contain a " + eObject.eClass().getName());
 					}
 				}
@@ -77,7 +78,7 @@ public class WaitingList<T> {
 				if (((EClass) waitingObject.getEReference().getEType()).isSuperTypeOf(eObject.eClass())) {
 					waitingObject.getObject().eSet(waitingObject.getEReference(), eObject);
 				} else {
-					throw new DeserializeException(waitingObject.getLineNumber(), "Field " + waitingObject.getEReference().getName() + " of "
+					throw new DeserializeException(DeserializerErrorCode.NON_EXISTING_ENTITY_REFERENCED, waitingObject.getLineNumber(), "Field " + waitingObject.getEReference().getName() + " of "
 							+ waitingObject.getEReference().getEContainingClass().getName() + " cannot contain a " + eObject.eClass().getName() + "/" + eObject.getOid());
 				}
 			}

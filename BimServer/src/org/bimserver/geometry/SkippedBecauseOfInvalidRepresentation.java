@@ -26,7 +26,7 @@ public class SkippedBecauseOfInvalidRepresentation {
 	}
 
 	private boolean isImportant(String key) {
-		return !(key.contentEquals("Axis") || key.contentEquals("Annotation"));
+		return key == null || !(key.contentEquals("Axis") || key.contentEquals("Annotation"));
 	}
 	
 	public boolean hasImportant() {

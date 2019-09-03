@@ -25,6 +25,7 @@ import java.util.Map.Entry;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.deserializers.DeserializerErrorCode;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
@@ -91,7 +92,7 @@ public class WaitingListVirtualObject {
 					}
 					decrementOpenConnections(waitingObject.getObject());
 				} else {
-					throw new DeserializeException(waitingObject.getLineNumber(), "Field " + waitingObject.getStructuralFeature().getName() + " of "
+					throw new DeserializeException(DeserializerErrorCode.REFERENCED_OBJECT_CANNOT_BE_STORED_IN_THIS_FIELD, waitingObject.getLineNumber(), "Field " + waitingObject.getStructuralFeature().getName() + " of "
 							+ waitingObject.getStructuralFeature().getEContainingClass().getName() + " cannot contain a " + eObject.eClass().getName());
 				}
 			} else {
@@ -99,7 +100,7 @@ public class WaitingListVirtualObject {
 					waitingObject.getObject().setReference(waitingObject.getStructuralFeature(), eObject.getOid(), waitingObject.getBufferPosition());
 					decrementOpenConnections(waitingObject.getObject());
 				} else {
-					throw new DeserializeException(waitingObject.getLineNumber(), "Field " + waitingObject.getStructuralFeature().getName() + " of "
+					throw new DeserializeException(DeserializerErrorCode.REFERENCED_OBJECT_CANNOT_BE_STORED_IN_THIS_FIELD, waitingObject.getLineNumber(), "Field " + waitingObject.getStructuralFeature().getName() + " of "
 							+ waitingObject.getStructuralFeature().getEContainingClass().getName() + " cannot contain a " + eObject.eClass().getName() + "/" + eObject.getOid());
 				}
 			}

@@ -21,26 +21,35 @@ public class DeserializeException extends Exception {
 
 	private static final long serialVersionUID = -7216984454398041095L;
 	private long lineNumber;
+	private DeserializerErrorCode deserializerErrorCode;
 
-	public DeserializeException(long lineNumber, String message, Exception e) {
+	public DeserializeException(DeserializerErrorCode deserializerErrorCode, long lineNumber, String message, Exception e) {
 		super("Error on line " + lineNumber + ": " + message, e);
+		this.deserializerErrorCode = deserializerErrorCode;
 		this.lineNumber = lineNumber;
 	}
 
-	public DeserializeException(String message, Exception e) {
+	public DeserializeException(DeserializerErrorCode deserializerErrorCode, String message, Exception e) {
 		super(message, e);
+		this.deserializerErrorCode = deserializerErrorCode;
 	}
 	
 	public long getLineNumber() {
 		return lineNumber;
 	}
 	
-	public DeserializeException(String message) {
+	public DeserializeException(DeserializerErrorCode deserializerErrorCode, String message) {
 		super(message);
+		this.deserializerErrorCode = deserializerErrorCode;
 	}
 	
-	public DeserializeException(long lineNumber, String message) {
+	public DeserializerErrorCode getDeserializerErrorCode() {
+		return deserializerErrorCode;
+	}
+	
+	public DeserializeException(DeserializerErrorCode deserializerErrorCode, long lineNumber, String message) {
 		super("Error on line " + lineNumber + ": " + message);
+		this.deserializerErrorCode = deserializerErrorCode;
 		this.lineNumber = lineNumber;
 	}
 

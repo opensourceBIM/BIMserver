@@ -60,6 +60,7 @@ import org.bimserver.models.store.IfcHeader;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.deserializers.DeserializerErrorCode;
 import org.bimserver.shared.ListWaitingObject;
 import org.bimserver.shared.WaitingList;
 import org.bimserver.shared.exceptions.BimServerClientException;
@@ -95,7 +96,7 @@ public class SharedJsonDeserializer {
 	@SuppressWarnings("rawtypes")
 	public IfcModelInterface read(InputStream in, IfcModelInterface model, boolean checkWaitingList) throws DeserializeException {
 		if (model.getPackageMetaData().getSchemaDefinition() == null) {
-			throw new DeserializeException("No SchemaDefinition available");
+			throw new DeserializeException(DeserializerErrorCode.INTERNAL_BIMSERVER_ERROR, "No SchemaDefinition available");
 		}
 		WaitingList<Long> waitingList = new WaitingList<Long>();
 		final boolean log = false;
@@ -175,7 +176,7 @@ public class SharedJsonDeserializer {
 			} catch (BimServerClientException e) {
 				e.printStackTrace();
 			}
-			throw new DeserializeException("Waitinglist should be empty (" + waitingList.size() + ")");
+			throw new DeserializeException(DeserializerErrorCode.NON_EXISTING_ENTITY_REFERENCED, "Waitinglist should be empty (" + waitingList.size() + ")");
 		}
 		return model;
 	}
@@ -196,7 +197,7 @@ public class SharedJsonDeserializer {
 							eClass = model.getPackageMetaData().getEClassIncludingDependencies(type);
 						}
 						if (eClass == null) {
-							throw new DeserializeException("No class found with name " + type);
+							throw new DeserializeException(DeserializerErrorCode.UNKNOWN_ENTITY, "No class found with name " + type);
 						}
 						if (model.containsNoFetch(oid)) {
 							object = (IdEObjectImpl) model.getNoFetch(oid);
@@ -228,7 +229,7 @@ public class SharedJsonDeserializer {
 		
 									EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(featureName);
 									if (eStructuralFeature == null) {
-										throw new DeserializeException("Unknown field (" + featureName + ") on class " + eClass.getName());
+										throw new DeserializeException(DeserializerErrorCode.UNKNOWN_FIELD, "Unknown field (" + featureName + ") on class " + eClass.getName());
 									}
 									if (eStructuralFeature.isMany()) {
 										jsonReader.beginArray();
@@ -321,7 +322,7 @@ public class SharedJsonDeserializer {
 																wrappedObject.eSet(wv, readPrimitive(jsonReader, wv));
 																list.add(wrappedObject);
 															} else {
-																throw new DeserializeException("Expected _v");
+																throw new DeserializeException(DeserializerErrorCode.UNEXPECTED_FIELD, "Expected _v");
 															}
 														} else if (nextName.equals("_i")) {
 															// Not all are embedded...
@@ -401,7 +402,7 @@ public class SharedJsonDeserializer {
 															if (fn.equals(eStructuralFeature2.getName())) {
 																wrappedObject.eSet(eStructuralFeature2, readPrimitive(jsonReader, eStructuralFeature2));
 															} else {
-																throw new DeserializeException(fn + " / " + eStructuralFeature2.getName());
+																throw new DeserializeException(DeserializerErrorCode.UNEXPECTED_FIELD, fn + " / " + eStructuralFeature2.getName());
 															}
 														}
 														object.eSet(eStructuralFeature, wrappedObject);
@@ -506,7 +507,7 @@ public class SharedJsonDeserializer {
 				list.addUnique(referencedObject);
 			}
 		} else {
-			throw new DeserializeException(-1, referenceEClass.getName() + " cannot be stored in " + eStructuralFeature.getName());
+			throw new DeserializeException(DeserializerErrorCode.REFERENCED_OBJECT_CANNOT_BE_STORED_IN_THIS_FIELD, -1, referenceEClass.getName() + " cannot be stored in " + eStructuralFeature.getName());
 		}
 	}
 
@@ -555,7 +556,7 @@ public class SharedJsonDeserializer {
 				jsonReader.endObject();
 				return vector3f;
 			} else {
-				throw new DeserializeException(eStructuralFeature.getEType().getName() + " not implemented");
+				throw new DeserializeException(DeserializerErrorCode.UNIMPLEMENTED_BIMSERVER_FEATURE, eStructuralFeature.getEType().getName() + " not implemented");
 			}
 		} else if (eClassifier instanceof EEnum) {
 			EEnum eEnum = (EEnum) eStructuralFeature.getEType();
@@ -565,7 +566,7 @@ public class SharedJsonDeserializer {
 				return eEnum.getEEnumLiteral(jsonReader.nextString()).getInstance();
 			}
 		} else {
-			throw new RuntimeException("Unimplemented type " + eStructuralFeature.getEType().getName());
+			throw new DeserializeException(DeserializerErrorCode.UNIMPLEMENTED_BIMSERVER_FEATURE, "Unimplemented type " + eStructuralFeature.getEType().getName());
 		}
 	}
 }

@@ -54,6 +54,7 @@ import org.bimserver.interfaces.objects.SPluginType;
 import org.bimserver.models.store.Parameter;
 import org.bimserver.models.store.ServiceDescriptor;
 import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.deserializers.DeserializerErrorCode;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.StreamingDeserializerPlugin;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
@@ -264,7 +265,7 @@ public class PluginManager implements PluginManagerInterface, PluginClassLoaderP
 	public DeserializerPlugin requireDeserializer(String extension) throws DeserializeException {
 		Collection<DeserializerPlugin> allDeserializerPlugins = getAllDeserializerPlugins(extension, true);
 		if (allDeserializerPlugins.size() == 0) {
-			throw new DeserializeException("No deserializers found for type '" + extension + "'");
+			throw new DeserializeException(DeserializerErrorCode.NO_SUITABLE_DESERIALIZER_FOUND, "No deserializers found for type '" + extension + "'");
 		} else {
 			return allDeserializerPlugins.iterator().next();
 		}

@@ -38,6 +38,7 @@ import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.notifications.NewRevisionNotification;
 import org.bimserver.plugins.deserializers.DeserializeException;
+import org.bimserver.plugins.deserializers.DeserializerErrorCode;
 import org.bimserver.plugins.modelchecker.ModelChecker;
 import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
 import org.bimserver.renderengine.RenderEnginePool;
@@ -90,7 +91,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 				setProgress("Deserializing IFC file...", 0);
 			}
 			if (getModel().size() == 0) {
-				throw new DeserializeException("Cannot checkin empty model");
+				throw new DeserializeException(DeserializerErrorCode.EMPTY_MODEL_CANNOT_BE_CHECKED_IN, "Cannot checkin empty model");
 			}
 			authorization.canCheckin(poid);
 			project = getProjectByPoid(poid);
