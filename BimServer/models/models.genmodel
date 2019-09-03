@@ -12601,6 +12601,7 @@
     </genClasses>
     <genClasses ecoreClass="models.ecore#/4/LongCheckinActionState">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/LongCheckinActionState/roid"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/LongCheckinActionState/deserializeErrorCode"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/4/Tile">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/4/Tile/tileId"/>

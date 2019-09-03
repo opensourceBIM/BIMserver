@@ -19,7 +19,6 @@ package org.bimserver.servlets;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.InflaterInputStream;
 
@@ -127,52 +126,34 @@ public class UploadServlet extends SubServlet {
 							} else {
 								realStream = in;
 							}
-							realStream = new TriggerOnCloseInputStream(realStream);
-							InputStreamDataSource inputStreamDataSource = new InputStreamDataSource(realStream);
+							TriggerOnCloseInputStream triggerOnCloseInputStream = new TriggerOnCloseInputStream(realStream);
+							InputStreamDataSource inputStreamDataSource = new InputStreamDataSource(triggerOnCloseInputStream);
 							inputStreamDataSource.setName(name);
 							DataHandler ifcFile = new DataHandler(inputStreamDataSource);
 							
 							if (token != null) {
-								try {
-									ServiceInterface service = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
-									if (topicId == -1) {
-										if (sync) {
-											SLongCheckinActionState checkinSync = service.checkinSync(poid, comment, deserializerOid, -1L, name, ifcFile, merge);
-											result = (ObjectNode) getBimServer().getJsonHandler().getJsonConverter().toJson(checkinSync);
-											service.cleanupLongAction(checkinSync.getTopicId());
-										} else {
-											// When async, we can return as soon as all the data has been read
-											long newTopicId = service.checkinAsync(poid, comment, deserializerOid, -1L, name, ifcFile, merge);
-											((TriggerOnCloseInputStream)realStream).await();
-											result.put("topicId", newTopicId);
-										}
+								ServiceInterface service = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
+								if (topicId == -1) {
+									if (sync) {
+										SLongCheckinActionState checkinSync = service.checkinSync(poid, comment, deserializerOid, -1L, name, ifcFile, merge);
+										result = (ObjectNode) getBimServer().getJsonHandler().getJsonConverter().toJson(checkinSync);
+										service.cleanupLongAction(checkinSync.getTopicId());
 									} else {
-										if (sync) {
-											SLongCheckinActionState checkinSync = service.checkinInitiatedSync(topicId, poid, comment, deserializerOid, -1L, name, ifcFile, merge);
-											result = (ObjectNode) getBimServer().getJsonHandler().getJsonConverter().toJson(checkinSync);
-											service.cleanupLongAction(checkinSync.getTopicId());
-										} else {
-											service.checkinInitiatedAsync(topicId, poid, comment, deserializerOid, -1L, name, ifcFile, merge);
-											((TriggerOnCloseInputStream)realStream).await();
-											result.put("topicId", topicId);
-										}
+										// When async, we can return as soon as all the data has been read
+										long newTopicId = service.checkinAsync(poid, comment, deserializerOid, -1L, name, ifcFile, merge);
+										triggerOnCloseInputStream.await();
+										result.put("topicId", newTopicId);
 									}
-								} catch (Exception e) {
-									// First handle the remaining stream, so we can send the exception
-									try {
-										IOUtils.copy(realStream, new OutputStream() {
-											@Override
-											public void write(int b) throws IOException {
-											}
-											
-											@Override
-											public void write(byte[] b, int off, int len) throws IOException {
-											}
-										});
-									} catch (Exception e2) {
-										// Ignore
+								} else {
+									if (sync) {
+										SLongCheckinActionState checkinSync = service.checkinInitiatedSync(topicId, poid, comment, deserializerOid, -1L, name, ifcFile, merge);
+										result = (ObjectNode) getBimServer().getJsonHandler().getJsonConverter().toJson(checkinSync);
+										service.cleanupLongAction(checkinSync.getTopicId());
+									} else {
+										service.checkinInitiatedAsync(topicId, poid, comment, deserializerOid, -1L, name, ifcFile, merge);
+										triggerOnCloseInputStream.await();
+										result.put("topicId", topicId);
 									}
-									throw e;
 								}
 							}
 						} else {

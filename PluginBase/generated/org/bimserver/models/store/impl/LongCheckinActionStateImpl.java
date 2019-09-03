@@ -46,6 +46,7 @@ import org.eclipse.emf.ecore.EClass;
  * </p>
  * <ul>
  *   <li>{@link org.bimserver.models.store.impl.LongCheckinActionStateImpl#getRoid <em>Roid</em>}</li>
+ *   <li>{@link org.bimserver.models.store.impl.LongCheckinActionStateImpl#getDeserializeErrorCode <em>Deserialize Error Code</em>}</li>
  * </ul>
  *
  * @generated
@@ -88,6 +89,26 @@ public class LongCheckinActionStateImpl extends LongActionStateImpl implements L
 	@Override
 	public void setRoid(long newRoid) {
 		eSet(StorePackage.Literals.LONG_CHECKIN_ACTION_STATE__ROID, newRoid);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int getDeserializeErrorCode() {
+		return (Integer) eGet(StorePackage.Literals.LONG_CHECKIN_ACTION_STATE__DESERIALIZE_ERROR_CODE, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setDeserializeErrorCode(int newDeserializeErrorCode) {
+		eSet(StorePackage.Literals.LONG_CHECKIN_ACTION_STATE__DESERIALIZE_ERROR_CODE, newDeserializeErrorCode);
 	}
 
 } //LongCheckinActionStateImpl

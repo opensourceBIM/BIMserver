@@ -1086,6 +1086,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LongCheckinActionState" eSuperTypes="#//LongActionState">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="roid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deserializeErrorCode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Tile">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tileId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>

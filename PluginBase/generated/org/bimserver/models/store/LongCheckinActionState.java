@@ -60,4 +60,26 @@ public interface LongCheckinActionState extends LongActionState {
 	 */
 	void setRoid(long value);
 
+	/**
+	 * Returns the value of the '<em><b>Deserialize Error Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Deserialize Error Code</em>' attribute.
+	 * @see #setDeserializeErrorCode(int)
+	 * @see org.bimserver.models.store.StorePackage#getLongCheckinActionState_DeserializeErrorCode()
+	 * @model
+	 * @generated
+	 */
+	int getDeserializeErrorCode();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.store.LongCheckinActionState#getDeserializeErrorCode <em>Deserialize Error Code</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Deserialize Error Code</em>' attribute.
+	 * @see #getDeserializeErrorCode()
+	 * @generated
+	 */
+	void setDeserializeErrorCode(int value);
+
 } // LongCheckinActionState

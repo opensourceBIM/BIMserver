@@ -7467,13 +7467,22 @@ public interface StorePackage extends EPackage {
 	int LONG_CHECKIN_ACTION_STATE__ROID = LONG_ACTION_STATE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Deserialize Error Code</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LONG_CHECKIN_ACTION_STATE__DESERIALIZE_ERROR_CODE = LONG_ACTION_STATE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Long Checkin Action State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LONG_CHECKIN_ACTION_STATE_FEATURE_COUNT = LONG_ACTION_STATE_FEATURE_COUNT + 1;
+	int LONG_CHECKIN_ACTION_STATE_FEATURE_COUNT = LONG_ACTION_STATE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.store.impl.TileImpl <em>Tile</em>}' class.
@@ -14514,6 +14523,17 @@ public interface StorePackage extends EPackage {
 	EAttribute getLongCheckinActionState_Roid();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.store.LongCheckinActionState#getDeserializeErrorCode <em>Deserialize Error Code</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Deserialize Error Code</em>'.
+	 * @see org.bimserver.models.store.LongCheckinActionState#getDeserializeErrorCode()
+	 * @see #getLongCheckinActionState()
+	 * @generated
+	 */
+	EAttribute getLongCheckinActionState_DeserializeErrorCode();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.store.Tile <em>Tile</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20003,6 +20023,14 @@ public interface StorePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LONG_CHECKIN_ACTION_STATE__ROID = eINSTANCE.getLongCheckinActionState_Roid();
+
+		/**
+		 * The meta object literal for the '<em><b>Deserialize Error Code</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LONG_CHECKIN_ACTION_STATE__DESERIALIZE_ERROR_CODE = eINSTANCE.getLongCheckinActionState_DeserializeErrorCode();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.store.impl.TileImpl <em>Tile</em>}' class.

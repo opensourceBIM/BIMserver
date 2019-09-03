@@ -1,4 +1,4 @@
-package org.bimserver.shared.interfaces;
+package org.bimserver.database.migrations.steps;
 
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
@@ -16,17 +16,21 @@ package org.bimserver.shared.interfaces;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-import org.bimserver.shared.exceptions.UserException;
-import org.bimserver.shared.exceptions.ServerException;
 
-public class NewServicesInterfaceAdaptor implements org.bimserver.shared.interfaces.NewServicesInterface {
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.migrations.Migration;
+import org.bimserver.database.migrations.Schema;
+import org.eclipse.emf.ecore.EcorePackage;
 
-	public java.util.List<org.bimserver.interfaces.objects.SNewServiceDescriptor> listAllServiceDescriptors() throws UserException, ServerException {
-		return null;
+public class Step0055 extends Migration {
+
+	@Override
+	public void migrate(Schema schema, DatabaseSession databaseSession) {
+		schema.createEAttribute(schema.getEClass("store", "LongCheckinActionState"), "deserializeErrorCode", EcorePackage.eINSTANCE.getEInt());
 	}
-	
-	public java.util.List<org.bimserver.interfaces.objects.SFormatSerializerMap> listAvailableOutputFormats(java.lang.Long poid) throws UserException, ServerException {
-		return null;
+
+	@Override
+	public String getDescription() {
+		return "Added a deserializeErrorCode field to make detecting the actual error client-side easier";
 	}
-	
 }

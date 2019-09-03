@@ -12120,6 +12120,7 @@ public class SConverter {
 		result.getInfos().addAll(input.getInfos());
 		result.setTopicId(input.getTopicId());
 		result.setRoid(input.getRoid());
+		result.setDeserializeErrorCode(input.getDeserializeErrorCode());
 		return result;
 	}
 
@@ -12153,6 +12154,7 @@ public class SConverter {
 		result.getInfos().addAll(input.getInfos());
 		result.setTopicId(input.getTopicId());
 		result.setRoid(input.getRoid());
+		result.setDeserializeErrorCode(input.getDeserializeErrorCode());
 		return result;
 	}
 

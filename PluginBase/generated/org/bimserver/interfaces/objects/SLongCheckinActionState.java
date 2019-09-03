@@ -18,14 +18,10 @@ package org.bimserver.interfaces.objects;
  *****************************************************************************/
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
-
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
-import org.bimserver.shared.meta.SClass;
-import org.bimserver.shared.meta.SDataBase;
-import org.bimserver.shared.meta.SField;
+import java.util.UUID;
+import org.bimserver.shared.meta.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement
@@ -38,6 +34,7 @@ public class SLongCheckinActionState extends SLongActionState implements SDataBa
 	@XmlTransient
 	private static SClass sClass;
 	private long roid;
+	private int deserializeErrorCode;
 
 	public long getOid() {
 		return this.oid;
@@ -106,6 +103,9 @@ public class SLongCheckinActionState extends SLongActionState implements SDataBa
 		if (sField.getName().equals("roid")) {
 			return getRoid();
 		}
+		if (sField.getName().equals("deserializeErrorCode")) {
+			return getDeserializeErrorCode();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -164,6 +164,10 @@ public class SLongCheckinActionState extends SLongActionState implements SDataBa
 			setRoid((Long)val);
 			return;
 		}
+		if (sField.getName().equals("deserializeErrorCode")) {
+			setDeserializeErrorCode((Integer)val);
+			return;
+		}
 		if (sField.getName().equals("oid")) {
 			setOid((Long)val);
 			return;
@@ -185,6 +189,14 @@ public class SLongCheckinActionState extends SLongActionState implements SDataBa
 
 	public void setRoid(long roid) {
 		this.roid = roid;
+	}
+	
+	public int getDeserializeErrorCode() {
+		return deserializeErrorCode;
+	}
+
+	public void setDeserializeErrorCode(int deserializeErrorCode) {
+		this.deserializeErrorCode = deserializeErrorCode;
 	}
 	
 	@Override

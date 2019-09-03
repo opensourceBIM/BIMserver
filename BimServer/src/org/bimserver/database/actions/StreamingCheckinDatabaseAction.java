@@ -28,6 +28,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.output.NullOutputStream;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.GenerateGeometryResult;
@@ -401,6 +403,14 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			} catch (BimserverDatabaseException e1) {
 				LOGGER.error("", e1);
 			}
+			
+			// Read the rest of the inputstream
+			try {
+				IOUtils.copy(inputStream, new NullOutputStream());
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			
 			if (e instanceof BimserverDatabaseException) {
 				throw (BimserverDatabaseException) e;
 			}

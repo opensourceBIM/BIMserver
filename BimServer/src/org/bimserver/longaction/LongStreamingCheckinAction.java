@@ -33,6 +33,7 @@ import org.bimserver.models.store.LongActionState;
 import org.bimserver.models.store.LongCheckinActionState;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.StoreFactory;
+import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
@@ -45,6 +46,7 @@ public class LongStreamingCheckinAction extends LongAction<LongCheckinActionKey>
 	private StreamingCheckinDatabaseAction checkinDatabaseAction;
 	private String fileName;
 	private long roid;
+	private DeserializeException deserializerException;
 
 	public LongStreamingCheckinAction(Long topicId, BimServer bimServer, String username, String userUsername, Authorization authorization, StreamingCheckinDatabaseAction checkinDatabaseAction) {
 		super(bimServer, username, userUsername, authorization);
@@ -108,6 +110,9 @@ public class LongStreamingCheckinAction extends LongAction<LongCheckinActionKey>
 				LOGGER.error("", e1);
 			}
 			if (e instanceof UserException) {
+				if (e.getCause() instanceof DeserializeException) {
+					this.deserializerException = (DeserializeException) e.getCause();
+				}
 			} else if (e instanceof BimserverConcurrentModificationDatabaseException) {
 				// Ignore
 			} else {
@@ -146,6 +151,9 @@ public class LongStreamingCheckinAction extends LongAction<LongCheckinActionKey>
 	public synchronized LongActionState getState() {
 		LongCheckinActionState ds = StoreFactory.eINSTANCE.createLongCheckinActionState();
 		ds.setRoid(roid);
+		if (deserializerException != null) {
+			ds.setDeserializeErrorCode(deserializerException.getDeserializerErrorCode().getCode());
+		}
 		super.fillState(ds);
 		return ds;
 	}

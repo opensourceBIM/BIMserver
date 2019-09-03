@@ -7633,6 +7633,16 @@ public class StorePackageImpl extends EPackageImpl implements StorePackage {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getLongCheckinActionState_DeserializeErrorCode() {
+		return (EAttribute) getLongCheckinActionState().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getTile() {
 		if (tileEClass == null) {
 			tileEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI).getEClassifiers().get(123);
