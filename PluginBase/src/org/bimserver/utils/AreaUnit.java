@@ -25,6 +25,11 @@ public enum AreaUnit implements BasicUnit {
 		public double toSquaredMeters(double input) {
 			return input;
 		}
+		
+		@Override
+		public double toSquaredCentiMeters(double area) {
+			return area * 10000;
+		}
 
 		@Override
 		public double toSquaredMilliMeters(double area) {
@@ -43,6 +48,11 @@ public enum AreaUnit implements BasicUnit {
 		}
 
 		@Override
+		public double toSquaredCentiMeters(double area) {
+			return area / 100;
+		}
+
+		@Override
 		public double toSquaredMilliMeters(double area) {
 			return area;
 		}
@@ -50,6 +60,27 @@ public enum AreaUnit implements BasicUnit {
 		@Override
 		public double convert(double area, AreaUnit modelAreaUnit) {
 			return modelAreaUnit.toSquaredMilliMeters(area);
+		}
+	},
+	SQUARED_CENTI_METER {
+		@Override
+		public double toSquaredMeters(double input) {
+			return input / 10000;
+		}
+		
+		@Override
+		public double toSquaredCentiMeters(double area) {
+			return area;
+		}
+		
+		@Override
+		public double toSquaredMilliMeters(double area) {
+			return area * 100;
+		}
+		
+		@Override
+		public double convert(double area, AreaUnit modelAreaUnit) {
+			return modelAreaUnit.toSquaredCentiMeters(area);
 		}
 	};
 
@@ -59,6 +90,8 @@ public enum AreaUnit implements BasicUnit {
 			return AreaUnit.SQUARED_METER;
 		case MILLI:
 			return AreaUnit.SQUARED_MILLI_METER;
+		case CENTI:
+			return AreaUnit.SQUARED_CENTI_METER;
 		default:
 			throw new RuntimeException("Unimplemented prefix: " + prefix);
 		}
@@ -70,20 +103,18 @@ public enum AreaUnit implements BasicUnit {
 			return AreaUnit.SQUARED_METER;
 		case MILLI:
 			return AreaUnit.SQUARED_MILLI_METER;
+		case CENTI:
+			return AreaUnit.SQUARED_CENTI_METER;
 		default:
 			throw new RuntimeException("Unimplemented prefix: " + prefix);
 		}
 	}
 	
-	protected double toSquaredMilliMeters(double area) {
-		throw new AbstractMethodError();
-	}
+	public abstract double toSquaredMilliMeters(double area);
 
-	public double toSquaredMeters(double input) {
-		throw new AbstractMethodError();
-	}
+	public abstract double toSquaredCentiMeters(double area);
+	
+	public abstract double toSquaredMeters(double input);
 
-	public double convert(double area, AreaUnit modelAreaUnit) {
-		throw new AbstractMethodError();
-	}
+	public abstract double convert(double area, AreaUnit modelAreaUnit);
 }

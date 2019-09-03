@@ -74,15 +74,9 @@ public enum MassUnit implements BasicUnit {
 		}
 	}
 
-	protected double toGram(double volume) {
-		throw new AbstractMethodError();
-	}
+	public abstract double toGram(double volume);
 
-	public double toKilogram(double input) {
-		throw new AbstractMethodError();
-	}
+	public abstract double toKilogram(double input);
 
-	public double convert(double volume, MassUnit modelVolumeUnit) {
-		throw new AbstractMethodError();
-	}
+	public abstract double convert(double volume, MassUnit modelVolumeUnit);
 }

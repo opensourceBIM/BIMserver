@@ -32,6 +32,11 @@ public enum VolumeUnit implements BasicUnit {
 		}
 		
 		@Override
+		public double toCubicCentiMeter(double input) {
+			return input * 1000000;
+		}
+		
+		@Override
 		protected double toCubicDeciMeter(double input) {
 			return input * 1000;
 		}
@@ -44,6 +49,11 @@ public enum VolumeUnit implements BasicUnit {
 		@Override
 		public double toCubicMeter(double input) {
 			return input / 1000000000;
+		}
+		
+		@Override
+		public double toCubicCentiMeter(double input) {
+			return input / 1000;
 		}
 		
 		@Override
@@ -60,10 +70,40 @@ public enum VolumeUnit implements BasicUnit {
 		public double convert(double volume, VolumeUnit modelVolumeUnit) {
 			return modelVolumeUnit.toCubicMilliMeter(volume);
 		}
+	}, CUBIC_CENTI_METER {
+		@Override
+		public double toCubicMeter(double input) {
+			return input / 1000000;
+		}
+		
+		@Override
+		public double toCubicCentiMeter(double input) {
+			return input;
+		}
+		
+		@Override
+		public double toCubicMilliMeter(double input) {
+			return input * 1000;
+		}
+		
+		@Override
+		protected double toCubicDeciMeter(double input) {
+			return input / 1000;
+		}
+		
+		@Override
+		public double convert(double volume, VolumeUnit modelVolumeUnit) {
+			return modelVolumeUnit.toCubicCentiMeter(volume);
+		}
 	}, CUBIC_DECI_METER {
 		@Override
 		public double toCubicMeter(double input) {
 			return input / 1000;
+		}
+		
+		@Override
+		public double toCubicCentiMeter(double input) {
+			return input * 1000;
 		}
 		
 		@Override
@@ -88,6 +128,8 @@ public enum VolumeUnit implements BasicUnit {
 			return VolumeUnit.CUBIC_METER;
 		case MILLI:
 			return VolumeUnit.CUBIC_MILLI_METER;
+		case CENTI:
+			return VolumeUnit.CUBIC_CENTI_METER;
 		case DECI:
 			return VolumeUnit.CUBIC_DECI_METER;
 		default:
@@ -105,6 +147,8 @@ public enum VolumeUnit implements BasicUnit {
 			return VolumeUnit.CUBIC_METER;
 		case MILLI:
 			return VolumeUnit.CUBIC_MILLI_METER;
+		case CENTI:
+			return VolumeUnit.CUBIC_CENTI_METER;
 		case DECI:
 			return VolumeUnit.CUBIC_DECI_METER;
 		default:
@@ -112,15 +156,11 @@ public enum VolumeUnit implements BasicUnit {
 		}
 	}
 	
-	protected double toCubicMilliMeter(double volume) {
-		throw new AbstractMethodError();
-	}
+	public abstract double toCubicMilliMeter(double volume);
 
-	public double toCubicMeter(double input) {
-		throw new AbstractMethodError();
-	}
+	public abstract double toCubicCentiMeter(double volume);
 
-	public double convert(double volume, VolumeUnit modelVolumeUnit) {
-		throw new AbstractMethodError();
-	}
+	public abstract double toCubicMeter(double input);
+
+	public abstract double convert(double volume, VolumeUnit modelVolumeUnit);
 }

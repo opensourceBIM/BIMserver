@@ -173,6 +173,8 @@ public enum LengthUnit implements BasicUnit {
 		switch (this) {
 		case MILLI_METER:
 			return AreaUnit.SQUARED_MILLI_METER;
+		case CENTI_METER:
+			return AreaUnit.SQUARED_CENTI_METER;
 		case METER:
 			return AreaUnit.SQUARED_METER;
 		}
@@ -182,6 +184,7 @@ public enum LengthUnit implements BasicUnit {
 	public VolumeUnit toVolumeUnit() {
 		switch(this) {
 		case METER: return VolumeUnit.CUBIC_METER;
+		case CENTI_METER: return VolumeUnit.CUBIC_CENTI_METER;
 		case MILLI_METER: return VolumeUnit.CUBIC_MILLI_METER;
 		}
 		return null;
@@ -194,35 +197,19 @@ public enum LengthUnit implements BasicUnit {
 	 * @param modelLengthUnit
 	 * @return
 	 */
-	public float convert(float v, LengthUnit modelLengthUnit) {
-		throw new AbstractMethodError();
-	}
+	public abstract float convert(float v, LengthUnit modelLengthUnit);
 
-	public double convert(double v, LengthUnit modelLengthUnit) {
-		throw new AbstractMethodError();
-	}
+	public abstract double convert(double v, LengthUnit modelLengthUnit);
 	
-	public float toMeter(float v) {
-		throw new AbstractMethodError();
-	}
+	public abstract float toMeter(float v);
 
-	public float toMilliMeter(float v) {
-		throw new AbstractMethodError();
-	}
+	public abstract float toMilliMeter(float v);
 
-	public double toMeter(double v) {
-		throw new AbstractMethodError();
-	}
+	public abstract double toMeter(double v);
 
-	public float toCentiMeter(float v) {
-		throw new AbstractMethodError();
-	}
+	public abstract float toCentiMeter(float v);
 
-	public double toCentiMeter(double v) {
-		throw new AbstractMethodError();
-	}
+	public abstract double toCentiMeter(double v);
 
-	public double toMilliMeter(double v) {
-		throw new AbstractMethodError();
-	}
+	public abstract double toMilliMeter(double v);
 }
