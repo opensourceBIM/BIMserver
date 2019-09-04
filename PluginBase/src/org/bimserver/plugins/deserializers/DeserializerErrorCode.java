@@ -1,10 +1,13 @@
 package org.bimserver.plugins.deserializers;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum DeserializerErrorCode {
 	// Header and schema version
-	NO_VALID_IFC_HEADER_FOUND(0), 
-	NO_IFC_SCHEMA_VERSION_FOUND(1), 
-	UNSUPPORTED_IFC_SCHEMA_VERSION(2), 
+	NO_VALID_IFC_HEADER_FOUND(1), 
+	NO_IFC_SCHEMA_VERSION_FOUND(2), 
+	UNSUPPORTED_IFC_SCHEMA_VERSION(3),
 
 	// Deserializer issues
 	NO_SUITABLE_DESERIALIZER_FOUND(100), 
@@ -72,9 +75,14 @@ public enum DeserializerErrorCode {
 	STRING_ENCODING_NUMBER_OF_HEX_CHARS_IN_X2_NOT_DIVISIBLE_BY_4(1304); 
 
 	private int code;
+	private static Map<Integer, DeserializerErrorCode> map = new HashMap<>();
 
 	private DeserializerErrorCode(int code) {
 		this.code = code;
+	}
+	
+	public static DeserializerErrorCode fromCode(int code) {
+		return map.get(code);
 	}
 	
 	public int getCode() {
