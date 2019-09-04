@@ -44,7 +44,7 @@ import org.bimserver.notifications.ProgressNotification;
 import org.bimserver.notifications.ProgressOnRevisionTopic;
 import org.bimserver.notifications.ProgressTopic;
 import org.bimserver.notifications.TopicRegisterException;
-import org.bimserver.shared.exceptions.ErrorCode;
+import org.bimserver.shared.exceptions.DefaultErrorCode;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.NotificationRegistryInterface;
@@ -59,11 +59,11 @@ public class NotificationRegistryServiceImpl extends GenericServiceImpl implemen
 	@Override
 	public void registerProgressHandler(Long topicId, Long endPointId) throws UserException {
 		if (endPointId == null) {
-			throw new UserException("No EndpointId given", ErrorCode.ENDPOINT_NOT_FOUND);
+			throw new UserException("No EndpointId given", DefaultErrorCode.ENDPOINT_NOT_FOUND);
 		}
 		EndPoint endPoint = getEndPoint(endPointId);
 		if (endPoint == null) {
-			throw new UserException("Endpoint with id " + endPointId + " not found", ErrorCode.ENDPOINT_NOT_FOUND);
+			throw new UserException("Endpoint with id " + endPointId + " not found", DefaultErrorCode.ENDPOINT_NOT_FOUND);
 		}
 		ProgressTopic progressTopic = getBimServer().getNotificationsManager().getProgressTopic(topicId);
 		if (progressTopic == null) {
@@ -87,7 +87,7 @@ public class NotificationRegistryServiceImpl extends GenericServiceImpl implemen
 	private EndPoint getEndPoint(long endPointId) throws UserException {
 		EndPoint endPoint = getBimServer().getEndPointManager().get(endPointId);
 		if (endPoint == null) {
-			throw new UserException("Endpoint with id " + endPointId + " not found", ErrorCode.ENDPOINT_NOT_FOUND);
+			throw new UserException("Endpoint with id " + endPointId + " not found", DefaultErrorCode.ENDPOINT_NOT_FOUND);
 		}
 		return endPoint;
 	}

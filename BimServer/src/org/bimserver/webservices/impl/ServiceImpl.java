@@ -3426,7 +3426,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				}
 				return determineSchema.name();
 			} catch (DeserializeException e) {
-				throw new UserException(e.getMessage());
+				throw new UserException(e.getMessage(), e.getDeserializerErrorCode());
 			}
 		} catch (PluginException e) {
 			throw new UserException(e);

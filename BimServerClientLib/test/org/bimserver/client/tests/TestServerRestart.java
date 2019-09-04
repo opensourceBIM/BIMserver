@@ -12,7 +12,7 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.CheckinProgressHandler;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.BimServerClientException;
-import org.bimserver.shared.exceptions.ErrorCode;
+import org.bimserver.shared.exceptions.DefaultErrorCode;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.junit.Test;
@@ -30,7 +30,7 @@ public class TestServerRestart {
 						try {
 							checkin(client);
 						} catch (UserException e) {
-							if (e.getErrorCode() == ErrorCode.ENDPOINT_NOT_FOUND) {
+							if (e.getErrorCode() == DefaultErrorCode.ENDPOINT_NOT_FOUND) {
 								client.getNotificationsManager().startAndWaitForInit();
 								checkin(client);
 							} else {

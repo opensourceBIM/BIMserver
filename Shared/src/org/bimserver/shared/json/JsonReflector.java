@@ -1,6 +1,7 @@
 package org.bimserver.shared.json;
 
 import org.apache.http.conn.HttpHostConnectException;
+import org.bimserver.shared.exceptions.DefaultErrorCode;
 
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
@@ -71,19 +72,19 @@ public abstract class JsonReflector implements Reflector {
 					String message = exceptionJson.has("message") ? exceptionJson.get("message").asText() : "unknown";
 					if (exceptionType.equals(UserException.class.getSimpleName())) {
 						if (exceptionJson.has("errorCode")) {
-							throw new UserException(message, ErrorCode.parse(exceptionJson.get("errorCode").asInt()));
+							throw new UserException(message, ErrorCode.fromCode(exceptionJson.get("errorCode").asInt()));
 						} else {
 							throw new UserException(message);
 						}
 					} else if (exceptionType.equals(ServerException.class.getSimpleName())) {
 						if (exceptionJson.has("errorCode")) {
-							throw new ServerException(message, ErrorCode.parse(exceptionJson.get("errorCode").asInt()));
+							throw new ServerException(message, ErrorCode.fromCode(exceptionJson.get("errorCode").asInt()));
 						} else {
 							throw new ServerException(message);
 						}
 					} else {
 						if (exceptionJson.has("errorCode")) {
-							throw new ServerException(message, ErrorCode.parse(exceptionJson.get("errorCode").asInt()));
+							throw new ServerException(message, ErrorCode.fromCode(exceptionJson.get("errorCode").asInt()));
 						} else {
 							throw new ServerException(message);
 						}
@@ -99,7 +100,7 @@ public abstract class JsonReflector implements Reflector {
 				return null;
 			}
 		} catch (HttpHostConnectException e) {
-			throw new UserException(e.getMessage(), ErrorCode.HTTP_CONNECTION_REFUSED);
+			throw new UserException(e.getMessage(), DefaultErrorCode.HTTP_CONNECTION_REFUSED);
 		} catch (UserException e) {
 			throw e;
 		} catch (ServerException e) {

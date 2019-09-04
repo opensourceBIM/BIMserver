@@ -215,6 +215,8 @@ public class JsonHandler {
 			if (throwable instanceof ServiceException) {
 				ServiceException serviceException = (ServiceException) throwable;
 				if (serviceException.getErrorCode() != null) {
+					writer.writeFieldName("errorType");
+					writer.writeString(serviceException.getErrorCode().getClass().getSimpleName());
 					writer.writeFieldName("errorCode");
 					writer.writeNumber(serviceException.getErrorCode().getCode());
 				}

@@ -1,5 +1,7 @@
 package org.bimserver.shared.exceptions;
 
+import org.bimserver.plugins.deserializers.DeserializerErrorCode;
+
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
  * 
@@ -17,27 +19,17 @@ package org.bimserver.shared.exceptions;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-public enum ErrorCode {
-	SET_REFERENCE_FAILED_OPPOSITE_ALREADY_SET(500), 
-	ENDPOINT_NOT_FOUND(600), 
-	HTTP_CONNECTION_REFUSED(700);
+public interface ErrorCode {
+	int getCode();
 
-	private int code;
-
-	ErrorCode(int code) {
-		this.code = code;
-	}
-	
-	public int getCode() {
-		return code;
-	}
-
-	public static ErrorCode parse(int asInt) {
-		// TODO make faster
-		for (ErrorCode errorCode : ErrorCode.values()) {
-			if (asInt == errorCode.getCode()) {
-				return errorCode;
-			}
+	static ErrorCode fromCode(int code) {
+		DefaultErrorCode defaultErrorCode = DefaultErrorCode.fromCode(code);
+		if (defaultErrorCode != null) {
+			return defaultErrorCode;
+		}
+		DeserializerErrorCode deserializerErrorCode = DeserializerErrorCode.fromCode(code);
+		if (deserializerErrorCode != null) {
+			return deserializerErrorCode;
 		}
 		return null;
 	}
