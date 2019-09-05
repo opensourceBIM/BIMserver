@@ -365,7 +365,7 @@ public abstract class IfcModel implements IfcModelInterface {
 		return unidentifiedObjects;
 	}
 
-	public void add(long oid, IdEObject eObject) throws IfcModelInterfaceException, ObjectAlreadyExistsException {
+	public void add(long oid, IdEObject eObject) throws ObjectAlreadyExistsException {
 		add(oid, eObject, false, false);
 	}
 
@@ -375,9 +375,9 @@ public abstract class IfcModel implements IfcModelInterface {
 	}
 
 	@SuppressWarnings("unchecked")
-	private void add(long oid, IdEObject eObject, boolean ignoreDuplicateOids, boolean allowMultiModel) throws IfcModelInterfaceException, ObjectAlreadyExistsException {
+	private void add(long oid, IdEObject eObject, boolean ignoreDuplicateOids, boolean allowMultiModel) throws ObjectAlreadyExistsException {
 		if (((IdEObjectImpl) eObject).hasModel() && !allowMultiModel && ((IdEObjectImpl) eObject).getModel() != this) {
-			throw new IfcModelInterfaceException("This object (" + eObject + ") already belongs to a Model: " + ((IdEObjectImpl) eObject).getModel() + ", not this " + this);
+			throw new ObjectAlreadyExistsException("This object (" + eObject + ") already belongs to a Model: " + ((IdEObjectImpl) eObject).getModel() + ", not this " + this);
 		}
 		if (oid == -1 || eObject.eClass().getEAnnotation("wrapped") != null) {
 			unidentifiedObjects.add(eObject);

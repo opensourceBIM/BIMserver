@@ -20,7 +20,7 @@ public enum DefaultErrorCode implements ErrorCode {
 		return code;
 	}
 
-	static DefaultErrorCode fromCode(int code) {
+	public static DefaultErrorCode fromCode(int code) {
 		return MAP.get(code);
 	}
 	

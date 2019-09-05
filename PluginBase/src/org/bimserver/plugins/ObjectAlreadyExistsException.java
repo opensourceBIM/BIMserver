@@ -21,10 +21,13 @@ import org.bimserver.emf.IfcModelInterfaceException;
 
 public class ObjectAlreadyExistsException extends IfcModelInterfaceException {
 
+	private static final long serialVersionUID = -1591564054698513055L;
+
 	public ObjectAlreadyExistsException(Exception e) {
 		super(e);
 	}
-
-	private static final long serialVersionUID = -1591564054698513055L;
-
+	
+	public ObjectAlreadyExistsException(String message) {
+		super(message);
+	}
 }

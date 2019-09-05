@@ -98,7 +98,7 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 		}
 	}
 
-	public void setModel(IfcModelInterface model) throws IfcModelInterfaceException {
+	public void setModel(IfcModelInterface model) {
 		this.model = model;
 	}
 

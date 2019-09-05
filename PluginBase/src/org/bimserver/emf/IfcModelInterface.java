@@ -176,7 +176,7 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory, A
 	 * @throws IfcModelInterfaceException
 	 * @throws ObjectAlreadyStoredException 
 	 */
-	void add(long oid, IdEObject newObject) throws IfcModelInterfaceException, ObjectAlreadyExistsException;
+	void add(long oid, IdEObject newObject) throws ObjectAlreadyExistsException;
 	
 	/**
 	 * Add an object to this model with an explicit OID, allow the object to exist in multiple models, only use this method in BIMserver internal code

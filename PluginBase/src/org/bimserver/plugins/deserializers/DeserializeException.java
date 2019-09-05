@@ -57,8 +57,9 @@ public class DeserializeException extends Exception {
 		super(e);
 	}
 
-	public DeserializeException(long lineNumber, Exception e) {
+	public DeserializeException(DeserializerErrorCode deserializerErrorCode, long lineNumber, Exception e) {
 		super(e);
+		this.deserializerErrorCode = deserializerErrorCode;
 		this.lineNumber = lineNumber;
 	}
 }

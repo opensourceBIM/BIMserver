@@ -1,6 +1,7 @@
 package org.bimserver.shared.json;
 
 import org.apache.http.conn.HttpHostConnectException;
+import org.bimserver.plugins.deserializers.DeserializerErrorCode;
 import org.bimserver.shared.exceptions.DefaultErrorCode;
 
 /******************************************************************************
@@ -72,7 +73,14 @@ public abstract class JsonReflector implements Reflector {
 					String message = exceptionJson.has("message") ? exceptionJson.get("message").asText() : "unknown";
 					if (exceptionType.equals(UserException.class.getSimpleName())) {
 						if (exceptionJson.has("errorCode")) {
-							throw new UserException(message, ErrorCode.fromCode(exceptionJson.get("errorCode").asInt()));
+							String errorType = exceptionJson.get("errorType").asText();
+							if (errorType.equals("DefaultErrorCode")) {
+								throw new UserException(message, DefaultErrorCode.fromCode(exceptionJson.get("errorCode").asInt()));
+							} else if (errorType.contentEquals("DeserializerErrorCode")) {
+								throw new UserException(message, DeserializerErrorCode.fromCode(exceptionJson.get("errorCode").asInt()));
+							} else {
+								throw new UserException(message, ErrorCode.fromCode(exceptionJson.get("errorCode").asInt()));
+							}
 						} else {
 							throw new UserException(message);
 						}
