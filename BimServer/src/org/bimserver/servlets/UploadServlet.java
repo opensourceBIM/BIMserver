@@ -30,6 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
+import org.apache.commons.fileupload.MultipartStream.MalformedStreamException;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.util.Streams;
 import org.apache.commons.io.IOUtils;
@@ -82,84 +83,89 @@ public class UploadServlet extends SubServlet {
 				String compression = null;
 				String action = null;
 				long topicId = -1;
-				while (iter.hasNext()) {
-					FileItemStream item = iter.next();
-					if (item.isFormField()) {
-						if ("action".equals(item.getFieldName())) {
-							action = Streams.asString(item.openStream());
-						} else if ("token".equals(item.getFieldName())) {
-							token = Streams.asString(item.openStream());
-						} else if ("poid".equals(item.getFieldName())) {
-							poid = Long.parseLong(Streams.asString(item.openStream()));
-						} else if ("comment".equals(item.getFieldName())) {
-							comment = Streams.asString(item.openStream());
-						} else if ("topicId".equals(item.getFieldName())) {
-							topicId = Long.parseLong(Streams.asString(item.openStream()));
-						} else if ("sync".equals(item.getFieldName())) {
-							sync = Streams.asString(item.openStream()).equals("true");
-						} else if ("merge".equals(item.getFieldName())) {
-							merge = Streams.asString(item.openStream()).equals("true");
-						} else if ("compression".equals(item.getFieldName())) {
-							compression = Streams.asString(item.openStream());
-						} else if ("deserializerOid".equals(item.getFieldName())) {
-							deserializerOid = Long.parseLong(Streams.asString(item.openStream()));
-						}
-					} else {
-						name = item.getName();
-						in = item.openStream();
-						
-						if ("file".equals(action)) {
-							ServiceInterface serviceInterface = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
-							SFile file = new SFile();
-							byte[] data = IOUtils.toByteArray(in);
-							file.setData(data);
-							file.setSize(data.length);
-							file.setFilename(name);
-							file.setMime(item.getContentType());
-							result.put("fileId", serviceInterface.uploadFile(file));
-						} else if (poid != -1) {
-							InputStream realStream = null;
-							if ("gzip".equals(compression)) {
-								realStream = new GZIPInputStream(in);
-							} else if ("deflate".equals(compression)) {
-								realStream = new InflaterInputStream(in);
-							} else {
-								realStream = in;
-							}
-							TriggerOnCloseInputStream triggerOnCloseInputStream = new TriggerOnCloseInputStream(realStream);
-							InputStreamDataSource inputStreamDataSource = new InputStreamDataSource(triggerOnCloseInputStream);
-							inputStreamDataSource.setName(name);
-							DataHandler ifcFile = new DataHandler(inputStreamDataSource);
-							
-							if (token != null) {
-								ServiceInterface service = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
-								if (topicId == -1) {
-									if (sync) {
-										SLongCheckinActionState checkinSync = service.checkinSync(poid, comment, deserializerOid, -1L, name, ifcFile, merge);
-										result = (ObjectNode) getBimServer().getJsonHandler().getJsonConverter().toJson(checkinSync);
-										service.cleanupLongAction(checkinSync.getTopicId());
-									} else {
-										// When async, we can return as soon as all the data has been read
-										long newTopicId = service.checkinAsync(poid, comment, deserializerOid, -1L, name, ifcFile, merge);
-										triggerOnCloseInputStream.await();
-										result.put("topicId", newTopicId);
-									}
-								} else {
-									if (sync) {
-										SLongCheckinActionState checkinSync = service.checkinInitiatedSync(topicId, poid, comment, deserializerOid, -1L, name, ifcFile, merge);
-										result = (ObjectNode) getBimServer().getJsonHandler().getJsonConverter().toJson(checkinSync);
-										service.cleanupLongAction(checkinSync.getTopicId());
-									} else {
-										service.checkinInitiatedAsync(topicId, poid, comment, deserializerOid, -1L, name, ifcFile, merge);
-										triggerOnCloseInputStream.await();
-										result.put("topicId", topicId);
-									}
-								}
+				try {
+					while (iter.hasNext()) {
+						FileItemStream item = iter.next();
+						if (item.isFormField()) {
+							if ("action".equals(item.getFieldName())) {
+								action = Streams.asString(item.openStream());
+							} else if ("token".equals(item.getFieldName())) {
+								token = Streams.asString(item.openStream());
+							} else if ("poid".equals(item.getFieldName())) {
+								poid = Long.parseLong(Streams.asString(item.openStream()));
+							} else if ("comment".equals(item.getFieldName())) {
+								comment = Streams.asString(item.openStream());
+							} else if ("topicId".equals(item.getFieldName())) {
+								topicId = Long.parseLong(Streams.asString(item.openStream()));
+							} else if ("sync".equals(item.getFieldName())) {
+								sync = Streams.asString(item.openStream()).equals("true");
+							} else if ("merge".equals(item.getFieldName())) {
+								merge = Streams.asString(item.openStream()).equals("true");
+							} else if ("compression".equals(item.getFieldName())) {
+								compression = Streams.asString(item.openStream());
+							} else if ("deserializerOid".equals(item.getFieldName())) {
+								deserializerOid = Long.parseLong(Streams.asString(item.openStream()));
 							}
 						} else {
-							result.put("exception", "No poid");
+							name = item.getName();
+							in = item.openStream();
+							
+							if ("file".equals(action)) {
+								ServiceInterface serviceInterface = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
+								SFile file = new SFile();
+								byte[] data = IOUtils.toByteArray(in);
+								file.setData(data);
+								file.setSize(data.length);
+								file.setFilename(name);
+								file.setMime(item.getContentType());
+								result.put("fileId", serviceInterface.uploadFile(file));
+							} else if (poid != -1) {
+								InputStream realStream = null;
+								if ("gzip".equals(compression)) {
+									realStream = new GZIPInputStream(in);
+								} else if ("deflate".equals(compression)) {
+									realStream = new InflaterInputStream(in);
+								} else {
+									realStream = in;
+								}
+								TriggerOnCloseInputStream triggerOnCloseInputStream = new TriggerOnCloseInputStream(realStream);
+								InputStreamDataSource inputStreamDataSource = new InputStreamDataSource(triggerOnCloseInputStream);
+								inputStreamDataSource.setName(name);
+								DataHandler ifcFile = new DataHandler(inputStreamDataSource);
+								
+								if (token != null) {
+									ServiceInterface service = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
+									if (topicId == -1) {
+										if (sync) {
+											SLongCheckinActionState checkinSync = service.checkinSync(poid, comment, deserializerOid, -1L, name, ifcFile, merge);
+											result = (ObjectNode) getBimServer().getJsonHandler().getJsonConverter().toJson(checkinSync);
+											service.cleanupLongAction(checkinSync.getTopicId());
+										} else {
+											// When async, we can return as soon as all the data has been read
+											long newTopicId = service.checkinAsync(poid, comment, deserializerOid, -1L, name, ifcFile, merge);
+											triggerOnCloseInputStream.await();
+											result.put("topicId", newTopicId);
+										}
+									} else {
+										if (sync) {
+											SLongCheckinActionState checkinSync = service.checkinInitiatedSync(topicId, poid, comment, deserializerOid, -1L, name, ifcFile, merge);
+											result = (ObjectNode) getBimServer().getJsonHandler().getJsonConverter().toJson(checkinSync);
+											service.cleanupLongAction(checkinSync.getTopicId());
+										} else {
+											service.checkinInitiatedAsync(topicId, poid, comment, deserializerOid, -1L, name, ifcFile, merge);
+											triggerOnCloseInputStream.await();
+											result.put("topicId", topicId);
+										}
+									}
+								}
+							} else {
+								result.put("exception", "No poid");
+							}
 						}
-					}
+					}					
+				} catch (MalformedStreamException e) {
+					LOGGER.error(comment);
+					LOGGER.error("", e);
 				}
 			}
 		} catch (Exception e) {
