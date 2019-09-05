@@ -342,8 +342,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint {
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<IfcExternalReferenceRelationship> getHasExternalReferences() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(
-				Ifc4Package.Literals.IFC_CONSTRAINT__HAS_EXTERNAL_REFERENCES, true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_CONSTRAINT__HAS_EXTERNAL_REFERENCES, true);
 	}
 
 	/**
@@ -374,8 +373,7 @@ public class IfcConstraintImpl extends IdEObjectImpl implements IfcConstraint {
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<IfcResourceConstraintRelationship> getPropertiesForConstraint() {
-		return (EList<IfcResourceConstraintRelationship>) eGet(
-				Ifc4Package.Literals.IFC_CONSTRAINT__PROPERTIES_FOR_CONSTRAINT, true);
+		return (EList<IfcResourceConstraintRelationship>) eGet(Ifc4Package.Literals.IFC_CONSTRAINT__PROPERTIES_FOR_CONSTRAINT, true);
 	}
 
 	/**

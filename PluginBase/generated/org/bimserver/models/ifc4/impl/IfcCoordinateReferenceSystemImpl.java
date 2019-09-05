@@ -235,8 +235,7 @@ public class IfcCoordinateReferenceSystemImpl extends IdEObjectImpl implements I
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<IfcCoordinateOperation> getHasCoordinateOperation() {
-		return (EList<IfcCoordinateOperation>) eGet(
-				Ifc4Package.Literals.IFC_COORDINATE_REFERENCE_SYSTEM__HAS_COORDINATE_OPERATION, true);
+		return (EList<IfcCoordinateOperation>) eGet(Ifc4Package.Literals.IFC_COORDINATE_REFERENCE_SYSTEM__HAS_COORDINATE_OPERATION, true);
 	}
 
 	/**

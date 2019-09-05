@@ -205,8 +205,7 @@ public enum IfcFastenerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFastenerTypeEnum[] VALUES_ARRAY = new IfcFastenerTypeEnum[] { NULL, MORTAR, NOTDEFINED,
-			GLUE, USERDEFINED, WELD, };
+	private static final IfcFastenerTypeEnum[] VALUES_ARRAY = new IfcFastenerTypeEnum[] { NULL, MORTAR, NOTDEFINED, GLUE, USERDEFINED, WELD, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Fastener Type Enum</b></em>' enumerators.

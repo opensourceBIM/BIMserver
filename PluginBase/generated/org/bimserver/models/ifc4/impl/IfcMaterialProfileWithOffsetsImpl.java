@@ -91,8 +91,7 @@ public class IfcMaterialProfileWithOffsetsImpl extends IfcMaterialProfileImpl im
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<String> getOffsetValuesAsString() {
-		return (EList<String>) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_WITH_OFFSETS__OFFSET_VALUES_AS_STRING,
-				true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_WITH_OFFSETS__OFFSET_VALUES_AS_STRING, true);
 	}
 
 } //IfcMaterialProfileWithOffsetsImpl

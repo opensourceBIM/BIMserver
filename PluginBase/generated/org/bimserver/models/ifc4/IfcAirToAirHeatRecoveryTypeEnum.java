@@ -97,8 +97,7 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	THERMOSIPHONSEALEDTUBEHEATEXCHANGERS(4, "THERMOSIPHONSEALEDTUBEHEATEXCHANGERS",
-			"THERMOSIPHONSEALEDTUBEHEATEXCHANGERS"),
+	THERMOSIPHONSEALEDTUBEHEATEXCHANGERS(4, "THERMOSIPHONSEALEDTUBEHEATEXCHANGERS", "THERMOSIPHONSEALEDTUBEHEATEXCHANGERS"),
 
 	/**
 	 * The '<em><b>FIXEDPLATECROSSFLOWEXCHANGER</b></em>' literal object.
@@ -356,10 +355,8 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAirToAirHeatRecoveryTypeEnum[] VALUES_ARRAY = new IfcAirToAirHeatRecoveryTypeEnum[] { NULL,
-			RUNAROUNDCOILLOOP, NOTDEFINED, FIXEDPLATECOUNTERFLOWEXCHANGER, THERMOSIPHONSEALEDTUBEHEATEXCHANGERS,
-			FIXEDPLATECROSSFLOWEXCHANGER, USERDEFINED, TWINTOWERENTHALPYRECOVERYLOOPS, FIXEDPLATEPARALLELFLOWEXCHANGER,
-			ROTARYWHEEL, HEATPIPE, THERMOSIPHONCOILTYPEHEATEXCHANGERS, };
+	private static final IfcAirToAirHeatRecoveryTypeEnum[] VALUES_ARRAY = new IfcAirToAirHeatRecoveryTypeEnum[] { NULL, RUNAROUNDCOILLOOP, NOTDEFINED, FIXEDPLATECOUNTERFLOWEXCHANGER, THERMOSIPHONSEALEDTUBEHEATEXCHANGERS,
+			FIXEDPLATECROSSFLOWEXCHANGER, USERDEFINED, TWINTOWERENTHALPYRECOVERYLOOPS, FIXEDPLATEPARALLELFLOWEXCHANGER, ROTARYWHEEL, HEATPIPE, THERMOSIPHONCOILTYPEHEATEXCHANGERS, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Air To Air Heat Recovery Type Enum</b></em>' enumerators.
@@ -367,8 +364,7 @@ public enum IfcAirToAirHeatRecoveryTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcAirToAirHeatRecoveryTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcAirToAirHeatRecoveryTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Air To Air Heat Recovery Type Enum</b></em>' literal with the specified literal value.

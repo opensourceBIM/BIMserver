@@ -167,8 +167,7 @@ public enum IfcDoorTypeOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT(11, "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT",
-			"DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT"),
+	DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT(11, "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT", "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT"),
 
 	/**
 	 * The '<em><b>SLIDING TO LEFT</b></em>' literal object.
@@ -228,8 +227,7 @@ public enum IfcDoorTypeOperationEnum implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT(17, "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT",
-			"DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT"),
+	DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT(17, "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT", "DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT"),
 
 	/**
 	 * The '<em><b>DOUBLE DOOR SINGLE SWING</b></em>' literal object.
@@ -582,12 +580,9 @@ public enum IfcDoorTypeOperationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDoorTypeOperationEnum[] VALUES_ARRAY = new IfcDoorTypeOperationEnum[] { NULL,
-			DOUBLE_DOOR_DOUBLE_SWING, USERDEFINED, SWING_FIXED_LEFT, FOLDING_TO_LEFT, SLIDING_TO_RIGHT,
-			SINGLE_SWING_RIGHT, DOUBLE_SWING_LEFT, NOTDEFINED, DOUBLE_DOOR_FOLDING, REVOLVING,
-			DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT, SLIDING_TO_LEFT, SWING_FIXED_RIGHT, DOUBLE_SWING_RIGHT, ROLLINGUP,
-			SINGLE_SWING_LEFT, DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT, DOUBLE_DOOR_SINGLE_SWING, DOUBLE_DOOR_SLIDING,
-			FOLDING_TO_RIGHT, };
+	private static final IfcDoorTypeOperationEnum[] VALUES_ARRAY = new IfcDoorTypeOperationEnum[] { NULL, DOUBLE_DOOR_DOUBLE_SWING, USERDEFINED, SWING_FIXED_LEFT, FOLDING_TO_LEFT, SLIDING_TO_RIGHT, SINGLE_SWING_RIGHT, DOUBLE_SWING_LEFT,
+			NOTDEFINED, DOUBLE_DOOR_FOLDING, REVOLVING, DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_RIGHT, SLIDING_TO_LEFT, SWING_FIXED_RIGHT, DOUBLE_SWING_RIGHT, ROLLINGUP, SINGLE_SWING_LEFT, DOUBLE_DOOR_SINGLE_SWING_OPPOSITE_LEFT,
+			DOUBLE_DOOR_SINGLE_SWING, DOUBLE_DOOR_SLIDING, FOLDING_TO_RIGHT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Door Type Operation Enum</b></em>' enumerators.
@@ -595,8 +590,7 @@ public enum IfcDoorTypeOperationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcDoorTypeOperationEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcDoorTypeOperationEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Door Type Operation Enum</b></em>' literal with the specified literal value.

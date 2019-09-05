@@ -230,8 +230,7 @@ public enum IfcInternalOrExternalEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcInternalOrExternalEnum[] VALUES_ARRAY = new IfcInternalOrExternalEnum[] { NULL, NOTDEFINED,
-			EXTERNAL, EXTERNAL_FIRE, INTERNAL, EXTERNAL_WATER, EXTERNAL_EARTH, };
+	private static final IfcInternalOrExternalEnum[] VALUES_ARRAY = new IfcInternalOrExternalEnum[] { NULL, NOTDEFINED, EXTERNAL, EXTERNAL_FIRE, INTERNAL, EXTERNAL_WATER, EXTERNAL_EARTH, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Internal Or External Enum</b></em>' enumerators.
@@ -239,8 +238,7 @@ public enum IfcInternalOrExternalEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcInternalOrExternalEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcInternalOrExternalEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Internal Or External Enum</b></em>' literal with the specified literal value.

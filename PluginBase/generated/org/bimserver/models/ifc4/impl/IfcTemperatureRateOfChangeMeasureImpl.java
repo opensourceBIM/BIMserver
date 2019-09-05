@@ -129,8 +129,7 @@ public class IfcTemperatureRateOfChangeMeasureImpl extends IdEObjectImpl impleme
 	 */
 	@Override
 	public String getWrappedValueAsString() {
-		return (String) eGet(Ifc4Package.Literals.IFC_TEMPERATURE_RATE_OF_CHANGE_MEASURE__WRAPPED_VALUE_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_TEMPERATURE_RATE_OF_CHANGE_MEASURE__WRAPPED_VALUE_AS_STRING, true);
 	}
 
 	/**
@@ -140,8 +139,7 @@ public class IfcTemperatureRateOfChangeMeasureImpl extends IdEObjectImpl impleme
 	 */
 	@Override
 	public void setWrappedValueAsString(String newWrappedValueAsString) {
-		eSet(Ifc4Package.Literals.IFC_TEMPERATURE_RATE_OF_CHANGE_MEASURE__WRAPPED_VALUE_AS_STRING,
-				newWrappedValueAsString);
+		eSet(Ifc4Package.Literals.IFC_TEMPERATURE_RATE_OF_CHANGE_MEASURE__WRAPPED_VALUE_AS_STRING, newWrappedValueAsString);
 	}
 
 	/**

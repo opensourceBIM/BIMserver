@@ -255,8 +255,7 @@ public enum IfcCableFittingTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCableFittingTypeEnum[] VALUES_ARRAY = new IfcCableFittingTypeEnum[] { NULL, TRANSITION,
-			NOTDEFINED, ENTRY, USERDEFINED, EXIT, JUNCTION, CONNECTOR, };
+	private static final IfcCableFittingTypeEnum[] VALUES_ARRAY = new IfcCableFittingTypeEnum[] { NULL, TRANSITION, NOTDEFINED, ENTRY, USERDEFINED, EXIT, JUNCTION, CONNECTOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Cable Fitting Type Enum</b></em>' enumerators.
@@ -264,8 +263,7 @@ public enum IfcCableFittingTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcCableFittingTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcCableFittingTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Cable Fitting Type Enum</b></em>' literal with the specified literal value.

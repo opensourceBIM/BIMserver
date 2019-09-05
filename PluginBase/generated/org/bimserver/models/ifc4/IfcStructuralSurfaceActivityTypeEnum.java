@@ -230,8 +230,7 @@ public enum IfcStructuralSurfaceActivityTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcStructuralSurfaceActivityTypeEnum[] VALUES_ARRAY = new IfcStructuralSurfaceActivityTypeEnum[] {
-			NULL, BILINEAR, NOTDEFINED, ISOCONTOUR, CONST, DISCRETE, USERDEFINED, };
+	private static final IfcStructuralSurfaceActivityTypeEnum[] VALUES_ARRAY = new IfcStructuralSurfaceActivityTypeEnum[] { NULL, BILINEAR, NOTDEFINED, ISOCONTOUR, CONST, DISCRETE, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Structural Surface Activity Type Enum</b></em>' enumerators.
@@ -239,8 +238,7 @@ public enum IfcStructuralSurfaceActivityTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcStructuralSurfaceActivityTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcStructuralSurfaceActivityTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Structural Surface Activity Type Enum</b></em>' literal with the specified literal value.

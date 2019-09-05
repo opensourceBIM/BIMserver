@@ -316,11 +316,28 @@ public class SharedJsonDeserializer {
 														String nextName = jsonReader.nextName();
 														if (nextName.equals("_t")) {
 															String t = jsonReader.nextString();
-															IdEObject wrappedObject = (IdEObject) model.create(model.getPackageMetaData().getEClass(t), -1);
 															if (jsonReader.nextName().equals("_v")) {
-																EStructuralFeature wv = wrappedObject.eClass().getEStructuralFeature("wrappedValue");
-																wrappedObject.eSet(wv, readPrimitive(jsonReader, wv));
-																list.add(wrappedObject);
+																if (jsonReader.peek() == JsonToken.BEGIN_ARRAY) {
+																	// Embedded array
+																	jsonReader.beginArray();
+																	
+																	// Here we are, IfcLineIndex should implement IfcSegmentIndexSelect, just as IfcArcIndex should
+																	
+																	IdEObjectImpl listObject = model.create(model.getPackageMetaData().getEClassIncludingDependencies(t));
+//																	addToList(eStructuralFeature, index, list, listObject);
+																	EStructuralFeature listFeature = listObject.eClass().getEStructuralFeature("wrappedValue");
+																	AbstractEList innerList = (AbstractEList) listObject.eGet(listFeature);
+																	while (jsonReader.hasNext()){
+																		innerList.add(readPrimitive(jsonReader, listFeature));
+																	}
+																	jsonReader.endArray();
+																	list.add(listObject);
+																} else {
+																	IdEObject wrappedObject = (IdEObject) model.create(model.getPackageMetaData().getEClass(t), -1);
+																	EStructuralFeature wv = wrappedObject.eClass().getEStructuralFeature("wrappedValue");
+																	wrappedObject.eSet(wv, readPrimitive(jsonReader, wv));
+																	list.add(wrappedObject);
+																}
 															} else {
 																throw new DeserializeException(DeserializerErrorCode.UNEXPECTED_FIELD, "Expected _v");
 															}

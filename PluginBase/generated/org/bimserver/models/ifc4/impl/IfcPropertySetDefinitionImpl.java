@@ -115,8 +115,7 @@ public class IfcPropertySetDefinitionImpl extends IfcPropertyDefinitionImpl impl
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<IfcRelDefinesByTemplate> getIsDefinedBy() {
-		return (EList<IfcRelDefinesByTemplate>) eGet(Ifc4Package.Literals.IFC_PROPERTY_SET_DEFINITION__IS_DEFINED_BY,
-				true);
+		return (EList<IfcRelDefinesByTemplate>) eGet(Ifc4Package.Literals.IFC_PROPERTY_SET_DEFINITION__IS_DEFINED_BY, true);
 	}
 
 	/**
@@ -147,8 +146,7 @@ public class IfcPropertySetDefinitionImpl extends IfcPropertyDefinitionImpl impl
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<IfcRelDefinesByProperties> getDefinesOccurrence() {
-		return (EList<IfcRelDefinesByProperties>) eGet(
-				Ifc4Package.Literals.IFC_PROPERTY_SET_DEFINITION__DEFINES_OCCURRENCE, true);
+		return (EList<IfcRelDefinesByProperties>) eGet(Ifc4Package.Literals.IFC_PROPERTY_SET_DEFINITION__DEFINES_OCCURRENCE, true);
 	}
 
 	/**

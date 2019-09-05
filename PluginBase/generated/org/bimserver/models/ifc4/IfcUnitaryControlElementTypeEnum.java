@@ -330,9 +330,8 @@ public enum IfcUnitaryControlElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcUnitaryControlElementTypeEnum[] VALUES_ARRAY = new IfcUnitaryControlElementTypeEnum[] {
-			NULL, NOTDEFINED, HUMIDISTAT, WEATHERSTATION, GASDETECTIONPANEL, INDICATORPANEL, THERMOSTAT, USERDEFINED,
-			ALARMPANEL, CONTROLPANEL, MIMICPANEL, };
+	private static final IfcUnitaryControlElementTypeEnum[] VALUES_ARRAY = new IfcUnitaryControlElementTypeEnum[] { NULL, NOTDEFINED, HUMIDISTAT, WEATHERSTATION, GASDETECTIONPANEL, INDICATORPANEL, THERMOSTAT, USERDEFINED, ALARMPANEL,
+			CONTROLPANEL, MIMICPANEL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Unitary Control Element Type Enum</b></em>' enumerators.
@@ -340,8 +339,7 @@ public enum IfcUnitaryControlElementTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcUnitaryControlElementTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcUnitaryControlElementTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Unitary Control Element Type Enum</b></em>' literal with the specified literal value.

@@ -50,10 +50,9 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see org.bimserver.models.ifc4.Ifc4Package#getIfcArcIndex()
  * @model annotation="wrapped"
- * @extends IdEObject
  * @generated
  */
-public interface IfcArcIndex extends IdEObject {
+public interface IfcArcIndex extends IfcSegmentIndexSelect {
 	/**
 	 * Returns the value of the '<em><b>Wrapped Value</b></em>' attribute list.
 	 * The list contents are of type {@link java.lang.Long}.

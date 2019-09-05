@@ -205,8 +205,7 @@ public enum IfcSurfaceFeatureTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSurfaceFeatureTypeEnum[] VALUES_ARRAY = new IfcSurfaceFeatureTypeEnum[] { NULL, NOTDEFINED,
-			TREATMENT, USERDEFINED, TAG, MARK, };
+	private static final IfcSurfaceFeatureTypeEnum[] VALUES_ARRAY = new IfcSurfaceFeatureTypeEnum[] { NULL, NOTDEFINED, TREATMENT, USERDEFINED, TAG, MARK, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Surface Feature Type Enum</b></em>' enumerators.
@@ -214,8 +213,7 @@ public enum IfcSurfaceFeatureTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcSurfaceFeatureTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcSurfaceFeatureTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Surface Feature Type Enum</b></em>' literal with the specified literal value.

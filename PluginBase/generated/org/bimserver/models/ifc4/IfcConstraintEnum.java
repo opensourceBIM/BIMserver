@@ -205,8 +205,7 @@ public enum IfcConstraintEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcConstraintEnum[] VALUES_ARRAY = new IfcConstraintEnum[] { NULL, NOTDEFINED, ADVISORY, HARD,
-			USERDEFINED, SOFT, };
+	private static final IfcConstraintEnum[] VALUES_ARRAY = new IfcConstraintEnum[] { NULL, NOTDEFINED, ADVISORY, HARD, USERDEFINED, SOFT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Constraint Enum</b></em>' enumerators.

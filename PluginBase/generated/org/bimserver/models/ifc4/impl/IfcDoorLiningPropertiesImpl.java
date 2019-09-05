@@ -392,8 +392,7 @@ public class IfcDoorLiningPropertiesImpl extends IfcPreDefinedPropertySetImpl im
 	 */
 	@Override
 	public void setThresholdThicknessAsString(String newThresholdThicknessAsString) {
-		eSet(Ifc4Package.Literals.IFC_DOOR_LINING_PROPERTIES__THRESHOLD_THICKNESS_AS_STRING,
-				newThresholdThicknessAsString);
+		eSet(Ifc4Package.Literals.IFC_DOOR_LINING_PROPERTIES__THRESHOLD_THICKNESS_AS_STRING, newThresholdThicknessAsString);
 	}
 
 	/**
@@ -993,8 +992,7 @@ public class IfcDoorLiningPropertiesImpl extends IfcPreDefinedPropertySetImpl im
 	 */
 	@Override
 	public void setLiningToPanelOffsetXAsString(String newLiningToPanelOffsetXAsString) {
-		eSet(Ifc4Package.Literals.IFC_DOOR_LINING_PROPERTIES__LINING_TO_PANEL_OFFSET_XAS_STRING,
-				newLiningToPanelOffsetXAsString);
+		eSet(Ifc4Package.Literals.IFC_DOOR_LINING_PROPERTIES__LINING_TO_PANEL_OFFSET_XAS_STRING, newLiningToPanelOffsetXAsString);
 	}
 
 	/**
@@ -1074,8 +1072,7 @@ public class IfcDoorLiningPropertiesImpl extends IfcPreDefinedPropertySetImpl im
 	 */
 	@Override
 	public void setLiningToPanelOffsetYAsString(String newLiningToPanelOffsetYAsString) {
-		eSet(Ifc4Package.Literals.IFC_DOOR_LINING_PROPERTIES__LINING_TO_PANEL_OFFSET_YAS_STRING,
-				newLiningToPanelOffsetYAsString);
+		eSet(Ifc4Package.Literals.IFC_DOOR_LINING_PROPERTIES__LINING_TO_PANEL_OFFSET_YAS_STRING, newLiningToPanelOffsetYAsString);
 	}
 
 	/**

@@ -33,6 +33,5 @@ package org.bimserver.models.ifc4;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-public interface IfcPositiveLengthMeasure
-		extends IfcLengthMeasure, IfcHatchLineDistanceSelect, IfcMeasureValue, IfcSizeSelect {
+public interface IfcPositiveLengthMeasure extends IfcLengthMeasure, IfcHatchLineDistanceSelect, IfcMeasureValue, IfcSizeSelect {
 } // IfcPositiveLengthMeasure

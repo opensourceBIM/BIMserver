@@ -99,8 +99,7 @@ public class IfcPerformanceHistoryImpl extends IfcControlImpl implements IfcPerf
 	 */
 	@Override
 	public IfcPerformanceHistoryTypeEnum getPredefinedType() {
-		return (IfcPerformanceHistoryTypeEnum) eGet(Ifc4Package.Literals.IFC_PERFORMANCE_HISTORY__PREDEFINED_TYPE,
-				true);
+		return (IfcPerformanceHistoryTypeEnum) eGet(Ifc4Package.Literals.IFC_PERFORMANCE_HISTORY__PREDEFINED_TYPE, true);
 	}
 
 	/**

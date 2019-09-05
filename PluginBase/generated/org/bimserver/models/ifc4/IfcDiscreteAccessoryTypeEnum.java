@@ -205,8 +205,7 @@ public enum IfcDiscreteAccessoryTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDiscreteAccessoryTypeEnum[] VALUES_ARRAY = new IfcDiscreteAccessoryTypeEnum[] { NULL,
-			NOTDEFINED, BRACKET, ANCHORPLATE, USERDEFINED, SHOE, };
+	private static final IfcDiscreteAccessoryTypeEnum[] VALUES_ARRAY = new IfcDiscreteAccessoryTypeEnum[] { NULL, NOTDEFINED, BRACKET, ANCHORPLATE, USERDEFINED, SHOE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Discrete Accessory Type Enum</b></em>' enumerators.
@@ -214,8 +213,7 @@ public enum IfcDiscreteAccessoryTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcDiscreteAccessoryTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcDiscreteAccessoryTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Discrete Accessory Type Enum</b></em>' literal with the specified literal value.

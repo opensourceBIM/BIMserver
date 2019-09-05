@@ -770,20 +770,21 @@ enum SActionState{
 }
 
 message SLongCheckinActionState {
-	optional int64 end = 1;
-	repeated string errors = 2;
-	repeated string infos = 3;
-	optional int64 oid = 4;
-	optional int32 progress = 5;
-	optional int32 rid = 6;
-	optional int64 roid = 7;
-	optional int32 stage = 8;
-	optional int64 start = 9;
-	optional SActionState state = 10;
-	optional string title = 11;
-	optional int64 topicId = 12;
-	optional UUID uuid = 13;
-	repeated string warnings = 14;
+	optional int32 deserializeErrorCode = 1;
+	optional int64 end = 2;
+	repeated string errors = 3;
+	repeated string infos = 4;
+	optional int64 oid = 5;
+	optional int32 progress = 6;
+	optional int32 rid = 7;
+	optional int64 roid = 8;
+	optional int32 stage = 9;
+	optional int64 start = 10;
+	optional SActionState state = 11;
+	optional string title = 12;
+	optional int64 topicId = 13;
+	optional UUID uuid = 14;
+	repeated string warnings = 15;
 }
 
 message CheckinFromUrlSyncResponse {

@@ -180,8 +180,7 @@ public enum IfcBuildingElementPartTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBuildingElementPartTypeEnum[] VALUES_ARRAY = new IfcBuildingElementPartTypeEnum[] { NULL,
-			NOTDEFINED, INSULATION, PRECASTPANEL, USERDEFINED, };
+	private static final IfcBuildingElementPartTypeEnum[] VALUES_ARRAY = new IfcBuildingElementPartTypeEnum[] { NULL, NOTDEFINED, INSULATION, PRECASTPANEL, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Building Element Part Type Enum</b></em>' enumerators.
@@ -189,8 +188,7 @@ public enum IfcBuildingElementPartTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcBuildingElementPartTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcBuildingElementPartTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Building Element Part Type Enum</b></em>' literal with the specified literal value.

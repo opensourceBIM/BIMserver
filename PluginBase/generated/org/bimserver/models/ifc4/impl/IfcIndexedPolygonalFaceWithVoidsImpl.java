@@ -52,8 +52,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcIndexedPolygonalFaceWithVoidsImpl extends IfcIndexedPolygonalFaceImpl
-		implements IfcIndexedPolygonalFaceWithVoids {
+public class IfcIndexedPolygonalFaceWithVoidsImpl extends IfcIndexedPolygonalFaceImpl implements IfcIndexedPolygonalFaceWithVoids {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -81,8 +80,7 @@ public class IfcIndexedPolygonalFaceWithVoidsImpl extends IfcIndexedPolygonalFac
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ListOfELong> getInnerCoordIndices() {
-		return (EList<ListOfELong>) eGet(
-				Ifc4Package.Literals.IFC_INDEXED_POLYGONAL_FACE_WITH_VOIDS__INNER_COORD_INDICES, true);
+		return (EList<ListOfELong>) eGet(Ifc4Package.Literals.IFC_INDEXED_POLYGONAL_FACE_WITH_VOIDS__INNER_COORD_INDICES, true);
 	}
 
 } //IfcIndexedPolygonalFaceWithVoidsImpl

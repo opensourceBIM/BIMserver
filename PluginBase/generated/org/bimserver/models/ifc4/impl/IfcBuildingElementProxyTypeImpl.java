@@ -78,8 +78,7 @@ public class IfcBuildingElementProxyTypeImpl extends IfcBuildingElementTypeImpl 
 	 */
 	@Override
 	public IfcBuildingElementProxyTypeEnum getPredefinedType() {
-		return (IfcBuildingElementProxyTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_BUILDING_ELEMENT_PROXY_TYPE__PREDEFINED_TYPE, true);
+		return (IfcBuildingElementProxyTypeEnum) eGet(Ifc4Package.Literals.IFC_BUILDING_ELEMENT_PROXY_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**

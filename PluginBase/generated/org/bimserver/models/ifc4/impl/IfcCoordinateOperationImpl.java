@@ -91,8 +91,7 @@ public class IfcCoordinateOperationImpl extends IdEObjectImpl implements IfcCoor
 	 */
 	@Override
 	public IfcCoordinateReferenceSystemSelect getSourceCRS() {
-		return (IfcCoordinateReferenceSystemSelect) eGet(Ifc4Package.Literals.IFC_COORDINATE_OPERATION__SOURCE_CRS,
-				true);
+		return (IfcCoordinateReferenceSystemSelect) eGet(Ifc4Package.Literals.IFC_COORDINATE_OPERATION__SOURCE_CRS, true);
 	}
 
 	/**

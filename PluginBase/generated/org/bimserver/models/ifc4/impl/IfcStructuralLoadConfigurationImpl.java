@@ -54,8 +54,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralLoadConfigurationImpl extends IfcStructuralLoadImpl
-		implements IfcStructuralLoadConfiguration {
+public class IfcStructuralLoadConfigurationImpl extends IfcStructuralLoadImpl implements IfcStructuralLoadConfiguration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -83,8 +82,7 @@ public class IfcStructuralLoadConfigurationImpl extends IfcStructuralLoadImpl
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<IfcStructuralLoadOrResult> getValues() {
-		return (EList<IfcStructuralLoadOrResult>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_CONFIGURATION__VALUES,
-				true);
+		return (EList<IfcStructuralLoadOrResult>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_CONFIGURATION__VALUES, true);
 	}
 
 	/**
@@ -95,8 +93,7 @@ public class IfcStructuralLoadConfigurationImpl extends IfcStructuralLoadImpl
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ListOfIfcLengthMeasure> getLocations() {
-		return (EList<ListOfIfcLengthMeasure>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_CONFIGURATION__LOCATIONS,
-				true);
+		return (EList<ListOfIfcLengthMeasure>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_LOAD_CONFIGURATION__LOCATIONS, true);
 	}
 
 } //IfcStructuralLoadConfigurationImpl

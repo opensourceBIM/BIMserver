@@ -180,8 +180,7 @@ public enum IfcJunctionBoxTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcJunctionBoxTypeEnum[] VALUES_ARRAY = new IfcJunctionBoxTypeEnum[] { NULL, NOTDEFINED, DATA,
-			POWER, USERDEFINED, };
+	private static final IfcJunctionBoxTypeEnum[] VALUES_ARRAY = new IfcJunctionBoxTypeEnum[] { NULL, NOTDEFINED, DATA, POWER, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Junction Box Type Enum</b></em>' enumerators.

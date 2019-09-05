@@ -80,8 +80,7 @@ public class IfcStructuralItemImpl extends IfcProductImpl implements IfcStructur
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<IfcRelConnectsStructuralActivity> getAssignedStructuralActivity() {
-		return (EList<IfcRelConnectsStructuralActivity>) eGet(
-				Ifc4Package.Literals.IFC_STRUCTURAL_ITEM__ASSIGNED_STRUCTURAL_ACTIVITY, true);
+		return (EList<IfcRelConnectsStructuralActivity>) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_ITEM__ASSIGNED_STRUCTURAL_ACTIVITY, true);
 	}
 
 	/**

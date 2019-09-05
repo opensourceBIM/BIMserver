@@ -57,8 +57,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcFixedReferenceSweptAreaSolidImpl extends IfcSweptAreaSolidImpl
-		implements IfcFixedReferenceSweptAreaSolid {
+public class IfcFixedReferenceSweptAreaSolidImpl extends IfcSweptAreaSolidImpl implements IfcFixedReferenceSweptAreaSolid {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -78,8 +78,7 @@ public class IfcSubContractResourceImpl extends IfcConstructionResourceImpl impl
 	 */
 	@Override
 	public IfcSubContractResourceTypeEnum getPredefinedType() {
-		return (IfcSubContractResourceTypeEnum) eGet(Ifc4Package.Literals.IFC_SUB_CONTRACT_RESOURCE__PREDEFINED_TYPE,
-				true);
+		return (IfcSubContractResourceTypeEnum) eGet(Ifc4Package.Literals.IFC_SUB_CONTRACT_RESOURCE__PREDEFINED_TYPE, true);
 	}
 
 	/**

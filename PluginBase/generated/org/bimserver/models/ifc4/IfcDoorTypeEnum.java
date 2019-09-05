@@ -205,8 +205,7 @@ public enum IfcDoorTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDoorTypeEnum[] VALUES_ARRAY = new IfcDoorTypeEnum[] { NULL, NOTDEFINED, GATE, USERDEFINED,
-			DOOR, TRAPDOOR, };
+	private static final IfcDoorTypeEnum[] VALUES_ARRAY = new IfcDoorTypeEnum[] { NULL, NOTDEFINED, GATE, USERDEFINED, DOOR, TRAPDOOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Door Type Enum</b></em>' enumerators.

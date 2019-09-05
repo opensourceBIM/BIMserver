@@ -91,8 +91,7 @@ public class IfcSurfaceStyleLightingImpl extends IfcPresentationItemImpl impleme
 	 */
 	@Override
 	public void setDiffuseTransmissionColour(IfcColourRgb newDiffuseTransmissionColour) {
-		eSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_LIGHTING__DIFFUSE_TRANSMISSION_COLOUR,
-				newDiffuseTransmissionColour);
+		eSet(Ifc4Package.Literals.IFC_SURFACE_STYLE_LIGHTING__DIFFUSE_TRANSMISSION_COLOUR, newDiffuseTransmissionColour);
 	}
 
 	/**

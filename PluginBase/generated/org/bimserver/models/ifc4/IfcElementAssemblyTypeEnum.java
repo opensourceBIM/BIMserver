@@ -355,8 +355,7 @@ public enum IfcElementAssemblyTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcElementAssemblyTypeEnum[] VALUES_ARRAY = new IfcElementAssemblyTypeEnum[] { NULL, TRUSS,
-			GIRDER, NOTDEFINED, SLAB_FIELD, ARCH, BEAM_GRID, USERDEFINED, ACCESSORY_ASSEMBLY, BRACED_FRAME, RIGID_FRAME,
+	private static final IfcElementAssemblyTypeEnum[] VALUES_ARRAY = new IfcElementAssemblyTypeEnum[] { NULL, TRUSS, GIRDER, NOTDEFINED, SLAB_FIELD, ARCH, BEAM_GRID, USERDEFINED, ACCESSORY_ASSEMBLY, BRACED_FRAME, RIGID_FRAME,
 			REINFORCEMENT_UNIT, };
 
 	/**
@@ -365,8 +364,7 @@ public enum IfcElementAssemblyTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcElementAssemblyTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcElementAssemblyTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Element Assembly Type Enum</b></em>' literal with the specified literal value.

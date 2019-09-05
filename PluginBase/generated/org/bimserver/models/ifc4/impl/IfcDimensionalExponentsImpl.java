@@ -184,8 +184,7 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 */
 	@Override
 	public void setThermodynamicTemperatureExponent(long newThermodynamicTemperatureExponent) {
-		eSet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__THERMODYNAMIC_TEMPERATURE_EXPONENT,
-				newThermodynamicTemperatureExponent);
+		eSet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__THERMODYNAMIC_TEMPERATURE_EXPONENT, newThermodynamicTemperatureExponent);
 	}
 
 	/**
@@ -205,8 +204,7 @@ public class IfcDimensionalExponentsImpl extends IdEObjectImpl implements IfcDim
 	 */
 	@Override
 	public void setAmountOfSubstanceExponent(long newAmountOfSubstanceExponent) {
-		eSet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__AMOUNT_OF_SUBSTANCE_EXPONENT,
-				newAmountOfSubstanceExponent);
+		eSet(Ifc4Package.Literals.IFC_DIMENSIONAL_EXPONENTS__AMOUNT_OF_SUBSTANCE_EXPONENT, newAmountOfSubstanceExponent);
 	}
 
 	/**

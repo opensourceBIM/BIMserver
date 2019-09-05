@@ -91,8 +91,7 @@ public class ListOfIfcNormalisedRatioMeasureImpl extends IdEObjectImpl implement
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<IfcNormalisedRatioMeasure> getList() {
-		return (EList<IfcNormalisedRatioMeasure>) eGet(Ifc4Package.Literals.LIST_OF_IFC_NORMALISED_RATIO_MEASURE__LIST,
-				true);
+		return (EList<IfcNormalisedRatioMeasure>) eGet(Ifc4Package.Literals.LIST_OF_IFC_NORMALISED_RATIO_MEASURE__LIST, true);
 	}
 
 } //ListOfIfcNormalisedRatioMeasureImpl

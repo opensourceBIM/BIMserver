@@ -80,8 +80,7 @@ public class IfcDistributionFlowElementImpl extends IfcDistributionElementImpl i
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<IfcRelFlowControlElements> getHasControlElements() {
-		return (EList<IfcRelFlowControlElements>) eGet(
-				Ifc4Package.Literals.IFC_DISTRIBUTION_FLOW_ELEMENT__HAS_CONTROL_ELEMENTS, true);
+		return (EList<IfcRelFlowControlElements>) eGet(Ifc4Package.Literals.IFC_DISTRIBUTION_FLOW_ELEMENT__HAS_CONTROL_ELEMENTS, true);
 	}
 
 	/**

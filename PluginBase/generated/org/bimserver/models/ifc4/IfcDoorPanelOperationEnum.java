@@ -305,8 +305,7 @@ public enum IfcDoorPanelOperationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDoorPanelOperationEnum[] VALUES_ARRAY = new IfcDoorPanelOperationEnum[] { NULL, NOTDEFINED,
-			FOLDING, SLIDING, REVOLVING, SWINGING, USERDEFINED, ROLLINGUP, DOUBLE_ACTING, FIXEDPANEL, };
+	private static final IfcDoorPanelOperationEnum[] VALUES_ARRAY = new IfcDoorPanelOperationEnum[] { NULL, NOTDEFINED, FOLDING, SLIDING, REVOLVING, SWINGING, USERDEFINED, ROLLINGUP, DOUBLE_ACTING, FIXEDPANEL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Door Panel Operation Enum</b></em>' enumerators.
@@ -314,8 +313,7 @@ public enum IfcDoorPanelOperationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcDoorPanelOperationEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcDoorPanelOperationEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Door Panel Operation Enum</b></em>' literal with the specified literal value.

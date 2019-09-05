@@ -78,8 +78,7 @@ public class IfcTransportElementTypeImpl extends IfcElementTypeImpl implements I
 	 */
 	@Override
 	public IfcTransportElementTypeEnum getPredefinedType() {
-		return (IfcTransportElementTypeEnum) eGet(Ifc4Package.Literals.IFC_TRANSPORT_ELEMENT_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcTransportElementTypeEnum) eGet(Ifc4Package.Literals.IFC_TRANSPORT_ELEMENT_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**

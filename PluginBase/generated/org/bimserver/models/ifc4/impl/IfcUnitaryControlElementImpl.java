@@ -51,8 +51,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcUnitaryControlElementImpl extends IfcDistributionControlElementImpl
-		implements IfcUnitaryControlElement {
+public class IfcUnitaryControlElementImpl extends IfcDistributionControlElementImpl implements IfcUnitaryControlElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -79,8 +78,7 @@ public class IfcUnitaryControlElementImpl extends IfcDistributionControlElementI
 	 */
 	@Override
 	public IfcUnitaryControlElementTypeEnum getPredefinedType() {
-		return (IfcUnitaryControlElementTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_UNITARY_CONTROL_ELEMENT__PREDEFINED_TYPE, true);
+		return (IfcUnitaryControlElementTypeEnum) eGet(Ifc4Package.Literals.IFC_UNITARY_CONTROL_ELEMENT__PREDEFINED_TYPE, true);
 	}
 
 	/**

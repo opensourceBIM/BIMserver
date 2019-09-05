@@ -180,8 +180,7 @@ public enum IfcHeatExchangerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcHeatExchangerTypeEnum[] VALUES_ARRAY = new IfcHeatExchangerTypeEnum[] { NULL, NOTDEFINED,
-			USERDEFINED, PLATE, SHELLANDTUBE, };
+	private static final IfcHeatExchangerTypeEnum[] VALUES_ARRAY = new IfcHeatExchangerTypeEnum[] { NULL, NOTDEFINED, USERDEFINED, PLATE, SHELLANDTUBE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Heat Exchanger Type Enum</b></em>' enumerators.
@@ -189,8 +188,7 @@ public enum IfcHeatExchangerTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcHeatExchangerTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcHeatExchangerTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Heat Exchanger Type Enum</b></em>' literal with the specified literal value.

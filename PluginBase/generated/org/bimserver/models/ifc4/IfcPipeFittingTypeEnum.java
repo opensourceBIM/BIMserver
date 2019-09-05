@@ -305,8 +305,7 @@ public enum IfcPipeFittingTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPipeFittingTypeEnum[] VALUES_ARRAY = new IfcPipeFittingTypeEnum[] { NULL, TRANSITION,
-			NOTDEFINED, ENTRY, BEND, OBSTRUCTION, USERDEFINED, EXIT, JUNCTION, CONNECTOR, };
+	private static final IfcPipeFittingTypeEnum[] VALUES_ARRAY = new IfcPipeFittingTypeEnum[] { NULL, TRANSITION, NOTDEFINED, ENTRY, BEND, OBSTRUCTION, USERDEFINED, EXIT, JUNCTION, CONNECTOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Pipe Fitting Type Enum</b></em>' enumerators.

@@ -168,8 +168,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	 */
 	@Override
 	public IfcCartesianTransformationOperator2D getTextureTransform() {
-		return (IfcCartesianTransformationOperator2D) eGet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TRANSFORM,
-				true);
+		return (IfcCartesianTransformationOperator2D) eGet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__TEXTURE_TRANSFORM, true);
 	}
 
 	/**
@@ -272,8 +271,7 @@ public class IfcSurfaceTextureImpl extends IfcPresentationItemImpl implements If
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<IfcSurfaceStyleWithTextures> getUsedInStyles() {
-		return (EList<IfcSurfaceStyleWithTextures>) eGet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__USED_IN_STYLES,
-				true);
+		return (EList<IfcSurfaceStyleWithTextures>) eGet(Ifc4Package.Literals.IFC_SURFACE_TEXTURE__USED_IN_STYLES, true);
 	}
 
 	/**

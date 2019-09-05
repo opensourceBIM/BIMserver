@@ -255,8 +255,7 @@ public enum IfcFootingTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFootingTypeEnum[] VALUES_ARRAY = new IfcFootingTypeEnum[] { NULL, STRIP_FOOTING, NOTDEFINED,
-			PAD_FOOTING, FOOTING_BEAM, PILE_CAP, USERDEFINED, CAISSON_FOUNDATION, };
+	private static final IfcFootingTypeEnum[] VALUES_ARRAY = new IfcFootingTypeEnum[] { NULL, STRIP_FOOTING, NOTDEFINED, PAD_FOOTING, FOOTING_BEAM, PILE_CAP, USERDEFINED, CAISSON_FOUNDATION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Footing Type Enum</b></em>' enumerators.

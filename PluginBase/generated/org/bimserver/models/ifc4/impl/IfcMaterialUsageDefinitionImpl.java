@@ -91,8 +91,7 @@ public class IfcMaterialUsageDefinitionImpl extends IdEObjectImpl implements Ifc
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<IfcRelAssociatesMaterial> getAssociatedTo() {
-		return (EList<IfcRelAssociatesMaterial>) eGet(Ifc4Package.Literals.IFC_MATERIAL_USAGE_DEFINITION__ASSOCIATED_TO,
-				true);
+		return (EList<IfcRelAssociatesMaterial>) eGet(Ifc4Package.Literals.IFC_MATERIAL_USAGE_DEFINITION__ASSOCIATED_TO, true);
 	}
 
 	/**

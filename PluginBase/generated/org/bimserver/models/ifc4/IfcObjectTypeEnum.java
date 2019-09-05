@@ -280,8 +280,7 @@ public enum IfcObjectTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcObjectTypeEnum[] VALUES_ARRAY = new IfcObjectTypeEnum[] { NULL, GROUP, PROJECT, NOTDEFINED,
-			PRODUCT, ACTOR, PROCESS, CONTROL, RESOURCE, };
+	private static final IfcObjectTypeEnum[] VALUES_ARRAY = new IfcObjectTypeEnum[] { NULL, GROUP, PROJECT, NOTDEFINED, PRODUCT, ACTOR, PROCESS, CONTROL, RESOURCE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Object Type Enum</b></em>' enumerators.

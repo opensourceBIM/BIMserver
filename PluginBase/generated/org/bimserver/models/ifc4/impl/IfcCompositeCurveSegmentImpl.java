@@ -59,8 +59,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItemImpl
-		implements IfcCompositeCurveSegment {
+public class IfcCompositeCurveSegmentImpl extends IfcGeometricRepresentationItemImpl implements IfcCompositeCurveSegment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

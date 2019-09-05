@@ -112,8 +112,7 @@ public class IfcPropertyEnumeratedValueImpl extends IfcSimplePropertyImpl implem
 	 */
 	@Override
 	public IfcPropertyEnumeration getEnumerationReference() {
-		return (IfcPropertyEnumeration) eGet(Ifc4Package.Literals.IFC_PROPERTY_ENUMERATED_VALUE__ENUMERATION_REFERENCE,
-				true);
+		return (IfcPropertyEnumeration) eGet(Ifc4Package.Literals.IFC_PROPERTY_ENUMERATED_VALUE__ENUMERATION_REFERENCE, true);
 	}
 
 	/**

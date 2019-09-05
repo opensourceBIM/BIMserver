@@ -44,8 +44,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcExternallyDefinedHatchStyleImpl extends IfcExternalReferenceImpl
-		implements IfcExternallyDefinedHatchStyle {
+public class IfcExternallyDefinedHatchStyleImpl extends IfcExternalReferenceImpl implements IfcExternallyDefinedHatchStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -180,8 +180,7 @@ public enum IfcEngineTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcEngineTypeEnum[] VALUES_ARRAY = new IfcEngineTypeEnum[] { NULL, EXTERNALCOMBUSTION,
-			NOTDEFINED, INTERNALCOMBUSTION, USERDEFINED, };
+	private static final IfcEngineTypeEnum[] VALUES_ARRAY = new IfcEngineTypeEnum[] { NULL, EXTERNALCOMBUSTION, NOTDEFINED, INTERNALCOMBUSTION, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Engine Type Enum</b></em>' enumerators.

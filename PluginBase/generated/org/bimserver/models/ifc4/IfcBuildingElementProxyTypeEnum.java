@@ -254,8 +254,7 @@ public enum IfcBuildingElementProxyTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcBuildingElementProxyTypeEnum[] VALUES_ARRAY = new IfcBuildingElementProxyTypeEnum[] { NULL,
-			COMPLEX, ELEMENT, PROVISIONFORVOID, NOTDEFINED, PARTIAL, USERDEFINED, PROVISIONFORSPACE, };
+	private static final IfcBuildingElementProxyTypeEnum[] VALUES_ARRAY = new IfcBuildingElementProxyTypeEnum[] { NULL, COMPLEX, ELEMENT, PROVISIONFORVOID, NOTDEFINED, PARTIAL, USERDEFINED, PROVISIONFORSPACE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Building Element Proxy Type Enum</b></em>' enumerators.
@@ -263,8 +262,7 @@ public enum IfcBuildingElementProxyTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcBuildingElementProxyTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcBuildingElementProxyTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Building Element Proxy Type Enum</b></em>' literal with the specified literal value.

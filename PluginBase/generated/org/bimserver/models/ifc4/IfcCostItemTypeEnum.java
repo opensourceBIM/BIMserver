@@ -130,8 +130,7 @@ public enum IfcCostItemTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCostItemTypeEnum[] VALUES_ARRAY = new IfcCostItemTypeEnum[] { NULL, NOTDEFINED,
-			USERDEFINED, };
+	private static final IfcCostItemTypeEnum[] VALUES_ARRAY = new IfcCostItemTypeEnum[] { NULL, NOTDEFINED, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Cost Item Type Enum</b></em>' enumerators.

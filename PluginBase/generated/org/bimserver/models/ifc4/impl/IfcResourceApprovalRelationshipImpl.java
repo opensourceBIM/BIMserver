@@ -54,8 +54,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcResourceApprovalRelationshipImpl extends IfcResourceLevelRelationshipImpl
-		implements IfcResourceApprovalRelationship {
+public class IfcResourceApprovalRelationshipImpl extends IfcResourceLevelRelationshipImpl implements IfcResourceApprovalRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -83,8 +82,7 @@ public class IfcResourceApprovalRelationshipImpl extends IfcResourceLevelRelatio
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<IfcResourceObjectSelect> getRelatedResourceObjects() {
-		return (EList<IfcResourceObjectSelect>) eGet(
-				Ifc4Package.Literals.IFC_RESOURCE_APPROVAL_RELATIONSHIP__RELATED_RESOURCE_OBJECTS, true);
+		return (EList<IfcResourceObjectSelect>) eGet(Ifc4Package.Literals.IFC_RESOURCE_APPROVAL_RELATIONSHIP__RELATED_RESOURCE_OBJECTS, true);
 	}
 
 	/**

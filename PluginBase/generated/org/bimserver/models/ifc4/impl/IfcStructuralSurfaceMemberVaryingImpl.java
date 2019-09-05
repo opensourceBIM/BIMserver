@@ -44,8 +44,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralSurfaceMemberVaryingImpl extends IfcStructuralSurfaceMemberImpl
-		implements IfcStructuralSurfaceMemberVarying {
+public class IfcStructuralSurfaceMemberVaryingImpl extends IfcStructuralSurfaceMemberImpl implements IfcStructuralSurfaceMemberVarying {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

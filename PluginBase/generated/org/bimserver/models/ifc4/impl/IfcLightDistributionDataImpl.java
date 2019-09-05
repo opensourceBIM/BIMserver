@@ -146,8 +146,7 @@ public class IfcLightDistributionDataImpl extends IdEObjectImpl implements IfcLi
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<String> getSecondaryPlaneAngleAsString() {
-		return (EList<String>) eGet(Ifc4Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__SECONDARY_PLANE_ANGLE_AS_STRING,
-				true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__SECONDARY_PLANE_ANGLE_AS_STRING, true);
 	}
 
 	/**
@@ -169,8 +168,7 @@ public class IfcLightDistributionDataImpl extends IdEObjectImpl implements IfcLi
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<String> getLuminousIntensityAsString() {
-		return (EList<String>) eGet(Ifc4Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__LUMINOUS_INTENSITY_AS_STRING,
-				true);
+		return (EList<String>) eGet(Ifc4Package.Literals.IFC_LIGHT_DISTRIBUTION_DATA__LUMINOUS_INTENSITY_AS_STRING, true);
 	}
 
 } //IfcLightDistributionDataImpl

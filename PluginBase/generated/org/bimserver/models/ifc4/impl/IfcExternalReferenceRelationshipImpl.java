@@ -54,8 +54,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcExternalReferenceRelationshipImpl extends IfcResourceLevelRelationshipImpl
-		implements IfcExternalReferenceRelationship {
+public class IfcExternalReferenceRelationshipImpl extends IfcResourceLevelRelationshipImpl implements IfcExternalReferenceRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -82,8 +81,7 @@ public class IfcExternalReferenceRelationshipImpl extends IfcResourceLevelRelati
 	 */
 	@Override
 	public IfcExternalReference getRelatingReference() {
-		return (IfcExternalReference) eGet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE_RELATIONSHIP__RELATING_REFERENCE,
-				true);
+		return (IfcExternalReference) eGet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE_RELATIONSHIP__RELATING_REFERENCE, true);
 	}
 
 	/**
@@ -104,8 +102,7 @@ public class IfcExternalReferenceRelationshipImpl extends IfcResourceLevelRelati
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<IfcResourceObjectSelect> getRelatedResourceObjects() {
-		return (EList<IfcResourceObjectSelect>) eGet(
-				Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE_RELATIONSHIP__RELATED_RESOURCE_OBJECTS, true);
+		return (EList<IfcResourceObjectSelect>) eGet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE_RELATIONSHIP__RELATED_RESOURCE_OBJECTS, true);
 	}
 
 } //IfcExternalReferenceRelationshipImpl

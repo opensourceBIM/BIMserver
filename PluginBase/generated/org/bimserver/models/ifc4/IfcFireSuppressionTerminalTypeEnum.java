@@ -255,8 +255,7 @@ public enum IfcFireSuppressionTerminalTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcFireSuppressionTerminalTypeEnum[] VALUES_ARRAY = new IfcFireSuppressionTerminalTypeEnum[] {
-			NULL, NOTDEFINED, SPRINKLERDEFLECTOR, SPRINKLER, HOSEREEL, BREECHINGINLET, FIREHYDRANT, USERDEFINED, };
+	private static final IfcFireSuppressionTerminalTypeEnum[] VALUES_ARRAY = new IfcFireSuppressionTerminalTypeEnum[] { NULL, NOTDEFINED, SPRINKLERDEFLECTOR, SPRINKLER, HOSEREEL, BREECHINGINLET, FIREHYDRANT, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Fire Suppression Terminal Type Enum</b></em>' enumerators.
@@ -264,8 +263,7 @@ public enum IfcFireSuppressionTerminalTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcFireSuppressionTerminalTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcFireSuppressionTerminalTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Fire Suppression Terminal Type Enum</b></em>' literal with the specified literal value.

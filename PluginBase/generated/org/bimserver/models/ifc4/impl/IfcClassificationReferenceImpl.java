@@ -84,8 +84,7 @@ public class IfcClassificationReferenceImpl extends IfcExternalReferenceImpl imp
 	 */
 	@Override
 	public IfcClassificationReferenceSelect getReferencedSource() {
-		return (IfcClassificationReferenceSelect) eGet(
-				Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__REFERENCED_SOURCE, true);
+		return (IfcClassificationReferenceSelect) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__REFERENCED_SOURCE, true);
 	}
 
 	/**
@@ -206,8 +205,7 @@ public class IfcClassificationReferenceImpl extends IfcExternalReferenceImpl imp
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<IfcRelAssociatesClassification> getClassificationRefForObjects() {
-		return (EList<IfcRelAssociatesClassification>) eGet(
-				Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__CLASSIFICATION_REF_FOR_OBJECTS, true);
+		return (EList<IfcRelAssociatesClassification>) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__CLASSIFICATION_REF_FOR_OBJECTS, true);
 	}
 
 	/**
@@ -238,8 +236,7 @@ public class IfcClassificationReferenceImpl extends IfcExternalReferenceImpl imp
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<IfcClassificationReference> getHasReferences() {
-		return (EList<IfcClassificationReference>) eGet(
-				Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__HAS_REFERENCES, true);
+		return (EList<IfcClassificationReference>) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION_REFERENCE__HAS_REFERENCES, true);
 	}
 
 	/**

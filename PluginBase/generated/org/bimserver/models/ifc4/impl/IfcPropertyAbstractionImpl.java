@@ -91,8 +91,7 @@ public class IfcPropertyAbstractionImpl extends IdEObjectImpl implements IfcProp
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<IfcExternalReferenceRelationship> getHasExternalReferences() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(
-				Ifc4Package.Literals.IFC_PROPERTY_ABSTRACTION__HAS_EXTERNAL_REFERENCES, true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_PROPERTY_ABSTRACTION__HAS_EXTERNAL_REFERENCES, true);
 	}
 
 	/**

@@ -205,8 +205,7 @@ public enum IfcLoadGroupTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcLoadGroupTypeEnum[] VALUES_ARRAY = new IfcLoadGroupTypeEnum[] { NULL, NOTDEFINED,
-			LOAD_COMBINATION, USERDEFINED, LOAD_GROUP, LOAD_CASE, };
+	private static final IfcLoadGroupTypeEnum[] VALUES_ARRAY = new IfcLoadGroupTypeEnum[] { NULL, NOTDEFINED, LOAD_COMBINATION, USERDEFINED, LOAD_GROUP, LOAD_CASE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Load Group Type Enum</b></em>' enumerators.

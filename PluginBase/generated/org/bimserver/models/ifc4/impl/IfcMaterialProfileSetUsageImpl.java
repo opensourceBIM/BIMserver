@@ -54,8 +54,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMaterialProfileSetUsageImpl extends IfcMaterialUsageDefinitionImpl
-		implements IfcMaterialProfileSetUsage {
+public class IfcMaterialProfileSetUsageImpl extends IfcMaterialUsageDefinitionImpl implements IfcMaterialProfileSetUsage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -192,8 +191,7 @@ public class IfcMaterialProfileSetUsageImpl extends IfcMaterialUsageDefinitionIm
 	 */
 	@Override
 	public void setReferenceExtentAsString(String newReferenceExtentAsString) {
-		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__REFERENCE_EXTENT_AS_STRING,
-				newReferenceExtentAsString);
+		eSet(Ifc4Package.Literals.IFC_MATERIAL_PROFILE_SET_USAGE__REFERENCE_EXTENT_AS_STRING, newReferenceExtentAsString);
 	}
 
 	/**

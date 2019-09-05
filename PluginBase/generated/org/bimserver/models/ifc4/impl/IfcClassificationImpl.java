@@ -340,8 +340,7 @@ public class IfcClassificationImpl extends IfcExternalInformationImpl implements
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<IfcRelAssociatesClassification> getClassificationForObjects() {
-		return (EList<IfcRelAssociatesClassification>) eGet(
-				Ifc4Package.Literals.IFC_CLASSIFICATION__CLASSIFICATION_FOR_OBJECTS, true);
+		return (EList<IfcRelAssociatesClassification>) eGet(Ifc4Package.Literals.IFC_CLASSIFICATION__CLASSIFICATION_FOR_OBJECTS, true);
 	}
 
 	/**

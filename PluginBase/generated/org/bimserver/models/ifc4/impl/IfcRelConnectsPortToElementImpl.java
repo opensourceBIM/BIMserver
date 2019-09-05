@@ -100,8 +100,7 @@ public class IfcRelConnectsPortToElementImpl extends IfcRelConnectsImpl implemen
 	 */
 	@Override
 	public IfcDistributionElement getRelatedElement() {
-		return (IfcDistributionElement) eGet(Ifc4Package.Literals.IFC_REL_CONNECTS_PORT_TO_ELEMENT__RELATED_ELEMENT,
-				true);
+		return (IfcDistributionElement) eGet(Ifc4Package.Literals.IFC_REL_CONNECTS_PORT_TO_ELEMENT__RELATED_ELEMENT, true);
 	}
 
 	/**

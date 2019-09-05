@@ -130,8 +130,7 @@ public enum IfcChimneyTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcChimneyTypeEnum[] VALUES_ARRAY = new IfcChimneyTypeEnum[] { NULL, NOTDEFINED,
-			USERDEFINED, };
+	private static final IfcChimneyTypeEnum[] VALUES_ARRAY = new IfcChimneyTypeEnum[] { NULL, NOTDEFINED, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Chimney Type Enum</b></em>' enumerators.

@@ -51,8 +51,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcStructuralSurfaceReactionImpl extends IfcStructuralReactionImpl
-		implements IfcStructuralSurfaceReaction {
+public class IfcStructuralSurfaceReactionImpl extends IfcStructuralReactionImpl implements IfcStructuralSurfaceReaction {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -79,8 +78,7 @@ public class IfcStructuralSurfaceReactionImpl extends IfcStructuralReactionImpl
 	 */
 	@Override
 	public IfcStructuralSurfaceActivityTypeEnum getPredefinedType() {
-		return (IfcStructuralSurfaceActivityTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_STRUCTURAL_SURFACE_REACTION__PREDEFINED_TYPE, true);
+		return (IfcStructuralSurfaceActivityTypeEnum) eGet(Ifc4Package.Literals.IFC_STRUCTURAL_SURFACE_REACTION__PREDEFINED_TYPE, true);
 	}
 
 	/**

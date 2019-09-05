@@ -59,8 +59,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcClassification
-		extends IfcExternalInformation, IfcClassificationReferenceSelect, IfcClassificationSelect {
+public interface IfcClassification extends IfcExternalInformation, IfcClassificationReferenceSelect, IfcClassificationSelect {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' attribute.
 	 * <!-- begin-user-doc -->

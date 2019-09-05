@@ -305,8 +305,7 @@ public class IfcMaterialConstituentImpl extends IfcMaterialDefinitionImpl implem
 	 */
 	@Override
 	public IfcMaterialConstituentSet getToMaterialConstituentSet() {
-		return (IfcMaterialConstituentSet) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_CONSTITUENT__TO_MATERIAL_CONSTITUENT_SET, true);
+		return (IfcMaterialConstituentSet) eGet(Ifc4Package.Literals.IFC_MATERIAL_CONSTITUENT__TO_MATERIAL_CONSTITUENT_SET, true);
 	}
 
 	/**

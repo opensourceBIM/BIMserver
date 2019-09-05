@@ -171,8 +171,7 @@ public class IfcCurveStyleFontAndScalingImpl extends IfcPresentationItemImpl imp
 	 */
 	@Override
 	public void setCurveFontScalingAsString(String newCurveFontScalingAsString) {
-		eSet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT_AND_SCALING__CURVE_FONT_SCALING_AS_STRING,
-				newCurveFontScalingAsString);
+		eSet(Ifc4Package.Literals.IFC_CURVE_STYLE_FONT_AND_SCALING__CURVE_FONT_SCALING_AS_STRING, newCurveFontScalingAsString);
 	}
 
 } //IfcCurveStyleFontAndScalingImpl

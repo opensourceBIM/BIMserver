@@ -795,7 +795,7 @@ public class Express2EMF {
 							}
 						} else if (nt instanceof SelectType) {
 						} else {
-							if (nt.getName().equals("IfcComplexNumber") || nt.getName().equals("IfcCompoundPlaneAngleMeasure") || nt.getName().equals("IfcBoolean") || nt.getName().equals("IfcNullStyle")) {
+							if (nt.getName().equals("IfcComplexNumber") || nt.getName().equals("IfcCompoundPlaneAngleMeasure") || nt.getName().equals("IfcBoolean") || nt.getName().equals("IfcNullStyle") || nt.getName().equals("IfcArcIndex") || nt.getName().equals("IfcLineIndex") || nt.getName().equals("IfcBinary")) {
 								EClass choice = getOrCreateEClass(nt.getName());
 								choice.getESuperTypes().add(selectType);
 							} else {

@@ -78,8 +78,7 @@ public class IfcVibrationIsolatorTypeImpl extends IfcElementComponentTypeImpl im
 	 */
 	@Override
 	public IfcVibrationIsolatorTypeEnum getPredefinedType() {
-		return (IfcVibrationIsolatorTypeEnum) eGet(Ifc4Package.Literals.IFC_VIBRATION_ISOLATOR_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcVibrationIsolatorTypeEnum) eGet(Ifc4Package.Literals.IFC_VIBRATION_ISOLATOR_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**

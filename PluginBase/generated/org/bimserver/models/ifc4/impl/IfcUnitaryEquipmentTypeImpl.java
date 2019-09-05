@@ -78,8 +78,7 @@ public class IfcUnitaryEquipmentTypeImpl extends IfcEnergyConversionDeviceTypeIm
 	 */
 	@Override
 	public IfcUnitaryEquipmentTypeEnum getPredefinedType() {
-		return (IfcUnitaryEquipmentTypeEnum) eGet(Ifc4Package.Literals.IFC_UNITARY_EQUIPMENT_TYPE__PREDEFINED_TYPE,
-				true);
+		return (IfcUnitaryEquipmentTypeEnum) eGet(Ifc4Package.Literals.IFC_UNITARY_EQUIPMENT_TYPE__PREDEFINED_TYPE, true);
 	}
 
 	/**

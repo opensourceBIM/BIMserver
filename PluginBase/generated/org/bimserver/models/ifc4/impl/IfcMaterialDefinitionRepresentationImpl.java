@@ -51,8 +51,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMaterialDefinitionRepresentationImpl extends IfcProductRepresentationImpl
-		implements IfcMaterialDefinitionRepresentation {
+public class IfcMaterialDefinitionRepresentationImpl extends IfcProductRepresentationImpl implements IfcMaterialDefinitionRepresentation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -79,8 +78,7 @@ public class IfcMaterialDefinitionRepresentationImpl extends IfcProductRepresent
 	 */
 	@Override
 	public IfcMaterial getRepresentedMaterial() {
-		return (IfcMaterial) eGet(Ifc4Package.Literals.IFC_MATERIAL_DEFINITION_REPRESENTATION__REPRESENTED_MATERIAL,
-				true);
+		return (IfcMaterial) eGet(Ifc4Package.Literals.IFC_MATERIAL_DEFINITION_REPRESENTATION__REPRESENTED_MATERIAL, true);
 	}
 
 	/**

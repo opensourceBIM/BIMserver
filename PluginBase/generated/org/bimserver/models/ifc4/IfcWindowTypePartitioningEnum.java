@@ -355,10 +355,8 @@ public enum IfcWindowTypePartitioningEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcWindowTypePartitioningEnum[] VALUES_ARRAY = new IfcWindowTypePartitioningEnum[] { NULL,
-			NOTDEFINED, DOUBLE_PANEL_HORIZONTAL, TRIPLE_PANEL_BOTTOM, TRIPLE_PANEL_LEFT, DOUBLE_PANEL_VERTICAL,
-			TRIPLE_PANEL_HORIZONTAL, SINGLE_PANEL, TRIPLE_PANEL_RIGHT, USERDEFINED, TRIPLE_PANEL_VERTICAL,
-			TRIPLE_PANEL_TOP, };
+	private static final IfcWindowTypePartitioningEnum[] VALUES_ARRAY = new IfcWindowTypePartitioningEnum[] { NULL, NOTDEFINED, DOUBLE_PANEL_HORIZONTAL, TRIPLE_PANEL_BOTTOM, TRIPLE_PANEL_LEFT, DOUBLE_PANEL_VERTICAL, TRIPLE_PANEL_HORIZONTAL,
+			SINGLE_PANEL, TRIPLE_PANEL_RIGHT, USERDEFINED, TRIPLE_PANEL_VERTICAL, TRIPLE_PANEL_TOP, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Window Type Partitioning Enum</b></em>' enumerators.
@@ -366,8 +364,7 @@ public enum IfcWindowTypePartitioningEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcWindowTypePartitioningEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcWindowTypePartitioningEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Window Type Partitioning Enum</b></em>' literal with the specified literal value.

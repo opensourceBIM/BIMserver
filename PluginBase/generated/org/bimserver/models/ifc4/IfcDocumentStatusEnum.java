@@ -205,8 +205,7 @@ public enum IfcDocumentStatusEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcDocumentStatusEnum[] VALUES_ARRAY = new IfcDocumentStatusEnum[] { NULL, REVISION,
-			NOTDEFINED, DRAFT, FINALDRAFT, FINAL, };
+	private static final IfcDocumentStatusEnum[] VALUES_ARRAY = new IfcDocumentStatusEnum[] { NULL, REVISION, NOTDEFINED, DRAFT, FINALDRAFT, FINAL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Document Status Enum</b></em>' enumerators.

@@ -205,8 +205,7 @@ public enum IfcShadingDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcShadingDeviceTypeEnum[] VALUES_ARRAY = new IfcShadingDeviceTypeEnum[] { NULL, NOTDEFINED,
-			AWNING, JALOUSIE, SHUTTER, USERDEFINED, };
+	private static final IfcShadingDeviceTypeEnum[] VALUES_ARRAY = new IfcShadingDeviceTypeEnum[] { NULL, NOTDEFINED, AWNING, JALOUSIE, SHUTTER, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Shading Device Type Enum</b></em>' enumerators.
@@ -214,8 +213,7 @@ public enum IfcShadingDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcShadingDeviceTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcShadingDeviceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Shading Device Type Enum</b></em>' literal with the specified literal value.

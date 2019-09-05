@@ -56,8 +56,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssignmentImpl
-		implements IfcPresentationLayerWithStyle {
+public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssignmentImpl implements IfcPresentationLayerWithStyle {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -145,8 +144,7 @@ public class IfcPresentationLayerWithStyleImpl extends IfcPresentationLayerAssig
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<IfcPresentationStyle> getLayerStyles() {
-		return (EList<IfcPresentationStyle>) eGet(Ifc4Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_STYLES,
-				true);
+		return (EList<IfcPresentationStyle>) eGet(Ifc4Package.Literals.IFC_PRESENTATION_LAYER_WITH_STYLE__LAYER_STYLES, true);
 	}
 
 } //IfcPresentationLayerWithStyleImpl

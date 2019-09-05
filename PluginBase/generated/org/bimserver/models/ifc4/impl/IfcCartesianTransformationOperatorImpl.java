@@ -59,8 +59,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcCartesianTransformationOperatorImpl extends IfcGeometricRepresentationItemImpl
-		implements IfcCartesianTransformationOperator {
+public class IfcCartesianTransformationOperatorImpl extends IfcGeometricRepresentationItemImpl implements IfcCartesianTransformationOperator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

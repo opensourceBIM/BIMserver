@@ -180,8 +180,7 @@ public enum IfcColumnTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcColumnTypeEnum[] VALUES_ARRAY = new IfcColumnTypeEnum[] { NULL, NOTDEFINED, COLUMN,
-			USERDEFINED, PILASTER, };
+	private static final IfcColumnTypeEnum[] VALUES_ARRAY = new IfcColumnTypeEnum[] { NULL, NOTDEFINED, COLUMN, USERDEFINED, PILASTER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Column Type Enum</b></em>' enumerators.

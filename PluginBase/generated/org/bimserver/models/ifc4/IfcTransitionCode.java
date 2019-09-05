@@ -180,8 +180,7 @@ public enum IfcTransitionCode implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTransitionCode[] VALUES_ARRAY = new IfcTransitionCode[] { NULL, DISCONTINUOUS,
-			CONTSAMEGRADIENTSAMECURVATURE, CONTINUOUS, CONTSAMEGRADIENT, };
+	private static final IfcTransitionCode[] VALUES_ARRAY = new IfcTransitionCode[] { NULL, DISCONTINUOUS, CONTSAMEGRADIENTSAMECURVATURE, CONTINUOUS, CONTSAMEGRADIENT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Transition Code</b></em>' enumerators.

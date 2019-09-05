@@ -230,8 +230,7 @@ public enum IfcTendonTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcTendonTypeEnum[] VALUES_ARRAY = new IfcTendonTypeEnum[] { NULL, COATED, NOTDEFINED, BAR,
-			USERDEFINED, WIRE, STRAND, };
+	private static final IfcTendonTypeEnum[] VALUES_ARRAY = new IfcTendonTypeEnum[] { NULL, COATED, NOTDEFINED, BAR, USERDEFINED, WIRE, STRAND, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Tendon Type Enum</b></em>' enumerators.

@@ -180,8 +180,7 @@ public enum IfcLightDistributionCurveEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcLightDistributionCurveEnum[] VALUES_ARRAY = new IfcLightDistributionCurveEnum[] { NULL,
-			NOTDEFINED, TYPE_C, TYPE_A, TYPE_B, };
+	private static final IfcLightDistributionCurveEnum[] VALUES_ARRAY = new IfcLightDistributionCurveEnum[] { NULL, NOTDEFINED, TYPE_C, TYPE_A, TYPE_B, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Light Distribution Curve Enum</b></em>' enumerators.
@@ -189,8 +188,7 @@ public enum IfcLightDistributionCurveEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcLightDistributionCurveEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcLightDistributionCurveEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Light Distribution Curve Enum</b></em>' literal with the specified literal value.

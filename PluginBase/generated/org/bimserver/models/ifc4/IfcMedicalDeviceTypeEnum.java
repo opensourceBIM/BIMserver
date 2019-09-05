@@ -255,8 +255,7 @@ public enum IfcMedicalDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcMedicalDeviceTypeEnum[] VALUES_ARRAY = new IfcMedicalDeviceTypeEnum[] { NULL, NOTDEFINED,
-			FEEDAIRUNIT, VACUUMSTATION, OXYGENPLANT, USERDEFINED, AIRSTATION, OXYGENGENERATOR, };
+	private static final IfcMedicalDeviceTypeEnum[] VALUES_ARRAY = new IfcMedicalDeviceTypeEnum[] { NULL, NOTDEFINED, FEEDAIRUNIT, VACUUMSTATION, OXYGENPLANT, USERDEFINED, AIRSTATION, OXYGENGENERATOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Medical Device Type Enum</b></em>' enumerators.
@@ -264,8 +263,7 @@ public enum IfcMedicalDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcMedicalDeviceTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcMedicalDeviceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Medical Device Type Enum</b></em>' literal with the specified literal value.

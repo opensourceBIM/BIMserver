@@ -205,8 +205,7 @@ public enum IfcPermeableCoveringOperationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPermeableCoveringOperationEnum[] VALUES_ARRAY = new IfcPermeableCoveringOperationEnum[] {
-			NULL, GRILL, LOUVER, NOTDEFINED, SCREEN, USERDEFINED, };
+	private static final IfcPermeableCoveringOperationEnum[] VALUES_ARRAY = new IfcPermeableCoveringOperationEnum[] { NULL, GRILL, LOUVER, NOTDEFINED, SCREEN, USERDEFINED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Permeable Covering Operation Enum</b></em>' enumerators.
@@ -214,8 +213,7 @@ public enum IfcPermeableCoveringOperationEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcPermeableCoveringOperationEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcPermeableCoveringOperationEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Permeable Covering Operation Enum</b></em>' literal with the specified literal value.

@@ -59,8 +59,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySetImpl
-		implements IfcPermeableCoveringProperties {
+public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySetImpl implements IfcPermeableCoveringProperties {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -87,8 +86,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 */
 	@Override
 	public IfcPermeableCoveringOperationEnum getOperationType() {
-		return (IfcPermeableCoveringOperationEnum) eGet(
-				Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__OPERATION_TYPE, true);
+		return (IfcPermeableCoveringOperationEnum) eGet(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__OPERATION_TYPE, true);
 	}
 
 	/**
@@ -108,8 +106,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 */
 	@Override
 	public IfcWindowPanelPositionEnum getPanelPosition() {
-		return (IfcWindowPanelPositionEnum) eGet(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__PANEL_POSITION,
-				true);
+		return (IfcWindowPanelPositionEnum) eGet(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__PANEL_POSITION, true);
 	}
 
 	/**
@@ -259,8 +256,7 @@ public class IfcPermeableCoveringPropertiesImpl extends IfcPreDefinedPropertySet
 	 */
 	@Override
 	public void setFrameThicknessAsString(String newFrameThicknessAsString) {
-		eSet(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS_AS_STRING,
-				newFrameThicknessAsString);
+		eSet(Ifc4Package.Literals.IFC_PERMEABLE_COVERING_PROPERTIES__FRAME_THICKNESS_AS_STRING, newFrameThicknessAsString);
 	}
 
 	/**

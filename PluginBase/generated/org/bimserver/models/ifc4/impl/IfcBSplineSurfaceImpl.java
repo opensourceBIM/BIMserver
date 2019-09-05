@@ -130,8 +130,7 @@ public class IfcBSplineSurfaceImpl extends IfcBoundedSurfaceImpl implements IfcB
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<ListOfIfcCartesianPoint> getControlPointsList() {
-		return (EList<ListOfIfcCartesianPoint>) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__CONTROL_POINTS_LIST,
-				true);
+		return (EList<ListOfIfcCartesianPoint>) eGet(Ifc4Package.Literals.IFC_BSPLINE_SURFACE__CONTROL_POINTS_LIST, true);
 	}
 
 	/**

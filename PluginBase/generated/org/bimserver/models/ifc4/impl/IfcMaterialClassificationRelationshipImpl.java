@@ -55,8 +55,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcMaterialClassificationRelationshipImpl extends IdEObjectImpl
-		implements IfcMaterialClassificationRelationship {
+public class IfcMaterialClassificationRelationshipImpl extends IdEObjectImpl implements IfcMaterialClassificationRelationship {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -94,8 +93,7 @@ public class IfcMaterialClassificationRelationshipImpl extends IdEObjectImpl
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<IfcClassificationSelect> getMaterialClassifications() {
-		return (EList<IfcClassificationSelect>) eGet(
-				Ifc4Package.Literals.IFC_MATERIAL_CLASSIFICATION_RELATIONSHIP__MATERIAL_CLASSIFICATIONS, true);
+		return (EList<IfcClassificationSelect>) eGet(Ifc4Package.Literals.IFC_MATERIAL_CLASSIFICATION_RELATIONSHIP__MATERIAL_CLASSIFICATIONS, true);
 	}
 
 	/**
@@ -105,8 +103,7 @@ public class IfcMaterialClassificationRelationshipImpl extends IdEObjectImpl
 	 */
 	@Override
 	public IfcMaterial getClassifiedMaterial() {
-		return (IfcMaterial) eGet(Ifc4Package.Literals.IFC_MATERIAL_CLASSIFICATION_RELATIONSHIP__CLASSIFIED_MATERIAL,
-				true);
+		return (IfcMaterial) eGet(Ifc4Package.Literals.IFC_MATERIAL_CLASSIFICATION_RELATIONSHIP__CLASSIFIED_MATERIAL, true);
 	}
 
 	/**

@@ -280,8 +280,7 @@ public enum IfcAlarmTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcAlarmTypeEnum[] VALUES_ARRAY = new IfcAlarmTypeEnum[] { NULL, SIREN, NOTDEFINED, WHISTLE,
-			LIGHT, USERDEFINED, BELL, BREAKGLASSBUTTON, MANUALPULLBOX, };
+	private static final IfcAlarmTypeEnum[] VALUES_ARRAY = new IfcAlarmTypeEnum[] { NULL, SIREN, NOTDEFINED, WHISTLE, LIGHT, USERDEFINED, BELL, BREAKGLASSBUTTON, MANUALPULLBOX, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Alarm Type Enum</b></em>' enumerators.

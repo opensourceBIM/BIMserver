@@ -52,8 +52,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcIsothermalMoistureCapacityMeasureImpl extends IdEObjectImpl
-		implements IfcIsothermalMoistureCapacityMeasure {
+public class IfcIsothermalMoistureCapacityMeasureImpl extends IdEObjectImpl implements IfcIsothermalMoistureCapacityMeasure {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -130,8 +129,7 @@ public class IfcIsothermalMoistureCapacityMeasureImpl extends IdEObjectImpl
 	 */
 	@Override
 	public String getWrappedValueAsString() {
-		return (String) eGet(Ifc4Package.Literals.IFC_ISOTHERMAL_MOISTURE_CAPACITY_MEASURE__WRAPPED_VALUE_AS_STRING,
-				true);
+		return (String) eGet(Ifc4Package.Literals.IFC_ISOTHERMAL_MOISTURE_CAPACITY_MEASURE__WRAPPED_VALUE_AS_STRING, true);
 	}
 
 	/**
@@ -141,8 +139,7 @@ public class IfcIsothermalMoistureCapacityMeasureImpl extends IdEObjectImpl
 	 */
 	@Override
 	public void setWrappedValueAsString(String newWrappedValueAsString) {
-		eSet(Ifc4Package.Literals.IFC_ISOTHERMAL_MOISTURE_CAPACITY_MEASURE__WRAPPED_VALUE_AS_STRING,
-				newWrappedValueAsString);
+		eSet(Ifc4Package.Literals.IFC_ISOTHERMAL_MOISTURE_CAPACITY_MEASURE__WRAPPED_VALUE_AS_STRING, newWrappedValueAsString);
 	}
 
 	/**

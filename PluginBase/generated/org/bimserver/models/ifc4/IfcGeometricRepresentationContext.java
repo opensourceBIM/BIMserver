@@ -57,8 +57,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface IfcGeometricRepresentationContext
-		extends IfcRepresentationContext, IfcCoordinateReferenceSystemSelect {
+public interface IfcGeometricRepresentationContext extends IfcRepresentationContext, IfcCoordinateReferenceSystemSelect {
 	/**
 	 * Returns the value of the '<em><b>Coordinate Space Dimension</b></em>' attribute.
 	 * <!-- begin-user-doc -->

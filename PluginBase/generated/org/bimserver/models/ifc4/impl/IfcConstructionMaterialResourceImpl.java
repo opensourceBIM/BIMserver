@@ -51,8 +51,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class IfcConstructionMaterialResourceImpl extends IfcConstructionResourceImpl
-		implements IfcConstructionMaterialResource {
+public class IfcConstructionMaterialResourceImpl extends IfcConstructionResourceImpl implements IfcConstructionMaterialResource {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -79,8 +78,7 @@ public class IfcConstructionMaterialResourceImpl extends IfcConstructionResource
 	 */
 	@Override
 	public IfcConstructionMaterialResourceTypeEnum getPredefinedType() {
-		return (IfcConstructionMaterialResourceTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__PREDEFINED_TYPE, true);
+		return (IfcConstructionMaterialResourceTypeEnum) eGet(Ifc4Package.Literals.IFC_CONSTRUCTION_MATERIAL_RESOURCE__PREDEFINED_TYPE, true);
 	}
 
 	/**

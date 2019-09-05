@@ -155,8 +155,7 @@ public enum IfcElementCompositionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcElementCompositionEnum[] VALUES_ARRAY = new IfcElementCompositionEnum[] { NULL, COMPLEX,
-			ELEMENT, PARTIAL, };
+	private static final IfcElementCompositionEnum[] VALUES_ARRAY = new IfcElementCompositionEnum[] { NULL, COMPLEX, ELEMENT, PARTIAL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Element Composition Enum</b></em>' enumerators.
@@ -164,8 +163,7 @@ public enum IfcElementCompositionEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcElementCompositionEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcElementCompositionEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Element Composition Enum</b></em>' literal with the specified literal value.

@@ -78,8 +78,7 @@ public class IfcCableCarrierSegmentImpl extends IfcFlowSegmentImpl implements If
 	 */
 	@Override
 	public IfcCableCarrierSegmentTypeEnum getPredefinedType() {
-		return (IfcCableCarrierSegmentTypeEnum) eGet(Ifc4Package.Literals.IFC_CABLE_CARRIER_SEGMENT__PREDEFINED_TYPE,
-				true);
+		return (IfcCableCarrierSegmentTypeEnum) eGet(Ifc4Package.Literals.IFC_CABLE_CARRIER_SEGMENT__PREDEFINED_TYPE, true);
 	}
 
 	/**

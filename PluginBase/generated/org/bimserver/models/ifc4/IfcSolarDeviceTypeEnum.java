@@ -180,8 +180,7 @@ public enum IfcSolarDeviceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcSolarDeviceTypeEnum[] VALUES_ARRAY = new IfcSolarDeviceTypeEnum[] { NULL, NOTDEFINED,
-			USERDEFINED, SOLARCOLLECTOR, SOLARPANEL, };
+	private static final IfcSolarDeviceTypeEnum[] VALUES_ARRAY = new IfcSolarDeviceTypeEnum[] { NULL, NOTDEFINED, USERDEFINED, SOLARCOLLECTOR, SOLARPANEL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Solar Device Type Enum</b></em>' enumerators.

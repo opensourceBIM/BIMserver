@@ -1,5 +1,5 @@
 
-œÐ
+ºÐ
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -295,23 +295,24 @@ parentPoid (
 deserializerOid (
 fileName (	
 url (	
-merge ("¤
-SLongCheckinActionState
-end (
-errors (	
-infos (	
-oid (
-progress (
-rid (
-roid (
-stage (
-start	 (-
-state
- (2.org.bimserver.pb.SActionState
-title (	
-topicId ($
-uuid (2.org.bimserver.pb.UUID
-warnings (	"l
+merge ("Â
+SLongCheckinActionState
+deserializeErrorCode (
+end (
+errors (	
+infos (	
+oid (
+progress (
+rid (
+roid (
+stage	 (
+start
+ (-
+state (2.org.bimserver.pb.SActionState
+title (	
+topicId ($
+uuid (2.org.bimserver.pb.UUID
+warnings (	"l
 CheckinFromUrlSyncResponse
 errorMessage (	8
 value (2).org.bimserver.pb.SLongCheckinActionState"¨

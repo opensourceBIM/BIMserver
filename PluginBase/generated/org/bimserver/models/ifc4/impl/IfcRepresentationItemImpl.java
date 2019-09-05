@@ -93,8 +93,7 @@ public class IfcRepresentationItemImpl extends IdEObjectImpl implements IfcRepre
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<IfcPresentationLayerAssignment> getLayerAssignment() {
-		return (EList<IfcPresentationLayerAssignment>) eGet(
-				Ifc4Package.Literals.IFC_REPRESENTATION_ITEM__LAYER_ASSIGNMENT, true);
+		return (EList<IfcPresentationLayerAssignment>) eGet(Ifc4Package.Literals.IFC_REPRESENTATION_ITEM__LAYER_ASSIGNMENT, true);
 	}
 
 	/**

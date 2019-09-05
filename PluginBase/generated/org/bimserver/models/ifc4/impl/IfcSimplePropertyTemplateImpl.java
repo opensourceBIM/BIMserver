@@ -88,8 +88,7 @@ public class IfcSimplePropertyTemplateImpl extends IfcPropertyTemplateImpl imple
 	 */
 	@Override
 	public IfcSimplePropertyTemplateTypeEnum getTemplateType() {
-		return (IfcSimplePropertyTemplateTypeEnum) eGet(
-				Ifc4Package.Literals.IFC_SIMPLE_PROPERTY_TEMPLATE__TEMPLATE_TYPE, true);
+		return (IfcSimplePropertyTemplateTypeEnum) eGet(Ifc4Package.Literals.IFC_SIMPLE_PROPERTY_TEMPLATE__TEMPLATE_TYPE, true);
 	}
 
 	/**

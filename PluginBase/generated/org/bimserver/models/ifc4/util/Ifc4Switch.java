@@ -91,4525 +91,12 @@ public class Ifc4Switch<T> extends Switch<T> {
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		T t = doSwitch2(classifierID, theEObject);
-		if (t != null) {
-			return t;
+		T doSwitch2 = doSwitch2(classifierID, theEObject);
+		if (doSwitch2 != null) {
+			return doSwitch2;
 		}
 		switch (classifierID) {
 
-		case Ifc4Package.IFC_LAG_TIME: {
-			IfcLagTime ifcLagTime = (IfcLagTime) theEObject;
-			T result = caseIfcLagTime(ifcLagTime);
-			if (result == null)
-				result = caseIfcSchedulingTime(ifcLagTime);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_LAMP: {
-			IfcLamp ifcLamp = (IfcLamp) theEObject;
-			T result = caseIfcLamp(ifcLamp);
-			if (result == null)
-				result = caseIfcFlowTerminal(ifcLamp);
-			if (result == null)
-				result = caseIfcDistributionFlowElement(ifcLamp);
-			if (result == null)
-				result = caseIfcDistributionElement(ifcLamp);
-			if (result == null)
-				result = caseIfcElement(ifcLamp);
-			if (result == null)
-				result = caseIfcProduct(ifcLamp);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcLamp);
-			if (result == null)
-				result = caseIfcObject(ifcLamp);
-			if (result == null)
-				result = caseIfcProductSelect(ifcLamp);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcLamp);
-			if (result == null)
-				result = caseIfcRoot(ifcLamp);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcLamp);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_LAMP_TYPE: {
-			IfcLampType ifcLampType = (IfcLampType) theEObject;
-			T result = caseIfcLampType(ifcLampType);
-			if (result == null)
-				result = caseIfcFlowTerminalType(ifcLampType);
-			if (result == null)
-				result = caseIfcDistributionFlowElementType(ifcLampType);
-			if (result == null)
-				result = caseIfcDistributionElementType(ifcLampType);
-			if (result == null)
-				result = caseIfcElementType(ifcLampType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcLampType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcLampType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcLampType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcLampType);
-			if (result == null)
-				result = caseIfcRoot(ifcLampType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcLampType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_LIBRARY_INFORMATION: {
-			IfcLibraryInformation ifcLibraryInformation = (IfcLibraryInformation) theEObject;
-			T result = caseIfcLibraryInformation(ifcLibraryInformation);
-			if (result == null)
-				result = caseIfcExternalInformation(ifcLibraryInformation);
-			if (result == null)
-				result = caseIfcLibrarySelect(ifcLibraryInformation);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcLibraryInformation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_LIBRARY_REFERENCE: {
-			IfcLibraryReference ifcLibraryReference = (IfcLibraryReference) theEObject;
-			T result = caseIfcLibraryReference(ifcLibraryReference);
-			if (result == null)
-				result = caseIfcExternalReference(ifcLibraryReference);
-			if (result == null)
-				result = caseIfcLibrarySelect(ifcLibraryReference);
-			if (result == null)
-				result = caseIfcLightDistributionDataSourceSelect(ifcLibraryReference);
-			if (result == null)
-				result = caseIfcObjectReferenceSelect(ifcLibraryReference);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcLibraryReference);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_LIGHT_DISTRIBUTION_DATA: {
-			IfcLightDistributionData ifcLightDistributionData = (IfcLightDistributionData) theEObject;
-			T result = caseIfcLightDistributionData(ifcLightDistributionData);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_LIGHT_FIXTURE: {
-			IfcLightFixture ifcLightFixture = (IfcLightFixture) theEObject;
-			T result = caseIfcLightFixture(ifcLightFixture);
-			if (result == null)
-				result = caseIfcFlowTerminal(ifcLightFixture);
-			if (result == null)
-				result = caseIfcDistributionFlowElement(ifcLightFixture);
-			if (result == null)
-				result = caseIfcDistributionElement(ifcLightFixture);
-			if (result == null)
-				result = caseIfcElement(ifcLightFixture);
-			if (result == null)
-				result = caseIfcProduct(ifcLightFixture);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcLightFixture);
-			if (result == null)
-				result = caseIfcObject(ifcLightFixture);
-			if (result == null)
-				result = caseIfcProductSelect(ifcLightFixture);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcLightFixture);
-			if (result == null)
-				result = caseIfcRoot(ifcLightFixture);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcLightFixture);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_LIGHT_FIXTURE_TYPE: {
-			IfcLightFixtureType ifcLightFixtureType = (IfcLightFixtureType) theEObject;
-			T result = caseIfcLightFixtureType(ifcLightFixtureType);
-			if (result == null)
-				result = caseIfcFlowTerminalType(ifcLightFixtureType);
-			if (result == null)
-				result = caseIfcDistributionFlowElementType(ifcLightFixtureType);
-			if (result == null)
-				result = caseIfcDistributionElementType(ifcLightFixtureType);
-			if (result == null)
-				result = caseIfcElementType(ifcLightFixtureType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcLightFixtureType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcLightFixtureType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcLightFixtureType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcLightFixtureType);
-			if (result == null)
-				result = caseIfcRoot(ifcLightFixtureType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcLightFixtureType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_LIGHT_INTENSITY_DISTRIBUTION: {
-			IfcLightIntensityDistribution ifcLightIntensityDistribution = (IfcLightIntensityDistribution) theEObject;
-			T result = caseIfcLightIntensityDistribution(ifcLightIntensityDistribution);
-			if (result == null)
-				result = caseIfcLightDistributionDataSourceSelect(ifcLightIntensityDistribution);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_LIGHT_SOURCE: {
-			IfcLightSource ifcLightSource = (IfcLightSource) theEObject;
-			T result = caseIfcLightSource(ifcLightSource);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcLightSource);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcLightSource);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcLightSource);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_LIGHT_SOURCE_AMBIENT: {
-			IfcLightSourceAmbient ifcLightSourceAmbient = (IfcLightSourceAmbient) theEObject;
-			T result = caseIfcLightSourceAmbient(ifcLightSourceAmbient);
-			if (result == null)
-				result = caseIfcLightSource(ifcLightSourceAmbient);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcLightSourceAmbient);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcLightSourceAmbient);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcLightSourceAmbient);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_LIGHT_SOURCE_DIRECTIONAL: {
-			IfcLightSourceDirectional ifcLightSourceDirectional = (IfcLightSourceDirectional) theEObject;
-			T result = caseIfcLightSourceDirectional(ifcLightSourceDirectional);
-			if (result == null)
-				result = caseIfcLightSource(ifcLightSourceDirectional);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcLightSourceDirectional);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcLightSourceDirectional);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcLightSourceDirectional);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_LIGHT_SOURCE_GONIOMETRIC: {
-			IfcLightSourceGoniometric ifcLightSourceGoniometric = (IfcLightSourceGoniometric) theEObject;
-			T result = caseIfcLightSourceGoniometric(ifcLightSourceGoniometric);
-			if (result == null)
-				result = caseIfcLightSource(ifcLightSourceGoniometric);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcLightSourceGoniometric);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcLightSourceGoniometric);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcLightSourceGoniometric);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_LIGHT_SOURCE_POSITIONAL: {
-			IfcLightSourcePositional ifcLightSourcePositional = (IfcLightSourcePositional) theEObject;
-			T result = caseIfcLightSourcePositional(ifcLightSourcePositional);
-			if (result == null)
-				result = caseIfcLightSource(ifcLightSourcePositional);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcLightSourcePositional);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcLightSourcePositional);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcLightSourcePositional);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_LIGHT_SOURCE_SPOT: {
-			IfcLightSourceSpot ifcLightSourceSpot = (IfcLightSourceSpot) theEObject;
-			T result = caseIfcLightSourceSpot(ifcLightSourceSpot);
-			if (result == null)
-				result = caseIfcLightSourcePositional(ifcLightSourceSpot);
-			if (result == null)
-				result = caseIfcLightSource(ifcLightSourceSpot);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcLightSourceSpot);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcLightSourceSpot);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcLightSourceSpot);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_LINE: {
-			IfcLine ifcLine = (IfcLine) theEObject;
-			T result = caseIfcLine(ifcLine);
-			if (result == null)
-				result = caseIfcCurve(ifcLine);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcLine);
-			if (result == null)
-				result = caseIfcGeometricSetSelect(ifcLine);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcLine);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcLine);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_LOCAL_PLACEMENT: {
-			IfcLocalPlacement ifcLocalPlacement = (IfcLocalPlacement) theEObject;
-			T result = caseIfcLocalPlacement(ifcLocalPlacement);
-			if (result == null)
-				result = caseIfcObjectPlacement(ifcLocalPlacement);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_LOOP: {
-			IfcLoop ifcLoop = (IfcLoop) theEObject;
-			T result = caseIfcLoop(ifcLoop);
-			if (result == null)
-				result = caseIfcTopologicalRepresentationItem(ifcLoop);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcLoop);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcLoop);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MANIFOLD_SOLID_BREP: {
-			IfcManifoldSolidBrep ifcManifoldSolidBrep = (IfcManifoldSolidBrep) theEObject;
-			T result = caseIfcManifoldSolidBrep(ifcManifoldSolidBrep);
-			if (result == null)
-				result = caseIfcSolidModel(ifcManifoldSolidBrep);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcManifoldSolidBrep);
-			if (result == null)
-				result = caseIfcBooleanOperand(ifcManifoldSolidBrep);
-			if (result == null)
-				result = caseIfcSolidOrShell(ifcManifoldSolidBrep);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcManifoldSolidBrep);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcManifoldSolidBrep);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MAP_CONVERSION: {
-			IfcMapConversion ifcMapConversion = (IfcMapConversion) theEObject;
-			T result = caseIfcMapConversion(ifcMapConversion);
-			if (result == null)
-				result = caseIfcCoordinateOperation(ifcMapConversion);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MAPPED_ITEM: {
-			IfcMappedItem ifcMappedItem = (IfcMappedItem) theEObject;
-			T result = caseIfcMappedItem(ifcMappedItem);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcMappedItem);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcMappedItem);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MATERIAL: {
-			IfcMaterial ifcMaterial = (IfcMaterial) theEObject;
-			T result = caseIfcMaterial(ifcMaterial);
-			if (result == null)
-				result = caseIfcMaterialDefinition(ifcMaterial);
-			if (result == null)
-				result = caseIfcMaterialSelect(ifcMaterial);
-			if (result == null)
-				result = caseIfcObjectReferenceSelect(ifcMaterial);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcMaterial);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MATERIAL_CLASSIFICATION_RELATIONSHIP: {
-			IfcMaterialClassificationRelationship ifcMaterialClassificationRelationship = (IfcMaterialClassificationRelationship) theEObject;
-			T result = caseIfcMaterialClassificationRelationship(ifcMaterialClassificationRelationship);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MATERIAL_CONSTITUENT: {
-			IfcMaterialConstituent ifcMaterialConstituent = (IfcMaterialConstituent) theEObject;
-			T result = caseIfcMaterialConstituent(ifcMaterialConstituent);
-			if (result == null)
-				result = caseIfcMaterialDefinition(ifcMaterialConstituent);
-			if (result == null)
-				result = caseIfcMaterialSelect(ifcMaterialConstituent);
-			if (result == null)
-				result = caseIfcObjectReferenceSelect(ifcMaterialConstituent);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcMaterialConstituent);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MATERIAL_CONSTITUENT_SET: {
-			IfcMaterialConstituentSet ifcMaterialConstituentSet = (IfcMaterialConstituentSet) theEObject;
-			T result = caseIfcMaterialConstituentSet(ifcMaterialConstituentSet);
-			if (result == null)
-				result = caseIfcMaterialDefinition(ifcMaterialConstituentSet);
-			if (result == null)
-				result = caseIfcMaterialSelect(ifcMaterialConstituentSet);
-			if (result == null)
-				result = caseIfcObjectReferenceSelect(ifcMaterialConstituentSet);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcMaterialConstituentSet);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MATERIAL_DEFINITION: {
-			IfcMaterialDefinition ifcMaterialDefinition = (IfcMaterialDefinition) theEObject;
-			T result = caseIfcMaterialDefinition(ifcMaterialDefinition);
-			if (result == null)
-				result = caseIfcMaterialSelect(ifcMaterialDefinition);
-			if (result == null)
-				result = caseIfcObjectReferenceSelect(ifcMaterialDefinition);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcMaterialDefinition);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MATERIAL_DEFINITION_REPRESENTATION: {
-			IfcMaterialDefinitionRepresentation ifcMaterialDefinitionRepresentation = (IfcMaterialDefinitionRepresentation) theEObject;
-			T result = caseIfcMaterialDefinitionRepresentation(ifcMaterialDefinitionRepresentation);
-			if (result == null)
-				result = caseIfcProductRepresentation(ifcMaterialDefinitionRepresentation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MATERIAL_LAYER: {
-			IfcMaterialLayer ifcMaterialLayer = (IfcMaterialLayer) theEObject;
-			T result = caseIfcMaterialLayer(ifcMaterialLayer);
-			if (result == null)
-				result = caseIfcMaterialDefinition(ifcMaterialLayer);
-			if (result == null)
-				result = caseIfcMaterialSelect(ifcMaterialLayer);
-			if (result == null)
-				result = caseIfcObjectReferenceSelect(ifcMaterialLayer);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcMaterialLayer);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MATERIAL_LAYER_SET: {
-			IfcMaterialLayerSet ifcMaterialLayerSet = (IfcMaterialLayerSet) theEObject;
-			T result = caseIfcMaterialLayerSet(ifcMaterialLayerSet);
-			if (result == null)
-				result = caseIfcMaterialDefinition(ifcMaterialLayerSet);
-			if (result == null)
-				result = caseIfcMaterialSelect(ifcMaterialLayerSet);
-			if (result == null)
-				result = caseIfcObjectReferenceSelect(ifcMaterialLayerSet);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcMaterialLayerSet);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MATERIAL_LAYER_SET_USAGE: {
-			IfcMaterialLayerSetUsage ifcMaterialLayerSetUsage = (IfcMaterialLayerSetUsage) theEObject;
-			T result = caseIfcMaterialLayerSetUsage(ifcMaterialLayerSetUsage);
-			if (result == null)
-				result = caseIfcMaterialUsageDefinition(ifcMaterialLayerSetUsage);
-			if (result == null)
-				result = caseIfcMaterialSelect(ifcMaterialLayerSetUsage);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MATERIAL_LAYER_WITH_OFFSETS: {
-			IfcMaterialLayerWithOffsets ifcMaterialLayerWithOffsets = (IfcMaterialLayerWithOffsets) theEObject;
-			T result = caseIfcMaterialLayerWithOffsets(ifcMaterialLayerWithOffsets);
-			if (result == null)
-				result = caseIfcMaterialLayer(ifcMaterialLayerWithOffsets);
-			if (result == null)
-				result = caseIfcMaterialDefinition(ifcMaterialLayerWithOffsets);
-			if (result == null)
-				result = caseIfcMaterialSelect(ifcMaterialLayerWithOffsets);
-			if (result == null)
-				result = caseIfcObjectReferenceSelect(ifcMaterialLayerWithOffsets);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcMaterialLayerWithOffsets);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MATERIAL_LIST: {
-			IfcMaterialList ifcMaterialList = (IfcMaterialList) theEObject;
-			T result = caseIfcMaterialList(ifcMaterialList);
-			if (result == null)
-				result = caseIfcMaterialSelect(ifcMaterialList);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MATERIAL_PROFILE: {
-			IfcMaterialProfile ifcMaterialProfile = (IfcMaterialProfile) theEObject;
-			T result = caseIfcMaterialProfile(ifcMaterialProfile);
-			if (result == null)
-				result = caseIfcMaterialDefinition(ifcMaterialProfile);
-			if (result == null)
-				result = caseIfcMaterialSelect(ifcMaterialProfile);
-			if (result == null)
-				result = caseIfcObjectReferenceSelect(ifcMaterialProfile);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcMaterialProfile);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MATERIAL_PROFILE_SET: {
-			IfcMaterialProfileSet ifcMaterialProfileSet = (IfcMaterialProfileSet) theEObject;
-			T result = caseIfcMaterialProfileSet(ifcMaterialProfileSet);
-			if (result == null)
-				result = caseIfcMaterialDefinition(ifcMaterialProfileSet);
-			if (result == null)
-				result = caseIfcMaterialSelect(ifcMaterialProfileSet);
-			if (result == null)
-				result = caseIfcObjectReferenceSelect(ifcMaterialProfileSet);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcMaterialProfileSet);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MATERIAL_PROFILE_SET_USAGE: {
-			IfcMaterialProfileSetUsage ifcMaterialProfileSetUsage = (IfcMaterialProfileSetUsage) theEObject;
-			T result = caseIfcMaterialProfileSetUsage(ifcMaterialProfileSetUsage);
-			if (result == null)
-				result = caseIfcMaterialUsageDefinition(ifcMaterialProfileSetUsage);
-			if (result == null)
-				result = caseIfcMaterialSelect(ifcMaterialProfileSetUsage);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MATERIAL_PROFILE_SET_USAGE_TAPERING: {
-			IfcMaterialProfileSetUsageTapering ifcMaterialProfileSetUsageTapering = (IfcMaterialProfileSetUsageTapering) theEObject;
-			T result = caseIfcMaterialProfileSetUsageTapering(ifcMaterialProfileSetUsageTapering);
-			if (result == null)
-				result = caseIfcMaterialProfileSetUsage(ifcMaterialProfileSetUsageTapering);
-			if (result == null)
-				result = caseIfcMaterialUsageDefinition(ifcMaterialProfileSetUsageTapering);
-			if (result == null)
-				result = caseIfcMaterialSelect(ifcMaterialProfileSetUsageTapering);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MATERIAL_PROFILE_WITH_OFFSETS: {
-			IfcMaterialProfileWithOffsets ifcMaterialProfileWithOffsets = (IfcMaterialProfileWithOffsets) theEObject;
-			T result = caseIfcMaterialProfileWithOffsets(ifcMaterialProfileWithOffsets);
-			if (result == null)
-				result = caseIfcMaterialProfile(ifcMaterialProfileWithOffsets);
-			if (result == null)
-				result = caseIfcMaterialDefinition(ifcMaterialProfileWithOffsets);
-			if (result == null)
-				result = caseIfcMaterialSelect(ifcMaterialProfileWithOffsets);
-			if (result == null)
-				result = caseIfcObjectReferenceSelect(ifcMaterialProfileWithOffsets);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcMaterialProfileWithOffsets);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MATERIAL_PROPERTIES: {
-			IfcMaterialProperties ifcMaterialProperties = (IfcMaterialProperties) theEObject;
-			T result = caseIfcMaterialProperties(ifcMaterialProperties);
-			if (result == null)
-				result = caseIfcExtendedProperties(ifcMaterialProperties);
-			if (result == null)
-				result = caseIfcPropertyAbstraction(ifcMaterialProperties);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcMaterialProperties);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MATERIAL_RELATIONSHIP: {
-			IfcMaterialRelationship ifcMaterialRelationship = (IfcMaterialRelationship) theEObject;
-			T result = caseIfcMaterialRelationship(ifcMaterialRelationship);
-			if (result == null)
-				result = caseIfcResourceLevelRelationship(ifcMaterialRelationship);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MATERIAL_USAGE_DEFINITION: {
-			IfcMaterialUsageDefinition ifcMaterialUsageDefinition = (IfcMaterialUsageDefinition) theEObject;
-			T result = caseIfcMaterialUsageDefinition(ifcMaterialUsageDefinition);
-			if (result == null)
-				result = caseIfcMaterialSelect(ifcMaterialUsageDefinition);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MEASURE_WITH_UNIT: {
-			IfcMeasureWithUnit ifcMeasureWithUnit = (IfcMeasureWithUnit) theEObject;
-			T result = caseIfcMeasureWithUnit(ifcMeasureWithUnit);
-			if (result == null)
-				result = caseIfcAppliedValueSelect(ifcMeasureWithUnit);
-			if (result == null)
-				result = caseIfcMetricValueSelect(ifcMeasureWithUnit);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MECHANICAL_FASTENER: {
-			IfcMechanicalFastener ifcMechanicalFastener = (IfcMechanicalFastener) theEObject;
-			T result = caseIfcMechanicalFastener(ifcMechanicalFastener);
-			if (result == null)
-				result = caseIfcElementComponent(ifcMechanicalFastener);
-			if (result == null)
-				result = caseIfcElement(ifcMechanicalFastener);
-			if (result == null)
-				result = caseIfcProduct(ifcMechanicalFastener);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcMechanicalFastener);
-			if (result == null)
-				result = caseIfcObject(ifcMechanicalFastener);
-			if (result == null)
-				result = caseIfcProductSelect(ifcMechanicalFastener);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcMechanicalFastener);
-			if (result == null)
-				result = caseIfcRoot(ifcMechanicalFastener);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcMechanicalFastener);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MECHANICAL_FASTENER_TYPE: {
-			IfcMechanicalFastenerType ifcMechanicalFastenerType = (IfcMechanicalFastenerType) theEObject;
-			T result = caseIfcMechanicalFastenerType(ifcMechanicalFastenerType);
-			if (result == null)
-				result = caseIfcElementComponentType(ifcMechanicalFastenerType);
-			if (result == null)
-				result = caseIfcElementType(ifcMechanicalFastenerType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcMechanicalFastenerType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcMechanicalFastenerType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcMechanicalFastenerType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcMechanicalFastenerType);
-			if (result == null)
-				result = caseIfcRoot(ifcMechanicalFastenerType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcMechanicalFastenerType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MEDICAL_DEVICE: {
-			IfcMedicalDevice ifcMedicalDevice = (IfcMedicalDevice) theEObject;
-			T result = caseIfcMedicalDevice(ifcMedicalDevice);
-			if (result == null)
-				result = caseIfcFlowTerminal(ifcMedicalDevice);
-			if (result == null)
-				result = caseIfcDistributionFlowElement(ifcMedicalDevice);
-			if (result == null)
-				result = caseIfcDistributionElement(ifcMedicalDevice);
-			if (result == null)
-				result = caseIfcElement(ifcMedicalDevice);
-			if (result == null)
-				result = caseIfcProduct(ifcMedicalDevice);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcMedicalDevice);
-			if (result == null)
-				result = caseIfcObject(ifcMedicalDevice);
-			if (result == null)
-				result = caseIfcProductSelect(ifcMedicalDevice);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcMedicalDevice);
-			if (result == null)
-				result = caseIfcRoot(ifcMedicalDevice);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcMedicalDevice);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MEDICAL_DEVICE_TYPE: {
-			IfcMedicalDeviceType ifcMedicalDeviceType = (IfcMedicalDeviceType) theEObject;
-			T result = caseIfcMedicalDeviceType(ifcMedicalDeviceType);
-			if (result == null)
-				result = caseIfcFlowTerminalType(ifcMedicalDeviceType);
-			if (result == null)
-				result = caseIfcDistributionFlowElementType(ifcMedicalDeviceType);
-			if (result == null)
-				result = caseIfcDistributionElementType(ifcMedicalDeviceType);
-			if (result == null)
-				result = caseIfcElementType(ifcMedicalDeviceType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcMedicalDeviceType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcMedicalDeviceType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcMedicalDeviceType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcMedicalDeviceType);
-			if (result == null)
-				result = caseIfcRoot(ifcMedicalDeviceType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcMedicalDeviceType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MEMBER: {
-			IfcMember ifcMember = (IfcMember) theEObject;
-			T result = caseIfcMember(ifcMember);
-			if (result == null)
-				result = caseIfcBuildingElement(ifcMember);
-			if (result == null)
-				result = caseIfcElement(ifcMember);
-			if (result == null)
-				result = caseIfcProduct(ifcMember);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcMember);
-			if (result == null)
-				result = caseIfcObject(ifcMember);
-			if (result == null)
-				result = caseIfcProductSelect(ifcMember);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcMember);
-			if (result == null)
-				result = caseIfcRoot(ifcMember);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcMember);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MEMBER_STANDARD_CASE: {
-			IfcMemberStandardCase ifcMemberStandardCase = (IfcMemberStandardCase) theEObject;
-			T result = caseIfcMemberStandardCase(ifcMemberStandardCase);
-			if (result == null)
-				result = caseIfcMember(ifcMemberStandardCase);
-			if (result == null)
-				result = caseIfcBuildingElement(ifcMemberStandardCase);
-			if (result == null)
-				result = caseIfcElement(ifcMemberStandardCase);
-			if (result == null)
-				result = caseIfcProduct(ifcMemberStandardCase);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcMemberStandardCase);
-			if (result == null)
-				result = caseIfcObject(ifcMemberStandardCase);
-			if (result == null)
-				result = caseIfcProductSelect(ifcMemberStandardCase);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcMemberStandardCase);
-			if (result == null)
-				result = caseIfcRoot(ifcMemberStandardCase);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcMemberStandardCase);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MEMBER_TYPE: {
-			IfcMemberType ifcMemberType = (IfcMemberType) theEObject;
-			T result = caseIfcMemberType(ifcMemberType);
-			if (result == null)
-				result = caseIfcBuildingElementType(ifcMemberType);
-			if (result == null)
-				result = caseIfcElementType(ifcMemberType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcMemberType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcMemberType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcMemberType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcMemberType);
-			if (result == null)
-				result = caseIfcRoot(ifcMemberType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcMemberType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_METRIC: {
-			IfcMetric ifcMetric = (IfcMetric) theEObject;
-			T result = caseIfcMetric(ifcMetric);
-			if (result == null)
-				result = caseIfcConstraint(ifcMetric);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcMetric);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MIRRORED_PROFILE_DEF: {
-			IfcMirroredProfileDef ifcMirroredProfileDef = (IfcMirroredProfileDef) theEObject;
-			T result = caseIfcMirroredProfileDef(ifcMirroredProfileDef);
-			if (result == null)
-				result = caseIfcDerivedProfileDef(ifcMirroredProfileDef);
-			if (result == null)
-				result = caseIfcProfileDef(ifcMirroredProfileDef);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcMirroredProfileDef);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MONETARY_UNIT: {
-			IfcMonetaryUnit ifcMonetaryUnit = (IfcMonetaryUnit) theEObject;
-			T result = caseIfcMonetaryUnit(ifcMonetaryUnit);
-			if (result == null)
-				result = caseIfcUnit(ifcMonetaryUnit);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MOTOR_CONNECTION: {
-			IfcMotorConnection ifcMotorConnection = (IfcMotorConnection) theEObject;
-			T result = caseIfcMotorConnection(ifcMotorConnection);
-			if (result == null)
-				result = caseIfcEnergyConversionDevice(ifcMotorConnection);
-			if (result == null)
-				result = caseIfcDistributionFlowElement(ifcMotorConnection);
-			if (result == null)
-				result = caseIfcDistributionElement(ifcMotorConnection);
-			if (result == null)
-				result = caseIfcElement(ifcMotorConnection);
-			if (result == null)
-				result = caseIfcProduct(ifcMotorConnection);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcMotorConnection);
-			if (result == null)
-				result = caseIfcObject(ifcMotorConnection);
-			if (result == null)
-				result = caseIfcProductSelect(ifcMotorConnection);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcMotorConnection);
-			if (result == null)
-				result = caseIfcRoot(ifcMotorConnection);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcMotorConnection);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_MOTOR_CONNECTION_TYPE: {
-			IfcMotorConnectionType ifcMotorConnectionType = (IfcMotorConnectionType) theEObject;
-			T result = caseIfcMotorConnectionType(ifcMotorConnectionType);
-			if (result == null)
-				result = caseIfcEnergyConversionDeviceType(ifcMotorConnectionType);
-			if (result == null)
-				result = caseIfcDistributionFlowElementType(ifcMotorConnectionType);
-			if (result == null)
-				result = caseIfcDistributionElementType(ifcMotorConnectionType);
-			if (result == null)
-				result = caseIfcElementType(ifcMotorConnectionType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcMotorConnectionType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcMotorConnectionType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcMotorConnectionType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcMotorConnectionType);
-			if (result == null)
-				result = caseIfcRoot(ifcMotorConnectionType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcMotorConnectionType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_NAMED_UNIT: {
-			IfcNamedUnit ifcNamedUnit = (IfcNamedUnit) theEObject;
-			T result = caseIfcNamedUnit(ifcNamedUnit);
-			if (result == null)
-				result = caseIfcUnit(ifcNamedUnit);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_OBJECT: {
-			IfcObject ifcObject = (IfcObject) theEObject;
-			T result = caseIfcObject(ifcObject);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcObject);
-			if (result == null)
-				result = caseIfcRoot(ifcObject);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcObject);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_OBJECT_DEFINITION: {
-			IfcObjectDefinition ifcObjectDefinition = (IfcObjectDefinition) theEObject;
-			T result = caseIfcObjectDefinition(ifcObjectDefinition);
-			if (result == null)
-				result = caseIfcRoot(ifcObjectDefinition);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcObjectDefinition);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_OBJECT_PLACEMENT: {
-			IfcObjectPlacement ifcObjectPlacement = (IfcObjectPlacement) theEObject;
-			T result = caseIfcObjectPlacement(ifcObjectPlacement);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_OBJECTIVE: {
-			IfcObjective ifcObjective = (IfcObjective) theEObject;
-			T result = caseIfcObjective(ifcObjective);
-			if (result == null)
-				result = caseIfcConstraint(ifcObjective);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcObjective);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_OCCUPANT: {
-			IfcOccupant ifcOccupant = (IfcOccupant) theEObject;
-			T result = caseIfcOccupant(ifcOccupant);
-			if (result == null)
-				result = caseIfcActor(ifcOccupant);
-			if (result == null)
-				result = caseIfcObject(ifcOccupant);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcOccupant);
-			if (result == null)
-				result = caseIfcRoot(ifcOccupant);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcOccupant);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_OFFSET_CURVE2_D: {
-			IfcOffsetCurve2D ifcOffsetCurve2D = (IfcOffsetCurve2D) theEObject;
-			T result = caseIfcOffsetCurve2D(ifcOffsetCurve2D);
-			if (result == null)
-				result = caseIfcCurve(ifcOffsetCurve2D);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcOffsetCurve2D);
-			if (result == null)
-				result = caseIfcGeometricSetSelect(ifcOffsetCurve2D);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcOffsetCurve2D);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcOffsetCurve2D);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_OFFSET_CURVE3_D: {
-			IfcOffsetCurve3D ifcOffsetCurve3D = (IfcOffsetCurve3D) theEObject;
-			T result = caseIfcOffsetCurve3D(ifcOffsetCurve3D);
-			if (result == null)
-				result = caseIfcCurve(ifcOffsetCurve3D);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcOffsetCurve3D);
-			if (result == null)
-				result = caseIfcGeometricSetSelect(ifcOffsetCurve3D);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcOffsetCurve3D);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcOffsetCurve3D);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_OPEN_SHELL: {
-			IfcOpenShell ifcOpenShell = (IfcOpenShell) theEObject;
-			T result = caseIfcOpenShell(ifcOpenShell);
-			if (result == null)
-				result = caseIfcConnectedFaceSet(ifcOpenShell);
-			if (result == null)
-				result = caseIfcShell(ifcOpenShell);
-			if (result == null)
-				result = caseIfcTopologicalRepresentationItem(ifcOpenShell);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcOpenShell);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcOpenShell);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_OPENING_ELEMENT: {
-			IfcOpeningElement ifcOpeningElement = (IfcOpeningElement) theEObject;
-			T result = caseIfcOpeningElement(ifcOpeningElement);
-			if (result == null)
-				result = caseIfcFeatureElementSubtraction(ifcOpeningElement);
-			if (result == null)
-				result = caseIfcFeatureElement(ifcOpeningElement);
-			if (result == null)
-				result = caseIfcElement(ifcOpeningElement);
-			if (result == null)
-				result = caseIfcProduct(ifcOpeningElement);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcOpeningElement);
-			if (result == null)
-				result = caseIfcObject(ifcOpeningElement);
-			if (result == null)
-				result = caseIfcProductSelect(ifcOpeningElement);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcOpeningElement);
-			if (result == null)
-				result = caseIfcRoot(ifcOpeningElement);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcOpeningElement);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_OPENING_STANDARD_CASE: {
-			IfcOpeningStandardCase ifcOpeningStandardCase = (IfcOpeningStandardCase) theEObject;
-			T result = caseIfcOpeningStandardCase(ifcOpeningStandardCase);
-			if (result == null)
-				result = caseIfcOpeningElement(ifcOpeningStandardCase);
-			if (result == null)
-				result = caseIfcFeatureElementSubtraction(ifcOpeningStandardCase);
-			if (result == null)
-				result = caseIfcFeatureElement(ifcOpeningStandardCase);
-			if (result == null)
-				result = caseIfcElement(ifcOpeningStandardCase);
-			if (result == null)
-				result = caseIfcProduct(ifcOpeningStandardCase);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcOpeningStandardCase);
-			if (result == null)
-				result = caseIfcObject(ifcOpeningStandardCase);
-			if (result == null)
-				result = caseIfcProductSelect(ifcOpeningStandardCase);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcOpeningStandardCase);
-			if (result == null)
-				result = caseIfcRoot(ifcOpeningStandardCase);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcOpeningStandardCase);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_ORGANIZATION: {
-			IfcOrganization ifcOrganization = (IfcOrganization) theEObject;
-			T result = caseIfcOrganization(ifcOrganization);
-			if (result == null)
-				result = caseIfcActorSelect(ifcOrganization);
-			if (result == null)
-				result = caseIfcObjectReferenceSelect(ifcOrganization);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcOrganization);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_ORGANIZATION_RELATIONSHIP: {
-			IfcOrganizationRelationship ifcOrganizationRelationship = (IfcOrganizationRelationship) theEObject;
-			T result = caseIfcOrganizationRelationship(ifcOrganizationRelationship);
-			if (result == null)
-				result = caseIfcResourceLevelRelationship(ifcOrganizationRelationship);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_ORIENTED_EDGE: {
-			IfcOrientedEdge ifcOrientedEdge = (IfcOrientedEdge) theEObject;
-			T result = caseIfcOrientedEdge(ifcOrientedEdge);
-			if (result == null)
-				result = caseIfcEdge(ifcOrientedEdge);
-			if (result == null)
-				result = caseIfcTopologicalRepresentationItem(ifcOrientedEdge);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcOrientedEdge);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcOrientedEdge);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_OUTER_BOUNDARY_CURVE: {
-			IfcOuterBoundaryCurve ifcOuterBoundaryCurve = (IfcOuterBoundaryCurve) theEObject;
-			T result = caseIfcOuterBoundaryCurve(ifcOuterBoundaryCurve);
-			if (result == null)
-				result = caseIfcBoundaryCurve(ifcOuterBoundaryCurve);
-			if (result == null)
-				result = caseIfcCompositeCurveOnSurface(ifcOuterBoundaryCurve);
-			if (result == null)
-				result = caseIfcCompositeCurve(ifcOuterBoundaryCurve);
-			if (result == null)
-				result = caseIfcCurveOnSurface(ifcOuterBoundaryCurve);
-			if (result == null)
-				result = caseIfcBoundedCurve(ifcOuterBoundaryCurve);
-			if (result == null)
-				result = caseIfcCurve(ifcOuterBoundaryCurve);
-			if (result == null)
-				result = caseIfcCurveOrEdgeCurve(ifcOuterBoundaryCurve);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcOuterBoundaryCurve);
-			if (result == null)
-				result = caseIfcGeometricSetSelect(ifcOuterBoundaryCurve);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcOuterBoundaryCurve);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcOuterBoundaryCurve);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_OUTLET: {
-			IfcOutlet ifcOutlet = (IfcOutlet) theEObject;
-			T result = caseIfcOutlet(ifcOutlet);
-			if (result == null)
-				result = caseIfcFlowTerminal(ifcOutlet);
-			if (result == null)
-				result = caseIfcDistributionFlowElement(ifcOutlet);
-			if (result == null)
-				result = caseIfcDistributionElement(ifcOutlet);
-			if (result == null)
-				result = caseIfcElement(ifcOutlet);
-			if (result == null)
-				result = caseIfcProduct(ifcOutlet);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcOutlet);
-			if (result == null)
-				result = caseIfcObject(ifcOutlet);
-			if (result == null)
-				result = caseIfcProductSelect(ifcOutlet);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcOutlet);
-			if (result == null)
-				result = caseIfcRoot(ifcOutlet);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcOutlet);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_OUTLET_TYPE: {
-			IfcOutletType ifcOutletType = (IfcOutletType) theEObject;
-			T result = caseIfcOutletType(ifcOutletType);
-			if (result == null)
-				result = caseIfcFlowTerminalType(ifcOutletType);
-			if (result == null)
-				result = caseIfcDistributionFlowElementType(ifcOutletType);
-			if (result == null)
-				result = caseIfcDistributionElementType(ifcOutletType);
-			if (result == null)
-				result = caseIfcElementType(ifcOutletType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcOutletType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcOutletType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcOutletType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcOutletType);
-			if (result == null)
-				result = caseIfcRoot(ifcOutletType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcOutletType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_OWNER_HISTORY: {
-			IfcOwnerHistory ifcOwnerHistory = (IfcOwnerHistory) theEObject;
-			T result = caseIfcOwnerHistory(ifcOwnerHistory);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PARAMETERIZED_PROFILE_DEF: {
-			IfcParameterizedProfileDef ifcParameterizedProfileDef = (IfcParameterizedProfileDef) theEObject;
-			T result = caseIfcParameterizedProfileDef(ifcParameterizedProfileDef);
-			if (result == null)
-				result = caseIfcProfileDef(ifcParameterizedProfileDef);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcParameterizedProfileDef);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PATH: {
-			IfcPath ifcPath = (IfcPath) theEObject;
-			T result = caseIfcPath(ifcPath);
-			if (result == null)
-				result = caseIfcTopologicalRepresentationItem(ifcPath);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcPath);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcPath);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PCURVE: {
-			IfcPcurve ifcPcurve = (IfcPcurve) theEObject;
-			T result = caseIfcPcurve(ifcPcurve);
-			if (result == null)
-				result = caseIfcCurve(ifcPcurve);
-			if (result == null)
-				result = caseIfcCurveOnSurface(ifcPcurve);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcPcurve);
-			if (result == null)
-				result = caseIfcGeometricSetSelect(ifcPcurve);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcPcurve);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcPcurve);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PERFORMANCE_HISTORY: {
-			IfcPerformanceHistory ifcPerformanceHistory = (IfcPerformanceHistory) theEObject;
-			T result = caseIfcPerformanceHistory(ifcPerformanceHistory);
-			if (result == null)
-				result = caseIfcControl(ifcPerformanceHistory);
-			if (result == null)
-				result = caseIfcObject(ifcPerformanceHistory);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcPerformanceHistory);
-			if (result == null)
-				result = caseIfcRoot(ifcPerformanceHistory);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcPerformanceHistory);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PERMEABLE_COVERING_PROPERTIES: {
-			IfcPermeableCoveringProperties ifcPermeableCoveringProperties = (IfcPermeableCoveringProperties) theEObject;
-			T result = caseIfcPermeableCoveringProperties(ifcPermeableCoveringProperties);
-			if (result == null)
-				result = caseIfcPreDefinedPropertySet(ifcPermeableCoveringProperties);
-			if (result == null)
-				result = caseIfcPropertySetDefinition(ifcPermeableCoveringProperties);
-			if (result == null)
-				result = caseIfcPropertyDefinition(ifcPermeableCoveringProperties);
-			if (result == null)
-				result = caseIfcPropertySetDefinitionSelect(ifcPermeableCoveringProperties);
-			if (result == null)
-				result = caseIfcRoot(ifcPermeableCoveringProperties);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcPermeableCoveringProperties);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PERMIT: {
-			IfcPermit ifcPermit = (IfcPermit) theEObject;
-			T result = caseIfcPermit(ifcPermit);
-			if (result == null)
-				result = caseIfcControl(ifcPermit);
-			if (result == null)
-				result = caseIfcObject(ifcPermit);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcPermit);
-			if (result == null)
-				result = caseIfcRoot(ifcPermit);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcPermit);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PERSON: {
-			IfcPerson ifcPerson = (IfcPerson) theEObject;
-			T result = caseIfcPerson(ifcPerson);
-			if (result == null)
-				result = caseIfcActorSelect(ifcPerson);
-			if (result == null)
-				result = caseIfcObjectReferenceSelect(ifcPerson);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcPerson);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PERSON_AND_ORGANIZATION: {
-			IfcPersonAndOrganization ifcPersonAndOrganization = (IfcPersonAndOrganization) theEObject;
-			T result = caseIfcPersonAndOrganization(ifcPersonAndOrganization);
-			if (result == null)
-				result = caseIfcActorSelect(ifcPersonAndOrganization);
-			if (result == null)
-				result = caseIfcObjectReferenceSelect(ifcPersonAndOrganization);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcPersonAndOrganization);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PHYSICAL_COMPLEX_QUANTITY: {
-			IfcPhysicalComplexQuantity ifcPhysicalComplexQuantity = (IfcPhysicalComplexQuantity) theEObject;
-			T result = caseIfcPhysicalComplexQuantity(ifcPhysicalComplexQuantity);
-			if (result == null)
-				result = caseIfcPhysicalQuantity(ifcPhysicalComplexQuantity);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcPhysicalComplexQuantity);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PHYSICAL_QUANTITY: {
-			IfcPhysicalQuantity ifcPhysicalQuantity = (IfcPhysicalQuantity) theEObject;
-			T result = caseIfcPhysicalQuantity(ifcPhysicalQuantity);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcPhysicalQuantity);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PHYSICAL_SIMPLE_QUANTITY: {
-			IfcPhysicalSimpleQuantity ifcPhysicalSimpleQuantity = (IfcPhysicalSimpleQuantity) theEObject;
-			T result = caseIfcPhysicalSimpleQuantity(ifcPhysicalSimpleQuantity);
-			if (result == null)
-				result = caseIfcPhysicalQuantity(ifcPhysicalSimpleQuantity);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcPhysicalSimpleQuantity);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PILE: {
-			IfcPile ifcPile = (IfcPile) theEObject;
-			T result = caseIfcPile(ifcPile);
-			if (result == null)
-				result = caseIfcBuildingElement(ifcPile);
-			if (result == null)
-				result = caseIfcElement(ifcPile);
-			if (result == null)
-				result = caseIfcProduct(ifcPile);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcPile);
-			if (result == null)
-				result = caseIfcObject(ifcPile);
-			if (result == null)
-				result = caseIfcProductSelect(ifcPile);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcPile);
-			if (result == null)
-				result = caseIfcRoot(ifcPile);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcPile);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PILE_TYPE: {
-			IfcPileType ifcPileType = (IfcPileType) theEObject;
-			T result = caseIfcPileType(ifcPileType);
-			if (result == null)
-				result = caseIfcBuildingElementType(ifcPileType);
-			if (result == null)
-				result = caseIfcElementType(ifcPileType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcPileType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcPileType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcPileType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcPileType);
-			if (result == null)
-				result = caseIfcRoot(ifcPileType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcPileType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PIPE_FITTING: {
-			IfcPipeFitting ifcPipeFitting = (IfcPipeFitting) theEObject;
-			T result = caseIfcPipeFitting(ifcPipeFitting);
-			if (result == null)
-				result = caseIfcFlowFitting(ifcPipeFitting);
-			if (result == null)
-				result = caseIfcDistributionFlowElement(ifcPipeFitting);
-			if (result == null)
-				result = caseIfcDistributionElement(ifcPipeFitting);
-			if (result == null)
-				result = caseIfcElement(ifcPipeFitting);
-			if (result == null)
-				result = caseIfcProduct(ifcPipeFitting);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcPipeFitting);
-			if (result == null)
-				result = caseIfcObject(ifcPipeFitting);
-			if (result == null)
-				result = caseIfcProductSelect(ifcPipeFitting);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcPipeFitting);
-			if (result == null)
-				result = caseIfcRoot(ifcPipeFitting);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcPipeFitting);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PIPE_FITTING_TYPE: {
-			IfcPipeFittingType ifcPipeFittingType = (IfcPipeFittingType) theEObject;
-			T result = caseIfcPipeFittingType(ifcPipeFittingType);
-			if (result == null)
-				result = caseIfcFlowFittingType(ifcPipeFittingType);
-			if (result == null)
-				result = caseIfcDistributionFlowElementType(ifcPipeFittingType);
-			if (result == null)
-				result = caseIfcDistributionElementType(ifcPipeFittingType);
-			if (result == null)
-				result = caseIfcElementType(ifcPipeFittingType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcPipeFittingType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcPipeFittingType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcPipeFittingType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcPipeFittingType);
-			if (result == null)
-				result = caseIfcRoot(ifcPipeFittingType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcPipeFittingType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PIPE_SEGMENT: {
-			IfcPipeSegment ifcPipeSegment = (IfcPipeSegment) theEObject;
-			T result = caseIfcPipeSegment(ifcPipeSegment);
-			if (result == null)
-				result = caseIfcFlowSegment(ifcPipeSegment);
-			if (result == null)
-				result = caseIfcDistributionFlowElement(ifcPipeSegment);
-			if (result == null)
-				result = caseIfcDistributionElement(ifcPipeSegment);
-			if (result == null)
-				result = caseIfcElement(ifcPipeSegment);
-			if (result == null)
-				result = caseIfcProduct(ifcPipeSegment);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcPipeSegment);
-			if (result == null)
-				result = caseIfcObject(ifcPipeSegment);
-			if (result == null)
-				result = caseIfcProductSelect(ifcPipeSegment);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcPipeSegment);
-			if (result == null)
-				result = caseIfcRoot(ifcPipeSegment);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcPipeSegment);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PIPE_SEGMENT_TYPE: {
-			IfcPipeSegmentType ifcPipeSegmentType = (IfcPipeSegmentType) theEObject;
-			T result = caseIfcPipeSegmentType(ifcPipeSegmentType);
-			if (result == null)
-				result = caseIfcFlowSegmentType(ifcPipeSegmentType);
-			if (result == null)
-				result = caseIfcDistributionFlowElementType(ifcPipeSegmentType);
-			if (result == null)
-				result = caseIfcDistributionElementType(ifcPipeSegmentType);
-			if (result == null)
-				result = caseIfcElementType(ifcPipeSegmentType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcPipeSegmentType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcPipeSegmentType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcPipeSegmentType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcPipeSegmentType);
-			if (result == null)
-				result = caseIfcRoot(ifcPipeSegmentType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcPipeSegmentType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PIXEL_TEXTURE: {
-			IfcPixelTexture ifcPixelTexture = (IfcPixelTexture) theEObject;
-			T result = caseIfcPixelTexture(ifcPixelTexture);
-			if (result == null)
-				result = caseIfcSurfaceTexture(ifcPixelTexture);
-			if (result == null)
-				result = caseIfcPresentationItem(ifcPixelTexture);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PLACEMENT: {
-			IfcPlacement ifcPlacement = (IfcPlacement) theEObject;
-			T result = caseIfcPlacement(ifcPlacement);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcPlacement);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcPlacement);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcPlacement);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PLANAR_BOX: {
-			IfcPlanarBox ifcPlanarBox = (IfcPlanarBox) theEObject;
-			T result = caseIfcPlanarBox(ifcPlanarBox);
-			if (result == null)
-				result = caseIfcPlanarExtent(ifcPlanarBox);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcPlanarBox);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcPlanarBox);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcPlanarBox);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PLANAR_EXTENT: {
-			IfcPlanarExtent ifcPlanarExtent = (IfcPlanarExtent) theEObject;
-			T result = caseIfcPlanarExtent(ifcPlanarExtent);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcPlanarExtent);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcPlanarExtent);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcPlanarExtent);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PLANE: {
-			IfcPlane ifcPlane = (IfcPlane) theEObject;
-			T result = caseIfcPlane(ifcPlane);
-			if (result == null)
-				result = caseIfcElementarySurface(ifcPlane);
-			if (result == null)
-				result = caseIfcSurface(ifcPlane);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcPlane);
-			if (result == null)
-				result = caseIfcGeometricSetSelect(ifcPlane);
-			if (result == null)
-				result = caseIfcSurfaceOrFaceSurface(ifcPlane);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcPlane);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcPlane);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PLATE: {
-			IfcPlate ifcPlate = (IfcPlate) theEObject;
-			T result = caseIfcPlate(ifcPlate);
-			if (result == null)
-				result = caseIfcBuildingElement(ifcPlate);
-			if (result == null)
-				result = caseIfcElement(ifcPlate);
-			if (result == null)
-				result = caseIfcProduct(ifcPlate);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcPlate);
-			if (result == null)
-				result = caseIfcObject(ifcPlate);
-			if (result == null)
-				result = caseIfcProductSelect(ifcPlate);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcPlate);
-			if (result == null)
-				result = caseIfcRoot(ifcPlate);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcPlate);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PLATE_STANDARD_CASE: {
-			IfcPlateStandardCase ifcPlateStandardCase = (IfcPlateStandardCase) theEObject;
-			T result = caseIfcPlateStandardCase(ifcPlateStandardCase);
-			if (result == null)
-				result = caseIfcPlate(ifcPlateStandardCase);
-			if (result == null)
-				result = caseIfcBuildingElement(ifcPlateStandardCase);
-			if (result == null)
-				result = caseIfcElement(ifcPlateStandardCase);
-			if (result == null)
-				result = caseIfcProduct(ifcPlateStandardCase);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcPlateStandardCase);
-			if (result == null)
-				result = caseIfcObject(ifcPlateStandardCase);
-			if (result == null)
-				result = caseIfcProductSelect(ifcPlateStandardCase);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcPlateStandardCase);
-			if (result == null)
-				result = caseIfcRoot(ifcPlateStandardCase);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcPlateStandardCase);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PLATE_TYPE: {
-			IfcPlateType ifcPlateType = (IfcPlateType) theEObject;
-			T result = caseIfcPlateType(ifcPlateType);
-			if (result == null)
-				result = caseIfcBuildingElementType(ifcPlateType);
-			if (result == null)
-				result = caseIfcElementType(ifcPlateType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcPlateType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcPlateType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcPlateType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcPlateType);
-			if (result == null)
-				result = caseIfcRoot(ifcPlateType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcPlateType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_POINT: {
-			IfcPoint ifcPoint = (IfcPoint) theEObject;
-			T result = caseIfcPoint(ifcPoint);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcPoint);
-			if (result == null)
-				result = caseIfcGeometricSetSelect(ifcPoint);
-			if (result == null)
-				result = caseIfcPointOrVertexPoint(ifcPoint);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcPoint);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcPoint);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_POINT_ON_CURVE: {
-			IfcPointOnCurve ifcPointOnCurve = (IfcPointOnCurve) theEObject;
-			T result = caseIfcPointOnCurve(ifcPointOnCurve);
-			if (result == null)
-				result = caseIfcPoint(ifcPointOnCurve);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcPointOnCurve);
-			if (result == null)
-				result = caseIfcGeometricSetSelect(ifcPointOnCurve);
-			if (result == null)
-				result = caseIfcPointOrVertexPoint(ifcPointOnCurve);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcPointOnCurve);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcPointOnCurve);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_POINT_ON_SURFACE: {
-			IfcPointOnSurface ifcPointOnSurface = (IfcPointOnSurface) theEObject;
-			T result = caseIfcPointOnSurface(ifcPointOnSurface);
-			if (result == null)
-				result = caseIfcPoint(ifcPointOnSurface);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcPointOnSurface);
-			if (result == null)
-				result = caseIfcGeometricSetSelect(ifcPointOnSurface);
-			if (result == null)
-				result = caseIfcPointOrVertexPoint(ifcPointOnSurface);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcPointOnSurface);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcPointOnSurface);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_POLY_LOOP: {
-			IfcPolyLoop ifcPolyLoop = (IfcPolyLoop) theEObject;
-			T result = caseIfcPolyLoop(ifcPolyLoop);
-			if (result == null)
-				result = caseIfcLoop(ifcPolyLoop);
-			if (result == null)
-				result = caseIfcTopologicalRepresentationItem(ifcPolyLoop);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcPolyLoop);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcPolyLoop);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_POLYGONAL_BOUNDED_HALF_SPACE: {
-			IfcPolygonalBoundedHalfSpace ifcPolygonalBoundedHalfSpace = (IfcPolygonalBoundedHalfSpace) theEObject;
-			T result = caseIfcPolygonalBoundedHalfSpace(ifcPolygonalBoundedHalfSpace);
-			if (result == null)
-				result = caseIfcHalfSpaceSolid(ifcPolygonalBoundedHalfSpace);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcPolygonalBoundedHalfSpace);
-			if (result == null)
-				result = caseIfcBooleanOperand(ifcPolygonalBoundedHalfSpace);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcPolygonalBoundedHalfSpace);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcPolygonalBoundedHalfSpace);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_POLYGONAL_FACE_SET: {
-			IfcPolygonalFaceSet ifcPolygonalFaceSet = (IfcPolygonalFaceSet) theEObject;
-			T result = caseIfcPolygonalFaceSet(ifcPolygonalFaceSet);
-			if (result == null)
-				result = caseIfcTessellatedFaceSet(ifcPolygonalFaceSet);
-			if (result == null)
-				result = caseIfcTessellatedItem(ifcPolygonalFaceSet);
-			if (result == null)
-				result = caseIfcBooleanOperand(ifcPolygonalFaceSet);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcPolygonalFaceSet);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcPolygonalFaceSet);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcPolygonalFaceSet);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_POLYLINE: {
-			IfcPolyline ifcPolyline = (IfcPolyline) theEObject;
-			T result = caseIfcPolyline(ifcPolyline);
-			if (result == null)
-				result = caseIfcBoundedCurve(ifcPolyline);
-			if (result == null)
-				result = caseIfcCurve(ifcPolyline);
-			if (result == null)
-				result = caseIfcCurveOrEdgeCurve(ifcPolyline);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcPolyline);
-			if (result == null)
-				result = caseIfcGeometricSetSelect(ifcPolyline);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcPolyline);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcPolyline);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PORT: {
-			IfcPort ifcPort = (IfcPort) theEObject;
-			T result = caseIfcPort(ifcPort);
-			if (result == null)
-				result = caseIfcProduct(ifcPort);
-			if (result == null)
-				result = caseIfcObject(ifcPort);
-			if (result == null)
-				result = caseIfcProductSelect(ifcPort);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcPort);
-			if (result == null)
-				result = caseIfcRoot(ifcPort);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcPort);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_POSTAL_ADDRESS: {
-			IfcPostalAddress ifcPostalAddress = (IfcPostalAddress) theEObject;
-			T result = caseIfcPostalAddress(ifcPostalAddress);
-			if (result == null)
-				result = caseIfcAddress(ifcPostalAddress);
-			if (result == null)
-				result = caseIfcObjectReferenceSelect(ifcPostalAddress);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PRE_DEFINED_COLOUR: {
-			IfcPreDefinedColour ifcPreDefinedColour = (IfcPreDefinedColour) theEObject;
-			T result = caseIfcPreDefinedColour(ifcPreDefinedColour);
-			if (result == null)
-				result = caseIfcPreDefinedItem(ifcPreDefinedColour);
-			if (result == null)
-				result = caseIfcColour(ifcPreDefinedColour);
-			if (result == null)
-				result = caseIfcPresentationItem(ifcPreDefinedColour);
-			if (result == null)
-				result = caseIfcFillStyleSelect(ifcPreDefinedColour);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PRE_DEFINED_CURVE_FONT: {
-			IfcPreDefinedCurveFont ifcPreDefinedCurveFont = (IfcPreDefinedCurveFont) theEObject;
-			T result = caseIfcPreDefinedCurveFont(ifcPreDefinedCurveFont);
-			if (result == null)
-				result = caseIfcPreDefinedItem(ifcPreDefinedCurveFont);
-			if (result == null)
-				result = caseIfcCurveStyleFontSelect(ifcPreDefinedCurveFont);
-			if (result == null)
-				result = caseIfcPresentationItem(ifcPreDefinedCurveFont);
-			if (result == null)
-				result = caseIfcCurveFontOrScaledCurveFontSelect(ifcPreDefinedCurveFont);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PRE_DEFINED_ITEM: {
-			IfcPreDefinedItem ifcPreDefinedItem = (IfcPreDefinedItem) theEObject;
-			T result = caseIfcPreDefinedItem(ifcPreDefinedItem);
-			if (result == null)
-				result = caseIfcPresentationItem(ifcPreDefinedItem);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PRE_DEFINED_PROPERTIES: {
-			IfcPreDefinedProperties ifcPreDefinedProperties = (IfcPreDefinedProperties) theEObject;
-			T result = caseIfcPreDefinedProperties(ifcPreDefinedProperties);
-			if (result == null)
-				result = caseIfcPropertyAbstraction(ifcPreDefinedProperties);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcPreDefinedProperties);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PRE_DEFINED_PROPERTY_SET: {
-			IfcPreDefinedPropertySet ifcPreDefinedPropertySet = (IfcPreDefinedPropertySet) theEObject;
-			T result = caseIfcPreDefinedPropertySet(ifcPreDefinedPropertySet);
-			if (result == null)
-				result = caseIfcPropertySetDefinition(ifcPreDefinedPropertySet);
-			if (result == null)
-				result = caseIfcPropertyDefinition(ifcPreDefinedPropertySet);
-			if (result == null)
-				result = caseIfcPropertySetDefinitionSelect(ifcPreDefinedPropertySet);
-			if (result == null)
-				result = caseIfcRoot(ifcPreDefinedPropertySet);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcPreDefinedPropertySet);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PRE_DEFINED_TEXT_FONT: {
-			IfcPreDefinedTextFont ifcPreDefinedTextFont = (IfcPreDefinedTextFont) theEObject;
-			T result = caseIfcPreDefinedTextFont(ifcPreDefinedTextFont);
-			if (result == null)
-				result = caseIfcPreDefinedItem(ifcPreDefinedTextFont);
-			if (result == null)
-				result = caseIfcTextFontSelect(ifcPreDefinedTextFont);
-			if (result == null)
-				result = caseIfcPresentationItem(ifcPreDefinedTextFont);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PRESENTATION_ITEM: {
-			IfcPresentationItem ifcPresentationItem = (IfcPresentationItem) theEObject;
-			T result = caseIfcPresentationItem(ifcPresentationItem);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PRESENTATION_LAYER_ASSIGNMENT: {
-			IfcPresentationLayerAssignment ifcPresentationLayerAssignment = (IfcPresentationLayerAssignment) theEObject;
-			T result = caseIfcPresentationLayerAssignment(ifcPresentationLayerAssignment);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PRESENTATION_LAYER_WITH_STYLE: {
-			IfcPresentationLayerWithStyle ifcPresentationLayerWithStyle = (IfcPresentationLayerWithStyle) theEObject;
-			T result = caseIfcPresentationLayerWithStyle(ifcPresentationLayerWithStyle);
-			if (result == null)
-				result = caseIfcPresentationLayerAssignment(ifcPresentationLayerWithStyle);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PRESENTATION_STYLE: {
-			IfcPresentationStyle ifcPresentationStyle = (IfcPresentationStyle) theEObject;
-			T result = caseIfcPresentationStyle(ifcPresentationStyle);
-			if (result == null)
-				result = caseIfcStyleAssignmentSelect(ifcPresentationStyle);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PRESENTATION_STYLE_ASSIGNMENT: {
-			IfcPresentationStyleAssignment ifcPresentationStyleAssignment = (IfcPresentationStyleAssignment) theEObject;
-			T result = caseIfcPresentationStyleAssignment(ifcPresentationStyleAssignment);
-			if (result == null)
-				result = caseIfcStyleAssignmentSelect(ifcPresentationStyleAssignment);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROCEDURE: {
-			IfcProcedure ifcProcedure = (IfcProcedure) theEObject;
-			T result = caseIfcProcedure(ifcProcedure);
-			if (result == null)
-				result = caseIfcProcess(ifcProcedure);
-			if (result == null)
-				result = caseIfcObject(ifcProcedure);
-			if (result == null)
-				result = caseIfcProcessSelect(ifcProcedure);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcProcedure);
-			if (result == null)
-				result = caseIfcRoot(ifcProcedure);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcProcedure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROCEDURE_TYPE: {
-			IfcProcedureType ifcProcedureType = (IfcProcedureType) theEObject;
-			T result = caseIfcProcedureType(ifcProcedureType);
-			if (result == null)
-				result = caseIfcTypeProcess(ifcProcedureType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcProcedureType);
-			if (result == null)
-				result = caseIfcProcessSelect(ifcProcedureType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcProcedureType);
-			if (result == null)
-				result = caseIfcRoot(ifcProcedureType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcProcedureType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROCESS: {
-			IfcProcess ifcProcess = (IfcProcess) theEObject;
-			T result = caseIfcProcess(ifcProcess);
-			if (result == null)
-				result = caseIfcObject(ifcProcess);
-			if (result == null)
-				result = caseIfcProcessSelect(ifcProcess);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcProcess);
-			if (result == null)
-				result = caseIfcRoot(ifcProcess);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcProcess);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PRODUCT: {
-			IfcProduct ifcProduct = (IfcProduct) theEObject;
-			T result = caseIfcProduct(ifcProduct);
-			if (result == null)
-				result = caseIfcObject(ifcProduct);
-			if (result == null)
-				result = caseIfcProductSelect(ifcProduct);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcProduct);
-			if (result == null)
-				result = caseIfcRoot(ifcProduct);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcProduct);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PRODUCT_DEFINITION_SHAPE: {
-			IfcProductDefinitionShape ifcProductDefinitionShape = (IfcProductDefinitionShape) theEObject;
-			T result = caseIfcProductDefinitionShape(ifcProductDefinitionShape);
-			if (result == null)
-				result = caseIfcProductRepresentation(ifcProductDefinitionShape);
-			if (result == null)
-				result = caseIfcProductRepresentationSelect(ifcProductDefinitionShape);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PRODUCT_REPRESENTATION: {
-			IfcProductRepresentation ifcProductRepresentation = (IfcProductRepresentation) theEObject;
-			T result = caseIfcProductRepresentation(ifcProductRepresentation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROFILE_DEF: {
-			IfcProfileDef ifcProfileDef = (IfcProfileDef) theEObject;
-			T result = caseIfcProfileDef(ifcProfileDef);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcProfileDef);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROFILE_PROPERTIES: {
-			IfcProfileProperties ifcProfileProperties = (IfcProfileProperties) theEObject;
-			T result = caseIfcProfileProperties(ifcProfileProperties);
-			if (result == null)
-				result = caseIfcExtendedProperties(ifcProfileProperties);
-			if (result == null)
-				result = caseIfcPropertyAbstraction(ifcProfileProperties);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcProfileProperties);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROJECT: {
-			IfcProject ifcProject = (IfcProject) theEObject;
-			T result = caseIfcProject(ifcProject);
-			if (result == null)
-				result = caseIfcContext(ifcProject);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcProject);
-			if (result == null)
-				result = caseIfcRoot(ifcProject);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcProject);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROJECT_LIBRARY: {
-			IfcProjectLibrary ifcProjectLibrary = (IfcProjectLibrary) theEObject;
-			T result = caseIfcProjectLibrary(ifcProjectLibrary);
-			if (result == null)
-				result = caseIfcContext(ifcProjectLibrary);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcProjectLibrary);
-			if (result == null)
-				result = caseIfcRoot(ifcProjectLibrary);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcProjectLibrary);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROJECT_ORDER: {
-			IfcProjectOrder ifcProjectOrder = (IfcProjectOrder) theEObject;
-			T result = caseIfcProjectOrder(ifcProjectOrder);
-			if (result == null)
-				result = caseIfcControl(ifcProjectOrder);
-			if (result == null)
-				result = caseIfcObject(ifcProjectOrder);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcProjectOrder);
-			if (result == null)
-				result = caseIfcRoot(ifcProjectOrder);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcProjectOrder);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROJECTED_CRS: {
-			IfcProjectedCRS ifcProjectedCRS = (IfcProjectedCRS) theEObject;
-			T result = caseIfcProjectedCRS(ifcProjectedCRS);
-			if (result == null)
-				result = caseIfcCoordinateReferenceSystem(ifcProjectedCRS);
-			if (result == null)
-				result = caseIfcCoordinateReferenceSystemSelect(ifcProjectedCRS);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROJECTION_ELEMENT: {
-			IfcProjectionElement ifcProjectionElement = (IfcProjectionElement) theEObject;
-			T result = caseIfcProjectionElement(ifcProjectionElement);
-			if (result == null)
-				result = caseIfcFeatureElementAddition(ifcProjectionElement);
-			if (result == null)
-				result = caseIfcFeatureElement(ifcProjectionElement);
-			if (result == null)
-				result = caseIfcElement(ifcProjectionElement);
-			if (result == null)
-				result = caseIfcProduct(ifcProjectionElement);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcProjectionElement);
-			if (result == null)
-				result = caseIfcObject(ifcProjectionElement);
-			if (result == null)
-				result = caseIfcProductSelect(ifcProjectionElement);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcProjectionElement);
-			if (result == null)
-				result = caseIfcRoot(ifcProjectionElement);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcProjectionElement);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROPERTY: {
-			IfcProperty ifcProperty = (IfcProperty) theEObject;
-			T result = caseIfcProperty(ifcProperty);
-			if (result == null)
-				result = caseIfcPropertyAbstraction(ifcProperty);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcProperty);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROPERTY_ABSTRACTION: {
-			IfcPropertyAbstraction ifcPropertyAbstraction = (IfcPropertyAbstraction) theEObject;
-			T result = caseIfcPropertyAbstraction(ifcPropertyAbstraction);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcPropertyAbstraction);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROPERTY_BOUNDED_VALUE: {
-			IfcPropertyBoundedValue ifcPropertyBoundedValue = (IfcPropertyBoundedValue) theEObject;
-			T result = caseIfcPropertyBoundedValue(ifcPropertyBoundedValue);
-			if (result == null)
-				result = caseIfcSimpleProperty(ifcPropertyBoundedValue);
-			if (result == null)
-				result = caseIfcProperty(ifcPropertyBoundedValue);
-			if (result == null)
-				result = caseIfcPropertyAbstraction(ifcPropertyBoundedValue);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcPropertyBoundedValue);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROPERTY_DEFINITION: {
-			IfcPropertyDefinition ifcPropertyDefinition = (IfcPropertyDefinition) theEObject;
-			T result = caseIfcPropertyDefinition(ifcPropertyDefinition);
-			if (result == null)
-				result = caseIfcRoot(ifcPropertyDefinition);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcPropertyDefinition);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP: {
-			IfcPropertyDependencyRelationship ifcPropertyDependencyRelationship = (IfcPropertyDependencyRelationship) theEObject;
-			T result = caseIfcPropertyDependencyRelationship(ifcPropertyDependencyRelationship);
-			if (result == null)
-				result = caseIfcResourceLevelRelationship(ifcPropertyDependencyRelationship);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROPERTY_ENUMERATED_VALUE: {
-			IfcPropertyEnumeratedValue ifcPropertyEnumeratedValue = (IfcPropertyEnumeratedValue) theEObject;
-			T result = caseIfcPropertyEnumeratedValue(ifcPropertyEnumeratedValue);
-			if (result == null)
-				result = caseIfcSimpleProperty(ifcPropertyEnumeratedValue);
-			if (result == null)
-				result = caseIfcProperty(ifcPropertyEnumeratedValue);
-			if (result == null)
-				result = caseIfcPropertyAbstraction(ifcPropertyEnumeratedValue);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcPropertyEnumeratedValue);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROPERTY_ENUMERATION: {
-			IfcPropertyEnumeration ifcPropertyEnumeration = (IfcPropertyEnumeration) theEObject;
-			T result = caseIfcPropertyEnumeration(ifcPropertyEnumeration);
-			if (result == null)
-				result = caseIfcPropertyAbstraction(ifcPropertyEnumeration);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcPropertyEnumeration);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROPERTY_LIST_VALUE: {
-			IfcPropertyListValue ifcPropertyListValue = (IfcPropertyListValue) theEObject;
-			T result = caseIfcPropertyListValue(ifcPropertyListValue);
-			if (result == null)
-				result = caseIfcSimpleProperty(ifcPropertyListValue);
-			if (result == null)
-				result = caseIfcProperty(ifcPropertyListValue);
-			if (result == null)
-				result = caseIfcPropertyAbstraction(ifcPropertyListValue);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcPropertyListValue);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROPERTY_REFERENCE_VALUE: {
-			IfcPropertyReferenceValue ifcPropertyReferenceValue = (IfcPropertyReferenceValue) theEObject;
-			T result = caseIfcPropertyReferenceValue(ifcPropertyReferenceValue);
-			if (result == null)
-				result = caseIfcSimpleProperty(ifcPropertyReferenceValue);
-			if (result == null)
-				result = caseIfcProperty(ifcPropertyReferenceValue);
-			if (result == null)
-				result = caseIfcPropertyAbstraction(ifcPropertyReferenceValue);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcPropertyReferenceValue);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROPERTY_SET: {
-			IfcPropertySet ifcPropertySet = (IfcPropertySet) theEObject;
-			T result = caseIfcPropertySet(ifcPropertySet);
-			if (result == null)
-				result = caseIfcPropertySetDefinition(ifcPropertySet);
-			if (result == null)
-				result = caseIfcPropertyDefinition(ifcPropertySet);
-			if (result == null)
-				result = caseIfcPropertySetDefinitionSelect(ifcPropertySet);
-			if (result == null)
-				result = caseIfcRoot(ifcPropertySet);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcPropertySet);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROPERTY_SET_DEFINITION: {
-			IfcPropertySetDefinition ifcPropertySetDefinition = (IfcPropertySetDefinition) theEObject;
-			T result = caseIfcPropertySetDefinition(ifcPropertySetDefinition);
-			if (result == null)
-				result = caseIfcPropertyDefinition(ifcPropertySetDefinition);
-			if (result == null)
-				result = caseIfcPropertySetDefinitionSelect(ifcPropertySetDefinition);
-			if (result == null)
-				result = caseIfcRoot(ifcPropertySetDefinition);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcPropertySetDefinition);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROPERTY_SET_TEMPLATE: {
-			IfcPropertySetTemplate ifcPropertySetTemplate = (IfcPropertySetTemplate) theEObject;
-			T result = caseIfcPropertySetTemplate(ifcPropertySetTemplate);
-			if (result == null)
-				result = caseIfcPropertyTemplateDefinition(ifcPropertySetTemplate);
-			if (result == null)
-				result = caseIfcPropertyDefinition(ifcPropertySetTemplate);
-			if (result == null)
-				result = caseIfcRoot(ifcPropertySetTemplate);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcPropertySetTemplate);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROPERTY_SINGLE_VALUE: {
-			IfcPropertySingleValue ifcPropertySingleValue = (IfcPropertySingleValue) theEObject;
-			T result = caseIfcPropertySingleValue(ifcPropertySingleValue);
-			if (result == null)
-				result = caseIfcSimpleProperty(ifcPropertySingleValue);
-			if (result == null)
-				result = caseIfcProperty(ifcPropertySingleValue);
-			if (result == null)
-				result = caseIfcPropertyAbstraction(ifcPropertySingleValue);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcPropertySingleValue);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROPERTY_TABLE_VALUE: {
-			IfcPropertyTableValue ifcPropertyTableValue = (IfcPropertyTableValue) theEObject;
-			T result = caseIfcPropertyTableValue(ifcPropertyTableValue);
-			if (result == null)
-				result = caseIfcSimpleProperty(ifcPropertyTableValue);
-			if (result == null)
-				result = caseIfcProperty(ifcPropertyTableValue);
-			if (result == null)
-				result = caseIfcPropertyAbstraction(ifcPropertyTableValue);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcPropertyTableValue);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROPERTY_TEMPLATE: {
-			IfcPropertyTemplate ifcPropertyTemplate = (IfcPropertyTemplate) theEObject;
-			T result = caseIfcPropertyTemplate(ifcPropertyTemplate);
-			if (result == null)
-				result = caseIfcPropertyTemplateDefinition(ifcPropertyTemplate);
-			if (result == null)
-				result = caseIfcPropertyDefinition(ifcPropertyTemplate);
-			if (result == null)
-				result = caseIfcRoot(ifcPropertyTemplate);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcPropertyTemplate);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROPERTY_TEMPLATE_DEFINITION: {
-			IfcPropertyTemplateDefinition ifcPropertyTemplateDefinition = (IfcPropertyTemplateDefinition) theEObject;
-			T result = caseIfcPropertyTemplateDefinition(ifcPropertyTemplateDefinition);
-			if (result == null)
-				result = caseIfcPropertyDefinition(ifcPropertyTemplateDefinition);
-			if (result == null)
-				result = caseIfcRoot(ifcPropertyTemplateDefinition);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcPropertyTemplateDefinition);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROTECTIVE_DEVICE: {
-			IfcProtectiveDevice ifcProtectiveDevice = (IfcProtectiveDevice) theEObject;
-			T result = caseIfcProtectiveDevice(ifcProtectiveDevice);
-			if (result == null)
-				result = caseIfcFlowController(ifcProtectiveDevice);
-			if (result == null)
-				result = caseIfcDistributionFlowElement(ifcProtectiveDevice);
-			if (result == null)
-				result = caseIfcDistributionElement(ifcProtectiveDevice);
-			if (result == null)
-				result = caseIfcElement(ifcProtectiveDevice);
-			if (result == null)
-				result = caseIfcProduct(ifcProtectiveDevice);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcProtectiveDevice);
-			if (result == null)
-				result = caseIfcObject(ifcProtectiveDevice);
-			if (result == null)
-				result = caseIfcProductSelect(ifcProtectiveDevice);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcProtectiveDevice);
-			if (result == null)
-				result = caseIfcRoot(ifcProtectiveDevice);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcProtectiveDevice);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROTECTIVE_DEVICE_TRIPPING_UNIT: {
-			IfcProtectiveDeviceTrippingUnit ifcProtectiveDeviceTrippingUnit = (IfcProtectiveDeviceTrippingUnit) theEObject;
-			T result = caseIfcProtectiveDeviceTrippingUnit(ifcProtectiveDeviceTrippingUnit);
-			if (result == null)
-				result = caseIfcDistributionControlElement(ifcProtectiveDeviceTrippingUnit);
-			if (result == null)
-				result = caseIfcDistributionElement(ifcProtectiveDeviceTrippingUnit);
-			if (result == null)
-				result = caseIfcElement(ifcProtectiveDeviceTrippingUnit);
-			if (result == null)
-				result = caseIfcProduct(ifcProtectiveDeviceTrippingUnit);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcProtectiveDeviceTrippingUnit);
-			if (result == null)
-				result = caseIfcObject(ifcProtectiveDeviceTrippingUnit);
-			if (result == null)
-				result = caseIfcProductSelect(ifcProtectiveDeviceTrippingUnit);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcProtectiveDeviceTrippingUnit);
-			if (result == null)
-				result = caseIfcRoot(ifcProtectiveDeviceTrippingUnit);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcProtectiveDeviceTrippingUnit);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROTECTIVE_DEVICE_TRIPPING_UNIT_TYPE: {
-			IfcProtectiveDeviceTrippingUnitType ifcProtectiveDeviceTrippingUnitType = (IfcProtectiveDeviceTrippingUnitType) theEObject;
-			T result = caseIfcProtectiveDeviceTrippingUnitType(ifcProtectiveDeviceTrippingUnitType);
-			if (result == null)
-				result = caseIfcDistributionControlElementType(ifcProtectiveDeviceTrippingUnitType);
-			if (result == null)
-				result = caseIfcDistributionElementType(ifcProtectiveDeviceTrippingUnitType);
-			if (result == null)
-				result = caseIfcElementType(ifcProtectiveDeviceTrippingUnitType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcProtectiveDeviceTrippingUnitType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcProtectiveDeviceTrippingUnitType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcProtectiveDeviceTrippingUnitType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcProtectiveDeviceTrippingUnitType);
-			if (result == null)
-				result = caseIfcRoot(ifcProtectiveDeviceTrippingUnitType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcProtectiveDeviceTrippingUnitType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROTECTIVE_DEVICE_TYPE: {
-			IfcProtectiveDeviceType ifcProtectiveDeviceType = (IfcProtectiveDeviceType) theEObject;
-			T result = caseIfcProtectiveDeviceType(ifcProtectiveDeviceType);
-			if (result == null)
-				result = caseIfcFlowControllerType(ifcProtectiveDeviceType);
-			if (result == null)
-				result = caseIfcDistributionFlowElementType(ifcProtectiveDeviceType);
-			if (result == null)
-				result = caseIfcDistributionElementType(ifcProtectiveDeviceType);
-			if (result == null)
-				result = caseIfcElementType(ifcProtectiveDeviceType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcProtectiveDeviceType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcProtectiveDeviceType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcProtectiveDeviceType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcProtectiveDeviceType);
-			if (result == null)
-				result = caseIfcRoot(ifcProtectiveDeviceType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcProtectiveDeviceType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PROXY: {
-			IfcProxy ifcProxy = (IfcProxy) theEObject;
-			T result = caseIfcProxy(ifcProxy);
-			if (result == null)
-				result = caseIfcProduct(ifcProxy);
-			if (result == null)
-				result = caseIfcObject(ifcProxy);
-			if (result == null)
-				result = caseIfcProductSelect(ifcProxy);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcProxy);
-			if (result == null)
-				result = caseIfcRoot(ifcProxy);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcProxy);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PUMP: {
-			IfcPump ifcPump = (IfcPump) theEObject;
-			T result = caseIfcPump(ifcPump);
-			if (result == null)
-				result = caseIfcFlowMovingDevice(ifcPump);
-			if (result == null)
-				result = caseIfcDistributionFlowElement(ifcPump);
-			if (result == null)
-				result = caseIfcDistributionElement(ifcPump);
-			if (result == null)
-				result = caseIfcElement(ifcPump);
-			if (result == null)
-				result = caseIfcProduct(ifcPump);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcPump);
-			if (result == null)
-				result = caseIfcObject(ifcPump);
-			if (result == null)
-				result = caseIfcProductSelect(ifcPump);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcPump);
-			if (result == null)
-				result = caseIfcRoot(ifcPump);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcPump);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_PUMP_TYPE: {
-			IfcPumpType ifcPumpType = (IfcPumpType) theEObject;
-			T result = caseIfcPumpType(ifcPumpType);
-			if (result == null)
-				result = caseIfcFlowMovingDeviceType(ifcPumpType);
-			if (result == null)
-				result = caseIfcDistributionFlowElementType(ifcPumpType);
-			if (result == null)
-				result = caseIfcDistributionElementType(ifcPumpType);
-			if (result == null)
-				result = caseIfcElementType(ifcPumpType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcPumpType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcPumpType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcPumpType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcPumpType);
-			if (result == null)
-				result = caseIfcRoot(ifcPumpType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcPumpType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_QUANTITY_AREA: {
-			IfcQuantityArea ifcQuantityArea = (IfcQuantityArea) theEObject;
-			T result = caseIfcQuantityArea(ifcQuantityArea);
-			if (result == null)
-				result = caseIfcPhysicalSimpleQuantity(ifcQuantityArea);
-			if (result == null)
-				result = caseIfcPhysicalQuantity(ifcQuantityArea);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcQuantityArea);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_QUANTITY_COUNT: {
-			IfcQuantityCount ifcQuantityCount = (IfcQuantityCount) theEObject;
-			T result = caseIfcQuantityCount(ifcQuantityCount);
-			if (result == null)
-				result = caseIfcPhysicalSimpleQuantity(ifcQuantityCount);
-			if (result == null)
-				result = caseIfcPhysicalQuantity(ifcQuantityCount);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcQuantityCount);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_QUANTITY_LENGTH: {
-			IfcQuantityLength ifcQuantityLength = (IfcQuantityLength) theEObject;
-			T result = caseIfcQuantityLength(ifcQuantityLength);
-			if (result == null)
-				result = caseIfcPhysicalSimpleQuantity(ifcQuantityLength);
-			if (result == null)
-				result = caseIfcPhysicalQuantity(ifcQuantityLength);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcQuantityLength);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_QUANTITY_SET: {
-			IfcQuantitySet ifcQuantitySet = (IfcQuantitySet) theEObject;
-			T result = caseIfcQuantitySet(ifcQuantitySet);
-			if (result == null)
-				result = caseIfcPropertySetDefinition(ifcQuantitySet);
-			if (result == null)
-				result = caseIfcPropertyDefinition(ifcQuantitySet);
-			if (result == null)
-				result = caseIfcPropertySetDefinitionSelect(ifcQuantitySet);
-			if (result == null)
-				result = caseIfcRoot(ifcQuantitySet);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcQuantitySet);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_QUANTITY_TIME: {
-			IfcQuantityTime ifcQuantityTime = (IfcQuantityTime) theEObject;
-			T result = caseIfcQuantityTime(ifcQuantityTime);
-			if (result == null)
-				result = caseIfcPhysicalSimpleQuantity(ifcQuantityTime);
-			if (result == null)
-				result = caseIfcPhysicalQuantity(ifcQuantityTime);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcQuantityTime);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_QUANTITY_VOLUME: {
-			IfcQuantityVolume ifcQuantityVolume = (IfcQuantityVolume) theEObject;
-			T result = caseIfcQuantityVolume(ifcQuantityVolume);
-			if (result == null)
-				result = caseIfcPhysicalSimpleQuantity(ifcQuantityVolume);
-			if (result == null)
-				result = caseIfcPhysicalQuantity(ifcQuantityVolume);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcQuantityVolume);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_QUANTITY_WEIGHT: {
-			IfcQuantityWeight ifcQuantityWeight = (IfcQuantityWeight) theEObject;
-			T result = caseIfcQuantityWeight(ifcQuantityWeight);
-			if (result == null)
-				result = caseIfcPhysicalSimpleQuantity(ifcQuantityWeight);
-			if (result == null)
-				result = caseIfcPhysicalQuantity(ifcQuantityWeight);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcQuantityWeight);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_RAILING: {
-			IfcRailing ifcRailing = (IfcRailing) theEObject;
-			T result = caseIfcRailing(ifcRailing);
-			if (result == null)
-				result = caseIfcBuildingElement(ifcRailing);
-			if (result == null)
-				result = caseIfcElement(ifcRailing);
-			if (result == null)
-				result = caseIfcProduct(ifcRailing);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcRailing);
-			if (result == null)
-				result = caseIfcObject(ifcRailing);
-			if (result == null)
-				result = caseIfcProductSelect(ifcRailing);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcRailing);
-			if (result == null)
-				result = caseIfcRoot(ifcRailing);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcRailing);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_RAILING_TYPE: {
-			IfcRailingType ifcRailingType = (IfcRailingType) theEObject;
-			T result = caseIfcRailingType(ifcRailingType);
-			if (result == null)
-				result = caseIfcBuildingElementType(ifcRailingType);
-			if (result == null)
-				result = caseIfcElementType(ifcRailingType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcRailingType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcRailingType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcRailingType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcRailingType);
-			if (result == null)
-				result = caseIfcRoot(ifcRailingType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcRailingType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_RAMP: {
-			IfcRamp ifcRamp = (IfcRamp) theEObject;
-			T result = caseIfcRamp(ifcRamp);
-			if (result == null)
-				result = caseIfcBuildingElement(ifcRamp);
-			if (result == null)
-				result = caseIfcElement(ifcRamp);
-			if (result == null)
-				result = caseIfcProduct(ifcRamp);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcRamp);
-			if (result == null)
-				result = caseIfcObject(ifcRamp);
-			if (result == null)
-				result = caseIfcProductSelect(ifcRamp);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcRamp);
-			if (result == null)
-				result = caseIfcRoot(ifcRamp);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcRamp);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_RAMP_FLIGHT: {
-			IfcRampFlight ifcRampFlight = (IfcRampFlight) theEObject;
-			T result = caseIfcRampFlight(ifcRampFlight);
-			if (result == null)
-				result = caseIfcBuildingElement(ifcRampFlight);
-			if (result == null)
-				result = caseIfcElement(ifcRampFlight);
-			if (result == null)
-				result = caseIfcProduct(ifcRampFlight);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcRampFlight);
-			if (result == null)
-				result = caseIfcObject(ifcRampFlight);
-			if (result == null)
-				result = caseIfcProductSelect(ifcRampFlight);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcRampFlight);
-			if (result == null)
-				result = caseIfcRoot(ifcRampFlight);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcRampFlight);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_RAMP_FLIGHT_TYPE: {
-			IfcRampFlightType ifcRampFlightType = (IfcRampFlightType) theEObject;
-			T result = caseIfcRampFlightType(ifcRampFlightType);
-			if (result == null)
-				result = caseIfcBuildingElementType(ifcRampFlightType);
-			if (result == null)
-				result = caseIfcElementType(ifcRampFlightType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcRampFlightType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcRampFlightType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcRampFlightType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcRampFlightType);
-			if (result == null)
-				result = caseIfcRoot(ifcRampFlightType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcRampFlightType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_RAMP_TYPE: {
-			IfcRampType ifcRampType = (IfcRampType) theEObject;
-			T result = caseIfcRampType(ifcRampType);
-			if (result == null)
-				result = caseIfcBuildingElementType(ifcRampType);
-			if (result == null)
-				result = caseIfcElementType(ifcRampType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcRampType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcRampType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcRampType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcRampType);
-			if (result == null)
-				result = caseIfcRoot(ifcRampType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcRampType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_RATIONAL_BSPLINE_CURVE_WITH_KNOTS: {
-			IfcRationalBSplineCurveWithKnots ifcRationalBSplineCurveWithKnots = (IfcRationalBSplineCurveWithKnots) theEObject;
-			T result = caseIfcRationalBSplineCurveWithKnots(ifcRationalBSplineCurveWithKnots);
-			if (result == null)
-				result = caseIfcBSplineCurveWithKnots(ifcRationalBSplineCurveWithKnots);
-			if (result == null)
-				result = caseIfcBSplineCurve(ifcRationalBSplineCurveWithKnots);
-			if (result == null)
-				result = caseIfcBoundedCurve(ifcRationalBSplineCurveWithKnots);
-			if (result == null)
-				result = caseIfcCurve(ifcRationalBSplineCurveWithKnots);
-			if (result == null)
-				result = caseIfcCurveOrEdgeCurve(ifcRationalBSplineCurveWithKnots);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcRationalBSplineCurveWithKnots);
-			if (result == null)
-				result = caseIfcGeometricSetSelect(ifcRationalBSplineCurveWithKnots);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcRationalBSplineCurveWithKnots);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcRationalBSplineCurveWithKnots);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_RATIONAL_BSPLINE_SURFACE_WITH_KNOTS: {
-			IfcRationalBSplineSurfaceWithKnots ifcRationalBSplineSurfaceWithKnots = (IfcRationalBSplineSurfaceWithKnots) theEObject;
-			T result = caseIfcRationalBSplineSurfaceWithKnots(ifcRationalBSplineSurfaceWithKnots);
-			if (result == null)
-				result = caseIfcBSplineSurfaceWithKnots(ifcRationalBSplineSurfaceWithKnots);
-			if (result == null)
-				result = caseIfcBSplineSurface(ifcRationalBSplineSurfaceWithKnots);
-			if (result == null)
-				result = caseIfcBoundedSurface(ifcRationalBSplineSurfaceWithKnots);
-			if (result == null)
-				result = caseIfcSurface(ifcRationalBSplineSurfaceWithKnots);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcRationalBSplineSurfaceWithKnots);
-			if (result == null)
-				result = caseIfcGeometricSetSelect(ifcRationalBSplineSurfaceWithKnots);
-			if (result == null)
-				result = caseIfcSurfaceOrFaceSurface(ifcRationalBSplineSurfaceWithKnots);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcRationalBSplineSurfaceWithKnots);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcRationalBSplineSurfaceWithKnots);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_RECTANGLE_HOLLOW_PROFILE_DEF: {
-			IfcRectangleHollowProfileDef ifcRectangleHollowProfileDef = (IfcRectangleHollowProfileDef) theEObject;
-			T result = caseIfcRectangleHollowProfileDef(ifcRectangleHollowProfileDef);
-			if (result == null)
-				result = caseIfcRectangleProfileDef(ifcRectangleHollowProfileDef);
-			if (result == null)
-				result = caseIfcParameterizedProfileDef(ifcRectangleHollowProfileDef);
-			if (result == null)
-				result = caseIfcProfileDef(ifcRectangleHollowProfileDef);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcRectangleHollowProfileDef);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_RECTANGLE_PROFILE_DEF: {
-			IfcRectangleProfileDef ifcRectangleProfileDef = (IfcRectangleProfileDef) theEObject;
-			T result = caseIfcRectangleProfileDef(ifcRectangleProfileDef);
-			if (result == null)
-				result = caseIfcParameterizedProfileDef(ifcRectangleProfileDef);
-			if (result == null)
-				result = caseIfcProfileDef(ifcRectangleProfileDef);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcRectangleProfileDef);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_RECTANGULAR_PYRAMID: {
-			IfcRectangularPyramid ifcRectangularPyramid = (IfcRectangularPyramid) theEObject;
-			T result = caseIfcRectangularPyramid(ifcRectangularPyramid);
-			if (result == null)
-				result = caseIfcCsgPrimitive3D(ifcRectangularPyramid);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcRectangularPyramid);
-			if (result == null)
-				result = caseIfcBooleanOperand(ifcRectangularPyramid);
-			if (result == null)
-				result = caseIfcCsgSelect(ifcRectangularPyramid);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcRectangularPyramid);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcRectangularPyramid);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_RECTANGULAR_TRIMMED_SURFACE: {
-			IfcRectangularTrimmedSurface ifcRectangularTrimmedSurface = (IfcRectangularTrimmedSurface) theEObject;
-			T result = caseIfcRectangularTrimmedSurface(ifcRectangularTrimmedSurface);
-			if (result == null)
-				result = caseIfcBoundedSurface(ifcRectangularTrimmedSurface);
-			if (result == null)
-				result = caseIfcSurface(ifcRectangularTrimmedSurface);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcRectangularTrimmedSurface);
-			if (result == null)
-				result = caseIfcGeometricSetSelect(ifcRectangularTrimmedSurface);
-			if (result == null)
-				result = caseIfcSurfaceOrFaceSurface(ifcRectangularTrimmedSurface);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcRectangularTrimmedSurface);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcRectangularTrimmedSurface);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_RECURRENCE_PATTERN: {
-			IfcRecurrencePattern ifcRecurrencePattern = (IfcRecurrencePattern) theEObject;
-			T result = caseIfcRecurrencePattern(ifcRecurrencePattern);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REFERENCE: {
-			IfcReference ifcReference = (IfcReference) theEObject;
-			T result = caseIfcReference(ifcReference);
-			if (result == null)
-				result = caseIfcAppliedValueSelect(ifcReference);
-			if (result == null)
-				result = caseIfcMetricValueSelect(ifcReference);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REGULAR_TIME_SERIES: {
-			IfcRegularTimeSeries ifcRegularTimeSeries = (IfcRegularTimeSeries) theEObject;
-			T result = caseIfcRegularTimeSeries(ifcRegularTimeSeries);
-			if (result == null)
-				result = caseIfcTimeSeries(ifcRegularTimeSeries);
-			if (result == null)
-				result = caseIfcMetricValueSelect(ifcRegularTimeSeries);
-			if (result == null)
-				result = caseIfcObjectReferenceSelect(ifcRegularTimeSeries);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcRegularTimeSeries);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REINFORCEMENT_BAR_PROPERTIES: {
-			IfcReinforcementBarProperties ifcReinforcementBarProperties = (IfcReinforcementBarProperties) theEObject;
-			T result = caseIfcReinforcementBarProperties(ifcReinforcementBarProperties);
-			if (result == null)
-				result = caseIfcPreDefinedProperties(ifcReinforcementBarProperties);
-			if (result == null)
-				result = caseIfcPropertyAbstraction(ifcReinforcementBarProperties);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcReinforcementBarProperties);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REINFORCEMENT_DEFINITION_PROPERTIES: {
-			IfcReinforcementDefinitionProperties ifcReinforcementDefinitionProperties = (IfcReinforcementDefinitionProperties) theEObject;
-			T result = caseIfcReinforcementDefinitionProperties(ifcReinforcementDefinitionProperties);
-			if (result == null)
-				result = caseIfcPreDefinedPropertySet(ifcReinforcementDefinitionProperties);
-			if (result == null)
-				result = caseIfcPropertySetDefinition(ifcReinforcementDefinitionProperties);
-			if (result == null)
-				result = caseIfcPropertyDefinition(ifcReinforcementDefinitionProperties);
-			if (result == null)
-				result = caseIfcPropertySetDefinitionSelect(ifcReinforcementDefinitionProperties);
-			if (result == null)
-				result = caseIfcRoot(ifcReinforcementDefinitionProperties);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcReinforcementDefinitionProperties);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REINFORCING_BAR: {
-			IfcReinforcingBar ifcReinforcingBar = (IfcReinforcingBar) theEObject;
-			T result = caseIfcReinforcingBar(ifcReinforcingBar);
-			if (result == null)
-				result = caseIfcReinforcingElement(ifcReinforcingBar);
-			if (result == null)
-				result = caseIfcElementComponent(ifcReinforcingBar);
-			if (result == null)
-				result = caseIfcElement(ifcReinforcingBar);
-			if (result == null)
-				result = caseIfcProduct(ifcReinforcingBar);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcReinforcingBar);
-			if (result == null)
-				result = caseIfcObject(ifcReinforcingBar);
-			if (result == null)
-				result = caseIfcProductSelect(ifcReinforcingBar);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcReinforcingBar);
-			if (result == null)
-				result = caseIfcRoot(ifcReinforcingBar);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcReinforcingBar);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REINFORCING_BAR_TYPE: {
-			IfcReinforcingBarType ifcReinforcingBarType = (IfcReinforcingBarType) theEObject;
-			T result = caseIfcReinforcingBarType(ifcReinforcingBarType);
-			if (result == null)
-				result = caseIfcReinforcingElementType(ifcReinforcingBarType);
-			if (result == null)
-				result = caseIfcElementComponentType(ifcReinforcingBarType);
-			if (result == null)
-				result = caseIfcElementType(ifcReinforcingBarType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcReinforcingBarType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcReinforcingBarType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcReinforcingBarType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcReinforcingBarType);
-			if (result == null)
-				result = caseIfcRoot(ifcReinforcingBarType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcReinforcingBarType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REINFORCING_ELEMENT: {
-			IfcReinforcingElement ifcReinforcingElement = (IfcReinforcingElement) theEObject;
-			T result = caseIfcReinforcingElement(ifcReinforcingElement);
-			if (result == null)
-				result = caseIfcElementComponent(ifcReinforcingElement);
-			if (result == null)
-				result = caseIfcElement(ifcReinforcingElement);
-			if (result == null)
-				result = caseIfcProduct(ifcReinforcingElement);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcReinforcingElement);
-			if (result == null)
-				result = caseIfcObject(ifcReinforcingElement);
-			if (result == null)
-				result = caseIfcProductSelect(ifcReinforcingElement);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcReinforcingElement);
-			if (result == null)
-				result = caseIfcRoot(ifcReinforcingElement);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcReinforcingElement);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REINFORCING_ELEMENT_TYPE: {
-			IfcReinforcingElementType ifcReinforcingElementType = (IfcReinforcingElementType) theEObject;
-			T result = caseIfcReinforcingElementType(ifcReinforcingElementType);
-			if (result == null)
-				result = caseIfcElementComponentType(ifcReinforcingElementType);
-			if (result == null)
-				result = caseIfcElementType(ifcReinforcingElementType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcReinforcingElementType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcReinforcingElementType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcReinforcingElementType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcReinforcingElementType);
-			if (result == null)
-				result = caseIfcRoot(ifcReinforcingElementType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcReinforcingElementType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REINFORCING_MESH: {
-			IfcReinforcingMesh ifcReinforcingMesh = (IfcReinforcingMesh) theEObject;
-			T result = caseIfcReinforcingMesh(ifcReinforcingMesh);
-			if (result == null)
-				result = caseIfcReinforcingElement(ifcReinforcingMesh);
-			if (result == null)
-				result = caseIfcElementComponent(ifcReinforcingMesh);
-			if (result == null)
-				result = caseIfcElement(ifcReinforcingMesh);
-			if (result == null)
-				result = caseIfcProduct(ifcReinforcingMesh);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcReinforcingMesh);
-			if (result == null)
-				result = caseIfcObject(ifcReinforcingMesh);
-			if (result == null)
-				result = caseIfcProductSelect(ifcReinforcingMesh);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcReinforcingMesh);
-			if (result == null)
-				result = caseIfcRoot(ifcReinforcingMesh);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcReinforcingMesh);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REINFORCING_MESH_TYPE: {
-			IfcReinforcingMeshType ifcReinforcingMeshType = (IfcReinforcingMeshType) theEObject;
-			T result = caseIfcReinforcingMeshType(ifcReinforcingMeshType);
-			if (result == null)
-				result = caseIfcReinforcingElementType(ifcReinforcingMeshType);
-			if (result == null)
-				result = caseIfcElementComponentType(ifcReinforcingMeshType);
-			if (result == null)
-				result = caseIfcElementType(ifcReinforcingMeshType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcReinforcingMeshType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcReinforcingMeshType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcReinforcingMeshType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcReinforcingMeshType);
-			if (result == null)
-				result = caseIfcRoot(ifcReinforcingMeshType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcReinforcingMeshType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_AGGREGATES: {
-			IfcRelAggregates ifcRelAggregates = (IfcRelAggregates) theEObject;
-			T result = caseIfcRelAggregates(ifcRelAggregates);
-			if (result == null)
-				result = caseIfcRelDecomposes(ifcRelAggregates);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelAggregates);
-			if (result == null)
-				result = caseIfcRoot(ifcRelAggregates);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_ASSIGNS: {
-			IfcRelAssigns ifcRelAssigns = (IfcRelAssigns) theEObject;
-			T result = caseIfcRelAssigns(ifcRelAssigns);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelAssigns);
-			if (result == null)
-				result = caseIfcRoot(ifcRelAssigns);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_ASSIGNS_TO_ACTOR: {
-			IfcRelAssignsToActor ifcRelAssignsToActor = (IfcRelAssignsToActor) theEObject;
-			T result = caseIfcRelAssignsToActor(ifcRelAssignsToActor);
-			if (result == null)
-				result = caseIfcRelAssigns(ifcRelAssignsToActor);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelAssignsToActor);
-			if (result == null)
-				result = caseIfcRoot(ifcRelAssignsToActor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_ASSIGNS_TO_CONTROL: {
-			IfcRelAssignsToControl ifcRelAssignsToControl = (IfcRelAssignsToControl) theEObject;
-			T result = caseIfcRelAssignsToControl(ifcRelAssignsToControl);
-			if (result == null)
-				result = caseIfcRelAssigns(ifcRelAssignsToControl);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelAssignsToControl);
-			if (result == null)
-				result = caseIfcRoot(ifcRelAssignsToControl);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_ASSIGNS_TO_GROUP: {
-			IfcRelAssignsToGroup ifcRelAssignsToGroup = (IfcRelAssignsToGroup) theEObject;
-			T result = caseIfcRelAssignsToGroup(ifcRelAssignsToGroup);
-			if (result == null)
-				result = caseIfcRelAssigns(ifcRelAssignsToGroup);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelAssignsToGroup);
-			if (result == null)
-				result = caseIfcRoot(ifcRelAssignsToGroup);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_ASSIGNS_TO_GROUP_BY_FACTOR: {
-			IfcRelAssignsToGroupByFactor ifcRelAssignsToGroupByFactor = (IfcRelAssignsToGroupByFactor) theEObject;
-			T result = caseIfcRelAssignsToGroupByFactor(ifcRelAssignsToGroupByFactor);
-			if (result == null)
-				result = caseIfcRelAssignsToGroup(ifcRelAssignsToGroupByFactor);
-			if (result == null)
-				result = caseIfcRelAssigns(ifcRelAssignsToGroupByFactor);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelAssignsToGroupByFactor);
-			if (result == null)
-				result = caseIfcRoot(ifcRelAssignsToGroupByFactor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_ASSIGNS_TO_PROCESS: {
-			IfcRelAssignsToProcess ifcRelAssignsToProcess = (IfcRelAssignsToProcess) theEObject;
-			T result = caseIfcRelAssignsToProcess(ifcRelAssignsToProcess);
-			if (result == null)
-				result = caseIfcRelAssigns(ifcRelAssignsToProcess);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelAssignsToProcess);
-			if (result == null)
-				result = caseIfcRoot(ifcRelAssignsToProcess);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_ASSIGNS_TO_PRODUCT: {
-			IfcRelAssignsToProduct ifcRelAssignsToProduct = (IfcRelAssignsToProduct) theEObject;
-			T result = caseIfcRelAssignsToProduct(ifcRelAssignsToProduct);
-			if (result == null)
-				result = caseIfcRelAssigns(ifcRelAssignsToProduct);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelAssignsToProduct);
-			if (result == null)
-				result = caseIfcRoot(ifcRelAssignsToProduct);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_ASSIGNS_TO_RESOURCE: {
-			IfcRelAssignsToResource ifcRelAssignsToResource = (IfcRelAssignsToResource) theEObject;
-			T result = caseIfcRelAssignsToResource(ifcRelAssignsToResource);
-			if (result == null)
-				result = caseIfcRelAssigns(ifcRelAssignsToResource);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelAssignsToResource);
-			if (result == null)
-				result = caseIfcRoot(ifcRelAssignsToResource);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_ASSOCIATES: {
-			IfcRelAssociates ifcRelAssociates = (IfcRelAssociates) theEObject;
-			T result = caseIfcRelAssociates(ifcRelAssociates);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelAssociates);
-			if (result == null)
-				result = caseIfcRoot(ifcRelAssociates);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_ASSOCIATES_APPROVAL: {
-			IfcRelAssociatesApproval ifcRelAssociatesApproval = (IfcRelAssociatesApproval) theEObject;
-			T result = caseIfcRelAssociatesApproval(ifcRelAssociatesApproval);
-			if (result == null)
-				result = caseIfcRelAssociates(ifcRelAssociatesApproval);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelAssociatesApproval);
-			if (result == null)
-				result = caseIfcRoot(ifcRelAssociatesApproval);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_ASSOCIATES_CLASSIFICATION: {
-			IfcRelAssociatesClassification ifcRelAssociatesClassification = (IfcRelAssociatesClassification) theEObject;
-			T result = caseIfcRelAssociatesClassification(ifcRelAssociatesClassification);
-			if (result == null)
-				result = caseIfcRelAssociates(ifcRelAssociatesClassification);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelAssociatesClassification);
-			if (result == null)
-				result = caseIfcRoot(ifcRelAssociatesClassification);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_ASSOCIATES_CONSTRAINT: {
-			IfcRelAssociatesConstraint ifcRelAssociatesConstraint = (IfcRelAssociatesConstraint) theEObject;
-			T result = caseIfcRelAssociatesConstraint(ifcRelAssociatesConstraint);
-			if (result == null)
-				result = caseIfcRelAssociates(ifcRelAssociatesConstraint);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelAssociatesConstraint);
-			if (result == null)
-				result = caseIfcRoot(ifcRelAssociatesConstraint);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_ASSOCIATES_DOCUMENT: {
-			IfcRelAssociatesDocument ifcRelAssociatesDocument = (IfcRelAssociatesDocument) theEObject;
-			T result = caseIfcRelAssociatesDocument(ifcRelAssociatesDocument);
-			if (result == null)
-				result = caseIfcRelAssociates(ifcRelAssociatesDocument);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelAssociatesDocument);
-			if (result == null)
-				result = caseIfcRoot(ifcRelAssociatesDocument);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_ASSOCIATES_LIBRARY: {
-			IfcRelAssociatesLibrary ifcRelAssociatesLibrary = (IfcRelAssociatesLibrary) theEObject;
-			T result = caseIfcRelAssociatesLibrary(ifcRelAssociatesLibrary);
-			if (result == null)
-				result = caseIfcRelAssociates(ifcRelAssociatesLibrary);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelAssociatesLibrary);
-			if (result == null)
-				result = caseIfcRoot(ifcRelAssociatesLibrary);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_ASSOCIATES_MATERIAL: {
-			IfcRelAssociatesMaterial ifcRelAssociatesMaterial = (IfcRelAssociatesMaterial) theEObject;
-			T result = caseIfcRelAssociatesMaterial(ifcRelAssociatesMaterial);
-			if (result == null)
-				result = caseIfcRelAssociates(ifcRelAssociatesMaterial);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelAssociatesMaterial);
-			if (result == null)
-				result = caseIfcRoot(ifcRelAssociatesMaterial);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_CONNECTS: {
-			IfcRelConnects ifcRelConnects = (IfcRelConnects) theEObject;
-			T result = caseIfcRelConnects(ifcRelConnects);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelConnects);
-			if (result == null)
-				result = caseIfcRoot(ifcRelConnects);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_CONNECTS_ELEMENTS: {
-			IfcRelConnectsElements ifcRelConnectsElements = (IfcRelConnectsElements) theEObject;
-			T result = caseIfcRelConnectsElements(ifcRelConnectsElements);
-			if (result == null)
-				result = caseIfcRelConnects(ifcRelConnectsElements);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelConnectsElements);
-			if (result == null)
-				result = caseIfcRoot(ifcRelConnectsElements);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_CONNECTS_PATH_ELEMENTS: {
-			IfcRelConnectsPathElements ifcRelConnectsPathElements = (IfcRelConnectsPathElements) theEObject;
-			T result = caseIfcRelConnectsPathElements(ifcRelConnectsPathElements);
-			if (result == null)
-				result = caseIfcRelConnectsElements(ifcRelConnectsPathElements);
-			if (result == null)
-				result = caseIfcRelConnects(ifcRelConnectsPathElements);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelConnectsPathElements);
-			if (result == null)
-				result = caseIfcRoot(ifcRelConnectsPathElements);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_CONNECTS_PORT_TO_ELEMENT: {
-			IfcRelConnectsPortToElement ifcRelConnectsPortToElement = (IfcRelConnectsPortToElement) theEObject;
-			T result = caseIfcRelConnectsPortToElement(ifcRelConnectsPortToElement);
-			if (result == null)
-				result = caseIfcRelConnects(ifcRelConnectsPortToElement);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelConnectsPortToElement);
-			if (result == null)
-				result = caseIfcRoot(ifcRelConnectsPortToElement);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_CONNECTS_PORTS: {
-			IfcRelConnectsPorts ifcRelConnectsPorts = (IfcRelConnectsPorts) theEObject;
-			T result = caseIfcRelConnectsPorts(ifcRelConnectsPorts);
-			if (result == null)
-				result = caseIfcRelConnects(ifcRelConnectsPorts);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelConnectsPorts);
-			if (result == null)
-				result = caseIfcRoot(ifcRelConnectsPorts);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_CONNECTS_STRUCTURAL_ACTIVITY: {
-			IfcRelConnectsStructuralActivity ifcRelConnectsStructuralActivity = (IfcRelConnectsStructuralActivity) theEObject;
-			T result = caseIfcRelConnectsStructuralActivity(ifcRelConnectsStructuralActivity);
-			if (result == null)
-				result = caseIfcRelConnects(ifcRelConnectsStructuralActivity);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelConnectsStructuralActivity);
-			if (result == null)
-				result = caseIfcRoot(ifcRelConnectsStructuralActivity);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_CONNECTS_STRUCTURAL_MEMBER: {
-			IfcRelConnectsStructuralMember ifcRelConnectsStructuralMember = (IfcRelConnectsStructuralMember) theEObject;
-			T result = caseIfcRelConnectsStructuralMember(ifcRelConnectsStructuralMember);
-			if (result == null)
-				result = caseIfcRelConnects(ifcRelConnectsStructuralMember);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelConnectsStructuralMember);
-			if (result == null)
-				result = caseIfcRoot(ifcRelConnectsStructuralMember);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_CONNECTS_WITH_ECCENTRICITY: {
-			IfcRelConnectsWithEccentricity ifcRelConnectsWithEccentricity = (IfcRelConnectsWithEccentricity) theEObject;
-			T result = caseIfcRelConnectsWithEccentricity(ifcRelConnectsWithEccentricity);
-			if (result == null)
-				result = caseIfcRelConnectsStructuralMember(ifcRelConnectsWithEccentricity);
-			if (result == null)
-				result = caseIfcRelConnects(ifcRelConnectsWithEccentricity);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelConnectsWithEccentricity);
-			if (result == null)
-				result = caseIfcRoot(ifcRelConnectsWithEccentricity);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_CONNECTS_WITH_REALIZING_ELEMENTS: {
-			IfcRelConnectsWithRealizingElements ifcRelConnectsWithRealizingElements = (IfcRelConnectsWithRealizingElements) theEObject;
-			T result = caseIfcRelConnectsWithRealizingElements(ifcRelConnectsWithRealizingElements);
-			if (result == null)
-				result = caseIfcRelConnectsElements(ifcRelConnectsWithRealizingElements);
-			if (result == null)
-				result = caseIfcRelConnects(ifcRelConnectsWithRealizingElements);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelConnectsWithRealizingElements);
-			if (result == null)
-				result = caseIfcRoot(ifcRelConnectsWithRealizingElements);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_CONTAINED_IN_SPATIAL_STRUCTURE: {
-			IfcRelContainedInSpatialStructure ifcRelContainedInSpatialStructure = (IfcRelContainedInSpatialStructure) theEObject;
-			T result = caseIfcRelContainedInSpatialStructure(ifcRelContainedInSpatialStructure);
-			if (result == null)
-				result = caseIfcRelConnects(ifcRelContainedInSpatialStructure);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelContainedInSpatialStructure);
-			if (result == null)
-				result = caseIfcRoot(ifcRelContainedInSpatialStructure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_COVERS_BLDG_ELEMENTS: {
-			IfcRelCoversBldgElements ifcRelCoversBldgElements = (IfcRelCoversBldgElements) theEObject;
-			T result = caseIfcRelCoversBldgElements(ifcRelCoversBldgElements);
-			if (result == null)
-				result = caseIfcRelConnects(ifcRelCoversBldgElements);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelCoversBldgElements);
-			if (result == null)
-				result = caseIfcRoot(ifcRelCoversBldgElements);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_COVERS_SPACES: {
-			IfcRelCoversSpaces ifcRelCoversSpaces = (IfcRelCoversSpaces) theEObject;
-			T result = caseIfcRelCoversSpaces(ifcRelCoversSpaces);
-			if (result == null)
-				result = caseIfcRelConnects(ifcRelCoversSpaces);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelCoversSpaces);
-			if (result == null)
-				result = caseIfcRoot(ifcRelCoversSpaces);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_DECLARES: {
-			IfcRelDeclares ifcRelDeclares = (IfcRelDeclares) theEObject;
-			T result = caseIfcRelDeclares(ifcRelDeclares);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelDeclares);
-			if (result == null)
-				result = caseIfcRoot(ifcRelDeclares);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_DECOMPOSES: {
-			IfcRelDecomposes ifcRelDecomposes = (IfcRelDecomposes) theEObject;
-			T result = caseIfcRelDecomposes(ifcRelDecomposes);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelDecomposes);
-			if (result == null)
-				result = caseIfcRoot(ifcRelDecomposes);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_DEFINES: {
-			IfcRelDefines ifcRelDefines = (IfcRelDefines) theEObject;
-			T result = caseIfcRelDefines(ifcRelDefines);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelDefines);
-			if (result == null)
-				result = caseIfcRoot(ifcRelDefines);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_DEFINES_BY_OBJECT: {
-			IfcRelDefinesByObject ifcRelDefinesByObject = (IfcRelDefinesByObject) theEObject;
-			T result = caseIfcRelDefinesByObject(ifcRelDefinesByObject);
-			if (result == null)
-				result = caseIfcRelDefines(ifcRelDefinesByObject);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelDefinesByObject);
-			if (result == null)
-				result = caseIfcRoot(ifcRelDefinesByObject);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_DEFINES_BY_PROPERTIES: {
-			IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties) theEObject;
-			T result = caseIfcRelDefinesByProperties(ifcRelDefinesByProperties);
-			if (result == null)
-				result = caseIfcRelDefines(ifcRelDefinesByProperties);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelDefinesByProperties);
-			if (result == null)
-				result = caseIfcRoot(ifcRelDefinesByProperties);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_DEFINES_BY_TEMPLATE: {
-			IfcRelDefinesByTemplate ifcRelDefinesByTemplate = (IfcRelDefinesByTemplate) theEObject;
-			T result = caseIfcRelDefinesByTemplate(ifcRelDefinesByTemplate);
-			if (result == null)
-				result = caseIfcRelDefines(ifcRelDefinesByTemplate);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelDefinesByTemplate);
-			if (result == null)
-				result = caseIfcRoot(ifcRelDefinesByTemplate);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_DEFINES_BY_TYPE: {
-			IfcRelDefinesByType ifcRelDefinesByType = (IfcRelDefinesByType) theEObject;
-			T result = caseIfcRelDefinesByType(ifcRelDefinesByType);
-			if (result == null)
-				result = caseIfcRelDefines(ifcRelDefinesByType);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelDefinesByType);
-			if (result == null)
-				result = caseIfcRoot(ifcRelDefinesByType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_FILLS_ELEMENT: {
-			IfcRelFillsElement ifcRelFillsElement = (IfcRelFillsElement) theEObject;
-			T result = caseIfcRelFillsElement(ifcRelFillsElement);
-			if (result == null)
-				result = caseIfcRelConnects(ifcRelFillsElement);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelFillsElement);
-			if (result == null)
-				result = caseIfcRoot(ifcRelFillsElement);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_FLOW_CONTROL_ELEMENTS: {
-			IfcRelFlowControlElements ifcRelFlowControlElements = (IfcRelFlowControlElements) theEObject;
-			T result = caseIfcRelFlowControlElements(ifcRelFlowControlElements);
-			if (result == null)
-				result = caseIfcRelConnects(ifcRelFlowControlElements);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelFlowControlElements);
-			if (result == null)
-				result = caseIfcRoot(ifcRelFlowControlElements);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_INTERFERES_ELEMENTS: {
-			IfcRelInterferesElements ifcRelInterferesElements = (IfcRelInterferesElements) theEObject;
-			T result = caseIfcRelInterferesElements(ifcRelInterferesElements);
-			if (result == null)
-				result = caseIfcRelConnects(ifcRelInterferesElements);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelInterferesElements);
-			if (result == null)
-				result = caseIfcRoot(ifcRelInterferesElements);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_NESTS: {
-			IfcRelNests ifcRelNests = (IfcRelNests) theEObject;
-			T result = caseIfcRelNests(ifcRelNests);
-			if (result == null)
-				result = caseIfcRelDecomposes(ifcRelNests);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelNests);
-			if (result == null)
-				result = caseIfcRoot(ifcRelNests);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_PROJECTS_ELEMENT: {
-			IfcRelProjectsElement ifcRelProjectsElement = (IfcRelProjectsElement) theEObject;
-			T result = caseIfcRelProjectsElement(ifcRelProjectsElement);
-			if (result == null)
-				result = caseIfcRelDecomposes(ifcRelProjectsElement);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelProjectsElement);
-			if (result == null)
-				result = caseIfcRoot(ifcRelProjectsElement);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_REFERENCED_IN_SPATIAL_STRUCTURE: {
-			IfcRelReferencedInSpatialStructure ifcRelReferencedInSpatialStructure = (IfcRelReferencedInSpatialStructure) theEObject;
-			T result = caseIfcRelReferencedInSpatialStructure(ifcRelReferencedInSpatialStructure);
-			if (result == null)
-				result = caseIfcRelConnects(ifcRelReferencedInSpatialStructure);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelReferencedInSpatialStructure);
-			if (result == null)
-				result = caseIfcRoot(ifcRelReferencedInSpatialStructure);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_SEQUENCE: {
-			IfcRelSequence ifcRelSequence = (IfcRelSequence) theEObject;
-			T result = caseIfcRelSequence(ifcRelSequence);
-			if (result == null)
-				result = caseIfcRelConnects(ifcRelSequence);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelSequence);
-			if (result == null)
-				result = caseIfcRoot(ifcRelSequence);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_SERVICES_BUILDINGS: {
-			IfcRelServicesBuildings ifcRelServicesBuildings = (IfcRelServicesBuildings) theEObject;
-			T result = caseIfcRelServicesBuildings(ifcRelServicesBuildings);
-			if (result == null)
-				result = caseIfcRelConnects(ifcRelServicesBuildings);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelServicesBuildings);
-			if (result == null)
-				result = caseIfcRoot(ifcRelServicesBuildings);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_SPACE_BOUNDARY: {
-			IfcRelSpaceBoundary ifcRelSpaceBoundary = (IfcRelSpaceBoundary) theEObject;
-			T result = caseIfcRelSpaceBoundary(ifcRelSpaceBoundary);
-			if (result == null)
-				result = caseIfcRelConnects(ifcRelSpaceBoundary);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelSpaceBoundary);
-			if (result == null)
-				result = caseIfcRoot(ifcRelSpaceBoundary);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_SPACE_BOUNDARY1ST_LEVEL: {
-			IfcRelSpaceBoundary1stLevel ifcRelSpaceBoundary1stLevel = (IfcRelSpaceBoundary1stLevel) theEObject;
-			T result = caseIfcRelSpaceBoundary1stLevel(ifcRelSpaceBoundary1stLevel);
-			if (result == null)
-				result = caseIfcRelSpaceBoundary(ifcRelSpaceBoundary1stLevel);
-			if (result == null)
-				result = caseIfcRelConnects(ifcRelSpaceBoundary1stLevel);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelSpaceBoundary1stLevel);
-			if (result == null)
-				result = caseIfcRoot(ifcRelSpaceBoundary1stLevel);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_SPACE_BOUNDARY2ND_LEVEL: {
-			IfcRelSpaceBoundary2ndLevel ifcRelSpaceBoundary2ndLevel = (IfcRelSpaceBoundary2ndLevel) theEObject;
-			T result = caseIfcRelSpaceBoundary2ndLevel(ifcRelSpaceBoundary2ndLevel);
-			if (result == null)
-				result = caseIfcRelSpaceBoundary1stLevel(ifcRelSpaceBoundary2ndLevel);
-			if (result == null)
-				result = caseIfcRelSpaceBoundary(ifcRelSpaceBoundary2ndLevel);
-			if (result == null)
-				result = caseIfcRelConnects(ifcRelSpaceBoundary2ndLevel);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelSpaceBoundary2ndLevel);
-			if (result == null)
-				result = caseIfcRoot(ifcRelSpaceBoundary2ndLevel);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REL_VOIDS_ELEMENT: {
-			IfcRelVoidsElement ifcRelVoidsElement = (IfcRelVoidsElement) theEObject;
-			T result = caseIfcRelVoidsElement(ifcRelVoidsElement);
-			if (result == null)
-				result = caseIfcRelDecomposes(ifcRelVoidsElement);
-			if (result == null)
-				result = caseIfcRelationship(ifcRelVoidsElement);
-			if (result == null)
-				result = caseIfcRoot(ifcRelVoidsElement);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_RELATIONSHIP: {
-			IfcRelationship ifcRelationship = (IfcRelationship) theEObject;
-			T result = caseIfcRelationship(ifcRelationship);
-			if (result == null)
-				result = caseIfcRoot(ifcRelationship);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REPARAMETRISED_COMPOSITE_CURVE_SEGMENT: {
-			IfcReparametrisedCompositeCurveSegment ifcReparametrisedCompositeCurveSegment = (IfcReparametrisedCompositeCurveSegment) theEObject;
-			T result = caseIfcReparametrisedCompositeCurveSegment(ifcReparametrisedCompositeCurveSegment);
-			if (result == null)
-				result = caseIfcCompositeCurveSegment(ifcReparametrisedCompositeCurveSegment);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcReparametrisedCompositeCurveSegment);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcReparametrisedCompositeCurveSegment);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcReparametrisedCompositeCurveSegment);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REPRESENTATION: {
-			IfcRepresentation ifcRepresentation = (IfcRepresentation) theEObject;
-			T result = caseIfcRepresentation(ifcRepresentation);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcRepresentation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REPRESENTATION_CONTEXT: {
-			IfcRepresentationContext ifcRepresentationContext = (IfcRepresentationContext) theEObject;
-			T result = caseIfcRepresentationContext(ifcRepresentationContext);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REPRESENTATION_ITEM: {
-			IfcRepresentationItem ifcRepresentationItem = (IfcRepresentationItem) theEObject;
-			T result = caseIfcRepresentationItem(ifcRepresentationItem);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcRepresentationItem);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REPRESENTATION_MAP: {
-			IfcRepresentationMap ifcRepresentationMap = (IfcRepresentationMap) theEObject;
-			T result = caseIfcRepresentationMap(ifcRepresentationMap);
-			if (result == null)
-				result = caseIfcProductRepresentationSelect(ifcRepresentationMap);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_RESOURCE: {
-			IfcResource ifcResource = (IfcResource) theEObject;
-			T result = caseIfcResource(ifcResource);
-			if (result == null)
-				result = caseIfcObject(ifcResource);
-			if (result == null)
-				result = caseIfcResourceSelect(ifcResource);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcResource);
-			if (result == null)
-				result = caseIfcRoot(ifcResource);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcResource);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_RESOURCE_APPROVAL_RELATIONSHIP: {
-			IfcResourceApprovalRelationship ifcResourceApprovalRelationship = (IfcResourceApprovalRelationship) theEObject;
-			T result = caseIfcResourceApprovalRelationship(ifcResourceApprovalRelationship);
-			if (result == null)
-				result = caseIfcResourceLevelRelationship(ifcResourceApprovalRelationship);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_RESOURCE_CONSTRAINT_RELATIONSHIP: {
-			IfcResourceConstraintRelationship ifcResourceConstraintRelationship = (IfcResourceConstraintRelationship) theEObject;
-			T result = caseIfcResourceConstraintRelationship(ifcResourceConstraintRelationship);
-			if (result == null)
-				result = caseIfcResourceLevelRelationship(ifcResourceConstraintRelationship);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_RESOURCE_LEVEL_RELATIONSHIP: {
-			IfcResourceLevelRelationship ifcResourceLevelRelationship = (IfcResourceLevelRelationship) theEObject;
-			T result = caseIfcResourceLevelRelationship(ifcResourceLevelRelationship);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_RESOURCE_TIME: {
-			IfcResourceTime ifcResourceTime = (IfcResourceTime) theEObject;
-			T result = caseIfcResourceTime(ifcResourceTime);
-			if (result == null)
-				result = caseIfcSchedulingTime(ifcResourceTime);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REVOLVED_AREA_SOLID: {
-			IfcRevolvedAreaSolid ifcRevolvedAreaSolid = (IfcRevolvedAreaSolid) theEObject;
-			T result = caseIfcRevolvedAreaSolid(ifcRevolvedAreaSolid);
-			if (result == null)
-				result = caseIfcSweptAreaSolid(ifcRevolvedAreaSolid);
-			if (result == null)
-				result = caseIfcSolidModel(ifcRevolvedAreaSolid);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcRevolvedAreaSolid);
-			if (result == null)
-				result = caseIfcBooleanOperand(ifcRevolvedAreaSolid);
-			if (result == null)
-				result = caseIfcSolidOrShell(ifcRevolvedAreaSolid);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcRevolvedAreaSolid);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcRevolvedAreaSolid);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_REVOLVED_AREA_SOLID_TAPERED: {
-			IfcRevolvedAreaSolidTapered ifcRevolvedAreaSolidTapered = (IfcRevolvedAreaSolidTapered) theEObject;
-			T result = caseIfcRevolvedAreaSolidTapered(ifcRevolvedAreaSolidTapered);
-			if (result == null)
-				result = caseIfcRevolvedAreaSolid(ifcRevolvedAreaSolidTapered);
-			if (result == null)
-				result = caseIfcSweptAreaSolid(ifcRevolvedAreaSolidTapered);
-			if (result == null)
-				result = caseIfcSolidModel(ifcRevolvedAreaSolidTapered);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcRevolvedAreaSolidTapered);
-			if (result == null)
-				result = caseIfcBooleanOperand(ifcRevolvedAreaSolidTapered);
-			if (result == null)
-				result = caseIfcSolidOrShell(ifcRevolvedAreaSolidTapered);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcRevolvedAreaSolidTapered);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcRevolvedAreaSolidTapered);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_RIGHT_CIRCULAR_CONE: {
-			IfcRightCircularCone ifcRightCircularCone = (IfcRightCircularCone) theEObject;
-			T result = caseIfcRightCircularCone(ifcRightCircularCone);
-			if (result == null)
-				result = caseIfcCsgPrimitive3D(ifcRightCircularCone);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcRightCircularCone);
-			if (result == null)
-				result = caseIfcBooleanOperand(ifcRightCircularCone);
-			if (result == null)
-				result = caseIfcCsgSelect(ifcRightCircularCone);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcRightCircularCone);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcRightCircularCone);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_RIGHT_CIRCULAR_CYLINDER: {
-			IfcRightCircularCylinder ifcRightCircularCylinder = (IfcRightCircularCylinder) theEObject;
-			T result = caseIfcRightCircularCylinder(ifcRightCircularCylinder);
-			if (result == null)
-				result = caseIfcCsgPrimitive3D(ifcRightCircularCylinder);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcRightCircularCylinder);
-			if (result == null)
-				result = caseIfcBooleanOperand(ifcRightCircularCylinder);
-			if (result == null)
-				result = caseIfcCsgSelect(ifcRightCircularCylinder);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcRightCircularCylinder);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcRightCircularCylinder);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_ROOF: {
-			IfcRoof ifcRoof = (IfcRoof) theEObject;
-			T result = caseIfcRoof(ifcRoof);
-			if (result == null)
-				result = caseIfcBuildingElement(ifcRoof);
-			if (result == null)
-				result = caseIfcElement(ifcRoof);
-			if (result == null)
-				result = caseIfcProduct(ifcRoof);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcRoof);
-			if (result == null)
-				result = caseIfcObject(ifcRoof);
-			if (result == null)
-				result = caseIfcProductSelect(ifcRoof);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcRoof);
-			if (result == null)
-				result = caseIfcRoot(ifcRoof);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcRoof);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_ROOF_TYPE: {
-			IfcRoofType ifcRoofType = (IfcRoofType) theEObject;
-			T result = caseIfcRoofType(ifcRoofType);
-			if (result == null)
-				result = caseIfcBuildingElementType(ifcRoofType);
-			if (result == null)
-				result = caseIfcElementType(ifcRoofType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcRoofType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcRoofType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcRoofType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcRoofType);
-			if (result == null)
-				result = caseIfcRoot(ifcRoofType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcRoofType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_ROOT: {
-			IfcRoot ifcRoot = (IfcRoot) theEObject;
-			T result = caseIfcRoot(ifcRoot);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_ROUNDED_RECTANGLE_PROFILE_DEF: {
-			IfcRoundedRectangleProfileDef ifcRoundedRectangleProfileDef = (IfcRoundedRectangleProfileDef) theEObject;
-			T result = caseIfcRoundedRectangleProfileDef(ifcRoundedRectangleProfileDef);
-			if (result == null)
-				result = caseIfcRectangleProfileDef(ifcRoundedRectangleProfileDef);
-			if (result == null)
-				result = caseIfcParameterizedProfileDef(ifcRoundedRectangleProfileDef);
-			if (result == null)
-				result = caseIfcProfileDef(ifcRoundedRectangleProfileDef);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcRoundedRectangleProfileDef);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SI_UNIT: {
-			IfcSIUnit ifcSIUnit = (IfcSIUnit) theEObject;
-			T result = caseIfcSIUnit(ifcSIUnit);
-			if (result == null)
-				result = caseIfcNamedUnit(ifcSIUnit);
-			if (result == null)
-				result = caseIfcUnit(ifcSIUnit);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SANITARY_TERMINAL: {
-			IfcSanitaryTerminal ifcSanitaryTerminal = (IfcSanitaryTerminal) theEObject;
-			T result = caseIfcSanitaryTerminal(ifcSanitaryTerminal);
-			if (result == null)
-				result = caseIfcFlowTerminal(ifcSanitaryTerminal);
-			if (result == null)
-				result = caseIfcDistributionFlowElement(ifcSanitaryTerminal);
-			if (result == null)
-				result = caseIfcDistributionElement(ifcSanitaryTerminal);
-			if (result == null)
-				result = caseIfcElement(ifcSanitaryTerminal);
-			if (result == null)
-				result = caseIfcProduct(ifcSanitaryTerminal);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcSanitaryTerminal);
-			if (result == null)
-				result = caseIfcObject(ifcSanitaryTerminal);
-			if (result == null)
-				result = caseIfcProductSelect(ifcSanitaryTerminal);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcSanitaryTerminal);
-			if (result == null)
-				result = caseIfcRoot(ifcSanitaryTerminal);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcSanitaryTerminal);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SANITARY_TERMINAL_TYPE: {
-			IfcSanitaryTerminalType ifcSanitaryTerminalType = (IfcSanitaryTerminalType) theEObject;
-			T result = caseIfcSanitaryTerminalType(ifcSanitaryTerminalType);
-			if (result == null)
-				result = caseIfcFlowTerminalType(ifcSanitaryTerminalType);
-			if (result == null)
-				result = caseIfcDistributionFlowElementType(ifcSanitaryTerminalType);
-			if (result == null)
-				result = caseIfcDistributionElementType(ifcSanitaryTerminalType);
-			if (result == null)
-				result = caseIfcElementType(ifcSanitaryTerminalType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcSanitaryTerminalType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcSanitaryTerminalType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcSanitaryTerminalType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcSanitaryTerminalType);
-			if (result == null)
-				result = caseIfcRoot(ifcSanitaryTerminalType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcSanitaryTerminalType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SCHEDULING_TIME: {
-			IfcSchedulingTime ifcSchedulingTime = (IfcSchedulingTime) theEObject;
-			T result = caseIfcSchedulingTime(ifcSchedulingTime);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SEAM_CURVE: {
-			IfcSeamCurve ifcSeamCurve = (IfcSeamCurve) theEObject;
-			T result = caseIfcSeamCurve(ifcSeamCurve);
-			if (result == null)
-				result = caseIfcSurfaceCurve(ifcSeamCurve);
-			if (result == null)
-				result = caseIfcCurve(ifcSeamCurve);
-			if (result == null)
-				result = caseIfcCurveOnSurface(ifcSeamCurve);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcSeamCurve);
-			if (result == null)
-				result = caseIfcGeometricSetSelect(ifcSeamCurve);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcSeamCurve);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcSeamCurve);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SECTION_PROPERTIES: {
-			IfcSectionProperties ifcSectionProperties = (IfcSectionProperties) theEObject;
-			T result = caseIfcSectionProperties(ifcSectionProperties);
-			if (result == null)
-				result = caseIfcPreDefinedProperties(ifcSectionProperties);
-			if (result == null)
-				result = caseIfcPropertyAbstraction(ifcSectionProperties);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcSectionProperties);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SECTION_REINFORCEMENT_PROPERTIES: {
-			IfcSectionReinforcementProperties ifcSectionReinforcementProperties = (IfcSectionReinforcementProperties) theEObject;
-			T result = caseIfcSectionReinforcementProperties(ifcSectionReinforcementProperties);
-			if (result == null)
-				result = caseIfcPreDefinedProperties(ifcSectionReinforcementProperties);
-			if (result == null)
-				result = caseIfcPropertyAbstraction(ifcSectionReinforcementProperties);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcSectionReinforcementProperties);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SECTIONED_SPINE: {
-			IfcSectionedSpine ifcSectionedSpine = (IfcSectionedSpine) theEObject;
-			T result = caseIfcSectionedSpine(ifcSectionedSpine);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcSectionedSpine);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcSectionedSpine);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcSectionedSpine);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SENSOR: {
-			IfcSensor ifcSensor = (IfcSensor) theEObject;
-			T result = caseIfcSensor(ifcSensor);
-			if (result == null)
-				result = caseIfcDistributionControlElement(ifcSensor);
-			if (result == null)
-				result = caseIfcDistributionElement(ifcSensor);
-			if (result == null)
-				result = caseIfcElement(ifcSensor);
-			if (result == null)
-				result = caseIfcProduct(ifcSensor);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcSensor);
-			if (result == null)
-				result = caseIfcObject(ifcSensor);
-			if (result == null)
-				result = caseIfcProductSelect(ifcSensor);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcSensor);
-			if (result == null)
-				result = caseIfcRoot(ifcSensor);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcSensor);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SENSOR_TYPE: {
-			IfcSensorType ifcSensorType = (IfcSensorType) theEObject;
-			T result = caseIfcSensorType(ifcSensorType);
-			if (result == null)
-				result = caseIfcDistributionControlElementType(ifcSensorType);
-			if (result == null)
-				result = caseIfcDistributionElementType(ifcSensorType);
-			if (result == null)
-				result = caseIfcElementType(ifcSensorType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcSensorType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcSensorType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcSensorType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcSensorType);
-			if (result == null)
-				result = caseIfcRoot(ifcSensorType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcSensorType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SHADING_DEVICE: {
-			IfcShadingDevice ifcShadingDevice = (IfcShadingDevice) theEObject;
-			T result = caseIfcShadingDevice(ifcShadingDevice);
-			if (result == null)
-				result = caseIfcBuildingElement(ifcShadingDevice);
-			if (result == null)
-				result = caseIfcElement(ifcShadingDevice);
-			if (result == null)
-				result = caseIfcProduct(ifcShadingDevice);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcShadingDevice);
-			if (result == null)
-				result = caseIfcObject(ifcShadingDevice);
-			if (result == null)
-				result = caseIfcProductSelect(ifcShadingDevice);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcShadingDevice);
-			if (result == null)
-				result = caseIfcRoot(ifcShadingDevice);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcShadingDevice);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SHADING_DEVICE_TYPE: {
-			IfcShadingDeviceType ifcShadingDeviceType = (IfcShadingDeviceType) theEObject;
-			T result = caseIfcShadingDeviceType(ifcShadingDeviceType);
-			if (result == null)
-				result = caseIfcBuildingElementType(ifcShadingDeviceType);
-			if (result == null)
-				result = caseIfcElementType(ifcShadingDeviceType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcShadingDeviceType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcShadingDeviceType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcShadingDeviceType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcShadingDeviceType);
-			if (result == null)
-				result = caseIfcRoot(ifcShadingDeviceType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcShadingDeviceType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SHAPE_ASPECT: {
-			IfcShapeAspect ifcShapeAspect = (IfcShapeAspect) theEObject;
-			T result = caseIfcShapeAspect(ifcShapeAspect);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SHAPE_MODEL: {
-			IfcShapeModel ifcShapeModel = (IfcShapeModel) theEObject;
-			T result = caseIfcShapeModel(ifcShapeModel);
-			if (result == null)
-				result = caseIfcRepresentation(ifcShapeModel);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcShapeModel);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SHAPE_REPRESENTATION: {
-			IfcShapeRepresentation ifcShapeRepresentation = (IfcShapeRepresentation) theEObject;
-			T result = caseIfcShapeRepresentation(ifcShapeRepresentation);
-			if (result == null)
-				result = caseIfcShapeModel(ifcShapeRepresentation);
-			if (result == null)
-				result = caseIfcRepresentation(ifcShapeRepresentation);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcShapeRepresentation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SHELL_BASED_SURFACE_MODEL: {
-			IfcShellBasedSurfaceModel ifcShellBasedSurfaceModel = (IfcShellBasedSurfaceModel) theEObject;
-			T result = caseIfcShellBasedSurfaceModel(ifcShellBasedSurfaceModel);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcShellBasedSurfaceModel);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcShellBasedSurfaceModel);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcShellBasedSurfaceModel);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SIMPLE_PROPERTY: {
-			IfcSimpleProperty ifcSimpleProperty = (IfcSimpleProperty) theEObject;
-			T result = caseIfcSimpleProperty(ifcSimpleProperty);
-			if (result == null)
-				result = caseIfcProperty(ifcSimpleProperty);
-			if (result == null)
-				result = caseIfcPropertyAbstraction(ifcSimpleProperty);
-			if (result == null)
-				result = caseIfcResourceObjectSelect(ifcSimpleProperty);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SIMPLE_PROPERTY_TEMPLATE: {
-			IfcSimplePropertyTemplate ifcSimplePropertyTemplate = (IfcSimplePropertyTemplate) theEObject;
-			T result = caseIfcSimplePropertyTemplate(ifcSimplePropertyTemplate);
-			if (result == null)
-				result = caseIfcPropertyTemplate(ifcSimplePropertyTemplate);
-			if (result == null)
-				result = caseIfcPropertyTemplateDefinition(ifcSimplePropertyTemplate);
-			if (result == null)
-				result = caseIfcPropertyDefinition(ifcSimplePropertyTemplate);
-			if (result == null)
-				result = caseIfcRoot(ifcSimplePropertyTemplate);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcSimplePropertyTemplate);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SITE: {
-			IfcSite ifcSite = (IfcSite) theEObject;
-			T result = caseIfcSite(ifcSite);
-			if (result == null)
-				result = caseIfcSpatialStructureElement(ifcSite);
-			if (result == null)
-				result = caseIfcSpatialElement(ifcSite);
-			if (result == null)
-				result = caseIfcProduct(ifcSite);
-			if (result == null)
-				result = caseIfcObject(ifcSite);
-			if (result == null)
-				result = caseIfcProductSelect(ifcSite);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcSite);
-			if (result == null)
-				result = caseIfcRoot(ifcSite);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcSite);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SLAB: {
-			IfcSlab ifcSlab = (IfcSlab) theEObject;
-			T result = caseIfcSlab(ifcSlab);
-			if (result == null)
-				result = caseIfcBuildingElement(ifcSlab);
-			if (result == null)
-				result = caseIfcElement(ifcSlab);
-			if (result == null)
-				result = caseIfcProduct(ifcSlab);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcSlab);
-			if (result == null)
-				result = caseIfcObject(ifcSlab);
-			if (result == null)
-				result = caseIfcProductSelect(ifcSlab);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcSlab);
-			if (result == null)
-				result = caseIfcRoot(ifcSlab);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcSlab);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SLAB_ELEMENTED_CASE: {
-			IfcSlabElementedCase ifcSlabElementedCase = (IfcSlabElementedCase) theEObject;
-			T result = caseIfcSlabElementedCase(ifcSlabElementedCase);
-			if (result == null)
-				result = caseIfcSlab(ifcSlabElementedCase);
-			if (result == null)
-				result = caseIfcBuildingElement(ifcSlabElementedCase);
-			if (result == null)
-				result = caseIfcElement(ifcSlabElementedCase);
-			if (result == null)
-				result = caseIfcProduct(ifcSlabElementedCase);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcSlabElementedCase);
-			if (result == null)
-				result = caseIfcObject(ifcSlabElementedCase);
-			if (result == null)
-				result = caseIfcProductSelect(ifcSlabElementedCase);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcSlabElementedCase);
-			if (result == null)
-				result = caseIfcRoot(ifcSlabElementedCase);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcSlabElementedCase);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SLAB_STANDARD_CASE: {
-			IfcSlabStandardCase ifcSlabStandardCase = (IfcSlabStandardCase) theEObject;
-			T result = caseIfcSlabStandardCase(ifcSlabStandardCase);
-			if (result == null)
-				result = caseIfcSlab(ifcSlabStandardCase);
-			if (result == null)
-				result = caseIfcBuildingElement(ifcSlabStandardCase);
-			if (result == null)
-				result = caseIfcElement(ifcSlabStandardCase);
-			if (result == null)
-				result = caseIfcProduct(ifcSlabStandardCase);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcSlabStandardCase);
-			if (result == null)
-				result = caseIfcObject(ifcSlabStandardCase);
-			if (result == null)
-				result = caseIfcProductSelect(ifcSlabStandardCase);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcSlabStandardCase);
-			if (result == null)
-				result = caseIfcRoot(ifcSlabStandardCase);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcSlabStandardCase);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SLAB_TYPE: {
-			IfcSlabType ifcSlabType = (IfcSlabType) theEObject;
-			T result = caseIfcSlabType(ifcSlabType);
-			if (result == null)
-				result = caseIfcBuildingElementType(ifcSlabType);
-			if (result == null)
-				result = caseIfcElementType(ifcSlabType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcSlabType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcSlabType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcSlabType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcSlabType);
-			if (result == null)
-				result = caseIfcRoot(ifcSlabType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcSlabType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SLIPPAGE_CONNECTION_CONDITION: {
-			IfcSlippageConnectionCondition ifcSlippageConnectionCondition = (IfcSlippageConnectionCondition) theEObject;
-			T result = caseIfcSlippageConnectionCondition(ifcSlippageConnectionCondition);
-			if (result == null)
-				result = caseIfcStructuralConnectionCondition(ifcSlippageConnectionCondition);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SOLAR_DEVICE: {
-			IfcSolarDevice ifcSolarDevice = (IfcSolarDevice) theEObject;
-			T result = caseIfcSolarDevice(ifcSolarDevice);
-			if (result == null)
-				result = caseIfcEnergyConversionDevice(ifcSolarDevice);
-			if (result == null)
-				result = caseIfcDistributionFlowElement(ifcSolarDevice);
-			if (result == null)
-				result = caseIfcDistributionElement(ifcSolarDevice);
-			if (result == null)
-				result = caseIfcElement(ifcSolarDevice);
-			if (result == null)
-				result = caseIfcProduct(ifcSolarDevice);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcSolarDevice);
-			if (result == null)
-				result = caseIfcObject(ifcSolarDevice);
-			if (result == null)
-				result = caseIfcProductSelect(ifcSolarDevice);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcSolarDevice);
-			if (result == null)
-				result = caseIfcRoot(ifcSolarDevice);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcSolarDevice);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SOLAR_DEVICE_TYPE: {
-			IfcSolarDeviceType ifcSolarDeviceType = (IfcSolarDeviceType) theEObject;
-			T result = caseIfcSolarDeviceType(ifcSolarDeviceType);
-			if (result == null)
-				result = caseIfcEnergyConversionDeviceType(ifcSolarDeviceType);
-			if (result == null)
-				result = caseIfcDistributionFlowElementType(ifcSolarDeviceType);
-			if (result == null)
-				result = caseIfcDistributionElementType(ifcSolarDeviceType);
-			if (result == null)
-				result = caseIfcElementType(ifcSolarDeviceType);
-			if (result == null)
-				result = caseIfcTypeProduct(ifcSolarDeviceType);
-			if (result == null)
-				result = caseIfcTypeObject(ifcSolarDeviceType);
-			if (result == null)
-				result = caseIfcProductSelect(ifcSolarDeviceType);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcSolarDeviceType);
-			if (result == null)
-				result = caseIfcRoot(ifcSolarDeviceType);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcSolarDeviceType);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SOLID_MODEL: {
-			IfcSolidModel ifcSolidModel = (IfcSolidModel) theEObject;
-			T result = caseIfcSolidModel(ifcSolidModel);
-			if (result == null)
-				result = caseIfcGeometricRepresentationItem(ifcSolidModel);
-			if (result == null)
-				result = caseIfcBooleanOperand(ifcSolidModel);
-			if (result == null)
-				result = caseIfcSolidOrShell(ifcSolidModel);
-			if (result == null)
-				result = caseIfcRepresentationItem(ifcSolidModel);
-			if (result == null)
-				result = caseIfcLayeredItem(ifcSolidModel);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SPACE: {
-			IfcSpace ifcSpace = (IfcSpace) theEObject;
-			T result = caseIfcSpace(ifcSpace);
-			if (result == null)
-				result = caseIfcSpatialStructureElement(ifcSpace);
-			if (result == null)
-				result = caseIfcSpaceBoundarySelect(ifcSpace);
-			if (result == null)
-				result = caseIfcSpatialElement(ifcSpace);
-			if (result == null)
-				result = caseIfcProduct(ifcSpace);
-			if (result == null)
-				result = caseIfcObject(ifcSpace);
-			if (result == null)
-				result = caseIfcProductSelect(ifcSpace);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcSpace);
-			if (result == null)
-				result = caseIfcRoot(ifcSpace);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcSpace);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case Ifc4Package.IFC_SPACE_HEATER: {
-			IfcSpaceHeater ifcSpaceHeater = (IfcSpaceHeater) theEObject;
-			T result = caseIfcSpaceHeater(ifcSpaceHeater);
-			if (result == null)
-				result = caseIfcFlowTerminal(ifcSpaceHeater);
-			if (result == null)
-				result = caseIfcDistributionFlowElement(ifcSpaceHeater);
-			if (result == null)
-				result = caseIfcDistributionElement(ifcSpaceHeater);
-			if (result == null)
-				result = caseIfcElement(ifcSpaceHeater);
-			if (result == null)
-				result = caseIfcProduct(ifcSpaceHeater);
-			if (result == null)
-				result = caseIfcStructuralActivityAssignmentSelect(ifcSpaceHeater);
-			if (result == null)
-				result = caseIfcObject(ifcSpaceHeater);
-			if (result == null)
-				result = caseIfcProductSelect(ifcSpaceHeater);
-			if (result == null)
-				result = caseIfcObjectDefinition(ifcSpaceHeater);
-			if (result == null)
-				result = caseIfcRoot(ifcSpaceHeater);
-			if (result == null)
-				result = caseIfcDefinitionSelect(ifcSpaceHeater);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case Ifc4Package.IFC_SPACE_HEATER_TYPE: {
 			IfcSpaceHeaterType ifcSpaceHeaterType = (IfcSpaceHeaterType) theEObject;
 			T result = caseIfcSpaceHeaterType(ifcSpaceHeaterType);
@@ -7806,6 +3293,14 @@ public class Ifc4Switch<T> extends Switch<T> {
 			IfcBinary ifcBinary = (IfcBinary) theEObject;
 			T result = caseIfcBinary(ifcBinary);
 			if (result == null)
+				result = caseIfcSimpleValue(ifcBinary);
+			if (result == null)
+				result = caseIfcValue(ifcBinary);
+			if (result == null)
+				result = caseIfcAppliedValueSelect(ifcBinary);
+			if (result == null)
+				result = caseIfcMetricValueSelect(ifcBinary);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -8600,8 +4095,7 @@ public class Ifc4Switch<T> extends Switch<T> {
 			if (result == null)
 				result = caseIfcDerivedMeasureValue(ifcModulusOfRotationalSubgradeReactionMeasure);
 			if (result == null)
-				result = caseIfcModulusOfRotationalSubgradeReactionSelect(
-						ifcModulusOfRotationalSubgradeReactionMeasure);
+				result = caseIfcModulusOfRotationalSubgradeReactionSelect(ifcModulusOfRotationalSubgradeReactionMeasure);
 			if (result == null)
 				result = caseIfcValue(ifcModulusOfRotationalSubgradeReactionMeasure);
 			if (result == null)
@@ -9545,6 +5039,8 @@ public class Ifc4Switch<T> extends Switch<T> {
 			IfcArcIndex ifcArcIndex = (IfcArcIndex) theEObject;
 			T result = caseIfcArcIndex(ifcArcIndex);
 			if (result == null)
+				result = caseIfcSegmentIndexSelect(ifcArcIndex);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -9566,6 +5062,8 @@ public class Ifc4Switch<T> extends Switch<T> {
 		case Ifc4Package.IFC_LINE_INDEX: {
 			IfcLineIndex ifcLineIndex = (IfcLineIndex) theEObject;
 			T result = caseIfcLineIndex(ifcLineIndex);
+			if (result == null)
+				result = caseIfcSegmentIndexSelect(ifcLineIndex);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -9807,8 +5305,7 @@ public class Ifc4Switch<T> extends Switch<T> {
 		}
 		case Ifc4Package.IFC_MODULUS_OF_TRANSLATIONAL_SUBGRADE_REACTION_SELECT: {
 			IfcModulusOfTranslationalSubgradeReactionSelect ifcModulusOfTranslationalSubgradeReactionSelect = (IfcModulusOfTranslationalSubgradeReactionSelect) theEObject;
-			T result = caseIfcModulusOfTranslationalSubgradeReactionSelect(
-					ifcModulusOfTranslationalSubgradeReactionSelect);
+			T result = caseIfcModulusOfTranslationalSubgradeReactionSelect(ifcModulusOfTranslationalSubgradeReactionSelect);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -11717,8 +7214,7 @@ public class Ifc4Switch<T> extends Switch<T> {
 		}
 		case Ifc4Package.IFC_CARTESIAN_TRANSFORMATION_OPERATOR2_DNON_UNIFORM: {
 			IfcCartesianTransformationOperator2DnonUniform ifcCartesianTransformationOperator2DnonUniform = (IfcCartesianTransformationOperator2DnonUniform) theEObject;
-			T result = caseIfcCartesianTransformationOperator2DnonUniform(
-					ifcCartesianTransformationOperator2DnonUniform);
+			T result = caseIfcCartesianTransformationOperator2DnonUniform(ifcCartesianTransformationOperator2DnonUniform);
 			if (result == null)
 				result = caseIfcCartesianTransformationOperator2D(ifcCartesianTransformationOperator2DnonUniform);
 			if (result == null)
@@ -11750,8 +7246,7 @@ public class Ifc4Switch<T> extends Switch<T> {
 		}
 		case Ifc4Package.IFC_CARTESIAN_TRANSFORMATION_OPERATOR3_DNON_UNIFORM: {
 			IfcCartesianTransformationOperator3DnonUniform ifcCartesianTransformationOperator3DnonUniform = (IfcCartesianTransformationOperator3DnonUniform) theEObject;
-			T result = caseIfcCartesianTransformationOperator3DnonUniform(
-					ifcCartesianTransformationOperator3DnonUniform);
+			T result = caseIfcCartesianTransformationOperator3DnonUniform(ifcCartesianTransformationOperator3DnonUniform);
 			if (result == null)
 				result = caseIfcCartesianTransformationOperator3D(ifcCartesianTransformationOperator3DnonUniform);
 			if (result == null)
@@ -16845,6 +12340,4519 @@ public class Ifc4Switch<T> extends Switch<T> {
 				result = caseIfcRoot(ifcLaborResourceType);
 			if (result == null)
 				result = caseIfcDefinitionSelect(ifcLaborResourceType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_LAG_TIME: {
+			IfcLagTime ifcLagTime = (IfcLagTime) theEObject;
+			T result = caseIfcLagTime(ifcLagTime);
+			if (result == null)
+				result = caseIfcSchedulingTime(ifcLagTime);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_LAMP: {
+			IfcLamp ifcLamp = (IfcLamp) theEObject;
+			T result = caseIfcLamp(ifcLamp);
+			if (result == null)
+				result = caseIfcFlowTerminal(ifcLamp);
+			if (result == null)
+				result = caseIfcDistributionFlowElement(ifcLamp);
+			if (result == null)
+				result = caseIfcDistributionElement(ifcLamp);
+			if (result == null)
+				result = caseIfcElement(ifcLamp);
+			if (result == null)
+				result = caseIfcProduct(ifcLamp);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcLamp);
+			if (result == null)
+				result = caseIfcObject(ifcLamp);
+			if (result == null)
+				result = caseIfcProductSelect(ifcLamp);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcLamp);
+			if (result == null)
+				result = caseIfcRoot(ifcLamp);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcLamp);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_LAMP_TYPE: {
+			IfcLampType ifcLampType = (IfcLampType) theEObject;
+			T result = caseIfcLampType(ifcLampType);
+			if (result == null)
+				result = caseIfcFlowTerminalType(ifcLampType);
+			if (result == null)
+				result = caseIfcDistributionFlowElementType(ifcLampType);
+			if (result == null)
+				result = caseIfcDistributionElementType(ifcLampType);
+			if (result == null)
+				result = caseIfcElementType(ifcLampType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcLampType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcLampType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcLampType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcLampType);
+			if (result == null)
+				result = caseIfcRoot(ifcLampType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcLampType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_LIBRARY_INFORMATION: {
+			IfcLibraryInformation ifcLibraryInformation = (IfcLibraryInformation) theEObject;
+			T result = caseIfcLibraryInformation(ifcLibraryInformation);
+			if (result == null)
+				result = caseIfcExternalInformation(ifcLibraryInformation);
+			if (result == null)
+				result = caseIfcLibrarySelect(ifcLibraryInformation);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcLibraryInformation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_LIBRARY_REFERENCE: {
+			IfcLibraryReference ifcLibraryReference = (IfcLibraryReference) theEObject;
+			T result = caseIfcLibraryReference(ifcLibraryReference);
+			if (result == null)
+				result = caseIfcExternalReference(ifcLibraryReference);
+			if (result == null)
+				result = caseIfcLibrarySelect(ifcLibraryReference);
+			if (result == null)
+				result = caseIfcLightDistributionDataSourceSelect(ifcLibraryReference);
+			if (result == null)
+				result = caseIfcObjectReferenceSelect(ifcLibraryReference);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcLibraryReference);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_LIGHT_DISTRIBUTION_DATA: {
+			IfcLightDistributionData ifcLightDistributionData = (IfcLightDistributionData) theEObject;
+			T result = caseIfcLightDistributionData(ifcLightDistributionData);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_LIGHT_FIXTURE: {
+			IfcLightFixture ifcLightFixture = (IfcLightFixture) theEObject;
+			T result = caseIfcLightFixture(ifcLightFixture);
+			if (result == null)
+				result = caseIfcFlowTerminal(ifcLightFixture);
+			if (result == null)
+				result = caseIfcDistributionFlowElement(ifcLightFixture);
+			if (result == null)
+				result = caseIfcDistributionElement(ifcLightFixture);
+			if (result == null)
+				result = caseIfcElement(ifcLightFixture);
+			if (result == null)
+				result = caseIfcProduct(ifcLightFixture);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcLightFixture);
+			if (result == null)
+				result = caseIfcObject(ifcLightFixture);
+			if (result == null)
+				result = caseIfcProductSelect(ifcLightFixture);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcLightFixture);
+			if (result == null)
+				result = caseIfcRoot(ifcLightFixture);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcLightFixture);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_LIGHT_FIXTURE_TYPE: {
+			IfcLightFixtureType ifcLightFixtureType = (IfcLightFixtureType) theEObject;
+			T result = caseIfcLightFixtureType(ifcLightFixtureType);
+			if (result == null)
+				result = caseIfcFlowTerminalType(ifcLightFixtureType);
+			if (result == null)
+				result = caseIfcDistributionFlowElementType(ifcLightFixtureType);
+			if (result == null)
+				result = caseIfcDistributionElementType(ifcLightFixtureType);
+			if (result == null)
+				result = caseIfcElementType(ifcLightFixtureType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcLightFixtureType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcLightFixtureType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcLightFixtureType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcLightFixtureType);
+			if (result == null)
+				result = caseIfcRoot(ifcLightFixtureType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcLightFixtureType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_LIGHT_INTENSITY_DISTRIBUTION: {
+			IfcLightIntensityDistribution ifcLightIntensityDistribution = (IfcLightIntensityDistribution) theEObject;
+			T result = caseIfcLightIntensityDistribution(ifcLightIntensityDistribution);
+			if (result == null)
+				result = caseIfcLightDistributionDataSourceSelect(ifcLightIntensityDistribution);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_LIGHT_SOURCE: {
+			IfcLightSource ifcLightSource = (IfcLightSource) theEObject;
+			T result = caseIfcLightSource(ifcLightSource);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcLightSource);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcLightSource);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcLightSource);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_LIGHT_SOURCE_AMBIENT: {
+			IfcLightSourceAmbient ifcLightSourceAmbient = (IfcLightSourceAmbient) theEObject;
+			T result = caseIfcLightSourceAmbient(ifcLightSourceAmbient);
+			if (result == null)
+				result = caseIfcLightSource(ifcLightSourceAmbient);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcLightSourceAmbient);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcLightSourceAmbient);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcLightSourceAmbient);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_LIGHT_SOURCE_DIRECTIONAL: {
+			IfcLightSourceDirectional ifcLightSourceDirectional = (IfcLightSourceDirectional) theEObject;
+			T result = caseIfcLightSourceDirectional(ifcLightSourceDirectional);
+			if (result == null)
+				result = caseIfcLightSource(ifcLightSourceDirectional);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcLightSourceDirectional);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcLightSourceDirectional);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcLightSourceDirectional);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_LIGHT_SOURCE_GONIOMETRIC: {
+			IfcLightSourceGoniometric ifcLightSourceGoniometric = (IfcLightSourceGoniometric) theEObject;
+			T result = caseIfcLightSourceGoniometric(ifcLightSourceGoniometric);
+			if (result == null)
+				result = caseIfcLightSource(ifcLightSourceGoniometric);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcLightSourceGoniometric);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcLightSourceGoniometric);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcLightSourceGoniometric);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_LIGHT_SOURCE_POSITIONAL: {
+			IfcLightSourcePositional ifcLightSourcePositional = (IfcLightSourcePositional) theEObject;
+			T result = caseIfcLightSourcePositional(ifcLightSourcePositional);
+			if (result == null)
+				result = caseIfcLightSource(ifcLightSourcePositional);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcLightSourcePositional);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcLightSourcePositional);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcLightSourcePositional);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_LIGHT_SOURCE_SPOT: {
+			IfcLightSourceSpot ifcLightSourceSpot = (IfcLightSourceSpot) theEObject;
+			T result = caseIfcLightSourceSpot(ifcLightSourceSpot);
+			if (result == null)
+				result = caseIfcLightSourcePositional(ifcLightSourceSpot);
+			if (result == null)
+				result = caseIfcLightSource(ifcLightSourceSpot);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcLightSourceSpot);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcLightSourceSpot);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcLightSourceSpot);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_LINE: {
+			IfcLine ifcLine = (IfcLine) theEObject;
+			T result = caseIfcLine(ifcLine);
+			if (result == null)
+				result = caseIfcCurve(ifcLine);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcLine);
+			if (result == null)
+				result = caseIfcGeometricSetSelect(ifcLine);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcLine);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcLine);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_LOCAL_PLACEMENT: {
+			IfcLocalPlacement ifcLocalPlacement = (IfcLocalPlacement) theEObject;
+			T result = caseIfcLocalPlacement(ifcLocalPlacement);
+			if (result == null)
+				result = caseIfcObjectPlacement(ifcLocalPlacement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_LOOP: {
+			IfcLoop ifcLoop = (IfcLoop) theEObject;
+			T result = caseIfcLoop(ifcLoop);
+			if (result == null)
+				result = caseIfcTopologicalRepresentationItem(ifcLoop);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcLoop);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcLoop);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MANIFOLD_SOLID_BREP: {
+			IfcManifoldSolidBrep ifcManifoldSolidBrep = (IfcManifoldSolidBrep) theEObject;
+			T result = caseIfcManifoldSolidBrep(ifcManifoldSolidBrep);
+			if (result == null)
+				result = caseIfcSolidModel(ifcManifoldSolidBrep);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcManifoldSolidBrep);
+			if (result == null)
+				result = caseIfcBooleanOperand(ifcManifoldSolidBrep);
+			if (result == null)
+				result = caseIfcSolidOrShell(ifcManifoldSolidBrep);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcManifoldSolidBrep);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcManifoldSolidBrep);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MAP_CONVERSION: {
+			IfcMapConversion ifcMapConversion = (IfcMapConversion) theEObject;
+			T result = caseIfcMapConversion(ifcMapConversion);
+			if (result == null)
+				result = caseIfcCoordinateOperation(ifcMapConversion);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MAPPED_ITEM: {
+			IfcMappedItem ifcMappedItem = (IfcMappedItem) theEObject;
+			T result = caseIfcMappedItem(ifcMappedItem);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcMappedItem);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcMappedItem);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MATERIAL: {
+			IfcMaterial ifcMaterial = (IfcMaterial) theEObject;
+			T result = caseIfcMaterial(ifcMaterial);
+			if (result == null)
+				result = caseIfcMaterialDefinition(ifcMaterial);
+			if (result == null)
+				result = caseIfcMaterialSelect(ifcMaterial);
+			if (result == null)
+				result = caseIfcObjectReferenceSelect(ifcMaterial);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcMaterial);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MATERIAL_CLASSIFICATION_RELATIONSHIP: {
+			IfcMaterialClassificationRelationship ifcMaterialClassificationRelationship = (IfcMaterialClassificationRelationship) theEObject;
+			T result = caseIfcMaterialClassificationRelationship(ifcMaterialClassificationRelationship);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MATERIAL_CONSTITUENT: {
+			IfcMaterialConstituent ifcMaterialConstituent = (IfcMaterialConstituent) theEObject;
+			T result = caseIfcMaterialConstituent(ifcMaterialConstituent);
+			if (result == null)
+				result = caseIfcMaterialDefinition(ifcMaterialConstituent);
+			if (result == null)
+				result = caseIfcMaterialSelect(ifcMaterialConstituent);
+			if (result == null)
+				result = caseIfcObjectReferenceSelect(ifcMaterialConstituent);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcMaterialConstituent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MATERIAL_CONSTITUENT_SET: {
+			IfcMaterialConstituentSet ifcMaterialConstituentSet = (IfcMaterialConstituentSet) theEObject;
+			T result = caseIfcMaterialConstituentSet(ifcMaterialConstituentSet);
+			if (result == null)
+				result = caseIfcMaterialDefinition(ifcMaterialConstituentSet);
+			if (result == null)
+				result = caseIfcMaterialSelect(ifcMaterialConstituentSet);
+			if (result == null)
+				result = caseIfcObjectReferenceSelect(ifcMaterialConstituentSet);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcMaterialConstituentSet);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MATERIAL_DEFINITION: {
+			IfcMaterialDefinition ifcMaterialDefinition = (IfcMaterialDefinition) theEObject;
+			T result = caseIfcMaterialDefinition(ifcMaterialDefinition);
+			if (result == null)
+				result = caseIfcMaterialSelect(ifcMaterialDefinition);
+			if (result == null)
+				result = caseIfcObjectReferenceSelect(ifcMaterialDefinition);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcMaterialDefinition);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MATERIAL_DEFINITION_REPRESENTATION: {
+			IfcMaterialDefinitionRepresentation ifcMaterialDefinitionRepresentation = (IfcMaterialDefinitionRepresentation) theEObject;
+			T result = caseIfcMaterialDefinitionRepresentation(ifcMaterialDefinitionRepresentation);
+			if (result == null)
+				result = caseIfcProductRepresentation(ifcMaterialDefinitionRepresentation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MATERIAL_LAYER: {
+			IfcMaterialLayer ifcMaterialLayer = (IfcMaterialLayer) theEObject;
+			T result = caseIfcMaterialLayer(ifcMaterialLayer);
+			if (result == null)
+				result = caseIfcMaterialDefinition(ifcMaterialLayer);
+			if (result == null)
+				result = caseIfcMaterialSelect(ifcMaterialLayer);
+			if (result == null)
+				result = caseIfcObjectReferenceSelect(ifcMaterialLayer);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcMaterialLayer);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MATERIAL_LAYER_SET: {
+			IfcMaterialLayerSet ifcMaterialLayerSet = (IfcMaterialLayerSet) theEObject;
+			T result = caseIfcMaterialLayerSet(ifcMaterialLayerSet);
+			if (result == null)
+				result = caseIfcMaterialDefinition(ifcMaterialLayerSet);
+			if (result == null)
+				result = caseIfcMaterialSelect(ifcMaterialLayerSet);
+			if (result == null)
+				result = caseIfcObjectReferenceSelect(ifcMaterialLayerSet);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcMaterialLayerSet);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MATERIAL_LAYER_SET_USAGE: {
+			IfcMaterialLayerSetUsage ifcMaterialLayerSetUsage = (IfcMaterialLayerSetUsage) theEObject;
+			T result = caseIfcMaterialLayerSetUsage(ifcMaterialLayerSetUsage);
+			if (result == null)
+				result = caseIfcMaterialUsageDefinition(ifcMaterialLayerSetUsage);
+			if (result == null)
+				result = caseIfcMaterialSelect(ifcMaterialLayerSetUsage);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MATERIAL_LAYER_WITH_OFFSETS: {
+			IfcMaterialLayerWithOffsets ifcMaterialLayerWithOffsets = (IfcMaterialLayerWithOffsets) theEObject;
+			T result = caseIfcMaterialLayerWithOffsets(ifcMaterialLayerWithOffsets);
+			if (result == null)
+				result = caseIfcMaterialLayer(ifcMaterialLayerWithOffsets);
+			if (result == null)
+				result = caseIfcMaterialDefinition(ifcMaterialLayerWithOffsets);
+			if (result == null)
+				result = caseIfcMaterialSelect(ifcMaterialLayerWithOffsets);
+			if (result == null)
+				result = caseIfcObjectReferenceSelect(ifcMaterialLayerWithOffsets);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcMaterialLayerWithOffsets);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MATERIAL_LIST: {
+			IfcMaterialList ifcMaterialList = (IfcMaterialList) theEObject;
+			T result = caseIfcMaterialList(ifcMaterialList);
+			if (result == null)
+				result = caseIfcMaterialSelect(ifcMaterialList);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MATERIAL_PROFILE: {
+			IfcMaterialProfile ifcMaterialProfile = (IfcMaterialProfile) theEObject;
+			T result = caseIfcMaterialProfile(ifcMaterialProfile);
+			if (result == null)
+				result = caseIfcMaterialDefinition(ifcMaterialProfile);
+			if (result == null)
+				result = caseIfcMaterialSelect(ifcMaterialProfile);
+			if (result == null)
+				result = caseIfcObjectReferenceSelect(ifcMaterialProfile);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcMaterialProfile);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MATERIAL_PROFILE_SET: {
+			IfcMaterialProfileSet ifcMaterialProfileSet = (IfcMaterialProfileSet) theEObject;
+			T result = caseIfcMaterialProfileSet(ifcMaterialProfileSet);
+			if (result == null)
+				result = caseIfcMaterialDefinition(ifcMaterialProfileSet);
+			if (result == null)
+				result = caseIfcMaterialSelect(ifcMaterialProfileSet);
+			if (result == null)
+				result = caseIfcObjectReferenceSelect(ifcMaterialProfileSet);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcMaterialProfileSet);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MATERIAL_PROFILE_SET_USAGE: {
+			IfcMaterialProfileSetUsage ifcMaterialProfileSetUsage = (IfcMaterialProfileSetUsage) theEObject;
+			T result = caseIfcMaterialProfileSetUsage(ifcMaterialProfileSetUsage);
+			if (result == null)
+				result = caseIfcMaterialUsageDefinition(ifcMaterialProfileSetUsage);
+			if (result == null)
+				result = caseIfcMaterialSelect(ifcMaterialProfileSetUsage);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MATERIAL_PROFILE_SET_USAGE_TAPERING: {
+			IfcMaterialProfileSetUsageTapering ifcMaterialProfileSetUsageTapering = (IfcMaterialProfileSetUsageTapering) theEObject;
+			T result = caseIfcMaterialProfileSetUsageTapering(ifcMaterialProfileSetUsageTapering);
+			if (result == null)
+				result = caseIfcMaterialProfileSetUsage(ifcMaterialProfileSetUsageTapering);
+			if (result == null)
+				result = caseIfcMaterialUsageDefinition(ifcMaterialProfileSetUsageTapering);
+			if (result == null)
+				result = caseIfcMaterialSelect(ifcMaterialProfileSetUsageTapering);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MATERIAL_PROFILE_WITH_OFFSETS: {
+			IfcMaterialProfileWithOffsets ifcMaterialProfileWithOffsets = (IfcMaterialProfileWithOffsets) theEObject;
+			T result = caseIfcMaterialProfileWithOffsets(ifcMaterialProfileWithOffsets);
+			if (result == null)
+				result = caseIfcMaterialProfile(ifcMaterialProfileWithOffsets);
+			if (result == null)
+				result = caseIfcMaterialDefinition(ifcMaterialProfileWithOffsets);
+			if (result == null)
+				result = caseIfcMaterialSelect(ifcMaterialProfileWithOffsets);
+			if (result == null)
+				result = caseIfcObjectReferenceSelect(ifcMaterialProfileWithOffsets);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcMaterialProfileWithOffsets);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MATERIAL_PROPERTIES: {
+			IfcMaterialProperties ifcMaterialProperties = (IfcMaterialProperties) theEObject;
+			T result = caseIfcMaterialProperties(ifcMaterialProperties);
+			if (result == null)
+				result = caseIfcExtendedProperties(ifcMaterialProperties);
+			if (result == null)
+				result = caseIfcPropertyAbstraction(ifcMaterialProperties);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcMaterialProperties);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MATERIAL_RELATIONSHIP: {
+			IfcMaterialRelationship ifcMaterialRelationship = (IfcMaterialRelationship) theEObject;
+			T result = caseIfcMaterialRelationship(ifcMaterialRelationship);
+			if (result == null)
+				result = caseIfcResourceLevelRelationship(ifcMaterialRelationship);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MATERIAL_USAGE_DEFINITION: {
+			IfcMaterialUsageDefinition ifcMaterialUsageDefinition = (IfcMaterialUsageDefinition) theEObject;
+			T result = caseIfcMaterialUsageDefinition(ifcMaterialUsageDefinition);
+			if (result == null)
+				result = caseIfcMaterialSelect(ifcMaterialUsageDefinition);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MEASURE_WITH_UNIT: {
+			IfcMeasureWithUnit ifcMeasureWithUnit = (IfcMeasureWithUnit) theEObject;
+			T result = caseIfcMeasureWithUnit(ifcMeasureWithUnit);
+			if (result == null)
+				result = caseIfcAppliedValueSelect(ifcMeasureWithUnit);
+			if (result == null)
+				result = caseIfcMetricValueSelect(ifcMeasureWithUnit);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MECHANICAL_FASTENER: {
+			IfcMechanicalFastener ifcMechanicalFastener = (IfcMechanicalFastener) theEObject;
+			T result = caseIfcMechanicalFastener(ifcMechanicalFastener);
+			if (result == null)
+				result = caseIfcElementComponent(ifcMechanicalFastener);
+			if (result == null)
+				result = caseIfcElement(ifcMechanicalFastener);
+			if (result == null)
+				result = caseIfcProduct(ifcMechanicalFastener);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcMechanicalFastener);
+			if (result == null)
+				result = caseIfcObject(ifcMechanicalFastener);
+			if (result == null)
+				result = caseIfcProductSelect(ifcMechanicalFastener);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcMechanicalFastener);
+			if (result == null)
+				result = caseIfcRoot(ifcMechanicalFastener);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcMechanicalFastener);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MECHANICAL_FASTENER_TYPE: {
+			IfcMechanicalFastenerType ifcMechanicalFastenerType = (IfcMechanicalFastenerType) theEObject;
+			T result = caseIfcMechanicalFastenerType(ifcMechanicalFastenerType);
+			if (result == null)
+				result = caseIfcElementComponentType(ifcMechanicalFastenerType);
+			if (result == null)
+				result = caseIfcElementType(ifcMechanicalFastenerType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcMechanicalFastenerType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcMechanicalFastenerType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcMechanicalFastenerType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcMechanicalFastenerType);
+			if (result == null)
+				result = caseIfcRoot(ifcMechanicalFastenerType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcMechanicalFastenerType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MEDICAL_DEVICE: {
+			IfcMedicalDevice ifcMedicalDevice = (IfcMedicalDevice) theEObject;
+			T result = caseIfcMedicalDevice(ifcMedicalDevice);
+			if (result == null)
+				result = caseIfcFlowTerminal(ifcMedicalDevice);
+			if (result == null)
+				result = caseIfcDistributionFlowElement(ifcMedicalDevice);
+			if (result == null)
+				result = caseIfcDistributionElement(ifcMedicalDevice);
+			if (result == null)
+				result = caseIfcElement(ifcMedicalDevice);
+			if (result == null)
+				result = caseIfcProduct(ifcMedicalDevice);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcMedicalDevice);
+			if (result == null)
+				result = caseIfcObject(ifcMedicalDevice);
+			if (result == null)
+				result = caseIfcProductSelect(ifcMedicalDevice);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcMedicalDevice);
+			if (result == null)
+				result = caseIfcRoot(ifcMedicalDevice);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcMedicalDevice);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MEDICAL_DEVICE_TYPE: {
+			IfcMedicalDeviceType ifcMedicalDeviceType = (IfcMedicalDeviceType) theEObject;
+			T result = caseIfcMedicalDeviceType(ifcMedicalDeviceType);
+			if (result == null)
+				result = caseIfcFlowTerminalType(ifcMedicalDeviceType);
+			if (result == null)
+				result = caseIfcDistributionFlowElementType(ifcMedicalDeviceType);
+			if (result == null)
+				result = caseIfcDistributionElementType(ifcMedicalDeviceType);
+			if (result == null)
+				result = caseIfcElementType(ifcMedicalDeviceType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcMedicalDeviceType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcMedicalDeviceType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcMedicalDeviceType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcMedicalDeviceType);
+			if (result == null)
+				result = caseIfcRoot(ifcMedicalDeviceType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcMedicalDeviceType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MEMBER: {
+			IfcMember ifcMember = (IfcMember) theEObject;
+			T result = caseIfcMember(ifcMember);
+			if (result == null)
+				result = caseIfcBuildingElement(ifcMember);
+			if (result == null)
+				result = caseIfcElement(ifcMember);
+			if (result == null)
+				result = caseIfcProduct(ifcMember);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcMember);
+			if (result == null)
+				result = caseIfcObject(ifcMember);
+			if (result == null)
+				result = caseIfcProductSelect(ifcMember);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcMember);
+			if (result == null)
+				result = caseIfcRoot(ifcMember);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcMember);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MEMBER_STANDARD_CASE: {
+			IfcMemberStandardCase ifcMemberStandardCase = (IfcMemberStandardCase) theEObject;
+			T result = caseIfcMemberStandardCase(ifcMemberStandardCase);
+			if (result == null)
+				result = caseIfcMember(ifcMemberStandardCase);
+			if (result == null)
+				result = caseIfcBuildingElement(ifcMemberStandardCase);
+			if (result == null)
+				result = caseIfcElement(ifcMemberStandardCase);
+			if (result == null)
+				result = caseIfcProduct(ifcMemberStandardCase);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcMemberStandardCase);
+			if (result == null)
+				result = caseIfcObject(ifcMemberStandardCase);
+			if (result == null)
+				result = caseIfcProductSelect(ifcMemberStandardCase);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcMemberStandardCase);
+			if (result == null)
+				result = caseIfcRoot(ifcMemberStandardCase);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcMemberStandardCase);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MEMBER_TYPE: {
+			IfcMemberType ifcMemberType = (IfcMemberType) theEObject;
+			T result = caseIfcMemberType(ifcMemberType);
+			if (result == null)
+				result = caseIfcBuildingElementType(ifcMemberType);
+			if (result == null)
+				result = caseIfcElementType(ifcMemberType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcMemberType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcMemberType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcMemberType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcMemberType);
+			if (result == null)
+				result = caseIfcRoot(ifcMemberType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcMemberType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_METRIC: {
+			IfcMetric ifcMetric = (IfcMetric) theEObject;
+			T result = caseIfcMetric(ifcMetric);
+			if (result == null)
+				result = caseIfcConstraint(ifcMetric);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcMetric);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MIRRORED_PROFILE_DEF: {
+			IfcMirroredProfileDef ifcMirroredProfileDef = (IfcMirroredProfileDef) theEObject;
+			T result = caseIfcMirroredProfileDef(ifcMirroredProfileDef);
+			if (result == null)
+				result = caseIfcDerivedProfileDef(ifcMirroredProfileDef);
+			if (result == null)
+				result = caseIfcProfileDef(ifcMirroredProfileDef);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcMirroredProfileDef);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MONETARY_UNIT: {
+			IfcMonetaryUnit ifcMonetaryUnit = (IfcMonetaryUnit) theEObject;
+			T result = caseIfcMonetaryUnit(ifcMonetaryUnit);
+			if (result == null)
+				result = caseIfcUnit(ifcMonetaryUnit);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MOTOR_CONNECTION: {
+			IfcMotorConnection ifcMotorConnection = (IfcMotorConnection) theEObject;
+			T result = caseIfcMotorConnection(ifcMotorConnection);
+			if (result == null)
+				result = caseIfcEnergyConversionDevice(ifcMotorConnection);
+			if (result == null)
+				result = caseIfcDistributionFlowElement(ifcMotorConnection);
+			if (result == null)
+				result = caseIfcDistributionElement(ifcMotorConnection);
+			if (result == null)
+				result = caseIfcElement(ifcMotorConnection);
+			if (result == null)
+				result = caseIfcProduct(ifcMotorConnection);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcMotorConnection);
+			if (result == null)
+				result = caseIfcObject(ifcMotorConnection);
+			if (result == null)
+				result = caseIfcProductSelect(ifcMotorConnection);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcMotorConnection);
+			if (result == null)
+				result = caseIfcRoot(ifcMotorConnection);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcMotorConnection);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_MOTOR_CONNECTION_TYPE: {
+			IfcMotorConnectionType ifcMotorConnectionType = (IfcMotorConnectionType) theEObject;
+			T result = caseIfcMotorConnectionType(ifcMotorConnectionType);
+			if (result == null)
+				result = caseIfcEnergyConversionDeviceType(ifcMotorConnectionType);
+			if (result == null)
+				result = caseIfcDistributionFlowElementType(ifcMotorConnectionType);
+			if (result == null)
+				result = caseIfcDistributionElementType(ifcMotorConnectionType);
+			if (result == null)
+				result = caseIfcElementType(ifcMotorConnectionType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcMotorConnectionType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcMotorConnectionType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcMotorConnectionType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcMotorConnectionType);
+			if (result == null)
+				result = caseIfcRoot(ifcMotorConnectionType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcMotorConnectionType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_NAMED_UNIT: {
+			IfcNamedUnit ifcNamedUnit = (IfcNamedUnit) theEObject;
+			T result = caseIfcNamedUnit(ifcNamedUnit);
+			if (result == null)
+				result = caseIfcUnit(ifcNamedUnit);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_OBJECT: {
+			IfcObject ifcObject = (IfcObject) theEObject;
+			T result = caseIfcObject(ifcObject);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcObject);
+			if (result == null)
+				result = caseIfcRoot(ifcObject);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcObject);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_OBJECT_DEFINITION: {
+			IfcObjectDefinition ifcObjectDefinition = (IfcObjectDefinition) theEObject;
+			T result = caseIfcObjectDefinition(ifcObjectDefinition);
+			if (result == null)
+				result = caseIfcRoot(ifcObjectDefinition);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcObjectDefinition);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_OBJECT_PLACEMENT: {
+			IfcObjectPlacement ifcObjectPlacement = (IfcObjectPlacement) theEObject;
+			T result = caseIfcObjectPlacement(ifcObjectPlacement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_OBJECTIVE: {
+			IfcObjective ifcObjective = (IfcObjective) theEObject;
+			T result = caseIfcObjective(ifcObjective);
+			if (result == null)
+				result = caseIfcConstraint(ifcObjective);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcObjective);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_OCCUPANT: {
+			IfcOccupant ifcOccupant = (IfcOccupant) theEObject;
+			T result = caseIfcOccupant(ifcOccupant);
+			if (result == null)
+				result = caseIfcActor(ifcOccupant);
+			if (result == null)
+				result = caseIfcObject(ifcOccupant);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcOccupant);
+			if (result == null)
+				result = caseIfcRoot(ifcOccupant);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcOccupant);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_OFFSET_CURVE2_D: {
+			IfcOffsetCurve2D ifcOffsetCurve2D = (IfcOffsetCurve2D) theEObject;
+			T result = caseIfcOffsetCurve2D(ifcOffsetCurve2D);
+			if (result == null)
+				result = caseIfcCurve(ifcOffsetCurve2D);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcOffsetCurve2D);
+			if (result == null)
+				result = caseIfcGeometricSetSelect(ifcOffsetCurve2D);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcOffsetCurve2D);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcOffsetCurve2D);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_OFFSET_CURVE3_D: {
+			IfcOffsetCurve3D ifcOffsetCurve3D = (IfcOffsetCurve3D) theEObject;
+			T result = caseIfcOffsetCurve3D(ifcOffsetCurve3D);
+			if (result == null)
+				result = caseIfcCurve(ifcOffsetCurve3D);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcOffsetCurve3D);
+			if (result == null)
+				result = caseIfcGeometricSetSelect(ifcOffsetCurve3D);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcOffsetCurve3D);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcOffsetCurve3D);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_OPEN_SHELL: {
+			IfcOpenShell ifcOpenShell = (IfcOpenShell) theEObject;
+			T result = caseIfcOpenShell(ifcOpenShell);
+			if (result == null)
+				result = caseIfcConnectedFaceSet(ifcOpenShell);
+			if (result == null)
+				result = caseIfcShell(ifcOpenShell);
+			if (result == null)
+				result = caseIfcTopologicalRepresentationItem(ifcOpenShell);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcOpenShell);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcOpenShell);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_OPENING_ELEMENT: {
+			IfcOpeningElement ifcOpeningElement = (IfcOpeningElement) theEObject;
+			T result = caseIfcOpeningElement(ifcOpeningElement);
+			if (result == null)
+				result = caseIfcFeatureElementSubtraction(ifcOpeningElement);
+			if (result == null)
+				result = caseIfcFeatureElement(ifcOpeningElement);
+			if (result == null)
+				result = caseIfcElement(ifcOpeningElement);
+			if (result == null)
+				result = caseIfcProduct(ifcOpeningElement);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcOpeningElement);
+			if (result == null)
+				result = caseIfcObject(ifcOpeningElement);
+			if (result == null)
+				result = caseIfcProductSelect(ifcOpeningElement);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcOpeningElement);
+			if (result == null)
+				result = caseIfcRoot(ifcOpeningElement);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcOpeningElement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_OPENING_STANDARD_CASE: {
+			IfcOpeningStandardCase ifcOpeningStandardCase = (IfcOpeningStandardCase) theEObject;
+			T result = caseIfcOpeningStandardCase(ifcOpeningStandardCase);
+			if (result == null)
+				result = caseIfcOpeningElement(ifcOpeningStandardCase);
+			if (result == null)
+				result = caseIfcFeatureElementSubtraction(ifcOpeningStandardCase);
+			if (result == null)
+				result = caseIfcFeatureElement(ifcOpeningStandardCase);
+			if (result == null)
+				result = caseIfcElement(ifcOpeningStandardCase);
+			if (result == null)
+				result = caseIfcProduct(ifcOpeningStandardCase);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcOpeningStandardCase);
+			if (result == null)
+				result = caseIfcObject(ifcOpeningStandardCase);
+			if (result == null)
+				result = caseIfcProductSelect(ifcOpeningStandardCase);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcOpeningStandardCase);
+			if (result == null)
+				result = caseIfcRoot(ifcOpeningStandardCase);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcOpeningStandardCase);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_ORGANIZATION: {
+			IfcOrganization ifcOrganization = (IfcOrganization) theEObject;
+			T result = caseIfcOrganization(ifcOrganization);
+			if (result == null)
+				result = caseIfcActorSelect(ifcOrganization);
+			if (result == null)
+				result = caseIfcObjectReferenceSelect(ifcOrganization);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcOrganization);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_ORGANIZATION_RELATIONSHIP: {
+			IfcOrganizationRelationship ifcOrganizationRelationship = (IfcOrganizationRelationship) theEObject;
+			T result = caseIfcOrganizationRelationship(ifcOrganizationRelationship);
+			if (result == null)
+				result = caseIfcResourceLevelRelationship(ifcOrganizationRelationship);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_ORIENTED_EDGE: {
+			IfcOrientedEdge ifcOrientedEdge = (IfcOrientedEdge) theEObject;
+			T result = caseIfcOrientedEdge(ifcOrientedEdge);
+			if (result == null)
+				result = caseIfcEdge(ifcOrientedEdge);
+			if (result == null)
+				result = caseIfcTopologicalRepresentationItem(ifcOrientedEdge);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcOrientedEdge);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcOrientedEdge);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_OUTER_BOUNDARY_CURVE: {
+			IfcOuterBoundaryCurve ifcOuterBoundaryCurve = (IfcOuterBoundaryCurve) theEObject;
+			T result = caseIfcOuterBoundaryCurve(ifcOuterBoundaryCurve);
+			if (result == null)
+				result = caseIfcBoundaryCurve(ifcOuterBoundaryCurve);
+			if (result == null)
+				result = caseIfcCompositeCurveOnSurface(ifcOuterBoundaryCurve);
+			if (result == null)
+				result = caseIfcCompositeCurve(ifcOuterBoundaryCurve);
+			if (result == null)
+				result = caseIfcCurveOnSurface(ifcOuterBoundaryCurve);
+			if (result == null)
+				result = caseIfcBoundedCurve(ifcOuterBoundaryCurve);
+			if (result == null)
+				result = caseIfcCurve(ifcOuterBoundaryCurve);
+			if (result == null)
+				result = caseIfcCurveOrEdgeCurve(ifcOuterBoundaryCurve);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcOuterBoundaryCurve);
+			if (result == null)
+				result = caseIfcGeometricSetSelect(ifcOuterBoundaryCurve);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcOuterBoundaryCurve);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcOuterBoundaryCurve);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_OUTLET: {
+			IfcOutlet ifcOutlet = (IfcOutlet) theEObject;
+			T result = caseIfcOutlet(ifcOutlet);
+			if (result == null)
+				result = caseIfcFlowTerminal(ifcOutlet);
+			if (result == null)
+				result = caseIfcDistributionFlowElement(ifcOutlet);
+			if (result == null)
+				result = caseIfcDistributionElement(ifcOutlet);
+			if (result == null)
+				result = caseIfcElement(ifcOutlet);
+			if (result == null)
+				result = caseIfcProduct(ifcOutlet);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcOutlet);
+			if (result == null)
+				result = caseIfcObject(ifcOutlet);
+			if (result == null)
+				result = caseIfcProductSelect(ifcOutlet);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcOutlet);
+			if (result == null)
+				result = caseIfcRoot(ifcOutlet);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcOutlet);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_OUTLET_TYPE: {
+			IfcOutletType ifcOutletType = (IfcOutletType) theEObject;
+			T result = caseIfcOutletType(ifcOutletType);
+			if (result == null)
+				result = caseIfcFlowTerminalType(ifcOutletType);
+			if (result == null)
+				result = caseIfcDistributionFlowElementType(ifcOutletType);
+			if (result == null)
+				result = caseIfcDistributionElementType(ifcOutletType);
+			if (result == null)
+				result = caseIfcElementType(ifcOutletType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcOutletType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcOutletType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcOutletType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcOutletType);
+			if (result == null)
+				result = caseIfcRoot(ifcOutletType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcOutletType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_OWNER_HISTORY: {
+			IfcOwnerHistory ifcOwnerHistory = (IfcOwnerHistory) theEObject;
+			T result = caseIfcOwnerHistory(ifcOwnerHistory);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PARAMETERIZED_PROFILE_DEF: {
+			IfcParameterizedProfileDef ifcParameterizedProfileDef = (IfcParameterizedProfileDef) theEObject;
+			T result = caseIfcParameterizedProfileDef(ifcParameterizedProfileDef);
+			if (result == null)
+				result = caseIfcProfileDef(ifcParameterizedProfileDef);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcParameterizedProfileDef);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PATH: {
+			IfcPath ifcPath = (IfcPath) theEObject;
+			T result = caseIfcPath(ifcPath);
+			if (result == null)
+				result = caseIfcTopologicalRepresentationItem(ifcPath);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcPath);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcPath);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PCURVE: {
+			IfcPcurve ifcPcurve = (IfcPcurve) theEObject;
+			T result = caseIfcPcurve(ifcPcurve);
+			if (result == null)
+				result = caseIfcCurve(ifcPcurve);
+			if (result == null)
+				result = caseIfcCurveOnSurface(ifcPcurve);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcPcurve);
+			if (result == null)
+				result = caseIfcGeometricSetSelect(ifcPcurve);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcPcurve);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcPcurve);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PERFORMANCE_HISTORY: {
+			IfcPerformanceHistory ifcPerformanceHistory = (IfcPerformanceHistory) theEObject;
+			T result = caseIfcPerformanceHistory(ifcPerformanceHistory);
+			if (result == null)
+				result = caseIfcControl(ifcPerformanceHistory);
+			if (result == null)
+				result = caseIfcObject(ifcPerformanceHistory);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcPerformanceHistory);
+			if (result == null)
+				result = caseIfcRoot(ifcPerformanceHistory);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcPerformanceHistory);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PERMEABLE_COVERING_PROPERTIES: {
+			IfcPermeableCoveringProperties ifcPermeableCoveringProperties = (IfcPermeableCoveringProperties) theEObject;
+			T result = caseIfcPermeableCoveringProperties(ifcPermeableCoveringProperties);
+			if (result == null)
+				result = caseIfcPreDefinedPropertySet(ifcPermeableCoveringProperties);
+			if (result == null)
+				result = caseIfcPropertySetDefinition(ifcPermeableCoveringProperties);
+			if (result == null)
+				result = caseIfcPropertyDefinition(ifcPermeableCoveringProperties);
+			if (result == null)
+				result = caseIfcPropertySetDefinitionSelect(ifcPermeableCoveringProperties);
+			if (result == null)
+				result = caseIfcRoot(ifcPermeableCoveringProperties);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcPermeableCoveringProperties);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PERMIT: {
+			IfcPermit ifcPermit = (IfcPermit) theEObject;
+			T result = caseIfcPermit(ifcPermit);
+			if (result == null)
+				result = caseIfcControl(ifcPermit);
+			if (result == null)
+				result = caseIfcObject(ifcPermit);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcPermit);
+			if (result == null)
+				result = caseIfcRoot(ifcPermit);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcPermit);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PERSON: {
+			IfcPerson ifcPerson = (IfcPerson) theEObject;
+			T result = caseIfcPerson(ifcPerson);
+			if (result == null)
+				result = caseIfcActorSelect(ifcPerson);
+			if (result == null)
+				result = caseIfcObjectReferenceSelect(ifcPerson);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcPerson);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PERSON_AND_ORGANIZATION: {
+			IfcPersonAndOrganization ifcPersonAndOrganization = (IfcPersonAndOrganization) theEObject;
+			T result = caseIfcPersonAndOrganization(ifcPersonAndOrganization);
+			if (result == null)
+				result = caseIfcActorSelect(ifcPersonAndOrganization);
+			if (result == null)
+				result = caseIfcObjectReferenceSelect(ifcPersonAndOrganization);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcPersonAndOrganization);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PHYSICAL_COMPLEX_QUANTITY: {
+			IfcPhysicalComplexQuantity ifcPhysicalComplexQuantity = (IfcPhysicalComplexQuantity) theEObject;
+			T result = caseIfcPhysicalComplexQuantity(ifcPhysicalComplexQuantity);
+			if (result == null)
+				result = caseIfcPhysicalQuantity(ifcPhysicalComplexQuantity);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcPhysicalComplexQuantity);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PHYSICAL_QUANTITY: {
+			IfcPhysicalQuantity ifcPhysicalQuantity = (IfcPhysicalQuantity) theEObject;
+			T result = caseIfcPhysicalQuantity(ifcPhysicalQuantity);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcPhysicalQuantity);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PHYSICAL_SIMPLE_QUANTITY: {
+			IfcPhysicalSimpleQuantity ifcPhysicalSimpleQuantity = (IfcPhysicalSimpleQuantity) theEObject;
+			T result = caseIfcPhysicalSimpleQuantity(ifcPhysicalSimpleQuantity);
+			if (result == null)
+				result = caseIfcPhysicalQuantity(ifcPhysicalSimpleQuantity);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcPhysicalSimpleQuantity);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PILE: {
+			IfcPile ifcPile = (IfcPile) theEObject;
+			T result = caseIfcPile(ifcPile);
+			if (result == null)
+				result = caseIfcBuildingElement(ifcPile);
+			if (result == null)
+				result = caseIfcElement(ifcPile);
+			if (result == null)
+				result = caseIfcProduct(ifcPile);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcPile);
+			if (result == null)
+				result = caseIfcObject(ifcPile);
+			if (result == null)
+				result = caseIfcProductSelect(ifcPile);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcPile);
+			if (result == null)
+				result = caseIfcRoot(ifcPile);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcPile);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PILE_TYPE: {
+			IfcPileType ifcPileType = (IfcPileType) theEObject;
+			T result = caseIfcPileType(ifcPileType);
+			if (result == null)
+				result = caseIfcBuildingElementType(ifcPileType);
+			if (result == null)
+				result = caseIfcElementType(ifcPileType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcPileType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcPileType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcPileType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcPileType);
+			if (result == null)
+				result = caseIfcRoot(ifcPileType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcPileType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PIPE_FITTING: {
+			IfcPipeFitting ifcPipeFitting = (IfcPipeFitting) theEObject;
+			T result = caseIfcPipeFitting(ifcPipeFitting);
+			if (result == null)
+				result = caseIfcFlowFitting(ifcPipeFitting);
+			if (result == null)
+				result = caseIfcDistributionFlowElement(ifcPipeFitting);
+			if (result == null)
+				result = caseIfcDistributionElement(ifcPipeFitting);
+			if (result == null)
+				result = caseIfcElement(ifcPipeFitting);
+			if (result == null)
+				result = caseIfcProduct(ifcPipeFitting);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcPipeFitting);
+			if (result == null)
+				result = caseIfcObject(ifcPipeFitting);
+			if (result == null)
+				result = caseIfcProductSelect(ifcPipeFitting);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcPipeFitting);
+			if (result == null)
+				result = caseIfcRoot(ifcPipeFitting);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcPipeFitting);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PIPE_FITTING_TYPE: {
+			IfcPipeFittingType ifcPipeFittingType = (IfcPipeFittingType) theEObject;
+			T result = caseIfcPipeFittingType(ifcPipeFittingType);
+			if (result == null)
+				result = caseIfcFlowFittingType(ifcPipeFittingType);
+			if (result == null)
+				result = caseIfcDistributionFlowElementType(ifcPipeFittingType);
+			if (result == null)
+				result = caseIfcDistributionElementType(ifcPipeFittingType);
+			if (result == null)
+				result = caseIfcElementType(ifcPipeFittingType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcPipeFittingType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcPipeFittingType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcPipeFittingType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcPipeFittingType);
+			if (result == null)
+				result = caseIfcRoot(ifcPipeFittingType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcPipeFittingType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PIPE_SEGMENT: {
+			IfcPipeSegment ifcPipeSegment = (IfcPipeSegment) theEObject;
+			T result = caseIfcPipeSegment(ifcPipeSegment);
+			if (result == null)
+				result = caseIfcFlowSegment(ifcPipeSegment);
+			if (result == null)
+				result = caseIfcDistributionFlowElement(ifcPipeSegment);
+			if (result == null)
+				result = caseIfcDistributionElement(ifcPipeSegment);
+			if (result == null)
+				result = caseIfcElement(ifcPipeSegment);
+			if (result == null)
+				result = caseIfcProduct(ifcPipeSegment);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcPipeSegment);
+			if (result == null)
+				result = caseIfcObject(ifcPipeSegment);
+			if (result == null)
+				result = caseIfcProductSelect(ifcPipeSegment);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcPipeSegment);
+			if (result == null)
+				result = caseIfcRoot(ifcPipeSegment);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcPipeSegment);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PIPE_SEGMENT_TYPE: {
+			IfcPipeSegmentType ifcPipeSegmentType = (IfcPipeSegmentType) theEObject;
+			T result = caseIfcPipeSegmentType(ifcPipeSegmentType);
+			if (result == null)
+				result = caseIfcFlowSegmentType(ifcPipeSegmentType);
+			if (result == null)
+				result = caseIfcDistributionFlowElementType(ifcPipeSegmentType);
+			if (result == null)
+				result = caseIfcDistributionElementType(ifcPipeSegmentType);
+			if (result == null)
+				result = caseIfcElementType(ifcPipeSegmentType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcPipeSegmentType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcPipeSegmentType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcPipeSegmentType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcPipeSegmentType);
+			if (result == null)
+				result = caseIfcRoot(ifcPipeSegmentType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcPipeSegmentType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PIXEL_TEXTURE: {
+			IfcPixelTexture ifcPixelTexture = (IfcPixelTexture) theEObject;
+			T result = caseIfcPixelTexture(ifcPixelTexture);
+			if (result == null)
+				result = caseIfcSurfaceTexture(ifcPixelTexture);
+			if (result == null)
+				result = caseIfcPresentationItem(ifcPixelTexture);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PLACEMENT: {
+			IfcPlacement ifcPlacement = (IfcPlacement) theEObject;
+			T result = caseIfcPlacement(ifcPlacement);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcPlacement);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcPlacement);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcPlacement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PLANAR_BOX: {
+			IfcPlanarBox ifcPlanarBox = (IfcPlanarBox) theEObject;
+			T result = caseIfcPlanarBox(ifcPlanarBox);
+			if (result == null)
+				result = caseIfcPlanarExtent(ifcPlanarBox);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcPlanarBox);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcPlanarBox);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcPlanarBox);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PLANAR_EXTENT: {
+			IfcPlanarExtent ifcPlanarExtent = (IfcPlanarExtent) theEObject;
+			T result = caseIfcPlanarExtent(ifcPlanarExtent);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcPlanarExtent);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcPlanarExtent);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcPlanarExtent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PLANE: {
+			IfcPlane ifcPlane = (IfcPlane) theEObject;
+			T result = caseIfcPlane(ifcPlane);
+			if (result == null)
+				result = caseIfcElementarySurface(ifcPlane);
+			if (result == null)
+				result = caseIfcSurface(ifcPlane);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcPlane);
+			if (result == null)
+				result = caseIfcGeometricSetSelect(ifcPlane);
+			if (result == null)
+				result = caseIfcSurfaceOrFaceSurface(ifcPlane);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcPlane);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcPlane);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PLATE: {
+			IfcPlate ifcPlate = (IfcPlate) theEObject;
+			T result = caseIfcPlate(ifcPlate);
+			if (result == null)
+				result = caseIfcBuildingElement(ifcPlate);
+			if (result == null)
+				result = caseIfcElement(ifcPlate);
+			if (result == null)
+				result = caseIfcProduct(ifcPlate);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcPlate);
+			if (result == null)
+				result = caseIfcObject(ifcPlate);
+			if (result == null)
+				result = caseIfcProductSelect(ifcPlate);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcPlate);
+			if (result == null)
+				result = caseIfcRoot(ifcPlate);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcPlate);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PLATE_STANDARD_CASE: {
+			IfcPlateStandardCase ifcPlateStandardCase = (IfcPlateStandardCase) theEObject;
+			T result = caseIfcPlateStandardCase(ifcPlateStandardCase);
+			if (result == null)
+				result = caseIfcPlate(ifcPlateStandardCase);
+			if (result == null)
+				result = caseIfcBuildingElement(ifcPlateStandardCase);
+			if (result == null)
+				result = caseIfcElement(ifcPlateStandardCase);
+			if (result == null)
+				result = caseIfcProduct(ifcPlateStandardCase);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcPlateStandardCase);
+			if (result == null)
+				result = caseIfcObject(ifcPlateStandardCase);
+			if (result == null)
+				result = caseIfcProductSelect(ifcPlateStandardCase);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcPlateStandardCase);
+			if (result == null)
+				result = caseIfcRoot(ifcPlateStandardCase);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcPlateStandardCase);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PLATE_TYPE: {
+			IfcPlateType ifcPlateType = (IfcPlateType) theEObject;
+			T result = caseIfcPlateType(ifcPlateType);
+			if (result == null)
+				result = caseIfcBuildingElementType(ifcPlateType);
+			if (result == null)
+				result = caseIfcElementType(ifcPlateType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcPlateType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcPlateType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcPlateType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcPlateType);
+			if (result == null)
+				result = caseIfcRoot(ifcPlateType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcPlateType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_POINT: {
+			IfcPoint ifcPoint = (IfcPoint) theEObject;
+			T result = caseIfcPoint(ifcPoint);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcPoint);
+			if (result == null)
+				result = caseIfcGeometricSetSelect(ifcPoint);
+			if (result == null)
+				result = caseIfcPointOrVertexPoint(ifcPoint);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcPoint);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcPoint);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_POINT_ON_CURVE: {
+			IfcPointOnCurve ifcPointOnCurve = (IfcPointOnCurve) theEObject;
+			T result = caseIfcPointOnCurve(ifcPointOnCurve);
+			if (result == null)
+				result = caseIfcPoint(ifcPointOnCurve);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcPointOnCurve);
+			if (result == null)
+				result = caseIfcGeometricSetSelect(ifcPointOnCurve);
+			if (result == null)
+				result = caseIfcPointOrVertexPoint(ifcPointOnCurve);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcPointOnCurve);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcPointOnCurve);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_POINT_ON_SURFACE: {
+			IfcPointOnSurface ifcPointOnSurface = (IfcPointOnSurface) theEObject;
+			T result = caseIfcPointOnSurface(ifcPointOnSurface);
+			if (result == null)
+				result = caseIfcPoint(ifcPointOnSurface);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcPointOnSurface);
+			if (result == null)
+				result = caseIfcGeometricSetSelect(ifcPointOnSurface);
+			if (result == null)
+				result = caseIfcPointOrVertexPoint(ifcPointOnSurface);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcPointOnSurface);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcPointOnSurface);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_POLY_LOOP: {
+			IfcPolyLoop ifcPolyLoop = (IfcPolyLoop) theEObject;
+			T result = caseIfcPolyLoop(ifcPolyLoop);
+			if (result == null)
+				result = caseIfcLoop(ifcPolyLoop);
+			if (result == null)
+				result = caseIfcTopologicalRepresentationItem(ifcPolyLoop);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcPolyLoop);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcPolyLoop);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_POLYGONAL_BOUNDED_HALF_SPACE: {
+			IfcPolygonalBoundedHalfSpace ifcPolygonalBoundedHalfSpace = (IfcPolygonalBoundedHalfSpace) theEObject;
+			T result = caseIfcPolygonalBoundedHalfSpace(ifcPolygonalBoundedHalfSpace);
+			if (result == null)
+				result = caseIfcHalfSpaceSolid(ifcPolygonalBoundedHalfSpace);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcPolygonalBoundedHalfSpace);
+			if (result == null)
+				result = caseIfcBooleanOperand(ifcPolygonalBoundedHalfSpace);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcPolygonalBoundedHalfSpace);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcPolygonalBoundedHalfSpace);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_POLYGONAL_FACE_SET: {
+			IfcPolygonalFaceSet ifcPolygonalFaceSet = (IfcPolygonalFaceSet) theEObject;
+			T result = caseIfcPolygonalFaceSet(ifcPolygonalFaceSet);
+			if (result == null)
+				result = caseIfcTessellatedFaceSet(ifcPolygonalFaceSet);
+			if (result == null)
+				result = caseIfcTessellatedItem(ifcPolygonalFaceSet);
+			if (result == null)
+				result = caseIfcBooleanOperand(ifcPolygonalFaceSet);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcPolygonalFaceSet);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcPolygonalFaceSet);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcPolygonalFaceSet);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_POLYLINE: {
+			IfcPolyline ifcPolyline = (IfcPolyline) theEObject;
+			T result = caseIfcPolyline(ifcPolyline);
+			if (result == null)
+				result = caseIfcBoundedCurve(ifcPolyline);
+			if (result == null)
+				result = caseIfcCurve(ifcPolyline);
+			if (result == null)
+				result = caseIfcCurveOrEdgeCurve(ifcPolyline);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcPolyline);
+			if (result == null)
+				result = caseIfcGeometricSetSelect(ifcPolyline);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcPolyline);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcPolyline);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PORT: {
+			IfcPort ifcPort = (IfcPort) theEObject;
+			T result = caseIfcPort(ifcPort);
+			if (result == null)
+				result = caseIfcProduct(ifcPort);
+			if (result == null)
+				result = caseIfcObject(ifcPort);
+			if (result == null)
+				result = caseIfcProductSelect(ifcPort);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcPort);
+			if (result == null)
+				result = caseIfcRoot(ifcPort);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcPort);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_POSTAL_ADDRESS: {
+			IfcPostalAddress ifcPostalAddress = (IfcPostalAddress) theEObject;
+			T result = caseIfcPostalAddress(ifcPostalAddress);
+			if (result == null)
+				result = caseIfcAddress(ifcPostalAddress);
+			if (result == null)
+				result = caseIfcObjectReferenceSelect(ifcPostalAddress);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PRE_DEFINED_COLOUR: {
+			IfcPreDefinedColour ifcPreDefinedColour = (IfcPreDefinedColour) theEObject;
+			T result = caseIfcPreDefinedColour(ifcPreDefinedColour);
+			if (result == null)
+				result = caseIfcPreDefinedItem(ifcPreDefinedColour);
+			if (result == null)
+				result = caseIfcColour(ifcPreDefinedColour);
+			if (result == null)
+				result = caseIfcPresentationItem(ifcPreDefinedColour);
+			if (result == null)
+				result = caseIfcFillStyleSelect(ifcPreDefinedColour);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PRE_DEFINED_CURVE_FONT: {
+			IfcPreDefinedCurveFont ifcPreDefinedCurveFont = (IfcPreDefinedCurveFont) theEObject;
+			T result = caseIfcPreDefinedCurveFont(ifcPreDefinedCurveFont);
+			if (result == null)
+				result = caseIfcPreDefinedItem(ifcPreDefinedCurveFont);
+			if (result == null)
+				result = caseIfcCurveStyleFontSelect(ifcPreDefinedCurveFont);
+			if (result == null)
+				result = caseIfcPresentationItem(ifcPreDefinedCurveFont);
+			if (result == null)
+				result = caseIfcCurveFontOrScaledCurveFontSelect(ifcPreDefinedCurveFont);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PRE_DEFINED_ITEM: {
+			IfcPreDefinedItem ifcPreDefinedItem = (IfcPreDefinedItem) theEObject;
+			T result = caseIfcPreDefinedItem(ifcPreDefinedItem);
+			if (result == null)
+				result = caseIfcPresentationItem(ifcPreDefinedItem);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PRE_DEFINED_PROPERTIES: {
+			IfcPreDefinedProperties ifcPreDefinedProperties = (IfcPreDefinedProperties) theEObject;
+			T result = caseIfcPreDefinedProperties(ifcPreDefinedProperties);
+			if (result == null)
+				result = caseIfcPropertyAbstraction(ifcPreDefinedProperties);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcPreDefinedProperties);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PRE_DEFINED_PROPERTY_SET: {
+			IfcPreDefinedPropertySet ifcPreDefinedPropertySet = (IfcPreDefinedPropertySet) theEObject;
+			T result = caseIfcPreDefinedPropertySet(ifcPreDefinedPropertySet);
+			if (result == null)
+				result = caseIfcPropertySetDefinition(ifcPreDefinedPropertySet);
+			if (result == null)
+				result = caseIfcPropertyDefinition(ifcPreDefinedPropertySet);
+			if (result == null)
+				result = caseIfcPropertySetDefinitionSelect(ifcPreDefinedPropertySet);
+			if (result == null)
+				result = caseIfcRoot(ifcPreDefinedPropertySet);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcPreDefinedPropertySet);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PRE_DEFINED_TEXT_FONT: {
+			IfcPreDefinedTextFont ifcPreDefinedTextFont = (IfcPreDefinedTextFont) theEObject;
+			T result = caseIfcPreDefinedTextFont(ifcPreDefinedTextFont);
+			if (result == null)
+				result = caseIfcPreDefinedItem(ifcPreDefinedTextFont);
+			if (result == null)
+				result = caseIfcTextFontSelect(ifcPreDefinedTextFont);
+			if (result == null)
+				result = caseIfcPresentationItem(ifcPreDefinedTextFont);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PRESENTATION_ITEM: {
+			IfcPresentationItem ifcPresentationItem = (IfcPresentationItem) theEObject;
+			T result = caseIfcPresentationItem(ifcPresentationItem);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PRESENTATION_LAYER_ASSIGNMENT: {
+			IfcPresentationLayerAssignment ifcPresentationLayerAssignment = (IfcPresentationLayerAssignment) theEObject;
+			T result = caseIfcPresentationLayerAssignment(ifcPresentationLayerAssignment);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PRESENTATION_LAYER_WITH_STYLE: {
+			IfcPresentationLayerWithStyle ifcPresentationLayerWithStyle = (IfcPresentationLayerWithStyle) theEObject;
+			T result = caseIfcPresentationLayerWithStyle(ifcPresentationLayerWithStyle);
+			if (result == null)
+				result = caseIfcPresentationLayerAssignment(ifcPresentationLayerWithStyle);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PRESENTATION_STYLE: {
+			IfcPresentationStyle ifcPresentationStyle = (IfcPresentationStyle) theEObject;
+			T result = caseIfcPresentationStyle(ifcPresentationStyle);
+			if (result == null)
+				result = caseIfcStyleAssignmentSelect(ifcPresentationStyle);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PRESENTATION_STYLE_ASSIGNMENT: {
+			IfcPresentationStyleAssignment ifcPresentationStyleAssignment = (IfcPresentationStyleAssignment) theEObject;
+			T result = caseIfcPresentationStyleAssignment(ifcPresentationStyleAssignment);
+			if (result == null)
+				result = caseIfcStyleAssignmentSelect(ifcPresentationStyleAssignment);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROCEDURE: {
+			IfcProcedure ifcProcedure = (IfcProcedure) theEObject;
+			T result = caseIfcProcedure(ifcProcedure);
+			if (result == null)
+				result = caseIfcProcess(ifcProcedure);
+			if (result == null)
+				result = caseIfcObject(ifcProcedure);
+			if (result == null)
+				result = caseIfcProcessSelect(ifcProcedure);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcProcedure);
+			if (result == null)
+				result = caseIfcRoot(ifcProcedure);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcProcedure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROCEDURE_TYPE: {
+			IfcProcedureType ifcProcedureType = (IfcProcedureType) theEObject;
+			T result = caseIfcProcedureType(ifcProcedureType);
+			if (result == null)
+				result = caseIfcTypeProcess(ifcProcedureType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcProcedureType);
+			if (result == null)
+				result = caseIfcProcessSelect(ifcProcedureType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcProcedureType);
+			if (result == null)
+				result = caseIfcRoot(ifcProcedureType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcProcedureType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROCESS: {
+			IfcProcess ifcProcess = (IfcProcess) theEObject;
+			T result = caseIfcProcess(ifcProcess);
+			if (result == null)
+				result = caseIfcObject(ifcProcess);
+			if (result == null)
+				result = caseIfcProcessSelect(ifcProcess);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcProcess);
+			if (result == null)
+				result = caseIfcRoot(ifcProcess);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcProcess);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PRODUCT: {
+			IfcProduct ifcProduct = (IfcProduct) theEObject;
+			T result = caseIfcProduct(ifcProduct);
+			if (result == null)
+				result = caseIfcObject(ifcProduct);
+			if (result == null)
+				result = caseIfcProductSelect(ifcProduct);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcProduct);
+			if (result == null)
+				result = caseIfcRoot(ifcProduct);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcProduct);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PRODUCT_DEFINITION_SHAPE: {
+			IfcProductDefinitionShape ifcProductDefinitionShape = (IfcProductDefinitionShape) theEObject;
+			T result = caseIfcProductDefinitionShape(ifcProductDefinitionShape);
+			if (result == null)
+				result = caseIfcProductRepresentation(ifcProductDefinitionShape);
+			if (result == null)
+				result = caseIfcProductRepresentationSelect(ifcProductDefinitionShape);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PRODUCT_REPRESENTATION: {
+			IfcProductRepresentation ifcProductRepresentation = (IfcProductRepresentation) theEObject;
+			T result = caseIfcProductRepresentation(ifcProductRepresentation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROFILE_DEF: {
+			IfcProfileDef ifcProfileDef = (IfcProfileDef) theEObject;
+			T result = caseIfcProfileDef(ifcProfileDef);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcProfileDef);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROFILE_PROPERTIES: {
+			IfcProfileProperties ifcProfileProperties = (IfcProfileProperties) theEObject;
+			T result = caseIfcProfileProperties(ifcProfileProperties);
+			if (result == null)
+				result = caseIfcExtendedProperties(ifcProfileProperties);
+			if (result == null)
+				result = caseIfcPropertyAbstraction(ifcProfileProperties);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcProfileProperties);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROJECT: {
+			IfcProject ifcProject = (IfcProject) theEObject;
+			T result = caseIfcProject(ifcProject);
+			if (result == null)
+				result = caseIfcContext(ifcProject);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcProject);
+			if (result == null)
+				result = caseIfcRoot(ifcProject);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcProject);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROJECT_LIBRARY: {
+			IfcProjectLibrary ifcProjectLibrary = (IfcProjectLibrary) theEObject;
+			T result = caseIfcProjectLibrary(ifcProjectLibrary);
+			if (result == null)
+				result = caseIfcContext(ifcProjectLibrary);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcProjectLibrary);
+			if (result == null)
+				result = caseIfcRoot(ifcProjectLibrary);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcProjectLibrary);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROJECT_ORDER: {
+			IfcProjectOrder ifcProjectOrder = (IfcProjectOrder) theEObject;
+			T result = caseIfcProjectOrder(ifcProjectOrder);
+			if (result == null)
+				result = caseIfcControl(ifcProjectOrder);
+			if (result == null)
+				result = caseIfcObject(ifcProjectOrder);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcProjectOrder);
+			if (result == null)
+				result = caseIfcRoot(ifcProjectOrder);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcProjectOrder);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROJECTED_CRS: {
+			IfcProjectedCRS ifcProjectedCRS = (IfcProjectedCRS) theEObject;
+			T result = caseIfcProjectedCRS(ifcProjectedCRS);
+			if (result == null)
+				result = caseIfcCoordinateReferenceSystem(ifcProjectedCRS);
+			if (result == null)
+				result = caseIfcCoordinateReferenceSystemSelect(ifcProjectedCRS);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROJECTION_ELEMENT: {
+			IfcProjectionElement ifcProjectionElement = (IfcProjectionElement) theEObject;
+			T result = caseIfcProjectionElement(ifcProjectionElement);
+			if (result == null)
+				result = caseIfcFeatureElementAddition(ifcProjectionElement);
+			if (result == null)
+				result = caseIfcFeatureElement(ifcProjectionElement);
+			if (result == null)
+				result = caseIfcElement(ifcProjectionElement);
+			if (result == null)
+				result = caseIfcProduct(ifcProjectionElement);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcProjectionElement);
+			if (result == null)
+				result = caseIfcObject(ifcProjectionElement);
+			if (result == null)
+				result = caseIfcProductSelect(ifcProjectionElement);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcProjectionElement);
+			if (result == null)
+				result = caseIfcRoot(ifcProjectionElement);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcProjectionElement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROPERTY: {
+			IfcProperty ifcProperty = (IfcProperty) theEObject;
+			T result = caseIfcProperty(ifcProperty);
+			if (result == null)
+				result = caseIfcPropertyAbstraction(ifcProperty);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcProperty);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROPERTY_ABSTRACTION: {
+			IfcPropertyAbstraction ifcPropertyAbstraction = (IfcPropertyAbstraction) theEObject;
+			T result = caseIfcPropertyAbstraction(ifcPropertyAbstraction);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcPropertyAbstraction);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROPERTY_BOUNDED_VALUE: {
+			IfcPropertyBoundedValue ifcPropertyBoundedValue = (IfcPropertyBoundedValue) theEObject;
+			T result = caseIfcPropertyBoundedValue(ifcPropertyBoundedValue);
+			if (result == null)
+				result = caseIfcSimpleProperty(ifcPropertyBoundedValue);
+			if (result == null)
+				result = caseIfcProperty(ifcPropertyBoundedValue);
+			if (result == null)
+				result = caseIfcPropertyAbstraction(ifcPropertyBoundedValue);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcPropertyBoundedValue);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROPERTY_DEFINITION: {
+			IfcPropertyDefinition ifcPropertyDefinition = (IfcPropertyDefinition) theEObject;
+			T result = caseIfcPropertyDefinition(ifcPropertyDefinition);
+			if (result == null)
+				result = caseIfcRoot(ifcPropertyDefinition);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcPropertyDefinition);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROPERTY_DEPENDENCY_RELATIONSHIP: {
+			IfcPropertyDependencyRelationship ifcPropertyDependencyRelationship = (IfcPropertyDependencyRelationship) theEObject;
+			T result = caseIfcPropertyDependencyRelationship(ifcPropertyDependencyRelationship);
+			if (result == null)
+				result = caseIfcResourceLevelRelationship(ifcPropertyDependencyRelationship);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROPERTY_ENUMERATED_VALUE: {
+			IfcPropertyEnumeratedValue ifcPropertyEnumeratedValue = (IfcPropertyEnumeratedValue) theEObject;
+			T result = caseIfcPropertyEnumeratedValue(ifcPropertyEnumeratedValue);
+			if (result == null)
+				result = caseIfcSimpleProperty(ifcPropertyEnumeratedValue);
+			if (result == null)
+				result = caseIfcProperty(ifcPropertyEnumeratedValue);
+			if (result == null)
+				result = caseIfcPropertyAbstraction(ifcPropertyEnumeratedValue);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcPropertyEnumeratedValue);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROPERTY_ENUMERATION: {
+			IfcPropertyEnumeration ifcPropertyEnumeration = (IfcPropertyEnumeration) theEObject;
+			T result = caseIfcPropertyEnumeration(ifcPropertyEnumeration);
+			if (result == null)
+				result = caseIfcPropertyAbstraction(ifcPropertyEnumeration);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcPropertyEnumeration);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROPERTY_LIST_VALUE: {
+			IfcPropertyListValue ifcPropertyListValue = (IfcPropertyListValue) theEObject;
+			T result = caseIfcPropertyListValue(ifcPropertyListValue);
+			if (result == null)
+				result = caseIfcSimpleProperty(ifcPropertyListValue);
+			if (result == null)
+				result = caseIfcProperty(ifcPropertyListValue);
+			if (result == null)
+				result = caseIfcPropertyAbstraction(ifcPropertyListValue);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcPropertyListValue);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROPERTY_REFERENCE_VALUE: {
+			IfcPropertyReferenceValue ifcPropertyReferenceValue = (IfcPropertyReferenceValue) theEObject;
+			T result = caseIfcPropertyReferenceValue(ifcPropertyReferenceValue);
+			if (result == null)
+				result = caseIfcSimpleProperty(ifcPropertyReferenceValue);
+			if (result == null)
+				result = caseIfcProperty(ifcPropertyReferenceValue);
+			if (result == null)
+				result = caseIfcPropertyAbstraction(ifcPropertyReferenceValue);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcPropertyReferenceValue);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROPERTY_SET: {
+			IfcPropertySet ifcPropertySet = (IfcPropertySet) theEObject;
+			T result = caseIfcPropertySet(ifcPropertySet);
+			if (result == null)
+				result = caseIfcPropertySetDefinition(ifcPropertySet);
+			if (result == null)
+				result = caseIfcPropertyDefinition(ifcPropertySet);
+			if (result == null)
+				result = caseIfcPropertySetDefinitionSelect(ifcPropertySet);
+			if (result == null)
+				result = caseIfcRoot(ifcPropertySet);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcPropertySet);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROPERTY_SET_DEFINITION: {
+			IfcPropertySetDefinition ifcPropertySetDefinition = (IfcPropertySetDefinition) theEObject;
+			T result = caseIfcPropertySetDefinition(ifcPropertySetDefinition);
+			if (result == null)
+				result = caseIfcPropertyDefinition(ifcPropertySetDefinition);
+			if (result == null)
+				result = caseIfcPropertySetDefinitionSelect(ifcPropertySetDefinition);
+			if (result == null)
+				result = caseIfcRoot(ifcPropertySetDefinition);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcPropertySetDefinition);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROPERTY_SET_TEMPLATE: {
+			IfcPropertySetTemplate ifcPropertySetTemplate = (IfcPropertySetTemplate) theEObject;
+			T result = caseIfcPropertySetTemplate(ifcPropertySetTemplate);
+			if (result == null)
+				result = caseIfcPropertyTemplateDefinition(ifcPropertySetTemplate);
+			if (result == null)
+				result = caseIfcPropertyDefinition(ifcPropertySetTemplate);
+			if (result == null)
+				result = caseIfcRoot(ifcPropertySetTemplate);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcPropertySetTemplate);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROPERTY_SINGLE_VALUE: {
+			IfcPropertySingleValue ifcPropertySingleValue = (IfcPropertySingleValue) theEObject;
+			T result = caseIfcPropertySingleValue(ifcPropertySingleValue);
+			if (result == null)
+				result = caseIfcSimpleProperty(ifcPropertySingleValue);
+			if (result == null)
+				result = caseIfcProperty(ifcPropertySingleValue);
+			if (result == null)
+				result = caseIfcPropertyAbstraction(ifcPropertySingleValue);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcPropertySingleValue);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROPERTY_TABLE_VALUE: {
+			IfcPropertyTableValue ifcPropertyTableValue = (IfcPropertyTableValue) theEObject;
+			T result = caseIfcPropertyTableValue(ifcPropertyTableValue);
+			if (result == null)
+				result = caseIfcSimpleProperty(ifcPropertyTableValue);
+			if (result == null)
+				result = caseIfcProperty(ifcPropertyTableValue);
+			if (result == null)
+				result = caseIfcPropertyAbstraction(ifcPropertyTableValue);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcPropertyTableValue);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROPERTY_TEMPLATE: {
+			IfcPropertyTemplate ifcPropertyTemplate = (IfcPropertyTemplate) theEObject;
+			T result = caseIfcPropertyTemplate(ifcPropertyTemplate);
+			if (result == null)
+				result = caseIfcPropertyTemplateDefinition(ifcPropertyTemplate);
+			if (result == null)
+				result = caseIfcPropertyDefinition(ifcPropertyTemplate);
+			if (result == null)
+				result = caseIfcRoot(ifcPropertyTemplate);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcPropertyTemplate);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROPERTY_TEMPLATE_DEFINITION: {
+			IfcPropertyTemplateDefinition ifcPropertyTemplateDefinition = (IfcPropertyTemplateDefinition) theEObject;
+			T result = caseIfcPropertyTemplateDefinition(ifcPropertyTemplateDefinition);
+			if (result == null)
+				result = caseIfcPropertyDefinition(ifcPropertyTemplateDefinition);
+			if (result == null)
+				result = caseIfcRoot(ifcPropertyTemplateDefinition);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcPropertyTemplateDefinition);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROTECTIVE_DEVICE: {
+			IfcProtectiveDevice ifcProtectiveDevice = (IfcProtectiveDevice) theEObject;
+			T result = caseIfcProtectiveDevice(ifcProtectiveDevice);
+			if (result == null)
+				result = caseIfcFlowController(ifcProtectiveDevice);
+			if (result == null)
+				result = caseIfcDistributionFlowElement(ifcProtectiveDevice);
+			if (result == null)
+				result = caseIfcDistributionElement(ifcProtectiveDevice);
+			if (result == null)
+				result = caseIfcElement(ifcProtectiveDevice);
+			if (result == null)
+				result = caseIfcProduct(ifcProtectiveDevice);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcProtectiveDevice);
+			if (result == null)
+				result = caseIfcObject(ifcProtectiveDevice);
+			if (result == null)
+				result = caseIfcProductSelect(ifcProtectiveDevice);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcProtectiveDevice);
+			if (result == null)
+				result = caseIfcRoot(ifcProtectiveDevice);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcProtectiveDevice);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROTECTIVE_DEVICE_TRIPPING_UNIT: {
+			IfcProtectiveDeviceTrippingUnit ifcProtectiveDeviceTrippingUnit = (IfcProtectiveDeviceTrippingUnit) theEObject;
+			T result = caseIfcProtectiveDeviceTrippingUnit(ifcProtectiveDeviceTrippingUnit);
+			if (result == null)
+				result = caseIfcDistributionControlElement(ifcProtectiveDeviceTrippingUnit);
+			if (result == null)
+				result = caseIfcDistributionElement(ifcProtectiveDeviceTrippingUnit);
+			if (result == null)
+				result = caseIfcElement(ifcProtectiveDeviceTrippingUnit);
+			if (result == null)
+				result = caseIfcProduct(ifcProtectiveDeviceTrippingUnit);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcProtectiveDeviceTrippingUnit);
+			if (result == null)
+				result = caseIfcObject(ifcProtectiveDeviceTrippingUnit);
+			if (result == null)
+				result = caseIfcProductSelect(ifcProtectiveDeviceTrippingUnit);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcProtectiveDeviceTrippingUnit);
+			if (result == null)
+				result = caseIfcRoot(ifcProtectiveDeviceTrippingUnit);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcProtectiveDeviceTrippingUnit);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROTECTIVE_DEVICE_TRIPPING_UNIT_TYPE: {
+			IfcProtectiveDeviceTrippingUnitType ifcProtectiveDeviceTrippingUnitType = (IfcProtectiveDeviceTrippingUnitType) theEObject;
+			T result = caseIfcProtectiveDeviceTrippingUnitType(ifcProtectiveDeviceTrippingUnitType);
+			if (result == null)
+				result = caseIfcDistributionControlElementType(ifcProtectiveDeviceTrippingUnitType);
+			if (result == null)
+				result = caseIfcDistributionElementType(ifcProtectiveDeviceTrippingUnitType);
+			if (result == null)
+				result = caseIfcElementType(ifcProtectiveDeviceTrippingUnitType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcProtectiveDeviceTrippingUnitType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcProtectiveDeviceTrippingUnitType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcProtectiveDeviceTrippingUnitType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcProtectiveDeviceTrippingUnitType);
+			if (result == null)
+				result = caseIfcRoot(ifcProtectiveDeviceTrippingUnitType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcProtectiveDeviceTrippingUnitType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROTECTIVE_DEVICE_TYPE: {
+			IfcProtectiveDeviceType ifcProtectiveDeviceType = (IfcProtectiveDeviceType) theEObject;
+			T result = caseIfcProtectiveDeviceType(ifcProtectiveDeviceType);
+			if (result == null)
+				result = caseIfcFlowControllerType(ifcProtectiveDeviceType);
+			if (result == null)
+				result = caseIfcDistributionFlowElementType(ifcProtectiveDeviceType);
+			if (result == null)
+				result = caseIfcDistributionElementType(ifcProtectiveDeviceType);
+			if (result == null)
+				result = caseIfcElementType(ifcProtectiveDeviceType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcProtectiveDeviceType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcProtectiveDeviceType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcProtectiveDeviceType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcProtectiveDeviceType);
+			if (result == null)
+				result = caseIfcRoot(ifcProtectiveDeviceType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcProtectiveDeviceType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PROXY: {
+			IfcProxy ifcProxy = (IfcProxy) theEObject;
+			T result = caseIfcProxy(ifcProxy);
+			if (result == null)
+				result = caseIfcProduct(ifcProxy);
+			if (result == null)
+				result = caseIfcObject(ifcProxy);
+			if (result == null)
+				result = caseIfcProductSelect(ifcProxy);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcProxy);
+			if (result == null)
+				result = caseIfcRoot(ifcProxy);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcProxy);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PUMP: {
+			IfcPump ifcPump = (IfcPump) theEObject;
+			T result = caseIfcPump(ifcPump);
+			if (result == null)
+				result = caseIfcFlowMovingDevice(ifcPump);
+			if (result == null)
+				result = caseIfcDistributionFlowElement(ifcPump);
+			if (result == null)
+				result = caseIfcDistributionElement(ifcPump);
+			if (result == null)
+				result = caseIfcElement(ifcPump);
+			if (result == null)
+				result = caseIfcProduct(ifcPump);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcPump);
+			if (result == null)
+				result = caseIfcObject(ifcPump);
+			if (result == null)
+				result = caseIfcProductSelect(ifcPump);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcPump);
+			if (result == null)
+				result = caseIfcRoot(ifcPump);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcPump);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_PUMP_TYPE: {
+			IfcPumpType ifcPumpType = (IfcPumpType) theEObject;
+			T result = caseIfcPumpType(ifcPumpType);
+			if (result == null)
+				result = caseIfcFlowMovingDeviceType(ifcPumpType);
+			if (result == null)
+				result = caseIfcDistributionFlowElementType(ifcPumpType);
+			if (result == null)
+				result = caseIfcDistributionElementType(ifcPumpType);
+			if (result == null)
+				result = caseIfcElementType(ifcPumpType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcPumpType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcPumpType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcPumpType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcPumpType);
+			if (result == null)
+				result = caseIfcRoot(ifcPumpType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcPumpType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_QUANTITY_AREA: {
+			IfcQuantityArea ifcQuantityArea = (IfcQuantityArea) theEObject;
+			T result = caseIfcQuantityArea(ifcQuantityArea);
+			if (result == null)
+				result = caseIfcPhysicalSimpleQuantity(ifcQuantityArea);
+			if (result == null)
+				result = caseIfcPhysicalQuantity(ifcQuantityArea);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcQuantityArea);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_QUANTITY_COUNT: {
+			IfcQuantityCount ifcQuantityCount = (IfcQuantityCount) theEObject;
+			T result = caseIfcQuantityCount(ifcQuantityCount);
+			if (result == null)
+				result = caseIfcPhysicalSimpleQuantity(ifcQuantityCount);
+			if (result == null)
+				result = caseIfcPhysicalQuantity(ifcQuantityCount);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcQuantityCount);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_QUANTITY_LENGTH: {
+			IfcQuantityLength ifcQuantityLength = (IfcQuantityLength) theEObject;
+			T result = caseIfcQuantityLength(ifcQuantityLength);
+			if (result == null)
+				result = caseIfcPhysicalSimpleQuantity(ifcQuantityLength);
+			if (result == null)
+				result = caseIfcPhysicalQuantity(ifcQuantityLength);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcQuantityLength);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_QUANTITY_SET: {
+			IfcQuantitySet ifcQuantitySet = (IfcQuantitySet) theEObject;
+			T result = caseIfcQuantitySet(ifcQuantitySet);
+			if (result == null)
+				result = caseIfcPropertySetDefinition(ifcQuantitySet);
+			if (result == null)
+				result = caseIfcPropertyDefinition(ifcQuantitySet);
+			if (result == null)
+				result = caseIfcPropertySetDefinitionSelect(ifcQuantitySet);
+			if (result == null)
+				result = caseIfcRoot(ifcQuantitySet);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcQuantitySet);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_QUANTITY_TIME: {
+			IfcQuantityTime ifcQuantityTime = (IfcQuantityTime) theEObject;
+			T result = caseIfcQuantityTime(ifcQuantityTime);
+			if (result == null)
+				result = caseIfcPhysicalSimpleQuantity(ifcQuantityTime);
+			if (result == null)
+				result = caseIfcPhysicalQuantity(ifcQuantityTime);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcQuantityTime);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_QUANTITY_VOLUME: {
+			IfcQuantityVolume ifcQuantityVolume = (IfcQuantityVolume) theEObject;
+			T result = caseIfcQuantityVolume(ifcQuantityVolume);
+			if (result == null)
+				result = caseIfcPhysicalSimpleQuantity(ifcQuantityVolume);
+			if (result == null)
+				result = caseIfcPhysicalQuantity(ifcQuantityVolume);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcQuantityVolume);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_QUANTITY_WEIGHT: {
+			IfcQuantityWeight ifcQuantityWeight = (IfcQuantityWeight) theEObject;
+			T result = caseIfcQuantityWeight(ifcQuantityWeight);
+			if (result == null)
+				result = caseIfcPhysicalSimpleQuantity(ifcQuantityWeight);
+			if (result == null)
+				result = caseIfcPhysicalQuantity(ifcQuantityWeight);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcQuantityWeight);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_RAILING: {
+			IfcRailing ifcRailing = (IfcRailing) theEObject;
+			T result = caseIfcRailing(ifcRailing);
+			if (result == null)
+				result = caseIfcBuildingElement(ifcRailing);
+			if (result == null)
+				result = caseIfcElement(ifcRailing);
+			if (result == null)
+				result = caseIfcProduct(ifcRailing);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcRailing);
+			if (result == null)
+				result = caseIfcObject(ifcRailing);
+			if (result == null)
+				result = caseIfcProductSelect(ifcRailing);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcRailing);
+			if (result == null)
+				result = caseIfcRoot(ifcRailing);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcRailing);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_RAILING_TYPE: {
+			IfcRailingType ifcRailingType = (IfcRailingType) theEObject;
+			T result = caseIfcRailingType(ifcRailingType);
+			if (result == null)
+				result = caseIfcBuildingElementType(ifcRailingType);
+			if (result == null)
+				result = caseIfcElementType(ifcRailingType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcRailingType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcRailingType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcRailingType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcRailingType);
+			if (result == null)
+				result = caseIfcRoot(ifcRailingType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcRailingType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_RAMP: {
+			IfcRamp ifcRamp = (IfcRamp) theEObject;
+			T result = caseIfcRamp(ifcRamp);
+			if (result == null)
+				result = caseIfcBuildingElement(ifcRamp);
+			if (result == null)
+				result = caseIfcElement(ifcRamp);
+			if (result == null)
+				result = caseIfcProduct(ifcRamp);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcRamp);
+			if (result == null)
+				result = caseIfcObject(ifcRamp);
+			if (result == null)
+				result = caseIfcProductSelect(ifcRamp);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcRamp);
+			if (result == null)
+				result = caseIfcRoot(ifcRamp);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcRamp);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_RAMP_FLIGHT: {
+			IfcRampFlight ifcRampFlight = (IfcRampFlight) theEObject;
+			T result = caseIfcRampFlight(ifcRampFlight);
+			if (result == null)
+				result = caseIfcBuildingElement(ifcRampFlight);
+			if (result == null)
+				result = caseIfcElement(ifcRampFlight);
+			if (result == null)
+				result = caseIfcProduct(ifcRampFlight);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcRampFlight);
+			if (result == null)
+				result = caseIfcObject(ifcRampFlight);
+			if (result == null)
+				result = caseIfcProductSelect(ifcRampFlight);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcRampFlight);
+			if (result == null)
+				result = caseIfcRoot(ifcRampFlight);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcRampFlight);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_RAMP_FLIGHT_TYPE: {
+			IfcRampFlightType ifcRampFlightType = (IfcRampFlightType) theEObject;
+			T result = caseIfcRampFlightType(ifcRampFlightType);
+			if (result == null)
+				result = caseIfcBuildingElementType(ifcRampFlightType);
+			if (result == null)
+				result = caseIfcElementType(ifcRampFlightType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcRampFlightType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcRampFlightType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcRampFlightType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcRampFlightType);
+			if (result == null)
+				result = caseIfcRoot(ifcRampFlightType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcRampFlightType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_RAMP_TYPE: {
+			IfcRampType ifcRampType = (IfcRampType) theEObject;
+			T result = caseIfcRampType(ifcRampType);
+			if (result == null)
+				result = caseIfcBuildingElementType(ifcRampType);
+			if (result == null)
+				result = caseIfcElementType(ifcRampType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcRampType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcRampType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcRampType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcRampType);
+			if (result == null)
+				result = caseIfcRoot(ifcRampType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcRampType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_RATIONAL_BSPLINE_CURVE_WITH_KNOTS: {
+			IfcRationalBSplineCurveWithKnots ifcRationalBSplineCurveWithKnots = (IfcRationalBSplineCurveWithKnots) theEObject;
+			T result = caseIfcRationalBSplineCurveWithKnots(ifcRationalBSplineCurveWithKnots);
+			if (result == null)
+				result = caseIfcBSplineCurveWithKnots(ifcRationalBSplineCurveWithKnots);
+			if (result == null)
+				result = caseIfcBSplineCurve(ifcRationalBSplineCurveWithKnots);
+			if (result == null)
+				result = caseIfcBoundedCurve(ifcRationalBSplineCurveWithKnots);
+			if (result == null)
+				result = caseIfcCurve(ifcRationalBSplineCurveWithKnots);
+			if (result == null)
+				result = caseIfcCurveOrEdgeCurve(ifcRationalBSplineCurveWithKnots);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcRationalBSplineCurveWithKnots);
+			if (result == null)
+				result = caseIfcGeometricSetSelect(ifcRationalBSplineCurveWithKnots);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcRationalBSplineCurveWithKnots);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcRationalBSplineCurveWithKnots);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_RATIONAL_BSPLINE_SURFACE_WITH_KNOTS: {
+			IfcRationalBSplineSurfaceWithKnots ifcRationalBSplineSurfaceWithKnots = (IfcRationalBSplineSurfaceWithKnots) theEObject;
+			T result = caseIfcRationalBSplineSurfaceWithKnots(ifcRationalBSplineSurfaceWithKnots);
+			if (result == null)
+				result = caseIfcBSplineSurfaceWithKnots(ifcRationalBSplineSurfaceWithKnots);
+			if (result == null)
+				result = caseIfcBSplineSurface(ifcRationalBSplineSurfaceWithKnots);
+			if (result == null)
+				result = caseIfcBoundedSurface(ifcRationalBSplineSurfaceWithKnots);
+			if (result == null)
+				result = caseIfcSurface(ifcRationalBSplineSurfaceWithKnots);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcRationalBSplineSurfaceWithKnots);
+			if (result == null)
+				result = caseIfcGeometricSetSelect(ifcRationalBSplineSurfaceWithKnots);
+			if (result == null)
+				result = caseIfcSurfaceOrFaceSurface(ifcRationalBSplineSurfaceWithKnots);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcRationalBSplineSurfaceWithKnots);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcRationalBSplineSurfaceWithKnots);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_RECTANGLE_HOLLOW_PROFILE_DEF: {
+			IfcRectangleHollowProfileDef ifcRectangleHollowProfileDef = (IfcRectangleHollowProfileDef) theEObject;
+			T result = caseIfcRectangleHollowProfileDef(ifcRectangleHollowProfileDef);
+			if (result == null)
+				result = caseIfcRectangleProfileDef(ifcRectangleHollowProfileDef);
+			if (result == null)
+				result = caseIfcParameterizedProfileDef(ifcRectangleHollowProfileDef);
+			if (result == null)
+				result = caseIfcProfileDef(ifcRectangleHollowProfileDef);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcRectangleHollowProfileDef);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_RECTANGLE_PROFILE_DEF: {
+			IfcRectangleProfileDef ifcRectangleProfileDef = (IfcRectangleProfileDef) theEObject;
+			T result = caseIfcRectangleProfileDef(ifcRectangleProfileDef);
+			if (result == null)
+				result = caseIfcParameterizedProfileDef(ifcRectangleProfileDef);
+			if (result == null)
+				result = caseIfcProfileDef(ifcRectangleProfileDef);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcRectangleProfileDef);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_RECTANGULAR_PYRAMID: {
+			IfcRectangularPyramid ifcRectangularPyramid = (IfcRectangularPyramid) theEObject;
+			T result = caseIfcRectangularPyramid(ifcRectangularPyramid);
+			if (result == null)
+				result = caseIfcCsgPrimitive3D(ifcRectangularPyramid);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcRectangularPyramid);
+			if (result == null)
+				result = caseIfcBooleanOperand(ifcRectangularPyramid);
+			if (result == null)
+				result = caseIfcCsgSelect(ifcRectangularPyramid);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcRectangularPyramid);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcRectangularPyramid);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_RECTANGULAR_TRIMMED_SURFACE: {
+			IfcRectangularTrimmedSurface ifcRectangularTrimmedSurface = (IfcRectangularTrimmedSurface) theEObject;
+			T result = caseIfcRectangularTrimmedSurface(ifcRectangularTrimmedSurface);
+			if (result == null)
+				result = caseIfcBoundedSurface(ifcRectangularTrimmedSurface);
+			if (result == null)
+				result = caseIfcSurface(ifcRectangularTrimmedSurface);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcRectangularTrimmedSurface);
+			if (result == null)
+				result = caseIfcGeometricSetSelect(ifcRectangularTrimmedSurface);
+			if (result == null)
+				result = caseIfcSurfaceOrFaceSurface(ifcRectangularTrimmedSurface);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcRectangularTrimmedSurface);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcRectangularTrimmedSurface);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_RECURRENCE_PATTERN: {
+			IfcRecurrencePattern ifcRecurrencePattern = (IfcRecurrencePattern) theEObject;
+			T result = caseIfcRecurrencePattern(ifcRecurrencePattern);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REFERENCE: {
+			IfcReference ifcReference = (IfcReference) theEObject;
+			T result = caseIfcReference(ifcReference);
+			if (result == null)
+				result = caseIfcAppliedValueSelect(ifcReference);
+			if (result == null)
+				result = caseIfcMetricValueSelect(ifcReference);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REGULAR_TIME_SERIES: {
+			IfcRegularTimeSeries ifcRegularTimeSeries = (IfcRegularTimeSeries) theEObject;
+			T result = caseIfcRegularTimeSeries(ifcRegularTimeSeries);
+			if (result == null)
+				result = caseIfcTimeSeries(ifcRegularTimeSeries);
+			if (result == null)
+				result = caseIfcMetricValueSelect(ifcRegularTimeSeries);
+			if (result == null)
+				result = caseIfcObjectReferenceSelect(ifcRegularTimeSeries);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcRegularTimeSeries);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REINFORCEMENT_BAR_PROPERTIES: {
+			IfcReinforcementBarProperties ifcReinforcementBarProperties = (IfcReinforcementBarProperties) theEObject;
+			T result = caseIfcReinforcementBarProperties(ifcReinforcementBarProperties);
+			if (result == null)
+				result = caseIfcPreDefinedProperties(ifcReinforcementBarProperties);
+			if (result == null)
+				result = caseIfcPropertyAbstraction(ifcReinforcementBarProperties);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcReinforcementBarProperties);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REINFORCEMENT_DEFINITION_PROPERTIES: {
+			IfcReinforcementDefinitionProperties ifcReinforcementDefinitionProperties = (IfcReinforcementDefinitionProperties) theEObject;
+			T result = caseIfcReinforcementDefinitionProperties(ifcReinforcementDefinitionProperties);
+			if (result == null)
+				result = caseIfcPreDefinedPropertySet(ifcReinforcementDefinitionProperties);
+			if (result == null)
+				result = caseIfcPropertySetDefinition(ifcReinforcementDefinitionProperties);
+			if (result == null)
+				result = caseIfcPropertyDefinition(ifcReinforcementDefinitionProperties);
+			if (result == null)
+				result = caseIfcPropertySetDefinitionSelect(ifcReinforcementDefinitionProperties);
+			if (result == null)
+				result = caseIfcRoot(ifcReinforcementDefinitionProperties);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcReinforcementDefinitionProperties);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REINFORCING_BAR: {
+			IfcReinforcingBar ifcReinforcingBar = (IfcReinforcingBar) theEObject;
+			T result = caseIfcReinforcingBar(ifcReinforcingBar);
+			if (result == null)
+				result = caseIfcReinforcingElement(ifcReinforcingBar);
+			if (result == null)
+				result = caseIfcElementComponent(ifcReinforcingBar);
+			if (result == null)
+				result = caseIfcElement(ifcReinforcingBar);
+			if (result == null)
+				result = caseIfcProduct(ifcReinforcingBar);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcReinforcingBar);
+			if (result == null)
+				result = caseIfcObject(ifcReinforcingBar);
+			if (result == null)
+				result = caseIfcProductSelect(ifcReinforcingBar);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcReinforcingBar);
+			if (result == null)
+				result = caseIfcRoot(ifcReinforcingBar);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcReinforcingBar);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REINFORCING_BAR_TYPE: {
+			IfcReinforcingBarType ifcReinforcingBarType = (IfcReinforcingBarType) theEObject;
+			T result = caseIfcReinforcingBarType(ifcReinforcingBarType);
+			if (result == null)
+				result = caseIfcReinforcingElementType(ifcReinforcingBarType);
+			if (result == null)
+				result = caseIfcElementComponentType(ifcReinforcingBarType);
+			if (result == null)
+				result = caseIfcElementType(ifcReinforcingBarType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcReinforcingBarType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcReinforcingBarType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcReinforcingBarType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcReinforcingBarType);
+			if (result == null)
+				result = caseIfcRoot(ifcReinforcingBarType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcReinforcingBarType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REINFORCING_ELEMENT: {
+			IfcReinforcingElement ifcReinforcingElement = (IfcReinforcingElement) theEObject;
+			T result = caseIfcReinforcingElement(ifcReinforcingElement);
+			if (result == null)
+				result = caseIfcElementComponent(ifcReinforcingElement);
+			if (result == null)
+				result = caseIfcElement(ifcReinforcingElement);
+			if (result == null)
+				result = caseIfcProduct(ifcReinforcingElement);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcReinforcingElement);
+			if (result == null)
+				result = caseIfcObject(ifcReinforcingElement);
+			if (result == null)
+				result = caseIfcProductSelect(ifcReinforcingElement);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcReinforcingElement);
+			if (result == null)
+				result = caseIfcRoot(ifcReinforcingElement);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcReinforcingElement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REINFORCING_ELEMENT_TYPE: {
+			IfcReinforcingElementType ifcReinforcingElementType = (IfcReinforcingElementType) theEObject;
+			T result = caseIfcReinforcingElementType(ifcReinforcingElementType);
+			if (result == null)
+				result = caseIfcElementComponentType(ifcReinforcingElementType);
+			if (result == null)
+				result = caseIfcElementType(ifcReinforcingElementType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcReinforcingElementType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcReinforcingElementType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcReinforcingElementType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcReinforcingElementType);
+			if (result == null)
+				result = caseIfcRoot(ifcReinforcingElementType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcReinforcingElementType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REINFORCING_MESH: {
+			IfcReinforcingMesh ifcReinforcingMesh = (IfcReinforcingMesh) theEObject;
+			T result = caseIfcReinforcingMesh(ifcReinforcingMesh);
+			if (result == null)
+				result = caseIfcReinforcingElement(ifcReinforcingMesh);
+			if (result == null)
+				result = caseIfcElementComponent(ifcReinforcingMesh);
+			if (result == null)
+				result = caseIfcElement(ifcReinforcingMesh);
+			if (result == null)
+				result = caseIfcProduct(ifcReinforcingMesh);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcReinforcingMesh);
+			if (result == null)
+				result = caseIfcObject(ifcReinforcingMesh);
+			if (result == null)
+				result = caseIfcProductSelect(ifcReinforcingMesh);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcReinforcingMesh);
+			if (result == null)
+				result = caseIfcRoot(ifcReinforcingMesh);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcReinforcingMesh);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REINFORCING_MESH_TYPE: {
+			IfcReinforcingMeshType ifcReinforcingMeshType = (IfcReinforcingMeshType) theEObject;
+			T result = caseIfcReinforcingMeshType(ifcReinforcingMeshType);
+			if (result == null)
+				result = caseIfcReinforcingElementType(ifcReinforcingMeshType);
+			if (result == null)
+				result = caseIfcElementComponentType(ifcReinforcingMeshType);
+			if (result == null)
+				result = caseIfcElementType(ifcReinforcingMeshType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcReinforcingMeshType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcReinforcingMeshType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcReinforcingMeshType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcReinforcingMeshType);
+			if (result == null)
+				result = caseIfcRoot(ifcReinforcingMeshType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcReinforcingMeshType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_AGGREGATES: {
+			IfcRelAggregates ifcRelAggregates = (IfcRelAggregates) theEObject;
+			T result = caseIfcRelAggregates(ifcRelAggregates);
+			if (result == null)
+				result = caseIfcRelDecomposes(ifcRelAggregates);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelAggregates);
+			if (result == null)
+				result = caseIfcRoot(ifcRelAggregates);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_ASSIGNS: {
+			IfcRelAssigns ifcRelAssigns = (IfcRelAssigns) theEObject;
+			T result = caseIfcRelAssigns(ifcRelAssigns);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelAssigns);
+			if (result == null)
+				result = caseIfcRoot(ifcRelAssigns);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_ASSIGNS_TO_ACTOR: {
+			IfcRelAssignsToActor ifcRelAssignsToActor = (IfcRelAssignsToActor) theEObject;
+			T result = caseIfcRelAssignsToActor(ifcRelAssignsToActor);
+			if (result == null)
+				result = caseIfcRelAssigns(ifcRelAssignsToActor);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelAssignsToActor);
+			if (result == null)
+				result = caseIfcRoot(ifcRelAssignsToActor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_ASSIGNS_TO_CONTROL: {
+			IfcRelAssignsToControl ifcRelAssignsToControl = (IfcRelAssignsToControl) theEObject;
+			T result = caseIfcRelAssignsToControl(ifcRelAssignsToControl);
+			if (result == null)
+				result = caseIfcRelAssigns(ifcRelAssignsToControl);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelAssignsToControl);
+			if (result == null)
+				result = caseIfcRoot(ifcRelAssignsToControl);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_ASSIGNS_TO_GROUP: {
+			IfcRelAssignsToGroup ifcRelAssignsToGroup = (IfcRelAssignsToGroup) theEObject;
+			T result = caseIfcRelAssignsToGroup(ifcRelAssignsToGroup);
+			if (result == null)
+				result = caseIfcRelAssigns(ifcRelAssignsToGroup);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelAssignsToGroup);
+			if (result == null)
+				result = caseIfcRoot(ifcRelAssignsToGroup);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_ASSIGNS_TO_GROUP_BY_FACTOR: {
+			IfcRelAssignsToGroupByFactor ifcRelAssignsToGroupByFactor = (IfcRelAssignsToGroupByFactor) theEObject;
+			T result = caseIfcRelAssignsToGroupByFactor(ifcRelAssignsToGroupByFactor);
+			if (result == null)
+				result = caseIfcRelAssignsToGroup(ifcRelAssignsToGroupByFactor);
+			if (result == null)
+				result = caseIfcRelAssigns(ifcRelAssignsToGroupByFactor);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelAssignsToGroupByFactor);
+			if (result == null)
+				result = caseIfcRoot(ifcRelAssignsToGroupByFactor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_ASSIGNS_TO_PROCESS: {
+			IfcRelAssignsToProcess ifcRelAssignsToProcess = (IfcRelAssignsToProcess) theEObject;
+			T result = caseIfcRelAssignsToProcess(ifcRelAssignsToProcess);
+			if (result == null)
+				result = caseIfcRelAssigns(ifcRelAssignsToProcess);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelAssignsToProcess);
+			if (result == null)
+				result = caseIfcRoot(ifcRelAssignsToProcess);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_ASSIGNS_TO_PRODUCT: {
+			IfcRelAssignsToProduct ifcRelAssignsToProduct = (IfcRelAssignsToProduct) theEObject;
+			T result = caseIfcRelAssignsToProduct(ifcRelAssignsToProduct);
+			if (result == null)
+				result = caseIfcRelAssigns(ifcRelAssignsToProduct);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelAssignsToProduct);
+			if (result == null)
+				result = caseIfcRoot(ifcRelAssignsToProduct);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_ASSIGNS_TO_RESOURCE: {
+			IfcRelAssignsToResource ifcRelAssignsToResource = (IfcRelAssignsToResource) theEObject;
+			T result = caseIfcRelAssignsToResource(ifcRelAssignsToResource);
+			if (result == null)
+				result = caseIfcRelAssigns(ifcRelAssignsToResource);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelAssignsToResource);
+			if (result == null)
+				result = caseIfcRoot(ifcRelAssignsToResource);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_ASSOCIATES: {
+			IfcRelAssociates ifcRelAssociates = (IfcRelAssociates) theEObject;
+			T result = caseIfcRelAssociates(ifcRelAssociates);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelAssociates);
+			if (result == null)
+				result = caseIfcRoot(ifcRelAssociates);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_ASSOCIATES_APPROVAL: {
+			IfcRelAssociatesApproval ifcRelAssociatesApproval = (IfcRelAssociatesApproval) theEObject;
+			T result = caseIfcRelAssociatesApproval(ifcRelAssociatesApproval);
+			if (result == null)
+				result = caseIfcRelAssociates(ifcRelAssociatesApproval);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelAssociatesApproval);
+			if (result == null)
+				result = caseIfcRoot(ifcRelAssociatesApproval);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_ASSOCIATES_CLASSIFICATION: {
+			IfcRelAssociatesClassification ifcRelAssociatesClassification = (IfcRelAssociatesClassification) theEObject;
+			T result = caseIfcRelAssociatesClassification(ifcRelAssociatesClassification);
+			if (result == null)
+				result = caseIfcRelAssociates(ifcRelAssociatesClassification);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelAssociatesClassification);
+			if (result == null)
+				result = caseIfcRoot(ifcRelAssociatesClassification);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_ASSOCIATES_CONSTRAINT: {
+			IfcRelAssociatesConstraint ifcRelAssociatesConstraint = (IfcRelAssociatesConstraint) theEObject;
+			T result = caseIfcRelAssociatesConstraint(ifcRelAssociatesConstraint);
+			if (result == null)
+				result = caseIfcRelAssociates(ifcRelAssociatesConstraint);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelAssociatesConstraint);
+			if (result == null)
+				result = caseIfcRoot(ifcRelAssociatesConstraint);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_ASSOCIATES_DOCUMENT: {
+			IfcRelAssociatesDocument ifcRelAssociatesDocument = (IfcRelAssociatesDocument) theEObject;
+			T result = caseIfcRelAssociatesDocument(ifcRelAssociatesDocument);
+			if (result == null)
+				result = caseIfcRelAssociates(ifcRelAssociatesDocument);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelAssociatesDocument);
+			if (result == null)
+				result = caseIfcRoot(ifcRelAssociatesDocument);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_ASSOCIATES_LIBRARY: {
+			IfcRelAssociatesLibrary ifcRelAssociatesLibrary = (IfcRelAssociatesLibrary) theEObject;
+			T result = caseIfcRelAssociatesLibrary(ifcRelAssociatesLibrary);
+			if (result == null)
+				result = caseIfcRelAssociates(ifcRelAssociatesLibrary);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelAssociatesLibrary);
+			if (result == null)
+				result = caseIfcRoot(ifcRelAssociatesLibrary);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_ASSOCIATES_MATERIAL: {
+			IfcRelAssociatesMaterial ifcRelAssociatesMaterial = (IfcRelAssociatesMaterial) theEObject;
+			T result = caseIfcRelAssociatesMaterial(ifcRelAssociatesMaterial);
+			if (result == null)
+				result = caseIfcRelAssociates(ifcRelAssociatesMaterial);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelAssociatesMaterial);
+			if (result == null)
+				result = caseIfcRoot(ifcRelAssociatesMaterial);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_CONNECTS: {
+			IfcRelConnects ifcRelConnects = (IfcRelConnects) theEObject;
+			T result = caseIfcRelConnects(ifcRelConnects);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelConnects);
+			if (result == null)
+				result = caseIfcRoot(ifcRelConnects);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_CONNECTS_ELEMENTS: {
+			IfcRelConnectsElements ifcRelConnectsElements = (IfcRelConnectsElements) theEObject;
+			T result = caseIfcRelConnectsElements(ifcRelConnectsElements);
+			if (result == null)
+				result = caseIfcRelConnects(ifcRelConnectsElements);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelConnectsElements);
+			if (result == null)
+				result = caseIfcRoot(ifcRelConnectsElements);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_CONNECTS_PATH_ELEMENTS: {
+			IfcRelConnectsPathElements ifcRelConnectsPathElements = (IfcRelConnectsPathElements) theEObject;
+			T result = caseIfcRelConnectsPathElements(ifcRelConnectsPathElements);
+			if (result == null)
+				result = caseIfcRelConnectsElements(ifcRelConnectsPathElements);
+			if (result == null)
+				result = caseIfcRelConnects(ifcRelConnectsPathElements);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelConnectsPathElements);
+			if (result == null)
+				result = caseIfcRoot(ifcRelConnectsPathElements);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_CONNECTS_PORT_TO_ELEMENT: {
+			IfcRelConnectsPortToElement ifcRelConnectsPortToElement = (IfcRelConnectsPortToElement) theEObject;
+			T result = caseIfcRelConnectsPortToElement(ifcRelConnectsPortToElement);
+			if (result == null)
+				result = caseIfcRelConnects(ifcRelConnectsPortToElement);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelConnectsPortToElement);
+			if (result == null)
+				result = caseIfcRoot(ifcRelConnectsPortToElement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_CONNECTS_PORTS: {
+			IfcRelConnectsPorts ifcRelConnectsPorts = (IfcRelConnectsPorts) theEObject;
+			T result = caseIfcRelConnectsPorts(ifcRelConnectsPorts);
+			if (result == null)
+				result = caseIfcRelConnects(ifcRelConnectsPorts);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelConnectsPorts);
+			if (result == null)
+				result = caseIfcRoot(ifcRelConnectsPorts);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_CONNECTS_STRUCTURAL_ACTIVITY: {
+			IfcRelConnectsStructuralActivity ifcRelConnectsStructuralActivity = (IfcRelConnectsStructuralActivity) theEObject;
+			T result = caseIfcRelConnectsStructuralActivity(ifcRelConnectsStructuralActivity);
+			if (result == null)
+				result = caseIfcRelConnects(ifcRelConnectsStructuralActivity);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelConnectsStructuralActivity);
+			if (result == null)
+				result = caseIfcRoot(ifcRelConnectsStructuralActivity);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_CONNECTS_STRUCTURAL_MEMBER: {
+			IfcRelConnectsStructuralMember ifcRelConnectsStructuralMember = (IfcRelConnectsStructuralMember) theEObject;
+			T result = caseIfcRelConnectsStructuralMember(ifcRelConnectsStructuralMember);
+			if (result == null)
+				result = caseIfcRelConnects(ifcRelConnectsStructuralMember);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelConnectsStructuralMember);
+			if (result == null)
+				result = caseIfcRoot(ifcRelConnectsStructuralMember);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_CONNECTS_WITH_ECCENTRICITY: {
+			IfcRelConnectsWithEccentricity ifcRelConnectsWithEccentricity = (IfcRelConnectsWithEccentricity) theEObject;
+			T result = caseIfcRelConnectsWithEccentricity(ifcRelConnectsWithEccentricity);
+			if (result == null)
+				result = caseIfcRelConnectsStructuralMember(ifcRelConnectsWithEccentricity);
+			if (result == null)
+				result = caseIfcRelConnects(ifcRelConnectsWithEccentricity);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelConnectsWithEccentricity);
+			if (result == null)
+				result = caseIfcRoot(ifcRelConnectsWithEccentricity);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_CONNECTS_WITH_REALIZING_ELEMENTS: {
+			IfcRelConnectsWithRealizingElements ifcRelConnectsWithRealizingElements = (IfcRelConnectsWithRealizingElements) theEObject;
+			T result = caseIfcRelConnectsWithRealizingElements(ifcRelConnectsWithRealizingElements);
+			if (result == null)
+				result = caseIfcRelConnectsElements(ifcRelConnectsWithRealizingElements);
+			if (result == null)
+				result = caseIfcRelConnects(ifcRelConnectsWithRealizingElements);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelConnectsWithRealizingElements);
+			if (result == null)
+				result = caseIfcRoot(ifcRelConnectsWithRealizingElements);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_CONTAINED_IN_SPATIAL_STRUCTURE: {
+			IfcRelContainedInSpatialStructure ifcRelContainedInSpatialStructure = (IfcRelContainedInSpatialStructure) theEObject;
+			T result = caseIfcRelContainedInSpatialStructure(ifcRelContainedInSpatialStructure);
+			if (result == null)
+				result = caseIfcRelConnects(ifcRelContainedInSpatialStructure);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelContainedInSpatialStructure);
+			if (result == null)
+				result = caseIfcRoot(ifcRelContainedInSpatialStructure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_COVERS_BLDG_ELEMENTS: {
+			IfcRelCoversBldgElements ifcRelCoversBldgElements = (IfcRelCoversBldgElements) theEObject;
+			T result = caseIfcRelCoversBldgElements(ifcRelCoversBldgElements);
+			if (result == null)
+				result = caseIfcRelConnects(ifcRelCoversBldgElements);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelCoversBldgElements);
+			if (result == null)
+				result = caseIfcRoot(ifcRelCoversBldgElements);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_COVERS_SPACES: {
+			IfcRelCoversSpaces ifcRelCoversSpaces = (IfcRelCoversSpaces) theEObject;
+			T result = caseIfcRelCoversSpaces(ifcRelCoversSpaces);
+			if (result == null)
+				result = caseIfcRelConnects(ifcRelCoversSpaces);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelCoversSpaces);
+			if (result == null)
+				result = caseIfcRoot(ifcRelCoversSpaces);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_DECLARES: {
+			IfcRelDeclares ifcRelDeclares = (IfcRelDeclares) theEObject;
+			T result = caseIfcRelDeclares(ifcRelDeclares);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelDeclares);
+			if (result == null)
+				result = caseIfcRoot(ifcRelDeclares);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_DECOMPOSES: {
+			IfcRelDecomposes ifcRelDecomposes = (IfcRelDecomposes) theEObject;
+			T result = caseIfcRelDecomposes(ifcRelDecomposes);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelDecomposes);
+			if (result == null)
+				result = caseIfcRoot(ifcRelDecomposes);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_DEFINES: {
+			IfcRelDefines ifcRelDefines = (IfcRelDefines) theEObject;
+			T result = caseIfcRelDefines(ifcRelDefines);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelDefines);
+			if (result == null)
+				result = caseIfcRoot(ifcRelDefines);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_DEFINES_BY_OBJECT: {
+			IfcRelDefinesByObject ifcRelDefinesByObject = (IfcRelDefinesByObject) theEObject;
+			T result = caseIfcRelDefinesByObject(ifcRelDefinesByObject);
+			if (result == null)
+				result = caseIfcRelDefines(ifcRelDefinesByObject);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelDefinesByObject);
+			if (result == null)
+				result = caseIfcRoot(ifcRelDefinesByObject);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_DEFINES_BY_PROPERTIES: {
+			IfcRelDefinesByProperties ifcRelDefinesByProperties = (IfcRelDefinesByProperties) theEObject;
+			T result = caseIfcRelDefinesByProperties(ifcRelDefinesByProperties);
+			if (result == null)
+				result = caseIfcRelDefines(ifcRelDefinesByProperties);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelDefinesByProperties);
+			if (result == null)
+				result = caseIfcRoot(ifcRelDefinesByProperties);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_DEFINES_BY_TEMPLATE: {
+			IfcRelDefinesByTemplate ifcRelDefinesByTemplate = (IfcRelDefinesByTemplate) theEObject;
+			T result = caseIfcRelDefinesByTemplate(ifcRelDefinesByTemplate);
+			if (result == null)
+				result = caseIfcRelDefines(ifcRelDefinesByTemplate);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelDefinesByTemplate);
+			if (result == null)
+				result = caseIfcRoot(ifcRelDefinesByTemplate);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_DEFINES_BY_TYPE: {
+			IfcRelDefinesByType ifcRelDefinesByType = (IfcRelDefinesByType) theEObject;
+			T result = caseIfcRelDefinesByType(ifcRelDefinesByType);
+			if (result == null)
+				result = caseIfcRelDefines(ifcRelDefinesByType);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelDefinesByType);
+			if (result == null)
+				result = caseIfcRoot(ifcRelDefinesByType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_FILLS_ELEMENT: {
+			IfcRelFillsElement ifcRelFillsElement = (IfcRelFillsElement) theEObject;
+			T result = caseIfcRelFillsElement(ifcRelFillsElement);
+			if (result == null)
+				result = caseIfcRelConnects(ifcRelFillsElement);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelFillsElement);
+			if (result == null)
+				result = caseIfcRoot(ifcRelFillsElement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_FLOW_CONTROL_ELEMENTS: {
+			IfcRelFlowControlElements ifcRelFlowControlElements = (IfcRelFlowControlElements) theEObject;
+			T result = caseIfcRelFlowControlElements(ifcRelFlowControlElements);
+			if (result == null)
+				result = caseIfcRelConnects(ifcRelFlowControlElements);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelFlowControlElements);
+			if (result == null)
+				result = caseIfcRoot(ifcRelFlowControlElements);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_INTERFERES_ELEMENTS: {
+			IfcRelInterferesElements ifcRelInterferesElements = (IfcRelInterferesElements) theEObject;
+			T result = caseIfcRelInterferesElements(ifcRelInterferesElements);
+			if (result == null)
+				result = caseIfcRelConnects(ifcRelInterferesElements);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelInterferesElements);
+			if (result == null)
+				result = caseIfcRoot(ifcRelInterferesElements);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_NESTS: {
+			IfcRelNests ifcRelNests = (IfcRelNests) theEObject;
+			T result = caseIfcRelNests(ifcRelNests);
+			if (result == null)
+				result = caseIfcRelDecomposes(ifcRelNests);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelNests);
+			if (result == null)
+				result = caseIfcRoot(ifcRelNests);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_PROJECTS_ELEMENT: {
+			IfcRelProjectsElement ifcRelProjectsElement = (IfcRelProjectsElement) theEObject;
+			T result = caseIfcRelProjectsElement(ifcRelProjectsElement);
+			if (result == null)
+				result = caseIfcRelDecomposes(ifcRelProjectsElement);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelProjectsElement);
+			if (result == null)
+				result = caseIfcRoot(ifcRelProjectsElement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_REFERENCED_IN_SPATIAL_STRUCTURE: {
+			IfcRelReferencedInSpatialStructure ifcRelReferencedInSpatialStructure = (IfcRelReferencedInSpatialStructure) theEObject;
+			T result = caseIfcRelReferencedInSpatialStructure(ifcRelReferencedInSpatialStructure);
+			if (result == null)
+				result = caseIfcRelConnects(ifcRelReferencedInSpatialStructure);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelReferencedInSpatialStructure);
+			if (result == null)
+				result = caseIfcRoot(ifcRelReferencedInSpatialStructure);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_SEQUENCE: {
+			IfcRelSequence ifcRelSequence = (IfcRelSequence) theEObject;
+			T result = caseIfcRelSequence(ifcRelSequence);
+			if (result == null)
+				result = caseIfcRelConnects(ifcRelSequence);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelSequence);
+			if (result == null)
+				result = caseIfcRoot(ifcRelSequence);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_SERVICES_BUILDINGS: {
+			IfcRelServicesBuildings ifcRelServicesBuildings = (IfcRelServicesBuildings) theEObject;
+			T result = caseIfcRelServicesBuildings(ifcRelServicesBuildings);
+			if (result == null)
+				result = caseIfcRelConnects(ifcRelServicesBuildings);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelServicesBuildings);
+			if (result == null)
+				result = caseIfcRoot(ifcRelServicesBuildings);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_SPACE_BOUNDARY: {
+			IfcRelSpaceBoundary ifcRelSpaceBoundary = (IfcRelSpaceBoundary) theEObject;
+			T result = caseIfcRelSpaceBoundary(ifcRelSpaceBoundary);
+			if (result == null)
+				result = caseIfcRelConnects(ifcRelSpaceBoundary);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelSpaceBoundary);
+			if (result == null)
+				result = caseIfcRoot(ifcRelSpaceBoundary);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_SPACE_BOUNDARY1ST_LEVEL: {
+			IfcRelSpaceBoundary1stLevel ifcRelSpaceBoundary1stLevel = (IfcRelSpaceBoundary1stLevel) theEObject;
+			T result = caseIfcRelSpaceBoundary1stLevel(ifcRelSpaceBoundary1stLevel);
+			if (result == null)
+				result = caseIfcRelSpaceBoundary(ifcRelSpaceBoundary1stLevel);
+			if (result == null)
+				result = caseIfcRelConnects(ifcRelSpaceBoundary1stLevel);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelSpaceBoundary1stLevel);
+			if (result == null)
+				result = caseIfcRoot(ifcRelSpaceBoundary1stLevel);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_SPACE_BOUNDARY2ND_LEVEL: {
+			IfcRelSpaceBoundary2ndLevel ifcRelSpaceBoundary2ndLevel = (IfcRelSpaceBoundary2ndLevel) theEObject;
+			T result = caseIfcRelSpaceBoundary2ndLevel(ifcRelSpaceBoundary2ndLevel);
+			if (result == null)
+				result = caseIfcRelSpaceBoundary1stLevel(ifcRelSpaceBoundary2ndLevel);
+			if (result == null)
+				result = caseIfcRelSpaceBoundary(ifcRelSpaceBoundary2ndLevel);
+			if (result == null)
+				result = caseIfcRelConnects(ifcRelSpaceBoundary2ndLevel);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelSpaceBoundary2ndLevel);
+			if (result == null)
+				result = caseIfcRoot(ifcRelSpaceBoundary2ndLevel);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REL_VOIDS_ELEMENT: {
+			IfcRelVoidsElement ifcRelVoidsElement = (IfcRelVoidsElement) theEObject;
+			T result = caseIfcRelVoidsElement(ifcRelVoidsElement);
+			if (result == null)
+				result = caseIfcRelDecomposes(ifcRelVoidsElement);
+			if (result == null)
+				result = caseIfcRelationship(ifcRelVoidsElement);
+			if (result == null)
+				result = caseIfcRoot(ifcRelVoidsElement);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_RELATIONSHIP: {
+			IfcRelationship ifcRelationship = (IfcRelationship) theEObject;
+			T result = caseIfcRelationship(ifcRelationship);
+			if (result == null)
+				result = caseIfcRoot(ifcRelationship);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REPARAMETRISED_COMPOSITE_CURVE_SEGMENT: {
+			IfcReparametrisedCompositeCurveSegment ifcReparametrisedCompositeCurveSegment = (IfcReparametrisedCompositeCurveSegment) theEObject;
+			T result = caseIfcReparametrisedCompositeCurveSegment(ifcReparametrisedCompositeCurveSegment);
+			if (result == null)
+				result = caseIfcCompositeCurveSegment(ifcReparametrisedCompositeCurveSegment);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcReparametrisedCompositeCurveSegment);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcReparametrisedCompositeCurveSegment);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcReparametrisedCompositeCurveSegment);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REPRESENTATION: {
+			IfcRepresentation ifcRepresentation = (IfcRepresentation) theEObject;
+			T result = caseIfcRepresentation(ifcRepresentation);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcRepresentation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REPRESENTATION_CONTEXT: {
+			IfcRepresentationContext ifcRepresentationContext = (IfcRepresentationContext) theEObject;
+			T result = caseIfcRepresentationContext(ifcRepresentationContext);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REPRESENTATION_ITEM: {
+			IfcRepresentationItem ifcRepresentationItem = (IfcRepresentationItem) theEObject;
+			T result = caseIfcRepresentationItem(ifcRepresentationItem);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcRepresentationItem);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REPRESENTATION_MAP: {
+			IfcRepresentationMap ifcRepresentationMap = (IfcRepresentationMap) theEObject;
+			T result = caseIfcRepresentationMap(ifcRepresentationMap);
+			if (result == null)
+				result = caseIfcProductRepresentationSelect(ifcRepresentationMap);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_RESOURCE: {
+			IfcResource ifcResource = (IfcResource) theEObject;
+			T result = caseIfcResource(ifcResource);
+			if (result == null)
+				result = caseIfcObject(ifcResource);
+			if (result == null)
+				result = caseIfcResourceSelect(ifcResource);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcResource);
+			if (result == null)
+				result = caseIfcRoot(ifcResource);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcResource);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_RESOURCE_APPROVAL_RELATIONSHIP: {
+			IfcResourceApprovalRelationship ifcResourceApprovalRelationship = (IfcResourceApprovalRelationship) theEObject;
+			T result = caseIfcResourceApprovalRelationship(ifcResourceApprovalRelationship);
+			if (result == null)
+				result = caseIfcResourceLevelRelationship(ifcResourceApprovalRelationship);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_RESOURCE_CONSTRAINT_RELATIONSHIP: {
+			IfcResourceConstraintRelationship ifcResourceConstraintRelationship = (IfcResourceConstraintRelationship) theEObject;
+			T result = caseIfcResourceConstraintRelationship(ifcResourceConstraintRelationship);
+			if (result == null)
+				result = caseIfcResourceLevelRelationship(ifcResourceConstraintRelationship);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_RESOURCE_LEVEL_RELATIONSHIP: {
+			IfcResourceLevelRelationship ifcResourceLevelRelationship = (IfcResourceLevelRelationship) theEObject;
+			T result = caseIfcResourceLevelRelationship(ifcResourceLevelRelationship);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_RESOURCE_TIME: {
+			IfcResourceTime ifcResourceTime = (IfcResourceTime) theEObject;
+			T result = caseIfcResourceTime(ifcResourceTime);
+			if (result == null)
+				result = caseIfcSchedulingTime(ifcResourceTime);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REVOLVED_AREA_SOLID: {
+			IfcRevolvedAreaSolid ifcRevolvedAreaSolid = (IfcRevolvedAreaSolid) theEObject;
+			T result = caseIfcRevolvedAreaSolid(ifcRevolvedAreaSolid);
+			if (result == null)
+				result = caseIfcSweptAreaSolid(ifcRevolvedAreaSolid);
+			if (result == null)
+				result = caseIfcSolidModel(ifcRevolvedAreaSolid);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcRevolvedAreaSolid);
+			if (result == null)
+				result = caseIfcBooleanOperand(ifcRevolvedAreaSolid);
+			if (result == null)
+				result = caseIfcSolidOrShell(ifcRevolvedAreaSolid);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcRevolvedAreaSolid);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcRevolvedAreaSolid);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_REVOLVED_AREA_SOLID_TAPERED: {
+			IfcRevolvedAreaSolidTapered ifcRevolvedAreaSolidTapered = (IfcRevolvedAreaSolidTapered) theEObject;
+			T result = caseIfcRevolvedAreaSolidTapered(ifcRevolvedAreaSolidTapered);
+			if (result == null)
+				result = caseIfcRevolvedAreaSolid(ifcRevolvedAreaSolidTapered);
+			if (result == null)
+				result = caseIfcSweptAreaSolid(ifcRevolvedAreaSolidTapered);
+			if (result == null)
+				result = caseIfcSolidModel(ifcRevolvedAreaSolidTapered);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcRevolvedAreaSolidTapered);
+			if (result == null)
+				result = caseIfcBooleanOperand(ifcRevolvedAreaSolidTapered);
+			if (result == null)
+				result = caseIfcSolidOrShell(ifcRevolvedAreaSolidTapered);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcRevolvedAreaSolidTapered);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcRevolvedAreaSolidTapered);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_RIGHT_CIRCULAR_CONE: {
+			IfcRightCircularCone ifcRightCircularCone = (IfcRightCircularCone) theEObject;
+			T result = caseIfcRightCircularCone(ifcRightCircularCone);
+			if (result == null)
+				result = caseIfcCsgPrimitive3D(ifcRightCircularCone);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcRightCircularCone);
+			if (result == null)
+				result = caseIfcBooleanOperand(ifcRightCircularCone);
+			if (result == null)
+				result = caseIfcCsgSelect(ifcRightCircularCone);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcRightCircularCone);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcRightCircularCone);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_RIGHT_CIRCULAR_CYLINDER: {
+			IfcRightCircularCylinder ifcRightCircularCylinder = (IfcRightCircularCylinder) theEObject;
+			T result = caseIfcRightCircularCylinder(ifcRightCircularCylinder);
+			if (result == null)
+				result = caseIfcCsgPrimitive3D(ifcRightCircularCylinder);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcRightCircularCylinder);
+			if (result == null)
+				result = caseIfcBooleanOperand(ifcRightCircularCylinder);
+			if (result == null)
+				result = caseIfcCsgSelect(ifcRightCircularCylinder);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcRightCircularCylinder);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcRightCircularCylinder);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_ROOF: {
+			IfcRoof ifcRoof = (IfcRoof) theEObject;
+			T result = caseIfcRoof(ifcRoof);
+			if (result == null)
+				result = caseIfcBuildingElement(ifcRoof);
+			if (result == null)
+				result = caseIfcElement(ifcRoof);
+			if (result == null)
+				result = caseIfcProduct(ifcRoof);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcRoof);
+			if (result == null)
+				result = caseIfcObject(ifcRoof);
+			if (result == null)
+				result = caseIfcProductSelect(ifcRoof);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcRoof);
+			if (result == null)
+				result = caseIfcRoot(ifcRoof);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcRoof);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_ROOF_TYPE: {
+			IfcRoofType ifcRoofType = (IfcRoofType) theEObject;
+			T result = caseIfcRoofType(ifcRoofType);
+			if (result == null)
+				result = caseIfcBuildingElementType(ifcRoofType);
+			if (result == null)
+				result = caseIfcElementType(ifcRoofType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcRoofType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcRoofType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcRoofType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcRoofType);
+			if (result == null)
+				result = caseIfcRoot(ifcRoofType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcRoofType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_ROOT: {
+			IfcRoot ifcRoot = (IfcRoot) theEObject;
+			T result = caseIfcRoot(ifcRoot);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_ROUNDED_RECTANGLE_PROFILE_DEF: {
+			IfcRoundedRectangleProfileDef ifcRoundedRectangleProfileDef = (IfcRoundedRectangleProfileDef) theEObject;
+			T result = caseIfcRoundedRectangleProfileDef(ifcRoundedRectangleProfileDef);
+			if (result == null)
+				result = caseIfcRectangleProfileDef(ifcRoundedRectangleProfileDef);
+			if (result == null)
+				result = caseIfcParameterizedProfileDef(ifcRoundedRectangleProfileDef);
+			if (result == null)
+				result = caseIfcProfileDef(ifcRoundedRectangleProfileDef);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcRoundedRectangleProfileDef);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SI_UNIT: {
+			IfcSIUnit ifcSIUnit = (IfcSIUnit) theEObject;
+			T result = caseIfcSIUnit(ifcSIUnit);
+			if (result == null)
+				result = caseIfcNamedUnit(ifcSIUnit);
+			if (result == null)
+				result = caseIfcUnit(ifcSIUnit);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SANITARY_TERMINAL: {
+			IfcSanitaryTerminal ifcSanitaryTerminal = (IfcSanitaryTerminal) theEObject;
+			T result = caseIfcSanitaryTerminal(ifcSanitaryTerminal);
+			if (result == null)
+				result = caseIfcFlowTerminal(ifcSanitaryTerminal);
+			if (result == null)
+				result = caseIfcDistributionFlowElement(ifcSanitaryTerminal);
+			if (result == null)
+				result = caseIfcDistributionElement(ifcSanitaryTerminal);
+			if (result == null)
+				result = caseIfcElement(ifcSanitaryTerminal);
+			if (result == null)
+				result = caseIfcProduct(ifcSanitaryTerminal);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcSanitaryTerminal);
+			if (result == null)
+				result = caseIfcObject(ifcSanitaryTerminal);
+			if (result == null)
+				result = caseIfcProductSelect(ifcSanitaryTerminal);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcSanitaryTerminal);
+			if (result == null)
+				result = caseIfcRoot(ifcSanitaryTerminal);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcSanitaryTerminal);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SANITARY_TERMINAL_TYPE: {
+			IfcSanitaryTerminalType ifcSanitaryTerminalType = (IfcSanitaryTerminalType) theEObject;
+			T result = caseIfcSanitaryTerminalType(ifcSanitaryTerminalType);
+			if (result == null)
+				result = caseIfcFlowTerminalType(ifcSanitaryTerminalType);
+			if (result == null)
+				result = caseIfcDistributionFlowElementType(ifcSanitaryTerminalType);
+			if (result == null)
+				result = caseIfcDistributionElementType(ifcSanitaryTerminalType);
+			if (result == null)
+				result = caseIfcElementType(ifcSanitaryTerminalType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcSanitaryTerminalType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcSanitaryTerminalType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcSanitaryTerminalType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcSanitaryTerminalType);
+			if (result == null)
+				result = caseIfcRoot(ifcSanitaryTerminalType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcSanitaryTerminalType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SCHEDULING_TIME: {
+			IfcSchedulingTime ifcSchedulingTime = (IfcSchedulingTime) theEObject;
+			T result = caseIfcSchedulingTime(ifcSchedulingTime);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SEAM_CURVE: {
+			IfcSeamCurve ifcSeamCurve = (IfcSeamCurve) theEObject;
+			T result = caseIfcSeamCurve(ifcSeamCurve);
+			if (result == null)
+				result = caseIfcSurfaceCurve(ifcSeamCurve);
+			if (result == null)
+				result = caseIfcCurve(ifcSeamCurve);
+			if (result == null)
+				result = caseIfcCurveOnSurface(ifcSeamCurve);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcSeamCurve);
+			if (result == null)
+				result = caseIfcGeometricSetSelect(ifcSeamCurve);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcSeamCurve);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcSeamCurve);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SECTION_PROPERTIES: {
+			IfcSectionProperties ifcSectionProperties = (IfcSectionProperties) theEObject;
+			T result = caseIfcSectionProperties(ifcSectionProperties);
+			if (result == null)
+				result = caseIfcPreDefinedProperties(ifcSectionProperties);
+			if (result == null)
+				result = caseIfcPropertyAbstraction(ifcSectionProperties);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcSectionProperties);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SECTION_REINFORCEMENT_PROPERTIES: {
+			IfcSectionReinforcementProperties ifcSectionReinforcementProperties = (IfcSectionReinforcementProperties) theEObject;
+			T result = caseIfcSectionReinforcementProperties(ifcSectionReinforcementProperties);
+			if (result == null)
+				result = caseIfcPreDefinedProperties(ifcSectionReinforcementProperties);
+			if (result == null)
+				result = caseIfcPropertyAbstraction(ifcSectionReinforcementProperties);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcSectionReinforcementProperties);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SECTIONED_SPINE: {
+			IfcSectionedSpine ifcSectionedSpine = (IfcSectionedSpine) theEObject;
+			T result = caseIfcSectionedSpine(ifcSectionedSpine);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcSectionedSpine);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcSectionedSpine);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcSectionedSpine);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SENSOR: {
+			IfcSensor ifcSensor = (IfcSensor) theEObject;
+			T result = caseIfcSensor(ifcSensor);
+			if (result == null)
+				result = caseIfcDistributionControlElement(ifcSensor);
+			if (result == null)
+				result = caseIfcDistributionElement(ifcSensor);
+			if (result == null)
+				result = caseIfcElement(ifcSensor);
+			if (result == null)
+				result = caseIfcProduct(ifcSensor);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcSensor);
+			if (result == null)
+				result = caseIfcObject(ifcSensor);
+			if (result == null)
+				result = caseIfcProductSelect(ifcSensor);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcSensor);
+			if (result == null)
+				result = caseIfcRoot(ifcSensor);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcSensor);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SENSOR_TYPE: {
+			IfcSensorType ifcSensorType = (IfcSensorType) theEObject;
+			T result = caseIfcSensorType(ifcSensorType);
+			if (result == null)
+				result = caseIfcDistributionControlElementType(ifcSensorType);
+			if (result == null)
+				result = caseIfcDistributionElementType(ifcSensorType);
+			if (result == null)
+				result = caseIfcElementType(ifcSensorType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcSensorType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcSensorType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcSensorType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcSensorType);
+			if (result == null)
+				result = caseIfcRoot(ifcSensorType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcSensorType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SHADING_DEVICE: {
+			IfcShadingDevice ifcShadingDevice = (IfcShadingDevice) theEObject;
+			T result = caseIfcShadingDevice(ifcShadingDevice);
+			if (result == null)
+				result = caseIfcBuildingElement(ifcShadingDevice);
+			if (result == null)
+				result = caseIfcElement(ifcShadingDevice);
+			if (result == null)
+				result = caseIfcProduct(ifcShadingDevice);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcShadingDevice);
+			if (result == null)
+				result = caseIfcObject(ifcShadingDevice);
+			if (result == null)
+				result = caseIfcProductSelect(ifcShadingDevice);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcShadingDevice);
+			if (result == null)
+				result = caseIfcRoot(ifcShadingDevice);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcShadingDevice);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SHADING_DEVICE_TYPE: {
+			IfcShadingDeviceType ifcShadingDeviceType = (IfcShadingDeviceType) theEObject;
+			T result = caseIfcShadingDeviceType(ifcShadingDeviceType);
+			if (result == null)
+				result = caseIfcBuildingElementType(ifcShadingDeviceType);
+			if (result == null)
+				result = caseIfcElementType(ifcShadingDeviceType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcShadingDeviceType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcShadingDeviceType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcShadingDeviceType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcShadingDeviceType);
+			if (result == null)
+				result = caseIfcRoot(ifcShadingDeviceType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcShadingDeviceType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SHAPE_ASPECT: {
+			IfcShapeAspect ifcShapeAspect = (IfcShapeAspect) theEObject;
+			T result = caseIfcShapeAspect(ifcShapeAspect);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SHAPE_MODEL: {
+			IfcShapeModel ifcShapeModel = (IfcShapeModel) theEObject;
+			T result = caseIfcShapeModel(ifcShapeModel);
+			if (result == null)
+				result = caseIfcRepresentation(ifcShapeModel);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcShapeModel);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SHAPE_REPRESENTATION: {
+			IfcShapeRepresentation ifcShapeRepresentation = (IfcShapeRepresentation) theEObject;
+			T result = caseIfcShapeRepresentation(ifcShapeRepresentation);
+			if (result == null)
+				result = caseIfcShapeModel(ifcShapeRepresentation);
+			if (result == null)
+				result = caseIfcRepresentation(ifcShapeRepresentation);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcShapeRepresentation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SHELL_BASED_SURFACE_MODEL: {
+			IfcShellBasedSurfaceModel ifcShellBasedSurfaceModel = (IfcShellBasedSurfaceModel) theEObject;
+			T result = caseIfcShellBasedSurfaceModel(ifcShellBasedSurfaceModel);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcShellBasedSurfaceModel);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcShellBasedSurfaceModel);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcShellBasedSurfaceModel);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SIMPLE_PROPERTY: {
+			IfcSimpleProperty ifcSimpleProperty = (IfcSimpleProperty) theEObject;
+			T result = caseIfcSimpleProperty(ifcSimpleProperty);
+			if (result == null)
+				result = caseIfcProperty(ifcSimpleProperty);
+			if (result == null)
+				result = caseIfcPropertyAbstraction(ifcSimpleProperty);
+			if (result == null)
+				result = caseIfcResourceObjectSelect(ifcSimpleProperty);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SIMPLE_PROPERTY_TEMPLATE: {
+			IfcSimplePropertyTemplate ifcSimplePropertyTemplate = (IfcSimplePropertyTemplate) theEObject;
+			T result = caseIfcSimplePropertyTemplate(ifcSimplePropertyTemplate);
+			if (result == null)
+				result = caseIfcPropertyTemplate(ifcSimplePropertyTemplate);
+			if (result == null)
+				result = caseIfcPropertyTemplateDefinition(ifcSimplePropertyTemplate);
+			if (result == null)
+				result = caseIfcPropertyDefinition(ifcSimplePropertyTemplate);
+			if (result == null)
+				result = caseIfcRoot(ifcSimplePropertyTemplate);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcSimplePropertyTemplate);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SITE: {
+			IfcSite ifcSite = (IfcSite) theEObject;
+			T result = caseIfcSite(ifcSite);
+			if (result == null)
+				result = caseIfcSpatialStructureElement(ifcSite);
+			if (result == null)
+				result = caseIfcSpatialElement(ifcSite);
+			if (result == null)
+				result = caseIfcProduct(ifcSite);
+			if (result == null)
+				result = caseIfcObject(ifcSite);
+			if (result == null)
+				result = caseIfcProductSelect(ifcSite);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcSite);
+			if (result == null)
+				result = caseIfcRoot(ifcSite);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcSite);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SLAB: {
+			IfcSlab ifcSlab = (IfcSlab) theEObject;
+			T result = caseIfcSlab(ifcSlab);
+			if (result == null)
+				result = caseIfcBuildingElement(ifcSlab);
+			if (result == null)
+				result = caseIfcElement(ifcSlab);
+			if (result == null)
+				result = caseIfcProduct(ifcSlab);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcSlab);
+			if (result == null)
+				result = caseIfcObject(ifcSlab);
+			if (result == null)
+				result = caseIfcProductSelect(ifcSlab);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcSlab);
+			if (result == null)
+				result = caseIfcRoot(ifcSlab);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcSlab);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SLAB_ELEMENTED_CASE: {
+			IfcSlabElementedCase ifcSlabElementedCase = (IfcSlabElementedCase) theEObject;
+			T result = caseIfcSlabElementedCase(ifcSlabElementedCase);
+			if (result == null)
+				result = caseIfcSlab(ifcSlabElementedCase);
+			if (result == null)
+				result = caseIfcBuildingElement(ifcSlabElementedCase);
+			if (result == null)
+				result = caseIfcElement(ifcSlabElementedCase);
+			if (result == null)
+				result = caseIfcProduct(ifcSlabElementedCase);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcSlabElementedCase);
+			if (result == null)
+				result = caseIfcObject(ifcSlabElementedCase);
+			if (result == null)
+				result = caseIfcProductSelect(ifcSlabElementedCase);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcSlabElementedCase);
+			if (result == null)
+				result = caseIfcRoot(ifcSlabElementedCase);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcSlabElementedCase);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SLAB_STANDARD_CASE: {
+			IfcSlabStandardCase ifcSlabStandardCase = (IfcSlabStandardCase) theEObject;
+			T result = caseIfcSlabStandardCase(ifcSlabStandardCase);
+			if (result == null)
+				result = caseIfcSlab(ifcSlabStandardCase);
+			if (result == null)
+				result = caseIfcBuildingElement(ifcSlabStandardCase);
+			if (result == null)
+				result = caseIfcElement(ifcSlabStandardCase);
+			if (result == null)
+				result = caseIfcProduct(ifcSlabStandardCase);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcSlabStandardCase);
+			if (result == null)
+				result = caseIfcObject(ifcSlabStandardCase);
+			if (result == null)
+				result = caseIfcProductSelect(ifcSlabStandardCase);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcSlabStandardCase);
+			if (result == null)
+				result = caseIfcRoot(ifcSlabStandardCase);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcSlabStandardCase);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SLAB_TYPE: {
+			IfcSlabType ifcSlabType = (IfcSlabType) theEObject;
+			T result = caseIfcSlabType(ifcSlabType);
+			if (result == null)
+				result = caseIfcBuildingElementType(ifcSlabType);
+			if (result == null)
+				result = caseIfcElementType(ifcSlabType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcSlabType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcSlabType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcSlabType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcSlabType);
+			if (result == null)
+				result = caseIfcRoot(ifcSlabType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcSlabType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SLIPPAGE_CONNECTION_CONDITION: {
+			IfcSlippageConnectionCondition ifcSlippageConnectionCondition = (IfcSlippageConnectionCondition) theEObject;
+			T result = caseIfcSlippageConnectionCondition(ifcSlippageConnectionCondition);
+			if (result == null)
+				result = caseIfcStructuralConnectionCondition(ifcSlippageConnectionCondition);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SOLAR_DEVICE: {
+			IfcSolarDevice ifcSolarDevice = (IfcSolarDevice) theEObject;
+			T result = caseIfcSolarDevice(ifcSolarDevice);
+			if (result == null)
+				result = caseIfcEnergyConversionDevice(ifcSolarDevice);
+			if (result == null)
+				result = caseIfcDistributionFlowElement(ifcSolarDevice);
+			if (result == null)
+				result = caseIfcDistributionElement(ifcSolarDevice);
+			if (result == null)
+				result = caseIfcElement(ifcSolarDevice);
+			if (result == null)
+				result = caseIfcProduct(ifcSolarDevice);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcSolarDevice);
+			if (result == null)
+				result = caseIfcObject(ifcSolarDevice);
+			if (result == null)
+				result = caseIfcProductSelect(ifcSolarDevice);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcSolarDevice);
+			if (result == null)
+				result = caseIfcRoot(ifcSolarDevice);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcSolarDevice);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SOLAR_DEVICE_TYPE: {
+			IfcSolarDeviceType ifcSolarDeviceType = (IfcSolarDeviceType) theEObject;
+			T result = caseIfcSolarDeviceType(ifcSolarDeviceType);
+			if (result == null)
+				result = caseIfcEnergyConversionDeviceType(ifcSolarDeviceType);
+			if (result == null)
+				result = caseIfcDistributionFlowElementType(ifcSolarDeviceType);
+			if (result == null)
+				result = caseIfcDistributionElementType(ifcSolarDeviceType);
+			if (result == null)
+				result = caseIfcElementType(ifcSolarDeviceType);
+			if (result == null)
+				result = caseIfcTypeProduct(ifcSolarDeviceType);
+			if (result == null)
+				result = caseIfcTypeObject(ifcSolarDeviceType);
+			if (result == null)
+				result = caseIfcProductSelect(ifcSolarDeviceType);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcSolarDeviceType);
+			if (result == null)
+				result = caseIfcRoot(ifcSolarDeviceType);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcSolarDeviceType);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SOLID_MODEL: {
+			IfcSolidModel ifcSolidModel = (IfcSolidModel) theEObject;
+			T result = caseIfcSolidModel(ifcSolidModel);
+			if (result == null)
+				result = caseIfcGeometricRepresentationItem(ifcSolidModel);
+			if (result == null)
+				result = caseIfcBooleanOperand(ifcSolidModel);
+			if (result == null)
+				result = caseIfcSolidOrShell(ifcSolidModel);
+			if (result == null)
+				result = caseIfcRepresentationItem(ifcSolidModel);
+			if (result == null)
+				result = caseIfcLayeredItem(ifcSolidModel);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SPACE: {
+			IfcSpace ifcSpace = (IfcSpace) theEObject;
+			T result = caseIfcSpace(ifcSpace);
+			if (result == null)
+				result = caseIfcSpatialStructureElement(ifcSpace);
+			if (result == null)
+				result = caseIfcSpaceBoundarySelect(ifcSpace);
+			if (result == null)
+				result = caseIfcSpatialElement(ifcSpace);
+			if (result == null)
+				result = caseIfcProduct(ifcSpace);
+			if (result == null)
+				result = caseIfcObject(ifcSpace);
+			if (result == null)
+				result = caseIfcProductSelect(ifcSpace);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcSpace);
+			if (result == null)
+				result = caseIfcRoot(ifcSpace);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcSpace);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Ifc4Package.IFC_SPACE_HEATER: {
+			IfcSpaceHeater ifcSpaceHeater = (IfcSpaceHeater) theEObject;
+			T result = caseIfcSpaceHeater(ifcSpaceHeater);
+			if (result == null)
+				result = caseIfcFlowTerminal(ifcSpaceHeater);
+			if (result == null)
+				result = caseIfcDistributionFlowElement(ifcSpaceHeater);
+			if (result == null)
+				result = caseIfcDistributionElement(ifcSpaceHeater);
+			if (result == null)
+				result = caseIfcElement(ifcSpaceHeater);
+			if (result == null)
+				result = caseIfcProduct(ifcSpaceHeater);
+			if (result == null)
+				result = caseIfcStructuralActivityAssignmentSelect(ifcSpaceHeater);
+			if (result == null)
+				result = caseIfcObject(ifcSpaceHeater);
+			if (result == null)
+				result = caseIfcProductSelect(ifcSpaceHeater);
+			if (result == null)
+				result = caseIfcObjectDefinition(ifcSpaceHeater);
+			if (result == null)
+				result = caseIfcRoot(ifcSpaceHeater);
+			if (result == null)
+				result = caseIfcDefinitionSelect(ifcSpaceHeater);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -30299,8 +30307,7 @@ public class Ifc4Switch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIfcModulusOfTranslationalSubgradeReactionSelect(
-			IfcModulusOfTranslationalSubgradeReactionSelect object) {
+	public T caseIfcModulusOfTranslationalSubgradeReactionSelect(IfcModulusOfTranslationalSubgradeReactionSelect object) {
 		return null;
 	}
 

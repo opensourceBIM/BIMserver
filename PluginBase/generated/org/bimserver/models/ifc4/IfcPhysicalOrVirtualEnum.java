@@ -155,8 +155,7 @@ public enum IfcPhysicalOrVirtualEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcPhysicalOrVirtualEnum[] VALUES_ARRAY = new IfcPhysicalOrVirtualEnum[] { NULL, NOTDEFINED,
-			PHYSICAL, VIRTUAL, };
+	private static final IfcPhysicalOrVirtualEnum[] VALUES_ARRAY = new IfcPhysicalOrVirtualEnum[] { NULL, NOTDEFINED, PHYSICAL, VIRTUAL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Physical Or Virtual Enum</b></em>' enumerators.
@@ -164,8 +163,7 @@ public enum IfcPhysicalOrVirtualEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcPhysicalOrVirtualEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcPhysicalOrVirtualEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Physical Or Virtual Enum</b></em>' literal with the specified literal value.

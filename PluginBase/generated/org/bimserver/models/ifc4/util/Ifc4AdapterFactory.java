@@ -505,8 +505,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcCartesianTransformationOperator2DnonUniform(
-				IfcCartesianTransformationOperator2DnonUniform object) {
+		public Adapter caseIfcCartesianTransformationOperator2DnonUniform(IfcCartesianTransformationOperator2DnonUniform object) {
 			return createIfcCartesianTransformationOperator2DnonUniformAdapter();
 		}
 
@@ -516,8 +515,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcCartesianTransformationOperator3DnonUniform(
-				IfcCartesianTransformationOperator3DnonUniform object) {
+		public Adapter caseIfcCartesianTransformationOperator3DnonUniform(IfcCartesianTransformationOperator3DnonUniform object) {
 			return createIfcCartesianTransformationOperator3DnonUniformAdapter();
 		}
 
@@ -3332,8 +3330,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcStructuralLoadSingleDisplacementDistortion(
-				IfcStructuralLoadSingleDisplacementDistortion object) {
+		public Adapter caseIfcStructuralLoadSingleDisplacementDistortion(IfcStructuralLoadSingleDisplacementDistortion object) {
 			return createIfcStructuralLoadSingleDisplacementDistortionAdapter();
 		}
 
@@ -4293,8 +4290,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcModulusOfRotationalSubgradeReactionMeasure(
-				IfcModulusOfRotationalSubgradeReactionMeasure object) {
+		public Adapter caseIfcModulusOfRotationalSubgradeReactionMeasure(IfcModulusOfRotationalSubgradeReactionMeasure object) {
 			return createIfcModulusOfRotationalSubgradeReactionMeasureAdapter();
 		}
 
@@ -4774,8 +4770,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcModulusOfRotationalSubgradeReactionSelect(
-				IfcModulusOfRotationalSubgradeReactionSelect object) {
+		public Adapter caseIfcModulusOfRotationalSubgradeReactionSelect(IfcModulusOfRotationalSubgradeReactionSelect object) {
 			return createIfcModulusOfRotationalSubgradeReactionSelectAdapter();
 		}
 
@@ -4785,8 +4780,7 @@ public class Ifc4AdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIfcModulusOfTranslationalSubgradeReactionSelect(
-				IfcModulusOfTranslationalSubgradeReactionSelect object) {
+		public Adapter caseIfcModulusOfTranslationalSubgradeReactionSelect(IfcModulusOfTranslationalSubgradeReactionSelect object) {
 			return createIfcModulusOfTranslationalSubgradeReactionSelectAdapter();
 		}
 

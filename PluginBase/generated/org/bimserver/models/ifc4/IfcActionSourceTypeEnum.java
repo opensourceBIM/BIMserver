@@ -755,10 +755,8 @@ public enum IfcActionSourceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcActionSourceTypeEnum[] VALUES_ARRAY = new IfcActionSourceTypeEnum[] { NULL, SNOW_S,
-			PRESTRESSING_P, USERDEFINED, EARTHQUAKE_E, IMPULSE, SYSTEM_IMPERFECTION, WAVE, TRANSPORT, NOTDEFINED, FIRE,
-			ERECTION, LACK_OF_FIT, TEMPERATURE_T, ICE, BRAKES, PROPPING, CURRENT, IMPACT, BUOYANCY, RAIN, SHRINKAGE,
-			LIVE_LOAD_Q, CREEP, SETTLEMENT_U, DEAD_LOAD_G, COMPLETION_G1, WIND_W, };
+	private static final IfcActionSourceTypeEnum[] VALUES_ARRAY = new IfcActionSourceTypeEnum[] { NULL, SNOW_S, PRESTRESSING_P, USERDEFINED, EARTHQUAKE_E, IMPULSE, SYSTEM_IMPERFECTION, WAVE, TRANSPORT, NOTDEFINED, FIRE, ERECTION,
+			LACK_OF_FIT, TEMPERATURE_T, ICE, BRAKES, PROPPING, CURRENT, IMPACT, BUOYANCY, RAIN, SHRINKAGE, LIVE_LOAD_Q, CREEP, SETTLEMENT_U, DEAD_LOAD_G, COMPLETION_G1, WIND_W, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Action Source Type Enum</b></em>' enumerators.
@@ -766,8 +764,7 @@ public enum IfcActionSourceTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<IfcActionSourceTypeEnum> VALUES = Collections
-			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<IfcActionSourceTypeEnum> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Ifc Action Source Type Enum</b></em>' literal with the specified literal value.

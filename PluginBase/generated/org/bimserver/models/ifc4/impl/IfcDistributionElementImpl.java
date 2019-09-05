@@ -80,8 +80,7 @@ public class IfcDistributionElementImpl extends IfcElementImpl implements IfcDis
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<IfcRelConnectsPortToElement> getHasPorts() {
-		return (EList<IfcRelConnectsPortToElement>) eGet(Ifc4Package.Literals.IFC_DISTRIBUTION_ELEMENT__HAS_PORTS,
-				true);
+		return (EList<IfcRelConnectsPortToElement>) eGet(Ifc4Package.Literals.IFC_DISTRIBUTION_ELEMENT__HAS_PORTS, true);
 	}
 
 	/**

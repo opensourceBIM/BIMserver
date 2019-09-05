@@ -214,8 +214,7 @@ public class IfcExternalReferenceImpl extends IdEObjectImpl implements IfcExtern
 	@SuppressWarnings("unchecked")
 	@Override
 	public EList<IfcExternalReferenceRelationship> getExternalReferenceForResources() {
-		return (EList<IfcExternalReferenceRelationship>) eGet(
-				Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__EXTERNAL_REFERENCE_FOR_RESOURCES, true);
+		return (EList<IfcExternalReferenceRelationship>) eGet(Ifc4Package.Literals.IFC_EXTERNAL_REFERENCE__EXTERNAL_REFERENCE_FOR_RESOURCES, true);
 	}
 
 	/**

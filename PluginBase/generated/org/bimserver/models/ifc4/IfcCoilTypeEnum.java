@@ -305,9 +305,7 @@ public enum IfcCoilTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcCoilTypeEnum[] VALUES_ARRAY = new IfcCoilTypeEnum[] { NULL, GASHEATINGCOIL, NOTDEFINED,
-			DXCOOLINGCOIL, WATERCOOLINGCOIL, WATERHEATINGCOIL, USERDEFINED, ELECTRICHEATINGCOIL, HYDRONICCOIL,
-			STEAMHEATINGCOIL, };
+	private static final IfcCoilTypeEnum[] VALUES_ARRAY = new IfcCoilTypeEnum[] { NULL, GASHEATINGCOIL, NOTDEFINED, DXCOOLINGCOIL, WATERCOOLINGCOIL, WATERHEATINGCOIL, USERDEFINED, ELECTRICHEATINGCOIL, HYDRONICCOIL, STEAMHEATINGCOIL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Coil Type Enum</b></em>' enumerators.

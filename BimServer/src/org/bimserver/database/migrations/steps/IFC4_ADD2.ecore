@@ -6782,7 +6782,7 @@
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IfcBinary">
+  <eClassifiers xsi:type="ecore:EClass" name="IfcBinary" eSuperTypes="//IfcSimpleValue">
     <eAnnotations source="wrapped"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="wrappedValue" unsettable="true">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EByteArray"/>
@@ -10136,7 +10136,7 @@
     <eLiterals name="ACTUAL" value="4" literal="ACTUAL"/>
     <eLiterals name="PLANNED" value="5" literal="PLANNED"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IfcArcIndex">
+  <eClassifiers xsi:type="ecore:EClass" name="IfcArcIndex" eSuperTypes="//IfcSegmentIndexSelect">
     <eAnnotations source="wrapped"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="wrappedValue" lowerBound="3" upperBound="3" unsettable="true">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
@@ -10153,7 +10153,7 @@
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IfcLineIndex">
+  <eClassifiers xsi:type="ecore:EClass" name="IfcLineIndex" eSuperTypes="//IfcSegmentIndexSelect">
     <eAnnotations source="wrapped"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="wrappedValue" lowerBound="2" upperBound="-1" unsettable="true">
       <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//ELong"/>

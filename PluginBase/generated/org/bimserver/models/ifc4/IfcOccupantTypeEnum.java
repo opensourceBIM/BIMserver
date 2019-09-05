@@ -305,8 +305,7 @@ public enum IfcOccupantTypeEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final IfcOccupantTypeEnum[] VALUES_ARRAY = new IfcOccupantTypeEnum[] { NULL, OWNER, NOTDEFINED,
-			LETTINGAGENT, ASSIGNEE, LESSEE, USERDEFINED, ASSIGNOR, TENANT, LESSOR, };
+	private static final IfcOccupantTypeEnum[] VALUES_ARRAY = new IfcOccupantTypeEnum[] { NULL, OWNER, NOTDEFINED, LETTINGAGENT, ASSIGNEE, LESSEE, USERDEFINED, ASSIGNOR, TENANT, LESSOR, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Ifc Occupant Type Enum</b></em>' enumerators.
