@@ -29,6 +29,7 @@ public class TestDeserializerErrorCode {
 			}
 		} catch (UserException e1) {
 			if (e1.getErrorCode() == DeserializerErrorCode.UNSUPPORTED_IFC_SCHEMA_VERSION) {
+				System.out.println("OK " + e1.getErrorCode());
 				// OK
 			} else {
 				e1.printStackTrace();
