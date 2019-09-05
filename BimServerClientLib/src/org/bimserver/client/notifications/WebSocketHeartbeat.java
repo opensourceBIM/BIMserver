@@ -13,6 +13,7 @@ public class WebSocketHeartbeat extends Thread {
 
 	public WebSocketHeartbeat(WebSocketImpl webSocketImpl) {
 		this.webSocketImpl = webSocketImpl;
+		setName("WebSocket Heartbeat");
 	}
 
 	public void shutdown() {
