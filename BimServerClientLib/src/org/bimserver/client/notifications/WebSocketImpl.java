@@ -1,5 +1,10 @@
 package org.bimserver.client.notifications;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -36,7 +41,7 @@ public class WebSocketImpl {
     private Session session;
 	private NotificationsManager socketNotificationsClient;
 	private CountDownLatch countDownLatch = new CountDownLatch(1);
-	private BinaryMessageListener binaryMessageListener;
+	private final Map<Long, BinaryMessageListener> binaryMessageListeners = Collections.synchronizedMap(new HashMap<>());
 	private WebSocketHeartbeat heartbeat;
     
 	public WebSocketImpl(NotificationsManager socketNotificationsClient) {
@@ -95,7 +100,15 @@ public class WebSocketImpl {
     
     @OnWebSocketMessage
 	public void onBinary(byte[] bytes, int start, int length) {
-		binaryMessageListener.newData(bytes, start, length);
+    	if (length == 0) {
+    		return;
+    	}
+    	ByteBuffer buffer = ByteBuffer.wrap(bytes).order(ByteOrder.LITTLE_ENDIAN);
+    	long topicId = buffer.getLong();
+		BinaryMessageListener binaryMessageListener = binaryMessageListeners.get(topicId);
+		if (binaryMessageListener != null) {
+			binaryMessageListener.newData(bytes, start, length);
+		}
 	}
     
     @OnWebSocketMessage
@@ -136,7 +149,7 @@ public class WebSocketImpl {
     	}
     }
     
-	public void setBinaryMessageListener(BinaryMessageListener messageListener) {
-		this.binaryMessageListener = messageListener;
+	public void setBinaryMessageListener(long topicId, BinaryMessageListener messageListener) {
+		this.binaryMessageListeners.put(topicId, messageListener);
 	}
 }

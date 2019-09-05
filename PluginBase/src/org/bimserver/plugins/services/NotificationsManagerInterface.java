@@ -8,7 +8,7 @@ public interface NotificationsManagerInterface {
 
 	void registerProgressHandler(Long topicId, ProgressHandler progressHandler);
 
-	void setBinaryMessageListener(BinaryMessageListener binaryMessageListener);
+	void setBinaryMessageListener(long topicId, BinaryMessageListener binaryMessageListener);
 
 	void send(JsonNode jsonNode);
 }

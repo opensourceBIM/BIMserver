@@ -93,11 +93,11 @@ public class TestCheckinAndGeometryDownload {
 					downloadMessage.put("topicId", topicId);
 					
 					CountDownLatch doneCountdown = new CountDownLatch(1);
-					client.getNotificationsManager().setBinaryMessageListener(new BinaryMessageListener() {
+					client.getNotificationsManager().setBinaryMessageListener(topicId, new BinaryMessageListener() {
 						@Override
 						public void newData(byte[] bytes, int start, int length) {
 							ByteBuffer buffer = ByteBuffer.wrap(bytes, start, length).order(ByteOrder.LITTLE_ENDIAN);
-							long topicId = buffer.getLong();
+							buffer.getLong(); // TopicId
 							int type = buffer.getInt();
 							
 							if (type == 0) {
@@ -111,6 +111,7 @@ public class TestCheckinAndGeometryDownload {
 					if (!doneCountdown.await(5, TimeUnit.MINUTES)) {
 						LOGGER.error("Not finished after 5 minutes!");
 					}
+					LOGGER.info("Done");
 					
 					client.getServiceInterface().cleanupLongAction(topicId);
 				}

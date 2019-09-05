@@ -79,8 +79,8 @@ public class NotificationsManager extends NotificationsClient implements Notific
 		};
 	}
 	
-	public void setBinaryMessageListener(BinaryMessageListener binaryMessageListener) {
-		webSocketImpl.setBinaryMessageListener(binaryMessageListener);
+	public void setBinaryMessageListener(long topicId, BinaryMessageListener binaryMessageListener) {
+		webSocketImpl.setBinaryMessageListener(topicId, binaryMessageListener);
 	}
 	
 	public void start() {

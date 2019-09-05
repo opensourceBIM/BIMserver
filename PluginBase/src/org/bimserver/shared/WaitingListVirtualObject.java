@@ -116,7 +116,7 @@ public class WaitingListVirtualObject {
 		return waitingObjects.size() == 0 && openConnections.size() == 0;
 	}
 	
-	public void dumpIfNotEmpty() throws BimServerClientException {
+	public void dumpIfNotEmpty() throws DeserializeException {
 		if (!openConnections.isEmpty()) {
 			for (OpenConnectionCounter openConnectionCounter : openConnections.values()) {
 				LOGGER.error("Open connection: " + openConnectionCounter);
@@ -130,7 +130,7 @@ public class WaitingListVirtualObject {
 				}
 				LOGGER.info(sb.toString());
 			}
-			throw new BimServerClientException("Waitinglist not empty, this usually means some objects were referred, but not included in the model");
+			throw new DeserializeException(DeserializerErrorCode.NON_EXISTING_ENTITY_REFERENCED, "Waitinglist not empty, this usually means some objects were referred, but not included in the model");
 		}
 	}
 }
