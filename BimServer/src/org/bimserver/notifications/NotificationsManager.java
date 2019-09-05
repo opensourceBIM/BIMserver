@@ -18,6 +18,7 @@ package org.bimserver.notifications;
  *****************************************************************************/
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -45,20 +46,20 @@ public class NotificationsManager {
 	private final NewRevisionTopic newRevisionTopic = new NewRevisionTopic(this);
 	private final NewProjectTopic newProjectTopic = new NewProjectTopic(this);
 	private final NewUserTopic newUserTopic = new NewUserTopic(this);
-	private final Map<NewExtendedDataOnRevisionTopicKey, NewExtendedDataOnRevisionTopic> newExtendedDataOnRevisionTopics = new HashMap<NewExtendedDataOnRevisionTopicKey, NewExtendedDataOnRevisionTopic>();
-	private final Map<NewRevisionOnSpecificProjectTopicKey, NewRevisionOnSpecificProjectTopic> newRevisionOnSpecificProjectTopics = new HashMap<NewRevisionOnSpecificProjectTopicKey, NewRevisionOnSpecificProjectTopic>();
+	private final Map<NewExtendedDataOnRevisionTopicKey, NewExtendedDataOnRevisionTopic> newExtendedDataOnRevisionTopics = Collections.synchronizedMap(new HashMap<NewExtendedDataOnRevisionTopicKey, NewExtendedDataOnRevisionTopic>());
+	private final Map<NewRevisionOnSpecificProjectTopicKey, NewRevisionOnSpecificProjectTopic> newRevisionOnSpecificProjectTopics = Collections.synchronizedMap(new HashMap<NewRevisionOnSpecificProjectTopicKey, NewRevisionOnSpecificProjectTopic>());
 
 	// These are for keeping track of new/removed progress topics
-	private final Map<ChangeProgressTopicOnProjectTopicKey, ChangeProgressTopicOnProjectTopic> changeProgressTopicOnProjectTopics = new HashMap<ChangeProgressTopicOnProjectTopicKey, ChangeProgressTopicOnProjectTopic>();
-	private final Map<ChangeProgressTopicOnRevisionTopicKey, ChangeProgressTopicOnRevisionTopic> changeProgressTopicOnRevisionTopics = new HashMap<ChangeProgressTopicOnRevisionTopicKey, ChangeProgressTopicOnRevisionTopic>();
+	private final Map<ChangeProgressTopicOnProjectTopicKey, ChangeProgressTopicOnProjectTopic> changeProgressTopicOnProjectTopics = Collections.synchronizedMap(new HashMap<ChangeProgressTopicOnProjectTopicKey, ChangeProgressTopicOnProjectTopic>());
+	private final Map<ChangeProgressTopicOnRevisionTopicKey, ChangeProgressTopicOnRevisionTopic> changeProgressTopicOnRevisionTopics = Collections.synchronizedMap(new HashMap<ChangeProgressTopicOnRevisionTopicKey, ChangeProgressTopicOnRevisionTopic>());
 	private final ChangeProgressTopicOnServerTopic changeProgressTopicOnServerTopic = new ChangeProgressTopicOnServerTopic(this);
 
 	// All progress topics have an id for easy referencing
-	private final Map<Long, ProgressTopic> progressTopicsById = new HashMap<Long, ProgressTopic>();
+	private final Map<Long, ProgressTopic> progressTopicsById = Collections.synchronizedMap(new HashMap<Long, ProgressTopic>());
 	
 	// These are for keeping track of actual progress on projects/revisions
-	private final Map<ProgressOnRevisionTopicKey, Set<ProgressOnRevisionTopic>> progressOnRevisionTopics = new HashMap<ProgressOnRevisionTopicKey, Set<ProgressOnRevisionTopic>>();
-	private final Map<ProgressOnProjectTopicKey, Set<ProgressOnProjectTopic>> progressOnProjectTopics = new HashMap<ProgressOnProjectTopicKey, Set<ProgressOnProjectTopic>>();
+	private final Map<ProgressOnRevisionTopicKey, Set<ProgressOnRevisionTopic>> progressOnRevisionTopics = Collections.synchronizedMap(new HashMap<ProgressOnRevisionTopicKey, Set<ProgressOnRevisionTopic>>());
+	private final Map<ProgressOnProjectTopicKey, Set<ProgressOnProjectTopic>> progressOnProjectTopics = Collections.synchronizedMap(new HashMap<ProgressOnProjectTopicKey, Set<ProgressOnProjectTopic>>());
 
 	private final JsonSocketReflectorFactory jsonSocketReflectorFactory;
 	private final BimServer bimServer;
