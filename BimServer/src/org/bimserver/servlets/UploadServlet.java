@@ -128,6 +128,8 @@ public class UploadServlet extends SubServlet {
 								} else {
 									realStream = in;
 								}
+								
+								// When uploading in async mode, we want to return as soon as the whole stream has been read (that's not when the checkin process has finished!)
 								TriggerOnCloseInputStream triggerOnCloseInputStream = new TriggerOnCloseInputStream(realStream);
 								InputStreamDataSource inputStreamDataSource = new InputStreamDataSource(triggerOnCloseInputStream);
 								inputStreamDataSource.setName(name);
