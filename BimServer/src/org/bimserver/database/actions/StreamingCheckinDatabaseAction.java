@@ -404,13 +404,6 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 				LOGGER.error("", e1);
 			}
 			
-			// Read the rest of the inputstream
-			try {
-				IOUtils.copy(inputStream, new NullOutputStream());
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			
 			if (e instanceof BimserverDatabaseException) {
 				throw (BimserverDatabaseException) e;
 			}
@@ -449,7 +442,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 				Buffer buffer = getDatabaseSession().create(Buffer.class);
 				buffer.setData(verticesQuantized.array());
 				
-				next.set(GeometryPackage.eINSTANCE.getGeometryData_VerticesQuantized(), buffer);
+				next.setReference(GeometryPackage.eINSTANCE.getGeometryData_VerticesQuantized(), buffer.getOid(), -1);
 				next.saveOverwrite();
 				
 				next = objectProvider.next();
