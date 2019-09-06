@@ -24,10 +24,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.bimserver.BimserverDatabaseException;
+import org.bimserver.CannotStoreReferenceInFieldException;
 import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.plugins.deserializers.DeserializerErrorCode;
-import org.bimserver.shared.exceptions.BimServerClientException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -97,7 +98,11 @@ public class WaitingListVirtualObject {
 				}
 			} else {
 				if (((EClass) waitingObject.getStructuralFeature().getEType()).isSuperTypeOf(eObject.eClass())) {
-					waitingObject.getObject().setReference(waitingObject.getStructuralFeature(), eObject.getOid(), waitingObject.getBufferPosition());
+					try {
+						waitingObject.getObject().setReference((EReference) waitingObject.getStructuralFeature(), eObject.getOid(), waitingObject.getBufferPosition());
+					} catch (CannotStoreReferenceInFieldException e) {
+						throw new DeserializeException(e.getDeserializerErrorCode(), e.getMessage());
+					}
 					decrementOpenConnections(waitingObject.getObject());
 				} else {
 					throw new DeserializeException(DeserializerErrorCode.REFERENCED_OBJECT_CANNOT_BE_STORED_IN_THIS_FIELD, waitingObject.getLineNumber(), "Field " + waitingObject.getStructuralFeature().getName() + " of "

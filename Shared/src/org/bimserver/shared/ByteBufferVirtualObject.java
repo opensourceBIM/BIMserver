@@ -24,8 +24,11 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.bimserver.BimserverDatabaseException;
+import org.bimserver.CannotStoreReferenceInFieldException;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.plugins.deserializers.DatabaseInterface;
+import org.bimserver.plugins.deserializers.DeserializerErrorCode;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
@@ -100,13 +103,13 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 		incrementFeatureCounter(feature);
 	}
 
-	public void setAttribute(EStructuralFeature feature, Object value) throws BimserverDatabaseException {
-		if (feature.isMany()) {
+	public void setAttribute(EAttribute eAttribute, Object value) throws BimserverDatabaseException {
+		if (eAttribute.isMany()) {
 			throw new UnsupportedOperationException("Feature isMany not supported by setAttribute");
 		} else {
-			if (feature.getEType() instanceof EEnum) {
-				writeEnum(feature, value);
-			} else if (feature.getEType() instanceof EClass) {
+			if (eAttribute.getEType() instanceof EEnum) {
+				writeEnum(eAttribute, value);
+			} else if (eAttribute.getEType() instanceof EClass) {
 				if (value == null) {
 					ensureCapacity(buffer.position(), 2);
 					buffer.order(ByteOrder.LITTLE_ENDIAN);
@@ -120,11 +123,11 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 				} else {
 					throw new UnsupportedOperationException("??");
 				}
-			} else if (feature.getEType() instanceof EDataType) {
-				writePrimitiveValue(feature, value);
+			} else if (eAttribute.getEType() instanceof EDataType) {
+				writePrimitiveValue(eAttribute, value);
 			}
 		}
-		incrementFeatureCounter(feature);
+		incrementFeatureCounter(eAttribute);
 	}
 
 	private void incrementFeatureCounter(EStructuralFeature feature) {
@@ -323,9 +326,15 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 	}
 
 	@Override
-	public void setReference(EStructuralFeature feature, long referenceOid, int bufferPosition) throws BimserverDatabaseException {
+	public void setReference(EReference eReference, long referenceOid, int bufferPosition) throws BimserverDatabaseException {
+		EClass definedType = (EClass)eReference.getEType();
+		EClass referencedEClass = getDatabaseInterface().getEClassForOid(referenceOid);
+		if (!definedType.isSuperTypeOf(referencedEClass)) {
+			throw new CannotStoreReferenceInFieldException(DeserializerErrorCode.REFERENCED_OBJECT_CANNOT_BE_STORED_IN_THIS_FIELD, "Cannot store a " + referencedEClass.getName() + " in " + eClass().getName() + "." + eReference.getName() + " of type " + definedType.getName());
+		}
+
 		if (bufferPosition == -1) {
-			incrementFeatureCounter(feature);
+			incrementFeatureCounter(eReference);
 		}
 		int pos = bufferPosition == -1 ? buffer.position() : bufferPosition;
 		ensureCapacity(pos, 8);
@@ -341,6 +350,31 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 	}
 
 	@Override
+	public void setReference(EReference eReference, long referenceOid) throws BimserverDatabaseException {
+		setReference(eReference, referenceOid, -1);
+	}
+	
+	@Override
+	public void setReference(EReference eReference, WrappedVirtualObject wrappedVirtualObject) throws BimserverDatabaseException {
+		if (eReference.isMany()) {
+			throw new UnsupportedOperationException("Feature isMany not supported by setReference");
+		} else {
+			if (wrappedVirtualObject == null) {
+				ensureCapacity(buffer.position(), 2);
+				buffer.order(ByteOrder.LITTLE_ENDIAN);
+				buffer.putShort((short) -1);
+				buffer.order(ByteOrder.BIG_ENDIAN);
+			} else {
+				ByteBuffer otherBuffer = wrappedVirtualObject.write();
+				ensureCapacity(buffer.position(), otherBuffer.position());
+				buffer.put(otherBuffer.array(), 0, otherBuffer.position());
+//					writeWrappedValue(getPid(), getRid(), (WrappedVirtualObject) value, getPackageMetaData());
+			}
+		}
+		incrementFeatureCounter(eReference);
+	}
+
+	@Override
 	public boolean useFeatureForSerialization(EStructuralFeature feature) {
 		throw new UnsupportedOperationException();
 	}
@@ -352,7 +386,12 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 
 	@Override
 	public void set(String name, Object value) throws BimserverDatabaseException {
-		setAttribute(eClass.getEStructuralFeature(name), value);
+		EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(name);
+		if (eStructuralFeature instanceof EAttribute) {
+			setAttribute((EAttribute) eStructuralFeature, value);
+		} else {
+			setReference((EReference)eStructuralFeature, (Long)value);
+		}
 	}
 
 	@Override
@@ -368,11 +407,5 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 	@Override
 	public String toString() {
 		return "ByteBufferVirtualObject/" + eClass.getName();
-	}
-
-	@Override
-	public void set(EStructuralFeature eStructuralFeature, Object val) throws BimserverDatabaseException {
-		// TODO Auto-generated method stub
-		
 	}
 }

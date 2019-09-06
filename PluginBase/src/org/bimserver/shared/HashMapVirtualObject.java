@@ -29,9 +29,11 @@ import java.util.Set;
 import java.util.UUID;
 
 import org.bimserver.BimserverDatabaseException;
+import org.bimserver.CannotStoreReferenceInFieldException;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.ifc2x3tc1.Tristate;
 import org.bimserver.plugins.deserializers.DatabaseInterface;
+import org.bimserver.plugins.deserializers.DeserializerErrorCode;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -80,8 +82,8 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 		return reusable;
 	}
 
-	public void setAttribute(EStructuralFeature feature, Object val) {
-		map.put(feature, val);
+	public void setAttribute(EAttribute eAttribute, Object val) {
+		map.put(eAttribute, val);
 	}
 
 	public Object eGet(EStructuralFeature feature) {
@@ -526,8 +528,28 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 	}
 
 	@Override
-	public void setReference(EStructuralFeature feature, long referenceOid, int bufferPosition) throws BimserverDatabaseException {
-		map.put(feature, referenceOid);
+	public void setReference(EReference eReference, long referenceOid, int bufferPosition) throws BimserverDatabaseException {
+		EClass definedType = (EClass)eReference.getEType();
+		EClass referencedEClass = getDatabaseInterface().getEClassForOid(referenceOid);
+		if (!definedType.isSuperTypeOf(referencedEClass)) {
+			throw new CannotStoreReferenceInFieldException(DeserializerErrorCode.REFERENCED_OBJECT_CANNOT_BE_STORED_IN_THIS_FIELD, "Cannot store a " + referencedEClass.getName() + " in " + eClass().getName() + "." + eReference.getName() + " of type " + definedType.getName());
+		}
+		map.put(eReference, referenceOid);
+	}
+
+	@Override
+	public void setReference(EReference eReference, long referenceOid) throws BimserverDatabaseException {
+		this.setReference(eReference, referenceOid, -1);
+	}
+
+	@Override
+	public void setReference(EReference eReference, WrappedVirtualObject wrappedVirtualObject) throws BimserverDatabaseException {
+		EClass definedType = (EClass)eReference.getEType();
+		EClass referencedEClass = wrappedVirtualObject.eClass();
+		if (!definedType.isSuperTypeOf(referencedEClass)) {
+			throw new CannotStoreReferenceInFieldException(DeserializerErrorCode.REFERENCED_OBJECT_CANNOT_BE_STORED_IN_THIS_FIELD, "Cannot store a " + referencedEClass.getName() + " in " + eClass().getName() + "." + eReference.getName() + " of type " + definedType.getName());
+		}
+		map.put(eReference, wrappedVirtualObject);
 	}
 
 	@Override
@@ -602,14 +624,18 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 
 	@Override
 	public void set(String name, Object val) throws BimserverDatabaseException {
-		setAttribute(eClass.getEStructuralFeature(name), val);
+		EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(name);
+		if (eStructuralFeature instanceof EAttribute) {
+			setAttribute((EAttribute) eStructuralFeature, val);
+		} else {
+			if (val instanceof Long) {
+				setReference((EReference) eStructuralFeature, (Long)val);
+			} else {
+				setReference((EReference) eStructuralFeature, (WrappedVirtualObject)val);
+			}
+		}
 	}
 
-	@Override
-	public void set(EStructuralFeature eStructuralFeature, Object val) throws BimserverDatabaseException {
-		setAttribute(eStructuralFeature, val);
-	}
-	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

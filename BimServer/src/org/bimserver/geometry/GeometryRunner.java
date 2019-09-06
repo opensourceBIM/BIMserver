@@ -241,9 +241,9 @@ public class GeometryRunner implements Runnable {
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_IfcProductUuid(), UuidUtils.toByteArray(ifcProduct.getUuid()));
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_IfcProductRid(), ifcProduct.getRid());
 										
-										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Bounds(), bounds);
-										bounds.setAttribute(GeometryPackage.eINSTANCE.getBounds_Min(), minBounds);
-										bounds.setAttribute(GeometryPackage.eINSTANCE.getBounds_Max(), maxBounds);
+										geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Bounds(), bounds);
+										bounds.setReference(GeometryPackage.eINSTANCE.getBounds_Min(), minBounds);
+										bounds.setReference(GeometryPackage.eINSTANCE.getBounds_Max(), maxBounds);
 
 										HashMapWrappedVirtualObject boundsUntransformed = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getBounds());
 										WrappedVirtualObject minBoundsUntranslated = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
@@ -257,10 +257,10 @@ public class GeometryRunner implements Runnable {
 										maxBoundsUntranslated.set("y", -Double.POSITIVE_INFINITY);
 										maxBoundsUntranslated.set("z", -Double.POSITIVE_INFINITY);
 
-										boundsUntransformed.setAttribute(GeometryPackage.eINSTANCE.getBounds_Min(), minBoundsUntranslated);
-										boundsUntransformed.setAttribute(GeometryPackage.eINSTANCE.getBounds_Max(), maxBoundsUntranslated);
+										boundsUntransformed.setReference(GeometryPackage.eINSTANCE.getBounds_Min(), minBoundsUntranslated);
+										boundsUntransformed.setReference(GeometryPackage.eINSTANCE.getBounds_Max(), maxBoundsUntranslated);
 										
-										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_BoundsUntransformed(), boundsUntransformed);
+										geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_BoundsUntransformed(), boundsUntransformed);
 
 										double volume = 0;
 										
@@ -272,20 +272,20 @@ public class GeometryRunner implements Runnable {
 										ByteBuffer indices = geometry.getIndices();
 										IntBuffer indicesAsInt = indices.order(ByteOrder.LITTLE_ENDIAN).asIntBuffer();
 										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Reused(), 1);
-										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Indices(), createBuffer(queryContext, indices));
+										geometryData.setReference(GeometryPackage.eINSTANCE.getGeometryData_Indices(), createBuffer(queryContext, indices));
 										geometryData.set("nrIndices", indicesAsInt.capacity());
 										ByteBuffer vertices = geometry.getVertices();
 										DoubleBuffer verticesAsDouble = vertices.order(ByteOrder.LITTLE_ENDIAN).asDoubleBuffer();
 										geometryData.set("nrVertices", verticesAsDouble.capacity());
-										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Vertices(), createBuffer(queryContext, vertices));
+										geometryData.setReference(GeometryPackage.eINSTANCE.getGeometryData_Vertices(), createBuffer(queryContext, vertices));
 										ByteBuffer normals = geometry.getNormals();
 										FloatBuffer normalsAsFloat = normals.order(ByteOrder.LITTLE_ENDIAN).asFloatBuffer();
 										geometryData.set("nrNormals", normalsAsFloat.capacity());
-										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Normals(), createBuffer(queryContext, normals));
+										geometryData.setReference(GeometryPackage.eINSTANCE.getGeometryData_Normals(), createBuffer(queryContext, normals));
 										
 										ByteBuffer lineIndices = generateLineRendering(indicesAsInt);
 										geometryData.set("nrLineIndices", lineIndices.capacity() / 4);
-										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_LineIndices(), createBuffer(queryContext, lineIndices));
+										geometryData.setReference(GeometryPackage.eINSTANCE.getGeometryData_LineIndices(), createBuffer(queryContext, lineIndices));
 										
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), indicesAsInt.capacity() / 3);
 										
@@ -334,7 +334,7 @@ public class GeometryRunner implements Runnable {
 												}
 												
 												HashMapVirtualObject colorPack = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getColorPack());
-												colorPack.set(GeometryPackage.eINSTANCE.getColorPack_Data(), colorMap2.toByteArray());
+												colorPack.setAttribute(GeometryPackage.eINSTANCE.getColorPack_Data(), colorMap2.toByteArray());
 												colorPack.save();
 												geometryData.setReference(GeometryPackage.eINSTANCE.getGeometryData_ColorPack(), colorPack.getOid(), 0);
 											}
@@ -346,7 +346,7 @@ public class GeometryRunner implements Runnable {
 												color.set("y", firstColor.getG());
 												color.set("z", firstColor.getB());
 												color.set("w", firstColor.getA());
-												geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Color(), color);
+												geometryData.setReference(GeometryPackage.eINSTANCE.getGeometryData_Color(), color);
 												
 												// This tells the code further on to not store this geometry, as it can be easily generated
 												hasMaterial = false;
@@ -358,11 +358,11 @@ public class GeometryRunner implements Runnable {
 												color.set("y", mostUsed.getG());
 												color.set("z", mostUsed.getB());
 												color.set("w", mostUsed.getA());
-												geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_MostUsedColor(), color);
+												geometryData.setReference(GeometryPackage.eINSTANCE.getGeometryData_MostUsedColor(), color);
 											}
 											if (hasMaterial) {
 												geometryData.set("nrColors", colors.capacity());
-												geometryData.set(GeometryPackage.eINSTANCE.getGeometryData_ColorsQuantized(), createBuffer(queryContext, colors));
+												geometryData.setReference(GeometryPackage.eINSTANCE.getGeometryData_ColorsQuantized(), createBuffer(queryContext, colors), -1);
 											} else {
 												geometryData.set("nrColors", 0);
 											}
@@ -398,7 +398,7 @@ public class GeometryRunner implements Runnable {
 										geometryInfo.set("boundsMm", boundsMm);
 
 										ByteBuffer normalsQuantized = quantizeNormals(normalsAsFloat);
-										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_NormalsQuantized(), createBuffer(queryContext, normalsQuantized));
+										geometryData.setReference(GeometryPackage.eINSTANCE.getGeometryData_NormalsQuantized(), createBuffer(queryContext, normalsQuantized));
 										
 										HashMapWrappedVirtualObject geometryDataBounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getBounds());
 										WrappedVirtualObject geometryDataBoundsMin = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
@@ -412,9 +412,9 @@ public class GeometryRunner implements Runnable {
 										geometryDataBoundsMax.set("y", ((HashMapWrappedVirtualObject)boundsMm.get("max")).get("y"));
 										geometryDataBoundsMax.set("z", ((HashMapWrappedVirtualObject)boundsMm.get("max")).get("z"));
 
-										geometryDataBounds.setAttribute(GeometryPackage.eINSTANCE.getBounds_Min(), geometryDataBoundsMin);
-										geometryDataBounds.setAttribute(GeometryPackage.eINSTANCE.getBounds_Max(), geometryDataBoundsMax);
-										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_BoundsMm(), geometryDataBounds);
+										geometryDataBounds.setReference(GeometryPackage.eINSTANCE.getBounds_Min(), geometryDataBoundsMin);
+										geometryDataBounds.setReference(GeometryPackage.eINSTANCE.getBounds_Max(), geometryDataBoundsMax);
+										geometryData.setReference(GeometryPackage.eINSTANCE.getGeometryData_BoundsMm(), geometryDataBounds);
 
 										if (volume == 0) {
 											volume = getVolumeFromBounds(boundsUntransformed);
@@ -607,7 +607,7 @@ public class GeometryRunner implements Runnable {
 											HashMapWrappedVirtualObject minBounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
 											HashMapWrappedVirtualObject maxBounds = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
 											
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_Bounds(), bounds);
+											geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Bounds(), bounds);
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_HasTransparency(), masterGeometryData.hasTransparancy());
 											
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_NrColors(), masterGeometryData.getNrColors());
@@ -643,9 +643,9 @@ public class GeometryRunner implements Runnable {
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_IfcProductUuid(), UuidUtils.toByteArray(ifcProduct.getUuid()));
 											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_IfcProductRid(), ifcProduct.getRid());
 											
-											boundsUntransformed.setAttribute(GeometryPackage.eINSTANCE.getBounds_Min(), minBoundsUntransformed);
-											boundsUntransformed.setAttribute(GeometryPackage.eINSTANCE.getBounds_Max(), maxBoundsUntransformed);
-											geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_BoundsUntransformed(), boundsUntransformed);
+											boundsUntransformed.setReference(GeometryPackage.eINSTANCE.getBounds_Min(), minBoundsUntransformed);
+											boundsUntransformed.setReference(GeometryPackage.eINSTANCE.getBounds_Max(), maxBoundsUntransformed);
+											geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_BoundsUntransformed(), boundsUntransformed);
 
 											double volume = 0;
 											if (streamingGeometryGenerator.isCalculateQuantities()) {
@@ -820,7 +820,7 @@ public class GeometryRunner implements Runnable {
 		job.setEndNanos(end);
 	}
 
-	private double setCalculatedQuantities(RenderEngineInstance renderEngineInstance, HashMapVirtualObject geometryInfo, double volume) throws RenderEngineException {
+	private double setCalculatedQuantities(RenderEngineInstance renderEngineInstance, HashMapVirtualObject geometryInfo, double volume) throws RenderEngineException, BimserverDatabaseException {
 		if (streamingGeometryGenerator.isCalculateQuantities()) {
 			ObjectNode additionalData = renderEngineInstance.getAdditionalData();
 			if (additionalData != null) {
@@ -1021,8 +1021,8 @@ public class GeometryRunner implements Runnable {
 		WrappedVirtualObject minBoundsMm = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
 		WrappedVirtualObject maxBoundsMm = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector3f());
 		
-		boundsMm.setAttribute(GeometryPackage.eINSTANCE.getBounds_Min(), minBoundsMm);
-		boundsMm.setAttribute(GeometryPackage.eINSTANCE.getBounds_Max(), maxBoundsMm);
+		boundsMm.setReference(GeometryPackage.eINSTANCE.getBounds_Min(), minBoundsMm);
+		boundsMm.setReference(GeometryPackage.eINSTANCE.getBounds_Max(), maxBoundsMm);
 		
 		HashMapWrappedVirtualObject min = (HashMapWrappedVirtualObject) boundsUntransformed.eGet("min");
 		HashMapWrappedVirtualObject max = (HashMapWrappedVirtualObject) boundsUntransformed.eGet("max");

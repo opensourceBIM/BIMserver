@@ -24,8 +24,10 @@ import java.util.Map;
 import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class HashMapWrappedVirtualObject extends AbstractHashMapVirtualObject implements WrappedVirtualObject {
@@ -47,8 +49,15 @@ public class HashMapWrappedVirtualObject extends AbstractHashMapVirtualObject im
 	}
 	
 	@Override
-	public void setAttribute(EStructuralFeature eStructuralFeature, Object value) throws BimserverDatabaseException {
-		map.put(eStructuralFeature, value);
+	public void setAttribute(EAttribute eAttribute, Object value) throws BimserverDatabaseException {
+		// TODO check type
+		map.put(eAttribute, value);
+	}
+
+	@Override
+	public void setReference(EReference eReference, Object value) throws BimserverDatabaseException {
+		// TODO check type
+		map.put(eReference, value);
 	}
 
 	@Override

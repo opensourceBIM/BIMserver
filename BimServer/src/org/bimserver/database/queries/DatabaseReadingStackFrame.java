@@ -39,7 +39,9 @@ import org.bimserver.emf.PackageMetaData;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.HashMapWrappedVirtualObject;
 import org.bimserver.shared.QueryContext;
+import org.bimserver.shared.WrappedVirtualObject;
 import org.bimserver.utils.BinUtils;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
@@ -206,7 +208,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 							} else if (feature.isMany()) {
 								// do nothing
 							} else if (feature.getDefaultValue() != null) {
-								idEObject.setAttribute(feature, feature.getDefaultValue());
+								idEObject.setAttribute((EAttribute) feature, feature.getDefaultValue());
 							}
 						} else {
 							Object newValue = null;
@@ -264,7 +266,15 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 									newValue = readPrimitiveValue(feature.getEType(), buffer);
 								}
 								if (newValue != null) {
-									idEObject.setAttribute(feature, newValue);
+									if (feature instanceof EAttribute) {
+										idEObject.setAttribute((EAttribute) feature, newValue);
+									} else {
+										if (newValue instanceof Long) {
+											idEObject.setReference((EReference) feature, (Long)newValue);
+										} else {
+											idEObject.setReference((EReference) feature, (WrappedVirtualObject)newValue);
+										}
+									}
 								}
 							}
 						}
@@ -301,11 +311,11 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 		EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature("wrappedValue");
 		Object primitiveValue = readPrimitiveValue(eStructuralFeature.getEType(), buffer);
 		HashMapWrappedVirtualObject eObject = new HashMapWrappedVirtualObject(eClass);
-		eObject.setAttribute(eStructuralFeature, primitiveValue);
+		eObject.setAttribute((EAttribute) eStructuralFeature, primitiveValue);
 		if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
 			EStructuralFeature strFeature = eClass.getEStructuralFeature("wrappedValueAsString");
 			Object stringVal = readPrimitiveValue(EcorePackage.eINSTANCE.getEString(), buffer);
-			eObject.setAttribute(strFeature, stringVal);
+			eObject.setAttribute((EAttribute) strFeature, stringVal);
 		}
 		return eObject;
 	}
@@ -317,7 +327,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 			} else {
 				if (eStructuralFeature.getEType() instanceof EDataType) {
 					Object primitiveValue = readPrimitiveValue(eStructuralFeature.getEType(), buffer);
-					eObject.setAttribute(eStructuralFeature, primitiveValue);
+					eObject.setAttribute((EAttribute) eStructuralFeature, primitiveValue);
 				} else {
 					buffer.order(ByteOrder.LITTLE_ENDIAN);
 					short cid = buffer.getShort();
@@ -328,7 +338,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 						// negative cid means value is embedded in
 						// record
 						EClass referenceClass = queryObjectProvider.getDatabaseSession().getEClass((short) (-cid));
-						eObject.setAttribute(eStructuralFeature, readEmbeddedValue(eStructuralFeature, buffer, referenceClass));
+						eObject.setReference((EReference) eStructuralFeature, readEmbeddedValue(eStructuralFeature, buffer, referenceClass));
 					}
 				}
 			}
@@ -409,9 +419,6 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 						}
 						
 						Object result = readList(newObject, buffer, eStructuralFeature);
-						if (result != null) {
-							newObject.setAttribute(newObject.eClass().getEStructuralFeature("List"), result);
-						}
 						if (eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eStructuralFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
 							result = readList(newObject, buffer, eClass.getEStructuralFeature("ListAsString"));
 						}

@@ -26,8 +26,8 @@ import org.bimserver.shared.GuidCompressor;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.QueryContext;
 import org.bimserver.shared.exceptions.UserException;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class CreateObjectChange implements Change {
 
@@ -66,7 +66,7 @@ public class CreateObjectChange implements Change {
 		HashMapVirtualObject object = new HashMapVirtualObject(queryContext, eClass, oid, uuid);
 		
 		if (generateGuid) {
-			EStructuralFeature globalIdFeature = object.eClass().getEStructuralFeature("GlobalId");
+			EAttribute globalIdFeature = (EAttribute) object.eClass().getEStructuralFeature("GlobalId");
 			if (globalIdFeature != null) {
 				object.setAttribute(globalIdFeature, GuidCompressor.getNewIfcGloballyUniqueId());
 			} else {

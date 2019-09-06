@@ -21,7 +21,9 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
 import org.bimserver.BimserverDatabaseException;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class ByteBufferWrappedVirtualObject extends AbstractByteBufferVirtualObject implements WrappedVirtualObject {
@@ -42,8 +44,13 @@ public class ByteBufferWrappedVirtualObject extends AbstractByteBufferVirtualObj
 	}
 
 	@Override
-	public void setAttribute(EStructuralFeature eStructuralFeature, Object value) throws BimserverDatabaseException {
-		writePrimitiveValue(eStructuralFeature, value);
+	public void setAttribute(EAttribute eAttribute, Object value) throws BimserverDatabaseException {
+		writePrimitiveValue(eAttribute, value);
+	}
+
+	@Override
+	public void setReference(EReference eReference, Object value) throws BimserverDatabaseException {
+		writePrimitiveValue(eReference, value);
 	}
 
 	public ByteBuffer write() throws BimserverDatabaseException {
@@ -62,7 +69,12 @@ public class ByteBufferWrappedVirtualObject extends AbstractByteBufferVirtualObj
 
 	@Override
 	public void set(String name, Object value) throws BimserverDatabaseException {
-		setAttribute(eClass.getEStructuralFeature(name), value);
+		EStructuralFeature eStructuralFeature = eClass.getEStructuralFeature(name);
+		if (eStructuralFeature instanceof EAttribute) {
+			setAttribute((EAttribute) eStructuralFeature, value);
+		} else {
+			setReference((EReference) eStructuralFeature, (Long)value);
+		}
 	}
 
 	@Override

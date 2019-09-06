@@ -95,7 +95,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	final Map<Integer, Long> hashes = new ConcurrentHashMap<>();
 
 	private EClass productClass;
-	EStructuralFeature geometryFeature;
+	EReference geometryFeature;
 	EStructuralFeature representationFeature;
 	PackageMetaData packageMetaData;
 
@@ -162,7 +162,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		GenerateGeometryResult generateGeometryResult = new GenerateGeometryResult();
 		packageMetaData = queryContext.getPackageMetaData();
 		productClass = packageMetaData.getEClass("IfcProduct");
-		geometryFeature = productClass.getEStructuralFeature("geometry");
+		geometryFeature = (EReference) productClass.getEStructuralFeature("geometry");
 		representationFeature = productClass.getEStructuralFeature("Representation");
 		representationsFeature = packageMetaData.getEClass("IfcProductDefinitionShape").getEStructuralFeature("Representations");
 		itemsFeature = packageMetaData.getEClass("IfcShapeRepresentation").getEStructuralFeature("Items");
