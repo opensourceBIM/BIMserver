@@ -31,6 +31,7 @@ import org.bimserver.models.store.StoreFactory;
 import org.bimserver.notifications.ProgressNotification;
 import org.bimserver.notifications.ProgressTopic;
 import org.bimserver.plugins.Reporter;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -191,7 +192,11 @@ public abstract class LongAction<T extends LongActionKey> implements Reporter, P
 			LOGGER.error("Unknown error");
 			changeActionState(ActionState.AS_ERROR, "Unknown Error", 0);
 		} else {
-			LOGGER.error("", error);
+			if (error instanceof UserException) {
+				LOGGER.error("[" + ((UserException) error).getErrorCode() + "] " + error.getMessage(), error);
+			} else {
+				LOGGER.error("", error);
+			}
 			errors.add(error.getMessage());
 			stop = new GregorianCalendar();
 			changeActionState(ActionState.AS_ERROR, error == null ? "Unknown Error" : error.getMessage(), 0);
