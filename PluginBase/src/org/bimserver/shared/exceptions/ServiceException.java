@@ -19,6 +19,8 @@ package org.bimserver.shared.exceptions;
 
 import javax.xml.ws.WebFault;
 
+import org.bimserver.plugins.deserializers.DeserializeException;
+
 @WebFault(faultBean="ServiceException", name="ServiceException", targetNamespace="bimserver")
 public abstract class ServiceException extends Exception {
 	private static final long serialVersionUID = -2820189529963377510L;
@@ -50,6 +52,9 @@ public abstract class ServiceException extends Exception {
 	
 	public ServiceException(String userMessage, Throwable e) {
 		super(userMessage, e);
+		if (e instanceof DeserializeException) {
+			this.errorCode = ((DeserializeException)e).getDeserializerErrorCode();
+		}
 		this.setUserMessage(userMessage);
 		StringBuilder sb = new StringBuilder();
 		buildFullMessage(sb, e);
