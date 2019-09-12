@@ -54,6 +54,7 @@ import org.eclipse.aether.collection.CollectResult;
 import org.eclipse.aether.collection.DependencyCollectionException;
 import org.eclipse.aether.graph.Dependency;
 import org.eclipse.aether.graph.DependencyNode;
+import org.eclipse.aether.graph.Exclusion;
 import org.eclipse.aether.resolution.ArtifactDescriptorException;
 import org.eclipse.aether.resolution.ArtifactDescriptorRequest;
 import org.eclipse.aether.resolution.ArtifactDescriptorResult;
@@ -162,12 +163,13 @@ public class PluginBundleManager implements AutoCloseable {
 				// Skip
 				continue;
 			}
-			if (dependency2.getGroupId().contentEquals("org.opensourcebim") && (dependency2.getArtifactId().contentEquals("shared") || dependency2.getArtifactId().contentEquals("pluginbase") || dependency2.getArtifactId().contentEquals("ifcplugins"))) {
-				// We don't need to load BIMserver dependencies (and all their dependencies!)
-				// IfcPlugins is also added to this list, because it should never be referenced for actual use in plugins. The only time it is referenced is in a "test" scope, in that case we want to avoid resolving it (and all it's deps!)
-				continue;
-			}
-			dependenciesToResolve.add(new Dependency(new DefaultArtifact(dependency2.getGroupId(), dependency2.getArtifactId(), "pom", dependency2.getVersion()), dependency2.getScope()));
+			Dependency d = new Dependency(new DefaultArtifact(dependency2.getGroupId(), dependency2.getArtifactId(), "pom", dependency2.getVersion()), dependency2.getScope());
+			Set<Exclusion> exclusions = new HashSet<>();
+			d.setExclusions(exclusions);
+			exclusions.add(new Exclusion("org.opensourcebim", "pluginbase", null, "jar"));
+			exclusions.add(new Exclusion("org.opensourcebim", "shared", null, "jar"));
+			exclusions.add(new Exclusion("org.opensourcebim", "ifcplugins", null, "jar"));
+			dependenciesToResolve.add(d);
 		}
 		CollectRequest collectRequest = new CollectRequest(dependenciesToResolve, null, null);
 		collectRequest.setRepositories(mavenPluginRepository.getRepositoriesAsList());
@@ -177,7 +179,7 @@ public class PluginBundleManager implements AutoCloseable {
 		rootDep.accept(nlg);
 		
 		for (Dependency dependency : nlg.getDependencies(true)) {
-			if (dependency.getScope().contentEquals("test")) {
+			if (dependency.getScope().contentEquals("test") || dependency.getScope().contentEquals("compile")) {
 				continue;
 			}
 //			LOGGER.info(dependency.getArtifact().getGroupId() + "." + dependency.getArtifact().getArtifactId());
