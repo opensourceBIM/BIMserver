@@ -29,7 +29,7 @@ public class TestSimultanousCheckin {
 					}
 				});
 			}
-			Thread.sleep(10000000);
+			Thread.sleep(1000);
 		} catch (BimServerClientException e) {
 			e.printStackTrace();
 		} catch (Exception e1) {
