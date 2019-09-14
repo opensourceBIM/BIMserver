@@ -1,5 +1,6 @@
 package org.bimserver.servlets;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.CountDownLatch;
@@ -44,7 +45,11 @@ public class TriggerOnCloseInputStream extends InputStream {
 //		LOGGER.error("Closing " + id, new Exception());
 
 		// Read the rest of the inputstream
-		IOUtils.copy(inputStream, new NullOutputStream());
+		try {
+			IOUtils.copy(inputStream, new NullOutputStream());
+		} catch (EOFException e) {
+			// Skip, not a problem
+		}
 		latch.countDown();
 		inputStream.close();
 	}
