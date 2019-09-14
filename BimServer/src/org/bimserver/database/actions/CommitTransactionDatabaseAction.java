@@ -212,8 +212,8 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 				}
 				
 				for (EClass eClass : packageMetaData.getEClasses()) {
-					if (startOids.containsKey(eClass)) {
-						long oid = startOids.get(eClass);
+					if (startOids.containsKey(eClass.getName())) {
+						long oid = startOids.get(eClass.getName());
 						if (!DatabaseSession.perRecordVersioning(eClass)) {
 							originalOidCounters.putIfAbsent(eClass, oid);
 						}
