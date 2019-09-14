@@ -15,6 +15,7 @@ import org.bimserver.models.ifc2x3tc1.IfcProject;
 import org.bimserver.plugins.services.CheckinProgressHandler;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.BimServerClientException;
+import org.bimserver.utils.IfcUtils;
 import org.junit.Test;
 
 public class TestGetUuid {
@@ -43,6 +44,8 @@ public class TestGetUuid {
 				for (IfcBuildingStorey ifcBuildingStorey : model.getAll(IfcBuildingStorey.class)) {
 					System.out.println(ifcBuildingStorey.getUuid() + ":" + ifcBuildingStorey.getRid());
 				}
+				
+				System.out.println("Length unit: " + IfcUtils.getLengthUnitPrefix(model));
 				
 				IfcProject ifcProject = model.getAll(IfcProject.class).iterator().next();
 				ifcProject.setName(ifcProject.getName() + " updated");

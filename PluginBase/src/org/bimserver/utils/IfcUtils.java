@@ -722,22 +722,22 @@ public class IfcUtils {
 		return null;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static float getLengthUnitPrefix(IfcModelInterface model) {
 		float lengthUnitPrefix = 1.0f;
 		boolean prefixFound = false;
-		for (IfcProject ifcProject : model.getAll(IfcProject.class)) {
-			IfcUnitAssignment unitsInContext = ifcProject.getUnitsInContext();
+		for (IdEObject ifcProject : model.getAll(model.getPackageMetaData().getEClass("IfcProject"))) {
+			IdEObject unitsInContext = (IdEObject) ifcProject.eGet(ifcProject.eClass().getEStructuralFeature("UnitsInContext"));
 			if (unitsInContext != null) {
-				EList<IfcUnit> units = unitsInContext.getUnits();
-				for (IfcUnit unit : units) {
-					if (unit instanceof IfcSIUnit) {
-						IfcSIUnit ifcSIUnit = (IfcSIUnit) unit;
-						IfcUnitEnum unitType = ifcSIUnit.getUnitType();
-						if (unitType == IfcUnitEnum.LENGTHUNIT) {
-							IfcSIPrefix prefix = ifcSIUnit.getPrefix();
+				EList<IdEObject> units = (EList<IdEObject>) unitsInContext.eGet(unitsInContext.eClass().getEStructuralFeature("Units"));
+				for (IdEObject unit : units) {
+					if (model.getPackageMetaData().getEClass("IfcSIUnit").isSuperTypeOf(unit.eClass())) {
+						Object unitType = unit.eGet(unit.eClass().getEStructuralFeature("UnitType"));
+						if (unitType.toString().contentEquals("LENGTHUNIT")) {
+							Object prefix = unit.eGet(unit.eClass().getEStructuralFeature("Prefix"));
 							if (prefix != null) {
 								prefixFound = true;
-								lengthUnitPrefix = getLengthUnitPrefixMm(prefix.getName());
+								lengthUnitPrefix = getLengthUnitPrefixMm(prefix.toString());
 								break;
 							}
 						}
