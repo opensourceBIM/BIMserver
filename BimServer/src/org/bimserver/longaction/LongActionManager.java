@@ -43,8 +43,9 @@ public class LongActionManager {
 	
 	public synchronized void start(final LongAction<?> longAction) throws CannotBeScheduledException {
 		if (running) {
-			synchronized (LongActionManager.class) {
+			synchronized (this) {
 				// NPE has happened here, need to figure out why (possibly concurrent related)
+				// This has probably been fixed by changing the lock object from the Class (erroneous) to the Object
 				actions.put(longAction.getProgressTopic().getKey().getId(), longAction);
 			}
 			bimServer.getExecutorService().submit(new Runnable() {
@@ -99,8 +100,11 @@ public class LongActionManager {
 		LongAction<?> longAction = actions.get(topicId);
 		if (longAction != null) {
 			LOGGER.debug("[MAN] Cleaning up topic " + longAction.getProgressTopic().getKey().getId() + " (" + longAction.getDescription() + ")");
-			longAction.stop();
-			actions.remove(topicId);
+			try {
+				longAction.stop();
+			} finally {
+				actions.remove(topicId);
+			}
 		} else {
 //			throw new UserException("No Topic with TopicId " + topicId + " found");
 		}
@@ -108,7 +112,10 @@ public class LongActionManager {
 
 	public synchronized void remove(LongAction<?> action) {
 		LOGGER.debug("Cleaning up topics: " + action.getDescription());
-		action.stop();
-		actions.inverse().remove(action);
+		try {
+			action.stop();
+		} finally {
+			actions.inverse().remove(action);
+		}
 	}
 }
