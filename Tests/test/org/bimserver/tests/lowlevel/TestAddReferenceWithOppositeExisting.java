@@ -56,9 +56,11 @@ public class TestAddReferenceWithOppositeExisting extends TestWithEmbeddedServer
 			try {
 				lowLevelInterface.commitTransaction(tid, "2");
 			} catch (UserException e) {
-				if (e.getErrorCode() != ErrorCode.SET_REFERENCE_FAILED_OPPOSITE_ALREADY_SET) {
+//				if (e.getErrorCode() != ErrorCode.SET_REFERENCE_FAILED_OPPOSITE_ALREADY_SET) {
 					fail("Didn't get the right errormessage");
-				}
+//				}
+			} finally {
+				fail("Expected error code");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
