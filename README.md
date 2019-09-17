@@ -11,3 +11,4 @@ BIMserver is built for developers. We've got a great wiki on https://github.com/
 
 Licence: GNU Affero General Public License, version 3 (see http://www.gnu.org/licenses/agpl-3.0.html)
 Beware: this project makes intensive use of several other projects with different licenses. Some plugins and libraries are published under a different license.
+Testing
