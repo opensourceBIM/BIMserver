@@ -56,13 +56,6 @@ public class AddGeometryReports extends BimDatabaseAction<Void> {
 		ExtendedDataSchema htmlSchema = (ExtendedDataSchema) getDatabaseSession().querySingle(StorePackage.eINSTANCE.getExtendedDataSchema_Name(), "GEOMETRY_GENERATION_REPORT_HTML_1_1");
 		ExtendedDataSchema jsonSchema = (ExtendedDataSchema) getDatabaseSession().querySingle(StorePackage.eINSTANCE.getExtendedDataSchema_Name(), "GEOMETRY_GENERATION_REPORT_JSON_1_1");
 		
-		if (htmlSchema == null) {
-			htmlSchema = createExtendedDataSchema(getDatabaseSession(), "GEOMETRY_GENERATION_REPORT_HTML_1_1", "text/html");
-		}
-		if (jsonSchema == null) {
-			jsonSchema = createExtendedDataSchema(getDatabaseSession(), "GEOMETRY_GENERATION_REPORT_JSON_1_1", "application/json");
-		}
-		
 		storeExtendedData(getDatabaseSession(), htmlSchema, htmlBytes, "text/html", "html", timeToGenerateMs);
 		storeExtendedData(getDatabaseSession(), jsonSchema, jsonBytes, "application/json", "json", timeToGenerateMs);
 		
@@ -97,12 +90,5 @@ public class AddGeometryReports extends BimDatabaseAction<Void> {
 		if (extendedData.getSchema() != null) {
 			databaseSession.store(extendedData.getSchema());
 		}
-	}
-	
-	private ExtendedDataSchema createExtendedDataSchema(DatabaseSession databaseSession, String name, String contentType) throws BimserverDatabaseException {
-		ExtendedDataSchema extendedDataSchema = databaseSession.create(ExtendedDataSchema.class);
-		extendedDataSchema.setName(name);
-		extendedDataSchema.setContentType(contentType);
-		return extendedDataSchema;
 	}
 }

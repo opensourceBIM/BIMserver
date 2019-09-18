@@ -85,6 +85,7 @@ import org.bimserver.models.store.BooleanType;
 import org.bimserver.models.store.ByteArrayType;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DoubleType;
+import org.bimserver.models.store.ExtendedDataSchema;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.LongType;
 import org.bimserver.models.store.ObjectDefinition;
@@ -1213,6 +1214,21 @@ public class BimServer implements BasicServerInfoProvider {
 				ses.close();
 			}
 
+			try (DatabaseSession databaseSession = getDatabase().createSession()) {
+				ExtendedDataSchema htmlSchema = (ExtendedDataSchema) databaseSession.querySingle(StorePackage.eINSTANCE.getExtendedDataSchema_Name(), "GEOMETRY_GENERATION_REPORT_HTML_1_1");
+				ExtendedDataSchema jsonSchema = (ExtendedDataSchema) databaseSession.querySingle(StorePackage.eINSTANCE.getExtendedDataSchema_Name(), "GEOMETRY_GENERATION_REPORT_JSON_1_1");
+				
+				if (htmlSchema == null) {
+					htmlSchema = createExtendedDataSchema(databaseSession, "GEOMETRY_GENERATION_REPORT_HTML_1_1", "text/html");
+				}
+				if (jsonSchema == null) {
+					jsonSchema = createExtendedDataSchema(databaseSession, "GEOMETRY_GENERATION_REPORT_JSON_1_1", "application/json");
+				}
+				databaseSession.commit();
+			} catch (ServiceException e) {
+				LOGGER.error("", e);
+			}
+			
 			Integer protocolBuffersPort = getServerSettingsCache().getServerSettings().getProtocolBuffersPort();
 			if (protocolBuffersPort >= 1 && protocolBuffersPort <= 65535) {
 				try {
@@ -1590,5 +1606,12 @@ public class BimServer implements BasicServerInfoProvider {
 	
 	public UUID getUuid() {
 		return bimDatabase.getUuid();
+	}
+	
+	private ExtendedDataSchema createExtendedDataSchema(DatabaseSession databaseSession, String name, String contentType) throws BimserverDatabaseException {
+		ExtendedDataSchema extendedDataSchema = databaseSession.create(ExtendedDataSchema.class);
+		extendedDataSchema.setName(name);
+		extendedDataSchema.setContentType(contentType);
+		return extendedDataSchema;
 	}
 }
