@@ -18,10 +18,12 @@ package org.bimserver;
  *****************************************************************************/
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.bimserver.database.DatabaseRestartRequiredException;
@@ -60,7 +62,16 @@ public class AbstractLocalDevBimServerStarter {
 		config.setPort(port);
 		config.setStartCommandLine(true);
 		config.setResourceBase(resourceBase);
-
+		Path bdbPropertiesFile = config.getHomeDir().resolve("bdb.properties");
+		if (Files.exists(bdbPropertiesFile)) {
+			try (InputStream inputStream = Files.newInputStream(bdbPropertiesFile)) {
+				Properties properties = new Properties();
+				properties.load(inputStream);
+				config.setBdbEnvironmentProperties(properties);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		try {
 			fixLogging(config);
 		} catch (IOException e1) {

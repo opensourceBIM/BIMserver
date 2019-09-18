@@ -18,6 +18,7 @@ package org.bimserver;
  *****************************************************************************/
 
 import java.nio.file.Path;
+import java.util.Properties;
 
 import org.bimserver.plugins.ResourceFetcher;
 
@@ -32,6 +33,7 @@ public class BimServerConfig {
 	private boolean autoMigrate = false;
 	private Environment environment;
 	private String resourceBase;
+	private Properties bdbEnvironmentProperties = null;
 	
 	public boolean isStartEmbeddedWebServer() {
 		return startEmbeddedWebServer;
@@ -82,6 +84,14 @@ public class BimServerConfig {
 	 */
 	public void setPort(int port) {
 		this.port = port;
+	}
+	
+	public void setBdbEnvironmentProperties(Properties bdbEnvironmentProperties) {
+		this.bdbEnvironmentProperties = bdbEnvironmentProperties;
+	}
+	
+	public Properties getBdbEnvironmentProperties() {
+		return bdbEnvironmentProperties;
 	}
 	
 	public int getPort() {

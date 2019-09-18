@@ -670,7 +670,7 @@ public class BimServer implements BasicServerInfoProvider {
 				LOGGER.info("No email templates found");
 			}
 			Path databaseDir = config.getHomeDir().resolve("database");
-			BerkeleyKeyValueStore keyValueStore = new BerkeleyKeyValueStore(databaseDir);
+			BerkeleyKeyValueStore keyValueStore = new BerkeleyKeyValueStore(databaseDir, config.getBdbEnvironmentProperties());
 
 			geometryAccellerator = new GeometryAccellerator(this);
 			
@@ -696,7 +696,7 @@ public class BimServer implements BasicServerInfoProvider {
 				bimDatabase.init();
 			} catch (DatabaseRestartRequiredException e) {
 				bimDatabase.close();
-				keyValueStore = new BerkeleyKeyValueStore(databaseDir);
+				keyValueStore = new BerkeleyKeyValueStore(databaseDir, config.getBdbEnvironmentProperties());
 				bimDatabase = new Database(this, packages, keyValueStore, metaDataManager);
 				try {
 					bimDatabase.init();
