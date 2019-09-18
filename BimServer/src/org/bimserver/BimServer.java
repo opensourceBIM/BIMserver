@@ -54,6 +54,7 @@ import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.KeyValueStore;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.database.Record;
 import org.bimserver.database.RecordIterator;
 import org.bimserver.database.berkeley.BerkeleyKeyValueStore;
@@ -478,7 +479,7 @@ public class BimServer implements BasicServerInfoProvider {
 					
 					@Override
 					public void pluginInstalled(long pluginBundleVersionId, PluginContext pluginContext, SPluginInformation sPluginInformation) throws BimserverDatabaseException {
-						try (DatabaseSession session = bimDatabase.createSession()) {
+						try (DatabaseSession session = bimDatabase.createSession(OperationType.POSSIBLY_WRITE)) {
 							ServerSettings serverSettings = getServerSettingsCache().getServerSettings();
 
 							Plugin plugin = pluginContext.getPlugin();
@@ -712,7 +713,7 @@ public class BimServer implements BasicServerInfoProvider {
 				serverInfoManager.setErrorMessage("Inconsistent models");
 			}
 
-			try (DatabaseSession encsession = bimDatabase.createSession()) {
+			try (DatabaseSession encsession = bimDatabase.createSession(OperationType.POSSIBLY_WRITE)) {
 				byte[] encryptionkeyBytes = null;
 				if (!bimDatabase.getRegistry().has(ENCRYPTIONKEY, encsession)) {
 					encryptionkeyBytes = new byte[16];
@@ -815,7 +816,7 @@ public class BimServer implements BasicServerInfoProvider {
 	private void cleanupStaleData() throws BimserverDatabaseException {
 		LOGGER.info("Checking for stale records, this can take some time...");
 		long s = System.nanoTime();
-		try (DatabaseSession session = bimDatabase.createSession()) {
+		try (DatabaseSession session = bimDatabase.createSession(OperationType.POSSIBLY_WRITE)) {
 			for (Project project : session.getAll(Project.class)) {
 				if (project.getCheckinInProgress() == 0) {
 					continue;
@@ -1119,7 +1120,7 @@ public class BimServer implements BasicServerInfoProvider {
 
 		getSerializerFactory().init(pluginManager, bimDatabase, this);
 		try {
-			DatabaseSession session = bimDatabase.createSession();
+			DatabaseSession session = bimDatabase.createSession(OperationType.POSSIBLY_WRITE);
 			try {
 				updatePlugins(session);
 				session.commit();
@@ -1191,30 +1192,25 @@ public class BimServer implements BasicServerInfoProvider {
 			}
 
 			webModules = new HashMap<String, WebModulePlugin>();
-			DatabaseSession ses = bimDatabase.createSession();
-			try {
-				List<WebModulePluginConfiguration> webModuleConfigurations = serverSettingsCache.getServerSettings().getWebModules();
-				for (WebModulePluginConfiguration webModulePluginConfiguration : webModuleConfigurations) {
-					String contextPath = "";
-					for (Parameter parameter : webModulePluginConfiguration.getSettings().getParameters()) {
-						if (parameter.getName().equals("contextPath")) {
-							contextPath = ((StringType) parameter.getValue()).getValue();
-						}
+			List<WebModulePluginConfiguration> webModuleConfigurations = serverSettingsCache.getServerSettings().getWebModules();
+			for (WebModulePluginConfiguration webModulePluginConfiguration : webModuleConfigurations) {
+				String contextPath = "";
+				for (Parameter parameter : webModulePluginConfiguration.getSettings().getParameters()) {
+					if (parameter.getName().equals("contextPath")) {
+						contextPath = ((StringType) parameter.getValue()).getValue();
 					}
-					String identifier = webModulePluginConfiguration.getPluginDescriptor().getIdentifier();
-					webModules.put(contextPath, (WebModulePlugin) pluginManager.getPlugin(identifier, true));
 				}
-				// if (serverSettingsCache.getServerSettings().getWebModule() !=
-				// null) {
-				// defaultWebModule = (WebModulePlugin)
-				// pluginManager.getPlugin(serverSettingsCache.getServerSettings().getWebModule().getPluginDescriptor().getPluginClassName(),
-				// true);
-				// }
-			} finally {
-				ses.close();
+				String identifier = webModulePluginConfiguration.getPluginDescriptor().getIdentifier();
+				webModules.put(contextPath, (WebModulePlugin) pluginManager.getPlugin(identifier, true));
 			}
+			// if (serverSettingsCache.getServerSettings().getWebModule() !=
+			// null) {
+			// defaultWebModule = (WebModulePlugin)
+			// pluginManager.getPlugin(serverSettingsCache.getServerSettings().getWebModule().getPluginDescriptor().getPluginClassName(),
+			// true);
+			// }
 
-			try (DatabaseSession databaseSession = getDatabase().createSession()) {
+			try (DatabaseSession databaseSession = getDatabase().createSession(OperationType.POSSIBLY_WRITE)) {
 				ExtendedDataSchema htmlSchema = (ExtendedDataSchema) databaseSession.querySingle(StorePackage.eINSTANCE.getExtendedDataSchema_Name(), "GEOMETRY_GENERATION_REPORT_HTML_1_1");
 				ExtendedDataSchema jsonSchema = (ExtendedDataSchema) databaseSession.querySingle(StorePackage.eINSTANCE.getExtendedDataSchema_Name(), "GEOMETRY_GENERATION_REPORT_JSON_1_1");
 				
@@ -1242,7 +1238,7 @@ public class BimServer implements BasicServerInfoProvider {
 			bimServerClientFactory = new DirectBimServerClientFactory<ServiceInterface>(serverSettingsCache.getServerSettings().getSiteAddress(), serviceFactory, servicesMap, pluginManager, metaDataManager);
 			pluginManager.setBimServerClientFactory(bimServerClientFactory);
 			
-			try (DatabaseSession session2 = bimDatabase.createSession()) {
+			try (DatabaseSession session2 = bimDatabase.createReadOnlySession()) {
 				IfcModelInterface pluginBundleVersions = session2.getAllOfType(StorePackage.eINSTANCE.getPluginBundleVersion(), OldQuery.getDefault());
 				for (PluginBundleVersion pluginBundleVersion : pluginBundleVersions.getAll(PluginBundleVersion.class)) {
 					if (pluginBundleVersion.getType() == PluginBundleType.MAVEN || pluginBundleVersion.getType() == PluginBundleType.LOCAL) {
@@ -1297,7 +1293,7 @@ public class BimServer implements BasicServerInfoProvider {
 	 * @throws BimserverLockConflictException
 	 */
 	public void activateServices() throws BimserverDatabaseException, BimserverLockConflictException {
-		try (DatabaseSession session = bimDatabase.createSession()) {
+		try (DatabaseSession session = bimDatabase.createReadOnlySession()) {
 			IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getUser(), OldQuery.getDefault());
 			for (User user : allOfType.getAll(User.class)) {
 				updateUserSettings(session, user);

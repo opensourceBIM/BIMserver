@@ -40,7 +40,7 @@ public class ServerSettingsCache {
 	}
 
 	public synchronized void updateCache() {
-		DatabaseSession session = database.createSession();
+		DatabaseSession session = database.createReadOnlySession();
 		try {
 			serverSettings = session.getSingle(StorePackage.eINSTANCE.getServerSettings(), new OldQuery(session.getMetaDataManager().getPackageMetaData("store"), true));
 			if (serverSettings.getSessionTimeOutSeconds() == 0) {

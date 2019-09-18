@@ -87,7 +87,7 @@ public class PublicInterfaceFactory implements ServiceFactory {
 				// We do this on login as well, so no need to do for cached auth
 				// TODO When a user is being deleted, this auth cache should be updated accordingly
 				// TODO A logout method should be added
-				DatabaseSession session = bimServer.getDatabase().createSession();
+				DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 				try {
 					user = session.get(authorization.getUoid(), OldQuery.getDefault());
 					if (user == null) {

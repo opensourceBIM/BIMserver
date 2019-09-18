@@ -25,7 +25,6 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.GeometryGeneratingException;
-import org.bimserver.ServerIfcModel;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
@@ -54,8 +53,8 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 	private final Set<Long> roids;
 	private long serializerOid;
 
-	public DownloadProjectsDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, long serializerOid, Authorization authorization) {
-		super(bimServer, databaseSession, accessMethod, authorization);
+	public DownloadProjectsDatabaseAction(BimServer bimServer, DatabaseSession readOnlyDatabaseSession, AccessMethod accessMethod, Set<Long> roids, long serializerOid, Authorization authorization) {
+		super(bimServer, readOnlyDatabaseSession, accessMethod, authorization);
 		this.roids = roids;
 		this.serializerOid = serializerOid;
 	}

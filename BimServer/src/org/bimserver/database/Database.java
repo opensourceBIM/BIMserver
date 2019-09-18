@@ -131,7 +131,7 @@ public class Database implements BimDatabase {
 	}
 
 	public void init() throws DatabaseInitException, DatabaseRestartRequiredException, InconsistentModelsException {
-		DatabaseSession databaseSession = createSession();
+		DatabaseSession databaseSession = createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			if (getKeyValueStore().isNew()) {
 				keyValueStore.createTable(CLASS_LOOKUP_TABLE, null, true);
@@ -368,7 +368,15 @@ public class Database implements BimDatabase {
 	}
 
 	public DatabaseSession createSession() {
-		DatabaseSession databaseSession = new DatabaseSession(this, keyValueStore.startTransaction());
+		return createSession(OperationType.READ_WRITE);
+	}
+
+	public DatabaseSession createReadOnlySession() {
+		return createSession(OperationType.READ_ONLY);
+	}
+	
+	public DatabaseSession createSession(OperationType operationType) {
+		DatabaseSession databaseSession = new DatabaseSession(this, keyValueStore.startTransaction(), operationType);
 		sessions.add(databaseSession);
 		return databaseSession;
 	}

@@ -19,6 +19,7 @@ package org.bimserver.webservices.impl;
 
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.ChangePasswordDatabaseAction;
 import org.bimserver.database.actions.LoginDatabaseAction;
@@ -42,7 +43,7 @@ public class AuthServiceImpl extends GenericServiceImpl implements AuthInterface
 
 	@Override
 	public String login(String username, String password) throws ServerException, UserException {
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			LoginDatabaseAction loginDatabaseAction = new LoginDatabaseAction(getBimServer(), session, getServiceMap(), super.getInternalAccessMethod(), username, password);
 			return session.executeAndCommitAction(loginDatabaseAction);
@@ -71,7 +72,7 @@ public class AuthServiceImpl extends GenericServiceImpl implements AuthInterface
 
 	@Override
 	public String loginUserToken(String token) throws ServerException, UserException {
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			LoginUserTokenDatabaseAction loginDatabaseAction = new LoginUserTokenDatabaseAction(getBimServer(), session, getServiceMap(), super.getInternalAccessMethod(), token);
 			return session.executeAndCommitAction(loginDatabaseAction);
@@ -118,7 +119,7 @@ public class AuthServiceImpl extends GenericServiceImpl implements AuthInterface
 
 	@Override
 	public SUser validateAccount(Long uoid, String token, String password) throws ServerException, UserException {
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<User> action = new ValidateUserDatabaseAction(session, getInternalAccessMethod(), uoid, token, password);
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(action));

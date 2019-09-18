@@ -108,7 +108,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	private StackTraceElement[] stackTrace;
 	private final ObjectCache objectCache = new ObjectCache();
 	private Map<String, Long> startOids;
-	private final Map<Long, HashMapVirtualObject> voCache = new ConcurrentHashMap<>();
+	private Map<Long, HashMapVirtualObject> voCache;
 	private CleanupListener cleanupListener;
 	private final Set<ServerIfcModel> serverModels = new HashSet<>();
 	private long reads;
@@ -120,14 +120,17 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 
 	private SessionState state = SessionState.OPEN;
 	private boolean overwriteEnabled;
+	private boolean error;
+	private final OperationType operationType;
 
-	public DatabaseSession(Database database, BimTransaction bimTransaction) {
+	public DatabaseSession(Database database, BimTransaction bimTransaction, OperationType operationType) {
 		this.database = database;
 		this.bimTransaction = bimTransaction;
+		this.operationType = operationType;
 		this.createdAt = System.currentTimeMillis();
-		if (DEVELOPER_DEBUG) {
+//		if (DEVELOPER_DEBUG) {
 			this.stackTrace = Thread.currentThread().getStackTrace();
-		}
+//		}
 	}
 	
 	public long getCreatedAt() {
@@ -160,6 +163,14 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	}
 
 	public void close() {
+		if (operationType == OperationType.READ_WRITE && bimTransaction.updates() == 0 && !error) {
+			LOGGER.info("Potential for readonly database session");
+			LOGGER.info("Owner: " + this);
+			StackTraceElement[] stackTraceElements = this.getStackTrace();
+			for (StackTraceElement stackTraceElement : stackTraceElements) {
+				LOGGER.info("\tat " + stackTraceElement);
+			}
+		}
 		state = SessionState.CLOSED;
 		objectCache.clear();
 		for (ServerIfcModel serverIfcModel : serverModels) {
@@ -185,6 +196,9 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	
 	public void commit(ProgressHandler progressHandler) throws BimserverDatabaseException, ServiceException {
 		checkOpen();
+		if (operationType == OperationType.READ_ONLY) {
+			throw new BimserverDatabaseException("Cannot commit READ_ONLY DatabaseSession");
+		}
 		try {
 			if (progressHandler != null) {
 				progressHandler.progress(0, objectsToCommit == null ? 0 : objectsToCommit.size());
@@ -217,7 +231,6 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 						try {
 							database.getKeyValueStore().storeNoOverwrite(object.eClass().getEPackage().getName() + "_" + object.eClass().getName(), keyBuffer.array(), valueBuffer.array(), 0, valueBufferPosition, this);
 						} catch (BimserverConcurrentModificationDatabaseException e) {
-							LOGGER.error(object.eClass().getName());
 							throw e;
 						}
 					} else {
@@ -237,6 +250,9 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 				database.getKeyValueStore().sync();
 			}
 			database.incrementCommittedWrites(writes);
+			if (bimTransaction != null) {
+				bimTransaction.incUpdates(writes);
+			}
 			close();
 			if (postCommitActions != null) {
 				for (PostCommitAction postCommitAction : postCommitActions) {
@@ -811,6 +827,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 				objectsToCommit = null;
 				bimTransaction = database.getKeyValueStore().startTransaction();
 			} catch (BimserverDatabaseException e) {
+				this.error = true;
 				bimTransaction.rollback();
 				if (cleanupListener != null) {
 					cleanupListener.cleanup();
@@ -2086,6 +2103,9 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 				database.getKeyValueStore().storeNoOverwrite(eClass.getEPackage().getName() + "_" + eClass.getName(),
 						keyBuffer.array(), valueBuffer.array(), this);
 				database.incrementCommittedWrites(1);
+				if (bimTransaction != null) {
+					bimTransaction.incUpdates(1);
+				}
 			} catch (BimserverLockConflictException e) {
 				LOGGER.error("", e);
 			}
@@ -2304,6 +2324,9 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		
 		processPossibleIndices(keyBuffer, object.getPid(), object.getRid(), object.getOid(), object.eClass(), valueBuffer);
 		
+		if (bimTransaction != null) {
+			bimTransaction.incUpdates(1);
+		}
 		database.incrementCommittedWrites(1);
 		return valueBuffer.position();
 	}
@@ -2318,6 +2341,9 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		processPossibleIndices(keyBuffer, object.getPid(), object.getRid(), object.getOid(), object.eClass(), valueBuffer);
 
 		database.incrementCommittedWrites(1);
+		if (bimTransaction != null) {
+			bimTransaction.incUpdates(1);
+		}
 		
 		return valueBuffer.position();
 	}
@@ -2341,10 +2367,16 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	}
 
 	public void cache(HashMapVirtualObject object) {
+		if (voCache == null) {
+			voCache = new ConcurrentHashMap<>();
+		}
 		voCache.put(object.getOid(), object);
 	}
 	
 	public HashMapVirtualObject getFromCache(long oid) {
+		if (voCache == null) {
+			voCache = new ConcurrentHashMap<>();
+		}
 		return voCache.get(oid);
 	}
 
@@ -2360,6 +2392,9 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		EClass eClass = object.eClass();
 		String tableName = eClass.getEPackage().getName() + "_" + eClass.getName();
 		database.getKeyValueStore().storeNoOverwrite(tableName, keyBuffer.array(), new byte[] { -1 }, this);
+		if (bimTransaction != null) {
+			bimTransaction.incUpdates(1);
+		}
 		database.incrementCommittedWrites(1);
 	}
 

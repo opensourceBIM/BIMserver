@@ -34,7 +34,7 @@ import org.bimserver.webservices.authorization.Authorization;
 public class LongDownloadAction extends LongDownloadOrCheckoutAction implements ProgressListener {
 
 	private BimDatabaseAction<? extends IfcModelInterface> action;
-	private DatabaseSession session;
+	private DatabaseSession readOnlyDatabaseSession;
 
 	public LongDownloadAction(BimServer bimServer, String username, String userUsername, DownloadParameters downloadParameters, Authorization authorization, AccessMethod accessMethod) {
 		super(bimServer, username, userUsername, downloadParameters, accessMethod, authorization);
@@ -46,15 +46,15 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 	public void execute() {
 		changeActionState(ActionState.STARTED, "Starting download", 0);
 		try {
-			executeAction(action, downloadParameters, session, false);
+			executeAction(action, downloadParameters, readOnlyDatabaseSession, false);
  		} catch (UserException e) {
  			error(e);
  		} catch (Exception e) {
  			error(e);
 			LOGGER.error("", e);
 		} finally {
-			if (session != null) {
-				session.close();
+			if (readOnlyDatabaseSession != null) {
+				readOnlyDatabaseSession.close();
 			}
 			if (getErrors().size() == 0) {
 				changeActionState(ActionState.STARTED, "Done preparing", 0);
@@ -68,16 +68,16 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 			return;
 		}
 
-		session = getBimServer().getDatabase().createSession();
+		readOnlyDatabaseSession = getBimServer().getDatabase().createReadOnlySession();
 		switch (downloadParameters.getDownloadType()) {
 		case DOWNLOAD_BY_NEW_JSON_QUERY:
-			action = new DownloadByNewJsonQueryDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getJsonQuery(), downloadParameters.getSerializerOid(), getAuthorization());
+			action = new DownloadByNewJsonQueryDatabaseAction(getBimServer(), readOnlyDatabaseSession, accessMethod, downloadParameters.getRoids(), downloadParameters.getJsonQuery(), downloadParameters.getSerializerOid(), getAuthorization());
 			break;
 		case DOWNLOAD_PROJECTS:
-			action = new DownloadProjectsDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getSerializerOid(), getAuthorization());
+			action = new DownloadProjectsDatabaseAction(getBimServer(), readOnlyDatabaseSession, accessMethod, downloadParameters.getRoids(), downloadParameters.getSerializerOid(), getAuthorization());
 			break;
 		case DOWNLOAD_COMPARE:
-			action = new DownloadCompareDatabaseAction(getBimServer(), session, accessMethod, downloadParameters.getRoids(), downloadParameters.getModelCompareIdentifier(), downloadParameters.getCompareType(), getAuthorization());
+			action = new DownloadCompareDatabaseAction(getBimServer(), readOnlyDatabaseSession, accessMethod, downloadParameters.getRoids(), downloadParameters.getModelCompareIdentifier(), downloadParameters.getCompareType(), getAuthorization());
 			break;
 		}
 		action.addProgressListener(this);

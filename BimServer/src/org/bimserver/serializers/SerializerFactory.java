@@ -80,7 +80,7 @@ public class SerializerFactory {
 	}
 	
 	public Serializer create(Project project, String username, IfcModelInterface model, RenderEnginePlugin renderEnginePlugin, DownloadParameters downloadParameters) throws SerializerException {
-		DatabaseSession session = bimDatabase.createSession();
+		DatabaseSession session = bimDatabase.createReadOnlySession();
 		try {
 			SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), OldQuery.getDefault());
 			if (serializerPluginConfiguration != null) {

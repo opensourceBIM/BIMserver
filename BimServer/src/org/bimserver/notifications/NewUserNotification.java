@@ -36,7 +36,7 @@ public class NewUserNotification extends Notification {
 	public void process() throws UserException, ServerException, BimserverDatabaseException {
 		NewUserTopic newUserTopic = getBimServer().getNotificationsManager().getNewUserTopic();
 		if (newUserTopic != null) {
-			DatabaseSession session = getBimServer().getDatabase().createSession();
+			DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
 			try {
 				newUserTopic.process(session, uoid, this);
 			} finally {

@@ -120,7 +120,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 				IfcModelInterface ifcModel = session.executeAndCommitAction(action);
 				// Session is closed after this
 
-				DatabaseSession newSession = getBimServer().getDatabase().createSession();
+				DatabaseSession newSession = getBimServer().getDatabase().createReadOnlySession();
 				RenderEnginePlugin renderEnginePlugin = null;
 				try {
 					PluginConfiguration serializerPluginConfiguration = newSession.get(StorePackage.eINSTANCE.getPluginConfiguration(), downloadParameters.getSerializerOid(), OldQuery.getDefault());

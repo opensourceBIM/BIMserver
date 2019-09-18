@@ -76,7 +76,8 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	private static final boolean MONITOR_CURSOR_STACK_TRACES = false;
 	private final AtomicLong cursorCounter = new AtomicLong();
 	private final Map<Long, StackTraceElement[]> openCursors = new ConcurrentHashMap<>();
-	private boolean useTransactions = true;
+	private final boolean useTransactions = true;
+	private final boolean keyPrefixing = true;
 	private CursorConfig unsafeCursorConfig;
 
 	public BerkeleyKeyValueStore(Path dataDir, Properties properties) throws DatabaseInitException {
@@ -156,6 +157,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 			throw new BimserverDatabaseException("Table " + tableName + " already created");
 		}
 		DatabaseConfig databaseConfig = new DatabaseConfig();
+		databaseConfig.setKeyPrefixing(keyPrefixing);
 		databaseConfig.setAllowCreate(true);
 		boolean finalTransactional = transactional && useTransactions;
 		databaseConfig.setDeferredWrite(!finalTransactional);
@@ -178,6 +180,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 			throw new BimserverDatabaseException("Table " + tableName + " already created");
 		}
 		DatabaseConfig databaseConfig = new DatabaseConfig();
+		databaseConfig.setKeyPrefixing(keyPrefixing);
 		databaseConfig.setAllowCreate(true);
 		boolean finalTransactional = transactional && useTransactions;
 //		if (!transactional) {
@@ -200,6 +203,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 			throw new BimserverDatabaseException("Table " + tableName + " already opened");
 		}
 		DatabaseConfig databaseConfig = new DatabaseConfig();
+		databaseConfig.setKeyPrefixing(keyPrefixing);
 		databaseConfig.setAllowCreate(false);
 		boolean finalTransactional = transactional && useTransactions;
 //		if (!transactional) {
@@ -221,6 +225,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 			throw new BimserverDatabaseException("Table " + tableName + " already opened");
 		}
 		DatabaseConfig databaseConfig = new DatabaseConfig();
+		databaseConfig.setKeyPrefixing(keyPrefixing);
 		databaseConfig.setAllowCreate(false);
 		boolean finalTransactional = transactional && useTransactions;
 //		if (!transactional) {

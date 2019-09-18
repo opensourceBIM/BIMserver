@@ -43,7 +43,7 @@ public class PluginSettingsCache {
 	public PluginConfiguration getPluginSettings(Long serializerOid) throws BimserverDatabaseException {
 		PluginConfiguration pluginConfiguration = pluginConfigurations.get(serializerOid);
 		if (pluginConfiguration == null) {
-			try (DatabaseSession databaseSession = bimServer.getDatabase().createSession()) {
+			try (DatabaseSession databaseSession = bimServer.getDatabase().createReadOnlySession()) {
 				org.bimserver.models.store.PluginConfiguration serializerPluginConfiguration = databaseSession.get(serializerOid, OldQuery.getDefault());
 				if (serializerPluginConfiguration != null) {
 					pluginConfiguration = new org.bimserver.plugins.PluginConfiguration(serializerPluginConfiguration.getSettings());

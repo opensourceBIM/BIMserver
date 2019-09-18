@@ -29,6 +29,10 @@ import org.eclipse.emf.ecore.EClass;
 public interface BimDatabase {
 	DatabaseSession createSession();
 
+	DatabaseSession createSession(OperationType operationType);
+
+	DatabaseSession createReadOnlySession();
+
 	void close();
 
 	Migrator getMigrator();

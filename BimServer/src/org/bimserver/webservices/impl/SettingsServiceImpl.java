@@ -364,7 +364,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 
 	@Override
 	public SServerSettings getServerSettings() throws ServerException, UserException {
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
 		try {
 			IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getServerSettings(), OldQuery.getDefault());
 			return getBimServer().getSConverter().convertToSObject(allOfType.getAll(ServerSettings.class).get(0));

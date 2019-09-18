@@ -26,4 +26,6 @@ public interface BimTransaction {
 	void rollback();
 	void commit() throws BimserverLockConflictException, BimserverDatabaseException;
 	long getId();
+	long updates();
+	void incUpdates(long updates);
 }

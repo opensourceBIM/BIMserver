@@ -74,7 +74,7 @@ public class ServerInfoManager {
 		} else if (bimServer.getDatabase().getMigrator().migrationImpossible()) {
 			setServerState(ServerState.MIGRATION_IMPOSSIBLE);
 		} else {
-			DatabaseSession session = bimServer.getDatabase().createSession();
+			DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 			try {
 				boolean adminFound = false;
 				ServerSettings settings = bimServer.getServerSettingsCache().getServerSettings();

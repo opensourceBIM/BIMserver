@@ -105,7 +105,7 @@ public class NewRevisionNotification extends Notification {
 
 	@Override
 	public void process() throws BimserverDatabaseException, UserException, ServerException {
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, OldQuery.getDefault());
 			if (project == null) {

@@ -159,7 +159,7 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 	
 	@Override
 	public List<SOAuthServer> listRegisteredServers() throws ServerException, UserException {
-    	try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+    	try (DatabaseSession session = getBimServer().getDatabase().createReadOnlySession()) {
     		List<OAuthServer> allOfType = session.getAllOfType(StorePackage.eINSTANCE.getOAuthServer(), OAuthServer.class, OldQuery.getDefault());
     		Iterator<OAuthServer> iterator = allOfType.iterator();
     		while (iterator.hasNext()) {
@@ -176,7 +176,7 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 
 	@Override
 	public List<SOAuthServer> listRegisteredServersLocal() throws ServerException, UserException {
-		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+		try (DatabaseSession session = getBimServer().getDatabase().createReadOnlySession()) {
 			List<OAuthServer> allOfType = session.getAllOfType(StorePackage.eINSTANCE.getOAuthServer(), OAuthServer.class, OldQuery.getDefault());
 			Iterator<OAuthServer> iterator = allOfType.iterator();
 			while (iterator.hasNext()) {
@@ -210,7 +210,7 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 	
 	@Override
 	public List<SOAuthAuthorizationCode> listAuthorizationCodes() throws ServerException, UserException {
-		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+		try (DatabaseSession session = getBimServer().getDatabase().createReadOnlySession()) {
 			User user = session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
 			return getBimServer().getSConverter().convertToSListOAuthAuthorizationCode(user.getOAuthAuthorizationCodes());
     	} catch (Exception e) {
@@ -220,7 +220,7 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 
 	@Override
 	public List<SOAuthAuthorizationCode> listIssuedAuthorizationCodes() throws ServerException, UserException {
-		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+		try (DatabaseSession session = getBimServer().getDatabase().createReadOnlySession()) {
 			User user = session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
 			return getBimServer().getSConverter().convertToSListOAuthAuthorizationCode(user.getOAuthIssuedAuthorizationCodes());
 		} catch (Exception e) {
@@ -230,7 +230,7 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 	
 	@Override
 	public SOAuthServer getOAuthServerById(Long oid) throws ServerException, UserException {
-		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+		try (DatabaseSession session = getBimServer().getDatabase().createReadOnlySession()) {
 			OAuthServer oAuthServer = session.get(oid, OldQuery.getDefault());
 			return getBimServer().getSConverter().convertToSObject(oAuthServer);
 		} catch (Exception e) {
@@ -340,7 +340,7 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 
 	@Override
 	public SAuthorization getAuthorizationById(Long oid) throws ServerException, UserException {
-		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+		try (DatabaseSession session = getBimServer().getDatabase().createReadOnlySession()) {
 			return getBimServer().getSConverter().convertToSObject(((Authorization)session.get(oid, OldQuery.getDefault())));
 		} catch (Exception e) {
 			return handleException(e);
@@ -349,7 +349,7 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 
 	@Override
 	public SOAuthServer getOAuthServerByClientId(String clientId) throws ServerException, UserException {
-		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+		try (DatabaseSession session = getBimServer().getDatabase().createReadOnlySession()) {
 			OAuthServer oAuthServer = session.querySingle(StorePackage.eINSTANCE.getOAuthServer_ClientId(), clientId);
 			return getBimServer().getSConverter().convertToSObject(oAuthServer);
 		} catch (Exception e) {
@@ -359,7 +359,7 @@ public class OAuthServiceImpl extends GenericServiceImpl implements OAuthInterfa
 
 	@Override
 	public String getRemoteToken(Long soid, String code, Long serverId) throws ServerException, UserException {
-		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+		try (DatabaseSession session = getBimServer().getDatabase().createReadOnlySession()) {
 			NewService newService = session.get(soid, OldQuery.getDefault());
 			ObjectNode objectNode = OBJECT_MAPPER.createObjectNode();
 			objectNode.put("grant_type", "authorization_code");

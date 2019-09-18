@@ -32,9 +32,14 @@ public class BerkeleyTransaction implements BimTransaction {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BerkeleyTransaction.class);
 	private final Transaction transaction;
 	private boolean transactionAlive = true;
+	private long updates;
 
 	public BerkeleyTransaction(Transaction transaction) {
 		this.transaction = transaction;
+	}
+	
+	public void incUpdates(long updates) {
+		this.updates += updates;
 	}
 
 	public Transaction getTransaction() {
@@ -78,5 +83,10 @@ public class BerkeleyTransaction implements BimTransaction {
 	@Override
 	public long getId() {
 		return transaction.getId();
+	}
+
+	@Override
+	public long updates() {
+		return updates;
 	}
 }

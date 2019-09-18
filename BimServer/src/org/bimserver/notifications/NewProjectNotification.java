@@ -35,7 +35,7 @@ public class NewProjectNotification extends Notification {
 	@Override
 	public void process() throws UserException, ServerException, BimserverDatabaseException {
 		NewProjectTopic newProjectTopic = getBimServer().getNotificationsManager().getNewProjectTopic();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
 		try {
 			if (newProjectTopic != null) {
 				newProjectTopic.process(session, poid, this);

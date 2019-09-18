@@ -232,7 +232,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 	@Override
 	public Date getLastDatabaseReset() throws ServerException, UserException {
 		requireRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
 		try {
 			return session.getCreatedDate();
 		} catch (Exception e) {
@@ -301,7 +301,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 	@Override
 	public List<SLogAction> getLogs() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<List<LogAction>> action = new GetLogsDatabaseAction(session, getInternalAccessMethod(), getAuthorization());
 			List<LogAction> logs = session.executeAndCommitAction(action);
@@ -318,7 +318,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 	@Override
 	public SDatabaseInformation getDatabaseInformation() throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<DatabaseInformation> action = new GetDatabaseInformationAction(session, getInternalAccessMethod());
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(action));
@@ -332,7 +332,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 	@Override
 	public List<SPluginDescriptor> getAllPlugins() throws UserException, ServerException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
 		try {
 			List<SPluginDescriptor> convertToSListPluginDescriptor = getBimServer().getSConverter().convertToSListPluginDescriptor(session.getAllOfType(StorePackage.eINSTANCE.getPluginDescriptor(), PluginDescriptor.class, OldQuery.getDefault()));
 			Collections.sort(convertToSListPluginDescriptor, new SPluginDescriptorComparator());

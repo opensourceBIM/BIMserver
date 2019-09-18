@@ -248,7 +248,7 @@ public class NotificationRegistryServiceImpl extends GenericServiceImpl implemen
 	
 	@Override
 	public List<Long> getProgressTopicsOnProject(Long poid) throws ServerException, UserException {
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
 		try {
 			List<Long> list = new ArrayList<Long>();
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, OldQuery.getDefault());

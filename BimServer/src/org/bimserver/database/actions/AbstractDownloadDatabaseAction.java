@@ -44,8 +44,8 @@ public abstract class AbstractDownloadDatabaseAction<T> extends BimDatabaseActio
 	private Authorization authorization;
 	private BimServer bimServer;
 
-	public AbstractDownloadDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization) {
-		super(databaseSession, accessMethod);
+	public AbstractDownloadDatabaseAction(BimServer bimServer, DatabaseSession readOnlyDatabaseSession, AccessMethod accessMethod, Authorization authorization) {
+		super(readOnlyDatabaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.authorization = authorization;
 	}

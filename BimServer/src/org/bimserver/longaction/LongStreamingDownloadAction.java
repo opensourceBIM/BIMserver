@@ -103,7 +103,7 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 		
 		setProgressTopic(bimServer.getNotificationsManager().createProgressTopic(SProgressTopicType.DOWNLOAD, "Download"));
 		
-		databaseSession = getBimServer().getDatabase().createSession();
+		databaseSession = getBimServer().getDatabase().createReadOnlySession();
 		try {
 			PackageMetaData packageMetaData = null;
 			ProjectInfo projectInfo = new ProjectInfo();

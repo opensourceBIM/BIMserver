@@ -24,7 +24,6 @@ import java.util.Set;
 
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
-import org.bimserver.ServerIfcModel;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
@@ -66,9 +65,9 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 	private final CompareType compareType;
 	private final long mcid;
 
-	public DownloadCompareDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Set<Long> roids, long mcid, CompareType compareType,
+	public DownloadCompareDatabaseAction(BimServer bimServer, DatabaseSession readOnlyDatabaseSession, AccessMethod accessMethod, Set<Long> roids, long mcid, CompareType compareType,
 			Authorization authorization) {
-		super(bimServer, databaseSession, accessMethod, authorization);
+		super(bimServer, readOnlyDatabaseSession, accessMethod, authorization);
 		this.mcid = mcid;
 		Iterator<Long> iterator = roids.iterator();
 		this.roid1 = iterator.next();
