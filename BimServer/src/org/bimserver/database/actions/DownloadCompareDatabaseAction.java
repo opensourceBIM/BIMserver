@@ -120,7 +120,7 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 
 			ModelMerger merger = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid());
 			PackageMetaData packageMetaData = model1.getPackageMetaData();
-			IfcModelInterface mergedModel = new ServerIfcModel(packageMetaData, null, getDatabaseSession());
+			IfcModelInterface mergedModel = getDatabaseSession().createServerModel(packageMetaData, null);
 			mergedModel = merger.merge(project, new IfcModelSet(model1, model2), new ModelHelper(getBimServer().getMetaDataManager(), mergedModel));
 			mergedModel.getModelMetaData().setName(project.getName() + "." + revision1.getId() + "." + revision2.getId());
 

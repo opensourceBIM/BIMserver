@@ -99,7 +99,7 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 			if (concreteRevision.getUser().getOid() != ignoreUoid) {
 				PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 				lastPackageMetaData = packageMetaData;
-				IfcModel subModel = new ServerIfcModel(packageMetaData, pidRoidMap, getDatabaseSession());
+				IfcModel subModel = getDatabaseSession().createServerModel(packageMetaData, pidRoidMap);
 				ifcHeader = concreteRevision.getIfcHeader();
 				int highestStopId = findHighestStopRid(project, concreteRevision);
 				OldQuery query = new OldQuery(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), concreteRevision.getOid(), Deep.YES, highestStopId);
@@ -127,7 +127,7 @@ public class DownloadDatabaseAction extends AbstractDownloadDatabaseAction<IfcMo
 				ifcModelSet.add(subModel);
 			}
 		}
-		IfcModelInterface ifcModel = new ServerIfcModel(lastPackageMetaData, pidRoidMap, getDatabaseSession());
+		IfcModelInterface ifcModel = getDatabaseSession().createServerModel(lastPackageMetaData, pidRoidMap);
 		if (ifcModelSet.size() > 1) {
 			try {
 				ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(revision.getProject(), ifcModelSet, new ModelHelper(getBimServer().getMetaDataManager(), ifcModel));

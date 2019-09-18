@@ -39,7 +39,6 @@ public class BasicIfcModel extends IfcModel {
 		this.pluginClassLoaderProvider = pluginClassLoaderProvider;
 	}
 	
-	@Override
 	public PluginClassLoaderProvider getPluginClassLoaderProvider() {
 		return pluginClassLoaderProvider;
 	}

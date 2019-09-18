@@ -91,7 +91,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 					ifcHeader = concreteRevision.getIfcHeader();
 					PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 					lastPackageMetaData = packageMetaData;
-					IfcModel subModel = new ServerIfcModel(packageMetaData, pidRoidMap, getDatabaseSession());
+					IfcModel subModel = getDatabaseSession().createServerModel(packageMetaData, pidRoidMap);;
 					int highestStopId = findHighestStopRid(project, concreteRevision);
 					OldQuery query = new OldQuery(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), revision.getOid(), Deep.YES, highestStopId);
 					subModel.addChangeListener(new IfcModelChangeListener() {
@@ -122,7 +122,7 @@ public class DownloadProjectsDatabaseAction extends AbstractDownloadDatabaseActi
 				throw new UserException("User has no rights on project " + project.getOid());
 			}
 		}
-		IfcModelInterface ifcModel = new ServerIfcModel(lastPackageMetaData, pidRoidMap, getDatabaseSession());
+		IfcModelInterface ifcModel = getDatabaseSession().createServerModel(lastPackageMetaData, pidRoidMap);
 		if (ifcModelSet.size() == 1) {
 			ifcModel = ifcModelSet.iterator().next();
 		} else {

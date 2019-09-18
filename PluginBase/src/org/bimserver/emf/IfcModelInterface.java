@@ -260,7 +260,4 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory, A
 	<T extends IdEObject> T getFirst(EClass eClass);
 
 	void dumpDebug();
-
-	PluginClassLoaderProvider getPluginClassLoaderProvider();
-	void setPluginClassLoaderProvider(PluginClassLoaderProvider pluginClassLoaderProvider);
 }

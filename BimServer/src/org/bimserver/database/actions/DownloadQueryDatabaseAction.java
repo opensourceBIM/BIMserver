@@ -72,7 +72,7 @@ public class DownloadQueryDatabaseAction extends AbstractDownloadDatabaseAction<
 				QueryEnginePlugin queryEnginePlugin = getBimServer().getPluginManager().getQueryEngine(queryEngineObject.getPluginDescriptor().getPluginClassName(), true);
 				if (queryEnginePlugin != null) {
 					QueryEngine queryEngine = queryEnginePlugin.getQueryEngine(getBimServer().getPluginSettingsCache().getPluginSettings(queryEngineObject.getOid()));
-					final IfcModelInterface result = new ServerIfcModel(packageMetaData, null, getDatabaseSession());
+					final IfcModelInterface result = getDatabaseSession().createServerModel(packageMetaData, null);
 					ModelHelper modelHelper = new ModelHelper(getBimServer().getMetaDataManager(), result);
 					modelHelper.setOidProvider(new OidProvider(){
 						private long oid = 1000000;

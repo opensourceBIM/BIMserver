@@ -970,12 +970,10 @@ public class ClientIfcModel extends IfcModel implements GeometryTarget {
 		clientDebugInfo.dump();
 	}
 
-	@Override
 	public PluginClassLoaderProvider getPluginClassLoaderProvider() {
 		return pluginClassLoaderProvider;
 	}
 
-	@Override
 	public void setPluginClassLoaderProvider(PluginClassLoaderProvider pluginClassLoaderProvider) {
 		this.pluginClassLoaderProvider = pluginClassLoaderProvider;
 	}

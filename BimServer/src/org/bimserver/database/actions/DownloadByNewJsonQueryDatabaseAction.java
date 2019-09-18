@@ -128,7 +128,7 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 //				System.out.println(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(new JsonQueryObjectModelConverter(packageMetaData).toJson(query)));
 
 				pidRoidMap.put(revision.getProject().getId(), roid);
-				IfcModelInterface ifcModel = new ServerIfcModel(packageMetaData, pidRoidMap, getDatabaseSession());
+				IfcModelInterface ifcModel = getDatabaseSession().createServerModel(packageMetaData, pidRoidMap);
 
 				ifcModelSet.add(ifcModel);
 				
@@ -309,7 +309,7 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 			}
 		}
 		
-		IfcModelInterface ifcModel = new ServerIfcModel(lastPackageMetaData, pidRoidMap, 0, getDatabaseSession());
+		IfcModelInterface ifcModel = getDatabaseSession().createServerModel(lastPackageMetaData, pidRoidMap);
 		if (ifcModelSet.size() > 1) {
 			setProgress("Merging IFC data...", -1);
 

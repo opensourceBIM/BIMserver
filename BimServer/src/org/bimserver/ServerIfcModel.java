@@ -1,23 +1,5 @@
 package org.bimserver;
 
-/******************************************************************************
- * Copyright (C) 2009-2019  BIMserver.org
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- * 
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
- *****************************************************************************/
-
-import java.util.List;
 import java.util.Map;
 
 import org.bimserver.database.DatabaseSession;
@@ -27,25 +9,20 @@ import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.emf.IdEObjectImpl.State;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.IfcModel;
-import org.bimserver.shared.PluginClassLoaderProvider;
-import org.eclipse.emf.ecore.EClass;
 
 public class ServerIfcModel extends IfcModel {
 
 	private DatabaseSession databaseSession;
-	private PluginClassLoaderProvider pluginClassLoaderProvider;
 
 	public ServerIfcModel(PackageMetaData packageMetaData, Map<Integer, Long> pidRoidMap, DatabaseSession databaseSession) {
 		super(packageMetaData, pidRoidMap);
 		this.databaseSession = databaseSession;
 	}
 
-	public ServerIfcModel(PackageMetaData packageMetaData, Map<Integer, Long> pidRoidMap, int size, DatabaseSession databaseSession) {
-		super(packageMetaData, pidRoidMap, size);
-		this.databaseSession = databaseSession;
-	}
-	
 	public void load(IdEObject idEObject) {
+		if (databaseSession == null) {
+			return;
+		}
 		if (databaseSession.getState() == SessionState.OPEN) {
 			((IdEObjectImpl)idEObject).setLoadingState(State.LOADING);
 			databaseSession.load(idEObject);
@@ -53,29 +30,6 @@ public class ServerIfcModel extends IfcModel {
 		}
 	}
 
-	@Override
-	public void remove(IdEObject object) {
-	}
-	
-	@Override
-	public <T extends IdEObject> List<T> getAll(EClass eClass) {
-		return super.getAll(eClass);
-	}
-
-	@Override
-	public void dumpDebug() {
-	}
-
-	@Override
-	public PluginClassLoaderProvider getPluginClassLoaderProvider() {
-		return pluginClassLoaderProvider;
-	}
-
-	@Override
-	public void setPluginClassLoaderProvider(PluginClassLoaderProvider pluginClassLoaderProvider) {
-		this.pluginClassLoaderProvider = pluginClassLoaderProvider;
-	}
-	
 //	@SuppressWarnings({ "unchecked" })
 //	protected EList<Object> getList(final IdEObject idEObject, EStructuralFeature eStructuralFeature) {
 //		Map<EStructuralFeature, Object> objectMap = getObjectMap(idEObject);
@@ -246,4 +200,9 @@ public class ServerIfcModel extends IfcModel {
 ////		InternalEObject result = new EStoreEObjectImpl(eClass, this);
 ////		return result;
 //	}
+	
+	@Override
+	public void close() throws Exception {
+		databaseSession = null;
+	}
 }

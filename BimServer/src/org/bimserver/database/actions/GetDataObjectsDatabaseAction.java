@@ -66,13 +66,13 @@ public class GetDataObjectsDatabaseAction extends AbstractDownloadDatabaseAction
 			int highestStopId = findHighestStopRid(concreteRevision.getProject(), concreteRevision);
 			PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(concreteRevision.getProject().getSchema());
 			lastPackageMetaData = packageMetaData;
-			IfcModel subModel = new ServerIfcModel(packageMetaData, pidRoidMap, getDatabaseSession());
+			IfcModel subModel = getDatabaseSession().createServerModel(packageMetaData, pidRoidMap);
 			OldQuery query = new OldQuery(packageMetaData, concreteRevision.getProject().getId(), concreteRevision.getId(), virtualRevision.getOid(), Deep.YES, highestStopId);
 			getDatabaseSession().getMap(subModel, query);
 			subModel.getModelMetaData().setDate(concreteRevision.getDate());
 			ifcModelSet.add(subModel);
 		}
-		IfcModelInterface ifcModel = new ServerIfcModel(lastPackageMetaData, pidRoidMap, getDatabaseSession());
+		IfcModelInterface ifcModel = getDatabaseSession().createServerModel(lastPackageMetaData, pidRoidMap);
 		try {
 			ifcModel = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid()).merge(virtualRevision.getProject(), ifcModelSet, new ModelHelper(getBimServer().getMetaDataManager(), ifcModel));
 		} catch (MergeException e) {

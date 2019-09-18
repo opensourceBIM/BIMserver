@@ -97,7 +97,7 @@ import com.sleepycat.je.TransactionTimeoutException;
 
 public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterface, AutoCloseable {
 	public static final int DEFAULT_CONFLICT_RETRIES = 10;
-	private static final boolean DEVELOPER_DEBUG = false;
+	public static final boolean DEVELOPER_DEBUG = false;
 	private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseSession.class);
 	
 	private final Database database;
@@ -110,7 +110,9 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	private Map<String, Long> startOids;
 	private final Map<Long, HashMapVirtualObject> voCache = new ConcurrentHashMap<>();
 	private CleanupListener cleanupListener;
+	private final Set<ServerIfcModel> serverModels = new HashSet<>();
 	private long reads;
+	private long createdAt;
 
 	public enum SessionState {
 		OPEN, CLOSED
@@ -122,11 +124,14 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	public DatabaseSession(Database database, BimTransaction bimTransaction) {
 		this.database = database;
 		this.bimTransaction = bimTransaction;
+		this.createdAt = System.currentTimeMillis();
 		if (DEVELOPER_DEBUG) {
 			this.stackTrace = Thread.currentThread().getStackTrace();
-			LOGGER.info("");
-			LOGGER.info("NEW SESSION");
 		}
+	}
+	
+	public long getCreatedAt() {
+		return createdAt;
 	}
 	
 	public void setOverwriteEnabled(boolean overwriteEnabled) {
@@ -156,6 +161,14 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 
 	public void close() {
 		state = SessionState.CLOSED;
+		objectCache.clear();
+		for (ServerIfcModel serverIfcModel : serverModels) {
+			try {
+				serverIfcModel.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		database.unregisterSession(this);
 		database.incrementReads(reads);
 		if (bimTransaction != null) {
@@ -229,6 +242,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 				for (PostCommitAction postCommitAction : postCommitActions) {
 					postCommitAction.execute();
 				}
+				postCommitActions = null;
 			}
 		} catch (BimserverDatabaseException e) {
 			throw e;
@@ -1524,10 +1538,18 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		return new BasicIfcModel(packageMetaData, pidRoidMap);
 	}
 
+	public ServerIfcModel createServerModel(PackageMetaData packageMetaData, Map<Integer, Long> pidRoidMap) {
+		ServerIfcModel serverIfcModel = new ServerIfcModel(packageMetaData, pidRoidMap, this);
+		this.serverModels.add(serverIfcModel);
+		return serverIfcModel;
+	}
+
 	public IfcModelInterface createModel(QueryInterface queryInterface) {
-		HashMap<Integer, Long> map = new HashMap<Integer, Long>();
+		HashMap<Integer, Long> map = new HashMap<>();
 		map.put(queryInterface.getPid(), queryInterface.getRoid());
-		return new ServerIfcModel(queryInterface.getPackageMetaData(), map, this);
+		ServerIfcModel serverIfcModel = new ServerIfcModel(queryInterface.getPackageMetaData(), map, this);
+		this.serverModels.add(serverIfcModel);
+		return serverIfcModel;
 	}
 
 	@SuppressWarnings("unused")

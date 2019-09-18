@@ -61,7 +61,6 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 			SProject project = bimServerClientInterface.getServiceInterface().getProjectByPoid(poid);
 			String contextId = project.getUuid().toString();
 			IfcModelInterface model = bimServerClientInterface.getModel(project, roid, preloadCompleteModel(), false, requiresGeometry());
-			model.setPluginClassLoaderProvider(getPluginContext().getPluginClassLoaderProvider());
 			input.setIfcModel(model);
 			BimBotContext bimBotContext = new BimBotContext() {
 				@Override

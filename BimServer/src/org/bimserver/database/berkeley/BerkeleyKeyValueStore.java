@@ -27,6 +27,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
@@ -78,7 +79,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 	private boolean useTransactions = true;
 	private CursorConfig unsafeCursorConfig;
 
-	public BerkeleyKeyValueStore(Path dataDir) throws DatabaseInitException {
+	public BerkeleyKeyValueStore(Path dataDir, Properties properties) throws DatabaseInitException {
 		if (Files.isDirectory(dataDir)) {
 			try {
 				if (PathUtils.list(dataDir).size() > 0) {
@@ -101,8 +102,13 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 				LOGGER.error("Error creating database dir \"" + dataDir.toString() + "\"");
 			}
 		}
-		EnvironmentConfig envConfig = new EnvironmentConfig();
-		envConfig.setCachePercent(50);
+		EnvironmentConfig envConfig = null;
+		if (properties == null) {
+			envConfig = new EnvironmentConfig();
+			envConfig.setCachePercent(30);
+		} else {
+			envConfig = new EnvironmentConfig(properties);
+		}
 		envConfig.setAllowCreate(true);
 		envConfig.setTransactional(useTransactions);
 		envConfig.setTxnTimeout(10, TimeUnit.SECONDS);

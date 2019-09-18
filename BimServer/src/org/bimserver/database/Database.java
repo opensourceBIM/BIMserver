@@ -82,7 +82,7 @@ public class Database implements BimDatabase {
 	private final AtomicInteger pidCounter = new AtomicInteger(1);
 	private final Registry registry;
 	private Date created;
-	private final Set<DatabaseSession> sessions = Collections.newSetFromMap(new ConcurrentHashMap<DatabaseSession, Boolean>());
+	final Set<DatabaseSession> sessions = Collections.newSetFromMap(new ConcurrentHashMap<DatabaseSession, Boolean>());
 	private int databaseSchemaVersion;
 	private short tableId;
 	private Migrator migrator;
@@ -109,6 +109,9 @@ public class Database implements BimDatabase {
 			this.emfPackages.put(ePackage.getName(), ePackage);
 		}
 		this.registry = new Registry(keyValueStore);
+		if (DatabaseSession.DEVELOPER_DEBUG) {
+			new DatabaseSessionMonitor(this).start();
+		}
 	}
 
 	public int getApplicationSchemaVersion() {
