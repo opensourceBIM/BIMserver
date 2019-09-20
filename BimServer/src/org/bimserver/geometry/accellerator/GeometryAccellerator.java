@@ -105,7 +105,7 @@ public class GeometryAccellerator {
 	private Octree generateOctree(OctreeKey key) {
 		LOGGER.info("Generating octree: " + key);
 		Long start = System.nanoTime();
-		try (DatabaseSession databaseSession = bimServer.getDatabase().createSession()) {
+		try (DatabaseSession databaseSession = bimServer.getDatabase().createReadOnlySession()) {
 			Bounds totalBounds = new Bounds();
 
 			for (long roid : key.getRoids()) {
@@ -262,7 +262,7 @@ public class GeometryAccellerator {
 	private DensityThreshold generateDensityThreshold(DensityThresholdKey key) {
 		long start = System.nanoTime();
 		DensityThreshold densityThreshold = new DensityThreshold();
-		try (DatabaseSession session = bimServer.getDatabase().createSession()) {
+		try (DatabaseSession session = bimServer.getDatabase().createReadOnlySession()) {
 			Set<Long> roids = key.getRoid();
 			List<Density> allDensities = new ArrayList<>();
 			for (long roid : roids) {
