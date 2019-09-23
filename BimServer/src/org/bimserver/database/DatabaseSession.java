@@ -1400,7 +1400,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 						ByteBuffer value = ByteBuffer.wrap(record.getValue());
 
 						// Skip the unsettable part
-						value.position(value.position() + packageMetaData.getUnsettedLength(eClass));
+						value.position(value.position() + packageMetaData.getUnsettedLength(eClass) + 16); // 16 is the UUID
 
 						if (value.capacity() > 1) {
 							int stringLength = value.getInt();
