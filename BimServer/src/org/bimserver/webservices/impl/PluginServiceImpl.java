@@ -34,6 +34,7 @@ import org.apache.commons.io.IOUtils;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.database.actions.AddDeserializerDatabaseAction;
 import org.bimserver.database.actions.AddInternalServiceDatabaseAction;
 import org.bimserver.database.actions.AddModelCompareDatabaseAction;
@@ -1432,7 +1433,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	public void installPluginBundle(String repository, String groupId, String artifactId, String version, List<SPluginInformation> plugins) throws UserException, ServerException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			session.executeAndCommitAction(new InstallPluginBundle(session, getInternalAccessMethod(), getBimServer(), repository, groupId, artifactId, version, plugins));
 		} catch (Exception e) {
@@ -1444,7 +1445,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	public void installPluginBundleFromFile(DataHandler file, Boolean installAllPluginsForAllUsers, Boolean installAllPluginsForNewUsers) throws UserException, ServerException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 			IOUtils.copy(file.getInputStream(), byteArrayOutputStream);

@@ -23,6 +23,7 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.database.ProgressHandler;
 import org.bimserver.database.RollbackListener;
 import org.bimserver.database.actions.StreamingCheckinDatabaseAction;
@@ -66,7 +67,7 @@ public class LongStreamingCheckinAction extends LongAction<LongCheckinActionKey>
 	}
 
 	public void execute() {
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			checkinDatabaseAction.setDatabaseSession(session);
 			session.executeAndCommitAction(checkinDatabaseAction, new ProgressHandler() {
