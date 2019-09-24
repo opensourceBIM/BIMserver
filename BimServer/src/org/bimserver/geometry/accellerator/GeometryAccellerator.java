@@ -318,7 +318,7 @@ public class GeometryAccellerator {
 			LOGGER.error("", e);
 		}
 		long end = System.nanoTime();
-		LOGGER.info("Density thresholds generated in " + ((end - start) / 1000000) + "ms");
+//		LOGGER.info("Density thresholds generated in " + ((end - start) / 1000000) + "ms");
 		return densityThreshold;
 	}
 	
