@@ -268,7 +268,7 @@ public class GeometryGenerationReport {
 
 		builder.append("<h3>Render engine settings</h3>");
 		builder.append("<table><tbody>");
-		builder.append("<tr><td>Apple layer sets</td><td>" + applyLayersets + "</td></tr>");
+		builder.append("<tr><td>Apply layer sets</td><td>" + applyLayersets + "</td></tr>");
 		builder.append("<tr><td>Calculate quantities</td><td>" + calculateQuantities + "</td></tr>");
 		builder.append("</tbody></table>");
 		
