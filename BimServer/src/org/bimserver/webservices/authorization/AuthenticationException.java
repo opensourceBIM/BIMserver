@@ -1,5 +1,8 @@
 package org.bimserver.webservices.authorization;
 
+import org.bimserver.shared.exceptions.ErrorCode;
+import org.bimserver.shared.exceptions.UserException;
+
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
  * 
@@ -17,7 +20,7 @@ package org.bimserver.webservices.authorization;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-public class AuthenticationException extends Exception {
+public class AuthenticationException extends UserException {
 
 	private static final long serialVersionUID = -402147016943330424L;
 
@@ -31,5 +34,9 @@ public class AuthenticationException extends Exception {
 
 	public AuthenticationException(String message, Exception cause) {
 		super(message, cause);
+	}
+
+	public AuthenticationException(String message, ErrorCode errorCode) {
+		super(message, errorCode);
 	}
 }

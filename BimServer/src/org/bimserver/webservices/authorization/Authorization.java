@@ -34,6 +34,7 @@ import org.apache.commons.codec.binary.Hex;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
+import org.bimserver.shared.exceptions.DefaultErrorCode;
 import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -221,7 +222,7 @@ public abstract class Authorization {
 				throw new AuthenticationException("Given token is corrupt");
 			}
 		} catch (GeneralSecurityException e) {
-			throw new AuthenticationException("Invalid token", e);
+			throw new AuthenticationException("Invalid token", DefaultErrorCode.INVALID_TOKEN);
 		} catch (DecoderException e) {
 			throw new AuthenticationException(e);
 		}

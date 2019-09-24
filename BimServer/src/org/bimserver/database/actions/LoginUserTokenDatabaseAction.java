@@ -28,6 +28,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserType;
+import org.bimserver.shared.exceptions.DefaultErrorCode;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.ServiceMap;
@@ -84,6 +85,6 @@ public class LoginUserTokenDatabaseAction extends BimDatabaseAction<String> {
 		} catch (InterruptedException e) {
 			LOGGER.error("", e);
 		}
-		throw new UserException("Invalid token");
+		throw new UserException("Invalid token", DefaultErrorCode.INVALID_TOKEN);
 	}
 }

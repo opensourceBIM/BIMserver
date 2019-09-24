@@ -85,10 +85,13 @@ public abstract class JsonReflector implements Reflector {
 							throw new UserException(message);
 						}
 					} else if (exceptionType.equals(ServerException.class.getSimpleName())) {
-						if (exceptionJson.has("errorCode")) {
-							throw new ServerException(message, ErrorCode.fromCode(exceptionJson.get("errorCode").asInt()));
+						String errorType = exceptionJson.get("errorType").asText();
+						if (errorType.equals("DefaultErrorCode")) {
+							throw new ServerException(message, DefaultErrorCode.fromCode(exceptionJson.get("errorCode").asInt()));
+						} else if (errorType.contentEquals("DeserializerErrorCode")) {
+							throw new ServerException(message, DeserializerErrorCode.fromCode(exceptionJson.get("errorCode").asInt()));
 						} else {
-							throw new ServerException(message);
+							throw new ServerException(message, ErrorCode.fromCode(exceptionJson.get("errorCode").asInt()));
 						}
 					} else {
 						if (exceptionJson.has("errorCode")) {
