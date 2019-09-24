@@ -42,6 +42,8 @@ import org.bimserver.webservices.authorization.SystemAuthorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.mchange.util.DuplicateElementException;
+
 public class GenericServiceImpl {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GenericServiceImpl.class);
 	private ServiceMap serviceMap;
@@ -148,6 +150,10 @@ public class GenericServiceImpl {
 		} else if (e instanceof BimserverDatabaseException) {
 			LOGGER.error("", e);
 			throw new ServerException("Database error", e);
+		}
+		else if (e instanceof DuplicateElementException) {
+			LOGGER.error("", e);
+			throw new DuplicateElementException("Projects count reached the maximum limit");
 		}
 		LOGGER.error("", e);
 		throw new ServerException("Unhandled exception (" + e.getClass().getName() + ")" + (e.getMessage() == null ? "" : (": " + e.getMessage())) + ". See the server log for more details", e);

@@ -19,9 +19,11 @@ package org.bimserver.webservices.impl;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -52,6 +54,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.util.ByteArrayDataSource;
 
 import org.apache.commons.collections.comparators.ComparatorChain;
+import org.apache.commons.io.IOUtils;
 import org.apache.http.Header;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -189,6 +192,7 @@ import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SLongCheckinActionState;
 import org.bimserver.interfaces.objects.SModelCheckerInstance;
 import org.bimserver.interfaces.objects.SNewService;
+import org.bimserver.interfaces.objects.SObjectState;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.interfaces.objects.SProfileDescriptor;
 import org.bimserver.interfaces.objects.SProgressTopicType;
@@ -299,6 +303,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.ByteStreams;
+import com.mchange.util.DuplicateElementException;
 
 public class ServiceImpl extends GenericServiceImpl implements ServiceInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ServiceImpl.class);
@@ -685,6 +690,28 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		}
 	}
 
+	public boolean isTrialVersion()
+	{
+		try
+		{
+		java.io.File file = new java.io.File(System.getProperty("java.io.tmpdir").replace("/temp", "/expiration"+java.io.File.separator+"expiration.txt"));
+		InputStream inputStream = new FileInputStream(file);
+		System.out.println("inputStream:::::"+inputStream);
+		StringWriter writer = new StringWriter();
+		IOUtils.copy(inputStream, writer, "UTF-8");
+		String expirationdate = writer.toString();
+		if("trial version".equalsIgnoreCase(expirationdate))
+		{
+			return true;
+		}
+		}
+		catch (Exception e) {
+			System.out.println(e);
+			return true;
+		}
+		return false;
+	}
+	
 	@Override
 	public Long branchToNewProject(Long roid, String projectName, String comment, Boolean sync) throws UserException, ServerException {
 		requireRealUserAuthentication();
@@ -964,6 +991,21 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public SProject addProject(String projectName, String schema) throws ServerException, UserException {
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
+		List<SProject> projectsList=getAllProjects(true, false);
+		int projectCount=0;
+		for (SProject sProject : projectsList) {
+			SObjectState stateObj=sProject.getState();
+			if(stateObj.toString().equalsIgnoreCase("ACTIVE"))
+			{
+				projectCount++;
+			}
+		}
+		System.out.println(projectsList.size());
+		System.out.println("isTrialVersion():::"+isTrialVersion());
+		if(projectCount>1&&isTrialVersion())
+		{
+			return handleException(new DuplicateElementException("Projects count reached the maximim limit"));
+		}
 		try {
 			BimDatabaseAction<Project> action = new AddProjectDatabaseAction(getBimServer(), session, getInternalAccessMethod(), projectName, schema, getAuthorization());
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(action));

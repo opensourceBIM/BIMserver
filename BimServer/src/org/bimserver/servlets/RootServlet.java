@@ -48,7 +48,10 @@ public class RootServlet extends HttpServlet {
 	private OAuthAccessTokenServlet oAuthAccesssTokenServlet;
 	private ServiceRunnerServlet serviceRunner;
 	private BulkUploadServlet bulkUploadServlet;
-
+	private UploadTest uploadTest;
+	private DownloadTest downloadTest;
+	private	FetchAndStoreExpirationDate fetchAndStoreExpirationDate;
+	private GetLicense getLicense;
 	private BimServer bimServer;
 
 	@Override
@@ -72,6 +75,10 @@ public class RootServlet extends HttpServlet {
 		oAuthAccesssTokenServlet = new OAuthAccessTokenServlet(bimServer, servletContext);
 		oAuthRegistrationServlet = new OAuthRegistrationServlet(bimServer, servletContext);
 		serviceRunner = new ServiceRunnerServlet(bimServer, servletContext);
+		uploadTest = new UploadTest();
+		downloadTest = new DownloadTest();
+		fetchAndStoreExpirationDate = new FetchAndStoreExpirationDate();
+		getLicense = new GetLicense();
 	}
 
 	@Override
@@ -153,7 +160,20 @@ public class RootServlet extends HttpServlet {
 				bulkUploadServlet.service(request, response);
 			} else if (requestUri.startsWith("/download/") || requestUri.equals("/download")) {
 				downloadServlet.service(request, response);
-			} else {
+			}
+			 else if (requestUri.startsWith("/uploadimage")) {
+				uploadTest.doPost(request, response);
+			 }
+			 else if (requestUri.startsWith("/downloadimage")) {
+				 downloadTest.doPost(request, response);
+			 }
+			 else if (requestUri.startsWith("/customregister")) {
+				 fetchAndStoreExpirationDate.doPost(request, response);
+			 }
+			 else if (requestUri.startsWith("/getlicense")) {
+				 getLicense.doPost(request, response);
+			 } 
+			else {
 				if (requestUri == null || requestUri.equals("") || requestUri.equals("/")) {
 					requestUri = "/index.html";
 				}

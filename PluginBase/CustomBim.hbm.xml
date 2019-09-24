@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping>
+    <class name="org.bimserver.custom.CustomBim" table="properties">
+        <id name="myid" type="java.lang.Integer">
+            <column name="myid" />
+        </id>
+        <property name="mykey" type="string" >
+            <column name="mykey" length="100"/>
+        </property>
+        
+        <property name="myvalue" type="string" >
+            <column name="myvalue" length="100"/>
+        </property>
+        
+    </class>
+</hibernate-mapping>

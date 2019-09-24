@@ -11,6 +11,7 @@
 	<properties>
 		<jetty.version>9.4.19.v20190610</jetty.version>
 		<cxf.version>3.3.2</cxf.version>
+		<maven.test.skip>true</maven.test.skip>
 	</properties>
 	<build>
 		<sourceDirectory>src</sourceDirectory>

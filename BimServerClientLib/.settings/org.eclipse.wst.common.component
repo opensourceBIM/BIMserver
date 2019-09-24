@@ -3,7 +3,6 @@
     <wb-module deploy-name="BimServerClientLib">
                 
         <wb-resource deploy-path="/" source-path="/src"/>
-        <wb-resource deploy-path="/" source-path="/test"/>
             
     </wb-module>
     

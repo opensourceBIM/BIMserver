@@ -1,5 +1,7 @@
 package org.bimserver.shared.interfaces;
 
+import java.io.File;
+
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
  * 
@@ -45,6 +47,42 @@ public interface LowLevelInterface extends PublicInterface {
 	Long startTransaction(
 		@WebParam(name = "poid", partName = "startTransaction.poid") Long poid) throws ServerException, UserException;
 
+@WebMethod(action="createCustomAttr")
+	String createCustomAttr(
+			@WebParam(name="poid", partName = "customCreate.poid") String poid,
+			@WebParam(name="oid",partName = "customCreate.oid") String oid,
+			@WebParam(name="fieldName",partName = "customCreate.fieldName") String fieldName,
+			@WebParam(name="fieldType",partName = "customCreate.fieldType") String fieldType,
+			@WebParam(name="fieldValue",partName = "customCreate.fieldValue") String fieldValue,
+			@WebParam(name="revisionId",partName = "customCreate.fieldValue") String revisionId
+			);
+
+	
+	@WebMethod(action="uploadCustomImg")
+	String uploadCustomImg(
+			@WebParam(name="poid", partName = "uploadCustomImg.poid") String poid,
+			@WebParam(name="oid",partName = "uploadCustomImg.oid") String oid,
+			@WebParam(name="fieldName",partName = "uploadCustomImg.fieldName") String fieldName,
+			@WebParam(name="fieldType",partName = "uploadCustomImg.fieldType") String fieldType,
+			@WebParam(name="fieldValue",partName = "uploadCustomImg.fieldValue") File fieldValue,
+			@WebParam(name="revisionId",partName = "uploadCustomImg.fieldValue") String revisionId
+			);
+	
+	@WebMethod(action="getCustomAttr")
+	String getCustomAttr(@WebParam(name="poid", partName = "getCustomAttr.poid") String poid,
+			@WebParam(name="oid",partName = "getCustomAttr.oid") String oid,
+			@WebParam(name="fieldName",partName = "getCustomAttr.fieldName") String fieldName);
+	
+	@WebMethod(action="getAllCustomAttr")
+	String getAllCustomAttr(@WebParam(name="poid", partName = "getAllCustomAttr.poid") String poid,
+			@WebParam(name="oid",partName = "getAllCustomAttr.oid") String oid);
+	
+	
+	@WebMethod(action="deleteCustomAttr")
+	void deleteCustomAttr(@WebParam(name="poid", partName = "deleteCustomAttr.poid") String poid,
+			@WebParam(name="oid",partName = "deleteCustomAttr.oid") String oid,
+			@WebParam(name="fieldName",partName = "deleteCustomAttr.fieldName") String fieldName);
+	
 	/**
 	 * Commit a transaction, changes will be saved, a transaction must be started by startTransaction first
      *

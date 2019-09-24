@@ -1,5 +1,8 @@
 package org.bimserver.webservices.impl;
 
+import java.io.File;
+import java.io.IOException;
+
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
  * 
@@ -20,6 +23,8 @@ package org.bimserver.webservices.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.changes.AddAttributeChange;
 import org.bimserver.changes.AddReferenceChange;
@@ -32,6 +37,8 @@ import org.bimserver.changes.SetAttributeChange;
 import org.bimserver.changes.SetAttributeChangeAtIndex;
 import org.bimserver.changes.SetReferenceChange;
 import org.bimserver.changes.SetWrappedAttributeChange;
+import org.bimserver.custom.CustomBim;
+import org.bimserver.custom.HibernateUtil;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
@@ -57,8 +64,14 @@ import org.bimserver.webservices.NoTransactionException;
 import org.bimserver.webservices.ServiceMap;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.common.io.Files;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LowLevelServiceImpl.class);
@@ -743,5 +756,146 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 		} finally {
 			session.close();
 		}
+	}
+	
+	public String createCustomAttr(String poid,String oid,String fieldName,String fieldType,String fieldValue,String revisionId) {
+		System.out.println("inside save");
+		Session session = HibernateUtil.getSessionFactory().openSession();
+ 	    session.beginTransaction();
+ 	  
+ 	   EntityManager em = session.getEntityManagerFactory().createEntityManager();
+ 	  CustomBim customBim = new CustomBim(poid, oid, fieldName);
+ 	  CustomBim newBim= em.find(CustomBim.class, customBim);
+ 	  System.out.println("customBim  "+newBim);
+ 	    // Check database version
+ 	  // String sql = "INSERT INTO properties VALUES (1,name,rahul);";
+
+ 	  if(newBim==null)
+ 	  {
+ 	   CustomBim bim = new CustomBim(poid,oid,fieldName,fieldType,fieldValue,revisionId);
+ 	   System.out.println("before create");
+ 	   session.save(bim);
+ 	   System.out.println("after create ");
+ 	    
+		
+ 	  }
+ 	  else
+ 	  {
+ 		/* CustomBim bim = new CustomBim(poid,oid,fieldName,fieldType,fieldValue)*/
+ 		 newBim.setFieldType(fieldType);
+ 		newBim.setFieldValue(fieldValue);
+ 		newBim.setRevisionId(revisionId);
+ 	 	   System.out.println("before update");
+ 	 	   session.update(newBim);
+ 	 	   System.out.println("after update");
+ 	 	   
+ 	  }
+ 	 session.getTransaction().commit();
+	    session.close();
+
+	    try {
+	    	File folder = new File("/images/");
+	    	if(!folder.exists())
+	    	{
+	    		folder.mkdir();
+	    	}
+	    	System.out.println(folder.getPath());
+	    	File img1 = File.createTempFile("img1", ".png");
+	    	Files.copy(img1, new File("/images/img1"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+	    
+	   // HibernateUtil.shutdown();
+		return "success";
+	}
+
+	public String getCustomAttr(String poid, String oid, String fieldName) {
+		// TODO Auto-generated method stub
+		Session session = HibernateUtil.getSessionFactory().openSession();
+ 	    session.beginTransaction();
+ 	  
+ 	   EntityManager em = session.getEntityManagerFactory().createEntityManager();
+ 	  CustomBim customBim = new CustomBim(poid, oid, fieldName);
+ 	  CustomBim newBim= em.find(CustomBim.class, customBim);
+ 	  System.out.println("customBim  "+newBim);
+ 	 JsonObject jsonObject = new JsonObject();
+ 	 if(newBim==null)
+	  {
+ 		jsonObject.addProperty("message", "no such attribute exists");
+	  }
+ 	 else
+ 	 {
+ 		 jsonObject.addProperty("poid", newBim.getPoid());
+  		jsonObject.addProperty("oid", newBim.getOid());
+  		jsonObject.addProperty("fieldName", newBim.getFieldName());
+  		jsonObject.addProperty("fieldType", newBim.getFieldType());
+  		jsonObject.addProperty("fieldValue", newBim.getFieldValue());
+  		jsonObject.addProperty("revisionId", newBim.getRevisionId());
+ 	 }
+ 	 session.getTransaction().commit();
+	    session.close();
+ 	  return jsonObject.toString();
+	}
+
+
+	public void deleteCustomAttr(String poid, String oid, String fieldName) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+ 	    session.beginTransaction();
+ 	  
+ 	   EntityManager em = session.getEntityManagerFactory().createEntityManager();
+ 	  CustomBim customBim = new CustomBim(poid, oid, fieldName);
+ 	  CustomBim newBim= em.find(CustomBim.class, customBim);
+ 	 session.delete(newBim);
+ 	 session.getTransaction().commit();
+	    session.close();
+	}
+	public String getAllCustomAttr(String poid,String oid)
+	{
+		Session session = HibernateUtil.getSessionFactory().openSession();
+ 	    session.beginTransaction();
+ 	    Query query = session.createQuery("from CustomBim where poid=?1 and oid=?2");
+ 	   query.setParameter(1, poid);
+ 	  query.setParameter(2, oid);
+ 	  System.out.println("first query:::"+query.list().size());
+ 	  List<CustomBim> customAttrList=query.list();
+ 	 JsonArray result = new JsonArray();
+ 	  for (CustomBim CustomBim : customAttrList) {
+ 		 JsonObject customBimObj = new JsonObject();
+ 		 customBimObj.addProperty("poid",CustomBim.getPoid());
+ 		customBimObj.addProperty("oid", CustomBim.getOid()); 
+ 		customBimObj.addProperty("fieldName", CustomBim.getFieldName());
+ 		customBimObj.addProperty("fieldType", CustomBim.getFieldType());
+ 		customBimObj.addProperty("fieldValue", CustomBim.getFieldValue());
+ 		customBimObj.addProperty("revisionId", CustomBim.getRevisionId());
+ 		result.add(customBimObj);
+	}
+ 	 session.getTransaction().commit();
+	    session.close();
+ 	  return result.toString();
+ 	 
+	}
+	
+	
+	@Override
+	public String uploadCustomImg(String poid, String oid, String fieldName, String fieldType, File fieldValue,
+			String revisionId) {
+		try {
+	    	File folder = new File("/images/");
+	    	if(!folder.exists())
+	    	{
+	    		folder.mkdir();
+	    	}
+	    	System.out.println(folder.getPath());
+	    	File img1 = File.createTempFile("img1", ".png");
+	    	Files.copy(img1, new File("/images/img1"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "creation failed";
+		}
+		return "created";
 	}
 }

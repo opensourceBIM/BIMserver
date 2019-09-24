@@ -230,4 +230,27 @@ public class LowLevelInterfaceAdaptor implements org.bimserver.shared.interfaces
 	public void unsetReference(java.lang.Long tid, java.lang.Long oid, java.lang.String referenceName) throws UserException, ServerException {
 	}
 	
+	public java.lang.String createCustomAttr(java.lang.String poid,java.lang.String oid,java.lang.String fieldName,java.lang.String fieldType,java.lang.String fieldValue,String revisionId)
+	{
+		return null;
+	}
+	
+	public java.lang.String getCustomAttr(java.lang.String poid,java.lang.String oid,java.lang.String fieldName)
+	{
+		return null;
+	}
+	
+	public void deleteCustomAttr(java.lang.String poid,java.lang.String oid,java.lang.String fieldName)
+	{
+	}
+	public java.lang.String getAllCustomAttr(java.lang.String poid,java.lang.String oid)
+	{
+		return null;
+	}
+	
+	public java.lang.String uploadCustomImg(java.lang.String poid,java.lang.String oid,java.lang.String fieldName,java.lang.String fieldType,java.io.File fieldValue,String revisionId)
+	{
+		return null;
+	}
+	
 }

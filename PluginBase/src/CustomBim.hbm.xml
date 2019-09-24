@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping>
+    <class name="org.bimserver.custom.CustomBim" table="attributes">
+       	<composite-id>
+    		<key-property name="poid"/>
+    		<key-property name="oid"/>
+    		<key-property name="fieldName"/>
+		</composite-id>
+        
+        <!-- <property name="poid" type="string" >
+            <column name="poid" length="100"/>
+        </property>
+        
+        <property name="oid" type="string" >
+            <column name="oid" length="100"/>
+        </property>
+        
+        <property name="fieldName" type="string" >
+            <column name="fieldName" length="256"/>
+        </property> -->
+        
+        <property name="fieldType" type="string" >
+            <column name="fieldType" length="45"/>
+        </property>
+        
+        <property name="fieldValue" type="string" >
+            <column name="fieldValue" length="256"/>
+        </property>
+        
+        <property name="revisionId" type="string" >
+            <column name="revisionId" length="256"/>
+        </property>
+        
+        
+    </class>
+</hibernate-mapping>
