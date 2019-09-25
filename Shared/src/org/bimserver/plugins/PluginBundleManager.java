@@ -159,7 +159,7 @@ public class PluginBundleManager implements AutoCloseable {
 		List<Dependency> dependenciesToResolve = new ArrayList<>();
 		for (org.apache.maven.model.Dependency dependency2 : model.getDependencies()) {
 			String scope = dependency2.getScope();
-			if (scope != null && (scope.contentEquals("test") || scope.contentEquals("compile"))) {
+			if (scope != null && (scope.contentEquals("test"))) {
 				// Skip
 				continue;
 			}
@@ -179,7 +179,7 @@ public class PluginBundleManager implements AutoCloseable {
 		rootDep.accept(nlg);
 		
 		for (Dependency dependency : nlg.getDependencies(true)) {
-			if (dependency.getScope().contentEquals("test") || dependency.getScope().contentEquals("compile")) {
+			if (dependency.getScope().contentEquals("test")) {
 				continue;
 			}
 //			LOGGER.info(dependency.getArtifact().getGroupId() + "." + dependency.getArtifact().getArtifactId());
@@ -206,6 +206,9 @@ public class PluginBundleManager implements AutoCloseable {
 				}
 			} else {
 				try {
+					if (dependencyArtifact.getGroupId().contentEquals("com.sun.xml.ws")) {
+						continue;
+					}
 					MavenPluginLocation mavenPluginLocation = mavenPluginRepository.getPluginLocation(dependencyArtifact.getGroupId(), dependencyArtifact.getArtifactId());
 					Path depJarFile = mavenPluginLocation.getVersionJar(dependencyArtifact.getVersion());
 
