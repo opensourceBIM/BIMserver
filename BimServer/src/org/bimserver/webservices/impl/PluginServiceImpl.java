@@ -1501,7 +1501,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public void uninstallPluginBundle(String repository, String groupId, String artifactId, String version) throws UserException, ServerException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
 		try {
 			session.executeAndCommitAction(new UninstallPluginBundle(session, getInternalAccessMethod(), getBimServer(), repository, groupId, artifactId, version));
 		} catch (Exception e) {

@@ -145,7 +145,7 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 			LOGGER.error("", e);
 		}
 		try {
-			DatabaseSession session = bimServer.getDatabase().createSession();
+			DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
 			try {
 				long profileId = Long.parseLong(profileIdentifier);
 				EClass eClassForOid = session.getEClassForOid(profileId);

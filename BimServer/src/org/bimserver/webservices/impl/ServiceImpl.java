@@ -2511,7 +2511,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	
 	@Override
 	public void triggerNewRevision(Long roid, Long soid) throws ServerException, UserException {
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
 		try {
 			Revision revision = (Revision)session.get(StorePackage.eINSTANCE.getRevision(), roid, OldQuery.getDefault());
 			if (revision == null) {
