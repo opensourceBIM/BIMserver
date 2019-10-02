@@ -119,7 +119,7 @@ public class AuthServiceImpl extends GenericServiceImpl implements AuthInterface
 
 	@Override
 	public SUser validateAccount(Long uoid, String token, String password) throws ServerException, UserException {
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
 			BimDatabaseAction<User> action = new ValidateUserDatabaseAction(session, getInternalAccessMethod(), uoid, token, password);
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(action));
