@@ -310,4 +310,8 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 	public boolean hasIncludesToResolve() {
 		return includesToResolve != null;
 	}
+
+	public boolean hasTiles() {
+		return tiles != null;
+	}
 }
