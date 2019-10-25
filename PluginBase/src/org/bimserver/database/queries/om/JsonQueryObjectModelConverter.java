@@ -143,6 +143,28 @@ public class JsonQueryObjectModelConverter {
 					}
 				}
 			}
+			
+			if (queryPart.hasTiles()) {
+				Tiles tiles = queryPart.getTiles();
+				ObjectNode tilesNode = OBJECT_MAPPER.createObjectNode();
+				tilesNode.put("maxDepth", tiles.getMaxDepth());
+				tilesNode.put("densityUpperThreshold", tiles.getMinimumReuseThreshold());
+				tilesNode.put("densityLowerThreshold", tiles.getMaximumThreshold());
+				tilesNode.put("reuseLowerThreshold", tiles.getMinimumReuseThreshold());
+				if (!tiles.getGeometryIdsToReuse().isEmpty()) {
+					ArrayNode reuseNodes = OBJECT_MAPPER.createArrayNode();
+					for (long reuseId : tiles.getGeometryIdsToReuse()) {
+						reuseNodes.add(reuseId);
+					}
+					tilesNode.set("geometryDataToReuse", reuseNodes);
+				}
+				ArrayNode tileIdsNode = OBJECT_MAPPER.createArrayNode();
+				for (Integer id : tiles.getTileIds()) {
+					tileIdsNode.add(id);
+				}
+				tilesNode.set("ids", tileIdsNode);
+				queryNode.set("tiles", tilesNode);
+			}
 			queryPartsNode.add(queryPartNode);
 		}
 		
