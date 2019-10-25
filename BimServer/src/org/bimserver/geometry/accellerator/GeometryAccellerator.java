@@ -335,7 +335,7 @@ public class GeometryAccellerator {
 	private ReuseSet generateReuseSet(ReuseKey key) {
 		long start = System.nanoTime();
 		ReuseSet reuseSet = new ReuseSet();
-		try (DatabaseSession databaseSession = bimServer.getDatabase().createSession()) {
+		try (DatabaseSession databaseSession = bimServer.getDatabase().createReadOnlySession()) {
 			// Assuming all given roids are of projects that all have the same schema
 
 			Revision revision = databaseSession.get(key.getRoids().iterator().next(), OldQuery.getDefault());
