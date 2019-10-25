@@ -298,11 +298,17 @@ public class GeometryRunner implements Runnable {
 										
 										ByteBuffer colors = ByteBuffer.wrap(new byte[0]);
 										IntBuffer materialIndices = geometry.getMaterialIndices().order(ByteOrder.LITTLE_ENDIAN).asIntBuffer();
+										
 										if (materialIndices != null && materialIndices.capacity() > 0) {
 											FloatBuffer materialsAsFloat = geometry.getMaterials().order(ByteOrder.LITTLE_ENDIAN).asFloatBuffer();
 											boolean hasMaterial = false;
 											colors = ByteBuffer.allocate((verticesAsDouble.capacity() / 3) * 4);
 											double[] triangle = new double[9];
+											
+//											LOGGER.info(ifcProduct.eClass().getName() + " " + ifcProduct.getOid());
+//											dump("Material indices", materialIndices);
+//											dump("Materials", materialsAsFloat);
+											
 											for (int i = 0; i < materialIndices.capacity(); ++i) {
 												int c = materialIndices.get(i);
 												if (c > -1) {
@@ -311,6 +317,9 @@ public class GeometryRunner implements Runnable {
 														float val = fixColor(materialsAsFloat.get(4 * c + l));
 														color.set(l, val);
 													}
+//													if (color.isBlack()) {
+//														continue;
+//													}
 													for (int j = 0; j < 3; ++j) {
 														int k = indicesAsInt.get(i * 3 + j);
 														triangle[j * 3 + 0] = verticesAsDouble.get(3 * k);
@@ -379,7 +388,7 @@ public class GeometryRunner implements Runnable {
 											Matrix.setIdentityM(productTranformationMatrix, 0);
 										}
 
-										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_NrColors(), colors.capacity());
+										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_NrColors(), colors.position());
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_NrVertices(), verticesAsDouble.capacity());
 										geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), geometryData.getOid(), 0);
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_HasTransparency(), hasTransparency);
@@ -503,7 +512,7 @@ public class GeometryRunner implements Runnable {
 
 													geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), indicesAsInt.capacity() / 3);
 
-													productToData.put(ifcProduct.getOid(), new TemporaryGeometryData(geometryData.getOid(), renderEngineInstance.getAdditionalData(), indicesAsInt.capacity() / 3, size, mibu, mabu, indicesAsInt, verticesAsDouble, hasTransparency, colors.capacity()));
+													productToData.put(ifcProduct.getOid(), new TemporaryGeometryData(geometryData.getOid(), renderEngineInstance.getAdditionalData(), indicesAsInt.capacity() / 3, size, mibu, mabu, indicesAsInt, verticesAsDouble, hasTransparency, colors.position()));
 													geometryData.save();
 													databaseSession.cache((HashMapVirtualObject) geometryData);
 												}
@@ -818,6 +827,22 @@ public class GeometryRunner implements Runnable {
 		}
 		long end = System.nanoTime();
 		job.setEndNanos(end);
+	}
+
+	private void dump(String string, IntBuffer materialIndices) {
+		StringBuilder sb = new StringBuilder();
+		for (int i=0; i<materialIndices.capacity(); i++) {
+			sb.append(materialIndices.get(i) + ", ");
+		}
+		LOGGER.info(string + ": " + sb.toString());
+	}
+
+	private void dump(String string, FloatBuffer floatBuffer) {
+		StringBuilder sb = new StringBuilder();
+		for (int i=0; i<floatBuffer.capacity(); i++) {
+			sb.append(floatBuffer.get(i) + ", ");
+		}
+		LOGGER.info(string + ": " + sb.toString());
 	}
 
 	private double setCalculatedQuantities(RenderEngineInstance renderEngineInstance, HashMapVirtualObject geometryInfo, double volume) throws RenderEngineException, BimserverDatabaseException {
