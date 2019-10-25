@@ -76,6 +76,10 @@ public class Color4f {
 		}
 	}
 	
+	public boolean isBlack() {
+		return r == 0 && g == 0 && b == 0 && a == 1;
+	}
+	
 	public float getA() {
 		return a;
 	}
