@@ -41,7 +41,7 @@ public class ReuseSet {
 					// Since it's ordered, we can return right away since we're at the end
 					return result;
 				}
-				if (reuseObject.getSaveablePrimitives() > 25000) {
+				if (reuseObject.getSaveablePrimitives() > trianglesToSave) {
 					result.add(reuseObject.getGeometryDataOid());
 				} else {
 					return result;
