@@ -2366,17 +2366,23 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		postCommitActions = null;
 	}
 
-	public void cache(HashMapVirtualObject object) {
+	private void makeSureCacheExists() {
 		if (voCache == null) {
-			voCache = new ConcurrentHashMap<>();
+			synchronized (this) {
+				if (voCache == null) {
+					voCache = new ConcurrentHashMap<>();
+				}
+			}
 		}
+	}
+	
+	public void cache(HashMapVirtualObject object) {
+		makeSureCacheExists();
 		voCache.put(object.getOid(), object);
 	}
 	
 	public HashMapVirtualObject getFromCache(long oid) {
-		if (voCache == null) {
-			voCache = new ConcurrentHashMap<>();
-		}
+		makeSureCacheExists();
 		return voCache.get(oid);
 	}
 
