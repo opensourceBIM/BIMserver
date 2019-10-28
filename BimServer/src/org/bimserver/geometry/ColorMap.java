@@ -125,4 +125,8 @@ public class ColorMap {
 	public String toString() {
 		return super.toString();
 	}
+
+	public void setHasTransparency(boolean hasTransparency) {
+		this.hasTransparency = hasTransparency;
+	}
 }

@@ -348,6 +348,11 @@ public class GeometryRunner implements Runnable {
 												geometryData.setReference(GeometryPackage.eINSTANCE.getGeometryData_ColorPack(), colorPack.getOid(), 0);
 											}
 											if (colorMap.usedColors() == 0) {
+												if (eClass.getName().contentEquals("IfcWindow")) {
+													// To make sure the viewer will but this object in the right buffer (transparent), we override the transparency here
+													// This only happens for objects with no color, maybe there are more types that are usually transparent?
+													colorMap.setHasTransparency(true);
+												}
 											} else if (colorMap.usedColors() == 1) {
 												WrappedVirtualObject color = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector4f());
 												Color4f firstColor = colorMap.getFirstColor();
