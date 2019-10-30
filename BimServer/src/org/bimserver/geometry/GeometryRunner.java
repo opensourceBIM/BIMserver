@@ -29,12 +29,14 @@ import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -283,7 +285,7 @@ public class GeometryRunner implements Runnable {
 										geometryData.set("nrNormals", normalsAsFloat.capacity());
 										geometryData.setReference(GeometryPackage.eINSTANCE.getGeometryData_Normals(), createBuffer(queryContext, normals));
 										
-										ByteBuffer lineIndices = generateLineRendering(indicesAsInt);
+										ByteBuffer lineIndices = generateLineRendering(indicesAsInt, verticesAsDouble, normalsAsFloat, 0.001f);
 										geometryData.set("nrLineIndices", lineIndices.capacity() / 4);
 										geometryData.setReference(GeometryPackage.eINSTANCE.getGeometryData_LineIndices(), createBuffer(queryContext, lineIndices));
 										
@@ -865,6 +867,44 @@ public class GeometryRunner implements Runnable {
 			}
 		}
 		return volume;
+	}
+
+	private ByteBuffer generateLineRendering(IntBuffer indicesAsInt, DoubleBuffer verticesAsDouble, FloatBuffer normalsAsFloat, float margin) {
+		Set<ComplexLine> lines = new TreeSet<>();
+		for (int i=0; i<indicesAsInt.capacity(); i+=3) {
+			for (int j=0; j<3; j++) {
+				int index1 = indicesAsInt.get(i + j);
+				int index2 = indicesAsInt.get(i + (j + 1) % 3);
+				ComplexLine line = new ComplexLine(index1, index2, verticesAsDouble, normalsAsFloat, margin);
+				if (lines.contains(line)) {
+					lines.remove(line);
+				} else {
+					lines.add(line);
+				}
+			}
+		}
+		ComplexLine lastLine = null;
+		int size = 0;
+		for (ComplexLine line : lines) {
+			if (lastLine != null && Arrays.equals(lastLine.getV1(), line.getV1()) && Arrays.equals(lastLine.getV2(), line.getV2())) {
+				continue;
+			}
+			lastLine = line;
+			size++;
+		}
+		ByteBuffer byteBuffer = ByteBuffer.allocate(size * 2 * 4).order(ByteOrder.LITTLE_ENDIAN);
+		IntBuffer newIndices = byteBuffer.asIntBuffer();
+		for (ComplexLine line : lines) {
+			if (Arrays.equals(lastLine.getV1(), line.getV1()) && Arrays.equals(lastLine.getV2(), line.getV2())) {
+				// Only one line needs to be drawn in the end, regardless of the normal
+				continue;
+			}
+			newIndices.put(line.getIndex1());
+			newIndices.put(line.getIndex2());
+			lastLine = line;
+//			System.out.println(line);
+		}
+		return byteBuffer;
 	}
 	
 	private ByteBuffer generateLineRendering(IntBuffer indicesAsInt) {
