@@ -306,9 +306,12 @@ public class GeometryAccellerator {
 					}
 				}
 			}
-			if (densityResult == null) {
+			if (densityResult == null && allDensities.size() > 0) {
 				densityResult = allDensities.get(0);
 				densityResult.setDensity(-1);
+			}
+			if (densityResult == null) {
+				return null;
 			}
 			// This is useful information, so the client knows exactly how many triangles will be loaded by using this threshold
 			densityResult.setTrianglesBelow(cumulativeTrianglesBelow);
@@ -392,7 +395,11 @@ public class GeometryAccellerator {
 
 	public SDensity getDensityThreshold(Set<Long> roids, Long nrTriangles, Set<String> excludedTypes) {
 		DensityThresholdKey key = new DensityThresholdKey(roids, nrTriangles, excludedTypes);
-		return generateDensityThreshold(key).getDensity();
+		DensityThreshold generateDensityThreshold = generateDensityThreshold(key);
+		if (generateDensityThreshold == null) {
+			return null;
+		}
+		return generateDensityThreshold.getDensity();
 //		try {
 //			return densityThresholds.get(key).getDensity();
 //		} catch (ExecutionException e) {
