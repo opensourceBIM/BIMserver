@@ -210,11 +210,13 @@ public class PluginBundleManager implements AutoCloseable {
 						continue;
 					}
 					MavenPluginLocation mavenPluginLocation = mavenPluginRepository.getPluginLocation(dependencyArtifact.getGroupId(), dependencyArtifact.getArtifactId());
-					Path depJarFile = mavenPluginLocation.getVersionJar(dependencyArtifact.getVersion());
-
-					FileJarClassLoader jarClassLoader = new FileJarClassLoader(pluginManager, delegatingClassLoader, depJarFile);
-					jarClassLoaders.add(jarClassLoader);
-					delegatingClassLoader.add(jarClassLoader);
+					if (dependencyArtifact.getExtension().contentEquals("jar")) {
+						Path depJarFile = mavenPluginLocation.getVersionJar(dependencyArtifact.getVersion());
+						
+						FileJarClassLoader jarClassLoader = new FileJarClassLoader(pluginManager, delegatingClassLoader, depJarFile);
+						jarClassLoaders.add(jarClassLoader);
+						delegatingClassLoader.add(jarClassLoader);
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 					throw new Exception("Required dependency " + pluginBundleIdentifier + " is not installed");
