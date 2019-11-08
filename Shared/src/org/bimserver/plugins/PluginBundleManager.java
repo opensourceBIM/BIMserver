@@ -163,7 +163,7 @@ public class PluginBundleManager implements AutoCloseable {
 				// Skip
 				continue;
 			}
-			Dependency d = new Dependency(new DefaultArtifact(dependency2.getGroupId(), dependency2.getArtifactId(), "pom", dependency2.getVersion()), dependency2.getScope());
+			Dependency d = new Dependency(new DefaultArtifact(dependency2.getGroupId(), dependency2.getArtifactId(), dependency2.getType(), dependency2.getVersion()), dependency2.getScope());
 			Set<Exclusion> exclusions = new HashSet<>();
 			d.setExclusions(exclusions);
 			exclusions.add(new Exclusion("org.opensourcebim", "pluginbase", null, "jar"));
@@ -217,6 +217,7 @@ public class PluginBundleManager implements AutoCloseable {
 						jarClassLoaders.add(jarClassLoader);
 						delegatingClassLoader.add(jarClassLoader);
 					}
+					System.out.println(dependencyArtifact);
 				} catch (Exception e) {
 					e.printStackTrace();
 					throw new Exception("Required dependency " + pluginBundleIdentifier + " is not installed");
