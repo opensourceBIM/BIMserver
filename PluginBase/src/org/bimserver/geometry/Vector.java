@@ -161,4 +161,8 @@ public class Vector {
 		}
 		return result;
 	}
+
+	public static float[] invert(float[] normal) {
+		return new float[] {-normal[0], -normal[1], -normal[2]};
+	}
 }
