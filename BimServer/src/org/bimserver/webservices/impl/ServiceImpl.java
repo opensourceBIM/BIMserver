@@ -3300,7 +3300,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public Long regenerateGeometry(Long roid, Long eoid) throws ServerException, UserException {
-		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+		try (DatabaseSession session = getBimServer().getDatabase(). createSession(OperationType.POSSIBLY_WRITE)) {
 			Revision revision = session.get(roid, OldQuery.getDefault());
 			SUser user = getCurrentUser();
 			ProgressOnProjectTopic progressTopic = getBimServer().getNotificationsManager().createProgressOnProjectTopic(getAuthorization().getUoid(), revision.getProject().getOid(), SProgressTopicType.UPLOAD, "Regenerate geometry");
