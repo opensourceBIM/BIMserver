@@ -147,6 +147,7 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 			print("\"_r\":\"" + object.getRid() + "\",");
 			print("\"_t\":\"" + object.eClass().getName() + "\",");
 			print("\"_s\":1");
+			
 			for (EStructuralFeature eStructuralFeature : object.eClass().getEAllStructuralFeatures()) {
 				if (eStructuralFeature.getEAnnotation("nolazyload") == null && (eStructuralFeature.getEAnnotation("hidden") == null || includeHidden)) {
 					if (eStructuralFeature instanceof EReference) {
@@ -329,7 +330,7 @@ public class SharedJsonStreamingSerializer implements StreamingReader {
 					if (eStructuralFeature instanceof EReference) {
 						if (o instanceof Long) {
 							long ref = (Long) o;
-							print("{\"_i\":" + ref + ",\"_t\":\"" + objectProvider.getEClassForOid(ref).getName() + "\"}");
+							print("{\"_r\":" + ref + ",\"_t\":\"" + objectProvider.getEClassForOid(ref).getName() + "\"}");
 						} else {
 							writeWrapper((MinimalVirtualObject) o);
 						}

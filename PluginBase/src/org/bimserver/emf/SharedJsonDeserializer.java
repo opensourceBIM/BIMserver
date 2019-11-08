@@ -295,7 +295,7 @@ public class SharedJsonDeserializer {
 																		}
 																	}
 																	innerList.add(wrappedObject);
-																} else if (nextName.equals("_i")) {
+																} else if (nextName.equals("_r")) {
 																	// Reference
 																	long referenceOid = jsonReader.nextLong();
 																	if (jsonReader.nextName().equals("_t")) {
