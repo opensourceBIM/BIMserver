@@ -271,21 +271,41 @@ public class GeometryRunner implements Runnable {
 										HashMapVirtualObject geometryData = new HashMapVirtualObject(queryContext, GeometryPackage.eINSTANCE.getGeometryData());
 										
 										geometryData.set("type", databaseSession.getCid(eClass));
+
 										ByteBuffer indices = geometry.getIndices();
+										ByteBuffer vertices = geometry.getVertices();
+										ByteBuffer normals = geometry.getNormals();
+										ByteBuffer colorByteBuffer = geometry.getMaterialIndices();
+
 										IntBuffer indicesAsInt = indices.order(ByteOrder.LITTLE_ENDIAN).asIntBuffer();
+										DoubleBuffer verticesAsDouble = vertices.order(ByteOrder.LITTLE_ENDIAN).asDoubleBuffer();
+										FloatBuffer normalsAsFloat = normals.order(ByteOrder.LITTLE_ENDIAN).asFloatBuffer();
+										IntBuffer materialIndices = colorByteBuffer.order(ByteOrder.LITTLE_ENDIAN).asIntBuffer();
+
+										if (detectTwoFaceTriangles(ifcProduct, indicesAsInt, verticesAsDouble, 0.001f)) {
+											BufferSet bufferSet = appendInvertedGeometry(indicesAsInt, verticesAsDouble, normalsAsFloat, materialIndices);
+											
+											indices = bufferSet.getIndicesByteBuffer();
+											vertices = bufferSet.getVerticesByteBuffer();
+											normals = bufferSet.getNormalsByteBuffer();
+											colorByteBuffer = bufferSet.getColorsByteBuffer();
+											
+											indicesAsInt = indices.order(ByteOrder.LITTLE_ENDIAN).asIntBuffer();
+											verticesAsDouble = vertices.order(ByteOrder.LITTLE_ENDIAN).asDoubleBuffer();
+											normalsAsFloat = normals.order(ByteOrder.LITTLE_ENDIAN).asFloatBuffer();
+											materialIndices = colorByteBuffer.order(ByteOrder.LITTLE_ENDIAN).asIntBuffer();
+										}
+
 										geometryData.setAttribute(GeometryPackage.eINSTANCE.getGeometryData_Reused(), 1);
 										geometryData.setReference(GeometryPackage.eINSTANCE.getGeometryData_Indices(), createBuffer(queryContext, indices));
-										geometryData.set("nrIndices", indicesAsInt.capacity());
-										ByteBuffer vertices = geometry.getVertices();
-										DoubleBuffer verticesAsDouble = vertices.order(ByteOrder.LITTLE_ENDIAN).asDoubleBuffer();
-										geometryData.set("nrVertices", verticesAsDouble.capacity());
 										geometryData.setReference(GeometryPackage.eINSTANCE.getGeometryData_Vertices(), createBuffer(queryContext, vertices));
-										ByteBuffer normals = geometry.getNormals();
-										FloatBuffer normalsAsFloat = normals.order(ByteOrder.LITTLE_ENDIAN).asFloatBuffer();
-										geometryData.set("nrNormals", normalsAsFloat.capacity());
 										geometryData.setReference(GeometryPackage.eINSTANCE.getGeometryData_Normals(), createBuffer(queryContext, normals));
 										
-										ByteBuffer lineIndices = generateLineRendering(indicesAsInt, verticesAsDouble, normalsAsFloat, 0.001f);
+										geometryData.set("nrIndices", indicesAsInt.capacity());
+										geometryData.set("nrVertices", verticesAsDouble.capacity());
+										geometryData.set("nrNormals", normalsAsFloat.capacity());
+										
+										ByteBuffer lineIndices = generateLineRendering(ifcProduct, indicesAsInt, verticesAsDouble, normalsAsFloat, 0.001f);
 										geometryData.set("nrLineIndices", lineIndices.capacity() / 4);
 										geometryData.setReference(GeometryPackage.eINSTANCE.getGeometryData_LineIndices(), createBuffer(queryContext, lineIndices));
 										
@@ -299,7 +319,6 @@ public class GeometryRunner implements Runnable {
 										ColorMap colorMap = new ColorMap();
 										
 										ByteBuffer colors = ByteBuffer.wrap(new byte[0]);
-										IntBuffer materialIndices = geometry.getMaterialIndices().order(ByteOrder.LITTLE_ENDIAN).asIntBuffer();
 										
 										if (materialIndices != null && materialIndices.capacity() > 0) {
 											FloatBuffer materialsAsFloat = geometry.getMaterials().order(ByteOrder.LITTLE_ENDIAN).asFloatBuffer();
@@ -350,10 +369,12 @@ public class GeometryRunner implements Runnable {
 												geometryData.setReference(GeometryPackage.eINSTANCE.getGeometryData_ColorPack(), colorPack.getOid(), 0);
 											}
 											if (colorMap.usedColors() == 0) {
-												if (eClass.getName().contentEquals("IfcWindow")) {
+												if (eClass.getName().contentEquals("IfcWindow") || eClass.getName().contentEquals("IfcOpeningElement") || eClass.getName().contentEquals("IfcSpace")) {
 													// To make sure the viewer will but this object in the right buffer (transparent), we override the transparency here
 													// This only happens for objects with no color, maybe there are more types that are usually transparent?
 													colorMap.setHasTransparency(true);
+//												} else {
+//													LOGGER.info(ifcProduct.eClass().getName());
 												}
 											} else if (colorMap.usedColors() == 1) {
 												WrappedVirtualObject color = new HashMapWrappedVirtualObject(GeometryPackage.eINSTANCE.getVector4f());
@@ -395,7 +416,7 @@ public class GeometryRunner implements Runnable {
 											Matrix.setIdentityM(productTranformationMatrix, 0);
 										}
 
-										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_NrColors(), colors.position());
+										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_NrColors(), colors.capacity());
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_NrVertices(), verticesAsDouble.capacity());
 										geometryInfo.setReference(GeometryPackage.eINSTANCE.getGeometryInfo_Data(), geometryData.getOid(), 0);
 										geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_HasTransparency(), hasTransparency);
@@ -435,7 +456,7 @@ public class GeometryRunner implements Runnable {
 										if (volume == 0) {
 											volume = getVolumeFromBounds(boundsUntransformed);
 										}
-										float nrTriangles = geometry.getNrIndices() / 3;
+										float nrTriangles = indicesAsInt.capacity() / 3;
 										
 										Density density = new Density(eClass.getName(), (float) volume, getBiggestFaceFromBounds(boundsUntransformedMm), (long) nrTriangles, geometryInfo.getOid());
 										
@@ -519,7 +540,7 @@ public class GeometryRunner implements Runnable {
 
 													geometryInfo.setAttribute(GeometryPackage.eINSTANCE.getGeometryInfo_PrimitiveCount(), indicesAsInt.capacity() / 3);
 
-													productToData.put(ifcProduct.getOid(), new TemporaryGeometryData(geometryData.getOid(), renderEngineInstance.getAdditionalData(), indicesAsInt.capacity() / 3, size, mibu, mabu, indicesAsInt, verticesAsDouble, hasTransparency, colors.position()));
+													productToData.put(ifcProduct.getOid(), new TemporaryGeometryData(geometryData.getOid(), renderEngineInstance.getAdditionalData(), indicesAsInt.capacity() / 3, size, mibu, mabu, indicesAsInt, verticesAsDouble, hasTransparency, colors.capacity()));
 													geometryData.save();
 													databaseSession.cache((HashMapVirtualObject) geometryData);
 												}
@@ -836,6 +857,57 @@ public class GeometryRunner implements Runnable {
 		job.setEndNanos(end);
 	}
 
+	private BufferSet appendInvertedGeometry(IntBuffer indicesAsInt, DoubleBuffer verticesAsDouble, FloatBuffer normalsAsFloat, IntBuffer colorIndices) {
+		indicesAsInt.position(0);
+		normalsAsFloat.position(0);
+		
+		ByteBuffer newVerticesByteBuffer = ByteBuffer.allocate(verticesAsDouble.capacity() * 16);
+		DoubleBuffer newVerticesBuffer = newVerticesByteBuffer.order(ByteOrder.LITTLE_ENDIAN).asDoubleBuffer();
+		verticesAsDouble.position(0);
+		newVerticesBuffer.put(verticesAsDouble);
+		verticesAsDouble.position(0);
+		newVerticesBuffer.put(verticesAsDouble);
+		
+		int nrVertices = verticesAsDouble.capacity() / 3;
+		
+		ByteBuffer newIntByteBuffer = ByteBuffer.allocate(indicesAsInt.capacity() * 8);
+		IntBuffer newIntBuffer = newIntByteBuffer.order(ByteOrder.LITTLE_ENDIAN).asIntBuffer();
+		for (int i=0; i<indicesAsInt.capacity(); i+=3) {
+			int index1 = indicesAsInt.get();
+			int index2 = indicesAsInt.get();
+			int index3 = indicesAsInt.get();
+			newIntBuffer.put(i, index1);
+			newIntBuffer.put(i + 1, index2);
+			newIntBuffer.put(i + 2, index3);
+			
+			// And draw the same triangle again in a different order
+			newIntBuffer.put(i + indicesAsInt.capacity(), index1 + nrVertices);
+			newIntBuffer.put(i + indicesAsInt.capacity() + 1, index3 + nrVertices);
+			newIntBuffer.put(i + indicesAsInt.capacity() + 2, index2 + nrVertices);
+		}
+
+		ByteBuffer newNormalsByteBuffer = ByteBuffer.allocate(normalsAsFloat.capacity() * 8);
+		FloatBuffer newNormalsBuffer = newNormalsByteBuffer.order(ByteOrder.LITTLE_ENDIAN).asFloatBuffer();
+		normalsAsFloat.position(0);
+		newNormalsBuffer.put(normalsAsFloat);
+		for (int i=0; i<normalsAsFloat.capacity(); i+=3) {
+			float[] normal = new float[] {normalsAsFloat.get(i + 0), normalsAsFloat.get(i + 1), normalsAsFloat.get(i + 2)};
+			normal = Vector.invert(normal);
+			newNormalsBuffer.put(i + normalsAsFloat.capacity(), normal[0]);
+			newNormalsBuffer.put(i + 1 + normalsAsFloat.capacity(), normal[1]);
+			newNormalsBuffer.put(i + 2 + normalsAsFloat.capacity(), normal[2]);
+		}
+		
+		ByteBuffer newColorsByteBuffer = ByteBuffer.allocate(colorIndices.capacity() * 8);
+		IntBuffer newColorsBuffer = newColorsByteBuffer.order(ByteOrder.LITTLE_ENDIAN).asIntBuffer();
+		colorIndices.position(0);
+		newColorsBuffer.put(colorIndices);
+		colorIndices.position(0);
+		newColorsBuffer.put(colorIndices);
+		
+		return new BufferSet(newIntByteBuffer, newVerticesByteBuffer, newNormalsByteBuffer, newColorsByteBuffer);
+	}
+
 	private void dump(String string, IntBuffer materialIndices) {
 		StringBuilder sb = new StringBuilder();
 		for (int i=0; i<materialIndices.capacity(); i++) {
@@ -869,7 +941,29 @@ public class GeometryRunner implements Runnable {
 		return volume;
 	}
 
-	private ByteBuffer generateLineRendering(IntBuffer indicesAsInt, DoubleBuffer verticesAsDouble, FloatBuffer normalsAsFloat, float margin) {
+	private boolean detectTwoFaceTriangles(HashMapVirtualObject ifcProduct, IntBuffer indicesAsInt, DoubleBuffer verticesAsDouble, float margin) {
+		Set<ComplexLine2> complexLines = new TreeSet<>();
+		for (int i=0; i<indicesAsInt.capacity(); i+=3) {
+			for (int j=0; j<3; j++) {
+				int index1 = indicesAsInt.get(i + j);
+				int index2 = indicesAsInt.get(i + (j + 1) % 3);
+				
+				ComplexLine2 line2 = new ComplexLine2(index1, index2, verticesAsDouble, margin);
+				if (complexLines.contains(line2)) {
+					complexLines.remove(line2);
+				} else {
+					complexLines.add(line2);
+				}
+			}
+		}
+		if (!complexLines.isEmpty()) {
+			LOGGER.info("Probably a non-closed object in " + ifcProduct.eClass().getName() + " (" + complexLines.size() + ")");
+			return true;
+		}
+		return false;
+	}
+	
+	private ByteBuffer generateLineRendering(HashMapVirtualObject ifcProduct, IntBuffer indicesAsInt, DoubleBuffer verticesAsDouble, FloatBuffer normalsAsFloat, float margin) {
 		Set<ComplexLine> lines = new TreeSet<>();
 		for (int i=0; i<indicesAsInt.capacity(); i+=3) {
 			for (int j=0; j<3; j++) {
@@ -883,8 +977,10 @@ public class GeometryRunner implements Runnable {
 				}
 			}
 		}
+		
 		ComplexLine lastLine = null;
 		int size = 0;
+		
 		for (ComplexLine line : lines) {
 			if (lastLine != null && Arrays.equals(lastLine.getV1(), line.getV1()) && Arrays.equals(lastLine.getV2(), line.getV2())) {
 				continue;
