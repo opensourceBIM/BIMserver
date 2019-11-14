@@ -217,7 +217,6 @@ public class PluginBundleManager implements AutoCloseable {
 						jarClassLoaders.add(jarClassLoader);
 						delegatingClassLoader.add(jarClassLoader);
 					}
-					System.out.println(dependencyArtifact);
 				} catch (Exception e) {
 					e.printStackTrace();
 					throw new Exception("Required dependency " + pluginBundleIdentifier + " is not installed");
