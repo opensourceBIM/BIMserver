@@ -60,6 +60,7 @@ import org.slf4j.LoggerFactory;
 public class VersionChecker {
 	private static final Logger LOGGER = LoggerFactory.getLogger(VersionChecker.class);
 	private GregorianCalendar lastCheck;
+	private static final boolean ONLINE_VERSION_CHECK_ENABLED = false;
 	private SVersion onlineVersion;
 	private SVersion localVersion;
 
@@ -119,7 +120,7 @@ public class VersionChecker {
 	}
 
 	public synchronized SVersion getOnlineVersion() {
-		if (lastCheck == null || lastCheck.before(getReferenceDate())) {
+		if (ONLINE_VERSION_CHECK_ENABLED && (lastCheck == null || lastCheck.before(getReferenceDate()))) {
 			LOGGER.info("Fetching online version info");
 			try {
 				URL url = new URL("http://www.bimserver.org/version/versionv2.xml");
