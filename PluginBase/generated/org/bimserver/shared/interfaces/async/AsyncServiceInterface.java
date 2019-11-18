@@ -164,6 +164,11 @@ public class AsyncServiceInterface {
 		void error(Throwable e);
 	}
 	
+	public interface CloneCallback {
+		void success(java.lang.Long result);
+		void error(Throwable e);
+	}
+	
 	public interface CompareCallback {
 		void success(org.bimserver.interfaces.objects.SCompareResult result);
 		void error(Throwable e);
@@ -1100,6 +1105,18 @@ public class AsyncServiceInterface {
 				try {
 					syncService.cleanupLongAction(topicId);
 					callback.success();
+				} catch (Throwable e) {
+					callback.error(e);
+				}
+			}
+		});
+	}
+	
+	public void clone(final java.lang.Long roid, final java.lang.String projectName, final java.lang.String comment, final java.lang.Boolean sync, final CloneCallback callback) {
+		executorService.submit(new Runnable(){
+			public void run(){
+				try {
+					callback.success(syncService.clone(roid, projectName, comment, sync));
 				} catch (Throwable e) {
 					callback.error(e);
 				}
