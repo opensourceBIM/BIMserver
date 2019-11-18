@@ -89,7 +89,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 	}
 	
 	protected void processPossibleIncludes(HashMapVirtualObject object, EClass previousType, CanInclude canInclude) throws QueryException, BimserverDatabaseException {
-		if (object != null) {
+		if (object != null && canInclude != null) {
 			if (canInclude.hasReferences()) {
 				for (Reference reference : canInclude.getReferences()) {
 					processPossibleInclude(object, canInclude, reference.getInclude());
@@ -145,7 +145,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 						if (ref instanceof Long) {
 							HashMapVirtualObject byOid = getByOid((Long)ref, true);
 							if (byOid == null) {
-								throw new BimserverDatabaseException("Object with oid " + ref + " not found");
+								throw new BimserverDatabaseException("Object with oid " + ref + " not found (" + queryObjectProvider.getDatabaseSession().getEClassForOid((Long)ref).getName() + ")");
 							}
 							object.setDirectReference(eReference, byOid);
 							object.addUseForSerialization(eReference);
