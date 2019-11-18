@@ -74,6 +74,15 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 		this.uuid = uuid;
 	}
 	
+	public void prepareForCopy(QueryContext queryContext) {
+		this.reusable = queryContext;
+	}
+
+	public long generateNewOid() {
+		this.oid = reusable.getDatabaseInterface().newOid(eClass);
+		return this.oid;
+	}
+	
 	public void eUnset(EStructuralFeature feature) {
 		map.remove(feature);
 	}
