@@ -67,6 +67,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getAdditionalData <em>Additional Data</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getNrColors <em>Nr Colors</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getNrVertices <em>Nr Vertices</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.impl.GeometryInfoImpl#getIfcProductPid <em>Ifc Product Pid</em>}</li>
  * </ul>
  *
  * @generated
@@ -479,6 +480,26 @@ public class GeometryInfoImpl extends IdEObjectImpl implements GeometryInfo {
 	@Override
 	public void setNrVertices(int newNrVertices) {
 		eSet(GeometryPackage.Literals.GEOMETRY_INFO__NR_VERTICES, newNrVertices);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int getIfcProductPid() {
+		return (Integer) eGet(GeometryPackage.Literals.GEOMETRY_INFO__IFC_PRODUCT_PID, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setIfcProductPid(int newIfcProductPid) {
+		eSet(GeometryPackage.Literals.GEOMETRY_INFO__IFC_PRODUCT_PID, newIfcProductPid);
 	}
 
 } //GeometryInfoImpl

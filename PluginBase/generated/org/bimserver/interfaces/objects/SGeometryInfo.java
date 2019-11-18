@@ -50,6 +50,7 @@ public class SGeometryInfo implements SDataBase
 	private java.lang.String additionalData;
 	private int nrColors;
 	private int nrVertices;
+	private int ifcProductPid;
 
 	public long getOid() {
 		return this.oid;
@@ -142,6 +143,9 @@ public class SGeometryInfo implements SDataBase
 		if (sField.getName().equals("nrVertices")) {
 			return getNrVertices();
 		}
+		if (sField.getName().equals("ifcProductPid")) {
+			return getIfcProductPid();
+		}
 		if (sField.getName().equals("oid")) {
 			return getOid();
 		}
@@ -229,6 +233,10 @@ public class SGeometryInfo implements SDataBase
 		}
 		if (sField.getName().equals("nrVertices")) {
 			setNrVertices((Integer)val);
+			return;
+		}
+		if (sField.getName().equals("ifcProductPid")) {
+			setIfcProductPid((Integer)val);
 			return;
 		}
 		if (sField.getName().equals("oid")) {
@@ -400,6 +408,14 @@ public class SGeometryInfo implements SDataBase
 
 	public void setNrVertices(int nrVertices) {
 		this.nrVertices = nrVertices;
+	}
+	
+	public int getIfcProductPid() {
+		return ifcProductPid;
+	}
+
+	public void setIfcProductPid(int ifcProductPid) {
+		this.ifcProductPid = ifcProductPid;
 	}
 	
 	@Override

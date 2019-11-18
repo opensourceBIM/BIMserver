@@ -122,6 +122,10 @@ public class ServiceInterfaceAdaptor implements org.bimserver.shared.interfaces.
 	public void cleanupLongAction(java.lang.Long topicId) throws UserException, ServerException {
 	}
 	
+	public java.lang.Long clone(java.lang.Long roid, java.lang.String projectName, java.lang.String comment, java.lang.Boolean sync) throws UserException, ServerException {
+		return null;
+	}
+	
 	public org.bimserver.interfaces.objects.SCompareResult compare(java.lang.Long roid1, java.lang.Long roid2, org.bimserver.interfaces.objects.SCompareType sCompareType, java.lang.Long mcid) throws UserException, ServerException {
 		return null;
 	}

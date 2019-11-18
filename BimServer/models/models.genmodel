@@ -30,6 +30,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/additionalData"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/nrColors"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/nrVertices"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/GeometryInfo/ifcProductPid"/>
     </genClasses>
     <genClasses ecoreClass="models.ecore#/0/Vector3f">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute models.ecore#/0/Vector3f/x"/>

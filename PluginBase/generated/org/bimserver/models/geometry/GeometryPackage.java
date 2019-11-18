@@ -268,13 +268,22 @@ public interface GeometryPackage extends EPackage {
 	int GEOMETRY_INFO__NR_VERTICES = 18;
 
 	/**
+	 * The feature id for the '<em><b>Ifc Product Pid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEOMETRY_INFO__IFC_PRODUCT_PID = 19;
+
+	/**
 	 * The number of structural features of the '<em>Info</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEOMETRY_INFO_FEATURE_COUNT = 19;
+	int GEOMETRY_INFO_FEATURE_COUNT = 20;
 
 	/**
 	 * The meta object id for the '{@link org.bimserver.models.geometry.impl.Vector3fImpl <em>Vector3f</em>}' class.
@@ -889,6 +898,17 @@ public interface GeometryPackage extends EPackage {
 	EAttribute getGeometryInfo_NrVertices();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.bimserver.models.geometry.GeometryInfo#getIfcProductPid <em>Ifc Product Pid</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Ifc Product Pid</em>'.
+	 * @see org.bimserver.models.geometry.GeometryInfo#getIfcProductPid()
+	 * @see #getGeometryInfo()
+	 * @generated
+	 */
+	EAttribute getGeometryInfo_IfcProductPid();
+
+	/**
 	 * Returns the meta object for class '{@link org.bimserver.models.geometry.Vector3f <em>Vector3f</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1472,6 +1492,14 @@ public interface GeometryPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute GEOMETRY_INFO__NR_VERTICES = eINSTANCE.getGeometryInfo_NrVertices();
+
+		/**
+		 * The meta object literal for the '<em><b>Ifc Product Pid</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GEOMETRY_INFO__IFC_PRODUCT_PID = eINSTANCE.getGeometryInfo_IfcProductPid();
 
 		/**
 		 * The meta object literal for the '{@link org.bimserver.models.geometry.impl.Vector3fImpl <em>Vector3f</em>}' class.

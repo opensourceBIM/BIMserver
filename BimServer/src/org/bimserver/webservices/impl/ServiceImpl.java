@@ -81,6 +81,7 @@ import org.bimserver.database.actions.BranchToExistingProjectDatabaseAction;
 import org.bimserver.database.actions.BranchToNewProjectDatabaseAction;
 import org.bimserver.database.actions.ChangeUserTypeDatabaseAction;
 import org.bimserver.database.actions.CheckinDatabaseAction;
+import org.bimserver.database.actions.CloneToNewProjectDatabaseAction;
 import org.bimserver.database.actions.CompareDatabaseAction;
 import org.bimserver.database.actions.DeleteProjectDatabaseAction;
 import org.bimserver.database.actions.DeleteServiceDatabaseAction;
@@ -213,6 +214,7 @@ import org.bimserver.longaction.LongAction;
 import org.bimserver.longaction.LongBranchAction;
 import org.bimserver.longaction.LongCheckinAction;
 import org.bimserver.longaction.LongCheckoutAction;
+import org.bimserver.longaction.LongCopyAction;
 import org.bimserver.longaction.LongDownloadAction;
 import org.bimserver.longaction.LongDownloadOrCheckoutAction;
 import org.bimserver.longaction.LongGenericAction;
@@ -686,6 +688,28 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		}
 	}
 
+	@Override
+	public Long clone(Long roid, String projectName, String comment, Boolean sync) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
+		try {
+			CloneToNewProjectDatabaseAction action = new CloneToNewProjectDatabaseAction(session, getInternalAccessMethod(), getBimServer(), getAuthorization(), roid, projectName, comment);
+			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
+			String username = user.getName();
+			String userUsername = user.getUsername();
+			LongCopyAction longAction = new LongCopyAction(getBimServer(), username, userUsername, getAuthorization(), action);
+			getBimServer().getLongActionManager().start(longAction);
+			if (sync) {
+				longAction.waitForCompletion();
+			}
+			return longAction.getProgressTopic().getKey().getId();
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
+	
 	@Override
 	public Long branchToNewProject(Long roid, String projectName, String comment, Boolean sync) throws UserException, ServerException {
 		requireRealUserAuthentication();

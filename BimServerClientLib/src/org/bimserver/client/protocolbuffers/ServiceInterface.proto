@@ -77,6 +77,8 @@ service ServiceInterface {
 
 	rpc cleanupLongAction (CleanupLongActionRequest) returns (VoidResponse);
 
+	rpc clone (CloneRequest) returns (CloneResponse);
+
 	rpc compare (CompareRequest) returns (CompareResponse);
 
 	rpc deleteProject (DeleteProjectRequest) returns (DeleteProjectResponse);
@@ -852,6 +854,18 @@ message CheckoutResponse {
 
 message CleanupLongActionRequest {
 	optional int64 topicId = 1;
+}
+
+message CloneRequest {
+	optional int64 roid = 1;
+	optional string projectName = 2;
+	optional string comment = 3;
+	optional bool sync = 4;
+}
+
+message CloneResponse {
+	optional string errorMessage = 1;
+	optional int64 value = 2;
 }
 
 enum SCompareType{

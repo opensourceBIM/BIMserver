@@ -297,6 +297,20 @@ public interface ServiceInterface extends PublicInterface {
 	Boolean undeleteProject(
 		@WebParam(name = "poid", partName = "undeleteProject.poid") Long poid) throws ServerException, UserException;
 	
+	/**
+	 * Branch a given Revision as a new Revision on a new Project, branching is always synchronous
+	 * @param roid ObjectID of the Revision to branch
+	 * @param projectName Name of the to be created Project
+	 * @param comment A comment describing the new Revision
+	 * @return The result of this branch, you can use getCheckinState with this ID
+	 * @throws ServerException, UserException
+	 */
+	@WebMethod(action = "clone")
+	Long clone(
+		@WebParam(name = "roid", partName = "branchToNewProject.roid") Long roid,
+		@WebParam(name = "projectName", partName = "branchToNewProject.projectName") String projectName,
+		@WebParam(name = "comment", partName = "branchToNewProject.comment") String comment,
+		@WebParam(name = "sync", partName = "branchToNewProject.sync") Boolean sync) throws ServerException, UserException;
 
 	/**
 	 * Branch a given Revision as a new Revision on a new Project, branching is always synchronous

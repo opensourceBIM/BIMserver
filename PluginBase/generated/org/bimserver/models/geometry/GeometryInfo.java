@@ -63,6 +63,7 @@ import org.bimserver.emf.IdEObject;
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getAdditionalData <em>Additional Data</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getNrColors <em>Nr Colors</em>}</li>
  *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getNrVertices <em>Nr Vertices</em>}</li>
+ *   <li>{@link org.bimserver.models.geometry.GeometryInfo#getIfcProductPid <em>Ifc Product Pid</em>}</li>
  * </ul>
  *
  * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo()
@@ -564,5 +565,27 @@ public interface GeometryInfo extends IdEObject {
 	 * @generated
 	 */
 	void setNrVertices(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Ifc Product Pid</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Ifc Product Pid</em>' attribute.
+	 * @see #setIfcProductPid(int)
+	 * @see org.bimserver.models.geometry.GeometryPackage#getGeometryInfo_IfcProductPid()
+	 * @model
+	 * @generated
+	 */
+	int getIfcProductPid();
+
+	/**
+	 * Sets the value of the '{@link org.bimserver.models.geometry.GeometryInfo#getIfcProductPid <em>Ifc Product Pid</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Ifc Product Pid</em>' attribute.
+	 * @see #getIfcProductPid()
+	 * @generated
+	 */
+	void setIfcProductPid(int value);
 
 } // GeometryInfo

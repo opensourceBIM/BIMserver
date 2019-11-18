@@ -32,6 +32,7 @@ package org.bimserver.models.geometry.util;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
+import org.bimserver.models.geometry.*;
 import org.bimserver.models.geometry.Bounds;
 import org.bimserver.models.geometry.Buffer;
 import org.bimserver.models.geometry.ColorPack;

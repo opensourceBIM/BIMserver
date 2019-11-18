@@ -407,6 +407,16 @@ public class GeometryPackageImpl extends EPackageImpl implements GeometryPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getGeometryInfo_IfcProductPid() {
+		return (EAttribute) getGeometryInfo().getEStructuralFeatures().get(19);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getVector3f() {
 		if (vector3fEClass == null) {
 			vector3fEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI).getEClassifiers().get(1);

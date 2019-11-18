@@ -1,5 +1,5 @@
 
-ºÐ
+ŒÒ
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -359,7 +359,15 @@ parentPoid (
 errorMessage (	
 value ("+
 CleanupLongActionRequest
-topicId ("r
+topicId ("P
+CloneRequest
+roid (
+projectName (	
+comment (	
+sync ("4
+CloneResponse
+errorMessage (	
+value ("r
 CompareRequest
 roid1 (
 roid2 (4
@@ -1719,7 +1727,7 @@ serviceOid ("F
 SNotifictionResultEnum_NR_ERROR "
 SNotifictionResultEnum_SUCCESS+
 'SNotifictionResultEnum_PROGRESS_UNKNOWN.
-*SNotifictionResultEnum_PROGRESS_PERCENTAGE2˜†
+*SNotifictionResultEnum_PROGRESS_PERCENTAGE2â†
 ServiceInterfacex
 addExtendedDataSchema..org.bimserver.pb.AddExtendedDataSchemaRequest/.org.bimserver.pb.AddExtendedDataSchemaResponsem
 addExtendedDataToProject1.org.bimserver.pb.AddExtendedDataToProjectRequest.org.bimserver.pb.VoidResponseo
@@ -1748,7 +1756,8 @@ addProject#.org.bimserver.pb.AddProjectRequest$.org.bimserver.pb.AddProjectRes
 checkinInitiatedSync-.org.bimserver.pb.CheckinInitiatedSyncRequest..org.bimserver.pb.CheckinInitiatedSyncResponseZ
 checkinSync$.org.bimserver.pb.CheckinSyncRequest%.org.bimserver.pb.CheckinSyncResponseQ
 checkout!.org.bimserver.pb.CheckoutRequest".org.bimserver.pb.CheckoutResponse_
-cleanupLongAction*.org.bimserver.pb.CleanupLongActionRequest.org.bimserver.pb.VoidResponseN
+cleanupLongAction*.org.bimserver.pb.CleanupLongActionRequest.org.bimserver.pb.VoidResponseH
+clone.org.bimserver.pb.CloneRequest.org.bimserver.pb.CloneResponseN
 compare .org.bimserver.pb.CompareRequest!.org.bimserver.pb.CompareResponse`
 deleteProject&.org.bimserver.pb.DeleteProjectRequest'.org.bimserver.pb.DeleteProjectResponseW
 deleteService&.org.bimserver.pb.DeleteServiceRequest.org.bimserver.pb.VoidResponseW
