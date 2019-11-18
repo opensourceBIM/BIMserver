@@ -198,6 +198,7 @@ message AddStringAttributeRequest {
 message CommitTransactionRequest {
 	optional int64 tid = 1;
 	optional string comment = 2;
+	optional bool regenerateAllGeometry = 3;
 }
 
 message CommitTransactionResponse {

@@ -39,7 +39,7 @@ public class LowLevelInterfaceAdaptor implements org.bimserver.shared.interfaces
 	public void addStringAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.String value) throws UserException, ServerException {
 	}
 	
-	public java.lang.Long commitTransaction(java.lang.Long tid, java.lang.String comment) throws UserException, ServerException {
+	public java.lang.Long commitTransaction(java.lang.Long tid, java.lang.String comment, java.lang.Boolean regenerateAllGeometry) throws UserException, ServerException {
 		return null;
 	}
 	

@@ -56,7 +56,8 @@ public interface LowLevelInterface extends PublicInterface {
 	@WebMethod(action = "commitTransaction")
 	Long commitTransaction(
 		@WebParam(name = "tid", partName = "commitTransaction.tid") Long tid,
-		@WebParam(name = "comment", partName = "commitTransaction.comment") String comment) throws ServerException, UserException;
+		@WebParam(name = "comment", partName = "commitTransaction.comment") String comment,
+		@WebParam(name = "regenerateAllGeometry", partName = "commitTransaction.regenerateAllGeometry") Boolean regenerateAllGeometry) throws ServerException, UserException;
 	
 	/**
 	 * Abort a transaction, changes will not be saved

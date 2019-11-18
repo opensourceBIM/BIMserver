@@ -70,7 +70,7 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	@Override
 	public Long startTransaction(Long poid) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
 		int pid = -1;
 		int rid = -1;
 		long roid = -1;
@@ -96,7 +96,7 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	}
 
 	@Override
-	public Long commitTransaction(Long tid, String comment) throws UserException, ServerException {
+	public Long commitTransaction(Long tid, String comment, Boolean regenerateAllGeometry) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
@@ -104,7 +104,7 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 			if (longTransaction == null) {
 				throw new UserException("No transaction with tid " + tid + " was found");
 			}
-			CommitTransactionDatabaseAction action = new CommitTransactionDatabaseAction(getBimServer(), session, getInternalAccessMethod(), getAuthorization(), longTransaction, comment);
+			CommitTransactionDatabaseAction action = new CommitTransactionDatabaseAction(getBimServer(), session, getInternalAccessMethod(), getAuthorization(), longTransaction, comment, regenerateAllGeometry);
 			try {
 				session.executeAndCommitAction(action);
 				return action.getRevision().getOid();

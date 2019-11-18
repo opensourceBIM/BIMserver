@@ -1639,18 +1639,19 @@ message SGeometryInfo {
 	optional float density = 8;
 	optional bool hasTransparency = 9;
 	optional int64 ifcProductOid = 10;
-	optional int32 ifcProductRid = 11;
-	optional bytes ifcProductUuid = 12;
-	optional int32 nrColors = 13;
-	optional int32 nrVertices = 14;
-	optional int64 oid = 15;
-	optional int32 primitiveCount = 16;
-	optional int32 rid = 17;
-	optional int32 startIndex = 18;
-	optional int32 startVertex = 19;
-	optional bytes transformation = 20;
-	optional UUID uuid = 21;
-	optional double volume = 22;
+	optional int32 ifcProductPid = 11;
+	optional int32 ifcProductRid = 12;
+	optional bytes ifcProductUuid = 13;
+	optional int32 nrColors = 14;
+	optional int32 nrVertices = 15;
+	optional int64 oid = 16;
+	optional int32 primitiveCount = 17;
+	optional int32 rid = 18;
+	optional int32 startIndex = 19;
+	optional int32 startVertex = 20;
+	optional bytes transformation = 21;
+	optional UUID uuid = 22;
+	optional double volume = 23;
 }
 
 message GetGeometryInfoResponse {

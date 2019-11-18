@@ -414,11 +414,11 @@ public class AsyncLowLevelInterface {
 		});
 	}
 	
-	public void commitTransaction(final java.lang.Long tid, final java.lang.String comment, final CommitTransactionCallback callback) {
+	public void commitTransaction(final java.lang.Long tid, final java.lang.String comment, final java.lang.Boolean regenerateAllGeometry, final CommitTransactionCallback callback) {
 		executorService.submit(new Runnable(){
 			public void run(){
 				try {
-					callback.success(syncService.commitTransaction(tid, comment));
+					callback.success(syncService.commitTransaction(tid, comment, regenerateAllGeometry));
 				} catch (Throwable e) {
 					callback.error(e);
 				}

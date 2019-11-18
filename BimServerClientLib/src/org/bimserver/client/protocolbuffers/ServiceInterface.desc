@@ -1,5 +1,5 @@
 
-ŒÒ
+£Ò
 ServiceInterface.protoorg.bimserver.pb"$
 VoidResponse
 errorMessage (	"
@@ -878,7 +878,7 @@ revisionNr (
 value ("3
 GetGeometryInfoRequest
 roid (
-oid ("Î
+oid ("å
 SGeometryInfo
 additionalData (	
 area ()
@@ -891,20 +891,21 @@ revisionNr (
 hasTransparency	 (
 ifcProductOid
  (
-ifcProductRid (
-ifcProductUuid (
-nrColors (
+ifcProductPid (
+ifcProductRid (
+ifcProductUuid (
+nrColors (
 
-nrVertices (
-oid (
-primitiveCount (
-rid (
+nrVertices (
+oid (
+primitiveCount (
+rid (
 
-startIndex (
-startVertex (
-transformation ($
-uuid (2.org.bimserver.pb.UUID
-volume ("_
+startIndex (
+startVertex (
+transformation ($
+uuid (2.org.bimserver.pb.UUID
+volume ("_
 GetGeometryInfoResponse
 errorMessage (	.
 value (2.org.bimserver.pb.SGeometryInfo"$

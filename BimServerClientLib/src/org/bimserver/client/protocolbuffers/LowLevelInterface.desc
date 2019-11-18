@@ -1,5 +1,5 @@
 
-¹m
+Øm
 LowLevelInterface.protoorg.bimserver.pbServiceInterface.protoNewServicesInterface.protoAdminInterface.protoMetaInterface.protoSettingsInterface.protoAuthInterface.protoPluginInterface.protoNotificationInterface.protoRemoteServiceInterface.proto"&
 AbortTransactionRequest
 tid ("\
@@ -27,10 +27,11 @@
 tid (
 oid (
 attributeName (	
-value (	"8
+value (	"W
 CommitTransactionRequest
 tid (
-comment (	"@
+comment (	
+regenerateAllGeometry ("@
 CommitTransactionResponse
 errorMessage (	
 value ("/

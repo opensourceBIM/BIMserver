@@ -287,7 +287,7 @@ public class ClientIfcModel extends IfcModel implements GeometryTarget {
 		if (tid == -1) {
 			throw new UserException("No transaction was started");
 		}
-		return bimServerClient.getLowLevelInterface().commitTransaction(tid, comment);
+		return bimServerClient.getLowLevelInterface().commitTransaction(tid, comment, true);
 	}
 
 	private void loadDeep() throws ServerException, UserException, PublicInterfaceNotFoundException, QueryException {
