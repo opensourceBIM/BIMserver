@@ -287,6 +287,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 				// TODO Buffer? Vector?
 				oidCounters.put(GeometryPackage.eINSTANCE.getGeometryInfo(), startOids.get(fullname(GeometryPackage.eINSTANCE.getGeometryInfo())));
 				oidCounters.put(GeometryPackage.eINSTANCE.getGeometryData(), startOids.get(fullname(GeometryPackage.eINSTANCE.getGeometryData())));
+				oidCounters.put(GeometryPackage.eINSTANCE.getBuffer(), startOids.get(fullname(GeometryPackage.eINSTANCE.getBuffer())));
 			}
 			
 			concreteRevision = result.getConcreteRevision();
