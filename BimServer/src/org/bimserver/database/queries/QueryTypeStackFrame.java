@@ -90,7 +90,7 @@ public class QueryTypeStackFrame extends DatabaseReadingStackFrame implements Ob
 		}
 		
 		if (currentObject != null) {
-			if (getQueryPart().getMinimumReuseThreshold() != -1) {
+			if (getQueryPart() != null && getQueryPart().getMinimumReuseThreshold() != -1) {
 				if (GeometryPackage.eINSTANCE.getGeometryData() == currentObject.eClass()) {
 					int saveableTriangles = (int)currentObject.get("saveableTriangles");
 					if (getQueryPart().getMinimumReuseThreshold() > saveableTriangles) {

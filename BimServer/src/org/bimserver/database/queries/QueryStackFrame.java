@@ -34,16 +34,21 @@ public class QueryStackFrame extends StackFrame {
 	private Iterator<QueryPart> queryIterator;
 	private QueryObjectProvider queryObjectProvider;
 	private QueryContext reusable;
+	private Query query;
 
 	public QueryStackFrame(QueryObjectProvider queryObjectProvider, QueryContext reusable) throws JsonParseException, JsonMappingException, IOException {
 		this.queryObjectProvider = queryObjectProvider;
 		this.reusable = reusable;
-		Query query = queryObjectProvider.getQuery();
+		this.query = queryObjectProvider.getQuery();
 		queryIterator = query.getQueryParts().iterator();
 	}
 
 	@Override
 	public boolean process() throws BimserverDatabaseException, QueryException {
+		if (query.getSpecialQueryType() != null) {
+			queryObjectProvider.push(new AllStackFrame(queryObjectProvider, reusable));
+			return true;
+		}
 		if (queryIterator.hasNext()) {
 			QueryPart next = queryIterator.next();
 			queryObjectProvider.push(new QueryPartStackFrame(queryObjectProvider, next, reusable));

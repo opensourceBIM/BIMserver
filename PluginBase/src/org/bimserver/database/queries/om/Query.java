@@ -36,6 +36,7 @@ public class Query {
 	private int version;
 	private ObjectNode geometrySettings;
 	private ObjectNode originalJson;
+	private SpecialQueryType specialQueryType;
 	
 	public Query(String name, PackageMetaData packageMetaData) {
 		this.name = name;
@@ -143,5 +144,13 @@ public class Query {
 
 	public void clear() {
 		this.queryParts.clear();
+	}
+	
+	public void setSpecialQueryType(SpecialQueryType specialQueryType) {
+		this.specialQueryType = specialQueryType;
+	}
+	
+	public SpecialQueryType getSpecialQueryType() {
+		return specialQueryType;
 	}
 }
