@@ -118,8 +118,6 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 				converter.setCopyExternalDefines(true);
 				Query query = converter.parseJson("query", (ObjectNode) queryObject);
 				
-				System.out.println(query.getOriginalJson());
-				
 				// We now have the original user query, we'll amend it a little bit to include geometry, but only if the serializer requires certain fields
 				// TODO only checking the base level of the query now, should check recursive and possibly more
 				
