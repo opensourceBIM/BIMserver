@@ -92,6 +92,7 @@ public class CloneToNewProjectDatabaseAction extends GenericCheckinDatabaseActio
 
 		newConcreteRevision.setSummary(summaryMap.toRevisionSummary(getDatabaseSession()));
 		newConcreteRevision.setOidCounters(new OidCounters(getDatabaseSession(), oldConcreteRevision.getOidCounters()).getBytes());
+		newConcreteRevision.setIfcHeader(oldConcreteRevision.getIfcHeader());
 		
 		newConcreteRevision.setMultiplierToMm(oldConcreteRevision.getMultiplierToMm());
 		newConcreteRevision.setBounds(oldConcreteRevision.getBounds());
