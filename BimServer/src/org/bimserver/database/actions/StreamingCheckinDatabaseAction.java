@@ -284,7 +284,6 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			}
 			
 			if (startOids.containsKey(fullname(GeometryPackage.eINSTANCE.getGeometryInfo())) && startOids.containsKey(fullname(GeometryPackage.eINSTANCE.getGeometryData()))) {
-				// TODO Buffer? Vector?
 				oidCounters.put(GeometryPackage.eINSTANCE.getGeometryInfo(), startOids.get(fullname(GeometryPackage.eINSTANCE.getGeometryInfo())));
 				oidCounters.put(GeometryPackage.eINSTANCE.getGeometryData(), startOids.get(fullname(GeometryPackage.eINSTANCE.getGeometryData())));
 				oidCounters.put(GeometryPackage.eINSTANCE.getBuffer(), startOids.get(fullname(GeometryPackage.eINSTANCE.getBuffer())));
