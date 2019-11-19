@@ -529,7 +529,7 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	
 	private Object getAttribute(Long tid, Long oid, String attributeName) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
 		try {
 			LongTransaction transaction = getBimServer().getLongTransactionManager().get(tid);
 			EClass eClass = session.getEClassForOid(oid);
@@ -556,7 +556,7 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 
 	private Object getAttributeAtIndex(Long tid, Long oid, String attributeName, int index) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
 		try {
 			LongTransaction transaction = getBimServer().getLongTransactionManager().get(tid);
 			EClass eClass = session.getEClassForOid(oid);
@@ -605,7 +605,7 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	
 	@Override
 	public Long getReference(Long tid, Long oid, String referenceName) throws ServerException, UserException {
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
 		try {
 			LongTransaction transaction = getBimServer().getLongTransactionManager().get(tid);
 			EClass eClass = session.getEClassForOid(oid);
@@ -632,7 +632,7 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Long> getReferences(Long tid, Long oid, String referenceName) throws ServerException, UserException {
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
 		try {
 			LongTransaction transaction = getBimServer().getLongTransactionManager().get(tid);
 			EClass eClass = session.getEClassForOid(oid);
@@ -676,7 +676,7 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	@Override
 	public List<SDataObject> getDataObjects(Long roid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<List<DataObject>> action = new GetDataObjectsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), roid, getAuthorization());
 			return getBimServer().getSConverter().convertToSListDataObject(session.executeAndCommitAction(action));
@@ -692,7 +692,7 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	@Override
 	public SDataObject getDataObjectByGuid(Long roid, String guid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<DataObject> action = new GetDataObjectByGuidDatabaseAction(getBimServer(), session, getInternalAccessMethod(), roid, guid, getAuthorization());
 			SDataObject dataObject = getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(action));
@@ -707,7 +707,7 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	@Override
 	public List<SDataObject> getDataObjectsByType(Long roid, String packageName, String className, Boolean flat) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
 		BimDatabaseAction<List<DataObject>> action = new GetDataObjectsByTypeDatabaseAction(getBimServer(), session, getInternalAccessMethod(), roid, packageName, className, getAuthorization(), flat);
 		try {
 			return getBimServer().getSConverter().convertToSListDataObject(session.executeAndCommitAction(action));
@@ -721,7 +721,7 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	@Override
 	public SDataObject getDataObjectByOid(Long roid, Long oid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<DataObject> action = new GetDataObjectByOidDatabaseAction(getBimServer(), session, getInternalAccessMethod(), roid, oid, getAuthorization());
 			SDataObject dataObject = getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(action));
@@ -735,7 +735,7 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	
 	public Integer count(Long roid, String className) throws UserException ,ServerException {
 		requireAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
 		try {
 			CountDatabaseAction action = new CountDatabaseAction(getBimServer(), session, getInternalAccessMethod(), roid, className, getAuthorization());
 			return session.executeAndCommitAction(action);
