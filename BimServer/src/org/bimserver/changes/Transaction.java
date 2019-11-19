@@ -90,7 +90,9 @@ public class Transaction {
 	}
 
 	public void updated(HashMapVirtualObject object) {
-		updated.put(object.getOid(), object);
+		if (!created.containsKey(object.getOid())) {
+			updated.put(object.getOid(), object);
+		}
 	}
 	
 	public void deleted(HashMapVirtualObject object) {
