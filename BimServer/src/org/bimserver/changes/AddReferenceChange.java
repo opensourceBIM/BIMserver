@@ -77,5 +77,23 @@ public class AddReferenceChange implements Change {
 		EClass eClassForOid = transaction.getDatabaseSession().getEClassForOid(referenceOid);
 		
 		object.addReference(eReference, eClassForOid, referenceOid);
+		EReference inverseOrOpposite = packageMetaData.getInverseOrOpposite(eClassForOid, eReference);
+		if (inverseOrOpposite != null) {
+			HashMapVirtualObject referencedObject = transaction.get(referenceOid);
+			if (referencedObject == null) {
+				Query query = new Query(packageMetaData);
+				QueryPart queryPart = query.createQueryPart();
+				queryPart.addOid(referenceOid);
+				
+				QueryObjectProvider queryObjectProvider = new QueryObjectProvider(transaction.getDatabaseSession(), transaction.getBimServer(), query, Collections.singleton(transaction.getPreviousRevision().getOid()), packageMetaData);
+				referencedObject = queryObjectProvider.next();
+			}
+			if (inverseOrOpposite.isMany()) {
+				referencedObject.addReference(inverseOrOpposite, eClassForOid, oid);
+			} else {
+				referencedObject.setReference(inverseOrOpposite, oid);
+			}
+			transaction.updated(referencedObject);
+		}
 	}
 }

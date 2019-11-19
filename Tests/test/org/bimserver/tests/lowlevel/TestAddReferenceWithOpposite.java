@@ -1,5 +1,7 @@
 package org.bimserver.tests.lowlevel;
 
+import static org.junit.Assert.assertEquals;
+
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
  * 
@@ -49,9 +51,7 @@ public class TestAddReferenceWithOpposite extends TestWithEmbeddedServer {
 			lowLevelInterface.commitTransaction(tid, "Initial", false);
 			
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
-			if (!lowLevelInterface.getReference(tid, ifcRelContainedInSpatialStructureOid, "RelatingStructure").equals(ifcBuildingOid)) {
-				fail("Not the same");
-			}
+			assertEquals(ifcBuildingOid, lowLevelInterface.getReference(tid, ifcRelContainedInSpatialStructureOid, "RelatingStructure"));
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail(e.getMessage());

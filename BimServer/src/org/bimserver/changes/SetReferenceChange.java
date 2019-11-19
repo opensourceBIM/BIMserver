@@ -48,12 +48,12 @@ public class SetReferenceChange implements Change {
 	public void execute(Transaction transaction) throws UserException, BimserverLockConflictException, BimserverDatabaseException, IOException, QueryException {
 		PackageMetaData packageMetaData = transaction.getDatabaseSession().getMetaDataManager().getPackageMetaData(transaction.getProject().getSchema());
 
-		Query query = new Query(packageMetaData);
-		QueryPart queryPart = query.createQueryPart();
-		queryPart.addOid(oid);
-		
 		HashMapVirtualObject object = transaction.get(oid);
 		if (object == null) {
+			Query query = new Query(packageMetaData);
+			QueryPart queryPart = query.createQueryPart();
+			queryPart.addOid(oid);
+
 			QueryObjectProvider queryObjectProvider = new QueryObjectProvider(transaction.getDatabaseSession(), transaction.getBimServer(), query, Collections.singleton(transaction.getPreviousRevision().getOid()), packageMetaData);
 			object = queryObjectProvider.next();
 			transaction.updated(object);
@@ -75,5 +75,26 @@ public class SetReferenceChange implements Change {
 			throw new UserException("Reference " + referenceName + " is not of type 'single'");
 		}
 		object.setReference(eReference, referenceOid, 0);
+		
+		EClass eClassForOid = transaction.getDatabaseSession().getEClassForOid(referenceOid);
+		
+		EReference inverseOrOpposite = packageMetaData.getInverseOrOpposite(eClassForOid, eReference);
+		if (inverseOrOpposite != null) {
+			HashMapVirtualObject referencedObject = transaction.get(referenceOid);
+			if (referencedObject == null) {
+				Query query = new Query(packageMetaData);
+				QueryPart queryPart = query.createQueryPart();
+				queryPart.addOid(referenceOid);
+				
+				QueryObjectProvider queryObjectProvider = new QueryObjectProvider(transaction.getDatabaseSession(), transaction.getBimServer(), query, Collections.singleton(transaction.getPreviousRevision().getOid()), packageMetaData);
+				referencedObject = queryObjectProvider.next();
+			}
+			if (inverseOrOpposite.isMany()) {
+				referencedObject.addReference(inverseOrOpposite, eClassForOid, oid);
+			} else {
+				referencedObject.setReference(inverseOrOpposite, oid);
+			}
+			transaction.updated(referencedObject);
+		}
 	}
 }
