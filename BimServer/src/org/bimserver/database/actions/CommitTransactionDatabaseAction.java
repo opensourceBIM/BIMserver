@@ -35,6 +35,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OidCounters;
 import org.bimserver.database.OldQuery;
 import org.bimserver.database.OldQuery.Deep;
+import org.bimserver.database.OperationType;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.emf.PackageMetaData;
@@ -96,7 +97,10 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		}
 		long size = 0;
 		Revision previousRevision = project.getLastRevision();
-		ConcreteRevision previousConcreteRevision = previousRevision.getConcreteRevisions().get(0);
+		ConcreteRevision previousConcreteRevision = null;
+		if (previousRevision != null) {
+			previousConcreteRevision = previousRevision.getConcreteRevisions().get(0);
+		}
 		if (project.getLastRevision() != null) {
 			size += project.getLastRevision().getSize();
 		}
@@ -112,7 +116,9 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		CreateRevisionResult result = createNewConcreteRevision(getDatabaseSession(), size, project, user, comment.trim());
 		ConcreteRevision concreteRevision = result.getConcreteRevision();
 		
-		concreteRevision.setIfcHeader(previousConcreteRevision.getIfcHeader());
+		if (previousConcreteRevision != null) {
+			concreteRevision.setIfcHeader(previousConcreteRevision.getIfcHeader());
+		}
 		
 		revision = concreteRevision.getRevisions().get(0);
 		project.setLastRevision(revision);
@@ -129,6 +135,8 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 			int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(project, oldLastRevision.getLastConcreteRevision());
 			OldQuery query = new OldQuery(longTransaction.getPackageMetaData(), project.getId(), oldLastRevision.getId(), -1, Deep.YES, highestStopId);
 			originalOidCounters = query.updateOidCounters(oldLastRevision.getLastConcreteRevision(), getDatabaseSession());
+		} else {
+			originalOidCounters = new OidCounters();
 		}
 		
 		getDatabaseSession().addPostCommitAction(new PostCommitAction() {
@@ -210,14 +218,14 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		}
 		
 		for (EClass eClass : packageMetaData.getEClasses()) {
-			if (startOids.containsKey(eClass.getName())) {
-				long oid = startOids.get(eClass.getName());
+			if (startOids.containsKey(eClass.getEPackage().getName() + "." + eClass.getName())) {
+				long oid = startOids.get(eClass.getEPackage().getName() + "." + eClass.getName());
 				if (!DatabaseSession.perRecordVersioning(eClass)) {
 					originalOidCounters.putIfAbsent(eClass, oid);
 				}
 			}
 		}
-
+		
 		queryContext.setOidCounters(originalOidCounters);
 		concreteRevision.setOidCounters(originalOidCounters == null ? null : originalOidCounters.getBytes());
 
@@ -268,46 +276,48 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 				}
 				revision.setHasGeometry(true);
 			} else {
-				byte[] htmlBytes = null;
-				byte[] jsonBytes = null;
-				long timeToGenerate = -1;
-				for (ExtendedData previousExtendedData : previousRevision.getExtendedData()) {
-					ExtendedDataSchema previousSchema = previousExtendedData.getSchema();
-					if (previousSchema.getName().contentEquals("GEOMETRY_GENERATION_REPORT_HTML_1_1")) {
-						htmlBytes = previousExtendedData.getFile().getData();
-					} else if (previousSchema.getName().contentEquals("GEOMETRY_GENERATION_REPORT_JSON_1_1")) {
-						jsonBytes = previousExtendedData.getFile().getData();
-					}
-				}
-				byte[] finalHtmlBytes = htmlBytes;
-				byte[] finalJsonBytes = jsonBytes;
-				
-				getDatabaseSession().addPostCommitAction(new PostCommitAction() {
-					public void execute() throws UserException {
-						try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession()) {
-							AddGeometryReports addGeometryReports = new AddGeometryReports(tmpSession, AccessMethod.INTERNAL, finalHtmlBytes, finalJsonBytes, timeToGenerate, authorization.getUoid(), revision.getOid());
-							try {
-								tmpSession.executeAndCommitAction(addGeometryReports);
-							} catch (ServerException e1) {
-								LOGGER.error("", e1);
-							}
-						} catch (BimserverDatabaseException e1) {
-							LOGGER.error("", e1);
+				if (previousRevision != null) {
+					byte[] htmlBytes = null;
+					byte[] jsonBytes = null;
+					long timeToGenerate = -1;
+					for (ExtendedData previousExtendedData : previousRevision.getExtendedData()) {
+						ExtendedDataSchema previousSchema = previousExtendedData.getSchema();
+						if (previousSchema.getName().contentEquals("GEOMETRY_GENERATION_REPORT_HTML_1_1")) {
+							htmlBytes = previousExtendedData.getFile().getData();
+						} else if (previousSchema.getName().contentEquals("GEOMETRY_GENERATION_REPORT_JSON_1_1")) {
+							jsonBytes = previousExtendedData.getFile().getData();
 						}
 					}
-				});
-				concreteRevision.setMultiplierToMm(previousConcreteRevision.getMultiplierToMm());
-				concreteRevision.setBounds(previousConcreteRevision.getBounds());
-				concreteRevision.setBoundsUntransformed(previousConcreteRevision.getBoundsUntransformed());
-
-				newRevision.setBounds(previousRevision.getBounds());
-				newRevision.setBoundsUntransformed(previousRevision.getBoundsUntransformed());
-				newRevision.setBoundsMm(previousRevision.getBoundsMm());
-				newRevision.setBoundsUntransformedMm(previousRevision.getBoundsUntransformedMm());
-				
-				// TODO validate this, contains ids?
-				newRevision.setDensityCollection(previousRevision.getDensityCollection());
-				revision.setHasGeometry(true);
+					byte[] finalHtmlBytes = htmlBytes;
+					byte[] finalJsonBytes = jsonBytes;
+					
+					getDatabaseSession().addPostCommitAction(new PostCommitAction() {
+						public void execute() throws UserException {
+							try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE)) {
+								AddGeometryReports addGeometryReports = new AddGeometryReports(tmpSession, AccessMethod.INTERNAL, finalHtmlBytes, finalJsonBytes, timeToGenerate, authorization.getUoid(), revision.getOid());
+								try {
+									tmpSession.executeAndCommitAction(addGeometryReports);
+								} catch (ServerException e1) {
+									LOGGER.error("", e1);
+								}
+							} catch (BimserverDatabaseException e1) {
+								LOGGER.error("", e1);
+							}
+						}
+					});
+					concreteRevision.setMultiplierToMm(previousConcreteRevision.getMultiplierToMm());
+					concreteRevision.setBounds(previousConcreteRevision.getBounds());
+					concreteRevision.setBoundsUntransformed(previousConcreteRevision.getBoundsUntransformed());
+					
+					newRevision.setBounds(previousRevision.getBounds());
+					newRevision.setBoundsUntransformed(previousRevision.getBoundsUntransformed());
+					newRevision.setBoundsMm(previousRevision.getBoundsMm());
+					newRevision.setBoundsUntransformedMm(previousRevision.getBoundsUntransformedMm());
+					
+					// TODO validate this, contains ids?
+					newRevision.setDensityCollection(previousRevision.getDensityCollection());
+					revision.setHasGeometry(true);
+				}
 			}
 		}
 		
