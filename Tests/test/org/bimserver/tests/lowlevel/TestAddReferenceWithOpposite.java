@@ -46,7 +46,7 @@ public class TestAddReferenceWithOpposite extends TestWithEmbeddedServer {
 			Long ifcBuildingOid = lowLevelInterface.createObject(tid, "IfcBuilding", true);
 			lowLevelInterface.addReference(tid, ifcBuildingOid, "ContainsElements", ifcRelContainedInSpatialStructureOid);
 			
-			lowLevelInterface.commitTransaction(tid, "Initial");
+			lowLevelInterface.commitTransaction(tid, "Initial", false);
 			
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
 			if (!lowLevelInterface.getReference(tid, ifcRelContainedInSpatialStructureOid, "RelatingStructure").equals(ifcBuildingOid)) {

@@ -60,7 +60,7 @@ public class TestSetWrappedReal extends TestWithEmbeddedServer {
 
 			bimServerClient.getLowLevelInterface().setWrappedDoubleAttribute(tid, ifcPropertySingleValue.getOid(), "NominalValue", "IfcReal", 1234D);
 
-			long roid = lowLevelInterface.commitTransaction(tid, "v2");
+			long roid = lowLevelInterface.commitTransaction(tid, "v2", false);
 			
 			bimServerClient.download(newProject.getLastRevisionId(), serializer.getOid(), Paths.get("test2.ifc"));
 			

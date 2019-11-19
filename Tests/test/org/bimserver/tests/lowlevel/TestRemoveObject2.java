@@ -54,14 +54,14 @@ public class TestRemoveObject2 extends TestWithEmbeddedServer {
 			lowLevelInterface.addReference(tid, ifcBuildingOid, "ContainsElements", ifcRelContainedInSpatialStructureOid);
 			lowLevelInterface.addReference(tid, ifcRelContainedInSpatialStructureOid, "RelatedElements", ifcWallOid);
 			
-			Long newRoid = lowLevelInterface.commitTransaction(tid, "Initial");
+			Long newRoid = lowLevelInterface.commitTransaction(tid, "Initial", false);
 
 			bimServerClient.download(newRoid, serializer.getOid(), Paths.get("test1.ifc"));
 			
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
 			lowLevelInterface.removeObject(tid, ifcWallOid);
 			lowLevelInterface.removeObject(tid, ifcRelContainedInSpatialStructureOid);
-			newRoid = lowLevelInterface.commitTransaction(tid, "removed");
+			newRoid = lowLevelInterface.commitTransaction(tid, "removed", false);
 			
 			bimServerClient.download(newRoid, serializer.getOid(), Paths.get("test2.ifc"));
 		} catch (Exception e) {

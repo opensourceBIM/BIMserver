@@ -54,7 +54,7 @@ public class TestCreateIfcCartesianTransformationOperator3DnonUniform extends Te
 			lowLevelInterface.setDoubleAttribute(tid, oid, "Scale3", value3);
 			
 			// Commit the transaction
-			lowLevelInterface.commitTransaction(tid, "test");
+			lowLevelInterface.commitTransaction(tid, "test", false);
 
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
 			Assert.assertEquals(lowLevelInterface.getDoubleAttribute(tid, oid, "Scale"), value1, 0.01d);

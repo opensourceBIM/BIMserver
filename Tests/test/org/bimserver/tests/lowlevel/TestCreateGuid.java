@@ -49,7 +49,7 @@ public class TestCreateGuid extends TestWithEmbeddedServer {
 			lowLevelInterface.setStringAttribute(tid, furnishingOid, "GlobalId", "0uyjn9Jan3nRq36Uj6gwws");
 			
 			// Commit the transaction
-			lowLevelInterface.commitTransaction(tid, "test");
+			lowLevelInterface.commitTransaction(tid, "test", false);
 
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
 			assertTrue(lowLevelInterface.getStringAttribute(tid, furnishingOid, "GlobalId").equals("0uyjn9Jan3nRq36Uj6gwws"));

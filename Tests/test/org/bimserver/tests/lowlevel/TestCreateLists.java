@@ -57,7 +57,7 @@ public class TestCreateLists extends TestWithEmbeddedServer {
 			lowLevelInterface.addDoubleAttribute(tid, cartesianPointOid, "Coordinates", thirdVal);
 			
 			// Commit the transaction
-			lowLevelInterface.commitTransaction(tid, "test");
+			lowLevelInterface.commitTransaction(tid, "test", false);
 
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
 			List<Double> coordinates = lowLevelInterface.getDoubleAttributes(tid, cartesianPointOid, "Coordinates");
@@ -69,7 +69,7 @@ public class TestCreateLists extends TestWithEmbeddedServer {
 			al.add(2.0);
 			al.add(3.0);
 			lowLevelInterface.setDoubleAttributes(tid, cartesianPointOid, "Coordinates", al);
-			lowLevelInterface.commitTransaction(tid, "replace");
+			lowLevelInterface.commitTransaction(tid, "replace", false);
 			
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
 			coordinates = lowLevelInterface.getDoubleAttributes(tid, cartesianPointOid, "Coordinates");
@@ -80,7 +80,7 @@ public class TestCreateLists extends TestWithEmbeddedServer {
 			
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
 			lowLevelInterface.setDoubleAttributeAtIndex(tid, cartesianPointOid, "Coordinates", 1, 5.0);
-			lowLevelInterface.commitTransaction(tid, "changed middle one");
+			lowLevelInterface.commitTransaction(tid, "changed middle one", false);
 			
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
 			coordinates = lowLevelInterface.getDoubleAttributes(tid, cartesianPointOid, "Coordinates");

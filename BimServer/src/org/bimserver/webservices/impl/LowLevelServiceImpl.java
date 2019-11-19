@@ -35,6 +35,7 @@ import org.bimserver.changes.SetWrappedAttributeChange;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.database.OldQuery.Deep;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.CommitTransactionDatabaseAction;
@@ -98,7 +99,7 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	@Override
 	public Long commitTransaction(Long tid, String comment, Boolean regenerateAllGeometry) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			LongTransaction longTransaction = getBimServer().getLongTransactionManager().get(tid);
 			if (longTransaction == null) {

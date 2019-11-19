@@ -52,7 +52,7 @@ public class TestRemoveReferenceWithOpposite2 extends TestWithEmbeddedServer {
 			lowLevelInterface.addReference(tid, ifcRelAssignsToGroupOid, "RelatedObjects", ifcFurnishingElement1Oid);
 			lowLevelInterface.addReference(tid, ifcRelAssignsToGroupOid, "RelatedObjects", ifcFurnishingElement2Oid);
 			
-			lowLevelInterface.commitTransaction(tid, "Initial");
+			lowLevelInterface.commitTransaction(tid, "Initial", false);
 			
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
 			
@@ -60,7 +60,7 @@ public class TestRemoveReferenceWithOpposite2 extends TestWithEmbeddedServer {
 			assertEquals("Number of references", 2, references.size());
 			
 			lowLevelInterface.removeReferenceByOid(tid, ifcRelAssignsToGroupOid, "RelatedObjects", ifcFurnishingElement1Oid);
-			lowLevelInterface.commitTransaction(tid, "2");
+			lowLevelInterface.commitTransaction(tid, "2", false);
 			
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
 			references = lowLevelInterface.getReferences(tid, ifcRelAssignsToGroupOid, "RelatedObjects");

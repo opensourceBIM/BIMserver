@@ -49,12 +49,12 @@ public class TestAddReferenceWithOppositeExisting extends TestWithEmbeddedServer
 			Long ifcBuildingOid2 = lowLevelInterface.createObject(tid, "IfcBuilding", true);
 			lowLevelInterface.addReference(tid, ifcBuildingOid1, "ContainsElements", ifcRelContainedInSpatialStructureOid);
 			
-			lowLevelInterface.commitTransaction(tid, "Initial");
+			lowLevelInterface.commitTransaction(tid, "Initial", false);
 			
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
 			lowLevelInterface.addReference(tid, ifcBuildingOid2, "ContainsElements", ifcRelContainedInSpatialStructureOid);
 			try {
-				lowLevelInterface.commitTransaction(tid, "2");
+				lowLevelInterface.commitTransaction(tid, "2", false);
 			} catch (UserException e) {
 //				if (e.getErrorCode() != ErrorCode.SET_REFERENCE_FAILED_OPPOSITE_ALREADY_SET) {
 					fail("Didn't get the right errormessage");

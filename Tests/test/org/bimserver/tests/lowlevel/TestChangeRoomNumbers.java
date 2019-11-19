@@ -61,7 +61,7 @@ public class TestChangeRoomNumbers extends TestWithEmbeddedServer {
 				bimServerClient.getLowLevelInterface().setStringAttribute(tid, ifcSpace.getOid(), "Name", "New room number " + (id++));
 			}
 			
-			long roid = lowLevelInterface.commitTransaction(tid, "v2");
+			long roid = lowLevelInterface.commitTransaction(tid, "v2", false);
 			
 			bimServerClient.download(roid, serializer.getOid(), Paths.get("test3.ifc"));
 		} catch (Exception e) {

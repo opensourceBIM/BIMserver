@@ -46,7 +46,7 @@ public class TestCreateUnknownType extends TestWithEmbeddedServer {
 			lowLevelInterface.createObject(tid, "IfcCartesionPoint", true); // IfcCartesi(O)nPoint
 			
 			// Commit the transaction
-			lowLevelInterface.commitTransaction(tid, "test");
+			lowLevelInterface.commitTransaction(tid, "test", false);
 		} catch (Exception e) {
 			if (e instanceof UserException) {
 				

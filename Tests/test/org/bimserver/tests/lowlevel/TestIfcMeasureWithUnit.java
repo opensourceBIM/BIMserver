@@ -48,7 +48,7 @@ public class TestIfcMeasureWithUnit extends TestWithEmbeddedServer {
 			lowLevelInterface.setWrappedDoubleAttribute(tid, ifcMeasureWithUnitOid, "ValueComponent", "IfcPlaneAngleMeasure", 0.12345);
 
 			// Commit the transaction
-			lowLevelInterface.commitTransaction(tid, "test");
+			lowLevelInterface.commitTransaction(tid, "test", false);
 
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
 			double v = lowLevelInterface.getDoubleAttribute(tid, ifcMeasureWithUnitOid, "ValueComponent");

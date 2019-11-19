@@ -72,7 +72,7 @@ public class SetReferenceChange implements Change {
 			throw new UserException("No reference with the name \"" + referenceName + "\" found in class \"" + eClass.getName() + "\"");
 		}
 		if (eReference.isMany()) {
-			throw new UserException("Attribute is not of type 'single'");
+			throw new UserException("Reference " + referenceName + " is not of type 'single'");
 		}
 		object.setReference(eReference, referenceOid, 0);
 	}

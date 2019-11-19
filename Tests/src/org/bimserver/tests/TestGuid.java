@@ -37,7 +37,7 @@ public class TestGuid {
 			
 			Long tid = client.getLowLevelInterface().startTransaction(project.getOid());
 			client.getLowLevelInterface().createObject(tid, "IfcWall", false);
-			Long roid = client.getLowLevelInterface().commitTransaction(tid, "test commit");
+			Long roid = client.getLowLevelInterface().commitTransaction(tid, "test commit", false);
 			
 			SSerializerPluginConfiguration serializer = client.getServiceInterface().getSerializerByContentType("application/ifc");
 			client.download(roid, serializer.getOid(), Paths.get("test2.ifc"));

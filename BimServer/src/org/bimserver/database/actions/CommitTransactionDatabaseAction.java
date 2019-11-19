@@ -268,24 +268,45 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 				}
 				revision.setHasGeometry(true);
 			} else {
+				byte[] htmlBytes = null;
+				byte[] jsonBytes = null;
+				long timeToGenerate = -1;
 				for (ExtendedData previousExtendedData : previousRevision.getExtendedData()) {
 					ExtendedDataSchema previousSchema = previousExtendedData.getSchema();
-					if (previousSchema.getName().contentEquals("GEOMETRY_GENERATION_REPORT_HTML_1_1") || previousSchema.getName().contentEquals("GEOMETRY_GENERATION_REPORT_JSON_1_1")) {
-						revision.getExtendedData().add(previousExtendedData);
+					if (previousSchema.getName().contentEquals("GEOMETRY_GENERATION_REPORT_HTML_1_1")) {
+						htmlBytes = previousExtendedData.getFile().getData();
+					} else if (previousSchema.getName().contentEquals("GEOMETRY_GENERATION_REPORT_JSON_1_1")) {
+						jsonBytes = previousExtendedData.getFile().getData();
 					}
-					concreteRevision.setMultiplierToMm(previousConcreteRevision.getMultiplierToMm());
-					concreteRevision.setBounds(previousConcreteRevision.getBounds());
-					concreteRevision.setBoundsUntransformed(previousConcreteRevision.getBoundsUntransformed());
-
-					// TODO copy density and bounds
-					newRevision.setBounds(revision.getBounds());
-					newRevision.setBoundsUntransformed(revision.getBoundsUntransformed());
-					newRevision.setBoundsMm(revision.getBoundsMm());
-					newRevision.setBoundsUntransformedMm(revision.getBoundsUntransformedMm());
-
-					// TODO validate this, contains ids?
-					newRevision.setDensityCollection(revision.getDensityCollection());
 				}
+				byte[] finalHtmlBytes = htmlBytes;
+				byte[] finalJsonBytes = jsonBytes;
+				
+				getDatabaseSession().addPostCommitAction(new PostCommitAction() {
+					public void execute() throws UserException {
+						try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession()) {
+							AddGeometryReports addGeometryReports = new AddGeometryReports(tmpSession, AccessMethod.INTERNAL, finalHtmlBytes, finalJsonBytes, timeToGenerate, authorization.getUoid(), revision.getOid());
+							try {
+								tmpSession.executeAndCommitAction(addGeometryReports);
+							} catch (ServerException e1) {
+								LOGGER.error("", e1);
+							}
+						} catch (BimserverDatabaseException e1) {
+							LOGGER.error("", e1);
+						}
+					}
+				});
+				concreteRevision.setMultiplierToMm(previousConcreteRevision.getMultiplierToMm());
+				concreteRevision.setBounds(previousConcreteRevision.getBounds());
+				concreteRevision.setBoundsUntransformed(previousConcreteRevision.getBoundsUntransformed());
+
+				newRevision.setBounds(previousRevision.getBounds());
+				newRevision.setBoundsUntransformed(previousRevision.getBoundsUntransformed());
+				newRevision.setBoundsMm(previousRevision.getBoundsMm());
+				newRevision.setBoundsUntransformedMm(previousRevision.getBoundsUntransformedMm());
+				
+				// TODO validate this, contains ids?
+				newRevision.setDensityCollection(previousRevision.getDensityCollection());
 				revision.setHasGeometry(true);
 			}
 		}

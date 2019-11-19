@@ -61,7 +61,7 @@ public class TestSetWrappedIntegerGeometry extends TestWithEmbeddedServer {
 
 			bimServerClient.getLowLevelInterface().setWrappedLongAttribute(tid, ifcPropertySingleValue.getOid(), "NominalValue", "IfcInteger", 12345L);
 
-			long roid = lowLevelInterface.commitTransaction(tid, "v2");
+			long roid = lowLevelInterface.commitTransaction(tid, "v2", false);
 			
 			IfcModelInterface newModel = bimServerClient.getModel(newProject, roid, true, false, true);
 			SVector3f minBounds = newModel.getModelMetaData().getMinBounds();

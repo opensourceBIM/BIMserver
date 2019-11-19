@@ -46,11 +46,11 @@ public class TestUnsetReference extends TestWithEmbeddedServer {
 			Long ifcBuildingOid = lowLevelInterface.createObject(tid, "IfcBuilding", true);
 			lowLevelInterface.setReference(tid, ifcRelContainedInSpatialStructureOid, "RelatingStructure", ifcBuildingOid);
 			
-			lowLevelInterface.commitTransaction(tid, "Initial");
+			lowLevelInterface.commitTransaction(tid, "Initial", false);
 			
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
 			lowLevelInterface.unsetReference(tid, ifcRelContainedInSpatialStructureOid, "RelatingStructure");
-			lowLevelInterface.commitTransaction(tid, "unset reference");
+			lowLevelInterface.commitTransaction(tid, "unset reference", false);
 			
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
 			if (lowLevelInterface.getReference(tid, ifcRelContainedInSpatialStructureOid, "RelatingStructure") != -1) {

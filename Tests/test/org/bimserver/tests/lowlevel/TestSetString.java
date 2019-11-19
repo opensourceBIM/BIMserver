@@ -61,7 +61,7 @@ public class TestSetString extends TestWithEmbeddedServer {
 			bimServerClient.getLowLevelInterface().setStringAttribute(tid, wall.getOid(), "Name", "Test 12345");
 			bimServerClient.getLowLevelInterface().setStringAttribute(tid, wall.getOid(), "GlobalId", "NEW GUID");
 			
-			long roid = lowLevelInterface.commitTransaction(tid, "v2");
+			long roid = lowLevelInterface.commitTransaction(tid, "v2", false);
 			
 			bimServerClient.download(roid, serializer.getOid(), Paths.get("test3.ifc"));
 		} catch (Exception e) {

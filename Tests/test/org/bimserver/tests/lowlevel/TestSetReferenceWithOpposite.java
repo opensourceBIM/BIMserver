@@ -48,7 +48,7 @@ public class TestSetReferenceWithOpposite extends TestWithEmbeddedServer {
 			Long ifcBuildingOid = lowLevelInterface.createObject(tid, "IfcBuilding", true);
 			lowLevelInterface.setReference(tid, ifcRelContainedInSpatialStructureOid, "RelatingStructure", ifcBuildingOid);
 			
-			lowLevelInterface.commitTransaction(tid, "Initial");
+			lowLevelInterface.commitTransaction(tid, "Initial", false);
 			
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
 			List<Long> references = lowLevelInterface.getReferences(tid, ifcBuildingOid, "ContainsElements");

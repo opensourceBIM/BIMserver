@@ -60,7 +60,7 @@ public class TestSetWrappedBoolean extends TestWithEmbeddedServer {
 
 			bimServerClient.getLowLevelInterface().setWrappedBooleanAttribute(tid, ifcPropertySingleValue.getOid(), "NominalValue", "IfcBoolean", true);
 
-			long roid = lowLevelInterface.commitTransaction(tid, "v2");
+			long roid = lowLevelInterface.commitTransaction(tid, "v2", false);
 			
 			bimServerClient.download(newProject.getLastRevisionId(), serializer.getOid(), Paths.get("test2.ifc"));
 			

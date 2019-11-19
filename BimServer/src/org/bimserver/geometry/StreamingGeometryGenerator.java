@@ -331,7 +331,22 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 									for (HashMapVirtualObject representationItem : representations) {
 										if (usableContext(representationItem)) {
 											foundValidContext = true;
+											break;
 										}
+									}
+									boolean stop = false;
+									Set<String> counts = new HashSet<>();
+									for (HashMapVirtualObject representationItem : representations) {
+										String representationIdentifier = (String) representationItem.get("RepresentationIdentifier");
+										if (counts.contains(representationIdentifier)) {
+											stop = true;
+										} else {
+											counts.add(representationIdentifier);
+										}
+									}
+									if (stop) {
+										next = queryObjectProvider2.next();
+										continue;
 									}
 									for (HashMapVirtualObject representationItem : representations) {
 										if (!usableContext(representationItem) && foundValidContext) {

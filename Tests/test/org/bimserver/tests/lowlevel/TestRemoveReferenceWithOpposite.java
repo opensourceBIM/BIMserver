@@ -46,11 +46,11 @@ public class TestRemoveReferenceWithOpposite extends TestWithEmbeddedServer {
 			Long ifcBuildingOid1 = lowLevelInterface.createObject(tid, "IfcBuilding", true);
 			lowLevelInterface.addReference(tid, ifcBuildingOid1, "ContainsElements", ifcRelContainedInSpatialStructureOid);
 			
-			lowLevelInterface.commitTransaction(tid, "Initial");
+			lowLevelInterface.commitTransaction(tid, "Initial", false);
 			
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
 			lowLevelInterface.removeReference(tid, ifcBuildingOid1, "ContainsElements", 0);
-			lowLevelInterface.commitTransaction(tid, "2");
+			lowLevelInterface.commitTransaction(tid, "2", false);
 			
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
 			if (lowLevelInterface.getReference(tid, ifcRelContainedInSpatialStructureOid, "RelatingStructure") != -1) {

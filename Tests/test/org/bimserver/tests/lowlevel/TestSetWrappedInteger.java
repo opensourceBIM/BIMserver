@@ -60,7 +60,7 @@ public class TestSetWrappedInteger extends TestWithEmbeddedServer {
 
 			bimServerClient.getLowLevelInterface().setWrappedIntegerAttribute(tid, ifcPropertySingleValue.getOid(), "NominalValue", "IfcInteger", 12345);
 
-			long roid = lowLevelInterface.commitTransaction(tid, "v2");
+			long roid = lowLevelInterface.commitTransaction(tid, "v2", false);
 			
 			bimServerClient.download(newProject.getLastRevisionId(), serializer.getOid(), Paths.get("test2.ifc"));
 			

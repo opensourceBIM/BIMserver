@@ -46,11 +46,11 @@ public class TestRemoveObject extends TestWithEmbeddedServer {
 			Long ifcBuildingOid = lowLevelInterface.createObject(tid, "IfcBuilding", true);
 			lowLevelInterface.addReference(tid, ifcBuildingOid, "ContainsElements", ifcRelContainedInSpatialStructureOid);
 			
-			lowLevelInterface.commitTransaction(tid, "Initial");
+			lowLevelInterface.commitTransaction(tid, "Initial", false);
 			
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
 			lowLevelInterface.removeObject(tid, ifcBuildingOid);
-			lowLevelInterface.commitTransaction(tid, "removed");
+			lowLevelInterface.commitTransaction(tid, "removed", false);
 			
 			tid = lowLevelInterface.startTransaction(newProject.getOid());
 			long reference = lowLevelInterface.getReference(tid, ifcRelContainedInSpatialStructureOid, "RelatingStructure");
