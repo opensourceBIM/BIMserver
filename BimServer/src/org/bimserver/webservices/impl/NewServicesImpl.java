@@ -146,7 +146,7 @@ public class NewServicesImpl extends GenericServiceImpl implements NewServicesIn
 	@Override
 	public List<SFormatSerializerMap> listAvailableOutputFormats(Long poid) throws ServerException, UserException {
 		Map<String, SFormatSerializerMap> outputs = new HashMap<>();
-		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+		try (DatabaseSession session = getBimServer().getDatabase().createReadOnlySession()) {
 			Project project = session.get(poid, OldQuery.getDefault());
 			try {
 				List<SSerializerPluginConfiguration> allSerializersForPoids = getServiceMap().get(PluginInterface.class).getAllSerializersForPoids(true, Collections.singleton(poid));

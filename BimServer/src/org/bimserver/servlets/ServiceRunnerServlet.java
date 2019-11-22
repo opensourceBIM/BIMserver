@@ -204,7 +204,7 @@ public class ServiceRunnerServlet extends SubServlet {
 		capabilities.add("WEBSOCKET");
 		result.set("capabilities", capabilities);
 		result.set("services", array);
-		try (DatabaseSession session = database.createSession()) {
+		try (DatabaseSession session = database.createReadOnlySession()) {
 			for (PluginDescriptor pluginDescriptor : session.getAllOfType(StorePackage.eINSTANCE.getPluginDescriptor(), PluginDescriptor.class, OldQuery.getDefault())) {
 				if (pluginDescriptor.getPluginInterfaceClassName().equals(ServicePlugin.class.getName())) {
 					ServicePlugin servicePlugin = getBimServer().getPluginManager().getServicePlugin(pluginDescriptor.getPluginClassName(), true);
