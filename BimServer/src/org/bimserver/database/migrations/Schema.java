@@ -27,6 +27,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
@@ -232,16 +233,12 @@ public class Schema {
         }
 	}
 
-	public void upgradeDatabase(Database database, int version, DatabaseSession databaseSession) {
+	public void upgradeDatabase(Database database, int version, DatabaseSession databaseSession) throws NotImplementedException, BimserverDatabaseException {
 		LOGGER.debug("Upgrading database to version " + version);
 //		initSubClasses();
 		for (Change change : changes) {
-			try {
-				change.change(database, databaseSession);
-				change.doSchemaChanges(this);
-			} catch (Exception e) {
-				LOGGER.error("", e);
-			}
+			change.change(database, databaseSession);
+			change.doSchemaChanges(this);
 		}
 		try {
 			database.setDatabaseVersion(version, databaseSession);

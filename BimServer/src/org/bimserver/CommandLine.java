@@ -125,6 +125,8 @@ public class CommandLine extends Thread {
 							LOGGER.error("", e);
 						} catch (InconsistentModelsException e) {
 							LOGGER.error("", e);
+						} catch (Exception e) {
+							LOGGER.error("", e);
 						}
 					} else if (line.equals("clearendpoints")) {
 						bimServer.getEndPointManager().clear();

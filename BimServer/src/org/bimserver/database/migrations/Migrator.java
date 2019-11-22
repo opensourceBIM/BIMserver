@@ -24,6 +24,7 @@ import org.apache.commons.lang.StringUtils;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.OperationType;
 import org.bimserver.emf.IdEObjectImpl;
 import org.bimserver.models.store.StoreFactory;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -90,7 +91,7 @@ public class Migrator {
 	}
 
 	public Schema migrate() throws MigrationException, InconsistentModelsException {
-		DatabaseSession session = database.createSession();
+		DatabaseSession session = database.createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			Schema schema = migrate(session);
 			session.commit();
@@ -106,17 +107,23 @@ public class Migrator {
 
 	private Schema upgrade(DatabaseSession databaseSession, int applicationSchemaVersion, int databaseSchemaVersion) throws MigrationException, InconsistentModelsException {
 		Schema schema = new Schema();
-		for (int i = 0; i <= applicationSchemaVersion; i++) {
-			Migration migration = getMigration(i);
-			if (migration != null) {
-				migration.migrate(schema, databaseSession);
-				if (i > databaseSchemaVersion) {
-					schema.upgradeDatabase(database, i, databaseSession);
+		try {
+			for (int i = 0; i <= applicationSchemaVersion; i++) {
+				Migration migration = getMigration(i);
+				if (migration != null) {
+					migration.migrate(schema, databaseSession);
+					if (i > databaseSchemaVersion) {
+						schema.upgradeDatabase(database, i, databaseSession);
+					}
+					schema.clearUpdates();
+				} else {
+					throw new MigrationException("Required migration not found: " + i);
 				}
-				schema.clearUpdates();
-			} else {
-				throw new MigrationException("Required migration not found: " + i);
 			}
+		} catch (NotImplementedException e) {
+			throw new MigrationException(e);
+		} catch (BimserverDatabaseException e) {
+			throw new MigrationException(e);
 		}
 		
 //		Schema emfSchema = new Schema();

@@ -61,19 +61,14 @@ public class NewReferenceChange implements Change {
 							ByteBuffer buffer = ByteBuffer.wrap(record.getValue());
 
 							int nrStartBytesBefore = (int) Math.ceil(nrFeaturesBefore / 8.0);
-							int nrStartBytesAfter = (int) Math.ceil((nrFeaturesBefore + 1) / 8.0);
-							
-							byte x = buffer.get();
-							
-							if (x != nrStartBytesBefore) {
-								throw new BimserverDatabaseException("Size to not match");
-							}
+							int newIndex = nrFeaturesBefore + 1;
+							int nrStartBytesAfter = (int) Math.ceil(newIndex / 8.0);
 							
 							byte[] unsetted = new byte[nrStartBytesAfter];
-							buffer.get(unsetted, 0, x);
+							buffer.get(unsetted, 0, nrStartBytesBefore);
 							
 							if (eReference.isUnsettable()) {
-								unsetted[(nrFeaturesBefore + 1) / 8] |= (1 << ((nrFeaturesBefore + 1) % 8));
+								unsetted[newIndex / 8] |= (1 << (newIndex % 8));
 							}
 							
 							int extra = 0;
@@ -87,9 +82,8 @@ public class NewReferenceChange implements Change {
 							}
 							
 							ByteBuffer newBuffer = ByteBuffer.allocate(record.getValue().length + (nrStartBytesAfter - nrStartBytesBefore) + extra);
-							newBuffer.put((byte)nrStartBytesAfter);
 							newBuffer.put(unsetted);
-							buffer.position(1 + nrStartBytesBefore);
+							buffer.position(nrStartBytesBefore);
 							newBuffer.put(buffer);
 							
 							if (!eReference.isUnsettable()) {
@@ -105,8 +99,6 @@ public class NewReferenceChange implements Change {
 							keyValueStore.store(subClass.getEPackage().getName() + "_" + subClass.getName(), record.getKey(), newBuffer.array(), databaseSession);
 							record = recordIterator.next();
 						}
-					} catch (BimserverDatabaseException e) {
-						LOGGER.error("", e);
 					} finally {
 						recordIterator.close();
 					}
