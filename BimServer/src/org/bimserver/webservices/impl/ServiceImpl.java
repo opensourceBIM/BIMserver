@@ -1354,7 +1354,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	@Override
 	public Long checkinFromUrlAsync(Long poid, String comment, Long deserializerOid, String fileName, String urlString, Boolean merge) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		final DatabaseSession session = getBimServer().getDatabase().createSession();
+		final DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
 		String username = "Unknown";
 		String userUsername = "Unknown";
 		try {
@@ -1391,10 +1391,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 					fileName = fileName.substring(0, fileName.indexOf("?"));
 				}
 				fileName = URLDecoder.decode(fileName, Charsets.UTF_8.name());
-			} else {
-				fileName = "";
 			}
-			fileName = fileName + "-" + dateFormat.format(new Date());
 
 			Path file = userDirIncoming.resolve(fileName);
 
