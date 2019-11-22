@@ -58,8 +58,8 @@ public class GeometryLoader {
 						throw new GeometryException("Protocol != BGS (" + protocol + ")");
 					}
 					byte formatVersion = dataInputStream.readByte();
-					if (formatVersion != 19) {
-						throw new GeometryException("Unsupported version " + formatVersion + " / 19");
+					if (formatVersion != 20) {
+						throw new GeometryException("Unsupported version " + formatVersion + " / 20");
 					}
 
 					float multiplierToMm = dataInputStream.readFloat();
