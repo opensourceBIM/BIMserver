@@ -77,7 +77,7 @@ public class LongActionManager {
 			if (longAction.getActionState() == ActionState.FINISHED) {
 				GregorianCalendar stop = longAction.getStop();
 				if (now.getTimeInMillis() - stop.getTimeInMillis() > FIVE_MINUTES_IN_MS) {
-					LOGGER.info("[AUTO] Cleaning up topic " + longAction.getProgressTopic().getKey().getId() + " (" + longAction.getDescription() + ")");
+					LOGGER.debug("[AUTO] Cleaning up topic " + longAction.getProgressTopic().getKey().getId() + " (" + longAction.getDescription() + ")");
 					iterator.remove();
 				}
 			}
