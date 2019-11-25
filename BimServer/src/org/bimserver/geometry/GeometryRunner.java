@@ -957,7 +957,7 @@ public class GeometryRunner implements Runnable {
 			}
 		}
 		if (!complexLines.isEmpty()) {
-			LOGGER.info("Probably a non-closed object in " + ifcProduct.eClass().getName() + " (" + complexLines.size() + ")");
+			LOGGER.debug("Probably a non-closed object in " + ifcProduct.eClass().getName() + " (" + complexLines.size() + ")");
 			return true;
 		}
 		return false;
