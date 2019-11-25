@@ -159,7 +159,10 @@ public class GenericWebServiceServlet extends SubServlet {
 				Thread.currentThread().setContextClassLoader(loader);
 			}
 			BusFactory.setThreadDefaultBus(bus);
-			controller.invoke(request, response);
+			// TODO this check is only here to avoid the very long list of npe's in the log file, most probably this is an indication that SOAP is not currently working
+			if (controller != null) {
+				controller.invoke(request, response);
+			}
 		} catch (ClassCastException e) {
 			// Since updating to CXF 3.1.3 we are getting java.lang.ClassCastException: org.apache.cxf.message.MessageImpl cannot be cast to org.apache.cxf.binding.soap.SoapMessage
 		} finally {
