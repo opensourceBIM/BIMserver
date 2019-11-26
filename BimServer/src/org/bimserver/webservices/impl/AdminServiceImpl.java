@@ -151,8 +151,10 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 
 		bimServerInfo.setCurrentVersion(version.getFullString());
 		bimServerInfo.setCurrentDate(version.getDate());
-		bimServerInfo.setLatestVersion(latestVersion.getMajor() + "." + latestVersion.getMinor() + "." + latestVersion.getRevision());
-		bimServerInfo.setLatestDate(latestVersion.getDate());
+		if (latestVersion != null) {
+			bimServerInfo.setLatestVersion(latestVersion.getMajor() + "." + latestVersion.getMinor() + "." + latestVersion.getRevision());
+			bimServerInfo.setLatestDate(latestVersion.getDate());
+		}
 		bimServerInfo.setCheckouts(databaseInformation.getNumberOfCheckouts());
 		bimServerInfo.setRevisions(databaseInformation.getNumberOfRevisions());
 		bimServerInfo.setUsers(databaseInformation.getNumberOfUsers());
@@ -317,7 +319,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 
 	@Override
 	public SDatabaseInformation getDatabaseInformation() throws ServerException, UserException {
-		requireAdminAuthenticationAndRunningServer();
+		requireAdminAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
 		try {
 			BimDatabaseAction<DatabaseInformation> action = new GetDatabaseInformationAction(session, getInternalAccessMethod());
