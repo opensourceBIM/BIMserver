@@ -74,6 +74,7 @@ public class ClientIfcModel extends IfcModel implements GeometryTarget {
 	private int cachedObjectCount = -1;
 	private boolean recordChanges;
 	private boolean includeGeometry;
+	private Set<Long> geometryTried = new HashSet<>();
 
 	private ClientDebugInfo clientDebugInfo = new ClientDebugInfo();
 	private boolean deep;
@@ -338,8 +339,9 @@ public class ClientIfcModel extends IfcModel implements GeometryTarget {
 			for (IdEObject ifcProduct : allWithSubTypes) {
 				GeometryInfo geometry = (GeometryInfo) ifcProduct.eGet(geometryFeature);
 				if (geometry != null) {
-					if (geometry.getData() == null || geometry.getData().getIndices() == null || geometry.getData().getIndices().getData() == null) {
+					if (!geometryTried.contains(geometry.getOid())) {
 						queryPart.addOid(geometry.getOid());
+						geometryTried.add(geometry.getOid());
 					}
 				}
 			}
