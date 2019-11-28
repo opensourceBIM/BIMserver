@@ -728,9 +728,6 @@ public class BimServer implements BasicServerInfoProvider {
 			
 			cleanupStaleData();
 
-			protocolBuffersMetaData = new ProtocolBuffersMetaData();
-			protocolBuffersMetaData.load(servicesMap, ProtocolBuffersBimServerClientFactory.class);
-
 			serverInfoManager.init(this);
 
 			webModuleManager = new WebModuleManager(this);
@@ -1228,6 +1225,9 @@ public class BimServer implements BasicServerInfoProvider {
 			Integer protocolBuffersPort = getServerSettingsCache().getServerSettings().getProtocolBuffersPort();
 			if (protocolBuffersPort >= 1 && protocolBuffersPort <= 65535) {
 				try {
+					protocolBuffersMetaData = new ProtocolBuffersMetaData();
+					protocolBuffersMetaData.load(servicesMap, ProtocolBuffersBimServerClientFactory.class);
+
 					protocolBuffersServer = new ProtocolBuffersServer(protocolBuffersMetaData, serviceFactory, servicesMap, protocolBuffersPort);
 					protocolBuffersServer.start();
 				} catch (Exception e) {
