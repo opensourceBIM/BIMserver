@@ -37,6 +37,7 @@ import org.bimserver.bimbots.BimBotsServiceInterface;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.endpoints.EndPoint;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
 import org.bimserver.models.store.ObjectState;
@@ -127,7 +128,7 @@ public class ServiceRunnerServlet extends SubServlet {
 			}
 		}
 		
-		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+		try (DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY)) {
 			Authorization authorization = Authorization.fromToken(getBimServer().getEncryptionKey(), token);
 			User user = session.get(authorization.getUoid(), OldQuery.getDefault());
 			if (user == null) {
@@ -204,7 +205,7 @@ public class ServiceRunnerServlet extends SubServlet {
 		capabilities.add("WEBSOCKET");
 		result.set("capabilities", capabilities);
 		result.set("services", array);
-		try (DatabaseSession session = database.createReadOnlySession()) {
+		try (DatabaseSession session = database.createSession(OperationType.READ_ONLY)) {
 			for (PluginDescriptor pluginDescriptor : session.getAllOfType(StorePackage.eINSTANCE.getPluginDescriptor(), PluginDescriptor.class, OldQuery.getDefault())) {
 				if (pluginDescriptor.getPluginInterfaceClassName().equals(ServicePlugin.class.getName())) {
 					ServicePlugin servicePlugin = getBimServer().getPluginManager().getServicePlugin(pluginDescriptor.getPluginClassName(), true);

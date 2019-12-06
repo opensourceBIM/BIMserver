@@ -26,6 +26,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.emf.Schema;
@@ -80,7 +81,7 @@ public class SerializerFactory {
 	}
 	
 	public Serializer create(Project project, String username, IfcModelInterface model, RenderEnginePlugin renderEnginePlugin, DownloadParameters downloadParameters) throws SerializerException {
-		DatabaseSession session = bimDatabase.createReadOnlySession();
+		DatabaseSession session = bimDatabase.createSession(OperationType.READ_ONLY);
 		try {
 			SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), OldQuery.getDefault());
 			if (serializerPluginConfiguration != null) {
@@ -142,7 +143,7 @@ public class SerializerFactory {
 	}
 	
 	public MessagingSerializer createMessagingSerializer(String username, IfcModelInterface model, DownloadParameters downloadParameters) throws SerializerException {
-		DatabaseSession session = bimDatabase.createSession();
+		DatabaseSession session = bimDatabase.createSession(OperationType.READ_ONLY);
 		try {
 			MessagingSerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getMessagingSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), OldQuery.getDefault());
 			if (serializerPluginConfiguration != null) {
@@ -169,7 +170,7 @@ public class SerializerFactory {
 	}
 
 	public String getExtension(Long serializerOid) {
-		DatabaseSession session = bimDatabase.createSession();
+		DatabaseSession session = bimDatabase.createSession(OperationType.READ_ONLY);
 		try {
 			SerializerPluginConfiguration found = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), serializerOid, OldQuery.getDefault());
 			if (found != null) {

@@ -1,9 +1,6 @@
 package org.bimserver.geometry;
 
 import java.nio.ByteBuffer;
-import java.nio.DoubleBuffer;
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
 
 public class BufferSet {
 

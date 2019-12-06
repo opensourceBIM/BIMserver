@@ -32,6 +32,7 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.database.queries.Bounds;
 import org.bimserver.database.queries.QueryObjectProvider;
 import org.bimserver.database.queries.om.Include;
@@ -105,7 +106,7 @@ public class GeometryAccellerator {
 	private Octree generateOctree(OctreeKey key) {
 		LOGGER.info("Generating octree: " + key);
 		Long start = System.nanoTime();
-		try (DatabaseSession databaseSession = bimServer.getDatabase().createReadOnlySession()) {
+		try (DatabaseSession databaseSession = bimServer.getDatabase().createSession(OperationType.READ_ONLY)) {
 			Bounds totalBounds = new Bounds();
 
 			for (long roid : key.getRoids()) {
@@ -262,7 +263,7 @@ public class GeometryAccellerator {
 	private DensityThreshold generateDensityThreshold(DensityThresholdKey key) {
 		long start = System.nanoTime();
 		DensityThreshold densityThreshold = new DensityThreshold();
-		try (DatabaseSession session = bimServer.getDatabase().createReadOnlySession()) {
+		try (DatabaseSession session = bimServer.getDatabase().createSession(OperationType.READ_ONLY)) {
 			Set<Long> roids = key.getRoid();
 			List<Density> allDensities = new ArrayList<>();
 			for (long roid : roids) {
@@ -338,7 +339,7 @@ public class GeometryAccellerator {
 	private ReuseSet generateReuseSet(ReuseKey key) {
 		long start = System.nanoTime();
 		ReuseSet reuseSet = new ReuseSet();
-		try (DatabaseSession databaseSession = bimServer.getDatabase().createReadOnlySession()) {
+		try (DatabaseSession databaseSession = bimServer.getDatabase().createSession(OperationType.READ_ONLY)) {
 			// Assuming all given roids are of projects that all have the same schema
 
 			Revision revision = databaseSession.get(key.getRoids().iterator().next(), OldQuery.getDefault());

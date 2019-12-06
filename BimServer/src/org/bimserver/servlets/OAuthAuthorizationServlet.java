@@ -42,6 +42,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.models.store.OAuthAuthorizationCode;
 import org.bimserver.models.store.OAuthServer;
 import org.bimserver.models.store.RunServiceAuthorization;
@@ -84,7 +85,7 @@ public class OAuthAuthorizationServlet extends SubServlet {
 		OAuthAuthorizationCode oauthCode = null;
 
 		String token = request.getParameter("token");
-		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+		try (DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY)) {
 			OAuthServer oAuthServer = session.querySingle(StorePackage.eINSTANCE.getOAuthServer_ClientId(), request.getParameter("client_id"));
 
 			org.bimserver.webservices.authorization.Authorization realAuth = org.bimserver.webservices.authorization.Authorization.fromToken(getBimServer().getEncryptionKey(), token);

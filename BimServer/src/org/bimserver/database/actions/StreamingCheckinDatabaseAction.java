@@ -28,8 +28,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.io.output.NullOutputStream;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.GenerateGeometryResult;
@@ -38,6 +36,7 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OidCounters;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.database.Record;
 import org.bimserver.database.RecordIterator;
@@ -360,7 +359,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			getDatabaseSession().addPostCommitAction(new PostCommitAction() {
 				@Override
 				public void execute() throws UserException {
-					try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession()) {
+					try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE)) {
 						Project project = tmpSession.get(poid, OldQuery.getDefault());
 						project.setCheckinInProgress(0);
 						tmpSession.store(project);
@@ -373,7 +372,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 					if (finalReport != null) {
 						byte[] htmlBytes = finalReport.toHtml().getBytes(Charsets.UTF_8);
 						byte[] jsonBytes = finalReport.toJson().toString().getBytes(Charsets.UTF_8);
-						try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession()) {
+						try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE)) {
 							AddGeometryReports addGeometryReports = new AddGeometryReports(tmpSession, AccessMethod.INTERNAL, htmlBytes, jsonBytes, finalReport.getTimeToGenerateMs(), authorization.getUoid(), revision.getOid());
 							try {
 								tmpSession.executeAndCommitAction(addGeometryReports);
@@ -391,7 +390,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 			getDatabaseSession().store(concreteRevision);
 			getDatabaseSession().store(project);
 		} catch (Throwable e) {
-			try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession()) {
+			try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE)) {
 				Project project = tmpSession.get(poid, OldQuery.getDefault());
 				project.setCheckinInProgress(0);
 				tmpSession.store(project);

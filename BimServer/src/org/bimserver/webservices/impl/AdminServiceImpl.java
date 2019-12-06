@@ -36,6 +36,7 @@ import org.bimserver.bimbots.BimBotsException;
 import org.bimserver.client.protocolbuffers.ProtocolBuffersBimServerClientFactory;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.database.actions.AddUserDatabaseAction;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.GetDatabaseInformationAction;
@@ -234,7 +235,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 	@Override
 	public Date getLastDatabaseReset() throws ServerException, UserException {
 		requireRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return session.getCreatedDate();
 		} catch (Exception e) {
@@ -267,7 +268,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 			throw new UserException("Admin Password cannot be empty");
 		}
 
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			AddUserDatabaseAction addUserDatabaseAction = new AddUserDatabaseAction(getBimServer(), session, AccessMethod.INTERNAL, adminUsername, adminPassword, adminName, UserType.ADMIN, getAuthorization(), false, "");
 			session.executeAndCommitAction(addUserDatabaseAction);
@@ -303,7 +304,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 	@Override
 	public List<SLogAction> getLogs() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			BimDatabaseAction<List<LogAction>> action = new GetLogsDatabaseAction(session, getInternalAccessMethod(), getAuthorization());
 			List<LogAction> logs = session.executeAndCommitAction(action);
@@ -320,7 +321,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 	@Override
 	public SDatabaseInformation getDatabaseInformation() throws ServerException, UserException {
 		requireAdminAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			BimDatabaseAction<DatabaseInformation> action = new GetDatabaseInformationAction(session, getInternalAccessMethod());
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(action));
@@ -334,7 +335,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 	@Override
 	public List<SPluginDescriptor> getAllPlugins() throws UserException, ServerException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			List<SPluginDescriptor> convertToSListPluginDescriptor = getBimServer().getSConverter().convertToSListPluginDescriptor(session.getAllOfType(StorePackage.eINSTANCE.getPluginDescriptor(), PluginDescriptor.class, OldQuery.getDefault()));
 			Collections.sort(convertToSListPluginDescriptor, new SPluginDescriptorComparator());
@@ -349,7 +350,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 	@Override
 	public void regenerateGeometry(Long croid) throws ServerException, UserException {
 		LOGGER.info("Regenerating geometry for concrete revision" + croid);
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			session.setOverwriteEnabled(true); // Normally we wouldn't be allowed to change existing data
 			ConcreteRevision concreteRevision = session.get(StorePackage.eINSTANCE.getConcreteRevision(), croid, OldQuery.getDefault());

@@ -19,6 +19,7 @@ package org.bimserver.longaction;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.OperationType;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.actions.DownloadByNewJsonQueryDatabaseAction;
 import org.bimserver.database.actions.DownloadCompareDatabaseAction;
@@ -68,7 +69,7 @@ public class LongDownloadAction extends LongDownloadOrCheckoutAction implements 
 			return;
 		}
 
-		readOnlyDatabaseSession = getBimServer().getDatabase().createReadOnlySession();
+		readOnlyDatabaseSession = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		switch (downloadParameters.getDownloadType()) {
 		case DOWNLOAD_BY_NEW_JSON_QUERY:
 			action = new DownloadByNewJsonQueryDatabaseAction(getBimServer(), readOnlyDatabaseSession, accessMethod, downloadParameters.getRoids(), downloadParameters.getJsonQuery(), downloadParameters.getSerializerOid(), getAuthorization());

@@ -37,6 +37,7 @@ import org.apache.oltu.oauth2.ext.dynamicreg.server.response.OAuthServerRegistra
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.OperationType;
 import org.bimserver.models.store.OAuthServer;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -58,7 +59,7 @@ public class OAuthRegistrationServlet extends SubServlet {
             oauthRequest.getClientDescription();
             oauthRequest.getRedirectURI();
 
-            try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+            try (DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE)) {
             	OAuthServer oAuthServer = session.querySingle(StorePackage.eINSTANCE.getOAuthServer_RedirectUrl(), oauthRequest.getRedirectURI());
             	
             	GregorianCalendar now = new GregorianCalendar();

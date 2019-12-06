@@ -24,6 +24,7 @@ import java.util.Set;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.endpoints.EndPoint;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProgressTopicType;
@@ -246,7 +247,7 @@ public class NotificationRegistryServiceImpl extends GenericServiceImpl implemen
 	
 	@Override
 	public List<Long> getProgressTopicsOnProject(Long poid) throws ServerException, UserException {
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			List<Long> list = new ArrayList<Long>();
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, OldQuery.getDefault());

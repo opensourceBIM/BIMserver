@@ -22,6 +22,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.client.Channel;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Service;
@@ -70,7 +71,7 @@ public class NewExtendedDataOnRevisionNotification extends Notification {
 
 	@Override
 	public void process() throws BimserverDatabaseException, UserException, ServerException {
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, OldQuery.getDefault());
 			for (Service service : project.getServices()) {

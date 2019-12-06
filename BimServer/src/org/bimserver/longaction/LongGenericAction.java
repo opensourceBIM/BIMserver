@@ -20,6 +20,7 @@ package org.bimserver.longaction;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.OperationType;
 import org.bimserver.database.ProgressHandler;
 import org.bimserver.database.RollbackListener;
 import org.bimserver.database.actions.ProjectBasedDatabaseAction;
@@ -54,7 +55,7 @@ public class LongGenericAction extends LongAction<LongActionKey> {
 	}
 
 	public void execute() {
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			action.setDatabaseSession(session);
 			session.executeAndCommitAction(action, new ProgressHandler() {

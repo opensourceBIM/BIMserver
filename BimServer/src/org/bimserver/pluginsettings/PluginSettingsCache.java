@@ -25,6 +25,7 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.plugins.PluginConfiguration;
 
 public class PluginSettingsCache {
@@ -43,7 +44,7 @@ public class PluginSettingsCache {
 	public PluginConfiguration getPluginSettings(Long serializerOid) throws BimserverDatabaseException {
 		PluginConfiguration pluginConfiguration = pluginConfigurations.get(serializerOid);
 		if (pluginConfiguration == null) {
-			try (DatabaseSession databaseSession = bimServer.getDatabase().createReadOnlySession()) {
+			try (DatabaseSession databaseSession = bimServer.getDatabase().createSession(OperationType.READ_ONLY)) {
 				org.bimserver.models.store.PluginConfiguration serializerPluginConfiguration = databaseSession.get(serializerOid, OldQuery.getDefault());
 				if (serializerPluginConfiguration != null) {
 					pluginConfiguration = new org.bimserver.plugins.PluginConfiguration(serializerPluginConfiguration.getSettings());

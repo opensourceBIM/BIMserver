@@ -29,6 +29,7 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.KeyValueStore;
+import org.bimserver.database.OperationType;
 import org.bimserver.database.actions.DownloadDatabaseAction;
 import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.migrations.MigrationException;
@@ -73,7 +74,7 @@ public class CommandLine extends Thread {
 					} else if (line.startsWith("dumpmodel")) {
 						try {
 							long roid = Long.parseLong(line.substring(9).trim());
-							DatabaseSession databaseSession = bimServer.getDatabase().createSession();	
+							DatabaseSession databaseSession = bimServer.getDatabase().createSession(OperationType.READ_ONLY);	
 							try {
 								DownloadDatabaseAction downloadDatabaseAction = new DownloadDatabaseAction(bimServer, databaseSession, AccessMethod.INTERNAL, roid, -1, -1, new SystemAuthorization(1, TimeUnit.HOURS));
 								IfcModelInterface model = downloadDatabaseAction.execute();

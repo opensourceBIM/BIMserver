@@ -257,7 +257,7 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 							if (finalReport != null) {
 								byte[] htmlBytes = finalReport.toHtml().getBytes(Charsets.UTF_8);
 								byte[] jsonBytes = finalReport.toJson().toString().getBytes(Charsets.UTF_8);
-								try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession()) {
+								try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE)) {
 									AddGeometryReports addGeometryReports = new AddGeometryReports(tmpSession, AccessMethod.INTERNAL, htmlBytes, jsonBytes, finalReport.getTimeToGenerateMs(), authorization.getUoid(), revision.getOid());
 									try {
 										tmpSession.executeAndCommitAction(addGeometryReports);

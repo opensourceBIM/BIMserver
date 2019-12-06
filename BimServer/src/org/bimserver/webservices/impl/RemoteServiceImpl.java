@@ -24,6 +24,7 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.database.query.conditions.AttributeCondition;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.literals.StringLiteral;
@@ -49,7 +50,7 @@ public class RemoteServiceImpl extends GenericServiceImpl implements RemoteServi
 	
 	@Override
 	public List<SProfileDescriptor> getPublicProfiles(String serviceIdentifier) throws UserException, ServerException {
-		DatabaseSession session = getServiceMap().getBimServer().getDatabase().createSession();
+		DatabaseSession session = getServiceMap().getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		List<SProfileDescriptor> descriptors = new ArrayList<SProfileDescriptor>();
 		try {
 			IfcModelInterface modelInterface = session.getAllOfType(StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), OldQuery.getDefault());
@@ -76,7 +77,7 @@ public class RemoteServiceImpl extends GenericServiceImpl implements RemoteServi
 
 	@Override
 	public List<SProfileDescriptor> getPrivateProfiles(String serviceIdentifier, String token) throws UserException, ServerException {
-		DatabaseSession session = getServiceMap().getBimServer().getDatabase().createSession();
+		DatabaseSession session = getServiceMap().getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		List<SProfileDescriptor> descriptors = new ArrayList<SProfileDescriptor>();
 		try {
 			Condition condition = new AttributeCondition(StorePackage.eINSTANCE.getUser_Token(), new StringLiteral(token));

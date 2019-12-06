@@ -28,6 +28,7 @@ import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.client.json.JsonSocketReflectorFactory;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.interfaces.objects.SObjectType;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.InternalServicePluginConfiguration;
@@ -145,7 +146,7 @@ public class InternalServicesManager implements NotificationsManagerInterface {
 			LOGGER.error("", e);
 		}
 		try {
-			DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+			DatabaseSession session = bimServer.getDatabase().createSession(OperationType.READ_ONLY);
 			try {
 				long profileId = Long.parseLong(profileIdentifier);
 				EClass eClassForOid = session.getEClassForOid(profileId);

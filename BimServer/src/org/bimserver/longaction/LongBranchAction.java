@@ -19,6 +19,7 @@ package org.bimserver.longaction;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.OperationType;
 import org.bimserver.database.ProgressHandler;
 import org.bimserver.database.actions.AbstractBranchDatabaseAction;
 import org.bimserver.database.actions.BimDatabaseAction;
@@ -49,7 +50,7 @@ public class LongBranchAction extends LongAction<LongCheckinActionKey> {
 
 	@Override
 	public void execute() {
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			action.setDatabaseSession(session);
 			session.executeAndCommitAction(action, new ProgressHandler() {

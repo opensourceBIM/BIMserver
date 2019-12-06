@@ -26,6 +26,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.database.OldQuery.Deep;
+import org.bimserver.database.OperationType;
 import org.bimserver.models.store.CompareType;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Revision;
@@ -252,7 +253,7 @@ public class DownloadParameters extends LongActionKey {
 		switch (downloadType) {
 		case DOWNLOAD_PROJECTS:
 		{
-			DatabaseSession session = bimServer.getDatabase().createSession();
+			DatabaseSession session = bimServer.getDatabase().createSession(OperationType.READ_ONLY);
 			StringBuilder fileName = new StringBuilder();
 			for (long roid : roids) {
 				Revision revision;
@@ -272,7 +273,7 @@ public class DownloadParameters extends LongActionKey {
 			return "compare";
 		case DOWNLOAD_BY_NEW_JSON_QUERY:
 		{
-			DatabaseSession session = bimServer.getDatabase().createSession();
+			DatabaseSession session = bimServer.getDatabase().createSession(OperationType.READ_ONLY);
 			StringBuilder fileName = new StringBuilder();
 			for (long roid : roids) {
 				Revision revision;

@@ -37,6 +37,7 @@ import org.apache.oltu.oauth2.common.message.OAuthResponse;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.OperationType;
 import org.bimserver.models.store.Authorization;
 import org.bimserver.models.store.OAuthAuthorizationCode;
 import org.bimserver.models.store.RunServiceAuthorization;
@@ -71,7 +72,7 @@ public class OAuthAccessTokenServlet extends SubServlet {
 			oauthRequest = new OAuthTokenRequest(request);
 			
 			OAuthAuthorizationCode code = null;
-			try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+			try (DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY)) {
 				String codeAsString = oauthRequest.getCode();
 				code = session.querySingle(StorePackage.eINSTANCE.getOAuthAuthorizationCode_Code(), codeAsString);
 	

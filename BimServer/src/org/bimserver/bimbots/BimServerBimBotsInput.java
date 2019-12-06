@@ -23,6 +23,7 @@ import org.bimserver.GeometryGeneratingException;
 import org.bimserver.GeometryGenerator;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
@@ -40,8 +41,7 @@ public class BimServerBimBotsInput extends BimBotsInput {
 		super(schemaName, data);
 		this.model = model;
 		
-		try (DatabaseSession session = bimServer.getDatabase().createSession()) {
-			
+		try (DatabaseSession session = bimServer.getDatabase().createSession(OperationType.READ_ONLY)) {
 			User user = session.get(uoid, OldQuery.getDefault());
 			UserSettings userSettings = user.getUserSettings();
 			RenderEnginePluginConfiguration defaultRenderEngine = userSettings.getDefaultRenderEngine();

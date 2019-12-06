@@ -16,6 +16,7 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OidCounters;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.database.PostCommitAction;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
@@ -277,7 +278,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 	}
 	
 	private void clearCheckinInProgress() throws BimserverDatabaseException, ServiceException {
-		try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession()) {
+		try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession(OperationType.READ_WRITE)) {
 			Project project = tmpSession.get(poid, OldQuery.getDefault());
 			project.setCheckinInProgress(0);
 			tmpSession.store(project);

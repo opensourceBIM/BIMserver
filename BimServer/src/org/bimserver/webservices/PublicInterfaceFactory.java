@@ -42,6 +42,7 @@ import java.util.concurrent.TimeUnit;
 import org.bimserver.BimServer;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ObjectState;
 import org.bimserver.models.store.ServerState;
@@ -94,7 +95,7 @@ public class PublicInterfaceFactory implements ServiceFactory {
 				// We do this on login as well, so no need to do for cached auth
 				// TODO When a user is being deleted, this auth cache should be updated accordingly
 				// TODO A logout method should be added
-				DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+				DatabaseSession session = bimServer.getDatabase().createSession(OperationType.READ_ONLY);
 				try {
 					user = session.get(authorization.getUoid(), OldQuery.getDefault());
 					if (user == null) {

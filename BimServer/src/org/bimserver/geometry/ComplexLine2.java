@@ -1,7 +1,6 @@
 package org.bimserver.geometry;
 
 import java.nio.DoubleBuffer;
-import java.nio.FloatBuffer;
 import java.util.Arrays;
 
 public class ComplexLine2 implements Comparable<ComplexLine2> {

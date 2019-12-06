@@ -38,6 +38,7 @@ import org.bimserver.bimbots.BimServerBimBotsInput;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.database.OldQuery.Deep;
+import org.bimserver.database.OperationType;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;
@@ -141,7 +142,7 @@ public class BimBotRunner implements Runnable {
 			}
 		};
 
-		try (DatabaseSession session = bimServer.getDatabase().createSession()) {
+		try (DatabaseSession session = bimServer.getDatabase().createSession(OperationType.READ_ONLY)) {
 			ServiceMap serviceMap = bimServer.getServiceFactory().get(authorization, AccessMethod.INTERNAL);
 			ServiceInterface serviceInterface = serviceMap.get(ServiceInterface.class);
 			if (bimServer.getServerSettingsCache().getServerSettings().isStoreServiceRuns()) {

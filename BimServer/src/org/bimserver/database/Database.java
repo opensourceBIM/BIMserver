@@ -367,14 +367,6 @@ public class Database implements BimDatabase {
 		return realClasses;
 	}
 
-	public DatabaseSession createSession() {
-		return createSession(OperationType.READ_WRITE);
-	}
-
-	public DatabaseSession createReadOnlySession() {
-		return createSession(OperationType.READ_ONLY);
-	}
-	
 	public DatabaseSession createSession(OperationType operationType) {
 		DatabaseSession databaseSession = new DatabaseSession(this, keyValueStore.startTransaction(), operationType);
 		sessions.add(databaseSession);

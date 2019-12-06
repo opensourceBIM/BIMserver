@@ -151,7 +151,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public Long addDeserializer(SDeserializerPluginConfiguration deserializer) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			DeserializerPluginConfiguration convert = getBimServer().getSConverter().convertFromSObject(deserializer, session);
 			return session.executeAndCommitAction(new AddDeserializerDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), convert));
@@ -165,7 +165,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public void updateSerializer(SSerializerPluginConfiguration serializer) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SerializerPluginConfiguration convert = session.get(serializer.getOid(), OldQuery.getDefault());
 			getBimServer().getSConverter().convertFromSObject(serializer, convert, session);
@@ -180,7 +180,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public void updateDeserializer(SDeserializerPluginConfiguration deserializer) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			DeserializerPluginConfiguration convert = session.get(deserializer.getOid(), OldQuery.getDefault());
 			getBimServer().getSConverter().convertFromSObject(deserializer, convert, session);
@@ -195,7 +195,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SPluginDescriptor> getAllSerializerPluginDescriptors() throws UserException, ServerException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), SerializerPlugin.class.getName()));
 		} catch (Exception e) {
@@ -209,7 +209,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	public List<SPluginDescriptor> getAllWebModulePluginDescriptors() throws UserException, ServerException {
 		requireRealUserAuthentication();
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), WebModulePlugin.class.getName()));
 		} catch (Exception e) {
@@ -222,7 +222,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public void deleteSerializer(Long sid) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			BimDatabaseAction<Void> action = new DeleteSerializerDatabaseAction(session, getInternalAccessMethod(), sid);
 			session.executeAndCommitAction(action);
@@ -236,7 +236,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public void deletePluginConfiguration(Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			BimDatabaseAction<Void> action = new DeletePluginConfigurationDatabaseAction(session, getInternalAccessMethod(), oid);
 			session.executeAndCommitAction(action);
@@ -250,7 +250,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public void deleteDeserializer(Long sid) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			BimDatabaseAction<Void> action = new DeleteDeserializerDatabaseAction(session, getInternalAccessMethod(), sid);
 			session.executeAndCommitAction(action);
@@ -264,7 +264,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public SWebModulePluginConfiguration getWebModuleByName(String name) throws ServerException, UserException {
 		requireAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetWebModuleByNameDatabaseAction(session, getInternalAccessMethod(), name)));
 		} catch (Exception e) {
@@ -278,7 +278,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SWebModulePluginConfiguration> listAllWebModules() throws ServerException, UserException {
 		requireAtLeastAnonymousAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			List<SWebModulePluginConfiguration> list = getBimServer().getSConverter()
 					.convertToSListWebModulePluginConfiguration(session.executeAndCommitAction(new ListWebModulesDatabaseAction(session, getInternalAccessMethod())));
@@ -299,7 +299,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SPluginDescriptor> getAllDeserializerPluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), DeserializerPlugin.class.getName()));
 		} catch (Exception e) {
@@ -312,7 +312,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SPluginDescriptor> getAllRenderEnginePluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), RenderEnginePlugin.class.getName()));
 		} catch (Exception e) {
@@ -325,7 +325,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SPluginDescriptor> getAllQueryEnginePluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), QueryEnginePlugin.class.getName()));
 		} catch (Exception e) {
@@ -338,7 +338,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SPluginDescriptor> getAllServicePluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), ServicePlugin.class.getName()));
 		} catch (Exception e) {
@@ -351,7 +351,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SPluginDescriptor> getAllModelComparePluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), ModelComparePlugin.class.getName()));
 		} catch (Exception e) {
@@ -364,7 +364,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SPluginDescriptor> getAllModelCheckerPluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), ModelCheckerPlugin.class.getName()));
 		} catch (Exception e) {
@@ -378,7 +378,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	public List<SPluginDescriptor> getAllModelMergerPluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), ModelMergerPlugin.class.getName()));
 		} catch (Exception e) {
@@ -391,7 +391,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SRenderEnginePluginConfiguration> getAllRenderEngines(Boolean onlyEnabled) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			UserSettings userSettings = getUserSettings(session);
 			List<SRenderEnginePluginConfiguration> renderEngines = getBimServer().getSConverter().convertToSListRenderEnginePluginConfiguration(userSettings.getRenderEngines());
@@ -407,7 +407,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SQueryEnginePluginConfiguration> getAllQueryEngines(Boolean onlyEnabled) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			UserSettings userSettings = getUserSettings(session);
 			List<SQueryEnginePluginConfiguration> queryEngines = getBimServer().getSConverter().convertToSListQueryEnginePluginConfiguration(userSettings.getQueryEngines());
@@ -423,7 +423,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SModelComparePluginConfiguration> getAllModelCompares(Boolean onlyEnabled) throws ServerException, UserException {
 		requireAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			UserSettings userSettings = getUserSettings(session);
 			List<SModelComparePluginConfiguration> modelCompares = getBimServer().getSConverter().convertToSListModelComparePluginConfiguration(userSettings.getModelCompares());
@@ -439,7 +439,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SModelMergerPluginConfiguration> getAllModelMergers(Boolean onlyEnabled) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			UserSettings userSettings = getUserSettings(session);
 			List<SModelMergerPluginConfiguration> modelMergers = getBimServer().getSConverter().convertToSListModelMergerPluginConfiguration(userSettings.getModelMergers());
@@ -455,7 +455,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public void updateRenderEngine(SRenderEnginePluginConfiguration renderEngine) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			RenderEnginePluginConfiguration convert = session.get(renderEngine.getOid(), OldQuery.getDefault());
 			getBimServer().getSConverter().convertFromSObject(renderEngine, convert, session);
@@ -470,7 +470,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public void updateQueryEngine(SQueryEnginePluginConfiguration queryEngine) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			QueryEnginePluginConfiguration convert = session.get(queryEngine.getOid(), OldQuery.getDefault());
 			getBimServer().getSConverter().convertFromSObject(queryEngine, convert, session);
@@ -485,7 +485,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public void updateModelCompare(SModelComparePluginConfiguration modelCompare) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			ModelComparePluginConfiguration convert = session.get(modelCompare.getOid(), OldQuery.getDefault());
 			getBimServer().getSConverter().convertFromSObject(modelCompare, convert, session);
@@ -500,7 +500,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public void updateModelMerger(SModelMergerPluginConfiguration modelMerger) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			ModelMergerPluginConfiguration convert = session.get(modelMerger.getOid(), OldQuery.getDefault());
 			getBimServer().getSConverter().convertFromSObject(modelMerger, convert, session);
@@ -515,7 +515,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public void deleteRenderEngine(Long iid) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			BimDatabaseAction<Void> action = new DeleteRenderEngineDatabaseAction(session, getInternalAccessMethod(), iid);
 			session.executeAndCommitAction(action);
@@ -529,7 +529,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public void deleteQueryEngine(Long iid) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			BimDatabaseAction<Void> action = new DeleteQueryEngineDatabaseAction(session, getInternalAccessMethod(), iid);
 			session.executeAndCommitAction(action);
@@ -543,7 +543,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public void deleteModelCompare(Long iid) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			BimDatabaseAction<Void> action = new DeleteModelCompareDatabaseAction(session, getInternalAccessMethod(), iid);
 			session.executeAndCommitAction(action);
@@ -557,7 +557,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public void deleteModelChecker(Long iid) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			BimDatabaseAction<Void> action = new DeleteModelCompareDatabaseAction(session, getInternalAccessMethod(), iid);
 			session.executeAndCommitAction(action);
@@ -571,7 +571,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public void deleteModelMerger(Long iid) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			BimDatabaseAction<Void> action = new DeleteModelMergerDatabaseAction(session, getInternalAccessMethod(), iid);
 			session.executeAndCommitAction(action);
@@ -585,7 +585,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public SRenderEnginePluginConfiguration getRenderEngineByName(String name) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetRenderEngineByNameDatabaseAction(session, getInternalAccessMethod(), name)));
 		} catch (Exception e) {
@@ -598,7 +598,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public SModelMergerPluginConfiguration getModelMergerById(Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetModelMergerByIdDatabaseAction(session, getInternalAccessMethod(), oid)));
 		} catch (Exception e) {
@@ -611,7 +611,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public SModelComparePluginConfiguration getModelCompareById(Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetModelCompareByIdDatabaseAction(session, getInternalAccessMethod(), oid)));
 		} catch (Exception e) {
@@ -624,7 +624,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public SModelComparePluginConfiguration getModelCompareByName(String name) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetModelCompareByNameDatabaseAction(session, getInternalAccessMethod(), name)));
 		} catch (Exception e) {
@@ -637,7 +637,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public SModelMergerPluginConfiguration getModelMergerByName(String name) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetModelMergerByNameDatabaseAction(session, getInternalAccessMethod(), name)));
 		} catch (Exception e) {
@@ -650,7 +650,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public SRenderEnginePluginConfiguration getRenderEngineById(Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetRenderEngineByIdDatabaseAction(session, getInternalAccessMethod(), oid)));
 		} catch (Exception e) {
@@ -663,7 +663,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public Long addRenderEngine(SRenderEnginePluginConfiguration renderEngine) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			RenderEnginePluginConfiguration convert = getBimServer().getSConverter().convertFromSObject(renderEngine, session);
 			return session.executeAndCommitAction(new AddRenderEngineDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), convert));
@@ -677,7 +677,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public Long addQueryEngine(SQueryEnginePluginConfiguration queryEngine) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			QueryEnginePluginConfiguration convert = getBimServer().getSConverter().convertFromSObject(queryEngine, session);
 			return session.executeAndCommitAction(new AddQueryEngineDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), convert));
@@ -691,7 +691,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public Long addModelCompare(SModelComparePluginConfiguration modelCompare) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			ModelComparePluginConfiguration convert = getBimServer().getSConverter().convertFromSObject(modelCompare, session);
 			return session.executeAndCommitAction(new AddModelCompareDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), convert));
@@ -705,7 +705,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public Long addModelMerger(SModelMergerPluginConfiguration modelMerger) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			ModelMergerPluginConfiguration convert = getBimServer().getSConverter().convertFromSObject(modelMerger, session);
 			return session.executeAndCommitAction(new AddModelMergerDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), convert));
@@ -721,7 +721,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		if (oid == -1) {
 			return null;
 		}
-		try (DatabaseSession session = getBimServer().getDatabase().createReadOnlySession()) {
+		try (DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY)) {
 			PluginDescriptor pluginDescriptor = session.get(oid, OldQuery.getDefault());
 			if (pluginDescriptor == null) {
 				throw new UserException("No PluginDescriptor found with oid " + oid);
@@ -742,7 +742,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		if (oid == -1) {
 			return null;
 		}
-		try (DatabaseSession session = getBimServer().getDatabase().createReadOnlySession()) {
+		try (DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY)) {
 			PluginDescriptor pluginDescriptor = session.get(oid, OldQuery.getDefault());
 			if (pluginDescriptor == null) {
 				throw new UserException("No PluginDescriptor found with oid " + oid);
@@ -760,7 +760,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	@Override
 	public void setPluginSettings(Long poid, SObjectType settings) throws ServerException, UserException {
-		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+		try (DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE)) {
 			ObjectType convertedSettings = getBimServer().getSConverter().convertFromSObject(settings, session);
 			SetPluginSettingsDatabaseAction action = new SetPluginSettingsDatabaseAction(getBimServer(), session, getInternalAccessMethod(), poid, convertedSettings);
 			session.executeAndCommitAction(action);
@@ -768,7 +768,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 			handleException(e);
 		}
 
-		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+		try (DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE)) {
 			PluginConfiguration pluginConfiguration = session.get(StorePackage.eINSTANCE.getPluginConfiguration(), poid, OldQuery.getDefault());
 			if (pluginConfiguration instanceof InternalServicePluginConfiguration) {
 				ServicePlugin servicePlugin = getBimServer().getPluginManager().getServicePlugin(pluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
@@ -784,7 +784,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	@Override
 	public void setPluginSystemSettings(Long poid, SObjectType settings) throws ServerException, UserException {
-		try (DatabaseSession session = getBimServer().getDatabase().createSession()) {
+		try (DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE)) {
 			ObjectType convertedSettings = getBimServer().getSConverter().convertFromSObject(settings, session);
 			SetPluginSystemSettingsDatabaseAction action = new SetPluginSystemSettingsDatabaseAction(getBimServer(), session, getInternalAccessMethod(), poid, convertedSettings);
 			session.executeAndCommitAction(action);
@@ -810,7 +810,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SSerializerPluginConfiguration> getAllSerializers(Boolean onlyEnabled) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			UserSettings userSettings = getUserSettings(session);
 			List<SSerializerPluginConfiguration> sSerializers = new ArrayList<SSerializerPluginConfiguration>();
@@ -832,7 +832,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SWebModulePluginConfiguration> getAllWebModules(Boolean onlyEnabled) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			EList<WebModulePluginConfiguration> webModules = getBimServer().getServerSettingsCache().getServerSettings().getWebModules();
 			List<SWebModulePluginConfiguration> serializers = getBimServer().getSConverter().convertToSListWebModulePluginConfiguration(webModules);
@@ -849,7 +849,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public Long addSerializer(SSerializerPluginConfiguration serializer) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SerializerPluginConfiguration convert = getBimServer().getSConverter().convertFromSObject(serializer, session);
 			return session.executeAndCommitAction(new AddSerializerDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), convert));
@@ -862,7 +862,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	public SRenderEnginePluginConfiguration getDefaultRenderEngine() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			UserSettings settings = getUserSettings(session);
 			return getBimServer().getSConverter().convertToSObject(settings.getDefaultRenderEngine());
@@ -875,7 +875,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	public SQueryEnginePluginConfiguration getDefaultQueryEngine() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			UserSettings settings = getUserSettings(session);
 			return getBimServer().getSConverter().convertToSObject(settings.getDefaultQueryEngine());
@@ -888,7 +888,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	public SModelComparePluginConfiguration getDefaultModelCompare() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			UserSettings settings = getUserSettings(session);
 			return getBimServer().getSConverter().convertToSObject(settings.getDefaultModelCompare());
@@ -901,7 +901,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	public SModelMergerPluginConfiguration getDefaultModelMerger() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			UserSettings settings = getUserSettings(session);
 			return getBimServer().getSConverter().convertToSObject(settings.getDefaultModelMerger());
@@ -914,7 +914,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	public SSerializerPluginConfiguration getDefaultSerializer() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			UserSettings settings = getUserSettings(session);
 			return getBimServer().getSConverter().convertToSObject(settings.getDefaultSerializer());
@@ -933,7 +933,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	public SObjectIDMPluginConfiguration getDefaultObjectIDM() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			UserSettings settings = getUserSettings(session);
 			return getBimServer().getSConverter().convertToSObject(settings.getDefaultObjectIDM());
@@ -946,7 +946,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	public SObjectType getPluginSettings(Long poid) throws ServerException, UserException {
 		// TODO possibly use PluginSettingsCache
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			PluginConfiguration pluginConfiguration = session.get(StorePackage.eINSTANCE.getPluginConfiguration(), poid, OldQuery.getDefault());
 			ObjectType settings = pluginConfiguration.getSettings();
@@ -960,7 +960,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	public SObjectType getPluginSystemSettings(Long poid) throws ServerException, UserException {
 		// TODO possibly use PluginSettingsCache
-		try (DatabaseSession session = getBimServer().getDatabase().createReadOnlySession()) {
+		try (DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY)) {
 			PluginDescriptor pluginDescriptor = session.get(StorePackage.eINSTANCE.getPluginDescriptor(), poid, OldQuery.getDefault());
 			ObjectType settings = pluginDescriptor.getSettings();
 			return getBimServer().getSConverter().convertToSObject(settings);
@@ -971,7 +971,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	public void setDefaultRenderEngine(final Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), new UserSettingsSetter() {
 				@Override
@@ -989,7 +989,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	public void setDefaultQueryEngine(final Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), new UserSettingsSetter() {
 				@Override
@@ -1017,7 +1017,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SSerializerPluginConfiguration> getAllSerializersForPoids(Boolean onlyEnabled, Set<Long> poids) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			Set<Schema> uniqueSchemas = new HashSet<>();
 			for (Long poid : poids) {
@@ -1096,7 +1096,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SSerializerPluginConfiguration> getAllSerializersForRoids(Boolean onlyEnabled, Set<Long> roids) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			Set<Long> poids = new HashSet<>();
 			for (Long roid : roids) {
@@ -1116,7 +1116,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	public void setDefaultModelCompare(final Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), new UserSettingsSetter() {
 				@Override
@@ -1134,7 +1134,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	public void setDefaultModelMerger(final Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), new UserSettingsSetter() {
 				@Override
@@ -1161,7 +1161,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	public void setDefaultSerializer(final Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), new UserSettingsSetter() {
 				@Override
@@ -1177,28 +1177,10 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		}
 	}
 
-	public void setDefaultObjectIDM(final Long oid) throws ServerException, UserException {
-		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
-		try {
-			SetUserSettingDatabaseAction action = new SetUserSettingDatabaseAction(session, getInternalAccessMethod(), getAuthorization(), new UserSettingsSetter() {
-				@Override
-				public void set(UserSettings userSettings) {
-					userSettings.setDefaultObjectIDM(find(userSettings.getObjectIDMs(), oid));
-				}
-			});
-			session.executeAndCommitAction(action);
-		} catch (BimserverDatabaseException e) {
-			handleException(e);
-		} finally {
-			session.close();
-		}
-	}
-
 	@Override
 	public List<SDeserializerPluginConfiguration> getAllDeserializers(Boolean onlyEnabled) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			UserSettings userSettings = getUserSettings(session);
 			EList<DeserializerPluginConfiguration> deserializers = userSettings.getDeserializers();
@@ -1221,7 +1203,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public SWebModulePluginConfiguration getWebModuleById(Long oid) throws ServerException, UserException {
 		requireAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return getBimServer().getSConverter().convertToSObject(session.executeAndCommitAction(new GetWebModuleByIdDatabaseAction(session, getInternalAccessMethod(), oid)));
 		} catch (Exception e) {
@@ -1236,7 +1218,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		// Not checking for real authentication here because a remote service
 		// should be able to use a serializer for download call
 		requireAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return getBimServer().getSConverter()
 					.convertToSObject(session.executeAndCommitAction(new GetSerializerByPluginClassNameDatabaseAction(session, getAuthorization(), getInternalAccessMethod(), pluginClassName)));
@@ -1268,7 +1250,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public SInternalServicePluginConfiguration getInternalServiceById(Long oid) throws ServerException, UserException {
 		requireAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			InternalServicePluginConfiguration internalPlugin = session.executeAndCommitAction(
 					new GetByIdDatabaseAction<InternalServicePluginConfiguration>(session, getInternalAccessMethod(), oid, StorePackage.eINSTANCE.getInternalServicePluginConfiguration()));
@@ -1287,7 +1269,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public void updateInternalService(SInternalServicePluginConfiguration internalService) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			InternalServicePluginConfiguration convertFromSObject = session.get(internalService.getOid(), OldQuery.getDefault());
 			getBimServer().getSConverter().convertFromSObject(internalService, convertFromSObject, session);
@@ -1302,7 +1284,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public Long addInternalService(SInternalServicePluginConfiguration internalService) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			return session.executeAndCommitAction(new AddInternalServiceDatabaseAction(getBimServer(), session, getInternalAccessMethod(), getAuthorization(),
 					getBimServer().getSConverter().convertFromSObject(internalService, session)));
@@ -1316,7 +1298,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public void deleteInternalService(Long oid) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			session.executeAndCommitAction(new DeleteInternalServiceDatabaseAction(session, getInternalAccessMethod(), oid));
 		} catch (Exception e) {
@@ -1329,7 +1311,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SInternalServicePluginConfiguration> getAllInternalServices(Boolean onlyEnabled) throws UserException, ServerException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			UserSettings userSettings = getUserSettings(session);
 			EList<InternalServicePluginConfiguration> services2 = userSettings.getServices();
@@ -1348,7 +1330,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		if (oid == -1) {
 			return null;
 		}
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			PluginDescriptor pluginDescriptor = session.get(oid, OldQuery.getDefault());
 			return getBimServer().getSConverter().convertToSObject(pluginDescriptor);
@@ -1361,7 +1343,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	@Override
 	public SPluginDescriptor getPluginDescriptorByName(String name) throws ServerException, UserException {
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			List<PluginDescriptor> pluginDescriptors = session.getAllOfType(StorePackage.eINSTANCE.getPluginDescriptor(), PluginDescriptor.class, OldQuery.getDefault());
 			for (PluginDescriptor pluginDescriptor : pluginDescriptors) {
@@ -1380,7 +1362,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SDeserializerPluginConfiguration> getAllDeserializersForProject(Boolean onlyEnabled, Long poid) throws ServerException, UserException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			Project project = session.get(poid, OldQuery.getDefault());
 
@@ -1420,7 +1402,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SPluginBundle> getAvailablePluginBundles() throws UserException, ServerException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return session.executeAndCommitAction(
 					new GetAvailablePluginBundles(session, getInternalAccessMethod(), getBimServer(), getBimServer().getServerSettingsCache().getServerSettings().isPluginStrictVersionChecking()));
@@ -1460,7 +1442,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	public void installPluginBundleFromUrl(String url, Boolean installAllPluginsForAllUsers, Boolean installAllPluginsForNewUsers) throws UserException, ServerException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			byte[] data = NetUtils.getContentAsBytes(new URL(url), 5000);
 			session.executeAndCommitAction(new InstallPluginBundleFromBytes(session, getInternalAccessMethod(), getBimServer(), data, installAllPluginsForAllUsers, installAllPluginsForNewUsers));
@@ -1473,7 +1455,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	public void updatePluginBundle(String repository, String groupId, String artifactId, String version) throws UserException, ServerException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			session.executeAndCommitAction(new UpdatePluginBundle(session, getInternalAccessMethod(), getBimServer(), repository, groupId, artifactId, version));
 		} catch (Exception e) {
@@ -1487,7 +1469,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	public List<SPluginBundle> getInstalledPluginBundles() throws UserException, ServerException {
 		// TODO make sure the database oid's are also coming in with this
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return session.executeAndCommitAction(
 					new GetInstalledPluginBundles(session, getInternalAccessMethod(), getBimServer(), getBimServer().getServerSettingsCache().getServerSettings().isPluginStrictVersionChecking()));
@@ -1501,7 +1483,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public void uninstallPluginBundle(String repository, String groupId, String artifactId, String version) throws UserException, ServerException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			session.executeAndCommitAction(new UninstallPluginBundle(session, getInternalAccessMethod(), getBimServer(), repository, groupId, artifactId, version));
 		} catch (Exception e) {
@@ -1514,7 +1496,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SPluginInformation> getPluginInformation(String repository, String groupId, String artifactId, String version) throws UserException, ServerException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return session.executeAndCommitAction(new GetPluginInformation(session, getInternalAccessMethod(), getBimServer(), repository, groupId, artifactId, version));
 		} catch (Exception e) {
@@ -1527,7 +1509,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public SPluginBundleVersion getInstalledPluginBundle(Long oid) throws UserException, ServerException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return session.executeAndCommitAction(new GetInstalledPluginBundle(session, getInternalAccessMethod(), getBimServer(), oid));
 		} catch (Exception e) {
@@ -1540,7 +1522,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public SPluginBundle getPluginBundle(String repository, String groupId, String artifactId) throws UserException, ServerException {
 		requireRealUserAuthentication();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return session.executeAndCommitAction(new GetPluginBundle(session, getInternalAccessMethod(), getBimServer(), repository, groupId, artifactId,
 					getBimServer().getServerSettingsCache().getServerSettings().isPluginStrictVersionChecking()));
@@ -1553,7 +1535,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	@Override
 	public SPluginBundleVersion getPluginBundleVersionById(Long pbid) throws UserException, ServerException {
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return session.executeAndCommitAction(new GetPluginBundleVersionById(session, getInternalAccessMethod(), getBimServer(), pbid));
 		} catch (Exception e) {
@@ -1574,7 +1556,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	@Override
 	public List<SPluginDescriptor> listPluginsInBundle(Long pluginBundleVersionOid) throws ServerException, UserException {
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return getBimServer().getSConverter()
 					.convertToSListPluginDescriptor(session.executeAndCommitAction(new ListPluginsInBundle(session, getInternalAccessMethod(), getBimServer(), pluginBundleVersionOid)));
@@ -1587,7 +1569,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 
 	@Override
 	public List<SInternalServicePluginConfiguration> getAllInternalServicesOfService(String name, Boolean onlyEnabled) throws UserException, ServerException {
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			return getBimServer().getSConverter().convertToSListInternalServicePluginConfiguration(
 					session.executeAndCommitAction(new GetAllInternalServicesOfService(session, getInternalAccessMethod(), getBimServer(), getCurrentUser(), name)));

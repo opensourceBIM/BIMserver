@@ -20,6 +20,7 @@ package org.bimserver.notifications;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.OperationType;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
@@ -35,7 +36,7 @@ public class NewProjectNotification extends Notification {
 	@Override
 	public void process() throws UserException, ServerException, BimserverDatabaseException {
 		NewProjectTopic newProjectTopic = getBimServer().getNotificationsManager().getNewProjectTopic();
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			if (newProjectTopic != null) {
 				newProjectTopic.process(session, poid, this);

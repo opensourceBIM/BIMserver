@@ -353,7 +353,7 @@ public class BimServer implements BasicServerInfoProvider {
 					public void pluginStateChanged(PluginContext pluginContext, boolean enabled) {
 						// Reflect this change also in the database
 						Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginDescriptor_PluginClassName(), new StringLiteral(pluginContext.getPlugin().getClass().getName()));
-						DatabaseSession session = bimDatabase.createSession();
+						DatabaseSession session = bimDatabase.createSession(OperationType.POSSIBLY_WRITE);
 						try {
 							Map<Long, PluginDescriptor> pluginsFound = session.query(pluginCondition, PluginDescriptor.class, OldQuery.getDefault());
 							if (pluginsFound.size() == 0) {
@@ -378,7 +378,7 @@ public class BimServer implements BasicServerInfoProvider {
 					@Override
 					public long pluginBundleUpdated(PluginBundle pluginBundle) {
 						SPluginBundleVersion sPluginBundleVersion = pluginBundle.getPluginBundleVersion();
-						try (DatabaseSession session = bimDatabase.createSession()) {
+						try (DatabaseSession session = bimDatabase.createSession(OperationType.POSSIBLY_WRITE)) {
 							PluginBundleVersion current = null;
 							IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getPluginBundleVersion(), OldQuery.getDefault());
 							for (PluginBundleVersion pbv : allOfType.getAll(PluginBundleVersion.class)) {
@@ -414,7 +414,7 @@ public class BimServer implements BasicServerInfoProvider {
 					
 					@Override
 					public void pluginUpdated(long pluginBundleVersionId, PluginContext newPluginContext, SPluginInformation sPluginInformation) throws BimserverDatabaseException {
-						try (DatabaseSession session = bimDatabase.createSession()) {
+						try (DatabaseSession session = bimDatabase.createSession(OperationType.POSSIBLY_WRITE)) {
 							Plugin plugin = newPluginContext.getPlugin();
 							
 							Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginDescriptor_Identifier(), new StringLiteral(newPluginContext.getIdentifier()));
@@ -559,7 +559,7 @@ public class BimServer implements BasicServerInfoProvider {
 					public void pluginUninstalled(PluginContext pluginContext) {
 						// Reflect this change also in the database
 						Condition pluginCondition = new AttributeCondition(StorePackage.eINSTANCE.getPluginDescriptor_Identifier(), new StringLiteral(pluginContext.getIdentifier()));
-						DatabaseSession session = bimDatabase.createSession();
+						DatabaseSession session = bimDatabase.createSession(OperationType.POSSIBLY_WRITE);
 						try {
 							Map<Long, PluginDescriptor> pluginsFound = session.query(pluginCondition, PluginDescriptor.class, OldQuery.getDefault());
 							if (pluginsFound.size() == 0) {
@@ -600,7 +600,7 @@ public class BimServer implements BasicServerInfoProvider {
 
 					@Override
 					public long pluginBundleInstalled(PluginBundle pluginBundle) {
-						try (DatabaseSession session = bimDatabase.createSession()) {
+						try (DatabaseSession session = bimDatabase.createSession(OperationType.POSSIBLY_WRITE)) {
 							PluginBundleVersion current = null;
 							IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getPluginBundleVersion(), OldQuery.getDefault());
 							for (PluginBundleVersion pbv : allOfType.getAll(PluginBundleVersion.class)) {
@@ -1132,7 +1132,7 @@ public class BimServer implements BasicServerInfoProvider {
 
 			renderEnginePools = new RenderEnginePools(this, renderEnginePoolFactory);
 			
-			session = bimDatabase.createSession();
+			session = bimDatabase.createSession(OperationType.POSSIBLY_WRITE);
 //			createDatabaseObjects(session);
 			
 			ServerSettings serverSettings = serverSettingsCache.getServerSettings();
@@ -1238,7 +1238,7 @@ public class BimServer implements BasicServerInfoProvider {
 			bimServerClientFactory = new DirectBimServerClientFactory<ServiceInterface>(serverSettingsCache.getServerSettings().getSiteAddress(), serviceFactory, servicesMap, pluginManager, metaDataManager);
 			pluginManager.setBimServerClientFactory(bimServerClientFactory);
 			
-			try (DatabaseSession session2 = bimDatabase.createReadOnlySession()) {
+			try (DatabaseSession session2 = bimDatabase.createSession(OperationType.READ_ONLY)) {
 				IfcModelInterface pluginBundleVersions = session2.getAllOfType(StorePackage.eINSTANCE.getPluginBundleVersion(), OldQuery.getDefault());
 				for (PluginBundleVersion pluginBundleVersion : pluginBundleVersions.getAll(PluginBundleVersion.class)) {
 					if (pluginBundleVersion.getType() == PluginBundleType.MAVEN || pluginBundleVersion.getType() == PluginBundleType.LOCAL) {
@@ -1293,7 +1293,7 @@ public class BimServer implements BasicServerInfoProvider {
 	 * @throws BimserverLockConflictException
 	 */
 	public void activateServices() throws BimserverDatabaseException, BimserverLockConflictException {
-		try (DatabaseSession session = bimDatabase.createReadOnlySession()) {
+		try (DatabaseSession session = bimDatabase.createSession(OperationType.READ_ONLY)) {
 			IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getUser(), OldQuery.getDefault());
 			for (User user : allOfType.getAll(User.class)) {
 				updateUserSettings(session, user);

@@ -37,6 +37,7 @@ import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.database.BimDatabase;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
@@ -125,7 +126,7 @@ public class BimServerImporter {
 			LOGGER.info("Importing...");
 			remoteClient = factory.create(new UsernamePasswordAuthenticationInfo(username, password));
 			final BimDatabase database = bimServer.getDatabase();
-			DatabaseSession databaseSession = database.createSession();
+			DatabaseSession databaseSession = database.createSession(OperationType.POSSIBLY_WRITE);
 			try {
 				LOGGER.info("Users...");
 				for (SUser user : remoteClient.getServiceInterface().getAllUsers()) {
@@ -197,7 +198,7 @@ public class BimServerImporter {
 							SDeserializerPluginConfiguration desserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", sProject.getOid());
 							client.checkinSync(sProject.getOid(), key.comment, desserializer.getOid(), false, key.file);
 							SProject updatedProject = client.getServiceInterface().getProjectByPoid(sProject.getOid());
-							DatabaseSession databaseSession = database.createSession();
+							DatabaseSession databaseSession = database.createSession(OperationType.POSSIBLY_WRITE);
 							try {
 								LOGGER.info("Done");
 								Project project = databaseSession.get(updatedProject.getOid(), OldQuery.getDefault());

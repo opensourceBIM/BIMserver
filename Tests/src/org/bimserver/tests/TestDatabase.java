@@ -29,6 +29,7 @@ import org.bimserver.database.DatabaseRestartRequiredException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.KeyValueStore;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.database.berkeley.BerkeleyKeyValueStore;
 import org.bimserver.database.berkeley.DatabaseInitException;
 import org.bimserver.database.migrations.InconsistentModelsException;
@@ -81,7 +82,7 @@ public class TestDatabase {
 	}
 	
 	private void checkLists2() {
-		DatabaseSession session = database.createSession();
+		DatabaseSession session = database.createSession(OperationType.READ_WRITE);
 		long uoid = -1;
 		try {
 			User user = session.create(User.class);
@@ -97,7 +98,7 @@ public class TestDatabase {
 			e.printStackTrace();
 		} finally {
 			session.close();
-			session = database.createSession();
+			session = database.createSession(OperationType.READ_WRITE);
 			try {
 				User user = session.get(uoid, OldQuery.getDefault());
 				UserSettings userSettings = user.getUserSettings();
@@ -114,7 +115,7 @@ public class TestDatabase {
 	}
 	
 	private void checkLists3() {
-		DatabaseSession session = database.createSession();
+		DatabaseSession session = database.createSession(OperationType.READ_WRITE);
 		long xid = -1;
 		try {
 			User user = session.create(User.class);
@@ -132,7 +133,7 @@ public class TestDatabase {
 			e.printStackTrace();
 		} finally {
 			session.close();
-			session = database.createSession();
+			session = database.createSession(OperationType.READ_WRITE);
 			try {
 				SerializerPluginConfiguration p1 = session.get(xid, OldQuery.getDefault());
 				UserSettings userSettings = p1.getUserSettings();
@@ -148,7 +149,7 @@ public class TestDatabase {
 	}
 	
 	private void checkLists() {
-		DatabaseSession session = database.createSession();
+		DatabaseSession session = database.createSession(OperationType.READ_WRITE);
 		long uoid = -1;
 		try {
 			Project p1 = session.create(Project.class);
@@ -166,7 +167,7 @@ public class TestDatabase {
 			e.printStackTrace();
 		} finally {
 			session.close();
-			session = database.createSession();
+			session = database.createSession(OperationType.READ_WRITE);
 			try {
 				User user = session.get(uoid, OldQuery.getDefault());
 				for (Project p : user.getHasRightsOn()) {
@@ -181,7 +182,7 @@ public class TestDatabase {
 	}
 
 	private void removeWithOid() {
-		DatabaseSession session = database.createSession();
+		DatabaseSession session = database.createSession(OperationType.READ_WRITE);
 		try {
 			Project p = session.get(StorePackage.eINSTANCE.getProject(), poid, OldQuery.getDefault());
 			User u = session.get(StorePackage.eINSTANCE.getUser(), uoid, OldQuery.getDefault());
@@ -202,7 +203,7 @@ public class TestDatabase {
 	
 	@SuppressWarnings("unused")
 	private void removeWithAllOfType() {
-		DatabaseSession session = database.createSession();
+		DatabaseSession session = database.createSession(OperationType.READ_WRITE);
 		try {
 			List<User> users = session.getAllOfType(StorePackage.eINSTANCE.getUser(), User.class, OldQuery.getDefault());
 			List<Project> projects = session.getAllOfType(StorePackage.eINSTANCE.getProject(), Project.class, OldQuery.getDefault());
@@ -233,7 +234,7 @@ public class TestDatabase {
 	}
 
 	private void checkWithAllOfType() {
-		DatabaseSession session = database.createSession();
+		DatabaseSession session = database.createSession(OperationType.READ_WRITE);
 		try {
 			List<User> users = session.getAllOfType(StorePackage.eINSTANCE.getUser(), User.class, OldQuery.getDefault());
 			for (User user : users) {
@@ -258,7 +259,7 @@ public class TestDatabase {
 	}
 
 	private void create() {
-		DatabaseSession session = database.createSession();
+		DatabaseSession session = database.createSession(OperationType.READ_WRITE);
 		try {
 			Project project = session.create(Project.class);
 			poid = project.getOid();

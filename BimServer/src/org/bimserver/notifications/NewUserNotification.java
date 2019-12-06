@@ -20,6 +20,7 @@ package org.bimserver.notifications;
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.OperationType;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 
@@ -36,7 +37,7 @@ public class NewUserNotification extends Notification {
 	public void process() throws UserException, ServerException, BimserverDatabaseException {
 		NewUserTopic newUserTopic = getBimServer().getNotificationsManager().getNewUserTopic();
 		if (newUserTopic != null) {
-			DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+			DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 			try {
 				newUserTopic.process(session, uoid, this);
 			} finally {

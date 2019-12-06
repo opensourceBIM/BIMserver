@@ -20,8 +20,6 @@ package org.bimserver.database.migrations.steps;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.migrations.Migration;
 import org.bimserver.database.migrations.Schema;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EcorePackage;
 
 public class Step0042 extends Migration {
 

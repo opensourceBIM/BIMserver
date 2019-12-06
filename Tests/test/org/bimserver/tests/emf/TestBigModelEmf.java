@@ -55,6 +55,8 @@ public class TestBigModelEmf extends TestWithEmbeddedServer {
 			
 			IfcBuilding ifcBuilding = richIfcModel.createDefaultProjectStructure();
 			
+			double offsetX = 100000;
+			
 			IfcRelAggregates buildingAggregation = richIfcModel.create(IfcRelAggregates.class);
 			buildingAggregation.setRelatingObject(ifcBuilding);
 			for (int i=1; i<=10; i++) {
@@ -64,7 +66,7 @@ public class TestBigModelEmf extends TestWithEmbeddedServer {
 				ifcBuildingStorey.setElevation(3000 * i);
 				
 				IfcLocalPlacement storeyPlacement = richIfcModel.create(IfcLocalPlacement.class);
-				storeyPlacement.setRelativePlacement(richIfcModel.createBasicPosition(0, 0, i * 3000));
+				storeyPlacement.setRelativePlacement(richIfcModel.createBasicPosition(offsetX, 0D, i * 3000D));
 				ifcBuildingStorey.setObjectPlacement(storeyPlacement);
 				
 				buildingAggregation.getRelatedObjects().add(ifcBuildingStorey);

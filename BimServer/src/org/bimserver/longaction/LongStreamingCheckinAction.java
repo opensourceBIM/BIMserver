@@ -98,7 +98,7 @@ public class LongStreamingCheckinAction extends LongAction<LongCheckinActionKey>
 			});
 			this.roid = checkinDatabaseAction.getRevision().getOid();
 		} catch (Exception e) {
-			try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession()) {
+			try (DatabaseSession tmpSession = getBimServer().getDatabase().createSession(OperationType.READ_WRITE)) {
 				Project project = tmpSession.get(checkinDatabaseAction.getPoid(), OldQuery.getDefault());
 				project.setCheckinInProgress(0);
 				tmpSession.store(project);

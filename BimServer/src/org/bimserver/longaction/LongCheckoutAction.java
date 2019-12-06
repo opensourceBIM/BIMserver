@@ -19,6 +19,7 @@ package org.bimserver.longaction;
 
 import org.bimserver.BimServer;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.OperationType;
 import org.bimserver.database.actions.CheckoutDatabaseAction;
 import org.bimserver.interfaces.objects.SProgressTopicType;
 import org.bimserver.models.log.AccessMethod;
@@ -63,7 +64,7 @@ public class LongCheckoutAction extends LongDownloadOrCheckoutAction {
 	@Override
 	public void init() {
 		super.init();
-		session = getBimServer().getDatabase().createSession();
+		session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		action = new CheckoutDatabaseAction(getBimServer(), session, accessMethod, getAuthorization(), downloadParameters.getRoid(), downloadParameters.getSerializerOid());
 		action.addProgressListener(this);
 	}

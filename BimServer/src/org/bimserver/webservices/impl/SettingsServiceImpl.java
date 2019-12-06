@@ -22,6 +22,7 @@ import java.util.List;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.database.actions.ServerSettingsSetter;
 import org.bimserver.database.actions.SetServerSettingDatabaseAction;
 import org.bimserver.database.actions.SetServerSettingsDatabaseAction;
@@ -55,7 +56,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	@Override
 	public void setServiceRepositoryUrl(final String url) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
@@ -74,7 +75,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	@Override
 	public void setProtocolBuffersPort(final Integer port) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
@@ -104,7 +105,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 		if (emailSenderAddress.trim().isEmpty()) {
 			throw new UserException("Email sender address cannot be empty");
 		}
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
@@ -136,7 +137,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 		} else if (!siteAddress.startsWith("http://") && !(siteAddress.startsWith("https://"))) {
 			throw new UserException("Site Address must start with either \"http://\" or \"https://\"");
 		}
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
@@ -166,7 +167,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 		if (smtpServer.trim().isEmpty()) {
 			throw new UserException("SMTP server address cannot be empty");
 		}
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
@@ -196,7 +197,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	@Override
 	public void setHideUserListForNonAdmin(final Boolean hideUserListForNonAdmin) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
@@ -215,7 +216,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	@Override
 	public void setAllowSelfRegistration(final Boolean allowSelfRegistration) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
@@ -240,7 +241,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	@Override
 	public void setAllowUsersToCreateTopLevelProjects(final Boolean allowUsersToCreateTopLevelProjects) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
@@ -271,7 +272,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	@Override
 	public void setCheckinMergingEnabled(final Boolean checkinMergingEnabled) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
@@ -296,7 +297,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	@Override
 	public void setSendConfirmationEmailAfterRegistration(final Boolean sendConfirmationEmailAfterRegistration) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
@@ -327,7 +328,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	@Override
 	public void setCacheOutputFiles(final Boolean cacheOutputFiles) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
@@ -346,7 +347,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	@Override
 	public void setGenerateGeometryOnCheckin(final Boolean generateGeometryOnCheckin) throws ServerException, UserException {
 		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
@@ -364,7 +365,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 
 	@Override
 	public SServerSettings getServerSettings() throws ServerException, UserException {
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getServerSettings(), OldQuery.getDefault());
 			return getBimServer().getSConverter().convertToSObject(allOfType.getAll(ServerSettings.class).get(0));
@@ -377,7 +378,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 
 	@Override
 	public void setWhiteListedDomains(final List<String> domains) throws ServerException, UserException {
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
@@ -400,7 +401,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 		if (getBimServer().getServerInfo().getServerState() != ServerState.NOT_SETUP) {
 			requireAdminAuthentication();
 		}
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SetServerSettingsDatabaseAction action = new SetServerSettingsDatabaseAction(session, getInternalAccessMethod(), serverSettings);
 			session.executeAndCommitAction(action);
@@ -415,7 +416,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 	@Override
 	public void setPluginStrictVersionChecking(Boolean strict) throws UserException, ServerException {
 		requireAdminAuthenticationAndRunningServer();
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
@@ -436,7 +437,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 		if (getBimServer().getServerInfo().getServerState() != ServerState.NOT_SETUP) {
 			requireAdminAuthentication();
 		}
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
@@ -457,7 +458,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 		if (getBimServer().getServerInfo().getServerState() != ServerState.NOT_SETUP) {
 			requireAdminAuthentication();
 		}
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override
@@ -478,7 +479,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 		if (getBimServer().getServerInfo().getServerState() != ServerState.NOT_SETUP) {
 			requireAdminAuthentication();
 		}
-		DatabaseSession session = getBimServer().getDatabase().createSession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {
 				@Override

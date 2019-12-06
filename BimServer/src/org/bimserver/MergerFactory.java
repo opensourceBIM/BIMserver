@@ -34,25 +34,20 @@ public class MergerFactory {
 	}
 
 	public org.bimserver.plugins.modelmerger.ModelMerger createMerger(DatabaseSession databaseSession, Long currentUoid) throws MergeException, BimserverDatabaseException {
-		DatabaseSession session = bimServer.getDatabase().createSession();
-		try {
-			User user = databaseSession.get(StorePackage.eINSTANCE.getUser(), currentUoid, OldQuery.getDefault());
-			UserSettings userSettings = user.getUserSettings();
+		User user = databaseSession.get(StorePackage.eINSTANCE.getUser(), currentUoid, OldQuery.getDefault());
+		UserSettings userSettings = user.getUserSettings();
 
-			ModelMergerPluginConfiguration modelMergerObject = userSettings.getDefaultModelMerger();
-			if (modelMergerObject != null) {
-				ModelMergerPlugin modelMergerPlugin = bimServer.getPluginManager().getModelMergerPlugin(modelMergerObject.getPluginDescriptor().getPluginClassName(), true);
-				if (modelMergerPlugin != null) {
-					org.bimserver.plugins.modelmerger.ModelMerger modelMerger = modelMergerPlugin.createModelMerger(bimServer.getPluginSettingsCache().getPluginSettings(modelMergerObject.getOid()));
-					return modelMerger;
-				} else {
-					throw new MergeException("No Model Merger found " + modelMergerObject.getPluginDescriptor().getPluginClassName());
-				}
+		ModelMergerPluginConfiguration modelMergerObject = userSettings.getDefaultModelMerger();
+		if (modelMergerObject != null) {
+			ModelMergerPlugin modelMergerPlugin = bimServer.getPluginManager().getModelMergerPlugin(modelMergerObject.getPluginDescriptor().getPluginClassName(), true);
+			if (modelMergerPlugin != null) {
+				org.bimserver.plugins.modelmerger.ModelMerger modelMerger = modelMergerPlugin.createModelMerger(bimServer.getPluginSettingsCache().getPluginSettings(modelMergerObject.getOid()));
+				return modelMerger;
 			} else {
-				throw new MergeException("No configured Model Merger found");
+				throw new MergeException("No Model Merger found " + modelMergerObject.getPluginDescriptor().getPluginClassName());
 			}
-		} finally {
-			session.close();
+		} else {
+			throw new MergeException("No configured Model Merger found");
 		}
 	}
 }

@@ -34,6 +34,7 @@ import org.bimserver.client.Channel;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.database.OldQuery.Deep;
+import org.bimserver.database.OperationType;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.BasicIfcModel;
@@ -105,7 +106,7 @@ public class NewRevisionNotification extends Notification {
 
 	@Override
 	public void process() throws BimserverDatabaseException, UserException, ServerException {
-		DatabaseSession session = getBimServer().getDatabase().createReadOnlySession();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			Project project = session.get(StorePackage.eINSTANCE.getProject(), poid, OldQuery.getDefault());
 			if (project == null) {

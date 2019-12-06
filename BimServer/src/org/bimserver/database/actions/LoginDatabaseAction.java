@@ -71,19 +71,25 @@ public class LoginDatabaseAction extends BimDatabaseAction<String> {
 					throw new UserException("System user cannot login");
 				}
 				Authorization authorization = null;
+				
+				int sessionTimeOutSeconds = 60 * 10;
+				boolean migrationRequired = bimServer.getDatabase().getMigrator().migrationRequired();
+				if (!migrationRequired) {
+					sessionTimeOutSeconds = bimServer.getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds();
+				}
 				if (user.getUserType() == UserType.ADMIN) {
-					authorization = new AdminAuthorization(bimServer.getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS);
+					authorization = new AdminAuthorization(sessionTimeOutSeconds, TimeUnit.SECONDS);
 				} else if (user.getUserType() == UserType.MONITOR) {
-					authorization = new MonitorAuthorization(bimServer.getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS);
+					authorization = new MonitorAuthorization(sessionTimeOutSeconds, TimeUnit.SECONDS);
 				} else {
-					authorization = new UserAuthorization(bimServer.getServerSettingsCache().getServerSettings().getSessionTimeOutSeconds(), TimeUnit.SECONDS);
+					authorization = new UserAuthorization(sessionTimeOutSeconds, TimeUnit.SECONDS);
 				}
 				authorization.setUoid(user.getOid());
 				authorization.setUsername(user.getUsername());
 				String asHexToken = authorization.asHexToken(bimServer.getEncryptionKey());
 				serviceMap.setAuthorization(authorization);
 				bimServer.getAuthCache().store(asHexToken, authorization);
-				if (bimServer.getServerSettingsCache().getServerSettings().isStoreLastLogin()) {
+				if (!migrationRequired && bimServer.getServerSettingsCache().getServerSettings().isStoreLastLogin()) {
 					user.setLastSeen(new Date());
 					getDatabaseSession().store(user);
 				}

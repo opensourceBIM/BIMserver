@@ -50,6 +50,7 @@ import org.bimserver.cache.FileInputStreamDataSource;
 import org.bimserver.cache.NewDiskCacheOutputStream;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.database.queries.QueryObjectProvider;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
@@ -103,7 +104,7 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 		
 		setProgressTopic(bimServer.getNotificationsManager().createProgressTopic(SProgressTopicType.DOWNLOAD, "Download"));
 		
-		databaseSession = getBimServer().getDatabase().createReadOnlySession();
+		databaseSession = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			PackageMetaData packageMetaData = null;
 			ProjectInfo projectInfo = new ProjectInfo();

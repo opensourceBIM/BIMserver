@@ -23,6 +23,7 @@ import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.exceptions.NoSerializerFoundException;
@@ -120,7 +121,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadPa
 				IfcModelInterface ifcModel = session.executeAndCommitAction(action);
 				// Session is closed after this
 
-				DatabaseSession newSession = getBimServer().getDatabase().createReadOnlySession();
+				DatabaseSession newSession = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 				RenderEnginePlugin renderEnginePlugin = null;
 				try {
 					PluginConfiguration serializerPluginConfiguration = newSession.get(StorePackage.eINSTANCE.getPluginConfiguration(), downloadParameters.getSerializerOid(), OldQuery.getDefault());

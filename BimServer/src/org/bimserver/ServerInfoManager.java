@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.emf.IdEObject;
@@ -74,7 +75,7 @@ public class ServerInfoManager {
 		} else if (bimServer.getDatabase().getMigrator().migrationImpossible()) {
 			setServerState(ServerState.MIGRATION_IMPOSSIBLE);
 		} else {
-			DatabaseSession session = bimServer.getDatabase().createReadOnlySession();
+			DatabaseSession session = bimServer.getDatabase().createSession(OperationType.READ_ONLY);
 			try {
 				boolean adminFound = false;
 				ServerSettings settings = bimServer.getServerSettingsCache().getServerSettings();
