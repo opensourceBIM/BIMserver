@@ -118,7 +118,7 @@ public class RichIfcModel {
 		return ifcCartesianPoint;
 	}
 
-	public IfcAxis2Placement3D createBasicPosition(int i, int j, int k) throws IfcModelInterfaceException {
+	public IfcAxis2Placement3D createBasicPosition(double i, double j, double k) throws IfcModelInterfaceException {
 		IfcAxis2Placement3D axisPlacement = create(IfcAxis2Placement3D.class);
 		axisPlacement.setLocation(createIfcCartesianPoint(i, j, k));
 		
