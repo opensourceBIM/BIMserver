@@ -11,9 +11,9 @@
     <property name="hibernate.connection.password">ktree123</property>  -->
   <!--   <property name="hibernate.hbm2ddl.auto">create</property> -->
   
-    <property name="hibernate.connection.url">jdbc:mysql://157.230.175.177:3306/bimserver</property>
-    <property name="hibernate.connection.username">bimserver1</property>
-    <property name="hibernate.connection.password">BIM@$erver</property> 
+    <property name="hibernate.connection.url">jdbc:mysql://BIM_DB_HOST/bimserver</property>
+    <property name="hibernate.connection.username">BIM_DB_USER</property>
+    <property name="hibernate.connection.password">BIM_DB_PASSWORD</property> 
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.pool_size">100</property>
        <property name="show_sql">true</property>
