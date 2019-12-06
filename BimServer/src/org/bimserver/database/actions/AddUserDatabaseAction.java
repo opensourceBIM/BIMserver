@@ -162,16 +162,20 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 							if (MailSystem.isValidEmailAddress(user.getUsername())) {
 								EmailMessage message = bimServer.getMailSystem().createMessage();
 								
+								System.out.println("message::"+message);
 								String emailSenderAddress = serverSettings.getEmailSenderAddress();
 								InternetAddress addressFrom = new InternetAddress(emailSenderAddress);
+								System.out.println("addressFrom::"+addressFrom);
 								message.setFrom(addressFrom);
 								
 								InternetAddress[] addressTo = new InternetAddress[1];
 								addressTo[0] = new InternetAddress(user.getUsername());
 								message.setRecipients(Message.RecipientType.TO, addressTo);
-								
+								System.out.println("addressTo::"+addressTo[0]);
 								Map<String, Object> context = new HashMap<String, Object>();
+								context.put("email", user.getUsername());
 								context.put("name", user.getName());
+								context.put("password", password);
 								context.put("username", user.getUsername());
 								context.put("siteaddress", serverSettings.getSiteAddress());
 								context.put("validationlink", resetUrl + "&username=" + user.getUsername() + "&uoid=" + user.getOid() + "&validationtoken=" + token + "&address=" + bimServer.getServerSettingsCache().getServerSettings().getSiteAddress());
@@ -185,7 +189,8 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 								}
 								message.setContent(body, "text/html");
 								message.setSubject(subject.trim());
-								
+								System.out.println("body::"+body);
+								System.out.println("subject::"+subject);
 								LOGGER.info("Sending registration e-mail to " + user.getUsername());
 								
 								message.send();
@@ -193,6 +198,7 @@ public class AddUserDatabaseAction extends BimDatabaseAction<User> {
 						} catch (Exception e) {
 							LOGGER.error(body);
 							LOGGER.error("", e);
+							System.out.println("exception "+e);
 							throw new UserException(e);
 						}
 					}

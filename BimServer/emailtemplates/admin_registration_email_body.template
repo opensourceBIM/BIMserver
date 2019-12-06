@@ -7,10 +7,8 @@
 #parse("inc/header.template")
 Dear $name,<br/>
 
-An administrator of $siteaddress has created a BIMserver account for you.<br/>
+An administrator has created a BIMserver account for you with  below details <br/>
+Username: $email <br/> Password: $password <br/>
 
-Please click the following link to set your password:<br/>
-
-$validationlink<br/>
 
 #parse("inc/footer.template")

@@ -57,12 +57,14 @@ public class EmailMessage {
 		props.put("mail.smtp.localhost", "bimserver.org");
 		String smtpProps = serverSettings.getSmtpProtocol() == SmtpProtocol.SMTPS ? "mail.smtps.port" : "mail.smtp.port";
 		
-		props.put("mail.smtp.connectiontimeout", 10000);
-		props.put("mail.smtp.timeout", 10000);
-		props.put("mail.smtp.writetimeout", 10000);
+		props.put("mail.smtp.connectiontimeout", 100000);
+		props.put("mail.smtp.timeout", 100000);
+		props.put("mail.smtp.writetimeout", 100000);
 		props.put("mail.smtp.host", serverSettings.getSmtpServer());
 		props.put("mail.smtp.port", serverSettings.getSmtpPort());
 		props.put("mail.smtp.auth", serverSettings.getSmtpUsername() != null);
+		props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");  
+		props.setProperty("mail.smtp.port", "465");
 		
 		props.put(smtpProps, serverSettings.getSmtpPort());
 		
@@ -92,6 +94,8 @@ public class EmailMessage {
 			
 			Transport.send(message, addressTo);
 		} catch (MessagingException e) {
+			System.out.println("exception::"+e);
+			System.out.println("MessagingException:::"+e.getStackTrace());
 			LOGGER.error("Error sending email " + body + " " + e.getMessage());
 			throw new UserException("Error sending email " + e.getMessage());
 		}

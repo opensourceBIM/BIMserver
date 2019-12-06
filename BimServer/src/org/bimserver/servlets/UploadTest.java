@@ -18,10 +18,11 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.bimserver.custom.CustomBim;
 import org.bimserver.custom.HibernateUtil;
 import org.hibernate.Session;
-
-import com.google.common.io.Files;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class UploadTest extends HttpServlet {
+	private static final Logger LOGGER = LoggerFactory.getLogger(UploadTest.class);
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String poid = request.getParameter("poid");
 		String oid = request.getParameter("oid");
@@ -68,6 +69,7 @@ public class UploadTest extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		out.print("successfully uploaded");
+		LOGGER.info("successfully uploaded");
 		}
 		else
 		{
@@ -76,6 +78,7 @@ public class UploadTest extends HttpServlet {
 			
 			PrintWriter out = response.getWriter();
 			out.print("unable to upload the file");
+			LOGGER.error("unable to upload the file");
 		}
 		
 

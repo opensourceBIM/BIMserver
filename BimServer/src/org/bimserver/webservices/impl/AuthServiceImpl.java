@@ -33,9 +33,11 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.AuthInterface;
 import org.bimserver.shared.interfaces.ServiceInterface;
 import org.bimserver.webservices.ServiceMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AuthServiceImpl extends GenericServiceImpl implements AuthInterface {
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(AuthServiceImpl.class);
 	public AuthServiceImpl(ServiceMap serviceMap) {
 		super(serviceMap);
 	}
@@ -44,7 +46,10 @@ public class AuthServiceImpl extends GenericServiceImpl implements AuthInterface
 	public String login(String username, String password) throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
+			System.out.println("before login");
+			LOGGER.info("before login info ");
 			LoginDatabaseAction loginDatabaseAction = new LoginDatabaseAction(getBimServer(), session, getServiceMap(), super.getInternalAccessMethod(), username, password);
+			LOGGER.info("after login info ");
 			return session.executeAndCommitAction(loginDatabaseAction);
 		} catch (Exception e) {
 			return handleException(e);

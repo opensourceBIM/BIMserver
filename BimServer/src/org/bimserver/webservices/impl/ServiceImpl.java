@@ -29,6 +29,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLDecoder;
+import java.nio.charset.Charset;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -42,6 +43,7 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -55,6 +57,7 @@ import javax.mail.util.ByteArrayDataSource;
 
 import org.apache.commons.collections.comparators.ComparatorChain;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.apache.http.Header;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -1472,6 +1475,10 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	public SUser addUserWithPassword(String username, String password, String name, SUserType type, Boolean selfRegistration, String resetUrl) throws ServerException, UserException {
 		DatabaseSession session = getBimServer().getDatabase().createSession();
 		try {
+			
+		    password = RandomStringUtils.randomAlphabetic(8);
+		 
+		    System.out.println(password);
 			if (selfRegistration) {
 				requireSelfregistrationAllowed();
 			} else if (!getBimServer().getServerSettingsCache().getServerSettings().getAllowSelfRegistration()) {

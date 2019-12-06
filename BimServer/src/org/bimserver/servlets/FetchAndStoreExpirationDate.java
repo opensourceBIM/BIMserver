@@ -25,6 +25,7 @@ import com.google.gson.JsonParser;
 public class FetchAndStoreExpirationDate extends HttpServlet {
 	public void doPost(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
 		String message="unable ro register";
+	    JsonObject jsonObject = new JsonObject();
 		try
 		{
 		String urlParameters  = "license_number="+servletRequest.getParameter("licenseNumber");
@@ -54,14 +55,13 @@ public class FetchAndStoreExpirationDate extends HttpServlet {
 	        String content="trial version";
 	        if(json.get("statuscode").getAsInt()==200)
 	        {
-	        JsonArray resultArray = (JsonArray) json.get("result");
-	        JsonObject resultObj = (JsonObject)resultArray.get(0);
+	        JsonObject resultObj = (JsonObject) json.get("result");
 	        System.out.println(resultObj.get("valid_to"));
 	        content=resultObj.get("valid_to").getAsString();
 	        
-	        byte[] bytesEncoded = Base64.encodeBase64(content.getBytes());
+	        /*byte[] bytesEncoded = Base64.encodeBase64(content.getBytes());
 	        System.out.println("encoded value is " + new String(bytesEncoded));
-	        content=new String(bytesEncoded);
+	        content=new String(bytesEncoded);*/
 	        message="Registered successfully";
 	        }
 	        File file = new File(tempPath+File.separator+"expiration.txt");
@@ -75,8 +75,7 @@ public class FetchAndStoreExpirationDate extends HttpServlet {
                }
             
             PrintWriter  printWriter = servletResponse.getWriter();
-            JsonObject jsonObject = new JsonObject();
-    		jsonObject.addProperty("result", "successfully registered");
+    		jsonObject.addProperty("result", message);
     		printWriter.print(jsonObject);  
 		}catch (Exception e) {
 			// TODO: handle exception
