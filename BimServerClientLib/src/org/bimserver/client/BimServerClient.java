@@ -380,12 +380,9 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 			if (progress != null && progress.getState() == SActionState.AS_ERROR) {
 				throw new BimServerClientException(Joiner.on(", ").join(progress.getErrors()));
 			} else {
-				InputStream inputStream = getDownloadData(topicId);
-				try {
+				try (InputStream inputStream = getDownloadData(topicId)) {
 					IOUtils.copy(inputStream, outputStream);
 					getServiceInterface().cleanupLongAction(topicId);
-				} finally {
-					inputStream.close();
 				}
 			}
 		} catch (ServerException e) {
@@ -419,13 +416,13 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 	@Override
 	public void download(long roid, String query, long serializerOid, Path file) throws ServerException, UserException, PublicInterfaceNotFoundException, IOException {
 		Long topicId = getServiceInterface().download(Collections.singleton(roid), query, serializerOid, false);
-		InputStream downloadData = getDownloadData(topicId);
-		FileOutputStream fos = new FileOutputStream(file.toFile());
-		try {
-			IOUtils.copy(downloadData, fos);
-		} finally {
-			downloadData.close();
-			fos.close();
+		try (InputStream downloadData = getDownloadData(topicId)) {
+			FileOutputStream fos = new FileOutputStream(file.toFile());
+			try {
+				IOUtils.copy(downloadData, fos);
+			} finally {
+				fos.close();
+			}
 		}
 	}
 

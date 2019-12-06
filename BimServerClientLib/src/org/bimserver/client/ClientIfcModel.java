@@ -366,14 +366,15 @@ public class ClientIfcModel extends IfcModel implements GeometryTarget {
 			long topicId = bimServerClient.query(query, roid, serializerOid);
 			// TODO use websocket notifications
 			bimServerClient.waitForDonePreparing(topicId);
-			InputStream inputStream = bimServerClient.getDownloadData(topicId);
-			clientDebugInfo.incrementGeometryGetDownloadData();
-			try {
-				processGeometryInputStream(inputStream);
-			} catch (Throwable e) {
-				e.printStackTrace();
-			} finally {
-				bimServerClient.getServiceInterface().cleanupLongAction(topicId);
+			try (InputStream inputStream = bimServerClient.getDownloadData(topicId)) {
+				clientDebugInfo.incrementGeometryGetDownloadData();
+				try {
+					processGeometryInputStream(inputStream);
+				} catch (Throwable e) {
+					e.printStackTrace();
+				} finally {
+					bimServerClient.getServiceInterface().cleanupLongAction(topicId);
+				}
 			}
 		}
 	}
