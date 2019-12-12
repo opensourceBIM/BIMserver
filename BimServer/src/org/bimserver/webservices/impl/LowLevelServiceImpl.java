@@ -760,6 +760,8 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	
 	public String createCustomAttr(String poid,String oid,String fieldName,String fieldType,String fieldValue,String revisionId) {
 		System.out.println("inside save");
+		try
+		{
 		Session session = HibernateUtil.getSessionFactory().openSession();
  	    session.beginTransaction();
  	  
@@ -806,7 +808,11 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	    
+		}
+		catch (Exception e) {
+			System.out.println(e);
+			return "failed";
+		}
 	    
 	   // HibernateUtil.shutdown();
 		return "success";

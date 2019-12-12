@@ -5,17 +5,17 @@
 
 <hibernate-configuration>
   <session-factory>
-    <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+    <property name="hibernate.connection.driver_class"></property>
     <!--  <property name="hibernate.connection.url">jdbc:mysql://10.0.1.192:3306/bimserver</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">ktree123</property>  -->
   <!--   <property name="hibernate.hbm2ddl.auto">create</property> -->
   
-    <property name="hibernate.connection.url">jdbc:mysql://BIM_DB_HOST/bimserver</property>
-    <property name="hibernate.connection.username">BIM_DB_USER</property>
-    <property name="hibernate.connection.password">BIM_DB_PASSWORD</property> 
-    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-    <property name="hibernate.connection.pool_size">100</property>
+    <property name="hibernate.connection.url"></property>
+    <property name="hibernate.connection.username"></property>
+    <property name="hibernate.connection.password"></property> 
+    <property name="hibernate.dialect"></property>
+    <property name="hibernate.connection.pool_size"></property>
        <property name="show_sql">true</property>
         <mapping resource="CustomBim.hbm.xml"></mapping>
   </session-factory>
