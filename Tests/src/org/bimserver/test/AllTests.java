@@ -110,9 +110,9 @@ public class AllTests {
 				LocalDevPluginLoader.loadPlugins(bimServer.getPluginBundleManager(), paths);
 			} else {
 				LoggerFactory.getLogger(AllTests.class).info("Installing plugins");
-				client.getPluginInterface().installPluginBundle("http://repo1.maven.org/maven2/", "org.opensourcebim", "ifcplugins", null, null);
-				client.getPluginInterface().installPluginBundle("http://repo1.maven.org/maven2/", "org.opensourcebim", "binaryserializers", null, null);
-				client.getPluginInterface().installPluginBundle("http://repo1.maven.org/maven2/", "org.opensourcebim", "ifcopenshellplugin", null, null);
+				client.getPluginInterface().installPluginBundle("https://repo1.maven.org/maven2/", "org.opensourcebim", "ifcplugins", null, null);
+				client.getPluginInterface().installPluginBundle("https://repo1.maven.org/maven2/", "org.opensourcebim", "binaryserializers", null, null);
+				client.getPluginInterface().installPluginBundle("https://repo1.maven.org/maven2/", "org.opensourcebim", "ifcopenshellplugin", null, null);
 			}
 
 			client.disconnect();

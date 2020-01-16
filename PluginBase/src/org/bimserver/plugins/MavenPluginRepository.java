@@ -63,7 +63,7 @@ public class MavenPluginRepository {
 	public MavenPluginRepository() {
 		Settings settings = loadDefaultUserSettings();
 
-		RemoteRepository central = new RemoteRepository.Builder("central", "default", "http://repo1.maven.org/maven2/").build();
+		RemoteRepository central = new RemoteRepository.Builder("central", "default", "https://repo1.maven.org/maven2/").build();
 		repositories.add(central);
 		
 		system = newRepositorySystem();
