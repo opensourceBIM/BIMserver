@@ -103,7 +103,7 @@ public class RemotePluginRepository {
 	}
 
 	private static RemoteRepository newCentralRepository() {
-		return new RemoteRepository.Builder("central", "default", "http://central.maven.org/maven2/").build();
+		return new RemoteRepository.Builder("central", "default", "https://repo1.maven.org/maven2/").build();
 	}
 
 }
