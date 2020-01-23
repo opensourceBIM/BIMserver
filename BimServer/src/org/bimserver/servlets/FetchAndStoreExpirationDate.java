@@ -31,7 +31,7 @@ public class FetchAndStoreExpirationDate extends HttpServlet {
 		String urlParameters  = "license_number="+servletRequest.getParameter("licenseNumber");
 		byte[] postData       = urlParameters.getBytes( StandardCharsets.UTF_8 );
 		int    postDataLength = postData.length;
-		String requestUrl        = "http://157.230.175.177/api/v1/portallicense/data1";
+		String requestUrl        = "http://portal.bimfm.mu/api/v1/portallicense/data1";
 		URL    url            = new URL( requestUrl );
 		HttpURLConnection conn= (HttpURLConnection) url.openConnection();           
 		conn.setDoOutput( true );
