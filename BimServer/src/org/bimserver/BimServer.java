@@ -689,8 +689,7 @@ public class BimServer implements BasicServerInfoProvider {
 			if (!Files.exists(mavenPath)) {
 				Files.createDirectories(mavenPath);
 			}
-//			mavenPluginRepository = new MavenPluginRepository(mavenPath, "http://central.maven.org/maven2", "~/.m2/repository");
-			
+
 			OldQuery.setPackageMetaDataForDefaultQuery(metaDataManager.getPackageMetaData("store"));
 
 			bimDatabase = new Database(this, packages, keyValueStore, metaDataManager);
