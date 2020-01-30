@@ -55,6 +55,7 @@ import org.bimserver.database.queries.QueryObjectProvider;
 import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
 import org.bimserver.database.queries.om.Query;
 import org.bimserver.database.queries.om.QueryPart;
+import org.bimserver.database.queries.om.SpecialQueryType;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.interfaces.objects.SCheckoutResult;
 import org.bimserver.interfaces.objects.SProgressTopicType;
@@ -179,7 +180,13 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 							newQueryPart.addOid(next.getOid());
 							next = queryObjectProvider.next();
 						}
-						query = newQuery;
+						if (!newQueryPart.hasOids()) {
+							// When the original query has not returned any objects, we need to make sure the resulting new query is not interpreted to return all objects
+							query = new Query(packageMetaData);
+							query.setSpecialQueryType(SpecialQueryType.NONE);
+						} else {
+							query = newQuery;
+						}
 					}
 					// TODO passing a databasesession here, make sure it will be closed!!
 					QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, getBimServer(), query, roids, packageMetaData);

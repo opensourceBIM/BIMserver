@@ -24,6 +24,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.queries.om.Query;
 import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;
+import org.bimserver.database.queries.om.SpecialQueryType;
 import org.bimserver.shared.QueryContext;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -46,8 +47,12 @@ public class QueryStackFrame extends StackFrame {
 	@Override
 	public boolean process() throws BimserverDatabaseException, QueryException {
 		if (query.getSpecialQueryType() != null) {
-			queryObjectProvider.push(new AllStackFrame(queryObjectProvider, reusable));
-			return true;
+			if (query.getSpecialQueryType() == SpecialQueryType.ALL) {
+				queryObjectProvider.push(new AllStackFrame(queryObjectProvider, reusable));
+				return true;
+			} else if (query.getSpecialQueryType() == SpecialQueryType.NONE) {
+				return true;
+			}
 		}
 		if (queryIterator.hasNext()) {
 			QueryPart next = queryIterator.next();
