@@ -28,6 +28,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
-	<referencedentry exported="true" kind="lib" path="lib/cxf/cxf-2.4.4.jar" sourcepath="libsrc/apache-cxf-2.4.3-src.zip"/>
-	<referencedentry exported="true" kind="lib" path="lib/cxf/cxf-2.7.3.jar" sourcepath="libsrc/apache-cxf-2.4.3-src.zip"/>
+	<referencedentry exported="true" kind="lib" path="/BIMserver/lib/cxf/cxf-2.4.4.jar" sourcepath="libsrc/apache-cxf-2.4.3-src.zip"/>
+	<referencedentry exported="true" kind="lib" path="/BIMserver/lib/cxf/cxf-2.7.3.jar" sourcepath="libsrc/apache-cxf-2.4.3-src.zip"/>
 </classpath>
