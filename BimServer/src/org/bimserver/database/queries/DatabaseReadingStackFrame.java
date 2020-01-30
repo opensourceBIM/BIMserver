@@ -56,10 +56,10 @@ import org.slf4j.LoggerFactory;
 
 public abstract class DatabaseReadingStackFrame extends StackFrame implements ObjectProvidingStackFrame {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseReadingStackFrame.class);
-	private QueryContext reusable;
-	private QueryObjectProvider queryObjectProvider;
+	private final QueryContext reusable;
+	private final QueryObjectProvider queryObjectProvider;
 	protected HashMapVirtualObject currentObject;
-	private QueryPart queryPart;
+	private final QueryPart queryPart;
 
 	public DatabaseReadingStackFrame(QueryContext reusable, QueryObjectProvider queryObjectProvider, QueryPart queryPart) {
 		this.reusable = reusable;
