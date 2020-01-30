@@ -648,7 +648,7 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(eClass.getName() + "\n");
+		sb.append(eClass.getName() + " " + getOid() + "\n");
 		for (EStructuralFeature eStructuralFeature : map.keySet()) {
 			sb.append("\t" + eStructuralFeature.getName() + ": " + map.get(eStructuralFeature) + "\n");
 		}
