@@ -42,15 +42,15 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 public class IfcSchemaToJson {
 	public static void main(String[] args) {
 		generateGeometry();
-		generateIfc2x3tc1();
-		generateIfc4();
+		generateIfc2x3tc1(args[0]);
+		generateIfc4(args[1]);
 	}
 
-	private static void generateIfc4() {
+	private static void generateIfc4(String location) {
 		FileOutputStream fos = null;
 		try {
 			fos = new FileOutputStream(new File("www/js/ifc4.js"));
-			new IfcSchemaToJson().convert(fos, new File("C:\\Users\\Ruben de Laat\\Downloads\\ifc4-add2 (1)\\schema"), Ifc4Package.eINSTANCE);
+			new IfcSchemaToJson().convert(fos, new File(location), Ifc4Package.eINSTANCE);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -66,11 +66,11 @@ public class IfcSchemaToJson {
 		}
 	}
 
-	private static void generateIfc2x3tc1() {
+	private static void generateIfc2x3tc1(String location) {
 		FileOutputStream fos = null;
 		try {
 			fos = new FileOutputStream(new File("www/js/ifc2x3tc1.js"));
-			new IfcSchemaToJson().convert(fos, new File("C:\\Users\\Ruben de Laat\\Downloads\\IFC2x3_TC1_HTML_distribution-pset_errata"), Ifc2x3tc1Package.eINSTANCE);
+			new IfcSchemaToJson().convert(fos, new File(location), Ifc2x3tc1Package.eINSTANCE);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
