@@ -25,6 +25,7 @@ import java.util.Set;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.queries.om.CanInclude;
 import org.bimserver.database.queries.om.Include;
+import org.bimserver.database.queries.om.Include.TypeDef;
 import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.shared.HashMapVirtualObject;
@@ -65,9 +66,22 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 		}
 		if (include.getOutputTypes() != null) {
 			this.outputFilterCids = new HashSet<>();
-			for (EClass eClass : include.getOutputTypes()) {
-				short cid = queryObjectProvider.getDatabaseSession().getCidOfEClass(eClass);
-				outputFilterCids.add(cid);
+			for (TypeDef typeDef : include.getOutputTypes()) {
+				this.outputFilterCids.add(queryObjectProvider.getDatabaseSession().getCidOfEClass(typeDef.geteClass()));
+				if (typeDef.isIncludeSubTypes()) {
+					Set<EClass> allSubClasses = getPackageMetaData().getAllSubClasses(typeDef.geteClass());
+					if (typeDef.hasExcludes()) {
+						for (EClass eClass : allSubClasses) {
+							if (!typeDef.excludes(eClass)) {
+								this.outputFilterCids.add(queryObjectProvider.getDatabaseSession().getCidOfEClass(eClass));
+							}
+						}
+					} else {
+						for (EClass eClass : allSubClasses) {
+							this.outputFilterCids.add(queryObjectProvider.getDatabaseSession().getCidOfEClass(eClass));
+						}
+					}
+				}
 			}
 		}
 	}

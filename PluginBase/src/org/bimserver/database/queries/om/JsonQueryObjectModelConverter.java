@@ -349,12 +349,7 @@ public class JsonQueryObjectModelConverter {
 		}
 		if (jsonNode.has("outputType")) {
 			JsonNode typeNode = jsonNode.get("outputType");
-			if (typeNode.isTextual()) {
-				EClass eClass = packageMetaData.getEClassIncludingDependencies(typeNode.asText());
-				include.addOutputType(eClass);
-			} else {
-				throw new QueryException("\"outputType\" field mst be of type string");
-			}
+			parseOutputTypeNode(include, -1, typeNode);
 		}
 		if (jsonNode.has("outputTypes")) {
 			JsonNode typesNode = jsonNode.get("outputTypes");
@@ -365,12 +360,7 @@ public class JsonQueryObjectModelConverter {
 				}
 				for (int i=0; i<types.size(); i++) {
 					JsonNode typeNode = types.get(i);
-					if (typeNode.isTextual()) {
-						EClass eClass = packageMetaData.getEClass(typeNode.asText());
-						include.addOutputType(eClass);
-					} else {
-						throw new QueryException("\"outputTypes\"[" + i + "] field mst be of type string");
-					}
+					parseOutputTypeNode(include, i, typeNode);
 				}
 			} else {
 				throw new QueryException("\"outputTypes\" must be of type array");
@@ -476,6 +466,45 @@ public class JsonQueryObjectModelConverter {
 			}
 			
 			include.addType(eClass, typeNode.has("includeAllSubTypes") ? typeNode.get("includeAllSubTypes").asBoolean() : false, excludes);
+			Iterator<String> fieldNames = typeNode.fieldNames();
+			while (fieldNames.hasNext()) {
+				String fieldName = fieldNames.next();
+				if (!fieldName.equals("name") && !fieldName.equals("includeAllSubTypes") && !fieldName.equals("exclude")) {
+					throw new QueryException(identifier + " object cannot contain \"" + fieldName + "\" field");
+				}
+			}
+		} else {
+			throw new QueryException(identifier + " field must be of type string or of type object, is " + typeNode.toString());
+		}
+	}
+
+	private void parseOutputTypeNode(CanInclude include, int i, JsonNode typeNode) throws QueryException {
+		String identifier = i == -1 ? "outputType" : "\\outputTypes\"[" + i + "]";
+		if (typeNode.isTextual()) {
+			EClass eClass = packageMetaData.getEClassIncludingDependencies(typeNode.asText());
+			if (eClass == null) {
+				throw new QueryException("Type " + typeNode.asText() + " not found");
+			}
+			include.addOutputType(eClass, false);
+		} else if (typeNode.isObject()) {
+			if (!typeNode.has("name")) {
+				throw new QueryException(identifier + " object must have a \"name\" property");
+			}
+			EClass eClass = packageMetaData.getEClassIncludingDependencies(typeNode.get("name").asText());
+			
+			Set<EClass> excludes = null;
+			if (typeNode.has("exclude")) {
+				if (!typeNode.get("exclude").isArray()) {
+					throw new QueryException("\"exclude\" must be an array");
+				}
+				excludes = new LinkedHashSet<>();
+				ArrayNode excludeNodes = (ArrayNode) typeNode.get("exclude");
+				for (JsonNode excludeNode : excludeNodes) {
+					excludes.add(packageMetaData.getEClassIncludingDependencies(excludeNode.asText()));
+				}
+			}
+			
+			include.addOutputType(eClass, typeNode.has("includeAllSubTypes") ? typeNode.get("includeAllSubTypes").asBoolean() : false, excludes);
 			Iterator<String> fieldNames = typeNode.fieldNames();
 			while (fieldNames.hasNext()) {
 				String fieldName = fieldNames.next();

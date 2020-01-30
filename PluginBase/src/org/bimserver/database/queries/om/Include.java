@@ -66,7 +66,7 @@ public class Include extends PartOfQuery implements CanInclude {
 	}
 	
 	private Set<TypeDef> types;
-	private List<EClass> outputTypes;
+	private List<TypeDef> outputTypes;
 	private List<EReference> fields;
 	private List<EReference> fieldsDirect;
 	private List<Include> includes;
@@ -171,14 +171,28 @@ public class Include extends PartOfQuery implements CanInclude {
 //		}
 	}
 
-	public void addOutputType(EClass eClass) {
+	public void addOutputType(EClass eClass, boolean includeAllSubTypes) {
+		if (eClass == null) {
+			throw new IllegalArgumentException("eClass cannot be null");
+		}
 		if (outputTypes == null) {
 			outputTypes = new ArrayList<>();
 		}
-		outputTypes.add(eClass);
+		outputTypes.add(new TypeDef(eClass, includeAllSubTypes));
 	}
 	
-	public List<EClass> getOutputTypes() {
+	@Override
+	public void addOutputType(EClass eClass, boolean includeAllSubTypes, Set<EClass> excludedEClasses) {
+		if (eClass == null) {
+			throw new IllegalArgumentException("eClass cannot be null");
+		}
+		if (outputTypes == null) {
+			outputTypes = new ArrayList<>();
+		}
+		outputTypes.add(new TypeDef(eClass, includeAllSubTypes, excludedEClasses));
+	}
+	
+	public List<TypeDef> getOutputTypes() {
 		return outputTypes;
 	}
 	
@@ -242,8 +256,8 @@ public class Include extends PartOfQuery implements CanInclude {
 		}
 		if (hasOutputTypes()) {
 			sb.append(indent(indent) + "outputTypes\n");
-			for (EClass outputType : getOutputTypes()) {
-				sb.append(indent(indent + 1) + outputType.getName() + "\n");
+			for (TypeDef outputType : getOutputTypes()) {
+				sb.append(indent(indent + 1) + outputType.geteClass().getName() + "\n");
 			}
 		}
 	}

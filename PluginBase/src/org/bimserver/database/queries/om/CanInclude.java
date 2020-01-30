@@ -40,4 +40,6 @@ public interface CanInclude {
 	void addType(EClass eClass, boolean includeAllSubTypes, Set<EClass> excludedEClasses);
 	void addType(EClass eClass, boolean b);
 	boolean hasOids();
+	void addOutputType(EClass eClass, boolean includeAllSubTypes);
+	void addOutputType(EClass eClass, boolean includeAllSubTypes, Set<EClass> excludedEClasses);
 }

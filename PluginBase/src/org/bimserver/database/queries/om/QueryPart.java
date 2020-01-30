@@ -57,6 +57,16 @@ public class QueryPart extends PartOfQuery implements CanInclude {
 		types.add(new TypeDef(type, includeAllSubTypes));
 	}
 	
+	@Override
+	public void addOutputType(EClass eClass, boolean includeAllSubTypes) {
+		throw new UnsupportedOperationException();
+	}
+	
+	@Override
+	public void addOutputType(EClass eClass, boolean includeAllSubTypes, Set<EClass> excludedEClasses) {
+		throw new UnsupportedOperationException();
+	}
+	
 	public void addType(EClass type, boolean includeAllSubTypes, Set<EClass> excludedEClasses) {
 		if (types == null) {
 			types = new LinkedHashSet<>();
