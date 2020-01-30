@@ -299,18 +299,6 @@
                      "Axis",
                      "RefDirection"
                   ]
-            },
-            {
-               "type": "IfcLocalPlacement",
-               "fields": ["RelativePlacement", "PlacementRelTo"],
-               "includes": ["RelativePlacement", {
-                  "type": "IfcAxis2Placement3D",
-                  "fields": [
-                     "Location",
-                     "Axis",
-                     "RefDirection"
-                  ]
-               }]
             }
          ]
       },
