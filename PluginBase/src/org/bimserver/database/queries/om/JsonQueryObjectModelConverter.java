@@ -251,7 +251,7 @@ public class JsonQueryObjectModelConverter {
 			throw new QueryException("Only version " + LATEST_VERSION + " supported by this version of BIMserver");
 		}
 		query.setVersion(version);
-		query.setDoubleBuffer(fullQuery.has("doublebuffer") ? fullQuery.get("doublebuffer").asBoolean() : false);
+		query.setDoubleBuffer(fullQuery.has("doublebuffer") ? fullQuery.get("doublebuffer").asBoolean() : true);
 		if (fullQuery.has("defines")) {
 			JsonNode defines = fullQuery.get("defines");
 			if (defines instanceof ObjectNode) {
