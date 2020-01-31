@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.opensourcebim</groupId>
 	<artifactId>parent</artifactId>
-	<version>1.5.182</version>
+	<version>1.5.183-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<description>This is the parent pom, no idea why this is being released</description>
 	<properties>
@@ -12,7 +12,7 @@
 		<url>https://github.com/opensourceBIM/BIMserver.git</url>
 		<connection>scm:git:https://github.com/opensourceBIM/BIMserver.git</connection>
 		<developerConnection>scm:git:https://github.com/opensourceBIM/BIMserver.git</developerConnection>
-		<tag>v1.5.182</tag>
+		<tag>v1.5.174</tag>
 	</scm>
 	<organization>
 		<name>OpenSource BIM</name>
