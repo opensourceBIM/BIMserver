@@ -22,6 +22,7 @@ import java.util.Set;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.emf.IdEObject;
@@ -52,7 +53,7 @@ public class GetAllReadableProjectsDatabaseAction extends BimDatabaseAction<Set<
 		for (IdEObject idEObject : projectsModel.getValues()) {
 			if (idEObject instanceof Project) {
 				Project project = (Project)idEObject;
-				if ((user.getUserType() == UserType.ADMIN || (project.getState() == ObjectState.ACTIVE) && authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project))) {
+				if(!Database.STORE_PROJECT_NAME.equals(project.getName()) && (user.getUserType() == UserType.ADMIN || (project.getState() == ObjectState.ACTIVE) && authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project))) {
 					result.add(project);
 				}
 			}
