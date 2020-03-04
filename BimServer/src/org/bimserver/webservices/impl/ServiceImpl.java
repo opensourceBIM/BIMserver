@@ -318,9 +318,9 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			if (serializerPluginConfiguration == null) {
 				throw new UserException("No serializer with id " + serializerOid + " could be found");
 			}
-			if (!serializerPluginConfiguration.getPluginDescriptor().getPluginClassName().equals("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin")
-					&& !serializerPluginConfiguration.getPluginDescriptor().getPluginClassName().equals("org.bimserver.ifc.xml.serializer.IfcXmlSerializerPlugin")) {
-				throw new UserException("Only IFC or IFCXML allowed when checking out");
+			if (!serializerPluginConfiguration.getPluginDescriptor().getPluginClassName().equals("org.bimserver.ifc.step.serializer.Ifc4StepSerializerPlugin")
+					&& !serializerPluginConfiguration.getPluginDescriptor().getPluginClassName().equals("org.bimserver.ifc.step.serializer.Ifc2x3tc1StepSerializerPlugin")) {
+				throw new UserException("Only IFC allowed when checking out");
 			}
 			DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_PROJECTS);
 			downloadParameters.setRoid(roid);
