@@ -257,7 +257,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			JsonQueryObjectModelConverter jsonQueryObjectModelConverter = new JsonQueryObjectModelConverter(packageMetaData);
 			String queryNameSpace = packageMetaData.getSchema().name().toLowerCase() + "-stdlib";
 			
-			// Al references should already be direct, since this is now done in BimServer on startup, quite the hack...
+			// All references should already be direct, since this is now done in BimServer on startup, quite the hack...
 			Include objectPlacement = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ObjectPlacement", true);
 			
 			Set<EClass> classes = null;
@@ -685,30 +685,35 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	}
 	
 	private double[] createQuantizationMatrixFromBounds(Bounds bounds, float multiplierToMm) {
-		// TODO do everything in double
 		double[] matrix = Matrix.identity();
-		float scale = 32768;
+		double scale = 32768;
 		
 		Vector3f min = bounds.getMin();
 		Vector3f max = bounds.getMax();
 		
-		float[] minArray = new float[] {
-			(float) (min.getX() * multiplierToMm),
-			(float) (min.getY() * multiplierToMm),
-			(float) (min.getZ() * multiplierToMm)
+		double[] minArray = new double[] {
+			min.getX() * multiplierToMm,
+			min.getY() * multiplierToMm,
+			min.getZ() * multiplierToMm
 		};
 
-		float[] maxArray = new float[] {
-			(float) (max.getX() * multiplierToMm),
-			(float) (max.getY() * multiplierToMm),
-			(float) (max.getZ() * multiplierToMm)
+		double[] maxArray = new double[] {
+			max.getX() * multiplierToMm,
+			max.getY() * multiplierToMm,
+			max.getZ() * multiplierToMm
 		};
 		
 		// Scale the model to make sure all values fit within a 2-byte signed short
-		Matrix.scaleM(matrix, 0, (float)(scale / ((double)maxArray[0] - (double)minArray[0])), (float)(scale / ((double)maxArray[1] - (double)minArray[1])), (float)(scale / ((double)maxArray[2] - (double)minArray[2])));
+		Matrix.scaleM(matrix, 0, 
+				scale / (maxArray[0] - minArray[0]), 
+				scale / (maxArray[1] - minArray[1]),
+				scale / (maxArray[2] - minArray[2]));
 
 		// Move the model with its center to the origin
-		Matrix.translateM(matrix, 0, (float)(-((double)maxArray[0] + (double)minArray[0]) / 2f), (float)(-((double)maxArray[1] + (double)minArray[1]) / 2f), (float)(-((double)maxArray[2] + (double)minArray[2]) / 2f));
+		Matrix.translateM(matrix, 0, 
+				-(maxArray[0] + minArray[0]) / 2f, 
+				-(maxArray[1] + minArray[1]) / 2f, 
+				-(maxArray[2] + minArray[2]) / 2f);
 
 		// Scale to mm
 //		Matrix.scaleM(matrix, 0, multiplierToMm, multiplierToMm, multiplierToMm);
