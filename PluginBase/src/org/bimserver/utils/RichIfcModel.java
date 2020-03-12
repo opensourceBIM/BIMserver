@@ -147,7 +147,7 @@ public class RichIfcModel {
 		return ifcSIUnit;
 	}
 
-	public IfcBuilding createDefaultProjectStructure() throws IfcModelInterfaceException {
+	public IfcBuilding createDefaultProjectStructure(double x, double y, double z) throws IfcModelInterfaceException {
 		IfcPerson person = create(IfcPerson.class);
 		IfcOrganization organization = create(IfcOrganization.class);
 		organization.setName("Required");
@@ -174,7 +174,7 @@ public class RichIfcModel {
 		setDefaultOwnerHistory(ownerHistory);
 		
 		IfcAxis2Placement3D contextAxisPlacement = create(IfcAxis2Placement3D.class);
-		contextAxisPlacement.setLocation(createIfcCartesianPoint(0, 0, 0));
+		contextAxisPlacement.setLocation(createIfcCartesianPoint(x, y, z));
 		
 		IfcGeometricRepresentationContext representationContext = create(IfcGeometricRepresentationContext.class);
 		representationContext.setCoordinateSpaceDimension(3);

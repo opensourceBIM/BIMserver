@@ -53,13 +53,13 @@ public class TestBigModelEmf extends TestWithEmbeddedServer {
 			IfcModelInterface model = bimServerClient.newModel(newProject, true);
 			RichIfcModel richIfcModel = new RichIfcModel(model, false);
 			
-			IfcBuilding ifcBuilding = richIfcModel.createDefaultProjectStructure();
+			IfcBuilding ifcBuilding = richIfcModel.createDefaultProjectStructure(100000, 0, 0);
 			
 			double offsetX = 100000;
 			
 			IfcRelAggregates buildingAggregation = richIfcModel.create(IfcRelAggregates.class);
 			buildingAggregation.setRelatingObject(ifcBuilding);
-			for (int i=1; i<=10; i++) {
+			for (int i=1; i<=20; i++) {
 				IfcBuildingStorey ifcBuildingStorey = richIfcModel.create(IfcBuildingStorey.class);
 				ifcBuildingStorey.setName("Storey " + i);
 				ifcBuildingStorey.setCompositionType(IfcElementCompositionEnum.ELEMENT);

@@ -78,7 +78,7 @@ public class TestBigModelEmfRemote {
 			}
 			RichIfcModel richIfcModel = new RichIfcModel(model, !useLowLevelCalls);
 			
-			IfcBuilding ifcBuilding = richIfcModel.createDefaultProjectStructure();
+			IfcBuilding ifcBuilding = richIfcModel.createDefaultProjectStructure(0, 0, 0);
 			
 			IfcRelAggregates buildingAggregation = richIfcModel.create(IfcRelAggregates.class);
 			buildingAggregation.setRelatingObject(ifcBuilding);
