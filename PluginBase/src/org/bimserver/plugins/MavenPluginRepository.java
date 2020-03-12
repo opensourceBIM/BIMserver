@@ -63,9 +63,6 @@ public class MavenPluginRepository {
 	public MavenPluginRepository() {
 		Settings settings = loadDefaultUserSettings();
 
-		RemoteRepository central = new RemoteRepository.Builder("central", "default", "https://repo1.maven.org/maven2/").build();
-		repositories.add(central);
-		
 		system = newRepositorySystem();
 		String userHome = System.getProperty("user.home");
 		File localRepository = new File(settings.getLocalRepository() == null ? userHome + "/.m2/repository" : settings.getLocalRepository());
@@ -78,6 +75,8 @@ public class MavenPluginRepository {
 		local = localRepoBuilder.build();
 		repositories.add(local);
 		localRepositories.add(local);
+
+		addRepository("central", "default", "https://repo1.maven.org/maven2/");
 	}
 
 	private Settings loadDefaultUserSettings() {
