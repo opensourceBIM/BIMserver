@@ -28,6 +28,16 @@ import org.eclipse.emf.ecore.EClass;
 public interface StreamingDeserializer {
 	void init(PackageMetaData packageMetaData);
 	void setProgressReporter(ByteProgressReporter byteProgressReporter);
+	
+	
+	/**
+	 * @param inputStream
+	 * @param fileName
+	 * @param fileSize
+	 * @param reusable
+	 * @return The amount of entities read
+	 * @throws DeserializeException
+	 */
 	long read(InputStream inputStream, String fileName, long fileSize, QueryContext reusable) throws DeserializeException;
 	IfcHeader getIfcHeader();
 	Map<EClass, Integer> getSummaryMap();
