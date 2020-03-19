@@ -411,11 +411,11 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 														a1 = new double[]{list.get(0), list.get(1), list.get(2)};
 														Vector.normalize(a1);
 													} else {
-//														if (a3[0] == 1 && a3[1] == 0 && a3[2] == 0) {
+														if (a3[0] == 1 && a3[1] == 0 && a3[2] == 0) {
 															a1 = new double[]{1, 0, 0, 1};
-//														} else {
-//															a1 = new double[]{0, 1, 0, 1};
-//														}
+														} else {
+															a1 = new double[]{0, 1, 0, 1};
+														}
 													}
 													
 													double[] xVec = Vector.scalarProduct(Vector.dot(a1, a3), a3);
