@@ -391,7 +391,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 												if (mappingTarget != null) {
 													AbstractHashMapVirtualObject axis1 = mappingTarget.getDirectFeature(packageMetaData.getEReference("IfcCartesianTransformationOperator", "Axis1"));
 													AbstractHashMapVirtualObject axis2 = mappingTarget.getDirectFeature(packageMetaData.getEReference("IfcCartesianTransformationOperator", "Axis2"));
-													AbstractHashMapVirtualObject axis3 = mappingTarget.getDirectFeature(packageMetaData.getEReference("IfcCartesianTransformationOperator", "Axis3"));
+													AbstractHashMapVirtualObject axis3 = mappingTarget.getDirectFeature(packageMetaData.getEReference("IfcCartesianTransformationOperator3D", "Axis3"));
 													AbstractHashMapVirtualObject localOrigin = mappingTarget.getDirectFeature(packageMetaData.getEReference("IfcCartesianTransformationOperator", "LocalOrigin"));
 													
 													double[] a1 = null;
@@ -401,9 +401,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 													if (axis3 != null) {
 														List<Double> list = (List<Double>) axis3.get("DirectionRatios");
 														a3 = new double[]{list.get(0), list.get(1), list.get(2)};
-													} else {
-														a3 = new double[]{0, 0, 1, 1};
 														Vector.normalize(a3);
+													} else {
+														a3 = new double[]{0, 0, 1};
 													}
 
 													if (axis1 != null) {
@@ -412,9 +412,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 														Vector.normalize(a1);
 													} else {
 														if (a3[0] == 1 && a3[1] == 0 && a3[2] == 0) {
-															a1 = new double[]{1, 0, 0, 1};
+															a1 = new double[]{0, 1, 0};
 														} else {
-															a1 = new double[]{0, 1, 0, 1};
+															a1 = new double[]{1, 0, 0};
 														}
 													}
 													
@@ -427,7 +427,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 														a2 = new double[]{list.get(0), list.get(1), list.get(2)};
 														Vector.normalize(a2);
 										            } else {
-										            	a2 = new double[]{0, 1, 0, 1};
+										            	a2 = new double[]{0, 1, 0};
 										            }
 
 										            double[] tmp = Vector.scalarProduct(Vector.dot(a2, a3), a3);
