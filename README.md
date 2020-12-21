@@ -1,4 +1,4 @@
-# BIMserver
+BIMserver
 =========
 
 The Building Information Model server (short: BIMserver) enables you to store and manage the information of a construction (or other building related) project. Data is stored in the open data standard IFC. The BIMserver is not a fileserver, but it uses a model-driven architecture approach. This means that IFC data is stored as objects. You could see BIMserver as an IFC database, with special extra features like model checking, versioning, project structures, merging, etc. The main advantage of this approach is the ability to query, merge and filter the BIM-model and generate IFC output (i.e. files) on the fly.
