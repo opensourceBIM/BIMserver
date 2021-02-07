@@ -88,51 +88,15 @@ import org.bimserver.database.actions.UpdateSerializerDatabaseAction;
 import org.bimserver.database.actions.UserSettingsSetter;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.Schema;
-import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
-import org.bimserver.interfaces.objects.SInternalServicePluginConfiguration;
-import org.bimserver.interfaces.objects.SModelComparePluginConfiguration;
-import org.bimserver.interfaces.objects.SModelMergerPluginConfiguration;
-import org.bimserver.interfaces.objects.SObjectDefinition;
-import org.bimserver.interfaces.objects.SObjectIDMPluginConfiguration;
-import org.bimserver.interfaces.objects.SObjectType;
-import org.bimserver.interfaces.objects.SPluginBundle;
-import org.bimserver.interfaces.objects.SPluginBundleVersion;
-import org.bimserver.interfaces.objects.SPluginDescriptor;
-import org.bimserver.interfaces.objects.SPluginInformation;
-import org.bimserver.interfaces.objects.SQueryEnginePluginConfiguration;
-import org.bimserver.interfaces.objects.SRenderEnginePluginConfiguration;
-import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
-import org.bimserver.interfaces.objects.SWebModulePluginConfiguration;
-import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.DeserializerPluginConfiguration;
-import org.bimserver.models.store.InternalServicePluginConfiguration;
-import org.bimserver.models.store.ModelComparePluginConfiguration;
-import org.bimserver.models.store.ModelMergerPluginConfiguration;
-import org.bimserver.models.store.ObjectDefinition;
-import org.bimserver.models.store.ObjectType;
-import org.bimserver.models.store.PluginConfiguration;
-import org.bimserver.models.store.PluginDescriptor;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.QueryEnginePluginConfiguration;
-import org.bimserver.models.store.RenderEnginePluginConfiguration;
-import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.SerializerPluginConfiguration;
-import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.UserSettings;
-import org.bimserver.models.store.WebModulePluginConfiguration;
+import org.bimserver.interfaces.objects.*;
+import org.bimserver.models.store.*;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.ResourceFetcher;
 import org.bimserver.plugins.deserializers.DeserializerPlugin;
 import org.bimserver.plugins.deserializers.StreamingDeserializerPlugin;
-import org.bimserver.plugins.modelchecker.ModelCheckerPlugin;
-import org.bimserver.plugins.modelcompare.ModelComparePlugin;
-import org.bimserver.plugins.modelmerger.ModelMergerPlugin;
-import org.bimserver.plugins.queryengine.QueryEnginePlugin;
-import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.plugins.serializers.StreamingSerializerPlugin;
 import org.bimserver.plugins.services.ServicePlugin;
-import org.bimserver.plugins.web.WebModulePlugin;
 import org.bimserver.schemaconverter.SchemaConverterFactory;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
@@ -197,7 +161,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
-			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), SerializerPlugin.class.getName()));
+			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), SPluginType.SERIALIZER));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -208,10 +172,9 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SPluginDescriptor> getAllWebModulePluginDescriptors() throws UserException, ServerException {
 		requireRealUserAuthentication();
-		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
-			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), WebModulePlugin.class.getName()));
+			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), SPluginType.WEB_MODULE));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -301,7 +264,8 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
-			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), DeserializerPlugin.class.getName()));
+			SPluginType type =  SPluginType.DESERIALIZER; // change signature of GetAllPluginDescriptor to use type
+			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), SPluginType.DESERIALIZER));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -314,7 +278,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
-			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), RenderEnginePlugin.class.getName()));
+			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), SPluginType.RENDER_ENGINE));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -327,7 +291,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
-			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), QueryEnginePlugin.class.getName()));
+			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), SPluginType.QUERY_ENGINE));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -340,7 +304,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
-			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), ServicePlugin.class.getName()));
+			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), SPluginType.SERVICE));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -353,7 +317,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
-			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), ModelComparePlugin.class.getName()));
+			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), SPluginType.MODEL_COMPARE));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -366,7 +330,7 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
-			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), ModelCheckerPlugin.class.getName()));
+			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), SPluginType.MODEL_CHECKER));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {
@@ -377,10 +341,9 @@ public class PluginServiceImpl extends GenericServiceImpl implements PluginInter
 	@Override
 	public List<SPluginDescriptor> getAllModelMergerPluginDescriptors() throws ServerException, UserException {
 		requireRealUserAuthentication();
-		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
-			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), ModelMergerPlugin.class.getName()));
+			return session.executeAndCommitAction(new GetAllPluginDescriptorsDatabaseAction(session, getInternalAccessMethod(), getBimServer(), SPluginType.MODEL_MERGER));
 		} catch (Exception e) {
 			return handleException(e);
 		} finally {

@@ -27,6 +27,7 @@ import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
+import org.bimserver.interfaces.objects.SPluginType;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.PluginDescriptor;
 import org.bimserver.models.store.StorePackage;
@@ -35,13 +36,13 @@ import org.bimserver.shared.exceptions.UserException;
 
 public class GetAllPluginDescriptorsDatabaseAction extends BimDatabaseAction<List<SPluginDescriptor>>{
 
-	private String interfaceClassName;
+	private final SPluginType pluginType;
 	private BimServer bimServer;
 
-	public GetAllPluginDescriptorsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, String interfaceClassName) {
+	public GetAllPluginDescriptorsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, SPluginType searchedType) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
-		this.interfaceClassName = interfaceClassName;
+		this.pluginType = searchedType;
 	}
 
 	@Override
@@ -49,7 +50,8 @@ public class GetAllPluginDescriptorsDatabaseAction extends BimDatabaseAction<Lis
 		IfcModelInterface allOfType = getDatabaseSession().getAllOfType(StorePackage.eINSTANCE.getPluginDescriptor(), OldQuery.getDefault());
 		List<SPluginDescriptor> result = new ArrayList<SPluginDescriptor>();
 		for (PluginDescriptor pluginDescriptor : allOfType.getAll(PluginDescriptor.class)) {
-			if (pluginDescriptor.getPluginInterfaceClassName().equals(interfaceClassName)) {
+			SPluginType encounteredType = bimServer.getPluginManager().getPluginTypeFromClass(pluginDescriptor.getPluginInterfaceClassName());
+			if(encounteredType.equals(pluginType)){
 				result.add(bimServer.getSConverter().convertToSObject(pluginDescriptor));
 			}
 		}
