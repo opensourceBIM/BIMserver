@@ -193,7 +193,7 @@ public interface SettingsInterface extends PublicInterface {
 		@WebParam(name = "cacheOutputFiles", partName = "setCacheOutputFiles.cacheOutputFiles") Boolean cacheOutputFiles) throws ServerException, UserException;
 
 	/**
-	 * @param cacheOutputFiles Set whether output files (serialized version) should be cached on disk
+	 * @param generateGeometryOnCheckin Set whether geometry should be generated on checkin
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "setGenerateGeometryOnCheckin")

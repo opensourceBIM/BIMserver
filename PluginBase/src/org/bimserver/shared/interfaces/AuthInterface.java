@@ -74,7 +74,7 @@ public interface AuthInterface extends PublicInterface {
 	/**
 	 * Login with a user-token
 	 * 
-	 * @param token
+	 * @param token The token to login with
 	 * @return A token, use this token in subsequent calls. Read the documentation of the transport 
 	 * mechanism (SOAP, Protocol Buffers or JSON) to see how to send the token
 	 * @throws ServerException
@@ -86,7 +86,7 @@ public interface AuthInterface extends PublicInterface {
 
 	
 	/**
-	 * @return The User that it currently loggedin on this ServiceInterface
+	 * @return The User that it currently logged in on this ServiceInterface
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getLoggedInUser")
@@ -107,11 +107,8 @@ public interface AuthInterface extends PublicInterface {
 		@WebParam(name = "newPassword", partName = "changePassword.newPassword") String newPassword) throws ServerException, UserException;
 
 	/**
-	 * Change a User's password, not the preferred way, use requestPasswordChange for a safer version
-	 * @param uoid The ObjectID of the User
-	 * @param oldPassword The old password
-	 * @param newPassword The new password
-	 * @return Whether the password was successfully changed
+	 * Set password hash and salt for a user's password
+	 * @param uoid The ObjectID of the user
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "setHash")
@@ -122,7 +119,7 @@ public interface AuthInterface extends PublicInterface {
 	
 	/**
 	 * Request a password change, an e-mail will be send with a validation url
-	 * @param username The username of the user to change tot password for
+	 * @param username The username of the user to change the password for
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "requestPasswordChange")

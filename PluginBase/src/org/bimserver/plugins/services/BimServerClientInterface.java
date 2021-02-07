@@ -68,9 +68,7 @@ public interface BimServerClientInterface extends ServiceHolder, AutoCloseable {
 	/**
 	 * Convenience method that given you the InputStream belonging to an already started download
 	 * 
-	 * @param download
-	 * @param serializerOid
-	 * @return
+	 * @param topicId The topic ID returned from initiating the download
 	 * @throws IOException
 	 */
 	InputStream getDownloadData(long topicId) throws IOException;

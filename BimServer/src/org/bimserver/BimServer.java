@@ -1287,7 +1287,6 @@ public class BimServer implements BasicServerInfoProvider {
 	/**
 	 * Load all users from the database and their configured services. Registers each service.
 	 * 
-	 * @param session
 	 * @throws BimserverDatabaseException
 	 * @throws BimserverLockConflictException
 	 */

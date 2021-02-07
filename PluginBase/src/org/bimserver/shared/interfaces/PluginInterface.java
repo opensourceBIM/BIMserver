@@ -186,8 +186,8 @@ public interface PluginInterface extends PublicInterface {
 	List<SPluginDescriptor> getAllModelMergerPluginDescriptors() throws ServerException, UserException;
 	
 	/**
-	 * @param serializerName Name of the Serializer
-	 * @return Serializer
+	 * @param name Name of the WebModule
+	 * @return WebModule
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getWebModuleByName")
@@ -419,7 +419,7 @@ public interface PluginInterface extends PublicInterface {
 		@WebParam(name = "sid", partName = "deleteSerializer.sid") Long sid) throws ServerException, UserException;
 
 	/**
-	 * @param sid ObjectID of the Serializer to delete
+	 * @param oid ObjectID of the Serializer to delete
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "deletePluginConfiguration")
@@ -520,8 +520,8 @@ public interface PluginInterface extends PublicInterface {
 		@WebParam(name = "poid", partName = "getAllDeserializersForProject.poid") Long poid) throws ServerException, UserException;
 
 	/**
-	 * @param contentType The ContentType
-	 * @return Serializer supporting the given ContentType
+	 * @param pluginClassName The name of the plugin class
+	 * @return Serializer implementing given plugin class
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getSerializerByPluginClassName")

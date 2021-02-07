@@ -46,16 +46,17 @@ public interface MetaInterface extends PublicInterface {
 	List<SServiceInterface> getServiceInterfaces() throws ServerException, UserException;
 	
 	/**
-	 * @return A list of all the registered services
+	 * @return An SServiceInterface object containing the service information
+	 * @param serviceInterfaceName The name of the service
 	 * @throws ServerException
 	 * @throws UserException
 	 */
 	@WebMethod(action="getServiceInterface")
 	SServiceInterface getServiceInterface(
-		@WebParam(name = "getServiceInterface", partName = "getServiceInterface.serviceInterfaceName") String serviceInterfaceName) throws ServerException, UserException;
+		@WebParam(name = "serverInterfaceName", partName = "getServiceInterface.serviceInterfaceName") String serviceInterfaceName) throws ServerException, UserException;
 	
 	/**
-	 * @param serviceInterfaceName
+	 * @param serviceInterfaceName The name of the service
 	 * @return A list of all methods of the given service
 	 * @throws ServerException
 	 * @throws UserException
@@ -65,8 +66,9 @@ public interface MetaInterface extends PublicInterface {
 		@WebParam(name = "serviceInterfaceName", partName = "getServiceMethods.serviceInterfaceName") String serviceInterfaceName) throws ServerException, UserException;
 
 	/**
-	 * @param serviceInterfaceName
-	 * @return A list of all methods of the given service
+	 * @param serviceInterfaceName The name of the service
+	 * @param methodName The name of the method
+	 * @return The method with the given name of the given service
 	 * @throws ServerException
 	 * @throws UserException
 	 */
@@ -84,8 +86,8 @@ public interface MetaInterface extends PublicInterface {
 	List<SServiceType> getServiceTypes() throws ServerException, UserException;
 	
 	/**
-	 * @param serviceInterfaceName
-	 * @param serviceMethodName
+	 * @param serviceInterfaceName The name of the service
+	 * @param serviceMethodName The name of the method
 	 * @return A list of all parameters of the given method of the given service
 	 * @throws ServerException
 	 * @throws UserException

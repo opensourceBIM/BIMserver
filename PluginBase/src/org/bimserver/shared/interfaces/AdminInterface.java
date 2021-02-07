@@ -87,9 +87,9 @@ public interface AdminInterface extends PublicInterface {
 	Date getLastDatabaseReset() throws ServerException, UserException;
 
 	/**
-	 * Setup this BIMserver. This BIMserver will not be available until you execute this method successfully. You can only do this once. After initial setup, use the methods provided by the SettingsInterface to change values.
+	 * Setup this BIMserver. This BIMserver will not be available until you execute this method successfully. You can
+	 * only do this once. After initial setup, use the methods provided by the SettingsInterface to change values.
 	 * @param siteAddress The address the server will be reachable at (for example: http://demo.bimserver.org)
-	 * @param smtpServer The address of the SMTP server that wil be used for sending e-mails
 	 * @param adminName Name of the admin User (e.g. "Administrator")
 	 * @param adminUsername Username of the admin User (must be a valid e-mail address)
 	 * @param adminPassword Password of the admin User

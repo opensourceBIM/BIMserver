@@ -26,7 +26,7 @@ import org.bimserver.plugins.PluginManagerInterface;
 public interface MessagingStreamingSerializer extends Writer {
 	void init(ObjectProvider objectProvider, ProjectInfo projectInfo, PluginManagerInterface pluginManager, PackageMetaData packageMetaData) throws SerializerException;
 	/**
-	 * @param streamingSocketInterface This is where you write your messages to
+	 * @param outputStream This is where you write your messages to
 	 * @param progressReporter Report any available progress to the progressReporter
 	 * @return true if there are more messages, false if there are no more
 	 * @throws IOException

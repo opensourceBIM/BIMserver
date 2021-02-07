@@ -32,7 +32,6 @@ public interface Serializer extends StreamingReader {
 	 * 
 	 * @param model The model that will be serialized
 	 * @param projectInfo ProjectInformation that is stored in the BIMserver project
-	 * @param pluginManager PluginManager that can be used to call other plugins
 	 * @param normalizeOids Whether to normalize the oids (usually means the oid will be regenerated from 1)
 	 * @throws SerializerException
 	 */

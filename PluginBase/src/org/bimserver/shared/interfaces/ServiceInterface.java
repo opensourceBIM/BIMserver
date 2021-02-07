@@ -78,7 +78,6 @@ public interface ServiceInterface extends PublicInterface {
 	 * Terminate a long running action
 	 * 
 	 * @param topicId The actionId returned by one of the download or checkout methods
-	 * @return An SDownloadResult containing the serialized data
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "terminateLongRunningAction")
@@ -444,8 +443,8 @@ public interface ServiceInterface extends PublicInterface {
 	List<SProjectSmall> getAllProjectsSmall() throws ServerException, UserException;
 
 	/**
-	 * Checkin a new model by sending a serialized form
-	 * 
+	 * Checkin a new model by sending a serialized form, the call will wait for completion before returning
+	 *
 	 * @param poid The Project's ObjectID
 	 * @param comment A comment
 	 * @param deserializerOid ObjectId of the deserializer to use, use getAllDeserializers to get a list of available deserializers
@@ -453,7 +452,6 @@ public interface ServiceInterface extends PublicInterface {
 	 * @param fileName Name of the file
 	 * @param data The actual data
 	 * @param merge Whether to use checkin merging (this will alter your model!) DEPRICATED
-	 * @param sync Whether the call should return immediately (async) or wait for completion (sync)
 	 * @return An id, which you can use for the getCheckinState method
 	 * @throws ServerException, UserException
 	 */
@@ -467,7 +465,20 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "data", partName = "checkin.data") @XmlMimeType("application/octet-stream") DataHandler data,
 		@WebParam(name = "merge", partName = "checkin.merge") Boolean merge) throws ServerException, UserException;
 
-	@WebMethod(action = "checkinAsync")
+	/**
+	 * Checkin a new model by sending a serialized form, the call will return immediately and not wait for completion
+	 *
+	 * @param poid The Project's ObjectID
+	 * @param comment A comment
+	 * @param deserializerOid ObjectId of the deserializer to use, use getAllDeserializers to get a list of available deserializers
+	 * @param fileSize The size of the file in bytes
+	 * @param fileName Name of the file
+	 * @param data The actual data
+	 * @param merge Whether to use checkin merging (this will alter your model!) DEPRICATED
+	 * @return An id, which you can use for the getCheckinState method
+	 * @throws ServerException, UserException
+	 */
+	 @WebMethod(action = "checkinAsync")
 	Long checkinAsync(
 		@WebParam(name = "poid", partName = "checkin.poid") Long poid,
 		@WebParam(name = "comment", partName = "checkin.comment") String comment,
@@ -500,15 +511,14 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "merge", partName = "checkinInitiated.merge") Boolean merge) throws ServerException, UserException;
 	
 	/**
-	 * Checkin a new model by sending a serialized form
-	 * 
+	 * Checkin a new model from an URL, the call will wait for completion before returning
+	 *
 	 * @param poid The Project's ObjectID
 	 * @param comment A comment
 	 * @param deserializerOid ObjectId of the deserializer to use, use getAllDeserializers to get a list of available deserializers
 	 * @param fileName Name of the file
 	 * @param url A URL to the 'file'
 	 * @param merge Whether to use checkin merging (this will alter your model!)
-	 * @param sync Whether the call should return immediately (async) or wait for completion (sync)
 	 * @return An id, which you can use for the getCheckinState method
 	 * @throws ServerException, UserException
 	 */
@@ -521,6 +531,18 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "url", partName = "checkinFromUrl.url") String url,
 		@WebParam(name = "merge", partName = "checkinFromUrl.merge") Boolean merge) throws ServerException, UserException;
 
+	/**
+	 * Checkin a new model from an URL, the call will return immediately and not wait for completion
+	 *
+	 * @param poid The Project's ObjectID
+	 * @param comment A comment
+	 * @param deserializerOid ObjectId of the deserializer to use, use getAllDeserializers to get a list of available deserializers
+	 * @param fileName Name of the file
+	 * @param url A URL to the 'file'
+	 * @param merge Whether to use checkin merging (this will alter your model!)
+	 * @return An id, which you can use for the getCheckinState method
+	 * @throws ServerException, UserException
+	 */
 	@WebMethod(action = "checkinFromUrlAsync")
 	Long checkinFromUrlAsync(
 		@WebParam(name = "poid", partName = "checkinFromUrl.poid") Long poid,
@@ -974,7 +996,6 @@ public interface ServiceInterface extends PublicInterface {
 	 * Send an e-mail with the results of a compare
 	 * 
 	 * @param sCompareType How to compare (All, Only Added, Only Modified or Only Deleted)
-	 * @param sCompareIdentifier How to identify equal objects (by Guid or by Name)
 	 * @param poid The ObjectID of the Project
 	 * @param roid1 The ObjectID of the first Revision
 	 * @param roid2 The ObjectID of the second Revision
@@ -993,7 +1014,6 @@ public interface ServiceInterface extends PublicInterface {
 	/**
 	 * Get a list of query engine example keys (which you can then use for getQueryEngineExample)
 	 * 
-	 * @param onlyEnabled Whether to only include enabled query engines
 	 * @return A list of QueryEngines
 	 * @throws ServerException, UserException
 	 */
@@ -1004,7 +1024,6 @@ public interface ServiceInterface extends PublicInterface {
 	/**
 	 * Returns a query engine example (get the key from getQueryEngineExampleKeys)
 	 * 
-	 * @param onlyEnabled Whether to only include enabled query engines
 	 * @return A list of QueryEngines
 	 * @throws ServerException, UserException
 	 */
@@ -1050,7 +1069,7 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "namespace", partName = "getExtendedDataSchemaFromRepository.namespace") String namespace) throws UserException, ServerException;
 	
 	/**
-	 * @param roid ObjectID of the Revision
+	 * @param poid ObjectID of the Project
 	 * @param extendedData ExtendedData to add
 	 * @throws ServerException, UserException
 	 */
@@ -1173,7 +1192,6 @@ public interface ServiceInterface extends PublicInterface {
 	/**
 	 * @param notificationsUrl
 	 * @param serviceIdentifier
-	 * @param token
 	 * @return
 	 * @throws ServerException
 	 * @throws UserException

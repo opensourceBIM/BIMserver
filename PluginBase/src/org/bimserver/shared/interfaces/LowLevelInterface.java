@@ -151,7 +151,6 @@ public interface LowLevelInterface extends PublicInterface {
 	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
-	 * @param value New String value
 	 * @return The String value
 	 * @throws ServerException, UserException
 	 */
@@ -167,7 +166,6 @@ public interface LowLevelInterface extends PublicInterface {
 	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
-	 * @param value New String value
 	 * @return A list of Strings
 	 * @throws ServerException, UserException
 	 */
@@ -495,7 +493,7 @@ public interface LowLevelInterface extends PublicInterface {
 	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
 	 * @param attributeName Name of the attribute
-	 * @param value new Integer value
+	 * @param index Index of the value to get
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "getIntegerAttributeAtIndex")

@@ -72,7 +72,7 @@ public class RichIfcModel {
 	 * Create a decomposes relationship
 	 * 
 	 * @param parent The object that represents the nest or aggregation
-	 * @param child The objects being nested or aggregated
+	 * @param children The objects being nested or aggregated
 	 * @throws IfcModelInterfaceException
 	 */
 	public void addDecomposes(IfcObjectDefinition parent, IfcObjectDefinition... children) throws IfcModelInterfaceException {
