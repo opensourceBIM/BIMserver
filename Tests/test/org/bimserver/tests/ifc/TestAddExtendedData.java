@@ -49,7 +49,7 @@ public class TestAddExtendedData {
 			
 			SProject project = client.getServiceInterface().addProject("t2es035442t23", "ifc2x3tc1");
 			SDeserializerPluginConfiguration deserializerForExtension = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
-			SLongCheckinActionState checkinSync = client.checkinSync(project.getOid(), "initial", deserializerForExtension.getOid(), false, Paths.get("C:\\Git\\TestFiles\\TestData\\data\\AC11-FZK-Haus-IFC.ifc"));
+			SLongCheckinActionState checkinSync = client.checkinSync(project.getOid(), "initial", deserializerForExtension.getOid(), false, Paths.get("../../TestFiles/TestData/data/AC11-FZK-Haus-IFC.ifc"));
 			
 			SExtendedDataSchema extendedDataSchemaByNamespace = client.getServiceInterface().getExtendedDataSchemaByName("GEOMETRY_GENERATION_REPORT_JSON_1_1");
 			

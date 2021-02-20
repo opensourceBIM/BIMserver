@@ -21,7 +21,7 @@ public class TestCheckinUTF8From {
 				SProject project = client.getServiceInterface().addProject(RandomStringUtils.randomAlphanumeric(10), "ifc2x3tc1");
 				
 				SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
-				Path path = Paths.get("C:\\Git\\TestFiles\\TestData\\data\\174240904075130-12-泰州金融中心（全）.IFC");
+				Path path = Paths.get("../../TestFiles/TestData/data/174240904075130-12-泰州金融中心（全）.IFC");
 				client.checkinSync(project.getOid(), "test", deserializer.getOid(), path, new CheckinProgressHandler() {
 					@Override
 					public void progress(String title, int progress) {

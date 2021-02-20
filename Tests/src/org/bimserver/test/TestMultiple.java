@@ -51,7 +51,7 @@ public class TestMultiple {
 							SProject project = client.getServiceInterface().addProject("P" + new Random().nextInt(), "ifc2x3tc1");
 							SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 							long topicId = client.getServiceInterface().initiateCheckin(project.getOid(), deserializer.getOid());
-							client.checkinAsync(project.getOid(), "Test", deserializer.getOid(), false, Paths.get("C:\\Git\\TestFiles\\TestData\\data\\HITOS_070308.ifc"), topicId);
+							client.checkinAsync(project.getOid(), "Test", deserializer.getOid(), false, Paths.get("../../TestFiles/TestData/data/HITOS_070308.ifc"), topicId);
 						} catch (ServerException e) {
 							e.printStackTrace();
 						} catch (UserException e) {

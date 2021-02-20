@@ -17,10 +17,10 @@ import org.junit.Test;
 
 public class TestDeserializerErrorCode {
 	@Test
-	public void test() {
+	public void test() throws Exception {
 		try (JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080")) {
 			try (BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"))) {
-				Path path = Paths.get("C:\\Git\\TestFiles\\TestData\\data\\ADT-FZK-Haus-2005-2006.ifc");
+				Path path = Paths.get("../../TestFiles/TestData/data/ADT-FZK-Haus-2005-2006.ifc");
 				
 				try (InputStream fis = Files.newInputStream(path)) {
 					byte[] initialBytes = ByteUtils.extractHead(new BufferedInputStream(fis), 4096);
@@ -32,12 +32,8 @@ public class TestDeserializerErrorCode {
 				System.out.println("OK " + e1.getErrorCode());
 				// OK
 			} else {
-				e1.printStackTrace();
-				Assert.fail();
+        throw e1;
 			}
-		} catch (Exception e1) {
-			e1.printStackTrace();
-			Assert.fail();
-		}
+    }
 	}
 }
