@@ -13,13 +13,12 @@ import org.bimserver.plugins.deserializers.DeserializerErrorCode;
 import org.bimserver.plugins.services.CheckinProgressHandler;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ErrorCode;
-import org.bimserver.shared.exceptions.UserException;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class TestDeserializerErrorCode2 {
 	@Test
-	public void test() {
+	public void test() throws Exception {
 		try (JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080")) {
 			try (BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"))) {
 				SProject project = client.getServiceInterface().addProject(RandomStringUtils.randomAlphanumeric(10), "ifc2x3tc1");
@@ -33,12 +32,6 @@ public class TestDeserializerErrorCode2 {
 				});
 				Assert.assertEquals(DeserializerErrorCode.IFC_SCHEMA_NOT_SUPPORTED_BY_DESERIALIZER, ErrorCode.fromCode(checkinSync.getDeserializeErrorCode()));
 			}
-		} catch (UserException e1) {
-			e1.printStackTrace();
-			Assert.fail();
-		} catch (Exception e1) {
-			e1.printStackTrace();
-			Assert.fail();
 		}
 	}
 }

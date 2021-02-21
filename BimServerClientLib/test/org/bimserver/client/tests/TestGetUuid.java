@@ -14,13 +14,12 @@ import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3tc1.IfcProject;
 import org.bimserver.plugins.services.CheckinProgressHandler;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.utils.IfcUtils;
 import org.junit.Test;
 
 public class TestGetUuid {
 	@Test
-	public void test() {
+	public void test() throws Exception {
 		try (JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080")) {
 			try (BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"))) {
 				SServerInfo serverInfo = client.getAdminInterface().getServerInfo();
@@ -55,16 +54,7 @@ public class TestGetUuid {
 				ifcProject = model.getAll(IfcProject.class).iterator().next();
 				System.out.println(ifcProject.getName());
 			}
-		} catch (BimServerClientException e) {
-			e.printStackTrace();
-		} catch (Exception e1) {
-			e1.printStackTrace();
 		}
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Thread.sleep(1000);
 	}
 }

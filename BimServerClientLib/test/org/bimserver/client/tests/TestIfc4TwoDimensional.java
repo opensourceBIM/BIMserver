@@ -2,44 +2,47 @@ package org.bimserver.client.tests;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ClientIfcModel;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
+import org.bimserver.interfaces.objects.SLongCheckinActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc4.IfcColourRgbList;
 import org.bimserver.models.ifc4.IfcNormalisedRatioMeasure;
 import org.bimserver.models.ifc4.ListOfIfcNormalisedRatioMeasure;
-import org.bimserver.plugins.services.CheckinProgressHandler;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.shared.exceptions.BimServerClientException;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class TestIfc4TwoDimensional {
 	@Test
-	public void test() {
+	public void test() throws Exception {
 		try (JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080")) {
 			try (BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"))) {
-				SProject project = client.getServiceInterface().getTopLevelProjectByName("ifc4file");
-
-				ClientIfcModel model = client.getModel(project, project.getLastRevisionId(), true, false);
-				for (IfcColourRgbList ifcColourRgbList : model.getAll(IfcColourRgbList.class)) {
-					System.out.println(ifcColourRgbList.eClass().getName() + " " + ifcColourRgbList.getOid());
-					for (ListOfIfcNormalisedRatioMeasure listOfIfcNormalisedRatioMeasure : ifcColourRgbList.getColourList()) {
-						for (IfcNormalisedRatioMeasure ifcNormalisedRatioMeasure : listOfIfcNormalisedRatioMeasure.getList()) {
-							System.out.print(ifcNormalisedRatioMeasure.getWrappedValue() + " ");
+				SProject project = client.getServiceInterface().addProject(RandomStringUtils.randomAlphanumeric(10), "ifc4");
+				SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
+				Path path = Paths.get("../../TestFiles/TestData/data/ifc4add2tc1/tessellation-with-individual-colors.ifc");
+				SLongCheckinActionState actionState = client.checkinSync(project.getOid(), "test", deserializer.getOid(), path, (title, progress) ->
+						System.out.println(title + ": " + progress)
+				);
+				ClientIfcModel model = client.getModel(project, actionState.getRoid(), true, false);
+				List<IfcColourRgbList> colourRgbLists = model.getAll(IfcColourRgbList.class);
+				Assert.assertFalse(colourRgbLists.isEmpty());
+				for (IfcColourRgbList colourRgbList : colourRgbLists) {
+				    Assert.assertEquals(3, colourRgbList.getColourList().size());
+					for (ListOfIfcNormalisedRatioMeasure rgbValues : colourRgbList.getColourList()) {
+						Assert.assertEquals(3, rgbValues.getList().size());
+						for (IfcNormalisedRatioMeasure ifcNormalisedRatioMeasure : rgbValues.getList()) {
+						    Assert.assertNotNull(ifcNormalisedRatioMeasure);
 						}
-						System.out.println();
 					}
 				}
 			}
 			Thread.sleep(500);
-		} catch (BimServerClientException e) {
-			e.printStackTrace();
-		} catch (Exception e1) {
-			e1.printStackTrace();
 		}
 	}
 }

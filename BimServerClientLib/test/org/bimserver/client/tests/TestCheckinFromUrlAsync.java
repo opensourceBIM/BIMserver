@@ -8,12 +8,11 @@ import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SLongActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.shared.exceptions.BimServerClientException;
 import org.junit.Test;
 
 public class TestCheckinFromUrlAsync {
 	@Test
-	public void test() {
+	public void test() throws Exception {
 		try (JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080")) {
 			try (BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"))) {
 				SProject project = client.getServiceInterface().addProject(RandomStringUtils.random(10), "ifc2x3tc1");
@@ -30,10 +29,6 @@ public class TestCheckinFromUrlAsync {
 					Thread.sleep(1000);
 				}
 			}
-		} catch (BimServerClientException e) {
-			e.printStackTrace();
-		} catch (Exception e1) {
-			e1.printStackTrace();
 		}
 	}
 }

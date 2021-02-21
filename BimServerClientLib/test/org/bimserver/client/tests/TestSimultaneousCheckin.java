@@ -7,12 +7,12 @@ import org.apache.commons.lang.RandomStringUtils;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
-import org.bimserver.interfaces.objects.SLongCheckinActionState;
 import org.bimserver.interfaces.objects.SProject;
+import org.bimserver.plugins.services.CheckinProgressHandler;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.junit.Test;
 
-public class TestCopy {
+public class TestSimultaneousCheckin {
 	@Test
 	public void test() throws Exception {
 		try (JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080")) {
@@ -21,13 +21,14 @@ public class TestCopy {
 				
 				SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 				Path path = Paths.get("../../TestFiles/TestData/data/export1.ifc");
-				SLongCheckinActionState actionState = client.checkinSync(project.getOid(), "test", deserializer.getOid(), path, (title, progress) ->
-						System.out.println(title + ": " + progress)
-				);
-				long roid = actionState.getRoid();
-				client.getServiceInterface().clone(roid, "Clone-" + RandomStringUtils.randomAlphabetic(10), "Cloned", true);
+				client.checkinSync(project.getOid(), "test", deserializer.getOid(), path, new CheckinProgressHandler() {
+					@Override
+					public void progress(String title, int progress) {
+						System.out.println(title + ": " + progress);
+					}
+				});
 			}
+			Thread.sleep(1000);
 		}
-		Thread.sleep(1000);
 	}
 }

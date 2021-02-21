@@ -27,13 +27,9 @@ public class TestDeserializerErrorCode {
 					client.getServiceInterface().determineIfcVersion(initialBytes, false);
 				}
 			}
+			Assert.fail("Expected UserException to be thrown");
 		} catch (UserException e1) {
-			if (e1.getErrorCode() == DeserializerErrorCode.UNSUPPORTED_IFC_SCHEMA_VERSION) {
-				System.out.println("OK " + e1.getErrorCode());
-				// OK
-			} else {
-        throw e1;
-			}
-    }
+			Assert.assertEquals(DeserializerErrorCode.UNSUPPORTED_IFC_SCHEMA_VERSION, e1.getErrorCode());
+    	}
 	}
 }

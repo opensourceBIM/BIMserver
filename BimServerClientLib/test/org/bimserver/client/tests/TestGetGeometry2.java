@@ -14,12 +14,11 @@ import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.plugins.services.CheckinProgressHandler;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.shared.exceptions.BimServerClientException;
 import org.junit.Test;
 
 public class TestGetGeometry2 {
 	@Test
-	public void test() {
+	public void test() throws Exception {
 		try (JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080")) {
 			try (BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"))) {
 				SProject project = client.getServiceInterface().addProject(RandomStringUtils.randomAlphanumeric(10), "ifc2x3tc1");
@@ -42,15 +41,7 @@ public class TestGetGeometry2 {
 					}
 				}
 			}
-		} catch (BimServerClientException e) {
-			e.printStackTrace();
-		} catch (Exception e1) {
-			e1.printStackTrace();
 		}
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		Thread.sleep(1000);
 	}
 }

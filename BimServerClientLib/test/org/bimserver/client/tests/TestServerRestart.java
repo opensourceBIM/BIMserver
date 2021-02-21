@@ -18,7 +18,7 @@ import org.bimserver.shared.exceptions.UserException;
 import org.junit.Test;
 
 public class TestServerRestart {
-	@Test
+	// @Test // This test requires user interaction, should be moved to non/semiautomated tests in Test module
 	public void test() {
 		try (JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080")) {
 			try (BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"))) {

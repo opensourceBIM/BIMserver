@@ -23,9 +23,7 @@ import org.bimserver.interfaces.objects.SLongCheckinActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.geometry.GeometryPackage;
-import org.bimserver.plugins.services.CheckinProgressHandler;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.shared.exceptions.BimServerClientException;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +37,7 @@ public class TestCheckinAndGeometryDownload {
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	
 	@Test
-	public void test() {
+	public void test() throws Exception {
 		try (JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080")) {
 			for (int i=0; i<100; i++) {
 				try (BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"))) {
@@ -47,13 +45,7 @@ public class TestCheckinAndGeometryDownload {
 					
 					SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 					Path path = Paths.get("../../TestFiles/TestData/data/export1.ifc");
-					SLongCheckinActionState checkinSync = client.checkinSync(project.getOid(), "test", deserializer.getOid(), path, new CheckinProgressHandler() {
-						@Override
-						public void progress(String title, int progress) {
-//							System.out.println(title + ": " + progress);
-						}
-					});
-					
+					SLongCheckinActionState checkinSync = client.checkinSync(project.getOid(), "test", deserializer.getOid(), path, (title, progress) -> { });
 					PackageMetaData packageMetaData = client.getMetaDataManager().getPackageMetaData("ifc2x3tc1");
 					Query query = new Query(packageMetaData);
 					
@@ -116,16 +108,8 @@ public class TestCheckinAndGeometryDownload {
 					client.getServiceInterface().cleanupLongAction(topicId);
 				}
 			}
-		} catch (BimServerClientException e) {
-			e.printStackTrace();
-		} catch (Exception e1) {
-			e1.printStackTrace();
 		}
-		try {
-			Thread.sleep(30000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		Thread.sleep(30000);
 	}
 	
 	private JsonNode generateLoaderSettings() {

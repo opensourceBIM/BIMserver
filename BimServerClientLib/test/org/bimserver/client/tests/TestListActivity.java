@@ -12,12 +12,11 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SRevision;
 import org.bimserver.interfaces.objects.SServerInfo;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.shared.exceptions.BimServerClientException;
 import org.junit.Test;
 
 public class TestListActivity {
 	@Test
-	public void test() {
+	public void test() throws Exception {
 		try (JsonBimServerClientFactory factory = new JsonBimServerClientFactory("[address]")) {
 			try (BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("[un]", "[pw]"))) {
 				SServerInfo serverInfo = client.getAdminInterface().getServerInfo();
@@ -37,15 +36,7 @@ public class TestListActivity {
 					System.out.println(dateFormatter.format(revision.getDate()) + " " + revision.getComment());
 				}
 			}
-		} catch (BimServerClientException e) {
-			e.printStackTrace();
-		} catch (Exception e1) {
-			e1.printStackTrace();
 		}
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		Thread.sleep(1000);
 	}
 }
