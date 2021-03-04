@@ -150,19 +150,19 @@ public class PluginBundleManager implements AutoCloseable {
 		}
 
 		List<Dependency> dependenciesToResolve = new ArrayList<>();
-		for (org.apache.maven.model.Dependency dependency2 : model.getDependencies()) {
-			String scope = dependency2.getScope();
+		for (org.apache.maven.model.Dependency mvnDependency : model.getDependencies()) {
+			String scope = mvnDependency.getScope();
 			if (scope != null && (scope.contentEquals("test"))) {
 				// Skip
 				continue;
 			}
-			Dependency d = new Dependency(new DefaultArtifact(dependency2.getGroupId(), dependency2.getArtifactId(), dependency2.getType(), dependency2.getVersion()), scope);
+			Dependency d = new Dependency(new DefaultArtifact(mvnDependency.getGroupId(), mvnDependency.getArtifactId(), mvnDependency.getType(), mvnDependency.getVersion()), scope);
 			Set<Exclusion> exclusions = new HashSet<>();
 			d.setExclusions(exclusions);
 			exclusions.add(new Exclusion("org.opensourcebim", "pluginbase", null, "jar"));
 			exclusions.add(new Exclusion("org.opensourcebim", "shared", null, "jar"));
 			exclusions.add(new Exclusion("org.opensourcebim", "ifcplugins", null, "jar"));
-			if(!isDependencyProvided(dependency2)) dependenciesToResolve.add(d);
+			if(!isDependencyProvided(mvnDependency)) dependenciesToResolve.add(d);
 		}
 		CollectRequest collectRequest = new CollectRequest(dependenciesToResolve, null, null);
 		collectRequest.setRepositories(mavenPluginRepository.getRepositoriesAsList());
@@ -218,8 +218,12 @@ public class PluginBundleManager implements AutoCloseable {
 		}
 	}
 
-	private boolean isDependencyProvided(org.apache.maven.model.Dependency dependency2) {
-		return dependency2.getGroupId().equals("org.opensourcebim") && Arrays.asList("pluginbase", "shared").contains(dependency2.getArtifactId());
+	private boolean isDependencyProvided(org.apache.maven.model.Dependency mvnDependency) {
+		return mvnDependency.getGroupId().equals("org.opensourcebim") && Arrays.asList("pluginbase", "shared").contains(mvnDependency.getArtifactId());
+	}
+
+	private boolean isDependencyProvidedOrIfcPlugins(org.apache.maven.model.Dependency mvnDependency) {
+		return mvnDependency.getGroupId().equals("org.opensourcebim") && Arrays.asList("pluginbase", "shared", "ifcplugins").contains(mvnDependency.getArtifactId());
 	}
 
 	public PluginBundle loadFromPluginDir(PluginBundleVersionIdentifier pluginBundleVersionIdentifier, SPluginBundleVersion pluginBundleVersion, List<SPluginInformation> plugins, boolean strictDependencyChecking) throws Exception {
@@ -247,7 +251,7 @@ public class PluginBundleManager implements AutoCloseable {
 		loadDependencies(model.getVersion(), strictDependencyChecking, model, delegatingClassLoader);
 		
 		for (org.apache.maven.model.Dependency dependency : model.getDependencies()) {
-			if (dependency.getGroupId().equals("org.opensourcebim") && (dependency.getArtifactId().equals("shared") || dependency.getArtifactId().equals("pluginbase") || dependency.getArtifactId().equals("ifcplugins"))) {
+			if (isDependencyProvidedOrIfcPlugins(dependency)) {
 				// TODO Skip, we should also check the version though
 			} else {
 				PluginBundleIdentifier pluginBundleIdentifier = new PluginBundleIdentifier(dependency.getGroupId(), dependency.getArtifactId());
@@ -265,8 +269,8 @@ public class PluginBundleManager implements AutoCloseable {
 						LOGGER.info("Skipping strict dependency checking for dependency " + dependency.getArtifactId());
 					}
 				} else {
-					if (dependency.getGroupId().equals("org.opensourcebim") && (dependency.getArtifactId().equals("shared") || dependency.getArtifactId().equals("pluginbase"))) {
-					} else {
+					if (isDependencyProvided(dependency)) {
+					} else { // this must be IfcPlugins then?
 						MavenPluginLocation mavenPluginLocation = mavenPluginRepository.getPluginLocation(dependency.getGroupId(), dependency.getArtifactId());
 
 						try {
