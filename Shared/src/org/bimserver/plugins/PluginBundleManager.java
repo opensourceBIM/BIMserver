@@ -10,14 +10,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.jar.JarInputStream;
@@ -163,13 +156,13 @@ public class PluginBundleManager implements AutoCloseable {
 				// Skip
 				continue;
 			}
-			Dependency d = new Dependency(new DefaultArtifact(dependency2.getGroupId(), dependency2.getArtifactId(), dependency2.getType(), dependency2.getVersion()), dependency2.getScope());
+			Dependency d = new Dependency(new DefaultArtifact(dependency2.getGroupId(), dependency2.getArtifactId(), dependency2.getType(), dependency2.getVersion()), scope);
 			Set<Exclusion> exclusions = new HashSet<>();
 			d.setExclusions(exclusions);
 			exclusions.add(new Exclusion("org.opensourcebim", "pluginbase", null, "jar"));
 			exclusions.add(new Exclusion("org.opensourcebim", "shared", null, "jar"));
 			exclusions.add(new Exclusion("org.opensourcebim", "ifcplugins", null, "jar"));
-			dependenciesToResolve.add(d);
+			if(!isDependencyProvided(dependency2)) dependenciesToResolve.add(d);
 		}
 		CollectRequest collectRequest = new CollectRequest(dependenciesToResolve, null, null);
 		collectRequest.setRepositories(mavenPluginRepository.getRepositoriesAsList());
@@ -224,7 +217,11 @@ public class PluginBundleManager implements AutoCloseable {
 			}
 		}
 	}
-	
+
+	private boolean isDependencyProvided(org.apache.maven.model.Dependency dependency2) {
+		return dependency2.getGroupId().equals("org.opensourcebim") && Arrays.asList("pluginbase", "shared").contains(dependency2.getArtifactId());
+	}
+
 	public PluginBundle loadFromPluginDir(PluginBundleVersionIdentifier pluginBundleVersionIdentifier, SPluginBundleVersion pluginBundleVersion, List<SPluginInformation> plugins, boolean strictDependencyChecking) throws Exception {
 		Path target = pluginsDir.resolve(pluginBundleVersionIdentifier.getFileName());
 		if (!Files.exists(target)) {
