@@ -46,14 +46,18 @@ public class RenderEngineGeometry {
 		return normals.get(index);
 	}
 
-	public ByteBuffer getMaterials() {
-		return materials;
+	public float getMaterial(int index) {
+		return materials.get(index);
 	}
-	
-	public ByteBuffer getMaterialIndices() {
-		return materialIndices;
+
+	public int getMaterialIndex(int index) {
+		return materialIndices.get(index);
 	}
-	
+
+	public int getNrIndices() {
+		return indices.asIntBuffer().capacity();
+	}
+
 	public int getNrVertices() {
 		return vertices.asDoubleBuffer().capacity();
 	}
@@ -62,8 +66,16 @@ public class RenderEngineGeometry {
 		return normals.asFloatBuffer().capacity();
 	}
 
-	public int getNrIndices() {
-		return indices.asIntBuffer().capacity();
+	public int getNrMaterials(){
+		return materials.asFloatBuffer().capacity();
+	}
+
+	public int getNrMaterialIndices() {
+		return materialIndices.asIntBuffer().capacity();
+	}
+
+	public ByteBuffer getIndices() {
+		return indices;
 	}
 
 	public ByteBuffer getVertices() {
@@ -74,23 +86,11 @@ public class RenderEngineGeometry {
 		return normals;
 	}
 	
-	public ByteBuffer getIndices() {
-		return indices;
+	public ByteBuffer getMaterials() {
+		return materials;
 	}
 
-	public int getMaterialIndex(int index) {
-		return materialIndices.get(index);
-	}
-
-	public float getMaterial(int index) {
-		return materials.get(index);
-	}
-
-	public int getNrMaterials(){
-		return materials.asFloatBuffer().capacity();
-	}
-
-	public int getNrMaterialIndices() {
-		return materialIndices.asIntBuffer().capacity();
+	public ByteBuffer getMaterialIndices() {
+		return materialIndices;
 	}
 }
