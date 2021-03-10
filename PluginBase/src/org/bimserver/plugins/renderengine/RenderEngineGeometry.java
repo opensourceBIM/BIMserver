@@ -86,6 +86,10 @@ public class RenderEngineGeometry {
 		return materials.get(index);
 	}
 
+	public int getNrMaterials(){
+		return materials.asFloatBuffer().capacity();
+	}
+
 	public int getNrMaterialIndices() {
 		return materialIndices.asIntBuffer().capacity();
 	}
