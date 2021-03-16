@@ -30,11 +30,7 @@ import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.exceptions.UserException;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.*;
 
 public class SetAttributeChangeAtIndex implements Change {
 
@@ -79,28 +75,13 @@ public class SetAttributeChangeAtIndex implements Change {
 		if (eAttribute == null) {
 			throw new UserException("No attribute with the name \"" + attributeName + "\" found in class \"" + eClass.getName() + "\"");
 		}
-		if (value instanceof List && eAttribute.isMany()) {
-			List sourceList = (List)value;
-			if (!eAttribute.isMany()) {
-				throw new UserException("Attribute is not of type 'many'");
-			}
-			List list = (List)object.eGet(eAttribute);
-			list.clear();
-			List asStringList = null;
-			if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-				asStringList = (List)object.eGet(object.eClass().getEStructuralFeature(attributeName + "AsString"));
-				asStringList.clear();
-			}
-			for (Object o : sourceList) {
-				if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-					asStringList.add(String.valueOf(o));
-				}
-				list.add(o);
-			}
+		if (!eAttribute.isMany()) {
+			throw new UserException("Attribute is not of type 'many'");
+		}
+		if (value instanceof List) {
+			throw new UserException("Value is list, only primitive values allowed.");
+			// If this was a two-dimensional array we would have a structural feature, not an attribute referring to the inner array
 		} else {
-			if (!eAttribute.isMany()) {
-				throw new UserException("Attribute is not of type 'many'");
-			}
 			if (eAttribute.getEType() instanceof EEnum) {
 				EEnum eEnum = (EEnum) eAttribute.getEType();
 				object.setListItem(eAttribute, index, eEnum.getEEnumLiteral(((String) value).toUpperCase()).getInstance());
