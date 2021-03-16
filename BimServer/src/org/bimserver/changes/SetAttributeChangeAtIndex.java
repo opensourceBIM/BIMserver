@@ -98,8 +98,8 @@ public class SetAttributeChangeAtIndex implements Change {
 				list.add(o);
 			}
 		} else {
-			if (eAttribute.isMany()) {
-				throw new UserException("Attribute is not of type 'single'");
+			if (!eAttribute.isMany()) {
+				throw new UserException("Attribute is not of type 'many'");
 			}
 			if (eAttribute.getEType() instanceof EEnum) {
 				EEnum eEnum = (EEnum) eAttribute.getEType();
