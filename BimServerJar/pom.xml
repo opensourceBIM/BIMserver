@@ -10,7 +10,7 @@
 		<version>1.5.183-SNAPSHOT</version>
 	</parent>
 	<properties>
-		<jetty.version>9.4.38.v20210224</jetty.version>
+		<jetty.version>9.4.43.v20210629</jetty.version>
 	</properties>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
