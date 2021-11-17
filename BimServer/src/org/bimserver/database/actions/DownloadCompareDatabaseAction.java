@@ -27,6 +27,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
+import org.bimserver.database.OperationType;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
@@ -107,20 +108,21 @@ public class DownloadCompareDatabaseAction extends AbstractDownloadDatabaseActio
 												// roid2, compareType,
 												// compareIdentifier);
 			IfcModelInterface model1 = new DownloadDatabaseAction(getBimServer(), getDatabaseSession(), getAccessMethod(), roid1, -1, -1, getAuthorization()).execute();
-			IfcModelInterface model2 = new DownloadDatabaseAction(getBimServer(), getDatabaseSession(), getAccessMethod(), roid2, -1, -1, getAuthorization()).execute();
-
-			try {
-				compareResults = getModelCompare().compare(model1, model2, compareType);
-			} catch (ModelCompareException e) {
-				throw new UserException(e);
-			}
-			// bimServer.getCompareCache().storeResults(roid1, roid2,
-			// compareType, compareIdentifier, compareResults);
-
 			ModelMerger merger = getBimServer().getMergerFactory().createMerger(getDatabaseSession(), getAuthorization().getUoid());
 			PackageMetaData packageMetaData = model1.getPackageMetaData();
 			IfcModelInterface mergedModel = getDatabaseSession().createServerModel(packageMetaData, null);
-			mergedModel = merger.merge(project, new IfcModelSet(model1, model2), new ModelHelper(getBimServer().getMetaDataManager(), mergedModel));
+			try(DatabaseSession secondSession = getBimServer().getDatabase().createSession(OperationType.READ_ONLY)){
+				IfcModelInterface model2 = new DownloadDatabaseAction(getBimServer(), secondSession, getAccessMethod(), roid2, -1, -1, getAuthorization()).execute();
+				try {
+					compareResults = getModelCompare().compare(model1, model2, compareType);
+				} catch (ModelCompareException e) {
+					throw new UserException(e);
+				}
+				// bimServer.getCompareCache().storeResults(roid1, roid2,
+				// compareType, compareIdentifier, compareResults);
+
+				mergedModel = merger.merge(project, new IfcModelSet(model1, model2), new ModelHelper(getBimServer().getMetaDataManager(), mergedModel));
+			}
 			mergedModel.getModelMetaData().setName(project.getName() + "." + revision1.getId() + "." + revision2.getId());
 
 			Set<Long> added = new HashSet<Long>();
