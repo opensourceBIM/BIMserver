@@ -27,6 +27,7 @@ import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.reflector.RealtimeReflectorFactoryBuilder;
 import org.bimserver.shared.reflector.ReflectorFactory;
+import java.net.URL;
 
 public class JsonBimServerClientFactory extends AbstractBimServerClientFactory {
 
@@ -48,7 +49,8 @@ public class JsonBimServerClientFactory extends AbstractBimServerClientFactory {
 	 * @param address Address of the remote server, must have the format "protocol://address:port[/contextpath]", for example "http://localhost:8080"
 	 * @throws BimServerClientException 
 	 */
-	public JsonBimServerClientFactory(MetaDataManager metaDataManager, String address) throws BimServerClientException {
+
+	public JsonBimServerClientFactory(MetaDataManager metaDataManager, String address, URL trustedCertificate) throws BimServerClientException {
 		super(metaDataManager);
 		this.address = address;
 		this.jsonSocketReflectorFactory = new JsonSocketReflectorFactory(getServicesMap(), getHttpClient());
@@ -59,6 +61,14 @@ public class JsonBimServerClientFactory extends AbstractBimServerClientFactory {
 
 	public JsonBimServerClientFactory(String address) throws BimServerClientException {
 		this(null, address);
+	}
+
+	public JsonBimServerClientFactory(String address, URL trustedCertificate) throws BimServerClientException {
+		this(null, address, trustedCertificate);
+	}
+
+	public JsonBimServerClientFactory(MetaDataManager metaDataManager, String address) throws BimServerClientException {
+		this(metaDataManager, address, null);
 	}
 
 	@Override

@@ -18,11 +18,27 @@ package org.bimserver.client;
  *****************************************************************************/
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.nio.file.Files;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
 
+import org.apache.http.config.Registry;
+import org.apache.http.config.RegistryBuilder;
+import org.apache.http.conn.socket.ConnectionSocketFactory;
+import org.apache.http.conn.socket.PlainConnectionSocketFactory;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.apache.http.ssl.SSLContextBuilder;
+import org.apache.http.ssl.SSLContexts;
 import org.bimserver.emf.MetaDataManager;
 import org.bimserver.interfaces.SServiceInterfaceService;
 import org.bimserver.plugins.services.BimServerClientInterface;
@@ -45,6 +61,8 @@ import org.bimserver.shared.interfaces.SettingsInterface;
 import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.SServicesMap;
 
+import javax.net.ssl.SSLContext;
+
 public abstract class AbstractBimServerClientFactory implements BimServerClientFactory {
 
 	private final SServicesMap servicesMap;
@@ -57,10 +75,10 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 			throw new IllegalArgumentException("MetaDataManager cannot be null");
 		}
 		this.metaDataManager = metaDataManager;
-		initHttpClient();
+		initHttpClient(null);
 	}
 
-	public AbstractBimServerClientFactory(MetaDataManager metaDataManager) throws BimServerClientException {
+	public AbstractBimServerClientFactory(MetaDataManager metaDataManager, URL trustedCertificate) throws BimServerClientException {
 		if (metaDataManager == null) {
 			try {
 				this.metaDataManager = new MetaDataManager(Files.createTempDirectory("bimserver-tmp"));
@@ -87,22 +105,35 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 		addService(new SService(servicesMap, null, NotificationRegistryInterface.class));
 		addService(new SService(servicesMap, null, OAuthInterface.class));
 		servicesMap.initialize();
-		initHttpClient();
+		initHttpClient(sslContext(trustedCertificate));
+	}
+
+	public AbstractBimServerClientFactory(MetaDataManager metaDataManager) throws BimServerClientException {
+		this(metaDataManager, null);
 	}
 	
 	public CloseableHttpClient getHttpClient() {
 		return httpClient;
 	}
 	
-	public void initHttpClient() {
+	private void initHttpClient(SSLContext sslContext) {
 		HttpClientBuilder builder = HttpClientBuilder.create();
-		
-		PoolingHttpClientConnectionManager connManager = new PoolingHttpClientConnectionManager();
+		SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(
+			sslContext == null ? SSLContexts.createSystemDefault() :  sslContext,
+			new String[] { "TLSv1.2" },
+			null,
+			SSLConnectionSocketFactory.getDefaultHostnameVerifier()
+		);
+		Registry<ConnectionSocketFactory> registry = RegistryBuilder.<ConnectionSocketFactory>create()
+				.register("http", PlainConnectionSocketFactory.getSocketFactory())
+				.register("https", sslsf)
+				.build();
+		PoolingHttpClientConnectionManager connManager = new PoolingHttpClientConnectionManager(registry);
 		connManager.setMaxTotal(100);
 		connManager.setDefaultMaxPerRoute(100);
 		builder.setConnectionManager(connManager);
 		builder.disableAutomaticRetries();
-		
+		// TODO set timeouts? https://hc.apache.org/httpcomponents-client-5.1.x/migration-guide/preparation.html
 //		builder.addInterceptorFirst(new HttpRequestInterceptor() {
 //			public void process(final HttpRequest request, final HttpContext context) throws HttpException, IOException {
 //				if (!request.containsHeader("Accept-Encoding")) {
@@ -131,7 +162,29 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 
 		httpClient = builder.build();
 	}
-	
+
+	private SSLContext sslContext(URL trustedCertificate) throws BimServerClientException {
+		if(trustedCertificate != null) {
+			SSLContextBuilder sslContextBuilder = SSLContexts.custom();
+			try {
+				KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
+				keystore.load(null);  // initializes keystore
+				CertificateFactory cf = CertificateFactory.getInstance("X.509");
+				Certificate cert = null;
+				try (InputStream trustedCertStream = trustedCertificate.openStream()) {
+					cert = cf.generateCertificate(trustedCertStream);
+				}
+				if (cert!=null) keystore.setCertificateEntry("onlyentry", cert);
+				sslContextBuilder.loadTrustMaterial(keystore, null);
+				return sslContextBuilder.build();
+			} catch (KeyStoreException | CertificateException | NoSuchAlgorithmException | IOException | KeyManagementException  e) {
+				throw new BimServerClientException("Unable to use provided certificate.");
+			}
+		} else {
+			return SSLContexts.createSystemDefault();
+		}
+	}
+
 	public MetaDataManager getMetaDataManager() {
 		return metaDataManager;
 	}
