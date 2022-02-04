@@ -20,7 +20,7 @@ package org.bimserver.client.protocolbuffers;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
-import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.bimserver.client.Channel;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ConnectDisconnectListener;

@@ -20,13 +20,14 @@ package org.bimserver.plugins.services;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.http.Header;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.ByteArrayEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
+import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.Header;
+import org.apache.hc.client5.http.ClientProtocolException;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
+import org.apache.hc.client5.http.classic.methods.HttpPost;
+import org.apache.hc.core5.http.io.entity.ByteArrayEntity;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.bimserver.bimbots.BimBotsInput;
 import org.bimserver.bimbots.BimBotsOutput;
 import org.bimserver.plugins.SchemaName;
@@ -47,9 +48,7 @@ public class BimBotClient implements AutoCloseable {
 			BimBotsOutput bimBotsOutput = bimBotCaller.call("3866702", bimBotsInput);
 			ObjectNode readValue = new ObjectMapper().readValue(bimBotsOutput.getData(), ObjectNode.class);
 			System.out.println(readValue.toString());
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (BimBotExecutionException e) {
+		} catch (IOException | BimBotExecutionException e) {
 			e.printStackTrace();
 		}
 	}
@@ -65,23 +64,20 @@ public class BimBotClient implements AutoCloseable {
 		post.setHeader("Input-Type", input.getSchemaName());
 		post.setHeader("Token", token);
 		post.setHeader("Accept-Flow", "SYNC");
-		post.setEntity(new ByteArrayEntity(input.getData()));
+		post.setEntity(new ByteArrayEntity(input.getData(), ContentType.APPLICATION_OCTET_STREAM));
 		
 		try {
 			CloseableHttpResponse httpResponse = httpClient.execute(post);
-			if (httpResponse.getStatusLine().getStatusCode() == 200) {
+			if (httpResponse.getCode() == 200) {
 				Header outputType = httpResponse.getFirstHeader("Output-Type");
 				if (outputType == null) {
 					throw new BimBotExecutionException("No Output-Type given");
 				}
 				String outputSchema = outputType.getValue();
-				BimBotsOutput bimBotsOutput = new BimBotsOutput(outputSchema, ByteStreams.toByteArray(httpResponse.getEntity().getContent()));
-				return bimBotsOutput;
+				return new BimBotsOutput(outputSchema, ByteStreams.toByteArray(httpResponse.getEntity().getContent()));
 			} else {
-				throw new BimBotExecutionException("Unexpected HTTP status code " + httpResponse.getStatusLine().toString());
+				throw new BimBotExecutionException("Unexpected HTTP status code " + httpResponse.getCode() + " " + httpResponse.getReasonPhrase());
 			}
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

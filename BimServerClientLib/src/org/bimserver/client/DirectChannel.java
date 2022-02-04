@@ -22,7 +22,7 @@ import java.io.InputStream;
 
 import javax.activation.DataHandler;
 
-import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.bimserver.interfaces.objects.SDownloadResult;
 import org.bimserver.interfaces.objects.SLongCheckinActionState;
 import org.bimserver.models.log.AccessMethod;

@@ -17,7 +17,7 @@ package org.bimserver.client.json;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.bimserver.client.Channel;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.TokenHolder;

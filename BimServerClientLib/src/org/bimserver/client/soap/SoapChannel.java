@@ -33,13 +33,12 @@ import org.apache.cxf.headers.Header;
 import org.apache.cxf.jaxb.JAXBDataBinding;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.transport.http.HTTPConduit;
-import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.bimserver.client.Channel;
 import org.bimserver.shared.Token;
 import org.bimserver.shared.TokenChangeListener;
 import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.interfaces.PublicInterface;
-import org.bimserver.shared.json.JsonConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,6 +1,6 @@
 package org.bimserver.shared.json;
 
-import org.apache.http.conn.HttpHostConnectException;
+import org.apache.hc.client5.http.HttpHostConnectException;
 import org.bimserver.plugins.deserializers.DeserializerErrorCode;
 import org.bimserver.shared.exceptions.DefaultErrorCode;
 

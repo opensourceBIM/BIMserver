@@ -52,12 +52,13 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.util.ByteArrayDataSource;
 
 import org.apache.commons.collections.comparators.ComparatorChain;
-import org.apache.http.Header;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.ByteArrayEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
+import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.core5.http.Header;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
+import org.apache.hc.client5.http.classic.methods.HttpPost;
+import org.apache.hc.core5.http.io.entity.ByteArrayEntity;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.bimserver.BimServerImporter;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.client.json.JsonBimServerClientFactory;
@@ -2624,15 +2625,15 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			}
 			httpPost.setHeader("Input-Type", newService.getInput());
 			httpPost.setHeader("Output-Type", newService.getOutput());
-			httpPost.setEntity(new ByteArrayEntity(baos.toByteArray()));
+			httpPost.setEntity(new ByteArrayEntity(baos.toByteArray(), ContentType.APPLICATION_OCTET_STREAM));
 
 			long start = System.nanoTime();
 
 			CloseableHttpResponse response = httpclient.execute(httpPost);
 
-			if (response.getStatusLine().getStatusCode() == 401) {
+			if (response.getCode() == 401) {
 				throw new UserException("Remote service responded with a 401 Unauthorized");
-			} else if (response.getStatusLine().getStatusCode() == 200) {
+			} else if (response.getCode() == 200) {
 				Header[] headers = response.getHeaders("Content-Disposition");
 				String filename = "unknown";
 				if (headers.length > 0) {
@@ -2683,7 +2684,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 							newService.getOid());
 				}
 			} else {
-				throw new UserException("Remote service responded with a " + response.getStatusLine());
+				throw new UserException("Remote service responded with a " + response.getCode() + " ("  + response.getReasonPhrase() + ")");
 			}
 		} catch (Exception e) {
 			handleException(e);

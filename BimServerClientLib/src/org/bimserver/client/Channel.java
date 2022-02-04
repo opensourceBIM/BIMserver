@@ -28,15 +28,15 @@ import java.util.Map;
 import java.util.Set;
 import java.util.zip.DeflaterInputStream;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.entity.mime.content.InputStreamBody;
-import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.hc.client5.http.ClientProtocolException;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
+import org.apache.hc.client5.http.classic.methods.HttpPost;
+import org.apache.hc.core5.http.ContentType;
+import org.apache.hc.client5.http.entity.mime.HttpMultipartMode;
+import org.apache.hc.client5.http.entity.mime.MultipartEntityBuilder;
+import org.apache.hc.client5.http.entity.mime.InputStreamBody;
+import org.apache.hc.client5.http.entity.mime.StringBody;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.bimserver.interfaces.objects.SLongCheckinActionState;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.ConnectDisconnectListener;
@@ -116,33 +116,32 @@ public abstract class Channel implements ServiceHolder {
 	public SLongCheckinActionState checkinSync(String baseAddress, String token, long poid, String comment, long deserializerOid, boolean merge, long fileSize, String filename, InputStream inputStream, Long topicId) throws ServerException, UserException {
 		String address = baseAddress + "/upload";
 		HttpPost httppost = new HttpPost(address);
+		if (topicId == null) {
+			topicId = getServiceInterface().initiateCheckin(poid, deserializerOid);
+		}
+		// TODO find some GzipInputStream variant that _compresses_ instead
+		// of _decompresses_ using deflate for now
+		InputStreamBody data = new InputStreamBody(new DeflaterInputStream(inputStream), filename);
+
+		MultipartEntityBuilder multipartEntityBuilder = createMultiPart();
+
+		multipartEntityBuilder.addPart("topicId", new StringBody("" + topicId, ContentType.DEFAULT_TEXT));
+		multipartEntityBuilder.addPart("token", new StringBody(token, ContentType.DEFAULT_TEXT));
+		multipartEntityBuilder.addPart("deserializerOid", new StringBody("" + deserializerOid, ContentType.DEFAULT_TEXT));
+		multipartEntityBuilder.addPart("merge", new StringBody("" + merge, ContentType.DEFAULT_TEXT));
+		multipartEntityBuilder.addPart("poid", new StringBody("" + poid, ContentType.DEFAULT_TEXT));
+		multipartEntityBuilder.addPart("comment", new StringBody("" + comment, ContentType.DEFAULT_TEXT));
+		multipartEntityBuilder.addPart("sync", new StringBody("" + true, ContentType.DEFAULT_TEXT));
+		multipartEntityBuilder.addPart("compression", new StringBody("deflate", ContentType.DEFAULT_TEXT));
+		multipartEntityBuilder.addPart("data", data);
+
+		httppost.setEntity(multipartEntityBuilder.build());
+
 		try {
-			if (topicId == null) {
-				topicId = getServiceInterface().initiateCheckin(poid, deserializerOid);
-			}
-			// TODO find some GzipInputStream variant that _compresses_ instead
-			// of _decompresses_ using deflate for now
-			InputStreamBody data = new InputStreamBody(new DeflaterInputStream(inputStream), filename);
-
-			MultipartEntityBuilder multipartEntityBuilder = createMultiPart();
-
-			multipartEntityBuilder.addPart("topicId", new StringBody("" + topicId, ContentType.DEFAULT_TEXT));
-			multipartEntityBuilder.addPart("token", new StringBody(token, ContentType.DEFAULT_TEXT));
-			multipartEntityBuilder.addPart("deserializerOid", new StringBody("" + deserializerOid, ContentType.DEFAULT_TEXT));
-			multipartEntityBuilder.addPart("merge", new StringBody("" + merge, ContentType.DEFAULT_TEXT));
-			multipartEntityBuilder.addPart("poid", new StringBody("" + poid, ContentType.DEFAULT_TEXT));
-			multipartEntityBuilder.addPart("comment", new StringBody("" + comment, ContentType.DEFAULT_TEXT));
-			multipartEntityBuilder.addPart("sync", new StringBody("" + true, ContentType.DEFAULT_TEXT));
-			multipartEntityBuilder.addPart("compression", new StringBody("deflate", ContentType.DEFAULT_TEXT));
-			multipartEntityBuilder.addPart("data", data);
-
-			httppost.setEntity(multipartEntityBuilder.build());
-
-			HttpResponse httpResponse = closeableHttpClient.execute(httppost);
-			if (httpResponse.getStatusLine().getStatusCode() == 200) {
+			CloseableHttpResponse httpResponse = closeableHttpClient.execute(httppost);
+			if (httpResponse.getCode() == 200) {
 				ObjectMapper objectMapper = new ObjectMapper();
-				InputStreamReader in = new InputStreamReader(httpResponse.getEntity().getContent());
-				try {
+				try (InputStreamReader in = new InputStreamReader(httpResponse.getEntity().getContent())) {
 					ObjectNode result = objectMapper.readValue(in, ObjectNode.class);
 					if (result.has("exception")) {
 						ObjectNode exceptionJson = (ObjectNode) result.get("exception");
@@ -161,22 +160,12 @@ public abstract class Channel implements ServiceHolder {
 							throw new ServerException(e);
 						}
 					}
-				} finally {
-					in.close();
 				}
 			} else {
-				throw new ServerException("HTTP Status Code " + httpResponse.getStatusLine().getStatusCode() + " " + httpResponse.getStatusLine().getReasonPhrase());
+				throw new ServerException("HTTP Status Code " + httpResponse.getCode() + " " + httpResponse.getReasonPhrase());
 			}
-		} catch (ClientProtocolException e) {
-			throw new ServerException(e);
 		} catch (IOException e) {
 			throw new ServerException(e);
-		} catch (PublicInterfaceNotFoundException e) {
-			throw new ServerException(e);
-		} catch (Exception e) {
-			throw new ServerException(e);
-		} finally {
-			httppost.releaseConnection();
 		}
 		throw new ServerException("Null result");
 	}
@@ -184,7 +173,7 @@ public abstract class Channel implements ServiceHolder {
 	private MultipartEntityBuilder createMultiPart() {
 		MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
 		multipartEntityBuilder.setCharset(Charsets.UTF_8);
-		multipartEntityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+		multipartEntityBuilder.setMode(HttpMultipartMode.LEGACY);
 		return multipartEntityBuilder;
 	}
 
@@ -199,30 +188,29 @@ public abstract class Channel implements ServiceHolder {
 	public long checkinAsync(String baseAddress, String token, long poid, String comment, long deserializerOid, boolean merge, long fileSize, String filename, InputStream inputStream, long topicId) throws ServerException, UserException {
 		String address = baseAddress + "/upload";
 		HttpPost httppost = new HttpPost(address);
+		// TODO find some GzipInputStream variant that _compresses_ instead
+		// of _decompresses_ using deflate for now
+		InputStreamBody data = new InputStreamBody(new DeflaterInputStream(inputStream), filename);
+
+		MultipartEntityBuilder multipartEntityBuilder = createMultiPart();
+
+		multipartEntityBuilder.addPart("topicId", new StringBody("" + topicId, ContentType.DEFAULT_TEXT));
+		multipartEntityBuilder.addPart("token", new StringBody(token, ContentType.DEFAULT_TEXT));
+		multipartEntityBuilder.addPart("deserializerOid", new StringBody("" + deserializerOid, ContentType.DEFAULT_TEXT));
+		multipartEntityBuilder.addPart("merge", new StringBody("" + merge, ContentType.DEFAULT_TEXT));
+		multipartEntityBuilder.addPart("poid", new StringBody("" + poid, ContentType.DEFAULT_TEXT));
+		multipartEntityBuilder.addPart("comment", new StringBody("" + comment, ContentType.DEFAULT_TEXT));
+		multipartEntityBuilder.addPart("sync", new StringBody("" + false, ContentType.DEFAULT_TEXT));
+		multipartEntityBuilder.addPart("compression", new StringBody("deflate", ContentType.DEFAULT_TEXT));
+		multipartEntityBuilder.addPart("data", data);
+			
+		httppost.setEntity(multipartEntityBuilder.build());
+
 		try {
-			// TODO find some GzipInputStream variant that _compresses_ instead
-			// of _decompresses_ using deflate for now
-			InputStreamBody data = new InputStreamBody(new DeflaterInputStream(inputStream), filename);
-			
-			MultipartEntityBuilder multipartEntityBuilder = createMultiPart();
-			
-			multipartEntityBuilder.addPart("topicId", new StringBody("" + topicId, ContentType.DEFAULT_TEXT));
-			multipartEntityBuilder.addPart("token", new StringBody(token, ContentType.DEFAULT_TEXT));
-			multipartEntityBuilder.addPart("deserializerOid", new StringBody("" + deserializerOid, ContentType.DEFAULT_TEXT));
-			multipartEntityBuilder.addPart("merge", new StringBody("" + merge, ContentType.DEFAULT_TEXT));
-			multipartEntityBuilder.addPart("poid", new StringBody("" + poid, ContentType.DEFAULT_TEXT));
-			multipartEntityBuilder.addPart("comment", new StringBody("" + comment, ContentType.DEFAULT_TEXT));
-			multipartEntityBuilder.addPart("sync", new StringBody("" + false, ContentType.DEFAULT_TEXT));
-			multipartEntityBuilder.addPart("compression", new StringBody("deflate", ContentType.DEFAULT_TEXT));
-			multipartEntityBuilder.addPart("data", data);
-			
-			httppost.setEntity(multipartEntityBuilder.build());
-			
-			HttpResponse httpResponse = closeableHttpClient.execute(httppost);
-			if (httpResponse.getStatusLine().getStatusCode() == 200) {
+			CloseableHttpResponse httpResponse = closeableHttpClient.execute(httppost);
+			if (httpResponse.getCode() == 200) {
 				ObjectMapper objectMapper = new ObjectMapper();
-				InputStreamReader in = new InputStreamReader(httpResponse.getEntity().getContent());
-				try {
+				try (InputStreamReader in = new InputStreamReader(httpResponse.getEntity().getContent())) {
 					ObjectNode result = objectMapper.readValue(in, ObjectNode.class);
 					if (result.has("exception")) {
 						ObjectNode exceptionJson = (ObjectNode) result.get("exception");
@@ -240,18 +228,10 @@ public abstract class Channel implements ServiceHolder {
 							throw new ServerException("No topicId found in response: " + result.toString());
 						}
 					}
-				} finally {
-					in.close();
 				}
 			}
-		} catch (ClientProtocolException e) {
-			throw new ServerException(e);
 		} catch (IOException e) {
 			throw new ServerException(e);
-		} catch (PublicInterfaceNotFoundException e) {
-			throw new ServerException(e);
-		} finally {
-			httppost.releaseConnection();
 		}
 		return -1;
 	}
@@ -260,15 +240,12 @@ public abstract class Channel implements ServiceHolder {
 		String address = baseAddress + "/download?token=" + token + "&topicId=" + topicId;
 		HttpPost httppost = new HttpPost(address);
 		try {
-			HttpResponse httpResponse = closeableHttpClient.execute(httppost);
-			if (httpResponse.getStatusLine().getStatusCode() == 200) {
+			CloseableHttpResponse httpResponse = closeableHttpClient.execute(httppost);
+			if (httpResponse.getCode() == 200) {
 				return httpResponse.getEntity().getContent();
 			} else {
-				LOGGER.error(httpResponse.getStatusLine().getStatusCode() + " - " + httpResponse.getStatusLine().getReasonPhrase());
-				httppost.releaseConnection();
+				LOGGER.error(httpResponse.getCode() + " - " + httpResponse.getReasonPhrase());
 			}
-		} catch (ClientProtocolException e) {
-			LOGGER.error("", e);
 		} catch (IOException e) {
 			LOGGER.error("", e);
 		}
@@ -278,16 +255,13 @@ public abstract class Channel implements ServiceHolder {
 	public InputStream getDownloadExtendedData(String baseAddress, String token, long edid) throws IOException {
 		String address = baseAddress + "/download?token=" + token + "&action=extendeddata&edid=" + edid;
 		HttpPost httppost = new HttpPost(address);
-		try {
-			HttpResponse httpResponse = closeableHttpClient.execute(httppost);
-			if (httpResponse.getStatusLine().getStatusCode() == 200) {
+		try  {
+			CloseableHttpResponse httpResponse = closeableHttpClient.execute(httppost);
+			if (httpResponse.getCode() == 200) {
 				return httpResponse.getEntity().getContent();
 			} else {
-				LOGGER.error(httpResponse.getStatusLine().getStatusCode() + " - " + httpResponse.getStatusLine().getReasonPhrase());
-				httppost.releaseConnection();
+				LOGGER.error(httpResponse.getCode() + " - " + httpResponse.getReasonPhrase());
 			}
-		} catch (ClientProtocolException e) {
-			LOGGER.error("", e);
 		} catch (IOException e) {
 			LOGGER.error("", e);
 		}
@@ -370,11 +344,10 @@ public abstract class Channel implements ServiceHolder {
 
 			httppost.setEntity(multipartEntityBuilder.build());
 
-			HttpResponse httpResponse = closeableHttpClient.execute(httppost);
-			if (httpResponse.getStatusLine().getStatusCode() == 200) {
+			CloseableHttpResponse httpResponse = closeableHttpClient.execute(httppost);
+			if (httpResponse.getCode() == 200) {
 				ObjectMapper objectMapper = new ObjectMapper();
-				InputStreamReader in = new InputStreamReader(httpResponse.getEntity().getContent());
-				try {
+				try (InputStreamReader in = new InputStreamReader(httpResponse.getEntity().getContent())) {
 					ObjectNode result = objectMapper.readValue(in, ObjectNode.class);
 					if (result.has("exception")) {
 						ObjectNode exceptionJson = (ObjectNode) result.get("exception");
@@ -386,18 +359,10 @@ public abstract class Channel implements ServiceHolder {
 							throw new ServerException(message);
 						}
 					}
-				} finally {
-					in.close();
 				}
 			}
-		} catch (ClientProtocolException e) {
-			throw new ServerException(e);
 		} catch (IOException e) {
 			throw new ServerException(e);
-		} catch (PublicInterfaceNotFoundException e) {
-			throw new ServerException(e);
-		} finally {
-			httppost.releaseConnection();
 		}
 	}
 }

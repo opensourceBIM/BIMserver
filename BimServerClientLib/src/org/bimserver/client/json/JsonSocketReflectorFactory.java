@@ -17,9 +17,9 @@ package org.bimserver.client.json;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.apache.hc.client5.http.impl.classic.HttpClientBuilder;
+import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.bimserver.shared.TokenHolder;
 import org.bimserver.shared.json.JsonSocketReflector;
 import org.bimserver.shared.meta.SServicesMap;
@@ -55,7 +55,7 @@ public class JsonSocketReflectorFactory implements JsonReflectorFactory {
 	}
 	
 	public void close() {
-		poolingHttpClientConnectionManager.shutdown();
+		poolingHttpClientConnectionManager.close();
 	}
 
 	public JsonSocketReflector create(String remoteAddress, TokenHolder tokenHolder) {
