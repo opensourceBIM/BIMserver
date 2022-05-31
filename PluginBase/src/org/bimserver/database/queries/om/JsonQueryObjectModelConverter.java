@@ -101,6 +101,13 @@ public class JsonQueryObjectModelConverter {
 					oidsNode.add(oid);
 				}
 			}
+			if (queryPart.hasGuids()) {
+				ArrayNode guidsNode = OBJECT_MAPPER.createArrayNode();
+				queryPartNode.set("guids", guidsNode);
+				for (String guid : queryPart.getGuids()) {
+					guidsNode.add(guid);
+				}
+			}
 			if (queryPart.hasInBoundingBox()) {
 				ObjectNode inBoundingBoxNode = OBJECT_MAPPER.createObjectNode();
 				if (!Double.isNaN(queryPart.getInBoundingBox().getX())) {
