@@ -1290,6 +1290,10 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
 		}
 
+		// Replace anything that isn't a valid word (alphanumeric), underscore, or period symbol. 
+		// This avoids FileSystemExceptions for invalid filenames
+		fileName = fileName.replaceAll("[^\\w_\\.]+", "");
+		
 		Path file = userDirIncoming.resolve(fileName);
 		return file;
 	}
