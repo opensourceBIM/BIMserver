@@ -1289,11 +1289,16 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		if (fileName.contains("\\")) {
 			fileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
 		}
-
-		// Replace anything that isn't a valid word (alphanumeric), underscore, or period symbol. 
-		// This avoids FileSystemExceptions for invalid filenames
-		fileName = fileName.replaceAll("[^\\w_\\.]+", "");
 		
+		// NTFS doesn't allow filenames to be longer than 255 characters. Windows technically 
+		// allows up to 260 characters, minus one to keep space for null terminators (so 259 
+		// characters). However to be save we follow NTFS limits, and apply the same terminator
+		// rule (255-1). See: https://stackoverflow.com/a/265782/4497744
+		final int maxNtfsFileNameLength = 254;
+		if (fileName.length() >= maxNtfsFileNameLength) {
+			fileName = fileName.substring(0, maxNtfsFileNameLength);
+		}
+
 		Path file = userDirIncoming.resolve(fileName);
 		return file;
 	}
