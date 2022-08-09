@@ -81,7 +81,7 @@ public class WarServerInitializer implements ServletContextListener {
 			homeDir = baseDir;
 		}
 
-		ResourceFetcher resourceFetcher = new WarResourceFetcher(servletContext, homeDir);
+		ResourceFetcher resourceFetcher = new WarResourceFetcher(servletContext);
 
 		BimServerConfig config = new BimServerConfig();
 		config.setAutoMigrate(autoMigrate);
@@ -112,6 +112,7 @@ public class WarServerInitializer implements ServletContextListener {
 
 		Logger LOGGER = LoggerFactory.getLogger(WarServerInitializer.class);
 		LOGGER.info("Servlet Context Name: " + servletContext.getServletContextName());
+		LOGGER.info("Servlet Context Real Path: " + servletContext.getRealPath("/WEB-INF"));
 
 		try {
 			bimServer.start();
