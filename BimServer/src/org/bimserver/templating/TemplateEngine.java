@@ -28,7 +28,6 @@ import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.exception.MethodInvocationException;
 import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.exception.ResourceNotFoundException;
-import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.URLResourceLoader;
 import org.bimserver.utils.StringUtils;
 import org.slf4j.Logger;
@@ -48,11 +47,7 @@ public class TemplateEngine {
 		try {
 			velocityEngine.mergeTemplate(templateIdentifier.getFileName(), "UTF-8", velocityContext, stringWriter);
 			return stringWriter.toString();
-		} catch (ResourceNotFoundException e) {
-			LOGGER.error("", e);
-		} catch (ParseErrorException e) {
-			LOGGER.error("", e);
-		} catch (MethodInvocationException e) {
+		} catch (ResourceNotFoundException | ParseErrorException | MethodInvocationException e) {
 			LOGGER.error("", e);
 		} catch (Exception e) {
 			LOGGER.error("", e);
@@ -61,14 +56,13 @@ public class TemplateEngine {
 	}
 
 	public void init(URL resource) {
-		LOGGER.debug("Using \"" + StringUtils.getPrettyFileUrl(resource) + "\" as template dir");
+		LOGGER.info("Using \"" + StringUtils.getPrettyFileUrl(resource) + "\" as template dir");
 		velocityEngine = new VelocityEngine();
+		velocityEngine.setProperty("resource.loader.url.timeout", 5000); // default -1 triggers InvalidArgumentException
 		velocityEngine.setProperty(VelocityEngine.RESOURCE_LOADER, "url");
-		velocityEngine.setProperty("url.resource.loader.class", URLResourceLoader.class.getName());
-		velocityEngine.setProperty(RuntimeConstants.RUNTIME_LOG_LOGSYSTEM_CLASS, "org.apache.velocity.runtime.log.Log4JLogChute");
-		velocityEngine.setProperty("runtime.log.logsystem.log4j.logger", "velocity");
+		velocityEngine.setProperty("resource.loader.url.class", URLResourceLoader.class.getName());
 		try {
-			velocityEngine.setProperty("url.resource.loader.root", URLDecoder.decode(resource.toString(), "UTF-8"));
+			velocityEngine.setProperty("resource.loader.url.root", URLDecoder.decode(resource.toString(), "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
 			LOGGER.error("", e);
 		}
