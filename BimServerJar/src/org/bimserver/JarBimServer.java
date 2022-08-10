@@ -135,7 +135,7 @@ public class JarBimServer {
 		if (homedir.startsWith("\"") && homedir.endsWith("\"")) {
 			homedir = homedir.substring(1, homedir.length()-2);
 		}
-		System.setProperty("org.apache.cxf.Logger", "org.apache.cxf.common.logging.Log4jLogger");
+		System.setProperty("org.apache.cxf.Logger", "org.apache.cxf.common.logging.Slf4jLogger");
 		BimServerConfig bimServerConfig = new BimServerConfig();
 		bimServerConfig.setHomeDir(Paths.get(homedir));
 
