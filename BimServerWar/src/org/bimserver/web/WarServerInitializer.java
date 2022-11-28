@@ -113,6 +113,7 @@ public class WarServerInitializer implements ServletContextListener {
 		Logger LOGGER = LoggerFactory.getLogger(WarServerInitializer.class);
 		LOGGER.info("Servlet Context Name: " + servletContext.getServletContextName());
 		LOGGER.info("Servlet Context Real Path: " + servletContext.getRealPath("/WEB-INF"));
+		LOGGER.info("Application Server: " + servletContext.getServerInfo());
 
 		try {
 			bimServer.start();
