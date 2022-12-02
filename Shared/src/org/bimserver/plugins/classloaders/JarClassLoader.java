@@ -18,6 +18,8 @@ package org.bimserver.plugins.classloaders;
  *****************************************************************************/
 
 import java.net.URL;
+import java.util.Collections;
+import java.util.Enumeration;
 
 public abstract class JarClassLoader extends PublicFindClassClassLoader {
 
@@ -27,4 +29,9 @@ public abstract class JarClassLoader extends PublicFindClassClassLoader {
 	
 	public abstract Class<?> findClass(String name) throws ClassNotFoundException;
 	public abstract URL findResource(String name);
+
+	public Enumeration<URL> findResources(String name) {
+		URL resource = findResource(name);
+		return resource==null ? Collections.emptyEnumeration() : Collections.enumeration(Collections.singletonList(resource));
+	}
 }

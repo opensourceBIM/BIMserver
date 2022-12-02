@@ -417,6 +417,11 @@ public class PluginBundleManager implements AutoCloseable {
 			}
 
 			@Override
+			public Enumeration<URL> findResources(String name) {
+				return Collections.emptyEnumeration();
+			}
+
+			@Override
 			public void dumpStructure(int indent) {
 			}
 		};

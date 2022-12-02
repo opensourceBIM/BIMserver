@@ -24,8 +24,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.utils.StringUtils;
@@ -67,7 +66,13 @@ public class EclipsePluginClassloader extends PublicFindClassClassLoader {
 		}
 		return null;
 	}
-	
+
+	@Override
+	public Enumeration<URL> findResources(String name) {
+		URL resource = findResource(name);
+		return resource==null ? Collections.emptyEnumeration() : Collections.enumeration(Collections.singletonList(resource));
+	}
+
 	@Override
 	public Class<?> findClass(String name) throws ClassNotFoundException {
 		String filename = name.replace(".", File.separator) + ".class";
