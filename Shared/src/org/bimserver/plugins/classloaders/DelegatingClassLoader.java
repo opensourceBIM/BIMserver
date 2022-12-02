@@ -18,8 +18,7 @@ package org.bimserver.plugins.classloaders;
  *****************************************************************************/
 
 import java.net.URL;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 import org.bimserver.utils.StringUtils;
 
@@ -85,6 +84,18 @@ public class DelegatingClassLoader extends PublicFindClassClassLoader {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public Enumeration<URL> findResources(String name) {
+		List<URL> urls = new ArrayList<>();
+		for (PublicFindClassClassLoader jarClassLoader : jarClassLoaders) {
+			URL resource = jarClassLoader.findResource(name);
+			if (resource != null) {
+				urls.add(resource);
+			}
+		}
+		return Collections.enumeration(urls);
 	}
 
 	public void dumpStructure(int indent) {
