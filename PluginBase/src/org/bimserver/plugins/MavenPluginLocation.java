@@ -76,7 +76,7 @@ public class MavenPluginLocation extends PluginLocation<MavenPluginVersion> {
 
 	protected MavenPluginLocation(MavenPluginRepository mavenPluginRepository, String defaultRepository, String groupId, String artifactId) {
 		this.mavenPluginRepository = mavenPluginRepository;
-		this.mavenPluginRepository.addRepository("given", "default", defaultRepository);
+		this.mavenPluginRepository.registerRepository("given", "default", defaultRepository);
 		this.groupId = groupId;
 		this.artifactId = artifactId;
 	}

@@ -25,6 +25,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.maven.model.Model;
+import org.apache.maven.model.Repository;
 import org.apache.maven.repository.internal.MavenRepositorySystemUtils;
 import org.apache.maven.settings.Mirror;
 import org.apache.maven.settings.Settings;
@@ -76,7 +78,7 @@ public class MavenPluginRepository {
 		repositories.add(local);
 		localRepositories.add(local);
 
-		addRepository("central", "default", "https://repo1.maven.org/maven2/");
+		registerRepository("central", "default", "https://repo1.maven.org/maven2/");
 	}
 
 	private Settings loadDefaultUserSettings() {
@@ -172,9 +174,17 @@ public class MavenPluginRepository {
 		return localRepositories;
 	}
 
-	public void addRepository(String id, String type, String url){
+	void registerRepository(String id, String type, String url){
 		repositories.add(
 			new RemoteRepository.Builder(id, type, url).setProxy(proxySelector.getProxy(url)).build()
 		);
 	}
+
+	void registerRepositories(Model mavenModel) {
+		for (Repository repository : mavenModel.getRepositories()) {
+			registerRepository(repository.getId(), "default", repository.getUrl());
+		}
+	}
+
+
 }
