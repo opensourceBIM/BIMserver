@@ -128,11 +128,8 @@ public class PluginBundleManager implements AutoCloseable {
 		if (Files.exists(target)) {
 			throw new PluginException("This plugin has already been installed " + target.getFileName().toString());
 		}
-		InputStream jarInputStream = mavenPluginBundle.getJarInputStream();
-		try {
+		try (InputStream jarInputStream = mavenPluginBundle.getJarInputStream()) {
 			Files.copy(jarInputStream, target);
-		} finally {
-			jarInputStream.close();
 		}
 
 		return loadPlugin(pluginBundleVersionIdentifier, target, mavenPluginBundle.getPluginBundle(), mavenPluginBundle.getPluginBundleVersion(), plugins, delegatingClassLoader);
@@ -155,8 +152,7 @@ public class PluginBundleManager implements AutoCloseable {
 			exclusions.add(new Exclusion("org.opensourcebim", "ifcplugins", null, "jar"));
 			if(!isDependencyProvided(mvnDependency)) dependenciesToResolve.add(d);
 		}
-		CollectRequest collectRequest = new CollectRequest(dependenciesToResolve, null, null);
-		collectRequest.setRepositories(mavenPluginRepository.getRepositoriesAsList());
+		CollectRequest collectRequest = new CollectRequest(dependenciesToResolve, null, mavenPluginRepository.getRepositoriesAsList());
 		CollectResult collectDependencies = mavenPluginRepository.getSystem().collectDependencies(mavenPluginRepository.getSession(), collectRequest);
 		PreorderNodeListGenerator nlg = new PreorderNodeListGenerator();
 		DependencyNode rootDep = collectDependencies.getRoot();
@@ -166,7 +162,6 @@ public class PluginBundleManager implements AutoCloseable {
 			if (dependency.getScope().contentEquals("test")) {
 				continue;
 			}
-//			LOGGER.info(dependency.getArtifact().getGroupId() + "." + dependency.getArtifact().getArtifactId());
 			Artifact dependencyArtifact = dependency.getArtifact();
 			PluginBundleIdentifier pluginBundleIdentifier = new PluginBundleIdentifier(dependencyArtifact.getGroupId(), dependencyArtifact.getArtifactId());
 			if (pluginBundleIdentifierToPluginBundle.containsKey(pluginBundleIdentifier)) {
@@ -177,7 +172,7 @@ public class PluginBundleManager implements AutoCloseable {
 					}
 					VersionRange versionRange = VersionRange.createFromVersionSpec(version);
 					// String version =
-					// pluginBundleIdentifierToPluginBundle.get(pluginBundleIdentifier).getPluginBundleVersion().getVersion();
+					pluginBundleIdentifierToPluginBundle.get(pluginBundleIdentifier).getPluginBundleVersion().getVersion();
 					ArtifactVersion artifactVersion = new DefaultArtifactVersion(pluginBundleVersion);
 					if (versionRange.containsVersion(artifactVersion)) {
 						// OK
@@ -260,13 +255,11 @@ public class PluginBundleManager implements AutoCloseable {
 						LOGGER.info("Skipping strict dependency checking for dependency " + dependency.getArtifactId());
 					}
 				} else {
-					if (isDependencyProvided(dependency)) {
-					} else { // this must be IfcPlugins then?
+					if (!isDependencyProvided(dependency)) { // always true at this point
 						MavenPluginLocation mavenPluginLocation = mavenPluginRepository.getPluginLocation(dependency.getGroupId(), dependency.getArtifactId());
 
 						try {
 							Path depJarFile = mavenPluginLocation.getVersionJar(dependency.getVersion());
-
 							FileJarClassLoader jarClassLoader = new FileJarClassLoader(pluginManager, delegatingClassLoader, depJarFile);
 							jarClassLoaders.add(jarClassLoader);
 							delegatingClassLoader.add(jarClassLoader);
@@ -286,7 +279,7 @@ public class PluginBundleManager implements AutoCloseable {
 		sPluginBundle.setInstalledVersion(sPluginBundleVersion);
 		PluginBundle pluginBundle = new PluginBundleImpl(pluginBundleVersionIdentifier, sPluginBundle, sPluginBundleVersion, pluginDescriptor);
 
-		if (classLoader != null && classLoader instanceof Closeable) {
+		if (classLoader instanceof Closeable) {
 			pluginBundle.addCloseable((Closeable) classLoader);
 		}
 
@@ -306,9 +299,7 @@ public class PluginBundleManager implements AutoCloseable {
 							throw new PluginException("Implementation class '" + implementationClassName + "' not found", e);
 						} catch (ClassNotFoundException e) {
 							throw new PluginException("Implementation class '" + e.getMessage() + "' not found in " + location, e);
-						} catch (InstantiationException e) {
-							throw new PluginException(e);
-						} catch (IllegalAccessException e) {
+						} catch (InstantiationException | IllegalAccessException e) {
 							throw new PluginException(e);
 						}
 					}
@@ -369,7 +360,7 @@ public class PluginBundleManager implements AutoCloseable {
 				}
 			};
 
-			return loadPlugins(pluginBundleVersionIdentifier, resourceLoader, jarClassLoader, jarUri, file.toAbsolutePath().toString(), pluginDescriptor, PluginSourceType.JAR_FILE, new HashSet<org.bimserver.plugins.Dependency>(),
+			return loadPlugins(pluginBundleVersionIdentifier, resourceLoader, jarClassLoader, jarUri, file.toAbsolutePath().toString(), pluginDescriptor, PluginSourceType.JAR_FILE, new HashSet<>(),
 					sPluginBundle, pluginBundleVersion);
 		} catch (Exception e) {
 			if (jarClassLoader != null) {
@@ -403,10 +394,7 @@ public class PluginBundleManager implements AutoCloseable {
 
 		loadDependencies(bimServerDependencies, model, delegatingClassLoader, resolveRemoteDependencies);
 
-		// Path libFolder = projectRoot.resolve("lib");
-		// loadDependencies(libFolder, delegatingClassLoader);
 		EclipsePluginClassloader pluginClassloader = new EclipsePluginClassloader(delegatingClassLoader, projectRoot);
-		// pluginClassloader.dumpStructure(0);
 
 		ResourceLoader resourceLoader = new ResourceLoader() {
 			@Override
@@ -507,18 +495,12 @@ public class PluginBundleManager implements AutoCloseable {
 				throw new PluginException(e);
 			}
 			return pluginBundle;
-		} catch (JAXBException e) {
-			throw new PluginException(e);
-		} catch (FileNotFoundException e) {
-			throw new PluginException(e);
-		} catch (IOException e) {
-			throw new PluginException(e);
-		} catch (XmlPullParserException e) {
+		} catch (JAXBException | IOException | XmlPullParserException e) {
 			throw new PluginException(e);
 		}
 	}
 	
-	private void loadDependencies(Set<org.bimserver.plugins.Dependency> bimServerDependencies, Model model, DelegatingClassLoader depDelLoader, boolean resolveRemoteDependencies) throws FileNotFoundException, IOException {
+	private void loadDependencies(Set<org.bimserver.plugins.Dependency> bimServerDependencies, Model model, DelegatingClassLoader depDelLoader, boolean resolveRemoteDependencies) throws IOException {
 		mavenPluginRepository.registerRepositories(model);
 
 		Path workspaceDir = Paths.get("..");
@@ -527,7 +509,7 @@ public class PluginBundleManager implements AutoCloseable {
 
 		for (org.apache.maven.model.Dependency depend : model.getDependencies()) {
 			try {
-				if (depend.getGroupId().equals("org.opensourcebim") && (depend.getArtifactId().equals("shared") || depend.getArtifactId().equals("pluginbase") || depend.getArtifactId().equals("ifcplugins"))) {
+				if (isDependencyProvidedOrIfcPlugins(depend)) {
 					// Skip this one, because we have already
 					// TODO we might want to check the version though
 					continue;
@@ -537,126 +519,44 @@ public class PluginBundleManager implements AutoCloseable {
 				}
 				Dependency dependency2 = new Dependency(new DefaultArtifact(depend.getGroupId() + ":" + depend.getArtifactId() + ":jar:" + depend.getVersion()), "compile");
 
-				if (!dependency2.getArtifact().isSnapshot()) {
-					if (dependency2.getArtifact().getFile() != null) {
-						bimServerDependencies.add(new org.bimserver.plugins.Dependency(dependency2.getArtifact().getFile().toPath()));
-						loadDependencies(dependency2.getArtifact().getFile().toPath(), depDelLoader);
-					} else {
-						ArtifactRequest request = new ArtifactRequest();
-						request.setArtifact(dependency2.getArtifact());
-						request.setRepositories(resolveRemoteDependencies ? mavenPluginRepository.getRepositoriesAsList() : mavenPluginRepository.getLocalRepositories());
-						try {
-							ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
-							if (resolveArtifact.getArtifact().getFile() != null) {
-								bimServerDependencies.add(new org.bimserver.plugins.Dependency(resolveArtifact.getArtifact().getFile().toPath()));
-								loadDependencies(resolveArtifact.getArtifact().getFile().toPath(), depDelLoader);
-							} else {
-								// TODO error?
-							}
-						} catch (ArtifactResolutionException e) {
-							LOGGER.error(model.getGroupId() + "." + model.getArtifactId(), e);
-						}
-					}
+				// TODO: Snapshot projects linked in Eclipse
+				if (!dependency2.getArtifact().isSnapshot() && dependency2.getArtifact().getFile() != null) {
+					bimServerDependencies.add(new org.bimserver.plugins.Dependency(dependency2.getArtifact().getFile().toPath()));
+					loadDependencies(dependency2.getArtifact().getFile().toPath(), depDelLoader);
 				} else {
-					// Snapshot projects linked in Eclipse
 					ArtifactRequest request = new ArtifactRequest();
-					if (!"test".equals(dependency2.getScope())) { //  && !dependency2.getArtifact().isSnapshot() was always false - but now it's always true
-						request.setArtifact(dependency2.getArtifact());
-						request.setRepositories(mavenPluginRepository.getLocalRepositories());
-						try {
-							ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
-							if (resolveArtifact.getArtifact().getFile() != null) {
-								bimServerDependencies.add(new org.bimserver.plugins.Dependency(resolveArtifact.getArtifact().getFile().toPath()));
-								loadDependencies(resolveArtifact.getArtifact().getFile().toPath(), depDelLoader);
-							} else {
-								// TODO error?
-							}
-						} catch (Exception e) {
-							LOGGER.info(dependency2.getArtifact().toString());
-							e.printStackTrace();
+					request.setArtifact(dependency2.getArtifact());
+					boolean localOnly = !resolveRemoteDependencies || dependency2.getArtifact().isSnapshot();
+					request.setRepositories(!localOnly ? mavenPluginRepository.getLocalRepositories() : mavenPluginRepository.getRepositoriesAsList());
+					try {
+						ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), request);
+						if (resolveArtifact.getArtifact().getFile() != null) {
+							bimServerDependencies.add(new org.bimserver.plugins.Dependency(resolveArtifact.getArtifact().getFile().toPath()));
+							loadDependencies(resolveArtifact.getArtifact().getFile().toPath(), depDelLoader);
+						} else {
+							// TODO error?
 						}
-
-						// bimServerDependencies.add(new
-						// org.bimserver.plugins.Dependency(resolveArtifact.getArtifact().getFile().toPath()));
+					} catch (ArtifactResolutionException e) {
+						LOGGER.error(model.getGroupId() + "." + model.getArtifactId(), e);
 					}
 				}
-				ArtifactDescriptorRequest descriptorRequest = new ArtifactDescriptorRequest();
-				descriptorRequest.setArtifact(dependency2.getArtifact());
-				descriptorRequest.setRepositories(mavenPluginRepository.getRepositoriesAsList());
-				ArtifactDescriptorResult descriptorResult = mavenPluginRepository.getSystem().readArtifactDescriptor(mavenPluginRepository.getSession(), descriptorRequest);
 
-				CollectRequest collectRequest = new CollectRequest(descriptorResult.getDependencies(), descriptorResult.getManagedDependencies(), mavenPluginRepository.getRepositoriesAsList());
-
-				DependencyNode node = mavenPluginRepository.getSystem().collectDependencies(mavenPluginRepository.getSession(), collectRequest).getRoot();
-				DependencyRequest dependencyRequest = new DependencyRequest();
-				dependencyRequest.setRoot(node);
-				dependencyRequest.setFilter(new ScopeDependencyFilter("test"));
-
+				CollectRequest collectRequest = new CollectRequest(dependency2, null, mavenPluginRepository.getRepositoriesAsList()); // is model.getRepositories() enough?
 				CollectResult collectResult = mavenPluginRepository.getSystem().collectDependencies(mavenPluginRepository.getSession(), collectRequest);
-
 				PreorderNodeListGenerator nlg = new PreorderNodeListGenerator();
-				// collectResult.getRoot().accept(new
-				// ConsoleDependencyGraphDumper());
 				collectResult.getRoot().accept(nlg);
 
-				try {
-					mavenPluginRepository.getSystem().resolveDependencies(mavenPluginRepository.getSession(), dependencyRequest);
-				} catch (DependencyResolutionException e) {
-					// Ignore
-				}
-
 				for (DependencyNode dependencyNode : nlg.getNodes()) {
-					ArtifactRequest newRequest = new ArtifactRequest(dependencyNode);
-					newRequest.setRepositories(mavenPluginRepository.getRepositoriesAsList());
-					ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), newRequest);
-
-					Artifact artifact = resolveArtifact.getArtifact();
-					Path jarFile = Paths.get(artifact.getFile().getAbsolutePath());
-
+					if(dependency2.equals(dependencyNode.getDependency())) continue; // This has already been loaded, not sure if separated treatment needed
+					ArtifactRequest artifactRequest = new ArtifactRequest(dependencyNode);
+					artifactRequest.setRepositories(mavenPluginRepository.getRepositoriesAsList()); // is model.getRepositories() enough?
+					ArtifactResult resolveArtifact = mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(), artifactRequest);
+					Path jarFile = Paths.get(resolveArtifact.getArtifact().getFile().getAbsolutePath());
 					loadDependencies(jarFile, depDelLoader);
-
-					Artifact versionArtifact = new DefaultArtifact(artifact.getGroupId(), artifact.getArtifactId(), "pom", artifact.getVersion());
-
-					ArtifactRequest request = new ArtifactRequest();
-					request.setArtifact(versionArtifact);
-					request.setRepositories(mavenPluginRepository.getRepositoriesAsList());
-
-					// try {
-					// ArtifactResult resolveArtifact =
-					// mavenPluginRepository.getSystem().resolveArtifact(mavenPluginRepository.getSession(),
-					// request);
-					// File depPomFile =
-					// resolveArtifact.getArtifact().getFile();
-					// if (depPomFile != null) {
-					// MavenXpp3Reader mavenreader = new MavenXpp3Reader();
-					// Model depModel = null;
-					// try (FileReader reader = new FileReader(depPomFile)) {
-					// try {
-					// depModel = mavenreader.read(reader);
-					// } catch (XmlPullParserException e) {
-					// e.printStackTrace();
-					// }
-					// }
-					// previous = loadDependencies(bimServerDependencies,
-					// depModel, previous);
-					// } else {
-					// LOGGER.info("Artifact not found " + versionArtifact);
-					// }
-					// } catch (ArtifactResolutionException e1) {
-					// LOGGER.error(e1.getMessage());
-					// }
-
-					// EclipsePluginClassloader depLoader = new
-					// EclipsePluginClassloader(depDelLoader, projectRoot);
-
 					bimServerDependencies.add(new org.bimserver.plugins.Dependency(jarFile));
-
 				}
-			} catch (DependencyCollectionException e) {
-				e.printStackTrace();
-			} catch (ArtifactDescriptorException e2) {
-				e2.printStackTrace();
-			} catch (ArtifactResolutionException e) {
+
+			} catch (DependencyCollectionException | ArtifactResolutionException e) {
 				e.printStackTrace();
 			}
 		}
@@ -981,9 +881,7 @@ public class PluginBundleManager implements AutoCloseable {
 			sPluginBundle.setOrganization(model.getOrganization().getName());
 			sPluginBundle.setName(model.getName());
 			return sPluginBundle;
-		} catch (IOException e) {
-			throw new PluginException(e);
-		} catch (XmlPullParserException e) {
+		} catch (IOException | XmlPullParserException e) {
 			throw new PluginException(e);
 		}
 	}
