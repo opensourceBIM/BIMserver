@@ -12,7 +12,6 @@
 		<url>https://github.com/opensourceBIM/BIMserver.git</url>
 		<connection>scm:git:https://github.com/opensourceBIM/BIMserver.git</connection>
 		<developerConnection>scm:git:https://github.com/opensourceBIM/BIMserver.git</developerConnection>
-		<tag>v1.5.174</tag>
 	</scm>
 	<organization>
 		<name>OpenSource BIM</name>
@@ -97,7 +96,7 @@
 						<configuration>
 							<serverId>ossrh</serverId>
 							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
-							<autoReleaseAfterClose>true</autoReleaseAfterClose>
+							<autoReleaseAfterClose>false</autoReleaseAfterClose>
 							<stagingProgressTimeoutMinutes>60</stagingProgressTimeoutMinutes>
 						</configuration>
 					</plugin>
@@ -117,6 +116,8 @@
 										<arg>--pinentry-mode</arg>
 										<arg>loopback</arg>
 									</gpgArguments>
+									<keyname>${gpg.keyname}</keyname>
+									<passphraseServerId>${gpg.keyname}</passphraseServerId>
 								</configuration>
 							</execution>
 						</executions>
