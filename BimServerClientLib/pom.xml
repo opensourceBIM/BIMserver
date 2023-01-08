@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.opensourcebim</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.5.183-SNAPSHOT</version>
+		<version>1.5.183</version>
 	</parent>
 	<properties>
 		<jetty.version>9.4.38.v20210224</jetty.version>
