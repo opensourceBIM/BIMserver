@@ -12,8 +12,8 @@
 		<url>https://github.com/opensourceBIM/BIMserver.git</url>
 		<connection>scm:git:https://github.com/opensourceBIM/BIMserver.git</connection>
 		<developerConnection>scm:git:https://github.com/opensourceBIM/BIMserver.git</developerConnection>
-	  <tag>HEAD</tag>
-  </scm>
+	  	<tag>HEAD</tag>
+  	</scm>
 	<organization>
 		<name>OpenSource BIM</name>
 		<url>opensourcebim.org</url>
@@ -154,6 +154,12 @@
 					</plugin>
 				</plugins>
 			</build>
+		</profile>
+		<profile>
+			<id>test</id>
+			<modules>
+				<module>Tests</module>
+			</modules>
 		</profile>
 	</profiles>
 	<distributionManagement>
