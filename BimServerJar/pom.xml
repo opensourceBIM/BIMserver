@@ -9,9 +9,6 @@
 		<artifactId>parent</artifactId>
 		<version>1.5.184-SNAPSHOT</version>
 	</parent>
-	<properties>
-		<jetty.version>9.4.44.v20210927</jetty.version>
-	</properties>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<resources>
