@@ -123,6 +123,7 @@ public class DownloadServlet extends SubServlet {
 						}
 					} else if (type.equals("serverlog")) {
 						try {
+							response.setContentType("text/plain");
 							OutputStreamWriter writer = new OutputStreamWriter(outputStream);
 							writer.write(serviceMap.getAdminInterface().getServerLog());
 							writer.flush();
