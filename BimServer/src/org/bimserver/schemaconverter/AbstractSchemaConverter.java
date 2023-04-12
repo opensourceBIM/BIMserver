@@ -87,14 +87,23 @@ public abstract class AbstractSchemaConverter implements SchemaConverter {
 					}
 				} else {
 					if (eStructuralFeature.getEType() instanceof EEnum) {
-						EEnum targetEnum = (EEnum) targetFeature.getEType();
-						EEnumLiteral newLiteral = targetEnum.getEEnumLiteral(get.toString());
-						if (newLiteral != null) {
-							newObject.eSet(targetFeature, newLiteral.getInstance());
+						if(targetFeature.getEType() instanceof EEnum){
+							EEnum targetEnum = (EEnum) targetFeature.getEType();
+							EEnumLiteral newLiteral = targetEnum.getEEnumLiteral(get.toString());
+							if (newLiteral != null) {
+								newObject.eSet(targetFeature, newLiteral.getInstance());
+							}
+						} else {
+							LOGGER.info("Incompatible attribute type (enum source)");
 						}
 					} else {
 						if (targetFeature instanceof EAttribute) {
-							newObject.eSet(targetFeature, get);
+							if(((EAttribute) targetFeature).getEAttributeType().equals(((EAttribute) eStructuralFeature).getEAttributeType())){
+								newObject.eSet(targetFeature, get);
+							} else {
+								LOGGER.info("Different attribute types");
+								// e.g. EcorePackage.EBoolean or IfcxxPackage.IfcBoolean -> Tristate or vice versa (its a mess in the Ecores)
+							}
 						}
 					}
 				}
@@ -107,7 +116,8 @@ public abstract class AbstractSchemaConverter implements SchemaConverter {
 						if (toList != null) {
 							for (Object o : list) {
 								IdEObject ref = (IdEObject)o;
-								if (targetFeature.getEType().isInstance(ref)) {
+								// if (targetFeature.getEType().isInstance(ref)) {
+								if(((EReference)targetFeature).getEReferenceType().isSuperTypeOf(target.getPackageMetaData().getEClass(ref.eClass().getName()))){
 									if (converted.containsKey(o)) {
 										toList.addUnique(converted.get(o));
 									} else {
@@ -116,6 +126,8 @@ public abstract class AbstractSchemaConverter implements SchemaConverter {
 											toList.addUnique(result);
 										}
 									}
+								} else {
+									LOGGER.info("Incompatible reference types");
 								}
 							}
 						}

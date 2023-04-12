@@ -129,6 +129,7 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 				projectInfo.setBoundsUntranslated(getBimServer().getSConverter().convertToSObject(concreteRevision.getBoundsUntransformed()));
 				projectInfo.setMultiplierToMm(concreteRevision.getMultiplierToMm());
 				projectInfo.setName("" + roids.iterator().next());
+				// TODO handle ROIDs with different schemas - reject or convert?
 				packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
 				projectNames.add(revision.getProject().getName() + "." + revision.getId());
 				break;
@@ -142,7 +143,6 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 				LOGGER.info("No serializer config found");
 			} else {
 				Plugin plugin = getBimServer().getPluginManager().getPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
-				
 				JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(packageMetaData);
 				ObjectNode queryObject = OBJECT_MAPPER.readValue(jsonQuery, ObjectNode.class);
 				Query query = converter.parseJson("query", (ObjectNode) queryObject);
@@ -192,17 +192,19 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 					QueryObjectProvider queryObjectProvider = new QueryObjectProvider(databaseSession, getBimServer(), query, roids, packageMetaData);
 					if (plugin instanceof MessagingStreamingSerializerPlugin) {
 						MessagingStreamingSerializerPlugin serializerPlugin = (MessagingStreamingSerializerPlugin)plugin;
+						if(!serializerPlugin.getSupportedSchemas().contains(packageMetaData.getSchema())){
+							throw new SerializerException("Schema conversion not supported for streaming serializers.");
+						}
 						messagingStreamingSerializer = serializerPlugin.createSerializer(pluginConfiguration);
-						
 						messagingStreamingSerializer.init(queryObjectProvider, projectInfo, getBimServer().getPluginManager(), packageMetaData);
-						
 						changeActionState(ActionState.STARTED, "Done preparing", -1);
 					} else if (plugin instanceof StreamingSerializerPlugin) {
 						StreamingSerializerPlugin streamingSerializerPlugin = (StreamingSerializerPlugin)plugin;
+						if(!streamingSerializerPlugin.getSupportedSchemas().contains(packageMetaData.getSchema())){
+							throw new SerializerException("Schema conversion not supported for streaming serializers.");
+						}
 						serializer = streamingSerializerPlugin.createSerializer(pluginConfiguration);
-						
 						serializer.init(queryObjectProvider, projectInfo, ifcHeader, getBimServer().getPluginManager(), packageMetaData);
-						
 						changeActionState(ActionState.STARTED, "Done preparing", -1);
 					} else {
 						LOGGER.error("Unimplemented " + plugin);

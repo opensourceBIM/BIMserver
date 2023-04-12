@@ -45,11 +45,11 @@ public class Ifc2x3tc1ToIfc4Converter extends AbstractSchemaConverter implements
 
 	@Override
 	public Schema getSourceSchema() {
-		return Schema.IFC4;
+		return Schema.IFC2X3TC1;
 	}
 
 	@Override
 	public Schema getTargetSchema() {
-		return Schema.IFC2X3TC1;
+		return Schema.IFC4;
 	}
 }
