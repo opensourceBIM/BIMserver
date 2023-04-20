@@ -120,9 +120,8 @@ public abstract class AbstractService extends ServicePlugin {
 			SLongActionState state = new SLongActionState();
 			state.setProgress(progress);
 			state.setTitle(name);
-			state.setState(SActionState.FINISHED);
+			state.setState(SActionState.STARTED);
 			state.setStart(startDate);
-			state.setEnd(new Date());
 			try {
 				bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
 			} catch (UserException e) {
