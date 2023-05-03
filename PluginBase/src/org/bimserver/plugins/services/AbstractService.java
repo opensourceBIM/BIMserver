@@ -31,7 +31,6 @@ import org.bimserver.models.store.StoreFactory;
 import org.bimserver.models.store.Trigger;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginContext;
-import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.PluginException;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
@@ -46,7 +45,7 @@ public abstract class AbstractService extends ServicePlugin {
 
 	public AbstractService() {
 	}
-	
+
 	@Override
 	public void init(PluginContext pluginContext, PluginConfiguration systemSettings) throws PluginException {
 		this.pluginContext = pluginContext;
@@ -56,7 +55,7 @@ public abstract class AbstractService extends ServicePlugin {
 	public PluginContext getPluginContext() {
 		return pluginContext;
 	}
-	
+
 	@Override
 	public ObjectDefinition getUserSettingsDefinition() {
 		return null;
@@ -66,10 +65,10 @@ public abstract class AbstractService extends ServicePlugin {
 		UNKNOWN,
 		KNOWN
 	}
-	
+
 	/**
 	 * This method gets called when there is a new revision
-	 * 
+	 *
 	 * @param runningService A reference to the RunningService, you can use it to update the progress if you know it
 	 * @param bimServerClientInterface A client with the proper authorization on this or a remote BIMserver to fetch the revision, and write extended data to
 	 * @param poid ProjectID of the project
@@ -77,7 +76,7 @@ public abstract class AbstractService extends ServicePlugin {
 	 * @param userToken Optional token, unused at the moment
 	 * @param soid ServiceID
 	 * @param settings Optional settings a user might have given in the InternalService settings
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public abstract void newRevision(RunningService runningService, BimServerClientInterface bimServerClientInterface, long poid, long roid, String userToken, long soid, SObjectType settings) throws Exception;
 
@@ -103,7 +102,7 @@ public abstract class AbstractService extends ServicePlugin {
 			this.topicId = topicId;
 			this.bimServerClientInterface = bimServerClientInterface;
 		}
-		
+
 		public PluginConfiguration getPluginConfiguration() {
 			return pluginConfiguration;
 		}
@@ -111,7 +110,7 @@ public abstract class AbstractService extends ServicePlugin {
 		public Date getStartDate() {
 			return startDate;
 		}
-		
+
 		/**
 		 * Update progress
 		 * @param progress Between 0 and 100 inclusive
@@ -137,9 +136,9 @@ public abstract class AbstractService extends ServicePlugin {
 			return currentUser;
 		}
 	}
-	
+
 	public abstract void addRequiredRights(ServiceDescriptor serviceDescriptor);
-	
+
 	@Override
 	public void register(long uoid, SInternalServicePluginConfiguration internalService, final PluginConfiguration pluginConfiguration) {
 		name = internalService.getName();
@@ -165,9 +164,9 @@ public abstract class AbstractService extends ServicePlugin {
 						state.setState(SActionState.STARTED);
 						state.setStart(runningService.getStartDate());
 						bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
-						
+
 						AbstractService.this.newRevision(runningService, bimServerClientInterface, poid, roid, userToken, soid, settings);
-						
+
 						state = new SLongActionState();
 						state.setProgress(100);
 						state.setTitle(name);
@@ -175,9 +174,14 @@ public abstract class AbstractService extends ServicePlugin {
 						state.setStart(runningService.getStartDate());
 						state.setEnd(new Date());
 						bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
-					} catch (BimServerClientException e) {
-						LOGGER.error("", e);
 					} catch (Exception e) {
+						SLongActionState state = new SLongActionState();
+						state.setState(SActionState.AS_ERROR);
+						state.setStart(runningService.getStartDate());
+						state.setEnd(new Date());
+						state.setProgress(bimServerClientInterface.getRegistry().getProgress(topicId).getProgress());
+						state.setTitle(name);
+						bimServerClientInterface.getRegistry().updateProgressTopic(topicId, state);
 						LOGGER.error("", e);
 					} finally {
 						bimServerClientInterface.getRegistry().unregisterProgressTopic(topicId);
