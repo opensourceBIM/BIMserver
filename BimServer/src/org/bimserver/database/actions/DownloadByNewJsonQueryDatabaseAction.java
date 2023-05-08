@@ -218,7 +218,7 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 				
 				queryObjectProvider = new QueryObjectProvider(getDatabaseSession(), getBimServer(), secondQuery, Collections.singleton(roid), packageMetaData);
 				
-				System.out.println(converter.toJson(secondQuery));
+				LOGGER.debug(converter.toJson(secondQuery).toString());
 				
 				next = queryObjectProvider.next();
 				while (next != null) {
@@ -261,7 +261,7 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 											if (o instanceof HashMapWrappedVirtualObject) {
 												newList.add(convertWrapped(revision, ifcModel, (HashMapWrappedVirtualObject)o));
 											} else if (o instanceof Long) {
-												LOGGER.warn("TODO");
+												LOGGER.warn("Unprocessed list element: " + o);
 												// TODO
 											} else {
 												newList.add(o);
@@ -279,7 +279,7 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 								long refOid = (Long)r;
 								IdEObject referred = ifcModel.get(refOid);
 								if (referred == null) {
-									System.out.println(eReference.getName() + " " + refOid);
+									LOGGER.debug("Null reference: " + eReference.getName() + " " + refOid);
 								}
 								idEObject.eSet(eReference, referred);
 							} else if (r instanceof HashMapWrappedVirtualObject) {
