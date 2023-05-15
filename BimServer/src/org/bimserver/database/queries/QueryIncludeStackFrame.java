@@ -97,15 +97,22 @@ public class QueryIncludeStackFrame extends DatabaseReadingStackFrame {
 		if (value != null) {
 			if (feature.isMany()) {
 				List<Long> list = (List<Long>)value;
-				for (Object r : list) {
-					if (r instanceof Long) {
+				for (Object element: list) {
+					if (element instanceof Long) {
 						if (directFeatureSet != null && directFeatureSet.contains(feature)) {
-							HashMapVirtualObject byOid = getByOid((long)r, true);
+							HashMapVirtualObject byOid = getByOid((long)element, true);
 							getQueryObjectProvider().addRead(byOid.getOid());
 							currentObject.addDirectListReference(feature, byOid);
 							processPossibleIncludes(byOid, byOid.eClass(), include);
 						} else {
-							processReference((Long)r);
+							processReference((Long)element);
+						}
+					} else if (element instanceof HashMapVirtualObject && feature.getEAnnotation("twodimensionalarray")!=null) {
+						for ( Object nestedElement :(List)((HashMapVirtualObject) element).get("List")){
+							if(nestedElement instanceof Long){
+								processReference((Long) nestedElement);
+								// TODO process as direct feature?
+							}
 						}
 					} else {
 						// ??
