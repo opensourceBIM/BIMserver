@@ -57,6 +57,7 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 		this.uuid = reusable.getDatabaseInterface().newUuid();
 
 		int unsettedLength = reusable.getPackageMetaData().getUnsettedLength(eClass);
+		ensureCapacity(buffer.position(), 16 + unsettedLength);
 		buffer.put(new byte[unsettedLength]);
 		buffer.putLong(this.uuid.getMostSignificantBits());
 		buffer.putLong(this.uuid.getLeastSignificantBits());
