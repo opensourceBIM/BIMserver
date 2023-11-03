@@ -105,7 +105,7 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 		addService(new SService(servicesMap, null, NotificationRegistryInterface.class));
 		addService(new SService(servicesMap, null, OAuthInterface.class));
 		servicesMap.initialize();
-		initHttpClient(sslContext(trustedCertificate));
+		initHttpClient(trustedCertificate != null  ? sslContext(trustedCertificate) : null);
 	}
 
 	public AbstractBimServerClientFactory(MetaDataManager metaDataManager) throws BimServerClientException {
