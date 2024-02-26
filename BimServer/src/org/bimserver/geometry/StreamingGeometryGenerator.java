@@ -95,6 +95,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	final Map<Integer, Long> hashes = new ConcurrentHashMap<>();
 
 	private EClass productClass;
+	private EClass nonUniformScalingClass;
 	EReference geometryFeature;
 	EStructuralFeature representationFeature;
 	PackageMetaData packageMetaData;
@@ -162,6 +163,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		GenerateGeometryResult generateGeometryResult = new GenerateGeometryResult();
 		packageMetaData = queryContext.getPackageMetaData();
 		productClass = packageMetaData.getEClass("IfcProduct");
+		nonUniformScalingClass = packageMetaData.getEClass("IfcCartesianTransformationOperator3DnonUniform");
 		geometryFeature = (EReference) productClass.getEStructuralFeature("geometry");
 		representationFeature = productClass.getEStructuralFeature("Representation");
 		representationsFeature = packageMetaData.getEClass("IfcProductDefinitionShape").getEStructuralFeature("Representations");
@@ -439,11 +441,13 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 										            a2 = yAxis;
 										            a1 = xAxis;
 													
+													double[] scale = getTransformationScalingVector(mappingTarget);
+													
 													List<Double> t = (List<Double>)localOrigin.get("Coordinates");
 													mappingMatrix = new double[]{
-														a1[0], a1[1], a1[2], 0,
-														a2[0], a2[1], a2[2], 0,
-														a3[0], a3[1], a3[2], 0,
+														a1[0] * scale[0], a1[1], a1[2], 0,
+														a2[0], a2[1] * scale[1], a2[2], 0,
+														a3[0], a3[1], a3[2] * scale[2], 0,
 														t.get(0).doubleValue(), t.get(1).doubleValue(), t.get(2).doubleValue(), 1
 													};
 												}
@@ -682,6 +686,32 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			LOGGER.debug("", e);
 		}
 		return generateGeometryResult;
+	}
+	
+	private double[] getTransformationScalingVector(AbstractHashMapVirtualObject mappingTarget) {
+		if(nonUniformScalingClass.isSuperTypeOf(mappingTarget.eClass())) {
+			return new double[] {
+					getTransformationScale(mappingTarget, "Scale"),
+					getTransformationScale(mappingTarget, "Scale2"),
+					getTransformationScale(mappingTarget, "Scale3"),
+			};
+		} else {
+			double scale = getTransformationScale(mappingTarget, "Scale");
+			return new double[] {
+					scale,
+					scale,
+					scale,
+			};
+		}
+	}
+	
+	private double getTransformationScale(AbstractHashMapVirtualObject mappingTarget, String key) {
+		Object scale = mappingTarget.get(key);
+		if(scale instanceof Double) {
+			return (Double) scale;
+		}
+		
+		return 1;
 	}
 	
 	private double[] createQuantizationMatrixFromBounds(Bounds bounds, float multiplierToMm) {
