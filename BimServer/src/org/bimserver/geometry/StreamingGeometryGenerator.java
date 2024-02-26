@@ -446,6 +446,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 														a3[0], a3[1], a3[2], 0,
 														t.get(0).doubleValue(), t.get(1).doubleValue(), t.get(2).doubleValue(), 1
 													};
+													
+													scaleMappingMatrix(mappingTarget, mappingMatrix);
 												}
 												
 												AbstractHashMapVirtualObject placement = next.getDirectFeature(packageMetaData.getEReference("IfcProduct", "ObjectPlacement"));
@@ -682,6 +684,25 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			LOGGER.debug("", e);
 		}
 		return generateGeometryResult;
+	}
+	
+	private void scaleMappingMatrix(AbstractHashMapVirtualObject mappingTarget, double[] mappingMatrix) {
+		double scaleX = getTransformationScale(mappingTarget, "Scale");
+		double scaleY = getTransformationScale(mappingTarget, "Scale2");
+		double scaleZ = getTransformationScale(mappingTarget, "Scale3");
+		
+		mappingMatrix[0] *= scaleX;
+		mappingMatrix[5] *= scaleY;
+		mappingMatrix[10] *= scaleZ;
+	}
+	
+	private double getTransformationScale(AbstractHashMapVirtualObject mappingTarget, String key) {
+		Object scale = mappingTarget.get(key);
+		if(scale instanceof Double) {
+			return (Double) scale;
+		}
+		
+		return 1;
 	}
 	
 	private double[] createQuantizationMatrixFromBounds(Bounds bounds, float multiplierToMm) {
