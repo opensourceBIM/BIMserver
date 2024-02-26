@@ -32,6 +32,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -317,7 +318,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 					
 					queryPart2.addInclude(objectPlacement);
 					
-					Map<Long, Map<Long, ProductDef>> representationMapToProduct = new HashMap<>();
+					includeItemStyle(mappingSourceInclude);
+					
+					Map<String, Map<Long, ProductDef>> representationMapToProduct = new HashMap<>();
 					
 					QueryObjectProvider queryObjectProvider2 = new QueryObjectProvider(databaseSession, bimServer, query2, Collections.singleton(queryContext.getRoid()), packageMetaData);
 					HashMapVirtualObject next = queryObjectProvider2.next();
@@ -455,12 +458,12 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 													productMatrix = placementToMatrix(placement);
 												}
 												
-												AbstractHashMapVirtualObject mappingSource = item.getDirectFeature(mappingSourceFeature);
-												if (mappingSource != null) {
-													Map<Long, ProductDef> map = representationMapToProduct.get(((HashMapVirtualObject)mappingSource).getOid());
+												String representationMapKey = getRepresentationMapKey(item);
+												if (representationMapKey != null) {
+													Map<Long, ProductDef> map = representationMapToProduct.get(representationMapKey);
 													if (map == null) {
 														map = new LinkedHashMap<>();
-														representationMapToProduct.put(((HashMapVirtualObject)mappingSource).getOid(), map);
+														representationMapToProduct.put(representationMapKey, map);
 													}
 													ProductDef pd = new ProductDef(next.getOid());
 													pd.setMappedItemOid(item.getOid());
@@ -482,7 +485,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 						next = queryObjectProvider2.next();
 					}
 					
-					for (Long repMapId : representationMapToProduct.keySet()) {
+					for (String repMapId : representationMapToProduct.keySet()) {
 						Map<Long, ProductDef> map = representationMapToProduct.get(repMapId);
 						
 						// When there is more than one instance using this mapping
@@ -684,6 +687,94 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			LOGGER.debug("", e);
 		}
 		return generateGeometryResult;
+	}
+	
+	private void includeItemStyle(Include mappingSourceInclude) throws QueryException {
+		mappingSourceInclude.addFieldDirect("StyledByItem");
+		Include stylesInclude = mappingSourceInclude.createInclude();
+		stylesInclude.addType(packageMetaData.getEClass("IfcStyledItem"), true);
+		stylesInclude.addFieldDirect("Styles");
+		Include styleAssignmentInclude = stylesInclude.createInclude();
+		styleAssignmentInclude.addType(packageMetaData.getEClass("IfcPresentationStyleAssignment"), true);
+		styleAssignmentInclude.addFieldDirect("Styles");
+		Include presentationStyleInclude = styleAssignmentInclude.createInclude();
+		presentationStyleInclude.addType(packageMetaData.getEClass("IfcSurfaceStyle"), true);
+		presentationStyleInclude.addFieldDirect("Styles");
+		Include shadingInclude = presentationStyleInclude.createInclude();
+		shadingInclude.addType(packageMetaData.getEClass("IfcSurfaceStyleShading"), true);
+		shadingInclude.addFieldDirect("SurfaceColour");
+	}
+	
+	private String getRepresentationMapKey(HashMapVirtualObject ifcMappedItem) {
+		HashMapVirtualObject mappingSource = (HashMapVirtualObject) ifcMappedItem.getDirectFeature(mappingSourceFeature);
+		if(mappingSource == null) {
+			return null;
+		}
+		
+		StringBuilder key = new StringBuilder(256);
+		key.append(mappingSource.getOid());
+		
+		Set<HashMapVirtualObject> colours = getColours(ifcMappedItem);
+		for(HashMapVirtualObject colour : colours) {
+			key.append("_").append(formatColour(colour));
+		}
+		
+		return key.toString();
+	}
+	
+	private String formatColour(HashMapVirtualObject colour) {
+		return String.format(Locale.US, "[%.2f,%.2f,%.2f]", colour.get("Red"), colour.get("Green"), colour.get("Blue"));
+	}
+	
+	private Set<HashMapVirtualObject> getColours(HashMapVirtualObject ifcMappedItem) {
+		Set<HashMapVirtualObject> styledItems = ifcMappedItem.getDirectListFeature(packageMetaData.getEReference("IfcMappedItem", "StyledByItem"));
+		Set<HashMapVirtualObject> styleAssignments = getAllFeatures(styledItems, "IfcStyledItem", "Styles");
+		Set<HashMapVirtualObject> presentationStyles = getAllFeatures(styleAssignments, "IfcPresentationStyleAssignment", "Styles");
+		Set<HashMapVirtualObject> surfaceStyles = getAllFeatures(presentationStyles, "IfcSurfaceStyle", "Styles");
+		return getAllFeatures(surfaceStyles, "IfcSurfaceStyleShading", "SurfaceColour");
+	}
+	
+	private Set<HashMapVirtualObject> getAllFeatures(Set<HashMapVirtualObject> items, String type, String property) {
+		if(items == null || items.isEmpty()) {
+			return null;
+		}
+		
+		Set<HashMapVirtualObject> allValues = new HashSet<>();
+		
+		EClass eClass = packageMetaData.getEClass(type);
+		EReference eReference = packageMetaData.getEReference(type, property);
+		
+		for(HashMapVirtualObject item : items) {
+			if (!eClass.isSuperTypeOf(item.eClass())) {
+				continue;
+			}
+			
+			if(eReference.isMany()) {
+				addAllListFeatures(item, eReference, allValues);
+			} else {
+				addAllFeatures(item, eReference, allValues);
+			}
+		}
+		
+		return allValues;
+	}
+	
+	private void addAllFeatures(HashMapVirtualObject item, EReference eReference, Set<HashMapVirtualObject> allValues) {
+		HashMapVirtualObject value = (HashMapVirtualObject) item.getDirectFeature(eReference);
+		if(value == null) {
+			return;
+		}
+		
+		allValues.add(value);
+	}
+	
+	private void addAllListFeatures(HashMapVirtualObject item, EReference eReference, Set<HashMapVirtualObject> allValues) {
+		Set<HashMapVirtualObject> values = item.getDirectListFeature(eReference);
+		if(values == null || values.isEmpty()) {
+			return;
+		}
+		
+		values.stream().forEach(allValues::add);
 	}
 	
 	private void scaleMappingMatrix(AbstractHashMapVirtualObject mappingTarget, double[] mappingMatrix) {
