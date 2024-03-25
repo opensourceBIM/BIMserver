@@ -21,6 +21,8 @@ public class MetricCollector {
 
 	private long totalLineLength = 0;
 	private long totalBytes = 0;
+
+	private double factor = 1.1;
 	
 	public void collect(int length, int nrBytes) {
 		totalLineLength += length;
@@ -31,6 +33,14 @@ public class MetricCollector {
 		if (totalLineLength == 0) {
 			return lineLength;
 		}
-		return (int)(lineLength * totalBytes * 1.1 / totalLineLength);
+		return (int)(lineLength * totalBytes * factor / totalLineLength);
+	}
+
+	public void increaseBufferSizeFactor(){
+		factor = 3.0;
+	}
+
+	public void resetBufferSizeFactor(){
+		factor = 1.1;
 	}
 }

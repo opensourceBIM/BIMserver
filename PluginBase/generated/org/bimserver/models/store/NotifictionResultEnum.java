@@ -155,7 +155,8 @@ public enum NotifictionResultEnum implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final NotifictionResultEnum[] VALUES_ARRAY = new NotifictionResultEnum[] { NR_ERROR, SUCCESS, PROGRESS_UNKNOWN, PROGRESS_PERCENTAGE, };
+	private static final NotifictionResultEnum[] VALUES_ARRAY = new NotifictionResultEnum[] { NR_ERROR, SUCCESS,
+			PROGRESS_UNKNOWN, PROGRESS_PERCENTAGE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Notifiction Result Enum</b></em>' enumerators.

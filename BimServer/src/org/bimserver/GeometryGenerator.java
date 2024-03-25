@@ -286,9 +286,9 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 									geometryInfo.setData(geometryData);
 
 									long length = (geometryData.getIndices() != null ? geometryData.getIndices().getData().length: 0) + 
-												  (geometryData.getVertices() != null ? geometryData.getVertices().getData().length : 0) + 
-												  (geometryData.getNormals() != null ? geometryData.getNormals().getData().length : 0) + 
-												  (geometryData.getColorsQuantized() != null ? geometryData.getColorsQuantized().getData().length : 0);
+										(geometryData.getVertices() != null ? geometryData.getVertices().getData().length : 0) + 
+										(geometryData.getNormals() != null ? geometryData.getNormals().getData().length : 0) + 
+										(geometryData.getColorsQuantized() != null ? geometryData.getColorsQuantized().getData().length : 0);
 
 									setTransformationMatrix(geometryInfo, tranformationMatrix);
 									if (store) {
@@ -489,7 +489,9 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 		}
 		long start = System.nanoTime();
 		String pluginName = "";
-		if (model.getPackageMetaData().getSchema() == Schema.IFC4) {
+		if (model.getPackageMetaData().getSchema() == Schema.IFC4X3) {
+			pluginName = "org.bimserver.ifc.step.serializer.Ifc4x3StepSerializerPlugin";
+		} else if (model.getPackageMetaData().getSchema() == Schema.IFC4) {
 			pluginName = "org.bimserver.ifc.step.serializer.Ifc4StepSerializerPlugin";
 		} else if (model.getPackageMetaData().getSchema() == Schema.IFC2X3TC1) {
 			pluginName = "org.bimserver.ifc.step.serializer.Ifc2x3tc1StepSerializerPlugin";

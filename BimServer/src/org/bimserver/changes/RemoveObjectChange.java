@@ -72,6 +72,13 @@ public class RemoveObjectChange implements Change {
 			throw new UserException("Only objects from the following schemas are allowed to be changed: Ifc2x3tc1 and IFC4, this object (" + eClass.getName() + ") is from the \"" + eClass.getEPackage().getName() + "\" package");
 		}
 
+		if (transaction.getCreated().contains(object)) {
+			transaction.getCreated().remove(object);
+		}
+		if (transaction.getUpdated().contains(object)) {
+			transaction.getUpdated().remove(object);
+		}
+
 		transaction.deleted(object);
 	}
 }

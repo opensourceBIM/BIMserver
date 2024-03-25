@@ -33,6 +33,7 @@ package org.bimserver.models.log.util;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
+import org.bimserver.models.log.*;
 import org.bimserver.models.log.CheckoutRelated;
 import org.bimserver.models.log.DatabaseCreated;
 import org.bimserver.models.log.Download;

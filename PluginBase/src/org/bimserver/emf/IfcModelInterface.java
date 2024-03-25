@@ -250,6 +250,7 @@ public interface IfcModelInterface extends Iterable<IdEObject>, ObjectFactory, A
 	Set<EClass> getUsedClasses();
 
 	void query(ObjectNode query, boolean assumeCompletePreload) throws ServerException, UserException, PublicInterfaceNotFoundException, IfcModelInterfaceException, IOException;
+	void queryFully(ObjectNode query, boolean assumeCompletePreload) throws ServerException, UserException, PublicInterfaceNotFoundException, IfcModelInterfaceException, IOException;
 
 	<T extends IdEObject> T createAndAdd(EClass eClass, long oid) throws IfcModelInterfaceException, ObjectAlreadyExistsException;
 

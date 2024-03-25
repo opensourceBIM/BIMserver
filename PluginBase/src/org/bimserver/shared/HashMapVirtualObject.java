@@ -465,7 +465,12 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 			if (value == null) {
 				buffer.putInt(Tristate.UNDEFINED.getValue());
 			} else {
-				Enumerator eEnumLiteral = (Enumerator) value;
+				Enumerator eEnumLiteral;
+				if (value.getClass().equals(boolean.class) || value instanceof Boolean) {
+					eEnumLiteral = Tristate.valueOf(((Boolean) value).toString().toUpperCase());
+				} else {
+					eEnumLiteral = (Enumerator) value;
+				}
 				buffer.putInt(eEnumLiteral.getValue());
 			}
 		} else if (value instanceof Enumerator) {

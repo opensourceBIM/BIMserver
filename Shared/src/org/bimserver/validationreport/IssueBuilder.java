@@ -22,7 +22,6 @@ import java.awt.image.BufferedImage;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.models.ifc2x3tc1.IfcBuildingStorey;
 import org.bimserver.models.ifc2x3tc1.IfcProduct;
-import org.bimserver.models.store.Authorization;
 
 public class IssueBuilder {
 

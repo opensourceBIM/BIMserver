@@ -1,0 +1,140 @@
+/**
+ * Copyright (C) 2009-2014 BIMserver.org
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+package org.bimserver.models.ifc4x3.impl;
+
+import org.bimserver.models.ifc4x3.Ifc4x3Package;
+import org.bimserver.models.ifc4x3.IfcObjectReferenceSelect;
+import org.bimserver.models.ifc4x3.IfcPropertyReferenceValue;
+
+import org.eclipse.emf.ecore.EClass;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Ifc Property Reference Value</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link org.bimserver.models.ifc4x3.impl.IfcPropertyReferenceValueImpl#getUsageName <em>Usage Name</em>}</li>
+ *   <li>{@link org.bimserver.models.ifc4x3.impl.IfcPropertyReferenceValueImpl#getPropertyReference <em>Property Reference</em>}</li>
+ * </ul>
+ *
+ * @generated
+ */
+public class IfcPropertyReferenceValueImpl extends IfcSimplePropertyImpl implements IfcPropertyReferenceValue {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IfcPropertyReferenceValueImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return Ifc4x3Package.Literals.IFC_PROPERTY_REFERENCE_VALUE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getUsageName() {
+		return (String) eGet(Ifc4x3Package.Literals.IFC_PROPERTY_REFERENCE_VALUE__USAGE_NAME, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setUsageName(String newUsageName) {
+		eSet(Ifc4x3Package.Literals.IFC_PROPERTY_REFERENCE_VALUE__USAGE_NAME, newUsageName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetUsageName() {
+		eUnset(Ifc4x3Package.Literals.IFC_PROPERTY_REFERENCE_VALUE__USAGE_NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetUsageName() {
+		return eIsSet(Ifc4x3Package.Literals.IFC_PROPERTY_REFERENCE_VALUE__USAGE_NAME);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public IfcObjectReferenceSelect getPropertyReference() {
+		return (IfcObjectReferenceSelect) eGet(Ifc4x3Package.Literals.IFC_PROPERTY_REFERENCE_VALUE__PROPERTY_REFERENCE,
+				true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setPropertyReference(IfcObjectReferenceSelect newPropertyReference) {
+		eSet(Ifc4x3Package.Literals.IFC_PROPERTY_REFERENCE_VALUE__PROPERTY_REFERENCE, newPropertyReference);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void unsetPropertyReference() {
+		eUnset(Ifc4x3Package.Literals.IFC_PROPERTY_REFERENCE_VALUE__PROPERTY_REFERENCE);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSetPropertyReference() {
+		return eIsSet(Ifc4x3Package.Literals.IFC_PROPERTY_REFERENCE_VALUE__PROPERTY_REFERENCE);
+	}
+
+} //IfcPropertyReferenceValueImpl

@@ -37,7 +37,8 @@ public class MergerFactory {
 		User user = databaseSession.get(StorePackage.eINSTANCE.getUser(), currentUoid, OldQuery.getDefault());
 		UserSettings userSettings = user.getUserSettings();
 
-		ModelMergerPluginConfiguration modelMergerObject = userSettings.getDefaultModelMerger();
+		return new org.bimserver.merging.IntelligentNameBasedModelMerger();
+		/*ModelMergerPluginConfiguration modelMergerObject = userSettings.getDefaultModelMerger();
 		if (modelMergerObject != null) {
 			ModelMergerPlugin modelMergerPlugin = bimServer.getPluginManager().getModelMergerPlugin(modelMergerObject.getPluginDescriptor().getPluginClassName(), true);
 			if (modelMergerPlugin != null) {
@@ -48,6 +49,6 @@ public class MergerFactory {
 			}
 		} else {
 			throw new MergeException("No configured Model Merger found");
-		}
+		}*/
 	}
 }

@@ -311,6 +311,14 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "comment", partName = "branchToNewProject.comment") String comment,
 		@WebParam(name = "sync", partName = "branchToNewProject.sync") Boolean sync) throws ServerException, UserException;
 
+	@WebMethod(action = "cloneToSubproject")
+	Long cloneToSubproject(
+			@WebParam(name = "roid", partName = "branchToNewProject.roid") Long roid,
+			@WebParam(name = "projectName", partName = "branchToNewProject.projectName") String projectName,
+			@WebParam(name = "parentPoid", partName = "branchToNewProject.parentPoid") Long parentPoid,
+			@WebParam(name = "comment", partName = "branchToNewProject.comment") String comment,
+			@WebParam(name = "sync", partName = "branchToNewProject.sync") Boolean sync) throws ServerException, UserException;
+
 	/**
 	 * Branch a given Revision as a new Revision on a new Project, branching is always synchronous
 	 * @param roid ObjectID of the Revision to branch

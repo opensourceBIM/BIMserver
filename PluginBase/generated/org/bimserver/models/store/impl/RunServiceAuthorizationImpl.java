@@ -78,7 +78,8 @@ public class RunServiceAuthorizationImpl extends AuthorizationImpl implements Ru
 	 */
 	@Override
 	public InternalServicePluginConfiguration getService() {
-		return (InternalServicePluginConfiguration) eGet(StorePackage.Literals.RUN_SERVICE_AUTHORIZATION__SERVICE, true);
+		return (InternalServicePluginConfiguration) eGet(StorePackage.Literals.RUN_SERVICE_AUTHORIZATION__SERVICE,
+				true);
 	}
 
 	/**

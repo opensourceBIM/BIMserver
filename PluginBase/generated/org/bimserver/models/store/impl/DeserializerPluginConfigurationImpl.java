@@ -51,7 +51,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class DeserializerPluginConfigurationImpl extends PluginConfigurationImpl implements DeserializerPluginConfiguration {
+public class DeserializerPluginConfigurationImpl extends PluginConfigurationImpl
+		implements DeserializerPluginConfiguration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

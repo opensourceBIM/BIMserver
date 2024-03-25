@@ -89,6 +89,7 @@ public class ServerLogImpl extends IdEObjectImpl implements ServerLog {
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<LogAction> getActions() {
 		return (EList<LogAction>) eGet(LogPackage.Literals.SERVER_LOG__ACTIONS, true);
 	}

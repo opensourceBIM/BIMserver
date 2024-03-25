@@ -50,6 +50,7 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.stream.Collectors;
 
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IdEObjectImpl;
@@ -62,18 +63,14 @@ import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc4.Ifc4Package;
+import org.bimserver.models.ifc4x3.Ifc4x3Package;
 import org.bimserver.plugins.ObjectAlreadyExistsException;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.*;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -171,12 +168,25 @@ public abstract class IfcModel implements IfcModelInterface {
 		if (objects.isEmpty()) {
 			return;
 		}
+/*
 		for (EClassifier classifier : objects.values().iterator().next().eClass().getEPackage().getEClassifiers()) {
 			if (classifier instanceof EClass) {
 				Map<String, IdEObject> map = new TreeMap<String, IdEObject>();
 				guidIndex.put((EClass) classifier, map);
 			}
 		}
+		*/
+
+		List<EPackage> packages = objects.values().stream().map(i -> i.eClass().getEPackage()).distinct().collect(Collectors.toList());
+		for (EPackage pack : packages) {
+			for (EClassifier classifier : pack.getEClassifiers()) {
+				if (classifier instanceof EClass) {
+					Map<String, IdEObject> map = new TreeMap<>();
+					guidIndex.put((EClass) classifier, map);
+				}
+			}
+		}
+
 		EClass ifcRootEclass = packageMetaData.getEClass("IfcRoot");
 		EStructuralFeature guidFeature = ifcRootEclass.getEStructuralFeature("GlobalId");
 		for (Long key : objects.keySet()) {
@@ -998,7 +1008,11 @@ public abstract class IfcModel implements IfcModelInterface {
 		int nrFixes = 0;
 		Ifc4Package ifc4 = Ifc4Package.eINSTANCE;
 		Ifc2x3tc1Package ifc2x3 = Ifc2x3tc1Package.eINSTANCE;
-		Mismatch[] misMatches = packageMetaData.getSchema().equals(Schema.IFC2X3TC1) ? new Mismatch[]{
+		Ifc4x3Package ifc4x3 = Ifc4x3Package.eINSTANCE;
+		Mismatch[] misMatches;
+		switch (packageMetaData.getSchema()) {
+			case IFC2X3TC1:
+				misMatches = new Mismatch[]{
 						new Mismatch(ifc2x3.getIfcRelContainedInSpatialStructure_RelatedElements(), new EReference[]{
 										ifc2x3.getIfcElement_ContainedInStructure(),
 										ifc2x3.getIfcGrid_ContainedInStructure(),
@@ -1017,7 +1031,10 @@ public abstract class IfcModel implements IfcModelInterface {
 										ifc2x3.getIfcProductDefinitionShape_ShapeOfProduct() }),
 						new Mismatch(ifc2x3.getIfcRelConnectsElements_RelatingElement(), new EReference[]{
 										ifc2x3.getIfcStructuralItem_AssignedStructuralActivity()})
-		} : new Mismatch[]{
+				};
+				break;
+			case IFC4:
+				misMatches = new Mismatch[]{
 						new Mismatch(ifc4.getIfcRelContainedInSpatialStructure_RelatedElements(), new EReference[]{
 										ifc4.getIfcElement_ContainedInStructure(),
 										ifc4.getIfcGrid_ContainedInStructure(),
@@ -1107,7 +1124,123 @@ public abstract class IfcModel implements IfcModelInterface {
 						new Mismatch(ifc4.getIfcResourceApprovalRelationship_RelatedResourceObjects(),new EReference[]{
 										ifc4.getIfcProperty_HasApprovals()
 						})
-		};
+				};
+				break;
+			case IFC4X3:
+				misMatches = new Mismatch[]{
+					new Mismatch(ifc4x3.getIfcExternalReferenceRelationship_RelatedResourceObjects(), new EReference[] {
+							ifc4x3.getIfcActorRole_HasExternalReference(),
+							ifc4x3.getIfcAppliedValue_HasExternalReference(),
+							ifc4x3.getIfcApproval_HasExternalReferences(),
+							ifc4x3.getIfcConstraint_HasExternalReferences(),
+							ifc4x3.getIfcContextDependentUnit_HasExternalReference(),
+							ifc4x3.getIfcConversionBasedUnit_HasExternalReference(),
+							ifc4x3.getIfcMaterialDefinition_HasExternalReferences(),
+							ifc4x3.getIfcPhysicalQuantity_HasExternalReferences(),
+							ifc4x3.getIfcProfileDef_HasExternalReference(),
+							ifc4x3.getIfcPropertyAbstraction_HasExternalReferences(),
+							ifc4x3.getIfcShapeAspect_HasExternalReferences(),
+							ifc4x3.getIfcTimeSeries_HasExternalReference()
+					}),
+					new Mismatch(ifc4x3.getIfcRelContainedInSpatialStructure_RelatedElements(), new EReference[]{
+							ifc4x3.getIfcAnnotation_ContainedInStructure(),
+							ifc4x3.getIfcElement_ContainedInStructure(),
+							ifc4x3.getIfcPositioningElement_ContainedInStructure(),
+					}),
+					new Mismatch(ifc4x3.getIfcRelAssociatesClassification_RelatingClassification(), new EReference[]{
+							ifc4x3.getIfcClassification_ClassificationForObjects(),
+							ifc4x3.getIfcClassificationReference_ClassificationRefForObjects()
+					}),
+					new Mismatch(ifc4x3.getIfcClassificationReference_ReferencedSource(), new EReference[]{
+							ifc4x3.getIfcClassification_HasReferences(),
+							ifc4x3.getIfcClassificationReference_HasReferences()
+					}),
+					new Mismatch(ifc4x3.getIfcRelDefinesByProperties_RelatedObjects(), new EReference[]{
+							ifc4x3.getIfcContext_IsDefinedBy(),
+							ifc4x3.getIfcObject_IsDefinedBy()
+					}),
+					new Mismatch(ifc4x3.getIfcCoordinateOperation_SourceCRS(), new EReference[]{
+							ifc4x3.getIfcCoordinateReferenceSystem_HasCoordinateOperation(),
+							ifc4x3.getIfcGeometricRepresentationContext_HasCoordinateOperation()
+					}),
+					new Mismatch(ifc4x3.getIfcRelAssociatesDocument_RelatingDocument(), new EReference[]{
+							ifc4x3.getIfcDocumentInformation_DocumentInfoForObjects(),
+							ifc4x3.getIfcDocumentReference_DocumentRefForObjects()
+					}),
+					new Mismatch(ifc4x3.getIfcRelInterferesElements_RelatedElement(), new EReference[]{
+							ifc4x3.getIfcElement_InterferesElements(),
+							ifc4x3.getIfcSpatialElement_InterferesElements()
+					}),
+					new Mismatch(ifc4x3.getIfcRelInterferesElements_RelatingElement(), new EReference[]{
+							ifc4x3.getIfcElement_InterferesElements(),
+							ifc4x3.getIfcSpatialElement_InterferesElements()
+					}),
+					new Mismatch(ifc4x3.getIfcRelSpaceBoundary_RelatingSpace(), new EReference[]{
+							ifc4x3.getIfcExternalSpatialElement_BoundedBy(),
+							ifc4x3.getIfcSpace_BoundedBy()
+					}),
+					new Mismatch(ifc4x3.getIfcRelReferencedInSpatialStructure_RelatedElements(), new EReference[]{
+						ifc4x3.getIfcGroup_ReferencedInStructures(),
+						ifc4x3.getIfcProduct_ReferencedInStructures(),
+						ifc4x3.getIfcSystem_ServicesFacilities()
+					}),
+					new Mismatch(ifc4x3.getIfcRelAssociatesLibrary_RelatingLibrary(), new EReference[]{
+							ifc4x3.getIfcLibraryInformation_LibraryInfoForObjects(),
+							ifc4x3.getIfcLibraryReference_LibraryRefForObjects()
+					}),
+					new Mismatch(ifc4x3.getIfcRelAssociatesMaterial_RelatingMaterial(), new EReference[]{
+						ifc4x3.getIfcMaterialDefinition_AssociatedTo(),
+						ifc4x3.getIfcMaterialUsageDefinition_AssociatedTo()
+					}),
+					new Mismatch(ifc4x3.getIfcRelDeclares_RelatedDefinitions(), new EReference[]{
+						ifc4x3.getIfcObjectDefinition_HasContext(),
+						ifc4x3.getIfcPropertyDefinition_HasContext()
+					}),
+					new Mismatch(ifc4x3.getIfcRelAssociates_RelatedObjects(), new EReference[]{
+						ifc4x3.getIfcObjectDefinition_HasAssociations(),
+						ifc4x3.getIfcPropertyDefinition_HasAssociations()
+					}),
+					new Mismatch(ifc4x3.getIfcRelAssignsToProcess_RelatingProcess(), new EReference[]{
+						ifc4x3.getIfcProcess_OperatesOn(),
+						ifc4x3.getIfcTypeProcess_OperatesOn(),
+					}),
+					new Mismatch(ifc4x3.getIfcRelAssignsToProduct_RelatingProduct(), new EReference[]{
+						ifc4x3.getIfcProduct_ReferencedBy(),
+						ifc4x3.getIfcTypeProduct_ReferencedBy()
+					}),
+					new Mismatch(ifc4x3.getIfcProduct_Representation(), new EReference[]{
+						ifc4x3.getIfcProductDefinitionShape_ShapeOfProduct()
+					}),
+					new Mismatch(ifc4x3.getIfcShapeAspect_PartOfProductDefinitionShape(), new EReference[]{
+						ifc4x3.getIfcProductDefinitionShape_HasShapeAspects(),
+						ifc4x3.getIfcRepresentationMap_HasShapeAspects(),
+					}),
+					new Mismatch(ifc4x3.getIfcResourceConstraintRelationship_RelatedResourceObjects(), new EReference[]{
+						ifc4x3.getIfcProperty_HasConstraints()
+					}),
+					new Mismatch(ifc4x3.getIfcResourceApprovalRelationship_RelatedResourceObjects(), new EReference[]{
+						ifc4x3.getIfcProperty_HasApprovals()
+					}),
+					new Mismatch(ifc4x3.getIfcRelDefinesByProperties_RelatingPropertyDefinition(), new EReference[]{
+						ifc4x3.getIfcPropertySetDefinition_DefinesOccurrence()
+					}),
+					new Mismatch(ifc4x3.getIfcPresentationLayerAssignment_AssignedItems(), new EReference[]{
+						ifc4x3.getIfcRepresentation_LayerAssignments(),
+						ifc4x3.getIfcRepresentationItem_LayerAssignment()
+					}),
+					new Mismatch(ifc4x3.getIfcRelAssignsToResource_RelatingResource(), new EReference[]{
+						ifc4x3.getIfcResource_ResourceOf(),
+						ifc4x3.getIfcTypeResource_ResourceOf()
+					}),
+					new Mismatch(ifc4x3.getIfcRelConnectsStructuralActivity_RelatingElement(), new EReference[]{
+						ifc4x3.getIfcStructuralItem_AssignedStructuralActivity()
+					})
+				};
+				break;
+			default:
+				misMatches = new Mismatch[]{};
+				break;
+		}
 
 
 		for(Mismatch mismatch: misMatches){
@@ -1169,7 +1302,12 @@ public abstract class IfcModel implements IfcModelInterface {
 	@Override
 	public void query(ObjectNode query, boolean assumeCompletePreload) throws ServerException, UserException, PublicInterfaceNotFoundException, IfcModelInterfaceException, IOException {
 	}
-	
+
+	@Override
+	public void queryFully(ObjectNode query, boolean assumeCompletePreload) throws ServerException, UserException, PublicInterfaceNotFoundException, IfcModelInterfaceException, IOException {
+
+	}
+
 	class Mismatch {
 		EReference forward;
 		EReference[] inverse;

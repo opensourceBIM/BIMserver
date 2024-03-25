@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+        
     <wb-module deploy-name="bimserverwar-1.5.129-SNAPSHOT">
+                
         <wb-resource deploy-path="/WEB-INF/web.xml" source-path="/web.xml"/>
+                
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+                
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
-        <dependent-module archiveName="bimserver-1.5.129-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/BimServer/BimServer">
+        <dependent-module archiveName="bimserverclientlib-1.5.186-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/BimServerClientLib/BimServerClientLib">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="bimserverclientlib-1.5.129-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/BimServerClientLib/BimServerClientLib">
+        <dependent-module archiveName="shared-1.5.186-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Shared/Shared">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="shared-1.5.129-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Shared/Shared">
+        <dependent-module archiveName="pluginbase-1.5.186-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/PluginBase/PluginBase">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="pluginbase-1.5.129-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/PluginBase/PluginBase">
+        <dependent-module archiveName="bdb-1.5.186-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Bdb/Bdb">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+                
         <property name="java-output-path" value="/BimServerWar/target/classes"/>
+                
         <property name="context-root" value="bimserverwar"/>
+            
     </wb-module>
+    
 </project-modules>

@@ -309,9 +309,11 @@ public class BimBotRunner implements Runnable {
 			inputStream = bufferedInputStream;
 			return serviceInterface.determineIfcVersion(initialBytes, false);
 		} else if (schema == SchemaName.IFC_STEP_2X3TC1) {
-			return "ifc2x3tc1";
+			return Schema.IFC2X3TC1.toString().toLowerCase();
 		} else if (schema == SchemaName.IFC_JSON_4) {
-			return "ifc4";
+			return Schema.IFC4.toString().toLowerCase();
+		} else if (schema == SchemaName.IFC_JSON_4X3) {
+			return Schema.IFC4X3.toString().toLowerCase();
 		}
 		return null;
 	}

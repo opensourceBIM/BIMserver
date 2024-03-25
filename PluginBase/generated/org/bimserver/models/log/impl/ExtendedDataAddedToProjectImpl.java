@@ -78,6 +78,7 @@ public class ExtendedDataAddedToProjectImpl extends LogActionImpl implements Ext
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Project getProject() {
 		return (Project) eGet(LogPackage.Literals.EXTENDED_DATA_ADDED_TO_PROJECT__PROJECT, true);
 	}
@@ -87,6 +88,7 @@ public class ExtendedDataAddedToProjectImpl extends LogActionImpl implements Ext
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProject(Project newProject) {
 		eSet(LogPackage.Literals.EXTENDED_DATA_ADDED_TO_PROJECT__PROJECT, newProject);
 	}
@@ -96,6 +98,7 @@ public class ExtendedDataAddedToProjectImpl extends LogActionImpl implements Ext
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ExtendedData getExtendedData() {
 		return (ExtendedData) eGet(LogPackage.Literals.EXTENDED_DATA_ADDED_TO_PROJECT__EXTENDED_DATA, true);
 	}
@@ -105,6 +108,7 @@ public class ExtendedDataAddedToProjectImpl extends LogActionImpl implements Ext
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExtendedData(ExtendedData newExtendedData) {
 		eSet(LogPackage.Literals.EXTENDED_DATA_ADDED_TO_PROJECT__EXTENDED_DATA, newExtendedData);
 	}

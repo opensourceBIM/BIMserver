@@ -25,6 +25,7 @@ import org.bimserver.database.migrations.Schema;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc4.Ifc4Package;
+import org.bimserver.models.ifc4x3.Ifc4x3Package;
 import org.eclipse.emf.ecore.EClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,7 +43,11 @@ public class NewClassChange implements Change {
 	public void change(Database database, DatabaseSession databaseSession) throws BimserverDatabaseException {
 		String tableName = getEClass().getEPackage().getName() + "_" + getEClass().getName();
 		if (eClass.getEAnnotation("nodatabase") == null) {
-			boolean transactional = !(eClass.getEPackage() == Ifc2x3tc1Package.eINSTANCE || eClass.getEPackage() == Ifc4Package.eINSTANCE || eClass.getEPackage() == GeometryPackage.eINSTANCE);
+			boolean transactional = !(
+				eClass.getEPackage() == Ifc2x3tc1Package.eINSTANCE ||
+				eClass.getEPackage() == Ifc4Package.eINSTANCE ||
+				eClass.getEPackage() == Ifc4x3Package.eINSTANCE ||
+				eClass.getEPackage() == GeometryPackage.eINSTANCE);
 			LOGGER.debug("Creating " + (transactional ? "transactional" : "non transactional") + " table: " + tableName);
 			try {
 				boolean created = database.createTable(getEClass(), databaseSession, transactional);

@@ -229,7 +229,8 @@ public enum ServerState implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ServerState[] VALUES_ARRAY = new ServerState[] { UNDEFINED, NOT_SETUP, SETUP, MIGRATION_REQUIRED, MIGRATION_IMPOSSIBLE, FATAL_ERROR, RUNNING, };
+	private static final ServerState[] VALUES_ARRAY = new ServerState[] { UNDEFINED, NOT_SETUP, SETUP,
+			MIGRATION_REQUIRED, MIGRATION_IMPOSSIBLE, FATAL_ERROR, RUNNING, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Server State</b></em>' enumerators.

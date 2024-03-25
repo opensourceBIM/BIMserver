@@ -25,6 +25,9 @@ public class GenerateGeometryResult {
 	private Vector3f min;
 	private Vector3f max;
 
+	private Vector3f minUntransformed;
+	private Vector3f maxUntransformed;
+
 	public GenerateGeometryResult() {
 		min = GeometryFactory.eINSTANCE.createVector3f();
 		min.setX(Float.POSITIVE_INFINITY);
@@ -35,6 +38,16 @@ public class GenerateGeometryResult {
 		max.setX(Float.NEGATIVE_INFINITY);
 		max.setY(Float.NEGATIVE_INFINITY);
 		max.setZ(Float.NEGATIVE_INFINITY);
+
+		minUntransformed = GeometryFactory.eINSTANCE.createVector3f();
+		minUntransformed.setX(Float.POSITIVE_INFINITY);
+		minUntransformed.setY(Float.POSITIVE_INFINITY);
+		minUntransformed.setZ(Float.POSITIVE_INFINITY);
+
+		maxUntransformed = GeometryFactory.eINSTANCE.createVector3f();
+		maxUntransformed.setX(Float.NEGATIVE_INFINITY);
+		maxUntransformed.setY(Float.NEGATIVE_INFINITY);
+		maxUntransformed.setZ(Float.NEGATIVE_INFINITY);
 	}
 	
 	public Vector3f getMinBounds() {
@@ -43,5 +56,13 @@ public class GenerateGeometryResult {
 
 	public Vector3f getMaxBounds() {
 		return max;
+	}
+
+	public Vector3f getMinBoundsUntransformed() {
+		return minUntransformed;
+	}
+
+	public Vector3f getMaxBoundsUntransformed() {
+		return maxUntransformed;
 	}
 }

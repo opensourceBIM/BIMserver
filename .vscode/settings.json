@@ -1,0 +1,8 @@
+{
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx4G -Xms100m -Xlog:disable",
+  "maven.view": "hierarchical",
+	"editor.insertSpaces": false,
+	"editor.tabSize": 2,
+	"java.configuration.updateBuildConfiguration": "interactive"
+}

@@ -107,7 +107,7 @@ public class CodeMigrator {
 		int latestVersion = migrator.getLatestVersion();
 		LOGGER.info("Migrating to version " + latestVersion);
 		Schema schema = migrator.migrateSchemaTo(latestVersion);
-		schema.writeToEcore(new File("models/models.ecore"));
+		schema.writeToEcore(new File("BimServer/models/models.ecore"));
 		LOGGER.info("Model migrated to version " + latestVersion);
 
 		LOGGER.info("Generating ServiceInterface objects...");
@@ -135,7 +135,11 @@ public class CodeMigrator {
 		DataObjectGeneratorWrapper serviceGenerator = new DataObjectGeneratorWrapper(metaDataManager);
 
 		for (EPackage ePackage : schema.getEPackages()) {
-			if (!ePackage.getName().equals("ifc2x3tc1") && !ePackage.getName().equals("ifc4")) {
+			if (
+				!ePackage.getName().equals("ifc2x3tc1") &&
+				!ePackage.getName().equals("ifc4") &&
+				!ePackage.getName().equals("ifc4x3")
+			) {
 				ePackages.add(ePackage);
 			}
 		}

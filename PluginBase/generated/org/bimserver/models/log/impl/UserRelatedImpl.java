@@ -76,6 +76,7 @@ public class UserRelatedImpl extends LogActionImpl implements UserRelated {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public User getUser() {
 		return (User) eGet(LogPackage.Literals.USER_RELATED__USER, true);
 	}
@@ -85,6 +86,7 @@ public class UserRelatedImpl extends LogActionImpl implements UserRelated {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUser(User newUser) {
 		eSet(LogPackage.Literals.USER_RELATED__USER, newUser);
 	}

@@ -27,6 +27,7 @@ import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc4.Ifc4Package;
+import org.bimserver.models.ifc4x3.Ifc4x3Package;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -48,6 +49,7 @@ public class GenerateGeometryLibrary {
 	public static void main(String[] args) {
 		new GenerateGeometryLibrary().generate(Ifc2x3tc1Package.eINSTANCE, Schema.IFC2X3TC1);
 		new GenerateGeometryLibrary().generate(Ifc4Package.eINSTANCE, Schema.IFC4);
+		new GenerateGeometryLibrary().generate(Ifc4x3Package.eINSTANCE, Schema.IFC4X3);
 	}
 
 	private void generate(EPackage ePackage, Schema schema) {
@@ -61,7 +63,7 @@ public class GenerateGeometryLibrary {
 		process((EClass) ePackage.getEClassifier("IfcShapeRepresentation"), (EClass) ePackage.getEClassifier("IfcRepresentation"));
 //		cleanup();
 		try {
-			Files.write(OBJECT_MAPPER.writerWithDefaultPrettyPrinter().writeValueAsBytes(rootNode), new File("C:\\Users\\Ruben de Laat\\git\\BIMserver\\BimServer\\src\\org\\bimserver\\database\\queries\\json\\" + schema.name().toLowerCase() + "-geometry.json"));
+			Files.write(OBJECT_MAPPER.writerWithDefaultPrettyPrinter().writeValueAsBytes(rootNode), new File("BimServer/src/org/bimserver/database/queries/json/" + schema.name().toLowerCase() + "-geometry.json"));
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -138,9 +140,6 @@ public class GenerateGeometryLibrary {
 	}
 
 	private boolean isException(EReference eReference) {
-		if (eReference.getEContainingClass().getName().contentEquals("IfcRepresentationItem") && eReference.getName().contentEquals("StyledByItem")) {
-			return true;
-		}
-		return false;
+		return eReference.getEContainingClass().getName().contentEquals("IfcRepresentationItem") && eReference.getName().contentEquals("StyledByItem");
 	}
 }

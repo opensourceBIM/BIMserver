@@ -32,7 +32,11 @@ public class LowLevelInterfaceAdaptor implements org.bimserver.shared.interfaces
 	
 	public void addIntegerAttribute(java.lang.Long tid, java.lang.Long oid, java.lang.String attributeName, java.lang.Integer value) throws UserException, ServerException {
 	}
-	
+
+	@Override
+	public void addLongAttribute(Long tid, Long oid, String attributeName, Long value) throws ServerException, UserException {
+	}
+
 	public void addReference(java.lang.Long tid, java.lang.Long oid, java.lang.String referenceName, java.lang.Long referenceOid) throws UserException, ServerException {
 	}
 	

@@ -480,8 +480,9 @@ public enum SIPrefix implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final SIPrefix[] VALUES_ARRAY = new SIPrefix[] { METER, ATTOMETER, FEMTOMETER, PICOMETER, NANOMETER, MICROMETER, MILLIMETER, CENTIMETER, DECIMETER, DECAMETER, HECTOMETER, KILOMETER, MEGAMETER, GIGAMETER, TERAMETER,
-			PETAMETER, EXAMETER, };
+	private static final SIPrefix[] VALUES_ARRAY = new SIPrefix[] { METER, ATTOMETER, FEMTOMETER, PICOMETER, NANOMETER,
+			MICROMETER, MILLIMETER, CENTIMETER, DECIMETER, DECAMETER, HECTOMETER, KILOMETER, MEGAMETER, GIGAMETER,
+			TERAMETER, PETAMETER, EXAMETER, };
 
 	/**
 	 * A public read-only list of all the '<em><b>SI Prefix</b></em>' enumerators.

@@ -2,17 +2,17 @@ package org.bimserver.database.actions;
 
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
@@ -51,7 +51,7 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 	private long serializerOid;
 
 	public CompareDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long serializerOid, long roid1, long roid2,
-			CompareType sCompareType, long mcid) {
+								 CompareType sCompareType, long mcid) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.authorization = authorization;
@@ -87,8 +87,8 @@ public class CompareDatabaseAction extends BimDatabaseAction<CompareResult> {
 	@Override
 	public CompareResult execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException {
 		CompareResult compareResults = null;// bimServer.getCompareCache().getCompareResults(roid1,
-											// roid2, sCompareType,
-											// sCompareIdentifier);
+		// roid2, sCompareType,
+		// sCompareIdentifier);
 		if (compareResults == null) {
 			IfcModelInterface model1 = new DownloadDatabaseAction(bimServer, getDatabaseSession(), getAccessMethod(), roid1, -1, serializerOid, authorization).execute();
 			try(DatabaseSession secondSession = bimServer.getDatabase().createSession(OperationType.READ_ONLY)){

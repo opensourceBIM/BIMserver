@@ -77,6 +77,7 @@ public class RevisionBranchedImpl extends LogActionImpl implements RevisionBranc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Revision getOldrevision() {
 		return (Revision) eGet(LogPackage.Literals.REVISION_BRANCHED__OLDREVISION, true);
 	}
@@ -86,6 +87,7 @@ public class RevisionBranchedImpl extends LogActionImpl implements RevisionBranc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOldrevision(Revision newOldrevision) {
 		eSet(LogPackage.Literals.REVISION_BRANCHED__OLDREVISION, newOldrevision);
 	}
@@ -95,6 +97,7 @@ public class RevisionBranchedImpl extends LogActionImpl implements RevisionBranc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Revision getNewrevision() {
 		return (Revision) eGet(LogPackage.Literals.REVISION_BRANCHED__NEWREVISION, true);
 	}
@@ -104,6 +107,7 @@ public class RevisionBranchedImpl extends LogActionImpl implements RevisionBranc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setNewrevision(Revision newNewrevision) {
 		eSet(LogPackage.Literals.REVISION_BRANCHED__NEWREVISION, newNewrevision);
 	}

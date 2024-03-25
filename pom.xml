@@ -2,11 +2,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.opensourcebim</groupId>
 	<artifactId>parent</artifactId>
-	<version>1.5.185-SNAPSHOT</version>
+	<version>1.5.186-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<description>This is the parent pom, no idea why this is being released</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<skipTests>true</skipTests>
 		<jetty.version>9.4.44.v20210927</jetty.version>
 	</properties>
 	<scm>
@@ -60,6 +61,14 @@
 						<releaseProfiles>release</releaseProfiles>
 						<goals>deploy</goals>
 						<autoVersionSubmodules>true</autoVersionSubmodules>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>3.2.2</version>
+					<configuration>
+						<skipTests>true</skipTests>
 					</configuration>
 				</plugin>
 				<plugin>

@@ -151,6 +151,16 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	}
 
 	@Override
+	public void addLongAttribute(Long tid, Long oid, String attributeName, Long value) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
+		try {
+			getBimServer().getLongTransactionManager().get(tid).add(new AddAttributeChange(oid, attributeName, value));
+		} catch (NoTransactionException e) {
+			handleException(e);
+		}
+	}
+
+	@Override
 	public void addDoubleAttribute(Long tid, Long oid, String attributeName, Double value) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		try {

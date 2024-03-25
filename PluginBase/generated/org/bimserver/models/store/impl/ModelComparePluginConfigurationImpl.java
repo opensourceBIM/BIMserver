@@ -51,7 +51,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ModelComparePluginConfigurationImpl extends PluginConfigurationImpl implements ModelComparePluginConfiguration {
+public class ModelComparePluginConfigurationImpl extends PluginConfigurationImpl
+		implements ModelComparePluginConfiguration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

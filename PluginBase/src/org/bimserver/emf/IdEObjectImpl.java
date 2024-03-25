@@ -19,6 +19,7 @@ import java.util.UUID;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
+import org.apache.commons.lang3.builder.ToStringExclude;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -38,10 +39,20 @@ public class IdEObjectImpl extends MinimalEObjectImpl implements IdEObject {
 	private UUID uuid;
 	private int pid;
 	private int rid;
+
+	@ToStringExclude
 	private long expressId = -1;
-	private IfcModelInterface model;
+
+	@ToStringExclude
+	private transient IfcModelInterface model;
+
+	@ToStringExclude
 	private State loadingState = State.NO_LAZY_LOADING;
+
+	@ToStringExclude
 	private QueryInterface queryInterface;
+
+	@ToStringExclude
 	private boolean useInverses = true;
 
 	@Override
