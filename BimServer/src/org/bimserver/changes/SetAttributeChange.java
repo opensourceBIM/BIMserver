@@ -121,7 +121,10 @@ public class SetAttributeChange implements Change {
 			if (eAttribute.getEType() instanceof EEnum) {
 				EEnum eEnum = (EEnum) eAttribute.getEType();
 				if (eEnum.getName().contentEquals("Tristate")) {
-					object.set(eAttribute.getName(), packageMetaData.getEEnum("Tristate").getEEnumLiteral(((Boolean)value).toString().toUpperCase()).getInstance());
+					if (value.getClass().equals(boolean.class) || value instanceof Boolean)
+						object.set(eAttribute.getName(), packageMetaData.getEEnum("Tristate").getEEnumLiteral(((Boolean)value).toString().toUpperCase()).getInstance());
+					else
+						object.set(eAttribute.getName(), packageMetaData.getEEnum("Tristate").getEEnumLiteral(value.toString().toUpperCase()).getInstance());
 				} else {
 					object.set(eAttribute.getName(), eEnum.getEEnumLiteral(((String) value).toUpperCase()).getInstance());
 				}

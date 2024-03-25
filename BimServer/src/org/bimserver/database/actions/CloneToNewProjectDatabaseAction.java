@@ -54,6 +54,7 @@ public class CloneToNewProjectDatabaseAction extends GenericCheckinDatabaseActio
 	private final Long roid;
 	private final String projectName;
 	private final String comment;
+	private Long parentPoid;
 	private Authorization authorization;
 	private Project newProject;
 
@@ -64,6 +65,12 @@ public class CloneToNewProjectDatabaseAction extends GenericCheckinDatabaseActio
 		this.roid = roid;
 		this.projectName = projectName;
 		this.comment = comment;
+	}
+
+	public CloneToNewProjectDatabaseAction(DatabaseSession session, AccessMethod accessMethod, BimServer bimServer, Authorization authorization, Long roid, String projectName,
+										   String comment, Long parentPoid) {
+		this(session, accessMethod, bimServer, authorization, roid, projectName, comment);
+		this.parentPoid = parentPoid;
 	}
 	
 	@Override
@@ -78,7 +85,10 @@ public class CloneToNewProjectDatabaseAction extends GenericCheckinDatabaseActio
 			throw new UserException("This method can only be used on Revisions that contain just one ConcreteRevision");
 		}
 		PackageMetaData packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(oldProject.getSchema());
-		newProject = new AddProjectDatabaseAction(getBimServer(), getDatabaseSession(), getAccessMethod(), projectName, packageMetaData.getSchema().getEPackageName(), authorization).execute();
+		if (parentPoid != null)
+			newProject = new AddProjectDatabaseAction(getBimServer(), getDatabaseSession(), getAccessMethod(), projectName, parentPoid, packageMetaData.getSchema().getEPackageName(), authorization).execute();
+		else
+			newProject = new AddProjectDatabaseAction(getBimServer(), getDatabaseSession(), getAccessMethod(), projectName, packageMetaData.getSchema().getEPackageName(), authorization).execute();
 		
 		ConcreteRevision oldConcreteRevision = oldRevision.getConcreteRevisions().get(0);
 		SummaryMap summaryMap = new SummaryMap(packageMetaData, oldConcreteRevision.getSummary());

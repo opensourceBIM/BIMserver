@@ -62,6 +62,7 @@ import org.bimserver.emf.Schema;
 import org.bimserver.models.geometry.Bounds;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.geometry.Vector3f;
+import org.bimserver.models.ifc4.IfcSpace;
 import org.bimserver.models.store.RenderEnginePluginConfiguration;
 import org.bimserver.models.store.User;
 import org.bimserver.models.store.UserSettings;
@@ -174,7 +175,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 		long start = System.nanoTime();
 		String pluginName = "";
-		if (queryContext.getPackageMetaData().getSchema() == Schema.IFC4) {
+		if (queryContext.getPackageMetaData().getSchema() == Schema.IFC4X3) {
+			pluginName = "org.bimserver.ifc.step.serializer.Ifc4x3StepStreamingSerializerPlugin";
+		} else if (queryContext.getPackageMetaData().getSchema() == Schema.IFC4) {
 			pluginName = "org.bimserver.ifc.step.serializer.Ifc4StepStreamingSerializerPlugin";
 		} else if (queryContext.getPackageMetaData().getSchema() == Schema.IFC2X3TC1) {
 			pluginName = "org.bimserver.ifc.step.serializer.Ifc2x3tc1StepStreamingSerializerPlugin";
@@ -919,7 +922,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		} else {
 			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ContainedInStructure", true));
 		}
-		if (packageMetaData.getSchema() == Schema.IFC4) {
+		if (packageMetaData.getSchema() == Schema.IFC4 || packageMetaData.getSchema() == Schema.IFC4X3) {
 			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":IsTypedBy", true));
 		}
 
@@ -983,8 +986,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 				hasOpenings.addInclude(objectPlacement);
 			}
 		}
-		
-		queryPart.addInclude(decomposes);
+
+		if (!eClass.getName().equals("IfcSpace"))
+			queryPart.addInclude(decomposes);
 		queryPart.addInclude(ownerHistory);
 		queryPart.addInclude(representationInclude);
 		queryPart.addInclude(objectPlacement);
@@ -1052,7 +1056,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		} else {
 			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ContainedInStructure", true));
 		}
-		if (packageMetaData.getSchema() == Schema.IFC4) {
+		if (packageMetaData.getSchema() == Schema.IFC4 || packageMetaData.getSchema() == Schema.IFC4X3) {
 			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":IsTypedBy", true));
 		}
 		queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Decomposes", true));

@@ -51,7 +51,8 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ModelMergerPluginConfigurationImpl extends PluginConfigurationImpl implements ModelMergerPluginConfiguration {
+public class ModelMergerPluginConfigurationImpl extends PluginConfigurationImpl
+		implements ModelMergerPluginConfiguration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

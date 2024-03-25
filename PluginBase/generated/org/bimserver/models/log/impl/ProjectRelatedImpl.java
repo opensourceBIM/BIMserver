@@ -76,6 +76,7 @@ public class ProjectRelatedImpl extends LogActionImpl implements ProjectRelated 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Project getProject() {
 		return (Project) eGet(LogPackage.Literals.PROJECT_RELATED__PROJECT, true);
 	}
@@ -85,6 +86,7 @@ public class ProjectRelatedImpl extends LogActionImpl implements ProjectRelated 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProject(Project newProject) {
 		eSet(LogPackage.Literals.PROJECT_RELATED__PROJECT, newProject);
 	}

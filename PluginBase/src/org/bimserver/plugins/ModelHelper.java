@@ -13,7 +13,7 @@ import org.bimserver.emf.MetaDataManager;
 import org.bimserver.emf.ObjectFactory;
 import org.bimserver.emf.OidProvider;
 import org.bimserver.emf.PackageMetaData;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
+import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.shared.GuidCompressor;
 import org.eclipse.emf.common.util.AbstractEList;
 import org.eclipse.emf.common.util.EList;
@@ -138,18 +138,20 @@ public class ModelHelper {
 						
 						for (Object o : list) {
 							if (converted.containsKey(o)) {
-								toList.addUnique(converted.get(o));
+								if (!toList.contains(converted.get(o)))
+									toList.addUnique(converted.get(o));
 							} else {
 								if (canFollow) {
 									IdEObject result = copy(originalEClass, (IdEObject) o, setOid);
 									if (result != null) {
-										toList.addUnique(result);
+										if (!toList.contains(result))
+											toList.addUnique(result);
 									}
 								} else {
 									// In some cases the object is not already converted AND canFollow = false AND there is an opposite mismatch
 									// Findbugs says canFollow is always true at this point and it's right, TODO
 									if (eStructuralFeature.getName().equals("RelatedElements")) {
-										inverseFixes.put(((IdEObject)o).getOid(), new InverseFix(Ifc2x3tc1Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements(), newObject));
+										inverseFixes.put(((IdEObject)o).getOid(), new InverseFix(Ifc4Package.eINSTANCE.getIfcRelContainedInSpatialStructure_RelatedElements(), newObject));
 									}
 								}
 							}

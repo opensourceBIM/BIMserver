@@ -29,6 +29,8 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 
+import org.apache.http.client.config.CookieSpecs;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
@@ -132,6 +134,7 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 		connManager.setMaxTotal(100);
 		connManager.setDefaultMaxPerRoute(100);
 		builder.setConnectionManager(connManager);
+		builder.setDefaultRequestConfig(RequestConfig.custom().setCookieSpec(CookieSpecs.STANDARD).build());
 		builder.disableAutomaticRetries();
 		// TODO set timeouts? https://hc.apache.org/httpcomponents-client-5.1.x/migration-guide/preparation.html
 //		builder.addInterceptorFirst(new HttpRequestInterceptor() {

@@ -61,6 +61,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Charsets;
+import com.google.common.net.UrlEscapers;
 
 public class DownloadServlet extends SubServlet {
 	private static final Logger LOGGER = LoggerFactory.getLogger(DownloadServlet.class);
@@ -103,7 +104,7 @@ public class DownloadServlet extends SubServlet {
 						response.setContentType(file.getMime());
 					}
 					if (file.getFilename() != null) {
-						response.setHeader("Content-Disposition", "inline; filename=\"" + file.getFilename() + "\"");
+						response.setHeader("Content-Disposition", "inline; filename=\"" + UrlEscapers.urlFragmentEscaper().escape(file.getFilename()) + "\"");
 					}
 					outputStream.write(file.getData());
 					if (outputStream instanceof GZIPOutputStream) {
@@ -223,11 +224,13 @@ public class DownloadServlet extends SubServlet {
 
 					try {
 						if (zip) {
+							String filename;
 							if (pluginConfiguration.getString("ZipExtension") != null) {
-								response.setHeader("Content-Disposition", "inline; filename=\"" + dataSource.getName() + "." + pluginConfiguration.getString(SerializerPlugin.ZIP_EXTENSION) + "\"");
+								filename = dataSource.getName() + "." + pluginConfiguration.getString(SerializerPlugin.ZIP_EXTENSION);
 							} else {
-								response.setHeader("Content-Disposition", "inline; filename=\"" + dataSource.getName() + ".zip" + "\"");
+								filename = dataSource.getName() + ".zip";
 							}
+							response.setHeader("Content-Disposition", "inline; filename=\"" + UrlEscapers.urlFragmentEscaper().escape(filename) + "\"");
 							response.setContentType("application/zip");
 
 							String nameInZip = dataSource.getName() + "." + pluginConfiguration.getString(SerializerPlugin.EXTENSION);
@@ -243,7 +246,7 @@ public class DownloadServlet extends SubServlet {
 						} else {
 							if (request.getParameter("mime") == null) {
 								response.setContentType(pluginConfiguration.getString(SerializerPlugin.CONTENT_TYPE));
-								response.setHeader("Content-Disposition", "inline; filename=\"" + dataSource.getName() + "." + pluginConfiguration.getString(SerializerPlugin.EXTENSION) + "\"");
+								response.setHeader("Content-Disposition", "inline; filename=\"" +  UrlEscapers.urlFragmentEscaper().escape(dataSource.getName() + "." + pluginConfiguration.getString(SerializerPlugin.EXTENSION)) + "\"");
 							} else {
 								response.setContentType(request.getParameter("mime"));
 							}

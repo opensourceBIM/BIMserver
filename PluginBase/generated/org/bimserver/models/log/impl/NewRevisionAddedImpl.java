@@ -76,6 +76,7 @@ public class NewRevisionAddedImpl extends RevisionRelatedImpl implements NewRevi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Project getProject() {
 		return (Project) eGet(LogPackage.Literals.NEW_REVISION_ADDED__PROJECT, true);
 	}
@@ -85,6 +86,7 @@ public class NewRevisionAddedImpl extends RevisionRelatedImpl implements NewRevi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProject(Project newProject) {
 		eSet(LogPackage.Literals.NEW_REVISION_ADDED__PROJECT, newProject);
 	}

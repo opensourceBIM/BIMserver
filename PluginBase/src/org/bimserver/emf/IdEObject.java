@@ -1,5 +1,6 @@
 package org.bimserver.emf;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 /******************************************************************************
@@ -21,7 +22,7 @@ import java.util.UUID;
 
 import org.eclipse.emf.ecore.EObject;
 
-public interface IdEObject extends EObject {
+public interface IdEObject extends EObject, Serializable {
 	long getExpressId();
 	long getOid();
 	int getRid();

@@ -709,6 +709,28 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			session.close();
 		}
 	}
+
+	@Override
+	public Long cloneToSubproject(Long roid, String projectName, Long parentPoid, String comment, Boolean sync) throws ServerException, UserException {
+		requireRealUserAuthentication();
+		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
+		try {
+			CloneToNewProjectDatabaseAction action = new CloneToNewProjectDatabaseAction(session, getInternalAccessMethod(), getBimServer(), getAuthorization(), roid, projectName, comment, parentPoid);
+			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
+			String username = user.getName();
+			String userUsername = user.getUsername();
+			LongCopyAction longAction = new LongCopyAction(getBimServer(), username, userUsername, getAuthorization(), action);
+			getBimServer().getLongActionManager().start(longAction);
+			if (sync) {
+				longAction.waitForCompletion();
+			}
+			return longAction.getProgressTopic().getKey().getId();
+		} catch (Exception e) {
+			return handleException(e);
+		} finally {
+			session.close();
+		}
+	}
 	
 	@Override
 	public Long branchToNewProject(Long roid, String projectName, String comment, Boolean sync) throws UserException, ServerException {

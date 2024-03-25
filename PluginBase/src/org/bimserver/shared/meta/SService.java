@@ -74,7 +74,7 @@ public class SService {
 	}
 
 	private void extractJavaDoc(Class<?> clazz) {
-		ASTParser parser = ASTParser.newParser(AST.JLS4);
+		ASTParser parser = ASTParser.newParser(AST.getJLSLatest());
 		parser.setSource(sourceCodeFetcher.get(clazz).toCharArray());
 		parser.setKind(ASTParser.K_COMPILATION_UNIT);
 		final CompilationUnit cu = (CompilationUnit) parser.createAST(null);

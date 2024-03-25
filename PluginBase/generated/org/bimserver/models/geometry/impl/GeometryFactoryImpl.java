@@ -63,7 +63,8 @@ public class GeometryFactoryImpl extends EFactoryImpl implements GeometryFactory
 	 */
 	public static GeometryFactory init() {
 		try {
-			GeometryFactory theGeometryFactory = (GeometryFactory) EPackage.Registry.INSTANCE.getEFactory(GeometryPackage.eNS_URI);
+			GeometryFactory theGeometryFactory = (GeometryFactory) EPackage.Registry.INSTANCE
+					.getEFactory(GeometryPackage.eNS_URI);
 			if (theGeometryFactory != null) {
 				return theGeometryFactory;
 			}

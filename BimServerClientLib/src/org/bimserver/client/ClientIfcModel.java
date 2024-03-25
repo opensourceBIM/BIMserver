@@ -171,7 +171,7 @@ public class ClientIfcModel extends IfcModel implements GeometryTarget {
 						if (eFeature.getEType() == EcorePackage.eINSTANCE.getEString()) {
 							bimServerClient.getLowLevelInterface().addStringAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), notification.getNewStringValue());
 						} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getELong() || eFeature.getEType() == EcorePackage.eINSTANCE.getELongObject()) {
-							throw new UnsupportedOperationException();
+							bimServerClient.getLowLevelInterface().addLongAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), ((Long) notification.getNewValue()));
 						} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEDouble() || eFeature.getEType() == EcorePackage.eINSTANCE.getEDoubleObject()) {
 							bimServerClient.getLowLevelInterface().addDoubleAttribute(getTransactionId(), idEObject.getOid(), eFeature.getName(), (Double) notification.getNewValue());
 						} else if (eFeature.getEType() == EcorePackage.eINSTANCE.getEBoolean() || eFeature.getEType() == EcorePackage.eINSTANCE.getEBooleanObject()) {
@@ -916,6 +916,20 @@ public class ClientIfcModel extends IfcModel implements GeometryTarget {
 
 		modelState = ModelState.NONE;
 	}
+
+	@Override
+	public void queryFully(ObjectNode query, boolean assumeCompletePreload) throws ServerException, UserException, PublicInterfaceNotFoundException, IfcModelInterfaceException, IOException {
+		this.assumeCompletePreload = assumeCompletePreload;
+		modelState = ModelState.LOADING;
+		Long topicId = bimServerClient.getServiceInterface().download(Collections.singleton(roid), query.toString(), bimServerClient.getJsonSerializerOid(), false);
+		bimServerClient.waitForDonePreparing(topicId);
+
+		processDownload(topicId);
+		bimServerClient.getServiceInterface().cleanupLongAction(topicId);
+
+		modelState = ModelState.FULLY_LOADED;
+	}
+
 	
 	public void queryNew(Query query, IfcModelChangeListener ifcModelChangeListener, boolean assumeCompletePreload) {
 		this.assumeCompletePreload = assumeCompletePreload;

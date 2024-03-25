@@ -20,41 +20,11 @@ package org.bimserver.utils;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.emf.IfcModelInterfaceException;
-import org.bimserver.models.ifc2x3tc1.IfcApplication;
-import org.bimserver.models.ifc2x3tc1.IfcArbitraryClosedProfileDef;
-import org.bimserver.models.ifc2x3tc1.IfcAxis2Placement3D;
-import org.bimserver.models.ifc2x3tc1.IfcBuilding;
-import org.bimserver.models.ifc2x3tc1.IfcCartesianPoint;
-import org.bimserver.models.ifc2x3tc1.IfcChangeActionEnum;
-import org.bimserver.models.ifc2x3tc1.IfcDirection;
-import org.bimserver.models.ifc2x3tc1.IfcElementCompositionEnum;
-import org.bimserver.models.ifc2x3tc1.IfcExtrudedAreaSolid;
-import org.bimserver.models.ifc2x3tc1.IfcGeometricRepresentationContext;
-import org.bimserver.models.ifc2x3tc1.IfcObjectDefinition;
-import org.bimserver.models.ifc2x3tc1.IfcOrganization;
-import org.bimserver.models.ifc2x3tc1.IfcOwnerHistory;
-import org.bimserver.models.ifc2x3tc1.IfcPerson;
-import org.bimserver.models.ifc2x3tc1.IfcPersonAndOrganization;
-import org.bimserver.models.ifc2x3tc1.IfcPolyline;
-import org.bimserver.models.ifc2x3tc1.IfcProduct;
-import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
-import org.bimserver.models.ifc2x3tc1.IfcProfileTypeEnum;
-import org.bimserver.models.ifc2x3tc1.IfcProject;
-import org.bimserver.models.ifc2x3tc1.IfcRelAggregates;
-import org.bimserver.models.ifc2x3tc1.IfcRelContainedInSpatialStructure;
-import org.bimserver.models.ifc2x3tc1.IfcRepresentationContext;
-import org.bimserver.models.ifc2x3tc1.IfcRoot;
-import org.bimserver.models.ifc2x3tc1.IfcSIPrefix;
-import org.bimserver.models.ifc2x3tc1.IfcSIUnit;
-import org.bimserver.models.ifc2x3tc1.IfcSIUnitName;
-import org.bimserver.models.ifc2x3tc1.IfcShapeRepresentation;
-import org.bimserver.models.ifc2x3tc1.IfcSite;
-import org.bimserver.models.ifc2x3tc1.IfcSpatialStructureElement;
-import org.bimserver.models.ifc2x3tc1.IfcUnit;
-import org.bimserver.models.ifc2x3tc1.IfcUnitAssignment;
-import org.bimserver.models.ifc2x3tc1.IfcUnitEnum;
+import org.bimserver.models.ifc4x3.*;
+import org.bimserver.plugins.ObjectAlreadyExistsException;
 import org.bimserver.shared.GuidCompressor;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 
 public class RichIfcModel {
 
@@ -93,16 +63,25 @@ public class RichIfcModel {
 	
 	public <T extends IdEObject> T create(Class<T> clazz) throws IfcModelInterfaceException {
 		T object = model.create(clazz);
+		return fillNewObject(object);
+	}
+
+	private <T extends IdEObject> T fillNewObject(T object) throws ObjectAlreadyExistsException {
 		if (object instanceof IfcRoot) {
-			((IfcRoot)object).setGlobalId(GuidCompressor.getNewIfcGloballyUniqueId());
+			((IfcRoot) object).setGlobalId(GuidCompressor.getNewIfcGloballyUniqueId());
 			if (defaultOwnerHistory != null) {
-				((IfcRoot)object).setOwnerHistory(defaultOwnerHistory);
+				((IfcRoot) object).setOwnerHistory(defaultOwnerHistory);
 			}
 		}
 		if (addOnCreate) {
 			model.add(object.getOid(), object);
 		}
 		return object;
+	}
+
+	public <T extends IdEObject> T create(EClass clazz) throws IfcModelInterfaceException {
+		T object = model.create(clazz);
+		return fillNewObject(object);
 	}
 
 	public void setDefaultOwnerHistory(IfcOwnerHistory ownerHistory) {
@@ -118,15 +97,29 @@ public class RichIfcModel {
 		return ifcCartesianPoint;
 	}
 
+	public IfcCartesianPoint createIfcCartesianPoint(double i, double j) throws IfcModelInterfaceException {
+		IfcCartesianPoint ifcCartesianPoint = create(IfcCartesianPoint.class);
+		EList<Double> coordinates = ifcCartesianPoint.getCoordinates();
+		coordinates.add(i);
+		coordinates.add(j);
+		return ifcCartesianPoint;
+	}
+
 	public IfcAxis2Placement3D createBasicPosition(double i, double j, double k) throws IfcModelInterfaceException {
 		IfcAxis2Placement3D axisPlacement = create(IfcAxis2Placement3D.class);
 		axisPlacement.setLocation(createIfcCartesianPoint(i, j, k));
-		
+
 		IfcDirection axis = createDirection(0, 0, 1);
 		IfcDirection direction = createDirection(1, 0, 0);
-		
+
 		axisPlacement.setAxis(axis);
 		axisPlacement.setRefDirection(direction);
+		return axisPlacement;
+	}
+
+	public IfcAxis2Placement2D createBasicPosition(double i, double j) throws IfcModelInterfaceException {
+		IfcAxis2Placement2D axisPlacement = create(IfcAxis2Placement2D.class);
+		axisPlacement.setLocation(createIfcCartesianPoint(i, j));
 		return axisPlacement;
 	}
 
@@ -221,18 +214,23 @@ public class RichIfcModel {
 		points.add(createIfcCartesianPoint(width, depth, 0));
 		points.add(createIfcCartesianPoint(0, depth, 0));
 		points.add(createIfcCartesianPoint(0, 0, 0));
+		ifcPolyline.setDim(2);
 		
 		IfcArbitraryClosedProfileDef def = create(IfcArbitraryClosedProfileDef.class);
 		def.setProfileType(IfcProfileTypeEnum.AREA);
 		def.setOuterCurve(ifcPolyline);
-		
+
+		return getIfcProductRepresentation(height, def);
+	}
+
+	private IfcProductRepresentation getIfcProductRepresentation(double height, IfcArbitraryClosedProfileDef def) throws IfcModelInterfaceException {
 		IfcExtrudedAreaSolid extrudedAreaSolid = create(IfcExtrudedAreaSolid.class);
 		extrudedAreaSolid.setDepth(height);
 		extrudedAreaSolid.setSweptArea(def);
 		extrudedAreaSolid.setPosition(createBasicPosition(0, 0, 0));
 		extrudedAreaSolid.setExtrudedDirection(createDirection(0, 0, 1));
-		
-		IfcProductRepresentation productRepresentation = create(IfcProductRepresentation.class);
+
+		IfcProductDefinitionShape productRepresentation = create(IfcProductDefinitionShape.class);
 		IfcShapeRepresentation shapeRepresentation = create(IfcShapeRepresentation.class);
 		if (defaultRepresentationContext != null) {
 			shapeRepresentation.setContextOfItems(defaultRepresentationContext);
@@ -241,8 +239,28 @@ public class RichIfcModel {
 		shapeRepresentation.setRepresentationIdentifier("Body");
 		shapeRepresentation.getItems().add(extrudedAreaSolid);
 		productRepresentation.getRepresentations().add(shapeRepresentation);
-		
+
 		return productRepresentation;
+	}
+
+	public IfcProductRepresentation createCircularExtrusionProductRepresentation(double radius, double height) throws IfcModelInterfaceException {
+		IfcCircle ifcCircle = create(IfcCircle.class);
+		ifcCircle.setRadius(radius);
+		ifcCircle.setDim(2);
+
+		IfcArbitraryClosedProfileDef def = create(IfcArbitraryClosedProfileDef.class);
+		def.setProfileType(IfcProfileTypeEnum.AREA);
+		def.setOuterCurve(ifcCircle);
+
+
+		return getIfcProductRepresentation(height, def);
+	}
+
+	public IfcProductRepresentation createExtrusionProductRepresentationByCurve(IfcCurve curve, double height) throws IfcModelInterfaceException {
+		IfcArbitraryClosedProfileDef def = create(IfcArbitraryClosedProfileDef.class);
+		def.setProfileType(IfcProfileTypeEnum.AREA);
+		def.setOuterCurve(curve);
+		return getIfcProductRepresentation(height, def);
 	}
 	
 	public void setDefaultRepresentationContext(IfcRepresentationContext defaultRepresentationContext) {

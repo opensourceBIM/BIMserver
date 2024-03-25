@@ -320,7 +320,9 @@ public enum PluginType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final PluginType[] VALUES_ARRAY = new PluginType[] { SERIALIZER, DESERIALIZER, RENDER_ENGINE, QUERY_ENGINE, OBJECT_IDM, WEB_MODULE, MODEL_MERGER, MODEL_COMPARE, MODEL_CHECKER, STILL_IMAGE_RENDER, SERVICE, };
+	private static final PluginType[] VALUES_ARRAY = new PluginType[] { SERIALIZER, DESERIALIZER, RENDER_ENGINE,
+			QUERY_ENGINE, OBJECT_IDM, WEB_MODULE, MODEL_MERGER, MODEL_COMPARE, MODEL_CHECKER, STILL_IMAGE_RENDER,
+			SERVICE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Plugin Type</b></em>' enumerators.

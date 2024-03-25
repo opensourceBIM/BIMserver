@@ -43,11 +43,11 @@ import com.fasterxml.jackson.databind.node.JsonNodeType;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class JsonQueryObjectModelConverter {
-	private static final Map<String, Include> CACHED_DEFINES = java.util.Collections.synchronizedMap(new HashMap<>());
-	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-	private static final int LATEST_VERSION = 2;
-	private boolean copyExternalDefines = false;
-	private PackageMetaData packageMetaData;
+	protected static final Map<String, Include> CACHED_DEFINES = java.util.Collections.synchronizedMap(new HashMap<>());
+	protected static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+	protected static final int LATEST_VERSION = 2;
+	protected boolean copyExternalDefines = false;
+	protected PackageMetaData packageMetaData;
 
 	public JsonQueryObjectModelConverter(PackageMetaData packageMetaData) {
 		this.packageMetaData = packageMetaData;

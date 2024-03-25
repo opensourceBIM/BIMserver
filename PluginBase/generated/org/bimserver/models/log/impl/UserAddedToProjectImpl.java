@@ -76,6 +76,7 @@ public class UserAddedToProjectImpl extends UserRelatedImpl implements UserAdded
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Project getProject() {
 		return (Project) eGet(LogPackage.Literals.USER_ADDED_TO_PROJECT__PROJECT, true);
 	}
@@ -85,6 +86,7 @@ public class UserAddedToProjectImpl extends UserRelatedImpl implements UserAdded
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProject(Project newProject) {
 		eSet(LogPackage.Literals.USER_ADDED_TO_PROJECT__PROJECT, newProject);
 	}

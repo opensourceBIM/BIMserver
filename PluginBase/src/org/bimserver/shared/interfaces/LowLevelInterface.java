@@ -816,6 +816,12 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "attributeName", partName = "addIntegerAttribute.attributeName") String attributeName,
 		@WebParam(name = "value", partName = "addIntegerAttribute.value") Integer value) throws ServerException, UserException;
 
+	@WebMethod(action = "addLongAttribute")
+	void addLongAttribute(
+			@WebParam(name = "tid", partName = "addLongAttribute.tid") Long tid,
+			@WebParam(name = "oid", partName = "addLongAttribute.oid") Long oid,
+			@WebParam(name = "attributeName", partName = "addLongAttribute.attributeName") String attributeName,
+			@WebParam(name = "value", partName = "addLongAttribute.value") Long value) throws ServerException, UserException;
 	/**
 	 * Add a boolean attribute. Will be added at the end of the list
 	 * 

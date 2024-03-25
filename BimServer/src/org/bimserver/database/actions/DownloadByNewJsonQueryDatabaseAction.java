@@ -218,8 +218,6 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 				
 				queryObjectProvider = new QueryObjectProvider(getDatabaseSession(), getBimServer(), secondQuery, Collections.singleton(roid), packageMetaData);
 				
-				LOGGER.debug(converter.toJson(secondQuery).toString());
-				
 				next = queryObjectProvider.next();
 				while (next != null) {
 					IdEObject idEObject = ifcModel.get(next.getOid());

@@ -42,6 +42,8 @@ import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.impl.Ifc2x3tc1PackageImpl;
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4.impl.Ifc4PackageImpl;
+import org.bimserver.models.ifc4x3.Ifc4x3Package;
+import org.bimserver.models.ifc4x3.impl.Ifc4x3PackageImpl;
 import org.bimserver.models.log.LogFactory;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.StorePackage;
@@ -324,7 +326,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link LogPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -337,32 +339,41 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 			return (LogPackage) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI);
 
 		// Obtain or create and register package
-		LogPackageImpl theLogPackage = (LogPackageImpl) (EPackage.Registry.INSTANCE
-				.get(eNS_URI) instanceof LogPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
-						: new LogPackageImpl());
+		Object registeredLogPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		LogPackageImpl theLogPackage = registeredLogPackage instanceof LogPackageImpl
+				? (LogPackageImpl) registeredLogPackage
+				: new LogPackageImpl();
 
 		isInited = true;
 
 		// Obtain or create and register interdependencies
-		GeometryPackageImpl theGeometryPackage = (GeometryPackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(GeometryPackage.eNS_URI) instanceof GeometryPackageImpl
-						? EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI) : GeometryPackage.eINSTANCE);
-		Ifc2x3tc1PackageImpl theIfc2x3tc1Package = (Ifc2x3tc1PackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(Ifc2x3tc1Package.eNS_URI) instanceof Ifc2x3tc1PackageImpl
-						? EPackage.Registry.INSTANCE.getEPackage(Ifc2x3tc1Package.eNS_URI)
-						: Ifc2x3tc1Package.eINSTANCE);
-		Ifc4PackageImpl theIfc4Package = (Ifc4PackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(Ifc4Package.eNS_URI) instanceof Ifc4PackageImpl
-						? EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI) : Ifc4Package.eINSTANCE);
-		StorePackageImpl theStorePackage = (StorePackageImpl) (EPackage.Registry.INSTANCE
-				.getEPackage(StorePackage.eNS_URI) instanceof StorePackageImpl
-						? EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI) : StorePackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(GeometryPackage.eNS_URI);
+		GeometryPackageImpl theGeometryPackage = (GeometryPackageImpl) (registeredPackage instanceof GeometryPackageImpl
+				? registeredPackage
+				: GeometryPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(Ifc2x3tc1Package.eNS_URI);
+		Ifc2x3tc1PackageImpl theIfc2x3tc1Package = (Ifc2x3tc1PackageImpl) (registeredPackage instanceof Ifc2x3tc1PackageImpl
+				? registeredPackage
+				: Ifc2x3tc1Package.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(Ifc4Package.eNS_URI);
+		Ifc4PackageImpl theIfc4Package = (Ifc4PackageImpl) (registeredPackage instanceof Ifc4PackageImpl
+				? registeredPackage
+				: Ifc4Package.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(Ifc4x3Package.eNS_URI);
+		Ifc4x3PackageImpl theIfc4x3Package = (Ifc4x3PackageImpl) (registeredPackage instanceof Ifc4x3PackageImpl
+				? registeredPackage
+				: Ifc4x3Package.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(StorePackage.eNS_URI);
+		StorePackageImpl theStorePackage = (StorePackageImpl) (registeredPackage instanceof StorePackageImpl
+				? registeredPackage
+				: StorePackage.eINSTANCE);
 
 		// Load packages
 		theLogPackage.loadPackage();
 		theGeometryPackage.loadPackage();
 		theIfc2x3tc1Package.loadPackage();
 		theIfc4Package.loadPackage();
+		theIfc4x3Package.loadPackage();
 		theStorePackage.loadPackage();
 
 		// Fix loaded packages
@@ -370,6 +381,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 		theGeometryPackage.fixPackageContents();
 		theIfc2x3tc1Package.fixPackageContents();
 		theIfc4Package.fixPackageContents();
+		theIfc4x3Package.fixPackageContents();
 		theStorePackage.fixPackageContents();
 
 		// Mark meta-data to indicate it can't be changed
@@ -385,6 +397,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLogAction() {
 		if (logActionEClass == null) {
 			logActionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers()
@@ -398,6 +411,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLogAction_Date() {
 		return (EAttribute) getLogAction().getEStructuralFeatures().get(0);
 	}
@@ -407,6 +421,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getLogAction_Executor() {
 		return (EReference) getLogAction().getEStructuralFeatures().get(1);
 	}
@@ -416,6 +431,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getLogAction_AccessMethod() {
 		return (EAttribute) getLogAction().getEStructuralFeatures().get(2);
 	}
@@ -425,6 +441,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getServerLog() {
 		if (serverLogEClass == null) {
 			serverLogEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers()
@@ -438,6 +455,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getServerLog_Actions() {
 		return (EReference) getServerLog().getEStructuralFeatures().get(0);
 	}
@@ -447,6 +465,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getProjectRelated() {
 		if (projectRelatedEClass == null) {
 			projectRelatedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers()
@@ -460,6 +479,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getProjectRelated_Project() {
 		return (EReference) getProjectRelated().getEStructuralFeatures().get(0);
 	}
@@ -469,6 +489,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getCheckoutRelated() {
 		if (checkoutRelatedEClass == null) {
 			checkoutRelatedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI)
@@ -482,6 +503,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getCheckoutRelated_Checkout() {
 		return (EReference) getCheckoutRelated().getEStructuralFeatures().get(0);
 	}
@@ -491,6 +513,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRevisionRelated() {
 		if (revisionRelatedEClass == null) {
 			revisionRelatedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI)
@@ -504,6 +527,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRevisionRelated_Revision() {
 		return (EReference) getRevisionRelated().getEStructuralFeatures().get(0);
 	}
@@ -513,6 +537,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUserRelated() {
 		if (userRelatedEClass == null) {
 			userRelatedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers()
@@ -526,6 +551,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getUserRelated_User() {
 		return (EReference) getUserRelated().getEStructuralFeatures().get(0);
 	}
@@ -535,6 +561,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNewUserAdded() {
 		if (newUserAddedEClass == null) {
 			newUserAddedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers()
@@ -548,6 +575,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNewProjectAdded() {
 		if (newProjectAddedEClass == null) {
 			newProjectAddedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI)
@@ -561,6 +589,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getNewProjectAdded_ParentProject() {
 		return (EReference) getNewProjectAdded().getEStructuralFeatures().get(0);
 	}
@@ -570,6 +599,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRevisionBranched() {
 		if (revisionBranchedEClass == null) {
 			revisionBranchedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI)
@@ -583,6 +613,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRevisionBranched_Oldrevision() {
 		return (EReference) getRevisionBranched().getEStructuralFeatures().get(0);
 	}
@@ -592,6 +623,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRevisionBranched_Newrevision() {
 		return (EReference) getRevisionBranched().getEStructuralFeatures().get(1);
 	}
@@ -601,6 +633,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNewRevisionAdded() {
 		if (newRevisionAddedEClass == null) {
 			newRevisionAddedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI)
@@ -614,6 +647,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getNewRevisionAdded_Project() {
 		return (EReference) getNewRevisionAdded().getEStructuralFeatures().get(0);
 	}
@@ -623,6 +657,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNewCheckoutAdded() {
 		if (newCheckoutAddedEClass == null) {
 			newCheckoutAddedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI)
@@ -636,6 +671,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getSettingsSaved() {
 		if (settingsSavedEClass == null) {
 			settingsSavedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers()
@@ -649,6 +685,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUserAddedToProject() {
 		if (userAddedToProjectEClass == null) {
 			userAddedToProjectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI)
@@ -662,6 +699,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getUserAddedToProject_Project() {
 		return (EReference) getUserAddedToProject().getEStructuralFeatures().get(0);
 	}
@@ -671,6 +709,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNewObjectIDMUploaded() {
 		if (newObjectIDMUploadedEClass == null) {
 			newObjectIDMUploadedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI)
@@ -684,6 +723,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDownload() {
 		if (downloadEClass == null) {
 			downloadEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers()
@@ -697,6 +737,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUserRemovedFromProject() {
 		if (userRemovedFromProjectEClass == null) {
 			userRemovedFromProjectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI)
@@ -710,6 +751,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getUserRemovedFromProject_Project() {
 		return (EReference) getUserRemovedFromProject().getEStructuralFeatures().get(0);
 	}
@@ -719,6 +761,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getProjectDeleted() {
 		if (projectDeletedEClass == null) {
 			projectDeletedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers()
@@ -732,6 +775,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUserDeleted() {
 		if (userDeletedEClass == null) {
 			userDeletedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers()
@@ -745,6 +789,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPasswordReset() {
 		if (passwordResetEClass == null) {
 			passwordResetEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers()
@@ -758,6 +803,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDatabaseCreated() {
 		if (databaseCreatedEClass == null) {
 			databaseCreatedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI)
@@ -771,6 +817,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseCreated_Path() {
 		return (EAttribute) getDatabaseCreated().getEStructuralFeatures().get(0);
 	}
@@ -780,6 +827,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDatabaseCreated_Version() {
 		return (EAttribute) getDatabaseCreated().getEStructuralFeatures().get(1);
 	}
@@ -789,6 +837,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getServerStarted() {
 		if (serverStartedEClass == null) {
 			serverStartedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers()
@@ -802,6 +851,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getProjectUpdated() {
 		if (projectUpdatedEClass == null) {
 			projectUpdatedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers()
@@ -815,6 +865,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUserUndeleted() {
 		if (userUndeletedEClass == null) {
 			userUndeletedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers()
@@ -828,6 +879,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getProjectUndeleted() {
 		if (projectUndeletedEClass == null) {
 			projectUndeletedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI)
@@ -841,6 +893,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRevisionUpdated() {
 		if (revisionUpdatedEClass == null) {
 			revisionUpdatedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI)
@@ -854,6 +907,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getGeoTagUpdated() {
 		if (geoTagUpdatedEClass == null) {
 			geoTagUpdatedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers()
@@ -867,6 +921,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getGeoTagUpdated_GeoTag() {
 		return (EReference) getGeoTagUpdated().getEStructuralFeatures().get(0);
 	}
@@ -876,6 +931,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPasswordChanged() {
 		if (passwordChangedEClass == null) {
 			passwordChangedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI)
@@ -889,6 +945,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUserChanged() {
 		if (userChangedEClass == null) {
 			userChangedEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers()
@@ -902,6 +959,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getExtendedDataAddedToRevision() {
 		if (extendedDataAddedToRevisionEClass == null) {
 			extendedDataAddedToRevisionEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI)
@@ -915,6 +973,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExtendedDataAddedToRevision_Revision() {
 		return (EReference) getExtendedDataAddedToRevision().getEStructuralFeatures().get(0);
 	}
@@ -924,6 +983,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExtendedDataAddedToRevision_ExtendedData() {
 		return (EReference) getExtendedDataAddedToRevision().getEStructuralFeatures().get(1);
 	}
@@ -933,6 +993,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getExtendedDataAddedToProject() {
 		if (extendedDataAddedToProjectEClass == null) {
 			extendedDataAddedToProjectEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI)
@@ -946,6 +1007,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExtendedDataAddedToProject_Project() {
 		return (EReference) getExtendedDataAddedToProject().getEStructuralFeatures().get(0);
 	}
@@ -955,6 +1017,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getExtendedDataAddedToProject_ExtendedData() {
 		return (EReference) getExtendedDataAddedToProject().getEStructuralFeatures().get(1);
 	}
@@ -964,6 +1027,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRemoteServiceCalled() {
 		if (remoteServiceCalledEClass == null) {
 			remoteServiceCalledEClass = (EClass) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI)
@@ -977,6 +1041,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRemoteServiceCalled_Service() {
 		return (EReference) getRemoteServiceCalled().getEStructuralFeatures().get(0);
 	}
@@ -986,6 +1051,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRemoteServiceCalled_State() {
 		return (EAttribute) getRemoteServiceCalled().getEStructuralFeatures().get(1);
 	}
@@ -995,6 +1061,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRemoteServiceCalled_Percentage() {
 		return (EAttribute) getRemoteServiceCalled().getEStructuralFeatures().get(2);
 	}
@@ -1004,6 +1071,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRemoteServiceCalled_Infos() {
 		return (EAttribute) getRemoteServiceCalled().getEStructuralFeatures().get(3);
 	}
@@ -1013,6 +1081,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRemoteServiceCalled_Warnings() {
 		return (EAttribute) getRemoteServiceCalled().getEStructuralFeatures().get(4);
 	}
@@ -1022,6 +1091,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRemoteServiceCalled_Errors() {
 		return (EAttribute) getRemoteServiceCalled().getEStructuralFeatures().get(5);
 	}
@@ -1031,6 +1101,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EEnum getAccessMethod() {
 		if (accessMethodEEnum == null) {
 			accessMethodEEnum = (EEnum) EPackage.Registry.INSTANCE.getEPackage(LogPackage.eNS_URI).getEClassifiers()
@@ -1044,6 +1115,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LogFactory getLogFactory() {
 		return (LogFactory) getEFactoryInstance();
 	}
@@ -1056,7 +1128,7 @@ public class LogPackageImpl extends EPackageImpl implements LogPackage {
 	private boolean isLoaded = false;
 
 	/**
-	 * Laods the package and any sub-packages from their serialized form.
+	 * Loads the package and any sub-packages from their serialized form.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

@@ -22,6 +22,7 @@ import java.util.Iterator;
 import org.bimserver.emf.IdEObject;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc4.Ifc4Package;
+import org.bimserver.models.ifc4x3.Ifc4x3Package;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
@@ -40,7 +41,11 @@ public class ObjectsToCommit implements Iterable<IdEObject> {
 	}
 
 	public BiMap<IdEObject, Long> getMap(IdEObject idEObject) {
-		if (idEObject.eClass().getEPackage() == Ifc2x3tc1Package.eINSTANCE || idEObject.eClass().getEPackage() == Ifc4Package.eINSTANCE) {
+		if (
+			idEObject.eClass().getEPackage() == Ifc2x3tc1Package.eINSTANCE ||
+			idEObject.eClass().getEPackage() == Ifc4Package.eINSTANCE ||
+			idEObject.eClass().getEPackage() == Ifc4x3Package.eINSTANCE
+		) {
 			return objectsToCommitFirst;
 		} else {
 			return objectsToCommitSecond;

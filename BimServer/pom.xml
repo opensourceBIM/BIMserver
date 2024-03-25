@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.opensourcebim</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.5.185-SNAPSHOT</version>
+		<version>1.5.186-SNAPSHOT</version>
 	</parent>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -96,7 +96,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>bimserverclientlib</artifactId>
-			<version>1.5.185-SNAPSHOT</version>
+			<version>1.5.186-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-collections</groupId>
@@ -182,7 +182,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>bdb</artifactId>
-			<version>1.5.185-SNAPSHOT</version>
+			<version>1.5.186-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<licenses>

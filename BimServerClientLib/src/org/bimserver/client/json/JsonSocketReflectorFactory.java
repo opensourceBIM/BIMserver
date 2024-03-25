@@ -1,5 +1,8 @@
 package org.bimserver.client.json;
 
+import org.apache.http.client.config.CookieSpecs;
+import org.apache.http.client.config.RequestConfig;
+
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
  * 
@@ -41,7 +44,9 @@ public class JsonSocketReflectorFactory implements JsonReflectorFactory {
 			poolingHttpClientConnectionManager.setDefaultMaxPerRoute(20);
 			poolingHttpClientConnectionManager.setMaxTotal(20);
 			
-			HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
+			HttpClientBuilder httpClientBuilder = HttpClientBuilder.create()
+				.setDefaultRequestConfig(RequestConfig.custom().setCookieSpec(CookieSpecs.STANDARD).build());
+
 			httpClientBuilder.setConnectionManager(poolingHttpClientConnectionManager);
 			
 			httpclient = httpClientBuilder.build();

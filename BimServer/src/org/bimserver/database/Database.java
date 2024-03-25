@@ -44,6 +44,7 @@ import org.bimserver.emf.MetaDataManager;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc4.Ifc4Package;
+import org.bimserver.models.ifc4x3.Ifc4x3Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.DatabaseCreated;
 import org.bimserver.models.log.LogPackage;
@@ -95,10 +96,10 @@ public class Database implements BimDatabase {
 	 * database-schema change. Do not change this variable when nothing has
 	 * changed in the schema!
 	 */
-	public static final int APPLICATION_SCHEMA_VERSION = 56;
+	public static final int APPLICATION_SCHEMA_VERSION = 57;
 
 	public Database(BimServer bimServer, Set<? extends EPackage> emfPackages, KeyValueStore keyValueStore, MetaDataManager metaDataManager) throws DatabaseInitException {
-		this.cidToEclass = new EClass[Short.MAX_VALUE]; 
+		this.cidToEclass = new EClass[Short.MAX_VALUE * 2]; 
 		this.bimServer = bimServer;
 		this.keyValueStore = keyValueStore;
 		this.metaDataManager = metaDataManager;
@@ -197,7 +198,10 @@ public class Database implements BimDatabase {
 			}
 			for (EClass eClass : cidToEclass) {
 				if (eClass != null) {
-					if (eClass.getEPackage() == Ifc2x3tc1Package.eINSTANCE || eClass.getEPackage() == Ifc4Package.eINSTANCE) {
+					if (eClass.getEPackage() == Ifc2x3tc1Package.eINSTANCE ||
+							eClass.getEPackage() == Ifc4Package.eINSTANCE ||
+							eClass.getEPackage() == Ifc4x3Package.eINSTANCE
+					) {
 						realClasses.add(eClass.getName());
 					}
 				}
@@ -301,7 +305,10 @@ public class Database implements BimDatabase {
 				EClass eClass = (EClass) getEClassifier(packageName, className);
 				
 				// TODO geometry?
-				boolean transactional = !(eClass.getEPackage() == Ifc2x3tc1Package.eINSTANCE || eClass.getEPackage() == Ifc4Package.eINSTANCE);
+				boolean transactional = !(
+					eClass.getEPackage() == Ifc2x3tc1Package.eINSTANCE ||
+					eClass.getEPackage() == Ifc4Package.eINSTANCE ||
+					eClass.getEPackage() == Ifc4x3Package.eINSTANCE);
 
 				keyValueStore.openTable(databaseSession, packageAndClassName, transactional);
 				

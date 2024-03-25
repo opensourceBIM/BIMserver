@@ -76,6 +76,7 @@ public class DatabaseCreatedImpl extends LogActionImpl implements DatabaseCreate
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getPath() {
 		return (String) eGet(LogPackage.Literals.DATABASE_CREATED__PATH, true);
 	}
@@ -85,6 +86,7 @@ public class DatabaseCreatedImpl extends LogActionImpl implements DatabaseCreate
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPath(String newPath) {
 		eSet(LogPackage.Literals.DATABASE_CREATED__PATH, newPath);
 	}
@@ -94,6 +96,7 @@ public class DatabaseCreatedImpl extends LogActionImpl implements DatabaseCreate
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Integer getVersion() {
 		return (Integer) eGet(LogPackage.Literals.DATABASE_CREATED__VERSION, true);
 	}
@@ -103,6 +106,7 @@ public class DatabaseCreatedImpl extends LogActionImpl implements DatabaseCreate
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setVersion(Integer newVersion) {
 		eSet(LogPackage.Literals.DATABASE_CREATED__VERSION, newVersion);
 	}

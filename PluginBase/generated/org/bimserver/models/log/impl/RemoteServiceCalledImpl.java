@@ -83,6 +83,7 @@ public class RemoteServiceCalledImpl extends LogActionImpl implements RemoteServ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Service getService() {
 		return (Service) eGet(LogPackage.Literals.REMOTE_SERVICE_CALLED__SERVICE, true);
 	}
@@ -92,6 +93,7 @@ public class RemoteServiceCalledImpl extends LogActionImpl implements RemoteServ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setService(Service newService) {
 		eSet(LogPackage.Literals.REMOTE_SERVICE_CALLED__SERVICE, newService);
 	}
@@ -101,6 +103,7 @@ public class RemoteServiceCalledImpl extends LogActionImpl implements RemoteServ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotifictionResultEnum getState() {
 		return (NotifictionResultEnum) eGet(LogPackage.Literals.REMOTE_SERVICE_CALLED__STATE, true);
 	}
@@ -110,6 +113,7 @@ public class RemoteServiceCalledImpl extends LogActionImpl implements RemoteServ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setState(NotifictionResultEnum newState) {
 		eSet(LogPackage.Literals.REMOTE_SERVICE_CALLED__STATE, newState);
 	}
@@ -119,6 +123,7 @@ public class RemoteServiceCalledImpl extends LogActionImpl implements RemoteServ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getPercentage() {
 		return (Integer) eGet(LogPackage.Literals.REMOTE_SERVICE_CALLED__PERCENTAGE, true);
 	}
@@ -128,6 +133,7 @@ public class RemoteServiceCalledImpl extends LogActionImpl implements RemoteServ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPercentage(int newPercentage) {
 		eSet(LogPackage.Literals.REMOTE_SERVICE_CALLED__PERCENTAGE, newPercentage);
 	}
@@ -138,6 +144,7 @@ public class RemoteServiceCalledImpl extends LogActionImpl implements RemoteServ
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<String> getInfos() {
 		return (EList<String>) eGet(LogPackage.Literals.REMOTE_SERVICE_CALLED__INFOS, true);
 	}
@@ -148,6 +155,7 @@ public class RemoteServiceCalledImpl extends LogActionImpl implements RemoteServ
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<String> getWarnings() {
 		return (EList<String>) eGet(LogPackage.Literals.REMOTE_SERVICE_CALLED__WARNINGS, true);
 	}
@@ -158,6 +166,7 @@ public class RemoteServiceCalledImpl extends LogActionImpl implements RemoteServ
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public EList<String> getErrors() {
 		return (EList<String>) eGet(LogPackage.Literals.REMOTE_SERVICE_CALLED__ERRORS, true);
 	}

@@ -150,20 +150,28 @@ public class ReferenceCounter {
 				if (eReference.isMany()) {
 					List list = (List) idEObject.eGet(eReference);
 					for (Object o : list) {
-						if (!references.containsKey(o)) {
-							references.put((IdEObject) o, new HashSet<Reference>());
+						if (o != null) {
+							if (!references.containsKey(o)) {
+								references.put((IdEObject) o, new HashSet<Reference>());
+							}
+							references.get(o).add(new MultiReference(idEObject, (IdEObject) o, eReference));
 						}
-						references.get(o).add(new MultiReference(idEObject, (IdEObject) o, eReference));
 					}
 				} else {
 					Object o = idEObject.eGet(eReference);
-					if (!references.containsKey(o)) {
-						references.put((IdEObject) o, new HashSet<Reference>());
+					if (o != null) {
+						if (!references.containsKey(o)) {
+							references.put((IdEObject) o, new HashSet<Reference>());
+						}
+						references.get(o).add(new SingleReference(idEObject, (IdEObject) o, eReference));
 					}
-					references.get(o).add(new SingleReference(idEObject, (IdEObject) o, eReference));
 				}
 			}
 		}
+	}
+
+	public Map<IdEObject, Set<Reference>> getReferenceMap() {
+		return references;
 	}
 
 	public void remove(IdEObject idEObject) {

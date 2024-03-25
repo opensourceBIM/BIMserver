@@ -19,10 +19,15 @@ package org.bimserver.changes;
 
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc4.Ifc4Package;
+import org.bimserver.models.ifc4x3.Ifc4x3Package;
 import org.eclipse.emf.ecore.EClass;
 
 public class ChangeHelper {
+	private ChangeHelper() {}
+
 	public static boolean canBeChanged(EClass eClass) {
-		return eClass.getEPackage() == Ifc2x3tc1Package.eINSTANCE || eClass.getEPackage() == Ifc4Package.eINSTANCE;
+		return eClass.getEPackage() == Ifc2x3tc1Package.eINSTANCE ||
+			eClass.getEPackage() == Ifc4Package.eINSTANCE ||
+			eClass.getEPackage() == Ifc4x3Package.eINSTANCE;
 	}
 }

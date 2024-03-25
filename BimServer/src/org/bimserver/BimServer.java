@@ -80,6 +80,7 @@ import org.bimserver.longaction.LongActionManager;
 import org.bimserver.mail.MailSystem;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc4.Ifc4Package;
+import org.bimserver.models.ifc4x3.Ifc4x3Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.ServerStarted;
 import org.bimserver.models.store.BooleanType;
@@ -664,6 +665,7 @@ public class BimServer implements BasicServerInfoProvider {
 			Set<EPackage> packages = new LinkedHashSet<>();
 			packages.add(Ifc2x3tc1Package.eINSTANCE);
 			packages.add(Ifc4Package.eINSTANCE);
+			packages.add(Ifc4x3Package.eINSTANCE);
 			templateEngine = new TemplateEngine();
 			ResourceFetcher resourceFetcher = config.getResourceFetcher();
 			if (resourceFetcher.isDirectory("emailtemplates")) {
@@ -737,7 +739,7 @@ public class BimServer implements BasicServerInfoProvider {
 
 			serverSettingsCache = new ServerSettingsCache(bimDatabase);
 
-			for (String schema : new String[]{"ifc2x3tc1", "ifc4"}) {
+			for (String schema : new String[]{"ifc2x3tc1", "ifc4", "ifc4x3"}) {
 				for (String type : new String[] {"geometry", "stdlib"}) {
 					try {
 						PackageMetaData packageMetaData = getMetaDataManager().getPackageMetaData(schema);
