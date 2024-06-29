@@ -26,10 +26,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.GenerateGeometryResult;
 import org.bimserver.GeometryGeneratingException;
 import org.bimserver.SummaryMap;
-import org.bimserver.changes.Change;
-import org.bimserver.changes.CreateObjectChange;
-import org.bimserver.changes.RemoveObjectChange;
-import org.bimserver.changes.Transaction;
+import org.bimserver.changes.*;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OidCounters;
@@ -158,10 +155,9 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 			summaryMap = new SummaryMap(packageMetaData);
 		}
 
-		// First create all new objects
-		
 		Transaction transaction = new Transaction(getBimServer(), previousRevision, project, concreteRevision, getDatabaseSession());
-		
+
+		// First create all new objects
 		for (Change change : longTransaction.getChanges()) {
 			if (change instanceof CreateObjectChange) {
 				try {
@@ -199,15 +195,8 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		for (HashMapVirtualObject object : transaction.getDeleted()) {
 			getDatabaseSession().delete(object, concreteRevision.getId());
 		}
-		
-		setProgress("Generating inverses/opposites...", -1);
+
 		Revision newRevision = result.getRevisions().get(0);
-		long newRoid = newRevision.getOid();
-		try {
-			fixInverses(packageMetaData, newRoid, summaryMap.getSummaryMap());
-		} catch (QueryException | IOException e1) {
-			e1.printStackTrace();
-		}
 
 		int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(concreteRevision.getProject(), concreteRevision);
 		QueryContext queryContext = new QueryContext(getDatabaseSession(), packageMetaData, project.getId(), concreteRevision.getId(), concreteRevision.getRevisions().get(0).getOid(), concreteRevision.getOid(), highestStopId);

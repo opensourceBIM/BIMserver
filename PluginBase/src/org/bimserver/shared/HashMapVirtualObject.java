@@ -694,6 +694,11 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 		list.add(referencedOid);
 	}
 
+	public void removeReference(EReference eReference, long referencedOid){
+		List<Long> list = getOrCreateList(eReference, 0);
+		list.remove(referencedOid);
+	}
+
 	public UUID getUuid() {
 		return uuid;
 	}
