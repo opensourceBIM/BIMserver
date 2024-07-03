@@ -76,16 +76,15 @@ public class RemoveObjectChange implements Change {
 
 		// fix inverses
 		for(EReference hasInverse: packageMetaData.getAllHasInverseReferences(eClass)){
-			EReference inverseOrOpposite = hasInverse.getEOpposite();
 			Object referenced = object.get(hasInverse.getName());
 			if(referenced!=null){
 				if(hasInverse.isMany()){
 					for(long referencedOid : (List<Long>) referenced){
-						HashMapVirtualObject referencedObject = removeReference(transaction, packageMetaData, inverseOrOpposite, referencedOid);
+						HashMapVirtualObject referencedObject = removeInverse(transaction, packageMetaData, hasInverse, referencedOid);
 						transaction.updated(referencedObject);
 					}
 				} else {
-					HashMapVirtualObject referencedObject = removeReference(transaction, packageMetaData, inverseOrOpposite, (long) referenced);
+					HashMapVirtualObject referencedObject = removeInverse(transaction, packageMetaData, hasInverse, (long) referenced);
 					transaction.updated(referencedObject);
 				}
 			}
@@ -93,7 +92,7 @@ public class RemoveObjectChange implements Change {
 		transaction.deleted(object);
 	}
 
-	private HashMapVirtualObject removeReference(Transaction transaction, PackageMetaData packageMetaData, EReference inverseOrOpposite, long referencedOid) throws IOException, QueryException, BimserverDatabaseException {
+	private HashMapVirtualObject removeInverse(Transaction transaction, PackageMetaData packageMetaData, EReference reference, long referencedOid) throws IOException, QueryException, BimserverDatabaseException {
 		HashMapVirtualObject referencedObject = transaction.get(referencedOid); // we don't get the deleted
 		if (referencedObject == null) {
 			Query query = new Query(packageMetaData);
@@ -103,6 +102,7 @@ public class RemoveObjectChange implements Change {
 			QueryObjectProvider queryObjectProvider = new QueryObjectProvider(transaction.getDatabaseSession(), transaction.getBimServer(), query, Collections.singleton(transaction.getPreviousRevision().getOid()), packageMetaData);
 			referencedObject = queryObjectProvider.next();
 		}
+		EReference inverseOrOpposite = packageMetaData.getInverseOrOpposite(referencedObject.eClass(), reference);
 		if (inverseOrOpposite.isMany()) {
 			referencedObject.removeReference(inverseOrOpposite, referencedOid);
 		} else {
