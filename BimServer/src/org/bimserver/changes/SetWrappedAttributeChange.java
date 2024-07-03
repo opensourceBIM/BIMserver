@@ -40,9 +40,9 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 public class SetWrappedAttributeChange implements Change {
 
-	private Long oid;
-	private String attributeName;
-	private String type;
+	private final Long oid;
+	private final String attributeName;
+	private final String type;
 	private Object value;
 
 	public SetWrappedAttributeChange(Long oid, String attributeName, String type, Object value) {

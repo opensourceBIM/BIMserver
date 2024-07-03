@@ -37,7 +37,7 @@ public class SetAttributeChangeAtIndex implements Change {
 	private final long oid;
 	private final String attributeName;
 	private final Object value;
-	private int index;
+	private final int index;
 
 	public SetAttributeChangeAtIndex(long oid, String attributeName, int index, Object value) {
 		this.oid = oid;

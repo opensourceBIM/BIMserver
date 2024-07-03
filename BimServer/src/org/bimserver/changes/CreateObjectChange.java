@@ -32,9 +32,9 @@ import org.eclipse.emf.ecore.EClass;
 public class CreateObjectChange implements Change {
 
 	private final long oid;
-	private EClass eClass;
-	private Boolean generateGuid;
-	private UUID uuid;
+	private final EClass eClass;
+	private final Boolean generateGuid;
+	private final UUID uuid;
 
 	public CreateObjectChange(long oid, EClass eClass, Boolean generateGuid) {
 		this.oid = oid;

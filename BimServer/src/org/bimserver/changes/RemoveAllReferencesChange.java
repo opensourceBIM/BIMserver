@@ -36,8 +36,8 @@ import org.eclipse.emf.ecore.EReference;
 
 public class RemoveAllReferencesChange implements Change {
 
-	private Long oid;
-	private String referenceName;
+	private final Long oid;
+	private final String referenceName;
 
 	public RemoveAllReferencesChange(Long oid, String referenceName) {
 		this.oid = oid;
