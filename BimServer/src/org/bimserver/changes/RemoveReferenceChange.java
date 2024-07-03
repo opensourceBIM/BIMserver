@@ -85,7 +85,6 @@ public class RemoveReferenceChange implements Change {
 
 			QueryObjectProvider queryObjectProvider = new QueryObjectProvider(transaction.getDatabaseSession(), transaction.getBimServer(), query, Collections.singleton(transaction.getPreviousRevision().getOid()), packageMetaData);
 			object = queryObjectProvider.next();
-			transaction.updated(object);
 		}
 		
 		EClass eClass = transaction.getDatabaseSession().getEClassForOid(oid);
@@ -111,6 +110,7 @@ public class RemoveReferenceChange implements Change {
 			referencedOid = (long) list.get(index);
 			list.remove(index);
 		}
+		transaction.updated(object);
 
 		EClass eClassForOid = transaction.getDatabaseSession().getEClassForOid(referencedOid);
 		EReference inverseOrOpposite = packageMetaData.getInverseOrOpposite(eClassForOid, eReference);

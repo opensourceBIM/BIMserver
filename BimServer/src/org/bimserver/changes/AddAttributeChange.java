@@ -56,7 +56,6 @@ public class AddAttributeChange implements Change {
 
 			QueryObjectProvider queryObjectProvider = new QueryObjectProvider(transaction.getDatabaseSession(), transaction.getBimServer(), query, Collections.singleton(transaction.getPreviousRevision().getOid()), packageMetaData);
 			object = queryObjectProvider.next();
-			transaction.updated(object);
 		}
 		
 		EClass eClass = transaction.getDatabaseSession().getEClassForOid(oid);
@@ -75,5 +74,6 @@ public class AddAttributeChange implements Change {
 		}
 		
 		object.addListItem(eAttribute, value);
+		transaction.updated(object);
 	}
 }

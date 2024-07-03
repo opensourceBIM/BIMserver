@@ -73,7 +73,6 @@ public class CreateObjectChange implements Change {
 				throw new UserException("Cannot generate GUID for " + object.eClass().getName() + ", no GlobalId property");
 			}
 		}
-		
 		transaction.created(object);
 	}
 }

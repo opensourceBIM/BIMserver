@@ -58,14 +58,12 @@ public class RemoveAllReferencesChange implements Change {
 
 			QueryObjectProvider queryObjectProvider = new QueryObjectProvider(transaction.getDatabaseSession(), transaction.getBimServer(), query, Collections.singleton(transaction.getPreviousRevision().getOid()), packageMetaData);
 			object = queryObjectProvider.next();
-			transaction.updated(object);
 		}
 		
 		EClass eClass = transaction.getDatabaseSession().getEClassForOid(oid);
 		if (!ChangeHelper.canBeChanged(eClass)) {
 			throw new UserException("Only objects from the following schemas are allowed to be changed: Ifc2x3tc1 and IFC4, this object (" + eClass.getName() + ") is from the \"" + eClass.getEPackage().getName() + "\" package");
 		}
-
 		if (object == null) {
 			throw new UserException("No object of type \"" + eClass.getName() + "\" with oid " + oid + " found in project with pid " + transaction.getProject().getId());
 		}
@@ -82,6 +80,7 @@ public class RemoveAllReferencesChange implements Change {
 			referencedOids.add((long) list.get(0));
 			list.remove(0);
 		}
+		transaction.updated(object);
 
 		// fix inverses, e.g. IfcRelDefinesByProperties.RelatedObjects SET [1:?], inverse IfcObject.IsDefinedBy SET [0:?]
 		for(long referencedOid : referencedOids){

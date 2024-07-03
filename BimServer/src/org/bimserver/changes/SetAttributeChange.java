@@ -81,7 +81,6 @@ public class SetAttributeChange implements Change {
 
 			QueryObjectProvider queryObjectProvider = new QueryObjectProvider(transaction.getDatabaseSession(), transaction.getBimServer(), query, Collections.singleton(transaction.getPreviousRevision().getOid()), packageMetaData);
 			object = queryObjectProvider.next();
-			transaction.updated(object);
 		}
 		
 		EClass eClass = transaction.getDatabaseSession().getEClassForOid(oid);
@@ -132,5 +131,6 @@ public class SetAttributeChange implements Change {
 				object.set(object.eClass().getEStructuralFeature(attributeName + "AsString").getName(), String.valueOf((Double)value));
 			}
 		}
+		transaction.updated(object);
 	}
 }
