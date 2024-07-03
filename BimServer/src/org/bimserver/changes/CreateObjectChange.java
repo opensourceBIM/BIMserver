@@ -32,27 +32,17 @@ import org.eclipse.emf.ecore.EClass;
 public class CreateObjectChange implements Change {
 
 	private final long oid;
-	private final String type;
 	private EClass eClass;
 	private Boolean generateGuid;
 	private UUID uuid;
 
-	public CreateObjectChange(String type, long oid, EClass eClass, Boolean generateGuid) {
-		this.type = type;
+	public CreateObjectChange(long oid, EClass eClass, Boolean generateGuid) {
 		this.oid = oid;
 		this.uuid = UUID.randomUUID();
 		this.eClass = eClass;
 		this.generateGuid = generateGuid;
 	}
 
-	public EClass geteClass() {
-		return eClass;
-	}
-	
-	public long getOid() {
-		return oid;
-	}
-	
 	@Override
 	public void execute(Transaction transaction) throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		PackageMetaData packageMetaData = transaction.getDatabaseSession().getMetaDataManager().getPackageMetaData(transaction.getProject().getSchema());

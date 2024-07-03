@@ -260,8 +260,9 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 			}
 			try {
 				EClass eClass = ((Database) getBimServer().getDatabase()).getEClass(longTransaction.getPackageMetaData().getEPackage().getName(), className);
+				// TODO: use longTransaction.getPackageMetaData().getEClass(className); - add classifier-check to getEClass?
 				Long oid = getBimServer().getDatabase().newOid(eClass);
-				CreateObjectChange createObject = new CreateObjectChange(className, oid, eClass, generateGuid);
+				CreateObjectChange createObject = new CreateObjectChange(oid, eClass, generateGuid);
 				longTransaction.add(createObject);
 				return oid;
 			} catch (BimserverDatabaseException e) {
@@ -286,10 +287,8 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	public void removeObject(Long tid, Long oid) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		try {
-			getBimServer().getLongTransactionManager().get(tid).add(new RemoveObjectChange(oid, getBimServer().getDatabase().getEClassForOid(oid)));
+			getBimServer().getLongTransactionManager().get(tid).add(new RemoveObjectChange(oid));
 		} catch (NoTransactionException e) {
-			handleException(e);
-		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		}
 	}

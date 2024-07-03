@@ -161,39 +161,34 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 		for (Change change : longTransaction.getChanges()) {
 			if (change instanceof CreateObjectChange) {
 				try {
-					CreateObjectChange createObjectChange = (CreateObjectChange)change;
 					change.execute(transaction);
-					getDatabaseSession().addStartOid(createObjectChange.geteClass(), createObjectChange.getOid());
 				} catch (IOException | QueryException e) {
 					e.printStackTrace();
 				}
-				summaryMap.add(((CreateObjectChange)change).geteClass(), 1);
 			}
 		}
 		// Then do the rest
 		for (Change change : longTransaction.getChanges()) {
 			if (!(change instanceof CreateObjectChange)) {
-				if (change instanceof RemoveObjectChange) {
-					summaryMap.remove(((RemoveObjectChange)change).geteClass(), 1);
-				}
 				try {
 					change.execute(transaction);
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (QueryException e) {
+				} catch (IOException | QueryException e) {
 					e.printStackTrace();
 				}
 			}
 		}
 
 		for (HashMapVirtualObject object : transaction.getCreated()) {
+			getDatabaseSession().addStartOid(object.eClass(), object.getOid());
 			getDatabaseSession().save(object);
+			summaryMap.add(object.eClass(), 1);
 		}
 		for (HashMapVirtualObject object : transaction.getUpdated()) {
 			getDatabaseSession().save(object, concreteRevision.getId());
 		}
 		for (HashMapVirtualObject object : transaction.getDeleted()) {
 			getDatabaseSession().delete(object, concreteRevision.getId());
+			summaryMap.remove(object.eClass(), 1);
 		}
 
 		Revision newRevision = result.getRevisions().get(0);
