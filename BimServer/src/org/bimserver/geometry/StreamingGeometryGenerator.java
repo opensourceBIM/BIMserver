@@ -711,6 +711,10 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			return (Double) scale;
 		}
 		
+		if(!key.equals("Scale")) {
+			return getTransformationScale(mappingTarget, "Scale");
+		}
+		
 		return 1;
 	}
 	
