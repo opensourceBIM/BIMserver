@@ -308,7 +308,7 @@ public class PluginManager implements PluginManagerInterface, PluginClassLoaderP
 	 * @throws PluginException
 	 */
 	public void initAllLoadedPlugins() throws PluginException {
-		LOGGER.debug("Initializig all loaded plugins");
+		LOGGER.debug("Initializing all loaded plugins");
 		for (Class<? extends Plugin> pluginClass : implementations.keySet()) {
 			Set<PluginContext> set = implementations.get(pluginClass);
 			for (PluginContext pluginContext : set) {
