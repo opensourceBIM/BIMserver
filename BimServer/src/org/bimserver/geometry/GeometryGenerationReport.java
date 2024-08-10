@@ -236,8 +236,7 @@ public class GeometryGenerationReport {
 		builder.append("<table><tbody>");
 		builder.append("<tr><td>Render engine name</td><td>" + renderEngineName + "</td></tr>");
 		builder.append("<tr><td>Render engine version platform</td><td>" + renderEngineVersion.getPlatform() + "</td></tr>");
-		builder.append("<tr><td>Render engine version branch</td><td>" + renderEngineVersion.getBranch() + "</td></tr>");
-		builder.append("<tr><td>Render engine version commitsha</td><td>" + renderEngineVersion.getCommitsha() + "</td></tr>");
+		builder.append("<tr><td>Render engine version build</td><td>" + renderEngineVersion.getBuildVersion() + "</td></tr>");
 		builder.append("<tr><td>Render engine version protocol</td><td>" + renderEngineVersion.getProtocolVersion() + "</td></tr>");
 		builder.append("<tr><td>Render engine version date/time</td><td>" + dateFormat.format(renderEngineVersion.getDateTime().getTime()) + "</td></tr>");
 		builder.append("<tr><td>Render engine plugin version</td><td>" + renderEnginePluginVersion + "</td></tr>");
