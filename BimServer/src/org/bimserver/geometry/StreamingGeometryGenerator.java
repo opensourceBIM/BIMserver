@@ -239,6 +239,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			report.setRenderEngineVersion(versionInfo);
 
 			// TODO there must be a cleaner way of getting this info, since it's in the database...
+			// The render engine plugin settings from the database are here: renderEngine.getSettings();
+			// But the layerset handling and quantity calculation must not necessarily be configurable and if it is
+			// then the plugin can name the settings randomly. But for the report, all the settings should be used.
 			RenderEngine engine = renderEnginePool.borrowObject();
 			try {
 				applyLayerSets = engine.isApplyLayerSets();
