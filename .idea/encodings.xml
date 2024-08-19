@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Bdb/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Bdb/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BimServer/src" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BimServerClientLib/src" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BimServerJar/deploy" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BimServerJar/src" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BimServerWar/src" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BimServerWar/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/PluginBase/generated" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/PluginBase/src" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Shared/src" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Shared/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
