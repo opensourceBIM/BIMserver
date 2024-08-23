@@ -62,6 +62,7 @@ public class GeometryGenerationReport {
 	private boolean reuseGeometry;
 	private boolean calculateQuantities;
 	private boolean applyLayersets;
+	private boolean disableOpeningSubstractions;
 	private final Map<Integer, String> debugFiles = new ConcurrentSkipListMap<>();
 	private SkippedBecauseOfInvalidRepresentation skippedBecauseOfInvalidRepresentationIdentifier = new SkippedBecauseOfInvalidRepresentation();
 	
@@ -453,7 +454,11 @@ public class GeometryGenerationReport {
 	public void setApplyLayersets(boolean applyLayersets) {
 		this.applyLayersets = applyLayersets;
 	}
-	
+
+	public void setDisableOpeningSubstractions(boolean disableOpeningSubstractions) {
+		this.disableOpeningSubstractions = disableOpeningSubstractions;
+	}
+
 	public GregorianCalendar getStart() {
 		return start;
 	}

@@ -137,6 +137,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 	private boolean calculateQuantities;
 
+	private boolean disableOpeningSubstractions;
+
 	public StreamingGeometryGenerator(final BimServer bimServer, ProgressListener progressListener, Long eoid, GeometryGenerationReport report) {
 		this.bimServer = bimServer;
 		this.progressListener = progressListener;
@@ -249,6 +251,11 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 				calculateQuantities = engine.isCalculateQuantities();
 				report.setCalculateQuantities(calculateQuantities);
+
+				disableOpeningSubstractions = engine.isDisablOpeningSubstractions();
+				report.setDisableOpeningSubstractions(disableOpeningSubstractions);
+
+
 			} finally {
 				renderEnginePool.returnObject(engine);
 			}
