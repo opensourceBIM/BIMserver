@@ -62,7 +62,7 @@ public class GeometryGenerationReport {
 	private boolean reuseGeometry;
 	private boolean calculateQuantities;
 	private boolean applyLayersets;
-	private boolean disableOpeningSubstractions;
+	private boolean disableOpeningSubtractions;
 	private final Map<Integer, String> debugFiles = new ConcurrentSkipListMap<>();
 	private SkippedBecauseOfInvalidRepresentation skippedBecauseOfInvalidRepresentationIdentifier = new SkippedBecauseOfInvalidRepresentation();
 	
@@ -148,6 +148,7 @@ public class GeometryGenerationReport {
 		ObjectNode engineSettings = objectMapper.createObjectNode();
 		settings.put("applyLayersets", applyLayersets);
 		settings.put("calculateQuantities", calculateQuantities);
+		settings.put("disableOpeningSubtractions", disableOpeningSubtractions);
 		result.set("engineSettings", engineSettings);
 		
 		ObjectNode deserializer = objectMapper.createObjectNode();
@@ -270,8 +271,9 @@ public class GeometryGenerationReport {
 		builder.append("<table><tbody>");
 		builder.append("<tr><td>Apply layer sets</td><td>" + applyLayersets + "</td></tr>");
 		builder.append("<tr><td>Calculate quantities</td><td>" + calculateQuantities + "</td></tr>");
+		builder.append("<tr><td>Disable opening subtractions</td><td>" + disableOpeningSubtractions + "</td></tr>");
 		builder.append("</tbody></table>");
-		
+
 		builder.append("<h3>Deserializer</h3>");
 		builder.append("<table><tbody>");
 		builder.append("<tr><td>Deserializer</td><td>" + originalDeserializer + "</td></tr>");
@@ -455,8 +457,8 @@ public class GeometryGenerationReport {
 		this.applyLayersets = applyLayersets;
 	}
 
-	public void setDisableOpeningSubstractions(boolean disableOpeningSubstractions) {
-		this.disableOpeningSubstractions = disableOpeningSubstractions;
+	public void setDisableOpeningSubtractions(boolean disableOpeningSubtractions) {
+		this.disableOpeningSubtractions = disableOpeningSubtractions;
 	}
 
 	public GregorianCalendar getStart() {

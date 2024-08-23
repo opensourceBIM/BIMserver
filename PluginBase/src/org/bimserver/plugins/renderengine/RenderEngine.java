@@ -55,7 +55,7 @@ public interface RenderEngine extends AutoCloseable {
 
 	boolean isApplyLayerSets();
 
-	boolean	isDisablOpeningSubstractions();
+	boolean	isDisableOpeningSubtractions();
 	
 	Metrics getMetrics();
 }
