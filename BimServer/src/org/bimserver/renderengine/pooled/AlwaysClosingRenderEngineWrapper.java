@@ -54,8 +54,8 @@ public class AlwaysClosingRenderEngineWrapper implements RenderEngine {
 	}
 
 	@Override
-	public boolean isDisablOpeningSubstractions(){
-		return wrapped.isDisablOpeningSubstractions();
+	public boolean isDisableOpeningSubtractions(){
+		return wrapped.isDisableOpeningSubtractions();
 	}
 
 	@Override
