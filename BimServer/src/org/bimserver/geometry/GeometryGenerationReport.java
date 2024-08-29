@@ -145,8 +145,8 @@ public class GeometryGenerationReport {
 		result.set("settings", settings);
 
 		ObjectNode engineSettings = objectMapper.createObjectNode();
-		settings.put("applyLayersets", applyLayersets);
-		settings.put("calculateQuantities", calculateQuantities);
+		engineSettings.put("applyLayersets", applyLayersets);
+		engineSettings.put("calculateQuantities", calculateQuantities);
 		result.set("engineSettings", engineSettings);
 		
 		ObjectNode deserializer = objectMapper.createObjectNode();
