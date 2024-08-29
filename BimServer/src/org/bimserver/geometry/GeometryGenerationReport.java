@@ -21,15 +21,12 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.bimserver.emf.Schema;
+import org.bimserver.models.store.Type;
 import org.bimserver.plugins.renderengine.VersionInfo;
 import org.bimserver.utils.Formatters;
 
@@ -62,6 +59,7 @@ public class GeometryGenerationReport {
 	private boolean reuseGeometry;
 	private boolean calculateQuantities;
 	private boolean applyLayersets;
+	private final Map<String, Type> renderSettings = new LinkedHashMap<>();
 	private final Map<Integer, String> debugFiles = new ConcurrentSkipListMap<>();
 	private SkippedBecauseOfInvalidRepresentation skippedBecauseOfInvalidRepresentationIdentifier = new SkippedBecauseOfInvalidRepresentation();
 	
@@ -145,8 +143,13 @@ public class GeometryGenerationReport {
 		result.set("settings", settings);
 
 		ObjectNode engineSettings = objectMapper.createObjectNode();
-		settings.put("applyLayersets", applyLayersets);
-		settings.put("calculateQuantities", calculateQuantities);
+		engineSettings.put("applyLayersets", applyLayersets);
+		engineSettings.put("calculateQuantities", calculateQuantities);
+		for (Map.Entry<String, Type> entry : renderSettings.entrySet()) {
+			String settingName = entry.getKey();
+			Type settingValue = entry.getValue();
+			engineSettings.put(settingName, settingValue.toString());
+		}
 		result.set("engineSettings", engineSettings);
 		
 		ObjectNode deserializer = objectMapper.createObjectNode();
@@ -269,6 +272,11 @@ public class GeometryGenerationReport {
 		builder.append("<table><tbody>");
 		builder.append("<tr><td>Apply layer sets</td><td>" + applyLayersets + "</td></tr>");
 		builder.append("<tr><td>Calculate quantities</td><td>" + calculateQuantities + "</td></tr>");
+		for (Map.Entry<String, Type> entry : renderSettings.entrySet()) {
+			String settingName = entry.getKey();
+			Type settingValue = entry.getValue();
+			builder.append("<tr><td>" + settingName + "</td><td>" + settingValue + "</td></tr>");
+		}
 		builder.append("</tbody></table>");
 		
 		builder.append("<h3>Deserializer</h3>");
@@ -453,7 +461,12 @@ public class GeometryGenerationReport {
 	public void setApplyLayersets(boolean applyLayersets) {
 		this.applyLayersets = applyLayersets;
 	}
-	
+
+	public void addRenderEngineSetting(String settingName, Type settingValue){
+		this.renderSettings.put(settingName, settingValue);
+	}
+
+
 	public GregorianCalendar getStart() {
 		return start;
 	}
