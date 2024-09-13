@@ -57,9 +57,7 @@ public class GeometryGenerationReport {
 	private int numberOfTriangles;
 	private int numberOfTrianglesIncludingReuse;
 	private boolean reuseGeometry;
-	private boolean calculateQuantities;
-	private boolean applyLayersets;
-	private final Map<String, Type> renderSettings = new LinkedHashMap<>();
+	private final Map<String, Object> renderSettings = new LinkedHashMap<>();
 	private final Map<Integer, String> debugFiles = new ConcurrentSkipListMap<>();
 	private SkippedBecauseOfInvalidRepresentation skippedBecauseOfInvalidRepresentationIdentifier = new SkippedBecauseOfInvalidRepresentation();
 	
@@ -143,12 +141,15 @@ public class GeometryGenerationReport {
 		result.set("settings", settings);
 
 		ObjectNode engineSettings = objectMapper.createObjectNode();
-		engineSettings.put("applyLayersets", applyLayersets);
-		engineSettings.put("calculateQuantities", calculateQuantities);
-		for (Map.Entry<String, Type> entry : renderSettings.entrySet()) {
+		for (Map.Entry<String, Object> entry : renderSettings.entrySet()) {
 			String settingName = entry.getKey();
-			Type settingValue = entry.getValue();
-			engineSettings.put(settingName, settingValue.toString());
+			Object settingValue = entry.getValue();
+			if (settingValue instanceof Boolean){
+				engineSettings.put(settingName, ((Boolean)settingValue).booleanValue());
+			}
+			else {
+				engineSettings.put(settingName, settingValue.toString());
+			}
 		}
 		result.set("engineSettings", engineSettings);
 		
@@ -270,11 +271,9 @@ public class GeometryGenerationReport {
 
 		builder.append("<h3>Render engine settings</h3>");
 		builder.append("<table><tbody>");
-		builder.append("<tr><td>Apply layer sets</td><td>" + applyLayersets + "</td></tr>");
-		builder.append("<tr><td>Calculate quantities</td><td>" + calculateQuantities + "</td></tr>");
-		for (Map.Entry<String, Type> entry : renderSettings.entrySet()) {
+		for (Map.Entry<String, Object> entry : renderSettings.entrySet()) {
 			String settingName = entry.getKey();
-			Type settingValue = entry.getValue();
+			Object settingValue = entry.getValue();
 			builder.append("<tr><td>" + settingName + "</td><td>" + settingValue + "</td></tr>");
 		}
 		builder.append("</tbody></table>");
@@ -446,26 +445,9 @@ public class GeometryGenerationReport {
 		return originalIfcFileName;
 	}
 
-	public boolean isCalculateQuantities() {
-		return calculateQuantities;
-	}
-
-	public void setCalculateQuantities(boolean calculateQuantities) {
-		this.calculateQuantities = calculateQuantities;
-	}
-
-	public boolean isApplyLayersets() {
-		return applyLayersets;
-	}
-
-	public void setApplyLayersets(boolean applyLayersets) {
-		this.applyLayersets = applyLayersets;
-	}
-
-	public void addRenderEngineSetting(String settingName, Type settingValue){
+	public void addRenderEngineSetting(String settingName, Object settingValue){
 		this.renderSettings.put(settingName, settingValue);
 	}
-
 
 	public GregorianCalendar getStart() {
 		return start;

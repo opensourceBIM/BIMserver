@@ -62,9 +62,8 @@ import org.bimserver.emf.Schema;
 import org.bimserver.models.geometry.Bounds;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.geometry.Vector3f;
-import org.bimserver.models.store.RenderEnginePluginConfiguration;
-import org.bimserver.models.store.User;
-import org.bimserver.models.store.UserSettings;
+import org.bimserver.models.store.*;
+import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.renderengine.IndexFormat;
 import org.bimserver.plugins.renderengine.Precision;
 import org.bimserver.plugins.renderengine.RenderEngine;
@@ -87,6 +86,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 
 public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	static final Logger LOGGER = LoggerFactory.getLogger(StreamingGeometryGenerator.class);
@@ -245,10 +245,15 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			RenderEngine engine = renderEnginePool.borrowObject();
 			try {
 				applyLayerSets = engine.isApplyLayerSets();
-				report.setApplyLayersets(applyLayerSets);
-
 				calculateQuantities = engine.isCalculateQuantities();
-				report.setCalculateQuantities(calculateQuantities);
+
+				Map<String, Object> renderSettings = new PluginConfiguration(renderEngine.getPluginDescriptor().getSettings()).getValues();
+				for(Map.Entry<String, Object> entry : renderSettings.entrySet()) {
+					String key = entry.getKey();
+					Object value = entry.getValue();
+					report.addRenderEngineSetting(key, value);
+				}
+
 			} finally {
 				renderEnginePool.returnObject(engine);
 			}
