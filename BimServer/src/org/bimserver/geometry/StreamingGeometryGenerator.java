@@ -246,12 +246,12 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			try {
 				applyLayerSets = engine.isApplyLayerSets();
 				calculateQuantities = engine.isCalculateQuantities();
+				report.setApplyLayersets(applyLayerSets);
+				report.setCalculateQuantities(calculateQuantities);
 
-				Map<String, Object> renderSettings = new PluginConfiguration(renderEngine.getPluginDescriptor().getSettings()).getValues();
-				for(Map.Entry<String, Object> entry : renderSettings.entrySet()) {
-					String key = entry.getKey();
-					Object value = entry.getValue();
-					report.addRenderEngineSetting(key, value);
+				for (Parameter parameter: renderEngine.getPluginDescriptor().getSettings().getParameters()){
+					parameter.load(); parameter.getValue().load();  // TODO deep load or use plugin configuration after implementing full recursive conversion (see conversion to JSON and HTML in GeometryGenerationReport)
+					report.addUserRenderSetting(parameter);
 				}
 
 			} finally {

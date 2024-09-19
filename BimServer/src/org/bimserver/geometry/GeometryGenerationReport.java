@@ -26,13 +26,13 @@ import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.bimserver.emf.Schema;
-import org.bimserver.models.store.Type;
+import org.bimserver.models.store.*;
 import org.bimserver.plugins.renderengine.VersionInfo;
 import org.bimserver.utils.Formatters;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.*;
 
 public class GeometryGenerationReport {
 
@@ -57,10 +57,12 @@ public class GeometryGenerationReport {
 	private int numberOfTriangles;
 	private int numberOfTrianglesIncludingReuse;
 	private boolean reuseGeometry;
-	private final Map<String, Object> renderSettings = new LinkedHashMap<>();
+	private boolean calculateQuantities;
+	private boolean applyLayersets;
+	private final List<Parameter> userRenderSettings = new ArrayList<>();
 	private final Map<Integer, String> debugFiles = new ConcurrentSkipListMap<>();
 	private SkippedBecauseOfInvalidRepresentation skippedBecauseOfInvalidRepresentationIdentifier = new SkippedBecauseOfInvalidRepresentation();
-	
+
 	public synchronized void incrementTriangles(int triangles) {
 		this.numberOfTriangles += triangles;
 	}
@@ -141,33 +143,28 @@ public class GeometryGenerationReport {
 		result.set("settings", settings);
 
 		ObjectNode engineSettings = objectMapper.createObjectNode();
-		for (Map.Entry<String, Object> entry : renderSettings.entrySet()) {
-			String settingName = entry.getKey();
-			Object settingValue = entry.getValue();
-			if (settingValue instanceof Boolean){
-				engineSettings.put(settingName, ((Boolean)settingValue).booleanValue());
-			}
-			else {
-				engineSettings.put(settingName, settingValue.toString());
-			}
-		}
+		engineSettings.put("applyLayersets", applyLayersets);
+		engineSettings.put("calculateQuantities", calculateQuantities);
 		result.set("engineSettings", engineSettings);
-		
+
+		ObjectNode userEngineSettings = convertToJson(userRenderSettings, objectMapper);
+		result.set("userEngineSettings", userEngineSettings);
+
 		ObjectNode deserializer = objectMapper.createObjectNode();
 		deserializer.put("name", originalDeserializer);
 		result.set("deserializer", deserializer);
-		
+
 		ObjectNode system = objectMapper.createObjectNode();
 		system.put("cores", availableProcessors);
 		result.set("system", system);
-		
+
 		ArrayNode jobsArray = objectMapper.createArrayNode();
 		result.set("jobs", jobsArray);
 		for (ReportJob job : jobs) {
 			ObjectNode jobNode = objectMapper.createObjectNode();
 			jobNode.put("id", job.getId());
 			jobNode.put("mainType", job.getMainType());
-			
+
 			ArrayNode objectsNode = objectMapper.createArrayNode();
 			for (Long oid : job.getObjects().keySet()) {
 				ObjectNode objectNode = objectMapper.createObjectNode();
@@ -176,29 +173,29 @@ public class GeometryGenerationReport {
 				objectsNode.add(objectNode);
 			}
 			jobNode.set("objects", objectsNode);
-			
+
 			jobNode.put("nrObjects", job.getNrObjects());
 			jobNode.put("usesMapping", job.isUsesMapping());
 			jobNode.put("trianglesGenerated", job.getTrianglesGenerated());
 			jobNode.put("totalTimeNanos", job.getTotalNanos());
 			jobNode.put("cpuTimeMs", job.getCpuTimeMs());
 			jobNode.put("maxMemoryBytes", job.getMaxMemoryBytes());
-			
+
 			if (job.getException() != null) {
 				StringWriter writer = new StringWriter();
 				job.getException().printStackTrace(new PrintWriter(writer));
 				jobNode.put("exception", writer.toString());
 			}
-			
+
 			jobsArray.add(jobNode);
 		}
-		
+
 		ObjectNode processing = objectMapper.createObjectNode();
 		result.set("processing", processing);
 		processing.put("start", start.getTimeInMillis());
 		processing.put("stop", end.getTimeInMillis());
 		processing.put("totaltime", (end.getTimeInMillis() - start.getTimeInMillis()));
-		
+
 		ArrayNode geometry = objectMapper.createArrayNode();
 		result.set("geometry", geometry);
 		for (String type : representationItems.keySet()) {
@@ -216,7 +213,7 @@ public class GeometryGenerationReport {
 			skippedNodes.add(skippedNode);
 		}
 		result.set("skippedBecauseOfInvalidRepresentationIdentifier", skippedNodes);
-		
+
 		ArrayNode debugFiles = objectMapper.createArrayNode();
 		result.set("debugFiles", debugFiles);
 		for (int jobId : this.debugFiles.keySet()) {
@@ -226,10 +223,44 @@ public class GeometryGenerationReport {
 			debugNode.put("debugFile", filename);
 			debugFiles.add(debugNode);
 		}
-		
+
 		return result;
 	}
-	
+
+	private ObjectNode convertToJson(List<Parameter> parameters,  ObjectMapper mapper) {
+		ObjectNode jsonSettings = mapper.createObjectNode();
+		for(Parameter parameter : parameters) {
+			String settingName = parameter.getIdentifier();
+			Type settingValue = parameter.getValue();
+			JsonNode jsonValue = convertToJson(settingValue, mapper);
+			jsonSettings.put(settingName, jsonValue);
+		}
+		return jsonSettings;
+	}
+
+	private JsonNode convertToJson(Type value, ObjectMapper mapper){
+		if(value instanceof BooleanType) {
+			return mapper.convertValue(((BooleanType) value).isValue(), BooleanNode.class);
+		} else if (value instanceof DoubleType){
+			return mapper.convertValue(((DoubleType) value).getValue(), DoubleNode.class);
+		} else  if (value instanceof LongType) {
+			return mapper.convertValue(((LongType) value).getValue(), LongNode.class);
+		} else if (value instanceof StringType) {
+			return mapper.convertValue(((StringType) value).getValue(), TextNode.class);
+		} else if(value instanceof ObjectType){
+			return convertToJson(((ObjectType) value).getParameters(), mapper);
+		} else if (value instanceof ArrayType){
+			ArrayNode arrayNode = mapper.createArrayNode();
+			for(Type element: ((ArrayType) value).getValues()){
+				arrayNode.add(convertToJson(element, mapper));
+			}
+			return arrayNode;
+		} else if(value instanceof ByteArrayType){
+			return mapper.convertValue(((ByteArrayType) value).getValue(), BinaryNode.class);
+		} else {
+			throw new RuntimeException("Unimplemented type: " + value.getClass().getName());
+		}
+	}
 	public String toHtml() {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
 		
@@ -271,11 +302,13 @@ public class GeometryGenerationReport {
 
 		builder.append("<h3>Render engine settings</h3>");
 		builder.append("<table><tbody>");
-		for (Map.Entry<String, Object> entry : renderSettings.entrySet()) {
-			String settingName = entry.getKey();
-			Object settingValue = entry.getValue();
-			builder.append("<tr><td>" + settingName + "</td><td>" + settingValue + "</td></tr>");
-		}
+		builder.append("<tr><td>Apply layer sets</td><td>" + applyLayersets + "</td></tr>");
+		builder.append("<tr><td>Calculate quantities</td><td>" + calculateQuantities + "</td></tr>");
+		builder.append("</tbody></table>");
+
+		builder.append("<h3>Render engine user settings</h3>");
+		builder.append("<table><tbody>");
+		convertToHtml(userRenderSettings, builder);
 		builder.append("</tbody></table>");
 		
 		builder.append("<h3>Deserializer</h3>");
@@ -380,6 +413,45 @@ public class GeometryGenerationReport {
 		return builder.toString();
 	}
 
+
+	private void convertToHtml(List<Parameter> parameters,  StringBuilder builder) {
+		builder.append("<table><tbody>");
+		for (Parameter parameter : parameters) {
+			String settingName = parameter.getIdentifier();
+			Type settingValue = parameter.getValue();
+			builder.append("<tr><td>" + settingName + "</td><td>");
+			convertToHtml(settingValue, builder);
+			builder.append("</td></tr>");
+		}
+		builder.append("</tbody></table>");
+	}
+
+	private void convertToHtml(Type value, StringBuilder builder) {
+		if (value instanceof BooleanType) {
+			builder.append(((BooleanType) value).isValue());
+		} else if (value instanceof DoubleType) {
+			builder.append(((DoubleType) value).getValue());
+		} else if (value instanceof LongType) {
+			builder.append(((LongType) value).getValue());
+		} else if (value instanceof StringType) {
+			builder.append(((StringType) value).getValue());
+		} else if (value instanceof ObjectType) {
+			convertToHtml(((ObjectType) value).getParameters(), builder);
+		} else if (value instanceof ArrayType) {
+			builder.append("<table><tbody>");
+			for (Type element : ((ArrayType) value).getValues()) {
+				builder.append("<tr><td>.</td><td>");
+				convertToHtml(element, builder);
+				builder.append("</td></tr>");
+			}
+			builder.append("</tbody></table>");
+		} else if (value instanceof ByteArrayType) {
+			builder.append("binary data: " + Base64.getEncoder().encodeToString(((ByteArrayType) value).getValue()));
+		} else {
+			throw new RuntimeException("Unimplemented type: " + value.getClass().getName());
+		}
+	}
+
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
@@ -445,18 +517,26 @@ public class GeometryGenerationReport {
 		return originalIfcFileName;
 	}
 
-	public void addRenderEngineSetting(String settingName, Object settingValue){
-		this.renderSettings.put(settingName, settingValue);
+	public void setCalculateQuantities(boolean calculateQuantities) {
+		this.calculateQuantities = calculateQuantities;
+	}
+
+	public void setApplyLayersets(boolean applyLayersets) {
+		this.applyLayersets = applyLayersets;
+	}
+
+	public void addUserRenderSetting(Parameter parameter) {
+		userRenderSettings.add(parameter);
 	}
 
 	public GregorianCalendar getStart() {
 		return start;
 	}
-	
+
 	public GregorianCalendar getEnd() {
 		return end;
 	}
-	
+
 	public long getTimeToGenerateMs() {
 		return end.getTimeInMillis() - start.getTimeInMillis();
 	}
