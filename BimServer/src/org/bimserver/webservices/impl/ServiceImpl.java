@@ -1180,6 +1180,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			throw new UserException("Deserializer with oid " + deserializerOid + " not found");
 		} else {
 			PluginBundleVersion pluginBundleVersion = deserializerPluginConfiguration.getPluginDescriptor().getPluginBundleVersion();
+			String pluginVersionDeserializer = pluginBundleVersion.getGroupId() + "." + pluginBundleVersion.getArtifactId() + ":" + pluginBundleVersion.getVersion();
 			Plugin plugin = getBimServer().getPluginManager().getPlugin(deserializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
 			if (plugin != null) {
 				if (plugin instanceof DeserializerPlugin) {
@@ -1211,7 +1212,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 					streamingDeserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData(project.getSchema()));
 					RestartableInputStream restartableInputStream = new RestartableInputStream(originalInputStream, file);
 					StreamingCheckinDatabaseAction checkinDatabaseAction = new StreamingCheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), comment, fileName, restartableInputStream,
-							streamingDeserializer, fileSize, newServiceId, pluginBundleVersion, topicId);
+							streamingDeserializer, fileSize, newServiceId, pluginVersionDeserializer, topicId);
 					LongStreamingCheckinAction longAction = new LongStreamingCheckinAction(topicId, getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
 					getBimServer().getLongActionManager().start(longAction);
 					ProgressTopic progressTopic = null;

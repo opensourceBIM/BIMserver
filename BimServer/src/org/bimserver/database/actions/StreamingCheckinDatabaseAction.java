@@ -96,10 +96,10 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 	private long newServiceId;
 	private Revision newRevision;
 	private PackageMetaData packageMetaData;
-	private PluginBundleVersion pluginBundleVersion;
+	private String pluginBundleVersion;
 	private long topicId;
 
-	public StreamingCheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, String comment, String fileName, InputStream inputStream, StreamingDeserializer deserializer, long fileSize, long newServiceId, PluginBundleVersion pluginBundleVersion, long topicId) {
+	public StreamingCheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, String comment, String fileName, InputStream inputStream, StreamingDeserializer deserializer, long fileSize, long newServiceId, String pluginVersionDeserializer, long topicId) {
 		super(bimServer, databaseSession, accessMethod);
 		this.poid = poid;
 		this.authorization = authorization;
@@ -109,7 +109,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 		this.deserializer = deserializer;
 		this.fileSize = fileSize;
 		this.newServiceId = newServiceId;
-		this.pluginBundleVersion = pluginBundleVersion;
+		this.pluginBundleVersion = pluginVersionDeserializer;
 		this.topicId = topicId;
 	}
 
@@ -229,12 +229,11 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 				report.setOriginalIfcFileName(fileName);
 				report.setOriginalIfcFileSize(bytesRead.get());
 				report.setNumberOfObjects(size);
-				report.setOriginalDeserializer(pluginBundleVersion.getGroupId() + "." + pluginBundleVersion.getArtifactId() + ":" + pluginBundleVersion.getVersion());
+				report.setOriginalDeserializer(pluginBundleVersion);
 				StreamingGeometryGenerator geometryGenerator = new StreamingGeometryGenerator(getBimServer(), progressListener, -1L, report);
 				setProgress("Generating geometry...", 0);
 
 				GenerateGeometryResult generateGeometry = geometryGenerator.generateGeometry(getActingUid(), getDatabaseSession(), queryContext, size);
-			
 				for (Revision other : concreteRevision.getRevisions()) {
 					other.setHasGeometry(true);
 				}
