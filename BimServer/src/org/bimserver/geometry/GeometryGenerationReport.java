@@ -29,9 +29,9 @@ import org.bimserver.emf.Schema;
 import org.bimserver.models.store.*;
 import org.bimserver.plugins.renderengine.VersionInfo;
 import org.bimserver.utils.Formatters;
+import org.bimserver.plugins.PluginConfiguration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.*;
 
 public class GeometryGenerationReport {
@@ -59,7 +59,7 @@ public class GeometryGenerationReport {
 	private boolean reuseGeometry;
 	private boolean calculateQuantities;
 	private boolean applyLayersets;
-	private final List<Parameter> userRenderSettings = new ArrayList<>();
+	private PluginConfiguration userRenderSettings;
 	private final Map<Integer, String> debugFiles = new ConcurrentSkipListMap<>();
 	private final SkippedBecauseOfInvalidRepresentation skippedBecauseOfInvalidRepresentationIdentifier = new SkippedBecauseOfInvalidRepresentation();
 
@@ -147,7 +147,7 @@ public class GeometryGenerationReport {
 		engineSettings.put("calculateQuantities", calculateQuantities);
 		result.set("engineSettings", engineSettings);
 
-		ObjectNode userEngineSettings = convertToJson(userRenderSettings, objectMapper);
+		ObjectNode userEngineSettings = userRenderSettings.convertToReportJson(objectMapper);
 		result.set("userEngineSettings", userEngineSettings);
 
 		ObjectNode deserializer = objectMapper.createObjectNode();
@@ -227,43 +227,9 @@ public class GeometryGenerationReport {
 		return result;
 	}
 
-	private ObjectNode convertToJson(List<Parameter> parameters,  ObjectMapper mapper) {
-		ObjectNode jsonSettings = mapper.createObjectNode();
-		for(Parameter parameter : parameters) {
-			String settingName = parameter.getIdentifier();
-			Type settingValue = parameter.getValue();
-			JsonNode jsonValue = convertToJson(settingValue, mapper);
-			jsonSettings.put(settingName, jsonValue);
-		}
-		return jsonSettings;
-	}
-
-	private JsonNode convertToJson(Type value, ObjectMapper mapper){
-		if(value instanceof BooleanType) {
-			return mapper.convertValue(((BooleanType) value).isValue(), BooleanNode.class);
-		} else if (value instanceof DoubleType){
-			return mapper.convertValue(((DoubleType) value).getValue(), DoubleNode.class);
-		} else  if (value instanceof LongType) {
-			return mapper.convertValue(((LongType) value).getValue(), LongNode.class);
-		} else if (value instanceof StringType) {
-			return mapper.convertValue(((StringType) value).getValue(), TextNode.class);
-		} else if(value instanceof ObjectType){
-			return convertToJson(((ObjectType) value).getParameters(), mapper);
-		} else if (value instanceof ArrayType){
-			ArrayNode arrayNode = mapper.createArrayNode();
-			for(Type element: ((ArrayType) value).getValues()){
-				arrayNode.add(convertToJson(element, mapper));
-			}
-			return arrayNode;
-		} else if(value instanceof ByteArrayType){
-			return mapper.convertValue(((ByteArrayType) value).getValue(), BinaryNode.class);
-		} else {
-			throw new RuntimeException("Unimplemented type: " + value.getClass().getName());
-		}
-	}
 	public String toHtml() {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
-		
+
 		StringBuilder builder = new StringBuilder();
 		builder.append("<h1>BIMserver geometry generation report (v" + REPORT_VERSION + ")</h1>");
 		
@@ -308,7 +274,7 @@ public class GeometryGenerationReport {
 
 		builder.append("<h3>Render engine user settings</h3>");
 		builder.append("<table><tbody>");
-		convertToHtml(userRenderSettings, builder);
+		userRenderSettings.convertToReportHtml(builder);
 		builder.append("</tbody></table>");
 		
 		builder.append("<h3>Deserializer</h3>");
@@ -513,8 +479,8 @@ public class GeometryGenerationReport {
 		this.applyLayersets = applyLayersets;
 	}
 
-	public void addUserRenderSetting(Parameter parameter) {
-		userRenderSettings.add(parameter);
+	public void setUserRenderSetting(PluginConfiguration parameters){
+		userRenderSettings = parameters;
 	}
 
 	public GregorianCalendar getStart() {

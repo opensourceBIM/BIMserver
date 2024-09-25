@@ -248,11 +248,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 				calculateQuantities = engine.isCalculateQuantities();
 				report.setApplyLayersets(applyLayerSets);
 				report.setCalculateQuantities(calculateQuantities);
-
-				for (Parameter parameter: renderEngine.getPluginDescriptor().getSettings().getParameters()){
-					parameter.load(); parameter.getValue().load();  // TODO deep load or use plugin configuration after implementing full recursive conversion (see conversion to JSON and HTML in GeometryGenerationReport)
-					report.addUserRenderSetting(parameter);
-				}
+				report.setUserRenderSetting(new PluginConfiguration(renderEngine.getPluginDescriptor().getSettings()));
 
 			} finally {
 				renderEnginePool.returnObject(engine);
