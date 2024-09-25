@@ -126,10 +126,6 @@ public class PluginConfiguration {
 		return value;
 	}
 
-	public Map<String, Object> getValues() {
-		return values;
-	}
-
 	public byte[] getByteArray(String name) {
 		return (byte[])get(name);
 	}

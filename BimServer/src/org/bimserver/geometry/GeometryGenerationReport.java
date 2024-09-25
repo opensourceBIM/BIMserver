@@ -40,7 +40,7 @@ public class GeometryGenerationReport {
 	private String renderEngineName;
 	private VersionInfo renderEngineVersion;
 	private String renderEnginePluginVersion;
-	private Map<String, AtomicInteger> representationItems = new HashMap<>();
+	private final Map<String, AtomicInteger> representationItems = new HashMap<>();
 	private GregorianCalendar start = new GregorianCalendar();
 	private GregorianCalendar end;
 	private String originalIfcFileName;
@@ -50,7 +50,7 @@ public class GeometryGenerationReport {
 	private String userUserName;
 	private int availableProcessors;
 	private String originalDeserializer;
-	private Set<ReportJob> jobs = new LinkedHashSet<>();
+	private final Set<ReportJob> jobs = new LinkedHashSet<>();
 	private int maxObjectsPerFile;
 	private boolean useMappingOptimization;
 	private long numberOfObjects;
@@ -61,7 +61,7 @@ public class GeometryGenerationReport {
 	private boolean applyLayersets;
 	private final List<Parameter> userRenderSettings = new ArrayList<>();
 	private final Map<Integer, String> debugFiles = new ConcurrentSkipListMap<>();
-	private SkippedBecauseOfInvalidRepresentation skippedBecauseOfInvalidRepresentationIdentifier = new SkippedBecauseOfInvalidRepresentation();
+	private final SkippedBecauseOfInvalidRepresentation skippedBecauseOfInvalidRepresentationIdentifier = new SkippedBecauseOfInvalidRepresentation();
 
 	public synchronized void incrementTriangles(int triangles) {
 		this.numberOfTriangles += triangles;
@@ -398,18 +398,6 @@ public class GeometryGenerationReport {
 		}
 		builder.append("</tbody></table>");
 
-//		builder.append("<h3>Triangles</h3>");
-//		builder.append("<table>");
-//		builder.append("<thead><tr><th>Type</th><th>Used</th></tr></thead>");
-//		builder.append("<tbody>");
-//		for (String type : representationItems.keySet()) {
-//			builder.append("<tr>");
-//			builder.append("<td>" + type + "</td>");
-//			builder.append("<td>" + representationItems.get(type).get() + "</td>");
-//			builder.append("</tr>");
-//		}
-//		builder.append("</tbody></table>");
-		
 		return builder.toString();
 	}
 

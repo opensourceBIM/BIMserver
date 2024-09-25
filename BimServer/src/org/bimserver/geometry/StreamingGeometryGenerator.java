@@ -100,14 +100,14 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	PackageMetaData packageMetaData;
 
 	AtomicLong bytesSavedByHash = new AtomicLong();
-	private AtomicLong bytesSavedByTransformation = new AtomicLong();
+	private final AtomicLong bytesSavedByTransformation = new AtomicLong();
 	AtomicLong bytesSavedByMapping = new AtomicLong();
 	AtomicLong totalBytes = new AtomicLong();
 
 	AtomicInteger jobsDone = new AtomicInteger();
-	private AtomicInteger jobsTotal = new AtomicInteger();
+	private final AtomicInteger jobsTotal = new AtomicInteger();
 
-	private ProgressListener progressListener;
+	private final ProgressListener progressListener;
 
 	private volatile boolean allJobsPushed;
 
