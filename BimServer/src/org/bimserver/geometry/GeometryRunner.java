@@ -338,9 +338,6 @@ public class GeometryRunner implements Runnable {
 														float val = fixColor(materialsAsFloat.get(4 * c + l));
 														color.set(l, val);
 													}
-													if (color.isBlack()) {
-														continue;
-													}
 													for (int j = 0; j < 3; ++j) {
 														int k = indicesAsInt.get(i * 3 + j);
 														triangle[j * 3 + 0] = verticesAsDouble.get(3 * k);
