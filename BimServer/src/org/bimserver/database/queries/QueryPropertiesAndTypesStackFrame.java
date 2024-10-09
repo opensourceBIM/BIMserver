@@ -105,12 +105,12 @@ public class QueryPropertiesAndTypesStackFrame extends DatabaseReadingStackFrame
 		if (currentObject != null) {
 			DatabaseSession databaseSession = getQueryObjectProvider().getDatabaseSession();
 			List<Long> isDefinedByOids = (List<Long>) currentObject.get("IsDefinedBy");
+			Set<String> propertyKeysMatched = new HashSet<>();
 			int totalQueryProperties = 0;
 			for (String key : this.properties.keySet()) {
 				totalQueryProperties += this.properties.get(key).count();
 			}
 			if (isDefinedByOids != null) {
-				Set<String> propertyKeysMatched = new HashSet<>();
 				for (Long definedByOid : isDefinedByOids) {
 					EClass eClass = databaseSession.getEClassForOid(definedByOid);
 					if (getPackageMetaData().getEClass("IfcRelDefinesByProperties").isSuperTypeOf(eClass)) {
@@ -134,10 +134,10 @@ public class QueryPropertiesAndTypesStackFrame extends DatabaseReadingStackFrame
 						LOGGER.info(eClass.getName());
 					}
 				}
-				if (propertyKeysMatched.size() != totalQueryProperties) {
-					// All properties should have matched, atm all properties provided in the query are evaluated as AND
-					currentObject = null;
-				}
+			}
+			if (propertyKeysMatched.size() != totalQueryProperties) {
+				// All properties should have matched, atm all properties provided in the query are evaluated as AND
+				currentObject = null;
 			}
 		}
 		
