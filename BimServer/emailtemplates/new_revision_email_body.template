@@ -8,6 +8,6 @@ Hello $name,<br/>
 <br/>
 A new revision has been uploaded successfully to project "$projectName" at $siteaddress.<br/>
 
-Click <a href="$siteaddress/apps/bimviews/?page=Projects&poid=$poid&tab=revisions&token=$token">here</a> to view the results.<br/>
+Click <a href="$siteaddress/apps/bimviews/?page=Projects&poid=$poid&tab=revisions">here</a> to view the results.<br/>
 <br/>
 #parse("inc/footer.template")
