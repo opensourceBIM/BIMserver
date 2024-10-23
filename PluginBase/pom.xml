@@ -59,19 +59,20 @@
 			<version>4.5.7</version>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse.aether</groupId>
-			<artifactId>aether-api</artifactId>
-			<version>1.0.2.v20150114</version>
+			<groupId>org.apache.maven.resolver</groupId>
+			<artifactId>maven-resolver-api</artifactId>
+			<version>1.9.18</version>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse.aether</groupId>
-			<artifactId>aether-transport-file</artifactId>
-			<version>1.0.2.v20150114</version>
+			<groupId>org.apache.maven.resolver</groupId>
+			<artifactId>maven-resolver-transport-file</artifactId>
+			<version>1.9.18</version>
 		</dependency>
+
 		<dependency>
-			<groupId>org.eclipse.aether</groupId>
-			<artifactId>aether-transport-http</artifactId>
-			<version>1.0.2.v20150114</version>
+			<groupId>org.apache.maven.resolver</groupId>
+			<artifactId>maven-resolver-transport-http</artifactId>
+			<version>1.9.18</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>httpclient</artifactId>
@@ -85,14 +86,14 @@
 			<version>1.0.2.v20150114</version>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse.aether</groupId>
-			<artifactId>aether-connector-basic</artifactId>
-			<version>1.0.2.v20150114</version>
+			<groupId>org.apache.maven.resolver</groupId>
+			<artifactId>maven-resolver-connector-basic</artifactId>
+			<version>1.9.18</version>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse.aether</groupId>
-			<artifactId>aether-impl</artifactId>
-			<version>1.0.2.v20150114</version>
+			<groupId>org.apache.maven.resolver</groupId>
+			<artifactId>maven-resolver-impl</artifactId>
+			<version>1.9.18</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven</groupId>
