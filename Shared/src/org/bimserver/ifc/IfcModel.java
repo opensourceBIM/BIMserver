@@ -166,13 +166,13 @@ public abstract class IfcModel implements IfcModelInterface {
 		if (objects.isEmpty()) {
 			return;
 		}
-		for (EClassifier classifier : objects.values().iterator().next().eClass().getEPackage().getEClassifiers()) {
-			if (classifier instanceof EClass) {
-				Map<String, IdEObject> map = new TreeMap<String, IdEObject>();
+		EClass ifcRootEclass = packageMetaData.getEClass("IfcRoot");
+		for (EClassifier classifier : packageMetaData.getEPackage().getEClassifiers()) {
+			if (classifier instanceof EClass && ifcRootEclass.isSuperTypeOf((EClass) classifier)) {
+				Map<String, IdEObject> map = new TreeMap<>();
 				guidIndex.put((EClass) classifier, map);
 			}
 		}
-		EClass ifcRootEclass = packageMetaData.getEClass("IfcRoot");
 		EStructuralFeature guidFeature = ifcRootEclass.getEStructuralFeature("GlobalId");
 		for (Long key : objects.keySet()) {
 			IdEObject value = objects.get(key);
@@ -187,16 +187,15 @@ public abstract class IfcModel implements IfcModelInterface {
 
 	public void buildNameIndex() {
 		nameIndex = new HashMap<>();
-		for (EClassifier classifier : objects.values().iterator().next().eClass().getEPackage().getEClassifiers()) {
-			if (classifier instanceof EClass) {
+		EClass ifcRootEclass = packageMetaData.getEClass("IfcRoot");
+		for (EClassifier classifier : packageMetaData.getEPackage().getEClassifiers()) {
+			if (classifier instanceof EClass && ifcRootEclass.isSuperTypeOf((EClass) classifier)) {
 				Map<String, IdEObject> map = new TreeMap<>();
 				nameIndex.put((EClass) classifier, map);
 			}
 		}
-		EClass ifcRootEclass = packageMetaData.getEClass("IfcRoot");
 		EStructuralFeature nameFeature = ifcRootEclass.getEStructuralFeature("Name");
-		for (Long key : objects.keySet()) {
-			IdEObject value = objects.get(key);
+		for (IdEObject value: objects.values()) {
 			if (ifcRootEclass.isSuperTypeOf(value.eClass())) {
 				Object name = value.eGet(nameFeature);
 				if (name != null) {
@@ -310,29 +309,21 @@ public abstract class IfcModel implements IfcModelInterface {
 		if (guidIndex == null) {
 			buildGuidIndex();
 		}
-		Map<String, IdEObject> map = guidIndex.get(eClass);
-		if (map == null) {
-			return new HashSet<>();
-		}
-		return map.keySet();
+		return guidIndex.containsKey(eClass) ? guidIndex.get(eClass).keySet() : new HashSet<>();
 	}
 
 	public Set<String> getNames(EClass eClass) {
 		if (nameIndex == null) {
 			buildNameIndex();
 		}
-		Map<String, IdEObject> map = nameIndex.get(eClass);
-		if (map == null) {
-			return new HashSet<>();
-		}
-		return map.keySet();
+		return nameIndex.containsKey(eClass) ? nameIndex.get(eClass).keySet() : new HashSet<>();
 	}
 
 	public IdEObject getByName(EClass eClass, String name) {
 		if (nameIndex == null) {
 			buildNameIndex();
 		}
-		return nameIndex.get(eClass).get(name);
+		return nameIndex.containsKey(eClass) ? nameIndex.get(eClass).get(name) : null;
 	}
 
 	public long size() {
