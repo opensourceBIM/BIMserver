@@ -60,6 +60,11 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.resolver</groupId>
+			<artifactId>maven-resolver-supplier</artifactId>
+			<version>1.9.22</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.resolver</groupId>
 			<artifactId>maven-resolver-api</artifactId>
 			<version>1.9.22</version>
 		</dependency>

@@ -27,24 +27,19 @@ import org.eclipse.aether.RepositorySystem;
 import org.eclipse.aether.RepositorySystemSession;
 import org.eclipse.aether.artifact.Artifact;
 import org.eclipse.aether.artifact.DefaultArtifact;
-import org.eclipse.aether.connector.basic.BasicRepositoryConnectorFactory;
-import org.eclipse.aether.impl.DefaultServiceLocator;
 import org.eclipse.aether.repository.LocalRepository;
 import org.eclipse.aether.repository.RemoteRepository;
 import org.eclipse.aether.resolution.ArtifactRequest;
 import org.eclipse.aether.resolution.ArtifactResolutionException;
 import org.eclipse.aether.resolution.ArtifactResult;
-import org.eclipse.aether.spi.connector.RepositoryConnectorFactory;
-import org.eclipse.aether.spi.connector.transport.TransporterFactory;
-import org.eclipse.aether.transport.file.FileTransporterFactory;
-import org.eclipse.aether.transport.http.HttpTransporterFactory;
+import org.eclipse.aether.supplier.RepositorySystemSupplier;
 
 public class RemotePluginRepository {
 	public static void main(String[] args) throws ArtifactResolutionException {
 		System.out.println("------------------------------------------------------------");
 		System.out.println(RemotePluginRepository.class.getSimpleName());
 
-		RepositorySystem system = newRepositorySystem();
+		RepositorySystem system = new RepositorySystemSupplier().get();
 
 		RepositorySystemSession session = newRepositorySystemSession(system);
 
@@ -59,28 +54,6 @@ public class RemotePluginRepository {
 		artifact = artifactResult.getArtifact();
 
 		System.out.println(artifact + " resolved to  " + artifact.getFile());
-	}
-
-	public static RepositorySystem newRepositorySystem() {
-		/*
-		 * Aether's components implement org.eclipse.aether.spi.locator.Service
-		 * to ease manual wiring and using the prepopulated
-		 * DefaultServiceLocator, we only need to register the repository
-		 * connector and transporter factories.
-		 */
-		DefaultServiceLocator locator = MavenRepositorySystemUtils.newServiceLocator();
-		locator.addService(RepositoryConnectorFactory.class, BasicRepositoryConnectorFactory.class);
-		locator.addService(TransporterFactory.class, FileTransporterFactory.class);
-		locator.addService(TransporterFactory.class, HttpTransporterFactory.class);
-
-		locator.setErrorHandler(new DefaultServiceLocator.ErrorHandler() {
-			@Override
-			public void serviceCreationFailed(Class<?> type, Class<?> impl, Throwable exception) {
-				exception.printStackTrace();
-			}
-		});
-
-		return locator.getService(RepositorySystem.class);
 	}
 
 	public static DefaultRepositorySystemSession newRepositorySystemSession(RepositorySystem system) {
