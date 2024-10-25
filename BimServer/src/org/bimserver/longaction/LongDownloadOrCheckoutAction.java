@@ -49,7 +49,7 @@ import org.bimserver.webservices.authorization.Authorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class LongDownloadOrCheckoutAction extends LongAction<DownloadParameters> implements Reporter {
+public abstract class LongDownloadOrCheckoutAction extends LongAction implements Reporter {
 	protected static final Logger LOGGER = LoggerFactory.getLogger(LongDownloadAction.class);
 	protected final AccessMethod accessMethod;
 	protected final DownloadParameters downloadParameters;

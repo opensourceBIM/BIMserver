@@ -32,7 +32,7 @@ import org.bimserver.webservices.authorization.Authorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LongBranchAction extends LongAction<LongCheckinActionKey> {
+public class LongBranchAction extends LongAction {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongBranchAction.class);
 
 	private BimDatabaseAction<ConcreteRevision> action;

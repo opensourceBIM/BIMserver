@@ -346,7 +346,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public void terminateLongRunningAction(Long topicId) throws ServerException, UserException {
-		LongAction<?> longAction = getBimServer().getLongActionManager().getLongAction(topicId);
+		LongAction longAction = getBimServer().getLongActionManager().getLongAction(topicId);
 		if (longAction != null) {
 			longAction.terminate();
 		} else {
@@ -356,7 +356,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public SDownloadResult getDownloadData(final Long topicId) throws ServerException, UserException {
-		LongAction<?> longAction = getBimServer().getLongActionManager().getLongAction(topicId);
+		LongAction longAction = getBimServer().getLongActionManager().getLongAction(topicId);
 		if (longAction == null) {
 			throw new UserException("No data found for topicId " + topicId);
 		}
@@ -2586,7 +2586,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			CloseableHttpClient httpclient = HttpClients.createDefault();
 			HttpPost httpPost = new HttpPost(url);
 
-			LongAction<?> longAction = getBimServer().getLongActionManager().getLongAction(topicId);
+			LongAction longAction = getBimServer().getLongActionManager().getLongAction(topicId);
 			if (longAction == null) {
 				throw new UserException("No data found for topicId " + topicId);
 			}

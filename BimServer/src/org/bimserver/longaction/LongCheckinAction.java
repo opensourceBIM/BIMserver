@@ -35,7 +35,7 @@ import org.bimserver.webservices.authorization.Authorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
+public class LongCheckinAction extends LongAction {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongCheckinAction.class);
 	private CheckinDatabaseAction checkinDatabaseAction;

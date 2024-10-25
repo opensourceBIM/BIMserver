@@ -84,7 +84,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.base.Joiner;
 
-public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey>{
+public class LongStreamingDownloadAction extends LongAction {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongStreamingDownloadAction.class);
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();

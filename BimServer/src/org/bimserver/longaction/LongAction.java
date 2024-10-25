@@ -36,7 +36,7 @@ import org.bimserver.webservices.authorization.Authorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class LongAction<T extends LongActionKey> implements Reporter, ProgressListener {
+public abstract class LongAction implements Reporter, ProgressListener {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongAction.class);
 	private final GregorianCalendar start;
