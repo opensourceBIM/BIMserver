@@ -1167,8 +1167,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public Long checkinInitiatedAsync(Long topicId, final Long poid, final String comment, Long deserializerOid, Long fileSize, String fileName, DataHandler dataHandler, Boolean merge) throws ServerException, UserException {
-		SLongActionState checkinInitiatedInternal = checkinInitiatedInternal(topicId, poid, comment, deserializerOid, fileSize, fileName, dataHandler, merge, false, -1);
-		return checkinInitiatedInternal.getTopicId();
+		checkinInitiatedInternal(topicId, poid, comment, deserializerOid, fileSize, fileName, dataHandler, merge, false, -1);
+		return topicId;
 	}
 
 	private SLongCheckinActionState checkinInternal(Long topicId, final Long poid, final String comment, Long deserializerOid, Long fileSize, String fileName, InputStream originalInputStream, Boolean merge, Boolean sync,
