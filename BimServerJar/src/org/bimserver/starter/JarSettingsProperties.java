@@ -12,8 +12,6 @@ import java.util.Properties;
 public class JarSettingsProperties {
 	private File lastFile;
 
-	private String jvm = "default";
-
 	private String homedir = new File("home").getAbsolutePath();
 
 	private String address = "localhost";
@@ -28,9 +26,6 @@ public class JarSettingsProperties {
 
 	private String heapsize = "1024m";
 
-	private String stacksize = "1024k";
-
-	private boolean forceipv4 = false;
 
 	public JarSettingsProperties() {
 		com.sun.management.OperatingSystemMXBean os = (com.sun.management.OperatingSystemMXBean) java.lang.management.ManagementFactory.getOperatingSystemMXBean();
@@ -50,7 +45,6 @@ public class JarSettingsProperties {
 				try (InputStream inputStream = Files.newInputStream(path)) {
 					properties.load(inputStream);
 				}
-				jarSettingsProperties.setJvm(properties.getProperty("jvm"));
 				jarSettingsProperties.setHomedir(properties.getProperty("homedir"));
 				jarSettingsProperties.setAddress(properties.getProperty("address"));
 				jarSettingsProperties.setUseProxy(Boolean.valueOf(properties.getProperty("useProxy")));
@@ -58,8 +52,6 @@ public class JarSettingsProperties {
 				jarSettingsProperties.setProxyPort(Integer.parseInt(properties.getProperty("proxyPort")));
 				jarSettingsProperties.setPort(Integer.parseInt(properties.getProperty("port")));
 				jarSettingsProperties.setHeapsize(properties.getProperty("heapsize"));
-				jarSettingsProperties.setStacksize(properties.getProperty("stacksize"));
-				jarSettingsProperties.setForceipv4(Boolean.valueOf(properties.getProperty("forceipv4")));
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -69,8 +61,7 @@ public class JarSettingsProperties {
 	
 	public void save() {
 		Properties properties = new Properties();
-		
-		properties.setProperty("jvm", getJvm());		
+
 		properties.setProperty("homedir", getHomedir());		
 		properties.setProperty("address", getAddress());		
 		properties.setProperty("useProxy", "" + isUseProxy());		
@@ -78,9 +69,7 @@ public class JarSettingsProperties {
 		properties.setProperty("proxyPort", "" + getProxyPort());		
 		properties.setProperty("port", "" + getPort());		
 		properties.setProperty("heapsize", getHeapsize());		
-		properties.setProperty("stacksize", getStacksize());		
-		properties.setProperty("forceipv4", "" + isForceipv4());
-		
+
 		try (OutputStream outputStream = Files.newOutputStream(Paths.get("settings.properties"))) {
 			properties.store(outputStream, "");
 		} catch (IOException e) {
@@ -94,14 +83,6 @@ public class JarSettingsProperties {
 
 	public void setLastFile(File lastFile) {
 		this.lastFile = lastFile;
-	}
-
-	public String getJvm() {
-		return jvm;
-	}
-
-	public void setJvm(String jvm) {
-		this.jvm = jvm;
 	}
 
 	public String getHomedir() {
@@ -160,19 +141,4 @@ public class JarSettingsProperties {
 		this.heapsize = heapsize;
 	}
 
-	public String getStacksize() {
-		return stacksize;
-	}
-
-	public void setStacksize(String stacksize) {
-		this.stacksize = stacksize;
-	}
-
-	public boolean isForceipv4() {
-		return forceipv4;
-	}
-
-	public void setForceipv4(boolean forceipv4) {
-		this.forceipv4 = forceipv4;
-	}
 }
