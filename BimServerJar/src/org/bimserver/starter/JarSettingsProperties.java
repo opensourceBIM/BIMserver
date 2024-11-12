@@ -10,7 +10,6 @@ import java.nio.file.Paths;
 import java.util.Properties;
 
 public class JarSettingsProperties {
-	private File lastFile;
 
 	private String homedir = new File("home").getAbsolutePath();
 
@@ -24,7 +23,7 @@ public class JarSettingsProperties {
 
 	private int port = 8082;
 
-	private String heapsize = "1024m";
+	private String heapsize;
 
 
 	public JarSettingsProperties() {
@@ -47,7 +46,7 @@ public class JarSettingsProperties {
 				}
 				jarSettingsProperties.setHomedir(properties.getProperty("homedir"));
 				jarSettingsProperties.setAddress(properties.getProperty("address"));
-				jarSettingsProperties.setUseProxy(Boolean.valueOf(properties.getProperty("useProxy")));
+				jarSettingsProperties.setUseProxy(Boolean.parseBoolean(properties.getProperty("useProxy")));
 				jarSettingsProperties.setProxyHost(properties.getProperty("proxyHost"));
 				jarSettingsProperties.setProxyPort(Integer.parseInt(properties.getProperty("proxyPort")));
 				jarSettingsProperties.setPort(Integer.parseInt(properties.getProperty("port")));
@@ -64,10 +63,10 @@ public class JarSettingsProperties {
 
 		properties.setProperty("homedir", getHomedir());		
 		properties.setProperty("address", getAddress());		
-		properties.setProperty("useProxy", "" + isUseProxy());		
+		properties.setProperty("useProxy", String.valueOf(isUseProxy()));
 		properties.setProperty("proxyHost", getProxyHost());		
-		properties.setProperty("proxyPort", "" + getProxyPort());		
-		properties.setProperty("port", "" + getPort());		
+		properties.setProperty("proxyPort", String.valueOf(getProxyPort()));
+		properties.setProperty("port", String.valueOf(getPort()));
 		properties.setProperty("heapsize", getHeapsize());		
 
 		try (OutputStream outputStream = Files.newOutputStream(Paths.get("settings.properties"))) {
@@ -75,14 +74,6 @@ public class JarSettingsProperties {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public File getLastFile() {
-		return lastFile;
-	}
-
-	public void setLastFile(File lastFile) {
-		this.lastFile = lastFile;
 	}
 
 	public String getHomedir() {

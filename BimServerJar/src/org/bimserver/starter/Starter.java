@@ -50,7 +50,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -103,7 +102,7 @@ public class Starter extends JFrame {
 		
 		PrintStream out = new PrintStream(new OutputStream() {
 			@Override
-			public void write(byte[] bytes, int off, int len) throws IOException {
+			public void write(byte[] bytes, int off, int len) {
 				String str = new String(bytes, off, len);
 				systemOut.append(str);
 				logField.append(str);
@@ -111,7 +110,7 @@ public class Starter extends JFrame {
 			}
 			
 			@Override
-			public void write(int b) throws IOException {
+			public void write(int b) {
 				String str = new String(new char[] { (char) b });
 				systemOut.append(str);
 				logField.append(str);
@@ -329,19 +328,13 @@ public class Starter extends JFrame {
 		try {
 			String os = System.getProperty("os.name");
 			boolean isMac = os.toLowerCase().contains("mac");
-			System.out.println("OS: " + os);
-//			String command = "";
+			System.out.println("\nOS: " + os);
 
-			checkJavaVersion();
+			printJavaVersion();
 			List<String> commands = new ArrayList<>();
 			commands.add("java");
 			commands.add("-Xmx" + heapsize);
 
-//			boolean debug = true;
-//			if (debug ) {
-//				command += " -Xdebug -Xrunjdwp:transport=dt_socket,address=8998,server=y";
-//			}
-			
 			if (useProxy.isSelected()) {
 				commands.add("-Dhttp.proxyHost=" + proxyHost.getText());
 				commands.add("-Dhttp.proxyPort=" + proxyPort.getText());
@@ -350,16 +343,11 @@ public class Starter extends JFrame {
 			}
 			
 			String cp = "." + File.pathSeparator;
-			boolean escapeCompletePath = isMac;
-//			if (escapeCompletePath) {
-//				// OSX fucks up with single jar files escaped, so we try to escape the whole thing
-//				command += "\"";
-//			}
 			cp += "lib" + File.pathSeparator;
 			File dir = new File(destDir + File.separator + "lib");
 			for (File lib : dir.listFiles()) {
 				if (lib.isFile()) {
-					if (lib.getName().contains(" ") && !escapeCompletePath) {
+					if (lib.getName().contains(" ") && !isMac) {
 						cp += "\"lib" + File.separator + lib.getName() + "\"" + File.pathSeparator;
 					} else {
 						cp += "lib" + File.separator + lib.getName() + File.pathSeparator;
@@ -372,10 +360,6 @@ public class Starter extends JFrame {
 			commands.add("-Dorg.apache.cxf.Logger=org.apache.cxf.common.logging.Slf4jLogger");
 			commands.add("-classpath");
 			commands.add(cp);
-//			if (escapeCompletePath) {
-//				// OSX fucks up with single jar files escaped, so we try to escape the whole thing
-//				command += "\"";
-//			}
 			Enumeration<URL> resources = getClass().getClassLoader().getResources("META-INF/MANIFEST.MF");
 			String realMainClass = "";
 			while (resources.hasMoreElements()) {
@@ -402,9 +386,7 @@ public class Starter extends JFrame {
 			ProcessBuilder processBuilder = new ProcessBuilder(commands);
 			processBuilder.directory(destDir);
 			
-//			System.out.println("Running: " + command);
 			exec = processBuilder.start();
-//			exec = Runtime.getRuntime().exec(command, null, destDir);
 
 			new Thread(new Runnable(){
 				@Override
@@ -443,7 +425,7 @@ public class Starter extends JFrame {
 		}
 	}
 
-	private void checkJavaVersion() {
+	private void printJavaVersion() {
 		List<String> commands = new ArrayList<>();
 		commands.add("java");
 		commands.add("-version");
@@ -483,7 +465,8 @@ public class Starter extends JFrame {
 					} catch (IOException e) {
 					}
 				}}, "Syserr reader").start();
-		} catch (IOException e) {
+			exec.waitFor();
+		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
