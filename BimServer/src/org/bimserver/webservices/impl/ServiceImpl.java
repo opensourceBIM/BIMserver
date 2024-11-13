@@ -3331,6 +3331,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public Long regenerateGeometry(Long roid, Long eoid) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
 		try (DatabaseSession session = getBimServer().getDatabase(). createSession(OperationType.POSSIBLY_WRITE)) {
 			Revision revision = session.get(roid, OldQuery.getDefault());
 			SUser user = getCurrentUser();
