@@ -77,7 +77,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction implements
 			try {
 				Serializer serializer = getBimServer().getSerializerFactory().create(project, username, model, renderEnginePlugin, downloadParameters);
 				if (serializer == null) {
-					throw new UserException("Error, serializer " + downloadParameters.getSerializerOid() + "not found or failed to intialize.");
+					throw new UserException("Error, serializer " + downloadParameters.getSerializerOid() + " not found or failed to initialize.");
 				}
 				if (getBimServer().getServerSettingsCache().getServerSettings().getCacheOutputFiles() && serializer.allowCaching()) {
 					if (getBimServer().getDiskCacheManager().contains(downloadParameters)) {
