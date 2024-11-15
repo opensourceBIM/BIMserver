@@ -446,12 +446,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				}
 				return longDownloadAction.getProgressTopic().getKey().getId();
 			} else if (plugin instanceof MessagingSerializerPlugin) {
-				requireAuthenticationAndRunningServer();
-				DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_BY_NEW_JSON_QUERY);
-				downloadParameters.setRoids(roids);
-				downloadParameters.setJsonQuery(jsonQuery);
-				downloadParameters.setSerializerOid(serializerOid);
-				return download(downloadParameters, sync);
+				throw new UserException("Conversion not supported for this serializer. Please use the streaming serializer");
 			} else if (plugin instanceof SerializerPlugin) {
 				requireAuthenticationAndRunningServer();
 				DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_BY_NEW_JSON_QUERY);
