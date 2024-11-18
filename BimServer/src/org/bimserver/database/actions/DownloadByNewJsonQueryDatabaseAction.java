@@ -53,6 +53,7 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
+import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.modelmerger.MergeException;
 import org.bimserver.plugins.serializers.SerializerPlugin;
 import org.bimserver.shared.HashMapVirtualObject;
@@ -91,9 +92,9 @@ public class DownloadByNewJsonQueryDatabaseAction extends AbstractDownloadDataba
 		List<String> projectNames = new ArrayList<>();
 		
 		PluginConfiguration serializerPluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), serializerOid, OldQuery.getDefault());
-		SerializerPlugin serializerPlugin = (SerializerPlugin) getBimServer().getPluginManager().getPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
-		Set<String> geometryFields = serializerPlugin.getRequiredGeometryFields();
-		
+		Plugin serializerPlugin = getBimServer().getPluginManager().getPlugin(serializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
+		Set<String> geometryFields = (serializerPlugin instanceof SerializerPlugin) ? ((SerializerPlugin)serializerPlugin).getRequiredGeometryFields() : new HashSet<>();
+
 		setProgress("Querying database...", -1);
 		
 		for (long roid : roids) {

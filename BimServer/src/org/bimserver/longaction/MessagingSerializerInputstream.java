@@ -21,7 +21,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.bimserver.plugins.serializers.MessagingStreamingSerializer;
+import org.bimserver.plugins.serializers.Writer;
 import org.bimserver.plugins.serializers.SerializerException;
 
 public class MessagingSerializerInputstream extends InputStream {
@@ -29,9 +29,9 @@ public class MessagingSerializerInputstream extends InputStream {
 	private final ByteArrayOutputStream out = new ByteArrayOutputStream();
 	private int pos = 0;
 	private byte[] buffer;
-	private MessagingStreamingSerializer messagingStreamingSerializer;
+	private final Writer messagingStreamingSerializer;
 
-	public MessagingSerializerInputstream(MessagingStreamingSerializer messagingStreamingSerializer) {
+	public MessagingSerializerInputstream(Writer messagingStreamingSerializer) {
 		this.messagingStreamingSerializer = messagingStreamingSerializer;
 	}
 

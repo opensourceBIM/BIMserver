@@ -22,15 +22,15 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import org.bimserver.plugins.serializers.ExtendedDataSource;
-import org.bimserver.plugins.serializers.MessagingStreamingSerializer;
+import org.bimserver.plugins.serializers.Writer;
 import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
 
 public class MessagingStreamingDataSource extends ExtendedDataSource {
 
-	private MessagingStreamingSerializer messagingStreamingSerializer;
+	private final Writer messagingStreamingSerializer;
 
-	public MessagingStreamingDataSource(MessagingStreamingSerializer messagingStreamingSerializer) {
+	public MessagingStreamingDataSource(Writer messagingStreamingSerializer) {
 		this.messagingStreamingSerializer = messagingStreamingSerializer;
 	}
 

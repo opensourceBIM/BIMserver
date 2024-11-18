@@ -129,6 +129,9 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction implements
 						if (serializerPluginConfiguration instanceof MessagingSerializerPluginConfiguration) {
 							try {
 								messagingSerializer = getBimServer().getSerializerFactory().createMessagingSerializer(getUserName(), ifcModel, downloadParameters);
+								checkoutResult = new SCheckoutResult();
+								checkoutResult.setSerializerOid(downloadParameters.getSerializerOid());
+								checkoutResult.setFile(new DataHandler(new MessagingStreamingDataSource(messagingSerializer)));
 							} catch (SerializerException e) {
 								e.printStackTrace();
 							}
