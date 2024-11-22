@@ -56,7 +56,7 @@ public class Jsr356Impl implements StreamingSocketInterface, ServletContextListe
 	private Streamer streamer;
 	private Session websocketSession;
 	
-	// This is a static reference unfortunately. This is because the only other
+	// This is a static reference, unfortunately. This is because the only other
 	// way of getting the ServletContext (and thus BimServer instance)
 	// to the websocket methods would be via the httpsession, which we don't
 	// have/use/want. This will probably be fixed in a later

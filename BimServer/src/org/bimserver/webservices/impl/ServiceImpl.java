@@ -1259,7 +1259,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			try {
 				Files.createDirectory(userDirIncoming);
 			} catch (FileAlreadyExistsException e) {
-				// Directory was probably created in the mean time (by checking-in a file as the
+				// Directory was probably created in the meantime (by checking-in a file as the
 				// same user)
 			}
 		}

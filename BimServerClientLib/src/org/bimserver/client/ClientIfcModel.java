@@ -830,7 +830,7 @@ public class ClientIfcModel extends IfcModel implements GeometryTarget {
 
 	/**
 	 * 
-	 * This method requires IfcPlugins to be loaded (either on the default cp, or a a BIMserver plugin)
+	 * This method requires IfcPlugins to be loaded (either on the default cp, or a BIMserver plugin)
 	 * 
 	 */
 	public void checkin(long poid, String comment) throws ServerException, UserException, PublicInterfaceNotFoundException {

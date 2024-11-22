@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EReference;
 /*
  * WaitingObject's are used when while reading, a reference is encountered that has not yet been
  * parsed. In that case a WaitingObject is created and stored in a map. As soon as the referenced
- * object get's parsed, all that object's waiting objects are connected to the original object.
+ * object gets parsed, all that object's waiting objects are connected to the original object.
  */
 public class ListWaitingObject extends WaitingObject {
 

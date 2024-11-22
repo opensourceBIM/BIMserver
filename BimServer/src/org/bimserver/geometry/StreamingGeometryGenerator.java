@@ -925,7 +925,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		String queryNameSpace = lowerCasePackage + "-stdlib";
 		
 		if (eClass.getName().equals("IfcAnnotation")) {
-			// IfcAnnotation also has the field ContainedInStructure, but that is it's own field (looks like a hack on the IFC-spec side)
+			// IfcAnnotation also has the field ContainedInStructure, but that is its own field (looks like a hack on the IFC-spec side)
 			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":IfcAnnotationContainedInStructure", true));
 		} else {
 			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ContainedInStructure", true));
@@ -1058,7 +1058,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		String queryNameSpace = packageMetaData.getSchema().name().toLowerCase() + "-stdlib";
 		
 		if (eClass.getName().equals("IfcAnnotation")) {
-			// IfcAnnotation also has the field ContainedInStructure, but that is it's own field (looks like a hack on the IFC-spec side)
+			// IfcAnnotation also has the field ContainedInStructure, but that is its own field (looks like a hack on the IFC-spec side)
 			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":IfcAnnotationContainedInStructure", true));
 		} else {
 			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ContainedInStructure", true));
