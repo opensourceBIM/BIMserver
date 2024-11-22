@@ -23,10 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLDecoder;
+import java.net.*;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -1311,6 +1308,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		String username = "Unknown";
 		String userUsername = "Unknown";
 		try {
+			URLConnection connection = openAndCheckResponseCode(urlString);
 			Long topicId = initiateCheckin(poid, deserializerOid);
 
 			User user = (User) readOnlySession.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
@@ -1322,13 +1320,9 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				throw new UserException("No project found with poid " + poid);
 			}
 
-			URL url = new URL(urlString);
-			URLConnection openConnection = url.openConnection();
-			InputStream input = openConnection.getInputStream();
-
 			Path incomingFile = getIncomingFileName(fileName, urlString, userUsername);
 
-			return checkinInternal(topicId, poid, comment, deserializerOid, (long) openConnection.getContentLength(), fileName, input, merge, true, readOnlySession, username, userUsername, project, incomingFile, -1);
+			return checkinInternal(topicId, poid, comment, deserializerOid, (long) connection.getContentLength(), fileName, connection.getInputStream(), merge, true, readOnlySession, username, userUsername, project, incomingFile, -1);
 
 //			DeserializerPluginConfiguration deserializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, OldQuery.getDefault());
 //			if (deserializerPluginConfiguration == null) {
@@ -1368,6 +1362,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		String username = "Unknown";
 		String userUsername = "Unknown";
 		try {
+			URLConnection connection = openAndCheckResponseCode(urlString);
 			Long topicId = initiateCheckin(poid, deserializerOid);
 
 			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
@@ -1387,9 +1382,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				throw new UserException("No project found with poid " + poid);
 			}
 
-			URL url = new URL(urlString);
-			URLConnection openConnection = url.openConnection();
-			InputStream input = openConnection.getInputStream();
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS");
 			if (fileName == null) {
 				if (urlString.contains("/")) {
@@ -1409,7 +1401,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				fileName = fileName.replace(" ", "_");
 			}
 
-			SLongCheckinActionState checkinInternal = checkinInternal(topicId, poid, comment, deserializerOid, (long) openConnection.getContentLength(), fileName, input, merge, false, session, username, userUsername, project, file, -1);
+			SLongCheckinActionState checkinInternal = checkinInternal(topicId, poid, comment, deserializerOid, (long) connection.getContentLength(), fileName, connection.getInputStream(), merge, false, session, username, userUsername, project, file, -1);
 			return checkinInternal.getTopicId();
 //			DeserializerPluginConfiguration deserializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, OldQuery.getDefault());
 //			if (deserializerPluginConfiguration == null) {
@@ -1424,7 +1416,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 //			deserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 //
 //			IfcModelInterface model = deserializer.read(inputStream, fileName, 0, null);
-//			
+//
 //			CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, fileName, merge);
 //			LongCheckinAction longAction = new LongCheckinAction(-1L, getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
 //			getBimServer().getLongActionManager().start(longAction);
@@ -1440,6 +1432,23 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		} finally {
 			session.close();
 		}
+	}
+
+	private static URLConnection openAndCheckResponseCode(String urlString) throws IOException, UserException {
+		URL url = new URL(urlString);
+		URLConnection connection = url.openConnection();
+		if(connection instanceof HttpURLConnection){
+			HttpURLConnection httpConnection = (HttpURLConnection) connection;
+			int responseCode = httpConnection.getResponseCode();
+			if(responseCode != HttpURLConnection.HTTP_OK){
+				if (responseCode ==HttpURLConnection.HTTP_MOVED_PERM || responseCode == HttpURLConnection.HTTP_MOVED_TEMP){
+					String next = httpConnection.getHeaderField("Location");
+					throw new UserException("Redirecting to " + next + ", use this URL directly.");
+				}
+				throw new UserException("Connection error, HTTP status " + responseCode);
+			}
+		}
+		return connection;
 	}
 
 	@Override
