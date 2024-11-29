@@ -56,6 +56,7 @@ import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.webservices.LongTransaction;
 import org.bimserver.webservices.NoTransactionException;
 import org.bimserver.webservices.ServiceMap;
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
@@ -543,7 +544,13 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 			Object eGet = object.eGet(eStructuralFeature);
 			if (eGet instanceof IdEObject) {
 				IdEObject refObject = (IdEObject)eGet;
-				return refObject.eGet(refObject.eClass().getEStructuralFeature("wrappedValue"));
+				EStructuralFeature wrappedFeature = refObject.eClass().getEStructuralFeature("wrappedValue");
+				Object wrappedValue = refObject.eGet(wrappedFeature);
+				if(wrappedFeature.getEType().getName().equals("Tristate")){
+					String tristateLiteral = ((Enumerator) wrappedValue).getLiteral();
+					return tristateLiteral.equals("UNDEFINED") ? null : Boolean.valueOf(tristateLiteral.toLowerCase());
+				}
+				return wrappedValue;
 			}
 			return eGet;
 		} catch (Exception e) {
