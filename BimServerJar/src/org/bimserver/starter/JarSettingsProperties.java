@@ -11,6 +11,14 @@ import java.util.Properties;
 
 public class JarSettingsProperties {
 
+	static final String DEFAULT_JVM = "default";
+	static final String DEFAULT_STACKSIZE = "1024k";
+	static final boolean DEFAULT_FORCEIP4 = false;
+
+	private String jvm;
+	private String stacksize;
+	private boolean forceipv4;
+
 	private String homedir = new File("home").getAbsolutePath();
 
 	private String address = "localhost";
@@ -44,6 +52,9 @@ public class JarSettingsProperties {
 				try (InputStream inputStream = Files.newInputStream(path)) {
 					properties.load(inputStream);
 				}
+				jarSettingsProperties.setJvm(properties.getProperty("jvm", DEFAULT_JVM));
+				jarSettingsProperties.setStacksize(properties.getProperty("stacksize",DEFAULT_STACKSIZE));
+				jarSettingsProperties.setForceipv4(Boolean.parseBoolean(properties.getProperty("forceip4", String.valueOf(DEFAULT_FORCEIP4))));
 				jarSettingsProperties.setHomedir(properties.getProperty("homedir"));
 				jarSettingsProperties.setAddress(properties.getProperty("address"));
 				jarSettingsProperties.setUseProxy(Boolean.parseBoolean(properties.getProperty("useProxy")));
@@ -61,6 +72,9 @@ public class JarSettingsProperties {
 	public void save() {
 		Properties properties = new Properties();
 
+		properties.setProperty("jvm", getJvm());
+		properties.setProperty("stacksize", getStacksize());
+		properties.setProperty("forceipv4", String.valueOf(isForceipv4()));
 		properties.setProperty("homedir", getHomedir());		
 		properties.setProperty("address", getAddress());		
 		properties.setProperty("useProxy", String.valueOf(isUseProxy()));
@@ -75,6 +89,18 @@ public class JarSettingsProperties {
 			e.printStackTrace();
 		}
 	}
+
+	public String getJvm() { return jvm; }
+
+	public void setJvm(String jvm) { this.jvm = jvm; }
+
+	public String getStacksize() { return stacksize; }
+
+	public void setStacksize(String stacksize) { this.stacksize = stacksize; }
+
+	public boolean isForceipv4() { return forceipv4; }
+
+	public void setForceipv4(boolean forceipv4) { this.forceipv4 = forceipv4; }
 
 	public String getHomedir() {
 		return homedir;
