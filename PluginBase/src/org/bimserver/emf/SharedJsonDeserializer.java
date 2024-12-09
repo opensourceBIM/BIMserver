@@ -205,13 +205,13 @@ public class SharedJsonDeserializer {
 							if (eClass == StorePackage.eINSTANCE.getIfcHeader()) {
 								object = (IdEObjectImpl) StoreFactory.eINSTANCE.createIfcHeader();
 							} else {
-								object = (IdEObjectImpl) model.create(eClass, oid);
+								object = model.create(eClass, oid);
 							}
 						}
 						
 						object.useInverses(false);
-						((IdEObjectImpl)object).setUuid(uuid);
-						((IdEObjectImpl)object).setRid(rid);
+						object.setUuid(uuid);
+						object.setRid(rid);
 		
 						if (jsonReader.nextName().equals("_s")) {
 							int state = jsonReader.nextInt();
@@ -280,6 +280,7 @@ public class SharedJsonDeserializer {
 																innerList.add(readPrimitive(jsonReader, listFeature));
 															}
 														} else {
+															int innerIndex = 0;
 															while (jsonReader.hasNext()){
 																jsonReader.beginObject();
 																String nextName = jsonReader.nextName();
@@ -300,14 +301,21 @@ public class SharedJsonDeserializer {
 																	long referenceOid = jsonReader.nextLong();
 																	if (jsonReader.nextName().equals("_t")) {
 																		String refType = jsonReader.nextString();
-																		IdEObject refObject = (IdEObject) model.create(model.getPackageMetaData().getEClassIncludingDependencies(refType), referenceOid);
-																		((IdEObjectImpl)refObject).setLoadingState(State.OPPOSITE_SETTING);
-																		model.add(refObject.getOid(), refObject);
-																		addToList(listFeature, index, innerList, refObject);
-																		((IdEObjectImpl)refObject).setLoadingState(State.TO_BE_LOADED);
+																		if(model.containsNoFetch(referenceOid)){
+																			addToList(listFeature, innerIndex, innerList, model.get(referenceOid));
+																		} else {
+																			IdEObject refObject;
+																			refObject = model.create(model.getPackageMetaData().getEClassIncludingDependencies(refType), referenceOid);
+																			((IdEObjectImpl)refObject).setLoadingState(State.OPPOSITE_SETTING);
+																			model.add(refObject.getOid(), refObject);
+																			addToList(listFeature, innerIndex, innerList, refObject);
+																			((IdEObjectImpl)refObject).setLoadingState(State.TO_BE_LOADED);
+																			// TODO use waiting list to track dangling references? - see processRef method which currently does not work for 2D lists
+																		}
 																	}
 																}
 																jsonReader.endObject();
+																innerIndex++;
 															}
 														}
 														jsonReader.endArray();
@@ -364,7 +372,6 @@ public class SharedJsonDeserializer {
 														if (jsonReader.nextName().equals("_t")) {
 															String refType = jsonReader.nextString();
 															EClass referenceEClass = model.getPackageMetaData().getEClassIncludingDependencies(refType);
-		
 															if (model.getNoFetch(refOid) != null) {
 																processRef(model, waitingList, object, eStructuralFeature, index, list, refOid);
 															} else {
