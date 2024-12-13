@@ -139,7 +139,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 							HashMapVirtualObject byOid = getByOid(r, true);
 							int index = object.addDirectListReference(eReference, byOid);
 							object.addUseForSerialization(eReference, index);
-							processPossibleIncludes(byOid, byOid.eClass(), include);
+							// processPossibleIncludes(byOid, byOid.eClass(), include);
 						}
 					} else {
 						if (ref instanceof Long) {
@@ -149,7 +149,7 @@ public abstract class DatabaseReadingStackFrame extends StackFrame implements Ob
 							}
 							object.setDirectReference(eReference, byOid);
 							object.addUseForSerialization(eReference);
-							processPossibleIncludes(byOid, byOid.eClass(), include);
+							// processPossibleIncludes(byOid, byOid.eClass(), include);
 						} else {
 							object.setDirectReference(eReference, (HashMapWrappedVirtualObject)ref);
 						}
