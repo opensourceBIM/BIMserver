@@ -64,7 +64,7 @@ import javax.swing.event.DocumentListener;
 public class Starter extends JFrame {
 	private static final long serialVersionUID = 5356018168589837130L;
 	private Process exec;
-	private JarSettingsProperties jarSettings = JarSettingsProperties.readFromFile();
+	private final JarSettingsProperties jarSettings = JarSettingsProperties.readFromFile();
 	private JTextField addressField;
 	private JTextField portField;
 	private JTextField heapSizeField;

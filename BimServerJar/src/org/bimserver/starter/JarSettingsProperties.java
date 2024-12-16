@@ -11,34 +11,31 @@ import java.util.Properties;
 
 public class JarSettingsProperties {
 
-	static final String DEFAULT_JVM = "default";
-	static final String DEFAULT_STACKSIZE = "1024k";
-	static final boolean DEFAULT_FORCEIP4 = false;
+	private static final String DEFAULT_JVM = "default";
+	private static final String DEFAULT_STACKSIZE = "1024k";
+	private static final String DEFAULT_HOMEDIR = new File("home").getAbsolutePath();
+	private static final String DEFAULT_ADDRESS = "localhost";
+	private static final int DEFAULT_PROXYPORT = 1080;
+	private static final int DEFAULT_PORT =  8082;
+	private static final String DEFAULT_HEAPSIZE;
+
+	static {
+		com.sun.management.OperatingSystemMXBean os = (com.sun.management.OperatingSystemMXBean) java.lang.management.ManagementFactory.getOperatingSystemMXBean();
+		long physicalMemorySize = os.getTotalPhysicalMemorySize();
+		DEFAULT_HEAPSIZE = 	Math.min(1024 * 1024 * 1024, physicalMemorySize / 2 / 1024 / 1024) + "m";
+	}
 
 	private String jvm;
 	private String stacksize;
-	private boolean forceipv4;
+	private boolean forceipv4 = false;
 
-	private String homedir = new File("home").getAbsolutePath();
-
-	private String address = "localhost";
-
-	private String proxyHost = "";
-
+	private String homedir;
+	private String address;
 	private boolean useProxy = false;
-
-	private int proxyPort = 1080;
-
-	private int port = 8082;
-
+	private String proxyHost = "";
+	private int proxyPort;
+	private int port;
 	private String heapsize;
-
-
-	public JarSettingsProperties() {
-		com.sun.management.OperatingSystemMXBean os = (com.sun.management.OperatingSystemMXBean) java.lang.management.ManagementFactory.getOperatingSystemMXBean();
-		long physicalMemorySize = os.getTotalPhysicalMemorySize();
-		heapsize = Math.min(1024 * 1024 * 1024, physicalMemorySize / 2 / 1024 / 1024) + "m";
-	}
 
 	public static JarSettingsProperties readFromFile() {
 		return readFromFile(Paths.get("settings.properties"));
@@ -54,14 +51,14 @@ public class JarSettingsProperties {
 				}
 				jarSettingsProperties.setJvm(properties.getProperty("jvm", DEFAULT_JVM));
 				jarSettingsProperties.setStacksize(properties.getProperty("stacksize",DEFAULT_STACKSIZE));
-				jarSettingsProperties.setForceipv4(Boolean.parseBoolean(properties.getProperty("forceip4", String.valueOf(DEFAULT_FORCEIP4))));
-				jarSettingsProperties.setHomedir(properties.getProperty("homedir"));
-				jarSettingsProperties.setAddress(properties.getProperty("address"));
+				jarSettingsProperties.setForceipv4(Boolean.parseBoolean(properties.getProperty("forceip4")));
+				jarSettingsProperties.setHomedir(properties.getProperty("homedir", DEFAULT_HOMEDIR));
+				jarSettingsProperties.setAddress(properties.getProperty("address", DEFAULT_ADDRESS));
 				jarSettingsProperties.setUseProxy(Boolean.parseBoolean(properties.getProperty("useProxy")));
 				jarSettingsProperties.setProxyHost(properties.getProperty("proxyHost"));
-				jarSettingsProperties.setProxyPort(Integer.parseInt(properties.getProperty("proxyPort")));
-				jarSettingsProperties.setPort(Integer.parseInt(properties.getProperty("port")));
-				jarSettingsProperties.setHeapsize(properties.getProperty("heapsize"));
+				jarSettingsProperties.setProxyPort(Integer.parseInt(properties.getProperty("proxyPort", String.valueOf(DEFAULT_PROXYPORT))));
+				jarSettingsProperties.setPort(Integer.parseInt(properties.getProperty("port", String.valueOf(DEFAULT_PORT))));
+				jarSettingsProperties.setHeapsize(properties.getProperty("heapsize", DEFAULT_HEAPSIZE));
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
