@@ -820,7 +820,6 @@ public class GeometryRunner implements Runnable {
 					}
 					try {
 						if (!notFoundObjects.isEmpty()) {
-							writeDebugFile(bytes, false, notFoundObjects);
 							StringBuilder sb = new StringBuilder();
 							for (Long key : notFoundObjects.keySet()) {
 								sb.append(key + " (" + notFoundObjects.get(key).getOid() + ")");
@@ -828,14 +827,13 @@ public class GeometryRunner implements Runnable {
 							}
 							sb.delete(sb.length() - 2, sb.length());
 							job.setException(new Exception("Missing objects in model (" + sb.toString() + ")"));
+							writeDebugFile(bytes, false, notFoundObjects);
 						} else if (writeOutputFiles) {
 							writeDebugFile(bytes, false, null);
 						}
 						in.close();
 					} catch (Throwable e) {
-
-					} finally {
-						
+						LOGGER.error("Error during debug file creation", e);
 					}
 					this.streamingGeometryGenerator.jobsDone.incrementAndGet();
 					this.streamingGeometryGenerator.updateProgress();
