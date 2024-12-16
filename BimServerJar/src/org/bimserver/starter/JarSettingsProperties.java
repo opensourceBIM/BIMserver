@@ -49,16 +49,16 @@ public class JarSettingsProperties {
 				try (InputStream inputStream = Files.newInputStream(path)) {
 					properties.load(inputStream);
 				}
-				jarSettingsProperties.setJvm(properties.getProperty("jvm", DEFAULT_JVM));
-				jarSettingsProperties.setStacksize(properties.getProperty("stacksize",DEFAULT_STACKSIZE));
+				jarSettingsProperties.setJvm(properties.getProperty("jvm"));
+				jarSettingsProperties.setStacksize(properties.getProperty("stacksize"));
 				jarSettingsProperties.setForceipv4(Boolean.parseBoolean(properties.getProperty("forceip4")));
-				jarSettingsProperties.setHomedir(properties.getProperty("homedir", DEFAULT_HOMEDIR));
-				jarSettingsProperties.setAddress(properties.getProperty("address", DEFAULT_ADDRESS));
+				jarSettingsProperties.setHomedir(properties.getProperty("homedir"));
+				jarSettingsProperties.setAddress(properties.getProperty("address"));
 				jarSettingsProperties.setUseProxy(Boolean.parseBoolean(properties.getProperty("useProxy")));
 				jarSettingsProperties.setProxyHost(properties.getProperty("proxyHost"));
-				jarSettingsProperties.setProxyPort(Integer.parseInt(properties.getProperty("proxyPort", String.valueOf(DEFAULT_PROXYPORT))));
-				jarSettingsProperties.setPort(Integer.parseInt(properties.getProperty("port", String.valueOf(DEFAULT_PORT))));
-				jarSettingsProperties.setHeapsize(properties.getProperty("heapsize", DEFAULT_HEAPSIZE));
+				jarSettingsProperties.setProxyPort(Integer.parseInt(properties.getProperty("proxyPort")));
+				jarSettingsProperties.setPort(Integer.parseInt(properties.getProperty("port")));
+				jarSettingsProperties.setHeapsize(properties.getProperty("heapsize"));
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -87,11 +87,11 @@ public class JarSettingsProperties {
 		}
 	}
 
-	public String getJvm() { return jvm; }
+	public String getJvm() { return jvm == null ? DEFAULT_JVM : jvm; }
 
 	public void setJvm(String jvm) { this.jvm = jvm; }
 
-	public String getStacksize() { return stacksize; }
+	public String getStacksize() { return stacksize == null ? DEFAULT_STACKSIZE : stacksize; }
 
 	public void setStacksize(String stacksize) { this.stacksize = stacksize; }
 
@@ -99,17 +99,13 @@ public class JarSettingsProperties {
 
 	public void setForceipv4(boolean forceipv4) { this.forceipv4 = forceipv4; }
 
-	public String getHomedir() {
-		return homedir;
-	}
+	public String getHomedir() { return homedir == null ? DEFAULT_HOMEDIR : homedir; }
 
 	public void setHomedir(String homedir) {
 		this.homedir = homedir;
 	}
 
-	public String getAddress() {
-		return address;
-	}
+	public String getAddress() { return address == null ? DEFAULT_ADDRESS : address; }
 
 	public void setAddress(String address) {
 		this.address = address;
@@ -132,7 +128,7 @@ public class JarSettingsProperties {
 	}
 
 	public int getProxyPort() {
-		return proxyPort;
+		return proxyPort == 0 ? DEFAULT_PORT : proxyPort;
 	}
 
 	public void setProxyPort(int proxyPort) {
@@ -148,7 +144,7 @@ public class JarSettingsProperties {
 	}
 
 	public String getHeapsize() {
-		return heapsize;
+		return heapsize == null ? DEFAULT_HEAPSIZE : heapsize;
 	}
 
 	public void setHeapsize(String heapsize) {
