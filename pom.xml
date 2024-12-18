@@ -7,7 +7,8 @@
 	<description>This is the parent pom, no idea why this is being released</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<jetty.version>9.4.44.v20210927</jetty.version>
+		<jetty.version>9.4.56.v20240826</jetty.version>
+		<cxf.version>3.5.10</cxf.version>
 	</properties>
 	<scm>
 		<url>https://github.com/opensourceBIM/BIMserver.git</url>

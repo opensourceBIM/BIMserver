@@ -56,7 +56,7 @@
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
-			<version>1.4</version>
+			<version>1.5</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.mail</groupId>
@@ -76,7 +76,7 @@
 		<dependency>
 			<groupId>com.googlecode.cqengine</groupId>
 			<artifactId>cqengine</artifactId>
-			<version>3.0.0</version>
+			<version>3.6.0</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.javassist</groupId>
@@ -87,7 +87,7 @@
 		<dependency>
 			<groupId>com.rometools</groupId>
 			<artifactId>rome</artifactId>
-			<version>1.7.1</version>
+			<version>1.19.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
@@ -112,7 +112,7 @@
 		<dependency>
 			<groupId>org.codehaus.jettison</groupId>
 			<artifactId>jettison</artifactId>
-			<version>1.5.2</version>
+			<version>1.5.4</version>
 		</dependency>
 		<dependency>
 			<groupId>com.thetransactioncompany</groupId>
@@ -127,7 +127,7 @@
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-javascript</artifactId>
-			<version>3.3.1</version>
+			<version>${cxf.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.oltu.oauth2</groupId>
