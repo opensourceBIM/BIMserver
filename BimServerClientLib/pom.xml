@@ -8,9 +8,6 @@
 		<artifactId>parent</artifactId>
 		<version>1.5.187-SNAPSHOT</version>
 	</parent>
-	<properties>
-		<cxf.version>3.5.8</cxf.version>
-	</properties>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<testSourceDirectory>test</testSourceDirectory>
