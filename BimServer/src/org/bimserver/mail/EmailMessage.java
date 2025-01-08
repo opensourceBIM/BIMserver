@@ -29,6 +29,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import com.googlecode.cqengine.query.simple.In;
 import org.bimserver.BimServer;
 import org.bimserver.models.store.ServerSettings;
 import org.bimserver.models.store.SmtpProtocol;
@@ -52,22 +53,22 @@ public class EmailMessage {
 	}
 
 	public void send() throws MessagingException, UserException {
-		Properties props = new Properties();
 		ServerSettings serverSettings = bimServer.getServerSettingsCache().getServerSettings();
-		props.put("mail.smtp.localhost", "bimserver.org");
-		String smtpProps = serverSettings.getSmtpProtocol() == SmtpProtocol.SMTPS ? "mail.smtps.port" : "mail.smtp.port";
-		
-		props.put("mail.smtp.connectiontimeout", 10000);
-		props.put("mail.smtp.timeout", 10000);
-		props.put("mail.smtp.writetimeout", 10000);
-		props.put("mail.smtp.host", serverSettings.getSmtpServer());
-		props.put("mail.smtp.port", serverSettings.getSmtpPort());
-		props.put("mail.smtp.auth", serverSettings.getSmtpUsername() != null);
-		
-		props.put(smtpProps, serverSettings.getSmtpPort());
-		
+
+		Properties props = new Properties();
+		props.setProperty("mail.smtp.connectiontimeout", Integer.toString(10000));
+		props.setProperty("mail.smtp.timeout", Integer.toString(10000));
+		props.setProperty("mail.smtp.writetimeout", Integer.toString(10000));
+		props.setProperty("mail.smtp.host", serverSettings.getSmtpServer());
+		props.setProperty("mail.smtp.port", Integer.toString(serverSettings.getSmtpPort()));
+		props.setProperty("mail.smtp.auth", Boolean.toString(serverSettings.getSmtpUsername() != null));
+
+		if (serverSettings.getSmtpProtocol() == SmtpProtocol.SMTPS) {
+			props.setProperty("mail.smtp.ssl.enable", "true");
+			props.setProperty("mail.smtp.ssl.protocols", "TLSv1.2 TLSv1.3");
+		}
 		if (serverSettings.getSmtpProtocol() == SmtpProtocol.STARTTLS) {
-			props.put("mail.smtp.starttls.enable","true");
+			props.setProperty("mail.smtp.starttls.enable","true");
 		}
 
 		Session session = null;
