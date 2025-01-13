@@ -2,17 +2,17 @@ package org.bimserver.servlets;
 
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
@@ -28,12 +28,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.fileupload.FileItemIterator;
-import org.apache.commons.fileupload.FileItemStream;
-import org.apache.commons.fileupload.MultipartStream.MalformedStreamException;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.fileupload.util.Streams;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.fileupload2.core.FileItemInput;
+import org.apache.commons.fileupload2.core.FileItemInputIterator;
+import org.apache.commons.fileupload2.core.MultipartInput.MalformedStreamException;
+import org.apache.commons.fileupload2.javax.JavaxServletFileUpload;
+
 import org.bimserver.BimServer;
 import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SLongCheckinActionState;
@@ -63,18 +63,18 @@ public class UploadServlet extends SubServlet {
 		}
 		response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
 		response.setHeader("Access-Control-Allow-Headers", "Content-Type");
-		
+
 		String token = (String)request.getSession().getAttribute("token");
-		
+
 		ObjectNode result = OBJECT_MAPPER.createObjectNode();
 		response.setContentType("text/json");
 		try {
-			boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+			boolean isMultipart = JavaxServletFileUpload.isMultipartContent(request);
 			long poid = -1;
 			String comment = null;
 			if (isMultipart) {
-				ServletFileUpload upload = new ServletFileUpload();
-				FileItemIterator iter = upload.getItemIterator(request);
+				JavaxServletFileUpload upload = new JavaxServletFileUpload();
+				FileItemInputIterator iter = upload.getItemIterator(request);
 				InputStream in = null;
 				String name = "";
 				long deserializerOid = -1;
@@ -85,31 +85,31 @@ public class UploadServlet extends SubServlet {
 				long topicId = -1;
 				try {
 					while (iter.hasNext()) {
-						FileItemStream item = iter.next();
+						FileItemInput item = iter.next();
 						if (item.isFormField()) {
 							if ("action".equals(item.getFieldName())) {
-								action = Streams.asString(item.openStream());
+								action = IOUtils.toString(item.getInputStream(), "UTF-8");
 							} else if ("token".equals(item.getFieldName())) {
-								token = Streams.asString(item.openStream());
+								token = IOUtils.toString(item.getInputStream(), "UTF-8");
 							} else if ("poid".equals(item.getFieldName())) {
-								poid = Long.parseLong(Streams.asString(item.openStream()));
+								poid = Long.parseLong(IOUtils.toString(item.getInputStream(), "UTF-8"));
 							} else if ("comment".equals(item.getFieldName())) {
-								comment = Streams.asString(item.openStream());
+								comment = IOUtils.toString(item.getInputStream(), "UTF-8");
 							} else if ("topicId".equals(item.getFieldName())) {
-								topicId = Long.parseLong(Streams.asString(item.openStream()));
+								topicId = Long.parseLong(IOUtils.toString(item.getInputStream(), "UTF-8"));
 							} else if ("sync".equals(item.getFieldName())) {
-								sync = Streams.asString(item.openStream()).equals("true");
+								sync = IOUtils.toString(item.getInputStream(), "UTF-8").equals("true");
 							} else if ("merge".equals(item.getFieldName())) {
-								merge = Streams.asString(item.openStream()).equals("true");
+								merge = IOUtils.toString(item.getInputStream(), "UTF-8").equals("true");
 							} else if ("compression".equals(item.getFieldName())) {
-								compression = Streams.asString(item.openStream());
+								compression = IOUtils.toString(item.getInputStream(), "UTF-8");
 							} else if ("deserializerOid".equals(item.getFieldName())) {
-								deserializerOid = Long.parseLong(Streams.asString(item.openStream()));
+								deserializerOid = Long.parseLong(IOUtils.toString(item.getInputStream(), "UTF-8"));
 							}
 						} else {
 							name = item.getName();
-							in = item.openStream();
-							
+							in = item.getInputStream();
+
 							if ("file".equals(action)) {
 								ServiceInterface serviceInterface = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
 								SFile file = new SFile();
@@ -128,13 +128,13 @@ public class UploadServlet extends SubServlet {
 								} else {
 									realStream = in;
 								}
-								
+
 								// When uploading in async mode, we want to return as soon as the whole stream has been read (that's not when the checkin process has finished!)
 								TriggerOnCloseInputStream triggerOnCloseInputStream = new TriggerOnCloseInputStream(realStream);
 								InputStreamDataSource inputStreamDataSource = new InputStreamDataSource(triggerOnCloseInputStream);
 								inputStreamDataSource.setName(name);
 								DataHandler ifcFile = new DataHandler(inputStreamDataSource);
-								
+
 								if (token != null) {
 									ServiceInterface service = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
 									if (topicId == -1) {
@@ -164,7 +164,7 @@ public class UploadServlet extends SubServlet {
 								result.put("exception", "No poid");
 							}
 						}
-					}					
+					}
 				} catch (MalformedStreamException e) {
 					LOGGER.error(comment);
 					LOGGER.error("", e);
