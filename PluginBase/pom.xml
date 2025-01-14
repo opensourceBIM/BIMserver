@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.opensourcebim</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.5.188-SNAPSHOT</version>
+		<version>1.5.187-SNAPSHOT</version>
 	</parent>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -178,7 +178,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>buildingsmartlibrary</artifactId>
-			<version>1.0.14</version>
+			<version>1.0.15</version>
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish</groupId>
