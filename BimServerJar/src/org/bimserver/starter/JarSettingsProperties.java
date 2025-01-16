@@ -128,7 +128,7 @@ public class JarSettingsProperties {
 	}
 
 	public int getProxyPort() {
-		return proxyPort == 0 ? DEFAULT_PORT : proxyPort;
+		return proxyPort == 0 ? DEFAULT_PROXYPORT : proxyPort;
 	}
 
 	public void setProxyPort(int proxyPort) {
@@ -136,7 +136,7 @@ public class JarSettingsProperties {
 	}
 
 	public int getPort() {
-		return port;
+		return port == 0 ? DEFAULT_PORT : port;
 	}
 
 	public void setPort(int port) {
