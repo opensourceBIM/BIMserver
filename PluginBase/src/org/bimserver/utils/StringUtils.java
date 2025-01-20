@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -193,7 +194,7 @@ public class StringUtils {
 			byte[] buffer = new byte[1024];
 			int red = fis.read(buffer);
 			while (red != -1) {
-				sb.append(new String(buffer, 0, red, Charsets.UTF_8));
+				sb.append(new String(buffer, 0, red, StandardCharsets.UTF_8));
 				red = fis.read(buffer);
 			}
 			fis.close();

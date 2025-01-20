@@ -19,6 +19,7 @@ package org.bimserver;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -151,6 +152,7 @@ public class AbstractLocalDevBimServerStarter {
 
 		ple.setPattern("%date %level [%thread] %logger{10} [%file:%line] %msg%n");
 		ple.setContext(lc);
+		ple.setCharset(Charset.defaultCharset());
 		ple.start();
 		FileAppender<ILoggingEvent> fileAppender = new FileAppender<ILoggingEvent>();
 		String filename = file.toAbsolutePath().toString();

@@ -20,12 +20,13 @@ package org.bimserver.utils;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 
 import com.google.common.base.Charsets;
 
 public class UTF8PrintWriter extends PrintWriter {
 
 	public UTF8PrintWriter(OutputStream out) {
-		super(new PrintWriter(new OutputStreamWriter(out, Charsets.UTF_8)), false);
+		super(new PrintWriter(new OutputStreamWriter(out, StandardCharsets.UTF_8)), false);
 	}
 }

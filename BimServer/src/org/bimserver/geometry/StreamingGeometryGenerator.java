@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.DoubleBuffer;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.DateFormat;
@@ -865,7 +866,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		}
 
 		Path file = folder.resolve("generationreport.html");
-		FileUtils.writeStringToFile(file.toFile(), report.toHtml());
+		FileUtils.writeStringToFile(file.toFile(), report.toHtml(), Charset.defaultCharset());
 	}
 	
 	// Pretty sure this is working correctly

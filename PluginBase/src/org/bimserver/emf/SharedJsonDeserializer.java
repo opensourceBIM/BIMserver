@@ -42,6 +42,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -112,7 +113,7 @@ public class SharedJsonDeserializer {
 			}
 			in = new ByteArrayInputStream(baos.toByteArray());
 		}
-		JsonReader jsonReader = new JsonReader(new BufferedReader(new InputStreamReader(in, Charsets.UTF_8)));
+		JsonReader jsonReader = new JsonReader(new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8)));
 		int nrObjects = 0;
 		try {
 			JsonToken peek = jsonReader.peek();

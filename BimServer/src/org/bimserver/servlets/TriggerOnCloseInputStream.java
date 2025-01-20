@@ -46,7 +46,7 @@ public class TriggerOnCloseInputStream extends InputStream {
 		if(latch.getCount()>0){  // Accept multiple calls to close() and ignore subsequent
 			// Read the rest of the inputstream
 			try {
-				IOUtils.copy(inputStream, new NullOutputStream());
+				IOUtils.copy(inputStream, NullOutputStream.INSTANCE);
 			} catch (EOFException e) {
 				// Skip, not a problem
 			}

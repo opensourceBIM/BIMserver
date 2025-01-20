@@ -18,6 +18,8 @@ package org.bimserver;
  *****************************************************************************/
 
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -106,6 +108,7 @@ public class JarBimServer {
 
 		ple.setPattern("%date %level [%thread] %logger{10} [%file:%line] %msg%n");
 		ple.setContext(lc);
+		ple.setCharset(Charset.defaultCharset());
 		ple.start();
 		FileAppender<ILoggingEvent> fileAppender = new FileAppender<ILoggingEvent>();
 		String filename = file.toAbsolutePath().toString();

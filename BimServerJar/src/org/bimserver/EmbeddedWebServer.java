@@ -56,7 +56,7 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 		context.setTempDirectory(bimServer.getHomeDir().resolve("jettytmp").toFile());
 
 		try {
-			org.eclipse.jetty.websocket.jsr356.server.ServerContainer configureContext = WebSocketServerContainerInitializer.configureContext(context);
+			org.eclipse.jetty.websocket.jsr356.server.ServerContainer configureContext = WebSocketServerContainerInitializer.initialize(context);
 			
 			// TODO this speeds up local loading, but for remote loading it's probably faster to enable permessage-deflate
 			configureContext.getWebSocketServerFactory().getExtensionFactory().unregister("permessage-deflate");

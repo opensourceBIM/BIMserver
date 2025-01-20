@@ -24,6 +24,7 @@ import java.net.ConnectException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -50,7 +51,7 @@ public class NetUtils {
 			InputStream in = openConnection.getInputStream();
 			IOUtils.copy(in, byteArrayOutputStream);
 			in.close();
-			return new String(byteArrayOutputStream.toByteArray(), Charsets.UTF_8);
+			return new String(byteArrayOutputStream.toByteArray(), StandardCharsets.UTF_8);
 		} catch (ConnectException e) {
 			throw new ConnectException(e.getMessage() + " (" + url.toString() + ")");
 		}

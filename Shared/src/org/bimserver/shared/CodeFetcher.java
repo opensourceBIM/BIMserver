@@ -23,6 +23,7 @@ import java.io.InputStream;
 import java.io.StringWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.shared.meta.SourceCodeFetcher;
@@ -49,7 +50,7 @@ final class CodeFetcher implements SourceCodeFetcher {
 				}
 				try {
 					StringWriter out = new StringWriter();
-					IOUtils.copy(inputStream, out);
+					IOUtils.copy(inputStream, out, StandardCharsets.UTF_8);
 					return out.toString();
 				} finally {
 					inputStream.close();

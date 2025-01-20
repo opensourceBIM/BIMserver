@@ -17,6 +17,7 @@ package org.bimserver.shared;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
+import java.nio.charset.StandardCharsets;
 import java.util.Set;
 
 /******************************************************************************
@@ -63,7 +64,7 @@ public abstract class AbstractHashMapVirtualObject {
 			return 8;
 		} else if (eDataType == EcorePackage.eINSTANCE.getEString()) {
 			if (val != null) {
-				return 4 + ((String) val).getBytes(Charsets.UTF_8).length;
+				return 4 + ((String) val).getBytes(StandardCharsets.UTF_8).length;
 			}
 			return 4;
 		} else if (eDataType == EcorePackage.eINSTANCE.getEByteArray()) {

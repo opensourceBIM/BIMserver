@@ -19,6 +19,7 @@ package org.bimserver.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -186,6 +187,7 @@ public class WarServerInitializer implements ServletContextListener {
 
 		ple.setPattern("%date %level [%thread] %logger{10} [%file:%line] %msg%n");
 		ple.setContext(lc);
+		ple.setCharset(Charset.defaultCharset());
 		ple.start();
 		FileAppender<ILoggingEvent> fileAppender = new FileAppender<ILoggingEvent>();
 		String filename = file.toAbsolutePath().toString();

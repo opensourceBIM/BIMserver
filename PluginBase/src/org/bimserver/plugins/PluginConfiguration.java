@@ -222,7 +222,7 @@ public class PluginConfiguration {
 			String settingName = parameter.getKey();
 			Object settingValue = parameter.getValue();
 			JsonNode jsonValue = convertToReportJson(settingValue, mapper);
-			jsonSettings.put(settingName, jsonValue);
+			jsonSettings.replace(settingName, jsonValue);
 		}
 		return jsonSettings;
 	}

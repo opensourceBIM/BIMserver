@@ -158,7 +158,7 @@ public class CodeMigrator {
 				public String get(Class<?> clazz) {
 					File javaFile = new File("../PluginBase/src/" + clazz.getName().replace(".", "/") + ".java");
 					try {
-						return FileUtils.readFileToString(javaFile);
+						return FileUtils.readFileToString(javaFile, "UTF-8");
 					} catch (IOException e) {
 						return null;
 					}
