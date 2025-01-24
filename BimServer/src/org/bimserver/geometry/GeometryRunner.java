@@ -125,7 +125,8 @@ public class GeometryRunner implements Runnable {
 
 	@Override
 	public void run() {
-		Thread.currentThread().setName("GeometryRunner");
+		Thread.currentThread().setName("GeometryRunner-" + job.getId());
+
 		long start = System.nanoTime();
 		job.setStartNanos(start);
 
@@ -181,7 +182,6 @@ public class GeometryRunner implements Runnable {
 					}
 				});
 				serializer.init(proxy, null, null, this.streamingGeometryGenerator.bimServer.getPluginManager(), this.streamingGeometryGenerator.packageMetaData);
-
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
 				IOUtils.copy(serializer.getInputStream(), baos);
 				bytes = baos.toByteArray();
@@ -838,13 +838,13 @@ public class GeometryRunner implements Runnable {
 					this.streamingGeometryGenerator.jobsDone.incrementAndGet();
 					this.streamingGeometryGenerator.updateProgress();
 				}
-			} catch (Exception e) {
+			} catch (Throwable e) {
 				StreamingGeometryGenerator.LOGGER.error("", e);
-				writeDebugFile(bytes, true, null);
+				if(bytes!=null) writeDebugFile(bytes, true, null);
 				job.setException(e);
 				// LOGGER.error("Original query: " + originalQuery, e);
 			}
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			StreamingGeometryGenerator.LOGGER.error("", e);
 			// LOGGER.error("Original query: " + originalQuery, e);
 		}

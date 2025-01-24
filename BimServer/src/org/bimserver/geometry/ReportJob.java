@@ -23,7 +23,7 @@ import java.util.Map;
 public class ReportJob {
 
 	private Map<Long, String> objects = new HashMap<>();
-	private Exception exception;
+	private Throwable exception;
 	private long end;
 	private long start;
 	private long cpuTimeMs;
@@ -49,7 +49,7 @@ public class ReportJob {
 		objects.put(oid, name);
 	}
 
-	public void setException(Exception exception) {
+	public void setException(Throwable exception) {
 		this.exception = exception;
 	}
 
@@ -69,7 +69,7 @@ public class ReportJob {
 		return objects;
 	}
 	
-	public Exception getException() {
+	public Throwable getException() {
 		return exception;
 	}
 	

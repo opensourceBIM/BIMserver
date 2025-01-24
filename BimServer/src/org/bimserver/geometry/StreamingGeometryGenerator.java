@@ -627,7 +627,8 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 			allJobsPushed = true;
 			
 			executor.shutdown();
-			executor.awaitTermination(24, TimeUnit.HOURS);
+			boolean terminated = executor.awaitTermination(24, TimeUnit.HOURS);
+			LOGGER.info(executor.getCompletedTaskCount() +"/"+executor.getTaskCount()+" jobs executed and " + (terminated ? "shutdown" : "timeout"));
 //			LOGGER.info(executor.getCompletedTaskCount() + " jobs executed");
 			
 			// Need total bounds
