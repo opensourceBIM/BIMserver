@@ -26,7 +26,6 @@ import org.bimserver.database.OldQuery;
 import org.bimserver.database.OperationType;
 import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.exceptions.NoSerializerFoundException;
 import org.bimserver.interfaces.objects.SCheckoutResult;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.*;
@@ -62,7 +61,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction implements
 	}
 
 	protected SCheckoutResult convertModelToCheckoutResult(Project project, String username, IfcModelInterface model, RenderEnginePlugin renderEnginePlugin, DownloadParameters downloadParameters)
-			throws UserException, NoSerializerFoundException {
+			throws UserException {
 		SCheckoutResult checkoutResult = new SCheckoutResult();
 		checkoutResult.setSerializerOid(downloadParameters.getSerializerOid());
 		if (model.isValid()) {
@@ -94,7 +93,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction implements
 	}
 
 	protected void executeAction(BimDatabaseAction<? extends IfcModelInterface> action, DownloadParameters downloadParameters, DatabaseSession session, boolean commit)
-			throws BimserverDatabaseException, UserException, NoSerializerFoundException, ServerException {
+			throws BimserverDatabaseException, UserException, ServerException {
 		try {
 			if (action == null) {
 				checkoutResult = new SCheckoutResult();
