@@ -26,8 +26,8 @@ public class CacheStoringEmfSerializerDataSource extends EmfSerializerDataSource
 
 	private RemovableFileOutputStream diskCacheOutputStream;
 
-	public CacheStoringEmfSerializerDataSource(Serializer serializer, String modelName, RemovableFileOutputStream diskCacheOutputStream) {
-		super(serializer, modelName);
+	public CacheStoringEmfSerializerDataSource(Serializer serializer, String modelName, DoneListener doneListener, RemovableFileOutputStream diskCacheOutputStream) {
+		super(serializer, modelName, doneListener);
 		this.diskCacheOutputStream = diskCacheOutputStream;
 	}
 	

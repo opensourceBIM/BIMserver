@@ -75,17 +75,17 @@ public abstract class LongAction implements Reporter, ProgressListener {
 		return progressTopic;
 	}
 	
-	protected void changeActionState(ActionState actiontState, String title, int progress) {
+	protected void changeActionState(ActionState actionState, String title, int progress) {
 		ActionState oldState = this.actionState;
-		if (actiontState == ActionState.FINISHED) {
+		if (actionState == ActionState.FINISHED) {
 			stop = new GregorianCalendar();
 		}
 		int oldProgress = this.progress.get();
 		String oldTitle = this.title;
 		this.title = title;
 		this.progress.set(progress);
-		this.actionState = actiontState;
-		if (oldState != actiontState || progress != oldProgress || !oldTitle.equals(title)) {
+		this.actionState = actionState;
+		if (oldState != actionState || progress != oldProgress || !oldTitle.equals(title)) {
 			if (title != null && oldTitle != null && !title.equals(oldTitle)) {
 				stage++;
 			}

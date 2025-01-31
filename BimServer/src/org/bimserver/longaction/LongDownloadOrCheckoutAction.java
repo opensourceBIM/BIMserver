@@ -29,13 +29,7 @@ import org.bimserver.emf.IfcModelInterface;
 import org.bimserver.exceptions.NoSerializerFoundException;
 import org.bimserver.interfaces.objects.SCheckoutResult;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.MessagingSerializerPluginConfiguration;
-import org.bimserver.models.store.PluginConfiguration;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.RenderEnginePluginConfiguration;
-import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.SerializerPluginConfiguration;
-import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.*;
 import org.bimserver.plugins.Reporter;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
 import org.bimserver.plugins.serializers.CacheStoringEmfSerializerDataSource;
@@ -83,10 +77,10 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction implements
 					if (getBimServer().getDiskCacheManager().contains(downloadParameters)) {
 						checkoutResult.setFile(new CachingDataHandler(getBimServer().getDiskCacheManager(), downloadParameters));
 					} else {
-						checkoutResult.setFile(new DataHandler(new CacheStoringEmfSerializerDataSource(serializer, model.getModelMetaData().getName(), getBimServer().getDiskCacheManager().startCaching(downloadParameters))));
+						checkoutResult.setFile(new DataHandler(new CacheStoringEmfSerializerDataSource(serializer, model.getModelMetaData().getName(), () -> changeActionState(ActionState.FINISHED, "Done", 100), getBimServer().getDiskCacheManager().startCaching(downloadParameters))));
 					}
 				} else {
-					checkoutResult.setFile(new DataHandler(new EmfSerializerDataSource(serializer, model.getModelMetaData().getName())));
+					checkoutResult.setFile(new DataHandler(new EmfSerializerDataSource(serializer, model.getModelMetaData().getName(), () -> changeActionState(ActionState.FINISHED, "Done", 100))));
 				}
 			} catch (SerializerException e) {
 				LOGGER.error("", e);

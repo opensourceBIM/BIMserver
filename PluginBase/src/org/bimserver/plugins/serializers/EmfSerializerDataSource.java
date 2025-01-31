@@ -25,11 +25,13 @@ import java.io.OutputStream;
 public class EmfSerializerDataSource extends ExtendedDataSource {
 
 	private final Serializer serializer;
+	private DoneListener doneListener;
 	private String modelName;
 
-	public EmfSerializerDataSource(Serializer serializer, String modelName) {
+	public EmfSerializerDataSource(Serializer serializer, String modelName, DoneListener doneListener) {
 		this.serializer = serializer;
 		this.modelName = modelName;
+		this.doneListener = doneListener;
 	}
 
 	@Override
@@ -63,5 +65,6 @@ public class EmfSerializerDataSource extends ExtendedDataSource {
 		} catch (EOFException e) {
 			// let this one slide
 		}
+		doneListener.done();
 	}
 }

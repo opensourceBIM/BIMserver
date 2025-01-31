@@ -261,12 +261,7 @@ public class LongStreamingDownloadAction extends LongAction {
 					}
 				}
 			} else {
-				StreamingSerializerDataSource streamingSerializerDataSource = new StreamingSerializerDataSource(filename, serializer, new DoneListener() {
-					@Override
-					public void done() {
-						changeActionState(ActionState.FINISHED, "Done", 100);
-					}
-				});
+				StreamingSerializerDataSource streamingSerializerDataSource = new StreamingSerializerDataSource(filename, serializer, () -> changeActionState(ActionState.FINISHED, "Done", 100));
 				checkoutResult.setFile(new DataHandler(streamingSerializerDataSource));
 			}
 		}
