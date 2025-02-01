@@ -150,8 +150,9 @@ public class LongStreamingDownloadAction extends LongAction {
 				downloadDescriptor = new DownloadDescriptor(packageMetaData, jsonQuery, roids, query, serializerOid, this.filename);
 				
 				if (getBimServer().getNewDiskCacheManager().contains(downloadDescriptor)) {
+					// TODO That has already been cecked in preparation?
 					cacheFile = getBimServer().getNewDiskCacheManager().get(downloadDescriptor);
-					FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(cacheFile);
+					FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(cacheFile, () -> changeActionState(ActionState.FINISHED, "Done", 100));
 					fileInputStreamDataSource.setName(downloadDescriptor.getFileNameWithoutExtension());
 					checkoutResult.setFile(new DataHandler(fileInputStreamDataSource));
 					
@@ -243,18 +244,13 @@ public class LongStreamingDownloadAction extends LongAction {
 			if (getBimServer().getNewDiskCacheManager().isEnabled()) {
 				if (getBimServer().getNewDiskCacheManager().contains(downloadDescriptor)) {
 					cacheFile = getBimServer().getNewDiskCacheManager().get(downloadDescriptor);
-					FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(cacheFile);
+					FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(cacheFile, () -> changeActionState(ActionState.FINISHED, "Done", 100));
 					fileInputStreamDataSource.setName(downloadDescriptor.getFileNameWithoutExtension());
 					checkoutResult.setFile(new DataHandler(fileInputStreamDataSource));
 				} else {
 					try {
 						NewDiskCacheOutputStream diskCacheOutputStream = getBimServer().getNewDiskCacheManager().startCaching(downloadDescriptor);
-						CacheStoringStreamingSerializerDataSource cacheStoringEmfSerializerDataSource = new CacheStoringStreamingSerializerDataSource(serializer, diskCacheOutputStream, new DoneListener() {
-							@Override
-							public void done() {
-								changeActionState(ActionState.FINISHED, "Done", 100);
-							}
-						}, downloadDescriptor.getFileNameWithoutExtension()); 
+						CacheStoringStreamingSerializerDataSource cacheStoringEmfSerializerDataSource = new CacheStoringStreamingSerializerDataSource(serializer, diskCacheOutputStream, () -> changeActionState(ActionState.FINISHED, "Done", 100), downloadDescriptor.getFileNameWithoutExtension());
 						checkoutResult.setFile(new DataHandler(cacheStoringEmfSerializerDataSource));
 					} catch (Exception e) {
 						LOGGER.error("", e);

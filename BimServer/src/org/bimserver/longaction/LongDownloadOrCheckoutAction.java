@@ -74,7 +74,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction implements
 				}
 				if (getBimServer().getServerSettingsCache().getServerSettings().getCacheOutputFiles() && serializer.allowCaching()) {
 					if (getBimServer().getDiskCacheManager().contains(downloadParameters)) {
-						checkoutResult.setFile(new CachingDataHandler(getBimServer().getDiskCacheManager(), downloadParameters));
+						checkoutResult.setFile(new CachingDataHandler(getBimServer().getDiskCacheManager(), downloadParameters, () -> changeActionState(ActionState.FINISHED, "Done", 100)));
 					} else {
 						checkoutResult.setFile(new DataHandler(new CacheStoringEmfSerializerDataSource(serializer, model.getModelMetaData().getName(), () -> changeActionState(ActionState.FINISHED, "Done", 100), getBimServer().getDiskCacheManager().startCaching(downloadParameters))));
 					}
@@ -97,7 +97,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction implements
 		try {
 			if (action == null) {
 				checkoutResult = new SCheckoutResult();
-				checkoutResult.setFile(new CachingDataHandler(getBimServer().getDiskCacheManager(), downloadParameters));
+				checkoutResult.setFile(new CachingDataHandler(getBimServer().getDiskCacheManager(), downloadParameters, () -> changeActionState(ActionState.FINISHED, "Done", 100)));
 				checkoutResult.setSerializerOid(downloadParameters.getSerializerOid());
 			} else {
 				Revision revision = session.get(StorePackage.eINSTANCE.getRevision(), downloadParameters.getRoid(), OldQuery.getDefault());

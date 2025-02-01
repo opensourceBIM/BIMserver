@@ -24,6 +24,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import org.bimserver.BimserverDatabaseException;
+import org.bimserver.plugins.serializers.DoneListener;
 import org.bimserver.plugins.serializers.ExtendedDataSource;
 import org.bimserver.plugins.serializers.ProgressReporter;
 import org.bimserver.plugins.serializers.SerializerException;
@@ -31,11 +32,13 @@ import org.bimserver.plugins.serializers.SerializerException;
 public class FileInputStreamDataSource extends ExtendedDataSource {
 
 	private final Path file;
+	private final DoneListener doneListener;
 	private String name;
 	private InputStream inputStream;
 	
-	public FileInputStreamDataSource(Path file) {
+	public FileInputStreamDataSource(Path file, DoneListener doneListener) {
 		this.file = file;
+		this.doneListener = doneListener;
 	}
 
 	@Override
@@ -78,6 +81,7 @@ public class FileInputStreamDataSource extends ExtendedDataSource {
 	@Override
 	public void writeToOutputStream(OutputStream outputStream, ProgressReporter progressReporter) throws SerializerException, IOException, BimserverDatabaseException {
 		copy(getInputStream(), outputStream, progressReporter, Files.size(file));
+		doneListener.done();
 	}
 	
 	private long copy(InputStream input, OutputStream output, ProgressReporter progressReporter, long totalSize) throws IOException {

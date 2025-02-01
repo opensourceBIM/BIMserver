@@ -376,8 +376,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			try {
 				longDownloadAction.waitForCompletion();
 				if (longDownloadAction.getErrors().isEmpty()) {
-					SCheckoutResult result = longDownloadAction.getCheckoutResult();
-					return result;
+					return longDownloadAction.getCheckoutResult();
 				} else {
 					LOGGER.error(longDownloadAction.getErrors().get(0));
 					throw new ServerException(longDownloadAction.getErrors().get(0));
