@@ -18,6 +18,7 @@ package org.bimserver.test;
  *****************************************************************************/
 
 import org.bimserver.LocalDevSetup;
+import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServiceException;
@@ -25,8 +26,10 @@ import org.bimserver.shared.exceptions.ServiceException;
 public class TestProtocolBuffers {
 	public static void main(String[] args) {
 		try {
-			BimServerClientInterface client = LocalDevSetup.setupSoap("http://localhost:8080");
-			System.out.println(client.getServiceInterface().getAllProjects(true, true));
+			BimServerClientInterface client = LocalDevSetup.setupProtocolBuffers("localhost");
+			for(SProject project : client.getServiceInterface().getAllProjects(true, true)){
+				System.out.println(project.getName());
+			}
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (PublicInterfaceNotFoundException e) {
