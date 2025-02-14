@@ -20,6 +20,7 @@ package org.bimserver.tests.serviceinterface;
 import static org.junit.Assert.fail;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Path;
@@ -33,41 +34,39 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.plugins.services.Flow;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.test.TestWithEmbeddedServer;
 import org.junit.Test;
 
 public class SingleCheckinAndDownloadSimplified extends TestWithEmbeddedServer {
 
 	@Test
-	public void test() {
-		try {
-			// Create a new BimServerClient with authentication
-			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+	public void test() throws ServiceException, ChannelConnectionException, IOException {
+		// Create a new BimServerClient with authentication
+		BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 
-			// Create a new project
-			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
-			
-			// Find a deserializer to use
-			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
-			
-			// This is the file we will be checking in
-			bimServerClient.checkinSync(newProject.getOid(), "test", deserializer.getOid(), false, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/export1.ifc"));
-			
-			// Find a serializer
-			SSerializerPluginConfiguration colladaSerializer = bimServerClient.getServiceInterface().getSerializerByContentType("application/ifc");
-			
-			// Get the project details
-			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
-			
-			// Download the latest revision  (the one we just checked in)
-			Long topicIdId = bimServerClient.getServiceInterface().download(Collections.singleton(newProject.getLastRevisionId()), DefaultQueries.allAsString(), colladaSerializer.getOid(), false); // Note: sync: false
-			InputStream downloadData = bimServerClient.getDownloadData(topicIdId);
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			IOUtils.copy(downloadData, baos);
-			System.out.println(baos.size() + " bytes downloaded");
-		} catch (Exception e) {
-			fail(e.getMessage());
-		}
+		// Create a new project
+		SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
+
+		// Find a deserializer to use
+		SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
+
+		// This is the file we will be checking in
+		bimServerClient.checkinSync(newProject.getOid(), "test", deserializer.getOid(), false, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/export1.ifc"));
+
+		// Find a serializer
+		SSerializerPluginConfiguration colladaSerializer = bimServerClient.getServiceInterface().getSerializerByContentType("application/ifc");
+
+		// Get the project details
+		newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
+
+		// Download the latest revision  (the one we just checked in)
+		Long topicIdId = bimServerClient.getServiceInterface().download(Collections.singleton(newProject.getLastRevisionId()), DefaultQueries.allAsString(), colladaSerializer.getOid(), false); // Note: sync: false
+		InputStream downloadData = bimServerClient.getDownloadData(topicIdId);
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		IOUtils.copy(downloadData, baos);
+		System.out.println(baos.size() + " bytes downloaded");
 	}
 }

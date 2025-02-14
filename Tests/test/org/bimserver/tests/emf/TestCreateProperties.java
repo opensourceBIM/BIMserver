@@ -39,7 +39,6 @@ import org.bimserver.models.ifc2x3tc1.IfcValue;
 import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.models.ifc2x3tc1.Tristate;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.BimServerClientException;

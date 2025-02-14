@@ -17,12 +17,7 @@ package org.bimserver.tests.emf;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import static org.junit.Assert.fail;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.nio.file.Paths;
 
 import org.bimserver.client.json.JsonBimServerClientFactory;
@@ -45,15 +40,16 @@ import org.bimserver.models.ifc2x3tc1.IfcProductRepresentation;
 import org.bimserver.models.ifc2x3tc1.IfcRelAggregates;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentationContext;
 import org.bimserver.models.ifc2x3tc1.IfcSpace;
-import org.bimserver.plugins.deserializers.Deserializer;
 import org.bimserver.plugins.serializers.Serializer;
+import org.bimserver.plugins.serializers.SerializerException;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.bimserver.shared.exceptions.BimServerClientException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.utils.RichIfcModel;
 import org.junit.Test;
-
-import com.google.common.io.Files;
 
 public class TestBigModelEmfRemote {
 	
@@ -61,22 +57,18 @@ public class TestBigModelEmfRemote {
 	private IfcProductRepresentation furnishingRep;
 
 	@Test
-	public void test() {
+	public void test() throws BimServerClientException, ServiceException, ChannelConnectionException, IfcModelInterfaceException, SerializerException, IOException {
 		boolean doreuse = true;
 		boolean useLowLevelCalls = false;
 		
-		try (BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080")){
+		BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
 			BimServerClientInterface bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
 			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
 			IfcModelInterface model = null;
-			if (useLowLevelCalls) {
-				model = bimServerClient.newModel(newProject, true);
-			} else {
-				model = new BasicIfcModel(bimServerClient.getMetaDataManager().getPackageMetaData("ifc2x3tc1"), null);
-			}
-			RichIfcModel richIfcModel = new RichIfcModel(model, !useLowLevelCalls);
+        model = new BasicIfcModel(bimServerClient.getMetaDataManager().getPackageMetaData("ifc2x3tc1"), null);
+        RichIfcModel richIfcModel = new RichIfcModel(model, !useLowLevelCalls);
 			
 			IfcBuilding ifcBuilding = richIfcModel.createDefaultProjectStructure(0, 0, 0);
 			
@@ -105,29 +97,18 @@ public class TestBigModelEmfRemote {
 			}
 			
 			long roid = -1;
-			if (useLowLevelCalls) {
-				roid = model.commit("Initial model");
-			} else {
-				Serializer serializer = new Ifc2x3tc1StepSerializer(null);
-				serializer.init(model, null, true);
-				ByteArrayOutputStream baos = new ByteArrayOutputStream();
-				serializer.writeToOutputStream(baos, null);
-				java.nio.file.Files.write(Paths.get("tmp.ifc"), baos.toByteArray());
-				
-				SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
-				SLongCheckinActionState checkinSync = bimServerClient.checkinSync(newProject.getOid(), "New", deserializer.getOid(), false, baos.size(), "newfile", new ByteArrayInputStream(baos.toByteArray()));
-				roid = checkinSync.getRoid();
-			}
+        Serializer serializer = new Ifc2x3tc1StepSerializer(null);
+        serializer.init(model, null, true);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        serializer.writeToOutputStream(baos, null);
+        java.nio.file.Files.write(Paths.get("tmp.ifc"), baos.toByteArray());
 
-			SSerializerPluginConfiguration serializerByContentType = bimServerClient.getServiceInterface().getSerializerByName("Ifc2x3tc1 (Streaming)");
+        SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
+        SLongCheckinActionState checkinSync = bimServerClient.checkinSync(newProject.getOid(), "New", deserializer.getOid(), false, baos.size(), "newfile", new ByteArrayInputStream(baos.toByteArray()));
+        roid = checkinSync.getRoid();
+
+        SSerializerPluginConfiguration serializerByContentType = bimServerClient.getServiceInterface().getSerializerByName("Ifc2x3tc1 (Streaming)");
 			bimServerClient.download(roid, serializerByContentType.getOid(), new FileOutputStream(new File("created.ifc")));
-		} catch (Throwable e) {
-			e.printStackTrace();
-			if (e instanceof AssertionError) {
-				throw (AssertionError)e;
-			}
-			fail(e.getMessage());
-		}
 	}
 
 	private void createSpace(RichIfcModel richIfcModel, IfcRepresentationContext representationContext, IfcLocalPlacement storeyPlacement, IfcRelAggregates storeyAggregation, int x, int y, boolean doreuse) throws IfcModelInterfaceException {

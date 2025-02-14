@@ -17,6 +17,7 @@ package org.bimserver.tests.ifc;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
+import java.io.IOException;
 import java.nio.file.Paths;
 
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
@@ -28,9 +29,12 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.client.json.JsonBimServerClientFactory;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 
 import com.google.common.base.Charsets;
+import org.bimserver.shared.exceptions.BimServerClientException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.junit.Test;
 
 import static org.junit.Assert.fail;
@@ -38,34 +42,27 @@ import static org.junit.Assert.fail;
 public class TestAddExtendedData {
 
 	@Test
-	public void test(){
-		try (BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080")){
-			BimServerClientInterface client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+	public void test() throws BimServerClientException, ServiceException, ChannelConnectionException, IOException {
+		BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
+		BimServerClientInterface client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 
-			SFile file = new SFile();
-			file.setData("test".getBytes(Charsets.UTF_8));
-			file.setMime("text");
-			file.setFilename("test.txt");
-			long fileId = client.getServiceInterface().uploadFile(file);
+		SFile file = new SFile();
+		file.setData("test".getBytes(Charsets.UTF_8));
+		file.setMime("text");
+		file.setFilename("test.txt");
+		long fileId = client.getServiceInterface().uploadFile(file);
 
-			SProject project = client.getServiceInterface().addProject("t2es035442t23", "ifc2x3tc1");
-			SDeserializerPluginConfiguration deserializerForExtension = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
-			SLongCheckinActionState checkinSync = client.checkinSync(project.getOid(), "initial", deserializerForExtension.getOid(), false, Paths.get("../../TestFiles/TestData/data/AC11-FZK-Haus-IFC.ifc"));
+		SProject project = client.getServiceInterface().addProject("t2es035442t23", "ifc2x3tc1");
+		SDeserializerPluginConfiguration deserializerForExtension = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
+		SLongCheckinActionState checkinSync = client.checkinSync(project.getOid(), "initial", deserializerForExtension.getOid(), false, Paths.get("../../TestFiles/TestData/data/AC11-FZK-Haus-IFC.ifc"));
 
-			SExtendedDataSchema extendedDataSchemaByNamespace = client.getServiceInterface().getExtendedDataSchemaByName("GEOMETRY_GENERATION_REPORT_JSON_1_1");
+		SExtendedDataSchema extendedDataSchemaByNamespace = client.getServiceInterface().getExtendedDataSchemaByName("GEOMETRY_GENERATION_REPORT_JSON_1_1");
 
-			SExtendedData extendedData = new SExtendedData();
-			extendedData.setFileId(fileId);
-			extendedData.setTitle("test3");
-			extendedData.setSchemaId(extendedDataSchemaByNamespace.getOid());
+		SExtendedData extendedData = new SExtendedData();
+		extendedData.setFileId(fileId);
+		extendedData.setTitle("test3");
+		extendedData.setSchemaId(extendedDataSchemaByNamespace.getOid());
 
-			client.getServiceInterface().addExtendedDataToRevision(checkinSync.getRoid(), extendedData);
-		} catch (Throwable e) {
-			e.printStackTrace();
-			if (e instanceof AssertionError) {
-				throw (AssertionError)e;
-			}
-			fail(e.getMessage());
-		}
+		client.getServiceInterface().addExtendedDataToRevision(checkinSync.getRoid(), extendedData);
 	}
 }

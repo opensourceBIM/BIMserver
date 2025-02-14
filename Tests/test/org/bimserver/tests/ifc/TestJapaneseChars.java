@@ -17,8 +17,7 @@ package org.bimserver.tests.ifc;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import static org.junit.Assert.fail;
-
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
 
@@ -26,8 +25,9 @@ import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.plugins.services.Flow;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.test.TestWithEmbeddedServer;
 import org.junit.Assert;
 import org.junit.Test;
@@ -38,24 +38,16 @@ public class TestJapaneseChars extends TestWithEmbeddedServer {
 	// TODO actually test the results, and not only whether it generates exceptions
 	
 	@Test
-	public void test() {
-		try {
-			bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
-			
-			test(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/ac16_sjis.ifc"), null);
-			test(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/ac16_unicode.ifc"), null);
-			test(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/revit2013_unicode.ifc"), "FILE_NAME.name is not an optional field, but $ used");
-			test(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/revit2013_unicode_fixed.ifc"), null);
-			test(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/revit2014_unicode.ifc"), null);
-			test(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/vectorworks_sjis.ifc"), null);
-			test(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/vectorworks_unicode.ifc"), null);
-		} catch (Throwable e) {
-			e.printStackTrace();
-			if (e instanceof AssertionError) {
-				throw (AssertionError)e;
-			}
-			fail(e.getMessage());
-		}
+	public void test() throws ServiceException, ChannelConnectionException, MalformedURLException {
+		bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+
+		test(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/ac16_sjis.ifc"), null);
+		test(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/ac16_unicode.ifc"), null);
+		test(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/revit2013_unicode.ifc"), "FILE_NAME.name is not an optional field, but $ used");
+		test(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/revit2013_unicode_fixed.ifc"), null);
+		test(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/revit2014_unicode.ifc"), null);
+		test(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/vectorworks_sjis.ifc"), null);
+		test(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/vectorworks_unicode.ifc"), null);
 	}
 	
 	public void test(URL url, String expectedMessage) {
