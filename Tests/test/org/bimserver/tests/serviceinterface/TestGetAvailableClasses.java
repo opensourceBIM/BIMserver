@@ -19,40 +19,38 @@ package org.bimserver.tests.serviceinterface;
 
 import static org.junit.Assert.fail;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.test.TestWithEmbeddedServer;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class TestGetAvailableClasses extends TestWithEmbeddedServer {
 	@Test
-	public void test() {
-		try {
-			// Create a new BimServerClient with authentication
-			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+	public void test() throws ServiceException, ChannelConnectionException, MalformedURLException {
+		// Create a new BimServerClient with authentication
+		BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 
-			// Create a new project
-			SProject mainProject = bimServerClient.getServiceInterface().addProject("main" + Math.random(), "ifc2x3tc1");
+		// Create a new project
+		SProject mainProject = bimServerClient.getServiceInterface().addProject("main" + Math.random(), "ifc2x3tc1");
 
-			// Find a deserializer to use
-			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", mainProject.getOid());
+		// Find a deserializer to use
+		SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", mainProject.getOid());
 
-			// Checkin
-			bimServerClient.checkinSync(mainProject.getOid(), "test", deserializer.getOid(), false, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/AC11-Institute-Var-2-IFC.ifc"));
+		// Checkin
+		bimServerClient.checkinSync(mainProject.getOid(), "test", deserializer.getOid(), false, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/AC11-Institute-Var-2-IFC.ifc"));
 
-			mainProject = bimServerClient.getServiceInterface().getProjectByPoid(mainProject.getOid());
-			
-			List<String> availableClassesInRevision = bimServerClient.getServiceInterface().getAvailableClassesInRevision(mainProject.getLastRevisionId());
-			Assert.assertEquals(117, availableClassesInRevision.size());
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail(e.getMessage());
-		}
+		mainProject = bimServerClient.getServiceInterface().getProjectByPoid(mainProject.getOid());
+
+		List<String> availableClassesInRevision = bimServerClient.getServiceInterface().getAvailableClassesInRevision(mainProject.getLastRevisionId());
+		Assert.assertEquals(117, availableClassesInRevision.size());
 	}
 }

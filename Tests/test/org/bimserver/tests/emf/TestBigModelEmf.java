@@ -17,9 +17,8 @@ package org.bimserver.tests.emf;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import static org.junit.Assert.fail;
-
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 import org.bimserver.emf.IfcModelInterface;
@@ -37,61 +36,56 @@ import org.bimserver.models.ifc2x3tc1.IfcRelAggregates;
 import org.bimserver.models.ifc2x3tc1.IfcRepresentationContext;
 import org.bimserver.models.ifc2x3tc1.IfcSpace;
 import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.bimserver.shared.exceptions.BimServerClientException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.test.TestWithEmbeddedServer;
 import org.bimserver.utils.RichIfcModel;
 import org.junit.Test;
 
 public class TestBigModelEmf extends TestWithEmbeddedServer {
 	@Test
-	public void test() {
-		try {
-			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
-			
-			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
-			
-			IfcModelInterface model = bimServerClient.newModel(newProject, true);
-			RichIfcModel richIfcModel = new RichIfcModel(model, false);
-			
-			IfcBuilding ifcBuilding = richIfcModel.createDefaultProjectStructure(100000, 0, 0);
-			
-			double offsetX = 100000;
-			
-			IfcRelAggregates buildingAggregation = richIfcModel.create(IfcRelAggregates.class);
-			buildingAggregation.setRelatingObject(ifcBuilding);
-			for (int i=1; i<=20; i++) {
-				IfcBuildingStorey ifcBuildingStorey = richIfcModel.create(IfcBuildingStorey.class);
-				ifcBuildingStorey.setName("Storey " + i);
-				ifcBuildingStorey.setCompositionType(IfcElementCompositionEnum.ELEMENT);
-				ifcBuildingStorey.setElevation(3000 * i);
-				
-				IfcLocalPlacement storeyPlacement = richIfcModel.create(IfcLocalPlacement.class);
-				storeyPlacement.setRelativePlacement(richIfcModel.createBasicPosition(offsetX, 0D, i * 3000D));
-				ifcBuildingStorey.setObjectPlacement(storeyPlacement);
-				
-				buildingAggregation.getRelatedObjects().add(ifcBuildingStorey);
-				
-				IfcRelAggregates storeyAggregation = richIfcModel.create(IfcRelAggregates.class);
-				storeyAggregation.setRelatingObject(ifcBuildingStorey);
-				
-				for (int x=1; x<=10; x++) {
-					for (int y=1; y<=10; y++) {
-						createSpace(richIfcModel, richIfcModel.getDefaultRepresentationContext(), storeyPlacement, storeyAggregation, x, y);
-					}
+	public void test() throws FileNotFoundException, ServiceException, ChannelConnectionException, BimServerClientException, IfcModelInterfaceException {
+		BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+
+		SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
+
+		IfcModelInterface model = bimServerClient.newModel(newProject, true);
+		RichIfcModel richIfcModel = new RichIfcModel(model, false);
+
+		IfcBuilding ifcBuilding = richIfcModel.createDefaultProjectStructure(100000, 0, 0);
+
+		double offsetX = 100000;
+
+		IfcRelAggregates buildingAggregation = richIfcModel.create(IfcRelAggregates.class);
+		buildingAggregation.setRelatingObject(ifcBuilding);
+		for (int i=1; i<=20; i++) {
+			IfcBuildingStorey ifcBuildingStorey = richIfcModel.create(IfcBuildingStorey.class);
+			ifcBuildingStorey.setName("Storey " + i);
+			ifcBuildingStorey.setCompositionType(IfcElementCompositionEnum.ELEMENT);
+			ifcBuildingStorey.setElevation(3000 * i);
+
+			IfcLocalPlacement storeyPlacement = richIfcModel.create(IfcLocalPlacement.class);
+			storeyPlacement.setRelativePlacement(richIfcModel.createBasicPosition(offsetX, 0D, i * 3000D));
+			ifcBuildingStorey.setObjectPlacement(storeyPlacement);
+
+			buildingAggregation.getRelatedObjects().add(ifcBuildingStorey);
+
+			IfcRelAggregates storeyAggregation = richIfcModel.create(IfcRelAggregates.class);
+			storeyAggregation.setRelatingObject(ifcBuildingStorey);
+
+			for (int x=1; x<=10; x++) {
+				for (int y=1; y<=10; y++) {
+					createSpace(richIfcModel, richIfcModel.getDefaultRepresentationContext(), storeyPlacement, storeyAggregation, x, y);
 				}
 			}
-			
-			long roid = model.commit("Initial model");
-
-			SSerializerPluginConfiguration serializerByContentType = bimServerClient.getServiceInterface().getSerializerByName("Ifc2x3tc1 (Streaming)");
-			bimServerClient.download(roid, serializerByContentType.getOid(), new FileOutputStream(new File("created.ifc")));
-		} catch (Throwable e) {
-			e.printStackTrace();
-			if (e instanceof AssertionError) {
-				throw (AssertionError)e;
-			}
-			fail(e.getMessage());
 		}
+
+		long roid = model.commit("Initial model");
+
+		SSerializerPluginConfiguration serializerByContentType = bimServerClient.getServiceInterface().getSerializerByName("Ifc2x3tc1 (Streaming)");
+		bimServerClient.download(roid, serializerByContentType.getOid(), new FileOutputStream(new File("created.ifc")));
 	}
 
 	private void createSpace(RichIfcModel richIfcModel, IfcRepresentationContext representationContext, IfcLocalPlacement storeyPlacement, IfcRelAggregates storeyAggregation, int x, int y) throws IfcModelInterfaceException {

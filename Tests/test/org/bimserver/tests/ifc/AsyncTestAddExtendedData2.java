@@ -17,6 +17,7 @@ package org.bimserver.tests.ifc;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
+import java.io.IOException;
 import java.nio.file.Paths;
 
 import org.apache.commons.lang3.RandomUtils;
@@ -30,9 +31,12 @@ import org.bimserver.interfaces.objects.SLongCheckinActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 
 import com.google.common.base.Charsets;
+import org.bimserver.shared.exceptions.BimServerClientException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.junit.Test;
 
 import static org.junit.Assert.fail;
@@ -40,48 +44,40 @@ import static org.junit.Assert.fail;
 public class AsyncTestAddExtendedData2 {
 
 	@Test
-	public void test() {
-		try (BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080")){
-			BimServerClientInterface client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
-			SFile file = new SFile();
-			file.setData("test".getBytes(Charsets.UTF_8));
-			file.setMime("text");
-			file.setFilename("test.txt");
-			long fileId = client.getServiceInterface().uploadFile(file);
+	public void test() throws BimServerClientException, ServiceException, ChannelConnectionException, IOException {
+		BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
+		BimServerClientInterface client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+		SFile file = new SFile();
+		file.setData("test".getBytes(Charsets.UTF_8));
+		file.setMime("text");
+		file.setFilename("test.txt");
+		long fileId = client.getServiceInterface().uploadFile(file);
 
-			SProject project = client.getServiceInterface().addProject(RandomUtils.nextInt(1, 100000000) + "", "ifc2x3tc1");
-			SDeserializerPluginConfiguration deserializerForExtension = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
-			long topicId = client.getServiceInterface().initiateCheckin(project.getOid(), deserializerForExtension.getOid());
-			client.checkinAsync(project.getOid(), "initial", deserializerForExtension.getOid(), false, Paths.get("../../TestFiles/TestData/data/AC11-FZK-Haus-IFC.ifc"), topicId);
+		SProject project = client.getServiceInterface().addProject(RandomUtils.nextInt(1, 100000000) + "", "ifc2x3tc1");
+		SDeserializerPluginConfiguration deserializerForExtension = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
+		long topicId = client.getServiceInterface().initiateCheckin(project.getOid(), deserializerForExtension.getOid());
+		client.checkinAsync(project.getOid(), "initial", deserializerForExtension.getOid(), false, Paths.get("../../TestFiles/TestData/data/AC11-FZK-Haus-IFC.ifc"), topicId);
 
-			while(true) {
-				SLongCheckinActionState progress = (SLongCheckinActionState) client.getNotificationRegistryInterface().getProgress(topicId);
-				System.out.println(progress.getState());
-				if (progress.getState() == SActionState.FINISHED) {
-					SExtendedDataSchema extendedDataSchemaByNamespace = client.getServiceInterface().getExtendedDataSchemaByName("GEOMETRY_GENERATION_REPORT_JSON_1_1");
+		while(true) {
+			SLongCheckinActionState progress = (SLongCheckinActionState) client.getNotificationRegistryInterface().getProgress(topicId);
+			System.out.println(progress.getState());
+			if (progress.getState() == SActionState.FINISHED) {
+				SExtendedDataSchema extendedDataSchemaByNamespace = client.getServiceInterface().getExtendedDataSchemaByName("GEOMETRY_GENERATION_REPORT_JSON_1_1");
 
-					SExtendedData extendedData = new SExtendedData();
-					extendedData.setFileId(fileId);
-					extendedData.setTitle("test3");
-					extendedData.setSchemaId(extendedDataSchemaByNamespace.getOid());
+				SExtendedData extendedData = new SExtendedData();
+				extendedData.setFileId(fileId);
+				extendedData.setTitle("test3");
+				extendedData.setSchemaId(extendedDataSchemaByNamespace.getOid());
 
-					client.getServiceInterface().addExtendedDataToRevision(progress.getRoid(), extendedData);
+				client.getServiceInterface().addExtendedDataToRevision(progress.getRoid(), extendedData);
 
-					break;
-				}
-				try {
-					Thread.sleep(100);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				break;
 			}
-		} catch (Throwable e) {
-			e.printStackTrace();
-			if (e instanceof AssertionError) {
-				throw (AssertionError)e;
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
-			fail(e.getMessage());
 		}
-
 	}
 }
