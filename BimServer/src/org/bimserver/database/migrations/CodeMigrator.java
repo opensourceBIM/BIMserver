@@ -111,7 +111,6 @@ public class CodeMigrator {
 		LOGGER.info("Model migrated to version " + latestVersion);
 
 		LOGGER.info("Generating ServiceInterface objects...");
-		Set<EPackage> ePackages = new LinkedHashSet<EPackage>();
 		Path home = Paths.get("cmhome");
 		if (!Files.exists(home)) {
 			try {
@@ -134,6 +133,7 @@ public class CodeMigrator {
 
 		DataObjectGeneratorWrapper serviceGenerator = new DataObjectGeneratorWrapper(metaDataManager);
 
+		Set<EPackage> ePackages = new LinkedHashSet<>();
 		for (EPackage ePackage : schema.getEPackages()) {
 			if (!ePackage.getName().equals("ifc2x3tc1") && !ePackage.getName().equals("ifc4")) {
 				ePackages.add(ePackage);
