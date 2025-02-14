@@ -29,7 +29,7 @@ public class MetaInterfaceAdaptor implements org.bimserver.shared.interfaces.Met
 		return null;
 	}
 	
-	public org.bimserver.interfaces.objects.SServiceInterface getServiceInterface(java.lang.String getServiceInterface) throws UserException, ServerException {
+	public org.bimserver.interfaces.objects.SServiceInterface getServiceInterface(java.lang.String serverInterfaceName) throws UserException, ServerException {
 		return null;
 	}
 	
