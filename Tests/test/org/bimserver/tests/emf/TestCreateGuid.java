@@ -52,8 +52,8 @@ public class TestCreateGuid extends TestWithEmbeddedServer {
 
 		IfcModelInterface newModel = bimServerClient.getModel(newProject, roid, true, false);
 		List<IfcFurnishingElement> furnishingElements = newModel.getAllWithSubTypes(Ifc2x3tc1Package.eINSTANCE.getIfcFurnishingElement());
-        assertEquals("There must be 1 furnishing element, not " + furnishingElements.size(), 1, furnishingElements.size());
+        assertEquals("Invalid number of furnishing elements ", 1, furnishingElements.size());
 		IfcFurnishingElement newF = furnishingElements.get(0);
-        assertEquals("GUID must be 0uyjn9Jan3nRq36Uj6gwws", "0uyjn9Jan3nRq36Uj6gwws", newF.getGlobalId());
+        assertEquals("Invalid GUID", "0uyjn9Jan3nRq36Uj6gwws", newF.getGlobalId());
 	}
 }
