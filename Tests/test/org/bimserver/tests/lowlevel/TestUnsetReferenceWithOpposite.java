@@ -17,12 +17,12 @@ package org.bimserver.tests.lowlevel;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import static org.junit.Assert.fail;
-
 import java.util.Random;
 
 import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.test.TestWithEmbeddedServer;
 import org.junit.Test;
@@ -30,25 +30,24 @@ import org.junit.Test;
 public class TestUnsetReferenceWithOpposite extends TestWithEmbeddedServer {
 
 	@Test
-	public void test() {
-		try {
-			// Create a new BimServerClient with authentication
-			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
-			
-			// Get the service interface
-//			PluginInterface pluginInterface = bimServerClient.getPlugin();
-			
-			LowLevelInterface service = bimServerClient.getLowLevelInterface();
-			
-			Long projectId = bimServerClient.getServiceInterface().addProject("PG-unsetReferenceTest" + new Random().nextInt(), "ifc2x3tc1").getOid();
-			Long transactionId = service.startTransaction(projectId);
+	public void test() throws ServiceException, ChannelConnectionException {
+		// Create a new BimServerClient with authentication
+		BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 
-			Long ifcRelContainedInSpatialStructureId = service.createObject(transactionId, "IfcRelContainedInSpatialStructure", true);
-			Long ifcBuildingId = service.createObject(transactionId, "IfcBuilding", true);
-			service.setReference(transactionId, ifcRelContainedInSpatialStructureId,"RelatingStructure", ifcBuildingId);
+		// Get the service interface
+//			PluginInterface pluginInterface = bimServerClient.getPlugin();
+
+		LowLevelInterface service = bimServerClient.getLowLevelInterface();
+
+		Long projectId = bimServerClient.getServiceInterface().addProject("PG-unsetReferenceTest" + new Random().nextInt(), "ifc2x3tc1").getOid();
+		Long transactionId = service.startTransaction(projectId);
+
+		Long ifcRelContainedInSpatialStructureId = service.createObject(transactionId, "IfcRelContainedInSpatialStructure", true);
+		Long ifcBuildingId = service.createObject(transactionId, "IfcBuilding", true);
+		service.setReference(transactionId, ifcRelContainedInSpatialStructureId,"RelatingStructure", ifcBuildingId);
 
 //			Long revisionId = service.commitTransaction(transactionId, "comment");
-			
+
 //			SSerializerPluginConfiguration serializerByPluginClassName = pluginInterface.getSerializerByPluginClassName("org.bimserver.ifc.step.serializer.IfcStepSerializerPlugin");
 //			bimServerClient.download(revisionId, serializerByPluginClassName.getOid(), new File("1.ifc"));
 
@@ -57,9 +56,5 @@ public class TestUnsetReferenceWithOpposite extends TestWithEmbeddedServer {
 //			revisionId = service.commitTransaction(transactionId, "comment");
 
 //			bimServerClient.download(revisionId, serializerByPluginClassName.getOid(), new File("2.ifc"));
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail(e.getMessage());
-		}
 	}
 }
