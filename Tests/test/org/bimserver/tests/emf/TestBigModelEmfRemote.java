@@ -50,16 +50,29 @@ import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.utils.RichIfcModel;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
+@RunWith(Parameterized.class)
 public class TestBigModelEmfRemote {
 	
 	private IfcProductRepresentation spaceRep;
 	private IfcProductRepresentation furnishingRep;
+	private boolean useLowLevelCalls;
+
+	public TestBigModelEmfRemote(boolean useLowLevelCalls) {
+		this.useLowLevelCalls = useLowLevelCalls;
+	}
+
+	@Parameters
+	public static Object[] data() {
+		return new Object[] { false, true };
+	}
 
 	@Test
 	public void test() throws BimServerClientException, ServiceException, ChannelConnectionException, IfcModelInterfaceException, SerializerException, IOException {
 		boolean doreuse = true;
-		boolean useLowLevelCalls = false;
 		
 		BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
 			BimServerClientInterface bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
@@ -67,48 +80,56 @@ public class TestBigModelEmfRemote {
 			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
 			IfcModelInterface model = null;
-        model = new BasicIfcModel(bimServerClient.getMetaDataManager().getPackageMetaData("ifc2x3tc1"), null);
+		if (useLowLevelCalls) {
+			model = bimServerClient.newModel(newProject, true);
+		} else {
+			model = new BasicIfcModel(bimServerClient.getMetaDataManager().getPackageMetaData("ifc2x3tc1"), null);
+		}
         RichIfcModel richIfcModel = new RichIfcModel(model, !useLowLevelCalls);
 			
-			IfcBuilding ifcBuilding = richIfcModel.createDefaultProjectStructure(0, 0, 0);
-			
-			IfcRelAggregates buildingAggregation = richIfcModel.create(IfcRelAggregates.class);
-			buildingAggregation.setRelatingObject(ifcBuilding);
-			for (int i=1; i<=200; i++) {
-				IfcBuildingStorey ifcBuildingStorey = richIfcModel.create(IfcBuildingStorey.class);
-				ifcBuildingStorey.setName("Storey " + i);
-				ifcBuildingStorey.setCompositionType(IfcElementCompositionEnum.ELEMENT);
-				ifcBuildingStorey.setElevation(3000 * i);
-				
-				IfcLocalPlacement storeyPlacement = richIfcModel.create(IfcLocalPlacement.class);
-				storeyPlacement.setRelativePlacement(richIfcModel.createBasicPosition(0, 0, i * 3000));
-				ifcBuildingStorey.setObjectPlacement(storeyPlacement);
-				
-				buildingAggregation.getRelatedObjects().add(ifcBuildingStorey);
-				
-				IfcRelAggregates storeyAggregation = richIfcModel.create(IfcRelAggregates.class);
-				storeyAggregation.setRelatingObject(ifcBuildingStorey);
-				
-				for (int x=1; x<=40; x++) {
-					for (int y=1; y<=40; y++) {
-						createSpace(richIfcModel, richIfcModel.getDefaultRepresentationContext(), storeyPlacement, storeyAggregation, x, y, doreuse);
-					}
+		IfcBuilding ifcBuilding = richIfcModel.createDefaultProjectStructure(0, 0, 0);
+
+		IfcRelAggregates buildingAggregation = richIfcModel.create(IfcRelAggregates.class);
+		buildingAggregation.setRelatingObject(ifcBuilding);
+		for (int i=1; i<=200; i++) {
+			IfcBuildingStorey ifcBuildingStorey = richIfcModel.create(IfcBuildingStorey.class);
+			ifcBuildingStorey.setName("Storey " + i);
+			ifcBuildingStorey.setCompositionType(IfcElementCompositionEnum.ELEMENT);
+			ifcBuildingStorey.setElevation(3000 * i);
+
+			IfcLocalPlacement storeyPlacement = richIfcModel.create(IfcLocalPlacement.class);
+			storeyPlacement.setRelativePlacement(richIfcModel.createBasicPosition(0, 0, i * 3000));
+			ifcBuildingStorey.setObjectPlacement(storeyPlacement);
+
+			buildingAggregation.getRelatedObjects().add(ifcBuildingStorey);
+
+			IfcRelAggregates storeyAggregation = richIfcModel.create(IfcRelAggregates.class);
+			storeyAggregation.setRelatingObject(ifcBuildingStorey);
+
+			for (int x=1; x<=40; x++) {
+				for (int y=1; y<=40; y++) {
+					createSpace(richIfcModel, richIfcModel.getDefaultRepresentationContext(), storeyPlacement, storeyAggregation, x, y, doreuse);
 				}
 			}
-			
-			long roid = -1;
-        Serializer serializer = new Ifc2x3tc1StepSerializer(null);
-        serializer.init(model, null, true);
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        serializer.writeToOutputStream(baos, null);
-        java.nio.file.Files.write(Paths.get("tmp.ifc"), baos.toByteArray());
+		}
 
-        SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
-        SLongCheckinActionState checkinSync = bimServerClient.checkinSync(newProject.getOid(), "New", deserializer.getOid(), false, baos.size(), "newfile", new ByteArrayInputStream(baos.toByteArray()));
-        roid = checkinSync.getRoid();
+		long roid = -1;
+		if (useLowLevelCalls) {
+			roid = model.commit("Initial model");
+		} else {
+			Serializer serializer = new Ifc2x3tc1StepSerializer(null);
+			serializer.init(model, null, true);
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			serializer.writeToOutputStream(baos, null);
+			java.nio.file.Files.write(Paths.get("tmp.ifc"), baos.toByteArray());
+
+			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
+			SLongCheckinActionState checkinSync = bimServerClient.checkinSync(newProject.getOid(), "New", deserializer.getOid(), false, baos.size(), "newfile", new ByteArrayInputStream(baos.toByteArray()));
+			roid = checkinSync.getRoid();
+		}
 
         SSerializerPluginConfiguration serializerByContentType = bimServerClient.getServiceInterface().getSerializerByName("Ifc2x3tc1 (Streaming)");
-			bimServerClient.download(roid, serializerByContentType.getOid(), new FileOutputStream(new File("created.ifc")));
+		bimServerClient.download(roid, serializerByContentType.getOid(), new FileOutputStream(new File("created.ifc")));
 	}
 
 	private void createSpace(RichIfcModel richIfcModel, IfcRepresentationContext representationContext, IfcLocalPlacement storeyPlacement, IfcRelAggregates storeyAggregation, int x, int y, boolean doreuse) throws IfcModelInterfaceException {
