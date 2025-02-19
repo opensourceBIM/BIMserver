@@ -17,8 +17,8 @@ package org.bimserver.tests.lowlevel;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import static org.junit.Assert.fail;
-
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
 
@@ -28,8 +28,10 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.plugins.services.Flow;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.bimserver.shared.exceptions.BimServerClientException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.test.TestWithEmbeddedServer;
 import org.junit.Test;
@@ -37,8 +39,7 @@ import org.junit.Test;
 public class TestSetString extends TestWithEmbeddedServer {
 
 	@Test
-	public void test() {
-		try {
+	public void test() throws ServiceException, ChannelConnectionException, IOException, BimServerClientException {
 			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			bimServerClient.getSettingsInterface().setCacheOutputFiles(false);
 			LowLevelInterface lowLevelInterface = bimServerClient.getLowLevelInterface();
@@ -64,9 +65,5 @@ public class TestSetString extends TestWithEmbeddedServer {
 			long roid = lowLevelInterface.commitTransaction(tid, "v2", false);
 			
 			bimServerClient.download(roid, serializer.getOid(), Paths.get("test3.ifc"));
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail(e.getMessage());
-		}
 	}
 }
