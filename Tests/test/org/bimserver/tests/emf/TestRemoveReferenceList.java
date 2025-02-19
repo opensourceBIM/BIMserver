@@ -96,7 +96,7 @@ public class TestRemoveReferenceList extends TestWithEmbeddedServer {
 		newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
 		model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true, false);
 		for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
-			assertEquals("Size should be 2, is " + ifcFurnishingElement.getContainedInStructure().size(), 2, ifcFurnishingElement.getContainedInStructure().size());
+			assertEquals("Invalid size ", 2, ifcFurnishingElement.getContainedInStructure().size());
 			assertEquals("link", "link1", ifcFurnishingElement.getContainedInStructure().get(0).getName());
 			assertEquals("link", "link3", ifcFurnishingElement.getContainedInStructure().get(1).getName());
 		}
