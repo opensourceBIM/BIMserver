@@ -1147,8 +1147,12 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		return size;
 	}
 
-	// TODO add color??
 	int hash(ByteBuffer indices, ByteBuffer vertices, ByteBuffer normals, ByteBuffer colors) {
+		indices.position(0);
+		vertices.position(0);
+		normals.position(0);
+		colors.position(0);
+		
 		int hashCode = 0;
 		hashCode += indices.hashCode();
 		hashCode += vertices.hashCode();
