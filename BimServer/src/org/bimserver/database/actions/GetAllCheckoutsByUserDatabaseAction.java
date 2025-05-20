@@ -30,8 +30,10 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
+import org.bimserver.webservices.authorization.Authorization;
 
 public class GetAllCheckoutsByUserDatabaseAction extends BimDatabaseAction<List<Checkout>> {
 
@@ -45,6 +47,9 @@ public class GetAllCheckoutsByUserDatabaseAction extends BimDatabaseAction<List<
 	@Override
 	public List<Checkout> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User user = getUserByUoid(uoid);
+		if (user.getUserType() == UserType.READ_ONLY) {
+			throw new UserException("Read-only user does not have access to this method");
+		}
 		Condition condition = new HasReferenceToCondition(StorePackage.eINSTANCE.getCheckout_User(), user);
 //		condition = condition.and(new AttributeCondition(StorePackage.eINSTANCE.getCheckout_Active(), new BooleanLiteral(true)));
 		Map<Long, Checkout> query = getDatabaseSession().query(condition, Checkout.class, OldQuery.getDefault());

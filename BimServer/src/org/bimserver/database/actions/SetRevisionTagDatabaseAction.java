@@ -21,20 +21,21 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.*;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.authorization.Authorization;
 import org.eclipse.emf.common.util.EList;
 
 public class SetRevisionTagDatabaseAction extends BimDatabaseAction<String> {
 	private final Long roid;
 	private final String tag;
+	private Authorization authorization;
 
-	public SetRevisionTagDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Long roid, String tag) {
+	public SetRevisionTagDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Long roid, String tag, Authorization authorization) {
 		super(databaseSession, accessMethod);
 		this.roid = roid;
 		this.tag = tag;
+		this.authorization = authorization;
 	}
 
 	@Override
@@ -42,6 +43,10 @@ public class SetRevisionTagDatabaseAction extends BimDatabaseAction<String> {
 		Revision revision = getRevisionByRoid(roid);
 		String trimmedTag = tag.trim();
 		Project project = revision.getProject();
+		User actingUser = getUserByUoid(authorization.getUoid());
+		if (actingUser.getUserType() == UserType.READ_ONLY) {
+			throw new UserException("User not allowed to set a tag on a revision");
+		}
 		if (project.getParent() != null) {
 			throw new UserException("Revision is not contained by a top project.");
 		}

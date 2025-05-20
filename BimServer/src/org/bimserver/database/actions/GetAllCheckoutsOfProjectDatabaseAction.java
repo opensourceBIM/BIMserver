@@ -30,26 +30,31 @@ import org.bimserver.database.OldQuery;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.HasReferenceToInCondition;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.Checkout;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.*;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
+import org.bimserver.webservices.authorization.Authorization;
 
 public class GetAllCheckoutsOfProjectDatabaseAction extends BimDatabaseAction<List<Checkout>> {
 
 	private final long poid;
 	private final boolean checkSubProjects;
+	private Authorization authorization;
 
-	public GetAllCheckoutsOfProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long poid, boolean checkSubProjects) {
+	public GetAllCheckoutsOfProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long poid, boolean checkSubProjects, Authorization authorization) {
 		super(databaseSession, accessMethod);
 		this.poid = poid;
 		this.checkSubProjects = checkSubProjects;
+		this.authorization = authorization;
 	}
 
 	@Override
 	public List<Checkout> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		User actingUser = getUserByUoid(authorization.getUoid());
 		Project project = getProjectByPoid(poid);
+		if (!authorization.hasRightsOnProject(actingUser, project)) {
+			throw new UserException("User does not have rights on project");
+		}
 		Set<Project> projects = new HashSet<Project>();
 		if (checkSubProjects) {
 			getSubProjects(project, projects);

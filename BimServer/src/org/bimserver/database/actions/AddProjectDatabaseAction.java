@@ -66,6 +66,9 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 		}
 		final Project project = getDatabaseSession().create(Project.class);
 		Project parentProject = null;
+		if (actingUser.getUserType() == UserType.READ_ONLY){
+			throw new UserException("Read-only users cannot create projects/subprojects");
+		}
 		if (parentPoid != -1) {
 			parentProject = getProjectByPoid(parentPoid);
 			project.setParent(parentProject);
