@@ -128,7 +128,8 @@ public class LongStreamingDownloadAction extends LongAction {
 				projectInfo.setBounds(getBimServer().getSConverter().convertToSObject(concreteRevision.getBounds()));
 				projectInfo.setBoundsUntranslated(getBimServer().getSConverter().convertToSObject(concreteRevision.getBoundsUntransformed()));
 				projectInfo.setMultiplierToMm(concreteRevision.getMultiplierToMm());
-				projectInfo.setName("" + roids.iterator().next());
+				//projectInfo.setName("" + roids.iterator().next());
+				projectInfo.setName("TESTING");
 				// TODO handle ROIDs with different schemas - reject or convert?
 				packageMetaData = getBimServer().getMetaDataManager().getPackageMetaData(revision.getProject().getSchema());
 				projectNames.add(revision.getProject().getName() + "." + revision.getId());

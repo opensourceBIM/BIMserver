@@ -126,7 +126,7 @@ public class Starter extends JFrame {
 			e.printStackTrace();
 		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("BIMserver Starter");
+		setTitle("BIMserver Starter 123123");
 		try {
 			setIconImage(ImageIO.read(getClass().getResource("logo_small.png")));
 		} catch (IOException e) {

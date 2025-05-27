@@ -20,10 +20,15 @@ package org.bimserver.database.actions;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.emf.IdEObject;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Project;
+import org.bimserver.models.store.StorePackage;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
+
+import java.util.List;
+
 public class GetProjectByUuidDatabaseAction extends BimDatabaseAction<Project> {
 
 	private final String uuid;
@@ -55,6 +60,8 @@ public class GetProjectByUuidDatabaseAction extends BimDatabaseAction<Project> {
 //			throw new UserException("User '" + user.getUsername() + "' has no rights on this project");
 //		}
 		// TODO reimplement
+		//List<IdEObject> projects = (List<IdEObject>) getDatabaseSession().query()
+
 		return null;
 	}
 }
