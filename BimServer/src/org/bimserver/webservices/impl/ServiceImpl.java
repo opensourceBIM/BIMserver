@@ -389,7 +389,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 
 	public Long download(DownloadParameters downloadParameters, Boolean sync) throws ServerException, UserException {
-
 		requireAuthenticationAndRunningServer();
 		User user = null;
 		for (long roid : downloadParameters.getRoids()) {
@@ -418,7 +417,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public Long download(Set<Long> roids, String jsonQuery, Long serializerOid, Boolean sync) throws ServerException, UserException {
-		LOGGER.info("Downloading projects with roids " + roids);
 		try {
 			String username = getAuthorization().getUsername();
 			DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
