@@ -38,8 +38,6 @@ import org.bimserver.interfaces.objects.SBounds;
 
 import org.bimserver.interfaces.objects.SVector3f;
 import org.bimserver.models.store.SIPrefix;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class ProjectInfo {
 	private String name;
@@ -142,9 +140,6 @@ public class ProjectInfo {
 	}
 
 	public void setMultiplierToMm(SIPrefix unit) {
-		 Logger LOGGER = LoggerFactory.getLogger(ProjectInfo.class);
-		 LOGGER.info("Setting: " + unit.getName() +" " + unit.getValue());
-		 LOGGER.info("Value: " + Math.pow(10, unit.getValue()+3));
 		this.multiplierToMm = (float) Math.pow(10, unit.getValue()+3);
 	}
 }
