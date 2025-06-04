@@ -25,6 +25,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.ModelComparePluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 
@@ -40,6 +41,9 @@ public class AddModelCompareDatabaseAction extends AddDatabaseAction<ModelCompar
 	@Override
 	public Long execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), OldQuery.getDefault());
+		if (user.getUserType() == UserType.READ_ONLY) {
+			throw new UserException("User has no rights for this call");
+		}
 		user.getUserSettings().getModelCompares().add(getIdEObject());
 		getDatabaseSession().store(user.getUserSettings());
 		return super.execute();

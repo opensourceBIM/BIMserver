@@ -23,10 +23,7 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.InternalServicePluginConfiguration;
-import org.bimserver.models.store.ObjectType;
-import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.User;
+import org.bimserver.models.store.*;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
@@ -45,6 +42,9 @@ public class AddInternalServiceDatabaseAction extends AddDatabaseAction<Internal
 	@Override
 	public Long execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), OldQuery.getDefault());
+		if (user.getUserType() == UserType.READ_ONLY) {
+			throw new UserException("User has no rights for this call");
+		}
 		InternalServicePluginConfiguration idEObject = getIdEObject();
 		idEObject.setUserSettings(user.getUserSettings());
 		Plugin plugin = bimServer.getPluginManager().getPlugin(idEObject.getPluginDescriptor().getIdentifier(), true);
