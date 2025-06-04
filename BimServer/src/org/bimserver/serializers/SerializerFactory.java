@@ -115,6 +115,7 @@ public class SerializerFactory {
 							ProjectInfo projectInfo = new ProjectInfo();
 							projectInfo.setName(project.getName());
 							projectInfo.setDescription(project.getDescription());
+							projectInfo.setMultiplierToMm(project.getExportLengthMeasurePrefix());
 							GeoTag geoTag = project.getGeoTag();
 							if (geoTag != null && geoTag.getEnabled()) {
 								projectInfo.setX(geoTag.getX());
