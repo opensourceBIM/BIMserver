@@ -113,9 +113,10 @@ public class SerializerFactory {
 					if (serializer != null) {
 						try {
 							ProjectInfo projectInfo = new ProjectInfo();
-							projectInfo.setName(project.getName());
+							projectInfo.setName("TESTIFICATO");
 							projectInfo.setDescription(project.getDescription());
-							projectInfo.setMultiplierToMm(project.getExportLengthMeasurePrefix());
+							//projectInfo.setMultiplierToMm(project.getExportLengthMeasurePrefix());
+							projectInfo.setMultiplierToMm(100.0f);
 
 							GeoTag geoTag = project.getGeoTag();
 							if (geoTag != null && geoTag.getEnabled()) {
