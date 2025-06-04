@@ -23,9 +23,7 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.ObjectIdentifier;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.DataObject;
-import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.*;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 
@@ -48,6 +46,12 @@ public class GetDataObjectByGuidDatabaseAction extends BimDatabaseAction<DataObj
 	public DataObject execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision virtualRevision = getRevisionByRoid(roid);
 		ObjectIdentifier objectIdentifier = null;
+		Project project = virtualRevision.getProject();
+		User user = getUserByUoid(authorization.getUoid());
+		if (!authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
+			throw new UserException("User does not have rights on project");
+		}
+
 		for (ConcreteRevision concreteRevision : virtualRevision.getConcreteRevisions()) {
 			objectIdentifier = getDatabaseSession().getOidOfGuid(concreteRevision.getProject().getSchema(), guid, concreteRevision.getProject().getId(), concreteRevision.getId());
 			if (objectIdentifier != null) {

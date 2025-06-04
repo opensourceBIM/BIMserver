@@ -353,6 +353,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public SDownloadResult getDownloadData(final Long topicId) throws ServerException, UserException {
+		requireRealUserAuthentication();
 		LongAction longAction = getBimServer().getLongActionManager().getLongAction(topicId);
 		if (longAction == null) {
 			throw new UserException("No data found for topicId " + topicId);
@@ -1048,6 +1049,9 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		try {
 			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
 			Project project = session.get(poid, OldQuery.getDefault());
+			if (user.getUserType() == UserType.READ_ONLY) {
+				throw new UserException("User '" + user.getName() + "' is read only and cannot checkin models to the project");
+			}
 			if (!getAuthorization().hasRightsOnProjectOrSuperProjects(user, project)) {
 				throw new UserException("User has no rights to checkin models to this project");
 			}
@@ -1077,6 +1081,9 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		String userUsername = "Unknown";
 		try {
 			User user = (User) readOnlySession.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
+			if (user.getUserType() == UserType.READ_ONLY) {
+				throw new UserException("User '" + user.getName() + "' is read only and cannot checkin models to the project");
+			}
 			Project project = readOnlySession.get(poid, OldQuery.getDefault());
 			if (project == null) {
 				throw new UserException("No project found with poid " + poid);
@@ -1311,6 +1318,9 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			Long topicId = initiateCheckin(poid, deserializerOid);
 
 			User user = (User) readOnlySession.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
+			if (user.getUserType() == UserType.READ_ONLY) {
+				throw new UserException("User '" + user.getName() + "' is read only and cannot checkin models to the project");
+			}
 			username = user.getName();
 			userUsername = user.getUsername();
 
@@ -1365,6 +1375,9 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			Long topicId = initiateCheckin(poid, deserializerOid);
 
 			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
+			if (user.getUserType() == UserType.READ_ONLY) {
+				throw new UserException("User '" + user.getName() + "' is read only and cannot checkin models to the project");
+			}
 			username = user.getName();
 			userUsername = user.getUsername();
 			Path homeDirIncoming = getBimServer().getHomeDir().resolve("incoming");
@@ -1457,7 +1470,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			if (selfRegistration) {
 				requireSelfregistrationAllowed();
 			} else if (!getBimServer().getServerSettingsCache().getServerSettings().getAllowSelfRegistration()) {
-				requireRealUserAuthentication();
+				requireAdminAuthentication();
 			}
 			BimDatabaseAction<User> action = new AddUserDatabaseAction(getBimServer(), session, getInternalAccessMethod(), username, name, getBimServer().getSConverter().convertFromSObject(type), getAuthorization(), selfRegistration,
 					resetUrl);
@@ -1476,7 +1489,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			if (selfRegistration) {
 				requireSelfregistrationAllowed();
 			} else if (!getBimServer().getServerSettingsCache().getServerSettings().getAllowSelfRegistration()) {
-				requireRealUserAuthentication();
+				requireAdminAuthentication();
 			}
 			BimDatabaseAction<User> action = new AddUserDatabaseAction(getBimServer(), session, getInternalAccessMethod(), username, password, name, getBimServer().getSConverter().convertFromSObject(type), getAuthorization(),
 					selfRegistration, resetUrl);
@@ -1539,7 +1552,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
-			BimDatabaseAction<List<Checkout>> action = new GetAllCheckoutsOfProjectDatabaseAction(session, getInternalAccessMethod(), poid, false);
+			BimDatabaseAction<List<Checkout>> action = new GetAllCheckoutsOfProjectDatabaseAction(session, getInternalAccessMethod(), poid, false, getAuthorization());
 			List<Checkout> list = session.executeAndCommitAction(action);
 			Collections.sort(list, new CheckoutComparator());
 			return getBimServer().getSConverter().convertToSListCheckout(list);
@@ -1555,7 +1568,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
-			BimDatabaseAction<List<Checkout>> action = new GetAllCheckoutsOfProjectDatabaseAction(session, getInternalAccessMethod(), poid, true);
+			BimDatabaseAction<List<Checkout>> action = new GetAllCheckoutsOfProjectDatabaseAction(session, getInternalAccessMethod(), poid, true, getAuthorization());
 			List<Checkout> list = session.executeAndCommitAction(action);
 			Collections.sort(list, new CheckoutComparator());
 			return getBimServer().getSConverter().convertToSListCheckout(list);
@@ -1624,7 +1637,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
-			BimDatabaseAction<List<Checkout>> action = new GetAllCheckoutsOfRevisionDatabaseAction(session, getInternalAccessMethod(), roid);
+			BimDatabaseAction<List<Checkout>> action = new GetAllCheckoutsOfRevisionDatabaseAction(session, getInternalAccessMethod(), roid, getAuthorization());
 			List<Checkout> list = session.executeAndCommitAction(action);
 			Collections.sort(list, new CheckoutComparator());
 			return getBimServer().getSConverter().convertToSListCheckout(list);
@@ -1636,6 +1649,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 	}
 
 	public void cleanupLongAction(Long topicId) throws UserException, ServerException {
+		requireAuthentication();
 		getBimServer().getLongActionManager().remove(topicId);
 	}
 
@@ -1712,7 +1726,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public List<SProject> getAllNonAuthorizedProjectsOfUser(Long uoid) throws ServerException, UserException {
-		requireRealUserAuthentication();
+		requireAdminAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			BimDatabaseAction<Set<Project>> action = new GetAllNonAuthorizedProjectsOfUserDatabaseAction(session, getInternalAccessMethod(), uoid);
@@ -1726,7 +1740,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public SUser getUserByUserName(String username) throws ServerException, UserException {
-		requireRealUserAuthentication();
+		requireAdminAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			BimDatabaseAction<User> action = new GetUserByUserNameDatabaseAction(session, getInternalAccessMethod(), username);
@@ -1744,7 +1758,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public Boolean undeleteUser(Long uoid) throws ServerException, UserException {
-		requireRealUserAuthentication();
+		requireAdminAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			BimDatabaseAction<Boolean> action = new UndeleteUserDatabaseAction(getBimServer(), session, getInternalAccessMethod(), getAuthorization(), uoid);
@@ -1948,7 +1962,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
-			BimDatabaseAction<Set<User>> action = new GetAllAuthorizedUsersOfProjectDatabaseAction(session, getInternalAccessMethod(), poid);
+			BimDatabaseAction<Set<User>> action = new GetAllAuthorizedUsersOfProjectDatabaseAction(session, getInternalAccessMethod(), poid, getAuthorization());
 			return new ArrayList<SUser>(getBimServer().getSConverter().convertToSSetUser(session.executeAndCommitAction(action)));
 		} catch (Exception e) {
 			return handleException(e);
@@ -1976,7 +1990,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
-			BimDatabaseAction<String> action = new SetRevisionTagDatabaseAction(session, getInternalAccessMethod(), roid, tag);
+			BimDatabaseAction<String> action = new SetRevisionTagDatabaseAction(session, getInternalAccessMethod(), roid, tag, getAuthorization());
 			session.executeAndCommitAction(action);
 		} catch (Exception e) {
 			handleException(e);
@@ -2117,7 +2131,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public void addUserToExtendedDataSchema(Long uoid, Long edsid) throws ServerException, UserException {
-		requireAuthenticationAndRunningServer();
+		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			BimDatabaseAction<Void> action = new AddUserToExtendedDataSchemaDatabaseAction(session, getInternalAccessMethod(), uoid, edsid);
@@ -2131,7 +2145,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public void removeUserFromExtendedDataSchema(Long uoid, Long edsid) throws ServerException, UserException {
-		requireAuthenticationAndRunningServer();
+		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			BimDatabaseAction<Void> action = new RemoveUserFromExtendedDataSchemaDatabaseAction(session, getInternalAccessMethod(), uoid, edsid);
@@ -2402,7 +2416,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public void deleteService(Long oid) throws ServerException, UserException {
-		requireRealUserAuthentication();
+		requireAdminAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			BimDatabaseAction<Void> action = new DeleteServiceDatabaseAction(session, getInternalAccessMethod(), oid);
@@ -2500,6 +2514,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public SFile getFile(Long fileId) throws ServerException, UserException {
+		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			org.bimserver.models.store.File file = (org.bimserver.models.store.File) session.get(StorePackage.eINSTANCE.getFile(), fileId, OldQuery.getDefault());
@@ -2513,6 +2528,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public SFile getFileMeta(Long fileId) throws ServerException, UserException {
+		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			org.bimserver.models.store.File file = (org.bimserver.models.store.File) session.get(StorePackage.eINSTANCE.getFile(), fileId, OldQuery.getDefault());
@@ -2731,6 +2747,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public List<SProjectSmall> getAllRelatedProjects(Long poid) throws ServerException, UserException {
+		requireRealUserAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			GetAllRelatedProjectsDatabaseAction action = new GetAllRelatedProjectsDatabaseAction(getBimServer(), session, getAuthorization(), getInternalAccessMethod(), poid);
@@ -2744,6 +2761,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public List<SLogAction> getUserRelatedLogs(Long uoid) throws ServerException, UserException {
+		requireAdminAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			List<LogAction> logActions = new ArrayList<LogAction>();

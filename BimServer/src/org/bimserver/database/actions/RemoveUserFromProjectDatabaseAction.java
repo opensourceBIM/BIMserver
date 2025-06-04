@@ -67,6 +67,9 @@ public class RemoveUserFromProjectDatabaseAction extends BimDatabaseAction<Boole
 							"User cannot be removed from this project because it is the only admin user with authorization on this project");
 				}
 			}
+			if (user.getUserType() == UserType.READ_ONLY){
+				throw new UserException("Read-only user has no rights to remove users from project");
+			}
 			project.getHasAuthorizedUsers().remove(user);
 			user.getHasRightsOn().remove(project);
 			final UserRemovedFromProject userRemovedFromProject = getDatabaseSession().create(UserRemovedFromProject.class);
