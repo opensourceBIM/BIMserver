@@ -37,7 +37,6 @@ import org.bimserver.interfaces.objects.SBounds;
  *****************************************************************************/
 
 import org.bimserver.interfaces.objects.SVector3f;
-import org.bimserver.models.store.SIPrefix;
 
 public class ProjectInfo {
 	private String name;
@@ -137,9 +136,5 @@ public class ProjectInfo {
 	
 	public void setMultiplierToMm(float multiplierToMm) {
 		this.multiplierToMm = multiplierToMm;
-	}
-
-	public void setMultiplierToMm(SIPrefix unit) {
-		this.multiplierToMm = (float) Math.pow(10, unit.getValue()+3);
 	}
 }
