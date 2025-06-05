@@ -34,11 +34,7 @@ import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.longaction.DownloadParameters;
-import org.bimserver.models.store.GeoTag;
-import org.bimserver.models.store.MessagingSerializerPluginConfiguration;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.SerializerPluginConfiguration;
-import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.*;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
@@ -115,6 +111,10 @@ public class SerializerFactory {
 							ProjectInfo projectInfo = new ProjectInfo();
 							projectInfo.setName(project.getName());
 							projectInfo.setDescription(project.getDescription());
+
+							ConcreteRevision lastConcreteRevision = project.getLastConcreteRevision();
+							projectInfo.setMultiplierToMm(lastConcreteRevision.getMultiplierToMm());
+
 							GeoTag geoTag = project.getGeoTag();
 							if (geoTag != null && geoTag.getEnabled()) {
 								projectInfo.setX(geoTag.getX());
