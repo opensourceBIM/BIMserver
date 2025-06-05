@@ -76,7 +76,7 @@ public class SerializerFactory {
 		return descriptors;
 	}
 	
-	public Serializer create(Project project, String username, IfcModelInterface model, RenderEnginePlugin renderEnginePlugin, DownloadParameters downloadParameters) throws SerializerException {
+	public Serializer create(Revision revision, String username, IfcModelInterface model, RenderEnginePlugin renderEnginePlugin, DownloadParameters downloadParameters) throws SerializerException {
 		DatabaseSession session = bimDatabase.createSession(OperationType.READ_ONLY);
 		try {
 			SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), OldQuery.getDefault());
@@ -108,11 +108,12 @@ public class SerializerFactory {
 					}
 					if (serializer != null) {
 						try {
+							Project project = revision.getProject();
 							ProjectInfo projectInfo = new ProjectInfo();
 							projectInfo.setName(project.getName());
 							projectInfo.setDescription(project.getDescription());
 
-							ConcreteRevision lastConcreteRevision = project.getLastConcreteRevision();
+							ConcreteRevision lastConcreteRevision = revision.getLastConcreteRevision();
 							projectInfo.setMultiplierToMm(lastConcreteRevision.getMultiplierToMm());
 
 							GeoTag geoTag = project.getGeoTag();
