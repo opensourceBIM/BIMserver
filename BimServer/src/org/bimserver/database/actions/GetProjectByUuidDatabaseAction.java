@@ -19,11 +19,20 @@ package org.bimserver.database.actions;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.OldQuery;
+import org.bimserver.database.query.conditions.*;
+import org.bimserver.database.query.literals.EnumLiteral;
+import org.bimserver.database.query.literals.StringLiteral;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.Project;
+import org.bimserver.models.store.*;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
+
+import java.util.Map;
+import java.util.UUID;
+
 public class GetProjectByUuidDatabaseAction extends BimDatabaseAction<Project> {
 
 	private final String uuid;
@@ -37,24 +46,29 @@ public class GetProjectByUuidDatabaseAction extends BimDatabaseAction<Project> {
 
 	@Override
 	public Project execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
-//		List<IdEObject> projects = (List<IdEObject>) getDatabaseSession().query(StorePackage.eINSTANCE.getProject_Uuid(), uuid);
-//		if (projects.size() == 0) {
-//			throw new UserException("Project with uuid " + uuid + " does not exist");
-//		}
-//		Project project = (Project) projects.get(0);
-//		User user = getUserByUoid(authorization.getUoid());
-//		if (user == null) {
-//			throw new UserException("Authenticated user required");
-//		}
-//		if (project.getState() == ObjectState.DELETED && user.getUserType() != UserType.ADMIN) {
-//			throw new UserException("Project has been deleted");
-//		}
-//		if (authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
-//			return project;
-//		} else {
-//			throw new UserException("User '" + user.getUsername() + "' has no rights on this project");
-//		}
-		// TODO reimplement
-		return null;
+		UUID comparisonUUID;
+		try {
+			comparisonUUID = UUID.fromString(uuid);
+		}
+		catch (IllegalArgumentException e) {
+			throw new UserException("Invalid uuid format");
+		}
+		User user = getUserByUoid(authorization.getUoid());
+		Not notStoreProject = new Not(new AttributeCondition(StorePackage.eINSTANCE.getProject_Name(), new StringLiteral(Database.STORE_PROJECT_NAME)));
+		Condition condition = new IsOfTypeCondition(StorePackage.eINSTANCE.getProject()).and(notStoreProject);
+		Map<UUID, Project> results = getDatabaseSession().queryUuid(condition, Project.class, OldQuery.getDefault());
+		if (results.containsKey(comparisonUUID)) {
+			if (!authorization.hasRightsOnProject(user, results.get(comparisonUUID))) {
+				throw new UserException("You do not have rights on this project");
+			}
+			if (!results.get(comparisonUUID).getState().equals(ObjectState.ACTIVE) &&
+					user.getUserType() != UserType.ADMIN && user.getUserType() != UserType.SYSTEM){
+				throw new UserException("This project is not active");
+			}
+			return results.get(comparisonUUID);
+		}
+		else {
+			throw new UserException("Project with uuid \"" + uuid + "\" does not exist");
+		}
 	}
 }
