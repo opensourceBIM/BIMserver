@@ -1644,6 +1644,30 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 		return map;
 	}
 
+	public <T extends IdEObject> Map<UUID, T> queryUuid(Condition condition, Class<T> clazz, QueryInterface query) throws BimserverDatabaseException {
+		IfcModelInterface model = createModel(query);
+		return queryUuid(model, condition, clazz, query);
+	}
+	public <T extends IdEObject> Map<UUID, T> queryUuid(IfcModelInterface model, Condition condition, Class<T> clazz, QueryInterface query) throws BimserverDatabaseException {
+		Map<UUID, T> map = new HashMap<UUID, T>();
+		Set<EClass> eClasses = new HashSet<EClass>();
+		condition.getEClassRequirements(eClasses);
+		for (EClass eClass : eClasses) {
+			TodoList todoList = new TodoList();
+			getMap(eClass, model, query, todoList);
+			processTodoList(model, todoList, query);
+			List<IdEObject> list = new ArrayList<IdEObject>(model.getValues());
+			for (IdEObject object : list) {
+				if (clazz.isInstance(object)) {
+					if (condition.matches(object)) {
+						map.put(object.getUuid(), clazz.cast(object));
+					}
+				}
+			}
+		}
+		return map;
+	}
+
 	public <T extends IdEObject> T querySingle(Condition condition, Class<T> clazz, QueryInterface query) throws BimserverDatabaseException {
 		checkOpen();
 		Collection<T> values = query(condition, clazz, query).values();
