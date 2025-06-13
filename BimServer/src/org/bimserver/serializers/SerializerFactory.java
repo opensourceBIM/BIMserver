@@ -34,11 +34,7 @@ import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.interfaces.objects.SPluginDescriptor;
 import org.bimserver.longaction.DownloadParameters;
-import org.bimserver.models.store.GeoTag;
-import org.bimserver.models.store.MessagingSerializerPluginConfiguration;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.SerializerPluginConfiguration;
-import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.*;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginManager;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
@@ -80,7 +76,7 @@ public class SerializerFactory {
 		return descriptors;
 	}
 	
-	public Serializer create(Project project, String username, IfcModelInterface model, RenderEnginePlugin renderEnginePlugin, DownloadParameters downloadParameters) throws SerializerException {
+	public Serializer create(Revision revision, String username, IfcModelInterface model, RenderEnginePlugin renderEnginePlugin, DownloadParameters downloadParameters) throws SerializerException {
 		DatabaseSession session = bimDatabase.createSession(OperationType.READ_ONLY);
 		try {
 			SerializerPluginConfiguration serializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getSerializerPluginConfiguration(), downloadParameters.getSerializerOid(), OldQuery.getDefault());
@@ -112,9 +108,14 @@ public class SerializerFactory {
 					}
 					if (serializer != null) {
 						try {
+							Project project = revision.getProject();
 							ProjectInfo projectInfo = new ProjectInfo();
 							projectInfo.setName(project.getName());
 							projectInfo.setDescription(project.getDescription());
+
+							ConcreteRevision lastConcreteRevision = revision.getLastConcreteRevision();
+							projectInfo.setMultiplierToMm(lastConcreteRevision.getMultiplierToMm());
+
 							GeoTag geoTag = project.getGeoTag();
 							if (geoTag != null && geoTag.getEnabled()) {
 								projectInfo.setX(geoTag.getX());

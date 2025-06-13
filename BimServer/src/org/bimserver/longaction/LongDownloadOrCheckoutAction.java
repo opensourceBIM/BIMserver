@@ -60,15 +60,15 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction implements
 		return checkoutResult;
 	}
 
-	protected SCheckoutResult convertModelToCheckoutResult(Project project, String username, IfcModelInterface model, RenderEnginePlugin renderEnginePlugin, DownloadParameters downloadParameters)
+	protected SCheckoutResult convertModelToCheckoutResult(Revision revision, String username, IfcModelInterface model, RenderEnginePlugin renderEnginePlugin, DownloadParameters downloadParameters)
 			throws UserException {
 		SCheckoutResult checkoutResult = new SCheckoutResult();
 		checkoutResult.setSerializerOid(downloadParameters.getSerializerOid());
 		if (model.isValid()) {
-			checkoutResult.setProjectName(project.getName());
+			checkoutResult.setProjectName(revision.getProject().getName());
 			checkoutResult.setRevisionNr(model.getModelMetaData().getRevisionId());
 			try {
-				Serializer serializer = getBimServer().getSerializerFactory().create(project, username, model, renderEnginePlugin, downloadParameters);
+				Serializer serializer = getBimServer().getSerializerFactory().create(revision, username, model, renderEnginePlugin, downloadParameters);
 				if (serializer == null) {
 					throw new UserException("Error, serializer " + downloadParameters.getSerializerOid() + " not found or failed to initialize.");
 				}
@@ -133,7 +133,7 @@ public abstract class LongDownloadOrCheckoutAction extends LongAction implements
 							if (renderEngine != null) {
 								renderEnginePlugin = getBimServer().getPluginManager().getRenderEnginePlugin(renderEngine.getPluginDescriptor().getPluginClassName(), true);
 							}
-							checkoutResult = convertModelToCheckoutResult(revision.getProject(), getUserName(), ifcModel, renderEnginePlugin, downloadParameters);
+							checkoutResult = convertModelToCheckoutResult(revision, getUserName(), ifcModel, renderEnginePlugin, downloadParameters);
 						}
 					}
 				} catch (BimserverDatabaseException e) {
