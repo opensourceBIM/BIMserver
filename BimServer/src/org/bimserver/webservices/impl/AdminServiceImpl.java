@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -171,7 +172,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 	public String getServerLog() throws ServerException, UserException {
 		requireAdminOrMonitorAuthentication();
 		try {
-			return FileUtils.readFileToString(getBimServer().getHomeDir().resolve("logs/bimserver.log").toFile());
+			return FileUtils.readFileToString(getBimServer().getHomeDir().resolve("logs/bimserver.log").toFile(), Charset.defaultCharset());
 		} catch (IOException e) {
 			LOGGER.error("", e);
 			throw new ServerException(e);
@@ -183,7 +184,7 @@ public class AdminServiceImpl extends GenericServiceImpl implements AdminInterfa
 		InputStream resourceAsStream = ProtocolBuffersBimServerClientFactory.class.getResourceAsStream(interfaceName + ".proto");
 		StringWriter stringWriter = new StringWriter();
 		try {
-			IOUtils.copy(resourceAsStream, stringWriter);
+			IOUtils.copy(resourceAsStream, stringWriter, "UTF-8");
 		} catch (IOException e) {
 			throw new ServerException(e);
 		}

@@ -42,9 +42,11 @@ public class ProtocolBuffersBimServerClientFactory extends AbstractBimServerClie
 		this.httpPort = httpPort;
 		this.address = address;
 		this.port = port;
-		this.protocolBuffersMetaData = protocolBuffersMetaData;
-		RealtimeReflectorFactoryBuilder factoryBuilder = new RealtimeReflectorFactoryBuilder(serviceMap);
+		this.protocolBuffersMetaData = new ProtocolBuffersMetaData();
+		this.protocolBuffersMetaData.load(getServicesMap(), ProtocolBuffersBimServerClientFactory.class);
+		RealtimeReflectorFactoryBuilder factoryBuilder = new RealtimeReflectorFactoryBuilder(getServicesMap());
 		this.reflectorFactory = factoryBuilder.newReflectorFactory();
+		getServicesMap().setReflectorFactory(reflectorFactory);
 	}
 
 	@Override

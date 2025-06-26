@@ -84,7 +84,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.common.base.Joiner;
 
-public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey>{
+public class LongStreamingDownloadAction extends LongAction {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongStreamingDownloadAction.class);
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
@@ -150,8 +150,9 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 				downloadDescriptor = new DownloadDescriptor(packageMetaData, jsonQuery, roids, query, serializerOid, this.filename);
 				
 				if (getBimServer().getNewDiskCacheManager().contains(downloadDescriptor)) {
+					// TODO That has already been cecked in preparation?
 					cacheFile = getBimServer().getNewDiskCacheManager().get(downloadDescriptor);
-					FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(cacheFile);
+					FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(cacheFile, () -> changeActionState(ActionState.FINISHED, "Done", 100));
 					fileInputStreamDataSource.setName(downloadDescriptor.getFileNameWithoutExtension());
 					checkoutResult.setFile(new DataHandler(fileInputStreamDataSource));
 					
@@ -243,30 +244,20 @@ public class LongStreamingDownloadAction extends LongAction<StreamingDownloadKey
 			if (getBimServer().getNewDiskCacheManager().isEnabled()) {
 				if (getBimServer().getNewDiskCacheManager().contains(downloadDescriptor)) {
 					cacheFile = getBimServer().getNewDiskCacheManager().get(downloadDescriptor);
-					FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(cacheFile);
+					FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(cacheFile, () -> changeActionState(ActionState.FINISHED, "Done", 100));
 					fileInputStreamDataSource.setName(downloadDescriptor.getFileNameWithoutExtension());
 					checkoutResult.setFile(new DataHandler(fileInputStreamDataSource));
 				} else {
 					try {
 						NewDiskCacheOutputStream diskCacheOutputStream = getBimServer().getNewDiskCacheManager().startCaching(downloadDescriptor);
-						CacheStoringStreamingSerializerDataSource cacheStoringEmfSerializerDataSource = new CacheStoringStreamingSerializerDataSource(serializer, diskCacheOutputStream, new DoneListener() {
-							@Override
-							public void done() {
-								changeActionState(ActionState.FINISHED, "Done", 100);
-							}
-						}, downloadDescriptor.getFileNameWithoutExtension()); 
+						CacheStoringStreamingSerializerDataSource cacheStoringEmfSerializerDataSource = new CacheStoringStreamingSerializerDataSource(serializer, diskCacheOutputStream, () -> changeActionState(ActionState.FINISHED, "Done", 100), downloadDescriptor.getFileNameWithoutExtension());
 						checkoutResult.setFile(new DataHandler(cacheStoringEmfSerializerDataSource));
 					} catch (Exception e) {
 						LOGGER.error("", e);
 					}
 				}
 			} else {
-				StreamingSerializerDataSource streamingSerializerDataSource = new StreamingSerializerDataSource(filename, serializer, new DoneListener() {
-					@Override
-					public void done() {
-						changeActionState(ActionState.FINISHED, "Done", 100);
-					}
-				});
+				StreamingSerializerDataSource streamingSerializerDataSource = new StreamingSerializerDataSource(filename, serializer, () -> changeActionState(ActionState.FINISHED, "Done", 100));
 				checkoutResult.setFile(new DataHandler(streamingSerializerDataSource));
 			}
 		}

@@ -865,7 +865,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "index", partName = "removeAttribute.index") Integer index) throws ServerException, UserException;
 	
 	/**
-	 * Remove a single reference by it's index in the list
+	 * Remove a single reference by its index in the list
 	 * 
 	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change
@@ -881,7 +881,7 @@ public interface LowLevelInterface extends PublicInterface {
 		@WebParam(name = "index", partName = "removeReference.index") Integer index) throws ServerException, UserException;
 
 	/**
-	 * Remove a single reference by it's oid
+	 * Remove a single reference by its oid
 	 * 
 	 * @param tid The TransactionID
 	 * @param oid ObjectID of the object to change

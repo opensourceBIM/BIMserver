@@ -59,7 +59,6 @@ import org.bimserver.models.log.NewRevisionAdded;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.IfcHeader;
 import org.bimserver.models.store.NewService;
-import org.bimserver.models.store.PluginBundleVersion;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
 import org.bimserver.models.store.Service;
@@ -96,10 +95,10 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 	private long newServiceId;
 	private Revision newRevision;
 	private PackageMetaData packageMetaData;
-	private PluginBundleVersion pluginBundleVersion;
+	private String deserializerVersion;
 	private long topicId;
 
-	public StreamingCheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, String comment, String fileName, InputStream inputStream, StreamingDeserializer deserializer, long fileSize, long newServiceId, PluginBundleVersion pluginBundleVersion, long topicId) {
+	public StreamingCheckinDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization, String comment, String fileName, InputStream inputStream, StreamingDeserializer deserializer, long fileSize, long newServiceId, String deserializerVersion, long topicId) {
 		super(bimServer, databaseSession, accessMethod);
 		this.poid = poid;
 		this.authorization = authorization;
@@ -109,7 +108,7 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 		this.deserializer = deserializer;
 		this.fileSize = fileSize;
 		this.newServiceId = newServiceId;
-		this.pluginBundleVersion = pluginBundleVersion;
+		this.deserializerVersion = deserializerVersion;
 		this.topicId = topicId;
 	}
 
@@ -229,12 +228,11 @@ public class StreamingCheckinDatabaseAction extends GenericCheckinDatabaseAction
 				report.setOriginalIfcFileName(fileName);
 				report.setOriginalIfcFileSize(bytesRead.get());
 				report.setNumberOfObjects(size);
-				report.setOriginalDeserializer(pluginBundleVersion.getGroupId() + "." + pluginBundleVersion.getArtifactId() + ":" + pluginBundleVersion.getVersion());
+				report.setOriginalDeserializer(deserializerVersion);
 				StreamingGeometryGenerator geometryGenerator = new StreamingGeometryGenerator(getBimServer(), progressListener, -1L, report);
 				setProgress("Generating geometry...", 0);
 
 				GenerateGeometryResult generateGeometry = geometryGenerator.generateGeometry(getActingUid(), getDatabaseSession(), queryContext, size);
-			
 				for (Revision other : concreteRevision.getRevisions()) {
 					other.setHasGeometry(true);
 				}

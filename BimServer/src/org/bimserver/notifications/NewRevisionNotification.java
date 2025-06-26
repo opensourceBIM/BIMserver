@@ -193,6 +193,7 @@ public class NewRevisionNotification extends Notification {
 					context.put("roid", revision.getOid());
 					context.put("comment", revision.getComment());
 					context.put("projectName", project.getName());
+					context.put("poid", project.getOid());
 					String subject = null;
 					body = getBimServer().getTemplateEngine().process(context, TemplateIdentifier.NEW_REVISION_EMAIL_BODY);
 					subject = getBimServer().getTemplateEngine().process(context, TemplateIdentifier.NEW_REVISION_EMAIL_SUBJECT);

@@ -2,17 +2,17 @@ package org.bimserver.servlets;
 
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
@@ -21,17 +21,17 @@ import java.io.BufferedInputStream;
 
 /******************************************************************************
  * Copyright (C) 2009-2018  BIMserver.org
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
@@ -47,10 +47,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.fileupload.FileItemIterator;
-import org.apache.commons.fileupload.FileItemStream;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.fileupload.util.Streams;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.fileupload2.core.FileItemInput;
+import org.apache.commons.fileupload2.core.FileItemInputIterator;
+import org.apache.commons.fileupload2.javax.JavaxServletFileUpload;
+
 import org.bimserver.BimServer;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
@@ -85,37 +86,37 @@ public class BulkUploadServlet extends SubServlet {
 		response.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
 		String token = (String)request.getSession().getAttribute("token");
-		
+
 		ObjectNode result = OBJECT_MAPPER.createObjectNode();
 		response.setContentType("text/json");
 		try {
-			boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+			boolean isMultipart = JavaxServletFileUpload.isMultipartContent(request);
 			long poid = -1;
 			String comment = null;
 			if (isMultipart) {
-				ServletFileUpload upload = new ServletFileUpload();
-				FileItemIterator iter = upload.getItemIterator(request);
+				JavaxServletFileUpload upload = new JavaxServletFileUpload();
+				FileItemInputIterator iter = upload.getItemIterator(request);
 				InputStream in = null;
 				String name = "";
 				while (iter.hasNext()) {
-					FileItemStream item = iter.next();
+					FileItemInput item = iter.next();
 					if (item.isFormField()) {
 						if ("token".equals(item.getFieldName())) {
-							token = Streams.asString(item.openStream());
+							token = IOUtils.toString(item.getInputStream(), "UTF-8");
 						} else if ("poid".equals(item.getFieldName())) {
-							poid = Long.parseLong(Streams.asString(item.openStream()));
+							poid = Long.parseLong(IOUtils.toString(item.getInputStream(), "UTF-8"));
 						} else if ("comment".equals(item.getFieldName())) {
-							comment = Streams.asString(item.openStream());
+							comment = IOUtils.toString(item.getInputStream(), "UTF-8");
 						}
 					} else {
 						name = item.getName();
-						in = item.openStream();
-						
+						in = item.getInputStream();
+
 						if (poid != -1) {
 							ServiceInterface service = getBimServer().getServiceFactory().get(token, AccessMethod.INTERNAL).get(ServiceInterface.class);
 
 							SProject mainProject = service.getProjectByPoid(poid);
-							
+
 							ZipInputStream zipInputStream = new ZipInputStream(in);
 							ZipEntry nextEntry = zipInputStream.getNextEntry();
 							while (nextEntry != null) {
@@ -130,12 +131,12 @@ public class BulkUploadServlet extends SubServlet {
 										String path = fullfilename.substring(0, fullfilename.lastIndexOf("/"));
 										String filename = fullfilename.substring(fullfilename.lastIndexOf("/") + 1);
 										String extension = filename.substring(filename.lastIndexOf(".") + 1);
-										
+
 										try {
 											String schema = service.determineIfcVersion(initialBytes, fullfilename.toLowerCase().endsWith(".ifczip"));
 											SProject project = getOrCreatePath(service, mainProject, mainProject, path, schema);
 											SDeserializerPluginConfiguration deserializer = service.getSuggestedDeserializerForExtension(extension, project.getOid());
-											
+
 											service.checkinSync(project.getOid(), comment, deserializer.getOid(), -1L, filename, ifcFile, false);
 										} catch (Exception e) {
 											LOGGER.error(e.getMessage() + " (" + fullfilename + ")");
@@ -148,7 +149,7 @@ public class BulkUploadServlet extends SubServlet {
 								}
 								nextEntry = zipInputStream.getNextEntry();
 							}
-							
+
 //							DataHandler ifcFile = new DataHandler(inputStreamDataSource);
 //							
 //							if (token != null) {
@@ -174,7 +175,7 @@ public class BulkUploadServlet extends SubServlet {
 		}
 		response.getWriter().write(result.toString());
 	}
-	
+
 	private SProject getOrCreatePath(ServiceInterface service, SProject mainProject, SProject currentProject, String path, String schema) throws UserException, ServerException {
 		String name = path;
 		if (path.contains("/")) {

@@ -50,7 +50,7 @@ public class ByteBufferVirtualObject extends AbstractByteBufferVirtualObject imp
 	private Map<Integer, ByteBufferList> referencedBuffers;
 	
 	public ByteBufferVirtualObject(QueryContext reusable, EClass eClass, int capacity) {
-		super(Math.max(capacity, 17)); // 17 bytes are always needed
+		super(Math.max(capacity, reusable.getPackageMetaData().getUnsettedLength(eClass) + 16)); // 16 bytes plus the class specific ones are always needed
 		this.reusable = reusable;
 		this.eClass = eClass;
 		this.oid = reusable.getDatabaseInterface().newOid(eClass);

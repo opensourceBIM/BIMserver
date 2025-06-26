@@ -58,7 +58,6 @@ public class RemoveAttributeChange implements Change {
 
 			QueryObjectProvider queryObjectProvider = new QueryObjectProvider(transaction.getDatabaseSession(), transaction.getBimServer(), query, Collections.singleton(transaction.getPreviousRevision().getOid()), packageMetaData);
 			object = queryObjectProvider.next();
-			transaction.updated(object);
 		}
 		
 		EClass eClass = transaction.getDatabaseSession().getEClassForOid(oid);
@@ -76,5 +75,6 @@ public class RemoveAttributeChange implements Change {
 			List list = (List)object.get(eAttribute.getName());
 			list.remove(index);
 		}
+		transaction.updated(object);
 	}
 }

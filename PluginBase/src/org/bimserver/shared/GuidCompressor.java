@@ -62,7 +62,7 @@ public class GuidCompressor {
 	}
 	
 	/**
-	 * Converts an uncompressed String representation in an Guid-object 
+	 * Converts an uncompressed String representation into a Guid-object
 	 * @param uncompressedGuidString the uncompressed String representation of a GUID
 	 * @return an Guid-object
 	 */

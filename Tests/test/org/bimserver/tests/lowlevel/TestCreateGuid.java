@@ -17,12 +17,13 @@ package org.bimserver.tests.lowlevel;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertEquals;
 
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.test.TestWithEmbeddedServer;
 import org.junit.Test;
@@ -30,32 +31,28 @@ import org.junit.Test;
 public class TestCreateGuid extends TestWithEmbeddedServer {
 
 	@Test
-	public void test() {
-		try {
-			// Create a new BimServerClient with authentication
-			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
-			
-			// Get the low level interface
-			LowLevelInterface lowLevelInterface = bimServerClient.getLowLevelInterface();
-			
-			// Create a new project
-			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
-			
-			// Start a transaction
-			Long tid = lowLevelInterface.startTransaction(newProject.getOid());
-			
-			// Create furnishing
-			Long furnishingOid = lowLevelInterface.createObject(tid, "IfcFurnishingElement", true);
-			lowLevelInterface.setStringAttribute(tid, furnishingOid, "GlobalId", "0uyjn9Jan3nRq36Uj6gwws");
-			
-			// Commit the transaction
-			lowLevelInterface.commitTransaction(tid, "test", false);
+	public void test() throws ServiceException, ChannelConnectionException {
+		// Create a new BimServerClient with authentication
+		BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 
-			tid = lowLevelInterface.startTransaction(newProject.getOid());
-			assertTrue(lowLevelInterface.getStringAttribute(tid, furnishingOid, "GlobalId").equals("0uyjn9Jan3nRq36Uj6gwws"));
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail(e.getMessage());
-		}
+		// Get the low level interface
+		LowLevelInterface lowLevelInterface = bimServerClient.getLowLevelInterface();
+
+		// Create a new project
+		SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
+
+		// Start a transaction
+		Long tid = lowLevelInterface.startTransaction(newProject.getOid());
+
+		// Create furnishing
+		Long furnishingOid = lowLevelInterface.createObject(tid, "IfcFurnishingElement", true);
+		lowLevelInterface.setStringAttribute(tid, furnishingOid, "GlobalId", "0uyjn9Jan3nRq36Uj6gwws");
+
+		// Commit the transaction
+		lowLevelInterface.commitTransaction(tid, "test", false);
+
+		tid = lowLevelInterface.startTransaction(newProject.getOid());
+        assertEquals("0uyjn9Jan3nRq36Uj6gwws", lowLevelInterface.getStringAttribute(tid, furnishingOid, "GlobalId"));
+
 	}
 }

@@ -511,7 +511,7 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "merge", partName = "checkinInitiated.merge") Boolean merge) throws ServerException, UserException;
 	
 	/**
-	 * Checkin a new model from an URL, the call will wait for completion before returning
+	 * Checkin a new model from a URL, the call will wait for completion before returning
 	 *
 	 * @param poid The Project's ObjectID
 	 * @param comment A comment
@@ -532,7 +532,7 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "merge", partName = "checkinFromUrl.merge") Boolean merge) throws ServerException, UserException;
 
 	/**
-	 * Checkin a new model from an URL, the call will return immediately and not wait for completion
+	 * Checkin a new model from a URL, the call will return immediately and not wait for completion
 	 *
 	 * @param poid The Project's ObjectID
 	 * @param comment A comment
@@ -1419,7 +1419,7 @@ public interface ServiceInterface extends PublicInterface {
 		@WebParam(name = "modelCheckerOid", partName = "addModelCheckerToProject.modelCheckerOid") Long modelCheckerOid) throws ServerException, UserException;
 	
 	/**
-	 * Get a model checker instance by it's id
+	 * Get a model checker instance by its id
 	 * 
 	 * @param mcioid
 	 * @return

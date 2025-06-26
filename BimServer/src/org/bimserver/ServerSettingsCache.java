@@ -70,7 +70,7 @@ public class ServerSettingsCache {
 
 	public ServerSettings getServerSettings() {
 		if (database.getMigrator().migrationRequired()) {
-			throw new RuntimeException("Trying to accesss ServerSettings while database needs to be migrated");
+			throw new RuntimeException("Trying to access ServerSettings while database needs to be migrated");
 		}
 		if (serverSettings == null) {
 			updateCache();

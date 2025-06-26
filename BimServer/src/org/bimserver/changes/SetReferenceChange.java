@@ -56,7 +56,6 @@ public class SetReferenceChange implements Change {
 
 			QueryObjectProvider queryObjectProvider = new QueryObjectProvider(transaction.getDatabaseSession(), transaction.getBimServer(), query, Collections.singleton(transaction.getPreviousRevision().getOid()), packageMetaData);
 			object = queryObjectProvider.next();
-			transaction.updated(object);
 		}
 		
 		EClass eClass = transaction.getDatabaseSession().getEClassForOid(oid);
@@ -75,7 +74,8 @@ public class SetReferenceChange implements Change {
 			throw new UserException("Reference " + referenceName + " is not of type 'single'");
 		}
 		object.setReference(eReference, referenceOid, 0);
-		
+		transaction.updated(object);
+
 		EClass eClassForOid = transaction.getDatabaseSession().getEClassForOid(referenceOid);
 		
 		EReference inverseOrOpposite = packageMetaData.getInverseOrOpposite(eClassForOid, eReference);

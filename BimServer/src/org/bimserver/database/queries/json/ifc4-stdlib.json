@@ -286,21 +286,7 @@
       "ObjectPlacement": {
          "type": "IfcProduct",
          "field": "ObjectPlacement",
-         "includes": [
-            "RelativePlacement",
-            {
-               "type": "IfcLocalPlacement",
-               "field": "RelativePlacement",
-               "include": {
-                  "type": "IfcAxis2Placement3D",
-                  "fields": [
-                     "Location",
-                     "Axis",
-                     "RefDirection"
-                  ]
-               }
-            }
-         ]
+         "includes": [ "RelativePlacement" ]
       }
    }
 }

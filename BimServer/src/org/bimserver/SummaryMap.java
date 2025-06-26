@@ -70,7 +70,7 @@ public class SummaryMap {
 			return;
 		}
 		if (!summaryMap.containsKey(eClass)) {
-			// Interesting...
+			// Interesting... should this entry be initialized to -count instead of 0?
 			summaryMap.put(eClass, 0);
 		} else {
 			summaryMap.put(eClass, summaryMap.get(eClass) - count);

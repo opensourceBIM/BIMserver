@@ -18,13 +18,13 @@ package org.bimserver.longaction;
  *****************************************************************************/
 
 import javax.activation.DataHandler;
-import javax.activation.DataSource;
 
 import org.bimserver.cache.DiskCacheManager;
+import org.bimserver.plugins.serializers.DoneListener;
 
 public class CachingDataHandler extends DataHandler {
 
-	public CachingDataHandler(DiskCacheManager diskCacheManager, DownloadParameters downloadParameters) {
-		super((DataSource)diskCacheManager.get(downloadParameters));
+	public CachingDataHandler(DiskCacheManager diskCacheManager, DownloadParameters downloadParameters, DoneListener doneListener) {
+		super(diskCacheManager.get(downloadParameters, doneListener));
 	}
 }

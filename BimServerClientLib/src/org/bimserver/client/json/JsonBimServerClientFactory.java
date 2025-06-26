@@ -51,7 +51,7 @@ public class JsonBimServerClientFactory extends AbstractBimServerClientFactory {
 	 */
 
 	public JsonBimServerClientFactory(MetaDataManager metaDataManager, String address, URL trustedCertificate) throws BimServerClientException {
-		super(metaDataManager);
+		super(metaDataManager, trustedCertificate);
 		this.address = address;
 		this.jsonSocketReflectorFactory = new JsonSocketReflectorFactory(getServicesMap(), getHttpClient());
 		RealtimeReflectorFactoryBuilder factoryBuilder = new RealtimeReflectorFactoryBuilder(getServicesMap());

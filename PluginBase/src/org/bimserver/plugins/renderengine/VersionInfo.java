@@ -24,16 +24,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class VersionInfo {
-	private String branch;
-	private String commitsha;
+	private final String buildVersion;
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-	private GregorianCalendar datetime;
-	private String protocolVersion;
-	private String platform;
+	private final GregorianCalendar datetime;
+	private final String protocolVersion;
+	private final String platform;
 	
-	public VersionInfo(String branch, String commitsha, String protocolVersion, GregorianCalendar datetime, String platform) {
-		this.branch = branch;
-		this.commitsha = commitsha;
+	public VersionInfo(String buildVersion, String protocolVersion, GregorianCalendar datetime, String platform) {
+		this.buildVersion = buildVersion;
 		this.protocolVersion = protocolVersion;
 		this.datetime = datetime;
 		this.platform = platform;
@@ -41,20 +39,15 @@ public class VersionInfo {
 
 	public JsonNode toJson() {
 		ObjectNode result = OBJECT_MAPPER.createObjectNode();
-		result.put("branch", branch);
-		result.put("commitsha", commitsha);
+		result.put("buildVersion", buildVersion);
 		result.put("datetime", datetime.getTimeInMillis());
 		result.put("protocolVersion", protocolVersion);
 		result.put("platform", platform);
 		return result;
 	}
 
-	public String getBranch() {
-		return branch;
-	}
-	
-	public String getCommitsha() {
-		return commitsha;
+	public String getBuildVersion() {
+		return buildVersion;
 	}
 
 	public GregorianCalendar getDateTime() {
@@ -69,7 +62,4 @@ public class VersionInfo {
 		return platform;
 	}
 
-	public void setPlatform(String platform) {
-		this.platform = platform;
-	}
 }

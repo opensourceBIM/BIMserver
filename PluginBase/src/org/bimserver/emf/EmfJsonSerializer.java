@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.List;
 
@@ -289,7 +290,7 @@ public class EmfJsonSerializer {
 		if (value instanceof String) {
 			print(quote((String) value));
 		} else if (value instanceof byte[]) {
-			print("\"" + new String(Base64.encodeBase64((byte[]) value), Charsets.UTF_8) + "\"");
+			print("\"" + new String(Base64.encodeBase64((byte[]) value), StandardCharsets.UTF_8) + "\"");
 		} else if (value instanceof Date) {
 			print(Long.toString(((Date)value).getTime()));
 		} else if (value instanceof Enum) {
@@ -304,7 +305,7 @@ public class EmfJsonSerializer {
 	}
 	
 	public void print(String line) throws IOException {
-		byte[] bytes = line.getBytes(Charsets.UTF_8);
+		byte[] bytes = line.getBytes(StandardCharsets.UTF_8);
 		outputStream.write(bytes, 0, bytes.length);
 	}
 }

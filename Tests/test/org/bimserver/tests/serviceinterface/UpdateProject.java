@@ -17,44 +17,35 @@ package org.bimserver.tests.serviceinterface;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import static org.junit.Assert.fail;
-
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.test.TestWithEmbeddedServer;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class UpdateProject extends TestWithEmbeddedServer {
 
 	@Test
-	public void test() {
-		try {
-			// Create a new BimServerClient with authentication
-			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
-			
-			// Create a new project
-			String originalName = "test " + Math.random();
-			String newName = "test " + Math.random();
-			SProject newProject = bimServerClient.getServiceInterface().addProject(originalName, "ifc2x3tc1");
+	public void test() throws ServiceException, ChannelConnectionException {
+		// Create a new BimServerClient with authentication
+		BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 
-			newProject.setName(newName);
-			
-			bimServerClient.getServiceInterface().updateProject(newProject);
-			
-			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
-			
-			if (newProject.getName().equals(originalName)) {
-				fail("Project name not updated");
-			} else if (!newProject.getName().equals(newName)) {
-				fail("Project name not updated to new name");
-			}
-		} catch (Throwable e) {
-			e.printStackTrace();
-			if (e instanceof AssertionError) {
-				throw (AssertionError)e;
-			}
-			fail(e.getMessage());
-		}
+		// Create a new project
+		String originalName = "test " + Math.random();
+		String newName = "test " + Math.random();
+		SProject newProject = bimServerClient.getServiceInterface().addProject(originalName, "ifc2x3tc1");
+
+		newProject.setName(newName);
+
+		bimServerClient.getServiceInterface().updateProject(newProject);
+
+		newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
+
+		assertNotEquals("Project name not updated", originalName, newProject.getName());
+		assertEquals("Project name not updated to new name", newName, newProject.getName());
 	}
 }

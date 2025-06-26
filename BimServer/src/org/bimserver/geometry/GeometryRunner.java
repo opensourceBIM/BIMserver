@@ -125,7 +125,8 @@ public class GeometryRunner implements Runnable {
 
 	@Override
 	public void run() {
-		Thread.currentThread().setName("GeometryRunner");
+		Thread.currentThread().setName("GeometryRunner-" + job.getId());
+
 		long start = System.nanoTime();
 		job.setStartNanos(start);
 
@@ -181,7 +182,6 @@ public class GeometryRunner implements Runnable {
 					}
 				});
 				serializer.init(proxy, null, null, this.streamingGeometryGenerator.bimServer.getPluginManager(), this.streamingGeometryGenerator.packageMetaData);
-
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
 				IOUtils.copy(serializer.getInputStream(), baos);
 				bytes = baos.toByteArray();
@@ -337,9 +337,6 @@ public class GeometryRunner implements Runnable {
 													for (int l = 0; l < 4; ++l) {
 														float val = fixColor(materialsAsFloat.get(4 * c + l));
 														color.set(l, val);
-													}
-													if (color.isBlack()) {
-														continue;
 													}
 													for (int j = 0; j < 3; ++j) {
 														int k = indicesAsInt.get(i * 3 + j);
@@ -823,7 +820,6 @@ public class GeometryRunner implements Runnable {
 					}
 					try {
 						if (!notFoundObjects.isEmpty()) {
-							writeDebugFile(bytes, false, notFoundObjects);
 							StringBuilder sb = new StringBuilder();
 							for (Long key : notFoundObjects.keySet()) {
 								sb.append(key + " (" + notFoundObjects.get(key).getOid() + ")");
@@ -831,25 +827,24 @@ public class GeometryRunner implements Runnable {
 							}
 							sb.delete(sb.length() - 2, sb.length());
 							job.setException(new Exception("Missing objects in model (" + sb.toString() + ")"));
+							writeDebugFile(bytes, false, notFoundObjects);
 						} else if (writeOutputFiles) {
 							writeDebugFile(bytes, false, null);
 						}
 						in.close();
 					} catch (Throwable e) {
-
-					} finally {
-						
+						LOGGER.error("Error during debug file creation", e);
 					}
 					this.streamingGeometryGenerator.jobsDone.incrementAndGet();
 					this.streamingGeometryGenerator.updateProgress();
 				}
-			} catch (Exception e) {
+			} catch (Throwable e) {
 				StreamingGeometryGenerator.LOGGER.error("", e);
-				writeDebugFile(bytes, true, null);
+				if(bytes!=null) writeDebugFile(bytes, true, null);
 				job.setException(e);
 				// LOGGER.error("Original query: " + originalQuery, e);
 			}
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			StreamingGeometryGenerator.LOGGER.error("", e);
 			// LOGGER.error("Original query: " + originalQuery, e);
 		}

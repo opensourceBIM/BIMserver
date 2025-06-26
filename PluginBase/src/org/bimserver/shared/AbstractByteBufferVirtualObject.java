@@ -18,6 +18,7 @@ package org.bimserver.shared;
  *****************************************************************************/
 
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 import org.bimserver.BimserverDatabaseException;
@@ -56,7 +57,7 @@ public class AbstractByteBufferVirtualObject {
 				buffer.putInt(-1);
 			} else {
 				String stringValue = (String) value;
-				byte[] bytes = stringValue.getBytes(Charsets.UTF_8);
+				byte[] bytes = stringValue.getBytes(StandardCharsets.UTF_8);
 				if (bytes.length > Integer.MAX_VALUE) {
 					throw new BimserverDatabaseException("String value too long (max length is " + Integer.MAX_VALUE + ")");
 				}

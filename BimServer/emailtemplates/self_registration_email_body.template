@@ -10,6 +10,6 @@ Thank you for registering at $siteaddress.<br/>
 
 Please click the following link to set your password:<br/>
 
-$validationlink<br/>
+<a href="$validationlink">$validationlink</a><br/>
 
 #parse("inc/footer.template")

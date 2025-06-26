@@ -105,7 +105,7 @@ public class Streamer implements EndPoint {
 						public void run() {
 							Writer writer = null;
 							try {
-								LongAction<?> longAction = bimServer.getLongActionManager().getLongAction(topicId);
+								LongAction longAction = bimServer.getLongActionManager().getLongAction(topicId);
 								if (longAction instanceof LongStreamingDownloadAction) {
 									LongStreamingDownloadAction longStreamingDownloadAction = (LongStreamingDownloadAction) longAction;
 									writer = longStreamingDownloadAction.getMessagingStreamingSerializer();

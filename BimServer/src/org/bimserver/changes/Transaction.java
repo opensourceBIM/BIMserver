@@ -29,15 +29,15 @@ import org.bimserver.models.store.Revision;
 import org.bimserver.shared.HashMapVirtualObject;
 
 public class Transaction {
-	private Map<Long, HashMapVirtualObject> created = new HashMap<>();
-	private Map<Long, HashMapVirtualObject> updated = new HashMap<>();
-	private Map<Long, HashMapVirtualObject> deleted = new HashMap<>();
-	private Revision previousRevision;
-	private Project project;
-	private ConcreteRevision concreteRevision;
-	private DatabaseSession databaseSession;
-	private BimServer bimServer;
-	private int newRid;
+	private final Map<Long, HashMapVirtualObject> created = new HashMap<>();
+	private final Map<Long, HashMapVirtualObject> updated = new HashMap<>();
+	private final Map<Long, HashMapVirtualObject> deleted = new HashMap<>();
+	private final Revision previousRevision;
+	private final Project project;
+	private final ConcreteRevision concreteRevision;
+	private final DatabaseSession databaseSession;
+	private final BimServer bimServer;
+	private final int newRid;
 
 	public Transaction(BimServer bimServer, Revision previousRevision, Project project, ConcreteRevision concreteRevision, DatabaseSession databaseSession) {
 		this.bimServer = bimServer;

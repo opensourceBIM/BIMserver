@@ -43,15 +43,16 @@ public class TriggerOnCloseInputStream extends InputStream {
 	@Override
 	public void close() throws IOException {
 //		LOGGER.error("Closing " + id, new Exception());
-
-		// Read the rest of the inputstream
-		try {
-			IOUtils.copy(inputStream, new NullOutputStream());
-		} catch (EOFException e) {
-			// Skip, not a problem
+		if(latch.getCount()>0){  // Accept multiple calls to close() and ignore subsequent
+			// Read the rest of the inputstream
+			try {
+				IOUtils.copy(inputStream, NullOutputStream.INSTANCE);
+			} catch (EOFException e) {
+				// Skip, not a problem
+			}
+			latch.countDown();
+			inputStream.close();
 		}
-		latch.countDown();
-		inputStream.close();
 	}
 	
 	public void await() throws InterruptedException {

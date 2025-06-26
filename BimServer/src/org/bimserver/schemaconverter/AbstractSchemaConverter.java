@@ -108,8 +108,7 @@ public abstract class AbstractSchemaConverter implements SchemaConverter {
 					}
 				}
 			} else if (eStructuralFeature instanceof EReference) {
-				if (get == null) {
-				} else {
+				if (get != null) {
 					if (eStructuralFeature.isMany()) {
 						EList<EObject> list = (EList<EObject>) get;
 						AbstractEList<EObject> toList = (AbstractEList<EObject>) newObject.eGet(targetFeature);
@@ -117,7 +116,10 @@ public abstract class AbstractSchemaConverter implements SchemaConverter {
 							for (Object o : list) {
 								IdEObject ref = (IdEObject)o;
 								// if (targetFeature.getEType().isInstance(ref)) {
-								if(((EReference)targetFeature).getEReferenceType().isSuperTypeOf(target.getPackageMetaData().getEClass(ref.eClass().getName()))){
+								EClass targetClass = target.getPackageMetaData().getEClass(ref.eClass().getName());
+								if (targetClass == null){
+									LOGGER.info("No class " + ref.eClass().getName() + " in " + target.getPackageMetaData().getEPackage().getName());
+								} else if( ((EReference)targetFeature).getEReferenceType().isSuperTypeOf(targetClass)){
 									if (converted.containsKey(o)) {
 										toList.addUnique(converted.get(o));
 									} else {
@@ -127,7 +129,9 @@ public abstract class AbstractSchemaConverter implements SchemaConverter {
 										}
 									}
 								} else {
-									LOGGER.info("Incompatible reference types");
+									LOGGER.info("Incompatible reference types: " +
+										source.getPackageMetaData().getEPackage().getName() + " " + ref.eClass().getName() + ", " +
+										target.getPackageMetaData().getEPackage().getName() + " " + targetClass.getName());
 								}
 							}
 						}

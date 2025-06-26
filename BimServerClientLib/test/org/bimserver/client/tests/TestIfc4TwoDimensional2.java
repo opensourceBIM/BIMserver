@@ -45,9 +45,6 @@ public class TestIfc4TwoDimensional2 {
 				for (IfcBSplineSurfaceWithKnots bSplineSurface: bSplineSurfaces){
 					Assert.assertEquals(4, bSplineSurface.getControlPointsList().size());
 					for(ListOfIfcCartesianPoint pointList: bSplineSurface.getControlPointsList()){
-						// This assertion fails, error seems to be in client.
-						// 1st pointlist is of size 1, 2nd of size 2 and so on
-						// with duplication of the first point's coordinates
 						Assert.assertEquals(7, pointList.getList().size());
 						for(IfcCartesianPoint point: pointList.getList()){
 							Assert.assertNotNull(point);

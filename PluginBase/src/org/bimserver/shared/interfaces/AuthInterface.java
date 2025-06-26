@@ -118,7 +118,7 @@ public interface AuthInterface extends PublicInterface {
 		@WebParam(name = "salt", partName = "setHash.salt") byte[] salt) throws ServerException, UserException;
 	
 	/**
-	 * Request a password change, an e-mail will be send with a validation url
+	 * Request a password change, an e-mail will be sent with a validation url
 	 * @param username The username of the user to change the password for
 	 * @throws ServerException, UserException
 	 */

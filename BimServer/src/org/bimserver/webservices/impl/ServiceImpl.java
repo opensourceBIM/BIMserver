@@ -23,10 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLDecoder;
+import java.net.*;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -346,7 +343,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public void terminateLongRunningAction(Long topicId) throws ServerException, UserException {
-		LongAction<?> longAction = getBimServer().getLongActionManager().getLongAction(topicId);
+		LongAction longAction = getBimServer().getLongActionManager().getLongAction(topicId);
 		if (longAction != null) {
 			longAction.terminate();
 		} else {
@@ -356,7 +353,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public SDownloadResult getDownloadData(final Long topicId) throws ServerException, UserException {
-		LongAction<?> longAction = getBimServer().getLongActionManager().getLongAction(topicId);
+		LongAction longAction = getBimServer().getLongActionManager().getLongAction(topicId);
 		if (longAction == null) {
 			throw new UserException("No data found for topicId " + topicId);
 		}
@@ -379,8 +376,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			try {
 				longDownloadAction.waitForCompletion();
 				if (longDownloadAction.getErrors().isEmpty()) {
-					SCheckoutResult result = longDownloadAction.getCheckoutResult();
-					return result;
+					return longDownloadAction.getCheckoutResult();
 				} else {
 					LOGGER.error(longDownloadAction.getErrors().get(0));
 					throw new ServerException(longDownloadAction.getErrors().get(0));
@@ -1167,8 +1163,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public Long checkinInitiatedAsync(Long topicId, final Long poid, final String comment, Long deserializerOid, Long fileSize, String fileName, DataHandler dataHandler, Boolean merge) throws ServerException, UserException {
-		SLongActionState checkinInitiatedInternal = checkinInitiatedInternal(topicId, poid, comment, deserializerOid, fileSize, fileName, dataHandler, merge, false, -1);
-		return checkinInitiatedInternal.getTopicId();
+		checkinInitiatedInternal(topicId, poid, comment, deserializerOid, fileSize, fileName, dataHandler, merge, false, -1);
+		return topicId;
 	}
 
 	private SLongCheckinActionState checkinInternal(Long topicId, final Long poid, final String comment, Long deserializerOid, Long fileSize, String fileName, InputStream originalInputStream, Boolean merge, Boolean sync,
@@ -1179,7 +1175,8 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		if (deserializerPluginConfiguration == null) {
 			throw new UserException("Deserializer with oid " + deserializerOid + " not found");
 		} else {
-			PluginBundleVersion pluginBundleVersion = deserializerPluginConfiguration.getPluginDescriptor().getPluginBundleVersion();
+			PluginBundleVersion deserializerVersion = deserializerPluginConfiguration.getPluginDescriptor().getPluginBundleVersion();
+			String deserializerVersionString = deserializerVersion.getGroupId() + "." + deserializerVersion.getArtifactId() + ":" + deserializerVersion.getVersion();
 			Plugin plugin = getBimServer().getPluginManager().getPlugin(deserializerPluginConfiguration.getPluginDescriptor().getPluginClassName(), true);
 			if (plugin != null) {
 				if (plugin instanceof DeserializerPlugin) {
@@ -1211,7 +1208,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 					streamingDeserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData(project.getSchema()));
 					RestartableInputStream restartableInputStream = new RestartableInputStream(originalInputStream, file);
 					StreamingCheckinDatabaseAction checkinDatabaseAction = new StreamingCheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), comment, fileName, restartableInputStream,
-							streamingDeserializer, fileSize, newServiceId, pluginBundleVersion, topicId);
+							streamingDeserializer, fileSize, newServiceId, deserializerVersionString, topicId);
 					LongStreamingCheckinAction longAction = new LongStreamingCheckinAction(topicId, getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
 					getBimServer().getLongActionManager().start(longAction);
 					ProgressTopic progressTopic = null;
@@ -1258,7 +1255,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			try {
 				Files.createDirectory(userDirIncoming);
 			} catch (FileAlreadyExistsException e) {
-				// Directory was probably created in the mean time (by checking-in a file as the
+				// Directory was probably created in the meantime (by checking-in a file as the
 				// same user)
 			}
 		}
@@ -1310,6 +1307,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		String username = "Unknown";
 		String userUsername = "Unknown";
 		try {
+			URLConnection connection = openAndCheckResponseCode(urlString);
 			Long topicId = initiateCheckin(poid, deserializerOid);
 
 			User user = (User) readOnlySession.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
@@ -1321,13 +1319,9 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				throw new UserException("No project found with poid " + poid);
 			}
 
-			URL url = new URL(urlString);
-			URLConnection openConnection = url.openConnection();
-			InputStream input = openConnection.getInputStream();
-
 			Path incomingFile = getIncomingFileName(fileName, urlString, userUsername);
 
-			return checkinInternal(topicId, poid, comment, deserializerOid, (long) openConnection.getContentLength(), fileName, input, merge, true, readOnlySession, username, userUsername, project, incomingFile, -1);
+			return checkinInternal(topicId, poid, comment, deserializerOid, (long) connection.getContentLength(), fileName, connection.getInputStream(), merge, true, readOnlySession, username, userUsername, project, incomingFile, -1);
 
 //			DeserializerPluginConfiguration deserializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, OldQuery.getDefault());
 //			if (deserializerPluginConfiguration == null) {
@@ -1367,6 +1361,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		String username = "Unknown";
 		String userUsername = "Unknown";
 		try {
+			URLConnection connection = openAndCheckResponseCode(urlString);
 			Long topicId = initiateCheckin(poid, deserializerOid);
 
 			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
@@ -1386,9 +1381,6 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				throw new UserException("No project found with poid " + poid);
 			}
 
-			URL url = new URL(urlString);
-			URLConnection openConnection = url.openConnection();
-			InputStream input = openConnection.getInputStream();
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS");
 			if (fileName == null) {
 				if (urlString.contains("/")) {
@@ -1408,7 +1400,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 				fileName = fileName.replace(" ", "_");
 			}
 
-			SLongCheckinActionState checkinInternal = checkinInternal(topicId, poid, comment, deserializerOid, (long) openConnection.getContentLength(), fileName, input, merge, false, session, username, userUsername, project, file, -1);
+			SLongCheckinActionState checkinInternal = checkinInternal(topicId, poid, comment, deserializerOid, (long) connection.getContentLength(), fileName, connection.getInputStream(), merge, false, session, username, userUsername, project, file, -1);
 			return checkinInternal.getTopicId();
 //			DeserializerPluginConfiguration deserializerPluginConfiguration = session.get(StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), deserializerOid, OldQuery.getDefault());
 //			if (deserializerPluginConfiguration == null) {
@@ -1423,7 +1415,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 //			deserializer.init(getBimServer().getDatabase().getMetaDataManager().getPackageMetaData("ifc2x3tc1"));
 //
 //			IfcModelInterface model = deserializer.read(inputStream, fileName, 0, null);
-//			
+//
 //			CheckinDatabaseAction checkinDatabaseAction = new CheckinDatabaseAction(getBimServer(), null, getInternalAccessMethod(), poid, getAuthorization(), model, comment, fileName, merge);
 //			LongCheckinAction longAction = new LongCheckinAction(-1L, getBimServer(), username, userUsername, getAuthorization(), checkinDatabaseAction);
 //			getBimServer().getLongActionManager().start(longAction);
@@ -1439,6 +1431,23 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 		} finally {
 			session.close();
 		}
+	}
+
+	private static URLConnection openAndCheckResponseCode(String urlString) throws IOException, UserException {
+		URL url = new URL(urlString);
+		URLConnection connection = url.openConnection();
+		if(connection instanceof HttpURLConnection){
+			HttpURLConnection httpConnection = (HttpURLConnection) connection;
+			int responseCode = httpConnection.getResponseCode();
+			if(responseCode != HttpURLConnection.HTTP_OK){
+				if (responseCode ==HttpURLConnection.HTTP_MOVED_PERM || responseCode == HttpURLConnection.HTTP_MOVED_TEMP){
+					String next = httpConnection.getHeaderField("Location");
+					throw new UserException("Redirecting to " + next + ", use this URL directly.");
+				}
+				throw new UserException("Connection error, HTTP status " + responseCode);
+			}
+		}
+		return connection;
 	}
 
 	@Override
@@ -2585,7 +2594,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			CloseableHttpClient httpclient = HttpClients.createDefault();
 			HttpPost httpPost = new HttpPost(url);
 
-			LongAction<?> longAction = getBimServer().getLongActionManager().getLongAction(topicId);
+			LongAction longAction = getBimServer().getLongActionManager().getLongAction(topicId);
 			if (longAction == null) {
 				throw new UserException("No data found for topicId " + topicId);
 			}
@@ -3330,6 +3339,7 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 
 	@Override
 	public Long regenerateGeometry(Long roid, Long eoid) throws ServerException, UserException {
+		requireAuthenticationAndRunningServer();
 		try (DatabaseSession session = getBimServer().getDatabase(). createSession(OperationType.POSSIBLY_WRITE)) {
 			Revision revision = session.get(roid, OldQuery.getDefault());
 			SUser user = getCurrentUser();

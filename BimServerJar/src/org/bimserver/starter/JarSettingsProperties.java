@@ -10,33 +10,32 @@ import java.nio.file.Paths;
 import java.util.Properties;
 
 public class JarSettingsProperties {
-	private File lastFile;
 
-	private String jvm = "default";
+	private static final String DEFAULT_JVM = "default";
+	private static final String DEFAULT_STACKSIZE = "1024k";
+	private static final String DEFAULT_HOMEDIR = new File("home").getAbsolutePath();
+	private static final String DEFAULT_ADDRESS = "localhost";
+	private static final int DEFAULT_PROXYPORT = 1080;
+	private static final int DEFAULT_PORT =  8082;
+	private static final String DEFAULT_HEAPSIZE;
 
-	private String homedir = new File("home").getAbsolutePath();
-
-	private String address = "localhost";
-
-	private String proxyHost = "";
-
-	private boolean useProxy = false;
-
-	private int proxyPort = 1080;
-
-	private int port = 8082;
-
-	private String heapsize = "1024m";
-
-	private String stacksize = "1024k";
-
-	private boolean forceipv4 = false;
-
-	public JarSettingsProperties() {
+	static {
 		com.sun.management.OperatingSystemMXBean os = (com.sun.management.OperatingSystemMXBean) java.lang.management.ManagementFactory.getOperatingSystemMXBean();
 		long physicalMemorySize = os.getTotalPhysicalMemorySize();
-		heapsize = Math.min(1024 * 1024 * 1024, physicalMemorySize / 2000000) + "m";
+		DEFAULT_HEAPSIZE = 	Math.min(1024 * 1024 * 1024, physicalMemorySize / 2 / 1024 / 1024) + "m";
 	}
+
+	private String jvm;
+	private String stacksize;
+	private boolean forceipv4 = false;
+
+	private String homedir;
+	private String address;
+	private boolean useProxy = false;
+	private String proxyHost = "";
+	private int proxyPort;
+	private int port;
+	private String heapsize;
 
 	public static JarSettingsProperties readFromFile() {
 		return readFromFile(Paths.get("settings.properties"));
@@ -51,15 +50,15 @@ public class JarSettingsProperties {
 					properties.load(inputStream);
 				}
 				jarSettingsProperties.setJvm(properties.getProperty("jvm"));
+				jarSettingsProperties.setStacksize(properties.getProperty("stacksize"));
+				jarSettingsProperties.setForceipv4(Boolean.parseBoolean(properties.getProperty("forceip4")));
 				jarSettingsProperties.setHomedir(properties.getProperty("homedir"));
 				jarSettingsProperties.setAddress(properties.getProperty("address"));
-				jarSettingsProperties.setUseProxy(Boolean.valueOf(properties.getProperty("useProxy")));
+				jarSettingsProperties.setUseProxy(Boolean.parseBoolean(properties.getProperty("useProxy")));
 				jarSettingsProperties.setProxyHost(properties.getProperty("proxyHost"));
 				jarSettingsProperties.setProxyPort(Integer.parseInt(properties.getProperty("proxyPort")));
 				jarSettingsProperties.setPort(Integer.parseInt(properties.getProperty("port")));
 				jarSettingsProperties.setHeapsize(properties.getProperty("heapsize"));
-				jarSettingsProperties.setStacksize(properties.getProperty("stacksize"));
-				jarSettingsProperties.setForceipv4(Boolean.valueOf(properties.getProperty("forceipv4")));
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -69,52 +68,44 @@ public class JarSettingsProperties {
 	
 	public void save() {
 		Properties properties = new Properties();
-		
-		properties.setProperty("jvm", getJvm());		
+
+		properties.setProperty("jvm", getJvm());
+		properties.setProperty("stacksize", getStacksize());
+		properties.setProperty("forceipv4", String.valueOf(isForceipv4()));
 		properties.setProperty("homedir", getHomedir());		
 		properties.setProperty("address", getAddress());		
-		properties.setProperty("useProxy", "" + isUseProxy());		
+		properties.setProperty("useProxy", String.valueOf(isUseProxy()));
 		properties.setProperty("proxyHost", getProxyHost());		
-		properties.setProperty("proxyPort", "" + getProxyPort());		
-		properties.setProperty("port", "" + getPort());		
+		properties.setProperty("proxyPort", String.valueOf(getProxyPort()));
+		properties.setProperty("port", String.valueOf(getPort()));
 		properties.setProperty("heapsize", getHeapsize());		
-		properties.setProperty("stacksize", getStacksize());		
-		properties.setProperty("forceipv4", "" + isForceipv4());
-		
+
 		try (OutputStream outputStream = Files.newOutputStream(Paths.get("settings.properties"))) {
 			properties.store(outputStream, "");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public File getLastFile() {
-		return lastFile;
-	}
 
-	public void setLastFile(File lastFile) {
-		this.lastFile = lastFile;
-	}
+	public String getJvm() { return jvm == null ? DEFAULT_JVM : jvm; }
 
-	public String getJvm() {
-		return jvm;
-	}
+	public void setJvm(String jvm) { this.jvm = jvm; }
 
-	public void setJvm(String jvm) {
-		this.jvm = jvm;
-	}
+	public String getStacksize() { return stacksize == null ? DEFAULT_STACKSIZE : stacksize; }
 
-	public String getHomedir() {
-		return homedir;
-	}
+	public void setStacksize(String stacksize) { this.stacksize = stacksize; }
+
+	public boolean isForceipv4() { return forceipv4; }
+
+	public void setForceipv4(boolean forceipv4) { this.forceipv4 = forceipv4; }
+
+	public String getHomedir() { return homedir == null ? DEFAULT_HOMEDIR : homedir; }
 
 	public void setHomedir(String homedir) {
 		this.homedir = homedir;
 	}
 
-	public String getAddress() {
-		return address;
-	}
+	public String getAddress() { return address == null ? DEFAULT_ADDRESS : address; }
 
 	public void setAddress(String address) {
 		this.address = address;
@@ -137,7 +128,7 @@ public class JarSettingsProperties {
 	}
 
 	public int getProxyPort() {
-		return proxyPort;
+		return proxyPort == 0 ? DEFAULT_PROXYPORT : proxyPort;
 	}
 
 	public void setProxyPort(int proxyPort) {
@@ -145,7 +136,7 @@ public class JarSettingsProperties {
 	}
 
 	public int getPort() {
-		return port;
+		return port == 0 ? DEFAULT_PORT : port;
 	}
 
 	public void setPort(int port) {
@@ -153,26 +144,11 @@ public class JarSettingsProperties {
 	}
 
 	public String getHeapsize() {
-		return heapsize;
+		return heapsize == null ? DEFAULT_HEAPSIZE : heapsize;
 	}
 
 	public void setHeapsize(String heapsize) {
 		this.heapsize = heapsize;
 	}
 
-	public String getStacksize() {
-		return stacksize;
-	}
-
-	public void setStacksize(String stacksize) {
-		this.stacksize = stacksize;
-	}
-
-	public boolean isForceipv4() {
-		return forceipv4;
-	}
-
-	public void setForceipv4(boolean forceipv4) {
-		this.forceipv4 = forceipv4;
-	}
 }

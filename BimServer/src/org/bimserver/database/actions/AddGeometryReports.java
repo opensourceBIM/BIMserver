@@ -55,10 +55,14 @@ public class AddGeometryReports extends BimDatabaseAction<Void> {
 			throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException {
 		ExtendedDataSchema htmlSchema = (ExtendedDataSchema) getDatabaseSession().querySingle(StorePackage.eINSTANCE.getExtendedDataSchema_Name(), "GEOMETRY_GENERATION_REPORT_HTML_1_1");
 		ExtendedDataSchema jsonSchema = (ExtendedDataSchema) getDatabaseSession().querySingle(StorePackage.eINSTANCE.getExtendedDataSchema_Name(), "GEOMETRY_GENERATION_REPORT_JSON_1_1");
-		
-		storeExtendedData(getDatabaseSession(), htmlSchema, htmlBytes, "text/html", "html", timeToGenerateMs);
-		storeExtendedData(getDatabaseSession(), jsonSchema, jsonBytes, "application/json", "json", timeToGenerateMs);
-		
+
+		if (htmlBytes != null){
+			storeExtendedData(getDatabaseSession(), htmlSchema, htmlBytes, "text/html", "html", timeToGenerateMs);
+		}
+		if (jsonBytes != null) {
+			storeExtendedData(getDatabaseSession(), jsonSchema, jsonBytes, "application/json", "json", timeToGenerateMs);
+		}
+
 		return null;
 	}
 	

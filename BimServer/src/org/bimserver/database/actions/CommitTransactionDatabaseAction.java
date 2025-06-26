@@ -26,10 +26,7 @@ import org.bimserver.BimserverDatabaseException;
 import org.bimserver.GenerateGeometryResult;
 import org.bimserver.GeometryGeneratingException;
 import org.bimserver.SummaryMap;
-import org.bimserver.changes.Change;
-import org.bimserver.changes.CreateObjectChange;
-import org.bimserver.changes.RemoveObjectChange;
-import org.bimserver.changes.Transaction;
+import org.bimserver.changes.*;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OidCounters;
@@ -158,56 +155,43 @@ public class CommitTransactionDatabaseAction extends GenericCheckinDatabaseActio
 			summaryMap = new SummaryMap(packageMetaData);
 		}
 
-		// First create all new objects
-		
 		Transaction transaction = new Transaction(getBimServer(), previousRevision, project, concreteRevision, getDatabaseSession());
-		
+
+		// First create all new objects
 		for (Change change : longTransaction.getChanges()) {
 			if (change instanceof CreateObjectChange) {
 				try {
-					CreateObjectChange createObjectChange = (CreateObjectChange)change;
 					change.execute(transaction);
-					getDatabaseSession().addStartOid(createObjectChange.geteClass(), createObjectChange.getOid());
 				} catch (IOException | QueryException e) {
 					e.printStackTrace();
 				}
-				summaryMap.add(((CreateObjectChange)change).geteClass(), 1);
 			}
 		}
 		// Then do the rest
 		for (Change change : longTransaction.getChanges()) {
 			if (!(change instanceof CreateObjectChange)) {
-				if (change instanceof RemoveObjectChange) {
-					summaryMap.remove(((RemoveObjectChange)change).geteClass(), 1);
-				}
 				try {
 					change.execute(transaction);
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (QueryException e) {
+				} catch (IOException | QueryException e) {
 					e.printStackTrace();
 				}
 			}
 		}
 
 		for (HashMapVirtualObject object : transaction.getCreated()) {
+			getDatabaseSession().addStartOid(object.eClass(), object.getOid());
 			getDatabaseSession().save(object);
+			summaryMap.add(object.eClass(), 1);
 		}
 		for (HashMapVirtualObject object : transaction.getUpdated()) {
 			getDatabaseSession().save(object, concreteRevision.getId());
 		}
 		for (HashMapVirtualObject object : transaction.getDeleted()) {
 			getDatabaseSession().delete(object, concreteRevision.getId());
+			summaryMap.remove(object.eClass(), 1);
 		}
-		
-		setProgress("Generating inverses/opposites...", -1);
+
 		Revision newRevision = result.getRevisions().get(0);
-		long newRoid = newRevision.getOid();
-		try {
-			fixInverses(packageMetaData, newRoid, summaryMap.getSummaryMap());
-		} catch (QueryException | IOException e1) {
-			e1.printStackTrace();
-		}
 
 		int highestStopId = AbstractDownloadDatabaseAction.findHighestStopRid(concreteRevision.getProject(), concreteRevision);
 		QueryContext queryContext = new QueryContext(getDatabaseSession(), packageMetaData, project.getId(), concreteRevision.getId(), concreteRevision.getRevisions().get(0).getOid(), concreteRevision.getOid(), highestStopId);

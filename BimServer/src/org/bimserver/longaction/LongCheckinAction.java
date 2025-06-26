@@ -27,19 +27,21 @@ import org.bimserver.database.ProgressHandler;
 import org.bimserver.database.actions.CheckinDatabaseAction;
 import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
 import org.bimserver.interfaces.objects.SProgressTopicType;
-import org.bimserver.models.store.ActionState;
-import org.bimserver.models.store.Project;
+import org.bimserver.models.store.*;
+import org.bimserver.plugins.deserializers.DeserializeException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
+public class LongCheckinAction extends LongAction {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongCheckinAction.class);
 	private CheckinDatabaseAction checkinDatabaseAction;
 	private String fileName;
+	private long roid;
+	private DeserializeException deserializerException;
 
 	public LongCheckinAction(Long topicId, BimServer bimServer, String username, String userUsername, Authorization authorization, CheckinDatabaseAction checkinDatabaseAction) {
 		super(bimServer, username, userUsername, authorization);
@@ -92,8 +94,12 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 					this.count = count;
 				}
 			});
+			this.roid = checkinDatabaseAction.getRevision().getOid();
 		} catch (Exception e) {
 			if (e instanceof UserException) {
+				if (e.getCause() instanceof DeserializeException) {
+					this.deserializerException = (DeserializeException) e.getCause();
+				}
 			} else if (e instanceof BimserverConcurrentModificationDatabaseException) {
 				// Ignore
 			} else {
@@ -121,5 +127,16 @@ public class LongCheckinAction extends LongAction<LongCheckinActionKey> {
 	@Override
 	public String getDescription() {
 		return getClass().getSimpleName();
+	}
+
+	@Override
+	public synchronized LongActionState getState() {
+		LongCheckinActionState ds = StoreFactory.eINSTANCE.createLongCheckinActionState();
+		ds.setRoid(roid);
+		if (deserializerException != null) {
+			ds.setDeserializeErrorCode(deserializerException.getDeserializerErrorCode().getCode());
+		}
+		super.fillState(ds);
+		return ds;
 	}
 }

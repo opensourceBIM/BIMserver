@@ -33,7 +33,7 @@ public class LongActionManager {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LongActionManager.class);
 	private static final int FIVE_MINUTES_IN_MS = 5000 * 60; // 5 minutes
-	private final BiMap<Long, LongAction<?>> actions = HashBiMap.create();
+	private final BiMap<Long, LongAction> actions = HashBiMap.create();
 	private volatile boolean running = true;
 	private BimServer bimServer;
 
@@ -41,7 +41,7 @@ public class LongActionManager {
 		this.bimServer = bimServer;
 	}
 	
-	public synchronized void start(final LongAction<?> longAction) throws CannotBeScheduledException {
+	public synchronized void start(final LongAction longAction) throws CannotBeScheduledException {
 		if (running) {
 			synchronized (this) {
 				// NPE has happened here, need to figure out why (possibly concurrent related)
@@ -64,7 +64,7 @@ public class LongActionManager {
 		running = false;
 	}
 
-	public synchronized LongAction<?> getLongAction(long id) {
+	public synchronized LongAction getLongAction(long id) {
 		return actions.get(id);
 	}
 
@@ -73,7 +73,7 @@ public class LongActionManager {
 		GregorianCalendar now = new GregorianCalendar();
 		while (iterator.hasNext()) {
 			long id = iterator.next();
-			LongAction<?> longAction = actions.get(id);
+			LongAction longAction = actions.get(id);
 			if (longAction.getActionState() == ActionState.FINISHED) {
 				GregorianCalendar stop = longAction.getStop();
 				if (now.getTimeInMillis() - stop.getTimeInMillis() > FIVE_MINUTES_IN_MS) {
@@ -89,15 +89,15 @@ public class LongActionManager {
 	 */
 	public synchronized void shutdownGracefully() {
 		running = false;
-		Iterator<LongAction<?>> iterator = actions.values().iterator();
+		Iterator<LongAction> iterator = actions.values().iterator();
 		while (iterator.hasNext()) {
-			LongAction<?> longAction = iterator.next();
+			LongAction longAction = iterator.next();
 			longAction.waitForCompletion();
 		}
 	}
 
 	public synchronized void remove(long topicId) throws UserException {
-		LongAction<?> longAction = actions.get(topicId);
+		LongAction longAction = actions.get(topicId);
 		if (longAction != null) {
 			LOGGER.debug("[MAN] Cleaning up topic " + longAction.getProgressTopic().getKey().getId() + " (" + longAction.getDescription() + ")");
 			try {
@@ -110,7 +110,7 @@ public class LongActionManager {
 		}
 	}
 
-	public synchronized void remove(LongAction<?> action) {
+	public synchronized void remove(LongAction action) {
 		LOGGER.debug("Cleaning up topics: " + action.getDescription());
 		try {
 			action.stop();

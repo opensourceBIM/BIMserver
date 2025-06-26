@@ -56,7 +56,7 @@ public class RemoveReferenceChange implements Change {
 	private final long oid;
 	private final String referenceName;
 	private final int index;
-	private final long referencedOid;
+	private long referencedOid;
 
 	public RemoveReferenceChange(long oid, String referenceName, int index) {
 		this.oid = oid;
@@ -77,15 +77,14 @@ public class RemoveReferenceChange implements Change {
 	public void execute(Transaction transaction) throws UserException, BimserverLockConflictException, BimserverDatabaseException, IOException, QueryException {
 		PackageMetaData packageMetaData = transaction.getDatabaseSession().getMetaDataManager().getPackageMetaData(transaction.getProject().getSchema());
 
-		Query query = new Query(packageMetaData);
-		QueryPart queryPart = query.createQueryPart();
-		queryPart.addOid(oid);
-		
 		HashMapVirtualObject object = transaction.get(oid);
 		if (object == null) {
+			Query query = new Query(packageMetaData);
+			QueryPart queryPart = query.createQueryPart();
+			queryPart.addOid(oid);
+
 			QueryObjectProvider queryObjectProvider = new QueryObjectProvider(transaction.getDatabaseSession(), transaction.getBimServer(), query, Collections.singleton(transaction.getPreviousRevision().getOid()), packageMetaData);
 			object = queryObjectProvider.next();
-			transaction.updated(object);
 		}
 		
 		EClass eClass = transaction.getDatabaseSession().getEClassForOid(oid);
@@ -105,10 +104,32 @@ public class RemoveReferenceChange implements Change {
 		}
 		List list = (List) object.get(eReference.getName());
 		if (referencedOid != -1) {
-			list.remove((Object)referencedOid);
+			list.remove(referencedOid);
 		}
 		if (index != -1) {
+			referencedOid = (long) list.get(index);
 			list.remove(index);
+		}
+		transaction.updated(object);
+
+		EClass eClassForOid = transaction.getDatabaseSession().getEClassForOid(referencedOid);
+		EReference inverseOrOpposite = packageMetaData.getInverseOrOpposite(eClassForOid, eReference);
+		if (inverseOrOpposite != null) {
+			HashMapVirtualObject referencedObject = transaction.get(referencedOid); // we don't get the deleted
+			if (referencedObject == null) {
+				Query query = new Query(packageMetaData);
+				QueryPart queryPart = query.createQueryPart();
+				queryPart.addOid(referencedOid);
+
+				QueryObjectProvider queryObjectProvider = new QueryObjectProvider(transaction.getDatabaseSession(), transaction.getBimServer(), query, Collections.singleton(transaction.getPreviousRevision().getOid()), packageMetaData);
+				referencedObject = queryObjectProvider.next();
+			}
+			if (inverseOrOpposite.isMany()) {
+				referencedObject.removeReference(inverseOrOpposite, referencedOid);
+			} else {
+				referencedObject.eUnset(inverseOrOpposite);
+			}
+			transaction.updated(referencedObject);
 		}
 	}
 }

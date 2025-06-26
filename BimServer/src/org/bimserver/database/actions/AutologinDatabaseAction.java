@@ -77,6 +77,6 @@ public class AutologinDatabaseAction extends BimDatabaseAction<String>{
 		} catch (InterruptedException e) {
 			LOGGER.error("", e);
 		}
-		throw new UserException("User not found or inccorrect autologin token");
+		throw new UserException("User not found or incorrect autologin token");
 	}
 }

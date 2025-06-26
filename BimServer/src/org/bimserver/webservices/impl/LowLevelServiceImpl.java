@@ -56,6 +56,7 @@ import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.webservices.LongTransaction;
 import org.bimserver.webservices.NoTransactionException;
 import org.bimserver.webservices.ServiceMap;
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
@@ -260,8 +261,9 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 			}
 			try {
 				EClass eClass = ((Database) getBimServer().getDatabase()).getEClass(longTransaction.getPackageMetaData().getEPackage().getName(), className);
+				// TODO: use longTransaction.getPackageMetaData().getEClass(className); - add classifier-check to getEClass?
 				Long oid = getBimServer().getDatabase().newOid(eClass);
-				CreateObjectChange createObject = new CreateObjectChange(className, oid, eClass, generateGuid);
+				CreateObjectChange createObject = new CreateObjectChange(oid, eClass, generateGuid);
 				longTransaction.add(createObject);
 				return oid;
 			} catch (BimserverDatabaseException e) {
@@ -286,10 +288,8 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 	public void removeObject(Long tid, Long oid) throws UserException, ServerException {
 		requireAuthenticationAndRunningServer();
 		try {
-			getBimServer().getLongTransactionManager().get(tid).add(new RemoveObjectChange(oid, getBimServer().getDatabase().getEClassForOid(oid)));
+			getBimServer().getLongTransactionManager().get(tid).add(new RemoveObjectChange(oid));
 		} catch (NoTransactionException e) {
-			handleException(e);
-		} catch (BimserverDatabaseException e) {
 			handleException(e);
 		}
 	}
@@ -544,7 +544,13 @@ public class LowLevelServiceImpl extends GenericServiceImpl implements LowLevelI
 			Object eGet = object.eGet(eStructuralFeature);
 			if (eGet instanceof IdEObject) {
 				IdEObject refObject = (IdEObject)eGet;
-				return refObject.eGet(refObject.eClass().getEStructuralFeature("wrappedValue"));
+				EStructuralFeature wrappedFeature = refObject.eClass().getEStructuralFeature("wrappedValue");
+				Object wrappedValue = refObject.eGet(wrappedFeature);
+				if(wrappedFeature.getEType().getName().equals("Tristate")){
+					String tristateLiteral = ((Enumerator) wrappedValue).getLiteral();
+					return tristateLiteral.equals("UNDEFINED") ? null : Boolean.valueOf(tristateLiteral.toLowerCase());
+				}
+				return wrappedValue;
 			}
 			return eGet;
 		} catch (Exception e) {

@@ -36,7 +36,8 @@ import com.google.common.hash.Hasher;
 import com.google.common.hash.Hashing;
 
 public class DownloadDescriptor {
-	private static final HashFunction hf = Hashing.md5();
+	@SuppressWarnings("deprecation")
+	private static final HashFunction hf = Hashing.md5();  // TODO: use Hashing.goodFastHash instead?
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 	private Set<Long> roids;
 	private Query query;

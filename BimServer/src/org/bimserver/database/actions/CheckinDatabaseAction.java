@@ -234,7 +234,7 @@ public class CheckinDatabaseAction extends GenericCheckinDatabaseAction {
 			
 			OidCounters oidCounters = new OidCounters();
 			for (EClass eClass : eClasses) {
-				long oid = startOids.get(eClass);
+				long oid = startOids.get(eClass.getEPackage().getName() + "." + eClass.getName());
 				if (!DatabaseSession.perRecordVersioning(eClass)) {
 					oidCounters.put(eClass, oid);
 				}

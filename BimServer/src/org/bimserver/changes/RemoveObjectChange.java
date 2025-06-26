@@ -19,6 +19,7 @@ package org.bimserver.changes;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.List;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
@@ -30,27 +31,21 @@ import org.bimserver.emf.PackageMetaData;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 
 public class RemoveObjectChange implements Change {
 
 	private final long oid;
-	private EClass eClass;
 
 	/**
 	 * This is a potentially quite slow action
 	 * 
 	 * @param oid
-	 * @param eClass
 	 */
-	public RemoveObjectChange(long oid, EClass eClass) {
+	public RemoveObjectChange(long oid) {
 		this.oid = oid;
-		this.eClass = eClass;
 	}
 
-	public EClass geteClass() {
-		return eClass;
-	}
-	
 	@Override
 	public void execute(Transaction transaction) throws UserException, BimserverLockConflictException, BimserverDatabaseException, IOException, QueryException {
 		PackageMetaData packageMetaData = transaction.getDatabaseSession().getMetaDataManager().getPackageMetaData(transaction.getProject().getSchema());
@@ -64,14 +59,49 @@ public class RemoveObjectChange implements Change {
 			QueryObjectProvider queryObjectProvider = new QueryObjectProvider(transaction.getDatabaseSession(), transaction.getBimServer(), query, Collections.singleton(transaction.getPreviousRevision().getOid()), packageMetaData);
 			object = queryObjectProvider.next();
 		}
-		
+
+		EClass eClass = transaction.getDatabaseSession().getEClassForOid(oid);
 		if (object == null) {
-			throw new UserException("Object with oid " + oid + " not found");
+			throw new UserException("No object of type \"" + eClass.getName() + "\" with oid " + oid + " found in project with pid " + transaction.getProject().getId());
 		}
 		if (!ChangeHelper.canBeChanged(eClass)) {
 			throw new UserException("Only objects from the following schemas are allowed to be changed: Ifc2x3tc1 and IFC4, this object (" + eClass.getName() + ") is from the \"" + eClass.getEPackage().getName() + "\" package");
 		}
 
+		// fix inverses
+		for(EReference hasInverse: packageMetaData.getAllHasInverseReferences(eClass)){
+			Object referenced = object.get(hasInverse.getName());
+			if(referenced!=null){
+				if(hasInverse.isMany()){
+					for(long referencedOid : (List<Long>) referenced){
+						HashMapVirtualObject referencedObject = removeInverse(transaction, packageMetaData, hasInverse, referencedOid);
+						transaction.updated(referencedObject);
+					}
+				} else {
+					HashMapVirtualObject referencedObject = removeInverse(transaction, packageMetaData, hasInverse, (long) referenced);
+					transaction.updated(referencedObject);
+				}
+			}
+		}
 		transaction.deleted(object);
+	}
+
+	private HashMapVirtualObject removeInverse(Transaction transaction, PackageMetaData packageMetaData, EReference reference, long referencedOid) throws IOException, QueryException, BimserverDatabaseException {
+		HashMapVirtualObject referencedObject = transaction.get(referencedOid); // we don't get the deleted
+		if (referencedObject == null) {
+			Query query = new Query(packageMetaData);
+			QueryPart queryPart = query.createQueryPart();
+			queryPart.addOid(referencedOid);
+
+			QueryObjectProvider queryObjectProvider = new QueryObjectProvider(transaction.getDatabaseSession(), transaction.getBimServer(), query, Collections.singleton(transaction.getPreviousRevision().getOid()), packageMetaData);
+			referencedObject = queryObjectProvider.next();
+		}
+		EReference inverseOrOpposite = packageMetaData.getInverseOrOpposite(referencedObject.eClass(), reference);
+		if (inverseOrOpposite.isMany()) {
+			referencedObject.removeReference(inverseOrOpposite, referencedOid);
+		} else {
+			referencedObject.eUnset(inverseOrOpposite);
+		}
+		return referencedObject;
 	}
 }

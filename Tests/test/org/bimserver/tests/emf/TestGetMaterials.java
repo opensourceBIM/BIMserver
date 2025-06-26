@@ -19,17 +19,17 @@ package org.bimserver.tests.emf;
 
 import static org.junit.Assert.fail;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.bimserver.database.queries.om.Include;
+import org.bimserver.database.queries.om.*;
 import org.bimserver.database.queries.om.Include.TypeDef;
-import org.bimserver.database.queries.om.JsonQueryObjectModelConverter;
-import org.bimserver.database.queries.om.Query;
-import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.IfcModelInterface;
+import org.bimserver.emf.IfcModelInterfaceException;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.IfcMaterial;
@@ -42,7 +42,10 @@ import org.bimserver.models.ifc2x3tc1.IfcProduct;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssociates;
 import org.bimserver.models.ifc2x3tc1.IfcRelAssociatesMaterial;
 import org.bimserver.plugins.services.BimServerClientInterface;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.bimserver.shared.exceptions.BimServerClientException;
+import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.test.TestWithEmbeddedServer;
 import org.junit.Assert;
 import org.junit.Test;
@@ -55,56 +58,48 @@ import com.google.common.base.Joiner;
 public class TestGetMaterials extends TestWithEmbeddedServer {
 
 	@Test
-	public void test() {
-		try {
-			// Create a new BimServerClient with authentication
-			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
-			
-			// Create a new project
-			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
-			
-			// Get the appropriate deserializer
-			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
+	public void test() throws ServiceException, ChannelConnectionException, IOException, BimServerClientException, QueryException, IfcModelInterfaceException {
+		// Create a new BimServerClient with authentication
+		BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 
-			// Checkin the file
-			bimServerClient.checkinSync(newProject.getOid(), "test", deserializer.getOid(), false, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/AC11-Institute-Var-2-IFC.ifc"));
+		// Create a new project
+		SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 
-			// Refresh project info
-			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
+		// Get the appropriate deserializer
+		SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
 
-			IfcModelInterface model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), false, false);
-			
-			Query query = new Query(model.getPackageMetaData());
-			query.setDoubleBuffer(true);
-			QueryPart queryPart = query.createQueryPart();
-			queryPart.addType(new TypeDef(model.getPackageMetaData().getEClass("IfcProduct"), true));
+		// Checkin the file
+		bimServerClient.checkinSync(newProject.getOid(), "test", deserializer.getOid(), false, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/AC11-Institute-Var-2-IFC.ifc"));
 
-			Include include = queryPart.createInclude();
-			include.addType(model.getPackageMetaData().getEClass("IfcObjectDefinition"), true);
-			include.addField("HasAssociations");
-			include.addInclude("ifc2x3tc1-stdlib:IfcRelAssociatesMaterial");
-			
-			JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(model.getPackageMetaData());
-			model.query(converter.toJson(query), true);
-			
-			int nrMaterialsWithName = 0;
-			for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
-				Set<IfcMaterial> materials = getMaterials(ifcProduct);
-				for (IfcMaterial ifcMaterial : materials) {
-					if (ifcMaterial.getName() != null) {
-						System.out.println(ifcMaterial.getName());
-						nrMaterialsWithName++;
-					}
+		// Refresh project info
+		newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
+
+		IfcModelInterface model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), false, false);
+
+		Query query = new Query(model.getPackageMetaData());
+		query.setDoubleBuffer(true);
+		QueryPart queryPart = query.createQueryPart();
+		queryPart.addType(new TypeDef(model.getPackageMetaData().getEClass("IfcProduct"), true));
+
+		Include include = queryPart.createInclude();
+		include.addType(model.getPackageMetaData().getEClass("IfcObjectDefinition"), true);
+		include.addField("HasAssociations");
+		include.addInclude("ifc2x3tc1-stdlib:IfcRelAssociatesMaterial");
+
+		JsonQueryObjectModelConverter converter = new JsonQueryObjectModelConverter(model.getPackageMetaData());
+		model.query(converter.toJson(query), true);
+
+		int nrMaterialsWithName = 0;
+		for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
+			Set<IfcMaterial> materials = getMaterials(ifcProduct);
+			for (IfcMaterial ifcMaterial : materials) {
+				if (ifcMaterial.getName() != null) {
+					System.out.println(ifcMaterial.getName());
+					nrMaterialsWithName++;
 				}
 			}
-			Assert.assertEquals(416, nrMaterialsWithName);
-		} catch (Throwable e) {
-			e.printStackTrace();
-			if (e instanceof AssertionError) {
-				throw (AssertionError)e;
-			}
-			fail(e.getMessage());
 		}
+		Assert.assertEquals(416, nrMaterialsWithName);
 	}
 	
 	public static Set<IfcMaterial> getMaterials(IfcProduct ifcProduct) {

@@ -50,7 +50,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -65,15 +64,11 @@ import javax.swing.event.DocumentListener;
 public class Starter extends JFrame {
 	private static final long serialVersionUID = 5356018168589837130L;
 	private Process exec;
-	private JarSettingsProperties jarSettings = JarSettingsProperties.readFromFile();
+	private final JarSettingsProperties jarSettings = JarSettingsProperties.readFromFile();
 	private JTextField addressField;
 	private JTextField portField;
 	private JTextField heapSizeField;
-	private JCheckBox forceIpv4Field;
-	private JTextField stackSizeField;
 	private JButton browserHomeDir;
-	private JButton browserJvm;
-	private JTextField jvmField;
 	private JTextField homeDirField;
 	private JCheckBox useProxy;
 	private JTextField proxyHost;
@@ -89,11 +84,8 @@ public class Starter extends JFrame {
 		try {
 			jarSettings.setAddress(addressField.getText());
 			jarSettings.setPort(Integer.parseInt(portField.getText()));
-			jarSettings.setJvm(jvmField.getText());
-			jarSettings.setStacksize(stackSizeField.getText());
 			jarSettings.setHeapsize(heapSizeField.getText());
 			jarSettings.setHomedir(homeDirField.getText());
-			jarSettings.setForceipv4(forceIpv4Field.isSelected());
 			jarSettings.setUseProxy(useProxy.isSelected());
 			jarSettings.setProxyHost(proxyHost.getText());
 			jarSettings.setProxyPort(Integer.parseInt(proxyPort.getText()));
@@ -110,7 +102,7 @@ public class Starter extends JFrame {
 		
 		PrintStream out = new PrintStream(new OutputStream() {
 			@Override
-			public void write(byte[] bytes, int off, int len) throws IOException {
+			public void write(byte[] bytes, int off, int len) {
 				String str = new String(bytes, off, len);
 				systemOut.append(str);
 				logField.append(str);
@@ -118,7 +110,7 @@ public class Starter extends JFrame {
 			}
 			
 			@Override
-			public void write(int b) throws IOException {
+			public void write(int b) {
 				String str = new String(new char[] { (char) b });
 				systemOut.append(str);
 				logField.append(str);
@@ -143,29 +135,6 @@ public class Starter extends JFrame {
 		setSize(640, 500);
 		getContentPane().setLayout(new BorderLayout());
 		JPanel fields = new JPanel(new SpringLayout());
-
-		JLabel jvmLabel = new JLabel("JVM");
-		fields.add(jvmLabel);
-
-		jvmField = new JTextField(jarSettings.getJvm());
-		browserJvm = new JButton("Browse...");
-		browserJvm.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				File currentFile = new File(jvmField.getText());
-				JFileChooser chooser = new JFileChooser(currentFile.exists() ? currentFile : new File("."));
-				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				int showOpenDialog = chooser.showOpenDialog(Starter.this);
-				if (showOpenDialog == JFileChooser.APPROVE_OPTION) {
-					jvmField.setText(chooser.getSelectedFile().getAbsolutePath());
-				}
-			}
-		});
-		JPanel jvmPanel = new JPanel();
-		jvmPanel.setLayout(new BorderLayout());
-		jvmPanel.add(jvmField, BorderLayout.CENTER);
-		jvmPanel.add(browserJvm, BorderLayout.EAST);
-		fields.add(jvmPanel);
 
 		JLabel homeDirLabel = new JLabel("Home directory");
 		fields.add(homeDirLabel);
@@ -208,19 +177,6 @@ public class Starter extends JFrame {
 		heapSizeField = new JTextField(jarSettings.getHeapsize());
 		fields.add(heapSizeField);
 
-		JLabel stackSizeLabel = new JLabel("Stack Size");
-		fields.add(stackSizeLabel);
-
-		stackSizeField = new JTextField(jarSettings.getStacksize());
-		fields.add(stackSizeField);
-
-		JLabel forceIpv4Label = new JLabel("Force IPv4");
-		fields.add(forceIpv4Label);
-		
-		forceIpv4Field = new JCheckBox();
-		forceIpv4Field.setSelected(jarSettings.isForceipv4());
-		fields.add(forceIpv4Field);
-
 		JLabel useProxyLabel = new JLabel("");
 		useProxy = new JCheckBox("Use proxy server");
 		useProxy.setSelected(jarSettings.isUseProxy());
@@ -239,7 +195,7 @@ public class Starter extends JFrame {
 		proxyPort = new JTextField("" + jarSettings.getProxyPort());
 		fields.add(proxyPort);
 		
-		SpringUtilities.makeCompactGrid(fields, 10, 2, // rows, cols
+		SpringUtilities.makeCompactGrid(fields, 7, 2, // rows, cols
 				6, 6, // initX, initY
 				6, 6); // xPad, yPad
 
@@ -253,14 +209,10 @@ public class Starter extends JFrame {
 					new Thread(new Runnable() {
 						@Override
 						public void run() {
-							if (jvmField.getText().equalsIgnoreCase("default") || new File(jvmField.getText()).exists()) {
-								setComponentsEnabled(false);
-								File file = expand();
-								startStopButton.setText("Stop");
-								start(file, addressField.getText(), portField.getText(), heapSizeField.getText(), stackSizeField.getText(), jvmField.getText(), homeDirField.getText());
-							} else {
-								JOptionPane.showMessageDialog(Starter.this, "JVM field should contain a valid JVM directory, or 'default' for the default JVM");
-							}
+							setComponentsEnabled(false);
+							File file = expand();
+							startStopButton.setText("Stop");
+							start(file, addressField.getText(), portField.getText(), heapSizeField.getText(), homeDirField.getText());
 						}
 					}, "BIMserver Starter Thread").start();
 				} else if (startStopButton.getText().equals("Stop")) {
@@ -292,12 +244,10 @@ public class Starter extends JFrame {
 			}
 		};
 
-		jvmField.getDocument().addDocumentListener(documentChangeListener);
 		homeDirField.getDocument().addDocumentListener(documentChangeListener);
 		addressField.getDocument().addDocumentListener(documentChangeListener);
 		portField.getDocument().addDocumentListener(documentChangeListener);
 		heapSizeField.getDocument().addDocumentListener(documentChangeListener);
-		stackSizeField.getDocument().addDocumentListener(documentChangeListener);
 		useProxy.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
@@ -307,12 +257,6 @@ public class Starter extends JFrame {
 		});
 		proxyHost.getDocument().addDocumentListener(documentChangeListener);
 		proxyPort.getDocument().addDocumentListener(documentChangeListener);
-		forceIpv4Field.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				save();
-			}
-		});
 		
 		buttons.add(startStopButton);
 
@@ -373,72 +317,24 @@ public class Starter extends JFrame {
 		addressField.setEditable(enabled);
 		portField.setEditable(enabled);
 		heapSizeField.setEditable(enabled);
-		stackSizeField.setEditable(enabled);
-		jvmField.setEditable(enabled);
 		homeDirField.setEditable(enabled);
-		forceIpv4Field.setEnabled(enabled);
 		browserHomeDir.setEnabled(enabled);
-		browserJvm.setEnabled(enabled);
 		proxyHost.setEnabled(enabled);
 		proxyPort.setEnabled(enabled);
 		useProxy.setEnabled(enabled);
 	}
 	
-	private void start(File destDir, String address, String port, String heapsize, String stacksize, String jvmPath, String homedir) {
+	private void start(File destDir, String address, String port, String heapsize, String homedir) {
 		try {
 			String os = System.getProperty("os.name");
 			boolean isMac = os.toLowerCase().contains("mac");
-			System.out.println("OS: " + os);
-//			String command = "";
+			System.out.println("\nOS: " + os);
 
-			checkJavaVersion(jvmPath);
-
+			printJavaVersion();
 			List<String> commands = new ArrayList<>();
-			
-			if (jvmPath.equalsIgnoreCase("default")) {
-				commands.add("java");
-			} else {
-				File jvm = new File(jvmPath);
-				if (jvm.exists()) {
-					File jre = new File(jvm, "jre");
-					if (!jre.exists()) {
-						jre = jvm;
-					}
-					commands.add(new File(jre, "bin" + File.separator + "java").getAbsolutePath());
-					File jreLib = new File(jre, "lib");
-					
-					System.out.println("Using " + jreLib.getAbsolutePath() + " for bootclasspath");
-					
-					String xbcp = "-Xbootclasspath ";
-					for (File file : jreLib.listFiles()) {
-						if (file.getName().endsWith(".jar")) {
-							if (file.getAbsolutePath().contains(" ")) {
-								xbcp += "\"" + file.getAbsolutePath() + "\"" + File.pathSeparator;
-							} else {
-								xbcp += file.getAbsolutePath() + File.pathSeparator;
-							}
-						}
-					}
-					if (jre != jvm) {
-						File toolsFile = new File(jvm, "lib" + File.separator + "tools.jar");
-						if (toolsFile.getAbsolutePath().contains(" ")) {
-							xbcp += "\"" + toolsFile.getAbsolutePath() + "\"";
-						} else {
-							xbcp += toolsFile.getAbsolutePath();
-						}
-					}
-					commands.add(xbcp);
-				} else {
-					System.out.println("Not using selected JVM (directory not found), using default JVM");
-				}
-			}
+			commands.add("java");
 			commands.add("-Xmx" + heapsize);
-			commands.add("-Xss" + stacksize);
-//			boolean debug = true;
-//			if (debug ) {
-//				command += " -Xdebug -Xrunjdwp:transport=dt_socket,address=8998,server=y";
-//			}
-			
+
 			if (useProxy.isSelected()) {
 				commands.add("-Dhttp.proxyHost=" + proxyHost.getText());
 				commands.add("-Dhttp.proxyPort=" + proxyPort.getText());
@@ -447,16 +343,11 @@ public class Starter extends JFrame {
 			}
 			
 			String cp = "." + File.pathSeparator;
-			boolean escapeCompletePath = isMac;
-//			if (escapeCompletePath) {
-//				// OSX fucks up with single jar files escaped, so we try to escape the whole thing
-//				command += "\"";
-//			}
 			cp += "lib" + File.pathSeparator;
 			File dir = new File(destDir + File.separator + "lib");
 			for (File lib : dir.listFiles()) {
 				if (lib.isFile()) {
-					if (lib.getName().contains(" ") && !escapeCompletePath) {
+					if (lib.getName().contains(" ") && !isMac) {
 						cp += "\"lib" + File.separator + lib.getName() + "\"" + File.pathSeparator;
 					} else {
 						cp += "lib" + File.separator + lib.getName() + File.pathSeparator;
@@ -469,10 +360,6 @@ public class Starter extends JFrame {
 			commands.add("-Dorg.apache.cxf.Logger=org.apache.cxf.common.logging.Slf4jLogger");
 			commands.add("-classpath");
 			commands.add(cp);
-//			if (escapeCompletePath) {
-//				// OSX fucks up with single jar files escaped, so we try to escape the whole thing
-//				command += "\"";
-//			}
 			Enumeration<URL> resources = getClass().getClassLoader().getResources("META-INF/MANIFEST.MF");
 			String realMainClass = "";
 			while (resources.hasMoreElements()) {
@@ -491,7 +378,7 @@ public class Starter extends JFrame {
 			commands.add("address=" + address);
 			commands.add("port=" + port);
 			commands.add("homedir=" + homedir);
-			
+
 			System.out.println("\nCommands:");
 			for (String command : commands) {
 				System.out.println(command);
@@ -499,9 +386,7 @@ public class Starter extends JFrame {
 			ProcessBuilder processBuilder = new ProcessBuilder(commands);
 			processBuilder.directory(destDir);
 			
-//			System.out.println("Running: " + command);
 			exec = processBuilder.start();
-//			exec = Runtime.getRuntime().exec(command, null, destDir);
 
 			new Thread(new Runnable(){
 				@Override
@@ -540,48 +425,11 @@ public class Starter extends JFrame {
 		}
 	}
 
-	private void checkJavaVersion(String jvmPath) {
+	private void printJavaVersion() {
 		List<String> commands = new ArrayList<>();
-		if (jvmPath.equalsIgnoreCase("default")) {
-			commands.add("java");
-		} else {
-			File jvm = new File(jvmPath);
-			if (jvm.exists()) {
-				File jre = new File(jvm, "jre");
-				if (!jre.exists()) {
-					jre = jvm;
-				}
-				commands.add(new File(jre, "bin" + File.separator + "java").getAbsolutePath());
-				File jreLib = new File(jre, "lib");
-				
-				System.out.println("Using " + jreLib.getAbsolutePath() + " for bootclasspath");
-				
-				String xbcp = "-Xbootclasspath:";
-				for (File file : jreLib.listFiles()) {
-					if (file.getName().endsWith(".jar")) {
-						if (file.getAbsolutePath().contains(" ")) {
-							xbcp += "\"" + file.getAbsolutePath() + "\"" + File.pathSeparator;
-						} else {
-							xbcp += file.getAbsolutePath() + File.pathSeparator;
-						}
-					}
-				}
-				if (jre != jvm) {
-					File toolsFile = new File(jvm, "lib" + File.separator + "tools.jar");
-					if (toolsFile.getAbsolutePath().contains(" ")) {
-						xbcp += "\"" + toolsFile.getAbsolutePath() + "\"";
-					} else {
-						xbcp += toolsFile.getAbsolutePath();
-					}
-				}
-				commands.add(xbcp);
-			} else {
-				System.out.println("Not using selected JVM (directory not found), using default JVM");
-			}
-		}
-		
+		commands.add("java");
 		commands.add("-version");
-		
+
 		ProcessBuilder processBuilder = new ProcessBuilder(commands);
 		try {
 			exec = processBuilder.start();
@@ -617,7 +465,8 @@ public class Starter extends JFrame {
 					} catch (IOException e) {
 					}
 				}}, "Syserr reader").start();
-		} catch (IOException e) {
+			exec.waitFor();
+		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();
 		}
 	}

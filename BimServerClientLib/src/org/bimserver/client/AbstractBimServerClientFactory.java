@@ -29,6 +29,8 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 
+import org.apache.http.client.config.CookieSpecs;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
@@ -91,13 +93,12 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 			this.metaDataManager = metaDataManager;
 		}
 		this.servicesMap = new SServicesMap();
-		SService serviceInterface = new SServiceInterfaceService(servicesMap, null, ServiceInterface.class);
-		addService(serviceInterface);
-		addService(new SService(servicesMap, null, MetaInterface.class));
-		addService(new SService(servicesMap, null, AdminInterface.class));
-		addService(new SService(servicesMap, null, AuthInterface.class));
+		addService(new SServiceInterfaceService(servicesMap, null, ServiceInterface.class));
 		addService(new SService(servicesMap, null, NewServicesInterface.class));
+		addService(new SService(servicesMap, null, AdminInterface.class));
+		addService(new SService(servicesMap, null, MetaInterface.class));
 		addService(new SService(servicesMap, null, SettingsInterface.class));
+		addService(new SService(servicesMap, null, AuthInterface.class));
 		addService(new SService(servicesMap, null, PluginInterface.class));
 		addService(new SService(servicesMap, null, NotificationInterface.class));
 		addService(new SService(servicesMap, null, RemoteServiceInterface.class));
@@ -105,7 +106,7 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 		addService(new SService(servicesMap, null, NotificationRegistryInterface.class));
 		addService(new SService(servicesMap, null, OAuthInterface.class));
 		servicesMap.initialize();
-		initHttpClient(sslContext(trustedCertificate));
+		initHttpClient(trustedCertificate != null  ? sslContext(trustedCertificate) : null);
 	}
 
 	public AbstractBimServerClientFactory(MetaDataManager metaDataManager) throws BimServerClientException {
@@ -133,6 +134,7 @@ public abstract class AbstractBimServerClientFactory implements BimServerClientF
 		connManager.setDefaultMaxPerRoute(100);
 		builder.setConnectionManager(connManager);
 		builder.disableAutomaticRetries();
+		builder.setDefaultRequestConfig(RequestConfig.custom().setCookieSpec(CookieSpecs.STANDARD).build());
 		// TODO set timeouts? https://hc.apache.org/httpcomponents-client-5.1.x/migration-guide/preparation.html
 //		builder.addInterceptorFirst(new HttpRequestInterceptor() {
 //			public void process(final HttpRequest request, final HttpContext context) throws HttpException, IOException {

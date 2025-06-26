@@ -123,7 +123,7 @@ public class Matrix {
     public static float[] multiplyV(float[] transformationMatrix, float[] coordinates) {
 		if (coordinates.length == 3) {
 			float[] result = new float[4];
-			Matrix.multiplyMV(result, 0, transformationMatrix, 0, new float[]{coordinates[0], coordinates[1], coordinates[2], 0}, 0);
+			Matrix.multiplyMV(result, 0, transformationMatrix, 0, new float[]{coordinates[0], coordinates[1], coordinates[2], 1}, 0);
 			return new float[]{result[0], result[1], result[2]};
 		} else if (coordinates.length == 4) {
 			float[] result = new float[4];
@@ -136,7 +136,7 @@ public class Matrix {
     public static double[] multiplyV(double[] transformationMatrix, double[] coordinates) {
     	if (coordinates.length == 3) {
     		double[] result = new double[4];
-    		Matrix.multiplyMV(result, 0, transformationMatrix, 0, new double[]{coordinates[0], coordinates[1], coordinates[2], 0}, 0);
+    		Matrix.multiplyMV(result, 0, transformationMatrix, 0, new double[]{coordinates[0], coordinates[1], coordinates[2], 1}, 0);
     		return new double[]{result[0], result[1], result[2]};
     	} else if (coordinates.length == 4) {
     		double[] result = new double[4];

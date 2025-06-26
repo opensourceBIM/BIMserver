@@ -39,15 +39,10 @@ import org.apache.maven.settings.building.SettingsBuildingResult;
 import org.eclipse.aether.DefaultRepositorySystemSession;
 import org.eclipse.aether.RepositorySystem;
 import org.eclipse.aether.RepositorySystemSession;
-import org.eclipse.aether.connector.basic.BasicRepositoryConnectorFactory;
-import org.eclipse.aether.impl.DefaultServiceLocator;
 import org.eclipse.aether.repository.LocalRepository;
 import org.eclipse.aether.repository.RemoteRepository;
 import org.eclipse.aether.repository.RepositoryPolicy;
-import org.eclipse.aether.spi.connector.RepositoryConnectorFactory;
-import org.eclipse.aether.spi.connector.transport.TransporterFactory;
-import org.eclipse.aether.transport.file.FileTransporterFactory;
-import org.eclipse.aether.transport.http.HttpTransporterFactory;
+import org.eclipse.aether.supplier.RepositorySystemSupplier;
 import org.eclipse.aether.util.repository.DefaultMirrorSelector;
 import org.jetbrains.idea.maven.aether.JreProxySelector;
 import org.slf4j.Logger;
@@ -65,7 +60,7 @@ public class MavenPluginRepository {
 	public MavenPluginRepository() {
 		Settings settings = loadDefaultUserSettings();
 
-		system = newRepositorySystem();
+		system = new RepositorySystemSupplier().get();
 		String userHome = System.getProperty("user.home");
 		File localRepository = new File(settings.getLocalRepository() == null ? userHome + "/.m2/repository" : settings.getLocalRepository());
 		session = newRepositorySystemSession(system, localRepository, settings);
@@ -115,30 +110,13 @@ public class MavenPluginRepository {
 	public MavenPluginLocation getPluginLocation(String repository, String groupId, String artifactId) {
 		return new MavenPluginLocation(this, repository, groupId, artifactId);
 	}
-	
-	private RepositorySystem newRepositorySystem() {
-		DefaultServiceLocator locator = MavenRepositorySystemUtils.newServiceLocator();
-		
-		locator.addService(RepositoryConnectorFactory.class, BasicRepositoryConnectorFactory.class);
-		locator.addService(TransporterFactory.class, FileTransporterFactory.class);
-		locator.addService(TransporterFactory.class, HttpTransporterFactory.class);
-
-		locator.setErrorHandler(new DefaultServiceLocator.ErrorHandler() {
-			@Override
-			public void serviceCreationFailed(Class<?> type, Class<?> impl, Throwable exception) {
-				exception.printStackTrace();
-			}
-		});
-
-		return locator.getService(RepositorySystem.class);
-	}
 
 	private DefaultRepositorySystemSession newRepositorySystemSession(RepositorySystem system, File localRepoFile, Settings settings) {
 		DefaultRepositorySystemSession session = MavenRepositorySystemUtils.newSession();
 		if (!settings.getMirrors().isEmpty()) {
 			DefaultMirrorSelector mirrorSelector = new DefaultMirrorSelector();
 			for (Mirror mirror : settings.getMirrors()) {
-				mirrorSelector.add(mirror.getId(), mirror.getUrl(), "default", true, mirror.getMirrorOf(), "*");
+				mirrorSelector.add(mirror.getId(), mirror.getUrl(), "default", true, false, mirror.getMirrorOf(), "*");
 			}
 			session.setMirrorSelector(mirrorSelector);
 		}

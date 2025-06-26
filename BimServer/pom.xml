@@ -1,11 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<name>BimServer</name>
+	<description>The Opensource BIMserver core</description>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>bimserver</artifactId>
 	<parent>
 		<groupId>org.opensourcebim</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.5.185-SNAPSHOT</version>
+		<version>1.5.188-SNAPSHOT</version>
 	</parent>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -22,7 +23,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>1.10</version>
+				<version>3.6.0</version>
 				<executions>
 					<execution>
 						<id>add-source</id>
@@ -49,13 +50,18 @@
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>jul-to-slf4j</artifactId>
-			<version>1.7.22</version>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
-			<version>1.4</version>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-fileupload2-javax</artifactId>
+			<version>2.0.0-M1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.mail</groupId>
@@ -75,7 +81,7 @@
 		<dependency>
 			<groupId>com.googlecode.cqengine</groupId>
 			<artifactId>cqengine</artifactId>
-			<version>3.0.0</version>
+			<version>3.6.0</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.javassist</groupId>
@@ -86,7 +92,7 @@
 		<dependency>
 			<groupId>com.rometools</groupId>
 			<artifactId>rome</artifactId>
-			<version>1.7.1</version>
+			<version>2.1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
@@ -96,7 +102,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>bimserverclientlib</artifactId>
-			<version>1.5.185-SNAPSHOT</version>
+			<version>1.5.188-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-collections</groupId>
@@ -111,7 +117,7 @@
 		<dependency>
 			<groupId>org.codehaus.jettison</groupId>
 			<artifactId>jettison</artifactId>
-			<version>1.5.2</version>
+			<version>1.5.4</version>
 		</dependency>
 		<dependency>
 			<groupId>com.thetransactioncompany</groupId>
@@ -126,7 +132,7 @@
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-javascript</artifactId>
-			<version>3.3.1</version>
+			<version>${cxf.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.oltu.oauth2</groupId>
@@ -156,7 +162,7 @@
 		<dependency>
 			<groupId>org.glassfish.jersey.core</groupId>
 			<artifactId>jersey-server</artifactId>
-			<version>2.26-b01</version>
+			<version>2.46</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.javassist</groupId>
@@ -167,7 +173,7 @@
 		<dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<artifactId>jersey-container-servlet</artifactId>
-			<version>2.26-b01</version>
+			<version>2.46</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.oltu.oauth2</groupId>
@@ -182,7 +188,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>bdb</artifactId>
-			<version>1.5.185-SNAPSHOT</version>
+			<version>1.5.188-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<licenses>

@@ -62,7 +62,7 @@ message GetEnumLiteralsResponse {
 }
 
 message GetServiceInterfaceRequest {
-	optional string getServiceInterface = 1;
+	optional string serverInterfaceName = 1;
 }
 
 message SServiceInterface {

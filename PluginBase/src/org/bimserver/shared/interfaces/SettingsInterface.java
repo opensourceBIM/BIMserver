@@ -156,14 +156,14 @@ public interface SettingsInterface extends PublicInterface {
 		@WebParam(name = "checkinMergingEnabled", partName = "setCheckinMergingEnabled.checkinMergingEnabled") Boolean checkinMergingEnabled) throws ServerException, UserException;
 
 	/**
-	 * @return Whether a confirmation e-mail should be send after registration
+	 * @return Whether a confirmation e-mail should be sent after registration
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "isSendConfirmationEmailAfterRegistration")
 	Boolean isSendConfirmationEmailAfterRegistration() throws ServerException, UserException;
 
 	/**
-	 * @param sendConfirmationEmailAfterRegistration Set whether a confirmation e-mail should be send after registration
+	 * @param sendConfirmationEmailAfterRegistration Set whether a confirmation e-mail should be sent after registration
 	 * @throws ServerException, UserException
 	 */
 	@WebMethod(action = "setSendConfirmationEmailAfterRegistration")

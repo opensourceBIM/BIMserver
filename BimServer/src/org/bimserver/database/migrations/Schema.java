@@ -99,7 +99,7 @@ public class Schema {
 //	}
 
 	public Set<EPackage> getEPackages() {
-		return new HashSet<EPackage>(packages.values());
+		return new LinkedHashSet<EPackage>(packages.values());
 	}
 	
 	private Set<EClass> initIndirectSubClasses(EClass eClass) {

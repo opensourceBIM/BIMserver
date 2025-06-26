@@ -2,8 +2,10 @@ package org.bimserver.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
+import org.apache.commons.io.Charsets;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -88,7 +90,7 @@ public class Licenser {
 			return null;
 		}
 		try {
-			String content = FileUtils.readFileToString(file);
+			String content = FileUtils.readFileToString(file, "UTF-8");
 			StringBuilder newContent = new StringBuilder();
 			Scanner scanner = new Scanner(content);
 			try {
@@ -110,7 +112,7 @@ public class Licenser {
 	
 	private void processFile(File file, String license) {
 		try {
-			String content = FileUtils.readFileToString(file);
+			String content = FileUtils.readFileToString(file, "UTF-8");
 			int indexOfPackageStart = content.indexOf("package ");
 			if (indexOfPackageStart != -1) {
 				int indexOfPackageEnd = content.indexOf(";", indexOfPackageStart + 1);
@@ -146,7 +148,7 @@ public class Licenser {
 					} else {
 						changed++;
 					}
-					FileUtils.writeStringToFile(file, total);
+					FileUtils.writeStringToFile(file, total, "UTF-8");
 				} else {
 					skipped++;
 				}

@@ -21,21 +21,18 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.bimserver.emf.Schema;
+import org.bimserver.models.store.*;
 import org.bimserver.plugins.renderengine.VersionInfo;
 import org.bimserver.utils.Formatters;
+import org.bimserver.plugins.PluginConfiguration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.node.*;
 
 public class GeometryGenerationReport {
 
@@ -43,7 +40,7 @@ public class GeometryGenerationReport {
 	private String renderEngineName;
 	private VersionInfo renderEngineVersion;
 	private String renderEnginePluginVersion;
-	private Map<String, AtomicInteger> representationItems = new HashMap<>();
+	private final Map<String, AtomicInteger> representationItems = new HashMap<>();
 	private GregorianCalendar start = new GregorianCalendar();
 	private GregorianCalendar end;
 	private String originalIfcFileName;
@@ -53,7 +50,7 @@ public class GeometryGenerationReport {
 	private String userUserName;
 	private int availableProcessors;
 	private String originalDeserializer;
-	private Set<ReportJob> jobs = new LinkedHashSet<>();
+	private final Set<ReportJob> jobs = new LinkedHashSet<>();
 	private int maxObjectsPerFile;
 	private boolean useMappingOptimization;
 	private long numberOfObjects;
@@ -62,9 +59,10 @@ public class GeometryGenerationReport {
 	private boolean reuseGeometry;
 	private boolean calculateQuantities;
 	private boolean applyLayersets;
+	private PluginConfiguration userRenderSettings;
 	private final Map<Integer, String> debugFiles = new ConcurrentSkipListMap<>();
-	private SkippedBecauseOfInvalidRepresentation skippedBecauseOfInvalidRepresentationIdentifier = new SkippedBecauseOfInvalidRepresentation();
-	
+	private final SkippedBecauseOfInvalidRepresentation skippedBecauseOfInvalidRepresentationIdentifier = new SkippedBecauseOfInvalidRepresentation();
+
 	public synchronized void incrementTriangles(int triangles) {
 		this.numberOfTriangles += triangles;
 	}
@@ -145,25 +143,28 @@ public class GeometryGenerationReport {
 		result.set("settings", settings);
 
 		ObjectNode engineSettings = objectMapper.createObjectNode();
-		settings.put("applyLayersets", applyLayersets);
-		settings.put("calculateQuantities", calculateQuantities);
+		engineSettings.put("applyLayersets", applyLayersets);
+		engineSettings.put("calculateQuantities", calculateQuantities);
 		result.set("engineSettings", engineSettings);
-		
+
+		ObjectNode userEngineSettings = userRenderSettings.convertToReportJson(objectMapper);
+		result.set("userEngineSettings", userEngineSettings);
+
 		ObjectNode deserializer = objectMapper.createObjectNode();
 		deserializer.put("name", originalDeserializer);
 		result.set("deserializer", deserializer);
-		
+
 		ObjectNode system = objectMapper.createObjectNode();
 		system.put("cores", availableProcessors);
 		result.set("system", system);
-		
+
 		ArrayNode jobsArray = objectMapper.createArrayNode();
 		result.set("jobs", jobsArray);
 		for (ReportJob job : jobs) {
 			ObjectNode jobNode = objectMapper.createObjectNode();
 			jobNode.put("id", job.getId());
 			jobNode.put("mainType", job.getMainType());
-			
+
 			ArrayNode objectsNode = objectMapper.createArrayNode();
 			for (Long oid : job.getObjects().keySet()) {
 				ObjectNode objectNode = objectMapper.createObjectNode();
@@ -172,29 +173,29 @@ public class GeometryGenerationReport {
 				objectsNode.add(objectNode);
 			}
 			jobNode.set("objects", objectsNode);
-			
+
 			jobNode.put("nrObjects", job.getNrObjects());
 			jobNode.put("usesMapping", job.isUsesMapping());
 			jobNode.put("trianglesGenerated", job.getTrianglesGenerated());
 			jobNode.put("totalTimeNanos", job.getTotalNanos());
 			jobNode.put("cpuTimeMs", job.getCpuTimeMs());
 			jobNode.put("maxMemoryBytes", job.getMaxMemoryBytes());
-			
+
 			if (job.getException() != null) {
 				StringWriter writer = new StringWriter();
 				job.getException().printStackTrace(new PrintWriter(writer));
 				jobNode.put("exception", writer.toString());
 			}
-			
+
 			jobsArray.add(jobNode);
 		}
-		
+
 		ObjectNode processing = objectMapper.createObjectNode();
 		result.set("processing", processing);
 		processing.put("start", start.getTimeInMillis());
 		processing.put("stop", end.getTimeInMillis());
 		processing.put("totaltime", (end.getTimeInMillis() - start.getTimeInMillis()));
-		
+
 		ArrayNode geometry = objectMapper.createArrayNode();
 		result.set("geometry", geometry);
 		for (String type : representationItems.keySet()) {
@@ -212,7 +213,7 @@ public class GeometryGenerationReport {
 			skippedNodes.add(skippedNode);
 		}
 		result.set("skippedBecauseOfInvalidRepresentationIdentifier", skippedNodes);
-		
+
 		ArrayNode debugFiles = objectMapper.createArrayNode();
 		result.set("debugFiles", debugFiles);
 		for (int jobId : this.debugFiles.keySet()) {
@@ -222,13 +223,13 @@ public class GeometryGenerationReport {
 			debugNode.put("debugFile", filename);
 			debugFiles.add(debugNode);
 		}
-		
+
 		return result;
 	}
-	
+
 	public String toHtml() {
 		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
-		
+
 		StringBuilder builder = new StringBuilder();
 		builder.append("<h1>BIMserver geometry generation report (v" + REPORT_VERSION + ")</h1>");
 		
@@ -236,8 +237,7 @@ public class GeometryGenerationReport {
 		builder.append("<table><tbody>");
 		builder.append("<tr><td>Render engine name</td><td>" + renderEngineName + "</td></tr>");
 		builder.append("<tr><td>Render engine version platform</td><td>" + renderEngineVersion.getPlatform() + "</td></tr>");
-		builder.append("<tr><td>Render engine version branch</td><td>" + renderEngineVersion.getBranch() + "</td></tr>");
-		builder.append("<tr><td>Render engine version commitsha</td><td>" + renderEngineVersion.getCommitsha() + "</td></tr>");
+		builder.append("<tr><td>Render engine version build</td><td>" + renderEngineVersion.getBuildVersion() + "</td></tr>");
 		builder.append("<tr><td>Render engine version protocol</td><td>" + renderEngineVersion.getProtocolVersion() + "</td></tr>");
 		builder.append("<tr><td>Render engine version date/time</td><td>" + dateFormat.format(renderEngineVersion.getDateTime().getTime()) + "</td></tr>");
 		builder.append("<tr><td>Render engine plugin version</td><td>" + renderEnginePluginVersion + "</td></tr>");
@@ -270,6 +270,11 @@ public class GeometryGenerationReport {
 		builder.append("<table><tbody>");
 		builder.append("<tr><td>Apply layer sets</td><td>" + applyLayersets + "</td></tr>");
 		builder.append("<tr><td>Calculate quantities</td><td>" + calculateQuantities + "</td></tr>");
+		builder.append("</tbody></table>");
+
+		builder.append("<h3>Render engine user settings</h3>");
+		builder.append("<table><tbody>");
+		userRenderSettings.convertToReportHtml(builder);
 		builder.append("</tbody></table>");
 		
 		builder.append("<h3>Deserializer</h3>");
@@ -359,19 +364,46 @@ public class GeometryGenerationReport {
 		}
 		builder.append("</tbody></table>");
 
-//		builder.append("<h3>Triangles</h3>");
-//		builder.append("<table>");
-//		builder.append("<thead><tr><th>Type</th><th>Used</th></tr></thead>");
-//		builder.append("<tbody>");
-//		for (String type : representationItems.keySet()) {
-//			builder.append("<tr>");
-//			builder.append("<td>" + type + "</td>");
-//			builder.append("<td>" + representationItems.get(type).get() + "</td>");
-//			builder.append("</tr>");
-//		}
-//		builder.append("</tbody></table>");
-		
 		return builder.toString();
+	}
+
+
+	private void convertToHtml(List<Parameter> parameters,  StringBuilder builder) {
+		builder.append("<table><tbody>");
+		for (Parameter parameter : parameters) {
+			String settingName = parameter.getIdentifier();
+			Type settingValue = parameter.getValue();
+			builder.append("<tr><td>" + settingName + "</td><td>");
+			convertToHtml(settingValue, builder);
+			builder.append("</td></tr>");
+		}
+		builder.append("</tbody></table>");
+	}
+
+	private void convertToHtml(Type value, StringBuilder builder) {
+		if (value instanceof BooleanType) {
+			builder.append(((BooleanType) value).isValue());
+		} else if (value instanceof DoubleType) {
+			builder.append(((DoubleType) value).getValue());
+		} else if (value instanceof LongType) {
+			builder.append(((LongType) value).getValue());
+		} else if (value instanceof StringType) {
+			builder.append(((StringType) value).getValue());
+		} else if (value instanceof ObjectType) {
+			convertToHtml(((ObjectType) value).getParameters(), builder);
+		} else if (value instanceof ArrayType) {
+			builder.append("<table><tbody>");
+			for (Type element : ((ArrayType) value).getValues()) {
+				builder.append("<tr><td>.</td><td>");
+				convertToHtml(element, builder);
+				builder.append("</td></tr>");
+			}
+			builder.append("</tbody></table>");
+		} else if (value instanceof ByteArrayType) {
+			builder.append("binary data: " + Base64.getEncoder().encodeToString(((ByteArrayType) value).getValue()));
+		} else {
+			throw new RuntimeException("Unimplemented type: " + value.getClass().getName());
+		}
 	}
 
 	public void setUserName(String userName) {
@@ -439,30 +471,26 @@ public class GeometryGenerationReport {
 		return originalIfcFileName;
 	}
 
-	public boolean isCalculateQuantities() {
-		return calculateQuantities;
-	}
-
 	public void setCalculateQuantities(boolean calculateQuantities) {
 		this.calculateQuantities = calculateQuantities;
-	}
-
-	public boolean isApplyLayersets() {
-		return applyLayersets;
 	}
 
 	public void setApplyLayersets(boolean applyLayersets) {
 		this.applyLayersets = applyLayersets;
 	}
-	
+
+	public void setUserRenderSetting(PluginConfiguration parameters){
+		userRenderSettings = parameters;
+	}
+
 	public GregorianCalendar getStart() {
 		return start;
 	}
-	
+
 	public GregorianCalendar getEnd() {
 		return end;
 	}
-	
+
 	public long getTimeToGenerateMs() {
 		return end.getTimeInMillis() - start.getTimeInMillis();
 	}

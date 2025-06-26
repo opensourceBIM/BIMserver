@@ -30,6 +30,7 @@ import javax.activation.DataSource;
 
 import org.bimserver.BimServer;
 import org.bimserver.longaction.DownloadParameters;
+import org.bimserver.plugins.serializers.DoneListener;
 import org.bimserver.utils.PathUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -80,7 +81,7 @@ public class DiskCacheManager {
 		return bimServer.getServerSettingsCache().getServerSettings().getCacheOutputFiles();
 	}
 
-	public DataSource get(DownloadParameters downloadParameters) {
+	public DataSource get(DownloadParameters downloadParameters, DoneListener doneListener) {
 		if (isEnabled()) {
 			DiskCacheOutputStream diskCacheOutputStream = null;
 			synchronized (busyCaching) {
@@ -99,7 +100,7 @@ public class DiskCacheManager {
 				LOGGER.error("File " + file.getFileName().toString() + " not found in cache");
 			} else {
 				LOGGER.info("Reading from cache " + downloadParameters.getFileName());
-				FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(file);
+				FileInputStreamDataSource fileInputStreamDataSource = new FileInputStreamDataSource(file, doneListener);
 				fileInputStreamDataSource.setName(downloadParameters.getFileNameWithoutExtension());
 				return fileInputStreamDataSource;
 			}

@@ -20,6 +20,7 @@ package org.bimserver.plugins;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 
 import com.google.common.base.Charsets;
 import com.google.common.primitives.Longs;
@@ -154,7 +155,7 @@ public class LittleEndianSerializerDataOutputStream extends SerializerDataOutput
 		// TODO redundant things happening here...
 
 		new DataOutputStream(outputStream).writeUTF(str);
-		bytesWritten += str.getBytes(Charsets.UTF_8).length + 2;
+		bytesWritten += str.getBytes(StandardCharsets.UTF_8).length + 2;
 	}
 
 	@Override

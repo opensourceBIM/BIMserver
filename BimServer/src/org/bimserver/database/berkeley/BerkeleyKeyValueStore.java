@@ -123,7 +123,7 @@ public class BerkeleyKeyValueStore implements KeyValueStore {
 					+ dataDir.toString() + "\")";
 			throw new DatabaseInitException(message);
 		} catch (DatabaseException e) {
-			String message = "A database initialisation error has occured (" + e.getMessage() + ")";
+			String message = "A database initialisation error has occurred (" + e.getMessage() + ")";
 			throw new DatabaseInitException(message);
 		}
 		

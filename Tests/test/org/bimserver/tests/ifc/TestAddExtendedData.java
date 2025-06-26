@@ -20,7 +20,6 @@ package org.bimserver.tests.ifc;
 import java.io.IOException;
 import java.nio.file.Paths;
 
-import org.bimserver.LocalDevSetup;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SExtendedData;
 import org.bimserver.interfaces.objects.SExtendedDataSchema;
@@ -28,43 +27,42 @@ import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SLongCheckinActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
-import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.BimServerClientFactory;
+import org.bimserver.client.json.JsonBimServerClientFactory;
+import org.bimserver.shared.ChannelConnectionException;
+import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 
 import com.google.common.base.Charsets;
+import org.bimserver.shared.exceptions.BimServerClientException;
+import org.bimserver.shared.exceptions.ServiceException;
+import org.junit.Test;
+
+import static org.junit.Assert.fail;
 
 public class TestAddExtendedData {
-	public static void main(String[] args) {
-		new TestAddExtendedData().start();
-	}
 
-	private void start() {
-		try {
-			BimServerClientInterface client = LocalDevSetup.setupJson("http://localhost:8080");
-			SFile file = new SFile();
-			file.setData("test".getBytes(Charsets.UTF_8));
-			file.setMime("text");
-			file.setFilename("test.txt");
-			long fileId = client.getServiceInterface().uploadFile(file);
-			
-			SProject project = client.getServiceInterface().addProject("t2es035442t23", "ifc2x3tc1");
-			SDeserializerPluginConfiguration deserializerForExtension = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
-			SLongCheckinActionState checkinSync = client.checkinSync(project.getOid(), "initial", deserializerForExtension.getOid(), false, Paths.get("../../TestFiles/TestData/data/AC11-FZK-Haus-IFC.ifc"));
-			
-			SExtendedDataSchema extendedDataSchemaByNamespace = client.getServiceInterface().getExtendedDataSchemaByName("GEOMETRY_GENERATION_REPORT_JSON_1_1");
-			
-			SExtendedData extendedData = new SExtendedData();
-			extendedData.setFileId(fileId);
-			extendedData.setTitle("test3");
-			extendedData.setSchemaId(extendedDataSchemaByNamespace.getOid());
-			
-			client.getServiceInterface().addExtendedDataToRevision(checkinSync.getRoid(), extendedData);
-		} catch (ServiceException e) {
-			e.printStackTrace();
-		} catch (PublicInterfaceNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	@Test
+	public void test() throws BimServerClientException, ServiceException, ChannelConnectionException, IOException {
+		BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
+		BimServerClientInterface client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+
+		SFile file = new SFile();
+		file.setData("test".getBytes(Charsets.UTF_8));
+		file.setMime("text");
+		file.setFilename("test.txt");
+		long fileId = client.getServiceInterface().uploadFile(file);
+
+		SProject project = client.getServiceInterface().addProject("t2es035442t23", "ifc2x3tc1");
+		SDeserializerPluginConfiguration deserializerForExtension = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
+		SLongCheckinActionState checkinSync = client.checkinSync(project.getOid(), "initial", deserializerForExtension.getOid(), false, Paths.get("../../TestFiles/TestData/data/AC11-FZK-Haus-IFC.ifc"));
+
+		SExtendedDataSchema extendedDataSchemaByNamespace = client.getServiceInterface().getExtendedDataSchemaByName("GEOMETRY_GENERATION_REPORT_JSON_1_1");
+
+		SExtendedData extendedData = new SExtendedData();
+		extendedData.setFileId(fileId);
+		extendedData.setTitle("test3");
+		extendedData.setSchemaId(extendedDataSchemaByNamespace.getOid());
+
+		client.getServiceInterface().addExtendedDataToRevision(checkinSync.getRoid(), extendedData);
 	}
 }

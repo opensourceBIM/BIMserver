@@ -81,7 +81,6 @@ public class SetAttributeChange implements Change {
 
 			QueryObjectProvider queryObjectProvider = new QueryObjectProvider(transaction.getDatabaseSession(), transaction.getBimServer(), query, Collections.singleton(transaction.getPreviousRevision().getOid()), packageMetaData);
 			object = queryObjectProvider.next();
-			transaction.updated(object);
 		}
 		
 		EClass eClass = transaction.getDatabaseSession().getEClassForOid(oid);
@@ -120,7 +119,7 @@ public class SetAttributeChange implements Change {
 			}
 			if (eAttribute.getEType() instanceof EEnum) {
 				EEnum eEnum = (EEnum) eAttribute.getEType();
-				if (eEnum.getName().contentEquals("Tristate")) {
+				if (eEnum.getName().contentEquals("Tristate") && value instanceof Boolean) {
 					object.set(eAttribute.getName(), packageMetaData.getEEnum("Tristate").getEEnumLiteral(((Boolean)value).toString().toUpperCase()).getInstance());
 				} else {
 					object.set(eAttribute.getName(), eEnum.getEEnumLiteral(((String) value).toUpperCase()).getInstance());
@@ -132,5 +131,6 @@ public class SetAttributeChange implements Change {
 				object.set(object.eClass().getEStructuralFeature(attributeName + "AsString").getName(), String.valueOf((Double)value));
 			}
 		}
+		transaction.updated(object);
 	}
 }

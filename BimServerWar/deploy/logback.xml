@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE xml>
+<!DOCTYPE configuration>
 <configuration debug="false">
 	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
 		<file>logs/bimserver.log</file>

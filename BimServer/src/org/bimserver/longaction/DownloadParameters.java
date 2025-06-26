@@ -31,7 +31,7 @@ import org.bimserver.models.store.CompareType;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.Revision;
 
-public class DownloadParameters extends LongActionKey {
+public class DownloadParameters {
 	public enum DownloadType {
 		DOWNLOAD_PROJECTS, DOWNLOAD_COMPARE, DOWNLOAD_BY_NEW_JSON_QUERY
 	};

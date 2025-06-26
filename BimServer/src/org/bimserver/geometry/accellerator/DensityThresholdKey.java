@@ -19,7 +19,7 @@ package org.bimserver.geometry.accellerator;
 
 import java.util.Set;
 
-import jersey.repackaged.com.google.common.base.Joiner;
+import com.google.common.base.Joiner;
 
 public class DensityThresholdKey {
 
@@ -47,7 +47,7 @@ public class DensityThresholdKey {
 
 	@Override
 	public String toString() {
-		return com.google.common.base.Joiner.on(", ").join(roids) + " " + nrTriangles + " " + Joiner.on(", ").join(excludedTypes);
+		return Joiner.on(", ").join(roids) + " " + nrTriangles + " " + Joiner.on(", ").join(excludedTypes);
 	}
 
 	@Override

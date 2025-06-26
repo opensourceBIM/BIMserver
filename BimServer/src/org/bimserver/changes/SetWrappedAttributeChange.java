@@ -40,9 +40,9 @@ import org.eclipse.emf.ecore.EcorePackage;
 
 public class SetWrappedAttributeChange implements Change {
 
-	private Long oid;
-	private String attributeName;
-	private String type;
+	private final Long oid;
+	private final String attributeName;
+	private final String type;
 	private Object value;
 
 	public SetWrappedAttributeChange(Long oid, String attributeName, String type, Object value) {
@@ -58,23 +58,21 @@ public class SetWrappedAttributeChange implements Change {
 			BimserverDatabaseException, IOException, QueryException {
 		PackageMetaData packageMetaData = transaction.getDatabaseSession().getMetaDataManager().getPackageMetaData(transaction.getProject().getSchema());
 		
-		Query query = new Query(packageMetaData);
-		QueryPart queryPart = query.createQueryPart();
-		queryPart.addOid(oid);
-		
 		HashMapVirtualObject object = transaction.get(oid);
 		
 		if (object == null) {
+			Query query = new Query(packageMetaData);
+			QueryPart queryPart = query.createQueryPart();
+			queryPart.addOid(oid);
+
 			QueryObjectProvider queryObjectProvider = new QueryObjectProvider(transaction.getDatabaseSession(), transaction.getBimServer(), query, Collections.singleton(transaction.getPreviousRevision().getOid()), packageMetaData);
 			object = queryObjectProvider.next();
-			transaction.updated(object);
 		}
 		
 		EClass eClass = transaction.getDatabaseSession().getEClassForOid(oid);
 		if (!ChangeHelper.canBeChanged(eClass)) {
 			throw new UserException("Only objects from the following schemas are allowed to be changed: Ifc2x3tc1 and IFC4, this object (" + eClass.getName() + ") is from the \"" + eClass.getEPackage().getName() + "\" package");
 		}
-
 		if (object == null) {
 			throw new UserException("No object of type \"" + eClass.getName() + "\" with oid " + oid + " found in project with pid " + transaction.getProject().getId());
 		}
@@ -122,5 +120,6 @@ public class SetWrappedAttributeChange implements Change {
 				}
 			}
 		}
+		transaction.updated(object);
 	}
 }
