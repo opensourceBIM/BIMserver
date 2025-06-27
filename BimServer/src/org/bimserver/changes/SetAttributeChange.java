@@ -105,11 +105,15 @@ public class SetAttributeChange implements Change {
 			List asStringList = null;
 			if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
 				asStringList = (List)object.eGet(object.eClass().getEStructuralFeature(attributeName + "AsString"));
-				asStringList.clear();
+				if(asStringList != null) {
+					asStringList.clear();
+				}
 			}
 			for (Object o : sourceList) {
 				if (eAttribute.getEType() == EcorePackage.eINSTANCE.getEDouble()) {
-					asStringList.add(String.valueOf(o));
+					if(asStringList != null) {
+						asStringList.add(String.valueOf(o));
+					}
 				}
 				list.add(o);
 			}
