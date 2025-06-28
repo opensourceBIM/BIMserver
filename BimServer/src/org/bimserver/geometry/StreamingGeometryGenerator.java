@@ -1148,17 +1148,13 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	}
 
 	int hash(ByteBuffer indices, ByteBuffer vertices, ByteBuffer normals, ByteBuffer colors) {
-		indices.position(0);
-		vertices.position(0);
-		normals.position(0);
-		colors.position(0);
-		
+		// TODO: Color might be excluded from reuse and allowed to change even for the same geometry. However, this
+		//  would require changed geometry data structure and it is not clear how often this case actually appears.
 		int hashCode = 0;
-		hashCode += indices.hashCode();
-		hashCode += vertices.hashCode();
-		hashCode += normals.hashCode();
-		hashCode += colors.hashCode();
-		
+		hashCode += Arrays.hashCode(indices.array());
+		hashCode += Arrays.hashCode(vertices.array());
+		hashCode += Arrays.hashCode(normals.array());
+		hashCode += Arrays.hashCode(colors.array());
 		return hashCode;
 	}
 	
