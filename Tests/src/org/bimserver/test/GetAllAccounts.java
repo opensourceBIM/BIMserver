@@ -17,27 +17,50 @@ package org.bimserver.test;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import org.bimserver.LocalDevSetup;
+import org.apache.commons.lang.RandomStringUtils;
 import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SUser;
+import org.bimserver.interfaces.objects.SUserType;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+
+import static org.junit.Assert.fail;
 
 public class GetAllAccounts {
-	public static void main(String[] args) {
-		new GetAllAccounts().start(args);
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(GetAllAccounts.class);
+	public static void main(String[] args){
+		new GetAllAccounts().start();
 	}
 
-	private void start(String[] args) {
-		try (BimServerClientFactory factory = new JsonBimServerClientFactory(args[0])){
-			try (BimServerClientInterface client = factory.create(new UsernamePasswordAuthenticationInfo(args[1], args[2]))) {
+	private void start() {
+		try (BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080")){
+			try (BimServerClientInterface client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"))) {
+				ArrayList<String> users = new ArrayList<>();
+				//if the server already has users
 				for (SUser user : client.getServiceInterface().getAllUsers()) {
-					System.out.println(user.getUsername());
+					users.add(user.getUsername().toLowerCase());
 				}
+				for (int i = 0; i < 20; i++) {
+					String username = RandomStringUtils.randomAlphanumeric(5) + "@bimserver.org";
+					String password = RandomStringUtils.randomAlphanumeric(5);
+					users.add(username.toLowerCase());
+					client.getServiceInterface().addUserWithPassword(username,password,username, SUserType.USER,false, "https://bimserver.org");
+				}
+				for (SUser user : client.getServiceInterface().getAllUsers()) {
+					if (!users.contains(user.getUsername().toLowerCase())) {
+						fail("User " + user.getUsername() + " not found");
+					}
+				}
+				System.out.println("done");
 			}
 		} catch (ServiceException e) {
 			e.printStackTrace();
