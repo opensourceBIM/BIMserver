@@ -20,7 +20,6 @@ package org.bimserver;
 import java.nio.file.Paths;
 
 import javax.servlet.Servlet;
-import javax.servlet.ServletException;
 import javax.websocket.DeploymentException;
 import javax.websocket.Session;
 
@@ -29,19 +28,20 @@ import org.bimserver.servlets.websockets.jsr356.AdditionalWebSocketConfigurator;
 import org.bimserver.servlets.websockets.jsr356.Jsr356Impl;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
-import org.eclipse.jetty.servlet.ServletHolder;
+import org.eclipse.jetty.ee8.servlet.ServletHolder;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
-import org.eclipse.jetty.webapp.WebAppContext;
-import org.eclipse.jetty.websocket.api.WebSocketPolicy;
-import org.eclipse.jetty.websocket.jsr356.JsrSession;
-import org.eclipse.jetty.websocket.jsr356.server.deploy.WebSocketServerContainerInitializer;
+import org.eclipse.jetty.ee8.webapp.WebAppContext;
+
+import org.eclipse.jetty.ee8.websocket.javax.server.config.JavaxWebSocketServletContainerInitializer;
+import org.eclipse.jetty.ee8.websocket.javax.server.JavaxWebSocketServerContainer;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmbeddedWebServer.class);
-	private WebAppContext context;
-	private Server server;
+	private final WebAppContext context;
+	private final Server server;
 
 	@SuppressWarnings("unchecked")
 	public EmbeddedWebServer(BimServer bimServer, String resourceBase, boolean localDev) {
@@ -50,38 +50,29 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 		ServerConnector socketConnector = new ServerConnector(server);
 		socketConnector.setPort(bimServer.getConfig().getPort());
 		socketConnector.setIdleTimeout(10800000); // 3 hours for bulkcheckin
-		socketConnector.setStopTimeout(10800000); // 3 hours for bulkcheckin
+		socketConnector.setShutdownIdleTimeout(10800000); // 3 hours for bulkcheckin
 		server.addConnector(socketConnector);
 		context = new WebAppContext(server, "", "/");
 		context.setTempDirectory(bimServer.getHomeDir().resolve("jettytmp").toFile());
 
 		try {
-			org.eclipse.jetty.websocket.jsr356.server.ServerContainer configureContext = WebSocketServerContainerInitializer.initialize(context);
-			
-			// TODO this speeds up local loading, but for remote loading it's probably faster to enable permessage-deflate
-			configureContext.getWebSocketServerFactory().getExtensionFactory().unregister("permessage-deflate");
-			
+			JavaxWebSocketServerContainer configureContext = (JavaxWebSocketServerContainer) JavaxWebSocketServletContainerInitializer.initialize(context);
+
 			Jsr356Impl.setServletContext(configureContext, context.getServletContext());
 			Jsr356Impl.setAdditionalWebSocketConfigurator(new AdditionalWebSocketConfigurator() {
 				@Override
 				public void configure(Session websocketSession) {
-					JsrSession jsrSession = (JsrSession)websocketSession;
-					WebSocketPolicy policy = jsrSession.getPolicy();
-					
-					websocketSession.setMaxTextMessageBufferSize(1024 * 1024 * 64);
+                    websocketSession.setMaxTextMessageBufferSize(1024 * 1024 * 64);
 					websocketSession.setMaxBinaryMessageBufferSize(1024 * 1024 * 512);
-					
-					policy.setMaxTextMessageSize(1024 * 1024 * 64);
+					websocketSession.setMaxIdleTimeout(60 * 60 * 1000);
 				}
 			});
 			configureContext.addEndpoint(Jsr356Impl.class);
-		} catch (ServletException e) {
-			e.printStackTrace();
 		} catch (DeploymentException e) {
 			e.printStackTrace();
 		}
-		
-		if (localDev) {
+
+        if (localDev) {
 			// TODO document why
 //			context.setDefaultsDescriptor("../BimServer/www/WEB-INF/webdefault.xml");
 		}

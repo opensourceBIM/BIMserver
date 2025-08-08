@@ -5,16 +5,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.bimserver.plugins.services.ProgressHandler;
-import org.eclipse.jetty.websocket.api.Session;
-import org.eclipse.jetty.websocket.api.annotations.OnWebSocketClose;
-import org.eclipse.jetty.websocket.api.annotations.OnWebSocketConnect;
-import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
+import org.eclipse.jetty.ee8.websocket.api.Session;
+import org.eclipse.jetty.ee8.websocket.api.annotations.OnWebSocketClose;
+import org.eclipse.jetty.ee8.websocket.api.annotations.OnWebSocketConnect;
+import org.eclipse.jetty.ee8.websocket.api.annotations.OnWebSocketMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@org.eclipse.jetty.websocket.api.annotations.WebSocket(maxIdleTime=60 * 60 * 1000, maxBinaryMessageSize=1024*1024*5)
+@org.eclipse.jetty.ee8.websocket.api.annotations.WebSocket(idleTimeout=60 * 60 * 1000, maxBinaryMessageSize=1024*1024*5)
 public class ClientWebSocket {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ClientWebSocket.class);
 	private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
