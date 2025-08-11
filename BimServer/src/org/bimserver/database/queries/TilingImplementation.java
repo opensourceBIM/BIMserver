@@ -21,7 +21,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.commons.lang.NotImplementedException;
+import org.apache.commons.lang3.NotImplementedException;
 import org.bimserver.database.queries.om.Tiles;
 import org.bimserver.database.queries.om.TilingInterface;
 import org.bimserver.geometry.accellerator.GeometryObject;

@@ -42,8 +42,9 @@ import org.bimserver.shared.meta.SService;
 import org.bimserver.shared.meta.SServicesMap;
 import org.bimserver.shared.reflector.KeyValuePair;
 import org.bimserver.shared.reflector.ReflectorException;
-import org.eclipse.jetty.websocket.client.ClientUpgradeRequest;
-import org.eclipse.jetty.websocket.client.WebSocketClient;
+
+import org.eclipse.jetty.ee8.websocket.client.ClientUpgradeRequest;
+import org.eclipse.jetty.ee8.websocket.client.WebSocketClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

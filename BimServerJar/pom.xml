@@ -74,23 +74,33 @@
 			<version>${jetty.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse.jetty.websocket</groupId>
-			<artifactId>websocket-servlet</artifactId>
+			<groupId>org.eclipse.jetty.ee8.websocket</groupId>
+			<artifactId>jetty-ee8-websocket-servlet</artifactId>
 			<version>${jetty.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-webapp</artifactId>
+			<groupId>org.eclipse.jetty.ee8</groupId>
+			<artifactId>jetty-ee8-servlet</artifactId>
 			<version>${jetty.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse.jetty.websocket</groupId>
-			<artifactId>websocket-server</artifactId>
+			<groupId>org.eclipse.jetty.ee8</groupId>
+			<artifactId>jetty-ee8-webapp</artifactId>
 			<version>${jetty.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse.jetty.websocket</groupId>
-			<artifactId>javax-websocket-server-impl</artifactId>
+			<groupId>org.eclipse.jetty.ee8.websocket</groupId>
+			<artifactId>jetty-ee8-websocket-jetty-server</artifactId>
+			<version>${jetty.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty.ee8.websocket</groupId>
+			<artifactId>jetty-ee8-websocket-javax-server</artifactId>
+			<version>${jetty.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty.ee8.websocket</groupId>
+			<artifactId>jetty-ee8-websocket-jetty-api</artifactId>
 			<version>${jetty.version}</version>
 		</dependency>
 		<dependency>

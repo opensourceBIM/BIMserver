@@ -29,12 +29,12 @@
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.jetty.websocket</groupId>
-			<artifactId>websocket-api</artifactId>
+			<artifactId>jetty-websocket-jetty-api</artifactId>
 			<version>${jetty.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse.jetty.websocket</groupId>
-			<artifactId>websocket-client</artifactId>
+			<groupId>org.eclipse.jetty.ee8.websocket</groupId>
+			<artifactId>jetty-ee8-websocket-jetty-client</artifactId>
 			<version>${jetty.version}</version>
 		</dependency>
 		<dependency>

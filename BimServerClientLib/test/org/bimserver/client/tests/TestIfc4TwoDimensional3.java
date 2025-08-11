@@ -4,7 +4,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.bimserver.client.BimServerClient;
 import org.bimserver.client.ClientIfcModel;
 import org.bimserver.client.json.JsonBimServerClientFactory;
