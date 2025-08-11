@@ -1,6 +1,6 @@
 package org.bimserver.shared.reflector;
 
-import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.bimserver.generated.GeneratedNeighbourClass;
 import org.bimserver.reflector.NeighbourClass;
 
