@@ -107,5 +107,21 @@ public class TestCreateLists extends TestWithEmbeddedServer {
 		assertEquals("1.0", stringCoords.get(0));
 		assertEquals("5.0", stringCoords.get(1));
 		assertEquals("3.0", stringCoords.get(2));
+
+		tid = lowLevelInterface.startTransaction(newProject.getOid());
+		lowLevelInterface.removeAttribute(tid, cartesianPointOid, "Coordinates", 1);
+		lowLevelInterface.commitTransaction(tid, "removed middle one", false);
+
+		tid = lowLevelInterface.startTransaction(newProject.getOid());
+		coordinates = lowLevelInterface.getDoubleAttributes(tid, cartesianPointOid, "Coordinates");
+		assertEquals(2, coordinates.size());
+		assertEquals(1.0, coordinates.get(0), 0);
+		assertEquals(3.0, coordinates.get(1), 0);
+
+		stringCoords = lowLevelInterface.getStringAttributes(tid, cartesianPointOid, "CoordinatesAsString");
+		assertEquals(2, stringCoords.size());
+		assertEquals("1.0", stringCoords.get(0));
+		assertEquals("3.0", stringCoords.get(1));
+
 	}
 }
