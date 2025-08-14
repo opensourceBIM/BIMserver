@@ -24,6 +24,9 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Project;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
+
+import java.util.HashMap;
+
 public class GetProjectByUuidDatabaseAction extends BimDatabaseAction<Project> {
 
 	private final String uuid;
@@ -37,6 +40,7 @@ public class GetProjectByUuidDatabaseAction extends BimDatabaseAction<Project> {
 
 	@Override
 	public Project execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		HashMap<String, String> m;
 //		List<IdEObject> projects = (List<IdEObject>) getDatabaseSession().query(StorePackage.eINSTANCE.getProject_Uuid(), uuid);
 //		if (projects.size() == 0) {
 //			throw new UserException("Project with uuid " + uuid + " does not exist");

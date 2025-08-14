@@ -22,7 +22,6 @@ import static org.junit.Assert.fail;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collections;
 
@@ -39,7 +38,7 @@ import org.bimserver.plugins.services.CheckinProgressHandler;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.test.TestWithEmbeddedServer;
+import org.bimserver.tests.TestWithEmbeddedServer;
 import org.junit.Test;
 
 public class TestCheckinWithProgress extends TestWithEmbeddedServer {

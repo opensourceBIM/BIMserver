@@ -32,7 +32,7 @@ import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.LowLevelInterface;
-import org.bimserver.test.TestWithEmbeddedServer;
+import org.bimserver.tests.TestWithEmbeddedServer;
 import org.junit.Test;
 
 public class TestSetWrappedReal extends TestWithEmbeddedServer {

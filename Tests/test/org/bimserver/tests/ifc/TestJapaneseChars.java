@@ -28,7 +28,7 @@ import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.test.TestWithEmbeddedServer;
+import org.bimserver.tests.TestWithEmbeddedServer;
 import org.junit.Assert;
 import org.junit.Test;
 
