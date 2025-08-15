@@ -17,8 +17,6 @@ package org.bimserver.tests.emf;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import static org.junit.Assert.fail;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -34,7 +32,7 @@ import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.tests.TestWithEmbeddedServer;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TestReadTrim extends TestWithEmbeddedServer {
 

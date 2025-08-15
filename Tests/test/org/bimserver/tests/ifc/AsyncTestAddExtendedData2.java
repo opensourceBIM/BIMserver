@@ -37,9 +37,7 @@ import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import com.google.common.base.Charsets;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServiceException;
-import org.junit.Test;
-
-import static org.junit.Assert.fail;
+import org.junit.jupiter.api.Test;
 
 public class AsyncTestAddExtendedData2 {
 

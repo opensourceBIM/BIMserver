@@ -1,6 +1,6 @@
 package org.bimserver.tests.lowlevel;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /******************************************************************************
  * Copyright (C) 2009-2019  BIMserver.org
@@ -26,7 +26,7 @@ import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.tests.TestWithEmbeddedServer;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TestAddReferenceWithOpposite extends TestWithEmbeddedServer {
 

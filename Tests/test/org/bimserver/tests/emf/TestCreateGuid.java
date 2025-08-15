@@ -30,9 +30,9 @@ import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.tests.TestWithEmbeddedServer;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestCreateGuid extends TestWithEmbeddedServer {
 
@@ -52,8 +52,8 @@ public class TestCreateGuid extends TestWithEmbeddedServer {
 
 		IfcModelInterface newModel = bimServerClient.getModel(newProject, roid, true, false);
 		List<IfcFurnishingElement> furnishingElements = newModel.getAllWithSubTypes(Ifc2x3tc1Package.eINSTANCE.getIfcFurnishingElement());
-        assertEquals("Invalid number of furnishing elements ", 1, furnishingElements.size());
+        assertEquals(1, furnishingElements.size(), "Invalid number of furnishing elements ");
 		IfcFurnishingElement newF = furnishingElements.get(0);
-        assertEquals("Invalid GUID", "0uyjn9Jan3nRq36Uj6gwws", newF.getGlobalId());
+        assertEquals("0uyjn9Jan3nRq36Uj6gwws", newF.getGlobalId(), "Invalid GUID");
 	}
 }

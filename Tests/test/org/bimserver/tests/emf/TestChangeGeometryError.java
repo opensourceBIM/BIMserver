@@ -17,8 +17,8 @@ package org.bimserver.tests.emf;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.net.URL;
 import java.util.List;
@@ -33,7 +33,7 @@ import org.bimserver.models.ifc2x3tc1.IfcWall;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.tests.TestWithEmbeddedServer;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TestChangeGeometryError extends TestWithEmbeddedServer {
 

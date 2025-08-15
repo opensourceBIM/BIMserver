@@ -33,8 +33,9 @@ import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.tests.TestWithEmbeddedServer;
-import org.junit.Assert;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 public class TestGeometry extends TestWithEmbeddedServer {
 	@Test
@@ -67,19 +68,19 @@ public class TestGeometry extends TestWithEmbeddedServer {
 		// Load model without lazy loading (complete model at once)
 		IfcModelInterface model = bimServerClient.getModel(project, project.getLastRevisionId(), true, true, true);
 
-		Assert.assertNotNull(model.getModelMetaData().getMinBounds());
-		Assert.assertNotNull(model.getModelMetaData().getMaxBounds());
+		assertNotNull(model.getModelMetaData().getMinBounds());
+		assertNotNull(model.getModelMetaData().getMaxBounds());
 
 		for (IfcProduct ifcProduct : model.getAllWithSubTypes(IfcProduct.class)) {
 			GeometryInfo geometryInfo = ifcProduct.getGeometry();
 			if (geometryInfo != null) {
 				Vector3f minBounds = geometryInfo.getBounds().getMin();
 				Vector3f maxBounds = geometryInfo.getBounds().getMax();
-				Assert.assertNotNull(minBounds);
-				Assert.assertNotNull(maxBounds);
+				assertNotNull(minBounds);
+				assertNotNull(maxBounds);
 				nrTriangles += geometryInfo.getPrimitiveCount();
 			}
 		}
-		Assert.assertEquals(45260, nrTriangles);
+		assertEquals(45260, nrTriangles);
 	}
 }

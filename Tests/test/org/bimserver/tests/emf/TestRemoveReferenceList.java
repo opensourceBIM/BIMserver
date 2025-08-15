@@ -17,9 +17,8 @@ package org.bimserver.tests.emf;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -35,7 +34,7 @@ import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.tests.TestWithEmbeddedServer;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TestRemoveReferenceList extends TestWithEmbeddedServer {
 	
@@ -96,9 +95,9 @@ public class TestRemoveReferenceList extends TestWithEmbeddedServer {
 		newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
 		model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true, false);
 		for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
-			assertEquals("Invalid size ", 2, ifcFurnishingElement.getContainedInStructure().size());
-			assertEquals("link", "link1", ifcFurnishingElement.getContainedInStructure().get(0).getName());
-			assertEquals("link", "link3", ifcFurnishingElement.getContainedInStructure().get(1).getName());
+			assertEquals(2, ifcFurnishingElement.getContainedInStructure().size(), "Invalid size ");
+			assertEquals("link1", ifcFurnishingElement.getContainedInStructure().get(0).getName());
+			assertEquals("link3", ifcFurnishingElement.getContainedInStructure().get(1).getName());
 		}
 	}
 }

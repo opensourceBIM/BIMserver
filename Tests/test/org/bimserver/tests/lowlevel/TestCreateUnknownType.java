@@ -25,8 +25,8 @@ import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.tests.TestWithEmbeddedServer;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class TestCreateUnknownType extends TestWithEmbeddedServer {
 
@@ -43,7 +43,7 @@ public class TestCreateUnknownType extends TestWithEmbeddedServer {
 		// Start a transaction
 		Long tid = lowLevelInterface.startTransaction(newProject.getOid());
 
-		Assert.assertThrows(UserException.class, () -> lowLevelInterface.createObject(tid, "IfcCartesionPoint", true)); // IfcCartesi(O)nPoint
+		Assertions.assertThrows(UserException.class, () -> lowLevelInterface.createObject(tid, "IfcCartesionPoint", true)); // IfcCartesi(O)nPoint
 
 		// Commit the transaction
 		lowLevelInterface.commitTransaction(tid, "test", false);

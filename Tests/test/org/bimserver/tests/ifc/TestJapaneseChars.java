@@ -29,8 +29,8 @@ import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.tests.TestWithEmbeddedServer;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class TestJapaneseChars extends TestWithEmbeddedServer {
 	private BimServerClientInterface bimServerClient;
@@ -63,7 +63,7 @@ public class TestJapaneseChars extends TestWithEmbeddedServer {
 			bimServerClient.download(newProject.getLastRevisionId(), serializer.getOid(), Paths.get("bimserver_" + url.getFile().substring(url.getFile().lastIndexOf("/") + 1)));
 		} catch (Exception e) {
 			e.printStackTrace();
-			Assert.assertEquals(expectedMessage, e.getMessage());
+			Assertions.assertEquals(expectedMessage, e.getMessage());
 		}
 	}
 }

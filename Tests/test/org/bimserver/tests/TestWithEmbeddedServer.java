@@ -19,13 +19,13 @@ package org.bimserver.tests;
 
 import org.bimserver.BimServer;
 import org.bimserver.shared.BimServerClientFactory;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 
 public class TestWithEmbeddedServer {
 
-	@BeforeClass
-	public static void beforeClass() {
+	@BeforeAll
+	public static void beforeAll() {  // TODO remove? I don't think this overrides anything
 	}
 	
 	public BimServer getBimServer() {
@@ -36,8 +36,8 @@ public class TestWithEmbeddedServer {
 		return AllTests.getFactory();
 	}
 	
-	@AfterClass
-	public static void afterClass() {
+	@AfterAll
+	public static void afterAll() {
 		if (!AllTests.running) {
 			AllTests.resetBimServer();
 		}

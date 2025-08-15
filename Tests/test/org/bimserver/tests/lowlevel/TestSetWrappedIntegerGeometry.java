@@ -34,7 +34,7 @@ import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.tests.TestWithEmbeddedServer;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TestSetWrappedIntegerGeometry extends TestWithEmbeddedServer {
 
@@ -67,8 +67,8 @@ public class TestSetWrappedIntegerGeometry extends TestWithEmbeddedServer {
 		SVector3f minBounds = newModel.getModelMetaData().getMinBounds();
 		SVector3f maxBounds = newModel.getModelMetaData().getMaxBounds();
 
-		org.junit.Assert.assertNotNull(minBounds);
-		org.junit.Assert.assertNotNull(maxBounds);
+		org.junit.jupiter.api.Assertions.assertNotNull(minBounds);
+		org.junit.jupiter.api.Assertions.assertNotNull(maxBounds);
 
 		bimServerClient.download(newProject.getLastRevisionId(), serializer.getOid(), Paths.get("test2.ifc"));
 
