@@ -17,8 +17,6 @@ package org.bimserver.tests.lowlevel;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.ChannelConnectionException;
@@ -28,6 +26,8 @@ import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.shared.interfaces.LowLevelInterface;
 import org.bimserver.tests.TestWithEmbeddedServer;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TestAddReferenceWithOppositeExisting extends TestWithEmbeddedServer {
 
@@ -42,25 +42,20 @@ public class TestAddReferenceWithOppositeExisting extends TestWithEmbeddedServer
 		SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 
 		// Start a transaction
-		Long tid = lowLevelInterface.startTransaction(newProject.getOid());
+		Long tid1 = lowLevelInterface.startTransaction(newProject.getOid());
 
-		Long ifcRelContainedInSpatialStructureOid = lowLevelInterface.createObject(tid, "IfcRelContainedInSpatialStructure", true);
-		Long ifcBuildingOid1 = lowLevelInterface.createObject(tid, "IfcBuilding", true);
-		Long ifcBuildingOid2 = lowLevelInterface.createObject(tid, "IfcBuilding", true);
-		lowLevelInterface.addReference(tid, ifcBuildingOid1, "ContainsElements", ifcRelContainedInSpatialStructureOid);
+		Long ifcRelContainedInSpatialStructureOid = lowLevelInterface.createObject(tid1, "IfcRelContainedInSpatialStructure", true);
+		Long ifcBuildingOid1 = lowLevelInterface.createObject(tid1, "IfcBuilding", true);
+		Long ifcBuildingOid2 = lowLevelInterface.createObject(tid1, "IfcBuilding", true);
+		lowLevelInterface.addReference(tid1, ifcBuildingOid1, "ContainsElements", ifcRelContainedInSpatialStructureOid);
 
-		lowLevelInterface.commitTransaction(tid, "Initial", false);
+		lowLevelInterface.commitTransaction(tid1, "Initial", false);
 
-		tid = lowLevelInterface.startTransaction(newProject.getOid());
-		lowLevelInterface.addReference(tid, ifcBuildingOid2, "ContainsElements", ifcRelContainedInSpatialStructureOid);
-		try {
-			lowLevelInterface.commitTransaction(tid, "2", false);
-		} catch (UserException e) {
-//				if (e.getErrorCode() != ErrorCode.SET_REFERENCE_FAILED_OPPOSITE_ALREADY_SET) {
-				fail("Didn't get the right errormessage");
-//				}
-		} finally {
-			fail("Expected error code");
-		}
+		Long tid2 = lowLevelInterface.startTransaction(newProject.getOid());
+		lowLevelInterface.addReference(tid2, ifcBuildingOid2, "ContainsElements", ifcRelContainedInSpatialStructureOid);
+		Exception thrown = assertThrows(UserException.class, () ->
+				lowLevelInterface.commitTransaction(tid2, "2", false)
+				);
+		// assertEquals( ErrorCode.SET_REFERENCE_FAILED_OPPOSITE_ALREADY_SET, ((UserException) thrown).getErrorCode());
 	}
 }

@@ -17,8 +17,6 @@ package org.bimserver.tests.serviceinterface;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;

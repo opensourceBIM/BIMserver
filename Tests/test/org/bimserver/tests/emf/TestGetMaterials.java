@@ -17,8 +17,6 @@ package org.bimserver.tests.emf;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashSet;

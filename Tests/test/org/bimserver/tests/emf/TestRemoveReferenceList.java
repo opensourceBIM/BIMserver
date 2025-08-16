@@ -18,7 +18,6 @@ package org.bimserver.tests.emf;
  *****************************************************************************/
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -75,9 +74,7 @@ public class TestRemoveReferenceList extends TestWithEmbeddedServer {
 
 		model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true, true);
 		for (IfcFurnishingElement ifcFurnishingElement : model.getAll(IfcFurnishingElement.class)) {
-			if (ifcFurnishingElement.getContainedInStructure().size() != 3) {
-				fail("Size should be 3, is " + ifcFurnishingElement.getContainedInStructure().size());
-			}
+			assertEquals(3, ifcFurnishingElement.getContainedInStructure().size());
 			// Remove the middle one
 			IfcRelContainedInSpatialStructure middleOne = null;
 			for (IfcRelContainedInSpatialStructure rel : ifcFurnishingElement.getContainedInStructure()) {

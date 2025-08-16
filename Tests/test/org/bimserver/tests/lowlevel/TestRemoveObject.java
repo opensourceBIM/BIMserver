@@ -17,7 +17,7 @@ package org.bimserver.tests.lowlevel;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.BimServerClientInterface;
@@ -55,8 +55,6 @@ public class TestRemoveObject extends TestWithEmbeddedServer {
 
 		tid = lowLevelInterface.startTransaction(newProject.getOid());
 		long reference = lowLevelInterface.getReference(tid, ifcRelContainedInSpatialStructureOid, "RelatingStructure");
-		if (reference != -1) {
-			fail("Should be unset (is " + reference + ")");
-		}
+		assertEquals(-1, reference, "Should be unset." );
 	}
 }

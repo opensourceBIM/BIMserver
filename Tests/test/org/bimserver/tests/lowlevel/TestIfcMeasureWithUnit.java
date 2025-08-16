@@ -17,7 +17,7 @@ package org.bimserver.tests.lowlevel;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.BimServerClientInterface;
@@ -53,8 +53,6 @@ public class TestIfcMeasureWithUnit extends TestWithEmbeddedServer {
 
 		tid = lowLevelInterface.startTransaction(newProject.getOid());
 		double v = lowLevelInterface.getDoubleAttribute(tid, ifcMeasureWithUnitOid, "ValueComponent");
-		if (v != 0.12345) {
-			fail("0.12345 expected, got " + v);
-		}
+		assertEquals(0.12345, v);
 	}
 }

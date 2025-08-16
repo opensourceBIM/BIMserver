@@ -17,7 +17,7 @@ package org.bimserver.tests.emf;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -86,17 +86,11 @@ public class TestReadProperties extends TestWithEmbeddedServer {
 									stringValue = "" + ((IfcAreaMeasure)nominalValue).getWrappedValue();
 								}
 								if (ifcPropertySingleValue.getName().equals("ConstructionMode")) {
-									if (!stringValue.equals("Massivbau")) {
-										fail("Massivbau expected");
-									}
+									assertEquals("Massivbau", stringValue);
 								} else if (ifcPropertySingleValue.getName().equals("BuildingPermitId")) {
-									if (!stringValue.equals("4711")) {
-										fail("4711 expected");
-									}
-								} else if (ifcPropertySingleValue.getName().equals("GrossAreaPlanned")) {
-									if (stringValue == null || !stringValue.equals("1000.0")) {
-										fail("1000. expected");
-									}
+									assertEquals("4711", stringValue);
+								} else if (ifcPropertySingleValue.getName().equals("GrossAreaPlanned") && stringValue != null) {
+									assertEquals("1000.0", stringValue);
 								}
 								System.out.println(ifcPropertySingleValue.getName() + ": " + stringValue);
 							}
