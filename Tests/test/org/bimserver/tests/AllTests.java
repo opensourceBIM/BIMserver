@@ -115,6 +115,7 @@ public class AllTests {
 				client.getPluginInterface().installPluginBundle("https://repo1.maven.org/maven2/", "org.opensourcebim", "ifcplugins", null, null);
 				client.getPluginInterface().installPluginBundle("https://repo1.maven.org/maven2/", "org.opensourcebim", "binaryserializers", null, null);
 				client.getPluginInterface().installPluginBundle("https://repo1.maven.org/maven2/", "org.opensourcebim", "ifcopenshellplugin", null, null);
+				client.getPluginInterface().installPluginBundle("https://repo1.maven.org/maven2/", "org.opensourcebim", "mergers", null, null);
 			}
 
 			client.disconnect();

@@ -57,6 +57,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 @ParameterizedClass
 @ValueSource(booleans = {false, true})
 public class TestBigModelEmfRemote {
+	// see also: TestBigModelEmf (with embedded server)
 	
 	private IfcProductRepresentation spaceRep;
 	private IfcProductRepresentation furnishingRep;
@@ -69,11 +70,11 @@ public class TestBigModelEmfRemote {
 		boolean doreuse = true;
 		
 		BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
-			BimServerClientInterface bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+		BimServerClientInterface bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
-			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
+		SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
-			IfcModelInterface model = null;
+		IfcModelInterface model = null;
 		if (useLowLevelCalls) {
 			model = bimServerClient.newModel(newProject, true);
 		} else {

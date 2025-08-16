@@ -33,6 +33,8 @@ import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.tests.TestWithEmbeddedServer;
 import org.junit.jupiter.api.Test;
 
+// TODO these tests could go to the merger plugin repository, and then merger installation in AllTests can be removed
+// although general merge functionality should be tested here indeed
 public class TestCompare extends TestWithEmbeddedServer {
 
 	@Test

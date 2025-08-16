@@ -17,7 +17,7 @@ package org.bimserver.tests.ifc;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import java.net.MalformedURLException;
+import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
 
@@ -27,43 +27,40 @@ import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
+import org.bimserver.shared.exceptions.BimServerClientException;
+import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.tests.TestWithEmbeddedServer;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class TestJapaneseChars extends TestWithEmbeddedServer {
 	private BimServerClientInterface bimServerClient;
 
 	// TODO actually test the results, and not only whether it generates exceptions
+	// TODO this test should go to the IFC plugin
 	
 	@Test
-	public void test() throws ServiceException, ChannelConnectionException, MalformedURLException {
+	public void checkin() throws ServiceException, ChannelConnectionException, IOException, BimServerClientException {
 		bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 
-		test(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/ac16_sjis.ifc"), null);
-		test(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/ac16_unicode.ifc"), null);
-		test(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/revit2013_unicode.ifc"), "FILE_NAME.name is not an optional field, but $ used");
-		test(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/revit2013_unicode_fixed.ifc"), null);
-		test(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/revit2014_unicode.ifc"), null);
-		test(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/vectorworks_sjis.ifc"), null);
-		test(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/vectorworks_unicode.ifc"), null);
+		checkin(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/ac16_sjis.ifc"));
+		checkin(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/ac16_unicode.ifc"));
+		checkin(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/revit2013_unicode_fixed.ifc"));
+		checkin(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/revit2014_unicode.ifc"));
+		checkin(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/vectorworks_sjis.ifc"));
+		checkin(new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/japanesechars/vectorworks_unicode.ifc"));
 	}
 	
-	public void test(URL url, String expectedMessage) {
-		try {
-			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
-			// Find a deserializer to use
-			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
-			
-			bimServerClient.checkinSync(newProject.getOid(), "initial", deserializer.getOid(), false, url);
-			
-			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
-			SSerializerPluginConfiguration serializer = bimServerClient.getServiceInterface().getSerializerByContentType("application/ifc");
-			bimServerClient.download(newProject.getLastRevisionId(), serializer.getOid(), Paths.get("bimserver_" + url.getFile().substring(url.getFile().lastIndexOf("/") + 1)));
-		} catch (Exception e) {
-			e.printStackTrace();
-			Assertions.assertEquals(expectedMessage, e.getMessage());
-		}
+	public void checkin(URL url) throws IOException, BimServerClientException, ServerException, UserException {
+		SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
+		// Find a deserializer to use
+		SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
+
+		bimServerClient.checkinSync(newProject.getOid(), "initial", deserializer.getOid(), false, url);
+
+		newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
+		SSerializerPluginConfiguration serializer = bimServerClient.getServiceInterface().getSerializerByContentType("application/ifc");
+		bimServerClient.download(newProject.getLastRevisionId(), serializer.getOid(), Paths.get("bimserver_" + url.getFile().substring(url.getFile().lastIndexOf("/") + 1)));
 	}
 }

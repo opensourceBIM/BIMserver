@@ -18,7 +18,7 @@ package org.bimserver.tests.ifc;
  *****************************************************************************/
 
 import java.io.IOException;
-import java.nio.file.Paths;
+import java.net.URL;
 
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SExtendedData;
@@ -27,22 +27,20 @@ import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SLongCheckinActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.shared.BimServerClientFactory;
-import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 
 import com.google.common.base.Charsets;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.tests.TestWithEmbeddedServer;
 import org.junit.jupiter.api.Test;
 
-public class TestAddExtendedData {
+public class TestAddExtendedData extends TestWithEmbeddedServer {
 
 	@Test
 	public void test() throws BimServerClientException, ServiceException, ChannelConnectionException, IOException {
-		BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
-		BimServerClientInterface client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+		BimServerClientInterface client = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 
 		SFile file = new SFile();
 		file.setData("test".getBytes(Charsets.UTF_8));
@@ -52,7 +50,7 @@ public class TestAddExtendedData {
 
 		SProject project = client.getServiceInterface().addProject("t2es035442t23", "ifc2x3tc1");
 		SDeserializerPluginConfiguration deserializerForExtension = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
-		SLongCheckinActionState checkinSync = client.checkinSync(project.getOid(), "initial", deserializerForExtension.getOid(), false, Paths.get("../../TestFiles/TestData/data/AC11-FZK-Haus-IFC.ifc"));
+		SLongCheckinActionState checkinSync = client.checkinSync(project.getOid(), "initial", deserializerForExtension.getOid(), false, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/AC11-FZK-Haus-IFC.ifc"));
 
 		SExtendedDataSchema extendedDataSchemaByNamespace = client.getServiceInterface().getExtendedDataSchemaByName("GEOMETRY_GENERATION_REPORT_JSON_1_1");
 
