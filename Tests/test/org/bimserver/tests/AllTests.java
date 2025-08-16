@@ -44,7 +44,6 @@ import org.slf4j.LoggerFactory;
 
 @Suite
 @SelectPackages("org.bimserver.tests")
-@ExcludeClassNamePatterns({".*TestCheckinWithProgress"}) // sync streaming download does not finish, TODO: call done() finally
 public class AllTests {
 	public static BimServer bimServer;
 	public static boolean running = false;
