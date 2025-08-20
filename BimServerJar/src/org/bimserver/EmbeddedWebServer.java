@@ -31,6 +31,8 @@ import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.ee8.servlet.ServletHolder;
 import org.eclipse.jetty.util.thread.QueuedThreadPool;
 import org.eclipse.jetty.ee8.webapp.WebAppContext;
+import org.eclipse.jetty.util.resource.Resource;
+import org.eclipse.jetty.util.resource.ResourceFactory;
 
 import org.eclipse.jetty.ee8.websocket.javax.server.config.JavaxWebSocketServletContainerInitializer;
 import org.eclipse.jetty.ee8.websocket.javax.server.JavaxWebSocketServerContainer;
@@ -52,8 +54,9 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 		socketConnector.setIdleTimeout(10800000); // 3 hours for bulkcheckin
 		socketConnector.setShutdownIdleTimeout(10800000); // 3 hours for bulkcheckin
 		server.addConnector(socketConnector);
-		context = new WebAppContext(server, "", "/");
+        context = new WebAppContext(server, "", "/");
 		context.setTempDirectory(bimServer.getHomeDir().resolve("jettytmp").toFile());
+		ResourceFactory resourceFactory = ResourceFactory.of(context);
 
 		try {
 			JavaxWebSocketServerContainer configureContext = (JavaxWebSocketServerContainer) JavaxWebSocketServletContainerInitializer.initialize(context);
@@ -88,11 +91,16 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 		}
 		
 		context.getServletContext().setAttribute("bimserver", bimServer);
-		if (context.getResourceBase() == null) {
+
+
+		if (context.getBaseResource() == null) {
 			if (resourceBase == null) {
-				context.setResourceBase(Paths.get("www").toAbsolutePath().toString());
+				String base = Paths.get("www").toAbsolutePath().toString();
+				Resource resource = resourceFactory.newResource(base);
+				context.setBaseResource(resource);
 			} else {
-				context.setResourceBase(resourceBase);
+				Resource resource = resourceFactory.newResource(resourceBase);
+				context.setBaseResource(resource);
 			}
 		}
 	}
@@ -109,6 +117,10 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 		return context;
 	}
 
+	public ResourceFactory getResourceFactory() {
+		return context.getResourceFactory();
+	}
+
 	public void shutdown() {
 		try {
 			server.stop();
@@ -119,6 +131,7 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 
 	@Override
 	public void setResourceBase(String resourceBase) {
-		getContext().setResourceBase(resourceBase);
+		Resource resource = getResourceFactory().newResource(resourceBase);
+		getContext().setBaseResource(resource);
 	}
 }
