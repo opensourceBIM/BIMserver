@@ -23,6 +23,4 @@ public interface EmbeddedWebServerInterface {
 
 	void start();
 
-	void setResourceBase(String string);
-
 }

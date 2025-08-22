@@ -16,7 +16,9 @@ package org.bimserver;
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
-
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import javax.servlet.Servlet;
@@ -44,6 +46,8 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmbeddedWebServer.class);
 	private final WebAppContext context;
 	private final Server server;
+	private Path tempWebRoot;
+	private boolean usingTempBase;
 
 	@SuppressWarnings("unchecked")
 	public EmbeddedWebServer(BimServer bimServer, String resourceBase, boolean localDev) {
@@ -54,7 +58,7 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 		socketConnector.setIdleTimeout(10800000); // 3 hours for bulkcheckin
 		socketConnector.setShutdownIdleTimeout(10800000); // 3 hours for bulkcheckin
 		server.addConnector(socketConnector);
-        context = new WebAppContext(server, "", "/");
+		context = new WebAppContext(server, "", "/");
 		context.setTempDirectory(bimServer.getHomeDir().resolve("jettytmp").toFile());
 		ResourceFactory resourceFactory = ResourceFactory.of(context);
 
@@ -65,7 +69,7 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 			Jsr356Impl.setAdditionalWebSocketConfigurator(new AdditionalWebSocketConfigurator() {
 				@Override
 				public void configure(Session websocketSession) {
-                    websocketSession.setMaxTextMessageBufferSize(1024 * 1024 * 64);
+					websocketSession.setMaxTextMessageBufferSize(1024 * 1024 * 64);
 					websocketSession.setMaxBinaryMessageBufferSize(1024 * 1024 * 512);
 					websocketSession.setMaxIdleTimeout(60 * 60 * 1000);
 				}
@@ -75,28 +79,35 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 			e.printStackTrace();
 		}
 
-        if (localDev) {
+		if (localDev) {
 			// TODO document why
 //			context.setDefaultsDescriptor("../BimServer/www/WEB-INF/webdefault.xml");
 		}
-		
+
 		ServletHolder servletHolder = new ServletHolder(new RootServlet());
 		context.addServlet(servletHolder, "/*");
-		
+
 		try {
 			// Only if the Jolokia agent is available (JAR is on the classpath) the servlet will be mapped, if the class is not found, no errors are logged
 			context.addServlet((Class<? extends Servlet>) Class.forName("org.jolokia.http.AgentServlet"), "/jolokia/*");
 			LOGGER.info("Jolokia agent listening on /jolokia");
 		} catch (Throwable e) {
 		}
-		
+
 		context.getServletContext().setAttribute("bimserver", bimServer);
 
 
 		if (context.getBaseResource() == null) {
 			if (resourceBase == null) {
-				String base = Paths.get("www").toAbsolutePath().toString();
-				Resource resource = resourceFactory.newResource(base);
+
+				try {
+					tempWebRoot = Files.createTempDirectory("empty-webroot");
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+				}
+				tempWebRoot.toFile().deleteOnExit();
+				Resource resource = resourceFactory.newResource(tempWebRoot);
+				usingTempBase = true;
 				context.setBaseResource(resource);
 			} else {
 				Resource resource = resourceFactory.newResource(resourceBase);
@@ -126,12 +137,16 @@ public class EmbeddedWebServer implements EmbeddedWebServerInterface {
 			server.stop();
 		} catch (Exception e) {
 			LOGGER.error("", e);
+		} finally {
+			if (usingTempBase && tempWebRoot != null) {
+				try {
+					Files.deleteIfExists(tempWebRoot);
+				} catch (IOException e) {
+					LOGGER.error("Failed to delete temporary web root: " + tempWebRoot, e);
+				}
+				tempWebRoot = null;
+				usingTempBase = false;
+			}
 		}
-	}
-
-	@Override
-	public void setResourceBase(String resourceBase) {
-		Resource resource = getResourceFactory().newResource(resourceBase);
-		getContext().setBaseResource(resource);
 	}
 }
