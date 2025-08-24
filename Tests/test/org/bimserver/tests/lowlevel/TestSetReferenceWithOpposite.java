@@ -17,7 +17,7 @@ package org.bimserver.tests.lowlevel;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
@@ -27,8 +27,8 @@ import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.LowLevelInterface;
-import org.bimserver.test.TestWithEmbeddedServer;
-import org.junit.Test;
+import org.bimserver.tests.TestWithEmbeddedServer;
+import org.junit.jupiter.api.Test;
 
 public class TestSetReferenceWithOpposite extends TestWithEmbeddedServer {
 
@@ -53,11 +53,7 @@ public class TestSetReferenceWithOpposite extends TestWithEmbeddedServer {
 
 		tid = lowLevelInterface.startTransaction(newProject.getOid());
 		List<Long> references = lowLevelInterface.getReferences(tid, ifcBuildingOid, "ContainsElements");
-		if (references.size() != 1) {
-			fail("Should be 1");
-		}
-		if (!references.get(0).equals(ifcRelContainedInSpatialStructureOid)) {
-			fail("Wrong " + references.get(0) + " / " + ifcRelContainedInSpatialStructureOid);
-		}
+		assertEquals(1, references.size());
+		assertEquals(ifcRelContainedInSpatialStructureOid, references.get(0));
 	}
 }

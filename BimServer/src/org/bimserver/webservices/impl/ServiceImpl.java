@@ -431,16 +431,16 @@ public class ServiceImpl extends GenericServiceImpl implements ServiceInterface 
 			}
 
 			if (plugin instanceof StreamingSerializerPlugin || plugin instanceof MessagingStreamingSerializerPlugin) {
-				LongStreamingDownloadAction longDownloadAction = new LongStreamingDownloadAction(getBimServer(), username, username, getAuthorization(), serializerOid, jsonQuery, roids);
+				LongStreamingDownloadAction longStreamingDownloadAction = new LongStreamingDownloadAction(getBimServer(), username, username, getAuthorization(), serializerOid, jsonQuery, roids);
 				try {
-					getBimServer().getLongActionManager().start(longDownloadAction);
+					getBimServer().getLongActionManager().start(longStreamingDownloadAction);
 				} catch (Exception e) {
 					LOGGER.error("", e);
 				}
 				if (sync) {
-					longDownloadAction.waitForCompletion();
+					longStreamingDownloadAction.waitForCompletion();
 				}
-				return longDownloadAction.getProgressTopic().getKey().getId();
+				return longStreamingDownloadAction.getProgressTopic().getKey().getId();
 			} else if (plugin instanceof MessagingSerializerPlugin) {
 				requireAuthenticationAndRunningServer();
 				DownloadParameters downloadParameters = new DownloadParameters(getBimServer(), DownloadType.DOWNLOAD_BY_NEW_JSON_QUERY);

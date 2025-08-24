@@ -17,8 +17,6 @@ package org.bimserver.tests.serviceinterface;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import static org.junit.Assert.fail;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -29,9 +27,9 @@ import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.test.TestWithEmbeddedServer;
-import org.junit.Assert;
-import org.junit.Test;
+import org.bimserver.tests.TestWithEmbeddedServer;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class TestGetAvailableClasses extends TestWithEmbeddedServer {
 	@Test
@@ -51,6 +49,6 @@ public class TestGetAvailableClasses extends TestWithEmbeddedServer {
 		mainProject = bimServerClient.getServiceInterface().getProjectByPoid(mainProject.getOid());
 
 		List<String> availableClassesInRevision = bimServerClient.getServiceInterface().getAvailableClassesInRevision(mainProject.getLastRevisionId());
-		Assert.assertEquals(117, availableClassesInRevision.size());
+		Assertions.assertEquals(117, availableClassesInRevision.size());
 	}
 }

@@ -24,8 +24,8 @@ import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.LowLevelInterface;
-import org.bimserver.test.TestWithEmbeddedServer;
-import org.junit.Test;
+import org.bimserver.tests.TestWithEmbeddedServer;
+import org.junit.jupiter.api.Test;
 
 public class TestUnsetReferenceWithOpposite extends TestWithEmbeddedServer {
 

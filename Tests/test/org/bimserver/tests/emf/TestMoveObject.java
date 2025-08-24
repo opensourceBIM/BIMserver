@@ -17,10 +17,7 @@ package org.bimserver.tests.emf;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import static org.junit.Assert.fail;
-
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
 
@@ -35,13 +32,12 @@ import org.bimserver.models.ifc2x3tc1.IfcFurnishingElement;
 import org.bimserver.models.ifc2x3tc1.IfcLocalPlacement;
 import org.bimserver.models.ifc2x3tc1.IfcObjectPlacement;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.test.TestWithEmbeddedServer;
-import org.junit.Test;
+import org.bimserver.tests.TestWithEmbeddedServer;
+import org.junit.jupiter.api.Test;
 
 public class TestMoveObject extends TestWithEmbeddedServer{
 	@Test

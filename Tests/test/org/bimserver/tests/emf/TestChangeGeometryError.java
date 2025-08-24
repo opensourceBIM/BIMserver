@@ -17,9 +17,10 @@ package org.bimserver.tests.emf;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
@@ -31,44 +32,41 @@ import org.bimserver.models.geometry.GeometryFactory;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcWall;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.plugins.services.Flow;
+import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
-import org.bimserver.test.TestWithEmbeddedServer;
-import org.junit.Test;
+import org.bimserver.shared.exceptions.BimServerClientException;
+import org.bimserver.shared.exceptions.ServiceException;
+import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.tests.TestWithEmbeddedServer;
+import org.junit.jupiter.api.Test;
 
 public class TestChangeGeometryError extends TestWithEmbeddedServer {
 
 	@Test
-	public void test() {
-		try {
-			// Create a new BimServerClient with authentication
-			BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
-			
-			// Create a new project
-			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
-			
-			// Look for a deserializer
-			SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
+	public void test() throws ServiceException, ChannelConnectionException, MalformedURLException, BimServerClientException {
+		// Create a new BimServerClient with authentication
+		BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 
-			bimServerClient.checkinSync(newProject.getOid(), "test", deserializer.getOid(), false, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/AC11-Institute-Var-2-IFC.ifc"));
+		// Create a new project
+		SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 
-			newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
-			
-			IfcModelInterface model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), false, true, true);
-			List<IfcWall> walls = model.getAllWithSubTypes(Ifc2x3tc1Package.eINSTANCE.getIfcWall());
-			IfcWall firstWall = walls.get(0);
-			Buffer buffer = GeometryFactory.eINSTANCE.createBuffer();
-			buffer.setData(new byte[10]);
-			firstWall.getGeometry().getData().setVertices(buffer);
+		// Look for a deserializer
+		SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
 
-			model.commit("Tried to change geometry, which should not be possible");
-			fail("This have thrown an error");
-		} catch (Throwable e) {
-			if (e instanceof AssertionError) {
-				throw (AssertionError)e;
-			}
-			e.printStackTrace();
-			assertEquals("Only objects from the following schemas are allowed to be changed: Ifc2x3tc1 and IFC4, this object (GeometryData) is from the \"geometry\" package", e.getMessage());
-		}
+		bimServerClient.checkinSync(newProject.getOid(), "test", deserializer.getOid(), false, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/AC11-Institute-Var-2-IFC.ifc"));
+
+		newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
+
+		IfcModelInterface model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), false, true, true);
+		List<IfcWall> walls = model.getAllWithSubTypes(Ifc2x3tc1Package.eINSTANCE.getIfcWall());
+		IfcWall firstWall = walls.get(0);
+		Buffer buffer = GeometryFactory.eINSTANCE.createBuffer();
+		buffer.setData(new byte[10]);
+		firstWall.getGeometry().getData().setVertices(buffer);
+
+		Exception thrown = assertThrows(UserException.class, () ->
+			model.commit("Tried to change geometry, which should not be possible")
+		);
+		assertEquals("Only objects from the following schemas are allowed to be changed: Ifc2x3tc1 and IFC4, this object (GeometryData) is from the \"geometry\" package", thrown.getMessage());
 	}
 }

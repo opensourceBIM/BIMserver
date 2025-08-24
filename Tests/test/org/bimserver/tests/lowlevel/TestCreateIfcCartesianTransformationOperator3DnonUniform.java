@@ -16,9 +16,9 @@ import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.LowLevelInterface;
-import org.bimserver.test.TestWithEmbeddedServer;
-import org.junit.Assert;
-import org.junit.Test;
+import org.bimserver.tests.TestWithEmbeddedServer;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class TestCreateIfcCartesianTransformationOperator3DnonUniform extends TestWithEmbeddedServer {
 
@@ -58,15 +58,15 @@ public class TestCreateIfcCartesianTransformationOperator3DnonUniform extends Te
 		lowLevelInterface.commitTransaction(tid, "test", false);
 
 		tid = lowLevelInterface.startTransaction(newProject.getOid());
-		Assert.assertEquals(lowLevelInterface.getDoubleAttribute(tid, oid, "Scale"), value1, 0.01d);
-		Assert.assertEquals(lowLevelInterface.getDoubleAttribute(tid, oid, "Scale2"), value2, 0.01d);
-		Assert.assertEquals(lowLevelInterface.getDoubleAttribute(tid, oid, "Scale3"), value3, 0.01d);
+		Assertions.assertEquals(value1, lowLevelInterface.getDoubleAttribute(tid, oid, "Scale"), 0.01d);
+		Assertions.assertEquals(value2, lowLevelInterface.getDoubleAttribute(tid, oid, "Scale2"), 0.01d);
+		Assertions.assertEquals(value3, lowLevelInterface.getDoubleAttribute(tid, oid, "Scale3"), 0.01d);
 
 		newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
 
 		model = bimServerClient.getModel(newProject, newProject.getLastRevisionId(), true, false);
-		Assert.assertEquals(originalSize + 1, model.size());
-		Assert.assertEquals(1, model.getAllWithSubTypes(IfcCartesianTransformationOperator3DnonUniform.class).size());
+		Assertions.assertEquals(originalSize + 1, model.size());
+		Assertions.assertEquals(1, model.getAllWithSubTypes(IfcCartesianTransformationOperator3DnonUniform.class).size());
 
 		SSerializerPluginConfiguration serializer = bimServerClient.getServiceInterface().getSerializerByContentType("application/ifc");
 		try (FileOutputStream fos = new FileOutputStream(new File("output.ifc"))) {

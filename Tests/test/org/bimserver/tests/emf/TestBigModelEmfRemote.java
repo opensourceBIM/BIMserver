@@ -49,37 +49,32 @@ import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.utils.RichIfcModel;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.Parameter;
+import org.junit.jupiter.params.ParameterizedClass;
+import org.junit.jupiter.params.provider.ValueSource;
 
-@RunWith(Parameterized.class)
+@ParameterizedClass
+@ValueSource(booleans = {false, true})
 public class TestBigModelEmfRemote {
+	// see also: TestBigModelEmf (with embedded server)
 	
 	private IfcProductRepresentation spaceRep;
 	private IfcProductRepresentation furnishingRep;
-	private boolean useLowLevelCalls;
 
-	public TestBigModelEmfRemote(boolean useLowLevelCalls) {
-		this.useLowLevelCalls = useLowLevelCalls;
-	}
-
-	@Parameters
-	public static Object[] data() {
-		return new Object[] { false, true };
-	}
+	@Parameter
+	boolean useLowLevelCalls;
 
 	@Test
 	public void test() throws BimServerClientException, ServiceException, ChannelConnectionException, IfcModelInterfaceException, SerializerException, IOException {
 		boolean doreuse = true;
 		
 		BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
-			BimServerClientInterface bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+		BimServerClientInterface bimServerClient = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 			
-			SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
+		SProject newProject = bimServerClient.getServiceInterface().addProject("test" + Math.random(), "ifc2x3tc1");
 			
-			IfcModelInterface model = null;
+		IfcModelInterface model = null;
 		if (useLowLevelCalls) {
 			model = bimServerClient.newModel(newProject, true);
 		} else {

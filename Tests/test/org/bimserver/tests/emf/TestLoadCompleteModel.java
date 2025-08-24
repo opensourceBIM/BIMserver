@@ -17,8 +17,7 @@ package org.bimserver.tests.emf;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -31,13 +30,12 @@ import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc2x3tc1.IfcWindow;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.plugins.services.Flow;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.test.TestWithEmbeddedServer;
-import org.junit.Test;
+import org.bimserver.tests.TestWithEmbeddedServer;
+import org.junit.jupiter.api.Test;
 
 public class TestLoadCompleteModel extends TestWithEmbeddedServer {
 

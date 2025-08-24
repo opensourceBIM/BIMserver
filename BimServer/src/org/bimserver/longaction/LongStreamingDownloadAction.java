@@ -215,6 +215,8 @@ public class LongStreamingDownloadAction extends LongAction {
 		} catch (Throwable e) {
 			LOGGER.error("", e);
 			error(e);
+		} finally {
+			done();
 		}
 	}
 

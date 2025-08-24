@@ -22,10 +22,10 @@ import org.bimserver.plugins.services.BimServerClientInterface;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
-import org.bimserver.test.TestWithEmbeddedServer;
-import org.junit.Test;
+import org.bimserver.tests.TestWithEmbeddedServer;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UpdateProject extends TestWithEmbeddedServer {
 
@@ -45,7 +45,7 @@ public class UpdateProject extends TestWithEmbeddedServer {
 
 		newProject = bimServerClient.getServiceInterface().getProjectByPoid(newProject.getOid());
 
-		assertNotEquals("Project name not updated", originalName, newProject.getName());
-		assertEquals("Project name not updated to new name", newName, newProject.getName());
+		assertNotEquals(originalName, newProject.getName(), "Project name not updated");
+		assertEquals( newName, newProject.getName(), "Project name not updated to new name");
 	}
 }

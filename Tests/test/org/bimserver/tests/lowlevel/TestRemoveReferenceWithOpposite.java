@@ -17,7 +17,7 @@ package org.bimserver.tests.lowlevel;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.BimServerClientInterface;
@@ -25,8 +25,8 @@ import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.LowLevelInterface;
-import org.bimserver.test.TestWithEmbeddedServer;
-import org.junit.Test;
+import org.bimserver.tests.TestWithEmbeddedServer;
+import org.junit.jupiter.api.Test;
 
 public class TestRemoveReferenceWithOpposite extends TestWithEmbeddedServer {
 
@@ -54,8 +54,6 @@ public class TestRemoveReferenceWithOpposite extends TestWithEmbeddedServer {
 		lowLevelInterface.commitTransaction(tid, "2", false);
 
 		tid = lowLevelInterface.startTransaction(newProject.getOid());
-		if (lowLevelInterface.getReference(tid, ifcRelContainedInSpatialStructureOid, "RelatingStructure") != -1) {
-			fail("Reference should no be set");
-		}
+		assertEquals(-1, lowLevelInterface.getReference(tid, ifcRelContainedInSpatialStructureOid, "RelatingStructure"), "Reference should not be set");
 	}
 }

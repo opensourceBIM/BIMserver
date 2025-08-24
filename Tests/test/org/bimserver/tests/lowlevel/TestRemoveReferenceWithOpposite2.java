@@ -17,8 +17,7 @@ package org.bimserver.tests.lowlevel;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
@@ -28,8 +27,8 @@ import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.LowLevelInterface;
-import org.bimserver.test.TestWithEmbeddedServer;
-import org.junit.Test;
+import org.bimserver.tests.TestWithEmbeddedServer;
+import org.junit.jupiter.api.Test;
 
 public class TestRemoveReferenceWithOpposite2 extends TestWithEmbeddedServer {
 
@@ -58,13 +57,13 @@ public class TestRemoveReferenceWithOpposite2 extends TestWithEmbeddedServer {
 		tid = lowLevelInterface.startTransaction(newProject.getOid());
 
 		List<Long> references = lowLevelInterface.getReferences(tid, ifcRelAssignsToGroupOid, "RelatedObjects");
-		assertEquals("Number of references", 2, references.size());
+		assertEquals( 2, references.size(),"Number of references");
 
 		lowLevelInterface.removeReferenceByOid(tid, ifcRelAssignsToGroupOid, "RelatedObjects", ifcFurnishingElement1Oid);
 		lowLevelInterface.commitTransaction(tid, "2", false);
 
 		tid = lowLevelInterface.startTransaction(newProject.getOid());
 		references = lowLevelInterface.getReferences(tid, ifcRelAssignsToGroupOid, "RelatedObjects");
-		assertEquals("Number of references", 1, references.size());
+		assertEquals(1, references.size(), "Number of references" );
 	}
 }

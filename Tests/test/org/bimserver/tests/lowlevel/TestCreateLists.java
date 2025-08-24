@@ -17,9 +17,6 @@ package org.bimserver.tests.lowlevel;
  * along with this program.  If not, see {@literal<http://www.gnu.org/licenses/>}.
  *****************************************************************************/
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +26,10 @@ import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 import org.bimserver.shared.exceptions.ServiceException;
 import org.bimserver.shared.interfaces.LowLevelInterface;
-import org.bimserver.test.TestWithEmbeddedServer;
-import org.junit.Test;
+import org.bimserver.tests.TestWithEmbeddedServer;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestCreateLists extends TestWithEmbeddedServer {
 
@@ -60,7 +59,16 @@ public class TestCreateLists extends TestWithEmbeddedServer {
 
 		tid = lowLevelInterface.startTransaction(newProject.getOid());
 		List<Double> coordinates = lowLevelInterface.getDoubleAttributes(tid, cartesianPointOid, "Coordinates");
-		assertTrue(coordinates.get(0) == firstVal && coordinates.get(1) == secondVal && coordinates.get(2) == thirdVal);
+		assertEquals(3, coordinates.size());
+		assertEquals(firstVal, coordinates.get(0), 0);
+		assertEquals(secondVal, coordinates.get(1), 0);
+		assertEquals(thirdVal, coordinates.get(2), 0);
+
+		List<String> stringCoords = lowLevelInterface.getStringAttributes(tid, cartesianPointOid, "CoordinatesAsString");
+		assertEquals(3, stringCoords.size());
+		assertEquals("5.1", stringCoords.get(0));
+		assertEquals("6.2", stringCoords.get(1));
+		assertEquals("7.3", stringCoords.get(2));
 
 		tid = lowLevelInterface.startTransaction(newProject.getOid());
 		ArrayList<Double> al = new ArrayList<Double>();
@@ -72,10 +80,16 @@ public class TestCreateLists extends TestWithEmbeddedServer {
 
 		tid = lowLevelInterface.startTransaction(newProject.getOid());
 		coordinates = lowLevelInterface.getDoubleAttributes(tid, cartesianPointOid, "Coordinates");
-		if (coordinates.size() != 3) {
-			fail("Coordinates size should be 3, it is " + coordinates.size());
-		}
-		assertTrue(coordinates.get(0) == 1.0 && coordinates.get(1) == 2.0 && coordinates.get(2) == 3.0);
+		assertEquals(3, coordinates.size());
+		assertEquals(1.0, coordinates.get(0), 0);
+		assertEquals(2.0, coordinates.get(1), 0);
+		assertEquals(3.0, coordinates.get(2), 0);
+
+		stringCoords = lowLevelInterface.getStringAttributes(tid, cartesianPointOid, "CoordinatesAsString");
+		assertEquals(3, stringCoords.size());
+		assertEquals("1.0", stringCoords.get(0));
+		assertEquals("2.0", stringCoords.get(1));
+		assertEquals("3.0", stringCoords.get(2));
 
 		tid = lowLevelInterface.startTransaction(newProject.getOid());
 		lowLevelInterface.setDoubleAttributeAtIndex(tid, cartesianPointOid, "Coordinates", 1, 5.0);
@@ -83,9 +97,31 @@ public class TestCreateLists extends TestWithEmbeddedServer {
 
 		tid = lowLevelInterface.startTransaction(newProject.getOid());
 		coordinates = lowLevelInterface.getDoubleAttributes(tid, cartesianPointOid, "Coordinates");
-		if (coordinates.size() != 3) {
-			fail("Coordinates size should be 3, it is " + coordinates.size());
-		}
-		assertTrue(coordinates.get(0) + ", " + coordinates.get(1) + ", " + coordinates.get(2), coordinates.get(0) == 1.0 && coordinates.get(1) == 5.0 && coordinates.get(2) == 3.0);
+		assertEquals(3, coordinates.size());
+		assertEquals(1.0, coordinates.get(0), 0);
+		assertEquals(5.0, coordinates.get(1), 0);
+		assertEquals(3.0, coordinates.get(2), 0);
+
+	 	stringCoords = lowLevelInterface.getStringAttributes(tid, cartesianPointOid, "CoordinatesAsString");
+		assertEquals(3, stringCoords.size());
+		assertEquals("1.0", stringCoords.get(0));
+		assertEquals("5.0", stringCoords.get(1));
+		assertEquals("3.0", stringCoords.get(2));
+
+		tid = lowLevelInterface.startTransaction(newProject.getOid());
+		lowLevelInterface.removeAttribute(tid, cartesianPointOid, "Coordinates", 1);
+		lowLevelInterface.commitTransaction(tid, "removed middle one", false);
+
+		tid = lowLevelInterface.startTransaction(newProject.getOid());
+		coordinates = lowLevelInterface.getDoubleAttributes(tid, cartesianPointOid, "Coordinates");
+		assertEquals(2, coordinates.size());
+		assertEquals(1.0, coordinates.get(0), 0);
+		assertEquals(3.0, coordinates.get(1), 0);
+
+		stringCoords = lowLevelInterface.getStringAttributes(tid, cartesianPointOid, "CoordinatesAsString");
+		assertEquals(2, stringCoords.size());
+		assertEquals("1.0", stringCoords.get(0));
+		assertEquals("3.0", stringCoords.get(1));
+
 	}
 }

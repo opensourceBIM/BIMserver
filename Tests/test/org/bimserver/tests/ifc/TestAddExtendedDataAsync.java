@@ -18,10 +18,9 @@ package org.bimserver.tests.ifc;
  *****************************************************************************/
 
 import java.io.IOException;
-import java.nio.file.Paths;
+import java.net.URL;
 
 import org.apache.commons.lang3.RandomUtils;
-import org.bimserver.client.json.JsonBimServerClientFactory;
 import org.bimserver.interfaces.objects.SActionState;
 import org.bimserver.interfaces.objects.SDeserializerPluginConfiguration;
 import org.bimserver.interfaces.objects.SExtendedData;
@@ -30,23 +29,20 @@ import org.bimserver.interfaces.objects.SFile;
 import org.bimserver.interfaces.objects.SLongCheckinActionState;
 import org.bimserver.interfaces.objects.SProject;
 import org.bimserver.plugins.services.BimServerClientInterface;
-import org.bimserver.shared.BimServerClientFactory;
 import org.bimserver.shared.ChannelConnectionException;
 import org.bimserver.shared.UsernamePasswordAuthenticationInfo;
 
 import com.google.common.base.Charsets;
 import org.bimserver.shared.exceptions.BimServerClientException;
 import org.bimserver.shared.exceptions.ServiceException;
-import org.junit.Test;
+import org.bimserver.tests.TestWithEmbeddedServer;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.fail;
-
-public class AsyncTestAddExtendedData2 {
+public class TestAddExtendedDataAsync extends TestWithEmbeddedServer {
 
 	@Test
 	public void test() throws BimServerClientException, ServiceException, ChannelConnectionException, IOException {
-		BimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080");
-		BimServerClientInterface client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
+		BimServerClientInterface client = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
 		SFile file = new SFile();
 		file.setData("test".getBytes(Charsets.UTF_8));
 		file.setMime("text");
@@ -56,7 +52,7 @@ public class AsyncTestAddExtendedData2 {
 		SProject project = client.getServiceInterface().addProject(RandomUtils.nextInt(1, 100000000) + "", "ifc2x3tc1");
 		SDeserializerPluginConfiguration deserializerForExtension = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 		long topicId = client.getServiceInterface().initiateCheckin(project.getOid(), deserializerForExtension.getOid());
-		client.checkinAsync(project.getOid(), "initial", deserializerForExtension.getOid(), false, Paths.get("../../TestFiles/TestData/data/AC11-FZK-Haus-IFC.ifc"), topicId);
+		client.checkinAsync(project.getOid(), "initial", deserializerForExtension.getOid(), false, new URL("https://github.com/opensourceBIM/TestFiles/raw/master/TestData/data/AC11-FZK-Haus-IFC.ifc"), topicId);
 
 		while(true) {
 			SLongCheckinActionState progress = (SLongCheckinActionState) client.getNotificationRegistryInterface().getProgress(topicId);
