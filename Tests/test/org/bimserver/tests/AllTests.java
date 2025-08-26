@@ -44,6 +44,7 @@ import org.slf4j.LoggerFactory;
 
 @Suite
 @SelectPackages("org.bimserver.tests")
+@ExcludeClassNamePatterns("org.bimserver.tests.AllTests")
 public class AllTests {
 	public static BimServer bimServer;
 	public static boolean running = false;
