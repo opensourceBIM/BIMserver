@@ -873,32 +873,25 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 	// Pretty sure this is working correctly
 	@SuppressWarnings("unchecked")
 	public double[] placement3DToMatrix(AbstractHashMapVirtualObject ifcAxis2Placement3D) {
+		EReference axisFeature = packageMetaData.getEReference("IfcAxis2Placement3D", "Axis");
 		EReference refDirectionFeature = packageMetaData.getEReference("IfcAxis2Placement3D", "RefDirection");
 		AbstractHashMapVirtualObject location = ifcAxis2Placement3D.getDirectFeature(packageMetaData.getEReference("IfcPlacement", "Location"));
-		if (ifcAxis2Placement3D.getDirectFeature(packageMetaData.getEReference("IfcAxis2Placement3D", "Axis")) != null && ifcAxis2Placement3D.getDirectFeature(refDirectionFeature) != null) {
-			AbstractHashMapVirtualObject axis = ifcAxis2Placement3D.getDirectFeature(packageMetaData.getEReference("IfcAxis2Placement3D", "Axis"));
-			AbstractHashMapVirtualObject direction = ifcAxis2Placement3D.getDirectFeature(refDirectionFeature);
-			List<Double> axisDirectionRatios = (List<Double>) axis.get("DirectionRatios");
-			List<Double> directionDirectionRatios = (List<Double>) direction.get("DirectionRatios");
-			List<Double> locationCoordinates = (List<Double>) location.get("Coordinates");
-			double[] cross = Vector.crossProduct(new double[]{axisDirectionRatios.get(0), axisDirectionRatios.get(1), axisDirectionRatios.get(2), 1}, 
-					new double[]{directionDirectionRatios.get(0), directionDirectionRatios.get(1), directionDirectionRatios.get(2), 1});
-			return new double[]{
-				directionDirectionRatios.get(0), directionDirectionRatios.get(1), directionDirectionRatios.get(2), 0,
-				cross[0], cross[1], cross[2], 0,
-				axisDirectionRatios.get(0), axisDirectionRatios.get(1), axisDirectionRatios.get(2), 0,
-				locationCoordinates.get(0), locationCoordinates.get(1), locationCoordinates.get(2), 1
+		AbstractHashMapVirtualObject axis = ifcAxis2Placement3D.getDirectFeature(axisFeature);
+		AbstractHashMapVirtualObject direction = ifcAxis2Placement3D.getDirectFeature(refDirectionFeature);
+		double[] zAxis = axis==null ? new double[]{0,0,1} : ((List<Double>) axis.get("DirectionRatios")).stream().mapToDouble(d->d).toArray();
+		Vector.normalize(zAxis);
+		double[] xAxisRef = direction==null ? new double[]{1,0,0} : ((List<Double>) direction.get("DirectionRatios")).stream().mapToDouble(d -> d).toArray();
+		double[] locationCoordinates = location==null ? new double[]{0,0,0} : ((List<Double>) location.get("Coordinates")).stream().mapToDouble(d->d).toArray();
+		double[] yAxis = Vector.crossProduct(zAxis, xAxisRef);
+		Vector.normalize(yAxis);
+		double[] xAxis = Vector.crossProduct(yAxis, zAxis);
+		Vector.normalize(xAxis);
+		return new double[]{
+			xAxis[0], xAxis[1], xAxis[2], 0,
+			yAxis[0], yAxis[1], yAxis[2], 0,
+			zAxis[0], zAxis[1], zAxis[2], 0,
+			locationCoordinates[0], locationCoordinates[1], locationCoordinates[2], 1
 			};
-		} else if (location != null) {
-			List<Double> locationCoordinates = (List<Double>) location.get("Coordinates");
-			return new double[]{
-				1, 0, 0, 0,
-				0, 1, 0, 0,
-				0, 0, 1, 0,
-				locationCoordinates.get(0), locationCoordinates.get(1), locationCoordinates.get(2), 1
-			};
-		}
-		return Matrix.identity();
 	}
 	
 	private double[] placementToMatrix(AbstractHashMapVirtualObject placement) {
