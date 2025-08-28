@@ -72,8 +72,11 @@ public class AddAttributeChange implements Change {
 		if (!eAttribute.isMany()) {
 			throw new UserException("Attribute is not of type 'many'");
 		}
-		
+		if (value instanceof Double){
+			object.addListItem(object.eClass().getEStructuralFeature(attributeName + "AsString"), String.valueOf((Double)value));
+		}
 		object.addListItem(eAttribute, value);
+
 		transaction.updated(object);
 	}
 }

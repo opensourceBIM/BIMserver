@@ -75,6 +75,12 @@ public class RemoveAttributeChange implements Change {
 			List list = (List)object.get(eAttribute.getName());
 			list.remove(index);
 		}
+		if (object.eClass().getEStructuralFeature(attributeName + "AsString") != null){
+			List list = (List)object.get(attributeName + "AsString");
+			list.remove(index);
+		}
+
+
 		transaction.updated(object);
 	}
 }
