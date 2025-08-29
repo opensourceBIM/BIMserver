@@ -314,8 +314,8 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 
 		try {
 			InputStream openStream = url.openStream();
-			try {
-				channel.checkinAsync(baseAddress, token, poid, comment, deserializerOid, false, -1, url.toString(), openStream, topicId);
+            try {
+				channel.checkinAsync(baseAddress, token, poid, comment, deserializerOid, false, -1, getFileName(url), openStream, topicId);
 			} finally {
 				openStream.close();
 			}
@@ -326,7 +326,17 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		getNotificationsManager().unregisterProgressHandler(topicId, progressHandlerWrapper);
 		return (SLongCheckinActionState) getRegistry().getProgress(topicId);
 	}
-	
+
+	private static String getFileName(URL url) {
+		// same logic as in ServiceImpl, but need to do it here already as FileItemInput.getName in UploadServlet will check vor valid filename and fail with colon and other URL characters on Windows
+		// TODO: actually, all the URL methods should use ServiceInterface.checkinFromUrl... to stream directly from URL to server instead of via the client
+		String fileName = url.getPath();
+		if (fileName.contains("/")) {
+			fileName = fileName.substring(fileName.lastIndexOf("/") + 1);
+		}
+		return fileName;
+	}
+
 	public SLongCheckinActionState checkinSync(long poid, String comment, long deserializerOid, boolean merge, long fileSize, String filename, InputStream inputStream) throws UserException, ServerException {
 		return channel.checkinSync(baseAddress, token, poid, comment, deserializerOid, merge, fileSize, filename, inputStream, null);
 	}
@@ -343,7 +353,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		try {
 			InputStream openStream = url.openStream();
 			try {
-				SLongCheckinActionState longActionState = channel.checkinSync(baseAddress, token, poid, comment, deserializerOid, merge, -1, url.toString(), openStream, null);
+				SLongCheckinActionState longActionState = channel.checkinSync(baseAddress, token, poid, comment, deserializerOid, merge, -1, getFileName(url), openStream, null);
 				if (longActionState.getState() == SActionState.AS_ERROR) {
 					throw new UserException(Joiner.on(", ").join(longActionState.getErrors()));
 				} else {
@@ -362,7 +372,7 @@ public class BimServerClient implements ConnectDisconnectListener, TokenHolder, 
 		try {
 			InputStream openStream = url.openStream();
 			try {
-				channel.checkinAsync(baseAddress, token, poid, comment, deserializerOid, merge, -1, url.toString(), openStream, topicId);
+				channel.checkinAsync(baseAddress, token, poid, comment, deserializerOid, merge, -1, getFileName(url), openStream, topicId);
 				return topicId;
 			} finally {
 				openStream.close();
