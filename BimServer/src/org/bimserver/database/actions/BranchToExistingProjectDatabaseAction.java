@@ -28,11 +28,7 @@ import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.User;
+import org.bimserver.models.store.*;
 import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.modelmerger.MergeException;
@@ -69,6 +65,10 @@ public class BranchToExistingProjectDatabaseAction extends AbstractBranchDatabas
 		Revision oldRevision = getDatabaseSession().get(StorePackage.eINSTANCE.getRevision(), roid, OldQuery.getDefault());
 		Project oldProject = oldRevision.getProject();
 		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), OldQuery.getDefault());
+		User actingUser = getUserByUoid(authorization.getUoid());
+		if (actingUser.getUserType() == UserType.READ_ONLY) {
+			throw new UserException("User '" + actingUser.getName() + "' is read only and cannot branch projects");
+		}
 		if (!authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, oldProject)) {
 			throw new UserException("User has insufficient rights to download revisions from this project");
 		}

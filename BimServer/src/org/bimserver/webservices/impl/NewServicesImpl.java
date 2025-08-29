@@ -58,6 +58,8 @@ import org.bimserver.interfaces.objects.SNewServiceDescriptor;
 import org.bimserver.interfaces.objects.SSerializerPluginConfiguration;
 import org.bimserver.models.store.PluginDescriptor;
 import org.bimserver.models.store.Project;
+import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.User;
 import org.bimserver.plugins.Plugin;
 import org.bimserver.plugins.serializers.StreamingSerializerPlugin;
 import org.bimserver.shared.exceptions.ServerException;
@@ -149,13 +151,17 @@ public class NewServicesImpl extends GenericServiceImpl implements NewServicesIn
 		Map<String, SFormatSerializerMap> outputs = new HashMap<>();
 		try (DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY)) {
 			Project project = session.get(poid, OldQuery.getDefault());
+			User user = (User) session.get(StorePackage.eINSTANCE.getUser(), getAuthorization().getUoid(), OldQuery.getDefault());
+			if (!getAuthorization().hasRightsOnProject(user, project)) {
+				throw new UserException("User has no rights on project");
+			}
 			try {
 				List<SSerializerPluginConfiguration> allSerializersForPoids = getServiceMap().get(PluginInterface.class).getAllSerializersForPoids(true, Collections.singleton(poid));
 				for (SSerializerPluginConfiguration pluginConfiguration : allSerializersForPoids) {
 					PluginDescriptor pluginDescriptor = session.get(pluginConfiguration.getPluginDescriptorId(), OldQuery.getDefault());
 					Plugin plugin = getBimServer().getPluginManager().getPlugin(pluginDescriptor.getIdentifier(), true);
 					String outputFormat = null;
-					
+
 					// TODO For now only streaming serializers
 					if (plugin instanceof StreamingSerializerPlugin) {
 						outputFormat = ((StreamingSerializerPlugin)plugin).getOutputFormat(Schema.valueOf(project.getSchema().toUpperCase()));

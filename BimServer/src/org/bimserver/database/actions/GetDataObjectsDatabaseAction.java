@@ -34,10 +34,7 @@ import org.bimserver.emf.PackageMetaData;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.DataObject;
-import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.*;
 import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.modelmerger.MergeException;
@@ -48,15 +45,22 @@ import org.eclipse.emf.ecore.EObject;
 public class GetDataObjectsDatabaseAction extends AbstractDownloadDatabaseAction<List<DataObject>> {
 
 	private final long roid;
+	private Authorization authorization;
 
 	public GetDataObjectsDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, BimServer bimServer, long roid, Authorization authorization) {
 		super(bimServer, databaseSession, accessMethod, authorization);
 		this.roid = roid;
+		this.authorization = authorization;
 	}
 
 	@Override
 	public List<DataObject> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision virtualRevision = getRevisionByRoid(roid);
+		Project project = virtualRevision.getProject();
+		User user = getUserByUoid(authorization.getUoid());
+		if (!authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
+			throw new UserException("User does not have rights on project");
+		}
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		PackageMetaData lastPackageMetaData = null;
 		Map<Integer, Long> pidRoidMap = new HashMap<>();

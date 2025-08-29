@@ -23,11 +23,16 @@ import java.util.List;
 
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
+import org.bimserver.database.DatabaseSession;
+import org.bimserver.database.OldQuery;
 import org.bimserver.database.queries.QueryObjectProvider;
 import org.bimserver.database.queries.om.Query;
 import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.QueryPart;
 import org.bimserver.emf.PackageMetaData;
+import org.bimserver.models.store.Project;
+import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.User;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.exceptions.UserException;
 import org.eclipse.emf.ecore.EAttribute;
@@ -49,7 +54,6 @@ public class RemoveAttributeChange implements Change {
 	@Override
 	public void execute(Transaction transaction) throws UserException, BimserverLockConflictException, BimserverDatabaseException, IOException, QueryException {
 		PackageMetaData packageMetaData = transaction.getDatabaseSession().getMetaDataManager().getPackageMetaData(transaction.getProject().getSchema());
-
 		HashMapVirtualObject object = transaction.get(oid);
 		if (object == null) {
 			Query query = new Query(packageMetaData);

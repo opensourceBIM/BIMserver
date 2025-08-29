@@ -24,25 +24,30 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.PluginConfiguration;
-import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.UserSettings;
+import org.bimserver.models.store.*;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.authorization.Authorization;
 import org.eclipse.emf.ecore.EReference;
 
 public class DeletePluginConfigurationDatabaseAction extends BimDatabaseAction<Void>{
 
 	private long oid;
+	private Authorization authorization;
 
-	public DeletePluginConfigurationDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long oid) {
+	public DeletePluginConfigurationDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long oid) {
 		super(databaseSession, accessMethod);
 		this.oid = oid;
+		this.authorization = authorization;
 	}
 
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException, ServerException {
+		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), OldQuery.getDefault());
+		if (user.getUserType() == UserType.READ_ONLY) {
+			throw new UserException("User has no rights for this call");
+		}
 		PluginConfiguration pluginConfiguration = getDatabaseSession().get(StorePackage.eINSTANCE.getPluginConfiguration(), oid, OldQuery.getDefault());
 		UserSettings settings = (UserSettings) pluginConfiguration.eGet(pluginConfiguration.eClass().getEStructuralFeature("userSettings"));
 		if (settings == null) {

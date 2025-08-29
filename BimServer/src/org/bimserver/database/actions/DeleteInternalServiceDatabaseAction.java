@@ -22,19 +22,24 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.InternalServicePluginConfiguration;
-import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.UserSettings;
+import org.bimserver.models.store.*;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.authorization.Authorization;
 
 public class DeleteInternalServiceDatabaseAction extends DeleteDatabaseAction<InternalServicePluginConfiguration> {
+	private Authorization authorization;
 
-	public DeleteInternalServiceDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long ifid) {
+	public DeleteInternalServiceDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long ifid) {
 		super(databaseSession, accessMethod, StorePackage.eINSTANCE.getInternalServicePluginConfiguration(), ifid);
+		this.authorization = authorization;
 	}
 
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), OldQuery.getDefault());
+		if (user.getUserType() == UserType.READ_ONLY) {
+			throw new UserException("User has no rights for this call");
+		}
 		InternalServicePluginConfiguration object = getDatabaseSession().get(geteClass(), getOid(), OldQuery.getDefault());
 		UserSettings settings = object.getUserSettings();
 		settings.getServices().remove(object);

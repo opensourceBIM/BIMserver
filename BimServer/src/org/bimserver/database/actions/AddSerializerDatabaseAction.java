@@ -25,6 +25,7 @@ import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.SerializerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 
@@ -48,6 +49,9 @@ public class AddSerializerDatabaseAction extends AddDatabaseAction<SerializerPlu
 			getDatabaseSession().store(getIdEObject().getObjectIDM());
 		}
 		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), OldQuery.getDefault());
+		if (user.getUserType() == UserType.READ_ONLY) {
+			throw new UserException("User has no rights for this call");
+		}
 		user.getUserSettings().getSerializers().add(getIdEObject());
 		getDatabaseSession().store(user.getUserSettings());
 

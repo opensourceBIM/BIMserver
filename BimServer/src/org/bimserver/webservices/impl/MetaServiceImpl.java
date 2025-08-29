@@ -49,6 +49,7 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 
 	@Override
 	public List<SServiceInterface> getServiceInterfaces() throws ServerException, UserException {
+		requireAuthentication();
 		List<SServiceInterface> sServiceInterfaces = new ArrayList<SServiceInterface>();
 		for (String name : getBimServer().getServicesMap().keySetName()) {
 			SServiceInterface sServiceInterface = convertServiceInterface(name);
@@ -74,6 +75,7 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 
 	@Override
 	public List<SServiceMethod> getServiceMethods(String serviceInterfaceName) throws ServerException, UserException {
+		requireAuthentication();
 		List<SServiceMethod> sServiceMethods = new ArrayList<SServiceMethod>();
 		SService sService = getBimServer().getServicesMap().getByName(serviceInterfaceName);
 		if (sService == null) {
@@ -97,6 +99,7 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 
 	@Override
 	public List<SServiceType> getServiceTypes() throws ServerException, UserException {
+		requireAuthentication();
 		List<SServiceType> sServiceTypes = new ArrayList<SServiceType>();
 		for (SClass sType : getBimServer().getServicesMap().getTypes()) {
 			sServiceTypes.add(createSServiceType(sType, false));
@@ -105,6 +108,7 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 	}
 
 	public List<String> getEnumLiterals(String enumName) throws UserException {
+		requireAuthentication();
 		List<String> result = new ArrayList<String>();
 		SClass type = getBimServer().getServicesMap().getType(enumName);
 		for (Object enumConstant : type.getInstanceClass().getEnumConstants()) {
@@ -137,6 +141,7 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 
 	@Override
 	public List<SServiceParameter> getServiceMethodParameters(String serviceInterfaceName, String serviceMethodName) throws ServerException, UserException {
+		requireAuthentication();
 		List<SServiceParameter> sServiceParameters = new ArrayList<SServiceParameter>();
 		SService serviceInterface = getBimServer().getServicesMap().getByName(serviceInterfaceName);
 		if (serviceInterface == null) {
@@ -159,11 +164,13 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 
 	@Override
 	public SServiceInterface getServiceInterface(String serviceInterfaceName) throws ServerException, UserException {
+		requireAuthentication();
 		return convertServiceInterface(serviceInterfaceName);
 	}
 
 	@Override
 	public SServiceMethod getServiceMethod(String serviceInterfaceName, String methodName) throws ServerException, UserException {
+		requireAuthentication();
 		SService sService = getBimServer().getServicesMap().getByName(serviceInterfaceName);
 		if (sService == null) {
 			throw new UserException("Service \"" + serviceInterfaceName + "\" not found");
@@ -173,6 +180,7 @@ public class MetaServiceImpl extends GenericServiceImpl implements MetaInterface
 
 	@Override
 	public String getAllAsJson() throws ServerException, UserException {
+		requireAuthentication();
 		return getBimServer().getServicesMap().toJson(OBJECT_MAPPER).toString();
 	}
 }

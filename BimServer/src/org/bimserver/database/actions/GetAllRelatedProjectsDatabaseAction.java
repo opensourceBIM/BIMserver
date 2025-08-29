@@ -72,7 +72,10 @@ public class GetAllRelatedProjectsDatabaseAction extends BimDatabaseAction<List<
 		if (project.getState() == ObjectState.DELETED && !(authorization instanceof AdminAuthorization)) {
 			return;
 		}
-		list.add(GetAllProjectsSmallDatabaseAction.createSmallProject(authorization, bimServer, project, user));
+		if (authorization.hasRightsOnProject(user, project)) {
+			list.add(GetAllProjectsSmallDatabaseAction.createSmallProject(authorization, bimServer, project, user));
+		}
+
 		List<Project> subProjects = new ArrayList<Project>(project.getSubProjects());
 		Collections.sort(subProjects, new Comparator<Project>(){
 			@Override

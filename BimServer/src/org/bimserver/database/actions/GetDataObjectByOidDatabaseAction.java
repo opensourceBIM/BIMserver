@@ -35,13 +35,7 @@ import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.ifc.IfcModel;
 import org.bimserver.models.ifc2x3tc1.IfcRoot;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.DataObject;
-import org.bimserver.models.store.ListDataValue;
-import org.bimserver.models.store.ReferenceDataValue;
-import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.SimpleDataValue;
-import org.bimserver.models.store.StoreFactory;
+import org.bimserver.models.store.*;
 import org.bimserver.plugins.IfcModelSet;
 import org.bimserver.plugins.ModelHelper;
 import org.bimserver.plugins.modelmerger.MergeException;
@@ -61,16 +55,23 @@ public class GetDataObjectByOidDatabaseAction extends AbstractDownloadDatabaseAc
 
 	private final long oid;
 	private final long roid;
+	private Authorization authorization;
 
 	public GetDataObjectByOidDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long oid, Authorization authorization) {
 		super(bimServer, databaseSession, accessMethod, authorization);
 		this.roid = roid;
 		this.oid = oid;
+		this.authorization = authorization;
 	}
 
 	@Override
 	public DataObject execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		Revision virtualRevision = getRevisionByRoid(roid);
+		Project project = virtualRevision.getProject();
+		User user = getUserByUoid(authorization.getUoid());
+		if (!authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, project)) {
+			throw new UserException("User does not have rights on project");
+		}
 		EObject eObject = null;
 		IfcModelSet ifcModelSet = new IfcModelSet();
 		PackageMetaData lastPackageMetaData = null;
