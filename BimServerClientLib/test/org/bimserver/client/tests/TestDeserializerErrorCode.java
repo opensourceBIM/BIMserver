@@ -20,7 +20,7 @@ public class TestDeserializerErrorCode {
 	public void test() throws Exception {
 		try (JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080")) {
 			try (BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"))) {
-				Path path = Paths.get("../../TestFiles/TestData/data/ADT-FZK-Haus-2005-2006.ifc");
+				Path path = Paths.get(System.getProperty("testFileLocation"), "TestData/data/ADT-FZK-Haus-2005-2006.ifc");
 				
 				try (InputStream fis = Files.newInputStream(path)) {
 					byte[] initialBytes = ByteUtils.extractHead(new BufferedInputStream(fis), 4096);

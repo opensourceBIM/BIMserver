@@ -22,7 +22,7 @@ public class TestDeserializerErrorCode2 {
 		try (JsonBimServerClientFactory factory = new JsonBimServerClientFactory("http://localhost:8080")) {
 			try (BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"))) {
 				SProject project = client.getServiceInterface().addProject(RandomStringUtils.randomAlphanumeric(10), "ifc2x3tc1");
-				Path path = Paths.get("../../TestFiles/TestData/data/ADT-FZK-Haus-2005-2006.ifc");
+				Path path = Paths.get(System.getProperty("testFileLocation"), "TestData/data/ADT-FZK-Haus-2005-2006.ifc");
 				SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
 				SLongCheckinActionState checkinSync = client.checkinSync(project.getOid(), "test", deserializer.getOid(), path, new CheckinProgressHandler() {
 					@Override

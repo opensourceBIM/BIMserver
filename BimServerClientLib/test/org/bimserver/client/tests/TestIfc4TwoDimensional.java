@@ -25,7 +25,7 @@ public class TestIfc4TwoDimensional {
 			try (BimServerClient client = factory.create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"))) {
 				SProject project = client.getServiceInterface().addProject(RandomStringUtils.randomAlphanumeric(10), "ifc4");
 				SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
-				Path path = Paths.get("../../TestFiles/TestData/data/ifc4add2tc1/tessellation-with-individual-colors.ifc");
+				Path path = Paths.get(System.getProperty("testFileLocation"), "TestData/data/ifc4add2tc1/tessellation-with-individual-colors.ifc");
 				SLongCheckinActionState actionState = client.checkinSync(project.getOid(), "test", deserializer.getOid(), path, (title, progress) ->
 						System.out.println(title + ": " + progress)
 				);

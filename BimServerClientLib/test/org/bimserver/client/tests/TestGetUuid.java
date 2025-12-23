@@ -29,7 +29,7 @@ public class TestGetUuid {
 				SProject project = client.getServiceInterface().addProject(RandomStringUtils.randomAlphanumeric(10), "ifc2x3tc1");
 				
 				SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
-				Path path = Paths.get("../../TestFiles/TestData/data/AC11-Institute-Var-2-IFC.ifc");
+				Path path = Paths.get(System.getProperty("testFileLocation"), "TestData/data/AC11-Institute-Var-2-IFC.ifc");
 				client.checkinSync(project.getOid(), "test", deserializer.getOid(), path, new CheckinProgressHandler() {
 					@Override
 					public void progress(String title, int progress) {

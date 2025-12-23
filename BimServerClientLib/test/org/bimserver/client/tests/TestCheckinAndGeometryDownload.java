@@ -44,7 +44,7 @@ public class TestCheckinAndGeometryDownload {
 					SProject project = client.getServiceInterface().addProject(RandomStringUtils.randomAlphanumeric(10), "ifc2x3tc1");
 					
 					SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
-					Path path = Paths.get("../../TestFiles/TestData/data/export1.ifc");
+					Path path = Paths.get(System.getProperty("testFileLocation"), "TestData/data/export1.ifc");
 					SLongCheckinActionState checkinSync = client.checkinSync(project.getOid(), "test", deserializer.getOid(), path, (title, progress) -> { });
 					PackageMetaData packageMetaData = client.getMetaDataManager().getPackageMetaData("ifc2x3tc1");
 					Query query = new Query(packageMetaData);

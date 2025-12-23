@@ -24,7 +24,7 @@ public class TestGetGeometry2 {
 				SProject project = client.getServiceInterface().addProject(RandomStringUtils.randomAlphanumeric(10), "ifc2x3tc1");
 				
 				SDeserializerPluginConfiguration deserializer = client.getServiceInterface().getSuggestedDeserializerForExtension("ifc", project.getOid());
-				Path path = Paths.get("../../TestFiles/TestData/data/export1.ifc");
+				Path path = Paths.get(System.getProperty("testFileLocation"), "TestData/data/export1.ifc");
 				SLongCheckinActionState actionState = client.checkinSync(project.getOid(), "test", deserializer.getOid(), path, new CheckinProgressHandler() {
 					@Override
 					public void progress(String title, int progress) {

@@ -27,13 +27,6 @@
 					<test>AllTests</test>
 				</configuration>
 			</plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-					<release>9</release>
-                </configuration>
-            </plugin>
         </plugins>
 	</build>
 	<dependencies>
