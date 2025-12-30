@@ -681,6 +681,8 @@ public class Express2EMF {
 			finalType = schemaPack.getEClassifier("IfcParameterValue");
 		} else if (entityName.equals("IfcTriangulatedFaceSet") && attribName.equals("NormalIndex")) {
 			finalType = EcorePackage.eINSTANCE.getELong();
+		} else if (entityName.equals("IfcTextureCoordinateIndicesWithVoids") && attribName.equals("InnerTexCoordIndices")) {
+			finalType = EcorePackage.eINSTANCE.getELong();
 		} else {
 			throw new RuntimeException("Unimplemented " + entityName + "." + attribName);
 		}

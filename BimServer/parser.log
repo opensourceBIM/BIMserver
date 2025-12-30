@@ -63,7 +63,6 @@ PASS one:IfcPositiveRatioMeasure
 <AST>:0:0: unexpected end of subtree
 <AST>:0:0: unexpected end of subtree
 <AST>:0:0: unexpected end of subtree
-<AST>:0:0: unexpected end of subtree
 <AST>:0:0: expecting VARIABLE_ID, found 'PARAMETER_TYPE'
 <AST>:0:0: expecting PARAMETER_TYPE, found 'EXPRESSION'
 IfcBoxAlignmentPASS 2 get TYPEREF:IfcLabel
@@ -111,7 +110,6 @@ WARNING: could not find (for +IfcIndexedTriangleTextureMap)
 <AST>:0:0: unexpected end of subtree
 <AST>:0:0: unexpected end of subtree
 <AST>:0:0: unexpected end of subtree
-<AST>:0:0: unexpected end of subtree
 WARNING: could not find (for +IfcRationalBSplineSurfaceWithKnots)
 <AST>:0:0: unexpected end of subtree
 <AST>:0:0: unexpected end of subtree
@@ -131,6 +129,7 @@ WARNING: could not find (for +IfcStructuralLoadConfiguration)
 <AST>:0:0: unexpected end of subtree
 <AST>:0:0: unexpected end of subtree
 <AST>:0:0: unexpected end of subtree
+WARNING: could not find (for +IfcTextureCoordinateIndicesWithVoids)
 WARNING: could not find (for +IfcTextureVertexList)
 WARNING: could not find (for +IfcTriangulatedFaceSet)
 WARNING: could not find (for +IfcTriangulatedFaceSet)
@@ -159,7 +158,6 @@ PASS one:IfcPositivePlaneAngleMeasure
 PASS one:IfcPositiveRatioMeasure
 <AST>:0:0: unexpected end of subtree
 <AST>: expecting SIMPLE_FACTOR, found '<empty tree>'
-<AST>:0:0: unexpected end of subtree
 <AST>:0:0: unexpected end of subtree
 <AST>:0:0: unexpected end of subtree
 <AST>:0:0: unexpected end of subtree
