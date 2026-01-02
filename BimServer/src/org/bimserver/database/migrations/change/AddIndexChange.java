@@ -28,8 +28,6 @@ import org.bimserver.database.Record;
 import org.bimserver.database.RecordIterator;
 import org.bimserver.database.migrations.NotImplementedException;
 import org.bimserver.database.migrations.Schema;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc4.Ifc4Package;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.slf4j.Logger;
@@ -55,7 +53,7 @@ public class AddIndexChange implements Change {
 			try {
 				if (subClass.getEAnnotation("nodatabase") == null) {
 					String indexTableName = subClass.getEPackage().getName() + "_" + subClass.getName() + "_" + eStructuralFeature.getName();
-					boolean transactional = !(subClass.getEPackage() == Ifc4Package.eINSTANCE || subClass.getEPackage() == Ifc2x3tc1Package.eINSTANCE);
+					boolean transactional = !(subClass.getEPackage().getName().equals("ifc4") || subClass.getEPackage().getName().equals("ifc2x3tc1") || subClass.getEPackage().getName().equals("ifc4x3"));
 					keyValueStore.createIndexTable(indexTableName, databaseSession, transactional);
 
 					RecordIterator recordIterator = keyValueStore.getRecordIterator(subClass.getEPackage().getName() + "_" + subClass.getName(), databaseSession);
