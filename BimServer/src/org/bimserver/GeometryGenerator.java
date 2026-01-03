@@ -493,6 +493,8 @@ public class GeometryGenerator extends GenericGeometryGenerator {
 			pluginName = "org.bimserver.ifc.step.serializer.Ifc4StepSerializerPlugin";
 		} else if (model.getPackageMetaData().getSchema() == Schema.IFC2X3TC1) {
 			pluginName = "org.bimserver.ifc.step.serializer.Ifc2x3tc1StepSerializerPlugin";
+		} else {
+			throw new GeometryGeneratingException("No serializer for schema " + model.getPackageMetaData().getSchema());
 		}
 
 		try {

@@ -18,12 +18,14 @@ package org.bimserver.database.actions;
  *****************************************************************************/
 
 import java.util.Date;
+import java.util.stream.Collectors;
 
 import org.bimserver.BimServer;
 import org.bimserver.BimserverDatabaseException;
 import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.PostCommitAction;
+import org.bimserver.emf.Schema;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.NewProjectAdded;
 import org.bimserver.models.store.GeoTag;
@@ -92,8 +94,9 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 			}
 			project.setGeoTag(parent.getGeoTag());
 		}
-		if (schema == null || (!schema.toLowerCase().equals("ifc2x3tc1") && !schema.toLowerCase().equals("ifc4"))) {
-			throw new UserException("Invalid schema, the only 2 valid options are: \"ifc2x3tc1\" and \"ifc4\", not \"" + this.schema + "\"");
+		if (schema == null || (!Schema.getIfcSchemas().contains(Schema.valueOf(schema)))) {
+			String ifcSchemas = Schema.getIfcSchemas().stream().map(s -> s.name().toLowerCase()).collect(Collectors.joining(", "));
+			throw new UserException("Invalid schema, only IFC schemas (" + ifcSchemas + ") allowed, not \"" + this.schema + "\"");
 		}
 		
 		schema = schema.toLowerCase();

@@ -86,6 +86,7 @@ public class GetRevisionSummaryDatabaseAction extends BimDatabaseAction<Revision
 		revisionSummary.getList().add(revisionSummaryContainerOther);
 		for (EClass eClass : map.keySet()) {
 			RevisionSummaryContainer subMap = null;
+			// TODO make generic to IFC schema
 			if (Ifc2x3tc1Package.eINSTANCE.getIfcObject().isSuperTypeOf(eClass)) {
 				subMap = revisionSummaryContainerEntities;
 			} else if (Ifc2x3tc1Package.eINSTANCE.getIfcRelationship().isSuperTypeOf(eClass)) {

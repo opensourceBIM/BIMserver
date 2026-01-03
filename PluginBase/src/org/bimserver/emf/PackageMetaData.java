@@ -104,12 +104,14 @@ public class PackageMetaData implements ObjectFactory, Comparable<PackageMetaDat
 		}
 		initUpperCases();
 		initEClassClassMap();
-		if (ePackage == Ifc2x3tc1Package.eINSTANCE || ePackage == Ifc4Package.eINSTANCE) {
+		if (Schema.isIfc(ePackage)) {
 			initOppositeInfo();
 			try {
 				if (schema == Schema.IFC2X3TC1) {
 					schemaDefinition = SchemaLoader.loadIfc2x3tc1();
 				} else if (schema == Schema.IFC4) {
+					schemaDefinition = SchemaLoader.loadIfc4();
+				} else if (schema == Schema.IFC4X3) {
 					schemaDefinition = SchemaLoader.loadIfc4();
 				} else {
 					LOGGER.error("Unimplemented schema: " + schema);
@@ -135,7 +137,7 @@ public class PackageMetaData implements ObjectFactory, Comparable<PackageMetaDat
 		
 		try {
 			initUnsettedLengths();
-			if (ePackage == Ifc2x3tc1Package.eINSTANCE || ePackage == Ifc4Package.eINSTANCE) {
+			if (Schema.isIfc(ePackage)) {
 				// Only do this for IFC schemas, other schemas do not have inverses (since that's an express concept)
 				initInverses();
 			}

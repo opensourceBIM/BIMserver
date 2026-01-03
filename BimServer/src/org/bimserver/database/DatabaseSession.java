@@ -42,21 +42,10 @@ import org.bimserver.database.actions.BimDatabaseAction;
 import org.bimserver.database.berkeley.BimserverConcurrentModificationDatabaseException;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.IsOfTypeCondition;
-import org.bimserver.emf.IdEObject;
-import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.emf.*;
 import org.bimserver.emf.IdEObjectImpl.State;
-import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.emf.IfcModelInterfaceException;
-import org.bimserver.emf.LazyLoader;
-import org.bimserver.emf.MetaDataException;
-import org.bimserver.emf.MetaDataManager;
-import org.bimserver.emf.OidProvider;
-import org.bimserver.emf.PackageMetaData;
-import org.bimserver.emf.QueryInterface;
 import org.bimserver.ifc.BasicIfcModel;
 import org.bimserver.models.geometry.GeometryPackage;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.store.Checkout;
 import org.bimserver.models.store.ConcreteRevision;
 import org.bimserver.models.store.DatabaseInformation;
@@ -1548,7 +1537,7 @@ public class DatabaseSession implements LazyLoader, OidProvider, DatabaseInterfa
 	}
 
 	public static boolean perRecordVersioning(EClass eClass) {
-		return eClass.getEPackage() != Ifc2x3tc1Package.eINSTANCE && eClass.getEPackage() != Ifc4Package.eINSTANCE && eClass.getEPackage() != GeometryPackage.eINSTANCE;
+		return !Schema.isIfc(eClass.getEPackage()) && eClass.getEPackage() != GeometryPackage.eINSTANCE;
 	}
 
 	public IfcModelInterface createModel(PackageMetaData packageMetaData, Map<Integer, Long> pidRoidMap) {

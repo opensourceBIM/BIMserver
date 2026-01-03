@@ -271,7 +271,7 @@ public class BimServerImporter {
 		for (long uoid : project.getHasAuthorizedUsers()) {
 			newProject.getHasAuthorizedUsers().add(createUser(databaseSession, uoid));
 		}
-		newProject.setSchema("ifc2x3tc1");
+		newProject.setSchema("ifc2x3tc1"); // TODO make generic to IFC schemas
 		newProject.setState(bimServer.getSConverter().convertFromSObject(project.getState()));
 		databaseSession.store(newProject);
 		return newProject;

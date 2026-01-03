@@ -25,8 +25,6 @@ import org.bimserver.database.Database;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.migrations.Schema;
 import org.bimserver.models.geometry.GeometryPackage;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc4.Ifc4Package;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.slf4j.Logger;
@@ -44,7 +42,7 @@ public class NewClassBulkChange implements Change {
 
 	@Override
 	public void change(Database database, DatabaseSession databaseSession) throws BimserverDatabaseException {
-		boolean transactional = !(ePackage == Ifc2x3tc1Package.eINSTANCE || ePackage == Ifc4Package.eINSTANCE || ePackage == GeometryPackage.eINSTANCE);
+		boolean transactional = !(org.bimserver.emf.Schema.isIfc(ePackage) || ePackage == GeometryPackage.eINSTANCE);
 		LOGGER.debug("Creating " + eClasses.size() + " " + (transactional ? "transactional" : "non transactional")  + " tables for package " + ePackage.getName());
 		for (EClass eClass : eClasses) {
 			String tableName = eClass.getEPackage().getName() + "_" + eClass.getName();

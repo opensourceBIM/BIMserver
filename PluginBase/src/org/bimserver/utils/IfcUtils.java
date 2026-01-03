@@ -104,6 +104,7 @@ import org.bimserver.models.ifc2x3tc1.IfcValue;
 import org.bimserver.models.ifc2x3tc1.IfcVolumeMeasure;
 import org.bimserver.models.ifc2x3tc1.Tristate;
 import org.bimserver.models.ifc4.Ifc4Package;
+import org.bimserver.models.ifc4x3.Ifc4x3Package;
 import org.bimserver.models.ifc4.IfcPropertySetDefinitionSelect;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -274,7 +275,9 @@ public class IfcUtils {
 	}
 
 	public static IdEObject getIfcProject(IdEObject ifcProduct) {
-		if (ifcProduct.eClass().getEPackage() == Ifc4Package.eINSTANCE) {
+		if (ifcProduct.eClass().getEPackage() == Ifc4x3Package.eINSTANCE) {
+			return getIfcProject((org.bimserver.models.ifc4x3.IfcProduct) ifcProduct);
+		} else if (ifcProduct.eClass().getEPackage() == Ifc4Package.eINSTANCE) {
 			return getIfcProject((org.bimserver.models.ifc4.IfcProduct) ifcProduct);
 		} else if (ifcProduct.eClass().getEPackage() == Ifc2x3tc1Package.eINSTANCE) {
 			return getIfcProject((IfcProduct) ifcProduct);
@@ -282,8 +285,15 @@ public class IfcUtils {
 		return null;
 	}
 
+	public static org.bimserver.models.ifc4x3.IfcProject getIfcProject(org.bimserver.models.ifc4x3.IfcProduct ifcProduct) {
+		if (ifcProduct instanceof org.bimserver.models.ifc4x3.IfcProject) {
+			return (org.bimserver.models.ifc4x3.IfcProject) ifcProduct;
+		}
+		throw new RuntimeException("Not implemented: getIfcProject for IFC4x3");
+	}
+
 	public static org.bimserver.models.ifc4.IfcProject getIfcProject(org.bimserver.models.ifc4.IfcProduct ifcProduct) {
-		if (ifcProduct instanceof IfcProject) {
+		if (ifcProduct instanceof org.bimserver.models.ifc4.IfcProject) {
 			return (org.bimserver.models.ifc4.IfcProject) ifcProduct;
 		}
 		for (org.bimserver.models.ifc4.IfcRelAggregates ifcRelAggregates : ifcProduct.getDecomposes()) {

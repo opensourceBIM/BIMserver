@@ -106,6 +106,7 @@ public class SetWrappedAttributeChange implements Change {
 					throw new UserException("Not a wrapped type");
 				}
 				HashMapWrappedVirtualObject wrappedObject = new HashMapWrappedVirtualObject(typeEClass);
+				// TODO make generic to IFC schema
 				if (typeEClass == Ifc2x3tc1Package.eINSTANCE.getIfcBoolean()) {
 					if ((Boolean)value == true) {
 						value = Tristate.TRUE;

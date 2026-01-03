@@ -23,6 +23,7 @@ import java.util.Set;
 import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc4.Ifc4Package;
+import org.bimserver.models.ifc4x3.Ifc4x3Package;
 import org.bimserver.models.log.LogPackage;
 import org.bimserver.models.store.StorePackage;
 import org.eclipse.emf.ecore.EPackage;
@@ -32,7 +33,9 @@ public enum Schema {
 	GEOMETRY(GeometryPackage.eINSTANCE, "GEOMETRY"),
 	LOG(LogPackage.eINSTANCE, "LOG"),
 	IFC2X3TC1(Ifc2x3tc1Package.eINSTANCE, "IFC2X3"),
-	IFC4(Ifc4Package.eINSTANCE, "IFC4");
+	IFC4(Ifc4Package.eINSTANCE, "IFC4"),
+	IFC4X3(Ifc4x3Package.eINSTANCE, "IFC4X3_ADD2");
+
 	
 	private String headerName;
 	private EPackage ePackage;
@@ -64,19 +67,37 @@ public enum Schema {
 		return ePackage.getName();
 	}
 
+	public EPackage getEPackage() {
+		return ePackage;
+	}
+
 	public static Set<Schema> getIfcSchemas() {
 		Set<Schema> schemas = new HashSet<>();
 		schemas.add(IFC2X3TC1);
 		schemas.add(IFC4);
+		schemas.add(IFC4X3);
 		return schemas;
 	}
 
-	public static Schema fromIfcHeader(String schema) {
-		if ("IFC2X3".equals(schema.toUpperCase())) {
-			return Schema.IFC2X3TC1;
-		} else if ("IFC4".equals(schema.toUpperCase())) {
-			return Schema.IFC4;
-		}
-		return null;
+	public static Set<EPackage> getIfcPackages() {
+		Set<EPackage> packages = new HashSet<>();
+		packages.add(IFC2X3TC1.ePackage);
+		packages.add(IFC4.ePackage);
+		packages.add(IFC4X3.ePackage);
+		return packages;
 	}
+
+	public static boolean isIfc(EPackage ePackage){
+		return getIfcPackages().contains(ePackage);
+	}
+
+	public static Schema fromIfcHeader(String schema) {
+        return switch (schema.toUpperCase()) {
+            case "IFC2X3" -> Schema.IFC2X3TC1;
+            case "IFC4" -> Schema.IFC4;
+            case "IFC4X3_ADD2" -> Schema.IFC4X3;
+            default -> null;
+        };
+    }
+
 }

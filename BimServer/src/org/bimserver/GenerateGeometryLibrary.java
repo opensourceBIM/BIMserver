@@ -25,8 +25,6 @@ import java.util.Map.Entry;
 
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.emf.Schema;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc4.Ifc4Package;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -46,8 +44,9 @@ public class GenerateGeometryLibrary {
 	private EPackage ePackage;
 	
 	public static void main(String[] args) {
-		new GenerateGeometryLibrary().generate(Ifc2x3tc1Package.eINSTANCE, Schema.IFC2X3TC1);
-		new GenerateGeometryLibrary().generate(Ifc4Package.eINSTANCE, Schema.IFC4);
+		for (Schema schema: Schema.getIfcSchemas()){
+			new GenerateGeometryLibrary().generate(schema.getEPackage(), schema);
+		}
 	}
 
 	private void generate(EPackage ePackage, Schema schema) {

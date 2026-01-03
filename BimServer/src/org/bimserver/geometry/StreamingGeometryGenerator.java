@@ -180,7 +180,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		} else if (queryContext.getPackageMetaData().getSchema() == Schema.IFC2X3TC1) {
 			pluginName = "org.bimserver.ifc.step.serializer.Ifc2x3tc1StepStreamingSerializerPlugin";
 		} else {
-			throw new GeometryGeneratingException("Unknown schema " + queryContext.getPackageMetaData().getSchema());
+			throw new GeometryGeneratingException("No serializer for schema " + queryContext.getPackageMetaData().getSchema());
 		}
 		
 		reuseGeometry = bimServer.getServerSettingsCache().getServerSettings().isReuseGeometry();
@@ -925,7 +925,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		} else {
 			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ContainedInStructure", true));
 		}
-		if (packageMetaData.getSchema() == Schema.IFC4) {
+		if (packageMetaData.getSchema() == Schema.IFC4 || packageMetaData.getSchema() == Schema.IFC4X3) {
 			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":IsTypedBy", true));
 		}
 
@@ -1058,7 +1058,7 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 		} else {
 			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ContainedInStructure", true));
 		}
-		if (packageMetaData.getSchema() == Schema.IFC4) {
+		if (packageMetaData.getSchema() == Schema.IFC4 || packageMetaData.getSchema() == Schema.IFC4X3) {
 			queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":IsTypedBy", true));
 		}
 		queryPart.addInclude(jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":Decomposes", true));

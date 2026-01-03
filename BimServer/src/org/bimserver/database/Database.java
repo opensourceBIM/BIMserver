@@ -41,9 +41,8 @@ import org.bimserver.database.migrations.InconsistentModelsException;
 import org.bimserver.database.migrations.MigrationException;
 import org.bimserver.database.migrations.Migrator;
 import org.bimserver.emf.MetaDataManager;
+import org.bimserver.emf.Schema;
 import org.bimserver.models.geometry.GeometryPackage;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.log.DatabaseCreated;
 import org.bimserver.models.log.LogPackage;
@@ -197,7 +196,7 @@ public class Database implements BimDatabase {
 			}
 			for (EClass eClass : cidToEclass) {
 				if (eClass != null) {
-					if (eClass.getEPackage() == Ifc2x3tc1Package.eINSTANCE || eClass.getEPackage() == Ifc4Package.eINSTANCE) {
+					if (Schema.isIfc(eClass.getEPackage())) {
 						realClasses.add(eClass.getName());
 					}
 				}
@@ -301,7 +300,7 @@ public class Database implements BimDatabase {
 				EClass eClass = (EClass) getEClassifier(packageName, className);
 				
 				// TODO geometry?
-				boolean transactional = !(eClass.getEPackage() == Ifc2x3tc1Package.eINSTANCE || eClass.getEPackage() == Ifc4Package.eINSTANCE);
+				boolean transactional = !(Schema.isIfc(eClass.getEPackage()));
 
 				keyValueStore.openTable(databaseSession, packageAndClassName, transactional);
 				
