@@ -51,17 +51,8 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import org.bimserver.emf.IdEObject;
-import org.bimserver.emf.IdEObjectImpl;
+import org.bimserver.emf.*;
 import org.bimserver.emf.IdEObjectImpl.State;
-import org.bimserver.emf.IfcModelInterface;
-import org.bimserver.emf.IfcModelInterfaceException;
-import org.bimserver.emf.ModelMetaData;
-import org.bimserver.emf.OidProvider;
-import org.bimserver.emf.PackageMetaData;
-import org.bimserver.emf.Schema;
-import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
-import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.plugins.ObjectAlreadyExistsException;
 import org.bimserver.shared.exceptions.PublicInterfaceNotFoundException;
 import org.bimserver.shared.exceptions.ServerException;
@@ -972,136 +963,24 @@ public abstract class IfcModel implements IfcModelInterface {
 	@Override
 	public void fixInverseMismatches() {
 		int nrFixes = 0;
-		Ifc4Package ifc4 = Ifc4Package.eINSTANCE;
-		Ifc2x3tc1Package ifc2x3 = Ifc2x3tc1Package.eINSTANCE;
-		Mismatch[] misMatches = packageMetaData.getSchema().equals(Schema.IFC2X3TC1) ? new Mismatch[]{
-						new Mismatch(ifc2x3.getIfcRelContainedInSpatialStructure_RelatedElements(), new EReference[]{
-										ifc2x3.getIfcElement_ContainedInStructure(),
-										ifc2x3.getIfcGrid_ContainedInStructure(),
-										ifc2x3.getIfcAnnotation_ContainedInStructure()}),
-						new Mismatch(ifc2x3.getIfcPresentationLayerAssignment_AssignedItems(), new EReference[]{
-										ifc2x3.getIfcRepresentation_LayerAssignments(),
-										ifc2x3.getIfcRepresentationItem_LayerAssignments() }),
-						new Mismatch(ifc2x3.getIfcRelAssociates_RelatedObjects(), new EReference[]{
-										ifc2x3.getIfcObjectDefinition_HasAssociations(),
-										ifc2x3.getIfcPropertyDefinition_HasAssociations() }),
-						new Mismatch(ifc2x3.getIfcTerminatorSymbol_AnnotatedCurve(), new EReference[]{
-										ifc2x3.getIfcDimensionCurve_AnnotatedBySymbols() }),
-						new Mismatch(ifc2x3.getIfcRelReferencedInSpatialStructure_RelatedElements(), new EReference[]{
-										ifc2x3.getIfcElement_ReferencedInStructures() }),
-						new Mismatch(ifc2x3.getIfcProduct_Representation(), new EReference[]{
-										ifc2x3.getIfcProductDefinitionShape_ShapeOfProduct() }),
-						new Mismatch(ifc2x3.getIfcRelConnectsElements_RelatingElement(), new EReference[]{
-										ifc2x3.getIfcStructuralItem_AssignedStructuralActivity()})
-		} : new Mismatch[]{
-						new Mismatch(ifc4.getIfcRelContainedInSpatialStructure_RelatedElements(), new EReference[]{
-										ifc4.getIfcElement_ContainedInStructure(),
-										ifc4.getIfcGrid_ContainedInStructure(),
-										ifc4.getIfcAnnotation_ContainedInStructure()}),
-						new Mismatch(ifc4.getIfcPresentationLayerAssignment_AssignedItems(), new EReference[]{
-										ifc4.getIfcRepresentation_LayerAssignments(),
-										ifc4.getIfcRepresentationItem_LayerAssignment() }),
-						new Mismatch(ifc4.getIfcRelAssociates_RelatedObjects(), new EReference[]{
-										ifc4.getIfcObjectDefinition_HasAssociations(),
-										ifc4.getIfcPropertyDefinition_HasAssociations() }),
-						new Mismatch(ifc4.getIfcRelReferencedInSpatialStructure_RelatedElements(), new EReference[]{
-										ifc4.getIfcElement_ReferencedInStructures() }),
-						new Mismatch(ifc4.getIfcProduct_Representation(), new EReference[]{
-										ifc4.getIfcProductDefinitionShape_ShapeOfProduct() }),
-						new Mismatch(ifc4.getIfcRelConnectsElements_RelatingElement(), new EReference[]{
-										ifc4.getIfcStructuralItem_AssignedStructuralActivity()}),
-						new Mismatch(ifc4.getIfcExternalReferenceRelationship_RelatedResourceObjects(), new EReference[]{
-										ifc4.getIfcActorRole_HasExternalReference(),
-										ifc4.getIfcAppliedValue_HasExternalReference(),
-										ifc4.getIfcApproval_HasExternalReferences(),
-										ifc4.getIfcConstraint_HasExternalReferences(),
-										ifc4.getIfcContextDependentUnit_HasExternalReference(),
-										ifc4.getIfcConversionBasedUnit_HasExternalReference(),
-										ifc4.getIfcMaterialDefinition_HasExternalReferences(),
-										ifc4.getIfcPhysicalQuantity_HasExternalReferences(),
-										ifc4.getIfcProfileDef_HasExternalReference(),
-										ifc4.getIfcPropertyAbstraction_HasExternalReferences(),
-										ifc4.getIfcTimeSeries_HasExternalReference()
-						}),
-						new Mismatch(ifc4.getIfcRelAssociatesClassification_RelatingClassification(), new EReference[]{
-										ifc4.getIfcClassification_ClassificationForObjects(),
-										ifc4.getIfcClassificationReference_ClassificationRefForObjects()
-						}),
-						new Mismatch(ifc4.getIfcClassificationReference_ReferencedSource(),new EReference[]{
-										ifc4.getIfcClassification_HasReferences(),
-										ifc4.getIfcClassificationReference_HasReferences()
-						}),
-						new Mismatch(ifc4.getIfcRelDefinesByProperties_RelatedObjects(),new EReference[]{
-										ifc4.getIfcContext_IsDefinedBy(),
-										ifc4.getIfcObject_IsDefinedBy()
-						}),
-						new Mismatch(ifc4.getIfcRelAssociatesDocument_RelatingDocument(),new EReference[]{
-										ifc4.getIfcDocumentInformation_DocumentInfoForObjects(),
-										ifc4.getIfcDocumentReference_DocumentRefForObjects()
-						}),
-						new Mismatch(ifc4.getIfcRelSpaceBoundary_RelatingSpace(),new EReference[]{
-										ifc4.getIfcExternalSpatialElement_BoundedBy(),
-										ifc4.getIfcSpace_BoundedBy()
-						}),
-						new Mismatch(ifc4.getIfcRelAssociatesLibrary_RelatingLibrary(),new EReference[]{
-										ifc4.getIfcLibraryInformation_LibraryInfoForObjects(),
-										ifc4.getIfcLibraryReference_LibraryRefForObjects()
-						}),
-						new Mismatch(ifc4.getIfcRelAssociatesMaterial_RelatingMaterial(),new EReference[]{
-										ifc4.getIfcMaterialDefinition_AssociatedTo(),
-										ifc4.getIfcMaterialUsageDefinition_AssociatedTo()
-						}),
-						new Mismatch(ifc4.getIfcRelDeclares_RelatedDefinitions(),new EReference[]{
-										ifc4.getIfcObjectDefinition_HasContext(),
-										ifc4.getIfcPropertyDefinition_HasContext()
-						}),
-						new Mismatch(ifc4.getIfcRelAssignsToProcess_RelatingProcess(),new EReference[]{
-										ifc4.getIfcProcess_OperatesOn(),
-										ifc4.getIfcTypeProcess_OperatesOn()
-						}),
-						new Mismatch(ifc4.getIfcShapeAspect_PartOfProductDefinitionShape(),new EReference[]{
-										ifc4.getIfcProductDefinitionShape_HasShapeAspects(),
-										ifc4.getIfcRepresentationMap_HasShapeAspects()
-						}),
-						new Mismatch(ifc4.getIfcRelDefinesByProperties_RelatingPropertyDefinition(),new EReference[]{
-										ifc4.getIfcPropertySetDefinition_DefinesOccurrence()
-						}),
-						new Mismatch(ifc4.getIfcRelAssignsToResource_RelatingResource(),new EReference[]{
-										ifc4.getIfcResource_ResourceOf(),
-										ifc4.getIfcTypeResource_ResourceOf()
-						}),
-						new Mismatch(ifc4.getIfcCoordinateOperation_SourceCRS(),new EReference[]{
-										ifc4.getIfcCoordinateReferenceSystem_HasCoordinateOperation(),
-										ifc4.getIfcGeometricRepresentationContext_HasCoordinateOperation()
-						}),
-						new Mismatch(ifc4.getIfcRelAssignsToProduct_RelatingProduct(),new EReference[]{
-										ifc4.getIfcProduct_ReferencedBy()
-						}),
-						new Mismatch(ifc4.getIfcResourceConstraintRelationship_RelatedResourceObjects(),new EReference[]{
-										ifc4.getIfcProperty_HasConstraints()
-						}),
-						new Mismatch(ifc4.getIfcResourceApprovalRelationship_RelatedResourceObjects(),new EReference[]{
-										ifc4.getIfcProperty_HasApprovals()
-						})
-		};
+		Mismatches misMatches = Mismatches.forSchema(packageMetaData.getSchema()); // TODO packageMetaData.getMismatches()
 
-
-		for(Mismatch mismatch: misMatches){
-			for(IdEObject entityToBeFixed : getAllWithSubTypes(mismatch.forward.getEContainingClass())){
-				Object referenced = entityToBeFixed.eGet(mismatch.forward);
+		for(EReference forward: misMatches.getForward()){
+			for(IdEObject entityToBeFixed : getAllWithSubTypes(forward.getEContainingClass())){
+				Object referenced = entityToBeFixed.eGet(forward);
 				if(referenced != null)
-					if (mismatch.forward.isMany()) for (IdEObject referencedInList : (EList<? extends IdEObject>) referenced){
-						nrFixes += fixMisMatchInstance(mismatch, entityToBeFixed, referencedInList);
+					if (forward.isMany()) for (IdEObject referencedInList : (EList<? extends IdEObject>) referenced){
+						nrFixes += fixMisMatchInstance(misMatches.getInverse(forward), entityToBeFixed, referencedInList);
 					} else
-						nrFixes += fixMisMatchInstance(mismatch, entityToBeFixed, (IdEObject) referenced);
+						nrFixes += fixMisMatchInstance(misMatches.getInverse(forward), entityToBeFixed, (IdEObject) referenced);
 			}
 		}
 		LOGGER.info("Nr inverse fixes: " + nrFixes);
 	}
 
-	private int fixMisMatchInstance(Mismatch mismatch, IdEObject entityToBeFixed, IdEObject referenced) {
+	private int fixMisMatchInstance(EReference[] matchingInverse, IdEObject entityToBeFixed, IdEObject referenced) {
 		int nrFixes = 0;
-		for(EReference inverse: mismatch.inverse) if(inverse.getEContainingClass().isInstance(referenced)){
+		for(EReference inverse: matchingInverse) if(inverse.getEContainingClass().isInstance(referenced)){
       if(inverse.isMany()) ((EList<IdEObject>) referenced.eGet(inverse)).add(entityToBeFixed);
       else referenced.eSet(inverse, entityToBeFixed);
       nrFixes++;

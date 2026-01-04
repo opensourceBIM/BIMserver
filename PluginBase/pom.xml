@@ -11,6 +11,7 @@
 	</parent>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
+		<testSourceDirectory>test</testSourceDirectory>
 		<resources>
 			<resource>
 				<directory>generated</directory>
@@ -42,6 +43,12 @@
 		</plugins>
 	</build>
 	<dependencies>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>5.13.4</version>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>com.sun.xml.ws</groupId>
 			<artifactId>jaxws-ri</artifactId>
