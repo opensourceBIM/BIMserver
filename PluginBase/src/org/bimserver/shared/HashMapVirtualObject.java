@@ -120,22 +120,15 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 		if (val instanceof VirtualObject) {
 			VirtualObject eObject = (VirtualObject) val;
 			if (eReference.getEAnnotation("twodimensionalarray") != null) {
-				int refSize = 6;
-				EStructuralFeature eStructuralFeature = eObject.eClass().getEStructuralFeature("List");
-				List<?> l = (List<?>)eObject.eGet(eStructuralFeature);
-				for (Object o : l) {
-					if (o instanceof VirtualObject) {
-						refSize += 8;
-					} else if (o instanceof WrappedVirtualObject) {
-						refSize += ((WrappedVirtualObject)o).getSize();
-					} else {
-						refSize += getPrimitiveSize((EDataType) eStructuralFeature.getEType(), o);
-					}
-				}
-				return refSize;
+				return getEmbeddedListSize(eObject, "List");
 			} else if (eObject.eClass().getEAnnotation("wrapped") != null) {
 				VirtualObject wrappedValue = (VirtualObject) val;
 				EStructuralFeature wrappedValueFeature = wrappedValue.eClass().getEStructuralFeature("wrappedValue");
+				
+				if (wrappedValueFeature.isMany()) {
+					return getEmbeddedListSize(eObject, "wrappedValue");
+				}
+				
 				Object wrappedVal = eObject.eGet(wrappedValueFeature);
 				return 2 + getPrimitiveSize((EDataType) wrappedValueFeature.getEType(), wrappedVal);
 			} else {
@@ -149,6 +142,22 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 		} else {
 			throw new RuntimeException("Programming error, should not happen " + val);
 		}
+	}
+	
+	private int getEmbeddedListSize(VirtualObject eObject, String featureName) {
+		int refSize = 6;
+		EStructuralFeature eStructuralFeature = eObject.eClass().getEStructuralFeature(featureName);
+		List<?> l = (List<?>)eObject.eGet(eStructuralFeature);
+		for (Object o : l) {
+			if (o instanceof VirtualObject) {
+				refSize += 8;
+			} else if (o instanceof WrappedVirtualObject) {
+				refSize += ((WrappedVirtualObject)o).getSize();
+			} else {
+				refSize += getPrimitiveSize((EDataType) eStructuralFeature.getEType(), o);
+			}
+		}
+		return refSize;
 	}
 
 	private int getExactSize(VirtualObject virtualObject) {
@@ -371,16 +380,11 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 					if (o instanceof VirtualObject) {
 						VirtualObject listObject = (VirtualObject)o;
 						if (feature.getEAnnotation("twodimensionalarray") != null) {
-							Short cid = getDatabaseInterface().getCidOfEClass((EClass) feature.getEType());
-							
-							buffer.order(ByteOrder.LITTLE_ENDIAN);
-							buffer.putShort((short) -cid);
-							buffer.order(ByteOrder.BIG_ENDIAN);
-							
-							EStructuralFeature lf = listObject.eClass().getEStructuralFeature("List");
-							writeList(listObject, buffer, packageMetaData, lf);
-						} else {
-							if (listObject.eClass().getEAnnotation("wrapped") != null || listObject.eClass().getEStructuralFeature("wrappedValue") != null) {
+							writeEmbeddedList(listObject, "List", (EClass) feature.getEType(), buffer, packageMetaData);
+						} else if (listObject.eClass().getEAnnotation("wrapped") != null || listObject.eClass().getEStructuralFeature("wrappedValue") != null) {
+							if (feature.isMany()) {
+								writeEmbeddedList(listObject, "wrappedValue", listObject.eClass(), buffer, packageMetaData);
+							} else {
 								writeWrappedValue(getPid(), getRid(), listObject, buffer, packageMetaData);
 							}
 						}
@@ -404,6 +408,18 @@ public class HashMapVirtualObject extends AbstractHashMapVirtualObject implement
 				}
 			}
 		}
+	}
+	
+	private void writeEmbeddedList(VirtualObject listObject, String featureName, EClass eClass, ByteBuffer buffer, PackageMetaData packageMetaData)
+			throws BimserverDatabaseException {
+		Short cid = getDatabaseInterface().getCidOfEClass(eClass);
+
+		buffer.order(ByteOrder.LITTLE_ENDIAN);
+		buffer.putShort((short) -cid);
+		buffer.order(ByteOrder.BIG_ENDIAN);
+
+		EStructuralFeature lf = listObject.eClass().getEStructuralFeature(featureName);
+		writeList(listObject, buffer, packageMetaData, lf);
 	}
 	
 	private void writePrimitiveValue(EStructuralFeature feature, Object value, ByteBuffer buffer) throws BimserverDatabaseException {
