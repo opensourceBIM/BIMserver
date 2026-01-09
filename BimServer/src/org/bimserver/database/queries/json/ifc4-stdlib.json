@@ -247,7 +247,7 @@
       "IfcMaterialDefinitionRepresentation": {
       	"type": "IfcMaterialDefinitionRepresentation",
       	"fields": ["Representations"],
-      	"includes": ["ifc2x3tc1-geometry:IfcRepresentation"]
+      	"includes": ["ifc4-geometry:IfcRepresentation"]
       },
       "IfcMaterialList": {
       	"type": "IfcMaterialList",

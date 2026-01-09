@@ -20,15 +20,7 @@ package org.bimserver.emf;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -180,6 +172,9 @@ public class PackageMetaData implements ObjectFactory, Comparable<PackageMetaDat
 	private void initIsInverse(EReference eReference) {
 		EntityDefinition entityBN = schemaDefinition.getEntityBNNoCaseConvert(upperCases.get(eReference.getEContainingClass()));
 		if (entityBN == null) {
+			if(eReference.getName().equals("List")){
+				isInverseCache.put(eReference, false);
+			}
 			return;
 		}
 		Attribute attributeBNWithSuper = entityBN.getAttributeBNWithSuper(eReference.getName());
@@ -352,7 +347,7 @@ public class PackageMetaData implements ObjectFactory, Comparable<PackageMetaDat
 	}
 
 	public Set<EClass> getAllSubClassesIncludingSelf(EClass superClass) {
-		Set<EClass> set = new TreeSet<>(getAllSubClasses(superClass));
+		Set<EClass> set = new HashSet<>(getAllSubClasses(superClass));
 		set.add(superClass);
 		return set;
 	}

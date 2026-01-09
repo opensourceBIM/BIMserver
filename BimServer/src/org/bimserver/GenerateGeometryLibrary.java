@@ -60,7 +60,7 @@ public class GenerateGeometryLibrary {
 		process((EClass) ePackage.getEClassifier("IfcShapeRepresentation"), (EClass) ePackage.getEClassifier("IfcRepresentation"));
 //		cleanup();
 		try {
-			Files.write(OBJECT_MAPPER.writerWithDefaultPrettyPrinter().writeValueAsBytes(rootNode), new File("C:\\Users\\Ruben de Laat\\git\\BIMserver\\BimServer\\src\\org\\bimserver\\database\\queries\\json\\" + schema.name().toLowerCase() + "-geometry.json"));
+			Files.write(OBJECT_MAPPER.writerWithDefaultPrettyPrinter().writeValueAsBytes(rootNode), new File("src/org/bimserver/database/queries/json/" + schema.name().toLowerCase() + "-geometry.json"));
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -121,17 +121,15 @@ public class GenerateGeometryLibrary {
 		ArrayNode includesNode = OBJECT_MAPPER.createArrayNode();
 		defineNode.set("includes", includesNode);
 		for (EReference eReference : eClass.getEAllReferences()) {
-			if (!packageMetaData.isInverse(eReference) || isException(eReference)) {
-				EClass eType = (EClass) eReference.getEType();
-				if (eType.getEPackage() == ePackage) {
-					for (EClass eClass2 : packageMetaData.getAllSubClassesIncludingSelf(eType)) {
-						if (eClass2.getEAnnotation("wrapped") == null) {
-							process(eClass2);
-							includesNode.add(eClass2.getName());
-						}
+			EClass eType = (EClass) eReference.getEType();
+			if (eType.getEPackage() == ePackage && (!packageMetaData.isInverse(eReference) || isException(eReference))) {
+				for (EClass eClass2 : packageMetaData.getAllSubClassesIncludingSelf(eType)) {
+					if (eClass2.getEAnnotation("wrapped") == null) {
+						process(eClass2);
+						includesNode.add(eClass2.getName());
 					}
-					fieldsNode.add(eReference.getName());
 				}
+				fieldsNode.add(eReference.getName());
 			}
 		}
 	}

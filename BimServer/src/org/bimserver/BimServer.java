@@ -735,21 +735,17 @@ public class BimServer implements BasicServerInfoProvider {
 
 			serverSettingsCache = new ServerSettingsCache(bimDatabase);
 
-			for (String schema : new String[]{"ifc2x3tc1", "ifc4"}) {
-				for (String type : new String[] {"geometry", "stdlib"}) {
-					try {
-						PackageMetaData packageMetaData = getMetaDataManager().getPackageMetaData(schema);
-						JsonQueryObjectModelConverter jsonQueryObjectModelConverter = new JsonQueryObjectModelConverter(packageMetaData);
-						String queryNameSpace = schema + "-" + type;
-						if (type.contentEquals("stdlib")) {
-							Include objectPlacement = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ObjectPlacement", true);
-							
-							// The sole reason is to make sure this is done once, and then cached
-							objectPlacement.makeDirectRecursive(new HashSet<>());
-						}
-					} catch (QueryException e) {
-						LOGGER.error(schema + " " + type, e);
-					}
+			for (Schema schema : Schema.getIfcSchemas()) {
+				String schemaName = schema.name().toLowerCase();
+				PackageMetaData packageMetaData = getMetaDataManager().getPackageMetaData(schemaName);
+				JsonQueryObjectModelConverter jsonQueryObjectModelConverter = new JsonQueryObjectModelConverter(packageMetaData);
+				String queryNameSpace = schemaName + "-stdlib";
+				try {
+					Include objectPlacement = jsonQueryObjectModelConverter.getDefineFromFile(queryNameSpace + ":ObjectPlacement", true);
+					// The sole reason is to make sure this is done once, and then cached
+					objectPlacement.makeDirectRecursive(new HashSet<>());
+				} catch (QueryException e) {
+					LOGGER.error(queryNameSpace, e);
 				}
 			}
 			
