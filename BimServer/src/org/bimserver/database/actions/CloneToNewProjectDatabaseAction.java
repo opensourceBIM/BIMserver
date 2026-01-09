@@ -36,11 +36,7 @@ import org.bimserver.database.queries.om.QueryException;
 import org.bimserver.database.queries.om.SpecialQueryType;
 import org.bimserver.emf.PackageMetaData;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ConcreteRevision;
-import org.bimserver.models.store.Project;
-import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.User;
+import org.bimserver.models.store.*;
 import org.bimserver.shared.HashMapVirtualObject;
 import org.bimserver.shared.QueryContext;
 import org.bimserver.shared.exceptions.UserException;
@@ -71,6 +67,9 @@ public class CloneToNewProjectDatabaseAction extends GenericCheckinDatabaseActio
 		Revision oldRevision = getDatabaseSession().get(StorePackage.eINSTANCE.getRevision(), roid, OldQuery.getDefault());
 		Project oldProject = oldRevision.getProject();
 		final User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), OldQuery.getDefault());
+		if (user.getUserType() == UserType.READ_ONLY) {
+			throw new UserException("User '" + user.getName() + "' is read-only and cannot create a new project");
+		}
 		if (!authorization.hasRightsOnProjectOrSuperProjectsOrSubProjects(user, oldProject)) {
 			throw new UserException("User has insufficient rights to download revisions from this project");
 		}

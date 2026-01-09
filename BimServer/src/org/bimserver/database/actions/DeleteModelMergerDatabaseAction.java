@@ -26,11 +26,14 @@ import org.bimserver.models.store.ModelMergerPluginConfiguration;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.UserSettings;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.authorization.Authorization;
 
 public class DeleteModelMergerDatabaseAction extends DeleteDatabaseAction<ModelMergerPluginConfiguration> {
+	private Authorization authorization;
 
-	public DeleteModelMergerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long iid) {
+	public DeleteModelMergerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long iid) {
 		super(databaseSession, accessMethod, StorePackage.eINSTANCE.getModelMergerPluginConfiguration(), iid);
+		this.authorization = authorization;
 	}
 
 	@Override
