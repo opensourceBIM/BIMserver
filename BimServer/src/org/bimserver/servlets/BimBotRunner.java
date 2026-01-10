@@ -160,9 +160,8 @@ public class BimBotRunner implements Runnable {
 					// Make a clean inputstream that uses the data as the original won't be available after this
 					inputStream = new ByteArrayInputStream(data);
 				}
-				
-				SchemaName schema = SchemaName.valueOf(inputType);
-				String projectSchema = getProjectSchema(serviceInterface, schema);
+
+                String projectSchema = getProjectSchema(serviceInterface, SchemaName.valueOf(inputType));
 
 				SProject project = null;
 				String uuid = contextId;
@@ -308,10 +307,12 @@ public class BimBotRunner implements Runnable {
 			
 			inputStream = bufferedInputStream;
 			return serviceInterface.determineIfcVersion(initialBytes, false);
-		} else if (schema == SchemaName.IFC_STEP_2X3TC1) {
+		} else if (schema == SchemaName.IFC_STEP_2X3TC1 || schema == SchemaName.IFC_JSON_2X3TC1) {
 			return "ifc2x3tc1";
-		} else if (schema == SchemaName.IFC_JSON_4) {
+		} else if (schema == SchemaName.IFC_STEP_4 || schema == SchemaName.IFC_JSON_4) {
 			return "ifc4";
+		} else if (schema == SchemaName.IFC_STEP_4X3 || schema == SchemaName.IFC_JSON_4X3) {
+			return "ifc4x3";
 		}
 		return null;
 	}

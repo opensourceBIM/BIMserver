@@ -57,8 +57,8 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 				bimServerClientInterface.download(roid, serializerByContentType.getOid(), outputStream);
 				data = outputStream.toByteArray();
 			}
-			BimBotsInput input = new BimBotsInput(SchemaName.IFC_STEP_2X3TC1, data);
 			SProject project = bimServerClientInterface.getServiceInterface().getProjectByPoid(poid);
+			BimBotsInput input = new BimBotsInput(SchemaName.IFC_STEP_2X3TC1, data); // TODO determine schema from project schema
 			String contextId = project.getUuid().toString();
 			IfcModelInterface model = bimServerClientInterface.getModel(project, roid, preloadCompleteModel(), false, requiresGeometry());
 			input.setIfcModel(model);
@@ -80,10 +80,10 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 			};
 			BimBotsOutput output = runBimBot(input, bimBotContext, new PluginConfiguration(settings));
 			long end = System.nanoTime();
-			
-			if (output.getSchemaName().contentEquals(SchemaName.IFC_STEP_2X3TC1.name()) || output.getSchemaName().contentEquals(SchemaName.IFC_STEP_4.name())) {
+
+			SchemaName outputSchema = SchemaName.valueOf(output.getSchemaName());
+			if (outputSchema==SchemaName.IFC_STEP_2X3TC1 || outputSchema==SchemaName.IFC_STEP_4 || outputSchema==SchemaName.IFC_STEP_4X3) {
 				// There is no point in storing the retuned model as extended data, lets make a new revision
-				
 				output.getModel().checkin(poid, output.getTitle());
 			} else {
 				SFile file = new SFile();
@@ -122,7 +122,8 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 
 	@Override
 	public void addRequiredRights(ServiceDescriptor serviceDescriptor) {
-		if (getOutputSchema().contentEquals(SchemaName.IFC_STEP.name()) || getOutputSchema().contentEquals(SchemaName.IFC_STEP_2X3TC1.name()) || getOutputSchema().contentEquals(SchemaName.IFC_STEP_4.name())) {
+		SchemaName outputSchema = SchemaName.valueOf(getOutputSchema());
+		if (outputSchema == SchemaName.IFC_STEP || outputSchema==SchemaName.IFC_STEP_2X3TC1 || outputSchema==SchemaName.IFC_STEP_4 || outputSchema==SchemaName.IFC_STEP_4X3) {
 			serviceDescriptor.setWriteRevision(true);
 		} else {
 			serviceDescriptor.setWriteExtendedData(getOutputSchema());
@@ -140,6 +141,7 @@ public abstract class BimBotAbstractService extends AbstractService implements B
 
 	@Override
 	public Set<String> getAvailableInputs() throws BimBotsException {
+		// TODO add abstract method getInputSchema()?
 		String input = SchemaName.IFC_STEP_2X3TC1.name();
 		if (input == null) {
 			throw new BimBotsException("No input schema provided", BimBotDefaultErrorCode.NO_INPUT_SCHEMA);

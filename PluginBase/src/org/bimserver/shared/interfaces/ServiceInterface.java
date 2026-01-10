@@ -403,7 +403,7 @@ public interface ServiceInterface extends PublicInterface {
 	/**
 	 * Add a new project
 	 * @param projectName Name of the project, must be a unique name within all root-projects
-	 * @param schema Schema of the project, you can only checkin models of this schema (available options are: "ifc2x3tc1" and "ifc4")
+	 * @param schema Schema of the project, you can only checkin models of this schema (available options are: "ifc2x3tc1", "ifc4", "ifc4x3")
 	 * @return The created Project
 	 * @throws ServerException, UserException
 	 */
@@ -416,6 +416,7 @@ public interface ServiceInterface extends PublicInterface {
 	 * Add a new project as a subproject of another project
 	 * @param projectName Name of the project, must be a unique name within the parent project
 	 * @param parentPoid The ObjectID of the parent project
+	 * @param schema Schema of the project, you can only checkin models of this schema (available options are: "ifc2x3tc1", "ifc4", "ifc4x3")
 	 * @return The created Project
 	 * @throws ServerException, UserException
 	 */
