@@ -27,6 +27,7 @@ import org.bimserver.interfaces.objects.SPluginInformation;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.plugins.MavenPluginBundle;
 import org.bimserver.plugins.MavenPluginLocation;
+import org.bimserver.plugins.MavenPluginVersion;
 import org.bimserver.shared.exceptions.ServerException;
 import org.bimserver.shared.exceptions.UserException;
 import org.slf4j.Logger;
@@ -57,7 +58,8 @@ public class InstallPluginBundle extends BimDatabaseAction<Void> {
 		LOGGER.info("Installing plugin " + repository + " " + groupId + "." + artifactId + "." + version);
 		MavenPluginLocation mavenPluginLocation = bimServer.getMavenPluginRepository().getPluginLocation(repository, groupId, artifactId);
 		if (version == null) {
-			String latestVersion = mavenPluginLocation.getLatestVersionString();
+			List<MavenPluginVersion> lastThree = mavenPluginLocation.getAllVersions();
+			String latestVersion = lastThree.get(lastThree.size()-1).getVersion();
 			LOGGER.info("Using version " + latestVersion + " because no version given");
 			version = latestVersion;
 		}

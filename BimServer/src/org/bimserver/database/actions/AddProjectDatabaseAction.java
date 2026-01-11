@@ -94,7 +94,7 @@ public class AddProjectDatabaseAction extends BimDatabaseAction<Project> {
 			}
 			project.setGeoTag(parent.getGeoTag());
 		}
-		if (schema == null || (!Schema.getIfcSchemas().contains(Schema.valueOf(schema)))) {
+		if (schema == null || (!Schema.getIfcSchemas().contains(Schema.valueOf(schema.toUpperCase())))) {
 			String ifcSchemas = Schema.getIfcSchemas().stream().map(s -> s.name().toLowerCase()).collect(Collectors.joining(", "));
 			throw new UserException("Invalid schema, only IFC schemas (" + ifcSchemas + ") allowed, not \"" + this.schema + "\"");
 		}

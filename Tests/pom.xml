@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.opensourcebim</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.6.0-SNAPSHOT</version>
+		<version>1.6.1-SNAPSHOT</version>
 	</parent>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -51,7 +51,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>bimserverjar</artifactId>
-			<version>1.6.0-SNAPSHOT</version>
+			<version>1.6.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -66,7 +66,7 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>ifcplugins</artifactId>
-			<version>0.0.105</version> <!-- TODO only used in TestBigModelRemote -->
+			<version>0.0.107-SNAPSHOT</version> <!-- TODO only used in TestBigModelRemote -->
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

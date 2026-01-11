@@ -175,7 +175,9 @@ public class StreamingGeometryGenerator extends GenericGeometryGenerator {
 
 		long start = System.nanoTime();
 		String pluginName = "";
-		if (queryContext.getPackageMetaData().getSchema() == Schema.IFC4) {
+		if (queryContext.getPackageMetaData().getSchema() == Schema.IFC4X3) {
+			pluginName = "org.bimserver.ifc.step.serializer.Ifc4x3StepStreamingSerializerPlugin";
+		} else if (queryContext.getPackageMetaData().getSchema() == Schema.IFC4) {
 			pluginName = "org.bimserver.ifc.step.serializer.Ifc4StepStreamingSerializerPlugin";
 		} else if (queryContext.getPackageMetaData().getSchema() == Schema.IFC2X3TC1) {
 			pluginName = "org.bimserver.ifc.step.serializer.Ifc2x3tc1StepStreamingSerializerPlugin";

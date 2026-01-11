@@ -71,7 +71,7 @@ public class TestIfc4x3 extends TestWithEmbeddedServer {
     public void testCheckin() throws ServiceException, ChannelConnectionException, MalformedURLException, URISyntaxException {
         BimServerClientInterface bimServerClient = getFactory().create(new UsernamePasswordAuthenticationInfo("admin@bimserver.org", "admin"));
         for(String testFile: testFiles) {
-            SProject newProject = bimServerClient.getServiceInterface().addProject(testFile.substring(testFile.lastIndexOf("/")+1), "ifc4");
+            SProject newProject = bimServerClient.getServiceInterface().addProject(testFile.substring(testFile.lastIndexOf("/")+1), "ifc4x3");
             SDeserializerPluginConfiguration deserializer = bimServerClient.getServiceInterface().getSuggestedDeserializerForExtension("ifc", newProject.getOid());
             SLongActionState longActionState = bimServerClient.checkinSync(newProject.getOid(), "test", deserializer.getOid(), false, new URI(testFileLocation + testFile).toURL());
             Assertions.assertEquals(SActionState.FINISHED, longActionState.getState());
