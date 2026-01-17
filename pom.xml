@@ -43,10 +43,10 @@
 	</developers>
 	<modules>
 		<module>Bdb</module>
-		<module>BimServer</module>
-		<module>BimServerClientLib</module>
 		<module>PluginBase</module>
 		<module>Shared</module>
+		<module>BimServerClientLib</module>
+		<module>BimServer</module>
 		<module>BimServerWar</module>
 		<module>BimServerJar</module>
 	</modules>
