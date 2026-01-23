@@ -1,5 +1,6 @@
 package org.bimserver.emf;
 
+import org.bimserver.models.geometry.GeometryPackage;
 import org.bimserver.models.ifc2x3tc1.Ifc2x3tc1Package;
 import org.bimserver.models.ifc4.Ifc4Package;
 import org.bimserver.models.ifc4x3.Ifc4x3Package;
@@ -92,4 +93,12 @@ class PackageMetaDataTest {
         Assertions.assertEquals(fwd, packageMetaData.getInverseOrOpposite(ifc4x3.getIfcRelDefinesByProperties(), inv2));
     }
 
+    @Test
+    void testNoInverse(){
+        PackageMetaData packageMetaData = new PackageMetaData(Schema.IFC2X3TC1.getEPackage(), Schema.IFC2X3TC1, Paths.get("tmp"));
+        GeometryPackage geometry = GeometryPackage.eINSTANCE;
+        EReference fwd = geometry.getGeometryInfo_Data();
+        Assertions.assertNull(packageMetaData.getInverseOrOpposite(geometry.getGeometryData(), fwd));
+        // This should probably not be called for geometry package, only for IFC packages?
+    }
 }

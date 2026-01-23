@@ -970,21 +970,23 @@ public abstract class IfcModel implements IfcModelInterface {
 				Object referenced = entityToBeFixed.eGet(forward);
 				if(referenced != null)
 					if (forward.isMany()) for (IdEObject referencedInList : (EList<? extends IdEObject>) referenced){
-						nrFixes += fixMisMatchInstance(misMatches.getInverse(forward), entityToBeFixed, referencedInList);
+						nrFixes += fixMismatchInstance(misMatches.getInverse(forward), entityToBeFixed, referencedInList);
 					} else
-						nrFixes += fixMisMatchInstance(misMatches.getInverse(forward), entityToBeFixed, (IdEObject) referenced);
+						nrFixes += fixMismatchInstance(misMatches.getInverse(forward), entityToBeFixed, (IdEObject) referenced);
 			}
 		}
 		LOGGER.info("Nr inverse fixes: " + nrFixes);
 	}
 
-	private int fixMisMatchInstance(EReference[] matchingInverse, IdEObject entityToBeFixed, IdEObject referenced) {
+	private int fixMismatchInstance(EReference[] matchingInverse, IdEObject entityToBeFixed, IdEObject referenced) {
 		int nrFixes = 0;
-		for(EReference inverse: matchingInverse) if(inverse.getEContainingClass().isInstance(referenced)){
-      if(inverse.isMany()) ((EList<IdEObject>) referenced.eGet(inverse)).add(entityToBeFixed);
-      else referenced.eSet(inverse, entityToBeFixed);
-      nrFixes++;
-    }
+		if(matchingInverse != null){
+			for(EReference inverse: matchingInverse) if(inverse.getEContainingClass().isInstance(referenced)){
+				if(inverse.isMany()) ((EList<IdEObject>) referenced.eGet(inverse)).add(entityToBeFixed);
+				else referenced.eSet(inverse, entityToBeFixed);
+			}
+			nrFixes++;
+    	}
 		return nrFixes;
 	}
 

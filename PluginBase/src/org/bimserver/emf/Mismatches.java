@@ -54,7 +54,7 @@ public class Mismatches {
     }
 
     public static Mismatches forPackage(EPackage ePackage) {
-        return mismatchCache.get(ePackage);
+        return mismatchCache.getOrDefault(ePackage, new Mismatches());
     }
 
     static {
