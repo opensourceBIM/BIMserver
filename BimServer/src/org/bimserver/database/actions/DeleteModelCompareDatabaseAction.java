@@ -22,19 +22,24 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.ModelComparePluginConfiguration;
-import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.UserSettings;
+import org.bimserver.models.store.*;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.authorization.Authorization;
 
 public class DeleteModelCompareDatabaseAction extends DeleteDatabaseAction<ModelComparePluginConfiguration> {
+	private Authorization authorization;
 
-	public DeleteModelCompareDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long iid) {
+	public DeleteModelCompareDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long iid) {
 		super(databaseSession, accessMethod, StorePackage.eINSTANCE.getModelComparePluginConfiguration(), iid);
+		this.authorization = authorization;
 	}
 	
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), OldQuery.getDefault());
+		if (user.getUserType() == UserType.READ_ONLY) {
+			throw new UserException("User has no rights for this call");
+		}
 		ModelComparePluginConfiguration object = getDatabaseSession().get(geteClass(), getOid(), OldQuery.getDefault());
 		UserSettings settings = object.getUserSettings();
 		settings.getModelCompares().remove(object);

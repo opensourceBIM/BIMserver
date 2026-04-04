@@ -22,19 +22,24 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.QueryEnginePluginConfiguration;
-import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.UserSettings;
+import org.bimserver.models.store.*;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.authorization.Authorization;
 
 public class DeleteQueryEngineDatabaseAction extends DeleteDatabaseAction<QueryEnginePluginConfiguration> {
+	private Authorization authorization;
 
-	public DeleteQueryEngineDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long iid) {
+	public DeleteQueryEngineDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long iid) {
 		super(databaseSession, accessMethod, StorePackage.eINSTANCE.getQueryEnginePluginConfiguration(), iid);
+		this.authorization = authorization;
 	}
 	
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), OldQuery.getDefault());
+		if (user.getUserType() == UserType.READ_ONLY) {
+			throw new UserException("User has no rights for this call");
+		}
 		QueryEnginePluginConfiguration object = getDatabaseSession().get(geteClass(), getOid(), OldQuery.getDefault());
 		UserSettings settings = object.getUserSettings();
 		settings.getQueryEngines().remove(object);

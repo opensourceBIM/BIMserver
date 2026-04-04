@@ -26,24 +26,30 @@ import org.bimserver.database.OldQuery;
 import org.bimserver.database.query.conditions.Condition;
 import org.bimserver.database.query.conditions.HasReferenceToCondition;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.Checkout;
-import org.bimserver.models.store.Revision;
-import org.bimserver.models.store.StorePackage;
+import org.bimserver.models.store.*;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.utils.CollectionUtils;
+import org.bimserver.webservices.authorization.Authorization;
 
 public class GetAllCheckoutsOfRevisionDatabaseAction extends BimDatabaseAction<List<Checkout>> {
 
 	private final long roid;
+	private Authorization authorization;
 
-	public GetAllCheckoutsOfRevisionDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long roid) {
+	public GetAllCheckoutsOfRevisionDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long roid, Authorization authorization) {
 		super(databaseSession, accessMethod);
 		this.roid = roid;
+		this.authorization = authorization;
 	}
 
 	@Override
 	public List<Checkout> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		User actingUser = getUserByUoid(authorization.getUoid());
 		Revision revision = getRevisionByRoid(roid);
+		Project project = revision.getProject();
+		if (!authorization.hasRightsOnProject(actingUser, project)) {
+			throw new UserException("User does not have rights on project");
+		}
 		Condition condition = new HasReferenceToCondition(StorePackage.eINSTANCE.getCheckout_Revision(), revision);
 		return CollectionUtils.mapToList(getDatabaseSession().query(condition, Checkout.class, OldQuery.getDefault()));
 	}

@@ -29,6 +29,7 @@ import org.bimserver.models.geometry.GeometryInfo;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.Project;
 import org.bimserver.models.store.Revision;
+import org.bimserver.models.store.User;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -38,20 +39,25 @@ public class GetGeometryInfoDatabaseAction extends BimDatabaseAction<SGeometryIn
 	private BimServer bimServer;
 	private long roid;
 	private long oid;
+	private Authorization authorization;
 
 	public GetGeometryInfoDatabaseAction(BimServer bimServer, DatabaseSession databaseSession, AccessMethod accessMethod, long roid, long oid, Authorization authorization) {
 		super(databaseSession, accessMethod);
 		this.bimServer = bimServer;
 		this.roid = roid;
 		this.oid = oid;
+		this.authorization = authorization;
 	}
 
 	@Override
 	public SGeometryInfo execute() throws UserException, BimserverDatabaseException, BimserverLockConflictException {
 		Revision revision = getDatabaseSession().get(roid, OldQuery.getDefault());
 		Project project = revision.getProject();
+		User actingUser = getUserByUoid(authorization.getUoid());
+		if (!authorization.hasRightsOnProject(actingUser, project)) {
+			throw new UserException("Only user who has access to the project can get geometry information");
+		}
 		PackageMetaData packageMetaData = bimServer.getMetaDataManager().getPackageMetaData(project.getSchema());
-		
 		IdEObject ifcProduct = getDatabaseSession().get(oid, new OldQuery(packageMetaData, project.getId(), revision.getId(), revision.getOid()));
 		if (ifcProduct == null) {
 			throw new UserException("Object with oid " + oid + " not found");

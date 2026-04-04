@@ -185,6 +185,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 
 	@Override
 	public Boolean isAllowSelfRegistration() throws ServerException, UserException {
+		requireAuthentication();
 		return getBimServer().getServerSettingsCache().getServerSettings().getAllowSelfRegistration();
 	}
 
@@ -365,6 +366,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 
 	@Override
 	public SServerSettings getServerSettings() throws ServerException, UserException {
+		requireAuthentication();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.READ_ONLY);
 		try {
 			IfcModelInterface allOfType = session.getAllOfType(StorePackage.eINSTANCE.getServerSettings(), OldQuery.getDefault());
@@ -378,6 +380,7 @@ public class SettingsServiceImpl extends GenericServiceImpl implements SettingsI
 
 	@Override
 	public void setWhiteListedDomains(final List<String> domains) throws ServerException, UserException {
+		requireAdminAuthenticationAndRunningServer();
 		DatabaseSession session = getBimServer().getDatabase().createSession(OperationType.POSSIBLY_WRITE);
 		try {
 			SetServerSettingDatabaseAction action = new SetServerSettingDatabaseAction(getBimServer(), session, getInternalAccessMethod(), new ServerSettingsSetter() {

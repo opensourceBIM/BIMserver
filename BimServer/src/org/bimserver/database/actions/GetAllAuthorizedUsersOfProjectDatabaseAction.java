@@ -25,20 +25,28 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.authorization.Authorization;
 import org.eclipse.emf.common.util.EList;
 
 public class GetAllAuthorizedUsersOfProjectDatabaseAction extends BimDatabaseAction<Set<User>>{
 
 	private final long poid;
+	private Authorization authorization;
 
-	public GetAllAuthorizedUsersOfProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long poid) {
+	public GetAllAuthorizedUsersOfProjectDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long poid, Authorization authorization) {
 		super(databaseSession, accessMethod);
 		this.poid = poid;
+		this.authorization = authorization;
 	}
 	
 	@Override
 	public Set<User> execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		User actingUser = getUserByUoid(authorization.getUoid());
+		if (actingUser.getUserType() == UserType.READ_ONLY){
+			throw new UserException("No rights to get all authorized users of a project");
+		}
 		EList<User> users = getProjectByPoid(poid).getHasAuthorizedUsers();
 		return new HashSet<User>(users);
 	}

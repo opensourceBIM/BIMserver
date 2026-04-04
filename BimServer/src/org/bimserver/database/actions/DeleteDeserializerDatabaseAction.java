@@ -22,19 +22,24 @@ import org.bimserver.database.BimserverLockConflictException;
 import org.bimserver.database.DatabaseSession;
 import org.bimserver.database.OldQuery;
 import org.bimserver.models.log.AccessMethod;
-import org.bimserver.models.store.DeserializerPluginConfiguration;
-import org.bimserver.models.store.StorePackage;
-import org.bimserver.models.store.UserSettings;
+import org.bimserver.models.store.*;
 import org.bimserver.shared.exceptions.UserException;
+import org.bimserver.webservices.authorization.Authorization;
 
 public class DeleteDeserializerDatabaseAction extends DeleteDatabaseAction<DeserializerPluginConfiguration> {
+	private Authorization authorization;
 
-	public DeleteDeserializerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, long sid) {
+	public DeleteDeserializerDatabaseAction(DatabaseSession databaseSession, AccessMethod accessMethod, Authorization authorization, long sid) {
 		super(databaseSession, accessMethod, StorePackage.eINSTANCE.getDeserializerPluginConfiguration(), sid);
+		this.authorization = authorization;
 	}
 
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
+		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), OldQuery.getDefault());
+		if (user.getUserType() == UserType.READ_ONLY) {
+			throw new UserException("User has no rights for this call");
+		}
 		DeserializerPluginConfiguration object = getDatabaseSession().get(geteClass(), getOid(), OldQuery.getDefault());
 		UserSettings settings = object.getUserSettings();
 		settings.getDeserializers().remove(object);

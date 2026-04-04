@@ -54,6 +54,9 @@ public class UndeleteProjectDatabaseAction extends BimDatabaseAction<Boolean> {
 		if (project == null) {
 			throw new UserException("No Project with oid " + poid + " found");
 		}
+		if (actingUser.getUserType() == UserType.READ_ONLY){
+			throw new UserException("No rights to undelete this project");
+		}
 		if (actingUser.getUserType() == UserType.ADMIN || actingUser.getHasRightsOn().contains(project)) {
 			project.setState(ObjectState.ACTIVE);
 			final ProjectUndeleted projectUndeleted = getDatabaseSession().create(ProjectUndeleted.class);

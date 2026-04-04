@@ -24,10 +24,12 @@ import org.bimserver.database.OldQuery;
 import org.bimserver.models.log.AccessMethod;
 import org.bimserver.models.store.StorePackage;
 import org.bimserver.models.store.User;
+import org.bimserver.models.store.UserType;
 import org.bimserver.shared.exceptions.UserException;
 import org.bimserver.webservices.authorization.Authorization;
 
-public class SetUserSettingDatabaseAction extends BimDatabaseAction<Void> {
+public class SetUserSettingDatabaseAction extends BimDatabaseAction<Void> {
+
 	private UserSettingsSetter userSettingsSetter;
 	private Authorization authorization;
 
@@ -40,6 +42,9 @@ public class SetUserSettingDatabaseAction extends BimDatabaseAction<Void> {
 	@Override
 	public Void execute() throws UserException, BimserverLockConflictException, BimserverDatabaseException {
 		User user = getDatabaseSession().get(StorePackage.eINSTANCE.getUser(), authorization.getUoid(), OldQuery.getDefault());
+		if (user.getUserType() == UserType.READ_ONLY) {
+			throw new UserException("Read-only users cannot set user settings");
+		}
 		userSettingsSetter.set(user.getUserSettings());
 		getDatabaseSession().store(user.getUserSettings());
 		return null;
